@@ -1,0 +1,25 @@
+type project
+title
+    FSharp.Plotly
+owners
+    Timo Mühlhaus
+authors 
+    Timo Mühlhaus
+projectUrl
+    http://github.com/muehlhaus/FSharp.Plotly
+iconUrl
+    https://raw.githubusercontent.com/muehlhaus/FSharp.Plotly/master/docs/files/img/logo.png
+licenseUrl
+    http://github.com/muehlhaus/FSharp.Plotly/blob/master/LICENSE.txt
+requireLicenseAcceptance
+    false
+copyright
+    Copyright 2015
+tags
+    Charting FSharp
+summary
+    A F# interactive charting library using plotly.js
+description
+    A F# interactive charting library using plotly.js
+
+
