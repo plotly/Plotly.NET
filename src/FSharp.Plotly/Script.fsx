@@ -51,7 +51,7 @@ let matrix =
     [2.;0.5;1.2;1.4];
     [0.1;2.6;2.4;3.0];]
 
-let rownames = ["p1";"p2";"p3"]
+let rownames = ["p1234567890_1234567890_1234567890";"p2";"p3"]
 let colnames = ["Tp0";"Tp30";"Tp60";"Tp160"]
 
 
@@ -62,8 +62,9 @@ let colorscaleValue =
     
 
 Chart.HeatMap(matrix,colnames,rownames,Colorscale=colorscaleValue,Showscale=true)
+|> Chart.withSize(700.,500.)
+|> Chart.withMarginSize(left=200.)
 |> Chart.Show
-
 
 
 

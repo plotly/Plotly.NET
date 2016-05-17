@@ -17,7 +17,8 @@ module HTML =
 </body>"""
 
     let chart =
-        """<div id="[ID]" style="width: [WIDTH]px; height: [HEIGHT]px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+        //"""<div id="[ID]" style="width: [WIDTH]px; height: [HEIGHT]px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+        """<div id="[ID]"><!-- Plotly chart will be drawn inside this DIV --></div>
   <script>
     var data = [DATA];
     var layout = [LAYOUT];
@@ -29,9 +30,11 @@ module GenericChart =
     type GenericChart =
         | Chart of Trace * Layout option
         | MultiChart  of seq<Trace> * Layout option
-        //member width 
-        //member height 
 
+    let optOrDefault (_default:'t)  (v: 't option) =
+        match v with
+        | Some v' -> v'
+        | None -> _default
         
     let getTraces gChart =
         match gChart with
@@ -40,12 +43,9 @@ module GenericChart =
 
     let getLayout gChart =
         match gChart with
-        | Chart (_,layout)      -> match layout with
-                                   | Some l -> l 
-                                   | None -> Layout()
-        | MultiChart (_,layout) -> match layout with
-                                   | Some l -> l 
-                                   | None -> Layout() 
+        | Chart (_,layout)      -> optOrDefault (Layout()) layout
+        | MultiChart (_,layout) -> optOrDefault (Layout()) layout
+
         
     let toHTML gChart =
         let guid = Guid.NewGuid().ToString()
@@ -60,15 +60,15 @@ module GenericChart =
             let chartMarkup =
                 HTML.chart
                     .Replace("[ID]", guid)
-                    .Replace("[WIDTH]", "900")
-                    .Replace("[HEIGHT]", "500")
+//                    .Replace("[WIDTH]", "900")
+//                    .Replace("[HEIGHT]", "500")
                     .Replace("[DATA]", tracesJson)
                     .Replace("[LAYOUT]", layoutJson)
             HTML.doc.Replace("[CHART]", chartMarkup)
         html
         
                 
-    let map f gChart =
+    let mapTrace f gChart =
         match gChart with
         | Chart (trace,layout)       -> Chart (f trace,layout)
         | MultiChart (traces,layout) -> MultiChart (traces |> Seq.map f,layout) 

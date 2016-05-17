@@ -210,6 +210,22 @@ type private Helpers() =
             layout
             )
 
+    // Applies the styles to Margin()
+    static member ApplyMarginStyles
+        (?left,?right,?top,?bottom,
+            ?pad,?autoexpand
+        ) =
+            (fun (margin:('T :> Margin)) -> 
+            left   |> Option.iter margin.set_l
+            right  |> Option.iter margin.set_r
+            top    |> Option.iter margin.set_t
+            bottom |> Option.iter margin.set_b
+
+            pad        |> Option.iter margin.set_pad
+            autoexpand |> Option.iter margin.set_autoexpand
+
+            margin
+            )
 
 
 
@@ -329,11 +345,11 @@ type Chart =
         GenericChart.Chart (trace,None)
 
 
-    static member HeatMap(data,?Rownames, ?Colnames, ?Name,?Colorscale,?Showscale,?zSmooth,?Colorbar) = 
+    static member HeatMap(data,?ColNames,?RowNames, ?Name,?Colorscale,?Showscale,?zSmooth,?Colorbar) = 
         let trace = 
             Trace()
             |> Helpers.ApplyTraceStyles("heatmap",?name=Name)                
-            |> Helpers.ApplyHeatMapStyles(data, ?x=Colnames, ?y=Rownames,
+            |> Helpers.ApplyHeatMapStyles(data, ?x=ColNames, ?y=RowNames,
                                             ?colorScale=Colorscale,?showscale=Showscale,?zsmooth=zSmooth,?colorbar=Colorbar)
         GenericChart.Chart (trace,None)
 

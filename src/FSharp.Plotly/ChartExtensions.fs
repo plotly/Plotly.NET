@@ -19,9 +19,9 @@ module ChartExtensions =
         static member withMarker(marker:Marker) =
             (fun (ch:GenericChart) ->  
                 ch 
-                |> GenericChart.map (fun gc -> 
-                                        gc.set_marker marker
-                                        gc)
+                |> GenericChart.mapTrace (fun gc -> 
+                                            gc.set_marker marker
+                                            gc)
             )
                
         static member withMarkerStyle(?Size,?Color,?Symbol,?Opacity) = 
@@ -35,9 +35,9 @@ module ChartExtensions =
         static member withLine(line:Line) =
             (fun (ch:GenericChart) ->  
                 ch 
-                |> GenericChart.map (fun gc -> 
-                                        gc.set_line line
-                                        gc)
+                |> GenericChart.mapTrace (fun gc -> 
+                                            gc.set_line line
+                                            gc)
             )
                
         static member withLineStyle(?Width,?Color,?Shape,?Dash,?Smoothing,?ColorScale) =
@@ -53,6 +53,30 @@ module ChartExtensions =
         static member withLayout(layout:Layout) =
             (fun (ch:GenericChart) -> 
                 GenericChart.setLayout layout ch)         
+
+        static member withSize(width,heigth) =            
+            (fun (ch:GenericChart) -> 
+                let layout =
+                    GenericChart.getLayout ch
+                    |> Helpers.ApplyLayoutStyles(width=width,height=heigth)
+                
+                GenericChart.setLayout layout ch)   
+
+
+        static member withMarginSize(?left,?right,?top,?bottom,?pad,?autoexpand) =        
+            (fun (ch:GenericChart) ->                 
+                let margin = 
+                    (GenericChart.getLayout ch)
+                        .marginOption                    
+                    |> GenericChart.optOrDefault (Margin())                    
+                    |> Helpers.ApplyMarginStyles(?left=left,?right=right,?top=top,?bottom=bottom,?pad=pad,?autoexpand=autoexpand)
+                let layout =
+                    GenericChart.getLayout ch
+                    |> Helpers.ApplyLayoutStyles(margin=margin)
+                
+                GenericChart.setLayout layout ch)   
+
+                
 
 
         static member withAxis(layout:Layout) =
