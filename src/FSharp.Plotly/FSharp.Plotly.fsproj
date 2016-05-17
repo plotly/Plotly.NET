@@ -60,12 +60,15 @@
   <Import Project="..\..\.paket\paket.targets" />
   <ItemGroup>
     <Compile Include="StyleOption.fs" />
-    <Compile Include="Text.fs" />
-    <Compile Include="Gramar.fs" />
-    <Compile Include="Main.fs" />
-    <Compile Include="GenericTrace.fs" />
+    <Compile Include="StyleGramar.fs" />
+    <Compile Include="ChartArea.fs" />
+    <Compile Include="Geo.fs" />
+    <Compile Include="Shapes.fs" />
+    <Compile Include="Layout.fs" />
+    <Compile Include="Trace.fs" />
     <Compile Include="GenericChart.fs" />
     <Compile Include="Chart.fs" />
+    <Compile Include="ChartExtensions.fs" />
     <None Include="Script.fsx" />
     <None Include="paket.references" />
     <None Include="paket.template" />

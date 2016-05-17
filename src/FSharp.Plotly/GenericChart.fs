@@ -1,14 +1,8 @@
 ﻿namespace FSharp.Plotly
 
 open System
-open Text
-open Gramar
-open GenericTrace
 open Newtonsoft.Json
 
-type GenericChart<'T when 'T :> Trace> =
-    | Chart of 'T * Layout option
-    | MultiChart  of seq<'T> * Layout option
 
 module HTML =
 
@@ -31,6 +25,13 @@ module HTML =
   </script>"""
 
 module GenericChart =
+
+    type GenericChart =
+        | Chart of Trace * Layout option
+        | MultiChart  of seq<Trace> * Layout option
+        //member width 
+        //member height 
+
         
     let getTraces gChart =
         match gChart with
@@ -103,7 +104,7 @@ module GenericChart =
         l1.xaxis2Option        <- if l2.ShouldSerializexaxis2() then l2.xaxis2Option else l1.xaxis2Option 
         l1.yaxisOption         <- if l2.ShouldSerializeyaxis() then l2.yaxisOption else l1.yaxisOption 
         l1.yaxis2Option        <- if l2.ShouldSerializeyaxis2() then l2.yaxis2Option else l1.yaxis2Option  
-        l1.sceneOption         <- if l2.ShouldSerializescene() then l2.sceneOption else l1.sceneOption  
+        //l1.sceneOption         <- if l2.ShouldSerializescene() then l2.sceneOption else l1.sceneOption  
         l1.geoOption           <- if l2.ShouldSerializegeo() then l2.geoOption else l1.geoOption 
         l1.legendOption        <- if l2.ShouldSerializelegend() then l2.legendOption else l1.legendOption  
         l1.annotationsOption   <- if l2.ShouldSerializeannotations() then l2.annotationsOption else l1.annotationsOption 
@@ -126,7 +127,7 @@ module GenericChart =
         | MultiChart (traces,l1) -> MultiChart (traces, combine' l1 (Some layout))
 
 
-    let combine (gCharts:seq<GenericChart<#Trace>>) =
+    let combine (gCharts:seq<GenericChart>) =
         gCharts
         |> Seq.reduce (fun acc elem ->
                             match acc,elem with
