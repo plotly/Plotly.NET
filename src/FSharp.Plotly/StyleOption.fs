@@ -150,5 +150,30 @@ module StyleOption =
             | Horizontal -> box "h"
             | Vertival   -> box "v"
 
-    /// The colorscale must be a callection containing a mapping of a normalized value to it's color. At minimum, a mapping for the lowest (0) and highest (1) values are required. 
-    type Colorscale<'value when 'value :> System.IConvertible> = seq<'value*string>
+    /// The colorscale must be a collection containing a mapping of a normalized value (between 0.0 and 1.0) to it's color. At minimum, a mapping for the lowest (0.0) and highest (1.0) values are required. 
+    type ColorScale =
+        | Custom of seq<float*string> 
+        | RdBu | Earth | Blackbody | YIOrRd | YIGnBu | Bluered
+        | Portland | Electric | Jet | Hot | Greys | Greens | Picnic 
+        
+        static member convert = function
+            | Custom (cScale) -> cScale
+                                 |> Seq.map (fun (v,color) -> [|box v;box color|])
+                                 |> Array.ofSeq |> box
+            | RdBu            -> box "RdBu"     
+            | Earth           -> box "Earth"    
+            | Blackbody       -> box "Blackbody"
+            | YIOrRd          -> box "YIOrRd"   
+            | YIGnBu          -> box "YIGnBu"   
+            | Bluered         -> box "Bluered"  
+            | Portland        -> box "Portland"
+            | Electric        -> box "Electric" 
+            | Jet             -> box "Jet"      
+            | Hot             -> box "Hot"      
+            | Greys           -> box "Greys"    
+            | Greens          -> box "Greens"   
+            | Picnic          -> box "Picnic"   
+                           
+
+
+

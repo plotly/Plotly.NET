@@ -77,16 +77,16 @@ type private Helpers() =
             trace
             )
 
-    // Applies the styles to HeatMap() //:StyleOption.Colorscale<#IConvertible>
+    // Applies the styles to HeatMap() 
     static member ApplyHeatMapStyles
         (z:seq<#seq<#IConvertible>>, ?x:seq<#IConvertible>,?y:seq<#IConvertible>, 
-         ?colorscale,?showscale,?zsmooth,?colorbar
+         ?colorScale:StyleOption.ColorScale,?showscale,?zsmooth,?colorbar
         ) =
             (fun (trace:Trace) -> 
             trace.set_z z     
             x          |> Option.iter trace.set_x                        
             y          |> Option.iter trace.set_y            
-            colorscale |> Option.iter trace.set_colorscale
+            colorScale |> Option.iter (StyleOption.ColorScale.convert >> trace.set_colorscale)
             showscale  |> Option.iter trace.set_showscale
             zsmooth    |> Option.iter trace.set_zsmooth
             colorbar   |> Option.iter trace.set_colorbar
@@ -97,7 +97,7 @@ type private Helpers() =
 
     // Applies the styles to Line()
     static member ApplyLineStyles
-        (?width,?color,?shape,?dash,?smoothing,?colorScale
+        (?width,?color,?shape,?dash,?smoothing,?colorScale:StyleOption.ColorScale
         ) =
             (fun (line:('T :> Line)) -> 
             color      |> Option.iter line.set_color
@@ -105,7 +105,7 @@ type private Helpers() =
             shape      |> Option.iter line.set_shape
             smoothing  |> Option.iter line.set_smoothing
             dash       |> Option.iter line.set_dash
-            colorScale |> Option.iter line.set_colorscale
+            colorScale |> Option.iter (StyleOption.ColorScale.convert >> line.set_colorscale)
             line
             )
 
@@ -334,7 +334,7 @@ type Chart =
             Trace()
             |> Helpers.ApplyTraceStyles("heatmap",?name=Name)                
             |> Helpers.ApplyHeatMapStyles(data, ?x=Colnames, ?y=Rownames,
-                                            ?colorscale=Colorscale,?showscale=Showscale,?zsmooth=zSmooth,?colorbar=Colorbar)
+                                            ?colorScale=Colorscale,?showscale=Showscale,?zsmooth=zSmooth,?colorbar=Colorbar)
         GenericChart.Chart (trace,None)
 
 

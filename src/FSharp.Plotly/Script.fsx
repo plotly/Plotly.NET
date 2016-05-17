@@ -55,14 +55,13 @@ let rownames = ["p1";"p2";"p3"]
 let colnames = ["Tp0";"Tp30";"Tp60";"Tp160"]
 
 
-//let namedParams (s: seq<string*_>) = dict <| Seq.map (fun (n,v) -> n, box v) s
 
 let colorscaleValue = 
-    [|[|box 0; box "#3D9970"|];
-      [|box 1; box "#00FF00"|];|]
-      //(3, "#001f3f");]
+    //StyleOption.ColorScale.Electric
+    StyleOption.ColorScale.Custom [(0.0,"#3D9970");(1.0,"#001f3f")]
+    
 
-Chart.HeatMap(matrix,colnames,rownames,Colorscale=colorscaleValue,Showscale=false)
+Chart.HeatMap(matrix,colnames,rownames,Colorscale=colorscaleValue,Showscale=true)
 |> Chart.Show
 
 
