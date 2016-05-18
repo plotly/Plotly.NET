@@ -7,14 +7,18 @@ open Newtonsoft.Json
 module HTML =
 
     let doc =
-        """<head>
+        """<!DOCTYPE html>
+                    <html>
+        <head>
   <!-- Plotly.js -->
+  <meta http-equiv="X-UA-Compatible" content="IE=10" >
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 
 <body>
   [CHART]
-</body>"""
+</body>
+</html>"""
 
     let chart =
         //"""<div id="[ID]" style="width: [WIDTH]px; height: [HEIGHT]px;"><!-- Plotly chart will be drawn inside this DIV --></div>

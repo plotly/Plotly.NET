@@ -52,20 +52,37 @@ module StyleOption =
     // | "lines", "markers", "text" joined with a "+" OR "none".
     type Mode = 
         | None 
-        | Lines   | Lines_Markers | Lines_Text | Lines_Marker_Text
-        | Markers | Marker_Text
+        | Lines   | Lines_Markers | Lines_Text | Lines_Markers_Text
+        | Markers | Markers_Text
         | Text
         static member toString = function
-            | None              -> "None"             
-            | Lines             -> "lines"            
-            | Lines_Markers     -> "lines+markers"    
-            | Lines_Text        -> "lines+text"       
-            | Lines_Marker_Text -> "lines+marker+text"
-            | Markers           -> "markers"          
-            | Marker_Text       -> "marker+text"
-            | Text              -> "text"             
+            | None               -> "None"             
+            | Lines              -> "lines"            
+            | Lines_Markers      -> "lines+markers"    
+            | Lines_Text         -> "lines+text"       
+            | Lines_Markers_Text -> "lines+markers+text"
+            | Markers            -> "markers"          
+            | Markers_Text       -> "markers+text"
+            | Text               -> "text"             
 
         static member convert = box Mode.toString
+
+    /// Sets the positions of the `text` elements with respects to the (x,y) coordinates. (default: MiddleCenter)
+    type TextPosition =
+        | TopLeft | TopCenter | TopRight | MiddleLeft | MiddleCenter | MiddleRight | BottomLeft | BottomCenter | BottomRight 
+        static member toString = function
+            | TopLeft      -> "top left" 
+            | TopCenter    -> "top center"
+            | TopRight     -> "top right"
+            | MiddleLeft   -> "middle left"
+            | MiddleCenter -> "middle center"
+            | MiddleRight  -> "middle right"
+            | BottomLeft   -> "bottom left"
+            | BottomCenter -> "bottom center"
+            | BottomRight  -> "bottom right"        
+
+        static member convert = box TextPosition.toString
+
 
 
     /// Names of installed font families

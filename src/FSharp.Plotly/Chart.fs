@@ -22,7 +22,7 @@ type private Helpers() =
             ?fill: StyleOption.Fill,
             ?fillcolor: string,
             ?marker: Marker,
-            ?textposition: _,
+            ?textposition: StyleOption.TextPosition,
             ?textfont: Font,
             ?r: _,
             ?t: _,
@@ -42,7 +42,7 @@ type private Helpers() =
                     x            |> Option.iter trace.set_x
                     y            |> Option.iter trace.set_y
                     text         |> Option.iter trace.set_text
-                    textposition |> Option.iter trace.set_textposition
+                    textposition |> Option.iter (StyleOption.TextPosition.toString >> trace.set_textposition)
                     textfont     |> Option.iter trace.set_textfont
 
                     mode         |> Option.iter (StyleOption.Mode.toString >> trace.set_mode)
@@ -247,11 +247,11 @@ type private Helpers() =
 /// Provides a set of static methods for creating charts.
 type Chart =
 
-    static member Scatter(x, y, mode, ?Name,?Showlegend,?Color,?Opacity,?Labels) = 
+    static member Scatter(x, y, mode, ?Name,?Showlegend,?Color,?Opacity,?Labels,?TextPosition,?TextFont) = 
         let trace = 
             Trace()
             |> Helpers.ApplyTraceStyles("scatter",x = x,y = y, mode=mode, ?name=Name,
-                ?showlegend=Showlegend,?fillcolor=Color,?opacity=Opacity,?text=Labels)
+                ?showlegend=Showlegend,?fillcolor=Color,?opacity=Opacity,?text=Labels,?textposition=TextPosition,?textfont=TextFont)
         GenericChart.Chart (trace,None)
 
 

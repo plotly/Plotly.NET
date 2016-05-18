@@ -52,8 +52,8 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="ViewContainer.fs" />
-    <Compile Include="Chart.fs" />
-    <None Include="Script.fsx" />
+    <Compile Include="ChartWPF.fs" />
+    <None Include="WpfTest.fsx" />
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +73,13 @@
     <Reference Include="System.Xaml" />
     <Reference Include="UIAutomationTypes" />
     <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FSharp.Plotly\FSharp.Plotly.fsproj">
+      <Name>FSharp.Plotly</Name>
+      <Project>{8a8d5b08-bfd1-4953-8624-f1520a342232}</Project>
+      <Private>True</Private>
+    </ProjectReference>
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
