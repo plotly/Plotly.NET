@@ -47,6 +47,14 @@ module ChartExtensions =
             
             Chart.withLine(line)  
 
+        
+        static member withX_AxisStyle(?Width,?Color,?Shape,?Dash,?Smoothing,?ColorScale) =
+            let line = 
+                Line()                
+                |> Helpers.ApplyLineStyles(?width=Width,?color=Color,?shape=Shape,?dash=Dash,?smoothing=Smoothing,?colorScale=ColorScale)
+            
+            Chart.withLine(line) 
+
 
         // -------------
         // with Layout

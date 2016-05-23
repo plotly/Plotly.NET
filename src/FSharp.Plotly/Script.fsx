@@ -23,8 +23,12 @@ let yValues' = seq [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
 
 // Combinded range plot
 
+Chart.Range(xValues,yValues,(yValues |> Seq.map (fun v -> v - 0.7)),(yValues |> Seq.map (fun v -> v + 0.7)),Name="A",Color="#FF0000",ShowMarkers=false)
+//Chart.Point(xValues,yValues,Name="scattern",Color="#FF0000")
+|> Chart.Show
+
 [
-    Chart.Range(xValues,yValues,(yValues |> Seq.map (fun v -> v - 0.7)),(yValues |> Seq.map (fun v -> v + 0.7)),Name="A");
+    Chart.SplineRange(xValues,yValues,(yValues |> Seq.map (fun v -> v - 0.7)),(yValues |> Seq.map (fun v -> v + 0.7)),Name="A",Color="#FF0000",Smoothing=0.5);
     Chart.Range(xValues,yValues',(yValues' |> Seq.map (fun v -> v - 0.3)),(yValues' |> Seq.map (fun v -> v + 0.3)),Name="B");
 ]
 |> Chart.Combine
@@ -70,3 +74,6 @@ Chart.HeatMap(matrix,colnames,rownames,Colorscale=colorscaleValue,Showscale=true
 
 System.IO.Path.GetTempPath()
 
+open Newtonsoft.Json
+let a =
+    """{"Name":"Root","Children":[{"Name":"1","Children":[]},{"Name":"2","Children":[]}]}""" |> JsonConvert.DeserializeObject

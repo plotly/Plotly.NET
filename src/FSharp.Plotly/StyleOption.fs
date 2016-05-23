@@ -81,7 +81,7 @@ module StyleOption =
             | BottomCenter -> "bottom center"
             | BottomRight  -> "bottom right"        
 
-        static member convert = box TextPosition.toString
+        static member convert o = box (TextPosition.toString o)
 
 
 
@@ -118,7 +118,7 @@ module StyleOption =
             | Hvh    -> "hvh"
             | Vhv    -> "vhv"
         
-        static member convert = box Shape.toString
+        static member convert o = box (Shape.toString o)
     
     /// Sets the area to fill with a solid color. (default: "none" )
     type Fill =
@@ -133,7 +133,7 @@ module StyleOption =
             | ToSelf    -> "toself"
             | ToNext    -> "tonext"
         
-        static member convert = box Fill.toString
+        static member convert o = box (Fill.toString o)
 
 
     type Boxpoints =
