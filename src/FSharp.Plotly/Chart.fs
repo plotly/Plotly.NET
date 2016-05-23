@@ -97,12 +97,12 @@ type private Helpers() =
 
     // Applies the styles to Line()
     static member ApplyLineStyles
-        (?width,?color,?shape,?dash,?smoothing,?colorScale:StyleOption.ColorScale
+        (?width,?color,?shape:StyleOption.Shape,?dash,?smoothing,?colorScale:StyleOption.ColorScale
         ) =
             (fun (line:('T :> Line)) -> 
             color      |> Option.iter line.set_color
             width      |> Option.iter line.set_width
-            shape      |> Option.iter line.set_shape
+            shape      |> Option.iter (StyleOption.Shape.convert >> line.set_shape)
             smoothing  |> Option.iter line.set_smoothing
             dash       |> Option.iter line.set_dash
             colorScale |> Option.iter (StyleOption.ColorScale.convert >> line.set_colorscale)
@@ -227,7 +227,23 @@ type private Helpers() =
             margin
             )
 
+    // Applies the styles to Axis()
+    // TODO
+    static member ApplyAxisStyles
+        (?left,?right,?top,?bottom,
+            ?pad,?autoexpand
+        ) =
+            (fun (margin:('T :> Margin)) -> 
+            left   |> Option.iter margin.set_l
+            right  |> Option.iter margin.set_r
+            top    |> Option.iter margin.set_t
+            bottom |> Option.iter margin.set_b
 
+            pad        |> Option.iter margin.set_pad
+            autoexpand |> Option.iter margin.set_autoexpand
+
+            margin
+            )
 
 
 
@@ -248,42 +264,50 @@ type private Helpers() =
 type Chart =
 
     static member Scatter(x, y, mode, ?Name,?Showlegend,?Color,?Opacity,?Labels,?TextPosition,?TextFont) = 
+        let line   = Line()   |> Helpers.ApplyLineStyles(?color=Color)
+        let marker = Marker() |> Helpers.ApplyMarkerStyles(?color=Color)
         let trace = 
             Trace()
-            |> Helpers.ApplyTraceStyles("scatter",x = x,y = y, mode=mode, ?name=Name,
-                ?showlegend=Showlegend,?fillcolor=Color,?opacity=Opacity,?text=Labels,?textposition=TextPosition,?textfont=TextFont)
+            |> Helpers.ApplyTraceStyles("scatter",x = x,y = y, mode=mode, ?name=Name,line=line,marker=marker,
+                ?showlegend=Showlegend,?opacity=Opacity,?text=Labels,?textposition=TextPosition,?textfont=TextFont)
         GenericChart.Chart (trace,None)
 
 
-    static member Point(x, y, ?Name,?Showlegend,?Color,?Opacity,?Labels) = 
+    static member Point(x, y, ?Name,?Showlegend,?Color,?Opacity,?Labels) =         
+        let marker = Marker() |> Helpers.ApplyMarkerStyles(?color=Color)        
         let trace = 
             Trace()
-            |> Helpers.ApplyTraceStyles("scatter",x = x,y = y, mode=StyleOption.Markers, ?name=Name,
+            |> Helpers.ApplyTraceStyles("scatter",x = x,y = y, mode=StyleOption.Markers, ?name=Name,marker=marker,
                 ?showlegend=Showlegend,?fillcolor=Color,?opacity=Opacity,?text=Labels)
         GenericChart.Chart (trace,None)
 
     static member Line(x, y,?Name,?ShowMarkers,?Showlegend,?Color,?Opacity,?Labels) =             
+        let line   = Line()   |> Helpers.ApplyLineStyles(?color=Color)
+        let marker = Marker() |> Helpers.ApplyMarkerStyles(?color=Color)
         let mode' = match ShowMarkers with
                     | Some show -> if show then StyleOption.Lines_Markers else StyleOption.Lines
                     | None      -> StyleOption.Lines_Markers // default 
         let trace = 
             Trace()
-            |> Helpers.ApplyTraceStyles("scatter",x = x,y = y, mode=mode', ?name=Name,
+            |> Helpers.ApplyTraceStyles("scatter",x = x,y = y, mode=mode', ?name=Name,line=line,marker=marker,
                 ?showlegend=Showlegend,?fillcolor=Color,?opacity=Opacity,?text=Labels)
         GenericChart.Chart (trace,None)
 
+    /// 
     static member Range(x, y, upper, lower, ?Name,?ShowMarkers,?Showlegend,?Color,?RangeColor,?Labels) =             
         let mode' = match ShowMarkers with
                     | Some show -> if show then StyleOption.Lines_Markers else StyleOption.Lines
                     | None      -> StyleOption.Lines_Markers // default 
             
-        let tLine = Line(width = 0)
+        let mline = Line()   |> Helpers.ApplyLineStyles(?color=Color)
+        let mmark = Marker() |> Helpers.ApplyMarkerStyles(?color=Color)
+        let tLine = Line() |> Helpers.ApplyLineStyles(width=0)
         let tmark = Marker(color = if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,,0.5)")
             
 
         let trace = 
             Trace()
-            |> Helpers.ApplyTraceStyles("scatter",x = x,y = y, mode=mode', ?name=Name,
+            |> Helpers.ApplyTraceStyles("scatter",x = x,y = y, mode=mode', ?name=Name,line=mline,marker=mmark,
                 ?showlegend=Showlegend,?fillcolor=Color,?text=Labels)
         let lower = 
             Trace()
@@ -295,6 +319,33 @@ type Chart =
                 showlegend=false,?fillcolor=RangeColor,marker=tmark)
         GenericChart.MultiChart ([lower;upper;trace],None)
 
+    /// 
+    static member SplineRange(x, y, upper, lower, ?Name,?ShowMarkers,?Showlegend,?Color,?RangeColor,?Labels,?Smoothing) =             
+        let mode' = match ShowMarkers with
+                    | Some show -> if show then StyleOption.Lines_Markers else StyleOption.Lines
+                    | None      -> StyleOption.Lines_Markers // default 
+            
+        let mline = Line()   |> Helpers.ApplyLineStyles(?color=Color,shape=StyleOption.Shape.Spline,?smoothing=Smoothing)
+        let mmark = Marker() |> Helpers.ApplyMarkerStyles(?color=Color)
+        let tLine = Line() |> Helpers.ApplyLineStyles(width=0,shape=StyleOption.Shape.Spline,?smoothing=Smoothing)
+        let tmark = Marker(color = if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,,0.5)")
+            
+
+        let trace = 
+            Trace()
+            |> Helpers.ApplyTraceStyles("scatter",x = x,y = y, mode=mode', ?name=Name,line=mline,marker=mmark,
+                ?showlegend=Showlegend,?fillcolor=Color,?text=Labels)
+        let lower = 
+            Trace()
+            |> Helpers.ApplyTraceStyles("scatter",x = x,y = lower, mode=StyleOption.Lines,line=tLine,
+                showlegend=false,?fillcolor=RangeColor,marker=tmark)
+        let upper = 
+            Trace()
+            |> Helpers.ApplyTraceStyles("scatter",x = x,y = upper, mode=StyleOption.Lines,fill=StyleOption.ToNext_y,line=tLine,
+                showlegend=false,?fillcolor=RangeColor,marker=tmark)
+        GenericChart.MultiChart ([lower;upper;trace],None)
+
+    ///
     static member Area(x, y, ?Name,?ShowMarkers,?Showlegend,?Color,?Opacity,?Labels) = 
         let mode' = match ShowMarkers with
                     | Some show -> if show then StyleOption.Lines_Markers else StyleOption.Lines
