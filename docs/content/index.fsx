@@ -7,46 +7,31 @@
 FSharp.Plotly
 ======================
 
-Documentation
+The library FSharp.Plotly implements charting suitable for use from F# scripting. Once you load the library as followed, you can use the members of the 'Chart' type to easily build charts.
 
-<div class="row">
-  <div class="span1"></div>
-  <div class="span6">
-    <div class="well well-small" id="nuget">
-      The FSharp.Plotly library can be <a href="https://nuget.org/packages/FSharp.Plotly">installed from NuGet</a>:
-      <pre>PM> Install-Package FSharp.Plotly</pre>
-    </div>
-  </div>
-  <div class="span1"></div>
-</div>
-
-Example
--------
-
-This example demonstrates using a function defined in this sample library.
-
+FSharp.Plotly is powered by popular JavaScript charting library [Plotly](https://plot.ly/). The library provides a complete mapping for the configuration options of the underlying library but empowers you to use the comfortable style known from the beautiful library [F# Charting](http://fslab.org/FSharp.Charting/). So you get a nice F# interface support with the full power of Plotly.
 *)
+
 #r "FSharp.Plotly.dll"
 open FSharp.Plotly
 
-printfn "hello = %i" <| Library.hello 0
+(**
+Example
+-------
+
+The following example creates a combined point and line chart:
+*)
+let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
+let y  = [5.; 2.5; 5.; 7.5; 5.; 2.5; 7.5; 4.5; 5.5; 5.]
+let y' = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.] 
+[
+    Chart.Point(x,y,Name="scattern");
+    Chart.Line(x,y',Name="line")    
+    |> Chart.withLineStyle(Width=1);
+] 
+|> Chart.Combine
 
 (**
-Some more info
-
-Samples & documentation
------------------------
-
-The library comes with comprehensible documentation. 
-It can include tutorials automatically generated from `*.fsx` files in [the content folder][content]. 
-The API reference is automatically generated from Markdown comments in the library implementation.
-
- * [Tutorial](tutorial.html) contains a further explanation of this sample library.
-
- * [API Reference](reference/index.html) contains automatically generated documentation for all types, modules
-   and functions in the library. This includes additional brief samples on using most of the
-   functions.
- 
 Contributing and copyright
 --------------------------
 
