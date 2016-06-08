@@ -36,7 +36,7 @@
         <div class="span9" id="main">
           
 <h1><a name="FSharp-Plotly" class="anchor" href="#FSharp-Plotly">FSharp.Plotly</a></h1>
-<p>The library FSharp.Plotly implements charting suitable for use from F# scripting. Once you load the library as followed, you can use the members of the 'Chart' type to easily build charts.</p>
+<p>The library FSharp.Plotly implements charting suitable for use from F# scripting. Once you load the library as followed, you can use the members of the <code>Chart</code> type to easily build charts.</p>
 <p>FSharp.Plotly is powered by popular JavaScript charting library <a href="https://plot.ly/">Plotly</a>. The library provides a complete mapping for the configuration options of the underlying library but empowers you to use the comfortable style known from the beautiful library <a href="http://fslab.org/FSharp.Charting/">F# Charting</a>. So you get a nice F# interface support with the full power of Plotly.</p>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
@@ -54,7 +54,7 @@
 </pre></td>
 <td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">x</span>  <span class="o">=</span> [<span class="n">1.</span>; <span class="n">2.</span>; <span class="n">3.</span>; <span class="n">4.</span>; <span class="n">5.</span>; <span class="n">6.</span>; <span class="n">7.</span>; <span class="n">8.</span>; <span class="n">9.</span>; <span class="n">10.</span>; ]
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">y</span>  <span class="o">=</span> [<span class="n">5.</span>; <span class="n">2.5</span>; <span class="n">5.</span>; <span class="n">7.5</span>; <span class="n">5.</span>; <span class="n">2.5</span>; <span class="n">7.5</span>; <span class="n">4.5</span>; <span class="n">5.5</span>; <span class="n">5.</span>]
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="i">y&#39;</span> <span class="o">=</span> [<span class="n">2.</span>; <span class="n">1.5</span>; <span class="n">5.</span>; <span class="n">1.5</span>; <span class="n">3.</span>; <span class="n">2.5</span>; <span class="n">2.5</span>; <span class="n">1.5</span>; <span class="n">3.5</span>; <span class="n">1.</span>] 
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="i">y&#39;</span> <span class="o">=</span> [<span class="n">2.</span>; <span class="n">1.5</span>; <span class="n">5.</span>; <span class="n">1.5</span>; <span class="n">3.</span>; <span class="n">2.5</span>; <span class="n">2.5</span>; <span class="n">1.5</span>; <span class="n">3.5</span>; <span class="n">1.</span>]
 </code></pre></td>
 </tr>
 </table>
@@ -74,11 +74,11 @@
 </code></pre></td>
 </tr>
 </table>
-<div id="5a171856-27ee-46b1-a400-1f710865b7c9"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="84eb1a97-5924-426e-a29a-39c6e4300b30"><!-- Plotly chart will be drawn inside this DIV --></div>
   <script>
     var data = [{"type":"scatter","name":"scattern","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,2.5,5.0,7.5,5.0,2.5,7.5,4.5,5.5,5.0],"mode":"markers","marker":{}},{"type":"scatter","name":"line","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"mode":"lines+markers","line":{"width":1},"marker":{}}];
     var layout = {};
-    Plotly.newPlot('5a171856-27ee-46b1-a400-1f710865b7c9', data, layout);
+    Plotly.newPlot('84eb1a97-5924-426e-a29a-39c6e4300b30', data, layout);
   </script>
 <h2><a name="Contributing-and-copyright" class="anchor" href="#Contributing-and-copyright">Contributing and copyright</a></h2>
 <p>The project is hosted on <a href="https://github.com/fsprojects/FSharp.Plotly">GitHub</a> where you can <a href="https://github.com/fsprojects/FSharp.Plotly/issues">report issues</a>, fork
@@ -117,10 +117,10 @@ redistribution for both commercial and non-commercial purposes. For more informa
             <li><a href="/FSharp.Plotly/pie-daughnut-charts.html">Pie and Doughnut Charts</a></li>
             <li><a href="/FSharp.Plotly/bar-charts.html">Bar</a></li>
             <li><a href="/FSharp.Plotly/box-plots.html">Box Plots</a></li>
-            <li><a href="/FSharp.Plotly/bubble-charts.html">Bubble Charts</a></li>
-            <li><a href="/FSharp.Plotly/contour-plots.html">Contour Plots</a></li>
             <li><a href="/FSharp.Plotly/area-plots.html">Area Plots</a></li>
             <li><a href="/FSharp.Plotly/heatmaps.html">Heatmaps</a></li>
+            <li><a href="/FSharp.Plotly/bubble-charts.html">Bubble Charts</a></li>
+            <li><a href="/FSharp.Plotly/contour-plots.html">Contour Plots</a></li>
             <li><a href="/FSharp.Plotly/histograms.html">Histograms</a></li>
             <li><a href="/FSharp.Plotly/2d-histograms.html">2D Histograms</a></li>
             <li><a href="/FSharp.Plotly/polar-charts.html">Polar Charts</a></li>
