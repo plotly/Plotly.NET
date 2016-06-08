@@ -14,6 +14,7 @@ let yValues' = seq [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
 
 // Combinded Point and Line plot
 [
+    
     Chart.Point(xValues,yValues,Name="scattern");
     Chart.Line(xValues,yValues',Name="line")    
     |> Chart.withLineStyle(Width=1);
