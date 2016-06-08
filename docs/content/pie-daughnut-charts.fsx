@@ -3,7 +3,7 @@
 #r "../../bin/FSharp.Plotly.dll"
 
 (** 
-# F# Charting: Pie and Doughnut Charts
+# FSharp.Plotly: Pie and Doughnut Charts
 
 *Summary:* This example shows how to create pie and doughnut charts in F#.
 
@@ -21,5 +21,4 @@ let labels = ["Residential"; "Non-Residential"; "Utility"]
 
 (*** define-output:pie1 ***)
 Chart.Pie(values,labels)
-|> Chart.Show
 (*** include-it:pie1 ***)

@@ -24,12 +24,15 @@ The following example creates a combined point and line chart:
 let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
 let y  = [5.; 2.5; 5.; 7.5; 5.; 2.5; 7.5; 4.5; 5.5; 5.]
 let y' = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.] 
+
+(*** define-output:pie1 ***)
 [
     Chart.Point(x,y,Name="scattern");
     Chart.Line(x,y',Name="line")    
     |> Chart.withLineStyle(Width=1);
 ] 
 |> Chart.Combine
+(*** include-it:pie1 ***)
 
 (**
 Contributing and copyright
