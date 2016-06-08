@@ -50,6 +50,26 @@ module GenericChart =
         | Chart (_,layout)      -> optOrDefault (Layout()) layout
         | MultiChart (_,layout) -> optOrDefault (Layout()) layout
 
+    
+    let toInnerHTML gChart =
+        let guid = Guid.NewGuid().ToString()
+        let tracesJson =
+            getTraces gChart
+            |> JsonConvert.SerializeObject 
+        let layoutJson = 
+            getLayout gChart
+            |> JsonConvert.SerializeObject 
+
+        let html =
+            let chartMarkup =
+                HTML.chart
+                    .Replace("[ID]", guid)
+//                    .Replace("[WIDTH]", "900")
+//                    .Replace("[HEIGHT]", "500")
+                    .Replace("[DATA]", tracesJson)
+                    .Replace("[LAYOUT]", layoutJson)
+            chartMarkup
+        html
         
     let toHTML gChart =
         let guid = Guid.NewGuid().ToString()
@@ -70,6 +90,8 @@ module GenericChart =
                     .Replace("[LAYOUT]", layoutJson)
             HTML.doc.Replace("[CHART]", chartMarkup)
         html
+
+
         
                 
     let mapTrace f gChart =
@@ -83,8 +105,8 @@ module GenericChart =
         | MultiChart (traces,_) -> MultiChart (traces,Some layout)             
 
 
-        // Combines two layouts
-        // if a value is set in l1 and l2, value in l2 is taken
+    // Combines two layouts
+    // if a value is set in l1 and l2, value in l2 is taken
     let combine' (l1:Layout option) (l2:Layout option) =
         let l1 = if l1.IsSome then l1.Value else Layout()
         let l2 = if l2.IsSome then l2.Value else Layout()
@@ -131,14 +153,6 @@ module GenericChart =
         | MultiChart (traces,l1) -> MultiChart (traces, combine' l1 (Some layout))
 
 
-    let combine (gCharts:seq<GenericChart>) =
-        gCharts
-        |> Seq.reduce (fun acc elem ->
-                            match acc,elem with
-                            | MultiChart (traces,l1),Chart (trace,l2)         -> MultiChart (Seq.append traces [trace], combine' l1 l2)
-                            | MultiChart (traces1,l1),MultiChart (traces2,l2) -> MultiChart (Seq.append traces1 traces2,combine' l1 l2)
-                            | Chart (trace1,l1),Chart (trace2,l2)             -> MultiChart ([trace1;trace2],combine' l1 l2)
-                            | Chart (trace,l1),MultiChart (traces,l2)         -> MultiChart (Seq.append [trace] traces ,combine' l1 l2)
-                        ) 
+
 
 

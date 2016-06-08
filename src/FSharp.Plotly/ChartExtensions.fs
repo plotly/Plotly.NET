@@ -48,12 +48,27 @@ module ChartExtensions =
             Chart.withLine(line)  
 
         
-        static member withX_AxisStyle(?Width,?Color,?Shape,?Dash,?Smoothing,?ColorScale) =
-            let line = 
-                Line()                
-                |> Helpers.ApplyLineStyles(?width=Width,?color=Color,?shape=Shape,?dash=Dash,?smoothing=Smoothing,?colorScale=ColorScale)
-            
-            Chart.withLine(line) 
+        static member withX_AxisStyle(title) =
+            (fun (ch:GenericChart) ->             
+                let xaxis = 
+                    Xaxis()                
+                    |> Helpers.ApplyAxisStyles(title=title)
+                let layout =
+                    GenericChart.getLayout ch
+                    |> Helpers.ApplyLayoutStyles(xaxis=xaxis)
+                
+                GenericChart.setLayout layout ch)   
+
+        static member withY_AxisStyle(title) =
+            (fun (ch:GenericChart) ->             
+                let yaxis = 
+                    Yaxis()                
+                    |> Helpers.ApplyAxisStyles(title=title)
+                let layout =
+                    GenericChart.getLayout ch
+                    |> Helpers.ApplyLayoutStyles(yaxis=yaxis)
+                
+                GenericChart.setLayout layout ch)               
 
 
         // -------------
@@ -87,9 +102,6 @@ module ChartExtensions =
                 
 
 
-        static member withAxis(layout:Layout) =
-            (fun (ch:GenericChart) -> 
-                GenericChart.setLayout layout ch)   
 
         // with Layout
         static member withError(layout:Layout) =

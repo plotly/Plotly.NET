@@ -49,6 +49,25 @@ module StyleOption =
         | Circle = 0
         | Square = 1
 
+    /// Dash: Sets the drawing style of the lines segments in this trace.
+    /// Sets the style of the lines. Set to a dash string type or a dash length in px.
+    type DrawingStyle = 
+        | Solid 
+        | Dash   
+        | Dot 
+        | DashDot
+        | User of int
+        static member toString = function
+            | Solid   -> "solid"             
+            | Dash    -> "dash"            
+            | Dot     -> "dot"    
+            | DashDot -> "dashdot"       
+            | User px -> px.ToString()
+           
+
+        static member convert = DrawingStyle.toString >> box
+
+
     // | "lines", "markers", "text" joined with a "+" OR "none".
     type Mode = 
         | None 
@@ -65,7 +84,7 @@ module StyleOption =
             | Markers_Text       -> "markers+text"
             | Text               -> "text"             
 
-        static member convert = box Mode.toString
+        static member convert = Mode.toString >> box
 
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates. (default: MiddleCenter)
     type TextPosition =
@@ -81,7 +100,7 @@ module StyleOption =
             | BottomCenter -> "bottom center"
             | BottomRight  -> "bottom right"        
 
-        static member convert o = box (TextPosition.toString o)
+        static member convert = TextPosition.toString >> box
 
 
 
@@ -104,7 +123,7 @@ module StyleOption =
             | Raleway         -> "Raleway"        
             | Times_New_Roman -> "Times New Roman"
 
-        static member convert = box FontFamily.toString
+        static member convert = FontFamily.toString >> box
 
     /// Determines the line shape. With "spline" the lines are drawn using spline interpolation. The other available values correspond to step-wise line shapes.
     type Shape =
@@ -118,7 +137,7 @@ module StyleOption =
             | Hvh    -> "hvh"
             | Vhv    -> "vhv"
         
-        static member convert o = box (Shape.toString o)
+        static member convert  = Shape.toString >> box
     
     /// Sets the area to fill with a solid color. (default: "none" )
     type Fill =
@@ -133,7 +152,7 @@ module StyleOption =
             | ToSelf    -> "toself"
             | ToNext    -> "tonext"
         
-        static member convert o = box (Fill.toString o)
+        static member convert = Fill.toString >> box
 
 
     type Boxpoints =
@@ -191,6 +210,204 @@ module StyleOption =
             | Greens          -> box "Greens"   
             | Picnic          -> box "Picnic"   
                            
+    
+    /// If "all", all tick labels are displayed with a prefix. If "first", only the first tick is displayed with a prefix. If "last", only the last tick is displayed with a suffix. If "none", tick prefixes are hidden.
+    type ShowTickOption =
+        | All | First | Last | None
+        
+        static member toString = function
+            | All   -> "all"
+            | First -> "first"
+            | Last  -> "last"
+            | None  -> "none"
+            
+        
+        static member convert = ShowTickOption.toString >> box
+
+
+    /// If "all", all exponents are shown besides their significands. If "first", only the exponent of the first tick is shown. If "last", only the exponent of the last tick is shown. If "none", no exponents appear.
+    type ShowExponent =
+        | All | First | Last | None
+        
+        static member toString = function
+            | All   -> "all"
+            | First -> "first"
+            | Last  -> "last"
+            | None  -> "none"
+            
+        
+        static member convert = ShowExponent.toString >> box
+
+    /// Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If "none", it appears as 1,000,000,000. If "e", 1e+9. If "E", 1E+9. 
+    /// If "power", 1x10^9 (with 9 in a super script). If "SI", 1G. If "B", 1B.
+    type ExponentFormat =
+        | B | SI | Power | Ecapital | E | None
+        
+        static member toString = function
+            | B        -> "B"
+            | SI       -> "SI"
+            | Power    -> "power"
+            | Ecapital -> "E"
+            | E        -> "e"
+            | None     -> "none"
+            
+        
+        static member convert = ExponentFormat.toString >> box
+
+    type Side =
+        | Top | Bottom | Left | Right 
+        
+        static member toString = function
+            | Top    -> "top"
+            | Bottom -> "bottom"
+            | Left   -> "left"
+            | Right  -> "right"            
+       
+        static member convert = Side.toString >> box
+
+    /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. If "true", the axis lines are mirrored. 
+    /// If "ticks", the axis lines and ticks are mirrored. If "false", mirroring is disable. If "all", axis lines are mirrored on all shared-axes subplots. If "allticks", axis lines and ticks are mirrored on all shared-axes subplots.
+    type Mirror =
+        | True | Ticks | False | All | AllTicks 
+        
+        static member toString = function
+            | True     -> "true"
+            | Ticks    -> "ticks"
+            | False    -> "false"
+            | All      -> "all"
+            | AllTicks -> "allticks"
+
+        static member convert = Mirror.toString >> box
+
+    /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to "false".
+    type AutoRange =
+        | True | False | Reversed
+        
+        static member toString = function
+            | True     -> "true"            
+            | False    -> "false"            
+            | Reversed -> "reversed"
+
+        static member convert = AutoRange.toString >> box
+
+    /// Sets the tick mode for this axis. If "auto", the number of ticks is set via `nticks`. If "linear", the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` ("linear" is the default value if `tick0` and `dtick` are provided). 
+    /// If "array", the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. ("array" is the default value if `tickvals` is provided).
+    type TickMode =
+        | Auto | Linear | Array
+        
+        static member toString = function
+            | Auto   -> "auto"            
+            | Linear -> "linear"            
+            | Array  -> "array"
+
+        static member convert = TickMode.toString >> box
+
+    /// Determines whether ticks are drawn or not. If "", this axis' ticks are not drawn. If "outside" ("inside"), this axis' are drawn outside (inside) the axis lines.
+    type TickOptions =
+        | Outside | Inside | Empty
+        
+        static member toString = function
+            | Outside   -> "outside"            
+            | Inside    -> "inside"            
+            | Empty    -> ""
+
+        static member convert = TickOptions.toString >> box
+
+    /// If "normal", the range is computed in relation to the extrema of the input data. If "tozero"`, the range extends to 0, regardless of the input data If "nonnegative", the range is non-negative, regardless of the input data.
+    type RangeMode =
+        | Normal | ToZero | NonNegative
+        
+        static member toString = function
+            | Normal      -> "normal"            
+            | ToZero      -> "tozero"            
+            | NonNegative -> "nonnegative"
+
+        static member convert = RangeMode.toString >> box
+
+
+    /// Sets the axis type. By default (Auto), plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
+    type AxisType =
+        | Auto | Linear | Log | Date | Category
+        
+        static member toString = function
+            | Auto     -> "-"            
+            | Linear   -> "linear"            
+            | Log      -> "log"
+            | Date     -> "date"
+            | Category -> "category"
+
+        static member convert = AxisType.toString >> box
+  
+
+    /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses "trace", which specifies the order that is present in the data supplied. Set `categoryorder` to "category ascending" or "category descending" if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to "array" to derive the ordering from the attribute `categoryarray`. 
+    /// If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the "trace" mode. The unspecified categories will follow the categories in `categoryarray`.
+    type CategoryOrder =
+        | Trace | Ascending | Descending | Array
+        
+        static member toString = function
+            | Trace      -> "trace"            
+            | Ascending      -> "category ascending"            
+            | Descending -> "category descending"
+            | Array -> "array"
+
+        static member convert = CategoryOrder.toString >> box
+
+    /// Determines whether or not this trace is visible. If "legendonly", the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
+    type Visible =
+        | True | False | LegendOnly
+        
+        static member toString = function
+            | True       -> "true"            
+            | False      -> "false"            
+            | LegendOnly -> "legendonly"
+
+        static member convert = CategoryOrder.toString >> box
+
+    /// Determines which trace information appear on the graph and  on hove (HoverInfo)
+    //Any combination of "label", "text", "value", "percent" joined with a "+" OR "none". 
+    //examples: "label", "text", "label+text", "label+text+value", "none"
+    type TextInfo =
+        | All | None | Label | Text | Value | Percent
+        
+        static member toString = function
+            | All     -> "all"
+            | None    -> "none"
+            | Label   -> "label"                        
+            | Text    -> "text"                          
+            | Value   -> "value"            
+            | Percent -> "percent"
+
+        static member convert = CategoryOrder.toString >> box
+
+        static member toConcatString (o:seq<TextInfo>) =
+            o |> Seq.map TextInfo.toString |> String.concat "+"
+
+    /// Specifies the location of the `textinfo`.
+    type TextInfoPosition =
+        | Auto | Inside | Outside | None
+        
+        static member toString = function
+            | Auto    -> "auto"
+            | Inside  -> "inside"
+            | Outside -> "outside"            
+            | None    -> "none"            
+
+
+        static member convert = CategoryOrder.toString >> box
+
+    /// Specifies the direction at which succeeding sectors follow one another.
+    type Direction =
+        | Clockwise | CounterClockwise 
+        
+        static member toString = function
+            | Clockwise        -> "clockwise"
+            | CounterClockwise -> "counterclockwise"
+
+
+
+        static member convert = CategoryOrder.toString >> box
+
+
 
 
 

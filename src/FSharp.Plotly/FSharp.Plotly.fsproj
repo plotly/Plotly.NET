@@ -67,6 +67,7 @@
     <Compile Include="Layout.fs" />
     <Compile Include="Trace.fs" />
     <Compile Include="GenericChart.fs" />
+    <Compile Include="ChartHelpers.fs" />
     <Compile Include="Chart.fs" />
     <Compile Include="ChartExtensions.fs" />
     <None Include="Script.fsx" />
@@ -150,4 +151,8 @@
       </ItemGroup>
     </When>
   </Choose>
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /Y "$(TargetDir)*.dll"  "$(SolutionDir)bin\"
+xcopy /Y "$(TargetDir)*.xml" "$(SolutionDir)bin\"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

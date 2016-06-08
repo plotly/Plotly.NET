@@ -413,6 +413,9 @@ module ChartArea =
         member __.ShouldSerializetickorientation() = not _tickorientation.IsNone
         member __.ShouldSerializeendpadding() = not _endpadding.IsNone
 
+    type Xaxis() = inherit Axis()
+    type Yaxis() = inherit Axis()
+
 
     type Error() =
 
@@ -533,7 +536,9 @@ module ChartArea =
         member __.ShouldSerializearrayminussrc() = not _arrayminussrc.IsNone
 
 
-
+    type Error_x() = inherit Error()
+    type Error_y() = inherit Error()
+    type Error_z() = inherit Error()
 
 
     type Legend() =

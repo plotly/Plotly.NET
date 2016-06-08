@@ -5,7 +5,6 @@ open StyleGramar
 open ChartArea
 
 type Trace() =
-    //inherit Trace()
 
     let mutable _type: string option = None
     let mutable _visible: _ option = None
@@ -78,6 +77,23 @@ type Trace() =
     let mutable _surfacecolor: string option = None
     let mutable _projection: Projection option = None
     let mutable _scene: string option = None
+
+    // Pie & doughnut chart
+    let mutable _labels: _ option = None
+    let mutable _label0: float option = None
+    let mutable _dlabel: float option = None
+    let mutable _values: _ option = None
+    let mutable _scalegroup: string option = None    
+    let mutable _textinfo: string option = None   
+    let mutable _domain: Domain option = None
+    let mutable _hole: float option = None    
+    let mutable _sort: bool option = None
+    let mutable _direction: _ option = None
+    let mutable _rotation: float option = None
+    let mutable _pull: float option = None
+    let mutable _labelssrc: string option = None
+    let mutable _valuessrc: string option = None
+    let mutable _pullsrc: string option = None
 
     member __.``type``
         with get () = Option.get _type
@@ -348,11 +364,90 @@ type Trace() =
         and set value = _zsmooth <- Some value
 
 
-
     member __.colorbar
         with get () = Option.get _colorbar
         and set value = _colorbar <- Some value
     // HeatMap <---
+    
+    // Pie & doughnut chart --->
+    /// Sets the sector labels.
+    member __.labels
+        with get () = Option.get _labels
+        and set value = _labels <- Some value
+
+    /// Alternate to `labels`. Builds a numeric set of labels. Use with `dlabel` where `label0` is the starting label and `dlabel` the step.
+    member __.label0
+        with get () = Option.get _label0
+        and set value = _label0 <- Some value
+
+    /// Sets the label step. See `label0` for more info.
+    member __.dlabel
+        with get () = Option.get _dlabel
+        and set value = _dlabel <- Some value
+
+    /// Sets the values of the sectors of this pie chart.
+    member __.values
+        with get () = Option.get _values
+        and set value = _values <- Some value
+
+ 
+    /// If there are multiple pies that should be sized according to their totals, link them by providing a non-empty group id here shared by every trace in the same group.
+    member __.scalegroup
+        with get () = Option.get _scalegroup
+        and set value = _scalegroup <- Some value
+
+    /// Determines which trace information appear on the graph.
+    member __.textinfo
+        with get () = Option.get _textinfo
+        and set value = _textinfo <- Some value
+
+
+    member __.domain
+        with get () = Option.get _domain
+        and set value = _domain <- Some value
+
+    /// Sets the fraction of the radius to cut out of the pie. Use this to make a donut chart.
+    member __.hole
+        with get () = Option.get _hole
+        and set value = _hole <- Some value
+
+    /// Determines whether or not the sectors of reordered from largest to smallest.
+    member __.sort
+        with get () = Option.get _sort
+        and set value = _sort <- Some value
+
+    /// Specifies the direction at which succeeding sectors follow one another.
+    member __.direction
+        with get () = Option.get _direction
+        and set value = _direction <- Some value
+
+    /// Instead of the first slice starting at 12 o'clock, rotate to some other angle.
+    member __.rotation
+        with get () = Option.get _rotation
+        and set value = _rotation <- Some value
+
+    /// Sets the fraction of larger radius to pull the sectors out from the center. This can be a constant to pull all slices apart from each other equally or an array to highlight one or more slices.
+    member __.pull
+        with get () = Option.get _pull
+        and set value = _pull <- Some value
+
+    /// Sets the source reference on plot.ly for  labels .
+    member __.labelssrc
+        with get () = Option.get _labelssrc
+        and set value = _labelssrc <- Some value
+
+    /// Sets the source reference on plot.ly for  values .
+    member __.valuessrc
+        with get () = Option.get _valuessrc
+        and set value = _valuessrc <- Some value
+
+    /// Sets the source reference on plot.ly for  pull .
+    member __.pullsrc
+        with get () = Option.get _pullsrc
+        and set value = _pullsrc <- Some value
+
+    // Pie & doughnut chart <---
+
 
     member __.ShouldSerializetype() = not _type.IsNone
     member __.ShouldSerializevisible() = not _visible.IsNone
@@ -411,3 +506,20 @@ type Trace() =
     member __.ShouldSerializeshowscale() = not _showscale.IsNone
     member __.ShouldSerializezsmooth() = not _zsmooth.IsNone
     member __.ShouldSerializecolorbar() = not _colorbar.IsNone
+    // Pie & doughnut chart
+    member __.ShouldSerializelabels() = not _labels.IsNone
+    member __.ShouldSerializelabel0() = not _label0.IsNone
+    member __.ShouldSerializedlabel() = not _dlabel.IsNone
+    member __.ShouldSerializevalues() = not _values.IsNone
+    member __.ShouldSerializescalegroup() = not _scalegroup.IsNone
+    member __.ShouldSerializetextinfo() = not _textinfo.IsNone
+    member __.ShouldSerializedomain() = not _domain.IsNone
+    member __.ShouldSerializehole() = not _hole.IsNone
+    member __.ShouldSerializesort() = not _sort.IsNone
+    member __.ShouldSerializedirection() = not _direction.IsNone
+    member __.ShouldSerializerotation() = not _rotation.IsNone
+    member __.ShouldSerializepull() = not _pull.IsNone
+    member __.ShouldSerializelabelssrc() = not _labelssrc.IsNone
+    member __.ShouldSerializevaluessrc() = not _valuessrc.IsNone
+    member __.ShouldSerializepullsrc() = not _pullsrc.IsNone
+
