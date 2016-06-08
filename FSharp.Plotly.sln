@@ -28,7 +28,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{83F16175
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{8E6D5255-776D-4B61-85F9-73C37AA1FB9A}"
 	ProjectSection(SolutionItems) = preProject
+		docs\content\area-plots.fsx = docs\content\area-plots.fsx
+		docs\content\bar-charts.fsx = docs\content\bar-charts.fsx
+		docs\content\box-plots.fsx = docs\content\box-plots.fsx
+		docs\content\bubble-charts.fsx = docs\content\bubble-charts.fsx
+		docs\content\heatmaps.fsx = docs\content\heatmaps.fsx
 		docs\content\index.fsx = docs\content\index.fsx
+		docs\content\line-scatter-plots.fsx = docs\content\line-scatter-plots.fsx
 		docs\content\pie-daughnut-charts.fsx = docs\content\pie-daughnut-charts.fsx
 	EndProjectSection
 EndProject
