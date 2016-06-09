@@ -1190,7 +1190,7 @@ module StyleGramar =
         member __.ShouldSerializey() = not _y.IsNone
         //member __.ShouldSerializerole() = not _role.IsNone
 
-    type Xbins() =
+    type Bins() =
 
         let mutable _start: float option = None
         let mutable _end: float option = None
@@ -1221,37 +1221,11 @@ module StyleGramar =
         member __.ShouldSerializesize() = not _size.IsNone
         //member __.ShouldSerializerole() = not _role.IsNone
 
+    type Xbins() =
+        inherit Bins()
+
     type Ybins() =
-
-        let mutable _start: float option = None
-        let mutable _end: float option = None
-        let mutable _size: _ option = None
-        //let mutable _role: string option = Some "object"
-
-        /// Sets the starting value for the y axis bins.
-        member __.start
-            with get () = Option.get _start
-            and set value = _start <- Some value
-
-        /// Sets the end value for the y axis bins.
-        member __.``end``
-            with get () = Option.get _end
-            and set value = _end <- Some value
-
-        /// Sets the step in-between value each y axis bin.
-        member __.size
-            with get () = Option.get _size
-            and set value = _size <- Some value
-
-    ////    member __.role
-    ////        with get () = Option.get _role
-    ////        and set value = _role <- Some value
-
-        member __.ShouldSerializestart() = not _start.IsNone
-        member __.ShouldSerializeend() = not _end.IsNone
-        member __.ShouldSerializesize() = not _size.IsNone
-        //member __.ShouldSerializerole() = not _role.IsNone
+        inherit Bins()
 
 
 
- 

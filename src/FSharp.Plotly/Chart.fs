@@ -229,6 +229,19 @@ type Chart =
         GenericChart.Chart (trace,None)
 
 
+    static member Histogram2d(x,y) = 
+        //let marker = Marker() |> Helpers.ApplyMarkerStyles(?color=Color)        
+        let trace = 
+            Trace()
+            |> Helpers.ApplyTraceStyles("histogram2d",x=x,y=y //?labels=labels,?name=Name,marker=marker,hole=hole
+             
+//               hoverinfo: 'label+percent+name',
+//               textinfo: 'none'
+//               text 
+//               textposition 
+                                        )                
+        GenericChart.Chart (trace,None)
+
 
 
 //         static member Point3D(x, y, z, ?Name,?ShowMarkers,?Showlegend,?Color,?Opacity,?Labels) = 

@@ -95,6 +95,17 @@ type Trace() =
     let mutable _valuessrc: string option = None
     let mutable _pullsrc: string option = None
 
+    // Histogram2d
+    let mutable _histfunc: _ option = None
+    let mutable _histnorm: _ option = None
+    let mutable _autobinx: bool option = None 
+    let mutable _nbinsx: int option = None
+    let mutable _xbins: Xbins option = None
+    let mutable _autobiny: bool option = None
+    let mutable _nbinsy: int option = None
+    let mutable _ybins: Ybins option = None
+
+
     member __.``type``
         with get () = Option.get _type
         and set value = _type <- Some value
@@ -448,6 +459,45 @@ type Trace() =
 
     // Pie & doughnut chart <---
 
+    // Histogram2d -->
+    /// Specifies the binning function used for this histogram trace. If *count*, the histogram values are computed by counting the number of values lying inside each bin. If *sum*, *avg*, *min*, *max*, the histogram values are computed using the sum, the average, the minimum or the maximum of the values lying inside each bin respectively.
+    member __.histfunc
+        with get () = Option.get _histfunc
+        and set value = _histfunc <- Some value
+
+    /// Specifies the type of normalization used for this histogram trace. If **, the span of each bar corresponds to the number of occurrences (i.e. the number of data points lying inside the bins). If *percent*, the span of each bar corresponds to the percentage of occurrences with respect to the total number of sample points (here, the sum of all bin area equals 100%). If *density*, the span of each bar corresponds to the number of occurrences in a bin divided by the size of the bin interval (here, the sum of all bin area equals the total number of sample points). If *probability density*, the span of each bar corresponds to the probability that an event will fall into the corresponding bin (here, the sum of all bin area equals 1).
+    member __.histnorm
+        with get () = Option.get _histnorm
+        and set value = _histnorm <- Some value
+
+    /// Determines whether or not the x axis bin attributes are picked by an algorithm.
+    member __.autobinx
+        with get () = Option.get _autobinx
+        and set value = _autobinx <- Some value
+
+    /// Sets the number of x axis bins.
+    member __.nbinsx
+        with get () = Option.get _nbinsx
+        and set value = _nbinsx <- Some value
+
+    member __.xbins
+        with get () = Option.get _xbins
+        and set value = _xbins <- Some value
+
+    /// Determines whether or not the y axis bin attributes are picked by an algorithm.
+    member __.autobiny
+        with get () = Option.get _autobiny
+        and set value = _autobiny <- Some value
+
+    /// Sets the number of y axis bins.
+    member __.nbinsy
+        with get () = Option.get _nbinsy
+        and set value = _nbinsy <- Some value
+
+    member __.ybins
+        with get () = Option.get _ybins
+        and set value = _ybins <- Some value
+    // Histogram2d <--
 
     member __.ShouldSerializetype() = not _type.IsNone
     member __.ShouldSerializevisible() = not _visible.IsNone
@@ -522,4 +572,15 @@ type Trace() =
     member __.ShouldSerializelabelssrc() = not _labelssrc.IsNone
     member __.ShouldSerializevaluessrc() = not _valuessrc.IsNone
     member __.ShouldSerializepullsrc() = not _pullsrc.IsNone
+    // Histogram2d
+    member __.ShouldSerializehistfunc() = not _histfunc.IsNone
+    member __.ShouldSerializehistnorm() = not _histnorm.IsNone
+    member __.ShouldSerializeautobinx() = not _autobinx.IsNone
+    member __.ShouldSerializenbinsx() = not _nbinsx.IsNone
+    member __.ShouldSerializexbins() = not _xbins.IsNone
+    member __.ShouldSerializeautobiny() = not _autobiny.IsNone
+    member __.ShouldSerializenbinsy() = not _nbinsy.IsNone
+    member __.ShouldSerializeybins() = not _ybins.IsNone
+
+
 

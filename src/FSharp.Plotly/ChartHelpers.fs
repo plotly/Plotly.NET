@@ -53,7 +53,10 @@ type private Helpers() =
             // Boxplot
             ?whiskerwidth,?boxpoints:StyleOption.Boxpoints,?boxmean:StyleOption.BoxMean,?jitter,?pointpos,
             //
-            ?hole
+            ?hole,
+            //Histo2d
+            ?histnorm
+
         ) =
             (fun (trace:Trace) -> 
                     trace.set_type plotType 
@@ -102,7 +105,9 @@ type private Helpers() =
                     pointpos     |> Option.iter trace.set_pointpos 
                     // Pie
                     hole         |> Option.iter trace.set_hole
-                    
+                    // Histogram2d
+                    histnorm     |> Option.iter (StyleOption.HistNorm.convert >> trace.set_histnorm)
+
                     trace
             )
 
@@ -452,5 +457,15 @@ type private Helpers() =
             )
 
 
-
+    // Applies the styles to Bins()
+    static member ApplyBinsStyles
+        (?startBins:float,?endBins:float,?size
+        ) =
+            (fun (bins:('T :> Bins)) -> 
+            startBins |> Option.iter bins.set_start
+            endBins   |> Option.iter bins.set_end
+            size      |> Option.iter bins.set_size
+           
+            bins
+            )
 

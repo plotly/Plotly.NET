@@ -92,8 +92,6 @@ Chart.Pie(values,labels)
 
 
 
-
-
 System.IO.Path.GetTempPath()
 
 open Newtonsoft.Json

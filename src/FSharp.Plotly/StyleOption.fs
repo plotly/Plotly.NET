@@ -361,7 +361,7 @@ module StyleOption =
             | False      -> "false"            
             | LegendOnly -> "legendonly"
 
-        static member convert = CategoryOrder.toString >> box
+        static member convert = Visible.toString >> box
 
     /// Determines which trace information appear on the graph and  on hove (HoverInfo)
     //Any combination of "label", "text", "value", "percent" joined with a "+" OR "none". 
@@ -377,7 +377,7 @@ module StyleOption =
             | Value   -> "value"            
             | Percent -> "percent"
 
-        static member convert = CategoryOrder.toString >> box
+        static member convert = TextInfo.toString >> box
 
         static member toConcatString (o:seq<TextInfo>) =
             o |> Seq.map TextInfo.toString |> String.concat "+"
@@ -393,7 +393,7 @@ module StyleOption =
             | None    -> "none"            
 
 
-        static member convert = CategoryOrder.toString >> box
+        static member convert = TextInfoPosition.toString >> box
 
     /// Specifies the direction at which succeeding sectors follow one another.
     type Direction =
@@ -403,10 +403,27 @@ module StyleOption =
             | Clockwise        -> "clockwise"
             | CounterClockwise -> "counterclockwise"
 
+        static member convert = Direction.toString >> box
 
 
-        static member convert = CategoryOrder.toString >> box
+    /// Sets the type of normalization for this histogram trace. By default ('histnorm' set to '') the height of each bar 
+    /// displays the frequency of occurrence, i.e., the number of times this value was found in the corresponding bin.
+    /// If set to 'percent', the height of each bar displays the percentage of total occurrences found within the corresponding bin. 
+    /// If set to 'probability', the height of each bar displays the probability that an event will fall into the corresponding bin. 
+    /// If set to 'density', the height of each bar is equal to the number of occurrences in a bin divided by the size of the bin 
+    /// interval such that summing the area of all bins will yield the total number of occurrences. If set to 'probability density', 
+    /// the height of each bar is equal to the number of probability that an event will fall into the corresponding bin divided by 
+    /// the size of the bin interval such that summing the area of all bins will yield 1.
+    type HistNorm =
+        | Percent | Probability | Density | ProbabilityDensity 
+        
+        static member toString = function
+            | Percent            -> "percent"
+            | Probability        -> "probability"
+            | Density            -> "density"
+            | ProbabilityDensity -> "probability density"
 
+        static member convert = HistNorm.toString >> box
 
 
 
