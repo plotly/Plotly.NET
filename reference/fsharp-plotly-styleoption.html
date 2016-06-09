@@ -141,6 +141,16 @@ If "power", 1x10^9 (with 9 in a super script). If "SI", 1G. If "B", 1B.</p>
         </tr>
         <tr>
           <td class="type-name">
+            <a href="fsharp-plotly-styleoption-histfunc.html">HistFunc</a>
+          </td>
+          <td class="xmldoc"><p>Sets the binning function used for this histogram trace. The default value is 'count' where the histogram values are computed
+by counting the number of values lying inside each bin. With 'histfunc' set to 'sum', 'avg', 'min' or 'max', the histogram values
+are computed using the sum, the average, the minimum or the 'maximum' of the values lying inside each bin respectively.</p>
+
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
             <a href="fsharp-plotly-styleoption-histnorm.html">HistNorm</a>
           </td>
           <td class="xmldoc"><p>Sets the type of normalization for this histogram trace. By default ('histnorm' set to '') the height of each bar
@@ -215,6 +225,14 @@ If "ticks", the axis lines and ticks are mirrored. If "false", mirroring is disa
         </tr>
         <tr>
           <td class="type-name">
+            <a href="fsharp-plotly-styleoption-smoothalg.html">SmoothAlg</a>
+          </td>
+          <td class="xmldoc"><p>Choose between algorithms ('best' or 'fast') to smooth data linked to 'z'. The default value is false corresponding to no smoothing.</p>
+
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
             <a href="fsharp-plotly-styleoption-symbol.html">Symbol</a>
           </td>
           <td class="xmldoc"></td>
@@ -276,18 +294,15 @@ If "array", the placement of the ticks is set via <code>tickvals</code> and the 
 
         </div>
         <div class="span3">
-          <img src="/FSharp.Plotly/img/logo.png" alt="F# Project" style="width:150px;margin:10px" />  
+          <img src="/FSharp.Plotly/img/logo.png" alt="FSharp.Plotly" style="width:150px;margin:10px" />  
           <ul class="nav nav-list" id="menu" style="margin-top: 20px;">
             <li class="nav-header">FSharp.Plotly</li>
             <li><a href="/FSharp.Plotly/index.html">Home page</a></li>
             <li class="divider"></li>
-            <li><a href="http://nuget.org/packages/FSharp.Plotly">Get Library via NuGet</a></li>
-            <li><a href="http://github.com/muehlhaus/FSharp.Plotly">Source Code on GitHub</a></li>
-            <li><a href="/FSharp.Plotly/license.html">License</a></li>
-            <li><a href="/FSharp.Plotly/release-notes.html">Release Notes</a></li>
             
             <li class="nav-header">Plotly Charts</li>
             <li><a href="/FSharp.Plotly/line-scatter-plots.html">Line and Scatter Plots</a></li>
+            <li><a href="/FSharp.Plotly/range-plots.html">Line and Scatter Plots</a></li>
             <li><a href="/FSharp.Plotly/pie-daughnut-charts.html">Pie and Doughnut Charts</a></li>
             <li><a href="/FSharp.Plotly/bar-charts.html">Bar</a></li>
             <li><a href="/FSharp.Plotly/box-plots.html">Box Plots</a></li>
@@ -298,12 +313,12 @@ If "array", the placement of the ticks is set via <code>tickvals</code> and the 
             <li><a href="/FSharp.Plotly/histograms.html">Histograms</a></li>
             <li><a href="/FSharp.Plotly/2d-histograms.html">2D Histograms</a></li>
             <li><a href="/FSharp.Plotly/polar-charts.html">Polar Charts</a></li>
-            <li><a href="/FSharp.Plotly/time-series.html">Time Series</a></li>
-            <li><a href="/FSharp.Plotly/multiple-chart-types.html">Multiple Chart Types</a></li>
-            <li><a href="/FSharp.Plotly/log-plots.html">Log Plots</a></li>
+              
+            <li class="nav-header">Plotly 3d-Charts</li>
             <li><a href="/FSharp.Plotly/3d-scatter-plots.html">3D Scatter Plots</a></li>
-            <li><a href="/FSharp.Plotly/3d-surface-plots.html">3D Surface Plots</a></li>
             <li><a href="/FSharp.Plotly/3d-line-plots.html">3D Line Plots</a></li>
+            <li><a href="/FSharp.Plotly/3d-surface-plots.html">3D Surface Plots</a></li>
+            
 
 
             <li class="nav-header">Documentation</li>
