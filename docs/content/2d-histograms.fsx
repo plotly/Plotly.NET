@@ -17,6 +17,7 @@ let x' = [for i=0 to 500 do yield rnd.NextDouble() ]
 let y' = [for i=0 to 500 do yield rnd.NextDouble() ]
   
 (*** define-output:histo1 ***)
-Chart.Histogram2d(x',y')
+[for i=0 to 500 do yield rnd.NextDouble(),rnd.NextDouble() ]
+|> Chart.Histogram2d
 |> Chart.withSize(500.,500.)
 (*** include-it:histo1 ***)

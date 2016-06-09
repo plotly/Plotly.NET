@@ -43,8 +43,12 @@ type private Helpers() =
             ?opacity: float,            
             ?colorScale: StyleOption.ColorScale,
             ?showscale,
-            ?zsmooth, 
             ?colorbar : Colorbar,
+            ?zsmooth,
+            ?zauto:bool,
+            ?zmin:float,
+            ?zmax:float,
+            
 
             ?uid: string, ?stream: Stream, ?connectgaps: bool, ?r: _, ?t: _,
             ?error_y: Error,
@@ -55,8 +59,14 @@ type private Helpers() =
             //
             ?hole,
             //Histo2d
-            ?histnorm
-
+            ?histnorm,
+            ?histfunc,
+            ?autobinx:bool,
+            ?nbinsx:int,
+            ?xbins:Xbins,
+            ?autobiny:bool,
+            ?nbinsy:int,
+            ?ybins:Ybins
         ) =
             (fun (trace:Trace) -> 
                     trace.set_type plotType 
@@ -85,9 +95,12 @@ type private Helpers() =
                     fill         |> Option.iter (StyleOption.Fill.toString >> trace.set_fill)
                     fillcolor    |> Option.iter trace.set_fillcolor
                     colorScale   |> Option.iter (StyleOption.ColorScale.convert >> trace.set_colorscale)                    
-                    showscale  |> Option.iter trace.set_showscale
-                    zsmooth    |> Option.iter trace.set_zsmooth
-                    colorbar   |> Option.iter trace.set_colorbar
+                    showscale    |> Option.iter trace.set_showscale                    
+                    colorbar     |> Option.iter trace.set_colorbar
+                    zsmooth      |> Option.iter (StyleOption.SmoothAlg.convert >> trace.set_zsmooth)
+                    zauto        |> Option.iter trace.set_zauto                     
+                    zmin         |> Option.iter trace.set_zmin                      
+                    zmax         |> Option.iter trace.set_zmax                      
 
                     marker       |> Option.iter trace.set_marker
                         
@@ -107,6 +120,14 @@ type private Helpers() =
                     hole         |> Option.iter trace.set_hole
                     // Histogram2d
                     histnorm     |> Option.iter (StyleOption.HistNorm.convert >> trace.set_histnorm)
+                    histfunc     |> Option.iter (StyleOption.HistFunc.toString >> trace.set_histnorm)
+                    autobinx     |> Option.iter trace.set_autobinx 
+                    nbinsx       |> Option.iter trace.set_nbinsx   
+                    xbins        |> Option.iter trace.set_xbins    
+                    autobiny     |> Option.iter trace.set_autobiny 
+                    nbinsy       |> Option.iter trace.set_nbinsy   
+                    ybins        |> Option.iter trace.set_ybins    
+
 
                     trace
             )

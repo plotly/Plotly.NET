@@ -426,5 +426,30 @@ module StyleOption =
         static member convert = HistNorm.toString >> box
 
 
+    /// Sets the binning function used for this histogram trace. The default value is 'count' where the histogram values are computed 
+    /// by counting the number of values lying inside each bin. With 'histfunc' set to 'sum', 'avg', 'min' or 'max', the histogram values 
+    /// are computed using the sum, the average, the minimum or the 'maximum' of the values lying inside each bin respectively.
+    type HistFunc =
+        | Count | Sum | Avg | Min | Max 
+        
+        static member toString = function
+            | Count -> "count"
+            | Sum   -> "sum"
+            | Avg   -> "avg"
+            | Min   -> "min"
+            | Max   -> "max"
+
+        static member convert = HistNorm.toString >> box
+
+
+    /// Choose between algorithms ('best' or 'fast') to smooth data linked to 'z'. The default value is false corresponding to no smoothing.
+    type SmoothAlg =
+        | False | Best | Fast
+        
+        static member convert = function
+            | False -> box false
+            | Best  -> box "best"
+            | Fast  -> box "fast"
+                    
 
 

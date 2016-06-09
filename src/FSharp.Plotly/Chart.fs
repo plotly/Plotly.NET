@@ -228,19 +228,28 @@ type Chart =
                                         )                
         GenericChart.Chart (trace,None)
 
-    /// Compute the bi-dimensional histogram of two data samples.
-    static member Histogram2d(x,y) = 
-        //let marker = Marker() |> Helpers.ApplyMarkerStyles(?color=Color)        
+    
+
+    /// Computes the bi-dimensional histogram of two data samples and auto-determines the bin size.
+    static member Histogram2d(x,y,?Name,?HistNorm,?HistFunc,?Colorscale,?Showscale,?zSmooth,?Colorbar,?zAuto,?zMin,?zMax,?nBinsx,?nBinsy,?Xbins,?Ybins) =         
         let trace = 
             Trace()
-            |> Helpers.ApplyTraceStyles("histogram2d",x=x,y=y //?labels=labels,?name=Name,marker=marker,hole=hole
-             
-//               hoverinfo: 'label+percent+name',
-//               textinfo: 'none'
-//               text 
-//               textposition 
-                                        )                
+            |> Helpers.ApplyTraceStyles("histogram2d",x=x,y=y,?name=Name,?histnorm=HistNorm,?histfunc=HistFunc,
+                          ?colorScale=Colorscale,?showscale=Showscale,?zsmooth=zSmooth,?colorbar=Colorbar,
+                          ?zauto=zAuto,?zmin=zMin,?zmax=zMax,
+                          ?nbinsx=nBinsx,?nbinsy=nBinsy,?xbins=Xbins,?ybins=Ybins
+                          )                
+        
         GenericChart.Chart (trace,None)
+
+    /// Computes the bi-dimensional histogram of two data samples and auto-determines the bin size.
+    static member Histogram2d(xy,?Name,?HistNorm,?HistFunc,?Colorscale,?Showscale,?zSmooth,?Colorbar,?zAuto,?zMin,?zMax,?nBinsx,?nBinsy,?Xbins,?Ybins) =         
+        let x,y = Seq.unzip xy
+        Chart.Histogram2d(x,y,?Name=Name,?HistNorm=HistNorm,?HistFunc=HistFunc,?Colorscale=Colorscale,
+            ?Showscale=Showscale,?Colorbar=Colorbar,?zSmooth=zSmooth,?zAuto=zAuto,?zMin=zMin,?zMax=zMax,
+            ?nBinsx=nBinsx,?nBinsy=nBinsy,?Xbins=Xbins,?Ybins=Ybins
+            )
+
 
 
 
@@ -266,7 +275,5 @@ type Chart =
  
   
     
-//pie  
-///
 
                         
