@@ -20,6 +20,6 @@ module ChartWPF =
 
         static member ShowWPF (ch:GenericChart) = 
             let guid = Guid.NewGuid().ToString()
-            let html = GenericChart.toHTML ch
+            let html = GenericChart.toEmbeddedHTML ch
             ViewContainer.showHTML html
 

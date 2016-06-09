@@ -2,7 +2,7 @@ namespace FSharp.Plotly
 
 open System
 open System.IO
-
+open FSharp.Care.Collections
  
 open StyleGramar
 open ChartArea
@@ -21,7 +21,6 @@ open GenericChart
 
 /// Provides a set of static methods for creating charts.
 type Chart =
-
 
     /// Uses points, line or both depending on the mode to represent data points
     static member Scatter(x, y, mode, ?Name,?Showlegend,?MakerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
@@ -43,6 +42,14 @@ type Chart =
                 ?showlegend=Showlegend,?fillcolor=Color,?opacity=Opacity,?text=Labels)
         GenericChart.Chart (trace,None)
 
+
+    /// Uses points to represent data points
+    static member Point(xy, ?Name,?Showlegend,?Color,?Opacity,?MakerSymbol,?Labels) =         
+        let x,y = Seq.unzip xy
+        Chart.Point(x,y, ?Name=Name,?Showlegend=Showlegend,?Color=Color,?Opacity=Opacity,?MakerSymbol=MakerSymbol,?Labels=Labels)
+
+
+    /// Uses a line to connect the data points represented
     static member Line(x, y,?Name,?ShowMarkers,?Dash,?Showlegend,?Width,?Color,?Opacity,?MakerSymbol,?Labels) =             
         let line   = Line()   |> Helpers.ApplyLineStyles(?color=Color,?dash=Dash,?width=Width)
         let marker = Marker() |> Helpers.ApplyMarkerStyles(?color=Color,?symbol=MakerSymbol)
@@ -54,8 +61,16 @@ type Chart =
             |> Helpers.ApplyTraceStyles("scatter",x = x,y = y, mode=mode', ?name=Name,line=line,marker=marker,
                 ?showlegend=Showlegend,?fillcolor=Color,?opacity=Opacity,?text=Labels)
         GenericChart.Chart (trace,None)
-
     
+
+    /// Uses a line to connect the data points represented
+    static member Line(xy,?Name,?ShowMarkers,?Dash,?Showlegend,?Width,?Color,?Opacity,?MakerSymbol,?Labels) =  
+        let x,y = Seq.unzip xy
+        Chart.Line(x,y,?Name=Name,?ShowMarkers=ShowMarkers,?Dash=Dash,?Showlegend=Showlegend,
+                       ?Width=Width,?Color=Color,?Opacity=Opacity,?MakerSymbol=MakerSymbol,?Labels=Labels)
+
+
+    /// 
     static member Spline(x, y,?Name,?ShowMarkers,?Dash,?Showlegend,?Width,?Color,?Opacity,?MakerSymbol,?Labels,?Smoothing) =             
         let line   = Line()   |> Helpers.ApplyLineStyles(?color=Color,?dash=Dash,?width=Width,shape=StyleOption.Shape.Spline,?smoothing=Smoothing)
         let marker = Marker() |> Helpers.ApplyMarkerStyles(?color=Color,?symbol=MakerSymbol)
@@ -67,6 +82,18 @@ type Chart =
             |> Helpers.ApplyTraceStyles("scatter",x = x,y = y, mode=mode', ?name=Name,line=line,marker=marker,
                 ?showlegend=Showlegend,?fillcolor=Color,?opacity=Opacity,?text=Labels)
         GenericChart.Chart (trace,None)
+
+
+    /// A variation of the Point chart type, where the data points are replaced by bubbles of different sizes.
+    static member Bubble(x, y, size:seq<#IConvertible>,?Name,?Showlegend,?Color,?Opacity,?Labels) =         
+        let marker = 
+            Marker(size = size) |> Helpers.ApplyMarkerStyles(?color=Color)                 
+        let trace = 
+            Trace()
+            |> Helpers.ApplyTraceStyles("scatter",x = x,y = y, mode=StyleOption.Markers, ?name=Name,marker=marker,
+                ?showlegend=Showlegend,?opacity=Opacity,?text=Labels)
+        GenericChart.Chart (trace,None)
+
 
     /// 
     static member Range(x, y, upper, lower, ?Name,?ShowMarkers,?Showlegend,?Color,?RangeColor,?Labels) =             
@@ -211,7 +238,8 @@ type Chart =
 //                    ?showlegend=Showlegend,?fillcolor=Color,?opacity=Opacity,?text=Labels)
 //            GenericChart.Chart (trace,None)       
         
-        
+    
+    /// Create a combined chart with the given charts merged   
     static member Combine(gCharts:seq<GenericChart>) =
         gCharts
         |> Seq.reduce (fun acc elem ->

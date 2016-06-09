@@ -14,9 +14,11 @@ values.
 
 open FSharp.Plotly 
   
-let values = [19; 26; 55;]
-let labels = ["Residential"; "Non-Residential"; "Utility"]
+let x = [2; 4; 6;]
+let y = [4; 1; 6;]
+let size = [19; 26; 55;]
   
 (*** define-output:pie1 ***)
-Chart.Pie(values,labels)
+Chart.Bubble(x,y,size,Color=["rgba(255,255,100,0.5)";"rgba(255,255,10,0.5)";"rgba(255,2,10,0.5)"])
+|> Chart.Show
 (*** include-it:pie1 ***)

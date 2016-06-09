@@ -18,22 +18,22 @@ open FSharp.Plotly
   
 let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
 let y' = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
-// Drawing graph  
+  
 (*** define-output:line1 ***)
 Chart.Line(x,y',Name="line")    
 |> Chart.withLineStyle(Width=2,Dash=StyleOption.DrawingStyle.Dot);
 (*** include-it:line1 ***)
 
-(**
-## A Point Chart
-The following example shows how to generate a scatter plot. It uses a list to specify the X and Y coordinates of the points. 
+(** 
+
+## Pipelining into Chart.Line
+The following example calls the `Chart.Line` method with a list of X and Y values as tuples. The snippet generates
+values of a simple function, f(x)=x^2. The values of the function are generated for X ranging from 1 to 100. The chart generated is 
+shown below.
 *)
 
-let rnd = new System.Random()
-let rand() = rnd.NextDouble()
-let randomPointsX = [ for i in 0 .. 1000 -> rand() ]
-let randomPointsY = [ for i in 0 .. 1000 -> rand() ]
-// Draw scatter plot  of points
-(*** define-output:rp ***)
-Chart.Point(randomPointsX,randomPointsY)
-(*** include-it:rp ***)
+(*** define-output:sq ***)
+// Drawing graph of a 'square' function 
+[ for x in 1.0 .. 100.0 -> (x, x ** 2.0) ]
+|> Chart.Line
+(*** include-it:sq ***)

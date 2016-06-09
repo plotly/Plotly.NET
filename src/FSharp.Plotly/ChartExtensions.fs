@@ -110,7 +110,7 @@ module ChartExtensions =
             
         static member Show (ch:GenericChart) = 
             let guid = Guid.NewGuid().ToString()
-            let html = GenericChart.toHTML ch
+            let html = GenericChart.toEmbeddedHTML ch
             let tempPath = Path.GetTempPath()
             let file = sprintf "%s.html" guid
             let path = Path.Combine(tempPath, file)
