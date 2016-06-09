@@ -76,7 +76,6 @@ module ViewContainer =
         wnd
 
     let createBrowserContainerWith height width () =
-        // http://www.fabiozangrando.it/de/blog/generale/wpf-webbrowser-workarounds/
         let suppressScriptErrors (wb:System.Windows.Controls.WebBrowser ,  hide:bool) =
             let fi = typeof<Controls.WebBrowser>.GetField("_axIWebBrowser2", Reflection.BindingFlags.Instance ||| Reflection.BindingFlags.NonPublic);
             if (fi <> null) then

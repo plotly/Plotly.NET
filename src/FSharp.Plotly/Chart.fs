@@ -83,6 +83,18 @@ type Chart =
                 ?showlegend=Showlegend,?fillcolor=Color,?opacity=Opacity,?text=Labels)
         GenericChart.Chart (trace,None)
 
+
+    /// A variation of the Point chart type, where the data points are replaced by bubbles of different sizes.
+    static member Bubble(x, y, size:seq<#IConvertible>,?Name,?Showlegend,?Color,?Opacity,?Labels) =         
+        let marker = 
+            Marker(size = size) |> Helpers.ApplyMarkerStyles(?color=Color)                 
+        let trace = 
+            Trace()
+            |> Helpers.ApplyTraceStyles("scatter",x = x,y = y, mode=StyleOption.Markers, ?name=Name,marker=marker,
+                ?showlegend=Showlegend,?opacity=Opacity,?text=Labels)
+        GenericChart.Chart (trace,None)
+
+
     /// 
     static member Range(x, y, upper, lower, ?Name,?ShowMarkers,?Showlegend,?Color,?RangeColor,?Labels) =             
         let mode' = match ShowMarkers with

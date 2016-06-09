@@ -24,6 +24,16 @@ Chart.Line(x,y',Name="line")
 |> Chart.withLineStyle(Width=2,Dash=StyleOption.DrawingStyle.Dot);
 (*** include-it:line1 ***)
 
-Seq.zip x y'
-|> Chart.Point
-//|> Chart.Show
+(** 
+
+## Pipelining into Chart.Line
+The following example calls the `Chart.Line` method with a list of X and Y values as tuples. The snippet generates
+values of a simple function, f(x)=x^2. The values of the function are generated for X ranging from 1 to 100. The chart generated is 
+shown below.
+*)
+
+(*** define-output:sq ***)
+// Drawing graph of a 'square' function 
+[ for x in 1.0 .. 100.0 -> (x, x ** 2.0) ]
+|> Chart.Line
+(*** include-it:sq ***)
