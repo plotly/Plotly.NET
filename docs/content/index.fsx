@@ -34,12 +34,13 @@ Create the combined chart
     |> Chart.withLineStyle(Width=1);
 ] 
 |> Chart.Combine
-(*** do-not-eval ***)
+(*** include-it:pie1 ***)
 (**
 By piping the combined chart into `Chart.Show` function it will be displayed in your browser.
 *)
+(*** do-not-eval ***)
 |> Chart.Show
-(*** include-it:pie1 ***)
+
 
 (** 
 

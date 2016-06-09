@@ -20,5 +20,4 @@ let size = [19; 26; 55;]
   
 (*** define-output:pie1 ***)
 Chart.Bubble(x,y,size,Color=["rgba(255,255,100,0.5)";"rgba(255,255,10,0.5)";"rgba(255,2,10,0.5)"])
-|> Chart.Show
 (*** include-it:pie1 ***)

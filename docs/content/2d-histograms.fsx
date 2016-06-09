@@ -5,11 +5,9 @@
 (** 
 # FSharp.Plotly: Histogram2d
 
-*Summary:* This example shows how to create pie and doughnut charts in F#.
+*Summary:* This example shows how to create a bi-dimensional histogram of two data samples in F#.
 
-A pie or a doughnut chart can be created using the `Chart.Pie` and `Chart.Doughnut` functions.
-When creating pie or doughnut charts, it is usually desirable to provide both labels and 
-values.
+A Histogram2d chart can be created using the `Chart.Histogram2d` functions.
 *)
 
 open FSharp.Plotly 
@@ -20,4 +18,5 @@ let y' = [for i=0 to 500 do yield rnd.NextDouble() ]
   
 (*** define-output:histo1 ***)
 Chart.Histogram2d(x',y')
+|> Chart.withSize(500.,500.)
 (*** include-it:histo1 ***)

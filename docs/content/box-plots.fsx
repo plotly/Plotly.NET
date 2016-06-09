@@ -18,5 +18,5 @@ let x = ["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"bin1"]
   
 (*** define-output:box1 ***)
 Chart.BoxPlot(x,y,Jitter=0.3,Boxpoints=StyleOption.Boxpoints.Outliers)
-|> Chart.Show
+//|> Chart.Show
 (*** include-it:box1 ***)

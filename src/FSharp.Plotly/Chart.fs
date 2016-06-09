@@ -228,7 +228,7 @@ type Chart =
                                         )                
         GenericChart.Chart (trace,None)
 
-
+    /// Compute the bi-dimensional histogram of two data samples.
     static member Histogram2d(x,y) = 
         //let marker = Marker() |> Helpers.ApplyMarkerStyles(?color=Color)        
         let trace = 
