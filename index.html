@@ -74,11 +74,17 @@
 </code></pre></td>
 </tr>
 </table>
-<div id="2322976c-d75b-44e6-826b-35d26399d97b" style="width: 760px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>        
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 18)" onmouseover="showTip(event, 'fs6', 18)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs11', 19)" onmouseover="showTip(event, 'fs11', 19)" class="f">Show</span>
+</code></pre></td>
+</tr>
+</table>
+<div id="2b38b1cc-9d94-4e04-92d3-7d07f35ede73" style="width: 760px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>        
   <script>
     var data = [{"type":"scatter","name":"scattern","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,2.5,5.0,7.5,5.0,2.5,7.5,4.5,5.5,5.0],"mode":"markers","marker":{}},{"type":"scatter","name":"line","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"mode":"lines+markers","line":{"width":1},"marker":{}}];
     var layout = {};
-    Plotly.newPlot('2322976c-d75b-44e6-826b-35d26399d97b', data, layout);
+    Plotly.newPlot('2b38b1cc-9d94-4e04-92d3-7d07f35ede73', data, layout);
   </script>
 <h2><a name="Contributing-and-copyright" class="anchor" href="#Contributing-and-copyright">Contributing and copyright</a></h2>
 <p>The project is hosted on <a href="https://github.com/fsprojects/FSharp.Plotly">GitHub</a> where you can <a href="https://github.com/fsprojects/FSharp.Plotly/issues">report issues</a>, fork
@@ -99,6 +105,7 @@ redistribution for both commercial and non-commercial purposes. For more informa
 <div class="tip" id="fs8">static member Chart.Line : xy:seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Dash:StyleOption.DrawingStyle * ?Showlegend:bool * ?Width:&#39;a2 * ?Color:string * ?Opacity:float * ?MakerSymbol:StyleOption.Symbol * ?Labels:seq&lt;#System.IConvertible&gt; -&gt; GenericChart.GenericChart<br />static member Chart.Line : x:seq&lt;#System.IConvertible&gt; * y:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Dash:StyleOption.DrawingStyle * ?Showlegend:bool * ?Width:&#39;c * ?Color:string * ?Opacity:float * ?MakerSymbol:StyleOption.Symbol * ?Labels:seq&lt;#System.IConvertible&gt; -&gt; GenericChart.GenericChart</div>
 <div class="tip" id="fs9">static member Chart.withLineStyle : ?Width:&#39;a * ?Color:&#39;b * ?Shape:StyleOption.Shape * ?Dash:StyleOption.DrawingStyle * ?Smoothing:float * ?ColorScale:StyleOption.ColorScale -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
 <div class="tip" id="fs10">static member Chart.Combine : gCharts:seq&lt;GenericChart.GenericChart&gt; -&gt; GenericChart.GenericChart</div>
+<div class="tip" id="fs11">static member Chart.Show : ch:GenericChart.GenericChart -&gt; unit</div>
 
         </div>
         <div class="span3">
