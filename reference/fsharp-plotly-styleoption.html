@@ -141,6 +141,21 @@ If "power", 1x10^9 (with 9 in a super script). If "SI", 1G. If "B", 1B.</p>
         </tr>
         <tr>
           <td class="type-name">
+            <a href="fsharp-plotly-styleoption-histnorm.html">HistNorm</a>
+          </td>
+          <td class="xmldoc"><p>Sets the type of normalization for this histogram trace. By default ('histnorm' set to '') the height of each bar
+displays the frequency of occurrence, i.e., the number of times this value was found in the corresponding bin.
+If set to 'percent', the height of each bar displays the percentage of total occurrences found within the corresponding bin.
+If set to 'probability', the height of each bar displays the probability that an event will fall into the corresponding bin.
+If set to 'density', the height of each bar is equal to the number of occurrences in a bin divided by the size of the bin
+interval such that summing the area of all bins will yield the total number of occurrences. If set to 'probability density',
+the height of each bar is equal to the number of probability that an event will fall into the corresponding bin divided by
+the size of the bin interval such that summing the area of all bins will yield 1.</p>
+
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
             <a href="fsharp-plotly-styleoption-mirror.html">Mirror</a>
           </td>
           <td class="xmldoc"><p>Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. If "true", the axis lines are mirrored.

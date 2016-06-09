@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>ViewContainer - FSharp.Plotly</title>
+    <title>HistNorm - FSharp.Plotly</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content=""/>
     <meta name="author" content="Timo Mühlhaus"/>
@@ -37,53 +37,40 @@
 
 
 
-<h1>ViewContainer</h1>
+<h1>HistNorm</h1>
 <p>
-  <span>Namespace: FSharp.Plotly.WPF</span><br />
+  <span>Namespace: FSharp.Plotly</span><br />
+  <span>Parent Module: <a href="fsharp-plotly-styleoption.html">StyleOption</a></span>
 </p>
 <div class="xmldoc">
+<p>Sets the type of normalization for this histogram trace. By default ('histnorm' set to '') the height of each bar
+displays the frequency of occurrence, i.e., the number of times this value was found in the corresponding bin.
+If set to 'percent', the height of each bar displays the percentage of total occurrences found within the corresponding bin.
+If set to 'probability', the height of each bar displays the probability that an event will fall into the corresponding bin.
+If set to 'density', the height of each bar is equal to the number of occurrences in a bin divided by the size of the bin
+interval such that summing the area of all bins will yield the total number of occurrences. If set to 'probability density',
+the height of each bar is equal to the number of probability that an event will fall into the corresponding bin divided by
+the size of the bin interval such that summing the area of all bins will yield 1.</p>
+
 </div>
-
-<!-- Render nested types and modules, if there are any -->
-
-  <h3>Functions and values</h3>
+  <h3>Union Cases</h3>
   <table class="table table-bordered member-list">
     <thead>
-      <tr><td>Function or value</td><td>Description</td></tr>
+      <tr><td>Union Case</td><td>Description</td></tr>
     </thead>
     <tbody>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '25', 25)" onmouseover="showTip(event, '25', 25)">
-            create_window height width content
+          <code onmouseout="hideTip(event, '1057', 1057)" onmouseover="showTip(event, '1057', 1057)">
+            Density
           </code>
-          <div class="tip" id="25">
-            <strong>Signature:</strong> height:float -&gt; width:float -&gt; content:&#39;?9221 -&gt; Window<br />
-                          <strong>Type parameters:</strong> '?9221          </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly.WPF/ViewContainer.fs#L71-71" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>Creates a windows with a given content</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '26', 26)" onmouseover="showTip(event, '26', 26)">
-            createBrowserContainerWith (...)
-          </code>
-          <div class="tip" id="26">
-            <strong>Signature:</strong> height:float -&gt; width:float -&gt; unit -&gt; Window * WebBrowser<br />
+          <div class="tip" id="1057">
+            <strong>Signature:</strong> <br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly.WPF/ViewContainer.fs#L78-78" class="github-link">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/StyleOption.fs#L418-418" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -93,15 +80,15 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '27', 27)" onmouseover="showTip(event, '27', 27)">
-            createContainerWithBrowser ()
+          <code onmouseout="hideTip(event, '1058', 1058)" onmouseover="showTip(event, '1058', 1058)">
+            Percent
           </code>
-          <div class="tip" id="27">
-            <strong>Signature:</strong> unit -&gt; Window * WebBrowser<br />
+          <div class="tip" id="1058">
+            <strong>Signature:</strong> <br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly.WPF/ViewContainer.fs#L98-98" class="github-link">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/StyleOption.fs#L418-418" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -111,35 +98,15 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '28', 28)" onmouseover="showTip(event, '28', 28)">
-            initUI 
+          <code onmouseout="hideTip(event, '1059', 1059)" onmouseover="showTip(event, '1059', 1059)">
+            Probability
           </code>
-          <div class="tip" id="28">
-            <strong>Signature:</strong> Lazy&lt;Application * Thread&gt;<br />
+          <div class="tip" id="1059">
+            <strong>Signature:</strong> <br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly.WPF/ViewContainer.fs#L40-40" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>Lazy initalization of the UI thread and application</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '29', 29)" onmouseover="showTip(event, '29', 29)">
-            showHTML html
-          </code>
-          <div class="tip" id="29">
-            <strong>Signature:</strong> html:string -&gt; unit<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly.WPF/ViewContainer.fs#L107-107" class="github-link">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/StyleOption.fs#L418-418" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -149,37 +116,65 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '30', 30)" onmouseover="showTip(event, '30', 30)">
-            showHTMLWith height width html
+          <code onmouseout="hideTip(event, '1060', 1060)" onmouseover="showTip(event, '1060', 1060)">
+            ProbabilityDensity
           </code>
-          <div class="tip" id="30">
-            <strong>Signature:</strong> height:float -&gt; width:float -&gt; html:string -&gt; unit<br />
+          <div class="tip" id="1060">
+            <strong>Signature:</strong> <br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly.WPF/ViewContainer.fs#L102-102" class="github-link">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/StyleOption.fs#L418-418" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           
         </td>
       </tr>
+    </tbody>
+  </table>
+  <h3>Static members</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Static member</td><td>Description</td></tr>
+    </thead>
+    <tbody>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '31', 31)" onmouseover="showTip(event, '31', 31)">
-            spawn f x
+          <code onmouseout="hideTip(event, '1061', 1061)" onmouseover="showTip(event, '1061', 1061)">
+            convert
           </code>
-          <div class="tip" id="31">
-            <strong>Signature:</strong> f:(&#39;a -&gt; &#39;b) -&gt; x:&#39;a -&gt; &#39;b<br />
-                          <strong>Type parameters:</strong> 'a, 'b          </div>
+          <div class="tip" id="1061">
+            <strong>Signature:</strong> HistNorm -&gt; obj<br />
+                      </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly.WPF/ViewContainer.fs#L57-57" class="github-link">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/StyleOption.fs#L426-426" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           
+              <p>CompiledName: <code>get_convert</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1062', 1062)" onmouseover="showTip(event, '1062', 1062)">
+            toString
+          </code>
+          <div class="tip" id="1062">
+            <strong>Signature:</strong> HistNorm -&gt; string<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/StyleOption.fs#L420-420" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>get_toString</code></p>
         </td>
       </tr>
     </tbody>
