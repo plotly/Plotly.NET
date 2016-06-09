@@ -97,7 +97,7 @@ module ViewContainer =
     
 
     let createContainerWithBrowser () =
-        createBrowserContainerWith 600. 900. ()
+        createBrowserContainerWith 750. 900. ()
 
 
     let showHTMLWith height width (html:string) =

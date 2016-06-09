@@ -156,15 +156,15 @@ type private Helpers() =
         ) =
             (fun (error:Error) -> 
             error.set_type errorType
-            symmetric |> Option.iter error.set_symmetric
-            array |> Option.iter error.set_array
-            arrayminus |> Option.iter error.set_arrayminus
-            value |> Option.iter error.set_value
-            valueminus |> Option.iter error.set_valueminus
-            traceref |> Option.iter error.set_traceref
+            symmetric     |> Option.iter error.set_symmetric
+            array         |> Option.iter error.set_array
+            arrayminus    |> Option.iter error.set_arrayminus
+            value         |> Option.iter error.set_value
+            valueminus    |> Option.iter error.set_valueminus
+            traceref      |> Option.iter error.set_traceref
             tracerefminus |> Option.iter error.set_tracerefminus
-            copy_ystyle |> Option.iter error.set_copy_ystyle
-            copy_zstyle |> Option.iter error.set_copy_zstyle
+            copy_ystyle   |> Option.iter error.set_copy_ystyle
+            copy_zstyle   |> Option.iter error.set_copy_zstyle
             color |> Option.iter error.set_color
             thickness |> Option.iter error.set_thickness
             width |> Option.iter error.set_width

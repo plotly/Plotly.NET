@@ -21,8 +21,7 @@ module HTML =
 </html>"""
 
     let chart =
-        //"""<div id="[ID]" style="width: [WIDTH]px; height: [HEIGHT]px;"><!-- Plotly chart will be drawn inside this DIV --></div>
-        """<div id="[ID]"><!-- Plotly chart will be drawn inside this DIV --></div>
+        """<div id="[ID]" style="width: [WIDTH]px; height: [HEIGHT]px;"><!-- Plotly chart will be drawn inside this DIV --></div>        
   <script>
     var data = [DATA];
     var layout = [LAYOUT];
@@ -51,7 +50,8 @@ module GenericChart =
         | MultiChart (_,layout) -> optOrDefault (Layout()) layout
 
     
-    let toInnerHTML gChart =
+    /// Converts a GenericChart to it HTML representation
+    let toChartHTML gChart =
         let guid = Guid.NewGuid().ToString()
         let tracesJson =
             getTraces gChart
@@ -61,33 +61,37 @@ module GenericChart =
             |> JsonConvert.SerializeObject 
 
         let html =
-            let chartMarkup =
-                HTML.chart
-                    .Replace("[ID]", guid)
-//                    .Replace("[WIDTH]", "900")
-//                    .Replace("[HEIGHT]", "500")
-                    .Replace("[DATA]", tracesJson)
-                    .Replace("[LAYOUT]", layoutJson)
-            chartMarkup
+            HTML.chart
+                .Replace("style=\"width: [WIDTH]px; height: [HEIGHT]px;\"","")
+                .Replace("[ID]", guid)                
+                .Replace("[DATA]", tracesJson)
+                .Replace("[LAYOUT]", layoutJson)
+        html
+
+    /// Converts a GenericChart to it HTML representation and set the size of the div 
+    let toChartHtmlWithSize (width:int) (height:int) gChart =
+        let guid = Guid.NewGuid().ToString()
+        let tracesJson =
+            getTraces gChart
+            |> JsonConvert.SerializeObject 
+        let layoutJson = 
+            getLayout gChart
+            |> JsonConvert.SerializeObject 
+
+        let html =
+            HTML.chart
+                .Replace("[ID]", guid)
+                .Replace("[WIDTH]", string width )
+                .Replace("[HEIGHT]", string height)
+                .Replace("[DATA]", tracesJson)
+                .Replace("[LAYOUT]", layoutJson)
         html
         
-    let toHTML gChart =
-        let guid = Guid.NewGuid().ToString()
-        let tracesJson =
-            getTraces gChart
-            |> JsonConvert.SerializeObject 
-        let layoutJson = 
-            getLayout gChart
-            |> JsonConvert.SerializeObject 
-
+    /// Converts a GenericChart to it HTML representation and embeds it into a html page
+    let toEmbeddedHTML gChart =
         let html =
             let chartMarkup =
-                HTML.chart
-                    .Replace("[ID]", guid)
-//                    .Replace("[WIDTH]", "900")
-//                    .Replace("[HEIGHT]", "500")
-                    .Replace("[DATA]", tracesJson)
-                    .Replace("[LAYOUT]", layoutJson)
+                toChartHTML gChart
             HTML.doc.Replace("[CHART]", chartMarkup)
         html
 

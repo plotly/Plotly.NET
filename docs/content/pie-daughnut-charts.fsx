@@ -20,3 +20,7 @@ let labels = ["Residential"; "Non-Residential"; "Utility"]
 (*** define-output:pie1 ***)
 Chart.Pie(values,labels)
 (*** include-it:pie1 ***)
+
+(*** define-output:doughnut1 ***)
+Chart.Doughnut(values,labels,hole=0.3)
+(*** include-it:doughnut1 ***)
