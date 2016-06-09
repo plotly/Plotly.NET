@@ -3,20 +3,20 @@
 #r "../../bin/FSharp.Plotly.dll"
 
 (** 
-# FSharp.Plotly: Pie and Doughnut Charts
+# FSharp.Plotly: BoxPlot Charts
 
-*Summary:* This example shows how to create pie and doughnut charts in F#.
+*Summary:* This example shows how to create boxplot charts in F#.
 
-A pie or a doughnut chart can be created using the `Chart.Pie` and `Chart.Doughnut` functions.
-When creating pie or doughnut charts, it is usually desirable to provide both labels and 
-values.
+A boxplot chart can be created using the `Chart.BoxPlot` function.
+
 *)
 
 open FSharp.Plotly 
   
-let values = [19; 26; 55;]
-let labels = ["Residential"; "Non-Residential"; "Utility"]
+let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+let x = ["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"bin1"]
   
-(*** define-output:pie1 ***)
-Chart.Pie(values,labels)
-(*** include-it:pie1 ***)
+(*** define-output:box1 ***)
+Chart.BoxPlot(x,y,Jitter=0.3,Boxpoints=StyleOption.Boxpoints.Outliers)
+|> Chart.Show
+(*** include-it:box1 ***)
