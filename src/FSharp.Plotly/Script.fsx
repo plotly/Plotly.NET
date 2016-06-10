@@ -52,8 +52,16 @@ Chart.BoxPlot(["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"b
 Chart.BoxPlot(x=yValues,Jitter=0.3,Boxpoints= StyleOption.Boxpoints.Outliers)
 |> Chart.Show
 
+
+open Newtonsoft.Json
+
 Chart.BoxPlot(y=yValues,Jitter=0.3,Boxpoints=StyleOption.Boxpoints.Suspectedoutliers)
-|> Chart.Show
+
+Chart.Line(xValues,yValues',Name="line")
+|> Chart.withMarker(StyleGramar.Marker())
+|> GenericChart.getTraces
+|> JsonConvert.SerializeObject 
+//|> Chart.Show
 
 
 
@@ -132,4 +140,95 @@ Chart.BoxPlot(y=c,Jitter=0.3,Boxpoints= StyleOption.Boxpoints.Outliers);
 ]
 |> Chart.Combine
 |> Chart.Show
+
+
+
+
+
+let buildApply (applyStyle:'a -> 'a) =
+    let instance =
+        System.Activator.CreateInstance<'a>()
+    applyStyle instance
+
+
+let optBuildApply (applyStyle:'a -> 'a) (item:'a option) =
+    match item with
+    | Some item' -> applyStyle item'
+    | None       -> buildApply applyStyle
+
+
+
+
+
+
+open System.Reflection
+
+let tryGetPropertyName (expr : Microsoft.FSharp.Quotations.Expr) =
+    match expr with
+    | Microsoft.FSharp.Quotations.Patterns.PropertyGet (_,pInfo,_) -> Some pInfo.Name
+    | _ -> None
+
+let trySetPropertyValue (o:obj) (propName:string) (value:obj) =
+    let property = o.GetType().GetProperty(propName)
+    try 
+        //property.SetValue(o, System.Convert.ChangeType(value, property.PropertyType), null)
+        property.SetValue(o, value, null)
+        Some o
+    with
+    | :? System.ArgumentException -> None
+    
+
+let tryGetPropertyValue (o:obj) (propName:string) =
+    try 
+        Some (o.GetType().GetProperty(propName).GetValue(o, null))
+    with 
+    | :? System.Reflection.TargetInvocationException -> None
+
+let tryGetPropertyValueAs<'a> (o:obj) (propName:string) =
+    try 
+        let v = (o.GetType().GetProperty(propName).GetValue(o, null))
+        Some (v :?> 'a)
+    with 
+    | :? System.Reflection.TargetInvocationException -> None
+
+
+let updatePropertyValue (o:obj) (expr : Microsoft.FSharp.Quotations.Expr) (f: 'a option -> 'a) =
+    let propName = tryGetPropertyName expr
+    let v = f (tryGetPropertyValueAs<'a> o propName.Value)
+    trySetPropertyValue o propName.Value v |> ignore
+    o
+
+
+let t = Trace()
+
+
+type H =
+    static member applyMarkerStyle(?Size,?SizeMin) =
+        (fun (m:StyleGramar.Marker) -> 
+                Size    |> Option.iter m.set_size
+                SizeMin |> Option.iter m.set_sizemin
+                m
+                )
+
+
+let markerOptionBuild = optBuildApply (H.applyMarkerStyle(Size=10))
+
+
+
+updatePropertyValue t <@ t.marker @> markerOptionBuild
+
+
+t.marker
+
+let m = StyleGramar.Marker(size=1)
+
+trySetPropertyValue m "size" 2
+
+m.sizemin
+
+tryGetPropertyValue m "cmax"
+
+
+
+tryGetPropertyValue m (tryGetPropertyName <@ m.size @>) .Value
 

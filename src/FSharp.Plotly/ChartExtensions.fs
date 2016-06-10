@@ -1,52 +1,72 @@
 ﻿namespace FSharp.Plotly
 
+open System
+open System.IO
+open StyleGramar
+open ChartArea
+open GenericChart
+
+/// Extensions methods for Charts supporting the fluent pipeline style 'Chart.WithXYZ(...)'.
 [<AutoOpen>]
 module ChartExtensions =
-
-
-    open System
-    open System.IO
-
-    open StyleGramar
-    open ChartArea
-
-    open GenericChart
-
-
-
+    
+    /// Provides a set of static methods for creating charts.
     type Chart with   
         
-        static member withMarker(marker:Marker) =
-            (fun (ch:GenericChart) ->  
-                ch 
-                |> GenericChart.mapTrace (fun gc -> 
-                                            gc.set_marker marker
-                                            gc)
+        // ####################### Apply to trace
+
+        /// Set the name related properties of a trace
+        static member withTraceName(?Name,?Showlegend,?Legendgroup,?Visible) =
+            (fun (ch:GenericChart) ->                   
+                ch |> mapiTrace (fun i trace -> 
+                                   let naming i name = name |> Option.map (fun v -> if i = 0 then v else sprintf "%s_%i" v i)                                   
+                                   trace |> Helpers.ApplyTraceStyles(trace.``type``,?name=(naming i Name),?showlegend=Showlegend,?legendgroup=Legendgroup,?visible=Visible))          
+            )
+
+        /// Set the name related properties of a trace
+        // TODO
+        static member withTraceInfo(?textinfo,?textinfoposition,?hoverinfo) =
+            (fun (ch:GenericChart) ->                   
+                ch |> mapiTrace (fun i trace -> 
+                                   trace) // |> Helpers.ApplyTraceStyles())          
+            )
+        
+        /// Apply styling to the Marker(s) of the chart as Object.
+        static member withMarkerOption(marker:Marker) =
+            (fun (ch:GenericChart) ->                                    
+                ch |> mapTrace (fun gc -> 
+                                    gc.set_marker marker
+                                    gc)
             )
                
+        /// Apply styling to the Marker(s) of the chart.
         static member withMarkerStyle(?Size,?Color,?Symbol,?Opacity) = 
             let marker = 
                 Marker()                
                 |> Helpers.ApplyMarkerStyles(?size=Size,?color=Color,?symbol=Symbol,?opacity=Opacity)
             
-            Chart.withMarker(marker)         
+            Chart.withMarkerOption(marker)         
             
-               
-        static member withLine(line:Line) =
-            (fun (ch:GenericChart) ->  
-                ch 
-                |> GenericChart.mapTrace (fun gc -> 
-                                            gc.set_line line
-                                            gc)
+        /// Apply styling to the Line(s) of the chart as Object.
+        static member withLineOption(line:Line) =
+            (fun (ch:GenericChart) ->                   
+                ch |> mapTrace (fun gc -> 
+                                    gc.set_line line
+                                    gc)
             )
                
+        /// Apply styling to the Line(s) of the chart.
         static member withLineStyle(?Width,?Color,?Shape,?Dash,?Smoothing,?ColorScale) =
             let line = 
                 Line()                
                 |> Helpers.ApplyLineStyles(?width=Width,?color=Color,?shape=Shape,?dash=Dash,?smoothing=Smoothing,?colorScale=ColorScale)
             
-            Chart.withLine(line)  
+            Chart.withLineOption(line)  
 
+
+
+        // ####################### Apply to layout
+        
         
         static member withX_AxisStyle(title) =
             (fun (ch:GenericChart) ->             
@@ -71,8 +91,6 @@ module ChartExtensions =
                 GenericChart.setLayout layout ch)               
 
 
-        // -------------
-        // with Layout
         static member withLayout(layout:Layout) =
             (fun (ch:GenericChart) -> 
                 GenericChart.setLayout layout ch)         
@@ -107,6 +125,10 @@ module ChartExtensions =
         static member withError(layout:Layout) =
             (fun (ch:GenericChart) -> 
                 GenericChart.setLayout layout ch)   
+
+
+
+        // ####################### 
             
         static member Show (ch:GenericChart) = 
             let guid = Guid.NewGuid().ToString()

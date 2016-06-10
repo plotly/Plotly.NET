@@ -3,7 +3,7 @@
 open System
 open Newtonsoft.Json
 
-
+/// HTML template for Plotly.js 
 module HTML =
 
     let doc =
@@ -28,6 +28,8 @@ module HTML =
     Plotly.newPlot('[ID]', data, layout);
   </script>"""
 
+
+/// Module 
 module GenericChart =
 
     type GenericChart =
@@ -97,11 +99,25 @@ module GenericChart =
 
 
         
-                
+    /// Creates a new GenericChart whose traces are the results of applying the given function to each of the trace of the GenericChart.           
     let mapTrace f gChart =
         match gChart with
         | Chart (trace,layout)       -> Chart (f trace,layout)
         | MultiChart (traces,layout) -> MultiChart (traces |> Seq.map f,layout) 
+
+    /// Creates a new GenericChart whose traces are the results of applying the given function to each of the trace of the GenericChart.
+    /// The integer index passed to the function indicates the index (from 0) of element being transformed.           
+    let mapiTrace f gChart =
+        match gChart with
+        | Chart (trace,layout)       -> Chart (f 0 trace,layout)
+        | MultiChart (traces,layout) -> MultiChart (traces |> Seq.mapi f,layout) 
+
+    /// Returns the number of traces within the GenericChart
+    let countTrace gChart =
+        match gChart with
+        | Chart (_)             -> 1
+        | MultiChart (traces,_) -> traces |> Seq.length
+
 
     let setLayout layout gChart =
         match gChart with

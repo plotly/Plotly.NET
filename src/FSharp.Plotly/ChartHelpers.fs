@@ -10,7 +10,7 @@ open ChartArea
 open GenericChart
 
    
-
+// internal
 type private Helpers() = 
         
     // Applies the styles to GenericTrace()
@@ -482,6 +482,7 @@ type private Helpers() =
     static member ApplyBinsStyles
         (?startBins:float,?endBins:float,?size
         ) =
+            
             (fun (bins:('T :> Bins)) -> 
             startBins |> Option.iter bins.set_start
             endBins   |> Option.iter bins.set_end
