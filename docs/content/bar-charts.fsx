@@ -14,9 +14,13 @@ values.
 
 open FSharp.Plotly 
   
-let values = [19; 26; 55;]
-let labels = ["Residential"; "Non-Residential"; "Utility"]
+let yValues = [20; 14; 23;]
+let xValues = ["Product A"; "Product B"; "Product C";]
+let labels  = ["27% market share"; "24% market share"; "19% market share";]
   
 (*** define-output:pie1 ***)
-Chart.Pie(values,labels)
+Chart.Bar(xValues,yValues,Labels=labels,Opacity=0.3,Marker=Options.Marker(color="rgba(222,45,38,0.8)"))
+|> Chart.withSize(500.,500.)
 (*** include-it:pie1 ***)
+|> Chart.Show
+

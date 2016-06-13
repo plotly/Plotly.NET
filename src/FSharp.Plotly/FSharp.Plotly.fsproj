@@ -59,15 +59,15 @@
   -->
   <Import Project="..\..\.paket\paket.targets" />
   <ItemGroup>
+    <Compile Include="ApplyHelper.fs" />
     <Compile Include="StyleOption.fs" />
-    <Compile Include="StyleGramar.fs" />
-    <Compile Include="ChartArea.fs" />
-    <Compile Include="Geo.fs" />
-    <Compile Include="Shapes.fs" />
+    <Compile Include="LayoutStyleObjects.fs" />
+    <Compile Include="TraceAuxiliaryObjects.fs" />
+    <Compile Include="TraceObjects.fs" />
+    <Compile Include="AxisObjects.fs" />
     <Compile Include="Layout.fs" />
-    <Compile Include="Trace.fs" />
+    <Compile Include="Options.fs" />
     <Compile Include="GenericChart.fs" />
-    <Compile Include="ChartHelpers.fs" />
     <Compile Include="Chart.fs" />
     <Compile Include="ChartExtensions.fs" />
     <None Include="Script.fsx" />

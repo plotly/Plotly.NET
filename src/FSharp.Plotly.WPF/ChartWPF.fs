@@ -9,8 +9,6 @@ module ChartWPF =
     open System.IO
 
     open FSharp.Plotly
-    open StyleGramar
-    open ChartArea
     open GenericChart
 
 
@@ -18,7 +16,7 @@ module ChartWPF =
     type Chart with  
 
 
-        static member ShowWPF (ch:GenericChart) = 
+        static member ShowWPF (ch:GenericChart<_>) = 
             let guid = Guid.NewGuid().ToString()
             let html = GenericChart.toEmbeddedHTML ch
             ViewContainer.showHTML html

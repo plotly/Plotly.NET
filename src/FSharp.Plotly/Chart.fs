@@ -3,252 +3,291 @@ namespace FSharp.Plotly
 open System
 open System.IO
 open FSharp.Care.Collections
- 
-open StyleGramar
-open ChartArea
 
 open GenericChart
     
-
-
-//    type key = IConvertible
-//    type value = IConvertible
-
- 
-// https://plot.ly/javascript-graphing-library/reference/#line          
-
-
-
 /// Provides a set of static methods for creating charts.
 type Chart =
 
     /// Uses points, line or both depending on the mode to represent data points
     static member Scatter(x, y, mode, ?Name,?Showlegend,?MakerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
-        let line   = Line()   |> Helpers.ApplyLineStyles(?color=Color,?dash=Dash,?width=Width) 
-        let marker = Marker() |> Helpers.ApplyMarkerStyles(?color=Color,?symbol=MakerSymbol) 
         let trace = 
-            Trace()
-            |> Helpers.ApplyTraceStyles("scatter",x = x,y = y, mode=mode, ?name=Name,line=line,marker=marker,
-                ?showlegend=Showlegend,?opacity=Opacity,?text=Labels,?textposition=TextPosition,?textfont=TextFont)
+            TraceObjects.Scatter()
+            |> Options.Scatter(X = x,Y = y, Mode=mode,
+                TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity), //
+                Line=Options.Line(?Color=Color,?Dash=Dash,?Width=Width),
+                Marker=Options.Marker(?Color=Color,?Symbol=MakerSymbol),
+                ?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
         GenericChart.Chart (trace,None)
 
 
-    /// Uses points to represent data points
-    static member Point(x, y, ?Name,?Showlegend,?Color,?Opacity,?MakerSymbol,?Labels) =         
-        let marker = Marker() |> Helpers.ApplyMarkerStyles(?color=Color,?symbol=MakerSymbol)       
+    /// Uses points to represent data points.
+    static member Point(x, y, ?Name,?Showlegend,?Color,?Opacity,?MakerSymbol,?Labels) =                      
         let trace = 
-            Trace()
-            |> Helpers.ApplyTraceStyles("scatter",x = x,y = y, mode=StyleOption.Markers, ?name=Name,marker=marker,
-                ?showlegend=Showlegend,?fillcolor=Color,?opacity=Opacity,?text=Labels)
+            TraceObjects.Scatter()
+            |> Options.Scatter(X = x,Y = y, Mode=StyleOption.Markers, 
+                TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity),
+                Marker=Options.Marker(?Color=Color,?Symbol=MakerSymbol),
+                ?Fillcolor=Color,?Text=Labels)
         GenericChart.Chart (trace,None)
 
 
-    /// Uses points to represent data points
+    /// Uses points to represent data points.
     static member Point(xy, ?Name,?Showlegend,?Color,?Opacity,?MakerSymbol,?Labels) =         
         let x,y = Seq.unzip xy
         Chart.Point(x,y, ?Name=Name,?Showlegend=Showlegend,?Color=Color,?Opacity=Opacity,?MakerSymbol=MakerSymbol,?Labels=Labels)
 
 
-    /// Uses a line to connect the data points represented
+    /// Uses a line to connect the data points represented.
     static member Line(x, y,?Name,?ShowMarkers,?Dash,?Showlegend,?Width,?Color,?Opacity,?MakerSymbol,?Labels) =             
-        let line   = Line()   |> Helpers.ApplyLineStyles(?color=Color,?dash=Dash,?width=Width)
-        let marker = Marker() |> Helpers.ApplyMarkerStyles(?color=Color,?symbol=MakerSymbol)
         let mode' = match ShowMarkers with
                     | Some show -> if show then StyleOption.Lines_Markers else StyleOption.Lines
                     | None      -> StyleOption.Lines_Markers // default 
         let trace = 
-            Trace()
-            |> Helpers.ApplyTraceStyles("scatter",x = x,y = y, mode=mode', ?name=Name,line=line,marker=marker,
-                ?showlegend=Showlegend,?fillcolor=Color,?opacity=Opacity,?text=Labels)
+            TraceObjects.Scatter()
+            |> Options.Scatter(X = x,Y = y, Mode=mode',
+                TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity),
+                Line=Options.Line(?Color=Color,?Dash=Dash,?Width=Width),
+                Marker=Options.Marker(?Color=Color,?Symbol=MakerSymbol),
+                ?Fillcolor=Color,?Text=Labels)
         GenericChart.Chart (trace,None)
     
 
-    /// Uses a line to connect the data points represented
+    /// Uses a line to connect the data points represented.
     static member Line(xy,?Name,?ShowMarkers,?Dash,?Showlegend,?Width,?Color,?Opacity,?MakerSymbol,?Labels) =  
         let x,y = Seq.unzip xy
         Chart.Line(x,y,?Name=Name,?ShowMarkers=ShowMarkers,?Dash=Dash,?Showlegend=Showlegend,
                        ?Width=Width,?Color=Color,?Opacity=Opacity,?MakerSymbol=MakerSymbol,?Labels=Labels)
 
 
-    /// 
+    /// A Line chart that plots a fitted curve through each data point in a series.
     static member Spline(x, y,?Name,?ShowMarkers,?Dash,?Showlegend,?Width,?Color,?Opacity,?MakerSymbol,?Labels,?Smoothing) =             
-        let line   = Line()   |> Helpers.ApplyLineStyles(?color=Color,?dash=Dash,?width=Width,shape=StyleOption.Shape.Spline,?smoothing=Smoothing)
-        let marker = Marker() |> Helpers.ApplyMarkerStyles(?color=Color,?symbol=MakerSymbol)
         let mode' = match ShowMarkers with
                     | Some show -> if show then StyleOption.Lines_Markers else StyleOption.Lines
                     | None      -> StyleOption.Lines_Markers // default 
         let trace = 
-            Trace()
-            |> Helpers.ApplyTraceStyles("scatter",x = x,y = y, mode=mode', ?name=Name,line=line,marker=marker,
-                ?showlegend=Showlegend,?fillcolor=Color,?opacity=Opacity,?text=Labels)
+            TraceObjects.Scatter()
+            |> Options.Scatter(X = x,Y = y, Mode=mode', 
+                TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity),
+                Line=Options.Line(?Color=Color,?Dash=Dash,?Width=Width,Shape=StyleOption.Shape.Spline,?Smoothing=Smoothing),
+                Marker=Options.Marker(?Color=Color,?Symbol=MakerSymbol),
+                ?Fillcolor=Color,?Text=Labels)
         GenericChart.Chart (trace,None)
 
 
     /// A variation of the Point chart type, where the data points are replaced by bubbles of different sizes.
-    static member Bubble(x, y, size:seq<#IConvertible>,?Name,?Showlegend,?Color,?Opacity,?Labels) =         
-        let marker = 
-            Marker(size = size) |> Helpers.ApplyMarkerStyles(?color=Color)                 
+    static member Bubble(x, y, sizes:seq<#IConvertible>,?Name,?Showlegend,?Color,?Opacity,?Labels,?MakerSymbol) =                     
         let trace = 
-            Trace()
-            |> Helpers.ApplyTraceStyles("scatter",x = x,y = y, mode=StyleOption.Markers, ?name=Name,marker=marker,
-                ?showlegend=Showlegend,?opacity=Opacity,?text=Labels)
+            TraceObjects.Scatter()
+            |> Options.Scatter(X = x,Y = y, Mode=StyleOption.Markers, 
+                TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity),
+                Marker=Options.Marker(?Color=Color,?Symbol=MakerSymbol,MultiSizes=sizes),
+                ?Text=Labels)
         GenericChart.Chart (trace,None)
 
 
-    /// 
+    /// Displays a range of data by plotting two Y values per data point, with each Y value being drawn as a line 
     static member Range(x, y, upper, lower, ?Name,?ShowMarkers,?Showlegend,?Color,?RangeColor,?Labels) =             
         let mode' = match ShowMarkers with
                     | Some show -> if show then StyleOption.Lines_Markers else StyleOption.Lines
                     | None      -> StyleOption.Lines_Markers // default 
             
-        let mline = Line()   |> Helpers.ApplyLineStyles(?color=Color)
-        let mmark = Marker() |> Helpers.ApplyMarkerStyles(?color=Color)
-        let tLine = Line() |> Helpers.ApplyLineStyles(width=0)
-        let tmark = Marker(color = if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,,0.5)")
-            
-
         let trace = 
-            Trace()
-            |> Helpers.ApplyTraceStyles("scatter",x = x,y = y, mode=mode', ?name=Name,line=mline,marker=mmark,
-                ?showlegend=Showlegend,?fillcolor=Color,?text=Labels)
+            TraceObjects.Scatter()
+            |> Options.Scatter(X = x,Y = y, Mode=mode', 
+                TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend),
+                Line=Options.Line(?Color=Color),
+                Marker=Options.Marker(?Color=Color),
+                ?Fillcolor=Color,?Text=Labels)
         let lower = 
-            Trace()
-            |> Helpers.ApplyTraceStyles("scatter",x = x,y = lower, mode=StyleOption.Lines,line=tLine,
-                showlegend=false,?fillcolor=RangeColor,marker=tmark)
+            TraceObjects.Scatter()
+            |> Options.Scatter(X = x,Y = lower, Mode=StyleOption.Lines,
+                TraceOptions=Options.Trace(Showlegend=false),
+                Line=Options.Line(Width=0),
+                Marker=Options.Marker(Color = if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,,0.5)"),
+                ?Fillcolor=RangeColor)
         let upper = 
-            Trace()
-            |> Helpers.ApplyTraceStyles("scatter",x = x,y = upper, mode=StyleOption.Lines,fill=StyleOption.ToNext_y,line=tLine,
-                showlegend=false,?fillcolor=RangeColor,marker=tmark)
+            TraceObjects.Scatter()
+            |> Options.Scatter(X = x,Y = upper, Mode=StyleOption.Lines,Fill=StyleOption.ToNext_y,
+                TraceOptions=Options.Trace(Showlegend=false),
+                Line=Options.Line(Width=0),
+                Marker=Options.Marker(Color = if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,,0.5)"),
+                ?Fillcolor=RangeColor)
         GenericChart.MultiChart ([lower;upper;trace],None)
 
-    /// 
+
+    /// Displays a range of data by plotting two Y values per data point, with each Y value being drawn as a spline 
     static member SplineRange(x, y, upper, lower, ?Name,?ShowMarkers,?Showlegend,?Color,?RangeColor,?Labels,?Smoothing) =             
         let mode' = match ShowMarkers with
                     | Some show -> if show then StyleOption.Lines_Markers else StyleOption.Lines
                     | None      -> StyleOption.Lines_Markers // default 
             
-        let mline = Line()   |> Helpers.ApplyLineStyles(?color=Color,shape=StyleOption.Shape.Spline,?smoothing=Smoothing)
-        let mmark = Marker() |> Helpers.ApplyMarkerStyles(?color=Color)
-        let tLine = Line() |> Helpers.ApplyLineStyles(width=0,shape=StyleOption.Shape.Spline,?smoothing=Smoothing)
-        let tmark = Marker(color = if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,,0.5)")
-            
-
         let trace = 
-            Trace()
-            |> Helpers.ApplyTraceStyles("scatter",x = x,y = y, mode=mode', ?name=Name,line=mline,marker=mmark,
-                ?showlegend=Showlegend,?fillcolor=Color,?text=Labels)
+            TraceObjects.Scatter()
+            |> Options.Scatter(X = x,Y = y, Mode=mode', 
+                TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend),
+                Line=Options.Line(?Color=Color,Shape=StyleOption.Shape.Spline,?Smoothing=Smoothing),
+                Marker=Options.Marker(?Color=Color),
+                ?Fillcolor=Color,?Text=Labels)
         let lower = 
-            Trace()
-            |> Helpers.ApplyTraceStyles("scatter",x = x,y = lower, mode=StyleOption.Lines,line=tLine,
-                showlegend=false,?fillcolor=RangeColor,marker=tmark)
+            TraceObjects.Scatter()
+            |> Options.Scatter(X = x,Y = lower, Mode=StyleOption.Lines,
+                TraceOptions=Options.Trace(Showlegend=false),
+                Line=Options.Line(Width=0,Shape=StyleOption.Shape.Spline,?Smoothing=Smoothing),
+                Marker=Options.Marker(Color = if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,,0.5)"),
+                ?Fillcolor=RangeColor)
         let upper = 
-            Trace()
-            |> Helpers.ApplyTraceStyles("scatter",x = x,y = upper, mode=StyleOption.Lines,fill=StyleOption.ToNext_y,line=tLine,
-                showlegend=false,?fillcolor=RangeColor,marker=tmark)
+            TraceObjects.Scatter()
+            |> Options.Scatter(X = x,Y = upper, Mode=StyleOption.Lines,Fill=StyleOption.ToNext_y,
+                TraceOptions=Options.Trace(Showlegend=false),
+                Line=Options.Line(Width=0,Shape=StyleOption.Shape.Spline,?Smoothing=Smoothing),
+                Marker=Options.Marker(Color = if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,,0.5)"),
+                ?Fillcolor=RangeColor)
         GenericChart.MultiChart ([lower;upper;trace],None)
+        
 
-    ///
+    /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
     static member Area(x, y, ?Name,?ShowMarkers,?Showlegend,?Color,?Opacity,?Labels) = 
         let mode' = match ShowMarkers with
                     | Some show -> if show then StyleOption.Lines_Markers else StyleOption.Lines
                     | None      -> StyleOption.Lines_Markers // default 
         let trace = 
-            Trace()
-            |> Helpers.ApplyTraceStyles("scatter",x = x,y = y, fill=StyleOption.ToZero_y, mode=mode', ?name=Name,
-                ?showlegend=Showlegend,?fillcolor=Color,?opacity=Opacity,?text=Labels)
+            TraceObjects.Scatter()
+            |> Options.Scatter(X = x,Y = y, Fill=StyleOption.ToZero_y, Mode=mode',
+                TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity),
+                ?Fillcolor=Color,?Text=Labels)
         GenericChart.Chart (trace,None)
 
-    static member Bar(x, y, ?Name,?Showlegend,?Color,?Opacity,?Labels) = 
+
+    /// Illustrates comparisons among individual items
+    static member Bar(x, y, ?Name,?Showlegend,?Color,?Opacity,?Labels,?Marker) = 
+        let marker =
+            match Marker with 
+            | Some m -> Options.Marker(?Color=Color) >> m
+            | None   -> Options.Marker(?Color=Color)
         let trace = 
-            Trace()
-            |> Helpers.ApplyTraceStyles("bar",x = x,y = y,?name=Name,
-                ?showlegend=Showlegend,?fillcolor=Color,?opacity=Opacity,?text=Labels)
+            Bar()
+            |> Options.Bar(X = x,Y = y,
+                TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity),
+                Marker=marker,
+                ?Text=Labels)
         GenericChart.Chart (trace,None)
 
-    static member StackedBar(x, y, ?Name,?Showlegend,?Color,?Opacity,?Labels) = 
-        let trace = 
-            Trace()
-            |> Helpers.ApplyTraceStyles("bar",x = x,y = y,?name=Name,
-                ?showlegend=Showlegend,?fillcolor=Color,?opacity=Opacity,?text=Labels)
-        let layout = Layout (barmode = "stack")
-        GenericChart.Chart (trace,Some layout)
 
-    static member Column(x, y, ?Name,?Showlegend,?Color,?Opacity,?Labels) = 
+    /// Displays series of the same chart type as stacked bars.
+    static member StackedBar(x, y, ?Name,?Showlegend,?Color,?Opacity,?Labels,?Marker) = 
+        let marker =
+            match Marker with 
+            | Some m -> Options.Marker(?Color=Color) >> m
+            | None   -> Options.Marker(?Color=Color)
         let trace = 
-            Trace()
-            |> Helpers.ApplyTraceStyles("bar",x = x,y = y,?name=Name,
-                ?showlegend=Showlegend,?fillcolor=Color,?opacity=Opacity,?text=Labels,orientation = StyleOption.Orientation.Horizontal)
+            Bar()
+            |> Options.Bar(X = x,Y = y,
+                TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity),
+                Marker=marker,
+                ?Text=Labels)
+        
+        let layout = Options.Layout(Barmode=StyleOption.Barmode.Stack)
+        GenericChart.Chart (trace,Some [layout])
+        
+        
+        
+    /// Uses a sequence of columns to compare values across categories.
+    static member Column(x, y, ?Name,?Showlegend,?Color,?Opacity,?Labels,?Marker) =  
+        let marker =
+            match Marker with 
+            | Some m -> Options.Marker(?Color=Color) >> m
+            | None   -> Options.Marker(?Color=Color)
+        let trace = 
+            Bar()
+            |> Options.Bar(X = x,Y = y,
+                TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity),
+                Marker=marker,
+                ?Text=Labels,Orientation = StyleOption.Orientation.Horizontal)
+                
         GenericChart.Chart (trace,None)
 
-    static member StackedColumn(x, y, ?Name,?Showlegend,?Color,?Opacity,?Labels) = 
+    /// Displays series of the same chart type as stacked columns.
+    static member StackedColumn(x, y, ?Name,?Showlegend,?Color,?Opacity,?Labels,?Marker) = 
+        let marker =
+            match Marker with 
+            | Some m -> Options.Marker(?Color=Color) >> m
+            | None   -> Options.Marker(?Color=Color)
         let trace = 
-            Trace()
-            |> Helpers.ApplyTraceStyles("bar",x = x,y = y,?name=Name,
-                ?showlegend=Showlegend,?fillcolor=Color,?opacity=Opacity,?text=Labels,orientation = StyleOption.Orientation.Horizontal)
-        let layout = Layout (barmode = "stack")
-        GenericChart.Chart (trace,Some layout)
+            Bar()
+            |> Options.Bar(X = x,Y = y,
+                TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity),
+                Marker=marker,
+                ?Text=Labels,Orientation = StyleOption.Orientation.Horizontal)
+        
+        let layout = Options.Layout(Barmode=StyleOption.Barmode.Stack)
+        GenericChart.Chart (trace,Some [layout])
 
-    static member BoxPlot(?x,?y,?Name,?Showlegend, ?Color,?Opacity,?Whiskerwidth,?Boxpoints,?Boxmean,?Jitter,?Pointpos) = 
+    /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.            
+    static member BoxPlot(?x,?y,?Name,?Showlegend, ?Color,?Opacity,?Whiskerwidth,?Boxpoints,?Boxmean,?Jitter,?Pointpos,?Line,?Marker) = 
         let trace = 
-            Trace()
-            |> Helpers.ApplyTraceStyles("box", ?x=x, ?y = y,?name=Name,
-                ?showlegend=Showlegend,?fillcolor=Color,?opacity=Opacity,?whiskerwidth=Whiskerwidth,?boxpoints=Boxpoints,
-                ?boxmean=Boxmean,?jitter=Jitter,?pointpos=Pointpos)
+            Box()
+            |> Options.BoxPlot(?X=x, ?Y = y,
+                TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity),
+                ?Line=Line,?Marker=Marker,
+                ?Fillcolor=Color,?Whiskerwidth=Whiskerwidth,?Boxpoints=Boxpoints,
+                ?Boxmean=Boxmean,?Jitter=Jitter,?Pointpos=Pointpos)
             
         GenericChart.Chart (trace,None)
 
-
+    /// Shows a graphical representation of data where the individual values contained in a matrix are represented as colors.
     static member HeatMap(data:seq<#seq<#IConvertible>>,?ColNames,?RowNames, ?Name,?Colorscale,?Showscale,?zSmooth,?Colorbar) = 
         let trace = 
-            Trace()
-            |> Helpers.ApplyTraceStyles("heatmap",z=data,?x=ColNames, ?y=RowNames,?name=Name,
-                ?colorScale=Colorscale,?showscale=Showscale,?zsmooth=zSmooth,?colorbar=Colorbar
+            Heatmap()
+            |> Options.HeatMap(Z=data,?X=ColNames, ?Y=RowNames,
+                TraceOptions=Options.Trace(?Name=Name),
+                ?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?Colorbar=Colorbar
                                         )                
         GenericChart.Chart (trace,None)
 
-    static member Pie(values,?labels,?Name,?Color) = 
-        let marker = Marker() |> Helpers.ApplyMarkerStyles(?color=Color)
+    /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data as a whole.
+    static member Pie(values,?labels,?Name,?Showlegend,?Color,?Hoverinfo,?Textinfo,?Textposition) =         
         let trace = 
-            Trace()
-            |> Helpers.ApplyTraceStyles("pie",values=values,?labels=labels,?name=Name,marker=marker
-                                        )                
+            Pie()
+            |> Options.Pie(Values=values,?Labels=labels,
+                    TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Hoverinfo=Hoverinfo),
+                    Marker=Options.Marker(?Color=Color),
+                    ?Textinfo=Textinfo,?Textposition=Textposition)                
         GenericChart.Chart (trace,None)
 
-    static member Doughnut(values,?labels,?Name,?Color,?hole) = 
-        let marker = Marker() |> Helpers.ApplyMarkerStyles(?color=Color)
-        let hole = if hole.IsSome then hole.Value else 0.4
+    /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data as a whole.
+    static member Doughnut(values,?labels,?Name,?Showlegend,?Color,?Hole,?Hoverinfo,?Textinfo,?Textposition) =         
+        let hole' = if Hole.IsSome then Hole.Value else 0.4
         let trace = 
-            Trace()
-            |> Helpers.ApplyTraceStyles("pie",values=values,?labels=labels,?name=Name,marker=marker,hole=hole
-             
-//               hoverinfo: 'label+percent+name',
-//               textinfo: 'none'
-//               text 
-//               textposition 
-                                        )                
+            Pie()
+            |> Options.Pie(Values=values,?Labels=labels,
+                    TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Hoverinfo=Hoverinfo),
+                    Marker=Options.Marker(?Color=Color),
+                    ?Textinfo=Textinfo,?Textposition=Textposition,Hole=hole')                
         GenericChart.Chart (trace,None)
+
 
     
 
-    /// Computes the bi-dimensional histogram of two data samples and auto-determines the bin size.
-    static member Histogram2d(x,y,?Name,?HistNorm,?HistFunc,?Colorscale,?Showscale,?zSmooth,?Colorbar,?zAuto,?zMin,?zMax,?nBinsx,?nBinsy,?Xbins,?Ybins) =         
-        let trace = 
-            Trace()
-            |> Helpers.ApplyTraceStyles("histogram2d",x=x,y=y,?name=Name,?histnorm=HistNorm,?histfunc=HistFunc,
-                          ?colorScale=Colorscale,?showscale=Showscale,?zsmooth=zSmooth,?colorbar=Colorbar,
-                          ?zauto=zAuto,?zmin=zMin,?zmax=zMax,
-                          ?nbinsx=nBinsx,?nbinsy=nBinsy,?xbins=Xbins,?ybins=Ybins
-                          )                
-        
-        GenericChart.Chart (trace,None)
-
-    /// Computes the bi-dimensional histogram of two data samples and auto-determines the bin size.
-    static member Histogram2d(xy,?Name,?HistNorm,?HistFunc,?Colorscale,?Showscale,?zSmooth,?Colorbar,?zAuto,?zMin,?zMax,?nBinsx,?nBinsy,?Xbins,?Ybins) =         
-        let x,y = Seq.unzip xy
-        Chart.Histogram2d(x,y,?Name=Name,?HistNorm=HistNorm,?HistFunc=HistFunc,?Colorscale=Colorscale,
-            ?Showscale=Showscale,?Colorbar=Colorbar,?zSmooth=zSmooth,?zAuto=zAuto,?zMin=zMin,?zMax=zMax,
-            ?nBinsx=nBinsx,?nBinsy=nBinsy,?Xbins=Xbins,?Ybins=Ybins
-            )
+//    /// Computes the bi-dimensional histogram of two data samples and auto-determines the bin size.
+//    static member Histogram2d(x,y,?Name,?HistNorm,?HistFunc,?Colorscale,?Showscale,?zSmooth,?Colorbar,?zAuto,?zMin,?zMax,?nBinsx,?nBinsy,?Xbins,?Ybins) =         
+//        let trace = 
+//            Trace()
+//            |> Helpers.ApplyTraceStyles("histogram2d",x=x,y=y,?name=Name,?histnorm=HistNorm,?histfunc=HistFunc,
+//                          ?colorScale=Colorscale,?showscale=Showscale,?zsmooth=zSmooth,?colorbar=Colorbar,
+//                          ?zauto=zAuto,?zmin=zMin,?zmax=zMax,
+//                          ?nbinsx=nBinsx,?nbinsy=nBinsy,?xbins=Xbins,?ybins=Ybins
+//                          )                
+//        
+//        GenericChart.Chart (trace,None)
+//
+//    /// Computes the bi-dimensional histogram of two data samples and auto-determines the bin size.
+//    static member Histogram2d(xy,?Name,?HistNorm,?HistFunc,?Colorscale,?Showscale,?zSmooth,?Colorbar,?zAuto,?zMin,?zMax,?nBinsx,?nBinsy,?Xbins,?Ybins) =         
+//        let x,y = Seq.unzip xy
+//        Chart.Histogram2d(x,y,?Name=Name,?HistNorm=HistNorm,?HistFunc=HistFunc,?Colorscale=Colorscale,
+//            ?Showscale=Showscale,?Colorbar=Colorbar,?zSmooth=zSmooth,?zAuto=zAuto,?zMin=zMin,?zMax=zMax,
+//            ?nBinsx=nBinsx,?nBinsy=nBinsy,?Xbins=Xbins,?Ybins=Ybins
+//            )
 
 
 
@@ -261,16 +300,7 @@ type Chart =
 //            GenericChart.Chart (trace,None)       
         
     
-    /// Create a combined chart with the given charts merged   
-    static member Combine(gCharts:seq<GenericChart>) =
-        gCharts
-        |> Seq.reduce (fun acc elem ->
-                            match acc,elem with
-                            | MultiChart (traces,l1),Chart (trace,l2)         -> MultiChart (Seq.append traces [trace], combine' l1 l2)
-                            | MultiChart (traces1,l1),MultiChart (traces2,l2) -> MultiChart (Seq.append traces1 traces2,combine' l1 l2)
-                            | Chart (trace1,l1),Chart (trace2,l2)             -> MultiChart ([trace1;trace2],combine' l1 l2)
-                            | Chart (trace,l1),MultiChart (traces,l2)         -> MultiChart (Seq.append [trace] traces ,combine' l1 l2)
-                        ) 
+
  
  
   

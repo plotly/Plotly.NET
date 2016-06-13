@@ -1,6 +1,7 @@
 ﻿namespace FSharp.Plotly
 
 // https://plot.ly/javascript/reference/
+// https://plot.ly/javascript-graphing-library/reference/
 
 module StyleOption =
 
@@ -451,5 +452,59 @@ module StyleOption =
             | Best  -> box "best"
             | Fast  -> box "fast"
                     
+
+    /// Sets this figure's behavior when a user hovers over it. When set to 'x', all data sharing the same 'x' coordinate will be shown on screen
+    /// with corresponding trace labels. When set to 'y' all data sharing the same 'y' coordinates will be shown on the screen with corresponding
+    /// trace labels. When set to 'closest', information about the data point closest to where the viewer is hovering will appear.
+    type Hovermode =
+        | Closest | X | Y 
+        
+        static member toString = function
+            | Closest -> "closest"
+            | X       -> "x"
+            | Y       -> "y"
+
+
+        static member convert = Hovermode.toString >> box
+
+
+
+    /// Sets this figure's behavior when a user preforms a mouse 'drag' in the plot area. When set to 'zoom', a portion of the plot will be highlighted,
+    /// when the viewer exits the drag, this highlighted section will be zoomed in on. When set to 'pan', data in the plot will move along with the viewers
+    /// dragging motions. A user can always depress the 'shift' key to access the whatever functionality has not been set as the default. In 3D plots, the 
+    /// default drag mode is 'rotate' which rotates the scene.
+    type Dragmode =
+        | Zoom | Pan | Rotate 
+        
+        static member toString = function
+            | Zoom   -> "zoom"
+            | Pan    -> "pan"
+            | Rotate -> "rotate"
+
+
+        static member convert = Dragmode.toString >> box
+
+
+    /// For bar and histogram plots only. This sets how multiple bar objects are plotted together. In other words, this defines how bars at the same location
+    /// appear on the plot. If set to 'stack' the bars are stacked on top of one another. If set to 'group', the bars are plotted next to one another, centered 
+    /// around the shared location. If set to 'overlay', the bars are simply plotted over one another, you may need to set the opacity to see this.
+    type Barmode =
+        | Stack | Group | Overlay 
+        
+        static member toString = function
+            | Stack   -> "stack"
+            | Group   -> "group"
+            | Overlay -> "overlay"
+
+
+        static member convert = Barmode.toString >> box
+
+    /// Defines a Range between min and max value 
+    type RangeValues =
+        | MinMax of float * float
+        
+        static member convert = function
+            | MinMax (min,max)   -> box [|min;max|]
+            
 
 
