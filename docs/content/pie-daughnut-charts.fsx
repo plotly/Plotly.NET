@@ -22,5 +22,5 @@ Chart.Pie(values,labels)
 (*** include-it:pie1 ***)
 
 (*** define-output:doughnut1 ***)
-Chart.Doughnut(values,labels,hole=0.3)
+Chart.Doughnut(values,labels,Hole=0.3)
 (*** include-it:doughnut1 ***)

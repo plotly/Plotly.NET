@@ -48,22 +48,21 @@ module ChartExtensions =
 //                |> Helpers.ApplyMarkerStyles(?size=Size,?color=Color,?symbol=Symbol,?opacity=Opacity)
 //            
 //            Chart.withMarkerOption(marker)         
-//            
-//        /// Apply styling to the Line(s) of the chart as Object.
-//        static member withLineOption(line:Line) =
-//            (fun (ch:GenericChart) ->                   
-//                ch |> mapTrace (fun gc -> 
-//                                    gc.set_line line
-//                                    gc)
-//            )
-//               
-//        /// Apply styling to the Line(s) of the chart.
-//        static member withLineStyle(?Width,?Color,?Shape,?Dash,?Smoothing,?ColorScale) =
-//            let line = 
-//                Line()                
-//                |> Helpers.ApplyLineStyles(?width=Width,?color=Color,?shape=Shape,?dash=Dash,?smoothing=Smoothing,?colorScale=ColorScale)
-//            
-//            Chart.withLineOption(line)  
+            
+        /// Apply styling to the Line(s) of the chart as Object.
+        static member withLineOption(line:LineOptions) =
+            (fun (ch:GenericChart<#Trace>) ->                   
+                ch |> mapTrace (fun (trace:#Trace) ->                                     
+                                    match (ApplyHelper.tryUpdatePropertyValueFromName trace "line" line) with
+                                    | Some trace' -> trace' |> unbox
+                                    | None        -> trace  |> unbox
+                               )
+            )
+               
+        /// Apply styling to the Line(s) of the chart.
+        static member withLineStyle(?Width,?Color,?Shape,?Dash,?Smoothing,?ColorScale) =
+            let line = Options.Line(?Width=Width,?Color=Color,?Shape=Shape,?Dash=Dash,?Smoothing=Smoothing,?ColorScale=ColorScale)            
+            Chart.withLineOption(line)  
 
 
 //

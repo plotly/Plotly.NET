@@ -31,7 +31,7 @@ module HTML =
 
 /// Module 
 module GenericChart =
-
+    // 'T when 'T :> Trace
     type GenericChart<'T when 'T :> Trace> =
         | Chart of 'T * (Layout -> Layout) list option
         | MultiChart of 'T list * (Layout -> Layout) list option
@@ -127,7 +127,7 @@ module GenericChart =
         html
 
     /// Converts a GenericChart to it HTML representation and set the size of the div 
-    let toChartHtmlWithSize (width:int) (height:int) gChart =
+    let toChartHtmlWithSize (width:int) (height:int) (gChart:GenericChart<#Trace>) =
         let guid = Guid.NewGuid().ToString()
         let tracesJson =
             getTraces gChart

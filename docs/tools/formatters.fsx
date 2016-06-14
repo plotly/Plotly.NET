@@ -41,7 +41,7 @@ let createFsiEvaluator root output =
         img.Save(output @@ "images" @@ file, System.Drawing.Imaging.ImageFormat.Png) 
         Some [ Paragraph [DirectImage ("", (root + "/images/" + file, None))]  ]
 
-    | :? GenericChart.GenericChart as ch ->
+    | :? GenericChart.GenericChart<_> as ch ->
         // Just return the inline HTML for a Plotly chart        
         let html = GenericChart.toChartHtmlWithSize 760 500 ch
         Some [InlineBlock <| html]
