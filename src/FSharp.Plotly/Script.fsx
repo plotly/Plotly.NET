@@ -78,3 +78,22 @@ let newt = Scatter(opacity=0.7)
 
 tryGetPropertyValue m1 "sie"
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
