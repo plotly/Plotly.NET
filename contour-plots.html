@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>FSharp.Plotly: Pie and Doughnut Charts
+    <title>FSharp.Plotly: Contour plot
 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="A F# interactive charting library using plotly.js"/>
@@ -35,57 +35,103 @@
       <div class="row">
         <div class="span9" id="main">
           
-<h1><a name="FSharp-Plotly-Pie-and-Doughnut-Charts" class="anchor" href="#FSharp-Plotly-Pie-and-Doughnut-Charts">FSharp.Plotly: Pie and Doughnut Charts</a></h1>
-<p><em>Summary:</em> This example shows how to create pie and doughnut charts in F#.</p>
-<p>A pie or a doughnut chart can be created using the <code>Chart.Pie</code> and <code>Chart.Doughnut</code> functions.
-When creating pie or doughnut charts, it is usually desirable to provide both labels and
-values.</p>
+<h1><a name="FSharp-Plotly-Contour-plot" class="anchor" href="#FSharp-Plotly-Contour-plot">FSharp.Plotly: Contour plot</a></h1>
+<p><em>Summary:</em> This example shows how to create contour plot in F#.</p>
+<p>A contour plot is a graphical technique for representing a 3-dimensional surface by plotting
+constant z slices, called contours, on a 2-dimensional format. That is, given a value for z,
+lines are drawn for connecting the (x,y) coordinates where that z value occurs.
+The contour plot is an alternative to a 3-D surface plot.</p>
+<p>The contour plot is an alternative to a 3-D surface plot.</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+<span class="l">20: </span>
+<span class="l">21: </span>
+<span class="l">22: </span>
+<span class="l">23: </span>
+<span class="l">24: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">System</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">FSharp</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">Plotly</span> 
+
+
+<span class="c">// Generate linearly spaced vector</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="f">linspace</span> (<span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="i">min</span>,<span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="i">max</span>,<span onmouseout="hideTip(event, 'fs7', 7)" onmouseover="showTip(event, 'fs7', 7)" class="i">n</span>) <span class="o">=</span> 
+    <span class="k">if</span> <span onmouseout="hideTip(event, 'fs7', 8)" onmouseover="showTip(event, 'fs7', 8)" class="i">n</span> <span class="o">&lt;=</span> <span class="n">2</span> <span class="k">then</span> <span onmouseout="hideTip(event, 'fs8', 9)" onmouseover="showTip(event, 'fs8', 9)" class="f">failwithf</span> <span class="s">&quot;n needs to be larger then 2&quot;</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs9', 10)" onmouseover="showTip(event, 'fs9', 10)" class="i">bw</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs10', 11)" onmouseover="showTip(event, 'fs10', 11)" class="f">float</span> (<span onmouseout="hideTip(event, 'fs6', 12)" onmouseover="showTip(event, 'fs6', 12)" class="i">max</span> <span class="o">-</span> <span onmouseout="hideTip(event, 'fs5', 13)" onmouseover="showTip(event, 'fs5', 13)" class="i">min</span>) <span class="o">/</span> (<span onmouseout="hideTip(event, 'fs10', 14)" onmouseover="showTip(event, 'fs10', 14)" class="f">float</span> <span onmouseout="hideTip(event, 'fs7', 15)" onmouseover="showTip(event, 'fs7', 15)" class="i">n</span> <span class="o">-</span> <span class="n">1.</span>)
+    [|<span onmouseout="hideTip(event, 'fs5', 16)" onmouseover="showTip(event, 'fs5', 16)" class="i">min</span> <span class="o">..</span><span onmouseout="hideTip(event, 'fs9', 17)" onmouseover="showTip(event, 'fs9', 17)" class="i">bw</span> <span class="f">..</span><span onmouseout="hideTip(event, 'fs6', 18)" onmouseover="showTip(event, 'fs6', 18)" class="i">max</span>|]
+  
+
+<span class="c">// Create example data</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs11', 19)" onmouseover="showTip(event, 'fs11', 19)" class="i">size</span> <span class="o">=</span> <span class="n">100</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs12', 20)" onmouseover="showTip(event, 'fs12', 20)" class="i">x</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs4', 21)" onmouseover="showTip(event, 'fs4', 21)" class="f">linspace</span>(<span class="o">-</span><span class="n">2.</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs13', 22)" onmouseover="showTip(event, 'fs13', 22)" class="t">Math</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs14', 23)" onmouseover="showTip(event, 'fs14', 23)" class="i">PI</span>, <span class="n">2.</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs13', 24)" onmouseover="showTip(event, 'fs13', 24)" class="t">Math</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs14', 25)" onmouseover="showTip(event, 'fs14', 25)" class="i">PI</span>, <span onmouseout="hideTip(event, 'fs11', 26)" onmouseover="showTip(event, 'fs11', 26)" class="i">size</span>)
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs15', 27)" onmouseover="showTip(event, 'fs15', 27)" class="i">y</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs4', 28)" onmouseover="showTip(event, 'fs4', 28)" class="f">linspace</span>(<span class="o">-</span><span class="n">2.</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs13', 29)" onmouseover="showTip(event, 'fs13', 29)" class="t">Math</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs14', 30)" onmouseover="showTip(event, 'fs14', 30)" class="i">PI</span>, <span class="n">2.</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs13', 31)" onmouseover="showTip(event, 'fs13', 31)" class="t">Math</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs14', 32)" onmouseover="showTip(event, 'fs14', 32)" class="i">PI</span>, <span onmouseout="hideTip(event, 'fs11', 33)" onmouseover="showTip(event, 'fs11', 33)" class="i">size</span>)
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs16', 34)" onmouseover="showTip(event, 'fs16', 34)" class="f">f</span> <span onmouseout="hideTip(event, 'fs17', 35)" onmouseover="showTip(event, 'fs17', 35)" class="i">x</span> <span onmouseout="hideTip(event, 'fs18', 36)" onmouseover="showTip(event, 'fs18', 36)" class="i">y</span> <span class="o">=</span> <span class="o">-</span> (<span class="n">5.</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs17', 37)" onmouseover="showTip(event, 'fs17', 37)" class="i">x</span> <span class="o">/</span> (<span onmouseout="hideTip(event, 'fs17', 38)" onmouseover="showTip(event, 'fs17', 38)" class="i">x</span><span class="o">**</span><span class="n">2.</span> <span class="o">+</span> <span onmouseout="hideTip(event, 'fs18', 39)" onmouseover="showTip(event, 'fs18', 39)" class="i">y</span><span class="o">**</span><span class="n">2.</span> <span class="o">+</span> <span class="n">1.</span>) )
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs19', 40)" onmouseover="showTip(event, 'fs19', 40)" class="i">z</span> <span class="o">=</span> 
+    <span onmouseout="hideTip(event, 'fs20', 41)" onmouseover="showTip(event, 'fs20', 41)" class="t">Array</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs21', 42)" onmouseover="showTip(event, 'fs21', 42)" class="f">init</span> <span onmouseout="hideTip(event, 'fs11', 43)" onmouseover="showTip(event, 'fs11', 43)" class="i">size</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs22', 44)" onmouseover="showTip(event, 'fs22', 44)" class="i">i</span> <span class="k">-&gt;</span> 
+        <span onmouseout="hideTip(event, 'fs20', 45)" onmouseover="showTip(event, 'fs20', 45)" class="t">Array</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs21', 46)" onmouseover="showTip(event, 'fs21', 46)" class="f">init</span> <span onmouseout="hideTip(event, 'fs11', 47)" onmouseover="showTip(event, 'fs11', 47)" class="i">size</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs23', 48)" onmouseover="showTip(event, 'fs23', 48)" class="i">j</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs16', 49)" onmouseover="showTip(event, 'fs16', 49)" class="f">f</span> <span onmouseout="hideTip(event, 'fs12', 50)" onmouseover="showTip(event, 'fs12', 50)" class="i">x</span><span class="o">.</span>[<span onmouseout="hideTip(event, 'fs23', 51)" onmouseover="showTip(event, 'fs23', 51)" class="i">j</span>] <span onmouseout="hideTip(event, 'fs15', 52)" onmouseover="showTip(event, 'fs15', 52)" class="i">y</span><span class="o">.</span>[<span onmouseout="hideTip(event, 'fs22', 53)" onmouseover="showTip(event, 'fs22', 53)" class="i">i</span>] )
+                    )
+
+  
+</code></pre></td>
+</tr>
+</table>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
-<span class="l">4: </span>
-<span class="l">5: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">FSharp</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">Plotly</span> 
-  
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">values</span> <span class="o">=</span> [<span class="n">19</span>; <span class="n">26</span>; <span class="n">55</span>;]
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">labels</span> <span class="o">=</span> [<span class="s">&quot;Residential&quot;</span>; <span class="s">&quot;Non-Residential&quot;</span>; <span class="s">&quot;Utility&quot;</span>]
-  
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs19', 54)" onmouseover="showTip(event, 'fs19', 54)" class="i">z</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs24', 55)" onmouseover="showTip(event, 'fs24', 55)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs25', 56)" onmouseover="showTip(event, 'fs25', 56)" class="f">Contour</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs24', 57)" onmouseover="showTip(event, 'fs24', 57)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs26', 58)" onmouseover="showTip(event, 'fs26', 58)" class="f">withSize</span>(<span class="n">600.</span>,<span class="n">600.</span>)
 </code></pre></td>
 </tr>
 </table>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
-</pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="f">Pie</span>(<span onmouseout="hideTip(event, 'fs3', 7)" onmouseover="showTip(event, 'fs3', 7)" class="i">values</span>,<span onmouseout="hideTip(event, 'fs4', 8)" onmouseover="showTip(event, 'fs4', 8)" class="i">labels</span>)
-</code></pre></td>
-</tr>
-</table>
-<div id="6b0710c6-33d3-4d9f-8e7a-24e106720cc8" style="width: 760px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>        
-  <script>
-    var data = [{"type":"pie","marker":{},"labels":["Residential","Non-Residential","Utility"],"values":[19,26,55]}];
-    var layout = {};
-    Plotly.newPlot('6b0710c6-33d3-4d9f-8e7a-24e106720cc8', data, layout);
-  </script>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
-</pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs5', 9)" onmouseover="showTip(event, 'fs5', 9)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 10)" onmouseover="showTip(event, 'fs7', 10)" class="f">Doughnut</span>(<span onmouseout="hideTip(event, 'fs3', 11)" onmouseover="showTip(event, 'fs3', 11)" class="i">values</span>,<span onmouseout="hideTip(event, 'fs4', 12)" onmouseover="showTip(event, 'fs4', 12)" class="i">labels</span>,<span class="i">hole</span><span class="o">=</span><span class="n">0.3</span>)
-</code></pre></td>
-</tr>
-</table>
-<div id="9713fc6e-6cae-4489-b5ba-ff05746f0790" style="width: 760px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>        
-  <script>
-    var data = [{"type":"pie","marker":{},"labels":["Residential","Non-Residential","Utility"],"values":[19,26,55],"hole":0.3}];
-    var layout = {};
-    Plotly.newPlot('9713fc6e-6cae-4489-b5ba-ff05746f0790', data, layout);
-  </script>
+<table class="pre"><tr><td><pre><code>Chart (FSharp.Plotly.Contour,Some [&lt;fun:Layout@293&gt;; &lt;fun:getLayouts@52-1&gt;])</code></pre></td></tr></table>
 
-<div class="tip" id="fs1">Multiple items<br />namespace FSharp<br /><br />--------------------<br />namespace Microsoft.FSharp</div>
-<div class="tip" id="fs2">namespace FSharp.Plotly</div>
-<div class="tip" id="fs3">val values : int list<br /><br />Full name: Contour-plots.values</div>
-<div class="tip" id="fs4">val labels : string list<br /><br />Full name: Contour-plots.labels</div>
-<div class="tip" id="fs5">type Chart =<br />&#160;&#160;static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Showlegend:bool * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; -&gt; GenericChart<br />&#160;&#160;static member Bar : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; -&gt; GenericChart<br />&#160;&#160;static member BoxPlot : ?x:seq&lt;#IConvertible&gt; * ?y:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:string * ?Opacity:float * ?Whiskerwidth:float * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:float * ?Pointpos:float -&gt; GenericChart<br />&#160;&#160;static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * size:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a3 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; -&gt; GenericChart<br />&#160;&#160;static member Column : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; -&gt; GenericChart<br />&#160;&#160;static member Combine : gCharts:seq&lt;GenericChart&gt; -&gt; GenericChart<br />&#160;&#160;static member Doughnut : values:seq&lt;#IConvertible&gt; * ?labels:seq&lt;#IConvertible&gt; * ?Name:string * ?Color:&#39;c * ?hole:float -&gt; GenericChart<br />&#160;&#160;static member HeatMap : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?ColNames:seq&lt;#IConvertible&gt; * ?RowNames:seq&lt;#IConvertible&gt; * ?Name:string * ?Colorscale:ColorScale * ?Showscale:bool * ?zSmooth:SmoothAlg * ?Colorbar:Colorbar -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)<br />&#160;&#160;static member Histogram2d : xy:seq&lt;#IConvertible * #IConvertible&gt; * ?Name:string * ?HistNorm:HistNorm * ?HistFunc:HistFunc * ?Colorscale:ColorScale * ?Showscale:bool * ?zSmooth:SmoothAlg * ?Colorbar:Colorbar * ?zAuto:bool * ?zMin:float * ?zMax:float * ?nBinsx:int * ?nBinsy:int * ?Xbins:Xbins * ?Ybins:Ybins -&gt; GenericChart<br />&#160;&#160;static member Histogram2d : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?HistNorm:HistNorm * ?HistFunc:HistFunc * ?Colorscale:ColorScale * ?Showscale:bool * ?zSmooth:SmoothAlg * ?Colorbar:Colorbar * ?zAuto:bool * ?zMin:float * ?zMax:float * ?nBinsx:int * ?nBinsy:int * ?Xbins:Xbins * ?Ybins:Ybins -&gt; GenericChart<br />&#160;&#160;...<br /><br />Full name: FSharp.Plotly.Chart</div>
-<div class="tip" id="fs6">static member Chart.Pie : values:seq&lt;#System.IConvertible&gt; * ?labels:seq&lt;#System.IConvertible&gt; * ?Name:string * ?Color:&#39;c -&gt; GenericChart.GenericChart</div>
-<div class="tip" id="fs7">static member Chart.Doughnut : values:seq&lt;#System.IConvertible&gt; * ?labels:seq&lt;#System.IConvertible&gt; * ?Name:string * ?Color:&#39;c * ?hole:float -&gt; GenericChart.GenericChart</div>
+<div class="tip" id="fs1">namespace System</div>
+<div class="tip" id="fs2">Multiple items<br />namespace FSharp<br /><br />--------------------<br />namespace Microsoft.FSharp</div>
+<div class="tip" id="fs3">namespace FSharp.Plotly</div>
+<div class="tip" id="fs4">val linspace : min:float * max:float * n:int -&gt; float []<br /><br />Full name: Contour-plots.linspace</div>
+<div class="tip" id="fs5">val min : float</div>
+<div class="tip" id="fs6">val max : float</div>
+<div class="tip" id="fs7">val n : int</div>
+<div class="tip" id="fs8">val failwithf : format:Printf.StringFormat&lt;&#39;T,&#39;Result&gt; -&gt; &#39;T<br /><br />Full name: Microsoft.FSharp.Core.ExtraTopLevelOperators.failwithf</div>
+<div class="tip" id="fs9">val bw : float</div>
+<div class="tip" id="fs10">Multiple items<br />val float : value:&#39;T -&gt; float (requires member op_Explicit)<br /><br />Full name: Microsoft.FSharp.Core.Operators.float<br /><br />--------------------<br />type float = Double<br /><br />Full name: Microsoft.FSharp.Core.float<br /><br />--------------------<br />type float&lt;&#39;Measure&gt; = float<br /><br />Full name: Microsoft.FSharp.Core.float&lt;_&gt;</div>
+<div class="tip" id="fs11">val size : int<br /><br />Full name: Contour-plots.size</div>
+<div class="tip" id="fs12">val x : float []<br /><br />Full name: Contour-plots.x</div>
+<div class="tip" id="fs13">type Math =<br />&#160;&#160;static val PI : float<br />&#160;&#160;static val E : float<br />&#160;&#160;static member Abs : value:sbyte -&gt; sbyte + 6 overloads<br />&#160;&#160;static member Acos : d:float -&gt; float<br />&#160;&#160;static member Asin : d:float -&gt; float<br />&#160;&#160;static member Atan : d:float -&gt; float<br />&#160;&#160;static member Atan2 : y:float * x:float -&gt; float<br />&#160;&#160;static member BigMul : a:int * b:int -&gt; int64<br />&#160;&#160;static member Ceiling : d:decimal -&gt; decimal + 1 overload<br />&#160;&#160;static member Cos : d:float -&gt; float<br />&#160;&#160;...<br /><br />Full name: System.Math</div>
+<div class="tip" id="fs14">field Math.PI = 3.14159265359</div>
+<div class="tip" id="fs15">val y : float []<br /><br />Full name: Contour-plots.y</div>
+<div class="tip" id="fs16">val f : x:float -&gt; y:float -&gt; float<br /><br />Full name: Contour-plots.f</div>
+<div class="tip" id="fs17">val x : float</div>
+<div class="tip" id="fs18">val y : float</div>
+<div class="tip" id="fs19">val z : float [] []<br /><br />Full name: Contour-plots.z</div>
+<div class="tip" id="fs20">type Array =<br />&#160;&#160;member Clone : unit -&gt; obj<br />&#160;&#160;member CopyTo : array:Array * index:int -&gt; unit + 1 overload<br />&#160;&#160;member GetEnumerator : unit -&gt; IEnumerator<br />&#160;&#160;member GetLength : dimension:int -&gt; int<br />&#160;&#160;member GetLongLength : dimension:int -&gt; int64<br />&#160;&#160;member GetLowerBound : dimension:int -&gt; int<br />&#160;&#160;member GetUpperBound : dimension:int -&gt; int<br />&#160;&#160;member GetValue : [&lt;ParamArray&gt;] indices:int[] -&gt; obj + 7 overloads<br />&#160;&#160;member Initialize : unit -&gt; unit<br />&#160;&#160;member IsFixedSize : bool<br />&#160;&#160;...<br /><br />Full name: System.Array</div>
+<div class="tip" id="fs21">val init : count:int -&gt; initializer:(int -&gt; &#39;T) -&gt; &#39;T []<br /><br />Full name: Microsoft.FSharp.Collections.Array.init</div>
+<div class="tip" id="fs22">val i : int</div>
+<div class="tip" id="fs23">val j : int</div>
+<div class="tip" id="fs24">type Chart =<br />&#160;&#160;static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Showlegend:bool * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; -&gt; GenericChart&lt;Scatter&gt;<br />&#160;&#160;static member Bar : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?Marker:(Marker -&gt; Marker) -&gt; GenericChart&lt;Bar&gt;<br />&#160;&#160;static member BoxPlot : ?x:&#39;a0 * ?y:&#39;a1 * ?Name:string * ?Showlegend:bool * ?Color:string * ?Opacity:float * ?Whiskerwidth:float * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:float * ?Pointpos:float * ?Line:LineOptions * ?Marker:MarkerOptions -&gt; GenericChart&lt;Box&gt;<br />&#160;&#160;static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a3 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?MakerSymbol:Symbol -&gt; GenericChart&lt;Scatter&gt;<br />&#160;&#160;static member Column : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?Marker:(Marker -&gt; Marker) -&gt; GenericChart&lt;Bar&gt;<br />&#160;&#160;static member Contour : data:seq&lt;#seq&lt;&#39;b&gt;&gt; * ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Name:string * ?Colorscale:ColorScale * ?Showscale:bool * ?zSmooth:SmoothAlg * ?Colorbar:#Colorbar -&gt; GenericChart&lt;Contour&gt; (requires &#39;b :&gt; IConvertible)<br />&#160;&#160;static member Doughnut : values:&#39;a0 * ?labels:&#39;a1 * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Hole:float * ?Hoverinfo:string * ?Textinfo:string * ?Textposition:TextPosition -&gt; GenericChart&lt;Pie&gt;<br />&#160;&#160;static member Heatmap : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?ColNames:seq&lt;#IConvertible&gt; * ?RowNames:seq&lt;#IConvertible&gt; * ?Name:string * ?Colorscale:ColorScale * ?Showscale:bool * ?zSmooth:SmoothAlg * ?Colorbar:#Colorbar -&gt; GenericChart&lt;Heatmap&gt; (requires &#39;a1 :&gt; IConvertible)<br />&#160;&#160;static member Line : xy:seq&lt;#IConvertible * #IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Dash:DrawingStyle * ?Showlegend:bool * ?Width:&#39;a2 * ?Color:string * ?Opacity:float * ?MakerSymbol:Symbol * ?Labels:seq&lt;#IConvertible&gt; -&gt; GenericChart&lt;Scatter&gt;<br />&#160;&#160;static member Line : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Dash:DrawingStyle * ?Showlegend:bool * ?Width:&#39;a2 * ?Color:string * ?Opacity:float * ?MakerSymbol:Symbol * ?Labels:seq&lt;#IConvertible&gt; -&gt; GenericChart&lt;Scatter&gt;<br />&#160;&#160;...<br /><br />Full name: FSharp.Plotly.Chart</div>
+<div class="tip" id="fs25">static member Chart.Contour : data:seq&lt;#seq&lt;&#39;b&gt;&gt; * ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Name:string * ?Colorscale:StyleOption.ColorScale * ?Showscale:bool * ?zSmooth:StyleOption.SmoothAlg * ?Colorbar:#Colorbar -&gt; GenericChart.GenericChart&lt;Contour&gt; (requires &#39;b :&gt; IConvertible)</div>
+<div class="tip" id="fs26">static member Chart.withSize : width:float * heigth:float -&gt; (GenericChart.GenericChart&lt;&#39;a&gt; -&gt; GenericChart.GenericChart&lt;&#39;a&gt;) (requires &#39;a :&gt; Trace)</div>
 
         </div>
         <div class="span3">

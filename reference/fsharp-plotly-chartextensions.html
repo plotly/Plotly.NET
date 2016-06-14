@@ -42,6 +42,8 @@
   <span>Namespace: FSharp.Plotly</span><br />
 </p>
 <div class="xmldoc">
+<p>Extensions methods for Charts supporting the fluent pipeline style 'Chart.WithXYZ(...)'.</p>
+
 </div>
 
 <!-- Render nested types and modules, if there are any -->
@@ -56,38 +58,42 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '1', 1)" onmouseover="showTip(event, '1', 1)">
-            Show(ch)
+            Combine(gCharts)
           </code>
           <div class="tip" id="1">
-            <strong>Signature:</strong> ch:GenericChart -&gt; unit<br />
-                      </div>
+            <strong>Signature:</strong> gCharts:seq&lt;GenericChart&lt;&#39;?9527&gt;&gt; -&gt; GenericChart&lt;&#39;?9527&gt;<br />
+                          <strong>Type parameters:</strong> '?9527          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ChartExtensions.fs#L111-111" class="github-link">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ChartExtensions.fs#L129-129" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
-              <p>CompiledName: <code>Chart.Show.Static</code></p>
+          <p>Create a combined chart with the given charts merged</p>
+
+
+              <p>CompiledName: <code>Chart.Combine.Static</code></p>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '2', 2)" onmouseover="showTip(event, '2', 2)">
-            withError(layout)
+            Show(ch)
           </code>
           <div class="tip" id="2">
-            <strong>Signature:</strong> layout:Layout -&gt; GenericChart -&gt; GenericChart<br />
-                      </div>
+            <strong>Signature:</strong> ch:GenericChart&lt;&#39;?9529&gt; -&gt; unit<br />
+                          <strong>Type parameters:</strong> '?9529          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ChartExtensions.fs#L107-107" class="github-link">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ChartExtensions.fs#L133-133" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
-              <p>CompiledName: <code>Chart.withError.Static</code></p>
+          <p>Show chart in browser</p>
+
+
+              <p>CompiledName: <code>Chart.Show.Static</code></p>
         </td>
       </tr>
       <tr>
@@ -97,11 +103,11 @@
             withLayout(layout)
           </code>
           <div class="tip" id="3">
-            <strong>Signature:</strong> layout:Layout -&gt; GenericChart -&gt; GenericChart<br />
-                      </div>
+            <strong>Signature:</strong> layout:LayoutOptions -&gt; GenericChart&lt;&#39;?9519&gt; -&gt; GenericChart&lt;&#39;?9519&gt;<br />
+                          <strong>Type parameters:</strong> '?9519          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ChartExtensions.fs#L76-76" class="github-link">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ChartExtensions.fs#L98-98" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -113,19 +119,21 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '4', 4)" onmouseover="showTip(event, '4', 4)">
-            withLine(line)
+            withLineOption(line)
           </code>
           <div class="tip" id="4">
-            <strong>Signature:</strong> line:Line -&gt; GenericChart -&gt; GenericChart<br />
-                      </div>
+            <strong>Signature:</strong> line:LineOptions -&gt; GenericChart&lt;&#39;?9503&gt; -&gt; GenericChart&lt;&#39;?9504&gt;<br />
+                          <strong>Type parameters:</strong> '?9503, '?9504          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ChartExtensions.fs#L35-35" class="github-link">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ChartExtensions.fs#L53-53" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
-              <p>CompiledName: <code>Chart.withLine.Static</code></p>
+          <p>Apply styling to the Line(s) of the chart as Object.</p>
+
+
+              <p>CompiledName: <code>Chart.withLineOption.Static</code></p>
         </td>
       </tr>
       <tr>
@@ -135,15 +143,17 @@
             withLineStyle(...)
           </code>
           <div class="tip" id="5">
-            <strong>Signature:</strong> (Width:&#39;?8821 option * Color:&#39;?8822 option * Shape:Shape option * Dash:DrawingStyle option * Smoothing:float option * ColorScale:ColorScale option) -&gt; GenericChart -&gt; GenericChart<br />
-                          <strong>Type parameters:</strong> '?8821, '?8822          </div>
+            <strong>Signature:</strong> (Width:&#39;?9506 option * Color:&#39;?9507 option * Shape:Shape option * Dash:DrawingStyle option * Smoothing:float option * ColorScale:ColorScale option) -&gt; GenericChart&lt;&#39;?9508&gt; -&gt; GenericChart&lt;&#39;?9509&gt;<br />
+                          <strong>Type parameters:</strong> '?9506, '?9507, '?9508, '?9509          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ChartExtensions.fs#L43-43" class="github-link">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ChartExtensions.fs#L63-63" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
+          <p>Apply styling to the Line(s) of the chart.</p>
+
+
               <p>CompiledName: <code>Chart.withLineStyle.Static</code></p>
         </td>
       </tr>
@@ -151,14 +161,33 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '6', 6)" onmouseover="showTip(event, '6', 6)">
-            withMarginSize(...)
+            withMargin(margin)
           </code>
           <div class="tip" id="6">
-            <strong>Signature:</strong> (left:float option * right:float option * top:float option * bottom:float option * pad:float option * autoexpand:bool option) -&gt; GenericChart -&gt; GenericChart<br />
-                      </div>
+            <strong>Signature:</strong> margin:MarginOptions -&gt; GenericChart&lt;&#39;?9523&gt; -&gt; GenericChart&lt;&#39;?9523&gt;<br />
+                          <strong>Type parameters:</strong> '?9523          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ChartExtensions.fs#L89-89" class="github-link">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ChartExtensions.fs#L107-107" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>Chart.withMargin.Static</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '7', 7)" onmouseover="showTip(event, '7', 7)">
+            withMarginSize(...)
+          </code>
+          <div class="tip" id="7">
+            <strong>Signature:</strong> (Left:float option * Right:float option * Top:float option * Bottom:float option * Pad:float option * Autoexpand:bool option) -&gt; GenericChart&lt;&#39;?9525&gt; -&gt; GenericChart&lt;&#39;?9525&gt;<br />
+                          <strong>Type parameters:</strong> '?9525          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ChartExtensions.fs#L112-112" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -169,53 +198,15 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '7', 7)" onmouseover="showTip(event, '7', 7)">
-            withMarker(marker)
-          </code>
-          <div class="tip" id="7">
-            <strong>Signature:</strong> marker:Marker -&gt; GenericChart -&gt; GenericChart<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ChartExtensions.fs#L19-19" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-              <p>CompiledName: <code>Chart.withMarker.Static</code></p>
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
           <code onmouseout="hideTip(event, '8', 8)" onmouseover="showTip(event, '8', 8)">
-            withMarkerStyle(...)
-          </code>
-          <div class="tip" id="8">
-            <strong>Signature:</strong> (Size:int option * Color:&#39;?8818 option * Symbol:Symbol option * Opacity:float option) -&gt; GenericChart -&gt; GenericChart<br />
-                          <strong>Type parameters:</strong> '?8818          </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ChartExtensions.fs#L27-27" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-              <p>CompiledName: <code>Chart.withMarkerStyle.Static</code></p>
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '9', 9)" onmouseover="showTip(event, '9', 9)">
             withSize(width, heigth)
           </code>
-          <div class="tip" id="9">
-            <strong>Signature:</strong> (width:float * heigth:float) -&gt; GenericChart -&gt; GenericChart<br />
-                      </div>
+          <div class="tip" id="8">
+            <strong>Signature:</strong> (width:float * heigth:float) -&gt; GenericChart&lt;&#39;?9521&gt; -&gt; GenericChart&lt;&#39;?9521&gt;<br />
+                          <strong>Type parameters:</strong> '?9521          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ChartExtensions.fs#L80-80" class="github-link">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ChartExtensions.fs#L102-102" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -226,15 +217,55 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '10', 10)" onmouseover="showTip(event, '10', 10)">
-            withX_AxisStyle(title)
+          <code onmouseout="hideTip(event, '9', 9)" onmouseover="showTip(event, '9', 9)">
+            withTraceName(...)
           </code>
-          <div class="tip" id="10">
-            <strong>Signature:</strong> title:string -&gt; GenericChart -&gt; GenericChart<br />
-                      </div>
+          <div class="tip" id="9">
+            <strong>Signature:</strong> (Name:string option * Showlegend:bool option * Legendgroup:string option * Visible:Visible option) -&gt; GenericChart&lt;&#39;?9501&gt; -&gt; GenericChart&lt;&#39;?9501&gt;<br />
+                          <strong>Type parameters:</strong> '?9501          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ChartExtensions.fs#L51-51" class="github-link">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ChartExtensions.fs#L18-18" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Set the name related properties of a trace</p>
+
+
+              <p>CompiledName: <code>Chart.withTraceName.Static</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '10', 10)" onmouseover="showTip(event, '10', 10)">
+            withX_Axis(xAxis)
+          </code>
+          <div class="tip" id="10">
+            <strong>Signature:</strong> xAxis:AxisOptions -&gt; GenericChart&lt;&#39;?9511&gt; -&gt; GenericChart&lt;&#39;?9511&gt;<br />
+                          <strong>Type parameters:</strong> '?9511          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ChartExtensions.fs#L70-70" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>Chart.withX_Axis.Static</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '11', 11)" onmouseover="showTip(event, '11', 11)">
+            withX_AxisStyle(title, ?MinMax)
+          </code>
+          <div class="tip" id="11">
+            <strong>Signature:</strong> (title:string * MinMax:(float * float) option) -&gt; GenericChart&lt;&#39;?9513&gt; -&gt; GenericChart&lt;&#39;?9513&gt;<br />
+                          <strong>Type parameters:</strong> '?9513          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ChartExtensions.fs#L76-76" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -245,15 +276,34 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '11', 11)" onmouseover="showTip(event, '11', 11)">
-            withY_AxisStyle(title)
+          <code onmouseout="hideTip(event, '12', 12)" onmouseover="showTip(event, '12', 12)">
+            withY_Axis(yAxis)
           </code>
-          <div class="tip" id="11">
-            <strong>Signature:</strong> title:string -&gt; GenericChart -&gt; GenericChart<br />
-                      </div>
+          <div class="tip" id="12">
+            <strong>Signature:</strong> yAxis:AxisOptions -&gt; GenericChart&lt;&#39;?9515&gt; -&gt; GenericChart&lt;&#39;?9515&gt;<br />
+                          <strong>Type parameters:</strong> '?9515          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ChartExtensions.fs#L62-62" class="github-link">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ChartExtensions.fs#L84-84" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>Chart.withY_Axis.Static</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '13', 13)" onmouseover="showTip(event, '13', 13)">
+            withY_AxisStyle(title, ?MinMax)
+          </code>
+          <div class="tip" id="13">
+            <strong>Signature:</strong> (title:string * MinMax:(float * float) option) -&gt; GenericChart&lt;&#39;?9517&gt; -&gt; GenericChart&lt;&#39;?9517&gt;<br />
+                          <strong>Type parameters:</strong> '?9517          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ChartExtensions.fs#L90-90" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>

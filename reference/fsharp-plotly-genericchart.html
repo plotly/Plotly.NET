@@ -42,6 +42,8 @@
   <span>Namespace: FSharp.Plotly</span><br />
 </p>
 <div class="xmldoc">
+<p>Module</p>
+
 </div>
 
 <!-- Render nested types and modules, if there are any -->
@@ -54,7 +56,7 @@
     <tbody>
         <tr>
           <td class="type-name">
-            <a href="fsharp-plotly-genericchart-genericchart.html">GenericChart</a>
+            <a href="fsharp-plotly-genericchart-genericchart-1.html">GenericChart<'T></a>
           </td>
           <td class="xmldoc"></td>
         </tr>
@@ -72,51 +74,15 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '12', 12)" onmouseover="showTip(event, '12', 12)">
-            combine&#39; l1 l2
-          </code>
-          <div class="tip" id="12">
-            <strong>Signature:</strong> l1:Layout option -&gt; l2:Layout option -&gt; Layout option<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/GenericChart.fs#L114-114" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '13', 13)" onmouseover="showTip(event, '13', 13)">
-            combineLayout layout gChart
-          </code>
-          <div class="tip" id="13">
-            <strong>Signature:</strong> layout:Layout -&gt; gChart:GenericChart -&gt; GenericChart<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/GenericChart.fs#L154-154" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
           <code onmouseout="hideTip(event, '14', 14)" onmouseover="showTip(event, '14', 14)">
-            getLayout gChart
+            addLayout layout gChart
           </code>
           <div class="tip" id="14">
-            <strong>Signature:</strong> gChart:GenericChart -&gt; Layout<br />
-                      </div>
+            <strong>Signature:</strong> layout:(Layout -&gt; Layout) -&gt; gChart:GenericChart&lt;&#39;b&gt; -&gt; GenericChart&lt;&#39;b&gt;<br />
+                          <strong>Type parameters:</strong> 'b          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/GenericChart.fs#L47-47" class="github-link">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/GenericChart.fs#L57-57" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -127,14 +93,14 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '15', 15)" onmouseover="showTip(event, '15', 15)">
-            getTraces gChart
+            addLayouts layouts gChart
           </code>
           <div class="tip" id="15">
-            <strong>Signature:</strong> gChart:GenericChart -&gt; seq&lt;Trace&gt;<br />
-                      </div>
+            <strong>Signature:</strong> layouts:(Layout -&gt; Layout) list -&gt; gChart:GenericChart&lt;&#39;?9474&gt; -&gt; GenericChart&lt;&#39;?9474&gt;<br />
+                          <strong>Type parameters:</strong> '?9474          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/GenericChart.fs#L42-42" class="github-link">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/GenericChart.fs#L67-67" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -145,14 +111,14 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '16', 16)" onmouseover="showTip(event, '16', 16)">
-            mapTrace f gChart
+            combine gCharts
           </code>
           <div class="tip" id="16">
-            <strong>Signature:</strong> f:(Trace -&gt; Trace) -&gt; gChart:GenericChart -&gt; GenericChart<br />
-                      </div>
+            <strong>Signature:</strong> gCharts:seq&lt;GenericChart&lt;&#39;b&gt;&gt; -&gt; GenericChart&lt;&#39;b&gt;<br />
+                          <strong>Type parameters:</strong> 'b          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/GenericChart.fs#L101-101" class="github-link">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/GenericChart.fs#L77-77" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -163,32 +129,34 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '17', 17)" onmouseover="showTip(event, '17', 17)">
-            optOrDefault _default v
+            countTrace gChart
           </code>
           <div class="tip" id="17">
-            <strong>Signature:</strong> _default:&#39;t -&gt; v:&#39;t option -&gt; &#39;t<br />
-                          <strong>Type parameters:</strong> 't          </div>
+            <strong>Signature:</strong> gChart:GenericChart&lt;&#39;?9491&gt; -&gt; int<br />
+                          <strong>Type parameters:</strong> '?9491          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/GenericChart.fs#L37-37" class="github-link">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/GenericChart.fs#L173-173" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
+          <p>Returns the number of traces within the GenericChart</p>
+
+
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '18', 18)" onmouseover="showTip(event, '18', 18)">
-            setLayout layout gChart
+            getLayouts gChart
           </code>
           <div class="tip" id="18">
-            <strong>Signature:</strong> layout:Layout -&gt; gChart:GenericChart -&gt; GenericChart<br />
-                      </div>
+            <strong>Signature:</strong> gChart:GenericChart&lt;&#39;?9470&gt; -&gt; (Layout -&gt; Layout) list<br />
+                          <strong>Type parameters:</strong> '?9470          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/GenericChart.fs#L106-106" class="github-link">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/GenericChart.fs#L46-46" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -199,14 +167,73 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '19', 19)" onmouseover="showTip(event, '19', 19)">
-            toChartHTML gChart
+            getTraces gChart
           </code>
           <div class="tip" id="19">
-            <strong>Signature:</strong> gChart:GenericChart -&gt; string<br />
-                      </div>
+            <strong>Signature:</strong> gChart:GenericChart&lt;&#39;?9468&gt; -&gt; &#39;?9468 list<br />
+                          <strong>Type parameters:</strong> '?9468          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/GenericChart.fs#L54-54" class="github-link">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/GenericChart.fs#L41-41" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '20', 20)" onmouseover="showTip(event, '20', 20)">
+            mapiTrace f gChart
+          </code>
+          <div class="tip" id="20">
+            <strong>Signature:</strong> f:(int -&gt; &#39;b -&gt; &#39;c) -&gt; gChart:GenericChart&lt;&#39;b&gt; -&gt; GenericChart&lt;&#39;c&gt;<br />
+                          <strong>Type parameters:</strong> 'b, 'c          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/GenericChart.fs#L167-167" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Creates a new GenericChart whose traces are the results of applying the given function to each of the trace of the GenericChart.
+The integer index passed to the function indicates the index (from 0) of element being transformed.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '21', 21)" onmouseover="showTip(event, '21', 21)">
+            mapTrace f gChart
+          </code>
+          <div class="tip" id="21">
+            <strong>Signature:</strong> f:(&#39;c -&gt; &#39;d) -&gt; gChart:GenericChart&lt;&#39;c&gt; -&gt; GenericChart&lt;&#39;d&gt;<br />
+                          <strong>Type parameters:</strong> 'c, 'd          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/GenericChart.fs#L160-160" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Creates a new GenericChart whose traces are the results of applying the given function to each of the trace of the GenericChart.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '22', 22)" onmouseover="showTip(event, '22', 22)">
+            toChartHTML gChart
+          </code>
+          <div class="tip" id="22">
+            <strong>Signature:</strong> gChart:GenericChart&lt;&#39;?9479&gt; -&gt; string<br />
+                          <strong>Type parameters:</strong> '?9479          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/GenericChart.fs#L111-111" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -218,15 +245,15 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '20', 20)" onmouseover="showTip(event, '20', 20)">
+          <code onmouseout="hideTip(event, '23', 23)" onmouseover="showTip(event, '23', 23)">
             toChartHtmlWithSize width height gChart
           </code>
-          <div class="tip" id="20">
-            <strong>Signature:</strong> width:int -&gt; height:int -&gt; gChart:GenericChart -&gt; string<br />
-                      </div>
+          <div class="tip" id="23">
+            <strong>Signature:</strong> width:int -&gt; height:int -&gt; gChart:GenericChart&lt;&#39;?9481&gt; -&gt; string<br />
+                          <strong>Type parameters:</strong> '?9481          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/GenericChart.fs#L72-72" class="github-link">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/GenericChart.fs#L130-130" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -238,15 +265,15 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '21', 21)" onmouseover="showTip(event, '21', 21)">
+          <code onmouseout="hideTip(event, '24', 24)" onmouseover="showTip(event, '24', 24)">
             toEmbeddedHTML gChart
           </code>
-          <div class="tip" id="21">
-            <strong>Signature:</strong> gChart:GenericChart -&gt; string<br />
-                      </div>
+          <div class="tip" id="24">
+            <strong>Signature:</strong> gChart:GenericChart&lt;&#39;b&gt; -&gt; string<br />
+                          <strong>Type parameters:</strong> 'b          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/GenericChart.fs#L91-91" class="github-link">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/GenericChart.fs#L150-150" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
