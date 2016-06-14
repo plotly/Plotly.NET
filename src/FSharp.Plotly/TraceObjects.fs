@@ -1026,10 +1026,9 @@ type Pie() =
         member __.ShouldSerializeysrc() = not _ysrc.IsNone
         member __.ShouldSerializexsrc() = not _xsrc.IsNone
 
-    type Heatmap() =
+    type Colormap() =
         inherit Trace()
-
-        let mutable _type           : string option = Some "heatmap"
+        
         let mutable _z              : _ option = None
         let mutable _x              : _ option = None
         let mutable _x0             : _ option = None
@@ -1058,10 +1057,6 @@ type Pie() =
         let mutable _ysrc           : string option = None
         let mutable _textsrc        : string option = None
 
-        member __.``type``
-            with get () = Option.get _type
-            and set value = _type <- Some value
-
         /// Sets the z data.
         member __.z
             with get () = Option.get _z
@@ -1195,8 +1190,7 @@ type Pie() =
         member __.textsrc
             with get () = Option.get _textsrc
             and set value = _textsrc <- Some value
-
-        member __.ShouldSerializetype() = not _type.IsNone
+        
         member __.ShouldSerializez() = not _z.IsNone
         member __.ShouldSerializex() = not _x.IsNone
         member __.ShouldSerializex0() = not _x0.IsNone
@@ -1224,255 +1218,29 @@ type Pie() =
         member __.ShouldSerializexsrc() = not _xsrc.IsNone
         member __.ShouldSerializeysrc() = not _ysrc.IsNone
         member __.ShouldSerializetextsrc() = not _textsrc.IsNone
+
+    type Heatmap() =
+        inherit Colormap()
+        
+        let mutable _type           : string option = Some "heatmap"
+
+        member __.``type``
+            with get () = Option.get _type
+            and set value = _type <- Some value
+
+        member __.ShouldSerializetype() = not _type.IsNone
 
     type Contour() =
-        inherit Trace()
-
-        let mutable _type: string option = Some "contour"
-        let mutable _z: _ option = None
-        let mutable _x: _ option = None
-        let mutable _x0: _ option = None
-        let mutable _dx: float option = None
-        let mutable _y: _ option = None
-        let mutable _y0: _ option = None
-        let mutable _dy: float option = None
-        let mutable _text: _ option = None
-        let mutable _transpose: bool option = None
-        let mutable _xtype: _ option = None
-        let mutable _ytype: _ option = None
-        let mutable _zauto: bool option = None
-        let mutable _zmin: float option = None
-        let mutable _zmax: float option = None
-        let mutable _colorscale: _ option = None
-        let mutable _autocolorscale: bool option = None
-        let mutable _reversescale: bool option = None
-        let mutable _showscale: bool option = None
-        let mutable _zsmooth: _ option = None
-        let mutable _connectgaps: bool option = None
-        let mutable _colorbar: Colorbar option = None
-        let mutable _autocontour: bool option = None
-        let mutable _ncontours: int option = None
-        let mutable _contours: Contours option = None
-        let mutable _line: Line option = None
-        let mutable _xaxis: string option = None
-        let mutable _yaxis: string option = None
-        let mutable _zsrc: string option = None
-        let mutable _xsrc: string option = None
-        let mutable _ysrc: string option = None
-        let mutable _textsrc: string option = None
-        let mutable _show: bool option = None
-        let mutable _color: string option = None
-        let mutable _width: float option = None
-        //let mutable _role: string option = Some "object"
+        inherit Colormap()
+        
+        let mutable _type           : string option = Some "contour"
 
         member __.``type``
             with get () = Option.get _type
             and set value = _type <- Some value
 
-        /// Sets the z data.
-        member __.z
-            with get () = Option.get _z
-            and set value = _z <- Some value
-
-        /// Sets the x coordinates.
-        member __.x
-            with get () = Option.get _x
-            and set value = _x <- Some value
-
-        /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
-        member __.x0
-            with get () = Option.get _x0
-            and set value = _x0 <- Some value
-
-        /// Sets the x coordinate step. See `x0` for more info.
-        member __.dx
-            with get () = Option.get _dx
-            and set value = _dx <- Some value
-
-        /// Sets the y coordinates.
-        member __.y
-            with get () = Option.get _y
-            and set value = _y <- Some value
-
-        /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
-        member __.y0
-            with get () = Option.get _y0
-            and set value = _y0 <- Some value
-
-        /// Sets the y coordinate step. See `y0` for more info.
-        member __.dy
-            with get () = Option.get _dy
-            and set value = _dy <- Some value
-
-        /// Sets the text elements associated with each z value.
-        member __.text
-            with get () = Option.get _text
-            and set value = _text <- Some value
-
-        /// Transposes the z data.
-        member __.transpose
-            with get () = Option.get _transpose
-            and set value = _transpose <- Some value
-
-        /// If *array*, the heatmap's x coordinates are given by *x* (the default behavior when `x` is provided). If *scaled*, the heatmap's x coordinates are given by *x0* and *dx* (the default behavior when `x` is not provided).
-        member __.xtype
-            with get () = Option.get _xtype
-            and set value = _xtype <- Some value
-
-        /// If *array*, the heatmap's y coordinates are given by *y* (the default behavior when `y` is provided) If *scaled*, the heatmap's y coordinates are given by *y0* and *dy* (the default behavior when `y` is not provided)
-        member __.ytype
-            with get () = Option.get _ytype
-            and set value = _ytype <- Some value
-
-        /// Determines the whether or not the color domain is computed with respect to the input data.
-        member __.zauto
-            with get () = Option.get _zauto
-            and set value = _zauto <- Some value
-
-        /// Sets the lower bound of color domain.
-        member __.zmin
-            with get () = Option.get _zmin
-            and set value = _zmin <- Some value
-
-        /// Sets the upper bound of color domain.
-        member __.zmax
-            with get () = Option.get _zmax
-            and set value = _zmax <- Some value
-
-        /// Sets the colorscale.
-        member __.colorscale
-            with get () = Option.get _colorscale
-            and set value = _colorscale <- Some value
-
-        /// Determines whether or not the colorscale is picked using the sign of the input z values.
-        member __.autocolorscale
-            with get () = Option.get _autocolorscale
-            and set value = _autocolorscale <- Some value
-
-        /// Reverses the colorscale.
-        member __.reversescale
-            with get () = Option.get _reversescale
-            and set value = _reversescale <- Some value
-
-        /// Determines whether or not a colorbar is displayed for this trace.
-        member __.showscale
-            with get () = Option.get _showscale
-            and set value = _showscale <- Some value
-
-        /// Picks a smoothing algorithm use to smooth `z` data.
-        member __.zsmooth
-            with get () = Option.get _zsmooth
-            and set value = _zsmooth <- Some value
-
-        /// Determines whether or not gaps (i.e. {nan} or missing values) in the `z` data are filled in.
-        member __.connectgaps
-            with get () = Option.get _connectgaps
-            and set value = _connectgaps <- Some value
-
-        member __.colorbar
-            with get () = Option.get _colorbar
-            and set value = _colorbar <- Some value
-
-        /// Determines whether of not the contour level attributes at picked by an algorithm. If *true*, the number of contour levels can be set in `ncontours`. If *false*, set the contour level attributes in `contours`.
-        member __.autocontour
-            with get () = Option.get _autocontour
-            and set value = _autocontour <- Some value
-
-        /// Sets the number of contour levels.
-        member __.ncontours
-            with get () = Option.get _ncontours
-            and set value = _ncontours <- Some value
-
-        member __.contours
-            with get () = Option.get _contours
-            and set value = _contours <- Some value
-
-        member __.line
-            with get () = Option.get _line
-            and set value = _line <- Some value
-
-        /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
-        member __.xaxis
-            with get () = Option.get _xaxis
-            and set value = _xaxis <- Some value
-
-        /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.xaxis2`, and so on.
-        member __.yaxis
-            with get () = Option.get _yaxis
-            and set value = _yaxis <- Some value
-
-        /// Sets the source reference on plot.ly for  z .
-        member __.zsrc
-            with get () = Option.get _zsrc
-            and set value = _zsrc <- Some value
-
-        /// Sets the source reference on plot.ly for  x .
-        member __.xsrc
-            with get () = Option.get _xsrc
-            and set value = _xsrc <- Some value
-
-        /// Sets the source reference on plot.ly for  y .
-        member __.ysrc
-            with get () = Option.get _ysrc
-            and set value = _ysrc <- Some value
-
-        /// Sets the source reference on plot.ly for  text .
-        member __.textsrc
-            with get () = Option.get _textsrc
-            and set value = _textsrc <- Some value
-
-        member __.show
-            with get () = Option.get _show
-            and set value = _show <- Some value
-
-        member __.color
-            with get () = Option.get _color
-            and set value = _color <- Some value
-
-        member __.width
-            with get () = Option.get _width
-            and set value = _width <- Some value
-
-    //    member __.role
-    //        with get () = Option.get _role
-    //        and set value = _role <- Some value
-
         member __.ShouldSerializetype() = not _type.IsNone
-        member __.ShouldSerializez() = not _z.IsNone
-        member __.ShouldSerializex() = not _x.IsNone
-        member __.ShouldSerializex0() = not _x0.IsNone
-        member __.ShouldSerializedx() = not _dx.IsNone
-        member __.ShouldSerializey() = not _y.IsNone
-        member __.ShouldSerializey0() = not _y0.IsNone
-        member __.ShouldSerializedy() = not _dy.IsNone
-        member __.ShouldSerializetext() = not _text.IsNone
-        member __.ShouldSerializetranspose() = not _transpose.IsNone
-        member __.ShouldSerializextype() = not _xtype.IsNone
-        member __.ShouldSerializeytype() = not _ytype.IsNone
-        member __.ShouldSerializezauto() = not _zauto.IsNone
-        member __.ShouldSerializezmin() = not _zmin.IsNone
-        member __.ShouldSerializezmax() = not _zmax.IsNone
-        member __.ShouldSerializecolorscale() = not _colorscale.IsNone
-        member __.ShouldSerializeautocolorscale() = not _autocolorscale.IsNone
-        member __.ShouldSerializereversescale() = not _reversescale.IsNone
-        member __.ShouldSerializeshowscale() = not _showscale.IsNone
-        member __.ShouldSerializezsmooth() = not _zsmooth.IsNone
-        member __.ShouldSerializeconnectgaps() = not _connectgaps.IsNone
-        member __.ShouldSerializecolorbar() = not _colorbar.IsNone
-        member __.ShouldSerializeautocontour() = not _autocontour.IsNone
-        member __.ShouldSerializencontours() = not _ncontours.IsNone
-        member __.ShouldSerializecontours() = not _contours.IsNone
-        member __.ShouldSerializeline() = not _line.IsNone
-        member __.ShouldSerializexaxis() = not _xaxis.IsNone
-        member __.ShouldSerializeyaxis() = not _yaxis.IsNone
-        member __.ShouldSerializezsrc() = not _zsrc.IsNone
-        member __.ShouldSerializexsrc() = not _xsrc.IsNone
-        member __.ShouldSerializeysrc() = not _ysrc.IsNone
-        member __.ShouldSerializetextsrc() = not _textsrc.IsNone
-        member __.ShouldSerializeshow() = not _show.IsNone
-        member __.ShouldSerializecolor() = not _color.IsNone
-        member __.ShouldSerializewidth() = not _width.IsNone
-        //member __.ShouldSerializerole() = not _role.IsNone
+
 
     type Histogram2d() =
         inherit Trace()

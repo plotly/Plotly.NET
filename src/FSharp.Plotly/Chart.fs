@@ -235,15 +235,27 @@ type Chart =
             
         GenericChart.Chart (trace,None)
 
-    /// Shows a graphical representation of data where the individual values contained in a matrix are represented as colors.
-    static member HeatMap(data:seq<#seq<#IConvertible>>,?ColNames,?RowNames, ?Name,?Colorscale,?Showscale,?zSmooth,?Colorbar) = 
+    /// Shows a graphical representation of a 3-dimensional surface by plotting constant z slices, called contours, on a 2-dimensional format.
+    /// That is, given a value for z, lines are drawn for connecting the (x,y) coordinates where that z value occurs.
+    static member Heatmap(data:seq<#seq<#IConvertible>>,?ColNames,?RowNames, ?Name,?Colorscale,?Showscale,?zSmooth,?Colorbar) = 
         let trace = 
             Heatmap()
-            |> Options.HeatMap(Z=data,?X=ColNames, ?Y=RowNames,
+            |> Options.Colormap(Z=data,?X=ColNames, ?Y=RowNames,
                 TraceOptions=Options.Trace(?Name=Name),
                 ?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?Colorbar=Colorbar
                                         )                
         GenericChart.Chart (trace,None)
+
+    /// Shows a graphical representation of data where the individual values contained in a matrix are represented as colors.
+    static member Contour(data:seq<#seq<#IConvertible>>,?X,?Y, ?Name,?Colorscale,?Showscale,?zSmooth,?Colorbar) = 
+        let trace = 
+            Contour()
+            |> Options.Colormap(Z=data,?X=X, ?Y=Y,
+                TraceOptions=Options.Trace(?Name=Name),
+                ?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?Colorbar=Colorbar
+                                        )                
+        GenericChart.Chart (trace,None)
+
 
     /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data as a whole.
     static member Pie(values,?labels,?Name,?Showlegend,?Color,?Hoverinfo,?Textinfo,?Textposition) =         

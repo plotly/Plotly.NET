@@ -697,8 +697,8 @@ type Options() =
             ) 
 
 
-    // Applies the styles to Heatmap()
-    static member HeatMap
+    // Applies the styles to Heatmap() and Contour()
+    static member Colormap
         (                
             ?TraceOptions:TraceOptions<_>,
             ?Z : seq<#seq<#IConvertible>>,
@@ -732,38 +732,38 @@ type Options() =
 
 
         ) =
-            (fun (heatMap:('T :> Heatmap)) -> 
+            (fun (colorMap:('T :> Colormap)) -> 
 
-                Z              |> Option.iter heatMap.set_z              
-                X              |> Option.iter heatMap.set_x              
-                X0             |> Option.iter heatMap.set_x0             
-                dX             |> Option.iter heatMap.set_dx             
-                Y              |> Option.iter heatMap.set_y             
-                Y0             |> Option.iter heatMap.set_y0            
-                dY             |> Option.iter heatMap.set_dy            
-                Text           |> Option.iter heatMap.set_text          
-                Transpose      |> Option.iter heatMap.set_transpose     
-                xType          |> Option.iter heatMap.set_xtype         
-                yType          |> Option.iter heatMap.set_ytype         
-                zAuto          |> Option.iter heatMap.set_zauto         
-                zMin           |> Option.iter heatMap.set_zmin          
-                zMax           |> Option.iter heatMap.set_zmax          
-                Colorscale     |> Option.iter (StyleOption.ColorScale.convert >> heatMap.set_colorscale)  
-                Autocolorscale |> Option.iter heatMap.set_autocolorscale
-                Reversescale   |> Option.iter heatMap.set_reversescale  
-                Showscale      |> Option.iter heatMap.set_showscale     
-                zSmooth        |> Option.iter (StyleOption.SmoothAlg.convert >> heatMap.set_zsmooth)     
-                Connectgaps    |> Option.iter heatMap.set_connectgaps   
-                Colorbar       |> Option.iter heatMap.set_colorbar      
-                xAxis          |> Option.iter heatMap.set_xaxis         
-                yAxis          |> Option.iter heatMap.set_yaxis         
-                Zsrc           |> Option.iter heatMap.set_zsrc          
-                Xsrc           |> Option.iter heatMap.set_xsrc          
-                Ysrc           |> Option.iter heatMap.set_ysrc          
-                Textsrc        |> Option.iter heatMap.set_textsrc       
+                Z              |> Option.iter colorMap.set_z              
+                X              |> Option.iter colorMap.set_x              
+                X0             |> Option.iter colorMap.set_x0             
+                dX             |> Option.iter colorMap.set_dx             
+                Y              |> Option.iter colorMap.set_y             
+                Y0             |> Option.iter colorMap.set_y0            
+                dY             |> Option.iter colorMap.set_dy            
+                Text           |> Option.iter colorMap.set_text          
+                Transpose      |> Option.iter colorMap.set_transpose     
+                xType          |> Option.iter colorMap.set_xtype         
+                yType          |> Option.iter colorMap.set_ytype         
+                zAuto          |> Option.iter colorMap.set_zauto         
+                zMin           |> Option.iter colorMap.set_zmin          
+                zMax           |> Option.iter colorMap.set_zmax          
+                Colorscale     |> Option.iter (StyleOption.ColorScale.convert >> colorMap.set_colorscale)  
+                Autocolorscale |> Option.iter colorMap.set_autocolorscale
+                Reversescale   |> Option.iter colorMap.set_reversescale  
+                Showscale      |> Option.iter colorMap.set_showscale     
+                zSmooth        |> Option.iter (StyleOption.SmoothAlg.convert >> colorMap.set_zsmooth)     
+                Connectgaps    |> Option.iter colorMap.set_connectgaps   
+                Colorbar       |> Option.iter colorMap.set_colorbar      
+                xAxis          |> Option.iter colorMap.set_xaxis         
+                yAxis          |> Option.iter colorMap.set_yaxis         
+                Zsrc           |> Option.iter colorMap.set_zsrc          
+                Xsrc           |> Option.iter colorMap.set_xsrc          
+                Ysrc           |> Option.iter colorMap.set_ysrc          
+                Textsrc        |> Option.iter colorMap.set_textsrc       
                                
                 // out ->
-                heatMap |> (optApply TraceOptions) 
+                colorMap |> (optApply TraceOptions) 
             ) 
 
 
