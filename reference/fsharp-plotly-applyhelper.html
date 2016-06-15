@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>TextInfo - FSharp.Plotly</title>
+    <title>ApplyHelper - FSharp.Plotly</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content=""/>
     <meta name="author" content="Timo Mühlhaus"/>
@@ -37,191 +37,217 @@
 
 
 
-<h1>TextInfo</h1>
+<h1>ApplyHelper</h1>
 <p>
   <span>Namespace: FSharp.Plotly</span><br />
-  <span>Parent Module: <a href="fsharp-plotly-styleoption.html">StyleOption</a></span>
 </p>
 <div class="xmldoc">
-<p>Determines which trace information appear on the graph and  on hove (HoverInfo)</p>
-
 </div>
-  <h3>Union Cases</h3>
+
+<!-- Render nested types and modules, if there are any -->
+
+  <h3>Functions and values</h3>
   <table class="table table-bordered member-list">
     <thead>
-      <tr><td>Union Case</td><td>Description</td></tr>
+      <tr><td>Function or value</td><td>Description</td></tr>
     </thead>
     <tbody>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '922', 922)" onmouseover="showTip(event, '922', 922)">
-            All
+          <code onmouseout="hideTip(event, '1', 1)" onmouseover="showTip(event, '1', 1)">
+            buildApply applyStyle
           </code>
-          <div class="tip" id="922">
-            <strong>Signature:</strong> <br />
-                      </div>
+          <div class="tip" id="1">
+            <strong>Signature:</strong> applyStyle:(&#39;a -&gt; &#39;a) -&gt; &#39;a<br />
+                          <strong>Type parameters:</strong> 'a          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/StyleOption.fs#L371-371" class="github-link">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ApplyHelper.fs#L11-11" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
+          <p>Creates an instance of the Object according to applyStyle and applies the function..</p>
+
+
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '923', 923)" onmouseover="showTip(event, '923', 923)">
-            Label
+          <code onmouseout="hideTip(event, '2', 2)" onmouseover="showTip(event, '2', 2)">
+            optApply applyStyle item
           </code>
-          <div class="tip" id="923">
-            <strong>Signature:</strong> <br />
-                      </div>
+          <div class="tip" id="2">
+            <strong>Signature:</strong> applyStyle:(&#39;a -&gt; &#39;a) option -&gt; item:&#39;a -&gt; &#39;a<br />
+                          <strong>Type parameters:</strong> 'a          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/StyleOption.fs#L371-371" class="github-link">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ApplyHelper.fs#L23-23" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
+          <p>Applies Some 'applyStyle' to item. If None it returns 'item' unchanged.</p>
+
+
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '924', 924)" onmouseover="showTip(event, '924', 924)">
-            None
+          <code onmouseout="hideTip(event, '3', 3)" onmouseover="showTip(event, '3', 3)">
+            optBuildApply applyStyle item
           </code>
-          <div class="tip" id="924">
-            <strong>Signature:</strong> <br />
-                      </div>
+          <div class="tip" id="3">
+            <strong>Signature:</strong> applyStyle:(&#39;a -&gt; &#39;a) -&gt; item:&#39;a option -&gt; &#39;a<br />
+                          <strong>Type parameters:</strong> 'a          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/StyleOption.fs#L371-371" class="github-link">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ApplyHelper.fs#L17-17" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
+          <p>Applies 'applyStyle' to item option. If None it creates a new instance.</p>
+
+
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '925', 925)" onmouseover="showTip(event, '925', 925)">
-            Percent
+          <code onmouseout="hideTip(event, '4', 4)" onmouseover="showTip(event, '4', 4)">
+            tryGetPropertyName expr
           </code>
-          <div class="tip" id="925">
-            <strong>Signature:</strong> <br />
+          <div class="tip" id="4">
+            <strong>Signature:</strong> expr:Expr -&gt; string option<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/StyleOption.fs#L371-371" class="github-link">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ApplyHelper.fs#L29-29" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
+          <p>Returns the proptery name from quotation expression</p>
+
+
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '926', 926)" onmouseover="showTip(event, '926', 926)">
-            Text
+          <code onmouseout="hideTip(event, '5', 5)" onmouseover="showTip(event, '5', 5)">
+            tryGetPropertyValue o propName
           </code>
-          <div class="tip" id="926">
-            <strong>Signature:</strong> <br />
+          <div class="tip" id="5">
+            <strong>Signature:</strong> o:obj -&gt; propName:string -&gt; obj option<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/StyleOption.fs#L371-371" class="github-link">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ApplyHelper.fs#L45-45" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
+          <p>Gets property value as option using reflection</p>
+
+
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '927', 927)" onmouseover="showTip(event, '927', 927)">
-            Value
+          <code onmouseout="hideTip(event, '6', 6)" onmouseover="showTip(event, '6', 6)">
+            tryGetPropertyValueAs o propName
           </code>
-          <div class="tip" id="927">
-            <strong>Signature:</strong> <br />
-                      </div>
+          <div class="tip" id="6">
+            <strong>Signature:</strong> o:obj -&gt; propName:string -&gt; &#39;a option<br />
+                          <strong>Type parameters:</strong> 'a          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/StyleOption.fs#L371-371" class="github-link">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ApplyHelper.fs#L53-53" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h3>Static members</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Static member</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="member-name">
+          <p>Gets property value as 'a option using reflection. Cast to 'a</p>
 
-          <code onmouseout="hideTip(event, '928', 928)" onmouseover="showTip(event, '928', 928)">
-            convert
-          </code>
-          <div class="tip" id="928">
-            <strong>Signature:</strong> TextInfo -&gt; obj<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/StyleOption.fs#L381-381" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-              <p>CompiledName: <code>get_convert</code></p>
+
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '929', 929)" onmouseover="showTip(event, '929', 929)">
-            toConcatString(o)
+          <code onmouseout="hideTip(event, '7', 7)" onmouseover="showTip(event, '7', 7)">
+            trySetPropertyValue o propName value
           </code>
-          <div class="tip" id="929">
-            <strong>Signature:</strong> o:seq&lt;TextInfo&gt; -&gt; string<br />
+          <div class="tip" id="7">
+            <strong>Signature:</strong> o:obj -&gt; propName:string -&gt; value:obj -&gt; obj option<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/StyleOption.fs#L383-383" class="github-link">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ApplyHelper.fs#L35-35" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
+          <p>Sets property value using reflection</p>
+
+
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '930', 930)" onmouseover="showTip(event, '930', 930)">
-            toString
+          <code onmouseout="hideTip(event, '8', 8)" onmouseover="showTip(event, '8', 8)">
+            tryUpdatePropertyValue o expr f
           </code>
-          <div class="tip" id="930">
-            <strong>Signature:</strong> TextInfo -&gt; string<br />
-                      </div>
+          <div class="tip" id="8">
+            <strong>Signature:</strong> o:obj -&gt; expr:Expr -&gt; f:(&#39;a -&gt; &#39;a) -&gt; obj option<br />
+                          <strong>Type parameters:</strong> 'a          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/StyleOption.fs#L373-373" class="github-link">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ApplyHelper.fs#L68-68" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Updates property value by given function</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '9', 9)" onmouseover="showTip(event, '9', 9)">
+            tryUpdatePropertyValueFromName (...)
+          </code>
+          <div class="tip" id="9">
+            <strong>Signature:</strong> o:obj -&gt; propName:string -&gt; f:(&#39;a -&gt; &#39;a) -&gt; obj option<br />
+                          <strong>Type parameters:</strong> 'a          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ApplyHelper.fs#L62-62" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Updates property value by given function</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '10', 10)" onmouseover="showTip(event, '10', 10)">
+            updatePropertyValueAndIgnore o expr f
+          </code>
+          <div class="tip" id="10">
+            <strong>Signature:</strong> o:obj -&gt; expr:Expr -&gt; f:(&#39;a -&gt; &#39;a) -&gt; unit<br />
+                          <strong>Type parameters:</strong> 'a          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/ApplyHelper.fs#L74-74" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           
-              <p>CompiledName: <code>get_toString</code></p>
         </td>
       </tr>
     </tbody>
