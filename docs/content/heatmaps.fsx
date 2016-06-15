@@ -29,7 +29,9 @@ let colorscaleValue =
     StyleOption.ColorScale.Custom [(0.0,"#3D9970");(1.0,"#001f3f")]
 // Generating the Heatmap 
 (*** define-output:heat1 ***)
-Chart.HeatMap(matrix,colnames,rownames,Colorscale=colorscaleValue,Showscale=true)
+Chart.Heatmap(matrix,colnames,rownames,Colorscale=colorscaleValue,Showscale=true)
 |> Chart.withSize(700.,500.)
-|> Chart.withMarginSize(left=200.)
+|> Chart.withMarginSize(Left=200.)
 (*** include-it:heat1 ***)
+|> Chart.Show
+

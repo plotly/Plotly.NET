@@ -21,7 +21,7 @@ let y' = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
   
 (*** define-output:line1 ***)
 Chart.Line(x,y',Name="line")    
-|> Chart.withLineStyle(Width=2,Dash=StyleOption.DrawingStyle.Dot);
+|> Chart.withLineStyle(Width=2,Dash=StyleOption.DrawingStyle.Dot)
 (*** include-it:line1 ***)
 
 (** 

@@ -20,8 +20,8 @@ type ShapeOptions = Shape -> Shape
 /// Functions provide the styling of the Chart objects
 type Options() =
     
-    // Applies the styles to generic Trace()
-    static member Trace
+    // // Applies the styles to TraceObjects with ITraceInfo interface
+    static member ITraceInfo
         (    
             ?Name: string,
             ?Visible: StyleOption.Visible,
@@ -33,7 +33,7 @@ type Options() =
             ?Stream: Stream
 
         ) =
-            (fun (trace:('T :> ITrace)) ->  
+            (fun (trace:('T :> ITraceInfo)) ->  
                 Name        |> Option.iter trace.set_name     
                 Visible     |> Option.iter (StyleOption.Visible.toString >> trace.set_visible)     
                 Showlegend  |> Option.iter trace.set_showlegend
@@ -47,6 +47,51 @@ type Options() =
                 // out ->
                 trace
             )  
+
+    // Applies the styles to TraceObjects with ITextLabel interface
+    static member ITextLabel
+        (    
+            ?Text   : seq<#IConvertible>,
+            ?Textposition: StyleOption.TextPosition,
+            ?Textfont: FontOptions,
+            ?Textsrc : string,
+            ?Textpositionsrc : string
+
+        ) =
+            (fun (trace:('T :> ITextLabel)) ->  
+                Text            |> Option.iter trace.set_text
+                Textposition    |> Option.iter (StyleOption.TextPosition.toString >> trace.set_textposition)                  
+                Textsrc         |> Option.iter trace.set_textsrc
+                Textpositionsrc |> Option.iter trace.set_textpositionsrc
+                // Update
+                Textfont        |> Option.iter (updatePropertyValueAndIgnore trace <@ trace.textfont @>)
+                
+                // out ->
+                trace
+            )  
+
+    // Applies the styles to TraceObjects with ILine interface
+    static member ILine
+        (    
+            ?Line: LineOptions
+        ) =
+            (fun (trace:('T :> ILine)) ->  
+                Line        |> Option.iter (updatePropertyValueAndIgnore trace <@ trace.line @>)                
+                // out ->
+                trace
+            )  
+
+    // Applies the styles to TraceObjects with IMarker interface
+    static member IMarker
+        (    
+            ?Marker: MarkerOptions
+        ) =
+            (fun (trace:('T :> IMarker)) ->  
+                Marker        |> Option.iter (updatePropertyValueAndIgnore trace <@ trace.marker @>)                
+                // out ->
+                trace
+            )  
+
 
     // Applies the styles to Font()
     static member Font
@@ -113,24 +158,14 @@ type Options() =
     // Applies the styles to Scatter()
     static member Scatter
         (   
-            //plotType: string, 
-            ?TraceOptions:TraceOptions<_>,
-            // data
             ?X      : seq<#IConvertible>,
             ?Y      : seq<#IConvertible>,
-            ?Text   : seq<#IConvertible>,
-            ?Textposition: StyleOption.TextPosition,
-            ?Textfont: FontOptions,
-            
-            ?Mode: StyleOption.Mode, 
-            ?Line: LineOptions,                         
-            ?Marker: MarkerOptions,
-            
+            ?Mode: StyleOption.Mode,             
             ?Fill: StyleOption.Fill,
-            ?Fillcolor: string,
-                        
-
-            ?Connectgaps: bool, ?R: _, ?T: _,
+            ?Fillcolor: string,                        
+            ?Connectgaps: bool, 
+            ?R: _, 
+            ?T: _,
             ?Error_y: ErrorOptions,
             ?Error_x: ErrorOptions
         ) =
@@ -138,8 +173,6 @@ type Options() =
                 //scatter.set_type plotType                     
                 X            |> Option.iter scatter.set_x
                 Y            |> Option.iter scatter.set_y
-                Text         |> Option.iter scatter.set_text
-                Textposition |> Option.iter (StyleOption.TextPosition.toString >> scatter.set_textposition)
                 Mode         |> Option.iter (StyleOption.Mode.toString >> scatter.set_mode)
                 Connectgaps  |> Option.iter scatter.set_connectgaps
                 Fill         |> Option.iter (StyleOption.Fill.toString >> scatter.set_fill)
@@ -147,14 +180,11 @@ type Options() =
                 R            |> Option.iter scatter.set_r
                 T            |> Option.iter scatter.set_t
                 // Update
-                Line         |> Option.iter (updatePropertyValueAndIgnore scatter <@ scatter.line     @>)
-                Marker       |> Option.iter (updatePropertyValueAndIgnore scatter <@ scatter.marker   @>)
-                Textfont     |> Option.iter (updatePropertyValueAndIgnore scatter <@ scatter.textfont @>)
                 Error_x      |> Option.iter (updatePropertyValueAndIgnore scatter <@ scatter.error_x  @>)
                 Error_y      |> Option.iter (updatePropertyValueAndIgnore scatter <@ scatter.error_y  @>)
                     
                 // out ->
-                scatter |> (optApply TraceOptions) 
+                scatter
             ) 
 
     // Applies the styles to Bar()

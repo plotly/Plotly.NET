@@ -175,8 +175,13 @@ module GenericChart =
         | Chart (_)             -> 1
         | MultiChart (traces,_) -> traces |> Seq.length
           
-
-
+    /// Converts from a trace object and a layout object into GenericChart    
+    let ofTraceObject trace layout =
+        GenericChart.Chart(trace,Some [(fun _ -> layout)])
+    
+    /// Converts from a list of trace objects and a layout object into GenericChart
+    let ofTraceObjects traces layout =
+        GenericChart.MultiChart(traces,Some [(fun _ -> layout)])
 
 
 

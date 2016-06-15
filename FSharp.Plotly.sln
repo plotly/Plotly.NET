@@ -34,11 +34,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{8E6D
 		docs\content\box-plots.fsx = docs\content\box-plots.fsx
 		docs\content\bubble-charts.fsx = docs\content\bubble-charts.fsx
 		docs\content\contour-plots.fsx = docs\content\contour-plots.fsx
+		docs\content\getting-started.fsx = docs\content\getting-started.fsx
 		docs\content\heatmaps.fsx = docs\content\heatmaps.fsx
 		docs\content\histograms.fsx = docs\content\histograms.fsx
 		docs\content\index.fsx = docs\content\index.fsx
 		docs\content\line-scatter-plots.fsx = docs\content\line-scatter-plots.fsx
 		docs\content\pie-daughnut-charts.fsx = docs\content\pie-daughnut-charts.fsx
+		docs\content\plotly-wpf.fsx = docs\content\plotly-wpf.fsx
 		docs\content\polar-charts.fsx = docs\content\polar-charts.fsx
 		docs\content\range-plots.fsx = docs\content\range-plots.fsx
 	EndProjectSection

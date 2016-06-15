@@ -3,9 +3,20 @@
 open System
 
 
+
 module ApplyHelper =
     
     open System.Reflection
+    
+    // Gets public properties including interface propterties
+    let getPublicProperties (t:Type) =
+        if (not (t.IsInterface)) then
+            (t.GetProperties())
+        else
+            t.GetInterfaces()           
+            |> Array.collect (fun i -> i.GetProperties())
+    
+
 
     /// Creates an instance of the Object according to applyStyle and applies the function..
     let buildApply (applyStyle:'a -> 'a) =
@@ -33,7 +44,11 @@ module ApplyHelper =
     
     /// Sets property value using reflection
     let trySetPropertyValue (o:obj) (propName:string) (value:obj) =
-        let property = o.GetType().GetProperty(propName)
+        //let property = o.GetType().GetProperty(propName,BindingFlags.FlattenHierarchy)
+        let property = 
+            getPublicProperties (o.GetType())
+            |> Array.find (fun n -> n.Name = propName)
+        printfn "%s" property.Name
         try 
             property.SetValue(o, value, null)
             Some o
@@ -44,7 +59,7 @@ module ApplyHelper =
     /// Gets property value as option using reflection
     let tryGetPropertyValue (o:obj) (propName:string) =
         try 
-            Some (o.GetType().GetProperty(propName).GetValue(o, null))
+            Some (o.GetType().GetProperty(propName,BindingFlags.FlattenHierarchy).GetValue(o, null))
         with 
         | :? System.Reflection.TargetInvocationException -> None
         | :? System.NullReferenceException -> None
@@ -52,7 +67,7 @@ module ApplyHelper =
     /// Gets property value as 'a option using reflection. Cast to 'a
     let tryGetPropertyValueAs<'a> (o:obj) (propName:string) =
         try 
-            let v = (o.GetType().GetProperty(propName).GetValue(o, null))
+            let v = (o.GetType().GetProperty(propName,BindingFlags.FlattenHierarchy).GetValue(o, null))
             Some (v :?> 'a)
         with 
         | :? System.Reflection.TargetInvocationException -> None

@@ -18,8 +18,14 @@ module ChartExtensions =
         static member withTraceName(?Name,?Showlegend,?Legendgroup,?Visible) =
             (fun (ch:GenericChart) ->                   
                 ch |> mapiTrace (fun i trace -> 
-                                   let naming i name = name |> Option.map (fun v -> if i = 0 then v else sprintf "%s_%i" v i)                                   
-                                   trace |> Options.Trace(?Name=(naming i Name),?Showlegend=Showlegend,?Legendgroup=Legendgroup,?Visible=Visible))          
+                                   match trace with
+                                   | :? ITraceInfo as traceinfo ->
+                                            let naming i name = name |> Option.map (fun v -> if i = 0 then v else sprintf "%s_%i" v i)                                   
+                                            traceinfo 
+                                            |> Options.ITraceInfo(?Name=(naming i Name),?Showlegend=Showlegend,?Legendgroup=Legendgroup,?Visible=Visible)
+                                            :?> ITrace
+                                   | _ -> trace 
+                                 )
             )
 //
 //        /// Set the name related properties of a trace
@@ -52,10 +58,12 @@ module ChartExtensions =
         /// Apply styling to the Line(s) of the chart as Object.
         static member withLineOption(line:LineOptions) =
             (fun (ch:GenericChart) ->                   
-                ch |> mapTrace (fun (trace) ->                                     
-                                    match (ApplyHelper.tryUpdatePropertyValueFromName trace "line" line) with
-                                    | Some trace' -> trace' |> unbox
-                                    | None        -> trace  |> unbox
+                ch |> mapTrace (fun trace ->                                     
+                                    match trace with
+                                    | :? ILine as lineTrace -> 
+                                        lineTrace
+                                        |> Options.ILine(line)  :?> ITrace 
+                                    | _        -> trace 
                                )
             )
                
