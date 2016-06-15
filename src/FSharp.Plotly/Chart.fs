@@ -10,36 +10,36 @@ open GenericChart
 type Chart =
 
     /// Uses points, line or both depending on the mode to represent data points
-    static member Scatter(x, y, mode, ?Name,?Showlegend,?MakerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
+    static member Scatter(x, y, mode, ?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
         let trace = 
             TraceObjects.Scatter()
             |> Options.Scatter(X = x,Y = y, Mode=mode,
                 TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity), //
                 Line=Options.Line(?Color=Color,?Dash=Dash,?Width=Width),
-                Marker=Options.Marker(?Color=Color,?Symbol=MakerSymbol),
+                Marker=Options.Marker(?Color=Color,?Symbol=MarkerSymbol),
                 ?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
         GenericChart.Chart (trace,None)
 
 
     /// Uses points to represent data points.
-    static member Point(x, y, ?Name,?Showlegend,?Color,?Opacity,?MakerSymbol,?Labels) =                      
+    static member Point(x, y, ?Name,?Showlegend,?Color,?Opacity,?MarkerSymbol,?Labels) =                      
         let trace = 
             TraceObjects.Scatter()
             |> Options.Scatter(X = x,Y = y, Mode=StyleOption.Markers, 
                 TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity),
-                Marker=Options.Marker(?Color=Color,?Symbol=MakerSymbol),
+                Marker=Options.Marker(?Color=Color,?Symbol=MarkerSymbol),
                 ?Fillcolor=Color,?Text=Labels)
         GenericChart.Chart (trace,None)
 
 
     /// Uses points to represent data points.
-    static member Point(xy, ?Name,?Showlegend,?Color,?Opacity,?MakerSymbol,?Labels) =         
+    static member Point(xy, ?Name,?Showlegend,?Color,?Opacity,?MarkerSymbol,?Labels) =         
         let x,y = Seq.unzip xy
-        Chart.Point(x,y, ?Name=Name,?Showlegend=Showlegend,?Color=Color,?Opacity=Opacity,?MakerSymbol=MakerSymbol,?Labels=Labels)
+        Chart.Point(x,y, ?Name=Name,?Showlegend=Showlegend,?Color=Color,?Opacity=Opacity,?MarkerSymbol=MarkerSymbol,?Labels=Labels)
 
 
     /// Uses a line to connect the data points represented.
-    static member Line(x, y,?Name,?ShowMarkers,?Dash,?Showlegend,?Width,?Color,?Opacity,?MakerSymbol,?Labels) =             
+    static member Line(x, y,?Name,?ShowMarkers,?Dash,?Showlegend,?Width,?Color,?Opacity,?MarkerSymbol,?Labels) =             
         let mode' = match ShowMarkers with
                     | Some show -> if show then StyleOption.Lines_Markers else StyleOption.Lines
                     | None      -> StyleOption.Lines_Markers // default 
@@ -48,20 +48,20 @@ type Chart =
             |> Options.Scatter(X = x,Y = y, Mode=mode',
                 TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity),
                 Line=Options.Line(?Color=Color,?Dash=Dash,?Width=Width),
-                Marker=Options.Marker(?Color=Color,?Symbol=MakerSymbol),
+                Marker=Options.Marker(?Color=Color,?Symbol=MarkerSymbol),
                 ?Fillcolor=Color,?Text=Labels)
         GenericChart.Chart (trace,None)
     
 
     /// Uses a line to connect the data points represented.
-    static member Line(xy,?Name,?ShowMarkers,?Dash,?Showlegend,?Width,?Color,?Opacity,?MakerSymbol,?Labels) =  
+    static member Line(xy,?Name,?ShowMarkers,?Dash,?Showlegend,?Width,?Color,?Opacity,?MarkerSymbol,?Labels) =  
         let x,y = Seq.unzip xy
         Chart.Line(x,y,?Name=Name,?ShowMarkers=ShowMarkers,?Dash=Dash,?Showlegend=Showlegend,
-                       ?Width=Width,?Color=Color,?Opacity=Opacity,?MakerSymbol=MakerSymbol,?Labels=Labels)
+                       ?Width=Width,?Color=Color,?Opacity=Opacity,?MarkerSymbol=MarkerSymbol,?Labels=Labels)
 
 
     /// A Line chart that plots a fitted curve through each data point in a series.
-    static member Spline(x, y,?Name,?ShowMarkers,?Dash,?Showlegend,?Width,?Color,?Opacity,?MakerSymbol,?Labels,?Smoothing) =             
+    static member Spline(x, y,?Name,?ShowMarkers,?Dash,?Showlegend,?Width,?Color,?Opacity,?MarkerSymbol,?Labels,?Smoothing) =             
         let mode' = match ShowMarkers with
                     | Some show -> if show then StyleOption.Lines_Markers else StyleOption.Lines
                     | None      -> StyleOption.Lines_Markers // default 
@@ -70,18 +70,18 @@ type Chart =
             |> Options.Scatter(X = x,Y = y, Mode=mode', 
                 TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity),
                 Line=Options.Line(?Color=Color,?Dash=Dash,?Width=Width,Shape=StyleOption.Shape.Spline,?Smoothing=Smoothing),
-                Marker=Options.Marker(?Color=Color,?Symbol=MakerSymbol),
+                Marker=Options.Marker(?Color=Color,?Symbol=MarkerSymbol),
                 ?Fillcolor=Color,?Text=Labels)
         GenericChart.Chart (trace,None)
 
 
     /// A variation of the Point chart type, where the data points are replaced by bubbles of different sizes.
-    static member Bubble(x, y, sizes:seq<#IConvertible>,?Name,?Showlegend,?Color,?Opacity,?Labels,?MakerSymbol) =                     
+    static member Bubble(x, y, sizes:seq<#IConvertible>,?Name,?Showlegend,?Color,?Opacity,?Labels,?MarkerSymbol) =                     
         let trace = 
             TraceObjects.Scatter()
             |> Options.Scatter(X = x,Y = y, Mode=StyleOption.Markers, 
                 TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity),
-                Marker=Options.Marker(?Color=Color,?Symbol=MakerSymbol,MultiSizes=sizes),
+                Marker=Options.Marker(?Color=Color,?Symbol=MarkerSymbol,MultiSizes=sizes),
                 ?Text=Labels)
         GenericChart.Chart (trace,None)
 

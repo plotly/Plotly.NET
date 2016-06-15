@@ -31,10 +31,10 @@ module HTML =
 
 /// Module 
 module GenericChart =
-    // 'T when 'T :> Trace
-    type GenericChart<'T when 'T :> Trace> =
-        | Chart of 'T * (Layout -> Layout) list option
-        | MultiChart of 'T list * (Layout -> Layout) list option
+    // 'T when 'T :> ITrace
+    type GenericChart =
+        | Chart of ITrace * (Layout -> Layout) list option
+        | MultiChart of ITrace list * (Layout -> Layout) list option
 
 
         
@@ -49,37 +49,37 @@ module GenericChart =
             | Some v' -> v'
             | None -> _default
         match gChart with
-        | Chart (_,layout)      -> optOrDefault [id] layout
-        | MultiChart (_,layout) -> optOrDefault [id] layout
+        | Chart (_,layout)      -> optOrDefault [] layout
+        | MultiChart (_,layout) -> optOrDefault [] layout
 
   
     // Adds a Layout function to the GenericChart
     let addLayout layout gChart =
         match gChart with
-        | Chart (trace,l)       -> 
+        | Chart (trace,_)       -> 
             let l' = getLayouts gChart
             Chart (trace,Some (layout::l'))
-        | MultiChart (traces,l) -> 
+        | MultiChart (traces,_) -> 
             let l' = getLayouts gChart
             MultiChart (traces, Some (layout::l'))
     
     // Adds multiple Layout functions to the GenericChart
     let addLayouts layouts gChart =
         match gChart with
-        | Chart (trace,l)       -> 
+        | Chart (trace,_)       -> 
             let l' = getLayouts gChart
             Chart (trace,Some (layouts@l'))
-        | MultiChart (traces,l) -> 
+        | MultiChart (traces,_) -> 
             let l' = getLayouts gChart
             MultiChart (traces, Some (layouts@l'))
 
     // Combines two GenericChart
-    let combine(gCharts:seq<GenericChart<_>>) =
+    let combine(gCharts:seq<GenericChart>) =
         let combineLayouts lLeft lRight = 
             match lLeft,lRight with
             | None, None -> None
-            | None, Some v -> lRight
-            | Some v , None -> lLeft
+            | None, Some _ -> lRight
+            | Some _ , None -> lLeft
             | Some vL,Some vR -> Some (vL@vR)     
             
         gCharts
@@ -127,7 +127,7 @@ module GenericChart =
         html
 
     /// Converts a GenericChart to it HTML representation and set the size of the div 
-    let toChartHtmlWithSize (width:int) (height:int) (gChart:GenericChart<#Trace>) =
+    let toChartHtmlWithSize (width:int) (height:int) (gChart:GenericChart) =
         let guid = Guid.NewGuid().ToString()
         let tracesJson =
             getTraces gChart

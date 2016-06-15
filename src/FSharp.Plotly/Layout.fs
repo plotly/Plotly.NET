@@ -24,7 +24,7 @@ module Layout =
         let mutable _xaxis: Xaxis option = None
         let mutable _xaxis1: Xaxis option = None
         let mutable _xaxis2: Xaxis option = None
-        let mutable _yaxis: Yaxis option = None
+        let mutable _yaxis: LinearAxis option = None
         let mutable _yaxis2: Yaxis option = None
         let mutable _scene: Scene option = None
         let mutable _geo: Geo option = None
@@ -127,7 +127,7 @@ module Layout =
 
         member __.yaxis2
             with get () = Option.get _yaxis2
-            and set value = _yaxis <- Some value
+            and set value = _yaxis2 <- Some value
 
         member __.scene
             with get () = Option.get _scene

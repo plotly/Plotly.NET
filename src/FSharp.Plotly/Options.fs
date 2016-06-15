@@ -3,7 +3,7 @@
 open System
 open ApplyHelper
 
-type TraceOptions<'T when 'T :> Trace>  = 'T -> 'T
+type TraceOptions<'T when 'T :> ITrace>  = 'T -> 'T
 type FontOptions   = Font -> Font
 type LineOptions   = Line -> Line
 type MarkerOptions = Marker -> Marker
@@ -33,7 +33,7 @@ type Options() =
             ?Stream: Stream
 
         ) =
-            (fun (trace:('T :> Trace)) ->  
+            (fun (trace:('T :> ITrace)) ->  
                 Name        |> Option.iter trace.set_name     
                 Visible     |> Option.iter (StyleOption.Visible.toString >> trace.set_visible)     
                 Showlegend  |> Option.iter trace.set_showlegend
@@ -121,8 +121,6 @@ type Options() =
             ?Text   : seq<#IConvertible>,
             ?Textposition: StyleOption.TextPosition,
             ?Textfont: FontOptions,
-
-            ?Hoverinfo: string,
             
             ?Mode: StyleOption.Mode, 
             ?Line: LineOptions,                         
@@ -132,15 +130,12 @@ type Options() =
             ?Fillcolor: string,
                         
 
-            ?Uid: string, ?Stream: Stream, ?Connectgaps: bool, ?R: _, ?T: _,
+            ?Connectgaps: bool, ?R: _, ?T: _,
             ?Error_y: ErrorOptions,
             ?Error_x: ErrorOptions
         ) =
             (fun (scatter:('T :> Scatter)) -> 
                 //scatter.set_type plotType                     
-                Uid          |> Option.iter scatter.set_uid
-                Hoverinfo    |> Option.iter scatter.set_hoverinfo
-                Stream       |> Option.iter scatter.set_stream
                 X            |> Option.iter scatter.set_x
                 Y            |> Option.iter scatter.set_y
                 Text         |> Option.iter scatter.set_text
@@ -171,12 +166,9 @@ type Options() =
             ?X      : seq<#IConvertible>,
             ?Y      : seq<#IConvertible>,
             ?Text   : seq<#IConvertible>,
-
-            ?Hoverinfo: string,                                   
+                                 
             ?Marker: MarkerOptions,            
-            ?Opacity: float,            
-
-            ?Uid: string, ?Stream: Stream, ?R: _, ?T: _,
+            ?R: _, ?T: _,
             ?Error_y: ErrorOptions,
             ?Error_x: ErrorOptions,
             // 
@@ -184,10 +176,7 @@ type Options() =
         ) =
             (fun (bar:('T :> Bar)) -> 
                 //bar.set_type plotType                     
-                Opacity      |> Option.iter bar.set_opacity
-                Uid          |> Option.iter bar.set_uid
-                Hoverinfo    |> Option.iter bar.set_hoverinfo
-                Stream       |> Option.iter bar.set_stream
+
                 X            |> Option.iter bar.set_x
                 Y            |> Option.iter bar.set_y
                 Text         |> Option.iter bar.set_text
@@ -589,7 +578,6 @@ type Options() =
             ?TraceOptions:TraceOptions<_>,
             ?Values,
             ?Labels,
-            ?Opacity,
             ?Label0,
             ?dLabel,   
             ?Marker,
@@ -617,7 +605,6 @@ type Options() =
 
                 Values          |> Option.iter pie.set_values
                 Labels          |> Option.iter pie.set_labels
-                Opacity         |> Option.iter pie.set_opacity
                 Label0          |> Option.iter pie.set_label0
                 dLabel          |> Option.iter pie.set_dlabel
                 Text            |> Option.iter pie.set_text

@@ -16,7 +16,7 @@ module ChartExtensions =
 
         /// Set the name related properties of a trace
         static member withTraceName(?Name,?Showlegend,?Legendgroup,?Visible) =
-            (fun (ch:GenericChart<_>) ->                   
+            (fun (ch:GenericChart) ->                   
                 ch |> mapiTrace (fun i trace -> 
                                    let naming i name = name |> Option.map (fun v -> if i = 0 then v else sprintf "%s_%i" v i)                                   
                                    trace |> Options.Trace(?Name=(naming i Name),?Showlegend=Showlegend,?Legendgroup=Legendgroup,?Visible=Visible))          
@@ -32,7 +32,7 @@ module ChartExtensions =
         
 //        /// Apply styling to the Marker(s) of the chart as Object.
 //        static member withMarkerOption(marker:Marker) =
-//            (fun (ch:GenericChart<_>) ->                                    
+//            (fun (ch:GenericChart) ->                                    
 //                ch 
 //                |> mapTrace (fun trace ->
 //                    match box trace with   
@@ -51,8 +51,8 @@ module ChartExtensions =
             
         /// Apply styling to the Line(s) of the chart as Object.
         static member withLineOption(line:LineOptions) =
-            (fun (ch:GenericChart<#Trace>) ->                   
-                ch |> mapTrace (fun (trace:#Trace) ->                                     
+            (fun (ch:GenericChart) ->                   
+                ch |> mapTrace (fun (trace) ->                                     
                                     match (ApplyHelper.tryUpdatePropertyValueFromName trace "line" line) with
                                     | Some trace' -> trace' |> unbox
                                     | None        -> trace  |> unbox
@@ -68,13 +68,13 @@ module ChartExtensions =
 //
         // ####################### Apply to layout
         static member withX_Axis(xAxis:AxisOptions) =       
-            (fun (ch:GenericChart<_>) ->                 
+            (fun (ch:GenericChart) ->                 
                 let layout = 
                     Options.Layout(xAxis=xAxis)
                 GenericChart.addLayout layout ch)             
         
         static member withX_AxisStyle(title,?MinMax) =       
-            (fun (ch:GenericChart<_>) ->                 
+            (fun (ch:GenericChart) ->                 
                 let range = if MinMax.IsSome then Some (StyleOption.RangeValues.MinMax (MinMax.Value)) else None
                 let xaxis = Options.Axis(Title=title,?Range=range)
                 let layout = Options.Layout(xAxis=xaxis)
@@ -82,13 +82,13 @@ module ChartExtensions =
 
 
         static member withY_Axis(yAxis:AxisOptions) =       
-            (fun (ch:GenericChart<_>) ->                 
+            (fun (ch:GenericChart) ->                 
                 let layout = 
                     Options.Layout(yAxis=yAxis)
                 GenericChart.addLayout layout ch)  
 
         static member withY_AxisStyle(title,?MinMax) =
-            (fun (ch:GenericChart<_>) ->                 
+            (fun (ch:GenericChart) ->                 
                 let range = if MinMax.IsSome then Some (StyleOption.RangeValues.MinMax (MinMax.Value)) else None
                 let yaxis = Options.Axis(Title=title,?Range=range)
                 let layout = Options.Layout(yAxis=yaxis)
@@ -96,16 +96,16 @@ module ChartExtensions =
 
 
         static member withLayout(layout:LayoutOptions) =
-            (fun (ch:GenericChart<_>) -> 
+            (fun (ch:GenericChart) -> 
                 GenericChart.addLayout layout ch)         
 
         static member withSize(width,heigth) =            
-            (fun (ch:GenericChart<_>) -> 
+            (fun (ch:GenericChart) -> 
                 let layout = Options.Layout(Width=width,Height=heigth)
                 GenericChart.addLayout layout ch)  
 
         static member withMargin(margin:MarginOptions) =        
-            (fun (ch:GenericChart<_>) ->                 
+            (fun (ch:GenericChart) ->                 
                 let layout = Options.Layout(Margin=margin)
                 GenericChart.addLayout layout ch)   
 
@@ -126,11 +126,11 @@ module ChartExtensions =
 
         // ####################### 
         /// Create a combined chart with the given charts merged   
-        static member Combine(gCharts:seq<GenericChart<_>>) =
+        static member Combine(gCharts:seq<GenericChart>) =
             GenericChart.combine gCharts
         
         /// Show chart in browser            
-        static member Show (ch:GenericChart<_>) = 
+        static member Show (ch:GenericChart) = 
             let guid = Guid.NewGuid().ToString()
             let html = GenericChart.toEmbeddedHTML ch
             let tempPath = Path.GetTempPath()

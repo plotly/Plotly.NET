@@ -3,7 +3,7 @@
 open System
 
 
-module internal ApplyHelper =
+module ApplyHelper =
     
     open System.Reflection
 
