@@ -33,7 +33,3 @@ Chart.Scatter(xValues,yValues,StyleOption.Mode.Lines_Markers,Name="scattern")//,
 
 
 
-
-
-
-

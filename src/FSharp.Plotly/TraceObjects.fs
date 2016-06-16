@@ -266,6 +266,16 @@ module TraceObjects =
         member __.ShouldSerializersrc() = not _rsrc.IsNone
         member __.ShouldSerializetsrc() = not _tsrc.IsNone
 
+        // Implictit ITrace
+        member __.``type`` = (__ :> ITrace).``type``
+        member __.ShouldSerializetype() = (__ :> ITrace).ShouldSerializetype()
+        
+        // Implictit ITraceInfo
+        member __.name = (__ :> ITraceInfo).name
+        
+        
+        //member __.ShouldSerializetype() = (__ :> ITraceInfo).ShouldSerializetype()
+
         interface ITrace with 
             member __.``type``
                 with get () = Option.get _type
@@ -576,6 +586,8 @@ module TraceObjects =
         member __.ShouldSerializetextsrc() = not _textsrc.IsNone
         member __.ShouldSerializersrc() = not _rsrc.IsNone
         member __.ShouldSerializetsrc() = not _tsrc.IsNone
+        
+        
         interface ITrace with 
             member __.``type``
                 with get () = Option.get _type
