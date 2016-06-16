@@ -16,6 +16,7 @@ type AngularAxisOptions   = Angularaxis -> Angularaxis
 type SceneOptions  = Scene -> Scene
 type LegendOptions = Legend -> Legend
 type ShapeOptions = Shape -> Shape
+type ProjectionOptions = Projection -> Projection
 
 /// Functions provide the styling of the Chart objects
 type Options() =
@@ -160,7 +161,7 @@ type Options() =
         (   
             ?X      : seq<#IConvertible>,
             ?Y      : seq<#IConvertible>,
-            ?Mode: StyleOption.Mode,             
+            ?Mode: StyleOption.Mode,         
             ?Fill: StyleOption.Fill,
             ?Fillcolor: string,                        
             ?Connectgaps: bool, 
@@ -209,7 +210,7 @@ type Options() =
 
                 X            |> Option.iter bar.set_x
                 Y            |> Option.iter bar.set_y
-                Text         |> Option.iter bar.set_text
+//                Text         |> Option.iter bar.set_text -- temporarily
                 //form scattern --> textposition |> Option.iter (StyleOption.TextPosition.toString >> bar.set_textposition)
                 //form scattern --> mode         |> Option.iter (StyleOption.Mode.toString >> bar.set_mode)
                 //form scattern --> connectgaps  |> Option.iter bar.set_connectgaps
@@ -611,10 +612,10 @@ type Options() =
             ?Label0,
             ?dLabel,   
             ?Marker,
-            ?Text,
+            ?Text,   //: seq<#IConvertible>,
+            ?Textposition,//: StyleOption.TextPosition,
             ?Scalegroup,
             ?Textinfo,
-            ?Textposition: StyleOption.TextPosition,
             ?Textfont: FontOptions,                    
             ?Insidetextfont: FontOptions,
             ?Outsidetextfont: FontOptions,
@@ -636,11 +637,11 @@ type Options() =
                 Values          |> Option.iter pie.set_values
                 Labels          |> Option.iter pie.set_labels
                 Label0          |> Option.iter pie.set_label0
-                dLabel          |> Option.iter pie.set_dlabel
-                Text            |> Option.iter pie.set_text
+                dLabel          |> Option.iter pie.set_dlabel//-- temporarily
+//                Text            |> Option.iter pie.set_text  
                 Scalegroup      |> Option.iter pie.set_scalegroup
                 Textinfo        |> Option.iter pie.set_textinfo
-                Textposition    |> Option.iter (StyleOption.TextPosition.toString >> pie.set_textposition)                
+//                Textposition    |> Option.iter (StyleOption.TextPosition.toString >> pie.set_textposition)           -- temporarily       
                                 
                 Domain          |> Option.iter pie.set_domain         
                 Hole            |> Option.iter pie.set_hole           
@@ -650,8 +651,8 @@ type Options() =
                 Pull            |> Option.iter pie.set_pull           
                 Labelssrc       |> Option.iter pie.set_labelssrc      
                 Valuessrc       |> Option.iter pie.set_valuessrc      
-                Textsrc         |> Option.iter pie.set_textsrc        
-                Textpositionsrc |> Option.iter pie.set_textpositionsrc
+//                Textsrc         |> Option.iter pie.set_textsrc          -- temporarily
+//                Textpositionsrc |> Option.iter pie.set_textpositionsrc  -- temporarily
                 Pullsrc         |> Option.iter pie.set_pullsrc        
                 
                 // Update
@@ -751,33 +752,33 @@ type Options() =
         ) =
             (fun (colorMap:('T :> Colormap)) -> 
 
-                Z              |> Option.iter colorMap.set_z              
-                X              |> Option.iter colorMap.set_x              
+//                Z              |> Option.iter colorMap.set_z               -- temporarily
+//                X              |> Option.iter colorMap.set_x               -- temporarily
                 X0             |> Option.iter colorMap.set_x0             
                 dX             |> Option.iter colorMap.set_dx             
-                Y              |> Option.iter colorMap.set_y             
+//                Y              |> Option.iter colorMap.set_y        -- temporarily      
                 Y0             |> Option.iter colorMap.set_y0            
                 dY             |> Option.iter colorMap.set_dy            
-                Text           |> Option.iter colorMap.set_text          
-                Transpose      |> Option.iter colorMap.set_transpose     
+//                Text           |> Option.iter colorMap.set_text           -- temporarily
+//                Transpose      |> Option.iter colorMap.set_transpose      -- temporarily
                 xType          |> Option.iter colorMap.set_xtype         
                 yType          |> Option.iter colorMap.set_ytype         
-                zAuto          |> Option.iter colorMap.set_zauto         
-                zMin           |> Option.iter colorMap.set_zmin          
-                zMax           |> Option.iter colorMap.set_zmax          
-                Colorscale     |> Option.iter (StyleOption.ColorScale.convert >> colorMap.set_colorscale)  
-                Autocolorscale |> Option.iter colorMap.set_autocolorscale
-                Reversescale   |> Option.iter colorMap.set_reversescale  
-                Showscale      |> Option.iter colorMap.set_showscale     
-                zSmooth        |> Option.iter (StyleOption.SmoothAlg.convert >> colorMap.set_zsmooth)     
+//                zAuto          |> Option.iter colorMap.set_zauto          -- temporarily
+//                zMin           |> Option.iter colorMap.set_zmin         -- temporarily  
+//                zMax           |> Option.iter colorMap.set_zmax      -- temporarily     
+//                Colorscale     |> Option.iter (StyleOption.ColorScale.convert >> colorMap.set_colorscale)   -- temporarily
+//                Autocolorscale |> Option.iter colorMap.set_autocolorscale -- temporarily
+//                Reversescale   |> Option.iter colorMap.set_reversescale   -- temporarily
+//                Showscale      |> Option.iter colorMap.set_showscale      -- temporarily
+//                zSmooth        |> Option.iter (StyleOption.SmoothAlg.convert >> colorMap.set_zsmooth)      -- temporarily
                 Connectgaps    |> Option.iter colorMap.set_connectgaps   
-                Colorbar       |> Option.iter colorMap.set_colorbar      
+//                Colorbar       |> Option.iter colorMap.set_colorbar      
                 xAxis          |> Option.iter colorMap.set_xaxis         
                 yAxis          |> Option.iter colorMap.set_yaxis         
-                Zsrc           |> Option.iter colorMap.set_zsrc          
-                Xsrc           |> Option.iter colorMap.set_xsrc          
-                Ysrc           |> Option.iter colorMap.set_ysrc          
-                Textsrc        |> Option.iter colorMap.set_textsrc       
+//                Zsrc           |> Option.iter colorMap.set_zsrc           -- temporarily
+//                Xsrc           |> Option.iter colorMap.set_xsrc          -- temporarily 
+//                Ysrc           |> Option.iter colorMap.set_ysrc       -- temporarily    
+//                Textsrc        |> Option.iter colorMap.set_textsrc      -- temporarily  
                                
                 // out ->
                 colorMap |> (optApply TraceOptions) 
@@ -833,7 +834,50 @@ type Options() =
             ) 
 
 
+   // ######################## 3d-Charts
+   
+   
+   // Applies the styles to Scatter3d()
+    static member Scatter3d
+        (   
+            ?X      : seq<#IConvertible>,
+            ?Y      : seq<#IConvertible>,
+            ?Z      : seq<#IConvertible>,
+            ?Mode: StyleOption.Mode,             
+            ?Surfaceaxis,
+            ?Surfacecolor,
+            ?Projection : ProjectionOptions,
+            ?Scene,          
+            ?Error_y: ErrorOptions,
+            ?Error_x: ErrorOptions,
+            ?Error_z: ErrorOptions,
+            ?Xsrc   : string,
+            ?Ysrc   : string,
+            ?Zsrc   : string
+        ) =
+            (fun (scatter:('T :> Scatter3d)) -> 
+                //scatter.set_type plotType                     
+                X            |> Option.iter scatter.set_x
+                Y            |> Option.iter scatter.set_y
+                Z            |> Option.iter scatter.set_z
+                Mode         |> Option.iter (StyleOption.Mode.toString >> scatter.set_mode)
+                
+                Surfaceaxis  |> Option.iter scatter.set_xsrc
+                Surfacecolor |> Option.iter scatter.set_xsrc                
+                Scene        |> Option.iter scatter.set_xsrc
+                Xsrc         |> Option.iter scatter.set_xsrc
+                Ysrc         |> Option.iter scatter.set_ysrc
+                Zsrc         |> Option.iter scatter.set_zsrc
+                
+                // Update
+                Error_x      |> Option.iter (updatePropertyValueAndIgnore scatter <@ scatter.error_x  @>)
+                Error_y      |> Option.iter (updatePropertyValueAndIgnore scatter <@ scatter.error_y  @>)
+                Error_z      |> Option.iter (updatePropertyValueAndIgnore scatter <@ scatter.error_z  @>)
+                Projection   |> Option.iter (updatePropertyValueAndIgnore scatter <@ scatter.projection  @>)
 
+                // out ->
+                scatter
+            ) 
 
 
 

@@ -29,6 +29,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{8E6D5255-776D-4B61-85F9-73C37AA1FB9A}"
 	ProjectSection(SolutionItems) = preProject
 		docs\content\2d-histograms.fsx = docs\content\2d-histograms.fsx
+		docs\content\3d-line-plots.fsx = docs\content\3d-line-plots.fsx
+		docs\content\3d-scatter-plots.fsx = docs\content\3d-scatter-plots.fsx
+		docs\content\3d-surface-plots.fsx = docs\content\3d-surface-plots.fsx
 		docs\content\area-plots.fsx = docs\content\area-plots.fsx
 		docs\content\bar-charts.fsx = docs\content\bar-charts.fsx
 		docs\content\box-plots.fsx = docs\content\box-plots.fsx

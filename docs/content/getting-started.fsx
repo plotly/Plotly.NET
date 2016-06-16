@@ -19,6 +19,7 @@ open FSharp.Plotly
 
 let trace =
     Scatter(
+       
         x = [1; 2; 3; 4],
         y = [12; 9; 15; 12],
         mode = "lines+markers"
@@ -27,6 +28,9 @@ let trace =
 
 let layout =
     Layout()
+
+trace.get_type
+
 
 GenericChart.ofTraceObject trace layout
 |> Chart.Show

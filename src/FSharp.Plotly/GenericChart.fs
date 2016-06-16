@@ -29,7 +29,7 @@ module HTML =
   </script>"""
 
 
-/// Module 
+/// Module to represent a GenericChart
 module GenericChart =
     // 'T when 'T :> ITrace
     type GenericChart =

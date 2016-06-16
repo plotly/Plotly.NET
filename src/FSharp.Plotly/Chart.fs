@@ -20,24 +20,48 @@ type Chart =
             |> Options.ITextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
         GenericChart.Chart (trace,None)
 
+    /// Uses points, line or both depending on the mode to represent data points
+    static member Scatter(xy, mode, ?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
+        let x,y = Seq.unzip xy 
+        Chart.Scatter(x, y, mode, ?Name=Name,?Showlegend=Showlegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width)
 
-//    /// Uses points to represent data points.
-//    static member Point(x, y, ?Name,?Showlegend,?Color,?Opacity,?MarkerSymbol,?Labels) =                      
-//        let trace = 
-//            TraceObjects.Scatter()
-//            |> Options.Scatter(X = x,Y = y, Mode=StyleOption.Markers, 
-//                TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity),
-//                Marker=Options.Marker(?Color=Color,?Symbol=MarkerSymbol),
-//                ?Fillcolor=Color,?Text=Labels)
-//        GenericChart.Chart (trace,None)
-//
-//
-//    /// Uses points to represent data points.
-//    static member Point(xy, ?Name,?Showlegend,?Color,?Opacity,?MarkerSymbol,?Labels) =         
-//        let x,y = Seq.unzip xy
-//        Chart.Point(x,y, ?Name=Name,?Showlegend=Showlegend,?Color=Color,?Opacity=Opacity,?MarkerSymbol=MarkerSymbol,?Labels=Labels)
-//
-//
+    /// Uses points to represent data points
+    static member Point(x, y, ?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
+        let trace = 
+            TraceObjects.Scatter()
+            |> Options.Scatter(X = x,Y = y, Mode = StyleOption.Markers)               
+            |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> Options.ILine(Options.Line(?Color=Color,?Dash=Dash,?Width=Width))
+            |> Options.IMarker(Options.Marker(?Color=Color,?Symbol=MarkerSymbol))
+            |> Options.ITextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        GenericChart.Chart (trace,None)
+
+    /// Uses points to represent data points
+    static member Point(xy,?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
+        let x,y = Seq.unzip xy 
+        Chart.Point(x, y, ?Name=Name,?Showlegend=Showlegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width)
+
+    /// Uses lines to represent data points
+    static member Line(x, y, ?Name,?ShowMarkers,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
+        let mode' = 
+            match ShowMarkers with
+            | Some show -> if show then StyleOption.Lines_Markers else StyleOption.Lines
+            | None      -> StyleOption.Lines_Markers // default
+        let trace = 
+            TraceObjects.Scatter()
+            |> Options.Scatter(X = x,Y = y, Mode = mode')               
+            |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> Options.ILine(Options.Line(?Color=Color,?Dash=Dash,?Width=Width))
+            |> Options.IMarker(Options.Marker(?Color=Color,?Symbol=MarkerSymbol))
+            |> Options.ITextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        GenericChart.Chart (trace,None)
+
+    /// Uses lines to represent data points
+    static member Line(xy,?Name,?ShowMarkers,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
+        let x,y = Seq.unzip xy 
+        Chart.Line(x, y, ?Name=Name,?ShowMarkers=ShowMarkers,?Showlegend=Showlegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width)
+
+
 //    /// Uses a line to connect the data points represented.
 //    static member Line(x, y,?Name,?ShowMarkers,?Dash,?Showlegend,?Width,?Color,?Opacity,?MarkerSymbol,?Labels) =             
 //        let mode' = match ShowMarkers with
