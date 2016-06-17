@@ -37,3 +37,4 @@ shown below.
 [ for x in 1.0 .. 100.0 -> (x, x ** 2.0) ]
 |> Chart.Line
 (*** include-it:sq ***)
+|> Chart.Show

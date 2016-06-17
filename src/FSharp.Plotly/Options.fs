@@ -715,21 +715,30 @@ type Options() =
             ) 
 
 
-    // Applies the styles to Heatmap() and Contour()
-    static member Colormap
+//        let mutable _z              : seq<#seq<#System.IConvertible>> option = None
+//        let mutable _x              : seq<#System.IConvertible> option = None
+//        let mutable _y              : seq<#System.IConvertible> option = None
+//        let mutable _transpose      : bool option = None
+//        let mutable _zauto          : bool option = None
+//        let mutable _zmin           : float option = None
+//        let mutable _zmax           : float option = None
+//        let mutable _colorscale     : _ option = None
+//        let mutable _autocolorscale : bool option = None
+//        let mutable _reversescale   : bool option = None
+//        let mutable _showscale      : bool option = None
+//        let mutable _zsmooth        : _ option = None
+//        let mutable _colorbar       : Colorbar option = None
+//        let mutable _zsrc           : string option = None
+//        let mutable _xsrc           : string option = None
+//        let mutable _ysrc           : string option = None
+
+    // // Applies the styles to TraceObjects with IColormap interface
+    static member IColormap
         (                
-            ?TraceOptions:TraceOptions<_>,
             ?Z : seq<#seq<#IConvertible>>,
             ?X : seq<#IConvertible>,
-            ?X0             ,
-            ?dX             ,
             ?Y : seq<#IConvertible>,
-            ?Y0             ,
-            ?dY             ,
-            ?Text           ,
             ?Transpose      ,
-            ?xType          ,
-            ?yType          ,
             ?zAuto          ,
             ?zMin           ,
             ?zMax           ,
@@ -738,50 +747,63 @@ type Options() =
             ?Reversescale   ,
             ?Showscale      ,
             ?zSmooth        ,
-            ?Connectgaps    ,
             ?Colorbar       ,
-            ?xAxis          ,
-            ?yAxis          ,
             ?Zsrc           ,
             ?Xsrc           ,
-            ?Ysrc           ,
-            ?Textsrc        
+            ?Ysrc
+        ) =
+            (fun (colorMap:('T :> IColormap)) -> 
+
+                Z              |> Option.iter colorMap.set_z         
+                X              |> Option.iter colorMap.set_x               
+                Y              |> Option.iter colorMap.set_y                
+                Transpose      |> Option.iter colorMap.set_transpose 
+                zAuto          |> Option.iter colorMap.set_zauto     
+                zMin           |> Option.iter colorMap.set_zmin      
+                zMax           |> Option.iter colorMap.set_zmax      
+                Colorscale     |> Option.iter (StyleOption.ColorScale.convert >> colorMap.set_colorscale) 
+                Autocolorscale |> Option.iter colorMap.set_autocolorscale
+                Reversescale   |> Option.iter colorMap.set_reversescale  
+                Showscale      |> Option.iter colorMap.set_showscale     
+                zSmooth        |> Option.iter (StyleOption.SmoothAlg.convert >> colorMap.set_zsmooth)     
+                Colorbar       |> Option.iter colorMap.set_colorbar   
+                Zsrc           |> Option.iter colorMap.set_zsrc       
+                Xsrc           |> Option.iter colorMap.set_xsrc       
+                Ysrc           |> Option.iter colorMap.set_ysrc       
+                               
+                // out ->
+                colorMap
+            ) 
 
 
 
+    // Applies the styles to Heatmap() and Contour()
+    static member Colormap
+        (                
+            ?X0             ,
+            ?dX             ,
+            ?Y0             ,
+            ?dY             ,
+            ?xType          ,
+            ?yType          ,
+            ?Connectgaps    ,
+            ?xAxis          ,
+            ?yAxis
         ) =
             (fun (colorMap:('T :> Colormap)) -> 
 
-//                Z              |> Option.iter colorMap.set_z               -- temporarily
-//                X              |> Option.iter colorMap.set_x               -- temporarily
                 X0             |> Option.iter colorMap.set_x0             
                 dX             |> Option.iter colorMap.set_dx             
-//                Y              |> Option.iter colorMap.set_y        -- temporarily      
                 Y0             |> Option.iter colorMap.set_y0            
                 dY             |> Option.iter colorMap.set_dy            
-//                Text           |> Option.iter colorMap.set_text           -- temporarily
-//                Transpose      |> Option.iter colorMap.set_transpose      -- temporarily
                 xType          |> Option.iter colorMap.set_xtype         
                 yType          |> Option.iter colorMap.set_ytype         
-//                zAuto          |> Option.iter colorMap.set_zauto          -- temporarily
-//                zMin           |> Option.iter colorMap.set_zmin         -- temporarily  
-//                zMax           |> Option.iter colorMap.set_zmax      -- temporarily     
-//                Colorscale     |> Option.iter (StyleOption.ColorScale.convert >> colorMap.set_colorscale)   -- temporarily
-//                Autocolorscale |> Option.iter colorMap.set_autocolorscale -- temporarily
-//                Reversescale   |> Option.iter colorMap.set_reversescale   -- temporarily
-//                Showscale      |> Option.iter colorMap.set_showscale      -- temporarily
-//                zSmooth        |> Option.iter (StyleOption.SmoothAlg.convert >> colorMap.set_zsmooth)      -- temporarily
                 Connectgaps    |> Option.iter colorMap.set_connectgaps   
-//                Colorbar       |> Option.iter colorMap.set_colorbar      
                 xAxis          |> Option.iter colorMap.set_xaxis         
                 yAxis          |> Option.iter colorMap.set_yaxis         
-//                Zsrc           |> Option.iter colorMap.set_zsrc           -- temporarily
-//                Xsrc           |> Option.iter colorMap.set_xsrc          -- temporarily 
-//                Ysrc           |> Option.iter colorMap.set_ysrc       -- temporarily    
-//                Textsrc        |> Option.iter colorMap.set_textsrc      -- temporarily  
-                               
+
                 // out ->
-                colorMap |> (optApply TraceOptions) 
+                colorMap 
             ) 
 
 

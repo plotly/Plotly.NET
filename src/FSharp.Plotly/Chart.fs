@@ -258,29 +258,29 @@ type Chart =
 //                ?Boxmean=Boxmean,?Jitter=Jitter,?Pointpos=Pointpos)
 //            
 //        GenericChart.Chart (trace,None)
-//
-//    /// Shows a graphical representation of a 3-dimensional surface by plotting constant z slices, called contours, on a 2-dimensional format.
-//    /// That is, given a value for z, lines are drawn for connecting the (x,y) coordinates where that z value occurs.
-//    static member Heatmap(data:seq<#seq<#IConvertible>>,?ColNames,?RowNames, ?Name,?Colorscale,?Showscale,?zSmooth,?Colorbar) = 
-//        let trace = 
-//            Heatmap()
-//            |> Options.Colormap(Z=data,?X=ColNames, ?Y=RowNames,
-//                TraceOptions=Options.Trace(?Name=Name),
-//                ?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?Colorbar=Colorbar
-//                                        )                
-//        GenericChart.Chart (trace,None)
-//
-//    /// Shows a graphical representation of data where the individual values contained in a matrix are represented as colors.
-//    static member Contour(data:seq<#seq<#IConvertible>>,?X,?Y, ?Name,?Colorscale,?Showscale,?zSmooth,?Colorbar) = 
-//        let trace = 
-//            Contour()
-//            |> Options.Colormap(Z=data,?X=X, ?Y=Y,
-//                TraceOptions=Options.Trace(?Name=Name),
-//                ?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?Colorbar=Colorbar
-//                                        )                
-//        GenericChart.Chart (trace,None)
-//
-//
+
+    /// Shows a graphical representation of a 3-dimensional surface by plotting constant z slices, called contours, on a 2-dimensional format.
+    /// That is, given a value for z, lines are drawn for connecting the (x,y) coordinates where that z value occurs.
+    static member Heatmap(data:seq<#seq<#IConvertible>>,?ColNames,?RowNames, ?Name,?Showlegend,?Opacity,?Colorscale,?Showscale,?zSmooth,?Colorbar) = 
+        let trace = 
+            Heatmap()
+            |> Options.IColormap(Z=data,?X=ColNames, ?Y=RowNames,
+                ?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?Colorbar=Colorbar)
+            |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            //|> Options.ITextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)            
+        GenericChart.Chart (trace,None)
+
+    /// Shows a graphical representation of data where the individual values contained in a matrix are represented as colors.
+    static member Contour(data:seq<#seq<#IConvertible>>,?X,?Y, ?Name,?Showlegend,?Opacity,?Colorscale,?Showscale,?zSmooth,?Colorbar) = 
+        let trace = 
+            Contour()
+            |> Options.IColormap(Z=data,?X=X, ?Y=Y,
+                ?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?Colorbar=Colorbar)
+            |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            //|> Options.ITextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)                                                      
+        GenericChart.Chart (trace,None)
+
+
 //    /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data as a whole.
 //    static member Pie(values,?labels,?Name,?Showlegend,?Color,?Hoverinfo,?Textinfo,?Textposition) =         
 //        let trace = 
@@ -326,16 +326,6 @@ type Chart =
 //            )
 
 
-
-
-//         static member Point3D(x, y, z, ?Name,?ShowMarkers,?Showlegend,?Color,?Opacity,?Labels) = 
-//            let trace = 
-//                GenericTrace()
-//                |> Helpers.ApplyTraceStyles("scatter",x = x,y = y, mode="markers", ?name=Name,
-//                    ?showlegend=Showlegend,?fillcolor=Color,?opacity=Opacity,?text=Labels)
-//            GenericChart.Chart (trace,None)       
-        
-    
 
  
  

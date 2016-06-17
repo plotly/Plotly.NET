@@ -53,9 +53,9 @@ module TraceObjects =
         abstract ShouldSerializemarker : unit -> bool
 
     type IColormap =
-        abstract z              : seq<seq<System.IConvertible>> with get, set
-        abstract x              : seq<System.IConvertible> with get, set
-        abstract y              : seq<System.IConvertible> with get, set
+        abstract z              : obj with get, set
+        abstract x              : obj with get, set
+        abstract y              : obj with get, set
         abstract transpose      : bool with get, set
         abstract zauto          : bool with get, set
         abstract zmin           : float with get, set
@@ -136,13 +136,6 @@ module TraceObjects =
         let mutable _ysrc: string option = None
         let mutable _rsrc: string option = None
         let mutable _tsrc: string option = None
-
-
-//        member __.line
-//            with get () = Option.get _line
-//            and set value = _line <- Some value
-//        
-//        member __.ShouldSerializeline() = not _line.IsNone
         
         /// Sets the x coordinates.
         member __.x
@@ -269,86 +262,86 @@ module TraceObjects =
             with get () = Option.get _type
             and set value = _type <- Some value
 
-        member __.ShouldSerializetype() = (__ :> ITrace).ShouldSerializetype()
-        
+        member __.ShouldSerializetype() = not _type.IsNone
+
         // Implictit ITraceInfo
         member __.name
             with get () = Option.get _name
             and set value = _name <- Some value
-        member __.ShouldSerializeiname() = (__ :> ITraceInfo).ShouldSerializename() //temporalily
+        member __.ShouldSerializename() = not _name.IsNone
 
         member __.visible
             with get () = Option.get _visible
             and set value = _visible <- Some value
-        member __.ShouldSerializevisible() = (__ :> ITraceInfo).ShouldSerializevisible()
+        member __.ShouldSerializevisible() = not _visible.IsNone
 
         member __.showlegend
             with get () = Option.get _showlegend
             and set value = _showlegend <- Some value
-        member __.ShouldSerializeshowlegend() = (__ :> ITraceInfo).ShouldSerializeshowlegend()
+        member __.ShouldSerializeshowlegend() = not _showlegend.IsNone
 
         member __.legendgroup
             with get () = Option.get _legendgroup
             and set value = _legendgroup <- Some value
-        member __.ShouldSerializelegendgroup() = (__ :> ITraceInfo).ShouldSerializelegendgroup()
+        member __.ShouldSerializelegendgroup() = not _legendgroup.IsNone
 
         member __.opacity
             with get () = Option.get _opacity
             and set value = _opacity <- Some value
-        member __.ShouldSerializeopacity() = (__ :> ITraceInfo).ShouldSerializeopacity()
+        member __.ShouldSerializeopacity() = not _opacity.IsNone
 
         member __.uid
             with get () = Option.get _uid
             and set value = _uid <- Some value
-        member __.ShouldSerializeuid() = (__ :> ITraceInfo).ShouldSerializeuid()
+        member __.ShouldSerializeuid() = not _uid.IsNone
 
         member __.hoverinfo
             with get () = Option.get _hoverinfo
             and set value = _hoverinfo <- Some value
-        member __.ShouldSerializehoverinfo() = (__ :> ITraceInfo).ShouldSerializehoverinfo()
+        member __.ShouldSerializehoverinfo() = not _hoverinfo.IsNone
 
         member __.stream
             with get () = Option.get _stream
             and set value = _stream <- Some value
-        member __.ShouldSerializestream() = (__ :> ITraceInfo).ShouldSerializestream()
+        member __.ShouldSerializestream() = not _stream.IsNone
 
-        // Implictit ITextLabel
+        // Implictit ITextLabel          
         member __.text
             with get () = Option.get _text
             and set value = _text <- Some value
-        member __.ShouldSerializetext() = (__ :> ITextLabel).ShouldSerializetext()
+        member __.ShouldSerializetext() = not _text.IsNone
 
         member __.textposition
             with get () = Option.get _textposition
             and set value = _textposition <- Some value
-        member __.ShouldSerializetextposition() = (__ :> ITextLabel).ShouldSerializetextposition()
+        member __.ShouldSerializetextposition() = not _textposition.IsNone
 
         member __.textfont
             with get () = Option.get _textfont
             and set value = _textfont <- Some value
-        member __.ShouldSerializetextfont() = (__ :> ITextLabel).ShouldSerializetextfont()
+        member __.ShouldSerializetextfont() = not _textfont.IsNone
 
         member __.textsrc
             with get () = Option.get _textsrc
             and set value = _textsrc <- Some value
-        member __.ShouldSerializetextsrc() = (__ :> ITextLabel).ShouldSerializetextpositionsrc()
+        member __.ShouldSerializetextsrc() = not _textsrc.IsNone
 
         member __.textpositionsrc
             with get () = Option.get _textpositionsrc
             and set value = _textpositionsrc <- Some value
-        member __.ShouldSerializetextpositionsrc() = (__ :> ITextLabel).ShouldSerializetextpositionsrc()
+        member __.ShouldSerializetextpositionsrc() = not _textpositionsrc.IsNone
 
         // Implictit ILine
         member __.line
             with get () = Option.get _line
             and set value = _line <- Some value
-        member __.ShouldSerializeline() = (__ :> ILine).ShouldSerializeline()
+        member __.ShouldSerializeline() = not _line.IsNone
 
         // Implictit IMarker
         member __.marker
             with get () = Option.get _marker
             and set value = _marker <- Some value
-        member __.ShouldSerializemarker() = (__ :> IMarker).ShouldSerializemarker()
+         member __.ShouldSerializemarker() = not _marker.IsNone
 
         interface ITrace with 
             member __.``type``
@@ -1355,9 +1348,9 @@ module TraceObjects =
         let mutable _textsrc: string option = None
         let mutable _textpositionsrc: string option = None
         // IColormap interface      
-        let mutable _z              : seq<#seq<#System.IConvertible>> option = None
-        let mutable _x              : seq<#System.IConvertible> option = None
-        let mutable _y              : seq<#System.IConvertible> option = None
+        let mutable _z              : _ option = None //seq<#seq<#System.IConvertible>> option = None
+        let mutable _x              : _ option = None// seq<#System.IConvertible> option = None
+        let mutable _y              : _ option = None
         let mutable _transpose      : bool option = None
         let mutable _zauto          : bool option = None
         let mutable _zmin           : float option = None
@@ -1451,7 +1444,9 @@ module TraceObjects =
         member __.name
             with get () = Option.get _name
             and set value = _name <- Some value
-        member __.ShouldSerializeiname() = (__ :> ITraceInfo).ShouldSerializename() //temporalily
+        
+        member __.ShouldSerializename() = not _name.IsNone
+       // member __.ShouldSerializeiname() = (__ :> ITraceInfo).ShouldSerializename() //temporalily
 
         member __.visible
             with get () = Option.get _visible
