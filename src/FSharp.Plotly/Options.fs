@@ -612,8 +612,6 @@ type Options() =
             ?Label0,
             ?dLabel,   
             ?Marker,
-            ?Text,   //: seq<#IConvertible>,
-            ?Textposition,//: StyleOption.TextPosition,
             ?Scalegroup,
             ?Textinfo,
             ?Textfont: FontOptions,                    
@@ -627,8 +625,6 @@ type Options() =
             ?Pull: float,
             ?Labelssrc: string,
             ?Valuessrc: string,
-            ?Textsrc: string,
-            ?Textpositionsrc,
             ?Pullsrc
 
         ) =
@@ -638,10 +634,8 @@ type Options() =
                 Labels          |> Option.iter pie.set_labels
                 Label0          |> Option.iter pie.set_label0
                 dLabel          |> Option.iter pie.set_dlabel//-- temporarily
-//                Text            |> Option.iter pie.set_text  
                 Scalegroup      |> Option.iter pie.set_scalegroup
-                Textinfo        |> Option.iter pie.set_textinfo
-//                Textposition    |> Option.iter (StyleOption.TextPosition.toString >> pie.set_textposition)           -- temporarily       
+                Textinfo        |> Option.iter pie.set_textinfo      
                                 
                 Domain          |> Option.iter pie.set_domain         
                 Hole            |> Option.iter pie.set_hole           
@@ -651,8 +645,6 @@ type Options() =
                 Pull            |> Option.iter pie.set_pull           
                 Labelssrc       |> Option.iter pie.set_labelssrc      
                 Valuessrc       |> Option.iter pie.set_valuessrc      
-//                Textsrc         |> Option.iter pie.set_textsrc          -- temporarily
-//                Textpositionsrc |> Option.iter pie.set_textpositionsrc  -- temporarily
                 Pullsrc         |> Option.iter pie.set_pullsrc        
                 
                 // Update
@@ -715,29 +707,10 @@ type Options() =
             ) 
 
 
-//        let mutable _z              : seq<#seq<#System.IConvertible>> option = None
-//        let mutable _x              : seq<#System.IConvertible> option = None
-//        let mutable _y              : seq<#System.IConvertible> option = None
-//        let mutable _transpose      : bool option = None
-//        let mutable _zauto          : bool option = None
-//        let mutable _zmin           : float option = None
-//        let mutable _zmax           : float option = None
-//        let mutable _colorscale     : _ option = None
-//        let mutable _autocolorscale : bool option = None
-//        let mutable _reversescale   : bool option = None
-//        let mutable _showscale      : bool option = None
-//        let mutable _zsmooth        : _ option = None
-//        let mutable _colorbar       : Colorbar option = None
-//        let mutable _zsrc           : string option = None
-//        let mutable _xsrc           : string option = None
-//        let mutable _ysrc           : string option = None
-
-    // // Applies the styles to TraceObjects with IColormap interface
+    // Applies the styles to TraceObjects with IColormap interface
     static member IColormap
         (                
-            ?Z : seq<#seq<#IConvertible>>,
-            ?X : seq<#IConvertible>,
-            ?Y : seq<#IConvertible>,
+
             ?Transpose      ,
             ?zAuto          ,
             ?zMin           ,
@@ -747,16 +720,11 @@ type Options() =
             ?Reversescale   ,
             ?Showscale      ,
             ?zSmooth        ,
-            ?Colorbar       ,
-            ?Zsrc           ,
-            ?Xsrc           ,
-            ?Ysrc
+            ?Colorbar
+
         ) =
             (fun (colorMap:('T :> IColormap)) -> 
-
-                Z              |> Option.iter colorMap.set_z         
-                X              |> Option.iter colorMap.set_x               
-                Y              |> Option.iter colorMap.set_y                
+               
                 Transpose      |> Option.iter colorMap.set_transpose 
                 zAuto          |> Option.iter colorMap.set_zauto     
                 zMin           |> Option.iter colorMap.set_zmin      
@@ -766,94 +734,99 @@ type Options() =
                 Reversescale   |> Option.iter colorMap.set_reversescale  
                 Showscale      |> Option.iter colorMap.set_showscale     
                 zSmooth        |> Option.iter (StyleOption.SmoothAlg.convert >> colorMap.set_zsmooth)     
-                Colorbar       |> Option.iter colorMap.set_colorbar   
-                Zsrc           |> Option.iter colorMap.set_zsrc       
-                Xsrc           |> Option.iter colorMap.set_xsrc       
-                Ysrc           |> Option.iter colorMap.set_ysrc       
+                Colorbar       |> Option.iter colorMap.set_colorbar        
                                
                 // out ->
                 colorMap
             ) 
-
-
-
-    // Applies the styles to Heatmap() and Contour()
-    static member Colormap
+  
+    // Applies the styles to TraceObjects with IMapZ interface
+    static member IMapZ
         (                
+            ?Z : seq<#seq<#IConvertible>>,
+            ?X : seq<#IConvertible>,
+            ?Y : seq<#IConvertible>,            
             ?X0             ,
             ?dX             ,
             ?Y0             ,
             ?dY             ,
             ?xType          ,
             ?yType          ,
-            ?Connectgaps    ,
             ?xAxis          ,
-            ?yAxis
+            ?yAxis          ,
+            ?Zsrc           ,
+            ?Xsrc           ,
+            ?Ysrc
         ) =
             (fun (colorMap:('T :> Colormap)) -> 
-
+                
+                Z              |> Option.iter colorMap.set_z         
+                X              |> Option.iter colorMap.set_x               
+                Y              |> Option.iter colorMap.set_y
                 X0             |> Option.iter colorMap.set_x0             
                 dX             |> Option.iter colorMap.set_dx             
                 Y0             |> Option.iter colorMap.set_y0            
                 dY             |> Option.iter colorMap.set_dy            
                 xType          |> Option.iter colorMap.set_xtype         
-                yType          |> Option.iter colorMap.set_ytype         
-                Connectgaps    |> Option.iter colorMap.set_connectgaps   
+                yType          |> Option.iter colorMap.set_ytype                          
                 xAxis          |> Option.iter colorMap.set_xaxis         
                 yAxis          |> Option.iter colorMap.set_yaxis         
+                Zsrc           |> Option.iter colorMap.set_zsrc       
+                Xsrc           |> Option.iter colorMap.set_xsrc       
+                Ysrc           |> Option.iter colorMap.set_ysrc  
 
                 // out ->
                 colorMap 
             ) 
 
 
-    // Applies the styles to Histogram2d()
-    static member Histogram2d
-        (                
-            ?TraceOptions:TraceOptions<_>,
-            ?Y,           
-            ?X,           
-            ?X0,          
-            ?Y0,          
-            ?Whiskerwidth,
-            ?Boxpoints,   
-            ?Boxmean,     
-            ?Jitter,      
-            ?Pointpos,    
-            ?Orientation, 
-            ?Line        : LineOptions,                         
-            ?Marker       : MarkerOptions,
-            ?Fillcolor,   
-            ?xAxis,       
-            ?yAxis,       
-            ?Ysrc,        
-            ?Xsrc        
-
-        ) =
-            (fun (boxPlot:('T :> Box)) -> 
-
-                Y            |> Option.iter boxPlot.set_y           
-                X            |> Option.iter boxPlot.set_x           
-                X0           |> Option.iter boxPlot.set_x0          
-                Y0           |> Option.iter boxPlot.set_y0          
-                Whiskerwidth |> Option.iter boxPlot.set_whiskerwidth
-                Boxpoints    |> Option.iter (StyleOption.Boxpoints.convert >> boxPlot.set_boxpoints)  
-                Boxmean      |> Option.iter (StyleOption.BoxMean.convert >> boxPlot.set_boxmean)    
-                Jitter       |> Option.iter boxPlot.set_jitter      
-                Pointpos     |> Option.iter boxPlot.set_pointpos    
-                Orientation  |> Option.iter (StyleOption.Orientation.convert >> boxPlot.set_orientation)
-                Fillcolor    |> Option.iter boxPlot.set_fillcolor   
-                xAxis        |> Option.iter boxPlot.set_xaxis       
-                yAxis        |> Option.iter boxPlot.set_yaxis       
-                Ysrc         |> Option.iter boxPlot.set_ysrc        
-                Xsrc         |> Option.iter boxPlot.set_xsrc        
-                // Update
-                Line         |> Option.iter (updatePropertyValueAndIgnore boxPlot <@ boxPlot.line   @>)
-                Marker       |> Option.iter (updatePropertyValueAndIgnore boxPlot <@ boxPlot.marker @>)
-                
-                // out ->
-                boxPlot |> (optApply TraceOptions) 
-            ) 
+//    // Applies the styles to Histogram2d()
+//    static member Histogram2d
+//        (                
+//            ?TraceOptions:TraceOptions<_>,
+//            ?Y,           
+//            ?X,           
+//            ?X0,          
+//            ?Y0,          
+//            ?Whiskerwidth,
+//            ?Boxpoints,   
+//            ?Boxmean,     
+//            ?Jitter,      
+//            ?Pointpos,    
+//            ?Orientation, 
+//            ?Line        : LineOptions,                         
+//            ?Marker       : MarkerOptions,
+//            ?Fillcolor,   
+//            ?xAxis,       
+//            ?yAxis,       
+//            ?Ysrc,        
+//            ?Xsrc        
+//
+//        ) =
+//            (fun (boxPlot:('T :> Box)) -> 
+//
+//                Y            |> Option.iter boxPlot.set_y           
+//                X            |> Option.iter boxPlot.set_x           
+//                X0           |> Option.iter boxPlot.set_x0          
+//                Y0           |> Option.iter boxPlot.set_y0          
+//                Whiskerwidth |> Option.iter boxPlot.set_whiskerwidth
+//                Boxpoints    |> Option.iter (StyleOption.Boxpoints.convert >> boxPlot.set_boxpoints)  
+//                Boxmean      |> Option.iter (StyleOption.BoxMean.convert >> boxPlot.set_boxmean)    
+//                Jitter       |> Option.iter boxPlot.set_jitter      
+//                Pointpos     |> Option.iter boxPlot.set_pointpos    
+//                Orientation  |> Option.iter (StyleOption.Orientation.convert >> boxPlot.set_orientation)
+//                Fillcolor    |> Option.iter boxPlot.set_fillcolor   
+//                xAxis        |> Option.iter boxPlot.set_xaxis       
+//                yAxis        |> Option.iter boxPlot.set_yaxis       
+//                Ysrc         |> Option.iter boxPlot.set_ysrc        
+//                Xsrc         |> Option.iter boxPlot.set_xsrc        
+//                // Update
+//                Line         |> Option.iter (updatePropertyValueAndIgnore boxPlot <@ boxPlot.line   @>)
+//                Marker       |> Option.iter (updatePropertyValueAndIgnore boxPlot <@ boxPlot.marker @>)
+//                
+//                // out ->
+//                boxPlot |> (optApply TraceOptions) 
+//            ) 
 
 
    // ######################## 3d-Charts

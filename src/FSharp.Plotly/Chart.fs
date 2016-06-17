@@ -264,8 +264,8 @@ type Chart =
     static member Heatmap(data:seq<#seq<#IConvertible>>,?ColNames,?RowNames, ?Name,?Showlegend,?Opacity,?Colorscale,?Showscale,?zSmooth,?Colorbar) = 
         let trace = 
             Heatmap()
-            |> Options.IColormap(Z=data,?X=ColNames, ?Y=RowNames,
-                ?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?Colorbar=Colorbar)
+            |> Options.IMapZ(Z=data,?X=ColNames, ?Y=RowNames)
+            |> Options.IColormap(?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?Colorbar=Colorbar)
             |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
             //|> Options.ITextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)            
         GenericChart.Chart (trace,None)
@@ -274,8 +274,8 @@ type Chart =
     static member Contour(data:seq<#seq<#IConvertible>>,?X,?Y, ?Name,?Showlegend,?Opacity,?Colorscale,?Showscale,?zSmooth,?Colorbar) = 
         let trace = 
             Contour()
-            |> Options.IColormap(Z=data,?X=X, ?Y=Y,
-                ?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?Colorbar=Colorbar)
+            |> Options.IMapZ(Z=data,?X=X, ?Y=Y)
+            |> Options.IColormap(?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?Colorbar=Colorbar)
             |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
             //|> Options.ITextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)                                                      
         GenericChart.Chart (trace,None)

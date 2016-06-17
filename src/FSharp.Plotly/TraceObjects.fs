@@ -52,10 +52,33 @@ module TraceObjects =
         abstract marker            : Marker  with get, set
         abstract ShouldSerializemarker : unit -> bool
 
-    type IColormap =
+    type IMapZ =
         abstract z              : obj with get, set
         abstract x              : obj with get, set
-        abstract y              : obj with get, set
+        abstract y              : obj with get, set             
+        abstract x0             : obj with get, set
+        abstract dx             : float with get, set                              
+        abstract y0             : obj with get, set
+        abstract dy             : float with get, set        
+        abstract xtype          : obj with get, set
+        abstract ytype          : obj with get, set
+        abstract xaxis          : string with get, set
+        abstract yaxis          : string with get, set
+        abstract zsrc           : string with get, set
+        abstract xsrc           : string with get, set
+        abstract ysrc           : string with get, set        
+
+//        abstract ShouldSerializez              : unit -> bool
+//        abstract ShouldSerializex              : unit -> bool
+//        abstract ShouldSerializey              : unit -> bool        
+//        abstract ShouldSerializezsrc           : unit -> bool
+//        abstract ShouldSerializexsrc           : unit -> bool
+//        abstract ShouldSerializeysrc           : unit -> bool
+
+    type IColormap =
+//        abstract z              : obj with get, set
+//        abstract x              : obj with get, set
+//        abstract y              : obj with get, set
         abstract transpose      : bool with get, set
         abstract zauto          : bool with get, set
         abstract zmin           : float with get, set
@@ -66,28 +89,38 @@ module TraceObjects =
         abstract showscale      : bool with get, set
         abstract zsmooth        : obj with get, set
         abstract colorbar       : Colorbar with get, set
-        abstract zsrc           : string with get, set
-        abstract xsrc           : string with get, set
-        abstract ysrc           : string with get, set
+//        abstract zsrc           : string with get, set
+//        abstract xsrc           : string with get, set
+//        abstract ysrc           : string with get, set
 
-        abstract ShouldSerializez             : unit -> bool
-        abstract ShouldSerializex              : unit -> bool
-        abstract ShouldSerializey              : unit -> bool
-        abstract ShouldSerializetranspose      : unit -> bool
-        abstract ShouldSerializezauto          : unit -> bool
-        abstract ShouldSerializezmin           : unit -> bool
-        abstract ShouldSerializezmax           : unit -> bool
-        abstract ShouldSerializecolorscale     : unit -> bool
-        abstract ShouldSerializeautocolorscale : unit -> bool
-        abstract ShouldSerializereversescale   : unit -> bool
-        abstract ShouldSerializeshowscale      : unit -> bool
-        abstract ShouldSerializezsmooth        : unit -> bool
-        abstract ShouldSerializecolorbar       : unit -> bool
-        abstract ShouldSerializezsrc           : unit -> bool
-        abstract ShouldSerializexsrc           : unit -> bool
-        abstract ShouldSerializeysrc           : unit -> bool
+//        abstract ShouldSerializez             : unit -> bool
+//        abstract ShouldSerializex              : unit -> bool
+//        abstract ShouldSerializey              : unit -> bool
+//        abstract ShouldSerializetranspose      : unit -> bool
+//        abstract ShouldSerializezauto          : unit -> bool
+//        abstract ShouldSerializezmin           : unit -> bool
+//        abstract ShouldSerializezmax           : unit -> bool
+//        abstract ShouldSerializecolorscale     : unit -> bool
+//        abstract ShouldSerializeautocolorscale : unit -> bool
+//        abstract ShouldSerializereversescale   : unit -> bool
+//        abstract ShouldSerializeshowscale      : unit -> bool
+//        abstract ShouldSerializezsmooth        : unit -> bool
+//        abstract ShouldSerializecolorbar       : unit -> bool
+//        abstract ShouldSerializezsrc           : unit -> bool
+//        abstract ShouldSerializexsrc           : unit -> bool
+//        abstract ShouldSerializeysrc           : unit -> bool
 
 
+    type IHistogram =
+        abstract histfunc       : obj with get, set
+        abstract histnorm       : obj with get, set
+        abstract autobinx       : bool with get, set
+        abstract nbinsx         : int with get, set
+        abstract xbins          : Bins with get, set
+        abstract autobiny       : bool with get, set
+        abstract nbinsy         : int with get, set
+        abstract ybins          : Bins with get, set
+        abstract orientation    : obj with get, set
 
     type Scatter() =
 
@@ -586,86 +619,85 @@ module TraceObjects =
         member __.ShouldSerializersrc() = not _rsrc.IsNone
         member __.ShouldSerializetsrc() = not _tsrc.IsNone
         
-                // Implictit ITrace
+        // Implictit ITrace
         member __.``type``
             with get () = Option.get _type
             and set value = _type <- Some value
 
-        member __.ShouldSerializetype() = (__ :> ITrace).ShouldSerializetype()
-        
+        member __.ShouldSerializetype() = not _type.IsNone
+
         // Implictit ITraceInfo
         member __.name
             with get () = Option.get _name
             and set value = _name <- Some value
-        member __.ShouldSerializeiname() = (__ :> ITraceInfo).ShouldSerializename() //temporalily
+        member __.ShouldSerializename() = not _name.IsNone
 
         member __.visible
             with get () = Option.get _visible
             and set value = _visible <- Some value
-        member __.ShouldSerializevisible() = (__ :> ITraceInfo).ShouldSerializevisible()
+        member __.ShouldSerializevisible() = not _visible.IsNone
 
         member __.showlegend
             with get () = Option.get _showlegend
             and set value = _showlegend <- Some value
-        member __.ShouldSerializeshowlegend() = (__ :> ITraceInfo).ShouldSerializeshowlegend()
+        member __.ShouldSerializeshowlegend() = not _showlegend.IsNone
 
         member __.legendgroup
             with get () = Option.get _legendgroup
             and set value = _legendgroup <- Some value
-        member __.ShouldSerializelegendgroup() = (__ :> ITraceInfo).ShouldSerializelegendgroup()
+        member __.ShouldSerializelegendgroup() = not _legendgroup.IsNone
 
         member __.opacity
             with get () = Option.get _opacity
             and set value = _opacity <- Some value
-        member __.ShouldSerializeopacity() = (__ :> ITraceInfo).ShouldSerializeopacity()
+        member __.ShouldSerializeopacity() = not _opacity.IsNone
 
         member __.uid
             with get () = Option.get _uid
             and set value = _uid <- Some value
-        member __.ShouldSerializeuid() = (__ :> ITraceInfo).ShouldSerializeuid()
+        member __.ShouldSerializeuid() = not _uid.IsNone
 
         member __.hoverinfo
             with get () = Option.get _hoverinfo
             and set value = _hoverinfo <- Some value
-        member __.ShouldSerializehoverinfo() = (__ :> ITraceInfo).ShouldSerializehoverinfo()
+        member __.ShouldSerializehoverinfo() = not _hoverinfo.IsNone
 
         member __.stream
             with get () = Option.get _stream
             and set value = _stream <- Some value
-        member __.ShouldSerializestream() = (__ :> ITraceInfo).ShouldSerializestream()
+        member __.ShouldSerializestream() = not _stream.IsNone
 
-        // Implictit ITextLabel
+        // Implictit ITextLabel          
         member __.text
             with get () = Option.get _text
             and set value = _text <- Some value
-        member __.ShouldSerializetext() = (__ :> ITextLabel).ShouldSerializetext()
+        member __.ShouldSerializetext() = not _text.IsNone
 
         member __.textposition
             with get () = Option.get _textposition
             and set value = _textposition <- Some value
-        member __.ShouldSerializetextposition() = (__ :> ITextLabel).ShouldSerializetextposition()
+        member __.ShouldSerializetextposition() = not _textposition.IsNone
 
         member __.textfont
             with get () = Option.get _textfont
             and set value = _textfont <- Some value
-        member __.ShouldSerializetextfont() = (__ :> ITextLabel).ShouldSerializetextfont()
+        member __.ShouldSerializetextfont() = not _textfont.IsNone
 
         member __.textsrc
             with get () = Option.get _textsrc
             and set value = _textsrc <- Some value
-        member __.ShouldSerializetextsrc() = (__ :> ITextLabel).ShouldSerializetextpositionsrc()
+        member __.ShouldSerializetextsrc() = not _textsrc.IsNone
 
         member __.textpositionsrc
             with get () = Option.get _textpositionsrc
             and set value = _textpositionsrc <- Some value
-        member __.ShouldSerializetextpositionsrc() = (__ :> ITextLabel).ShouldSerializetextpositionsrc()
+        member __.ShouldSerializetextpositionsrc() = not _textpositionsrc.IsNone
 
         // Implictit IMarker
         member __.marker
             with get () = Option.get _marker
             and set value = _marker <- Some value
-        member __.ShouldSerializemarker() = (__ :> IMarker).ShouldSerializemarker()
-        
+         member __.ShouldSerializemarker() = not _marker.IsNone       
         interface ITrace with 
             member __.``type``
                 with get () = Option.get _type
@@ -905,80 +937,80 @@ module TraceObjects =
             with get () = Option.get _type
             and set value = _type <- Some value
 
-        member __.ShouldSerializetype() = (__ :> ITrace).ShouldSerializetype()
-        
+        member __.ShouldSerializetype() = not _type.IsNone
+
         // Implictit ITraceInfo
         member __.name
             with get () = Option.get _name
             and set value = _name <- Some value
-        member __.ShouldSerializeiname() = (__ :> ITraceInfo).ShouldSerializename() //temporalily
+        member __.ShouldSerializename() = not _name.IsNone
 
         member __.visible
             with get () = Option.get _visible
             and set value = _visible <- Some value
-        member __.ShouldSerializevisible() = (__ :> ITraceInfo).ShouldSerializevisible()
+        member __.ShouldSerializevisible() = not _visible.IsNone
 
         member __.showlegend
             with get () = Option.get _showlegend
             and set value = _showlegend <- Some value
-        member __.ShouldSerializeshowlegend() = (__ :> ITraceInfo).ShouldSerializeshowlegend()
+        member __.ShouldSerializeshowlegend() = not _showlegend.IsNone
 
         member __.legendgroup
             with get () = Option.get _legendgroup
             and set value = _legendgroup <- Some value
-        member __.ShouldSerializelegendgroup() = (__ :> ITraceInfo).ShouldSerializelegendgroup()
+        member __.ShouldSerializelegendgroup() = not _legendgroup.IsNone
 
         member __.opacity
             with get () = Option.get _opacity
             and set value = _opacity <- Some value
-        member __.ShouldSerializeopacity() = (__ :> ITraceInfo).ShouldSerializeopacity()
+        member __.ShouldSerializeopacity() = not _opacity.IsNone
 
         member __.uid
             with get () = Option.get _uid
             and set value = _uid <- Some value
-        member __.ShouldSerializeuid() = (__ :> ITraceInfo).ShouldSerializeuid()
+        member __.ShouldSerializeuid() = not _uid.IsNone
 
         member __.hoverinfo
             with get () = Option.get _hoverinfo
             and set value = _hoverinfo <- Some value
-        member __.ShouldSerializehoverinfo() = (__ :> ITraceInfo).ShouldSerializehoverinfo()
+        member __.ShouldSerializehoverinfo() = not _hoverinfo.IsNone
 
         member __.stream
             with get () = Option.get _stream
             and set value = _stream <- Some value
-        member __.ShouldSerializestream() = (__ :> ITraceInfo).ShouldSerializestream()
+        member __.ShouldSerializestream() = not _stream.IsNone
 
-        // Implictit ITextLabel
+        // Implictit ITextLabel          
         member __.text
             with get () = Option.get _text
             and set value = _text <- Some value
-        member __.ShouldSerializetext() = (__ :> ITextLabel).ShouldSerializetext()
+        member __.ShouldSerializetext() = not _text.IsNone
 
         member __.textposition
             with get () = Option.get _textposition
             and set value = _textposition <- Some value
-        member __.ShouldSerializetextposition() = (__ :> ITextLabel).ShouldSerializetextposition()
+        member __.ShouldSerializetextposition() = not _textposition.IsNone
 
         member __.textfont
             with get () = Option.get _textfont
             and set value = _textfont <- Some value
-        member __.ShouldSerializetextfont() = (__ :> ITextLabel).ShouldSerializetextfont()
+        member __.ShouldSerializetextfont() = not _textfont.IsNone
 
         member __.textsrc
             with get () = Option.get _textsrc
             and set value = _textsrc <- Some value
-        member __.ShouldSerializetextsrc() = (__ :> ITextLabel).ShouldSerializetextpositionsrc()
+        member __.ShouldSerializetextsrc() = not _textsrc.IsNone
 
         member __.textpositionsrc
             with get () = Option.get _textpositionsrc
             and set value = _textpositionsrc <- Some value
-        member __.ShouldSerializetextpositionsrc() = (__ :> ITextLabel).ShouldSerializetextpositionsrc()
+        member __.ShouldSerializetextpositionsrc() = not _textpositionsrc.IsNone
 
         // Implictit IMarker
         member __.marker
             with get () = Option.get _marker
             and set value = _marker <- Some value
-        member __.ShouldSerializemarker() = (__ :> IMarker).ShouldSerializemarker()
+         member __.ShouldSerializemarker() = not _marker.IsNone
 
         interface ITrace with 
             member __.``type``
@@ -1205,68 +1237,60 @@ module TraceObjects =
             with get () = Option.get _type
             and set value = _type <- Some value
 
-        member __.ShouldSerializetype() = (__ :> ITrace).ShouldSerializetype()
-        
+        member __.ShouldSerializetype() = not _type.IsNone
+
         // Implictit ITraceInfo
         member __.name
             with get () = Option.get _name
             and set value = _name <- Some value
-        member __.ShouldSerializeiname() = (__ :> ITraceInfo).ShouldSerializename() //temporalily
+        member __.ShouldSerializename() = not _name.IsNone
 
         member __.visible
             with get () = Option.get _visible
             and set value = _visible <- Some value
-        member __.ShouldSerializevisible() = (__ :> ITraceInfo).ShouldSerializevisible()
+        member __.ShouldSerializevisible() = not _visible.IsNone
 
         member __.showlegend
             with get () = Option.get _showlegend
             and set value = _showlegend <- Some value
-        member __.ShouldSerializeshowlegend() = (__ :> ITraceInfo).ShouldSerializeshowlegend()
+        member __.ShouldSerializeshowlegend() = not _showlegend.IsNone
 
         member __.legendgroup
             with get () = Option.get _legendgroup
             and set value = _legendgroup <- Some value
-        member __.ShouldSerializelegendgroup() = (__ :> ITraceInfo).ShouldSerializelegendgroup()
+        member __.ShouldSerializelegendgroup() = not _legendgroup.IsNone
 
         member __.opacity
             with get () = Option.get _opacity
             and set value = _opacity <- Some value
-        member __.ShouldSerializeopacity() = (__ :> ITraceInfo).ShouldSerializeopacity()
+        member __.ShouldSerializeopacity() = not _opacity.IsNone
 
         member __.uid
             with get () = Option.get _uid
             and set value = _uid <- Some value
-        member __.ShouldSerializeuid() = (__ :> ITraceInfo).ShouldSerializeuid()
+        member __.ShouldSerializeuid() = not _uid.IsNone
 
         member __.hoverinfo
             with get () = Option.get _hoverinfo
             and set value = _hoverinfo <- Some value
-        member __.ShouldSerializehoverinfo() = (__ :> ITraceInfo).ShouldSerializehoverinfo()
+        member __.ShouldSerializehoverinfo() = not _hoverinfo.IsNone
 
         member __.stream
             with get () = Option.get _stream
             and set value = _stream <- Some value
-        member __.ShouldSerializestream() = (__ :> ITraceInfo).ShouldSerializestream()
+        member __.ShouldSerializestream() = not _stream.IsNone
 
         // Implictit ILine
         member __.line
             with get () = Option.get _line
             and set value = _line <- Some value
-        member __.ShouldSerializeline() = (__ :> ILine).ShouldSerializeline()
+        member __.ShouldSerializeline() = not _line.IsNone
 
         // Implictit IMarker
         member __.marker
             with get () = Option.get _marker
             and set value = _marker <- Some value
-        member __.ShouldSerializemarker() = (__ :> IMarker).ShouldSerializemarker()
-
-        interface ITrace with 
-            member __.``type``
-                with get () = Option.get _type
-                and set value = _type <- Some value
-
-            member __.ShouldSerializetype() = not _type.IsNone
-
+         member __.ShouldSerializemarker() = not _marker.IsNone
         interface ITraceInfo with
             /// Sets the trace name. The trace name appear as the legend item and on hover.
             member __.name
@@ -1348,9 +1372,6 @@ module TraceObjects =
         let mutable _textsrc: string option = None
         let mutable _textpositionsrc: string option = None
         // IColormap interface      
-        let mutable _z              : _ option = None //seq<#seq<#System.IConvertible>> option = None
-        let mutable _x              : _ option = None// seq<#System.IConvertible> option = None
-        let mutable _y              : _ option = None
         let mutable _transpose      : bool option = None
         let mutable _zauto          : bool option = None
         let mutable _zmin           : float option = None
@@ -1361,13 +1382,10 @@ module TraceObjects =
         let mutable _showscale      : bool option = None
         let mutable _zsmooth        : _ option = None
         let mutable _colorbar       : Colorbar option = None
-        let mutable _zsrc           : string option = None
-        let mutable _xsrc           : string option = None
-        let mutable _ysrc           : string option = None
-
-
-        let mutable _connectgaps    : bool option = None
-
+        // IMapZ interface
+        let mutable _z              : _ option = None
+        let mutable _x              : _ option = None
+        let mutable _y              : _ option = None
         let mutable _x0             : _ option = None
         let mutable _dx             : float option = None        
         let mutable _y0             : _ option = None
@@ -1376,220 +1394,222 @@ module TraceObjects =
         let mutable _ytype          : _ option = None
         let mutable _xaxis          : string option = None
         let mutable _yaxis          : string option = None
+        let mutable _zsrc           : string option = None
+        let mutable _xsrc           : string option = None
+        let mutable _ysrc           : string option = None
 
-        /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
-        member __.x0
-            with get () = Option.get _x0
-            and set value = _x0 <- Some value
-
-        /// Sets the x coordinate step. See `x0` for more info.
-        member __.dx
-            with get () = Option.get _dx
-            and set value = _dx <- Some value
-
-        /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
-        member __.y0
-            with get () = Option.get _y0
-            and set value = _y0 <- Some value
-
-        /// Sets the y coordinate step. See `y0` for more info.
-        member __.dy
-            with get () = Option.get _dy
-            and set value = _dy <- Some value
-
-        /// If *array*, the heatmap's x coordinates are given by *x* (the default behavior when `x` is provided). If *scaled*, the heatmap's x coordinates are given by *x0* and *dx* (the default behavior when `x` is not provided).
-        member __.xtype
-            with get () = Option.get _xtype
-            and set value = _xtype <- Some value
-
-        /// If *array*, the heatmap's y coordinates are given by *y* (the default behavior when `y` is provided) If *scaled*, the heatmap's y coordinates are given by *y0* and *dy* (the default behavior when `y` is not provided)
-        member __.ytype
-            with get () = Option.get _ytype
-            and set value = _ytype <- Some value
+        let mutable _connectgaps    : bool option = None
 
         /// Determines whether or not gaps (i.e. {nan} or missing values) in the `z` data are filled in.
         member __.connectgaps
             with get () = Option.get _connectgaps
             and set value = _connectgaps <- Some value
 
-        /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
-        member __.xaxis
-            with get () = Option.get _xaxis
-            and set value = _xaxis <- Some value
-
-        /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.xaxis2`, and so on.
-        member __.yaxis
-            with get () = Option.get _yaxis
-            and set value = _yaxis <- Some value
-
-        member __.ShouldSerializex0() = not _x0.IsNone
-        member __.ShouldSerializedx() = not _dx.IsNone
-        member __.ShouldSerializey0() = not _y0.IsNone
-        member __.ShouldSerializedy() = not _dy.IsNone
-        member __.ShouldSerializextype() = not _xtype.IsNone
-        member __.ShouldSerializeytype() = not _ytype.IsNone
         member __.ShouldSerializeconnectgaps() = not _connectgaps.IsNone
-        member __.ShouldSerializexaxis() = not _xaxis.IsNone
-        member __.ShouldSerializeyaxis() = not _yaxis.IsNone
-
 
         // Implictit ITrace
         member __.``type``
             with get () = Option.get _type
             and set value = _type <- Some value
 
-        member __.ShouldSerializetype() = (__ :> ITrace).ShouldSerializetype()
-        
+        member __.ShouldSerializetype() = not _type.IsNone
+
         // Implictit ITraceInfo
         member __.name
             with get () = Option.get _name
             and set value = _name <- Some value
-        
         member __.ShouldSerializename() = not _name.IsNone
-       // member __.ShouldSerializeiname() = (__ :> ITraceInfo).ShouldSerializename() //temporalily
 
         member __.visible
             with get () = Option.get _visible
             and set value = _visible <- Some value
-        member __.ShouldSerializevisible() = (__ :> ITraceInfo).ShouldSerializevisible()
+        member __.ShouldSerializevisible() = not _visible.IsNone
 
         member __.showlegend
             with get () = Option.get _showlegend
             and set value = _showlegend <- Some value
-        member __.ShouldSerializeshowlegend() = (__ :> ITraceInfo).ShouldSerializeshowlegend()
+        member __.ShouldSerializeshowlegend() = not _showlegend.IsNone
 
         member __.legendgroup
             with get () = Option.get _legendgroup
             and set value = _legendgroup <- Some value
-        member __.ShouldSerializelegendgroup() = (__ :> ITraceInfo).ShouldSerializelegendgroup()
+        member __.ShouldSerializelegendgroup() = not _legendgroup.IsNone
 
         member __.opacity
             with get () = Option.get _opacity
             and set value = _opacity <- Some value
-        member __.ShouldSerializeopacity() = (__ :> ITraceInfo).ShouldSerializeopacity()
+        member __.ShouldSerializeopacity() = not _opacity.IsNone
 
         member __.uid
             with get () = Option.get _uid
             and set value = _uid <- Some value
-        member __.ShouldSerializeuid() = (__ :> ITraceInfo).ShouldSerializeuid()
+        member __.ShouldSerializeuid() = not _uid.IsNone
 
         member __.hoverinfo
             with get () = Option.get _hoverinfo
             and set value = _hoverinfo <- Some value
-        member __.ShouldSerializehoverinfo() = (__ :> ITraceInfo).ShouldSerializehoverinfo()
+        member __.ShouldSerializehoverinfo() = not _hoverinfo.IsNone
 
         member __.stream
             with get () = Option.get _stream
             and set value = _stream <- Some value
-        member __.ShouldSerializestream() = (__ :> ITraceInfo).ShouldSerializestream()
+        member __.ShouldSerializestream() = not _stream.IsNone
 
-        // Implictit ITextLabel
+        // Implictit ITextLabel          
         member __.text
             with get () = Option.get _text
             and set value = _text <- Some value
-        member __.ShouldSerializetext() = (__ :> ITextLabel).ShouldSerializetext()
+        member __.ShouldSerializetext() = not _text.IsNone
 
         member __.textposition
             with get () = Option.get _textposition
             and set value = _textposition <- Some value
-        member __.ShouldSerializetextposition() = (__ :> ITextLabel).ShouldSerializetextposition()
+        member __.ShouldSerializetextposition() = not _textposition.IsNone
 
         member __.textfont
             with get () = Option.get _textfont
             and set value = _textfont <- Some value
-        member __.ShouldSerializetextfont() = (__ :> ITextLabel).ShouldSerializetextfont()
+        member __.ShouldSerializetextfont() = not _textfont.IsNone
 
         member __.textsrc
             with get () = Option.get _textsrc
             and set value = _textsrc <- Some value
-        member __.ShouldSerializetextsrc() = (__ :> ITextLabel).ShouldSerializetextpositionsrc()
+        member __.ShouldSerializetextsrc() = not _textsrc.IsNone
 
         member __.textpositionsrc
             with get () = Option.get _textpositionsrc
             and set value = _textpositionsrc <- Some value
-        member __.ShouldSerializetextpositionsrc() = (__ :> ITextLabel).ShouldSerializetextpositionsrc()
-
-        // Implictit IColormap
-
+        member __.ShouldSerializetextpositionsrc() = not _textpositionsrc.IsNone
+        
+        // Implictit IMapZ
         member __.z
             with get () = Option.get _z
             and set value = _z <- Some value
-        member __.ShouldSerializez() = (__ :> IColormap).ShouldSerializez()
+        member __.ShouldSerializez() = not _z.IsNone
 
         member __.x
             with get () = Option.get _x
             and set value = _x <- Some value
-        member __.ShouldSerializex() = (__ :> IColormap).ShouldSerializex()
+        member __.ShouldSerializex() = not _x.IsNone
 
         member __.y
             with get () = Option.get _y
             and set value = _y <- Some value
-        member __.ShouldSerializey() = (__ :> IColormap).ShouldSerializey()
-
-        member __.transpose
-            with get () = Option.get _transpose
-            and set value = _transpose <- Some value
-        member __.ShouldSerializetranspose() = (__ :> IColormap).ShouldSerializetranspose()
-
-        member __.zauto
-            with get () = Option.get _zauto
-            and set value = _zauto <- Some value
-        member __.ShouldSerializezauto() = (__ :> IColormap).ShouldSerializezauto()
-
-        member __.zmin
-            with get () = Option.get _zmin
-            and set value = _zmin <- Some value
-        member __.ShouldSerializezmin() = (__ :> IColormap).ShouldSerializezmin()
-
-        member __.zmax
-            with get () = Option.get _zmax
-            and set value = _zmax <- Some value
-        member __.ShouldSerializezmax() = (__ :> IColormap).ShouldSerializezmax()
-
-        member __.colorscale
-            with get () = Option.get _colorscale
-            and set value = _colorscale <- Some value
-        member __.ShouldSerializecolorscale() = (__ :> IColormap).ShouldSerializecolorscale()
-
-        member __.autocolorscale
-            with get () = Option.get _autocolorscale
-            and set value = _autocolorscale <- Some value
-        member __.ShouldSerializeautocolorscale() = (__ :> IColormap).ShouldSerializeautocolorscale()
-
-        member __.reversescale
-            with get () = Option.get _reversescale
-            and set value = _reversescale <- Some value
-        member __.ShouldSerializereversescale() = (__ :> IColormap).ShouldSerializereversescale()
-
-        member __.showscale
-            with get () = Option.get _showscale
-            and set value = _showscale <- Some value
-        member __.ShouldSerializeshowscale() = (__ :> IColormap).ShouldSerializeshowscale()
+        member __.ShouldSerializey() = not _y.IsNone
         
-        member __.zsmooth
-            with get () = Option.get _zsmooth
-            and set value = _zsmooth <- Some value
-        member __.ShouldSerializezsmooth() = (__ :> IColormap).ShouldSerializezsmooth()
+        /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
+        member __.x0
+            with get () = Option.get _x0
+            and set value = _x0 <- Some value
+        member __.ShouldSerializex0() = not _x0.IsNone
 
-        member __.colorbar
-            with get () = Option.get _colorbar
-            and set value = _colorbar <- Some value
-        member __.ShouldSerializecolorbar() = (__ :> IColormap).ShouldSerializecolorbar()
+        /// Sets the x coordinate step. See `x0` for more info.
+        member __.dx
+            with get () = Option.get _dx
+            and set value = _dx <- Some value
+        member __.ShouldSerializedx() = not _dx.IsNone
 
+        /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
+        member __.y0
+            with get () = Option.get _y0
+            and set value = _y0 <- Some value
+        member __.ShouldSerializey0() = not _y0.IsNone
+
+        /// Sets the y coordinate step. See `y0` for more info.
+        member __.dy
+            with get () = Option.get _dy
+            and set value = _dy <- Some value
+        member __.ShouldSerializedy() = not _dy.IsNone
+
+        /// If *array*, the heatmap's x coordinates are given by *x* (the default behavior when `x` is provided). If *scaled*, the heatmap's x coordinates are given by *x0* and *dx* (the default behavior when `x` is not provided).
+        member __.xtype
+            with get () = Option.get _xtype
+            and set value = _xtype <- Some value
+        member __.ShouldSerializextype() = not _xtype.IsNone
+        /// If *array*, the heatmap's y coordinates are given by *y* (the default behavior when `y` is provided) If *scaled*, the heatmap's y coordinates are given by *y0* and *dy* (the default behavior when `y` is not provided)
+        member __.ytype
+            with get () = Option.get _ytype
+            and set value = _ytype <- Some value
+        member __.ShouldSerializeytype() = not _ytype.IsNone
+
+        /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
+        member __.xaxis
+            with get () = Option.get _xaxis
+            and set value = _xaxis <- Some value
+        member __.ShouldSerializexaxis() = not _xaxis.IsNone
+
+        /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.xaxis2`, and so on.
+        member __.yaxis
+            with get () = Option.get _yaxis
+            and set value = _yaxis <- Some value        
+        member __.ShouldSerializeyaxis() = not _yaxis.IsNone
+        
         member __.zsrc
             with get () = Option.get _zsrc
             and set value = _zsrc <- Some value
-        member __.ShouldSerializezsrc() = (__ :> IColormap).ShouldSerializezsrc()
+        member __.ShouldSerializezsrc() = not _zsrc.IsNone
 
         member __.xsrc
             with get () = Option.get _xsrc
             and set value = _xsrc <- Some value
-        member __.ShouldSerializexsrc() = (__ :> IColormap).ShouldSerializexsrc()
+        member __.ShouldSerializexsrc() = not _xsrc.IsNone
 
         member __.ysrc
             with get () = Option.get _ysrc
             and set value = _ysrc <- Some value
-        member __.ShouldSerializeysrc() = (__ :> IColormap).ShouldSerializeysrc()
+        member __.ShouldSerializeysrc() = not _ysrc.IsNone
+
+
+        // Implictit IColormap
+        member __.transpose
+            with get () = Option.get _transpose
+            and set value = _transpose <- Some value
+        member __.ShouldSerializetranspose() = not _transpose.IsNone
+
+        member __.zauto
+            with get () = Option.get _zauto
+            and set value = _zauto <- Some value
+        member __.ShouldSerializezauto() =  not _zauto.IsNone
+
+        member __.zmin
+            with get () = Option.get _zmin
+            and set value = _zmin <- Some value
+        member __.ShouldSerializezmin() =  not _zmin.IsNone
+
+        member __.zmax
+            with get () = Option.get _zmax
+            and set value = _zmax <- Some value
+        member __.ShouldSerializezmax() = not _zmax.IsNone
+
+        member __.colorscale
+            with get () = Option.get _colorscale
+            and set value = _colorscale <- Some value
+        member __.ShouldSerializecolorscale() = not _colorscale.IsNone
+
+        member __.autocolorscale
+            with get () = Option.get _autocolorscale
+            and set value = _autocolorscale <- Some value
+        member __.ShouldSerializeautocolorscale() = not _autocolorscale.IsNone
+
+        member __.reversescale
+            with get () = Option.get _reversescale
+            and set value = _reversescale <- Some value
+        member __.ShouldSerializereversescale() = not _reversescale.IsNone
+
+        member __.showscale
+            with get () = Option.get _showscale
+            and set value = _showscale <- Some value
+        member __.ShouldSerializeshowscale() = not _showscale.IsNone
+        
+        member __.zsmooth
+            with get () = Option.get _zsmooth
+            and set value = _zsmooth <- Some value
+        member __.ShouldSerializezsmooth() = not _zsmooth.IsNone
+
+        member __.colorbar
+            with get () = Option.get _colorbar
+            and set value = _colorbar <- Some value
+        member __.ShouldSerializecolorbar() = not _colorbar.IsNone
 
         interface ITrace with 
             member __.``type``
@@ -1676,8 +1696,8 @@ module TraceObjects =
             member __.ShouldSerializetextfont() = not _textfont.IsNone
             member __.ShouldSerializetextsrc() = not _textsrc.IsNone
             member __.ShouldSerializetextpositionsrc() = not _textpositionsrc.IsNone
-       
-        interface IColormap with 
+        
+        interface IMapZ with 
             /// Sets the z data.
             member __.z
                 with get () = Option.get _z
@@ -1688,10 +1708,68 @@ module TraceObjects =
                 with get () = Option.get _x
                 and set value = _x <- Some value
 
+            /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
+            member __.x0
+                with get () = Option.get _x0
+                and set value = _x0 <- Some value
+
+            /// Sets the x coordinate step. See `x0` for more info.
+            member __.dx
+                with get () = Option.get _dx
+                and set value = _dx <- Some value
+
+            /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
+            member __.y0
+                with get () = Option.get _y0
+                and set value = _y0 <- Some value
+
+            /// Sets the y coordinate step. See `y0` for more info.
+            member __.dy
+                with get () = Option.get _dy
+                and set value = _dy <- Some value
+
+            /// If *array*, the heatmap's x coordinates are given by *x* (the default behavior when `x` is provided). If *scaled*, the heatmap's x coordinates are given by *x0* and *dx* (the default behavior when `x` is not provided).
+            member __.xtype
+                with get () = Option.get _xtype
+                and set value = _xtype <- Some value
+
+            /// If *array*, the heatmap's y coordinates are given by *y* (the default behavior when `y` is provided) If *scaled*, the heatmap's y coordinates are given by *y0* and *dy* (the default behavior when `y` is not provided)
+            member __.ytype
+                with get () = Option.get _ytype
+                and set value = _ytype <- Some value
+
+            /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
+            member __.xaxis
+                with get () = Option.get _xaxis
+                and set value = _xaxis <- Some value
+
+            /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.xaxis2`, and so on.
+            member __.yaxis
+                with get () = Option.get _yaxis
+                and set value = _yaxis <- Some value                
+
             /// Sets the y coordinates.
             member __.y
                 with get () = Option.get _y
                 and set value = _y <- Some value
+ 
+ 
+             /// Sets the source reference on plot.ly for  z .
+            member __.zsrc
+                with get () = Option.get _zsrc
+                and set value = _zsrc <- Some value
+
+            /// Sets the source reference on plot.ly for  x .
+            member __.xsrc
+                with get () = Option.get _xsrc
+                and set value = _xsrc <- Some value
+
+            /// Sets the source reference on plot.ly for  y .
+            member __.ysrc
+                with get () = Option.get _ysrc
+                and set value = _ysrc <- Some value
+                       
+        interface IColormap with 
 
             /// Transposes the z data.
             member __.transpose
@@ -1742,38 +1820,23 @@ module TraceObjects =
                 with get () = Option.get _colorbar
                 and set value = _colorbar <- Some value
 
-            /// Sets the source reference on plot.ly for  z .
-            member __.zsrc
-                with get () = Option.get _zsrc
-                and set value = _zsrc <- Some value
 
-            /// Sets the source reference on plot.ly for  x .
-            member __.xsrc
-                with get () = Option.get _xsrc
-                and set value = _xsrc <- Some value
-
-            /// Sets the source reference on plot.ly for  y .
-            member __.ysrc
-                with get () = Option.get _ysrc
-                and set value = _ysrc <- Some value
-
-
-            member __.ShouldSerializez() = not _z.IsNone
-            member __.ShouldSerializex() = not _x.IsNone
-            member __.ShouldSerializey() = not _y.IsNone
-            member __.ShouldSerializetranspose() = not _transpose.IsNone
-            member __.ShouldSerializezauto() = not _zauto.IsNone
-            member __.ShouldSerializezmin() = not _zmin.IsNone
-            member __.ShouldSerializezmax() = not _zmax.IsNone
-            member __.ShouldSerializecolorscale() = not _colorscale.IsNone
-            member __.ShouldSerializeautocolorscale() = not _autocolorscale.IsNone
-            member __.ShouldSerializereversescale() = not _reversescale.IsNone
-            member __.ShouldSerializeshowscale() = not _showscale.IsNone
-            member __.ShouldSerializezsmooth() = not _zsmooth.IsNone
-            member __.ShouldSerializecolorbar() = not _colorbar.IsNone
-            member __.ShouldSerializezsrc() = not _zsrc.IsNone
-            member __.ShouldSerializexsrc() = not _xsrc.IsNone
-            member __.ShouldSerializeysrc() = not _ysrc.IsNone
+//            member __.ShouldSerializez() = not _z.IsNone
+//            member __.ShouldSerializex() = not _x.IsNone
+//            member __.ShouldSerializey() = not _y.IsNone
+//            member __.ShouldSerializetranspose() = not _transpose.IsNone
+//            member __.ShouldSerializezauto() = not _zauto.IsNone
+//            member __.ShouldSerializezmin() = not _zmin.IsNone
+//            member __.ShouldSerializezmax() = not _zmax.IsNone
+//            member __.ShouldSerializecolorscale() = not _colorscale.IsNone
+//            member __.ShouldSerializeautocolorscale() = not _autocolorscale.IsNone
+//            member __.ShouldSerializereversescale() = not _reversescale.IsNone
+//            member __.ShouldSerializeshowscale() = not _showscale.IsNone
+//            member __.ShouldSerializezsmooth() = not _zsmooth.IsNone
+//            member __.ShouldSerializecolorbar() = not _colorbar.IsNone
+//            member __.ShouldSerializezsrc() = not _zsrc.IsNone
+//            member __.ShouldSerializexsrc() = not _xsrc.IsNone
+//            member __.ShouldSerializeysrc() = not _ysrc.IsNone
 
 
 
