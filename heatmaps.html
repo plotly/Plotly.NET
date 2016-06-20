@@ -81,13 +81,24 @@ When creating heatmap charts, it is usually desirable to provide the values in m
 <span class="l">2: </span>
 <span class="l">3: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs10', 10)" onmouseover="showTip(event, 'fs10', 10)" class="i">Chart</span><span class="o">.</span><span class="i">HeatMap</span>(<span onmouseout="hideTip(event, 'fs3', 11)" onmouseover="showTip(event, 'fs3', 11)" class="i">matrix</span>,<span onmouseout="hideTip(event, 'fs5', 12)" onmouseover="showTip(event, 'fs5', 12)" class="i">colnames</span>,<span onmouseout="hideTip(event, 'fs4', 13)" onmouseover="showTip(event, 'fs4', 13)" class="i">rownames</span>,<span class="i">Colorscale</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs6', 14)" onmouseover="showTip(event, 'fs6', 14)" class="i">colorscaleValue</span>,<span class="i">Showscale</span><span class="o">=</span><span class="k">true</span>)
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs10', 15)" onmouseover="showTip(event, 'fs10', 15)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs11', 16)" onmouseover="showTip(event, 'fs11', 16)" class="f">withSize</span>(<span class="n">700.</span>,<span class="n">500.</span>)
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs10', 17)" onmouseover="showTip(event, 'fs10', 17)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs12', 18)" onmouseover="showTip(event, 'fs12', 18)" class="f">withMarginSize</span>(<span class="i">left</span><span class="o">=</span><span class="n">200.</span>)
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs10', 10)" onmouseover="showTip(event, 'fs10', 10)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs11', 11)" onmouseover="showTip(event, 'fs11', 11)" class="f">Heatmap</span>(<span onmouseout="hideTip(event, 'fs3', 12)" onmouseover="showTip(event, 'fs3', 12)" class="i">matrix</span>,<span onmouseout="hideTip(event, 'fs5', 13)" onmouseover="showTip(event, 'fs5', 13)" class="i">colnames</span>,<span onmouseout="hideTip(event, 'fs4', 14)" onmouseover="showTip(event, 'fs4', 14)" class="i">rownames</span>,<span class="i">Colorscale</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs6', 15)" onmouseover="showTip(event, 'fs6', 15)" class="i">colorscaleValue</span>,<span class="i">Showscale</span><span class="o">=</span><span class="k">true</span>)
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs10', 16)" onmouseover="showTip(event, 'fs10', 16)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs12', 17)" onmouseover="showTip(event, 'fs12', 17)" class="f">withSize</span>(<span class="n">700.</span>,<span class="n">500.</span>)
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs10', 18)" onmouseover="showTip(event, 'fs10', 18)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs13', 19)" onmouseover="showTip(event, 'fs13', 19)" class="f">withMarginSize</span>(<span class="i">Left</span><span class="o">=</span><span class="n">200.</span>)
 </code></pre></td>
 </tr>
 </table>
-<table class="pre"><tr><td><pre><code>No value has been returned</code></pre></td></tr></table>
+<div id="85e92a64-2191-4679-93dd-493635cc1f1e" style="width: 500px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>        
+  <script>
+    var data = [{"type":"heatmap","z":[[1.0,1.5,0.7,2.7],[2.0,0.5,1.2,1.4],[0.1,2.6,2.4,3.0]],"x":["Tp0","Tp30","Tp60","Tp160"],"y":["p3","p2","p1"],"colorscale":[[0.0,"#3D9970"],[1.0,"#001f3f"]],"showscale":true}];
+    var layout = {"margin":{"l":200.0},"width":700.0,"height":500.0};
+    Plotly.newPlot('85e92a64-2191-4679-93dd-493635cc1f1e', data, layout);
+  </script>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs10', 20)" onmouseover="showTip(event, 'fs10', 20)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs14', 21)" onmouseover="showTip(event, 'fs14', 21)" class="f">Show</span>
+</code></pre></td>
+</tr>
+</table>
 
 <div class="tip" id="fs1">Multiple items<br />namespace FSharp<br /><br />--------------------<br />namespace Microsoft.FSharp</div>
 <div class="tip" id="fs2">namespace FSharp.Plotly</div>
@@ -98,41 +109,42 @@ When creating heatmap charts, it is usually desirable to provide the values in m
 <div class="tip" id="fs7">module StyleOption<br /><br />from FSharp.Plotly</div>
 <div class="tip" id="fs8">type ColorScale =<br />&#160;&#160;| Custom of seq&lt;float * string&gt;<br />&#160;&#160;| RdBu<br />&#160;&#160;| Earth<br />&#160;&#160;| Blackbody<br />&#160;&#160;| YIOrRd<br />&#160;&#160;| YIGnBu<br />&#160;&#160;| Bluered<br />&#160;&#160;| Portland<br />&#160;&#160;| Electric<br />&#160;&#160;| Jet<br />&#160;&#160;...<br />&#160;&#160;static member convert : (ColorScale -&gt; obj)<br /><br />Full name: FSharp.Plotly.StyleOption.ColorScale</div>
 <div class="tip" id="fs9">union case StyleOption.ColorScale.Custom: seq&lt;float * string&gt; -&gt; StyleOption.ColorScale</div>
-<div class="tip" id="fs10">type Chart =<br />&#160;&#160;static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Showlegend:bool * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; -&gt; GenericChart<br />&#160;&#160;static member Bar : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?Marker:(Marker -&gt; Marker) -&gt; GenericChart<br />&#160;&#160;static member BoxPlot : ?x:&#39;a0 * ?y:&#39;a1 * ?Name:string * ?Showlegend:bool * ?Color:string * ?Opacity:float * ?Whiskerwidth:float * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:float * ?Pointpos:float * ?Line:LineOptions * ?Marker:MarkerOptions -&gt; GenericChart<br />&#160;&#160;static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a3 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?MarkerSymbol:Symbol -&gt; GenericChart<br />&#160;&#160;static member Column : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?Marker:(Marker -&gt; Marker) -&gt; GenericChart<br />&#160;&#160;static member Contour : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Name:string * ?Colorscale:ColorScale * ?Showscale:bool * ?zSmooth:SmoothAlg * ?Colorbar:#Colorbar -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)<br />&#160;&#160;static member Doughnut : values:&#39;a0 * ?labels:&#39;a1 * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Hole:float * ?Hoverinfo:string * ?Textinfo:string * ?Textposition:TextPosition -&gt; GenericChart<br />&#160;&#160;static member Heatmap : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?ColNames:seq&lt;#IConvertible&gt; * ?RowNames:seq&lt;#IConvertible&gt; * ?Name:string * ?Colorscale:ColorScale * ?Showscale:bool * ?zSmooth:SmoothAlg * ?Colorbar:#Colorbar -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)<br />&#160;&#160;static member Line : xy:seq&lt;#IConvertible * #IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Dash:DrawingStyle * ?Showlegend:bool * ?Width:&#39;a2 * ?Color:string * ?Opacity:float * ?MarkerSymbol:Symbol * ?Labels:seq&lt;#IConvertible&gt; -&gt; GenericChart<br />&#160;&#160;static member Line : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Dash:DrawingStyle * ?Showlegend:bool * ?Width:&#39;a2 * ?Color:string * ?Opacity:float * ?MarkerSymbol:Symbol * ?Labels:seq&lt;#IConvertible&gt; -&gt; GenericChart<br />&#160;&#160;...<br /><br />Full name: FSharp.Plotly.Chart</div>
-<div class="tip" id="fs11">static member Chart.withSize : width:float * heigth:float -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
-<div class="tip" id="fs12">static member Chart.withMarginSize : ?Left:float * ?Right:float * ?Top:float * ?Bottom:float * ?Pad:float * ?Autoexpand:bool -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
+<div class="tip" id="fs10">type Chart =<br />&#160;&#160;static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:FontOptions * ?Dash:DrawingStyle * ?Width:&#39;a4 -&gt; GenericChart<br />&#160;&#160;static member Bar : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:FontOptions * ?Marker:(Marker -&gt; Marker) -&gt; GenericChart<br />&#160;&#160;static member Bubble : xyz:seq&lt;#IConvertible * #IConvertible * #IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:&#39;a3 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:FontOptions -&gt; GenericChart<br />&#160;&#160;static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:&#39;a3 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:FontOptions -&gt; GenericChart<br />&#160;&#160;static member Column : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:FontOptions * ?Marker:(Marker -&gt; Marker) -&gt; GenericChart<br />&#160;&#160;static member Contour : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Opacity:float * ?Colorscale:ColorScale * ?Showscale:bool * ?zSmooth:SmoothAlg * ?Colorbar:#Colorbar -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)<br />&#160;&#160;static member Heatmap : data:seq&lt;#seq&lt;&#39;b&gt;&gt; * ?ColNames:seq&lt;#IConvertible&gt; * ?RowNames:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Opacity:float * ?Colorscale:ColorScale * ?Showscale:bool * ?zSmooth:SmoothAlg * ?Colorbar:#Colorbar -&gt; GenericChart (requires &#39;b :&gt; IConvertible)<br />&#160;&#160;static member Line : xy:seq&lt;#IConvertible * #IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:FontOptions * ?Dash:DrawingStyle * ?Width:&#39;a4 -&gt; GenericChart<br />&#160;&#160;static member Line : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:FontOptions * ?Dash:DrawingStyle * ?Width:&#39;a4 -&gt; GenericChart<br />&#160;&#160;static member Point : xy:seq&lt;#IConvertible * #IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:FontOptions -&gt; GenericChart<br />&#160;&#160;...<br /><br />Full name: FSharp.Plotly.Chart</div>
+<div class="tip" id="fs11">static member Chart.Heatmap : data:seq&lt;#seq&lt;&#39;b&gt;&gt; * ?ColNames:seq&lt;#System.IConvertible&gt; * ?RowNames:seq&lt;#System.IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Opacity:float * ?Colorscale:StyleOption.ColorScale * ?Showscale:bool * ?zSmooth:StyleOption.SmoothAlg * ?Colorbar:#Colorbar -&gt; GenericChart.GenericChart (requires &#39;b :&gt; System.IConvertible)</div>
+<div class="tip" id="fs12">static member Chart.withSize : width:float * heigth:float -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
+<div class="tip" id="fs13">static member Chart.withMarginSize : ?Left:float * ?Right:float * ?Top:float * ?Bottom:float * ?Pad:float * ?Autoexpand:bool -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
+<div class="tip" id="fs14">static member Chart.Show : ch:GenericChart.GenericChart -&gt; unit</div>
 
         </div>
         <div class="span3">
           <img src="/FSharp.Plotly/img/logo.png" alt="FSharp.Plotly" style="width:150px;margin:10px" />  
           <ul class="nav nav-list" id="menu" style="margin-top: 20px;">
             <li class="nav-header">FSharp.Plotly</li>
-            <li><a href="/FSharp.Plotly/index.html">Home page</a></li>
+              <li><a href="/FSharp.Plotly/index.html">Home page</a></li>
             <li class="divider"></li>
-            
+              <li><a href="/FSharp.Plotly/getting-started.html">Getting started</a></li>
             <li class="nav-header">Plotly Charts</li>
-            <li><a href="/FSharp.Plotly/line-scatter-plots.html">Line and Scatter Plots</a></li>
-            <li><a href="/FSharp.Plotly/range-plots.html">Line and Scatter Plots</a></li>
-            <li><a href="/FSharp.Plotly/pie-daughnut-charts.html">Pie and Doughnut Charts</a></li>
-            <li><a href="/FSharp.Plotly/bar-charts.html">Bar</a></li>
-            <li><a href="/FSharp.Plotly/box-plots.html">Box Plots</a></li>
-            <li><a href="/FSharp.Plotly/area-plots.html">Area Plots</a></li>
-            <li><a href="/FSharp.Plotly/heatmaps.html">Heatmaps</a></li>
-            <li><a href="/FSharp.Plotly/bubble-charts.html">Bubble Charts</a></li>
-            <li><a href="/FSharp.Plotly/contour-plots.html">Contour Plots</a></li>
-            <li><a href="/FSharp.Plotly/histograms.html">Histograms</a></li>
-            <li><a href="/FSharp.Plotly/2d-histograms.html">2D Histograms</a></li>
-            <li><a href="/FSharp.Plotly/polar-charts.html">Polar Charts</a></li>
-              
+              <li><a href="/FSharp.Plotly/area-plots.html">Area Plots</a></li>
+              <li><a href="/FSharp.Plotly/bar-charts.html">Bar</a></li>              
+              <li><a href="/FSharp.Plotly/box-plots.html">Box Plots</a></li>
+              <li><a href="/FSharp.Plotly/bubble-charts.html">Bubble Charts</a></li>
+              <li><a href="/FSharp.Plotly/contour-plots.html">Contour Plots</a></li>
+              <li><a href="/FSharp.Plotly/heatmaps.html">Heatmaps</a></li>
+              <li><a href="/FSharp.Plotly/histograms.html">Histograms</a></li>
+              <li><a href="/FSharp.Plotly/2d-histograms.html">2D Histograms</a></li>  
+              <li><a href="/FSharp.Plotly/line-scatter-plots.html">Line and Scatter Plots</a></li>                          
+              <li><a href="/FSharp.Plotly/pie-daughnut-charts.html">Pie and Doughnut Charts</a></li>
+              <li><a href="/FSharp.Plotly/polar-charts.html">Polar Charts</a></li>
+              <li><a href="/FSharp.Plotly/range-plots.html">Range Plots</a></li>                                                             
             <li class="nav-header">Plotly 3d-Charts</li>
-            <li><a href="/FSharp.Plotly/3d-scatter-plots.html">3D Scatter Plots</a></li>
-            <li><a href="/FSharp.Plotly/3d-line-plots.html">3D Line Plots</a></li>
-            <li><a href="/FSharp.Plotly/3d-surface-plots.html">3D Surface Plots</a></li>
-            
-
+              <li><a href="/FSharp.Plotly/3d-line-plots.html">3D Line Plots</a></li>
+              <li><a href="/FSharp.Plotly/3d-scatter-plots.html">3D Scatter Plots</a></li>              
+              <li><a href="/FSharp.Plotly/3d-surface-plots.html">3D Surface Plots</a></li>            
+            <li class="nav-header">Plotly WPF</li>
+              <li><a href="/FSharp.Plotly/plotly-wpf.html">Using Plotly PopUp window</a></li>            
 
             <li class="nav-header">Documentation</li>
-            <li><a href="/FSharp.Plotly/reference/index.html">API Reference</a></li>
+              <li><a href="/FSharp.Plotly/reference/index.html">API Reference</a></li>
           </ul>
         </div>
       </div>

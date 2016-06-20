@@ -42,7 +42,7 @@
   <span>Namespace: FSharp.Plotly</span><br />
 </p>
 <div class="xmldoc">
-<p>Module</p>
+<p>Module to represent a GenericChart</p>
 
 </div>
 
@@ -74,10 +74,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '24', 24)" onmouseover="showTip(event, '24', 24)">
+          <code onmouseout="hideTip(event, '29', 29)" onmouseover="showTip(event, '29', 29)">
             addLayout layout gChart
           </code>
-          <div class="tip" id="24">
+          <div class="tip" id="29">
             <strong>Signature:</strong> layout:(Layout -&gt; Layout) -&gt; gChart:GenericChart -&gt; GenericChart<br />
                       </div>
         </td>
@@ -92,10 +92,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '25', 25)" onmouseover="showTip(event, '25', 25)">
+          <code onmouseout="hideTip(event, '30', 30)" onmouseover="showTip(event, '30', 30)">
             addLayouts layouts gChart
           </code>
-          <div class="tip" id="25">
+          <div class="tip" id="30">
             <strong>Signature:</strong> layouts:(Layout -&gt; Layout) list -&gt; gChart:GenericChart -&gt; GenericChart<br />
                       </div>
         </td>
@@ -110,10 +110,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '26', 26)" onmouseover="showTip(event, '26', 26)">
+          <code onmouseout="hideTip(event, '31', 31)" onmouseover="showTip(event, '31', 31)">
             combine gCharts
           </code>
-          <div class="tip" id="26">
+          <div class="tip" id="31">
             <strong>Signature:</strong> gCharts:seq&lt;GenericChart&gt; -&gt; GenericChart<br />
                       </div>
         </td>
@@ -128,10 +128,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '27', 27)" onmouseover="showTip(event, '27', 27)">
+          <code onmouseout="hideTip(event, '32', 32)" onmouseover="showTip(event, '32', 32)">
             countTrace gChart
           </code>
-          <div class="tip" id="27">
+          <div class="tip" id="32">
             <strong>Signature:</strong> gChart:GenericChart -&gt; int<br />
                       </div>
         </td>
@@ -148,10 +148,30 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '28', 28)" onmouseover="showTip(event, '28', 28)">
+          <code onmouseout="hideTip(event, '33', 33)" onmouseover="showTip(event, '33', 33)">
+            existsTrace f gChart
+          </code>
+          <div class="tip" id="33">
+            <strong>Signature:</strong> f:(ITrace -&gt; bool) -&gt; gChart:GenericChart -&gt; bool<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/GenericChart.fs#L179-179" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Creates a new GenericChart whose traces are the results of applying the given function to each of the trace of the GenericChart.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '34', 34)" onmouseover="showTip(event, '34', 34)">
             getLayouts gChart
           </code>
-          <div class="tip" id="28">
+          <div class="tip" id="34">
             <strong>Signature:</strong> gChart:GenericChart -&gt; (Layout -&gt; Layout) list<br />
                       </div>
         </td>
@@ -166,10 +186,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '29', 29)" onmouseover="showTip(event, '29', 29)">
+          <code onmouseout="hideTip(event, '35', 35)" onmouseover="showTip(event, '35', 35)">
             getTraces gChart
           </code>
-          <div class="tip" id="29">
+          <div class="tip" id="35">
             <strong>Signature:</strong> gChart:GenericChart -&gt; ITrace list<br />
                       </div>
         </td>
@@ -184,10 +204,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '30', 30)" onmouseover="showTip(event, '30', 30)">
+          <code onmouseout="hideTip(event, '36', 36)" onmouseover="showTip(event, '36', 36)">
             mapiTrace f gChart
           </code>
-          <div class="tip" id="30">
+          <div class="tip" id="36">
             <strong>Signature:</strong> f:(int -&gt; ITrace -&gt; ITrace) -&gt; gChart:GenericChart -&gt; GenericChart<br />
                       </div>
         </td>
@@ -205,10 +225,10 @@ The integer index passed to the function indicates the index (from 0) of element
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '31', 31)" onmouseover="showTip(event, '31', 31)">
+          <code onmouseout="hideTip(event, '37', 37)" onmouseover="showTip(event, '37', 37)">
             mapTrace f gChart
           </code>
-          <div class="tip" id="31">
+          <div class="tip" id="37">
             <strong>Signature:</strong> f:(ITrace -&gt; ITrace) -&gt; gChart:GenericChart -&gt; GenericChart<br />
                       </div>
         </td>
@@ -225,10 +245,50 @@ The integer index passed to the function indicates the index (from 0) of element
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '32', 32)" onmouseover="showTip(event, '32', 32)">
+          <code onmouseout="hideTip(event, '38', 38)" onmouseover="showTip(event, '38', 38)">
+            ofTraceObject trace layout
+          </code>
+          <div class="tip" id="38">
+            <strong>Signature:</strong> trace:ITrace -&gt; layout:Layout -&gt; GenericChart<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/GenericChart.fs#L185-185" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Converts from a trace object and a layout object into GenericChart</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '39', 39)" onmouseover="showTip(event, '39', 39)">
+            ofTraceObjects traces layout
+          </code>
+          <div class="tip" id="39">
+            <strong>Signature:</strong> traces:ITrace list -&gt; layout:Layout -&gt; GenericChart<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/GenericChart.fs#L189-189" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Converts from a list of trace objects and a layout object into GenericChart</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '40', 40)" onmouseover="showTip(event, '40', 40)">
             toChartHTML gChart
           </code>
-          <div class="tip" id="32">
+          <div class="tip" id="40">
             <strong>Signature:</strong> gChart:GenericChart -&gt; string<br />
                       </div>
         </td>
@@ -245,10 +305,10 @@ The integer index passed to the function indicates the index (from 0) of element
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '33', 33)" onmouseover="showTip(event, '33', 33)">
+          <code onmouseout="hideTip(event, '41', 41)" onmouseover="showTip(event, '41', 41)">
             toChartHtmlWithSize width height gChart
           </code>
-          <div class="tip" id="33">
+          <div class="tip" id="41">
             <strong>Signature:</strong> width:int -&gt; height:int -&gt; gChart:GenericChart -&gt; string<br />
                       </div>
         </td>
@@ -265,10 +325,10 @@ The integer index passed to the function indicates the index (from 0) of element
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '34', 34)" onmouseover="showTip(event, '34', 34)">
+          <code onmouseout="hideTip(event, '42', 42)" onmouseover="showTip(event, '42', 42)">
             toEmbeddedHTML gChart
           </code>
-          <div class="tip" id="34">
+          <div class="tip" id="42">
             <strong>Signature:</strong> gChart:GenericChart -&gt; string<br />
                       </div>
         </td>
@@ -290,32 +350,31 @@ The integer index passed to the function indicates the index (from 0) of element
           <img src="/FSharp.Plotly/img/logo.png" alt="FSharp.Plotly" style="width:150px;margin:10px" />  
           <ul class="nav nav-list" id="menu" style="margin-top: 20px;">
             <li class="nav-header">FSharp.Plotly</li>
-            <li><a href="/FSharp.Plotly/index.html">Home page</a></li>
+              <li><a href="/FSharp.Plotly/index.html">Home page</a></li>
             <li class="divider"></li>
-            
+              <li><a href="/FSharp.Plotly/getting-started.html">Getting started</a></li>
             <li class="nav-header">Plotly Charts</li>
-            <li><a href="/FSharp.Plotly/line-scatter-plots.html">Line and Scatter Plots</a></li>
-            <li><a href="/FSharp.Plotly/range-plots.html">Line and Scatter Plots</a></li>
-            <li><a href="/FSharp.Plotly/pie-daughnut-charts.html">Pie and Doughnut Charts</a></li>
-            <li><a href="/FSharp.Plotly/bar-charts.html">Bar</a></li>
-            <li><a href="/FSharp.Plotly/box-plots.html">Box Plots</a></li>
-            <li><a href="/FSharp.Plotly/area-plots.html">Area Plots</a></li>
-            <li><a href="/FSharp.Plotly/heatmaps.html">Heatmaps</a></li>
-            <li><a href="/FSharp.Plotly/bubble-charts.html">Bubble Charts</a></li>
-            <li><a href="/FSharp.Plotly/contour-plots.html">Contour Plots</a></li>
-            <li><a href="/FSharp.Plotly/histograms.html">Histograms</a></li>
-            <li><a href="/FSharp.Plotly/2d-histograms.html">2D Histograms</a></li>
-            <li><a href="/FSharp.Plotly/polar-charts.html">Polar Charts</a></li>
-              
+              <li><a href="/FSharp.Plotly/area-plots.html">Area Plots</a></li>
+              <li><a href="/FSharp.Plotly/bar-charts.html">Bar</a></li>              
+              <li><a href="/FSharp.Plotly/box-plots.html">Box Plots</a></li>
+              <li><a href="/FSharp.Plotly/bubble-charts.html">Bubble Charts</a></li>
+              <li><a href="/FSharp.Plotly/contour-plots.html">Contour Plots</a></li>
+              <li><a href="/FSharp.Plotly/heatmaps.html">Heatmaps</a></li>
+              <li><a href="/FSharp.Plotly/histograms.html">Histograms</a></li>
+              <li><a href="/FSharp.Plotly/2d-histograms.html">2D Histograms</a></li>  
+              <li><a href="/FSharp.Plotly/line-scatter-plots.html">Line and Scatter Plots</a></li>                          
+              <li><a href="/FSharp.Plotly/pie-daughnut-charts.html">Pie and Doughnut Charts</a></li>
+              <li><a href="/FSharp.Plotly/polar-charts.html">Polar Charts</a></li>
+              <li><a href="/FSharp.Plotly/range-plots.html">Range Plots</a></li>                                                             
             <li class="nav-header">Plotly 3d-Charts</li>
-            <li><a href="/FSharp.Plotly/3d-scatter-plots.html">3D Scatter Plots</a></li>
-            <li><a href="/FSharp.Plotly/3d-line-plots.html">3D Line Plots</a></li>
-            <li><a href="/FSharp.Plotly/3d-surface-plots.html">3D Surface Plots</a></li>
-            
-
+              <li><a href="/FSharp.Plotly/3d-line-plots.html">3D Line Plots</a></li>
+              <li><a href="/FSharp.Plotly/3d-scatter-plots.html">3D Scatter Plots</a></li>              
+              <li><a href="/FSharp.Plotly/3d-surface-plots.html">3D Surface Plots</a></li>            
+            <li class="nav-header">Plotly WPF</li>
+              <li><a href="/FSharp.Plotly/plotly-wpf.html">Using Plotly PopUp window</a></li>            
 
             <li class="nav-header">Documentation</li>
-            <li><a href="/FSharp.Plotly/reference/index.html">API Reference</a></li>
+              <li><a href="/FSharp.Plotly/reference/index.html">API Reference</a></li>
           </ul>
         </div>
       </div>
