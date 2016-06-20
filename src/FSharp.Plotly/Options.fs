@@ -193,13 +193,8 @@ type Options() =
     // Applies the styles to Bar()
     static member Bar
         (   
-            //plotType: string, 
-            ?TraceOptions:TraceOptions<_>, 
-            // data
             ?X      : seq<#IConvertible>,
-            ?Y      : seq<#IConvertible>,
-            ?Text   : seq<#IConvertible>,
-                                 
+            ?Y      : seq<#IConvertible>,                                 
             ?Marker: MarkerOptions,            
             ?R: _, ?T: _,
             ?Error_y: ErrorOptions,
@@ -207,30 +202,20 @@ type Options() =
             // 
             ?Orientation
         ) =
-            (fun (bar:('T :> Bar)) -> 
-                //bar.set_type plotType                     
-
+            (fun (bar:('T :> Bar)) ->       
                 X            |> Option.iter bar.set_x
-                Y            |> Option.iter bar.set_y
-//                Text         |> Option.iter bar.set_text -- temporarily
-                //form scattern --> textposition |> Option.iter (StyleOption.TextPosition.toString >> bar.set_textposition)
-                //form scattern --> mode         |> Option.iter (StyleOption.Mode.toString >> bar.set_mode)
-                //form scattern --> connectgaps  |> Option.iter bar.set_connectgaps
-                //form scattern --> fill         |> Option.iter (StyleOption.Fill.toString >> bar.set_fill)
-                //form scattern --> fillcolor    |> Option.iter bar.set_fillcolor                    
+                Y            |> Option.iter bar.set_y    
                 R            |> Option.iter bar.set_r
                 T            |> Option.iter bar.set_t
                 Orientation  |> Option.iter (StyleOption.Orientation.convert >> bar.set_orientation)
                     
-                // Update
-                //form scattern --> line         |> Option.iter (updatePropertyValueAndIgnore bar <@ bar.line     @>)
-                Marker       |> Option.iter (updatePropertyValueAndIgnore bar <@ bar.marker   @>)
-                //form scattern --> textfont     |> Option.iter (updatePropertyValueAndIgnore bar <@ bar.textfont @>)
+                // Update                
+                Marker       |> Option.iter (updatePropertyValueAndIgnore bar <@ bar.marker   @>)                
                 Error_x      |> Option.iter (updatePropertyValueAndIgnore bar <@ bar.error_x  @>)
                 Error_y      |> Option.iter (updatePropertyValueAndIgnore bar <@ bar.error_y  @>)
                     
                 // out ->
-                bar |> (optApply TraceOptions) 
+                bar
 
             ) 
 
@@ -608,12 +593,10 @@ type Options() =
     // Applies the styles to Pie()
     static member Pie
         (                
-            ?TraceOptions:TraceOptions<_>,
             ?Values,
             ?Labels,
             ?Label0,
             ?dLabel,   
-            ?Marker,
             ?Scalegroup,
             ?Textinfo,
             ?Textfont: FontOptions,                    
@@ -650,20 +633,19 @@ type Options() =
                 Pullsrc         |> Option.iter pie.set_pullsrc        
                 
                 // Update
-                Marker          |> Option.iter (updatePropertyValueAndIgnore pie <@ pie.marker          @>)
+                //Marker          |> Option.iter (updatePropertyValueAndIgnore pie <@ pie.marker          @>)
                 Textfont        |> Option.iter (updatePropertyValueAndIgnore pie <@ pie.textfont        @>)
                 Insidetextfont  |> Option.iter (updatePropertyValueAndIgnore pie <@ pie.insidetextfont  @>)
                 Outsidetextfont |> Option.iter (updatePropertyValueAndIgnore pie <@ pie.outsidetextfont @>)
                     
                 // out ->
-                pie |> (optApply TraceOptions) 
+                pie
             ) 
 
 
     // Applies the styles to Box()
     static member BoxPlot
-        (                
-            ?TraceOptions:TraceOptions<_>,
+        (                            
             ?Y,           
             ?X,           
             ?X0,          
@@ -674,8 +656,6 @@ type Options() =
             ?Jitter,      
             ?Pointpos,    
             ?Orientation, 
-            ?Line         : LineOptions,                         
-            ?Marker       : MarkerOptions,
             ?Fillcolor,   
             ?xAxis,       
             ?yAxis,       
@@ -700,12 +680,9 @@ type Options() =
                 yAxis        |> Option.iter boxPlot.set_yaxis       
                 Ysrc         |> Option.iter boxPlot.set_ysrc        
                 Xsrc         |> Option.iter boxPlot.set_xsrc        
-                // Update
-                Line         |> Option.iter (updatePropertyValueAndIgnore boxPlot <@ boxPlot.line   @>)
-                Marker       |> Option.iter (updatePropertyValueAndIgnore boxPlot <@ boxPlot.marker @>)
                 
                 // out ->
-                boxPlot |> (optApply TraceOptions) 
+                boxPlot
             ) 
   
     // Applies the styles to TraceObjects with IMapZ interface

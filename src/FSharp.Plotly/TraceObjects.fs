@@ -1298,6 +1298,15 @@ module TraceObjects =
             with get () = Option.get _marker
             and set value = _marker <- Some value
          member __.ShouldSerializemarker() = not _marker.IsNone
+        
+
+        interface ITrace with 
+            member __.``type``
+                with get () = Option.get _type
+                and set value = _type <- Some value
+
+            member __.ShouldSerializetype() = not _type.IsNone        
+        
         interface ITraceInfo with
             /// Sets the trace name. The trace name appear as the legend item and on hover.
             member __.name
