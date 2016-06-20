@@ -4,6 +4,7 @@ open System
 open ApplyHelper
 
 type TraceOptions<'T when 'T :> ITrace>  = 'T -> 'T
+type TraceInfoOptions<'T when 'T :> ITraceInfo>  = 'T -> 'T 
 type FontOptions   = Font -> Font
 type LineOptions   = Line -> Line
 type MarkerOptions = Marker -> Marker
@@ -17,8 +18,9 @@ type SceneOptions  = Scene -> Scene
 type LegendOptions = Legend -> Legend
 type ShapeOptions = Shape -> Shape
 type ProjectionOptions = Projection -> Projection
-
+type BinsOption = Bins -> Bins
 /// Functions provide the styling of the Chart objects
+
 type Options() =
     
     // // Applies the styles to TraceObjects with ITraceInfo interface
@@ -672,7 +674,7 @@ type Options() =
             ?Jitter,      
             ?Pointpos,    
             ?Orientation, 
-            ?Line        : LineOptions,                         
+            ?Line         : LineOptions,                         
             ?Marker       : MarkerOptions,
             ?Fillcolor,   
             ?xAxis,       
@@ -705,7 +707,45 @@ type Options() =
                 // out ->
                 boxPlot |> (optApply TraceOptions) 
             ) 
+  
+    // Applies the styles to TraceObjects with IMapZ interface
+    static member IMapZ
+        (                
+            ?Z : seq<#seq<#IConvertible>>,
+            ?X : seq<#IConvertible>,
+            ?Y : seq<#IConvertible>,            
+            ?X0             ,
+            ?dX             ,
+            ?Y0             ,
+            ?dY             ,
+            ?xType          ,
+            ?yType          ,
+            ?xAxis          ,
+            ?yAxis          ,
+            ?Zsrc           ,
+            ?Xsrc           ,
+            ?Ysrc
+        ) =
+            (fun (mapZ:('T :> IMapZ)) -> 
+                
+                Z              |> Option.iter mapZ.set_z         
+                X              |> Option.iter mapZ.set_x               
+                Y              |> Option.iter mapZ.set_y
+                X0             |> Option.iter mapZ.set_x0             
+                dX             |> Option.iter mapZ.set_dx             
+                Y0             |> Option.iter mapZ.set_y0            
+                dY             |> Option.iter mapZ.set_dy            
+                xType          |> Option.iter mapZ.set_xtype         
+                yType          |> Option.iter mapZ.set_ytype                          
+                xAxis          |> Option.iter mapZ.set_xaxis         
+                yAxis          |> Option.iter mapZ.set_yaxis         
+                Zsrc           |> Option.iter mapZ.set_zsrc       
+                Xsrc           |> Option.iter mapZ.set_xsrc       
+                Ysrc           |> Option.iter mapZ.set_ysrc  
 
+                // out ->
+                mapZ 
+            ) 
 
     // Applies the styles to TraceObjects with IColormap interface
     static member IColormap
@@ -739,44 +779,34 @@ type Options() =
                 // out ->
                 colorMap
             ) 
-  
-    // Applies the styles to TraceObjects with IMapZ interface
-    static member IMapZ
-        (                
-            ?Z : seq<#seq<#IConvertible>>,
-            ?X : seq<#IConvertible>,
-            ?Y : seq<#IConvertible>,            
-            ?X0             ,
-            ?dX             ,
-            ?Y0             ,
-            ?dY             ,
-            ?xType          ,
-            ?yType          ,
-            ?xAxis          ,
-            ?yAxis          ,
-            ?Zsrc           ,
-            ?Xsrc           ,
-            ?Ysrc
-        ) =
-            (fun (colorMap:('T :> Colormap)) -> 
-                
-                Z              |> Option.iter colorMap.set_z         
-                X              |> Option.iter colorMap.set_x               
-                Y              |> Option.iter colorMap.set_y
-                X0             |> Option.iter colorMap.set_x0             
-                dX             |> Option.iter colorMap.set_dx             
-                Y0             |> Option.iter colorMap.set_y0            
-                dY             |> Option.iter colorMap.set_dy            
-                xType          |> Option.iter colorMap.set_xtype         
-                yType          |> Option.iter colorMap.set_ytype                          
-                xAxis          |> Option.iter colorMap.set_xaxis         
-                yAxis          |> Option.iter colorMap.set_yaxis         
-                Zsrc           |> Option.iter colorMap.set_zsrc       
-                Xsrc           |> Option.iter colorMap.set_xsrc       
-                Ysrc           |> Option.iter colorMap.set_ysrc  
 
+    static member IHistogram
+        (                
+            ?histfunc       ,
+            ?histnorm       ,
+            ?autobinx       ,    
+            ?nbinsx         ,
+            ?xbins    : BinsOption      ,
+            ?autobiny       ,
+            ?nbinsy         ,
+            ?ybins      : BinsOption    ,
+            ?orientation    
+
+        ) =
+            (fun (histogram:('T :> IHistogram)) -> 
+                
+                histfunc              |> Option.iter (StyleOption.HistFunc.convert >> histogram.set_histfunc)      
+                histnorm              |> Option.iter (StyleOption.HistNorm.convert >> histogram.set_histnorm)          
+                autobinx              |> Option.iter histogram.set_autobinx
+                nbinsx                |> Option.iter histogram.set_nbinsx                     
+                autobiny              |> Option.iter histogram.set_autobiny           
+                nbinsy                |> Option.iter histogram.set_nbinsy               
+                orientation           |> Option.iter histogram.set_orientation                          
+                // Update
+                xbins         |> Option.iter (updatePropertyValueAndIgnore histogram <@ histogram.xbins   @>)
+                ybins         |> Option.iter (updatePropertyValueAndIgnore histogram <@ histogram.ybins   @>)
                 // out ->
-                colorMap 
+                histogram 
             ) 
 
 
@@ -829,10 +859,10 @@ type Options() =
 //            ) 
 
 
-   // ######################## 3d-Charts
+    // ######################## 3d-Charts
    
    
-   // Applies the styles to Scatter3d()
+    // Applies the styles to Scatter3d()
     static member Scatter3d
         (   
             ?X      : seq<#IConvertible>,
@@ -874,7 +904,31 @@ type Options() =
                 scatter
             ) 
 
+    // Applies the styles to Scatter3d()
+    static member Scene
+        (   
+            ?xAxis:AxisOptions,
+            ?yAxis:AxisOptions,
+            ?zAxis:AxisOptions,
+            ?isSubplotObj     ,
+            ?BgColor          ,
+            ?Camera           ,
+            ?Domain           ,
+            ?Aspectmode       ,
+            ?Aspectratio
+        ) =
+            (fun (scene:('T :> Scene)) -> 
+                isSubplotObj |> Option.iter scene.set__isSubplotObj
+                BgColor      |> Option.iter scene.set_bgcolor
+                
+                // Update
+                xAxis      |> Option.iter (updatePropertyValueAndIgnore scene <@ scene.xaxis  @>)
+                yAxis      |> Option.iter (updatePropertyValueAndIgnore scene <@ scene.yaxis  @>)
+                zAxis      |> Option.iter (updatePropertyValueAndIgnore scene <@ scene.zaxis  @>)
 
+                // out ->
+                scene
+            ) 
 
 
 

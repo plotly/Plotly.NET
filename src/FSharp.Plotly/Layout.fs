@@ -21,11 +21,11 @@ module Layout =
         let mutable _showlegend: bool option = None
         let mutable _dragmode: _ option = None
         let mutable _hovermode: _ option = None
-        let mutable _xaxis: Xaxis option = None
-        let mutable _xaxis1: Xaxis option = None
-        let mutable _xaxis2: Xaxis option = None
+        let mutable _xaxis: LinearAxis option = None
+        //let mutable _xaxis1: Xaxis option = None
+        let mutable _xaxis2: LinearAxis option = None
         let mutable _yaxis: LinearAxis option = None
-        let mutable _yaxis2: Yaxis option = None
+        let mutable _yaxis2: LinearAxis option = None
         let mutable _scene: Scene option = None
         let mutable _geo: Geo option = None
         let mutable _legend: Legend option = None
@@ -113,9 +113,9 @@ module Layout =
             with get () = Option.get _xaxis
             and set value = _xaxis <- Some value
 
-        member __.xaxis1
-            with get () = Option.get _xaxis1
-            and set value = _xaxis1 <- Some value
+//        member __.xaxis1
+//            with get () = Option.get _xaxis1
+//            and set value = _xaxis1 <- Some value
 
         member __.xaxis2
             with get () = Option.get _xaxis2
@@ -191,7 +191,7 @@ module Layout =
         member __.ShouldSerializedragmode() = not _dragmode.IsNone
         member __.ShouldSerializehovermode() = not _hovermode.IsNone
         member __.ShouldSerializexaxis() = not _xaxis.IsNone
-        member __.ShouldSerializexaxis1() = not _xaxis1.IsNone
+        //member __.ShouldSerializexaxis1() = not _xaxis1.IsNone
         member __.ShouldSerializexaxis2() = not _xaxis2.IsNone
 
         member __.ShouldSerializeyaxis() = not _yaxis.IsNone

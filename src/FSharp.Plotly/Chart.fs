@@ -36,7 +36,7 @@ type Chart =
         GenericChart.Chart (trace,None)
 
     /// Uses points to represent data points
-    static member Point(xy,?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
+    static member Point(xy,?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont) = 
         let x,y = Seq.unzip xy 
         Chart.Point(x, y, ?Name=Name,?Showlegend=Showlegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont)
 
@@ -351,8 +351,19 @@ type Chart =
 
 
  
- 
-  
+    // ---------------------------------------------------------------------------------------------------------------------------------------------------
+    // 3d - Chart --->
+
+    /// Uses points, line or both depending on the mode to represent 3d-data points
+    static member Scatter3d(x, y, z, mode, ?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
+        let trace = 
+            Trace3dObjects.Scatter3d()
+            |> Options.Scatter3d(X = x,Y = y,Z=z, Mode=mode)               
+            |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> Options.ILine(Options.Line(?Color=Color,?Dash=Dash,?Width=Width))
+            |> Options.IMarker(Options.Marker(?Color=Color,?Symbol=MarkerSymbol))
+            |> Options.ITextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        GenericChart.Chart (trace,None)  
     
 
                         

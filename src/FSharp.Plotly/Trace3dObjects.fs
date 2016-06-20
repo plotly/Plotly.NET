@@ -4,8 +4,9 @@
 module Trace3dObjects =
     
     type ITrace3d = //interface end    
-        abstract ``type``            : string with get, set
-        abstract ShouldSerializetype : unit -> bool
+        inherit ITrace 
+//            abstract ``type``            : string with get, set
+//            abstract ShouldSerializetype : unit -> bool
 
 
     type Scatter3d() =
