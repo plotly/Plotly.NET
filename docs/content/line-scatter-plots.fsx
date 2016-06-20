@@ -32,9 +32,19 @@ values of a simple function, f(x)=x^2. The values of the function are generated 
 shown below.
 *)
 
-(*** define-output:sq ***)
+(*** define-output:line2 ***)
 // Drawing graph of a 'square' function 
 [ for x in 1.0 .. 100.0 -> (x, x ** 2.0) ]
 |> Chart.Line
-(*** include-it:sq ***)
+(*** include-it:line2 ***)
 |> Chart.Show
+
+
+
+(*** define-output:line3 ***)
+Chart.Spline(x,y',Name="spline")    
+|> Chart.withLineStyle(Width=2,Dash=StyleOption.DrawingStyle.Dot)
+|> Chart.withLineStyle(Width=6,Dash=StyleOption.DrawingStyle.Dot)
+(*** include-it:line3 ***)
+|> Chart.Show
+

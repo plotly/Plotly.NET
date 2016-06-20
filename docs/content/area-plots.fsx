@@ -3,22 +3,28 @@
 #r "../../bin/FSharp.Plotly.dll"
 
 (** 
-# FSharp.Plotly: Pie and Doughnut Charts
+# FSharp.Plotly: Area Charts
 
-*Summary:* This example shows how to create pie and doughnut charts in F#.
+*Summary:* This example shows how to create an area charts in F#.
 
-A pie or a doughnut chart can be created using the `Chart.Pie` and `Chart.Doughnut` functions.
-When creating pie or doughnut charts, it is usually desirable to provide both labels and 
-values.
+An area chart or area graph displays graphically quantitive data. It is based on the line chart.
+The area between axis and line are commonly emphasized with colors, textures and hatchings.
 *)
 
 open FSharp.Plotly 
   
-let values = [19; 26; 55;]
-let labels = ["Residential"; "Non-Residential"; "Utility"]
+let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
+let y  = [5.; 2.5; 5.; 7.5; 5.; 2.5; 7.5; 4.5; 5.5; 5.]
+//let y' = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
   
-(*** define-output:pie1 ***)
-Chart.Pie(values,labels)
-(*** include-it:pie1 ***)
+(*** define-output:area1 ***)
+Chart.Area(x,y)
+(*** include-it:area1 ***)
 
+
+
+(*** define-output:area2 ***)
+Chart.SplineArea(x,y)
+(*** include-it:area2 ***)
+|> Chart.Show
 

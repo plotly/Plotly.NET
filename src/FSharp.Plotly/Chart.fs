@@ -26,12 +26,11 @@ type Chart =
         Chart.Scatter(x, y, mode, ?Name=Name,?Showlegend=Showlegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width)
 
     /// Uses points to represent data points
-    static member Point(x, y, ?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
+    static member Point(x, y, ?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont) = 
         let trace = 
             TraceObjects.Scatter()
             |> Options.Scatter(X = x,Y = y, Mode = StyleOption.Markers)               
             |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
-            |> Options.ILine(Options.Line(?Color=Color,?Dash=Dash,?Width=Width))
             |> Options.IMarker(Options.Marker(?Color=Color,?Symbol=MarkerSymbol))
             |> Options.ITextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
         GenericChart.Chart (trace,None)
@@ -39,7 +38,7 @@ type Chart =
     /// Uses points to represent data points
     static member Point(xy,?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
         let x,y = Seq.unzip xy 
-        Chart.Point(x, y, ?Name=Name,?Showlegend=Showlegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width)
+        Chart.Point(x, y, ?Name=Name,?Showlegend=Showlegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont)
 
     /// Uses lines to represent data points
     static member Line(x, y, ?Name,?ShowMarkers,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
@@ -61,54 +60,67 @@ type Chart =
         let x,y = Seq.unzip xy 
         Chart.Line(x, y, ?Name=Name,?ShowMarkers=ShowMarkers,?Showlegend=Showlegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width)
 
+    /// A Line chart that plots a fitted curve through each data point in a series.
+    static member Spline(x, y, ?Name,?ShowMarkers,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width,?Smoothing) = 
+        let mode' = 
+            match ShowMarkers with
+            | Some show -> if show then StyleOption.Lines_Markers else StyleOption.Lines
+            | None      -> StyleOption.Lines_Markers // default
+        let trace = 
+            TraceObjects.Scatter()
+            |> Options.Scatter(X = x,Y = y, Mode = mode', ?Fillcolor=Color)               
+            |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> Options.ILine(Options.Line(?Color=Color,?Dash=Dash,?Width=Width, Shape=StyleOption.Shape.Spline, ?Smoothing=Smoothing))
+            |> Options.IMarker(Options.Marker(?Color=Color,?Symbol=MarkerSymbol))
+            |> Options.ITextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        GenericChart.Chart (trace,None)
 
-//    /// Uses a line to connect the data points represented.
-//    static member Line(x, y,?Name,?ShowMarkers,?Dash,?Showlegend,?Width,?Color,?Opacity,?MarkerSymbol,?Labels) =             
-//        let mode' = match ShowMarkers with
-//                    | Some show -> if show then StyleOption.Lines_Markers else StyleOption.Lines
-//                    | None      -> StyleOption.Lines_Markers // default 
-//        let trace = 
-//            TraceObjects.Scatter()
-//            |> Options.Scatter(X = x,Y = y, Mode=mode',
-//                TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity),
-//                Line=Options.Line(?Color=Color,?Dash=Dash,?Width=Width),
-//                Marker=Options.Marker(?Color=Color,?Symbol=MarkerSymbol),
-//                ?Fillcolor=Color,?Text=Labels)
-//        GenericChart.Chart (trace,None)
-//    
-//
-//    /// Uses a line to connect the data points represented.
-//    static member Line(xy,?Name,?ShowMarkers,?Dash,?Showlegend,?Width,?Color,?Opacity,?MarkerSymbol,?Labels) =  
-//        let x,y = Seq.unzip xy
-//        Chart.Line(x,y,?Name=Name,?ShowMarkers=ShowMarkers,?Dash=Dash,?Showlegend=Showlegend,
-//                       ?Width=Width,?Color=Color,?Opacity=Opacity,?MarkerSymbol=MarkerSymbol,?Labels=Labels)
-//
-//
-//    /// A Line chart that plots a fitted curve through each data point in a series.
-//    static member Spline(x, y,?Name,?ShowMarkers,?Dash,?Showlegend,?Width,?Color,?Opacity,?MarkerSymbol,?Labels,?Smoothing) =             
-//        let mode' = match ShowMarkers with
-//                    | Some show -> if show then StyleOption.Lines_Markers else StyleOption.Lines
-//                    | None      -> StyleOption.Lines_Markers // default 
-//        let trace = 
-//            TraceObjects.Scatter()
-//            |> Options.Scatter(X = x,Y = y, Mode=mode', 
-//                TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity),
-//                Line=Options.Line(?Color=Color,?Dash=Dash,?Width=Width,Shape=StyleOption.Shape.Spline,?Smoothing=Smoothing),
-//                Marker=Options.Marker(?Color=Color,?Symbol=MarkerSymbol),
-//                ?Fillcolor=Color,?Text=Labels)
-//        GenericChart.Chart (trace,None)
-//
-//
-//    /// A variation of the Point chart type, where the data points are replaced by bubbles of different sizes.
-//    static member Bubble(x, y, sizes:seq<#IConvertible>,?Name,?Showlegend,?Color,?Opacity,?Labels,?MarkerSymbol) =                     
-//        let trace = 
-//            TraceObjects.Scatter()
-//            |> Options.Scatter(X = x,Y = y, Mode=StyleOption.Markers, 
-//                TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity),
-//                Marker=Options.Marker(?Color=Color,?Symbol=MarkerSymbol,MultiSizes=sizes),
-//                ?Text=Labels)
-//        GenericChart.Chart (trace,None)
-//
+    /// A Line chart that plots a fitted curve through each data point in a series.
+    static member Spline(xy,?Name,?ShowMarkers,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width,?Smoothing) = 
+        let x,y = Seq.unzip xy 
+        Chart.Spline(x, y, ?Name=Name,?ShowMarkers=ShowMarkers,?Showlegend=Showlegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width,?Smoothing=Smoothing) 
+
+    /// A variation of the Point chart type, where the data points are replaced by bubbles of different sizes.
+    static member Bubble(x, y, sizes:seq<#IConvertible>,?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont) = 
+        let trace = 
+            TraceObjects.Scatter()
+            |> Options.Scatter(X = x,Y = y, Mode = StyleOption.Markers)               
+            |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> Options.IMarker(Options.Marker(?Color=Color,?Symbol=MarkerSymbol, MultiSizes=sizes))
+            |> Options.ITextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        GenericChart.Chart (trace,None)
+
+    /// A variation of the Point chart type, where the data points are replaced by bubbles of different sizes.
+    static member Bubble(xyz,?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont) = 
+        let x,y,sizes = Seq.unzip3 xyz 
+        Chart.Bubble(x, y,sizes=sizes,?Name=Name,?Showlegend=Showlegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont)
+
+    /// Displays a range of data by plotting two Y values per data point, with each Y value being drawn as a line 
+    static member Range(x, y, upper, lower, ?Name,?ShowMarkers,?Showlegend,?Color,?RangeColor,?Labels,?TextPosition,?TextFont) =             
+        let mode' = match ShowMarkers with
+                    | Some show -> if show then StyleOption.Lines_Markers else StyleOption.Lines
+                    | None      -> StyleOption.Lines_Markers // default 
+        let trace = 
+            TraceObjects.Scatter()
+            |> Options.Scatter(X = x,Y = y, Mode = mode', ?Fillcolor=Color)     
+            |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend)
+            |> Options.ILine(Options.Line(?Color=Color))
+            |> Options.IMarker(Options.Marker(?Color=Color))
+            |> Options.ITextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        let lower = 
+            TraceObjects.Scatter()
+            |> Options.Scatter(X = x,Y = lower, Mode=StyleOption.Lines, ?Fillcolor=RangeColor)     
+            |> Options.ITraceInfo(Showlegend=false)
+            |> Options.ILine(Options.Line(Width=0))
+            |> Options.IMarker(Options.Marker(Color=if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,,0.5)"))
+        let upper = 
+            TraceObjects.Scatter()
+            |> Options.Scatter(X = x,Y = upper, Mode=StyleOption.Lines,?Fillcolor=RangeColor, Fill=StyleOption.ToNext_y)    
+            |> Options.ITraceInfo(?Showlegend=Showlegend)
+            |> Options.ILine(Options.Line(Width=0))
+            |> Options.IMarker(Options.Marker(Color=if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,,0.5)"))
+        GenericChart.MultiChart ([lower;upper;trace],None)
+
 //
 //    /// Displays a range of data by plotting two Y values per data point, with each Y value being drawn as a line 
 //    static member Range(x, y, upper, lower, ?Name,?ShowMarkers,?Showlegend,?Color,?RangeColor,?Labels) =             
@@ -123,13 +135,7 @@ type Chart =
 //                Line=Options.Line(?Color=Color),
 //                Marker=Options.Marker(?Color=Color),
 //                ?Fillcolor=Color,?Text=Labels)
-//        let lower = 
-//            TraceObjects.Scatter()
-//            |> Options.Scatter(X = x,Y = lower, Mode=StyleOption.Lines,
-//                TraceOptions=Options.Trace(Showlegend=false),
-//                Line=Options.Line(Width=0),
-//                Marker=Options.Marker(Color = if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,,0.5)"),
-//                ?Fillcolor=RangeColor)
+
 //        let upper = 
 //            TraceObjects.Scatter()
 //            |> Options.Scatter(X = x,Y = upper, Mode=StyleOption.Lines,Fill=StyleOption.ToNext_y,
@@ -139,50 +145,67 @@ type Chart =
 //                ?Fillcolor=RangeColor)
 //        GenericChart.MultiChart ([lower;upper;trace],None)
 //
-//
-//    /// Displays a range of data by plotting two Y values per data point, with each Y value being drawn as a spline 
-//    static member SplineRange(x, y, upper, lower, ?Name,?ShowMarkers,?Showlegend,?Color,?RangeColor,?Labels,?Smoothing) =             
-//        let mode' = match ShowMarkers with
-//                    | Some show -> if show then StyleOption.Lines_Markers else StyleOption.Lines
-//                    | None      -> StyleOption.Lines_Markers // default 
-//            
-//        let trace = 
-//            TraceObjects.Scatter()
-//            |> Options.Scatter(X = x,Y = y, Mode=mode', 
-//                TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend),
-//                Line=Options.Line(?Color=Color,Shape=StyleOption.Shape.Spline,?Smoothing=Smoothing),
-//                Marker=Options.Marker(?Color=Color),
-//                ?Fillcolor=Color,?Text=Labels)
-//        let lower = 
-//            TraceObjects.Scatter()
-//            |> Options.Scatter(X = x,Y = lower, Mode=StyleOption.Lines,
-//                TraceOptions=Options.Trace(Showlegend=false),
-//                Line=Options.Line(Width=0,Shape=StyleOption.Shape.Spline,?Smoothing=Smoothing),
-//                Marker=Options.Marker(Color = if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,,0.5)"),
-//                ?Fillcolor=RangeColor)
-//        let upper = 
-//            TraceObjects.Scatter()
-//            |> Options.Scatter(X = x,Y = upper, Mode=StyleOption.Lines,Fill=StyleOption.ToNext_y,
-//                TraceOptions=Options.Trace(Showlegend=false),
-//                Line=Options.Line(Width=0,Shape=StyleOption.Shape.Spline,?Smoothing=Smoothing),
-//                Marker=Options.Marker(Color = if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,,0.5)"),
-//                ?Fillcolor=RangeColor)
-//        GenericChart.MultiChart ([lower;upper;trace],None)
-//        
-//
-//    /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
-//    static member Area(x, y, ?Name,?ShowMarkers,?Showlegend,?Color,?Opacity,?Labels) = 
-//        let mode' = match ShowMarkers with
-//                    | Some show -> if show then StyleOption.Lines_Markers else StyleOption.Lines
-//                    | None      -> StyleOption.Lines_Markers // default 
-//        let trace = 
-//            TraceObjects.Scatter()
-//            |> Options.Scatter(X = x,Y = y, Fill=StyleOption.ToZero_y, Mode=mode',
-//                TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity),
-//                ?Fillcolor=Color,?Text=Labels)
-//        GenericChart.Chart (trace,None)
-//
-//
+
+    /// Displays a range of data by plotting two Y values per data point, with each Y value being drawn as a spline 
+    static member SplineRange(x, y, upper, lower, ?Name,?ShowMarkers,?Showlegend,?Color,?RangeColor,?Labels,?TextPosition,?TextFont,?Smoothing) =             
+        let mode' = match ShowMarkers with
+                    | Some show -> if show then StyleOption.Lines_Markers else StyleOption.Lines
+                    | None      -> StyleOption.Lines_Markers // default 
+        let trace = 
+            TraceObjects.Scatter()
+            |> Options.Scatter(X = x,Y = y, Mode = mode', ?Fillcolor=Color)     
+            |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend)
+            |> Options.ILine(Options.Line(?Color=Color,Shape=StyleOption.Shape.Spline,?Smoothing=Smoothing))
+            |> Options.IMarker(Options.Marker(?Color=Color))
+            |> Options.ITextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        let lower = 
+            TraceObjects.Scatter()
+            |> Options.Scatter(X = x,Y = lower, Mode=StyleOption.Lines, ?Fillcolor=RangeColor)     
+            |> Options.ITraceInfo(Showlegend=false)
+            |> Options.ILine(Options.Line(Width=0,Shape=StyleOption.Shape.Spline,?Smoothing=Smoothing))
+            |> Options.IMarker(Options.Marker(Color=if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,,0.5)"))
+        let upper = 
+            TraceObjects.Scatter()
+            |> Options.Scatter(X = x,Y = upper, Mode=StyleOption.Lines,?Fillcolor=RangeColor, Fill=StyleOption.ToNext_y)    
+            |> Options.ITraceInfo(?Showlegend=Showlegend)
+            |> Options.ILine(Options.Line(Width=0,Shape=StyleOption.Shape.Spline,?Smoothing=Smoothing))
+            |> Options.IMarker(Options.Marker(Color=if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,,0.5)"))
+        GenericChart.MultiChart ([lower;upper;trace],None)
+
+
+    /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
+    static member Area(x, y, ?Name,?ShowMarkers,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
+        let mode' = 
+            match ShowMarkers with
+            | Some show -> if show then StyleOption.Lines_Markers else StyleOption.Lines
+            | None      -> StyleOption.Lines // default
+        let trace = 
+            TraceObjects.Scatter()
+            |> Options.Scatter(X = x,Y = y, Mode = mode',Fill=StyleOption.ToZero_y)               
+            |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> Options.ILine(Options.Line(?Color=Color,?Dash=Dash,?Width=Width))
+            |> Options.IMarker(Options.Marker(?Color=Color,?Symbol=MarkerSymbol))
+            |> Options.ITextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        GenericChart.Chart (trace,None) 
+ 
+
+    /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
+    static member SplineArea(x, y, ?Name,?ShowMarkers,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width,?Smoothing) = 
+        let mode' = 
+            match ShowMarkers with
+            | Some show -> if show then StyleOption.Lines_Markers else StyleOption.Lines
+            | None      -> StyleOption.Lines // default
+        let trace = 
+            TraceObjects.Scatter()
+            |> Options.Scatter(X = x,Y = y, Mode = mode',Fill=StyleOption.ToZero_y)               
+            |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> Options.ILine(Options.Line(?Color=Color,?Dash=Dash,?Width=Width,?Smoothing=Smoothing))
+            |> Options.IMarker(Options.Marker(?Color=Color,?Symbol=MarkerSymbol))
+            |> Options.ITextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        GenericChart.Chart (trace,None) 
+
+
+
 //    /// Illustrates comparisons among individual items
 //    static member Bar(x, y, ?Name,?Showlegend,?Color,?Opacity,?Labels,?Marker) = 
 //        let marker =

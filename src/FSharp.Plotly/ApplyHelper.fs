@@ -48,7 +48,7 @@ module ApplyHelper =
         let property = 
             getPublicProperties (o.GetType())
             |> Array.find (fun n -> n.Name = propName)
-        printfn "%s" property.Name
+        //printfn "%s" property.Name
         try 
             property.SetValue(o, value, null)
             Some o
@@ -67,8 +67,14 @@ module ApplyHelper =
     /// Gets property value as 'a option using reflection. Cast to 'a
     let tryGetPropertyValueAs<'a> (o:obj) (propName:string) =
         try 
-            let v = (o.GetType().GetProperty(propName,BindingFlags.FlattenHierarchy).GetValue(o, null))
-            Some (v :?> 'a)
+            //let v = (o.GetType().GetProperty(propName,BindingFlags.FlattenHierarchy).GetValue(o, null))
+            let propInfo =
+                getPublicProperties (o.GetType()) 
+                |> Array.tryFind (fun p -> p.Name  = propName)
+            match propInfo with
+            | Some v -> Some (v.GetValue(o,null) :?> 'a)
+            | None -> None
+            //Some (v :?> 'a)
         with 
         | :? System.Reflection.TargetInvocationException -> None
         | :? System.NullReferenceException -> None
@@ -82,7 +88,8 @@ module ApplyHelper =
     /// Updates property value by given function
     let tryUpdatePropertyValue (o:obj) (expr : Microsoft.FSharp.Quotations.Expr) (f: 'a -> 'a) =
         let propName = tryGetPropertyName expr
-        let v = optBuildApply f (tryGetPropertyValueAs<'a> o propName.Value)
+        let g = (tryGetPropertyValueAs<'a> o propName.Value)
+        let v = optBuildApply f g
         trySetPropertyValue o propName.Value v 
         //o
 
