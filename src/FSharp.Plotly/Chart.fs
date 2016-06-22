@@ -307,28 +307,38 @@ type Chart =
         GenericChart.Chart (trace,None)
 
 
-//    /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data as a whole.
-//    static member Pie(values,?labels,?Name,?Showlegend,?Color,?Hoverinfo,?Textinfo,?Textposition) =         
-//        let trace = 
-//            Pie()
-//            |> Options.Pie(Values=values,?Labels=labels,
-//                    TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Hoverinfo=Hoverinfo),
-//                    Marker=Options.Marker(?Color=Color),
-//                    ?Textinfo=Textinfo,?Textposition=Textposition)                
-//        GenericChart.Chart (trace,None)
+    /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data.
+    static member Pie(values,?Labels,?Name,?Showlegend,?Color,?Text,?Textposition,?TextFont,?Hoverinfo,?Textinfo,?Opacity) =         
+        let trace = 
+            Pie()
+            |> Options.Pie(Values=values,?Labels=Labels,?Textinfo=Textinfo)
+            |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity,?Hoverinfo=Hoverinfo)
+            |> Options.ITextLabel(?Text=Text,?Textposition=Textposition,?Textfont=TextFont)
+            |> Options.IMarker(Marker=Options.Marker(?Color=Color))
+                                    
+        GenericChart.Chart (trace,None)
 
+    /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data.
+    static member Pie(data:seq<#IConvertible*#IConvertible>,?Name,?Showlegend,?Color,?Text,?Textposition,?TextFont,?Hoverinfo,?Textinfo,?Opacity) =         
+        let values,labels = Seq.unzip data 
+        Chart.Pie(values,Labels=labels,?Name=Name,?Showlegend=Showlegend,?Color=Color,?Text=Text,?Textposition=Textposition,?TextFont=TextFont,?Hoverinfo=Hoverinfo,?Textinfo=Textinfo,?Opacity=Opacity)
 
-//    /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data as a whole.
-//    static member Doughnut(values,?labels,?Name,?Showlegend,?Color,?Hole,?Hoverinfo,?Textinfo,?Textposition) =         
-//        let hole' = if Hole.IsSome then Hole.Value else 0.4
-//        let trace = 
-//            Pie()
-//            |> Options.Pie(Values=values,?Labels=labels,
-//                    TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Hoverinfo=Hoverinfo),
-//                    Marker=Options.Marker(?Color=Color),
-//                    ?Textinfo=Textinfo,?Textposition=Textposition,Hole=hole')                
-//        GenericChart.Chart (trace,None)
+    /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data as a whole.
+    static member Doughnut(values,?Labels,?Name,?Showlegend,?Color,?Hole,?Text,?Textposition,?TextFont,?Hoverinfo,?Textinfo,?Opacity) =         
+        let hole' = if Hole.IsSome then Hole.Value else 0.4
+        let trace = 
+            Pie()
+            |> Options.Pie(Values=values,?Labels=Labels,?Textinfo=Textinfo,Hole=hole')
+            |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity,?Hoverinfo=Hoverinfo)
+            |> Options.ITextLabel(?Text=Text,?Textposition=Textposition,?Textfont=TextFont)
+            |> Options.IMarker(Marker=Options.Marker(?Color=Color))
+              
+        GenericChart.Chart (trace,None)
 
+    /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data as a whole.
+    static member Doughnut(data:seq<#IConvertible*#IConvertible>,?Name,?Showlegend,?Color,?Hole,?Text,?Textposition,?TextFont,?Hoverinfo,?Textinfo,?Opacity) =         
+        let values,labels = Seq.unzip data 
+        Chart.Doughnut(values,Labels=labels,?Name=Name,?Showlegend=Showlegend,?Color=Color,?Hole=Hole,?Text=Text,?Textposition=Textposition,?TextFont=TextFont,?Hoverinfo=Hoverinfo,?Textinfo=Textinfo,?Opacity=Opacity)
 
     
 

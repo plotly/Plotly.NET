@@ -599,7 +599,7 @@ type Options() =
             ?dLabel,   
             ?Scalegroup,
             ?Textinfo,
-            ?Textfont: FontOptions,                    
+            //?Textfont: FontOptions,                    
             ?Insidetextfont: FontOptions,
             ?Outsidetextfont: FontOptions,
             ?Domain, // TODO
@@ -634,7 +634,7 @@ type Options() =
                 
                 // Update
                 //Marker          |> Option.iter (updatePropertyValueAndIgnore pie <@ pie.marker          @>)
-                Textfont        |> Option.iter (updatePropertyValueAndIgnore pie <@ pie.textfont        @>)
+                //Textfont        |> Option.iter (updatePropertyValueAndIgnore pie <@ pie.textfont        @>)
                 Insidetextfont  |> Option.iter (updatePropertyValueAndIgnore pie <@ pie.insidetextfont  @>)
                 Outsidetextfont |> Option.iter (updatePropertyValueAndIgnore pie <@ pie.outsidetextfont @>)
                     
