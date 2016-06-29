@@ -168,8 +168,8 @@ module TraceObjects =
         
         let mutable _r: _ option = None
         let mutable _t: _ option = None
-        let mutable _error_y: Error_y option = None
-        let mutable _error_x: Error_x option = None
+        let mutable _error_y: Error option = None
+        let mutable _error_x: Error option = None
         let mutable _xaxis: string option = None
         let mutable _yaxis: string option = None
         let mutable _xsrc: string option = None
@@ -516,8 +516,8 @@ module TraceObjects =
 
         let mutable _r: _ option = None
         let mutable _t: _ option = None
-        let mutable _error_y: Error_y option = None
-        let mutable _error_x: Error_x option = None
+        let mutable _error_y: Error option = None
+        let mutable _error_x: Error option = None
         let mutable _xaxis: string option = None
         let mutable _yaxis: string option = None
         let mutable _xsrc: string option = None
@@ -1933,8 +1933,8 @@ module TraceObjects =
         let mutable _fillcolor: string option = None   
         let mutable _r: _ option = None
         let mutable _t: _ option = None
-        let mutable _error_y: Error_y option = None
-        let mutable _error_x: Error_x option = None
+        let mutable _error_y: Error option = None
+        let mutable _error_x: Error option = None
         let mutable _rsrc: string option = None
         let mutable _tsrc: string option = None
 

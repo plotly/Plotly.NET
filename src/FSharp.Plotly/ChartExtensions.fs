@@ -62,6 +62,32 @@ module ChartExtensions =
             let line = Options.Line(?Width=Width,?Color=Color,?Shape=Shape,?Dash=Dash,?Smoothing=Smoothing,?ColorScale=ColorScale)            
             Chart.withLineOption(line)  
 
+        /// Apply styling to the xError(s) of the chart as Object (if member exists else it is ignored).
+        static member withXError(xError:ErrorOptions) =
+            (fun (ch:GenericChart) ->                   
+                ch |> mapTrace (fun trace ->                                     
+                                    ApplyHelper.tryUpdatePropertyValueFromName trace "error_x" xError |> ignore
+                                    trace
+                               )
+            )
+
+        /// Apply styling to the yError(s) of the chart as Object (if member exists else it is ignored).
+        static member withYError(yError:ErrorOptions) =
+            (fun (ch:GenericChart) ->                   
+                ch |> mapTrace (fun trace ->                                     
+                                    ApplyHelper.tryUpdatePropertyValueFromName trace "error_y" yError |> ignore
+                                    trace
+                               )
+            )
+
+        /// Apply styling to the zError(s) of the chart as Object (if member exists else it is ignored).
+        static member withZError(zError:ErrorOptions) =
+            (fun (ch:GenericChart) ->                   
+                ch |> mapTrace (fun trace ->                                     
+                                    ApplyHelper.tryUpdatePropertyValueFromName trace "error_z" zError |> ignore
+                                    trace
+                               )
+            )
 
 
         // ####################### Apply to layout

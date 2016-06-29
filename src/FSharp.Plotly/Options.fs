@@ -223,7 +223,6 @@ type Options() =
     // Applies the styles to Error()
     static member Error
         (   
-            errorType,
             ?Symmetric,
             ?Array,
             ?Arrayminus,
@@ -240,7 +239,6 @@ type Options() =
             ?Arrayminussrc
         ) =
             (fun (error:('T :> Error)) -> 
-                error.set_type errorType
                 Symmetric     |> Option.iter error.set_symmetric
                 Array         |> Option.iter error.set_array
                 Arrayminus    |> Option.iter error.set_arrayminus

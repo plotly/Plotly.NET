@@ -122,14 +122,14 @@ module TraceAuxiliaryObjects =
         member __.ShouldSerializearraysrc() = not _arraysrc.IsNone
         member __.ShouldSerializearrayminussrc() = not _arrayminussrc.IsNone
 
-    type Error_x() =
-        inherit Error()
-
-    type Error_y() =
-        inherit Error()
-
-    type Error_z() =
-        inherit Error()
+//    type Error_x() =
+//        inherit Error()
+//
+//    type Error_y() =
+//        inherit Error()
+//
+//    type Error_z() =
+//        inherit Error()
 
      type Bins() =
 

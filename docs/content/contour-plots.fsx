@@ -45,7 +45,3 @@ z
 |> Chart.Contour
 |> Chart.withSize(600.,600.)
 (*** include-it:contour1 ***)
-|> Chart.Show
-
-
-
