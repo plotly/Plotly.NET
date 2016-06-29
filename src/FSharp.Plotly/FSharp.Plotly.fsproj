@@ -69,11 +69,8 @@
     <Compile Include="Layout.fs" />
     <Compile Include="Options.fs" />
     <Compile Include="GenericChart.fs" />
-    <Compile Include="GenericChart3d.fs" />
     <Compile Include="Chart.fs" />
-    <Compile Include="Chart3d.fs" />
     <Compile Include="ChartExtensions.fs" />
-    <Compile Include="Chart3dExtensions.fs" />
     <None Include="Script.fsx" />
     <None Include="paket.references" />
     <None Include="paket.template" />

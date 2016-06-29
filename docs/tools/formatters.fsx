@@ -43,7 +43,7 @@ let createFsiEvaluator root output =
 
     | :? GenericChart.GenericChart as ch ->
         // Just return the inline HTML for a Plotly chart        
-        let html = GenericChart.toChartHtmlWithSize 760 500 ch
+        let html = GenericChart.toChartHtmlWithSize 500 500 ch
         Some [InlineBlock <| html]
 
     | _ -> None 

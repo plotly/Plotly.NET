@@ -4,8 +4,9 @@
 module Trace3dObjects =
     
     type ITrace3d = //interface end    
-        abstract ``type``            : string with get, set
-        abstract ShouldSerializetype : unit -> bool
+        inherit ITrace 
+//            abstract ``type``            : string with get, set
+//            abstract ShouldSerializetype : unit -> bool
 
 
     type Scatter3d() =
@@ -40,9 +41,9 @@ module Trace3dObjects =
         let mutable _surfaceaxis: _ option = None
         let mutable _surfacecolor: string option = None
         let mutable _projection: Projection option = None
-        let mutable _error_x: Error_x option = None
-        let mutable _error_y: Error_y option = None
-        let mutable _error_z: Error_z option = None
+        let mutable _error_x: Error option = None
+        let mutable _error_y: Error option = None
+        let mutable _error_z: Error option = None
         let mutable _scene: string option = None
         let mutable _xsrc: string option = None
         let mutable _ysrc: string option = None

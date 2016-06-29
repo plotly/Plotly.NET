@@ -36,7 +36,7 @@ type Chart =
         GenericChart.Chart (trace,None)
 
     /// Uses points to represent data points
-    static member Point(xy,?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
+    static member Point(xy,?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont) = 
         let x,y = Seq.unzip xy 
         Chart.Point(x, y, ?Name=Name,?Showlegend=Showlegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont)
 
@@ -199,88 +199,91 @@ type Chart =
             TraceObjects.Scatter()
             |> Options.Scatter(X = x,Y = y, Mode = mode',Fill=StyleOption.ToZero_y)               
             |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
-            |> Options.ILine(Options.Line(?Color=Color,?Dash=Dash,?Width=Width,?Smoothing=Smoothing))
+            |> Options.ILine(Options.Line(Shape=StyleOption.Shape.Spline,?Color=Color,?Dash=Dash,?Width=Width,?Smoothing=Smoothing))
             |> Options.IMarker(Options.Marker(?Color=Color,?Symbol=MarkerSymbol))
             |> Options.ITextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
         GenericChart.Chart (trace,None) 
 
 
 
-//    /// Illustrates comparisons among individual items
-//    static member Bar(x, y, ?Name,?Showlegend,?Color,?Opacity,?Labels,?Marker) = 
-//        let marker =
-//            match Marker with 
-//            | Some m -> Options.Marker(?Color=Color) >> m
-//            | None   -> Options.Marker(?Color=Color)
-//        let trace = 
-//            Bar()
-//            |> Options.Bar(X = x,Y = y,
-//                TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity),
-//                Marker=marker,
-//                ?Text=Labels)
-//        GenericChart.Chart (trace,None)
-//
-//
-//    /// Displays series of the same chart type as stacked bars.
-//    static member StackedBar(x, y, ?Name,?Showlegend,?Color,?Opacity,?Labels,?Marker) = 
-//        let marker =
-//            match Marker with 
-//            | Some m -> Options.Marker(?Color=Color) >> m
-//            | None   -> Options.Marker(?Color=Color)
-//        let trace = 
-//            Bar()
-//            |> Options.Bar(X = x,Y = y,
-//                TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity),
-//                Marker=marker,
-//                ?Text=Labels)
-//        
-//        let layout = Options.Layout(Barmode=StyleOption.Barmode.Stack)
-//        GenericChart.Chart (trace,Some [layout])
-//        
-//        
-//        
-//    /// Uses a sequence of columns to compare values across categories.
-//    static member Column(x, y, ?Name,?Showlegend,?Color,?Opacity,?Labels,?Marker) =  
-//        let marker =
-//            match Marker with 
-//            | Some m -> Options.Marker(?Color=Color) >> m
-//            | None   -> Options.Marker(?Color=Color)
-//        let trace = 
-//            Bar()
-//            |> Options.Bar(X = x,Y = y,
-//                TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity),
-//                Marker=marker,
-//                ?Text=Labels,Orientation = StyleOption.Orientation.Horizontal)
-//                
-//        GenericChart.Chart (trace,None)
-//
-//    /// Displays series of the same chart type as stacked columns.
-//    static member StackedColumn(x, y, ?Name,?Showlegend,?Color,?Opacity,?Labels,?Marker) = 
-//        let marker =
-//            match Marker with 
-//            | Some m -> Options.Marker(?Color=Color) >> m
-//            | None   -> Options.Marker(?Color=Color)
-//        let trace = 
-//            Bar()
-//            |> Options.Bar(X = x,Y = y,
-//                TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity),
-//                Marker=marker,
-//                ?Text=Labels,Orientation = StyleOption.Orientation.Horizontal)
-//        
-//        let layout = Options.Layout(Barmode=StyleOption.Barmode.Stack)
-//        GenericChart.Chart (trace,Some [layout])
-//
-//    /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.            
-//    static member BoxPlot(?x,?y,?Name,?Showlegend, ?Color,?Opacity,?Whiskerwidth,?Boxpoints,?Boxmean,?Jitter,?Pointpos,?Line,?Marker) = 
-//        let trace = 
-//            Box()
-//            |> Options.BoxPlot(?X=x, ?Y = y,
-//                TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity),
-//                ?Line=Line,?Marker=Marker,
-//                ?Fillcolor=Color,?Whiskerwidth=Whiskerwidth,?Boxpoints=Boxpoints,
-//                ?Boxmean=Boxmean,?Jitter=Jitter,?Pointpos=Pointpos)
-//            
-//        GenericChart.Chart (trace,None)
+    /// Illustrates comparisons among individual items
+    static member Column(keys, values, ?Name,?Showlegend,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Marker) = 
+        let marker =
+            match Marker with 
+            | Some m -> Options.Marker(?Color=Color) >> m
+            | None   -> Options.Marker(?Color=Color)
+        let trace = 
+            Bar()
+            |> Options.Bar(X = keys,Y = values)
+            |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> Options.IMarker(marker)
+            |> Options.ITextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        GenericChart.Chart (trace,None)
+
+
+    /// Displays series of tcolumn chart type as stacked columns.
+    static member StackedColumn(keys, values, ?Name,?Showlegend,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Marker) =            
+        let marker =
+            match Marker with 
+            | Some m -> Options.Marker(?Color=Color) >> m
+            | None   -> Options.Marker(?Color=Color)
+        let trace = 
+            Bar()
+            |> Options.Bar(X = keys,Y = values)
+            |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> Options.IMarker(marker)
+            |> Options.ITextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        let layout = 
+            Options.Layout(Barmode=StyleOption.Barmode.Stack)
+        GenericChart.Chart (trace,None)
+        |>  GenericChart.addLayout layout
+
+    /// Illustrates comparisons among individual items
+    static member Bar(keys, values, ?Name,?Showlegend,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Marker) = 
+        let marker =
+            match Marker with 
+            | Some m -> Options.Marker(?Color=Color) >> m
+            | None   -> Options.Marker(?Color=Color)
+        let trace = 
+            Bar()
+            |> Options.Bar(X = values,Y = keys,Orientation = StyleOption.Orientation.Horizontal)
+            |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> Options.IMarker(marker)
+            |> Options.ITextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        GenericChart.Chart (trace,None)
+
+
+    /// Displays series of tcolumn chart type as stacked bars.
+    static member StackedBar(keys, values, ?Name,?Showlegend,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Marker) = 
+        let marker =
+            match Marker with 
+            | Some m -> Options.Marker(?Color=Color) >> m
+            | None   -> Options.Marker(?Color=Color)
+        
+        let trace = 
+            Bar()
+            |> Options.Bar(X = values,Y = keys,Orientation = StyleOption.Orientation.Horizontal)
+            |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> Options.IMarker(marker)
+            |> Options.ITextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        
+        let layout = 
+            Options.Layout(Barmode=StyleOption.Barmode.Stack)
+        GenericChart.Chart (trace,None)
+        |>  GenericChart.addLayout layout
+
+
+
+    /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.            
+    static member BoxPlot(?x,?y,?Name,?Showlegend, ?Color,?Opacity,?Whiskerwidth,?Boxpoints,?Boxmean,?Jitter,?Pointpos,?Orientation) = 
+        let trace = 
+            Box()
+            |> Options.BoxPlot(?X=x, ?Y = y,
+                ?Whiskerwidth=Whiskerwidth,?Boxpoints=Boxpoints,
+                ?Boxmean=Boxmean,?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation,?Fillcolor=Color)            
+            |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)          
+
+        GenericChart.Chart (trace,None)
 
     /// Shows a graphical representation of a 3-dimensional surface by plotting constant z slices, called contours, on a 2-dimensional format.
     /// That is, given a value for z, lines are drawn for connecting the (x,y) coordinates where that z value occurs.
@@ -304,27 +307,38 @@ type Chart =
         GenericChart.Chart (trace,None)
 
 
-//    /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data as a whole.
-//    static member Pie(values,?labels,?Name,?Showlegend,?Color,?Hoverinfo,?Textinfo,?Textposition) =         
-//        let trace = 
-//            Pie()
-//            |> Options.Pie(Values=values,?Labels=labels,
-//                    TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Hoverinfo=Hoverinfo),
-//                    Marker=Options.Marker(?Color=Color),
-//                    ?Textinfo=Textinfo,?Textposition=Textposition)                
-//        GenericChart.Chart (trace,None)
-//
-//    /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data as a whole.
-//    static member Doughnut(values,?labels,?Name,?Showlegend,?Color,?Hole,?Hoverinfo,?Textinfo,?Textposition) =         
-//        let hole' = if Hole.IsSome then Hole.Value else 0.4
-//        let trace = 
-//            Pie()
-//            |> Options.Pie(Values=values,?Labels=labels,
-//                    TraceOptions=Options.Trace(?Name=Name,?Showlegend=Showlegend,?Hoverinfo=Hoverinfo),
-//                    Marker=Options.Marker(?Color=Color),
-//                    ?Textinfo=Textinfo,?Textposition=Textposition,Hole=hole')                
-//        GenericChart.Chart (trace,None)
+    /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data.
+    static member Pie(values,?Labels,?Name,?Showlegend,?Color,?Text,?Textposition,?TextFont,?Hoverinfo,?Textinfo,?Opacity) =         
+        let trace = 
+            Pie()
+            |> Options.Pie(Values=values,?Labels=Labels,?Textinfo=Textinfo)
+            |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity,?Hoverinfo=Hoverinfo)
+            |> Options.ITextLabel(?Text=Text,?Textposition=Textposition,?Textfont=TextFont)
+            |> Options.IMarker(Marker=Options.Marker(?Color=Color))
+                                    
+        GenericChart.Chart (trace,None)
 
+    /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data.
+    static member Pie(data:seq<#IConvertible*#IConvertible>,?Name,?Showlegend,?Color,?Text,?Textposition,?TextFont,?Hoverinfo,?Textinfo,?Opacity) =         
+        let values,labels = Seq.unzip data 
+        Chart.Pie(values,Labels=labels,?Name=Name,?Showlegend=Showlegend,?Color=Color,?Text=Text,?Textposition=Textposition,?TextFont=TextFont,?Hoverinfo=Hoverinfo,?Textinfo=Textinfo,?Opacity=Opacity)
+
+    /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data as a whole.
+    static member Doughnut(values,?Labels,?Name,?Showlegend,?Color,?Hole,?Text,?Textposition,?TextFont,?Hoverinfo,?Textinfo,?Opacity) =         
+        let hole' = if Hole.IsSome then Hole.Value else 0.4
+        let trace = 
+            Pie()
+            |> Options.Pie(Values=values,?Labels=Labels,?Textinfo=Textinfo,Hole=hole')
+            |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity,?Hoverinfo=Hoverinfo)
+            |> Options.ITextLabel(?Text=Text,?Textposition=Textposition,?Textfont=TextFont)
+            |> Options.IMarker(Marker=Options.Marker(?Color=Color))
+              
+        GenericChart.Chart (trace,None)
+
+    /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data as a whole.
+    static member Doughnut(data:seq<#IConvertible*#IConvertible>,?Name,?Showlegend,?Color,?Hole,?Text,?Textposition,?TextFont,?Hoverinfo,?Textinfo,?Opacity) =         
+        let values,labels = Seq.unzip data 
+        Chart.Doughnut(values,Labels=labels,?Name=Name,?Showlegend=Showlegend,?Color=Color,?Hole=Hole,?Text=Text,?Textposition=Textposition,?TextFont=TextFont,?Hoverinfo=Hoverinfo,?Textinfo=Textinfo,?Opacity=Opacity)
 
     
 
@@ -351,8 +365,19 @@ type Chart =
 
 
  
- 
-  
+    // ---------------------------------------------------------------------------------------------------------------------------------------------------
+    // 3d - Chart --->
+
+    /// Uses points, line or both depending on the mode to represent 3d-data points
+    static member Scatter3d(x, y, z, mode, ?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
+        let trace = 
+            Trace3dObjects.Scatter3d()
+            |> Options.Scatter3d(X = x,Y = y,Z=z, Mode=mode)               
+            |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> Options.ILine(Options.Line(?Color=Color,?Dash=Dash,?Width=Width))
+            |> Options.IMarker(Options.Marker(?Color=Color,?Symbol=MarkerSymbol))
+            |> Options.ITextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        GenericChart.Chart (trace,None)  
     
 
                         

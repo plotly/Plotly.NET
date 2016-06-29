@@ -26,5 +26,5 @@ Chart.Area(x,y)
 (*** define-output:area2 ***)
 Chart.SplineArea(x,y)
 (*** include-it:area2 ***)
-|> Chart.Show
+
 

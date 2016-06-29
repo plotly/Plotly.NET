@@ -750,9 +750,9 @@ module AxisObjects =
         let mutable _domain: Domain option = None
         let mutable _aspectmode: _ option = None
         let mutable _aspectratio: Aspectratio option = None
-        let mutable _xaxis: Xaxis option = None
-        let mutable _yaxis: Yaxis option = None
-        let mutable _zaxis: Zaxis option = None
+        let mutable _xaxis: LinearAxis option = None
+        let mutable _yaxis: LinearAxis option = None
+        let mutable _zaxis: LinearAxis option = None
         let mutable __isSubplotObj: bool option = Some true
         //let mutable _role: string option = Some "object"
 

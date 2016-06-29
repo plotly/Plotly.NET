@@ -2,6 +2,7 @@
 // This block of code is omitted in the generated HTML documentation. Use 
 // it to define helpers that you do not want to show in the documentation.
 #r "../../bin/Newtonsoft.Json.dll"
+#r "../../lib/FSharp.Care.dll"
 
 (**
 FSharp.Plotly
@@ -36,5 +37,10 @@ GenericChart.ofTraceObject trace layout
 |> Chart.Show
 
 
+let red = FSharp.Care.Colors.Table.Office.red
+let red' = FSharp.Care.Colors.toHex false red
 
+Chart.Point([1; 2; 3; 4],[12; 9; 15; 12])
+|> Chart.withMarkerStyle(Color=red')
+|> Chart.Show
 

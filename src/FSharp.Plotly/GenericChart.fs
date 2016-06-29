@@ -174,6 +174,12 @@ module GenericChart =
         match gChart with
         | Chart (_)             -> 1
         | MultiChart (traces,_) -> traces |> Seq.length
+
+    /// Creates a new GenericChart whose traces are the results of applying the given function to each of the trace of the GenericChart.           
+    let existsTrace (f:ITrace->bool) gChart =
+        match gChart with
+        | Chart (trace,_)       -> f trace 
+        | MultiChart (traces,_) -> traces |> List.exists f
           
     /// Converts from a trace object and a layout object into GenericChart    
     let ofTraceObject trace layout =
