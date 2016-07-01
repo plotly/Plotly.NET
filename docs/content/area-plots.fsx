@@ -22,7 +22,6 @@ Chart.Area(x,y)
 (*** include-it:area1 ***)
 
 
-
 (*** define-output:area2 ***)
 Chart.SplineArea(x,y)
 (*** include-it:area2 ***)

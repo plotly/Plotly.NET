@@ -7,8 +7,10 @@
 
 *Summary:* This example shows how to create boxplot charts in F#.
 
-A boxplot chart can be created using the `Chart.BoxPlot` function.
-
+A box plot or boxplot is a convenient way of graphically depicting groups of numerical data through their quartiles. 
+Box plots may also have lines extending vertically from the boxes (whiskers) indicating variability outside the upper
+and lower quartiles, hence the terms box-and-whisker plot and box-and-whisker diagram. 
+Outliers may be plotted as individual points.
 *)
 
 open FSharp.Plotly 

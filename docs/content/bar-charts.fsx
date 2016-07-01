@@ -3,7 +3,7 @@
 #r "../../bin/FSharp.Plotly.dll"
 
 (** 
-# FSharp.Plotly: Pie and Doughnut Charts
+# FSharp.Plotly: Bar and Column Charts
 
 *Summary:* This example shows how to create bar and a column charts in F#.
 

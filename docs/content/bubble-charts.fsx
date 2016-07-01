@@ -3,13 +3,13 @@
 #r "../../bin/FSharp.Plotly.dll"
 
 (** 
-# FSharp.Plotly: Pie and Doughnut Charts
+# FSharp.Plotly: Bubble chart
 
 *Summary:* This example shows how to create pie and doughnut charts in F#.
 
-A pie or a doughnut chart can be created using the `Chart.Pie` and `Chart.Doughnut` functions.
-When creating pie or doughnut charts, it is usually desirable to provide both labels and 
-values.
+A bubble chart is a type of chart that displays three dimensions of data. Each entity with its triplet (x, y, size) 
+of associated data is plotted as a disk. The first two values determine the disk's xy location and the 
+third its size.
 *)
 
 open FSharp.Plotly 
