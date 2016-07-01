@@ -1,4 +1,4 @@
-### 1.0 - Unreleased
+### 0.6.0-beta - Unreleased
 * More awesome stuff coming...
 * More 3d-Charts
 * Multiple axis support
