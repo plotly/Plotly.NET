@@ -1,4 +1,4 @@
-### 0.6.0-beta - Unreleased
+### 0.6.1-beta - July 1 2016
 * More awesome stuff coming...
 * More 3d-Charts
 * Multiple axis support
