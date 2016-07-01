@@ -16,10 +16,12 @@ requireLicenseAcceptance
 copyright
     Copyright 2015
 tags
-    Charting FSharp
+    Charting FSharp F# data visualization html5 javascript chart plotly
 summary
     A F# interactive charting library using plotly.js
 description
     A F# interactive charting library using plotly.js
-
+files
+	../../bin/FSharp.Care.dll ==> lib/net40
+	../../bin/Newtonsoft.Json.dll ==> lib/net40
 
