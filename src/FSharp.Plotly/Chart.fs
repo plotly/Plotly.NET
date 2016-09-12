@@ -376,3 +376,14 @@ type Chart =
     static member Scatter3d(xyz, mode, ?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
         let x,y,z = Seq.unzip3 xyz
         Chart.Scatter3d(x, y, z, mode, ?Name=Name,?Showlegend=Showlegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width) 
+
+    /// Uses points, line or both depending on the mode to represent 3d-data points
+    static member Surface(data:seq<#seq<#IConvertible>>,?X,?Y, ?Name,?Showlegend,?Opacity,?Colorscale,?Showscale,?zSmooth,?Colorbar) = 
+        let trace = 
+            Trace3dObjects.Surface()
+            |> Options.IMapZ(Z=data,?X=X, ?Y=Y)
+            |> Options.IColormap(?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?Colorbar=Colorbar)
+            |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            //|> Options.ITextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)                                                      
+        GenericChart.Chart (trace,None)
+

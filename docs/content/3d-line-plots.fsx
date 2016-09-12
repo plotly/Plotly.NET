@@ -3,24 +3,35 @@
 #r "../../bin/FSharp.Plotly.dll"
 
 (** 
-# FSharp.Plotly: Pie and Doughnut Charts
+# FSharp.Plotly: Scatter3d Charts with lines 
 
-*Summary:* This example shows how to create pie and doughnut charts in F#.
+*Summary:* This example shows how to create three-dimensional scatter charts in F#.
 
-A pie or a doughnut chart can be created using the `Chart.Pie` and `Chart.Doughnut` functions.
-When creating pie or doughnut charts, it is usually desirable to provide both labels and 
-values.
+A Scatter3d chart report shows a three-dimensional spinnable view of your data as line with markers
 *)
 
 open FSharp.Plotly 
-  
-let values = [19; 26; 55;]
-let labels = ["Residential"; "Non-Residential"; "Utility"]
-  
-(*** define-output:pie1 ***)
-Chart.Pie(values,labels)
-(*** include-it:pie1 ***)
+open System
+ 
+let c = [0. .. 0.5 .. 15.]
 
-(*** define-output:doughnut1 ***)
-Chart.Doughnut(values,labels,Hole=0.3)
-(*** include-it:doughnut1 ***)
+let x,y,z =  
+    c
+    |> List.map (fun i ->
+                    let i' = float i 
+                    let r = 10. * Math.Cos (i' / 10.)
+                    (r*Math.Cos i',r*Math.Sin i',i')
+                    )
+    |> List.unzip3
+
+  
+(*** define-output:scatter3d_line_1 ***)
+Chart.Scatter3d(x,y,z,StyleOption.Mode.Lines_Markers)
+|> Chart.withX_AxisStyle("x-axis")
+|> Chart.withY_AxisStyle("y-axis")
+|> Chart.withZ_AxisStyle("z-axis")
+|> Chart.withSize(800.,800.)
+
+(*** include-it:scatter3d_line_1 ***)
+
+

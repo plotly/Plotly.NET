@@ -182,11 +182,11 @@ module StyleOption =
 
     type Orientation =
         | Horizontal
-        | Vertival
+        | Vertical
 
         static member convert = function
             | Horizontal -> box "h"
-            | Vertival   -> box "v"
+            | Vertical   -> box "v"
 
     /// The colorscale must be a collection containing a mapping of a normalized value (between 0.0 and 1.0) to it's color. At minimum, a mapping for the lowest (0.0) and highest (1.0) values are required. 
     type ColorScale =
