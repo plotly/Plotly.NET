@@ -57,15 +57,55 @@ Outliers may be plotted as individual points.</p>
 </table>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="f">BoxPlot</span>(<span onmouseout="hideTip(event, 'fs4', 7)" onmouseover="showTip(event, 'fs4', 7)" class="i">x</span>,<span onmouseout="hideTip(event, 'fs3', 8)" onmouseover="showTip(event, 'fs3', 8)" class="i">y</span>,<span class="i">Jitter</span><span class="o">=</span><span class="n">0.3</span>,<span class="i">Boxpoints</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs7', 9)" onmouseover="showTip(event, 'fs7', 9)" class="t">StyleOption</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="t">Boxpoints</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs9', 11)" onmouseover="showTip(event, 'fs9', 11)" class="p">Outliers</span>)
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="f">BoxPlot</span>(<span onmouseout="hideTip(event, 'fs4', 7)" onmouseover="showTip(event, 'fs4', 7)" class="i">x</span>,<span onmouseout="hideTip(event, 'fs3', 8)" onmouseover="showTip(event, 'fs3', 8)" class="i">y</span>,<span class="i">Jitter</span><span class="o">=</span><span class="n">0.1</span>,<span class="i">Boxpoints</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs7', 9)" onmouseover="showTip(event, 'fs7', 9)" class="t">StyleOption</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="t">Boxpoints</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs9', 11)" onmouseover="showTip(event, 'fs9', 11)" class="p">All</span>)
 </code></pre></td>
 </tr>
 </table>
-<div id="a2c07a1b-cec4-430c-aba1-9bb42e3c88c5" style="width: 500px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>        
+<div id="8f523bad-ca6a-4002-8dfc-86e24dc66d26" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>        
   <script>
-    var data = [{"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"boxpoints":"outliers","jitter":0.3,"type":"box"}];
+    var data = [{"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"boxpoints":"all","jitter":0.1,"type":"box"}];
     var layout = {};
-    Plotly.newPlot('a2c07a1b-cec4-430c-aba1-9bb42e3c88c5', data, layout);
+    Plotly.newPlot('8f523bad-ca6a-4002-8dfc-86e24dc66d26', data, layout);
+  </script>
+<p>By swapping x and y plus using <code>StyleOption.Orientation.Horizontal</code> we can flip the chart horizontaly.</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs5', 12)" onmouseover="showTip(event, 'fs5', 12)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs6', 13)" onmouseover="showTip(event, 'fs6', 13)" class="f">BoxPlot</span>(<span onmouseout="hideTip(event, 'fs3', 14)" onmouseover="showTip(event, 'fs3', 14)" class="i">y</span>,<span onmouseout="hideTip(event, 'fs4', 15)" onmouseover="showTip(event, 'fs4', 15)" class="i">x</span>,<span class="i">Jitter</span><span class="o">=</span><span class="n">0.1</span>,<span class="i">Boxpoints</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs7', 16)" onmouseover="showTip(event, 'fs7', 16)" class="t">StyleOption</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs8', 17)" onmouseover="showTip(event, 'fs8', 17)" class="t">Boxpoints</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs9', 18)" onmouseover="showTip(event, 'fs9', 18)" class="p">All</span>,<span class="i">Orientation</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs7', 19)" onmouseover="showTip(event, 'fs7', 19)" class="t">StyleOption</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs10', 20)" onmouseover="showTip(event, 'fs10', 20)" class="t">Orientation</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs11', 21)" onmouseover="showTip(event, 'fs11', 21)" class="p">Horizontal</span>)
+</code></pre></td>
+</tr>
+</table>
+<div id="9e0832b3-caf5-4d8d-9d47-cf589c96364d" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>        
+  <script>
+    var data = [{"y":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"x":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"boxpoints":"all","jitter":0.1,"orientation":"h","type":"box"}];
+    var layout = {};
+    Plotly.newPlot('9e0832b3-caf5-4d8d-9d47-cf589c96364d', data, layout);
+  </script>
+<p>You can also produce a boxplot using the <code>Chart.Combine</code> syntax.</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs12', 22)" onmouseover="showTip(event, 'fs12', 22)" class="i">y&#39;</span> <span class="o">=</span>  [<span class="n">2.</span>; <span class="n">1.5</span>; <span class="n">5.</span>; <span class="n">1.5</span>; <span class="n">2.</span>; <span class="n">2.5</span>; <span class="n">2.1</span>; <span class="n">2.5</span>; <span class="n">1.5</span>; <span class="n">1.</span>;<span class="n">2.</span>; <span class="n">1.5</span>; <span class="n">5.</span>; <span class="n">1.5</span>; <span class="n">3.</span>; <span class="n">2.5</span>; <span class="n">2.5</span>; <span class="n">1.5</span>; <span class="n">3.5</span>; <span class="n">1.</span>]
+</code></pre></td>
+</tr>
+</table>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp">[
+    <span onmouseout="hideTip(event, 'fs5', 23)" onmouseover="showTip(event, 'fs5', 23)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs6', 24)" onmouseover="showTip(event, 'fs6', 24)" class="f">BoxPlot</span>(<span class="s">&quot;y&quot;</span> ,<span onmouseout="hideTip(event, 'fs3', 25)" onmouseover="showTip(event, 'fs3', 25)" class="i">y</span>,<span class="i">Name</span><span class="o">=</span><span class="s">&quot;bin1&quot;</span>,<span class="i">Jitter</span><span class="o">=</span><span class="n">0.1</span>,<span class="i">Boxpoints</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs7', 26)" onmouseover="showTip(event, 'fs7', 26)" class="t">StyleOption</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs8', 27)" onmouseover="showTip(event, 'fs8', 27)" class="t">Boxpoints</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs9', 28)" onmouseover="showTip(event, 'fs9', 28)" class="p">All</span>);
+    <span onmouseout="hideTip(event, 'fs5', 29)" onmouseover="showTip(event, 'fs5', 29)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs6', 30)" onmouseover="showTip(event, 'fs6', 30)" class="f">BoxPlot</span>(<span class="s">&quot;y&#39;&quot;</span>,<span onmouseout="hideTip(event, 'fs12', 31)" onmouseover="showTip(event, 'fs12', 31)" class="i">y&#39;</span>,<span class="i">Name</span><span class="o">=</span><span class="s">&quot;bin2&quot;</span>,<span class="i">Jitter</span><span class="o">=</span><span class="n">0.1</span>,<span class="i">Boxpoints</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs7', 32)" onmouseover="showTip(event, 'fs7', 32)" class="t">StyleOption</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs8', 33)" onmouseover="showTip(event, 'fs8', 33)" class="t">Boxpoints</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs9', 34)" onmouseover="showTip(event, 'fs9', 34)" class="p">All</span>);
+]
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs5', 35)" onmouseover="showTip(event, 'fs5', 35)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs13', 36)" onmouseover="showTip(event, 'fs13', 36)" class="f">Combine</span>
+</code></pre></td>
+</tr>
+</table>
+<div id="59a6c1e4-e428-4c59-93c3-480bcffe3660" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>        
+  <script>
+    var data = [{"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":"y","boxpoints":"all","jitter":0.1,"type":"box","name":"bin1"},{"y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":"y'","boxpoints":"all","jitter":0.1,"type":"box","name":"bin2"}];
+    var layout = {};
+    Plotly.newPlot('59a6c1e4-e428-4c59-93c3-480bcffe3660', data, layout);
   </script>
 
 <div class="tip" id="fs1">Multiple items<br />namespace FSharp<br /><br />--------------------<br />namespace Microsoft.FSharp</div>
@@ -76,7 +116,11 @@ Outliers may be plotted as individual points.</p>
 <div class="tip" id="fs6">static member Chart.BoxPlot : xy:seq&lt;&#39;a0 * &#39;a1&gt; * ?Name:string * ?Showlegend:bool * ?Color:string * ?Opacity:float * ?Whiskerwidth:float * ?Boxpoints:StyleOption.Boxpoints * ?Boxmean:StyleOption.BoxMean * ?Jitter:float * ?Pointpos:float * ?Orientation:StyleOption.Orientation -&gt; GenericChart.GenericChart<br />static member Chart.BoxPlot : ?x:&#39;a * ?y:&#39;b * ?Name:string * ?Showlegend:bool * ?Color:string * ?Opacity:float * ?Whiskerwidth:float * ?Boxpoints:StyleOption.Boxpoints * ?Boxmean:StyleOption.BoxMean * ?Jitter:float * ?Pointpos:float * ?Orientation:StyleOption.Orientation -&gt; GenericChart.GenericChart</div>
 <div class="tip" id="fs7">module StyleOption<br /><br />from FSharp.Plotly</div>
 <div class="tip" id="fs8">type Boxpoints =<br />&#160;&#160;| Outliers<br />&#160;&#160;| All<br />&#160;&#160;| Suspectedoutliers<br />&#160;&#160;| False<br />&#160;&#160;static member convert : (Boxpoints -&gt; obj)<br /><br />Full name: FSharp.Plotly.StyleOption.Boxpoints</div>
-<div class="tip" id="fs9">union case StyleOption.Boxpoints.Outliers: StyleOption.Boxpoints</div>
+<div class="tip" id="fs9">union case StyleOption.Boxpoints.All: StyleOption.Boxpoints</div>
+<div class="tip" id="fs10">type Orientation =<br />&#160;&#160;| Horizontal<br />&#160;&#160;| Vertical<br />&#160;&#160;static member convert : (Orientation -&gt; obj)<br /><br />Full name: FSharp.Plotly.StyleOption.Orientation</div>
+<div class="tip" id="fs11">union case StyleOption.Orientation.Horizontal: StyleOption.Orientation</div>
+<div class="tip" id="fs12">val y&#39; : float list<br /><br />Full name: Box-plots.y&#39;</div>
+<div class="tip" id="fs13">static member Chart.Combine : gCharts:seq&lt;GenericChart.GenericChart&gt; -&gt; GenericChart.GenericChart</div>
 
         </div>
         <div class="span3">
@@ -100,7 +144,8 @@ Outliers may be plotted as individual points.</p>
               <li><a href="/FSharp.Plotly/range-plots.html">Range Plots</a></li>                                                             
             <li class="nav-header">Plotly 3d-Charts</li>
               <li><a href="/FSharp.Plotly/3d-scatter-plots.html">3D Scatter Plots</a></li>           
-              
+              <li><a href="/FSharp.Plotly/3d-line-plots.html">3D Line Plots</a></li>             
+              <li><a href="/FSharp.Plotly/3d-surface-plots.html">3D Surface Plots</a></li>
             <li class="nav-header">Plotly WPF</li>
               <li><a href="/FSharp.Plotly/plotly-wpf.html">Using Plotly PopUp window</a></li>            
 

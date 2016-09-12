@@ -60,11 +60,11 @@ or horizontally. A vertical bar chart is called a column bar chart.</p>
 </code></pre></td>
 </tr>
 </table>
-<div id="e50d8791-bfb8-44aa-ae25-5db8bab347e8" style="width: 500px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>        
+<div id="f59c8412-df5e-4ef4-8526-8302d69c58ca" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>        
   <script>
-    var data = [{"marker":{"color":"rgba(222,45,38,0.8)"},"x":["Product A","Product B","Product C"],"y":[20,14,23],"type":"bar","opacity":0.3,"text":["27% market share","24% market share","19% market share"]}];
+    var data = [{"x":["Product A","Product B","Product C"],"y":[20,14,23],"type":"bar","opacity":0.3,"text":["27% market share","24% market share","19% market share"],"marker":{"color":"rgba(222,45,38,0.8)"}}];
     var layout = {};
-    Plotly.newPlot('e50d8791-bfb8-44aa-ae25-5db8bab347e8', data, layout);
+    Plotly.newPlot('f59c8412-df5e-4ef4-8526-8302d69c58ca', data, layout);
   </script>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 </pre></td>
@@ -72,11 +72,11 @@ or horizontally. A vertical bar chart is called a column bar chart.</p>
 </code></pre></td>
 </tr>
 </table>
-<div id="e4a47070-16c2-4ab1-8181-2aef39b3b38a" style="width: 500px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>        
+<div id="da1c217c-ff96-4270-9205-35b9f4bff555" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>        
   <script>
-    var data = [{"marker":{},"x":[20,14,23],"y":["Product A","Product B","Product C"],"orientation":"h","type":"bar"}];
+    var data = [{"x":[20,14,23],"y":["Product A","Product B","Product C"],"orientation":"h","type":"bar","marker":{}}];
     var layout = {};
-    Plotly.newPlot('e4a47070-16c2-4ab1-8181-2aef39b3b38a', data, layout);
+    Plotly.newPlot('da1c217c-ff96-4270-9205-35b9f4bff555', data, layout);
   </script>
 <h2><a name="Stacked-bar-chart-or-column-charts" class="anchor" href="#Stacked-bar-chart-or-column-charts">Stacked bar chart or column charts</a></h2>
 <p>The following example shows how to create a stacked bar chart by combining bar charts created by  <code>Chart.StackedBar</code></p>
@@ -94,11 +94,11 @@ or horizontally. A vertical bar chart is called a column bar chart.</p>
 </code></pre></td>
 </tr>
 </table>
-<div id="3e9113cc-72a4-4cdd-bdbc-c6958cee7d12" style="width: 500px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>        
+<div id="d561800a-793b-4199-a98c-794702832fc4" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>        
   <script>
-    var data = [{"marker":{},"x":[20,14,23],"y":["Product A","Product B","Product C"],"orientation":"h","type":"bar","name":"old"},{"marker":{},"x":[8,21,13],"y":["Product A","Product B","Product C"],"orientation":"h","type":"bar","name":"new"}];
+    var data = [{"x":[20,14,23],"y":["Product A","Product B","Product C"],"orientation":"h","type":"bar","name":"old","marker":{}},{"x":[8,21,13],"y":["Product A","Product B","Product C"],"orientation":"h","type":"bar","name":"new","marker":{}}];
     var layout = {"barmode":"stack"};
-    Plotly.newPlot('3e9113cc-72a4-4cdd-bdbc-c6958cee7d12', data, layout);
+    Plotly.newPlot('d561800a-793b-4199-a98c-794702832fc4', data, layout);
   </script>
 
 <div class="tip" id="fs1">Multiple items<br />namespace FSharp<br /><br />--------------------<br />namespace Microsoft.FSharp</div>
@@ -137,7 +137,8 @@ or horizontally. A vertical bar chart is called a column bar chart.</p>
               <li><a href="/FSharp.Plotly/range-plots.html">Range Plots</a></li>                                                             
             <li class="nav-header">Plotly 3d-Charts</li>
               <li><a href="/FSharp.Plotly/3d-scatter-plots.html">3D Scatter Plots</a></li>           
-              
+              <li><a href="/FSharp.Plotly/3d-line-plots.html">3D Line Plots</a></li>             
+              <li><a href="/FSharp.Plotly/3d-surface-plots.html">3D Surface Plots</a></li>
             <li class="nav-header">Plotly WPF</li>
               <li><a href="/FSharp.Plotly/plotly-wpf.html">Using Plotly PopUp window</a></li>            
 
