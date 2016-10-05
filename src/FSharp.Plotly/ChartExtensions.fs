@@ -201,6 +201,23 @@ module ChartExtensions =
         // TODO: Include withError
 
         // TODO: Include withShapes
+    //Specifies the shape type to be drawn. If "line", a line is drawn from (`x0`,`y0`) to (`x1`,`y1`) If "circle", a circle is drawn from 
+    //((`x0`+`x1`)/2, (`y0`+`y1`)/2)) with radius (|(`x0`+`x1`)/2 - `x0`|, |(`y0`+`y1`)/2 -`y0`)|) If "rect", a rectangle is drawn linking 
+    //(`x0`,`y0`), (`x1`,`y0`), (`x1`,`y1`), (`x0`,`y1`), (`x0`,`y0`)  
+        static member withShape(shape:ShapeOptions) =
+            (fun (ch:GenericChart) ->                 
+                
+                let shape' = Shape() |> shape
+                let layout = Options.Layout(Shapes=[shape'])
+                GenericChart.addLayout layout ch)  
+
+        static member withShapes(shapes:ShapeOptions seq) =
+            (fun (ch:GenericChart) ->                 
+                
+                let shapes' =
+                    shapes |> Seq.map (fun shape -> shape (Shape()))
+                let layout = Options.Layout(Shapes=shapes')
+                GenericChart.addLayout layout ch)  
 
 
 

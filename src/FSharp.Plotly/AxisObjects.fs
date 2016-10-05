@@ -1134,6 +1134,7 @@ module AxisObjects =
         let mutable _opacity: float option = None
         let mutable _line: Line option = None
         let mutable _fillcolor: string option = None
+        let mutable _layer: string option = None
         //let mutable _role: string option = Some "object"
 
         /// Specifies the shape type to be drawn. If *line*, a line is drawn from (`x0`,`y0`) to (`x1`,`y1`) If *circle*, a circle is drawn from ((`x0`+`x1`)/2, (`y0`+`y1`)/2)) with radius (|(`x0`+`x1`)/2 - `x0`|, |(`y0`+`y1`)/2 -`y0`)|) If *rect*, a rectangle is drawn linking (`x0`,`y0`), (`x1`,`y0`), (`x1`,`y1`), (`x0`,`y1`), (`x0`,`y0`) If *path*, draw a custom SVG path using `path`.
@@ -1190,6 +1191,11 @@ module AxisObjects =
             with get () = Option.get _fillcolor
             and set value = _fillcolor <- Some value
 
+        /// Sets if the shapes is drawn on top or above
+        member __.layer
+            with get () = Option.get _layer
+            and set value = _layer <- Some value
+
     //    member __.role
     //        with get () = Option.get _role
     //        and set value = _role <- Some value
@@ -1205,4 +1211,5 @@ module AxisObjects =
         member __.ShouldSerializeopacity() = not _opacity.IsNone
         member __.ShouldSerializeline() = not _line.IsNone
         member __.ShouldSerializefillcolor() = not _fillcolor.IsNone
+        member __.ShouldSerializelayer() = not _layer.IsNone
         //member __.ShouldSerializerole() = not _role.IsNone

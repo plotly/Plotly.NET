@@ -23,8 +23,8 @@ let trace =
        
         x = [1; 2; 3; 4],
         y = [12; 9; 15; 12],
-        mode = "lines+markers"
-        //name = "lines and markers"
+        mode = "lines+markers",
+        name = "lines and markers"
     )
 
 let layout =
@@ -37,8 +37,11 @@ GenericChart.ofTraceObject trace layout
 |> Chart.Show
 
 
-let red = FSharp.Care.Colors.Table.Office.red
-let red' = FSharp.Care.Colors.toHex false red
+
+
+
+open FSharp.Care.Colors
+let red' = FSharp.Care.Colors.toHex false Table.Office.red
 
 Chart.Point([1; 2; 3; 4],[12; 9; 15; 12])
 |> Chart.withMarkerStyle(Color=red')
