@@ -44,9 +44,15 @@ z
 |> Chart.withSize(600.,600.)
 (*** include-it:contour1 ***)
 
+// Create simple example data were x y and z is given (z is a xy-Matrix)
+let x' = [0.;2.5]
+let y' = [0.;2.5]
+let z' = [
+    [1.;1.;]; // row wise (length x)
+    [1.;1.;];
+    ] // column (length y)
 
-
-
+Chart.Surface(z',x',y')
 
 
 
