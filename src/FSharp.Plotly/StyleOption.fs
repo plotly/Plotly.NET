@@ -88,6 +88,45 @@ module StyleOption =
 
         static member convert = Mode.toString >> box
 
+    /// Functions to manipulate StyleOption Mode
+    module ModeUtils=
+        
+        /// Takes the current mode and adds the Text flag
+        let showText isShow (cmode:Mode) =
+            if isShow then 
+                match cmode with
+                | None          -> Mode.Text
+                | Lines         -> Mode.Lines_Text
+                | Lines_Markers -> Mode.Lines_Markers_Text
+                | Markers       -> Mode.Markers_Text
+                | _             -> cmode
+            else
+                cmode
+        /// Takes the current mode and adds the Markers flag
+        let showMarker isShow (cmode:Mode) =
+            if isShow then 
+                match cmode with
+                | None          -> Mode.Markers
+                | Lines         -> Mode.Lines_Markers
+                | Lines_Text    -> Mode.Lines_Markers_Text            
+                | Text          -> Mode.Markers_Text
+                | _             -> cmode
+            else
+                cmode
+                        
+        /// Takes the current mode and adds the Lines flag
+        let showLines isShow (cmode:Mode) =
+            if isShow then 
+                match cmode with
+                | None          -> Mode.Lines
+                | Markers       -> Mode.Lines_Markers
+                | Markers_Text  -> Mode.Lines_Markers_Text
+                | Text          -> Mode.Lines_Text
+                | _             -> cmode
+            else
+                cmode
+
+
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates. (default: MiddleCenter)
     type TextPosition =
         | TopLeft | TopCenter | TopRight | MiddleLeft | MiddleCenter | MiddleRight | BottomLeft | BottomCenter | BottomRight 

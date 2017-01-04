@@ -28,9 +28,12 @@ type Chart =
 
     /// Uses points to represent data points
     static member Point(x, y,?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont) = 
+        // if text position or font is set than show labels (not only when hovering)
+        let changeMode = StyleOption.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
+        
         let trace = 
             TraceObjects.Scatter()
-            |> Options.Scatter(X = x,Y = y, Mode = StyleOption.Markers)               
+            |> Options.Scatter(X = x,Y = y, Mode = changeMode StyleOption.Markers)               
             |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
             |> Options.IMarker(Options.Marker(?Color=Color,?Symbol=MarkerSymbol))
             |> Options.ITextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
@@ -44,13 +47,19 @@ type Chart =
 
     /// Uses lines to represent data points
     static member Line(x, y,?Name,?ShowMarkers,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
-        let mode' = 
-            match ShowMarkers with
-            | Some show -> if show then StyleOption.Lines_Markers else StyleOption.Lines
-            | None      -> StyleOption.Lines_Markers // default
+        // if text position or font is set than show labels (not only when hovering)
+        let changeMode = 
+            let isShowMarker =
+                match ShowMarkers with
+                | Some isShow -> isShow
+                | None        -> false
+            StyleOption.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
+            >> StyleOption.ModeUtils.showMarker (isShowMarker)
+
+        
         let trace = 
             TraceObjects.Scatter()
-            |> Options.Scatter(X = x,Y = y, Mode = mode')               
+            |> Options.Scatter(X = x,Y = y, Mode = (changeMode StyleOption.Mode.Lines))
             |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
             |> Options.ILine(Options.Line(?Color=Color,?Dash=Dash,?Width=Width))
             |> Options.IMarker(Options.Marker(?Color=Color,?Symbol=MarkerSymbol))
@@ -65,13 +74,16 @@ type Chart =
 
     /// A Line chart that plots a fitted curve through each data point in a series.
     static member Spline(x, y,?Name,?ShowMarkers,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width,?Smoothing) = 
-        let mode' = 
-            match ShowMarkers with
-            | Some show -> if show then StyleOption.Lines_Markers else StyleOption.Lines
-            | None      -> StyleOption.Lines_Markers // default
+        let changeMode = 
+            let isShowMarker =
+                match ShowMarkers with
+                | Some isShow -> isShow
+                | None        -> false
+            StyleOption.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
+            >> StyleOption.ModeUtils.showMarker (isShowMarker)
         let trace = 
             TraceObjects.Scatter()
-            |> Options.Scatter(X = x,Y = y, Mode = mode', ?Fillcolor=Color)               
+            |> Options.Scatter(X = x,Y = y, Mode = (changeMode StyleOption.Mode.Lines), ?Fillcolor=Color)               
             |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
             |> Options.ILine(Options.Line(?Color=Color,?Dash=Dash,?Width=Width, Shape=StyleOption.Shape.Spline, ?Smoothing=Smoothing))
             |> Options.IMarker(Options.Marker(?Color=Color,?Symbol=MarkerSymbol))
@@ -86,9 +98,12 @@ type Chart =
 
     /// A variation of the Point chart type, where the data points are replaced by bubbles of different sizes.
     static member Bubble(x, y,sizes:seq<#IConvertible>,?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont) = 
+        // if text position or font is set than show labels (not only when hovering)
+        let changeMode = StyleOption.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
+        
         let trace = 
             TraceObjects.Scatter()
-            |> Options.Scatter(X = x,Y = y, Mode = StyleOption.Markers)               
+            |> Options.Scatter(X = x,Y = y, Mode = changeMode StyleOption.Markers)               
             |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
             |> Options.IMarker(Options.Marker(?Color=Color,?Symbol=MarkerSymbol, MultiSizes=sizes))
             |> Options.ITextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
@@ -102,12 +117,18 @@ type Chart =
 
     /// Displays a range of data by plotting two Y values per data point, with each Y value being drawn as a line 
     static member Range(x, y, upper, lower,?Name,?ShowMarkers,?Showlegend,?Color,?RangeColor,?Labels,?TextPosition,?TextFont) =             
-        let mode' = match ShowMarkers with
-                    | Some show -> if show then StyleOption.Lines_Markers else StyleOption.Lines
-                    | None      -> StyleOption.Lines_Markers // default 
+        // if text position or font is set than show labels (not only when hovering)
+        let changeMode = 
+            let isShowMarker =
+                match ShowMarkers with
+                | Some isShow -> isShow
+                | None        -> false
+            StyleOption.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
+            >> StyleOption.ModeUtils.showMarker (isShowMarker)
+
         let trace = 
             TraceObjects.Scatter()
-            |> Options.Scatter(X = x,Y = y, Mode = mode', ?Fillcolor=Color)     
+            |> Options.Scatter(X = x,Y = y, Mode = changeMode StyleOption.Mode.Lines, ?Fillcolor=Color)     
             |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend)
             |> Options.ILine(Options.Line(?Color=Color))
             |> Options.IMarker(Options.Marker(?Color=Color))
@@ -134,13 +155,18 @@ type Chart =
 
     /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
     static member Area(x, y,?Name,?ShowMarkers,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
-        let mode' = 
-            match ShowMarkers with
-            | Some show -> if show then StyleOption.Lines_Markers else StyleOption.Lines
-            | None      -> StyleOption.Lines // default
+        // if text position or font is set than show labels (not only when hovering)
+        let changeMode = 
+            let isShowMarker =
+                match ShowMarkers with
+                | Some isShow -> isShow
+                | None        -> false
+            StyleOption.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
+            >> StyleOption.ModeUtils.showMarker (isShowMarker)
+
         let trace = 
             TraceObjects.Scatter()
-            |> Options.Scatter(X = x,Y = y, Mode = mode',Fill=StyleOption.ToZero_y)               
+            |> Options.Scatter(X = x,Y = y, Mode = changeMode StyleOption.Mode.Lines,Fill=StyleOption.ToZero_y)               
             |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
             |> Options.ILine(Options.Line(?Color=Color,?Dash=Dash,?Width=Width))
             |> Options.IMarker(Options.Marker(?Color=Color,?Symbol=MarkerSymbol))
@@ -155,13 +181,17 @@ type Chart =
 
     /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
     static member SplineArea(x, y,?Name,?ShowMarkers,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width,?Smoothing) = 
-        let mode' = 
-            match ShowMarkers with
-            | Some show -> if show then StyleOption.Lines_Markers else StyleOption.Lines
-            | None      -> StyleOption.Lines // default
+        // if text position or font is set than show labels (not only when hovering)
+        let changeMode = 
+            let isShowMarker =
+                match ShowMarkers with
+                | Some isShow -> isShow
+                | None        -> false
+            StyleOption.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
+            >> StyleOption.ModeUtils.showMarker (isShowMarker)
         let trace = 
             TraceObjects.Scatter()
-            |> Options.Scatter(X = x,Y = y, Mode = mode',Fill=StyleOption.ToZero_y)               
+            |> Options.Scatter(X = x,Y = y, Mode = changeMode StyleOption.Mode.Lines,Fill=StyleOption.ToZero_y)               
             |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
             |> Options.ILine(Options.Line(Shape=StyleOption.Shape.Spline,?Color=Color,?Dash=Dash,?Width=Width,?Smoothing=Smoothing))
             |> Options.IMarker(Options.Marker(?Color=Color,?Symbol=MarkerSymbol))

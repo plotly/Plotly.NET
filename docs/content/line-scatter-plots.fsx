@@ -18,7 +18,8 @@ open FSharp.Plotly
   
 let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
 let y' = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
-  
+
+ 
 (*** define-output:line1 ***)
 Chart.Line(x,y',Name="line")    
 |> Chart.withLineStyle(Width=2,Dash=StyleOption.DrawingStyle.Dot)
@@ -37,7 +38,6 @@ shown below.
 [ for x in 1.0 .. 100.0 -> (x, x ** 2.0) ]
 |> Chart.Line
 (*** include-it:line2 ***)
-|> Chart.Show
 
 
 
@@ -46,5 +46,21 @@ Chart.Spline(x,y',Name="spline")
 |> Chart.withLineStyle(Width=2,Dash=StyleOption.DrawingStyle.Dot)
 |> Chart.withLineStyle(Width=6,Dash=StyleOption.DrawingStyle.Dot)
 (*** include-it:line3 ***)
+
+
+(** 
+
+## Point chart with text label
+The following example calls the `Chart.Point` method to generate a Scattern Plot containing X and Y values plus text labels. 
+If `TextPosition` is set the labels are drawn otherwise only shown when hovering over the points.
+
+*)
+
+
+let l  = ["a";"b";"c";"d";"e";"f";"g";"h";"i";"j";]
+
+(*** define-output:pointsWithLabels ***)
+Chart.Point(x,y',Name="points",Labels=l,TextPosition=StyleOption.TextPosition.TopRight)    
+(*** include-it:pointsWithLabels ***)
 |> Chart.Show
 

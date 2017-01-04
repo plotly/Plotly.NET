@@ -208,6 +208,16 @@ module ChartExtensions =
         /// Create a combined chart with the given charts merged   
         static member Combine(gCharts:seq<GenericChart>) =
             GenericChart.combine gCharts
+
+//        /// Save chart as html single page
+//        static member SaveHtmlAs pathName (ch:GenericChart) =                                     
+//            let html = GenericChart.toEmbeddedHTML ch
+//            let tempPath = Path.GetTempPath()
+//            let file = sprintf "%s.html" guid
+//            let path = Path.Combine(tempPath, file)
+//            File.WriteAllText(path, html)
+//            System.Diagnostics.Process.Start(path) |> ignore
+
         
         /// Show chart in browser            
         static member Show (ch:GenericChart) = 
