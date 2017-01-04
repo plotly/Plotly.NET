@@ -146,15 +146,60 @@ type Options() =
             ?Color,
             ?Symbol:StyleOption.Symbol,
             ?Opacity:float,
-            ?MultiSizes:seq<#IConvertible>
+            ?MultiSizes:seq<#IConvertible>,
+            ?Line : LineOptions,
+            ?Colorbar       ,
+            ?Colorscale     ,
+            ?Colors         ,
+                        
+            ?Maxdisplayed   ,
+            ?Sizeref        ,
+            ?Sizemin        ,
+            ?Sizemode       ,
+            ?Cauto          ,
+            ?Cmax           ,
+            ?Cmin           ,
+            ?Autocolorscale ,
+            ?Reversescale   ,
+            ?Showscale      ,
+                        
+            ?Symbolsrc      ,
+            ?Opacitysrc     ,
+            ?Sizesrc        ,
+            ?Colorsrc       ,
+            ?Cutliercolor   ,
+            ?Colorssrc      
+
         ) =
             (fun (marker:('T :> Marker)) -> 
-                Size       |> Option.iter marker.set_size 
-                Color      |> Option.iter marker.set_color
-                Symbol     |> Option.iter marker.set_symbol
-                Opacity    |> Option.iter marker.set_opacity
-                MultiSizes |> Option.iter marker.set_size
-            
+                Size           |> Option.iter marker.set_size 
+                Color          |> Option.iter marker.set_color
+                Symbol         |> Option.iter marker.set_symbol
+                Opacity        |> Option.iter marker.set_opacity
+                MultiSizes     |> Option.iter marker.set_size
+                Line           |> Option.iter (updatePropertyValueAndIgnore marker <@ marker.line @>)        
+                Colorbar       |> Option.iter marker.set_colorbar       
+                Colorscale     |> Option.iter marker.set_colorscale
+                Colors         |> Option.iter marker.set_colors     
+                                               
+                Maxdisplayed   |> Option.iter marker.set_maxdisplayed   
+                Sizeref        |> Option.iter marker.set_sizeref        
+                Sizemin        |> Option.iter marker.set_sizemin        
+                Sizemode       |> Option.iter marker.set_sizemode            
+                Cauto          |> Option.iter marker.set_cauto          
+                Cmax           |> Option.iter marker.set_cmax           
+                Cmin           |> Option.iter marker.set_cmin           
+                Autocolorscale |> Option.iter marker.set_autocolorscale 
+                Reversescale   |> Option.iter marker.set_reversescale   
+                Showscale      |> Option.iter marker.set_showscale      
+                                                   
+                Symbolsrc      |> Option.iter marker.set_symbolsrc      
+                Opacitysrc     |> Option.iter marker.set_opacitysrc     
+                Sizesrc        |> Option.iter marker.set_sizesrc        
+                Colorsrc       |> Option.iter marker.set_colorsrc       
+                Cutliercolor   |> Option.iter marker.set_outliercolor            
+                Colorssrc      |> Option.iter marker.set_colorssrc      
+
                 marker
             )
 
@@ -285,12 +330,14 @@ type Options() =
             ?Separators,
             ?Barmode:StyleOption.Barmode,
             ?Bargap, // Some bar.. /box... is missing
+            // bargroupgap
+            //
             ?Radialaxis:RadialAxisOptions,
             ?Angularaxis:AngularAxisOptions,
             ?Scene:SceneOptions,
             ?Direction:StyleOption.Direction,
             ?Orientation,
-            ?Shapes:ShapeOptions,
+            ?Shapes:Shape seq,
             
             ?Hidesources,?Smith,?Geo
 
@@ -319,6 +366,7 @@ type Options() =
                 Orientation |> Option.iter layout.set_orientation
                 Barmode |> Option.iter (StyleOption.Barmode.toString >> layout.set_barmode)
                 Bargap |> Option.iter layout.set_bargap
+                Shapes |> Option.iter layout.set_shapes
 
                 // Update
                 Font        |> Option.iter (updatePropertyValueAndIgnore layout <@ layout.font @>)
@@ -332,7 +380,7 @@ type Options() =
                 Radialaxis  |> Option.iter (updatePropertyValueAndIgnore layout <@ layout.radialaxis @>)
                 Angularaxis |> Option.iter (updatePropertyValueAndIgnore layout <@ layout.angularaxis @>)
                 Scene       |> Option.iter (updatePropertyValueAndIgnore layout <@ layout.scene @>)
-                Shapes      |> Option.iter (updatePropertyValueAndIgnore layout <@ layout.shapes @>)
+                //Shapes      |> Option.iter (updatePropertyValueAndIgnore layout <@ layout.shapes @>)
 
                 layout
             )
@@ -905,6 +953,43 @@ type Options() =
                 scene
             ) 
 
+
+    // Applies the styles to Shape()
+    static member Shape
+        (   
+           ?ShapeType : StyleOption.ShapeType,
+           ?X0        ,
+           ?X1        ,           
+           ?Y0        ,
+           ?Y1        ,
+           ?Path      ,
+           ?Opacity   ,
+           ?Line : LineOptions,
+           ?Fillcolor ,
+           ?Layer :StyleOption.Layer,
+           ?Xref      ,
+           ?Yref
+           
+          
+        ) =
+            (fun (shape:('T :> Shape)) -> 
+
+                
+                ShapeType |> Option.iter (StyleOption.ShapeType.toString >> shape.set_type)    
+                Xref      |> Option.iter shape.set_xref     
+                X0        |> Option.iter shape.set_x0        
+                X1        |> Option.iter shape.set_x1        
+                Yref      |> Option.iter shape.set_yref     
+                Y0        |> Option.iter shape.set_y0       
+                Y1        |> Option.iter shape.set_y1       
+                Path      |> Option.iter shape.set_path     
+                Opacity   |> Option.iter shape.set_opacity      
+                Line      |> Option.iter (updatePropertyValueAndIgnore shape <@ shape.line  @>)
+                Fillcolor |> Option.iter shape.set_fillcolor
+                Layer     |> Option.iter (StyleOption.Layer.toString >> shape.set_layer)
+                // out ->
+                shape
+            ) 
 
 
 

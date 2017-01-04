@@ -545,6 +545,34 @@ module StyleOption =
         
         static member convert = function
             | MinMax (min,max)   -> box [|min;max|]
-            
+ 
+ 
 
 
+    /// Specifies the shape type to be drawn. If "line", a line is drawn from (`x0`,`y0`) to (`x1`,`y1`) If "circle", a circle is drawn from ((`x0`+`x1`)/2, (`y0`+`y1`)/2))
+    /// with radius (|(`x0`+`x1`)/2 - `x0`|, |(`y0`+`y1`)/2 -`y0`)|) If "rect", a rectangle is drawn linking (`x0`,`y0`), (`x1`,`y0`), (`x1`,`y1`), (`x0`,`y1`), (`x0`,`y0`)
+    /// If "path", draw a custom SVG path using `path`.          
+    type ShapeType =
+        | Circle | Rectangle | SvgPath | Line 
+        
+        static member toString = function
+            | Circle    -> "circle"
+            | Rectangle -> "rect"
+            | SvgPath   -> "path"
+            | Line      -> "line"
+
+
+        static member convert = ShapeType.toString >> box
+
+
+    /// Specifies whether shapes are drawn below or above traces. Default is Above
+    type Layer =
+        | Below | Above
+        
+        static member toString = function
+            | Below   -> "below"
+            | Above   -> "above"
+
+
+
+        static member convert = Layer.toString >> box

@@ -364,7 +364,7 @@ type Chart =
         let values,labels = Seq.unzip data 
         Chart.Doughnut(values,Labels=labels,?Name=Name,?Showlegend=Showlegend,?Color=Color,?Hole=Hole,?Text=Text,?Textposition=Textposition,?TextFont=TextFont,?Hoverinfo=Hoverinfo,?Textinfo=Textinfo,?Opacity=Opacity)
 
-    
+
 //    /// Computes the bi-dimensional histogram of two data samples and auto-determines the bin size.
 //    static member Histogram2d(x,y,?Name,?HistNorm,?HistFunc,?Colorscale,?Showscale,?zSmooth,?Colorbar,?zAuto,?zMin,?zMax,?nBinsx,?nBinsy,?Xbins,?Ybins) =         
 //        let trace = 
