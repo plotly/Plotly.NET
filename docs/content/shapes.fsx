@@ -22,3 +22,4 @@ Chart.Line(x,y',Name="line")
 |> Chart.withShapes([s1;s2])
 (*** include-it:line1 ***)
 |> Chart.Show
+

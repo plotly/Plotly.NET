@@ -116,9 +116,9 @@ module ChartExtensions =
                              
         
         // Sets x-Axis of 2d and 3d- Charts
-        static member withX_AxisStyle(title,?MinMax) =                    
+        static member withX_AxisStyle(title,?MinMax,?Showgrid) =                    
             let range = if MinMax.IsSome then Some (StyleOption.RangeValues.MinMax (MinMax.Value)) else None
-            let xaxis = Options.Axis(Title=title,?Range=range)
+            let xaxis = Options.Axis(Title=title,?Range=range,?Showgrid=Showgrid)
             Chart.withX_Axis(xaxis) 
             
 
@@ -144,9 +144,9 @@ module ChartExtensions =
             )
         
         // Sets y-Axis of 3d- Charts
-        static member withY_AxisStyle(title,?MinMax) =
+        static member withY_AxisStyle(title,?MinMax,?Showgrid) =
             let range = if MinMax.IsSome then Some (StyleOption.RangeValues.MinMax (MinMax.Value)) else None
-            let yaxis = Options.Axis(Title=title,?Range=range)
+            let yaxis = Options.Axis(Title=title,?Range=range,?Showgrid=Showgrid)
             Chart.withY_Axis(yaxis)                
 
 
