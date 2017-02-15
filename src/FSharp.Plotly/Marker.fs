@@ -1,0 +1,83 @@
+namespace FSharp.Plotly
+
+open System
+
+/// Marker type inherits from dynamic object
+type Marker () =
+    inherit DynamicObj ()
+
+[<CompilationRepresentationAttribute(CompilationRepresentationFlags.ModuleSuffix)>]
+module Marker =
+
+    /// Inits marker
+    let initMarker (applyStyle:Marker->Marker) = 
+        Marker() |> applyStyle
+
+
+    type MarkerStyle () =
+
+        // Applies the styles to Marker()
+        static member Apply
+            (   
+                ?Size:int,
+                ?Color,
+                ?Symbol:StyleParam.Symbol,
+                ?Opacity:float,
+                ?MultiSizes:seq<#IConvertible>,
+                ?Line : Line,
+                ?Colorbar       ,
+                ?Colorscale     ,
+                ?Colors         ,
+                            
+                ?Maxdisplayed   ,
+                ?Sizeref        ,
+                ?Sizemin        ,
+                ?Sizemode       ,
+                ?Cauto          ,
+                ?Cmax           ,
+                ?Cmin           ,
+                ?Autocolorscale ,
+                ?Reversescale   ,
+                ?Showscale      ,
+                            
+                ?Symbolsrc      ,
+                ?Opacitysrc     ,
+                ?Sizesrc        ,
+                ?Colorsrc       ,
+                ?Cutliercolor   ,
+                ?Colorssrc      
+
+            ) =
+                (fun (marker: Marker) -> 
+                    Size           |> DynObj.setValueOpt marker "size" 
+                    Color          |> DynObj.setValueOpt marker "color"
+                    Symbol         |> DynObj.setValueOpt marker "symbol"
+                    Opacity        |> DynObj.setValueOpt marker "opacity"
+                    MultiSizes     |> DynObj.setValueOpt marker "size"
+                    Line           |> DynObj.setValueOpt marker "line"        
+                    Colorbar       |> DynObj.setValueOpt marker "colorbar"       
+                    Colorscale     |> DynObj.setValueOpt marker "colorscale"
+                    Colors         |> DynObj.setValueOpt marker "colors"     
+                                                
+                    Maxdisplayed   |> DynObj.setValueOpt marker "maxdisplayed"   
+                    Sizeref        |> DynObj.setValueOpt marker "sizeref"        
+                    Sizemin        |> DynObj.setValueOpt marker "sizemin"        
+                    Sizemode       |> DynObj.setValueOpt marker "sizemode"            
+                    Cauto          |> DynObj.setValueOpt marker "cauto"          
+                    Cmax           |> DynObj.setValueOpt marker "cmax"           
+                    Cmin           |> DynObj.setValueOpt marker "cmin"           
+                    Autocolorscale |> DynObj.setValueOpt marker "autocolorscale" 
+                    Reversescale   |> DynObj.setValueOpt marker "reversescale"   
+                    Showscale      |> DynObj.setValueOpt marker "showscale"      
+                                                    
+                    Symbolsrc      |> DynObj.setValueOpt marker "symbolsrc"      
+                    Opacitysrc     |> DynObj.setValueOpt marker "opacitysrc"     
+                    Sizesrc        |> DynObj.setValueOpt marker "sizesrc"        
+                    Colorsrc       |> DynObj.setValueOpt marker "colorsrc"       
+                    Cutliercolor   |> DynObj.setValueOpt marker "outliercolor"            
+                    Colorssrc      |> DynObj.setValueOpt marker "colorssrc"      
+
+                    marker
+                )
+
+

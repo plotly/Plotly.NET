@@ -31,10 +31,13 @@ module HTML =
 
 /// Module to represent a GenericChart
 module GenericChart =
-    // 'T when 'T :> ITrace
+    
+    open Trace
+    open Layout
+    
     type GenericChart =
-        | Chart of ITrace * (Layout -> Layout) list option
-        | MultiChart of ITrace list * (Layout -> Layout) list option
+        | Chart of Trace * Layout
+        | MultiChart of Trace list * Layout
 
 
         
@@ -43,44 +46,41 @@ module GenericChart =
         | Chart (trace,_)       -> [trace]
         | MultiChart (traces,_) -> traces  
 
-    let getLayouts gChart =
-        let optOrDefault (_default:'t)  (v: 't option) =
-            match v with
-            | Some v' -> v'
-            | None -> _default
+    let getLayout gChart =
         match gChart with
-        | Chart (_,layout)      -> optOrDefault [] layout
-        | MultiChart (_,layout) -> optOrDefault [] layout
+        | Chart (_,layout)      -> layout
+        | MultiChart (_,layout) -> layout
 
-  
+    let setLayout layout gChart =
+        match gChart with
+        | Chart (t,_)      -> Chart (t,layout)
+        | MultiChart (t,_) -> MultiChart (t,layout)
+
+
+
     // Adds a Layout function to the GenericChart
     let addLayout layout gChart =
         match gChart with
-        | Chart (trace,_)       -> 
-            let l' = getLayouts gChart
-            Chart (trace,Some (layout::l'))
-        | MultiChart (traces,_) -> 
-            let l' = getLayouts gChart
-            MultiChart (traces, Some (layout::l'))
+        | Chart (trace,l')       -> 
+            Chart (trace, (DynObj.combine l' layout |> unbox) )
+        | MultiChart (traces,l')       -> 
+            MultiChart (traces, (DynObj.combine l' layout |> unbox))
     
-    // Adds multiple Layout functions to the GenericChart
-    let addLayouts layouts gChart =
-        match gChart with
-        | Chart (trace,_)       -> 
-            let l' = getLayouts gChart
-            Chart (trace,Some (layouts@l'))
-        | MultiChart (traces,_) -> 
-            let l' = getLayouts gChart
-            MultiChart (traces, Some (layouts@l'))
+    // // Adds multiple Layout functions to the GenericChart
+    // let addLayouts layouts gChart =
+    //     match gChart with
+    //     | Chart (trace,_)       -> 
+    //         let l' = getLayouts gChart
+    //         Chart (trace,Some (layouts@l'))
+    //     | MultiChart (traces,_) -> 
+    //         let l' = getLayouts gChart
+    //         MultiChart (traces, Some (layouts@l'))
 
     // Combines two GenericChart
     let combine(gCharts:seq<GenericChart>) =
-        let combineLayouts lLeft lRight = 
-            match lLeft,lRight with
-            | None, None -> None
-            | None, Some _ -> lRight
-            | Some _ , None -> lLeft
-            | Some vL,Some vR -> Some (vL@vR)     
+        let combineLayouts (first:Layout) (second:Layout) = 
+            DynObj.combine first second |> unbox
+                
             
         gCharts
         |> Seq.reduce (fun acc elem ->
@@ -95,15 +95,15 @@ module GenericChart =
                 MultiChart (List.append [trace] traces ,combineLayouts l1 l2)
                         ) 
     
-    let private materialzeLayout (layout:(Layout -> Layout) list) =
-        let rec reduce fl v =
-            match fl with
-            | h::t -> reduce t (h v) 
-            | [] -> v
+    // let private materialzeLayout (layout:(Layout -> Layout) list) =
+    //     let rec reduce fl v =
+    //         match fl with
+    //         | h::t -> reduce t (h v) 
+    //         | [] -> v
 
-        // Attention order ov layout functions is reverse
-        let l' = layout |> List.rev
-        reduce l' (Layout())
+    //     // Attention order ov layout functions is reverse
+    //     let l' = layout |> List.rev
+    //     reduce l' (Layout())
 
         
 
@@ -114,8 +114,7 @@ module GenericChart =
             getTraces gChart
             |> JsonConvert.SerializeObject 
         let layoutJson = 
-            getLayouts gChart
-            |> materialzeLayout
+            getLayout gChart
             |> JsonConvert.SerializeObject 
 
         let html =
@@ -133,8 +132,7 @@ module GenericChart =
             getTraces gChart
             |> JsonConvert.SerializeObject 
         let layoutJson = 
-            getLayouts gChart
-            |> materialzeLayout
+            getLayout gChart            
             |> JsonConvert.SerializeObject 
 
         let html =
@@ -176,18 +174,18 @@ module GenericChart =
         | MultiChart (traces,_) -> traces |> Seq.length
 
     /// Creates a new GenericChart whose traces are the results of applying the given function to each of the trace of the GenericChart.           
-    let existsTrace (f:ITrace->bool) gChart =
+    let existsTrace (f:Trace->bool) gChart =
         match gChart with
         | Chart (trace,_)       -> f trace 
         | MultiChart (traces,_) -> traces |> List.exists f
           
     /// Converts from a trace object and a layout object into GenericChart    
-    let ofTraceObject trace layout =
-        GenericChart.Chart(trace,Some [(fun _ -> layout)])
+    let ofTraceObject trace = //layout =
+        GenericChart.Chart(trace, Layout() )
     
     /// Converts from a list of trace objects and a layout object into GenericChart
-    let ofTraceObjects traces layout =
-        GenericChart.MultiChart(traces,Some [(fun _ -> layout)])
+    let ofTraceObjects traces = // layout =
+        GenericChart.MultiChart(traces, Layout() )
 
 
 

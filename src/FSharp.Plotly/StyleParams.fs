@@ -4,7 +4,7 @@
 // https://plot.ly/javascript/reference/
 // https://plot.ly/javascript-graphing-library/reference/
 
-module StyleOption =
+module StyleParam =
 
 //Symbol
 //enumerated: 
