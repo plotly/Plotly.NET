@@ -14,12 +14,21 @@ type Trace (traceTypeName) =
 [<CompilationRepresentationAttribute(CompilationRepresentationFlags.ModuleSuffix)>]
 module Trace = 
 
+    /// Init trace for scatter plot
     let initScatter (applyStyle:Trace->Trace) = 
         Trace("scatter") |> applyStyle
 
+    /// Init trace for bar chart
     let initBar (applyStyle:Trace->Trace) = 
         Trace("bar") |> applyStyle
 
+    /// Init trace for box plot
+    let initBoxPlot (applyStyle:Trace->Trace) = 
+        Trace("box") |> applyStyle
+
+    /// Init trace for pie chart
+    let initPie (applyStyle:Trace->Trace) = 
+        Trace("pie") |> applyStyle
 
     /// Functions provide the styling of the Chart objects
     type TraceStyle() =
