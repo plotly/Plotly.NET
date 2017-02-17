@@ -66,18 +66,16 @@
     <Compile Include="Marker.fs" />
     <Compile Include="Font.fs" />
     <Compile Include="Axis.fs" />
+    <Compile Include="Bins.fs" />
     <Compile Include="Scene3d.fs" />
     <Compile Include="Shape.fs" />
     <Compile Include="Error.fs" />
-
     <Compile Include="Trace.fs" />
     <Compile Include="Trace3d.fs" />
     <Compile Include="Layout.fs" />
-    
     <Compile Include="GenericChart.fs" />
     <Compile Include="Chart.fs" />
     <Compile Include="ChartExtensions.fs" />
-
     <None Include="Script.fsx" />
     <None Include="Script.fsx" />
     <None Include="paket.references" />

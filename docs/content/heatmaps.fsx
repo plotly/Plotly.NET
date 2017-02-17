@@ -25,8 +25,8 @@ let colnames = ["Tp0";"Tp30";"Tp60";"Tp160"]
 
 
 let colorscaleValue = 
-    //StyleOption.ColorScale.Electric
-    StyleOption.ColorScale.Custom [(0.0,"#3D9970");(1.0,"#001f3f")]
+    //StyleParam.ColorScale.Electric
+    StyleParam.ColorScale.Custom [(0.0,"#3D9970");(1.0,"#001f3f")]
 // Generating the Heatmap 
 (*** define-output:heat1 ***)
 Chart.Heatmap(matrix,colnames,rownames,Colorscale=colorscaleValue,Showscale=true)

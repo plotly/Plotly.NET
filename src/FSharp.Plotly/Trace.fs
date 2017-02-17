@@ -30,6 +30,15 @@ module Trace =
     let initPie (applyStyle:Trace->Trace) = 
         Trace("pie") |> applyStyle
 
+    /// Init trace for Heatmap
+    let initHeatmap (applyStyle:Trace->Trace) = 
+        Trace("heatmap") |> applyStyle
+
+    /// Init trace for Contour
+    let initContour (applyStyle:Trace->Trace) = 
+        Trace("contour") |> applyStyle
+
+
     /// Functions provide the styling of the Chart objects
     type TraceStyle() =
         
@@ -254,7 +263,7 @@ module Trace =
                 ) 
 
 
-        // Applies the styles to Bar()
+        // Applies the styles of bar plot to TraceObjects 
         static member Bar
             (   
                 ?X      : seq<#IConvertible>,
@@ -283,7 +292,7 @@ module Trace =
 
                ) 
 
-        // Applies the styles to Pie()
+        // Applies the styles of pie plot to TraceObjects 
         static member Pie
             (                
                 ?Values,
@@ -336,7 +345,7 @@ module Trace =
                 ) 
 
 
-        // Applies the styles to |> DynObj.setValueOpt pie "
+        // Applies the styles of box plot plot to TraceObjects 
         static member BoxPlot
             (            
                 ?Y,           
@@ -381,6 +390,136 @@ module Trace =
 
 
 
+        // Applies the styles of heatmap to TraceObjects 
+        static member Heatmap
+            (                
+                ?Z : seq<#seq<#IConvertible>>,
+                ?X : seq<#IConvertible>,
+                ?Y : seq<#IConvertible>,            
+                ?X0             ,
+                ?dX             ,
+                ?Y0             ,
+                ?dY             ,
+                ?xType          ,
+                ?yType          ,
+                ?xAxis          ,
+                ?yAxis          ,
+                ?Zsrc           ,
+                ?Xsrc           ,
+                ?Ysrc           ,
+
+                ?Xgap           ,         
+                ?Ygap           ,
+                ?Transpose      ,
+                ?zAuto          ,
+                ?zMin           ,
+                ?zMax           ,
+                ?Colorscale     ,
+                ?Autocolorscale ,
+                ?Reversescale   ,
+                ?Showscale      ,
+                ?zSmooth        ,
+                ?Colorbar
+            ) =
+                (fun (heatmap:('T :> Trace)) -> 
+                
+                    Z              |> DynObj.setValueOpt heatmap "z"         
+                    X              |> DynObj.setValueOpt heatmap "x"               
+                    Y              |> DynObj.setValueOpt heatmap "y"
+                    X0             |> DynObj.setValueOpt heatmap "x0"             
+                    dX             |> DynObj.setValueOpt heatmap "dx"             
+                    Y0             |> DynObj.setValueOpt heatmap "y0"            
+                    dY             |> DynObj.setValueOpt heatmap "dy"            
+                    xType          |> DynObj.setValueOpt heatmap "xtype"         
+                    yType          |> DynObj.setValueOpt heatmap "ytype"                          
+                    xAxis          |> DynObj.setValueOpt heatmap "xaxis"         
+                    yAxis          |> DynObj.setValueOpt heatmap "yaxis"         
+                    Zsrc           |> DynObj.setValueOpt heatmap "zsrc"       
+                    Xsrc           |> DynObj.setValueOpt heatmap "xsrc"       
+                    Ysrc           |> DynObj.setValueOpt heatmap "ysrc"  
+
+                    Xgap           |> DynObj.setValueOpt heatmap "xgap"       
+                    Ygap           |> DynObj.setValueOpt heatmap "ygap"  
+                    Transpose      |> DynObj.setValueOpt heatmap "transpose" 
+                    zAuto          |> DynObj.setValueOpt heatmap "zauto"     
+                    zMin           |> DynObj.setValueOpt heatmap "zmin"      
+                    zMax           |> DynObj.setValueOpt heatmap "zmax"      
+                    Colorscale     |> DynObj.setValueOptBy heatmap "colorscale" StyleParam.ColorScale.convert 
+                    Autocolorscale |> DynObj.setValueOpt heatmap "autocolorscale"
+                    Reversescale   |> DynObj.setValueOpt heatmap "reversescale"  
+                    Showscale      |> DynObj.setValueOpt heatmap "showscale"     
+                    zSmooth        |> DynObj.setValueOptBy heatmap "zsmooth" StyleParam.SmoothAlg.convert   
+                    Colorbar       |> DynObj.setValueOpt heatmap "colorbar"    
+
+                    // out ->
+                    heatmap 
+                ) 
+
+        // TODO include additional attributes: https://plot.ly/javascript/reference/#contour
+        /// Applies the styles of contour to TraceObjects 
+        static member Contour
+            (                
+                ?Z : seq<#seq<#IConvertible>>,
+                ?X : seq<#IConvertible>,
+                ?Y : seq<#IConvertible>,            
+                ?X0             ,
+                ?dX             ,
+                ?Y0             ,
+                ?dY             ,
+                ?xType          ,
+                ?yType          ,
+                ?xAxis          ,
+                ?yAxis          ,
+                ?Zsrc           ,
+                ?Xsrc           ,
+                ?Ysrc           ,
+
+                ?Xgap           ,         
+                ?Ygap           ,
+                ?Transpose      ,
+                ?zAuto          ,
+                ?zMin           ,
+                ?zMax           ,
+                ?Colorscale     ,
+                ?Autocolorscale ,
+                ?Reversescale   ,
+                ?Showscale      ,
+                ?zSmooth        ,
+                ?Colorbar
+            ) =
+                (fun (contour:('T :> Trace)) -> 
+                
+                    Z              |> DynObj.setValueOpt contour "z"         
+                    X              |> DynObj.setValueOpt contour "x"               
+                    Y              |> DynObj.setValueOpt contour "y"
+                    X0             |> DynObj.setValueOpt contour "x0"             
+                    dX             |> DynObj.setValueOpt contour "dx"             
+                    Y0             |> DynObj.setValueOpt contour "y0"            
+                    dY             |> DynObj.setValueOpt contour "dy"            
+                    xType          |> DynObj.setValueOpt contour "xtype"         
+                    yType          |> DynObj.setValueOpt contour "ytype"                          
+                    xAxis          |> DynObj.setValueOpt contour "xaxis"         
+                    yAxis          |> DynObj.setValueOpt contour "yaxis"         
+                    Zsrc           |> DynObj.setValueOpt contour "zsrc"       
+                    Xsrc           |> DynObj.setValueOpt contour "xsrc"       
+                    Ysrc           |> DynObj.setValueOpt contour "ysrc"  
+
+                    Xgap           |> DynObj.setValueOpt contour "xgap"       
+                    Ygap           |> DynObj.setValueOpt contour "ygap"  
+                    Transpose      |> DynObj.setValueOpt contour "transpose" 
+                    zAuto          |> DynObj.setValueOpt contour "zauto"     
+                    zMin           |> DynObj.setValueOpt contour "zmin"      
+                    zMax           |> DynObj.setValueOpt contour "zmax"      
+                    Colorscale     |> DynObj.setValueOptBy contour "colorscale" StyleParam.ColorScale.convert 
+                    Autocolorscale |> DynObj.setValueOpt contour "autocolorscale"
+                    Reversescale   |> DynObj.setValueOpt contour "reversescale"  
+                    Showscale      |> DynObj.setValueOpt contour "showscale"     
+                    zSmooth        |> DynObj.setValueOptBy contour "zsmooth" StyleParam.SmoothAlg.convert   
+                    Colorbar       |> DynObj.setValueOpt contour "colorbar"    
+
+                    // out ->
+                    contour 
+                ) 
 
 
 

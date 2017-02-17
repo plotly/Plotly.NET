@@ -288,8 +288,8 @@ type Chart =
     /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.            
     static member BoxPlot(?x,?y,?Name,?Showlegend,?Color,?Opacity,?Whiskerwidth,?Boxpoints,?Boxmean,?Jitter,?Pointpos,?Orientation) = 
          Trace.initBoxPlot (TraceStyle.BoxPlot(?X=x, ?Y = y,
-                 ?Whiskerwidth=Whiskerwidth,?Boxpoints=Boxpoints,
-                 ?Boxmean=Boxmean,?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation,?Fillcolor=Color) )
+                                ?Whiskerwidth=Whiskerwidth,?Boxpoints=Boxpoints,
+                                ?Boxmean=Boxmean,?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation,?Fillcolor=Color) )
          |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)   
          |> GenericChart.ofTraceObject
 
@@ -300,27 +300,21 @@ type Chart =
         Chart.BoxPlot(x, y, ?Name=Name,?Showlegend=Showlegend,?Color=Color,?Opacity=Opacity,?Whiskerwidth=Whiskerwidth,?Boxpoints=Boxpoints,?Boxmean=Boxmean,?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation) 
 
 
-//     /// Shows a graphical representation of a 3-dimensional surface by plotting constant z slices, called contours, on a 2-dimensional format.
-//     /// That is, given a value for z, lines are drawn for connecting the (x,y) coordinates where that z value occurs.
-//     static member Heatmap(data:seq<#seq<#IConvertible>>,?ColNames,?RowNames,?Name,?Showlegend,?Opacity,?Colorscale,?Showscale,?zSmooth,?Colorbar) = 
-//         let trace = 
-//             Heatmap()
-//             |> Options.IMapZ(Z=data,?X=ColNames, ?Y=RowNames)
-//             |> Options.IColormap(?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?Colorbar=Colorbar)
-//             |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
-//             //|> Options.ITextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)            
-//         GenericChart.Chart (trace,None)
+    /// Shows a graphical representation of a 3-dimensional surface by plotting constant z slices, called contours, on a 2-dimensional format.
+    /// That is, given a value for z, lines are drawn for connecting the (x,y) coordinates where that z value occurs.
+    static member Heatmap(data:seq<#seq<#IConvertible>>,?ColNames,?RowNames,?Name,?Showlegend,?Opacity,?Colorscale,?Showscale,?Xgap,?Ygap,?zSmooth,?Colorbar) = 
+        Trace.initHeatmap (TraceStyle.Heatmap(Z=data,?X=ColNames, ?Y=RowNames,
+                                ?Xgap=Xgap,?Ygap=Ygap,?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?Colorbar=Colorbar) )
+        |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)   
+        |> GenericChart.ofTraceObject
 
 
-//     /// Shows a graphical representation of data where the individual values contained in a matrix are represented as colors.
-//     static member Contour(data:seq<#seq<#IConvertible>>,?X,?Y,?Name,?Showlegend,?Opacity,?Colorscale,?Showscale,?zSmooth,?Colorbar) = 
-//         let trace = 
-//             Contour()
-//             |> Options.IMapZ(Z=data,?X=X, ?Y=Y)
-//             |> Options.IColormap(?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?Colorbar=Colorbar)
-//             |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
-//             //|> Options.ITextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)                                                      
-//         GenericChart.Chart (trace,None)
+    /// Shows a graphical representation of data where the individual values contained in a matrix are represented as colors.
+    static member Contour(data:seq<#seq<#IConvertible>>,?X,?Y,?Name,?Showlegend,?Opacity,?Colorscale,?Showscale,?zSmooth,?Colorbar) = 
+        Trace.initContour (TraceStyle.Contour(Z=data,?X=X, ?Y=Y,
+                                ?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?Colorbar=Colorbar) )
+        |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)   
+        |> GenericChart.ofTraceObject
 
 
     /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data.
