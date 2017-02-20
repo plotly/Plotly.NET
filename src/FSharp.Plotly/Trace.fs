@@ -120,7 +120,7 @@ module Trace =
                         match (trace.TryGetValue "line") with
                         | Some line -> line :?> Line
                         | None -> Line.init (id)
-                        |> Line.LineStyle.Apply(?Width=Width,?Color=Color,?Shape=Shape,?Dash=Dash,?Smoothing=Smoothing,?Colorscale=Colorscale)
+                        |> Line.style(?Width=Width,?Color=Color,?Shape=Shape,?Dash=Dash,?Smoothing=Smoothing,?Colorscale=Colorscale)
                     
                     trace.SetValue("line", line)
                     trace
@@ -177,7 +177,7 @@ module Trace =
                         | Some m -> m :?> Marker
                         | None -> Marker ()
                     
-                        |> Marker.MarkerStyle.Apply(?Size=Size,?Color=Color,?Symbol=Symbol,
+                        |> Marker.style(?Size=Size,?Color=Color,?Symbol=Symbol,
                             ?Opacity=Opacity,?MultiSizes=MultiSizes,?Line=Line,
                             ?Colorbar=Colorbar,?Colorscale=Colorscale,?Colors=Colors,
                             ?Maxdisplayed=Maxdisplayed,?Sizeref=Sizeref,?Sizemin=Sizemin,

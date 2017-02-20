@@ -33,7 +33,6 @@ module HTML =
 module GenericChart =
     
     open Trace
-    open Layout
     
     type GenericChart =
         | Chart of Trace * Layout
@@ -119,7 +118,7 @@ module GenericChart =
 
         let html =
             HTML.chart
-                .Replace("style=\"width: [WIDTH]px; height: [HEIGHT]px;\"","")
+                .Replace("style=\"width: [WIDTH]px; height: [HEIGHT]px;\"","style=\"width: 600px; height: 600px;\"")
                 .Replace("[ID]", guid)                
                 .Replace("[DATA]", tracesJson)
                 .Replace("[LAYOUT]", layoutJson)

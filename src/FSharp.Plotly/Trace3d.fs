@@ -40,7 +40,7 @@ module Trace3d =
                 ?Mode   : StyleParam.Mode,             
                 ?Surfaceaxis,
                 ?Surfacecolor,
-                ?Projection : Scene3d.Projection,
+                ?Projection : Projection,
                 ?Scene,          
                 ?Error_y: Error,
                 ?Error_x: Error,

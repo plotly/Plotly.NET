@@ -36,8 +36,11 @@ The following example shows how to create a stacked bar chart by combining bar c
 
 (*** define-output:bar3 ***)
 [
-    Chart.StackedBar(keys,values,Name="old");
-    Chart.StackedBar(keys,[8; 21; 13;],Name="new")
+    Chart.StackedBar(values,keys,Name="old");
+    Chart.StackedBar([8; 21; 13;],keys,Name="new")
 ]
 |> Chart.Combine
 (*** include-it:bar3 ***)
+|> Chart.Show
+
+FSharp.Plotly.

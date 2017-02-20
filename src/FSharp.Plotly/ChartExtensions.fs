@@ -37,7 +37,7 @@ module ChartExtensions =
         /// Apply styling to the Marker(s) of the chart.
         static member withMarkerStyle(?Size,?Color,?Symbol,?Opacity) = 
             let marker = 
-                Marker.initMarker ( Marker.MarkerStyle.Apply
+                Marker.init ( Marker.style
                     (?Size=Size,?Color=Color,?Symbol=Symbol,?Opacity=Opacity)
                     )           
             Chart.withMarker(marker)         
@@ -51,7 +51,7 @@ module ChartExtensions =
         /// Apply styling to the Line(s) of the chart.
         static member withLineStyle(?Width,?Color,?Shape,?Dash,?Smoothing,?Colorscale) =
             let line = 
-                Line.init ( Line.LineStyle.Apply            
+                Line.init ( Line.style
                     (?Width=Width,?Color=Color,?Shape=Shape,?Dash=Dash,?Smoothing=Smoothing,?Colorscale=Colorscale)
                 )         
             Chart.withLine(line)  
@@ -92,12 +92,12 @@ module ChartExtensions =
                 | false -> 
                     let layout =
                         GenericChart.getLayout ch 
-                        |> Layout.LayoutStyle.Apply(xAxis=xAxis)
+                        |> Layout.style (xAxis=xAxis)
                     GenericChart.setLayout layout ch
                 | true  -> 
                     let layout =
                         Layout() 
-                        |> Layout.LayoutStyle.Apply(Scene=Scene3d.init(Scene3d.SceneStyle.Apply( xAxis=xAxis) ))
+                        |> Layout.style (Scene=Scene.init(Scene.style( xAxis=xAxis) ))
                     GenericChart.addLayout layout ch
             )
                     
@@ -124,12 +124,12 @@ module ChartExtensions =
                 | false -> 
                     let layout =
                         GenericChart.getLayout ch 
-                        |> Layout.LayoutStyle.Apply(yAxis=yAxis)
+                        |> Layout.style(yAxis=yAxis)
                     GenericChart.setLayout layout ch
                 | true  -> 
                     let layout =
                         Layout() 
-                        |> Layout.LayoutStyle.Apply(Scene=Scene3d.init(Scene3d.SceneStyle.Apply(yAxis=yAxis) ))
+                        |> Layout.style(Scene=Scene.init(Scene.style (yAxis=yAxis) ))
                     GenericChart.addLayout layout ch
             )
         
@@ -172,23 +172,22 @@ module ChartExtensions =
             (fun (ch:GenericChart) -> 
                 let layout = 
                     GenericChart.getLayout ch
-                    |> Layout.LayoutStyle.Apply(Width=width,Height=heigth)
+                    |> Layout.style (Width=width,Height=heigth)
                 GenericChart.setLayout layout ch
             )
 
         // Set the margin of a Chart
-        static member withMargin(margin:Layout.Margin) =        
+        static member withMargin(margin:Margin) =        
             (fun (ch:GenericChart) ->                 
                 let layout =
                     GenericChart.getLayout ch 
-                    |> Layout.LayoutStyle.Apply(Margin=margin)
+                    |> Layout.style (Margin=margin)
                 GenericChart.setLayout layout ch)   
 
         // Set the margin of a Chart
         static member withMarginSize(?Left,?Right,?Top,?Bottom,?Pad,?Autoexpand) =                       
                 let margin = 
-                    Layout.initMargin(Layout.LayoutStyle.Margin
-                        (?Left=Left,?Right=Right,?Top=Top,?Bottom=Bottom,?Pad=Pad,?Autoexpand=Autoexpand))
+                    Margin.init (Margin.style (?Left=Left,?Right=Right,?Top=Top,?Bottom=Bottom,?Pad=Pad,?Autoexpand=Autoexpand))
                 Chart.withMargin(margin) 
 
                 
@@ -202,14 +201,14 @@ module ChartExtensions =
             (fun (ch:GenericChart) ->                 
                 let layout = 
                     GenericChart.getLayout ch
-                    |> Layout.LayoutStyle.Apply(Shapes=[shape])
+                    |> Layout.style (Shapes=[shape])
                 GenericChart.setLayout layout ch)  
 
         static member withShapes(shapes:Shape seq) =
             (fun (ch:GenericChart) ->                 
                 let layout = 
                     GenericChart.getLayout ch
-                    |> Layout.LayoutStyle.Apply(Shapes=shapes)
+                    |> Layout.style (Shapes=shapes)
                 GenericChart.setLayout layout ch)  
 
 

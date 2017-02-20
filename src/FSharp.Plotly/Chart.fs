@@ -7,7 +7,7 @@ open FSharp.Care.Collections
 open GenericChart
 open Trace
 open Trace3d
-open Layout
+
 
 /// Provides a set of static methods for creating charts.
 type Chart =
@@ -214,8 +214,8 @@ type Chart =
     static member Column(keys, values,?Name,?Showlegend,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Marker) = 
         let marker =
             match Marker with 
-            | Some marker -> marker |> FSharp.Plotly.Marker.MarkerStyle.Apply(?Color=Color)
-            | None        -> FSharp.Plotly.Marker.initMarker (FSharp.Plotly.Marker.MarkerStyle.Apply(?Color=Color))
+            | Some marker -> marker |> FSharp.Plotly.Marker.style(?Color=Color)
+            | None        -> FSharp.Plotly.Marker.init (FSharp.Plotly.Marker.style(?Color=Color))
                     
         Trace.initBar (TraceStyle.Bar(X = keys,Y = values,Marker=marker))
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)        
@@ -233,14 +233,14 @@ type Chart =
     static member StackedColumn(keys, values,?Name,?Showlegend,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Marker) =            
         let marker =
             match Marker with 
-            | Some marker -> marker |> FSharp.Plotly.Marker.MarkerStyle.Apply(?Color=Color)
-            | None        -> FSharp.Plotly.Marker.initMarker (FSharp.Plotly.Marker.MarkerStyle.Apply(?Color=Color))
+            | Some marker -> marker |> FSharp.Plotly.Marker.style(?Color=Color)
+            | None        -> FSharp.Plotly.Marker.init (FSharp.Plotly.Marker.style(?Color=Color))
 
         Trace.initBar (TraceStyle.Bar(X = keys,Y = values,Marker=marker))
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)        
         |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
         |> GenericChart.ofTraceObject  
-        |> GenericChart.setLayout (Layout.init (LayoutStyle.Apply(Barmode=StyleParam.Barmode.Stack)))
+        |> GenericChart.setLayout (Layout.init (Layout.style(Barmode=StyleParam.Barmode.Stack)))
 
 
     /// Displays series of column chart type as stacked columns.
@@ -253,8 +253,8 @@ type Chart =
     static member Bar(keys, values,?Name,?Showlegend,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Marker) = 
         let marker =
             match Marker with 
-            | Some marker -> marker |> FSharp.Plotly.Marker.MarkerStyle.Apply(?Color=Color)
-            | None        -> FSharp.Plotly.Marker.initMarker (FSharp.Plotly.Marker.MarkerStyle.Apply(?Color=Color))
+            | Some marker -> marker |> FSharp.Plotly.Marker.style(?Color=Color)
+            | None        -> FSharp.Plotly.Marker.init (FSharp.Plotly.Marker.style(?Color=Color))
         Trace.initBar (TraceStyle.Bar(X = keys,Y = values,Marker=marker,Orientation = StyleParam.Orientation.Horizontal))
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)        
         |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
@@ -271,13 +271,13 @@ type Chart =
     static member StackedBar(keys, values,?Name,?Showlegend,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Marker) = 
         let marker =
             match Marker with 
-            | Some marker -> marker |> FSharp.Plotly.Marker.MarkerStyle.Apply(?Color=Color)
-            | None        -> FSharp.Plotly.Marker.initMarker (FSharp.Plotly.Marker.MarkerStyle.Apply(?Color=Color))
-        Trace.initBar (TraceStyle.Bar(X = keys,Y = values,Marker=marker,Orientation = StyleParam.Orientation.Horizontal))
+            | Some marker -> marker |> FSharp.Plotly.Marker.style(?Color=Color)
+            | None        -> FSharp.Plotly.Marker.init (FSharp.Plotly.Marker.style(?Color=Color))
+        Trace.initBar (TraceStyle.Bar(X = values,Y = keys,Marker=marker,Orientation = StyleParam.Orientation.Horizontal))
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)        
         |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
         |> GenericChart.ofTraceObject  
-        |> GenericChart.setLayout (Layout.init (LayoutStyle.Apply(Barmode=StyleParam.Barmode.Stack)))
+        |> GenericChart.setLayout (Layout.init (Layout.style(Barmode=StyleParam.Barmode.Stack)))
 
 
     /// Displays series of tcolumn chart type as stacked bars.
@@ -401,7 +401,7 @@ type Chart =
 
     /// Uses points, line or both depending on the mode to represent 3d-data points
     static member Mesh3d(x, y, z, mode, ?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
-        Trace3d.initMesh3d (Trace3dStyle.Mesh3d(X = x,Y = y,Z=z) )              
+        Trace3d.initMesh3d (Trace3dStyle.Mesh3d(X = x,Y = y,Z=z,?Color=Color) )              
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
         |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
         |> GenericChart.ofTraceObject 

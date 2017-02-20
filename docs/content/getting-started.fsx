@@ -5,29 +5,26 @@
 #r "../../lib/FSharp.Care.dll"
 
 (**
-FSharp.Plotly
-======================
+Getting started...
+==================
 
-The library FSharp.Plotly implements charting suitable for use from F# scripting. Once you load the library as followed, you can use the members of the `Chart` type to easily build charts.
+FSharp.Plotly implements charting suitable for use from F# scripting. Once you load the library as followed, you can use the members of the `Chart` type to easily build charts.
 
-FSharp.Plotly is powered by popular JavaScript charting library [Plotly](https://plot.ly/). The library provides a complete mapping for the configuration options of the underlying library but empowers you to use the comfortable style known from the beautiful library [F# Charting](http://fslab.org/FSharp.Charting/). So you get a nice F# interface support with the full power of Plotly.
+The library provides a complete mapping for the configuration options of the underlying library but empowers you to use the comfortable style known from the beautiful library [F# Charting](http://fslab.org/FSharp.Charting/). So you get a nice F# interface support with the full power of Plotly.
 *)
 
 #r "../../bin/FSharp.Plotly.dll"
 open FSharp.Plotly
 
-let scatter =
-//    let scatter = 
-//        Trace("scattergl")
-    Trace.initScatter (fun scatter ->
-        scatter?x <- [1; 2; 3; 4]
-        scatter?y <- [1; 2; 3; 4]
-        scatter?mode <- "lines+markers"
-        scatter?name <- "lines and markers"
-        scatter
-        )
 
-GenericChart.ofTraceObject scatter
+Trace.initScatter (fun scatter ->
+    scatter?x <- [1; 2; 3; 4]
+    scatter?y <- [1; 2; 3; 4]
+    scatter?mode <- "lines+markers"
+    scatter?name <- "lines and markers"
+    scatter
+    )
+|> GenericChart.ofTraceObject
 |> Chart.Show
 
 

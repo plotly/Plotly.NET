@@ -7,29 +7,9 @@ module Axis =
     type LinearAxis () =
         inherit DynamicObj ()
 
-    /// Radialaxis type inherits from dynamic object
-    type RadialAxis () =
-        inherit DynamicObj ()
-
-    /// Angularaxis type inherits from dynamic object
-    type AngularAxis () =
-        inherit DynamicObj ()
-
-    /// Init LinearAxis type
-    let initLinearAxis (applyStyle:LinearAxis->LinearAxis) =
-        LinearAxis() |> applyStyle
-
-    /// Init Radialaxis type
-    let initRadialaxis (applyStyle:RadialAxis->RadialAxis) =
-        RadialAxis() |> applyStyle
-
-    /// Init Angularaxis type
-    let initAngularaxis (applyStyle:AngularAxis->AngularAxis) =
-        AngularAxis() |> applyStyle
-
-
-    /// Static function to apply styles to axis types
-    type AxidStyle =
+        /// Init LinearAxis type
+        static member init (applyStyle:LinearAxis->LinearAxis) =
+            LinearAxis() |> applyStyle
 
         // Applies the styles to LinearAxis()
         static member LinearAxis
@@ -150,6 +130,22 @@ module Axis =
                     axis
                 )
 
+
+    /// Radialaxis type inherits from dynamic object
+    type RadialAxis () =
+        inherit DynamicObj ()
+
+        /// Init Radialaxis type
+        static member init (applyStyle:RadialAxis->RadialAxis) =
+            RadialAxis() |> applyStyle
+
+    /// Angularaxis type inherits from dynamic object
+    type AngularAxis () =
+        inherit DynamicObj ()
+
+        /// Init Angularaxis type
+        static member init (applyStyle:AngularAxis->AngularAxis) =
+            AngularAxis() |> applyStyle
 
 
 
