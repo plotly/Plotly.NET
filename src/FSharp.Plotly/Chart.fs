@@ -6,6 +6,7 @@ open FSharp.Care.Collections
 
 open GenericChart
 open Trace
+open Trace3d
 open Layout
 
 /// Provides a set of static methods for creating charts.
@@ -376,7 +377,7 @@ type Chart =
 
     /// Uses points, line or both depending on the mode to represent 3d-data points
     static member Scatter3d(x, y, z, mode, ?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
-        Trace3d.initScatter3d (Trace3d.Trace3dStyle.Scatter3d(X = x,Y = y,Z=z, Mode=mode) )              
+        Trace3d.initScatter3d (Trace3dStyle.Scatter3d(X = x,Y = y,Z=z, Mode=mode) )              
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
         |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
         |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
@@ -384,19 +385,25 @@ type Chart =
         |> GenericChart.ofTraceObject 
           
     
-    /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.       
+    /// Uses points, line or both depending on the mode to represent 3d-data points
     static member Scatter3d(xyz, mode, ?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
         let x,y,z = Seq.unzip3 xyz
         Chart.Scatter3d(x, y, z, mode, ?Name=Name,?Showlegend=Showlegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width) 
 
-//     /// Uses points, line or both depending on the mode to represent 3d-data points
-//     static member Surface(data:seq<#seq<#IConvertible>>,?X,?Y, ?Name,?Showlegend,?Opacity,?Colorscale,?Showscale,?zSmooth,?Colorbar) = 
-//         let trace = 
-//             Trace3dObjects.Surface()
-//             |> Options.IMapZ(Z=data,?X=X, ?Y=Y)
-//             |> Options.IColormap(?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?Colorbar=Colorbar)
-//             |> Options.ITraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
-//             //|> Options.ITextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)                                                      
-//         GenericChart.Chart (trace,None)
+    /// Uses points, line or both depending on the mode to represent 3d-data points
+    static member Surface(data:seq<#seq<#IConvertible>>,?X,?Y, ?Name,?Showlegend,?Opacity,?Contours,?Colorscale,?Showscale,?Colorbar) = 
+        Trace3d.initSurface (Trace3dStyle.Surface (Z=data,?X=X, ?Y=Y,?Contours=Contours,
+                                ?Colorscale=Colorscale,?Showscale=Showscale,?Colorbar=Colorbar ) )              
+        |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+        //|> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        |> GenericChart.ofTraceObject 
+
+
+    /// Uses points, line or both depending on the mode to represent 3d-data points
+    static member Mesh3d(x, y, z, mode, ?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
+        Trace3d.initMesh3d (Trace3dStyle.Mesh3d(X = x,Y = y,Z=z) )              
+        |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+        |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        |> GenericChart.ofTraceObject 
 
 

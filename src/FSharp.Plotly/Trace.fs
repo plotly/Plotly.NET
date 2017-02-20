@@ -113,14 +113,14 @@ module Trace =
                 ?Shape:StyleParam.Shape,
                 ?Dash,
                 ?Smoothing,
-                ?ColorScale:StyleParam.ColorScale
+                ?Colorscale : StyleParam.Colorscale
             ) =
                 (fun (trace:('T :> Trace)) ->
                     let line =
                         match (trace.TryGetValue "line") with
                         | Some line -> line :?> Line
                         | None -> Line.init (id)
-                        |> Line.LineStyle.Apply(?Width=Width,?Color=Color,?Shape=Shape,?Dash=Dash,?Smoothing=Smoothing,?ColorScale=ColorScale)
+                        |> Line.LineStyle.Apply(?Width=Width,?Color=Color,?Shape=Shape,?Dash=Dash,?Smoothing=Smoothing,?Colorscale=Colorscale)
                     
                     trace.SetValue("line", line)
                     trace
@@ -149,7 +149,7 @@ module Trace =
                 ?MultiSizes:seq<#IConvertible>,
                 ?Line : Line,
                 ?Colorbar       ,
-                ?Colorscale     ,
+                ?Colorscale : StyleParam.Colorscale,
                 ?Colors         ,
                             
                 ?Maxdisplayed   ,
@@ -159,9 +159,9 @@ module Trace =
                 ?Cauto          ,
                 ?Cmax           ,
                 ?Cmin           ,
-                ?Autocolorscale ,
-                ?Reversescale   ,
-                ?Showscale      ,
+                ?Autocolorscale : bool,
+                ?Reversescale   : bool,
+                ?Showscale      : bool,
                             
                 ?Symbolsrc      ,
                 ?Opacitysrc     ,
@@ -444,7 +444,7 @@ module Trace =
                     zAuto          |> DynObj.setValueOpt heatmap "zauto"     
                     zMin           |> DynObj.setValueOpt heatmap "zmin"      
                     zMax           |> DynObj.setValueOpt heatmap "zmax"      
-                    Colorscale     |> DynObj.setValueOptBy heatmap "colorscale" StyleParam.ColorScale.convert 
+                    Colorscale     |> DynObj.setValueOptBy heatmap "colorscale" StyleParam.Colorscale.convert 
                     Autocolorscale |> DynObj.setValueOpt heatmap "autocolorscale"
                     Reversescale   |> DynObj.setValueOpt heatmap "reversescale"  
                     Showscale      |> DynObj.setValueOpt heatmap "showscale"     
@@ -455,8 +455,6 @@ module Trace =
                     heatmap 
                 ) 
 
-        // TODO include additional attributes: https://plot.ly/javascript/reference/#contour
-        /// Applies the styles of contour to TraceObjects 
         static member Contour
             (                
                 ?Z : seq<#seq<#IConvertible>>,
@@ -504,22 +502,21 @@ module Trace =
                     Xsrc           |> DynObj.setValueOpt contour "xsrc"       
                     Ysrc           |> DynObj.setValueOpt contour "ysrc"  
 
-                    Xgap           |> DynObj.setValueOpt contour "xgap"       
-                    Ygap           |> DynObj.setValueOpt contour "ygap"  
-                    Transpose      |> DynObj.setValueOpt contour "transpose" 
-                    zAuto          |> DynObj.setValueOpt contour "zauto"     
-                    zMin           |> DynObj.setValueOpt contour "zmin"      
-                    zMax           |> DynObj.setValueOpt contour "zmax"      
-                    Colorscale     |> DynObj.setValueOptBy contour "colorscale" StyleParam.ColorScale.convert 
-                    Autocolorscale |> DynObj.setValueOpt contour "autocolorscale"
-                    Reversescale   |> DynObj.setValueOpt contour "reversescale"  
-                    Showscale      |> DynObj.setValueOpt contour "showscale"     
+                    Xgap           |> DynObj.setValueOpt contour   "xgap"       
+                    Ygap           |> DynObj.setValueOpt contour   "ygap"  
+                    Transpose      |> DynObj.setValueOpt contour   "transpose" 
+                    zAuto          |> DynObj.setValueOpt contour   "zauto"     
+                    zMin           |> DynObj.setValueOpt contour   "zmin"      
+                    zMax           |> DynObj.setValueOpt contour   "zmax"      
+                    Colorscale     |> DynObj.setValueOptBy contour "colorscale" StyleParam.Colorscale.convert 
+                    Autocolorscale |> DynObj.setValueOpt contour   "autocolorscale"
+                    Reversescale   |> DynObj.setValueOpt contour   "reversescale"  
+                    Showscale      |> DynObj.setValueOpt contour   "showscale"     
                     zSmooth        |> DynObj.setValueOptBy contour "zsmooth" StyleParam.SmoothAlg.convert   
-                    Colorbar       |> DynObj.setValueOpt contour "colorbar"    
+                    Colorbar       |> DynObj.setValueOpt contour   "colorbar"    
 
                     // out ->
                     contour 
-                ) 
-
+                )
 
 

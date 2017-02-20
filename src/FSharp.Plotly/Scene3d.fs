@@ -3,23 +3,18 @@ namespace FSharp.Plotly
 module Scene3d =
     
     /// Scene 
-    type Scene() = inherit DynamicObj ()
+    type Scene() = 
+        inherit DynamicObj ()
 
-    /// Init Scene type
-    let init (applyStyle:Scene->Scene) = 
-        Scene() |> applyStyle
+        /// Initialized Scene object
+        [<CompiledName("init")>]
+        static member Init (apply:Scene->Scene) =
+            Scene () |> apply
 
-    /// Projection 
-    type Projection() = inherit DynamicObj ()
-
-    /// Init Projection type
-    let initProjection (applyStyle:Projection->Projection) = 
-        Projection() |> applyStyle
-
-    /// 
-    type SceneStyle =
-
-        static member Apply
+        // [<JsonIgnore>]
+        /// Applies the styles to Scene()
+        [<CompiledName("style")>]
+        static member Style
             (   
                 ?xAxis:Axis.LinearAxis,
                 ?yAxis:Axis.LinearAxis,
@@ -43,3 +38,18 @@ module Scene3d =
                     // out ->
                     scene
                 ) 
+
+
+
+
+    /// Projection 
+    type Projection() = 
+        inherit DynamicObj ()
+        
+        /// Initialized Projection object
+        [<CompiledName("init")>]
+        static member Init (apply:Projection->Projection) =
+            Projection () |> apply
+
+
+

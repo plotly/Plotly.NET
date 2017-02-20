@@ -49,10 +49,10 @@ module ChartExtensions =
             )
                
         /// Apply styling to the Line(s) of the chart.
-        static member withLineStyle(?Width,?Color,?Shape,?Dash,?Smoothing,?ColorScale) =
+        static member withLineStyle(?Width,?Color,?Shape,?Dash,?Smoothing,?Colorscale) =
             let line = 
                 Line.init ( Line.LineStyle.Apply            
-                    (?Width=Width,?Color=Color,?Shape=Shape,?Dash=Dash,?Smoothing=Smoothing,?ColorScale=ColorScale)
+                    (?Width=Width,?Color=Color,?Shape=Shape,?Dash=Dash,?Smoothing=Smoothing,?Colorscale=Colorscale)
                 )         
             Chart.withLine(line)  
 

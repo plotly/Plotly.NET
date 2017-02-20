@@ -18,7 +18,7 @@ let z = [19; 26; 55;]
 
   
 (*** define-output:scatter3d_1 ***)
-Chart.Scatter3d(x,y,z,StyleOption.Mode.Markers)
+Chart.Scatter3d(x,y,z,StyleParam.Mode.Markers)
 |> Chart.withX_AxisStyle("my x-axis")
 |> Chart.withY_AxisStyle("my y-axis")
 |> Chart.withZ_AxisStyle("my z-axis")

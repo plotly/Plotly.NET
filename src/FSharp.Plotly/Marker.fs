@@ -26,7 +26,7 @@ module Marker =
                 ?MultiSizes:seq<#IConvertible>,
                 ?Line : Line,
                 ?Colorbar       ,
-                ?Colorscale     ,
+                ?Colorscale : StyleParam.Colorscale,
                 ?Colors         ,
                             
                 ?Maxdisplayed   ,
@@ -56,7 +56,7 @@ module Marker =
                     MultiSizes     |> DynObj.setValueOpt marker "size"
                     Line           |> DynObj.setValueOpt marker "line"        
                     Colorbar       |> DynObj.setValueOpt marker "colorbar"       
-                    Colorscale     |> DynObj.setValueOpt marker "colorscale"
+                    Colorscale     |> DynObj.setValueOptBy marker "colorscale" StyleParam.Colorscale.convert
                     Colors         |> DynObj.setValueOpt marker "colors"     
                                                 
                     Maxdisplayed   |> DynObj.setValueOpt marker "maxdisplayed"   

@@ -62,6 +62,8 @@
     <Compile Include="StyleParams.fs" />
     <Compile Include="DynamicObj.fs" />
     <Compile Include="Colorbar.fs" />
+    <Compile Include="Light.fs" />
+    <Compile Include="Contours.fs" />
     <Compile Include="Line.fs" />
     <Compile Include="Marker.fs" />
     <Compile Include="Font.fs" />

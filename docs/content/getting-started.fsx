@@ -16,24 +16,18 @@ FSharp.Plotly is powered by popular JavaScript charting library [Plotly](https:/
 #r "../../bin/FSharp.Plotly.dll"
 open FSharp.Plotly
 
+let scatter =
+//    let scatter = 
+//        Trace("scattergl")
+    Trace.initScatter (fun scatter ->
+        scatter?x <- [1; 2; 3; 4]
+        scatter?y <- [1; 2; 3; 4]
+        scatter?mode <- "lines+markers"
+        scatter?name <- "lines and markers"
+        scatter
+        )
 
-
-let trace =
-    Scatter(
-       
-        x = [1; 2; 3; 4],
-        y = [12; 9; 15; 12],
-        mode = "lines+markers",
-        name = "lines and markers"
-    )
-
-let layout =
-    Layout()
-
-trace.get_type
-
-
-GenericChart.ofTraceObject trace layout
+GenericChart.ofTraceObject scatter
 |> Chart.Show
 
 

@@ -25,7 +25,7 @@ module Line =
                 ?Shape:StyleParam.Shape,
                 ?Dash,
                 ?Smoothing,
-                ?ColorScale:StyleParam.ColorScale
+                ?Colorscale:StyleParam.Colorscale
             ) =
                 (fun (line:Line) -> 
                     Color      |> DynObj.setValueOpt line "color"
@@ -33,10 +33,9 @@ module Line =
                     Shape      |> DynObj.setValueOptBy line "shape" StyleParam.Shape.convert
                     Smoothing  |> DynObj.setValueOpt line "smoothing"
                     Dash       |> DynObj.setValueOptBy line "dash" StyleParam.DrawingStyle.toString
-                    ColorScale |> DynObj.setValueOptBy line "colorscale"StyleParam.ColorScale.convert
+                    Colorscale |> DynObj.setValueOptBy line "colorscale" StyleParam.Colorscale.convert
                     
                     // out -> 
                     line
                 )
-
-    
+                

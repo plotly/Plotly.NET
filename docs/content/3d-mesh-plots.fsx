@@ -41,24 +41,39 @@ let a = Array.init 50 (fun _ -> rnd.NextDouble())
 let b = Array.init 50 (fun _ -> rnd.NextDouble())
 let c = Array.init 50 (fun _ -> rnd.NextDouble())
 
-//let contours =
-    
+let cont = DynamicObj()
+//cont?color <- ""
+cont?show <- true
+cont?width <- 3
 
-(*** define-output:contour1 ***)
-z
-|> Chart.Surface
-|> Chart.withSize(600.,600.)
-(*** include-it:contour1 ***)
+Trace3d.initMesh3d 
+    (fun mesh3d ->
+        mesh3d?x <- a
+        mesh3d?y <- b
+        mesh3d?z <- c
+        mesh3d?flatshading <- true
+        //mesh3d?contour <- cont
+        mesh3d
+        )
+|> GenericChart.ofTraceObject 
+|> Chart.Show 
 
-// Create simple example data were x y and z is given (z is a xy-Matrix)
-let x' = [0.;2.5]
-let y' = [0.;2.5]
-let z' = [
-    [1.;1.;]; // row wise (length x)
-    [1.;2.;];
-    ] // column (length y)
 
-Chart.Surface(z',x',y',Opacity=0.,Contours=Contours.initContours(Contours.ContoursStyle.XyzContours(Show=true)))
-|> Chart.Show
+//(*** define-output:contour1 ***)
+//z
+//|> Chart.Surface
+//|> Chart.withSize(600.,600.)
+//(*** include-it:contour1 ***)
+//
+//// Create simple example data were x y and z is given (z is a xy-Matrix)
+//let x' = [0.;2.5]
+//let y' = [0.;2.5]
+//let z' = [
+//    [1.;1.;]; // row wise (length x)
+//    [1.;1.;];
+//    ] // column (length y)
+//
+//Chart.Surface(z',x',y')
+
 
 

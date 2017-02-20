@@ -228,7 +228,7 @@ module StyleParam =
             | Vertical   -> box "v"
 
     /// The colorscale must be a collection containing a mapping of a normalized value (between 0.0 and 1.0) to it's color. At minimum, a mapping for the lowest (0.0) and highest (1.0) values are required. 
-    type ColorScale =
+    type Colorscale =
         | Custom of seq<float*string> 
         | RdBu | Earth | Blackbody | YIOrRd | YIGnBu | Bluered
         | Portland | Electric | Jet | Hot | Greys | Greens | Picnic 
@@ -573,6 +573,48 @@ module StyleParam =
             | Below   -> "below"
             | Above   -> "above"
 
-
-
         static member convert = Layer.toString >> box
+
+
+    /// Sets the Delaunay axis, which is the axis that is perpendicular to the surface of the Delaunay triangulation.
+    /// It has an effect if `i`, `j`, `k` are not provided and `alphahull` is set to indicate Delaunay triangulation. 
+    /// Default is "z"
+    type Delaunayaxis = 
+        | X | Y | Z
+        
+        static member toString = function
+            | X   -> "x"
+            | Y   -> "y"
+            | Z   -> "z"
+
+        static member convert = Delaunayaxis.toString >> box
+
+
+    /// Sets the calendar system to use with `x y z` date data. Default: "gregorian"
+    type Calendar = 
+        | Gregorian | Chinese | Coptic | Discworld | Ethiopian | Hebrew | Islamic | Julian    
+        | Mayan | Nanakshahi | Nepali | Persian | Jalali | Taiwan | Thai | Ummalqura 
+        
+        static member toString = function
+            | Gregorian  -> "gregorian" 
+            | Chinese    -> "chinese" 
+            | Coptic     -> "coptic" 
+            | Discworld  -> "discworld" 
+            | Ethiopian  -> "ethiopian" 
+            | Hebrew     -> "hebrew" 
+            | Islamic    -> "islamic" 
+            | Julian     -> "julian" 
+            | Mayan      -> "mayan" 
+            | Nanakshahi -> "nanakshahi"
+            | Nepali     -> "nepali" 
+            | Persian    -> "persian" 
+            | Jalali     -> "jalali" 
+            | Taiwan     -> "taiwan" 
+            | Thai       -> "thai" 
+            | Ummalqura  -> "ummalqura"
+
+        static member convert = Delaunayaxis.toString >> box
+
+
+
+
