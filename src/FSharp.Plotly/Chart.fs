@@ -349,6 +349,25 @@ type Chart =
         Chart.Doughnut(values,Labels=labels,?Name=Name,?Showlegend=Showlegend,?Color=Color,?Hole=Hole,?TextPosition=TextPosition,?TextFont=TextFont,?Hoverinfo=Hoverinfo,?Textinfo=Textinfo,?Opacity=Opacity)
 
 
+//    /// Uses points, line or both depending on the mode to represent data points
+//    static member Scatter(x, y,mode,?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
+//        Trace.initScatter (
+//                TraceStyle.Scatter(X = x,Y = y, Mode=mode) )               
+//        |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+//        |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
+//        |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
+//        |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+//        |> GenericChart.ofTraceObject 
+//
+//
+//     /// Uses points, line or both depending on the mode to represent data points
+//    static member Scatter(xy,mode,?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
+//        let x,y = Seq.unzip xy 
+//        Chart.Scatter(x, y, mode,?Name=Name,?Showlegend=Showlegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width)
+
+
+
+
 // //    /// Computes the bi-dimensional histogram of two data samples and auto-determines the bin size.
 // //    static member Histogram2d(x,y,?Name,?HistNorm,?HistFunc,?Colorscale,?Showscale,?zSmooth,?Colorbar,?zAuto,?zMin,?zMax,?nBinsx,?nBinsy,?Xbins,?Ybins) =         
 // //        let trace = 
@@ -401,7 +420,7 @@ type Chart =
 
     /// Uses points, line or both depending on the mode to represent 3d-data points
     static member Mesh3d(x, y, z, mode, ?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
-        Trace3d.initMesh3d (Trace3dStyle.Mesh3d(X = x,Y = y,Z=z,?Color=Color) )              
+        Trace3d.initMesh3d (Trace3dStyle.Mesh3d(X = x,Y = y,Z=z) ) //,?Color=Color) )              
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
         |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
         |> GenericChart.ofTraceObject 

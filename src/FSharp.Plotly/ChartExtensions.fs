@@ -103,11 +103,11 @@ module ChartExtensions =
                     
                              
         
-        // // Sets x-Axis of 2d and 3d- Charts
-        // static member withX_AxisStyle(title,?MinMax,?Showgrid) =                    
-        //     let range = if MinMax.IsSome then Some (StyleOption.RangeValues.MinMax (MinMax.Value)) else None
-        //     let xaxis = Options.Axis(Title=title,?Range=range,?Showgrid=Showgrid)
-        //     Chart.withX_Axis(xaxis) 
+        // Sets x-Axis style with ... 
+        static member withX_AxisStyle(title,?MinMax,?Showgrid) =                    
+            let range = if MinMax.IsSome then Some (StyleParam.RangeValues.MinMax (MinMax.Value)) else None
+            let xaxis = Axis.LinearAxis.init(Axis.LinearAxis.LinearAxis(Title=title,?Range=range,?Showgrid=Showgrid))
+            Chart.withX_Axis(xaxis) 
             
 
         // Sets y-Axis of 2d and 3d- Charts
@@ -133,32 +133,28 @@ module ChartExtensions =
                     GenericChart.addLayout layout ch
             )
         
-        // // Sets y-Axis of 3d- Charts
-        // static member withY_AxisStyle(title,?MinMax,?Showgrid) =
-        //     let range = if MinMax.IsSome then Some (StyleOption.RangeValues.MinMax (MinMax.Value)) else None
-        //     let yaxis = Options.Axis(Title=title,?Range=range,?Showgrid=Showgrid)
-        //     Chart.withY_Axis(yaxis)                
+        // Sets y-Axis style with ... 
+        static member withY_AxisStyle(title,?MinMax,?Showgrid) =
+            let range = if MinMax.IsSome then Some (StyleParam.RangeValues.MinMax (MinMax.Value)) else None
+            let yaxis = Axis.LinearAxis.init(Axis.LinearAxis.LinearAxis(Title=title,?Range=range,?Showgrid=Showgrid))
+            Chart.withY_Axis(yaxis)                
 
 
 
-        // // Sets z-Axis of 3d- Charts
-        // static member withZ_Axis(zAxis:AxisOptions) =       
-        //     (fun (ch:GenericChart) ->                                  
-        //         let layout = 
-        //             Options.Layout(Scene=Options.Scene(zAxis=zAxis))
-        //         GenericChart.addLayout layout ch
-        //     )
+        // Sets z-Axis of 3d- Charts
+        static member withZ_Axis(zAxis:Axis.LinearAxis) =       
+            (fun (ch:GenericChart) ->                                  
+                let layout =
+                    Layout() 
+                    |> Layout.style(Scene=Scene.init(Scene.style (zAxis=zAxis) ))
+                GenericChart.addLayout layout ch
+             )
         
-        // // Sets z-Axis of 3d- Charts
-        // static member withZ_AxisStyle(title,?MinMax) =
-        //     let range = if MinMax.IsSome then Some (StyleOption.RangeValues.MinMax (MinMax.Value)) else None
-        //     let zaxis = Options.Axis(Title=title,?Range=range)
-        //     Chart.withZ_Axis(zaxis)                
-
-
-
-
-
+        // Sets z-Axis style with ... 
+        static member withZ_AxisStyle(title,?MinMax,?Showgrid) =
+            let range = if MinMax.IsSome then Some (StyleParam.RangeValues.MinMax (MinMax.Value)) else None
+            let zaxis = Axis.LinearAxis.init(Axis.LinearAxis.LinearAxis(Title=title,?Range=range,?Showgrid=Showgrid))
+            Chart.withZ_Axis(zaxis)                
 
 
 
@@ -166,6 +162,27 @@ module ChartExtensions =
         static member withLayout(layout:Layout) =
             (fun (ch:GenericChart) -> 
                 GenericChart.addLayout layout ch)         
+
+
+        // Set the title of a Chart
+        static member withTitle(title,?Titlefont) =
+            (fun (ch:GenericChart) ->                                  
+                let layout =
+                    Layout() 
+                    |> Layout.style(Title=title,?Titlefont=Titlefont)
+                GenericChart.addLayout layout ch
+             )  
+
+
+        // Set showLegend of a Chart
+        static member withLegend(showlegend) =
+            (fun (ch:GenericChart) ->                                  
+                let layout =
+                    Layout() 
+                    |> Layout.style(Showlegend=showlegend)
+                GenericChart.addLayout layout ch
+             )  
+
         
         // Set the size of a Chart
         static member withSize(width,heigth) =            
@@ -218,14 +235,12 @@ module ChartExtensions =
         static member Combine(gCharts:seq<GenericChart>) =
             GenericChart.combine gCharts
 
-//        /// Save chart as html single page
-//        static member SaveHtmlAs pathName (ch:GenericChart) =                                     
-//            let html = GenericChart.toEmbeddedHTML ch
-//            let tempPath = Path.GetTempPath()
-//            let file = sprintf "%s.html" guid
-//            let path = Path.Combine(tempPath, file)
-//            File.WriteAllText(path, html)
-//            System.Diagnostics.Process.Start(path) |> ignore
+        /// Save chart as html single page
+        static member SaveHtmlAs pathName (ch:GenericChart) =                                     
+            let html = GenericChart.toEmbeddedHTML ch
+            let file = sprintf "%s.html" pathName // remove file extension
+            File.WriteAllText(file, html)
+            System.Diagnostics.Process.Start(file) |> ignore
 
 
         /// Show chart in browser            
