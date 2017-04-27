@@ -14,17 +14,35 @@ type Margin() =
     inherit DynamicObj ()
 
     /// Init Margin type
-    static member init (applyStyle:Margin->Margin) = 
-        Margin() |> applyStyle
+    static member init
+        (
+            ?Left   ,
+            ?Right  ,
+            ?Top    ,
+            ?Bottom ,
+            ?Pad    ,
+            ?Autoexpand
+        ) =
+            Margin()
+            |> Margin.style
+                (
+                    ?Left       = Left       ,
+                    ?Right      = Right      ,
+                    ?Top        = Top        ,
+                    ?Bottom     = Bottom     ,
+                    ?Pad        = Pad        ,
+                    ?Autoexpand = Autoexpand                
+                )
+
 
     // Applies the styles to Margin()
     static member style
         (
-            ?Left,
-            ?Right,
-            ?Top,
-            ?Bottom,
-            ?Pad,
+            ?Left   ,
+            ?Right  ,
+            ?Top    ,
+            ?Bottom ,
+            ?Pad    ,
             ?Autoexpand
         ) =
             (fun (margin:Margin) -> 
@@ -54,8 +72,76 @@ type Layout() =
     inherit DynamicObj ()
 
     /// Init Layout type
-    static member init (applyStyle:Layout->Layout) = 
-        Layout() |> applyStyle
+    static member init
+        (   
+            ?Title         ,
+            ?Titlefont     ,
+            ?Font:Font     ,
+            ?Showlegend    ,
+            ?Autosize      ,
+            ?Width         ,
+            ?Height        ,
+            ?xAxis         ,
+            ?yAxis         ,
+            ?Legend        ,
+            ?Annotations   ,
+            ?Margin        ,
+                           
+            ?Paper_bgcolor ,
+            ?Plot_bgcolor  ,
+            ?Hovermode     ,
+            ?Dragmode      ,
+                           
+            ?Separators    ,
+            ?Barmode       ,
+            ?Bargap        , 
+            ?Radialaxis    ,
+            ?Angularaxis   ,
+            ?Scene:Scene   ,
+            ?Direction     ,
+            ?Orientation   , 
+            ?Shapes        ,
+                           
+            ?Hidesources   ,
+            ?Smith         ,
+            ?Geo           
+
+        ) =
+            Layout()
+            |> Layout.style
+                (
+                    ?Title         = Title         ,
+                    ?Titlefont     = Titlefont     ,
+                    ?Font          = Font          ,
+                    ?Showlegend    = Showlegend    ,
+                    ?Autosize      = Autosize      ,
+                    ?Width         = Width         ,
+                    ?Height        = Height        ,
+                    ?xAxis         = xAxis         ,
+                    ?yAxis         = yAxis         ,
+                    ?Legend        = Legend        ,
+                    ?Annotations   = Annotations   ,
+                    ?Margin        = Margin        ,
+                                    
+                    ?Paper_bgcolor = Paper_bgcolor ,
+                    ?Plot_bgcolor  = Plot_bgcolor  ,
+                    ?Hovermode     = Hovermode     ,
+                    ?Dragmode      = Dragmode      ,
+                               
+                    ?Separators    = Separators    ,
+                    ?Barmode       = Barmode       ,
+                    ?Bargap        = Bargap        , 
+                    ?Radialaxis    = Radialaxis    ,
+                    ?Angularaxis   = Angularaxis   ,
+                    ?Scene         = Scene         ,
+                    ?Direction     = Direction     ,
+                    ?Orientation   = Orientation   , 
+                    ?Shapes        = Shapes        ,
+                                      
+                    ?Hidesources   = Hidesources   ,
+                    ?Smith         = Smith         ,
+                    ?Geo           = Geo                
+                )
 
     // Applies the styles to Layout()
     static member style

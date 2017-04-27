@@ -5,12 +5,29 @@ type Font () =
     inherit DynamicObj ()
 
     /// Init Font()
-    static member  init (applyStyle:Font->Font) = 
-        Font() |> applyStyle
+    static member init
+        (    
+            ?Family    ,
+            ?Size      ,
+            ?Color     ,
+            ?Familysrc ,
+            ?Sizesrc   ,
+            ?Colorsrc
+        ) =    
+            Font()
+            |> Font.style
+                (
+                    ?Family    = Family    ,
+                    ?Size      = Size      ,
+                    ?Color     = Color     ,
+                    ?Familysrc = Familysrc ,
+                    ?Sizesrc   = Sizesrc   ,
+                    ?Colorsrc  = Colorsrc
+                )
 
 
     // Applies the styles to Font()
-    static member Style
+    static member style
         (    
             ?Family: StyleParam.FontFamily,
             ?Size,

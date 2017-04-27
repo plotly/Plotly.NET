@@ -21,8 +21,8 @@ let y' = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
 
  
 (*** define-output:line1 ***)
-Chart.Line(x,y',Name="line")    
-|> Chart.withLineStyle(Width=2,Dash=StyleOption.DrawingStyle.Dot)
+Chart.Line(x,y',Name="line",ShowMarkers=true,MarkerSymbol=StyleParam.Symbol.Square)    
+|> Chart.withLineStyle(Width=2,Dash=StyleParam.DrawingStyle.Dot)
 (*** include-it:line1 ***)
 
 (** 
@@ -43,10 +43,10 @@ shown below.
 
 (*** define-output:line3 ***)
 Chart.Spline(x,y',Name="spline")    
-|> Chart.withLineStyle(Width=2,Dash=StyleOption.DrawingStyle.Dot)
-|> Chart.withLineStyle(Width=6,Dash=StyleOption.DrawingStyle.Dot)
+|> Chart.withLineStyle(Width=2,Dash=StyleParam.DrawingStyle.Dot)
+|> Chart.withLineStyle(Width=6,Dash=StyleParam.DrawingStyle.Dot)
 (*** include-it:line3 ***)
-
+|> Chart.Show
 
 (** 
 
@@ -60,16 +60,16 @@ If `TextPosition` is set the labels are drawn otherwise only shown when hovering
 let l  = ["a";"b";"c";"d";"e";"f";"g";"h";"i";"j";]
 
 (*** define-output:pointsWithLabels ***)
-Chart.Point(x,y',Name="points",Labels=l,TextPosition=StyleOption.TextPosition.TopRight)    
+Chart.Point(x,y',Name="points",Labels=l,TextPosition=StyleParam.TextPosition.TopRight)    
 (*** include-it:pointsWithLabels ***)
-|> Chart.Show
 
 
 
 
-(*** define-output:pointsWithErrorBars ***)
-Chart.Point(x,y',Name="points with errors")    
-|> Chart.withXError(Options.Error(Array=[|0.2;0.3;0.2;0.1;0.2;0.4;0.2;0.08;0.2;0.1;|]))
-|> Chart.withYError(Options.Error(Array=[|0.3;0.2;0.1;0.4;0.2;0.4;0.1;0.18;0.02;0.2;|]))
-(*** include-it:pointsWithErrorBars ***)
-|> Chart.Show
+
+//(*** define-output:pointsWithErrorBars ***)
+//Chart.Point(x,y',Name="points with errors")    
+//|> Chart.withXError(Options.Error(Array=[|0.2;0.3;0.2;0.1;0.2;0.4;0.2;0.08;0.2;0.1;|]))
+//|> Chart.withYError(Options.Error(Array=[|0.3;0.2;0.1;0.4;0.2;0.4;0.1;0.18;0.02;0.2;|]))
+//(*** include-it:pointsWithErrorBars ***)
+//|> Chart.Show

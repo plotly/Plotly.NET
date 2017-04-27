@@ -6,15 +6,26 @@ type Bins () =
     inherit DynamicObj ()
 
     // Init Bins()
-    static member init (apply:Bins->Bins) =
-        Bins () |> apply
+    static member init
+        (
+            ?StartBins ,
+            ?EndBins   ,
+            ?Size
+        ) =
+            Bins () 
+            |> Bins.style
+                (
+                    ?StartBins = StartBins,
+                    ?EndBins   = EndBins  ,
+                    ?Size      = Size           
+                )
 
 
     // Applies the styles to Bins()
     static member style
         (
             ?StartBins:float,
-            ?EndBins:float,
+            ?EndBins  :float,
             ?Size
         ) =
             

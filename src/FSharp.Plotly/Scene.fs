@@ -8,8 +8,27 @@ type Scene() =
 
     /// Initialized Scene object
     //[<CompiledName("init")>]
-    static member init (apply:Scene->Scene) =
-        Scene () |> apply
+    static member init
+        (   
+            ?xAxis        ,
+            ?yAxis        ,
+            ?zAxis        ,
+            ?isSubplotObj ,
+            ?BgColor          
+            // ?Camera           ,
+            // ?Domain           ,
+            // ?Aspectmode       ,
+            // ?Aspectratio
+        ) =
+            Scene ()
+            |> Scene.style
+                (
+                    ?xAxis        = xAxis         ,
+                    ?yAxis        = yAxis         ,
+                    ?zAxis        = zAxis         ,
+                    ?isSubplotObj = isSubplotObj  ,
+                    ?BgColor      = BgColor                   
+                )
 
     // [<JsonIgnore>]
     /// Applies the styles to Scene()

@@ -37,8 +37,8 @@ module ChartExtensions =
         /// Apply styling to the Marker(s) of the chart.
         static member withMarkerStyle(?Size,?Color,?Symbol,?Opacity) = 
             let marker = 
-                Marker.init ( Marker.style
-                    (?Size=Size,?Color=Color,?Symbol=Symbol,?Opacity=Opacity)
+                Marker.init ( 
+                    ?Size=Size,?Color=Color,?Symbol=Symbol,?Opacity=Opacity
                     )           
             Chart.withMarker(marker)         
             
@@ -51,9 +51,9 @@ module ChartExtensions =
         /// Apply styling to the Line(s) of the chart.
         static member withLineStyle(?Width,?Color,?Shape,?Dash,?Smoothing,?Colorscale) =
             let line = 
-                Line.init ( Line.style
-                    (?Width=Width,?Color=Color,?Shape=Shape,?Dash=Dash,?Smoothing=Smoothing,?Colorscale=Colorscale)
-                )         
+                Line.init (
+                    ?Width=Width,?Color=Color,?Shape=Shape,?Dash=Dash,?Smoothing=Smoothing,?Colorscale=Colorscale)
+                                 
             Chart.withLine(line)  
 
         /// Apply styling to the xError(s) of the chart as Object
@@ -97,17 +97,17 @@ module ChartExtensions =
                 | true  -> 
                     let layout =
                         Layout() 
-                        |> Layout.style (Scene=Scene.init(Scene.style( xAxis=xAxis) ))
+                        |> Layout.style (Scene=Scene.init( xAxis=xAxis) )
                     GenericChart.addLayout layout ch
             )
                     
                              
         
-        // // Sets x-Axis of 2d and 3d- Charts
-        // static member withX_AxisStyle(title,?MinMax,?Showgrid) =                    
-        //     let range = if MinMax.IsSome then Some (StyleOption.RangeValues.MinMax (MinMax.Value)) else None
-        //     let xaxis = Options.Axis(Title=title,?Range=range,?Showgrid=Showgrid)
-        //     Chart.withX_Axis(xaxis) 
+         // Sets x-Axis of 2d and 3d- Charts
+        static member withX_AxisStyle(title,?MinMax,?Showgrid) =                    
+            let range = if MinMax.IsSome then Some (StyleParam.RangeValues.MinMax (MinMax.Value)) else None
+            let xaxis = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid)
+            Chart.withX_Axis(xaxis)
             
 
         // Sets y-Axis of 2d and 3d- Charts
@@ -129,15 +129,15 @@ module ChartExtensions =
                 | true  -> 
                     let layout =
                         Layout() 
-                        |> Layout.style(Scene=Scene.init(Scene.style (yAxis=yAxis) ))
+                        |> Layout.style(Scene=Scene.init(yAxis=yAxis) )
                     GenericChart.addLayout layout ch
             )
         
-        // // Sets y-Axis of 3d- Charts
-        // static member withY_AxisStyle(title,?MinMax,?Showgrid) =
-        //     let range = if MinMax.IsSome then Some (StyleOption.RangeValues.MinMax (MinMax.Value)) else None
-        //     let yaxis = Options.Axis(Title=title,?Range=range,?Showgrid=Showgrid)
-        //     Chart.withY_Axis(yaxis)                
+         // Sets y-Axis of 3d- Charts
+        static member withY_AxisStyle(title,?MinMax,?Showgrid) =
+            let range = if MinMax.IsSome then Some (StyleParam.RangeValues.MinMax (MinMax.Value)) else None
+            let yaxis = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid)
+            Chart.withY_Axis(yaxis)                
 
 
 

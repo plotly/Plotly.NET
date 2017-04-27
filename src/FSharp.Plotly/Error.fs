@@ -5,10 +5,46 @@ namespace FSharp.Plotly
 type Error () =
     inherit DynamicObj ()
 
+//    /// Init Error type
+//    static member init (applyStyle:Error->Error) = 
+//        Error() |> applyStyle
+    
     /// Init Error type
-    static member init (applyStyle:Error->Error) = 
-        Error() |> applyStyle
-
+    static member init
+        (   
+            ?Symmetric,
+            ?Array,
+            ?Arrayminus,
+            ?Value,
+            ?Valueminus,
+            ?Traceref,
+            ?Tracerefminus,
+            ?Copy_ystyle,
+            ?Copy_zstyle,
+            ?Color,
+            ?Thickness,
+            ?Width,
+            ?Arraysrc,
+            ?Arrayminussrc
+        ) =
+            Error() 
+            |> Error.style
+                (   
+                   ?Symmetric     =  Symmetric     ,
+                   ?Array         =  Array         ,
+                   ?Arrayminus    =  Arrayminus    ,
+                   ?Value         =  Value         ,
+                   ?Valueminus    =  Valueminus    ,
+                   ?Traceref      =  Traceref      ,
+                   ?Tracerefminus =  Tracerefminus ,
+                   ?Copy_ystyle   =  Copy_ystyle   ,
+                   ?Copy_zstyle   =  Copy_zstyle   ,
+                   ?Color         =  Color         ,
+                   ?Thickness     =  Thickness     ,
+                   ?Width         =  Width         ,
+                   ?Arraysrc      =  Arraysrc      ,
+                   ?Arrayminussrc = Arrayminussrc
+                )
 
     // Applies the styles to Error()
     static member style
@@ -47,4 +83,6 @@ type Error () =
                 // out ->
                 error
             )
-
+    
+ 
+            

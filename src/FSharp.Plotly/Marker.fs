@@ -7,8 +7,68 @@ type Marker () =
     inherit DynamicObj ()
 
     /// Initialized Marker object
-    static member init (apply:Marker->Marker) =
-        Marker () |> apply
+    static member init
+        (   
+            ?Size           ,
+            ?Color          ,
+            ?Symbol         ,
+            ?Opacity        ,
+            ?MultiSizes     ,
+            ?Line           ,
+            ?Colorbar       ,
+            ?Colorscale     ,
+            ?Colors         ,
+                            
+            ?Maxdisplayed   ,
+            ?Sizeref        ,
+            ?Sizemin        ,
+            ?Sizemode       ,
+            ?Cauto          ,
+            ?Cmax           ,
+            ?Cmin           ,
+            ?Autocolorscale ,
+            ?Reversescale   ,
+            ?Showscale      ,
+                            
+            ?Symbolsrc      ,
+            ?Opacitysrc     ,
+            ?Sizesrc        ,
+            ?Colorsrc       ,
+            ?Cutliercolor   ,
+            ?Colorssrc      
+
+        ) =
+        Marker () 
+        |> Marker.style
+            (
+                ?Size          = Size           ,
+                ?Color         = Color          ,
+                ?Symbol        = Symbol         ,
+                ?Opacity       = Opacity        ,
+                ?MultiSizes    = MultiSizes     ,
+                ?Line          = Line           ,
+                ?Colorbar      = Colorbar       ,
+                ?Colorscale    = Colorscale     ,
+                ?Colors        = Colors         ,
+                                        
+                ?Maxdisplayed  = Maxdisplayed   ,
+                ?Sizeref       = Sizeref        ,
+                ?Sizemin       = Sizemin        ,
+                ?Sizemode      = Sizemode       ,
+                ?Cauto         = Cauto          ,
+                ?Cmax          = Cmax           ,
+                ?Cmin          = Cmin           ,
+                ?Autocolorscale= Autocolorscale ,
+                ?Reversescale  = Reversescale   ,
+                ?Showscale     = Showscale      ,
+                                           
+                ?Symbolsrc     = Symbolsrc      ,
+                ?Opacitysrc    = Opacitysrc     ,
+                ?Sizesrc       = Sizesrc        ,
+                ?Colorsrc      = Colorsrc       ,
+                ?Cutliercolor  = Cutliercolor   ,
+                ?Colorssrc     = Colorssrc      
+            )
 
     // Applies the styles to Marker()
     static member style

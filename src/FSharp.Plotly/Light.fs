@@ -8,14 +8,34 @@ module Ligth =
         inherit DynamicObj ()
         
         /// Initialized Lighting object
-        [<CompiledName("init")>]
-        static member Init (apply:Lighting->Lighting) =
-            Lighting () |> apply
+        //[<CompiledName("init")>]
+        static member init
+            (
+                /// Epsilon for vertex normals calculation avoids math issues arising from degenerate geometry. Default 1e-12.
+                ?Vertexnormalsepsilon : float,
+                ?Facenormalsepsilon   : float,
+                ?Ambient              : float,
+                ?Diffuse              : float,
+                ?Specular             : float,
+                ?Roughness            : float,
+                ?Fresnel              : float
+            ) =
+                Lighting () 
+                |> Lighting.style
+                    (                
+                        ?Vertexnormalsepsilon = Vertexnormalsepsilon,
+                        ?Facenormalsepsilon   = Facenormalsepsilon  ,
+                        ?Ambient              = Ambient             ,
+                        ?Diffuse              = Diffuse             ,
+                        ?Specular             = Specular            ,
+                        ?Roughness            = Roughness           ,
+                        ?Fresnel              = Fresnel           
+                    ) 
 
         // [<JsonIgnore>]
         /// Applies the styles to Lighting()
-        [<CompiledName("style")>]
-        static member Style
+        //[<CompiledName("style")>]
+        static member style
             (
                 /// Epsilon for vertex normals calculation avoids math issues arising from degenerate geometry. Default 1e-12.
                 ?Vertexnormalsepsilon : float,
@@ -27,7 +47,7 @@ module Ligth =
                 ?Fresnel              : float
             ) =
             
-                (fun (lighting:('T :> Lighting)) -> 
+                (fun (lighting:Lighting) -> 
                     Vertexnormalsepsilon |> DynObj.setValueOpt lighting "vertexnormalsepsilon"
                     Facenormalsepsilon   |> DynObj.setValueOpt lighting "facenormalsepsilon"
                     Ambient              |> DynObj.setValueOpt lighting "ambient"
@@ -46,13 +66,24 @@ module Ligth =
         inherit DynamicObj ()
 
         /// Initialized Lightposition object
-        [<CompiledName("init")>]
-        static member Init (apply:Lightposition->Lightposition) =
-            Lightposition () |> apply
+        //[<CompiledName("init")>]
+        static member init
+            (
+                ?X : int,
+                ?Y : int,
+                ?Z : int
+            ) =
+                Lightposition ()
+                |> Lightposition.style
+                    (
+                        ?X = X,
+                        ?Y = Y,
+                        ?Z = Z
+                    )
 
         /// Applies the styles to Lightposition()
-        [<CompiledName("style")>]
-        static member Style
+        //[<CompiledName("style")>]
+        static member style
             (
                 ?X : int,
                 ?Y : int,

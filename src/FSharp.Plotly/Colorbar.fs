@@ -8,8 +8,96 @@ type Colorbar () =
        
     /// Initialized Colorbar object
     //[<CompiledName("init")>]
-    static member init (apply:Colorbar->Colorbar) =
-        Colorbar () |> apply
+    static member init
+        (   
+            ?Thicknessmode,  
+            ?Thickness,      
+            ?Lenmode,        
+            ?Len,            
+            ?X,              
+            ?Xanchor,
+            ?Xpad,           
+            ?Y,              
+            ?Yanchor,        
+            ?Ypad,           
+            ?Outlinecolor,   
+            ?Outlinewidth,   
+            ?Bordercolor,    
+            ?Borderwidth,    
+            ?Bgcolor,        
+            ?Tickmode,       
+            ?nTicks,         
+            ?Tick0,          
+            ?dTick,          
+            ?Tickvals,       
+            ?Ticktext,       
+            ?Ticks,          
+            ?Ticklen,        
+            ?Tickwidth,      
+            ?Tickcolor,      
+            ?Showticklabels, 
+            ?Tickfont,       
+            ?Tickangle,      
+            ?Tickformat,     
+            ?Tickprefix,     
+            ?Showtickprefix, 
+            ?Ticksuffix,     
+            ?Showticksuffix, 
+            ?Exponentformat, 
+            ?Showexponent,   
+            ?Title,          
+            ?Titlefont,      
+            ?Titleside,      
+            ?Tickvalssrc,
+            ?Ticktextsrc    
+
+        ) = 
+            Colorbar()
+            |> Colorbar.style
+                (   
+                    ?Thicknessmode  = Thicknessmode ,  
+                    ?Thickness      = Thickness     ,      
+                    ?Lenmode        = Lenmode       ,        
+                    ?Len            = Len           ,            
+                    ?X              = X             ,              
+                    ?Xanchor        = Xanchor       ,
+                    ?Xpad           = Xpad          ,           
+                    ?Y              = Y             ,              
+                    ?Yanchor        = Yanchor       ,        
+                    ?Ypad           = Ypad          ,           
+                    ?Outlinecolor   = Outlinecolor  ,   
+                    ?Outlinewidth   = Outlinewidth  ,   
+                    ?Bordercolor    = Bordercolor   ,    
+                    ?Borderwidth    = Borderwidth   ,    
+                    ?Bgcolor        = Bgcolor       ,        
+                    ?Tickmode       = Tickmode      ,       
+                    ?nTicks         = nTicks        ,         
+                    ?Tick0          = Tick0         ,          
+                    ?dTick          = dTick         ,          
+                    ?Tickvals       = Tickvals      ,       
+                    ?Ticktext       = Ticktext      ,       
+                    ?Ticks          = Ticks         ,          
+                    ?Ticklen        = Ticklen       ,        
+                    ?Tickwidth      = Tickwidth     ,      
+                    ?Tickcolor      = Tickcolor     ,      
+                    ?Showticklabels = Showticklabels, 
+                    ?Tickfont       = Tickfont      ,       
+                    ?Tickangle      = Tickangle     ,      
+                    ?Tickformat     = Tickformat    ,     
+                    ?Tickprefix     = Tickprefix    ,     
+                    ?Showtickprefix = Showtickprefix, 
+                    ?Ticksuffix     = Ticksuffix    ,     
+                    ?Showticksuffix = Showticksuffix, 
+                    ?Exponentformat = Exponentformat, 
+                    ?Showexponent   = Showexponent  ,   
+                    ?Title          = Title         ,          
+                    ?Titlefont      = Titlefont     ,      
+                    ?Titleside      = Titleside     ,      
+                    ?Tickvalssrc    = Tickvalssrc   ,
+                    ?Ticktextsrc    = Ticktextsrc    
+
+                )
+
 
     /// Applies the styles to Lighting()
     //[<CompiledName("style")>]

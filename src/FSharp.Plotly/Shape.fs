@@ -6,26 +6,53 @@ type Shape () =
     inherit DynamicObj ()
 
     /// Init Shape type
-    static member init (applyStyle:Shape->Shape) = 
-        Shape() |> applyStyle
+    static member init
+        (   
+            ?ShapeType ,
+            ?X0        ,
+            ?X1        ,           
+            ?Y0        ,
+            ?Y1        ,
+            ?Path      ,
+            ?Opacity   ,
+            ?Line      ,
+            ?Fillcolor ,
+            ?Layer     ,
+            ?Xref      ,
+            ?Yref           
+        ) =
+            Shape() 
+            |> Shape.style
+                (
+                    ?ShapeType = ShapeType ,
+                    ?X0        = X0        ,
+                    ?X1        = X1        ,           
+                    ?Y0        = Y0        ,
+                    ?Y1        = Y1        ,
+                    ?Path      = Path      ,
+                    ?Opacity   = Opacity   ,
+                    ?Line      = Line      ,
+                    ?Fillcolor = Fillcolor ,
+                    ?Layer     = Layer     ,
+                    ?Xref      = Xref      ,
+                    ?Yref      = Yref                        
+                )
 
     // Applies the styles to Shape()
-    static member Shape
+    static member style
         (   
-        ?ShapeType : StyleParam.ShapeType,
-        ?X0        ,
-        ?X1        ,           
-        ?Y0        ,
-        ?Y1        ,
-        ?Path      ,
-        ?Opacity   ,
-        ?Line : Line,
-        ?Fillcolor ,
-        ?Layer :StyleParam.Layer,
-        ?Xref      ,
-        ?Yref
-            
-            
+            ?ShapeType : StyleParam.ShapeType,
+            ?X0        ,
+            ?X1        ,           
+            ?Y0        ,
+            ?Y1        ,
+            ?Path      ,
+            ?Opacity   ,
+            ?Line : Line,
+            ?Fillcolor ,
+            ?Layer :StyleParam.Layer,
+            ?Xref      ,
+            ?Yref           
         ) =
             (fun (shape:Shape) -> 
 

@@ -59,7 +59,7 @@ type Chart =
             >> StyleParam.ModeUtils.showMarker (isShowMarker)
 
         Trace.initScatter (
-                TraceStyle.Scatter(X = x,Y = y, Mode=changeMode StyleParam.Markers) )               
+                TraceStyle.Scatter(X = x,Y = y, Mode=changeMode StyleParam.Lines) )               
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
         |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
         |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
@@ -215,7 +215,7 @@ type Chart =
         let marker =
             match Marker with 
             | Some marker -> marker |> FSharp.Plotly.Marker.style(?Color=Color)
-            | None        -> FSharp.Plotly.Marker.init (FSharp.Plotly.Marker.style(?Color=Color))
+            | None        -> FSharp.Plotly.Marker.init (?Color=Color)
                     
         Trace.initBar (TraceStyle.Bar(X = keys,Y = values,Marker=marker))
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)        
@@ -234,7 +234,7 @@ type Chart =
         let marker =
             match Marker with 
             | Some marker -> marker |> FSharp.Plotly.Marker.style(?Color=Color)
-            | None        -> FSharp.Plotly.Marker.init (FSharp.Plotly.Marker.style(?Color=Color))
+            | None        -> FSharp.Plotly.Marker.init (?Color=Color)
 
         Trace.initBar (TraceStyle.Bar(X = keys,Y = values,Marker=marker))
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)        
@@ -254,7 +254,7 @@ type Chart =
         let marker =
             match Marker with 
             | Some marker -> marker |> FSharp.Plotly.Marker.style(?Color=Color)
-            | None        -> FSharp.Plotly.Marker.init (FSharp.Plotly.Marker.style(?Color=Color))
+            | None        -> FSharp.Plotly.Marker.init (?Color=Color)
         Trace.initBar (TraceStyle.Bar(X = keys,Y = values,Marker=marker,Orientation = StyleParam.Orientation.Horizontal))
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)        
         |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
@@ -272,7 +272,7 @@ type Chart =
         let marker =
             match Marker with 
             | Some marker -> marker |> FSharp.Plotly.Marker.style(?Color=Color)
-            | None        -> FSharp.Plotly.Marker.init (FSharp.Plotly.Marker.style(?Color=Color))
+            | None        -> FSharp.Plotly.Marker.init (?Color=Color)
         Trace.initBar (TraceStyle.Bar(X = values,Y = keys,Marker=marker,Orientation = StyleParam.Orientation.Horizontal))
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)        
         |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
@@ -401,7 +401,7 @@ type Chart =
 
     /// Uses points, line or both depending on the mode to represent 3d-data points
     static member Mesh3d(x, y, z, mode, ?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
-        Trace3d.initMesh3d (Trace3dStyle.Mesh3d(X = x,Y = y,Z=z,?Color=Color) )              
+        Trace3d.initMesh3d (Trace3dStyle.Mesh3d(X = x,Y = y,Z=z) )              
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
         |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
         |> GenericChart.ofTraceObject 
