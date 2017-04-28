@@ -287,18 +287,19 @@ type Chart =
 
 
     /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.            
-    static member BoxPlot(?x,?y,?Name,?Showlegend,?Color,?Opacity,?Whiskerwidth,?Boxpoints,?Boxmean,?Jitter,?Pointpos,?Orientation) = 
+    static member BoxPlot(?x,?y,?Name,?Showlegend,?Color,?Fillcolor,?Opacity,?Whiskerwidth,?Boxpoints,?Boxmean,?Jitter,?Pointpos,?Orientation) = 
          Trace.initBoxPlot (TraceStyle.BoxPlot(?X=x, ?Y = y,
                                 ?Whiskerwidth=Whiskerwidth,?Boxpoints=Boxpoints,
-                                ?Boxmean=Boxmean,?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation,?Fillcolor=Color) )
+                                ?Boxmean=Boxmean,?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation,?Fillcolor=Fillcolor) )
          |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)   
+         |> TraceStyle.Marker(?Color=Color)
          |> GenericChart.ofTraceObject
 
 
     /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.       
-    static member BoxPlot(xy,?Name,?Showlegend,?Color,?Opacity,?Whiskerwidth,?Boxpoints,?Boxmean,?Jitter,?Pointpos,?Orientation) = 
+    static member BoxPlot(xy,?Name,?Showlegend,?Color,?Fillcolor,?Opacity,?Whiskerwidth,?Boxpoints,?Boxmean,?Jitter,?Pointpos,?Orientation) = 
         let x,y = Seq.unzip xy
-        Chart.BoxPlot(x, y, ?Name=Name,?Showlegend=Showlegend,?Color=Color,?Opacity=Opacity,?Whiskerwidth=Whiskerwidth,?Boxpoints=Boxpoints,?Boxmean=Boxmean,?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation) 
+        Chart.BoxPlot(x, y, ?Name=Name,?Showlegend=Showlegend,?Color=Color,?Fillcolor=Fillcolor,?Opacity=Opacity,?Whiskerwidth=Whiskerwidth,?Boxpoints=Boxpoints,?Boxmean=Boxmean,?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation) 
 
 
     /// Shows a graphical representation of a 3-dimensional surface by plotting constant z slices, called contours, on a 2-dimensional format.
