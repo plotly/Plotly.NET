@@ -62,17 +62,32 @@ module ChartExtensions =
                 ch |> mapTrace (TraceStyle.SetErrorX(xError))                                    
             ) 
 
+        /// Apply styling to the xError(s) of the chart as Object
+        static member withXErrorStyle(?Array,?Arrayminus,?Symmetric,?Color,?Thickness,?Width) =
+            let error = Error.init(?Array=Array,?Arrayminus=Arrayminus,?Symmetric=Symmetric,?Color=Color,?Thickness=Thickness,?Width=Width)
+            Chart.withXError error
+
         /// Apply styling to the yError(s) of the chart as Object 
         static member withYError(yError:Error) =
             (fun (ch:GenericChart) ->                   
                 ch |> mapTrace (TraceStyle.SetErrorY(yError))                                    
             )
 
+        /// Apply styling to the yError(s) of the chart as Object 
+        static member withYErrorStyle(?Array,?Arrayminus,?Symmetric,?Color,?Thickness,?Width) =
+            let error = Error.init(?Array=Array,?Arrayminus=Arrayminus,?Symmetric=Symmetric,?Color=Color,?Thickness=Thickness,?Width=Width)
+            Chart.withYError error
+
         /// Apply styling to the zError(s) of the chart as Object
         static member withZError(zError:Error) =
             (fun (ch:GenericChart) ->                   
                 ch |> mapTrace (TraceStyle.SetErrorZ(zError))                                    
             )
+        
+        /// Apply styling to the zError(s) of the chart as Object
+        static member withZErrorStyle(?Array,?Arrayminus,?Symmetric,?Color,?Thickness,?Width) =
+            let error = Error.init(?Array=Array,?Arrayminus=Arrayminus,?Symmetric=Symmetric,?Color=Color,?Thickness=Thickness,?Width=Width)
+            Chart.withZError error
 
 
 // ############################################################

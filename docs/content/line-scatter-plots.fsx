@@ -67,9 +67,9 @@ Chart.Point(x,y',Name="points",Labels=l,TextPosition=StyleParam.TextPosition.Top
 
 
 
-//(*** define-output:pointsWithErrorBars ***)
-//Chart.Point(x,y',Name="points with errors")    
-//|> Chart.withXError(Options.Error(Array=[|0.2;0.3;0.2;0.1;0.2;0.4;0.2;0.08;0.2;0.1;|]))
-//|> Chart.withYError(Options.Error(Array=[|0.3;0.2;0.1;0.4;0.2;0.4;0.1;0.18;0.02;0.2;|]))
-//(*** include-it:pointsWithErrorBars ***)
+(*** define-output:pointsWithErrorBars ***)
+Chart.Point(x,y',Name="points with errors")    
+|> Chart.withXErrorStyle (Array=[|0.2;0.3;0.2;0.1;0.2;0.4;0.2;0.08;0.2;0.1;|])
+|> Chart.withYErrorStyle (Array=[|0.3;0.2;0.1;0.4;0.2;0.4;0.1;0.18;0.02;0.2;|])
+(*** include-it:pointsWithErrorBars ***)
 //|> Chart.Show

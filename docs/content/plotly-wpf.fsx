@@ -41,4 +41,4 @@ Create the combined chart
 By piping the combined chart into `Chart.Show` function it will be displayed in your browser.
 *)
 (*** do-not-eval ***)
-|> Chart.Show
+|> Chart.ShowWPF

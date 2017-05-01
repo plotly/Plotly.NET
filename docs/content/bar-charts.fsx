@@ -19,8 +19,9 @@ let keys   = ["Product A"; "Product B"; "Product C";]
 let labels = ["27% market share"; "24% market share"; "19% market share";]
 
 (*** define-output:bar1 ***)
-Chart.Column(keys,values,Labels=labels,Opacity=0.3,Marker=Options.Marker(Color="rgba(222,45,38,0.8)",Size=1)) // Changing the thickness of the bar is not possible at the moment
+Chart.Column(keys,values,Labels=labels,Opacity=0.3,Marker=Marker.init(Color="rgba(222,45,38,0.8)",Size=1)) // Changing the thickness of the bar is not possible at the moment
 (*** include-it:bar1 ***)
+
 
 (*** define-output:bar2 ***)
 Chart.Bar(keys,values)
@@ -41,6 +42,5 @@ The following example shows how to create a stacked bar chart by combining bar c
 ]
 |> Chart.Combine
 (*** include-it:bar3 ***)
-|> Chart.Show
 
-FSharp.Plotly.
+
