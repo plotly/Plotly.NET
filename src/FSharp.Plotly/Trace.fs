@@ -38,6 +38,9 @@ module Trace =
     let initContour (applyStyle:Trace->Trace) = 
         Trace("contour") |> applyStyle
 
+    /// Init trace for 2d-histogram
+    let initHistogram2d (applyStyle:Trace->Trace) = 
+        Trace("histogram2d") |> applyStyle
 
     /// Functions provide the styling of the Chart objects
     type TraceStyle() =
@@ -519,4 +522,91 @@ module Trace =
                     contour 
                 )
 
+
+        // Applies the styles of histogram to TraceObjects
+
+
+
+//    let mutable _connectgaps: bool option = None
+//    let mutable _histfunc: _ option = None
+//    let mutable _histnorm: _ option = None
+//    let mutable _autobinx: bool option = None
+//    let mutable _nbinsx: int option = None
+//    let mutable _xbins: Xbins option = None
+//    let mutable _autobiny: bool option = None
+//    let mutable _nbinsy: int option = None
+//    let mutable _ybins: Ybins option = None
+
+        static member Histogram2d
+            (            
+                ?Z : seq<#seq<#IConvertible>>,
+                ?X : seq<#IConvertible>,
+                ?Y : seq<#IConvertible>,            
+                ?X0             ,
+                ?dX             ,
+                ?Y0             ,
+                ?dY             ,
+                ?xType          ,
+                ?yType          ,
+                ?xAxis          ,
+                ?yAxis          ,
+                ?Zsrc           ,
+                ?Xsrc           ,
+                ?Ysrc           ,
+
+                ?Marker : Marker, 
+                ?Orientation    , 
+
+                ?Xgap           ,         
+                ?Ygap           ,
+                ?Transpose      ,
+                ?zAuto          ,
+                ?zMin           ,
+                ?zMax           ,
+                ?Colorscale     ,
+                ?Autocolorscale ,
+                ?Reversescale   ,
+                ?Showscale      ,
+                ?zSmooth        ,
+                ?Colorbar      
+
+            ) =
+                (fun (histogram2d:('T :> Trace)) ->
+
+                    Z              |> DynObj.setValueOpt histogram2d "z"         
+                    X              |> DynObj.setValueOpt histogram2d "x"               
+                    Y              |> DynObj.setValueOpt histogram2d "y"
+                    X0             |> DynObj.setValueOpt histogram2d "x0"             
+                    dX             |> DynObj.setValueOpt histogram2d "dx"             
+                    Y0             |> DynObj.setValueOpt histogram2d "y0"            
+                    dY             |> DynObj.setValueOpt histogram2d "dy"            
+                    xType          |> DynObj.setValueOpt histogram2d "xtype"         
+                    yType          |> DynObj.setValueOpt histogram2d "ytype"                          
+                    xAxis          |> DynObj.setValueOpt histogram2d "xaxis"         
+                    yAxis          |> DynObj.setValueOpt histogram2d "yaxis"         
+                    Zsrc           |> DynObj.setValueOpt histogram2d "zsrc"       
+                    Xsrc           |> DynObj.setValueOpt histogram2d "xsrc"       
+                    Ysrc           |> DynObj.setValueOpt histogram2d "ysrc"  
+
+                    Orientation  |> DynObj.setValueOptBy histogram2d "orientation" StyleParam.Orientation.convert
+
+                    Xgap           |> DynObj.setValueOpt histogram2d   "xgap"       
+                    Ygap           |> DynObj.setValueOpt histogram2d   "ygap"  
+                    Transpose      |> DynObj.setValueOpt histogram2d   "transpose" 
+                    zAuto          |> DynObj.setValueOpt histogram2d   "zauto"     
+                    zMin           |> DynObj.setValueOpt histogram2d   "zmin"      
+                    zMax           |> DynObj.setValueOpt histogram2d   "zmax"      
+                    Colorscale     |> DynObj.setValueOptBy histogram2d "colorscale" StyleParam.Colorscale.convert 
+                    Autocolorscale |> DynObj.setValueOpt histogram2d   "autocolorscale"
+                    Reversescale   |> DynObj.setValueOpt histogram2d   "reversescale"  
+                    Showscale      |> DynObj.setValueOpt histogram2d   "showscale"     
+                    zSmooth        |> DynObj.setValueOptBy histogram2d "zsmooth" StyleParam.SmoothAlg.convert   
+                    Colorbar       |> DynObj.setValueOpt histogram2d   "colorbar"    
+
+                    // Update                
+                    Marker       |> DynObj.setValueOpt histogram2d "marker"  
+                    
+                    // out ->
+                    histogram2d
+                ) 
 
