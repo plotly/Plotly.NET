@@ -8,8 +8,30 @@ type Contour () =
 
     /// Initialized a Contour object
     //[<CompiledName("init")>]
-    static member init (apply:Contour->Contour) =
-        Contour () |> apply
+    static member init 
+        (
+            ?Show           ,
+            //?Project      : Project,
+            ?Color          ,
+            ?Usecolor       ,
+            ?Width          ,
+            ?Highlight      ,
+            ?Highlightcolor ,
+            ?Highlightwidth                 
+        ) =
+            Contour ()
+            |> Contour.style
+                (
+                    ?Show           = Show           ,
+                    //?Project      = Project        ,
+                    ?Color          = Color          ,
+                    ?Usecolor       = Usecolor       ,
+                    ?Width          = Width          ,
+                    ?Highlight      = Highlight      ,
+                    ?Highlightcolor = Highlightcolor ,
+                    ?Highlightwidth = Highlightwidth 
+                )
+
 
     // Applies the styles to Contours()
     //[<CompiledName("style")>]
@@ -17,7 +39,7 @@ type Contour () =
         (
             ?Show           : bool,
             //?Project      : Project,
-            ?Color,
+            ?Color                ,
             ?Usecolor       : bool,
             ?Width          : int,
             ?Highlight      : bool,
@@ -45,8 +67,19 @@ type Contours () =
 
     /// Initialized Contours object
     //[<CompiledName("init")>]
-    static member init (apply:Contours->Contours) =
-        Contours () |> apply
+    static member init 
+        (
+            ?X ,
+            ?Y ,
+            ?Z 
+        ) =
+            Contours () 
+            |> Contours.style
+                (
+                    ?X =  X,
+                    ?Y =  Y,
+                    ?Z =  Z
+                )
 
     // Applies the styles to Contours()
     //[<CompiledName("style")>]
@@ -57,7 +90,7 @@ type Contours () =
             ?Z : Contour
         ) =
             
-            (fun (contours:('T :> Contours)) -> 
+            (fun (contours:Contours) -> 
                 X |> DynObj.setValueOpt contours "x"
                 Y |> DynObj.setValueOpt contours "y"
                 Z |> DynObj.setValueOpt contours "z"
@@ -70,21 +103,21 @@ type Contours () =
     //[<CompiledName("styleXyz")>]
     static member styleXyz
         (
-            ?Show           : bool,
-            //?Project      : Project,
+            ?Show           ,
+            //?Project      ,
             ?Color,
-            ?Usecolor       : bool,
-            ?Width          : int,
-            ?Highlight      : bool,
-            ?Highlightcolor,
-            ?Highlightwidth : int
+            ?Usecolor       ,
+            ?Width          ,
+            ?Highlight      ,
+            ?Highlightcolor ,
+            ?Highlightwidth 
                 
         ) =
             
             (fun (contours:('T :> Contours)) -> 
                 let xyzContour =
-                    Contour.init (Contour.style (?Show=Show,?Color=Color,?Usecolor=Usecolor, ?Width=Width, 
-                                    ?Highlight=Highlight, ?Highlightcolor=Highlightcolor, ?Highlightwidth=Highlightwidth)) 
+                    Contour.init (?Show=Show,?Color=Color,?Usecolor=Usecolor, ?Width=Width, 
+                                    ?Highlight=Highlight, ?Highlightcolor=Highlightcolor, ?Highlightwidth=Highlightwidth) 
                 contours 
                 |> Contours.style(X=xyzContour,Y=xyzContour,Z=xyzContour)
             )

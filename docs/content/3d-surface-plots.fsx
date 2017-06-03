@@ -58,7 +58,7 @@ let z' = [
     [1.;2.;];
     ] // column (length y)
 
-Chart.Surface(z',x',y',Opacity=0.,Contours=Contours.initContours(Contours.ContoursStyle.XyzContours(Show=true)))
-|> Chart.Show
+//Chart.Surface(z',x',y',Opacity=0.,Contours=Contours. init(Contours.styleXyz(Show=true)))
+//|> Chart.Show
 
 

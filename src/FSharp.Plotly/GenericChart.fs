@@ -11,7 +11,7 @@ module HTML =
                     <html>
         <head>
   <!-- Plotly.js -->
-  <meta http-equiv="X-UA-Compatible" content="IE=10" >
+  <meta http-equiv="X-UA-Compatible" content="IE=11" >
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 

@@ -37,8 +37,8 @@ module ChartExtensions =
         /// Apply styling to the Marker(s) of the chart.
         static member withMarkerStyle(?Size,?Color,?Symbol,?Opacity) = 
             let marker = 
-                Marker.init ( Marker.style
-                    (?Size=Size,?Color=Color,?Symbol=Symbol,?Opacity=Opacity)
+                Marker.init ( 
+                    ?Size=Size,?Color=Color,?Symbol=Symbol,?Opacity=Opacity
                     )           
             Chart.withMarker(marker)         
             
@@ -51,9 +51,9 @@ module ChartExtensions =
         /// Apply styling to the Line(s) of the chart.
         static member withLineStyle(?Width,?Color,?Shape,?Dash,?Smoothing,?Colorscale) =
             let line = 
-                Line.init ( Line.style
-                    (?Width=Width,?Color=Color,?Shape=Shape,?Dash=Dash,?Smoothing=Smoothing,?Colorscale=Colorscale)
-                )         
+                Line.init (
+                    ?Width=Width,?Color=Color,?Shape=Shape,?Dash=Dash,?Smoothing=Smoothing,?Colorscale=Colorscale)
+                                 
             Chart.withLine(line)  
 
         /// Apply styling to the xError(s) of the chart as Object
@@ -62,17 +62,32 @@ module ChartExtensions =
                 ch |> mapTrace (TraceStyle.SetErrorX(xError))                                    
             ) 
 
+        /// Apply styling to the xError(s) of the chart as Object
+        static member withXErrorStyle(?Array,?Arrayminus,?Symmetric,?Color,?Thickness,?Width) =
+            let error = Error.init(?Array=Array,?Arrayminus=Arrayminus,?Symmetric=Symmetric,?Color=Color,?Thickness=Thickness,?Width=Width)
+            Chart.withXError error
+
         /// Apply styling to the yError(s) of the chart as Object 
         static member withYError(yError:Error) =
             (fun (ch:GenericChart) ->                   
                 ch |> mapTrace (TraceStyle.SetErrorY(yError))                                    
             )
 
+        /// Apply styling to the yError(s) of the chart as Object 
+        static member withYErrorStyle(?Array,?Arrayminus,?Symmetric,?Color,?Thickness,?Width) =
+            let error = Error.init(?Array=Array,?Arrayminus=Arrayminus,?Symmetric=Symmetric,?Color=Color,?Thickness=Thickness,?Width=Width)
+            Chart.withYError error
+
         /// Apply styling to the zError(s) of the chart as Object
         static member withZError(zError:Error) =
             (fun (ch:GenericChart) ->                   
                 ch |> mapTrace (TraceStyle.SetErrorZ(zError))                                    
             )
+        
+        /// Apply styling to the zError(s) of the chart as Object
+        static member withZErrorStyle(?Array,?Arrayminus,?Symmetric,?Color,?Thickness,?Width) =
+            let error = Error.init(?Array=Array,?Arrayminus=Arrayminus,?Symmetric=Symmetric,?Color=Color,?Thickness=Thickness,?Width=Width)
+            Chart.withZError error
 
 
 // ############################################################
@@ -97,17 +112,17 @@ module ChartExtensions =
                 | true  -> 
                     let layout =
                         Layout() 
-                        |> Layout.style (Scene=Scene.init(Scene.style( xAxis=xAxis) ))
+                        |> Layout.style (Scene=Scene.init( xAxis=xAxis) )
                     GenericChart.addLayout layout ch
             )
                     
                              
         
-        // Sets x-Axis style with ... 
-        static member withX_AxisStyle(title,?MinMax,?Showgrid) =                    
+         // Sets x-Axis of 2d and 3d- Charts
+        static member withX_AxisStyle(title,?MinMax,?Showgrid,?Showline) =                    
             let range = if MinMax.IsSome then Some (StyleParam.RangeValues.MinMax (MinMax.Value)) else None
-            let xaxis = Axis.LinearAxis.init(Axis.LinearAxis.LinearAxis(Title=title,?Range=range,?Showgrid=Showgrid))
-            Chart.withX_Axis(xaxis) 
+            let xaxis = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,?Showline=Showline)
+            Chart.withX_Axis(xaxis)
             
 
         // Sets y-Axis of 2d and 3d- Charts
@@ -129,14 +144,14 @@ module ChartExtensions =
                 | true  -> 
                     let layout =
                         Layout() 
-                        |> Layout.style(Scene=Scene.init(Scene.style (yAxis=yAxis) ))
+                        |> Layout.style(Scene=Scene.init(yAxis=yAxis) )
                     GenericChart.addLayout layout ch
             )
         
-        // Sets y-Axis style with ... 
-        static member withY_AxisStyle(title,?MinMax,?Showgrid) =
+         // Sets y-Axis of 3d- Charts
+        static member withY_AxisStyle(title,?MinMax,?Showgrid,?Showline) =
             let range = if MinMax.IsSome then Some (StyleParam.RangeValues.MinMax (MinMax.Value)) else None
-            let yaxis = Axis.LinearAxis.init(Axis.LinearAxis.LinearAxis(Title=title,?Range=range,?Showgrid=Showgrid))
+            let yaxis = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,?Showline=Showline)
             Chart.withY_Axis(yaxis)                
 
 

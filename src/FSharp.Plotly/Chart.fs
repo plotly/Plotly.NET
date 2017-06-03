@@ -59,7 +59,7 @@ type Chart =
             >> StyleParam.ModeUtils.showMarker (isShowMarker)
 
         Trace.initScatter (
-                TraceStyle.Scatter(X = x,Y = y, Mode=changeMode StyleParam.Markers) )               
+                TraceStyle.Scatter(X = x,Y = y, Mode=changeMode StyleParam.Lines) )               
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
         |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
         |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
@@ -215,7 +215,7 @@ type Chart =
         let marker =
             match Marker with 
             | Some marker -> marker |> FSharp.Plotly.Marker.style(?Color=Color)
-            | None        -> FSharp.Plotly.Marker.init (FSharp.Plotly.Marker.style(?Color=Color))
+            | None        -> FSharp.Plotly.Marker.init (?Color=Color)
                     
         Trace.initBar (TraceStyle.Bar(X = keys,Y = values,Marker=marker))
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)        
@@ -234,7 +234,7 @@ type Chart =
         let marker =
             match Marker with 
             | Some marker -> marker |> FSharp.Plotly.Marker.style(?Color=Color)
-            | None        -> FSharp.Plotly.Marker.init (FSharp.Plotly.Marker.style(?Color=Color))
+            | None        -> FSharp.Plotly.Marker.init (?Color=Color)
 
         Trace.initBar (TraceStyle.Bar(X = keys,Y = values,Marker=marker))
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)        
@@ -254,7 +254,7 @@ type Chart =
         let marker =
             match Marker with 
             | Some marker -> marker |> FSharp.Plotly.Marker.style(?Color=Color)
-            | None        -> FSharp.Plotly.Marker.init (FSharp.Plotly.Marker.style(?Color=Color))
+            | None        -> FSharp.Plotly.Marker.init (?Color=Color)
         Trace.initBar (TraceStyle.Bar(X = keys,Y = values,Marker=marker,Orientation = StyleParam.Orientation.Horizontal))
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)        
         |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
@@ -272,7 +272,7 @@ type Chart =
         let marker =
             match Marker with 
             | Some marker -> marker |> FSharp.Plotly.Marker.style(?Color=Color)
-            | None        -> FSharp.Plotly.Marker.init (FSharp.Plotly.Marker.style(?Color=Color))
+            | None        -> FSharp.Plotly.Marker.init (?Color=Color)
         Trace.initBar (TraceStyle.Bar(X = values,Y = keys,Marker=marker,Orientation = StyleParam.Orientation.Horizontal))
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)        
         |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
@@ -287,18 +287,19 @@ type Chart =
 
 
     /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.            
-    static member BoxPlot(?x,?y,?Name,?Showlegend,?Color,?Opacity,?Whiskerwidth,?Boxpoints,?Boxmean,?Jitter,?Pointpos,?Orientation) = 
+    static member BoxPlot(?x,?y,?Name,?Showlegend,?Color,?Fillcolor,?Opacity,?Whiskerwidth,?Boxpoints,?Boxmean,?Jitter,?Pointpos,?Orientation) = 
          Trace.initBoxPlot (TraceStyle.BoxPlot(?X=x, ?Y = y,
                                 ?Whiskerwidth=Whiskerwidth,?Boxpoints=Boxpoints,
-                                ?Boxmean=Boxmean,?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation,?Fillcolor=Color) )
+                                ?Boxmean=Boxmean,?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation,?Fillcolor=Fillcolor) )
          |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)   
+         |> TraceStyle.Marker(?Color=Color)
          |> GenericChart.ofTraceObject
 
 
     /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.       
-    static member BoxPlot(xy,?Name,?Showlegend,?Color,?Opacity,?Whiskerwidth,?Boxpoints,?Boxmean,?Jitter,?Pointpos,?Orientation) = 
+    static member BoxPlot(xy,?Name,?Showlegend,?Color,?Fillcolor,?Opacity,?Whiskerwidth,?Boxpoints,?Boxmean,?Jitter,?Pointpos,?Orientation) = 
         let x,y = Seq.unzip xy
-        Chart.BoxPlot(x, y, ?Name=Name,?Showlegend=Showlegend,?Color=Color,?Opacity=Opacity,?Whiskerwidth=Whiskerwidth,?Boxpoints=Boxpoints,?Boxmean=Boxmean,?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation) 
+        Chart.BoxPlot(x, y, ?Name=Name,?Showlegend=Showlegend,?Color=Color,?Fillcolor=Fillcolor,?Opacity=Opacity,?Whiskerwidth=Whiskerwidth,?Boxpoints=Boxpoints,?Boxmean=Boxmean,?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation) 
 
 
     /// Shows a graphical representation of a 3-dimensional surface by plotting constant z slices, called contours, on a 2-dimensional format.
@@ -430,7 +431,7 @@ type Chart =
 
     /// Uses points, line or both depending on the mode to represent 3d-data points
     static member Mesh3d(x, y, z, mode, ?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
-        Trace3d.initMesh3d (Trace3dStyle.Mesh3d(X = x,Y = y,Z=z) ) //,?Color=Color) )              
+        Trace3d.initMesh3d (Trace3dStyle.Mesh3d(X = x,Y = y,Z=z) )              
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
         |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
         |> GenericChart.ofTraceObject 
