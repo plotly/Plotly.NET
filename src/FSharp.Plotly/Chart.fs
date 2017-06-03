@@ -349,22 +349,32 @@ type Chart =
         Chart.Doughnut(values,Labels=labels,?Name=Name,?Showlegend=Showlegend,?Color=Color,?Hole=Hole,?TextPosition=TextPosition,?TextFont=TextFont,?Hoverinfo=Hoverinfo,?Textinfo=Textinfo,?Opacity=Opacity)
 
 
-//    /// Uses points, line or both depending on the mode to represent data points
-//    static member Scatter(x, y,mode,?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
-//        Trace.initScatter (
-//                TraceStyle.Scatter(X = x,Y = y, Mode=mode) )               
-//        |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
-//        |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
-//        |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
-//        |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-//        |> GenericChart.ofTraceObject 
-//
-//
-//     /// Uses points, line or both depending on the mode to represent data points
-//    static member Scatter(xy,mode,?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
-//        let x,y = Seq.unzip xy 
-//        Chart.Scatter(x, y, mode,?Name=Name,?Showlegend=Showlegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width)
+    /// Uses points, line or both depending on the mode to represent data points in a polar chart
+    static member Polar(r, t,mode,?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
+        Trace.initScatter (
+                TraceStyle.Scatter(R = r,T = t, Mode=mode) )               
+        |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+        |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
+        |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
+        |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        |> GenericChart.ofTraceObject 
 
+
+     /// Uses points, line or both depending on the mode to represent data points in a polar chart
+    static member Polar(rt,mode,?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
+        let r,t = Seq.unzip rt 
+        Chart.Polar(r, t, mode,?Name=Name,?Showlegend=Showlegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width)
+
+
+
+    static member WindRose(r, t,?Name,?Showlegend,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
+        Trace.initWindRose (
+                TraceStyle.Scatter(R = r,T = t) )               
+        |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+        |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
+        |> TraceStyle.Marker(?Color=Color)
+        |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        |> GenericChart.ofTraceObject 
 
 
 

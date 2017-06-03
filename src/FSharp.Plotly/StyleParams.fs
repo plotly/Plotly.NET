@@ -88,7 +88,7 @@ module StyleParam =
 
         static member convert = Mode.toString >> box
 
-    /// Functions to manipulate StyleOption Mode
+    /// Functions to manipulate StyleParam Mode
     module ModeUtils=
         
         /// Takes the current mode and adds the Text flag

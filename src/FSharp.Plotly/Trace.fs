@@ -38,6 +38,9 @@ module Trace =
     let initContour (applyStyle:Trace->Trace) = 
         Trace("contour") |> applyStyle
 
+    /// Init trace for wind rose chart 
+    let initWindRose (applyStyle:Trace->Trace) = 
+        Trace("area") |> applyStyle
 
     /// Functions provide the styling of the Chart objects
     type TraceStyle() =
@@ -239,8 +242,8 @@ module Trace =
                 ?Fill: StyleParam.Fill,
                 ?Fillcolor: string,                        
                 ?Connectgaps: bool, 
-                ?R: _, 
-                ?T: _,
+                ?R      : seq<#IConvertible>,
+                ?T      : seq<#IConvertible>,
                 ?Error_y: Error,
                 ?Error_x: Error
             ) =

@@ -10,7 +10,7 @@ type Shape () =
         Shape() |> applyStyle
 
     // Applies the styles to Shape()
-    static member Shape
+    static member style
         (   
         ?ShapeType : StyleParam.ShapeType,
         ?X0        ,
