@@ -446,6 +446,30 @@ module StyleParam =
 
         static member convert = Direction.toString >> box
 
+    /// Only applies if cumulative is enabled. If "increasing" (default) we sum all prior bins, so the result increases from left to right.
+    /// If "decreasing" we sum later bins so the result decreases from left to right.  default: "increasing"
+    type CumulativeDirection =
+        | Increasing | Decreasing 
+        
+        static member toString = function
+            | Increasing  -> "increasing"
+            | Decreasing  -> "decreasing"
+
+        static member convert = CumulativeDirection.toString >> box
+
+    /// Only applies if cumulative is enabled. Sets whether the current bin is included, excluded, or has half of its value included in 
+    /// the current cumulative value. "include" is the default for compatibility with various other tools, however it introduces
+    /// a half-bin bias to the results. "exclude" makes the opposite half-bin bias, and "half" removes it.
+    type Currentbin =
+        | Include | Exclude | Half 
+        
+        static member toString = function
+            | Include -> "Include"
+            | Exclude -> "Exclude"
+            | Half    -> "Half"
+
+        static member convert = Currentbin.toString >> box
+
 
     /// Sets the type of normalization for this histogram trace. By default ('histnorm' set to '') the height of each bar 
     /// displays the frequency of occurrence, i.e., the number of times this value was found in the corresponding bin.
@@ -455,10 +479,12 @@ module StyleParam =
     /// interval such that summing the area of all bins will yield the total number of occurrences. If set to 'probability density', 
     /// the height of each bar is equal to the number of probability that an event will fall into the corresponding bin divided by 
     /// the size of the bin interval such that summing the area of all bins will yield 1.
+    /// default: None  
     type HistNorm =
-        | Percent | Probability | Density | ProbabilityDensity 
+        | None | Percent | Probability | Density | ProbabilityDensity 
         
         static member toString = function
+            | None               -> ""
             | Percent            -> "percent"
             | Probability        -> "probability"
             | Density            -> "density"
@@ -470,6 +496,7 @@ module StyleParam =
     /// Sets the binning function used for this histogram trace. The default value is 'count' where the histogram values are computed 
     /// by counting the number of values lying inside each bin. With 'histfunc' set to 'sum', 'avg', 'min' or 'max', the histogram values 
     /// are computed using the sum, the average, the minimum or the 'maximum' of the values lying inside each bin respectively.
+    /// default: Count    
     type HistFunc =
         | Count | Sum | Avg | Min | Max 
         
@@ -615,6 +642,12 @@ module StyleParam =
 
         static member convert = Delaunayaxis.toString >> box
 
+ 
 
+// hoverinfo (flaglist string) 
+//Any combination of "x", "y", "z", "text", "name" joined with a "+" OR "all" or "none" or "skip". 
+//examples: "x", "y", "x+y", "x+y+z", "all" 
+//default: "all" 
+//Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
 
 

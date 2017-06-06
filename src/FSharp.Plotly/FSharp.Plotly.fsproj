@@ -69,6 +69,7 @@
     <Compile Include="Font.fs" />
     <Compile Include="Axis.fs" />
     <Compile Include="Bins.fs" />
+    <Compile Include="Cumulative.fs" />
     <Compile Include="Scene.fs" />
     <Compile Include="Shape.fs" />
     <Compile Include="Error.fs" />

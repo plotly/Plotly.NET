@@ -42,9 +42,18 @@ module Trace =
     let initWindRose (applyStyle:Trace->Trace) = 
         Trace("area") |> applyStyle
 
+    /// Init trace for histogram
+    let initHistogram (applyStyle:Trace->Trace) = 
+        Trace("histogram") |> applyStyle
+
     /// Init trace for 2d-histogram
     let initHistogram2d (applyStyle:Trace->Trace) = 
         Trace("histogram2d") |> applyStyle
+
+
+    /// Init trace for 2d-histogram contour
+    let initHistogram2dContour (applyStyle:Trace->Trace) = 
+        Trace("histogram2dcontour") |> applyStyle
 
     /// Functions provide the styling of the Chart objects
     type TraceStyle() =
@@ -530,36 +539,95 @@ module Trace =
         // Applies the styles of histogram to TraceObjects
 
 
+        static member Histogram
+            (            
+                ?X : seq<#IConvertible>       ,
+                ?Y : seq<#IConvertible>       ,            
+                ?Text : seq<string>           ,   
+                ?xAxis                        ,
+                ?yAxis                        ,
+                ?Xsrc                         ,
+                ?Ysrc                         ,
+                ?Orientation                  , 
+                ?HistFunc                     ,
+                ?HistNorm                     ,
+                ?Cumulative : Cumulative      ,
+                
+                                              
+                ?Autobinx    : bool           ,
+                ?nBinsx      : int            ,
+                ?xBins       : Bins           ,
+                ?Autobiny    : bool           ,
+                ?nBinsy      : int            ,
+                ?yBins       : Bins           ,
+                ?Marker      : Marker         ,
 
-//    let mutable _connectgaps: bool option = None
-//    let mutable _histfunc: _ option = None
-//    let mutable _histnorm: _ option = None
-//    let mutable _autobinx: bool option = None
-//    let mutable _nbinsx: int option = None
-//    let mutable _xbins: Xbins option = None
-//    let mutable _autobiny: bool option = None
-//    let mutable _nbinsy: int option = None
-//    let mutable _ybins: Ybins option = None
+                ?xError       : Error         ,
+                ?yError       : Error
+
+
+
+            ) =
+                (fun (histogram:('T :> Trace)) ->
+        
+                    X              |> DynObj.setValueOpt histogram "x"               
+                    Y              |> DynObj.setValueOpt histogram "y"                          
+                    Text           |> DynObj.setValueOpt histogram "text"
+                    xAxis          |> DynObj.setValueOpt histogram "xaxis"         
+                    yAxis          |> DynObj.setValueOpt histogram "yaxis"                
+                    Xsrc           |> DynObj.setValueOpt histogram "xsrc"       
+                    Ysrc           |> DynObj.setValueOpt histogram "ysrc"  
+
+                    Orientation    |> DynObj.setValueOptBy histogram "orientation" StyleParam.Orientation.convert
+                    HistFunc       |> DynObj.setValueOptBy histogram "histfunc"    StyleParam.HistFunc.convert
+                    HistNorm       |> DynObj.setValueOptBy histogram "histnorm"    StyleParam.HistNorm.convert
+                    Cumulative     |> DynObj.setValueOpt histogram "cumulative"
+
+                    Autobinx       |> DynObj.setValueOpt histogram "autobinx"
+                    nBinsx         |> DynObj.setValueOpt histogram "nbinsx"
+                    xBins          |> DynObj.setValueOpt histogram "xbins"
+                    Autobiny       |> DynObj.setValueOpt histogram "autobiny"
+                    nBinsy         |> DynObj.setValueOpt histogram "nbinsy"
+                    yBins          |> DynObj.setValueOpt histogram "ybins"
+
+                    // Update                
+                    Marker         |> DynObj.setValueOpt histogram "marker"
+                    xError         |> DynObj.setValueOpt histogram "error_x"
+                    yError         |> DynObj.setValueOpt histogram "error_y"
+                    
+                    // out ->
+                    histogram
+                ) 
+
 
         static member Histogram2d
             (            
-                ?Z : seq<#seq<#IConvertible>>,
-                ?X : seq<#IConvertible>,
-                ?Y : seq<#IConvertible>,            
-                ?X0             ,
-                ?dX             ,
-                ?Y0             ,
-                ?dY             ,
-                ?xType          ,
-                ?yType          ,
-                ?xAxis          ,
-                ?yAxis          ,
-                ?Zsrc           ,
-                ?Xsrc           ,
-                ?Ysrc           ,
-
-                ?Marker : Marker, 
-                ?Orientation    , 
+                ?X : seq<#IConvertible>       ,
+                ?Y : seq<#IConvertible>       ,            
+                ?Z : seq<#seq<#IConvertible>> ,                
+                ?X0                           ,
+                ?dX                           ,
+                ?Y0                           ,
+                ?dY                           ,
+                ?xType                        ,
+                ?yType                        ,
+                ?xAxis                        ,
+                ?yAxis                        ,
+                ?Zsrc                         ,
+                ?Xsrc                         ,
+                ?Ysrc                         ,
+                                              
+                ?Marker      : Marker         , 
+                ?Orientation                  , 
+                //?Connectgaps : bool           ,
+                ?HistFunc                     ,
+                ?HistNorm                     ,
+                ?Autobinx    : bool           ,
+                ?nBinsx      : int            ,
+                ?xBins       : Bins           ,
+                ?Autobiny    : bool           ,
+                ?nBinsy      : int            ,
+                ?yBins       : Bins           ,
 
                 ?Xgap           ,         
                 ?Ygap           ,
@@ -592,8 +660,17 @@ module Trace =
                     Xsrc           |> DynObj.setValueOpt histogram2d "xsrc"       
                     Ysrc           |> DynObj.setValueOpt histogram2d "ysrc"  
 
-                    Orientation  |> DynObj.setValueOptBy histogram2d "orientation" StyleParam.Orientation.convert
-
+                    Orientation    |> DynObj.setValueOptBy histogram2d "orientation" StyleParam.Orientation.convert
+                    //Connectgaps    |> DynObj.setValueOptBy histogram2d "connectgaps" StyleParam.Orientation.convert
+                    HistFunc       |> DynObj.setValueOptBy histogram2d "histfunc   " StyleParam.HistFunc.convert
+                    HistNorm       |> DynObj.setValueOptBy histogram2d "histnorm   " StyleParam.HistNorm.convert
+                    Autobinx       |> DynObj.setValueOpt histogram2d "autobinx"
+                    nBinsx         |> DynObj.setValueOpt histogram2d "nbinsx"
+                    xBins          |> DynObj.setValueOpt histogram2d "xbins"
+                    Autobiny       |> DynObj.setValueOpt histogram2d "autobiny"
+                    nBinsy         |> DynObj.setValueOpt histogram2d "nbinsy"
+                    yBins          |> DynObj.setValueOpt histogram2d "ybins"
+                    
                     Xgap           |> DynObj.setValueOpt histogram2d   "xgap"       
                     Ygap           |> DynObj.setValueOpt histogram2d   "ygap"  
                     Transpose      |> DynObj.setValueOpt histogram2d   "transpose" 
@@ -613,4 +690,106 @@ module Trace =
                     // out ->
                     histogram2d
                 ) 
+
+
+        static member Histogram2dContour
+            (            
+                ?X : seq<#IConvertible>       ,
+                ?Y : seq<#IConvertible>       ,            
+                ?Z : seq<#seq<#IConvertible>> ,                
+                ?X0                           ,
+                ?dX                           ,
+                ?Y0                           ,
+                ?dY                           ,
+                ?xType                        ,
+                ?yType                        ,
+                ?xAxis                        ,
+                ?yAxis                        ,
+                ?Zsrc                         ,
+                ?Xsrc                         ,
+                ?Ysrc                         ,
+                                              
+                ?Marker      : Marker         , 
+                ?Orientation                  , 
+                //?Connectgaps : bool           ,
+                ?HistFunc                     ,
+                ?HistNorm                     ,
+                ?Autobinx    : bool           ,
+                ?nBinsx      : int            ,
+                ?xBins       : Bins           ,
+                ?Autobiny    : bool           ,
+                ?nBinsy      : int            ,
+                ?yBins       : Bins           ,
+
+                ?nContours   : int            ,
+                ?Contours    : Contour        ,
+                ?Line        : Line           ,
+
+
+                ?Xgap           ,         
+                ?Ygap           ,
+                ?Transpose      ,
+                ?zAuto          ,
+                ?zMin           ,
+                ?zMax           ,
+                ?Colorscale     ,
+                ?Autocolorscale ,
+                ?Reversescale   ,
+                ?Showscale      ,
+                ?zSmooth        ,
+                ?Colorbar      
+
+            ) =
+                (fun (histogram2dContour:('T :> Trace)) ->
+
+                    Z              |> DynObj.setValueOpt histogram2dContour "z"         
+                    X              |> DynObj.setValueOpt histogram2dContour "x"               
+                    Y              |> DynObj.setValueOpt histogram2dContour "y"
+                    X0             |> DynObj.setValueOpt histogram2dContour "x0"             
+                    dX             |> DynObj.setValueOpt histogram2dContour "dx"             
+                    Y0             |> DynObj.setValueOpt histogram2dContour "y0"            
+                    dY             |> DynObj.setValueOpt histogram2dContour "dy"            
+                    xType          |> DynObj.setValueOpt histogram2dContour "xtype"         
+                    yType          |> DynObj.setValueOpt histogram2dContour "ytype"                          
+                    xAxis          |> DynObj.setValueOpt histogram2dContour "xaxis"         
+                    yAxis          |> DynObj.setValueOpt histogram2dContour "yaxis"         
+                    Zsrc           |> DynObj.setValueOpt histogram2dContour "zsrc"       
+                    Xsrc           |> DynObj.setValueOpt histogram2dContour "xsrc"       
+                    Ysrc           |> DynObj.setValueOpt histogram2dContour "ysrc"  
+
+                    Orientation    |> DynObj.setValueOptBy histogram2dContour "orientation" StyleParam.Orientation.convert
+                    //Connectgaps    |> DynObj.setValueOptBy histogram2dContour< "connectgaps" StyleParam.Orientation.convert
+                    HistFunc       |> DynObj.setValueOptBy histogram2dContour "histfunc   " StyleParam.HistFunc.convert
+                    HistNorm       |> DynObj.setValueOptBy histogram2dContour "histnorm   " StyleParam.HistNorm.convert
+                    Autobinx       |> DynObj.setValueOpt histogram2dContour "autobinx"
+                    nBinsx         |> DynObj.setValueOpt histogram2dContour "nbinsx"
+                    xBins          |> DynObj.setValueOpt histogram2dContour "xbins"
+                    Autobiny       |> DynObj.setValueOpt histogram2dContour "autobiny"
+                    nBinsy         |> DynObj.setValueOpt histogram2dContour "nbinsy"
+                    yBins          |> DynObj.setValueOpt histogram2dContour "ybins"
+
+                    nContours      |> DynObj.setValueOpt histogram2dContour   "ncontours"       
+                    Contours       |> DynObj.setValueOpt histogram2dContour   "contours"  
+                    Line           |> DynObj.setValueOpt histogram2dContour   "line"                     
+                    Xgap           |> DynObj.setValueOpt histogram2dContour   "xgap"       
+                    Ygap           |> DynObj.setValueOpt histogram2dContour   "ygap"  
+                    Transpose      |> DynObj.setValueOpt histogram2dContour   "transpose" 
+                    zAuto          |> DynObj.setValueOpt histogram2dContour   "zauto"     
+                    zMin           |> DynObj.setValueOpt histogram2dContour   "zmin"      
+                    zMax           |> DynObj.setValueOpt histogram2dContour   "zmax"      
+                    Colorscale     |> DynObj.setValueOptBy histogram2dContour "colorscale" StyleParam.Colorscale.convert 
+                    Autocolorscale |> DynObj.setValueOpt histogram2dContour   "autocolorscale"
+                    Reversescale   |> DynObj.setValueOpt histogram2dContour   "reversescale"  
+                    Showscale      |> DynObj.setValueOpt histogram2dContour   "showscale"     
+                    zSmooth        |> DynObj.setValueOptBy histogram2dContour "zsmooth" StyleParam.SmoothAlg.convert   
+                    Colorbar       |> DynObj.setValueOpt histogram2dContour   "colorbar"    
+
+                    // Update                
+                    Marker       |> DynObj.setValueOpt histogram2dContour "marker"  
+                    
+                    // out ->
+                    histogram2dContour
+                ) 
+
+
 

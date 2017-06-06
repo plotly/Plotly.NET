@@ -156,20 +156,20 @@ module ChartExtensions =
 
 
 
-        // Sets z-Axis of 3d- Charts
-        static member withZ_Axis(zAxis:Axis.LinearAxis) =       
-            (fun (ch:GenericChart) ->                                  
-                let layout =
-                    Layout() 
-                    |> Layout.style(Scene=Scene.init(Scene.style (zAxis=zAxis) ))
-                GenericChart.addLayout layout ch
-             )
+        //// Sets z-Axis of 3d- Charts
+        //static member withZ_Axis(zAxis:Axis.LinearAxis) =       
+        //    (fun (ch:GenericChart) ->                                  
+        //        let layout =
+        //            Layout() 
+        //            |> Layout.style(Scene=Scene.init(Scene.style (zAxis=zAxis) ))
+        //        GenericChart.addLayout layout ch
+        //     )
         
-        // Sets z-Axis style with ... 
-        static member withZ_AxisStyle(title,?MinMax,?Showgrid) =
-            let range = if MinMax.IsSome then Some (StyleParam.RangeValues.MinMax (MinMax.Value)) else None
-            let zaxis = Axis.LinearAxis.init(Axis.LinearAxis.LinearAxis(Title=title,?Range=range,?Showgrid=Showgrid))
-            Chart.withZ_Axis(zaxis)                
+        //// Sets z-Axis style with ... 
+        //static member withZ_AxisStyle(title,?MinMax,?Showgrid) =
+        //    let range = if MinMax.IsSome then Some (StyleParam.RangeValues.MinMax (MinMax.Value)) else None
+        //    let zaxis = Axis.LinearAxis.init(Axis.LinearAxis.LinearAxis(Title=title,?Range=range,?Showgrid=Showgrid))
+        //    Chart.withZ_Axis(zaxis)                
 
 
 

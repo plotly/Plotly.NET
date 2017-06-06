@@ -377,20 +377,24 @@ type Chart =
         |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
         |> GenericChart.ofTraceObject 
 
+     /// Computes a histogram with auto-determined the bin size.
+    static member Histogram(data,?Orientation,?Name,?Showlegend,?Marker,?HistNorm,?HistFunc,?nBinsx,?nBinsy,?Xbins,?Ybins,?xError,?yError) =         
+        Trace.initHistogram (
+            TraceStyle.Histogram (X=data,?Orientation=Orientation,?HistNorm=HistNorm,?HistFunc=HistFunc,
+                                    ?nBinsx=nBinsx,?nBinsy=nBinsy,?xBins=Xbins,?yBins=Ybins)
+                             )
+        |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend)//,?Opacity=Opacity)   
+        |> GenericChart.ofTraceObject
 
+     /// Computes the bi-dimensional histogram of two data samples and auto-determines the bin size.
+    static member Histogram2d(x,y,?Z,?Name,?Colorscale,?Showscale,?zSmooth,?Colorbar,?zAuto,?zMin,?zMax,?nBinsx,?nBinsy,?Xbins,?Ybins,?HistNorm,?HistFunc) =         
+        Trace.initHistogram2d (
+            TraceStyle.Histogram2d (X=x, Y=y,? Z=Z,
+                                ?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?Colorbar=Colorbar) )
+        |> TraceStyle.TraceInfo(?Name=Name)//,?Showlegend=Showlegend,?Opacity=Opacity)   
+        |> GenericChart.ofTraceObject
+ 
 
-// //    /// Computes the bi-dimensional histogram of two data samples and auto-determines the bin size.
-// //    static member Histogram2d(x,y,?Name,?HistNorm,?HistFunc,?Colorscale,?Showscale,?zSmooth,?Colorbar,?zAuto,?zMin,?zMax,?nBinsx,?nBinsy,?Xbins,?Ybins) =         
-// //        let trace = 
-// //            Trace()
-// //            |> Helpers.ApplyTraceStyles("histogram2d",x=x,y=y,?name=Name,?histnorm=HistNorm,?histfunc=HistFunc,
-// //                          ?colorScale=Colorscale,?showscale=Showscale,?zsmooth=zSmooth,?colorbar=Colorbar,
-// //                          ?zauto=zAuto,?zmin=zMin,?zmax=zMax,
-// //                          ?nbinsx=nBinsx,?nbinsy=nBinsy,?xbins=Xbins,?ybins=Ybins
-// //                          )                
-// //        
-// //        GenericChart.Chart (trace,None)
-// //
 // //    /// Computes the bi-dimensional histogram of two data samples and auto-determines the bin size.
 // //    static member Histogram2d(xy,?Name,?HistNorm,?HistFunc,?Colorscale,?Showscale,?zSmooth,?Colorbar,?zAuto,?zMin,?zMax,?nBinsx,?nBinsy,?Xbins,?Ybins) =         
 // //        let x,y = Seq.unzip xy
@@ -399,7 +403,13 @@ type Chart =
 // //            ?nBinsx=nBinsx,?nBinsy=nBinsy,?Xbins=Xbins,?Ybins=Ybins
 // //            )
 
-
+     /// Computes the bi-dimensional histogram of two data samples and auto-determines the bin size.
+    static member Histogram2dContour(x,y,?Z,?Name,?Colorscale,?Showscale,?Line,?zSmooth,?Colorbar,?zAuto,?zMin,?zMax,?nBinsx,?nBinsy,?Xbins,?Ybins,?HistNorm,?HistFunc) =         
+        Trace.initHistogram2dContour (
+            TraceStyle.Histogram2dContour (X=x, Y=y,? Z=Z,?Line=Line,
+                                ?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?Colorbar=Colorbar) )
+        //|> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)   
+        |> GenericChart.ofTraceObject
 
  
     // ---------------------------------------------------------------------------------------------------------------------------------------------------
@@ -422,7 +432,8 @@ type Chart =
 
     /// Uses points, line or both depending on the mode to represent 3d-data points
     static member Surface(data:seq<#seq<#IConvertible>>,?X,?Y, ?Name,?Showlegend,?Opacity,?Contours,?Colorscale,?Showscale,?Colorbar) = 
-        Trace3d.initSurface (Trace3dStyle.Surface (Z=data,?X=X, ?Y=Y,?Contours=Contours,
+        Trace3d.initSurface (
+            Trace3dStyle.Surface (Z=data,?X=X, ?Y=Y,?Contours=Contours,
                                 ?Colorscale=Colorscale,?Showscale=Showscale,?Colorbar=Colorbar ) )              
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
         //|> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
