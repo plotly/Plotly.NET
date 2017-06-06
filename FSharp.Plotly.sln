@@ -30,6 +30,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{8E6D
 	ProjectSection(SolutionItems) = preProject
 		docs\content\2d-histograms.fsx = docs\content\2d-histograms.fsx
 		docs\content\3d-line-plots.fsx = docs\content\3d-line-plots.fsx
+		docs\content\3d-mesh-plots.fsx = docs\content\3d-mesh-plots.fsx
 		docs\content\3d-scatter-plots.fsx = docs\content\3d-scatter-plots.fsx
 		docs\content\3d-surface-plots.fsx = docs\content\3d-surface-plots.fsx
 		docs\content\area-plots.fsx = docs\content\area-plots.fsx

@@ -29,6 +29,4 @@ let t  = [0; 45; 90; 135; 200; 320; 184;]
 ]
 |> Chart.Combine
 (*** include-it:polar1 ***)
-|> Chart.Show
-
 

@@ -387,7 +387,7 @@ type Chart =
         |> GenericChart.ofTraceObject
 
      /// Computes the bi-dimensional histogram of two data samples and auto-determines the bin size.
-    static member Histogram2d(x,y,?Z,?Name,?Colorscale,?Showscale,?zSmooth,?Colorbar,?zAuto,?zMin,?zMax,?nBinsx,?nBinsy,?Xbins,?Ybins,?HistNorm,?HistFunc) =         
+    static member Histogram2d(x,y,?Z,?Name,?Showlegend,?Colorscale,?Showscale,?zSmooth,?Colorbar,?zAuto,?zMin,?zMax,?nBinsx,?nBinsy,?Xbins,?Ybins,?HistNorm,?HistFunc) =         
         Trace.initHistogram2d (
             TraceStyle.Histogram2d (X=x, Y=y,? Z=Z,
                                 ?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?Colorbar=Colorbar) )

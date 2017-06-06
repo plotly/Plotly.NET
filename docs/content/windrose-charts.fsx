@@ -20,7 +20,7 @@ let r''' = [20.0; 7.5; 15.0; 22.5; 2.5; 2.5; 12.5; 22.5]
 
 let t = ["North"; "N-E"; "East"; "S-E"; "South"; "S-W"; "West"; "N-W"]
   
-(*** define-output:polar1 ***)
+(*** define-output:windrose1 ***)
 [
     Chart.WindRose (r   ,t,Name="11-14 m/s")
     Chart.WindRose (r'  ,t,Name="8-11 m/s")
@@ -28,7 +28,7 @@ let t = ["North"; "N-E"; "East"; "S-E"; "South"; "S-W"; "West"; "N-W"]
     Chart.WindRose (r''',t,Name="< 5 m/s")
 ]
 |> Chart.Combine
-(*** include-it:polar1 ***)
-|> Chart.Show
+(*** include-it:windrose1 ***)
+
 
 

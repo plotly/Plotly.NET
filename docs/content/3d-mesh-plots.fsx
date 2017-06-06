@@ -52,7 +52,7 @@ Trace3d.initMesh3d
         mesh3d?y <- b
         mesh3d?z <- c
         mesh3d?flatshading <- true
-        //mesh3d?contour <- cont
+        mesh3d?contour <- Contours.initXyz(Show=true)
         mesh3d
         )
 |> GenericChart.ofTraceObject 

@@ -99,6 +99,32 @@ type Contours () =
             )
 
 
+    // Initialized x-y-z-Contours with the same properties    
+    static member initXyz
+        (
+            ?Show           ,
+            //?Project      ,
+            ?Color,
+            ?Usecolor       ,
+            ?Width          ,
+            ?Highlight      ,
+            ?Highlightcolor ,
+            ?Highlightwidth 
+                
+        ) =
+            Contours () 
+            |> Contours.styleXyz
+                (
+                    ?Show=Show                    ,
+                    //?Project                      ,
+                    ?Color=Color                  ,
+                    ?Usecolor=Usecolor            ,
+                    ?Width=Width                  ,
+                    ?Highlight=Highlight          ,
+                    ?Highlightcolor=Highlightcolor,
+                    ?Highlightwidth=Highlightwidth 
+                )
+
     // Applies the styles to Contours()
     //[<CompiledName("styleXyz")>]
     static member styleXyz

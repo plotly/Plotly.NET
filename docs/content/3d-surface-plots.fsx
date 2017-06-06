@@ -41,8 +41,6 @@ let a = Array.init 50 (fun _ -> rnd.NextDouble())
 let b = Array.init 50 (fun _ -> rnd.NextDouble())
 let c = Array.init 50 (fun _ -> rnd.NextDouble())
 
-//let contours =
-    
 
 (*** define-output:contour1 ***)
 z
@@ -58,7 +56,8 @@ let z' = [
     [1.;2.;];
     ] // column (length y)
 
-//Chart.Surface(z',x',y',Opacity=0.,Contours=Contours. init(Contours.styleXyz(Show=true)))
-//|> Chart.Show
+(*** define-output:contour2 ***)
+Chart.Surface(z',x',y',Opacity=0.5,Contours=Contours.initXyz(Show=true))
+(*** define-output:contour2 ***)
 
 
