@@ -16,25 +16,48 @@ The library provides a complete mapping for the configuration options of the und
 #r "../../bin/FSharp.Plotly.dll"
 open FSharp.Plotly
 
+// Functional F# scripting style
 
-Trace.initScatter (fun scatter ->
-    scatter?x <- [1; 2; 3; 4]
-    scatter?y <- [1; 2; 3; 4]
-    scatter?mode <- "lines+markers"
-    scatter?name <- "lines and markers"
-    scatter
+
+Chart.Scatter ([1; 2; 3; 4],[12; 9; 15; 12],
+      StyleParam.Mode.Lines_Markers,
+      Name="lines and markers")
+
+
+// Dynanic object
+
+let scattern = 
+    let dyn = Trace("scatter")
+    dyn?x <- [1; 2; 3; 4]
+    dyn?y <- [12; 9; 15; 12]
+    dyn?mode <- "lines+markers"
+    dyn?name <- "lines and markers"
+    dyn
+
+scattern
+|> GenericChart.ofTraceObject
+
+
+
+
+Trace.initScatter (
+       Trace.TraceStyle.Scatter
+            ( X    = [1; 2; 3; 4],
+              Y    = [12; 9; 15; 12], 
+              Mode = StyleParam.Mode.Lines_Markers
+            )     )               
+|> Trace.TraceStyle.TraceInfo(Name="lines and markers")
+|> GenericChart.ofTraceObject 
+
+
+
+Trace.initScatter 
+    (fun scatter ->
+        scatter?x <- [1; 2; 3; 4]
+        scatter?y <- [12; 9; 15; 12]
+        scatter?mode <- "lines+markers"
+        scatter?name <- "lines and markers"
+        scatter
     )
 |> GenericChart.ofTraceObject
-|> Chart.Show
-
-
-
-
-
-open FSharp.Care.Colors
-let red' = FSharp.Care.Colors.toHex false Table.Office.red
-
-Chart.Point([1; 2; 3; 4],[12; 9; 15; 12])
-|> Chart.withMarkerStyle(Color=red')
-|> Chart.Show
 

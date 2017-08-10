@@ -378,20 +378,21 @@ type Chart =
         |> GenericChart.ofTraceObject 
 
      /// Computes a histogram with auto-determined the bin size.
-    static member Histogram(data,?Orientation,?Name,?Showlegend,?Marker,?HistNorm,?HistFunc,?nBinsx,?nBinsy,?Xbins,?Ybins,?xError,?yError) =         
+    static member Histogram(data,?Orientation,?Name,?Showlegend,?Opacity,?Color,?HistNorm,?HistFunc,?nBinsx,?nBinsy,?Xbins,?Ybins,?xError,?yError) =         
         Trace.initHistogram (
             TraceStyle.Histogram (X=data,?Orientation=Orientation,?HistNorm=HistNorm,?HistFunc=HistFunc,
                                     ?nBinsx=nBinsx,?nBinsy=nBinsy,?xBins=Xbins,?yBins=Ybins)
                              )
-        |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend)//,?Opacity=Opacity)   
+        |> TraceStyle.Marker(?Color=Color)
+        |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)   
         |> GenericChart.ofTraceObject
 
      /// Computes the bi-dimensional histogram of two data samples and auto-determines the bin size.
-    static member Histogram2d(x,y,?Z,?Name,?Showlegend,?Colorscale,?Showscale,?zSmooth,?Colorbar,?zAuto,?zMin,?zMax,?nBinsx,?nBinsy,?Xbins,?Ybins,?HistNorm,?HistFunc) =         
+    static member Histogram2d(x,y,?Z,?Name,?Showlegend,?Opacity,?Colorscale,?Showscale,?zSmooth,?Colorbar,?zAuto,?zMin,?zMax,?nBinsx,?nBinsy,?Xbins,?Ybins,?HistNorm,?HistFunc) =         
         Trace.initHistogram2d (
             TraceStyle.Histogram2d (X=x, Y=y,? Z=Z,
                                 ?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?Colorbar=Colorbar) )
-        |> TraceStyle.TraceInfo(?Name=Name)//,?Showlegend=Showlegend,?Opacity=Opacity)   
+        |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)   
         |> GenericChart.ofTraceObject
  
 
