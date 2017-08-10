@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>FSharp.Plotly: Pie and Doughnut Charts
+    <title>FSharp.Plotly: Histogram2d
 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="A F# interactive charting library using plotly.js"/>
@@ -35,11 +35,10 @@
       <div class="row">
         <div class="span9" id="main">
           
-<h1><a name="FSharp-Plotly-Pie-and-Doughnut-Charts" class="anchor" href="#FSharp-Plotly-Pie-and-Doughnut-Charts">FSharp.Plotly: Pie and Doughnut Charts</a></h1>
-<p><em>Summary:</em> This example shows how to create pie and doughnut charts in F#.</p>
-<p>A pie or a doughnut chart can be created using the <code>Chart.Pie</code> and <code>Chart.Doughnut</code> functions.
-When creating pie or doughnut charts, it is usually desirable to provide both labels and
-values.</p>
+<h1><a name="FSharp-Plotly-Histogram2d" class="anchor" href="#FSharp-Plotly-Histogram2d">FSharp.Plotly: Histogram2d</a></h1>
+<p><em>Summary:</em> This example shows how to create a one-dimensional histogram of a data samples in F#.</p>
+<p>A histogram consisting of rectangles whose area is proportional to the frequency of a variable and whose width is equal to the class interval.
+The histogram chart represents the distribution of numerical data and can be created using the <code>Chart.Histogram</code>.</p>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -47,40 +46,40 @@ values.</p>
 <span class="l">5: </span>
 </pre></td>
 <td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">FSharp</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">Plotly</span> 
-  
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">values</span> <span class="o">=</span> [<span class="n">19</span>; <span class="n">26</span>; <span class="n">55</span>;]
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">labels</span> <span class="o">=</span> [<span class="s">&quot;Residential&quot;</span>; <span class="s">&quot;Non-Residential&quot;</span>; <span class="s">&quot;Utility&quot;</span>]
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">rnd</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">System</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="t">Random</span>()
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="i">x</span> <span class="o">=</span> [<span class="k">for</span> <span onmouseout="hideTip(event, 'fs7', 7)" onmouseover="showTip(event, 'fs7', 7)" class="i">i</span><span class="o">=</span><span class="n">0</span> <span class="k">to</span> <span class="n">500</span> <span class="k">do</span> <span class="k">yield</span> <span onmouseout="hideTip(event, 'fs3', 8)" onmouseover="showTip(event, 'fs3', 8)" class="i">rnd</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs8', 9)" onmouseover="showTip(event, 'fs8', 9)" class="f">NextDouble</span>() ]
   
 </code></pre></td>
 </tr>
 </table>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="f">Pie</span>(<span onmouseout="hideTip(event, 'fs3', 7)" onmouseover="showTip(event, 'fs3', 7)" class="i">values</span>,<span onmouseout="hideTip(event, 'fs4', 8)" onmouseover="showTip(event, 'fs4', 8)" class="i">labels</span>)
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs6', 10)" onmouseover="showTip(event, 'fs6', 10)" class="i">x</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs9', 11)" onmouseover="showTip(event, 'fs9', 11)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs10', 12)" onmouseover="showTip(event, 'fs10', 12)" class="f">Histogram</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs9', 13)" onmouseover="showTip(event, 'fs9', 13)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs11', 14)" onmouseover="showTip(event, 'fs11', 14)" class="f">withSize</span>(<span class="n">500.</span>,<span class="n">500.</span>)
+<span class="c">//(*** include-it:histo1 ***)</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs9', 15)" onmouseover="showTip(event, 'fs9', 15)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs12', 16)" onmouseover="showTip(event, 'fs12', 16)" class="f">Show</span>
 </code></pre></td>
 </tr>
 </table>
-<div id="9ca01067-027e-4d13-9777-4cf23a38abab" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>        
-  <script>
-    var data = [{"labels":["Residential","Non-Residential","Utility"],"values":[19,26,55],"type":"pie","marker":{}}];
-    var layout = {};
-    Plotly.newPlot('9ca01067-027e-4d13-9777-4cf23a38abab', data, layout);
-  </script>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
-</pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs5', 9)" onmouseover="showTip(event, 'fs5', 9)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 10)" onmouseover="showTip(event, 'fs7', 10)" class="f">Doughnut</span>(<span onmouseout="hideTip(event, 'fs3', 11)" onmouseover="showTip(event, 'fs3', 11)" class="i">values</span>,<span onmouseout="hideTip(event, 'fs4', 12)" onmouseover="showTip(event, 'fs4', 12)" class="i">labels</span>,<span class="i">hole</span><span class="o">=</span><span class="n">0.3</span>)
-</code></pre></td>
-</tr>
-</table>
-<table class="pre"><tr><td><pre><code>No value has been returned</code></pre></td></tr></table>
 
 <div class="tip" id="fs1">Multiple items<br />namespace FSharp<br /><br />--------------------<br />namespace Microsoft.FSharp</div>
 <div class="tip" id="fs2">namespace FSharp.Plotly</div>
-<div class="tip" id="fs3">val values : int list<br /><br />Full name: Histograms.values</div>
-<div class="tip" id="fs4">val labels : string list<br /><br />Full name: Histograms.labels</div>
-<div class="tip" id="fs5">type Chart =<br />&#160;&#160;static member Area : xy:seq&lt;#IConvertible * #IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:FontOptions * ?Dash:DrawingStyle * ?Width:&#39;a4 -&gt; GenericChart<br />&#160;&#160;static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:FontOptions * ?Dash:DrawingStyle * ?Width:&#39;a4 -&gt; GenericChart<br />&#160;&#160;static member Bar : keysvalues:seq&lt;#IConvertible * #IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:FontOptions * ?Marker:(Marker -&gt; Marker) -&gt; GenericChart<br />&#160;&#160;static member Bar : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:FontOptions * ?Marker:(Marker -&gt; Marker) -&gt; GenericChart<br />&#160;&#160;static member BoxPlot : xy:seq&lt;&#39;a0 * &#39;a1&gt; * ?Name:string * ?Showlegend:bool * ?Color:string * ?Opacity:float * ?Whiskerwidth:float * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:float * ?Pointpos:float * ?Orientation:Orientation -&gt; GenericChart<br />&#160;&#160;static member BoxPlot : ?x:&#39;a0 * ?y:&#39;a1 * ?Name:string * ?Showlegend:bool * ?Color:string * ?Opacity:float * ?Whiskerwidth:float * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:float * ?Pointpos:float * ?Orientation:Orientation -&gt; GenericChart<br />&#160;&#160;static member Bubble : xysizes:seq&lt;#IConvertible * #IConvertible * #IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:&#39;a3 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:FontOptions -&gt; GenericChart<br />&#160;&#160;static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:&#39;a3 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:FontOptions -&gt; GenericChart<br />&#160;&#160;static member Column : keysvalues:seq&lt;#IConvertible * #IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:FontOptions * ?Marker:(Marker -&gt; Marker) -&gt; GenericChart<br />&#160;&#160;static member Column : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:FontOptions * ?Marker:(Marker -&gt; Marker) -&gt; GenericChart<br />&#160;&#160;...<br /><br />Full name: FSharp.Plotly.Chart</div>
-<div class="tip" id="fs6">static member Chart.Pie : data:seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Text:seq&lt;#System.IConvertible&gt; * ?Textposition:StyleOption.TextPosition * ?TextFont:FontOptions * ?Hoverinfo:string * ?Textinfo:string * ?Opacity:float -&gt; GenericChart.GenericChart<br />static member Chart.Pie : values:&#39;a0 * ?Labels:&#39;a1 * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Text:seq&lt;#System.IConvertible&gt; * ?Textposition:StyleOption.TextPosition * ?TextFont:FontOptions * ?Hoverinfo:string * ?Textinfo:string * ?Opacity:float -&gt; GenericChart.GenericChart</div>
-<div class="tip" id="fs7">static member Chart.Doughnut : data:seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Hole:float * ?Text:seq&lt;#System.IConvertible&gt; * ?Textposition:StyleOption.TextPosition * ?TextFont:FontOptions * ?Hoverinfo:string * ?Textinfo:string * ?Opacity:float -&gt; GenericChart.GenericChart<br />static member Chart.Doughnut : values:&#39;a0 * ?Labels:&#39;a1 * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Hole:float * ?Text:seq&lt;#System.IConvertible&gt; * ?Textposition:StyleOption.TextPosition * ?TextFont:FontOptions * ?Hoverinfo:string * ?Textinfo:string * ?Opacity:float -&gt; GenericChart.GenericChart</div>
+<div class="tip" id="fs3">val rnd : System.Random<br /><br />Full name: Histograms.rnd</div>
+<div class="tip" id="fs4">namespace System</div>
+<div class="tip" id="fs5">Multiple items<br />type Random =<br />&#160;&#160;new : unit -&gt; Random + 1 overload<br />&#160;&#160;member Next : unit -&gt; int + 2 overloads<br />&#160;&#160;member NextBytes : buffer:byte[] -&gt; unit<br />&#160;&#160;member NextDouble : unit -&gt; float<br /><br />Full name: System.Random<br /><br />--------------------<br />System.Random() : unit<br />System.Random(Seed: int) : unit</div>
+<div class="tip" id="fs6">val x : float list<br /><br />Full name: Histograms.x</div>
+<div class="tip" id="fs7">val i : int</div>
+<div class="tip" id="fs8">System.Random.NextDouble() : float</div>
+<div class="tip" id="fs9">type Chart =<br />&#160;&#160;static member Area : xy:seq&lt;#IConvertible * #IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:&#39;a4 -&gt; GenericChart<br />&#160;&#160;static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:&#39;a4 -&gt; GenericChart<br />&#160;&#160;static member Bar : keysvalues:seq&lt;#IConvertible * #IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart<br />&#160;&#160;static member Bar : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart<br />&#160;&#160;static member BoxPlot : xy:seq&lt;&#39;a0 * &#39;a1&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Fillcolor:&#39;a3 * ?Opacity:float * ?Whiskerwidth:&#39;a4 * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:&#39;a5 * ?Pointpos:&#39;a6 * ?Orientation:Orientation -&gt; GenericChart<br />&#160;&#160;static member BoxPlot : ?x:&#39;a0 * ?y:&#39;a1 * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Fillcolor:&#39;a3 * ?Opacity:float * ?Whiskerwidth:&#39;a4 * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:&#39;a5 * ?Pointpos:&#39;a6 * ?Orientation:Orientation -&gt; GenericChart<br />&#160;&#160;static member Bubble : xysizes:seq&lt;#IConvertible * #IConvertible * #IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:&#39;a3 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font -&gt; GenericChart<br />&#160;&#160;static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:&#39;a3 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font -&gt; GenericChart<br />&#160;&#160;static member Column : keysvalues:seq&lt;#IConvertible * #IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart<br />&#160;&#160;static member Column : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart<br />&#160;&#160;...<br /><br />Full name: FSharp.Plotly.Chart</div>
+<div class="tip" id="fs10">static member Chart.Histogram : data:seq&lt;#System.IConvertible&gt; * ?Orientation:StyleParam.Orientation * ?Name:string * ?Showlegend:bool * ?Marker:&#39;b * ?HistNorm:StyleParam.HistNorm * ?HistFunc:StyleParam.HistNorm * ?nBinsx:int * ?nBinsy:int * ?Xbins:Bins * ?Ybins:Bins * ?xError:&#39;c * ?yError:&#39;d -&gt; GenericChart.GenericChart</div>
+<div class="tip" id="fs11">static member Chart.withSize : width:&#39;a * heigth:&#39;b -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
+<div class="tip" id="fs12">static member Chart.Show : ch:GenericChart.GenericChart -&gt; unit</div>
 
         </div>
         <div class="span3">
@@ -97,15 +96,18 @@ values.</p>
               <li><a href="/FSharp.Plotly/bubble-charts.html">Bubble Charts</a></li>
               <li><a href="/FSharp.Plotly/contour-plots.html">Contour Plots</a></li>
               <li><a href="/FSharp.Plotly/heatmaps.html">Heatmaps</a></li>
-                
+              <li><a href="/FSharp.Plotly/histograms.html">Histograms</a></li>
+              <li><a href="/FSharp.Plotly/2d-histograms.html">2D Histograms</a></li>
               <li><a href="/FSharp.Plotly/line-scatter-plots.html">Line and Scatter Plots</a></li>                          
               <li><a href="/FSharp.Plotly/pie-daughnut-charts.html">Pie and Doughnut Charts</a></li>
               <li><a href="/FSharp.Plotly/polar-charts.html">Polar Charts</a></li>
+              <li><a href="/FSharp.Plotly/windrose-charts.html">Polar Charts</a></li>
               <li><a href="/FSharp.Plotly/range-plots.html">Range Plots</a></li>                                                             
             <li class="nav-header">Plotly 3d-Charts</li>
               <li><a href="/FSharp.Plotly/3d-scatter-plots.html">3D Scatter Plots</a></li>           
               <li><a href="/FSharp.Plotly/3d-line-plots.html">3D Line Plots</a></li>             
               <li><a href="/FSharp.Plotly/3d-surface-plots.html">3D Surface Plots</a></li>
+              <li><a href="/FSharp.Plotly/3d-mesh-plots.html">3D MEsh Plots</a></li>
             <li class="nav-header">Plotly WPF</li>
               <li><a href="/FSharp.Plotly/plotly-wpf.html">Using Plotly PopUp window</a></li>            
 

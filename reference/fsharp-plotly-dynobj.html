@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>DynObj - FSharp.Plotly</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+    <meta name="author" content="Timo Mühlhaus"/>
+
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet"/>
+
+    <link type="text/css" rel="stylesheet" href="/FSharp.Plotly/content/style.css" />
+    <script type="text/javascript" src="/FSharp.Plotly/content/tips.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://github.com/muehlhaus/FSharp.Plotly">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/FSharp.Plotly/index.html">FSharp.Plotly</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>DynObj</h1>
+<p>
+  <span>Namespace: FSharp.Plotly</span><br />
+</p>
+<div class="xmldoc">
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '27', 27)" onmouseover="showTip(event, '27', 27)">
+            combine first second
+          </code>
+          <div class="tip" id="27">
+            <strong>Signature:</strong> first:DynamicObj -&gt; second:DynamicObj -&gt; DynamicObj<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/DynamicObj.fs#L228-228" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '28', 28)" onmouseover="showTip(event, '28', 28)">
+            ofArray kv
+          </code>
+          <div class="tip" id="28">
+            <strong>Signature:</strong> kv:(string * &#39;?8941) [] -&gt; DynamicObj<br />
+                          <strong>Type parameters:</strong> '?8941          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/DynamicObj.fs#L204-204" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>New DynamicObj of an array of key value</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '29', 29)" onmouseover="showTip(event, '29', 29)">
+            ofDict dict
+          </code>
+          <div class="tip" id="29">
+            <strong>Signature:</strong> dict:Dictionary&lt;string,obj&gt; -&gt; DynamicObj<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/DynamicObj.fs#L188-188" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>New DynamicObj of Dictionary</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '30', 30)" onmouseover="showTip(event, '30', 30)">
+            ofList kv
+          </code>
+          <div class="tip" id="30">
+            <strong>Signature:</strong> kv:(string * &#39;?8939) list -&gt; DynamicObj<br />
+                          <strong>Type parameters:</strong> '?8939          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/DynamicObj.fs#L197-197" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>New DynamicObj of a list of key value</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '31', 31)" onmouseover="showTip(event, '31', 31)">
+            ofSeq kv
+          </code>
+          <div class="tip" id="31">
+            <strong>Signature:</strong> kv:seq&lt;string * &#39;?8937&gt; -&gt; DynamicObj<br />
+                          <strong>Type parameters:</strong> '?8937          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/DynamicObj.fs#L191-191" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>New DynamicObj of a sequence of key value</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '32', 32)" onmouseover="showTip(event, '32', 32)">
+            setValueOpt dyn propName _arg1
+          </code>
+          <div class="tip" id="32">
+            <strong>Signature:</strong> dyn:DynamicObj -&gt; propName:string -&gt; _arg1:&#39;a21 option -&gt; unit<br />
+                          <strong>Type parameters:</strong> 'a21          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/DynamicObj.fs#L244-244" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '33', 33)" onmouseover="showTip(event, '33', 33)">
+            setValueOptBy dyn propName f _arg1
+          </code>
+          <div class="tip" id="33">
+            <strong>Signature:</strong> dyn:DynamicObj -&gt; propName:string -&gt; f:(&#39;d -&gt; &#39;e) -&gt; _arg1:&#39;d option -&gt; unit<br />
+                          <strong>Type parameters:</strong> 'd, 'e          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/DynamicObj.fs#L250-250" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '34', 34)" onmouseover="showTip(event, '34', 34)">
+            tryGetValue dyn name
+          </code>
+          <div class="tip" id="34">
+            <strong>Signature:</strong> dyn:DynamicObj -&gt; name:GetMemberBinder -&gt; obj option<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/muehlhaus/FSharp.Plotly/tree/master/src/FSharp.Plotly/DynamicObj.fs#L256-256" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <img src="/FSharp.Plotly/img/logo.png" alt="FSharp.Plotly" style="width:150px;margin:10px" />  
+          <ul class="nav nav-list" id="menu" style="margin-top: 20px;">
+            <li class="nav-header">FSharp.Plotly</li>
+              <li><a href="/FSharp.Plotly/index.html">Home page</a></li>
+            <li class="divider"></li>
+              <li><a href="/FSharp.Plotly/getting-started.html">Getting started</a></li>
+            <li class="nav-header">Plotly Charts</li>
+              <li><a href="/FSharp.Plotly/area-plots.html">Area Plots</a></li>
+              <li><a href="/FSharp.Plotly/bar-charts.html">Bar</a></li>              
+              <li><a href="/FSharp.Plotly/box-plots.html">Box Plots</a></li>
+              <li><a href="/FSharp.Plotly/bubble-charts.html">Bubble Charts</a></li>
+              <li><a href="/FSharp.Plotly/contour-plots.html">Contour Plots</a></li>
+              <li><a href="/FSharp.Plotly/heatmaps.html">Heatmaps</a></li>
+              <li><a href="/FSharp.Plotly/histograms.html">Histograms</a></li>
+              <li><a href="/FSharp.Plotly/2d-histograms.html">2D Histograms</a></li>
+              <li><a href="/FSharp.Plotly/line-scatter-plots.html">Line and Scatter Plots</a></li>                          
+              <li><a href="/FSharp.Plotly/pie-daughnut-charts.html">Pie and Doughnut Charts</a></li>
+              <li><a href="/FSharp.Plotly/polar-charts.html">Polar Charts</a></li>
+              <li><a href="/FSharp.Plotly/windrose-charts.html">Polar Charts</a></li>
+              <li><a href="/FSharp.Plotly/range-plots.html">Range Plots</a></li>                                                             
+            <li class="nav-header">Plotly 3d-Charts</li>
+              <li><a href="/FSharp.Plotly/3d-scatter-plots.html">3D Scatter Plots</a></li>           
+              <li><a href="/FSharp.Plotly/3d-line-plots.html">3D Line Plots</a></li>             
+              <li><a href="/FSharp.Plotly/3d-surface-plots.html">3D Surface Plots</a></li>
+              <li><a href="/FSharp.Plotly/3d-mesh-plots.html">3D MEsh Plots</a></li>
+            <li class="nav-header">Plotly WPF</li>
+              <li><a href="/FSharp.Plotly/plotly-wpf.html">Using Plotly PopUp window</a></li>            
+
+            <li class="nav-header">Documentation</li>
+              <li><a href="/FSharp.Plotly/reference/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/muehlhaus/FSharp.Plotly"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"/></a>
+  </body>
+  </html>
