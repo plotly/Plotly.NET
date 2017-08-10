@@ -2,11 +2,31 @@ namespace FSharp.Plotly
 
 open System
 open System.IO
-open FSharp.Care.Collections
+//open FSharp.Care.Collections
 
 open GenericChart
 open Trace
 open Trace3d
+
+
+// ###########
+// Copied from FSharp.Care.Collections to remove dependancies
+[<AutoOpen>]
+module Seq = 
+
+    /// Splits a sequence of pairs into two sequences
+    let unzip (input:seq<_>) =
+        let (lstA, lstB) = 
+            Seq.foldBack (fun (a,b) (accA, accB) -> 
+                a::accA, b::accB) input ([],[])
+        (Seq.ofList lstA, Seq.ofList lstB)    
+
+    /// Splits a sequence of triples into three sequences
+    let unzip3 (input:seq<_>) =
+        let (lstA, lstB, lstC) = 
+            Seq.foldBack (fun (a,b,c) (accA, accB, accC) -> 
+                a::accA, b::accB, c::accC) input ([],[],[])
+        (Seq.ofList lstA, Seq.ofList lstB, Seq.ofList lstC) 
 
 
 /// Provides a set of static methods for creating charts.
