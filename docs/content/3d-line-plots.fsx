@@ -31,7 +31,6 @@ Chart.Scatter3d(x,y,z,StyleParam.Mode.Lines_Markers)
 |> Chart.withY_AxisStyle("y-axis")
 |> Chart.withZ_AxisStyle("z-axis")
 |> Chart.withSize(800.,800.)
-
 (*** include-it:scatter3d_line_1 ***)
 
 
