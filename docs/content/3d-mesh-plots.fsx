@@ -3,13 +3,10 @@
 #r "../../bin/FSharp.Plotly.dll"
 
 (** 
-# FSharp.Plotly: Pie and Doughnut Charts
+# FSharp.Plotly: Mesh3d
 
-*Summary:* This example shows how to create pie and doughnut charts in F#.
+*Summary:* This example shows how to create 3D-Mesh charts in F#.
 
-A pie or a doughnut chart can be created using the `Chart.Pie` and `Chart.Doughnut` functions.
-When creating pie or doughnut charts, it is usually desirable to provide both labels and 
-values.
 *)
 
 open System
@@ -46,6 +43,8 @@ let cont = DynamicObj()
 cont?show <- true
 cont?width <- 3
 
+
+(*** define-output:mesh3d_1 ***)
 Trace3d.initMesh3d 
     (fun mesh3d ->
         mesh3d?x <- a
@@ -56,24 +55,6 @@ Trace3d.initMesh3d
         mesh3d
         )
 |> GenericChart.ofTraceObject 
-|> Chart.Show 
-
-
-//(*** define-output:contour1 ***)
-//z
-//|> Chart.Surface
-//|> Chart.withSize(600.,600.)
-//(*** include-it:contour1 ***)
-//
-//// Create simple example data were x y and z is given (z is a xy-Matrix)
-//let x' = [0.;2.5]
-//let y' = [0.;2.5]
-//let z' = [
-//    [1.;1.;]; // row wise (length x)
-//    [1.;1.;];
-//    ] // column (length y)
-//
-//Chart.Surface(z',x',y')
-
+(*** include-it:mesh3d_1 ***)
 
 

@@ -20,6 +20,6 @@ let x = [for i=0 to 500 do yield rnd.NextDouble() ]
 x
 |> Chart.Histogram
 |> Chart.withSize(500.,500.)
-//(*** include-it:histo1 ***)
-|> Chart.Show
+(*** include-it:histo1 ***)
+
 
