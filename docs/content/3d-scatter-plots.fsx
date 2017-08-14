@@ -23,14 +23,7 @@ Chart.Scatter3d(x,y,z,StyleParam.Mode.Markers)
 |> Chart.withY_AxisStyle("my y-axis")
 |> Chart.withZ_AxisStyle("my z-axis")
 |> Chart.withSize(800.,800.)
-
 (*** include-it:scatter3d_1 ***)
-|> Chart.Show
-
-
-
-
-
 
 
 
