@@ -1,6 +1,6 @@
 module FSharp.Plotly.Tests
 
-open FSharp.Plotly
+
 open NUnit.Framework
 
 [<Test>]

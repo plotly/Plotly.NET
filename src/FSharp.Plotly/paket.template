@@ -21,7 +21,6 @@ summary
     A F# interactive charting library using plotly.js
 description
     A F# interactive charting library using plotly.js
-files
-	../../bin/FSharp.Care.dll ==> lib/net40
+files	
 	../../bin/Newtonsoft.Json.dll ==> lib/net40
 
