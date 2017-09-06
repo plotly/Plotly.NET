@@ -1,3 +1,7 @@
+### 1.0.3 - Sep 06 2017
+* Add different ways to modify Charts
+
+
 ### 1.0.2 - Sep 12 2016
 * Add Scatter3d line plots
 * Add 3d Surface plots
