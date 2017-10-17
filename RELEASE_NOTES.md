@@ -1,3 +1,6 @@
+### 1.0.4 - Oct 17 2017
+* Fixed nuget package
+
 ### 1.0.3 - Sep 06 2017
 * Add different ways to modify Charts
 
