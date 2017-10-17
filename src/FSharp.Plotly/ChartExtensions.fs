@@ -219,7 +219,7 @@ module ChartExtensions =
         // Set the margin of a Chart
         static member withMarginSize(?Left,?Right,?Top,?Bottom,?Pad,?Autoexpand) =                       
                 let margin = 
-                    Margin.init (Margin.style (?Left=Left,?Right=Right,?Top=Top,?Bottom=Bottom,?Pad=Pad,?Autoexpand=Autoexpand))
+                    Margin.init ( ?Left=Left,?Right=Right,?Top=Top,?Bottom=Bottom,?Pad=Pad,?Autoexpand=Autoexpand )
                 Chart.withMargin(margin) 
 
                 

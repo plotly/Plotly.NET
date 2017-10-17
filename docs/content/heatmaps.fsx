@@ -33,5 +33,5 @@ Chart.Heatmap(matrix,colnames,rownames,Colorscale=colorscaleValue,Showscale=true
 |> Chart.withSize(700.,500.)
 |> Chart.withMarginSize(Left=200.)
 (*** include-it:heat1 ***)
-|> Chart.Show
+//|> Chart.Show
 
