@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2002
+VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{63297B98-5CED-492C-A5B7-A5B4F73CF142}"
 	ProjectSection(SolutionItems) = preProject
@@ -41,6 +41,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{8E6D
 		docs\content\histograms.fsx = docs\content\histograms.fsx
 		docs\content\index.fsx = docs\content\index.fsx
 		docs\content\line-scatter-plots.fsx = docs\content\line-scatter-plots.fsx
+		docs\content\parallel-coords.fsx = docs\content\parallel-coords.fsx
 		docs\content\pie-daughnut-charts.fsx = docs\content\pie-daughnut-charts.fsx
 		docs\content\plotly-wpf.fsx = docs\content\plotly-wpf.fsx
 		docs\content\polar-charts.fsx = docs\content\polar-charts.fsx

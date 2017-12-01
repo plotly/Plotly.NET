@@ -7,6 +7,7 @@ open System.IO
 open GenericChart
 open Trace
 open Trace3d
+open StyleParam
 
 
 // ###########
@@ -74,7 +75,7 @@ type Chart =
             let isShowMarker =
                 match ShowMarkers with
                 | Some isShow -> isShow
-                | None        -> false
+                | Option.None        -> false
             StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
             >> StyleParam.ModeUtils.showMarker (isShowMarker)
 
@@ -97,7 +98,7 @@ type Chart =
             let isShowMarker =
                 match ShowMarkers with
                 | Some isShow -> isShow
-                | None        -> false
+                | Option.None        -> false
             StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
             >> StyleParam.ModeUtils.showMarker (isShowMarker)
 
@@ -142,7 +143,7 @@ type Chart =
             let isShowMarker =
                 match ShowMarkers with
                 | Some isShow -> isShow
-                | None        -> false
+                | Option.None        -> false
             StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
                 >> StyleParam.ModeUtils.showMarker (isShowMarker)
 
@@ -185,7 +186,7 @@ type Chart =
             let isShowMarker =
                 match ShowMarkers with
                 | Some isShow -> isShow
-                | None        -> false
+                | Option.None        -> false
             StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
             >> StyleParam.ModeUtils.showMarker (isShowMarker)
 
@@ -211,7 +212,7 @@ type Chart =
             let isShowMarker =
                 match ShowMarkers with
                 | Some isShow -> isShow
-                | None        -> false
+                | Option.None        -> false
             StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
             >> StyleParam.ModeUtils.showMarker (isShowMarker)
   
@@ -235,7 +236,7 @@ type Chart =
         let marker =
             match Marker with 
             | Some marker -> marker |> FSharp.Plotly.Marker.style(?Color=Color)
-            | None        -> FSharp.Plotly.Marker.init (?Color=Color)
+            | Option.None        -> FSharp.Plotly.Marker.init (?Color=Color)
                     
         Trace.initBar (TraceStyle.Bar(X = keys,Y = values,Marker=marker))
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)        
@@ -254,7 +255,7 @@ type Chart =
         let marker =
             match Marker with 
             | Some marker -> marker |> FSharp.Plotly.Marker.style(?Color=Color)
-            | None        -> FSharp.Plotly.Marker.init (?Color=Color)
+            | Option.None        -> FSharp.Plotly.Marker.init (?Color=Color)
 
         Trace.initBar (TraceStyle.Bar(X = keys,Y = values,Marker=marker))
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)        
@@ -274,7 +275,7 @@ type Chart =
         let marker =
             match Marker with 
             | Some marker -> marker |> FSharp.Plotly.Marker.style(?Color=Color)
-            | None        -> FSharp.Plotly.Marker.init (?Color=Color)
+            | Option.None        -> FSharp.Plotly.Marker.init (?Color=Color)
         Trace.initBar (TraceStyle.Bar(X = keys,Y = values,Marker=marker,Orientation = StyleParam.Orientation.Horizontal))
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)        
         |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
@@ -292,7 +293,7 @@ type Chart =
         let marker =
             match Marker with 
             | Some marker -> marker |> FSharp.Plotly.Marker.style(?Color=Color)
-            | None        -> FSharp.Plotly.Marker.init (?Color=Color)
+            | Option.None        -> FSharp.Plotly.Marker.init (?Color=Color)
         Trace.initBar (TraceStyle.Bar(X = values,Y = keys,Marker=marker,Orientation = StyleParam.Orientation.Horizontal))
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)        
         |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
@@ -431,6 +432,25 @@ type Chart =
                                 ?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?Colorbar=Colorbar) )
         //|> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)   
         |> GenericChart.ofTraceObject
+
+
+     /// Computes the parallel coordinates plot
+    static member ParallelCoord(dims:seq<'key*#seq<'values>>,?Ranges:seq<StyleParam.Range option>,?Color,?Colorscale,?Width,?Dash,?Domain,?Labelfont,?Tickfont,?Rangefont) =
+        let dims' = 
+            if Ranges.IsSome then 
+                Seq.zip dims Ranges.Value
+                |> Seq.map (fun ((k,vals),r) ->  
+                    if r.IsSome then Dimensions.init(values=vals,Label=k,Range=r.Value)
+                    else Dimensions.init(values=vals,Label=k)
+                    )
+            else
+                dims |> Seq.map (fun (k,vals) ->  Dimensions.init(values=vals,Label=k))
+        Trace.initParallelCoord (
+            TraceStyle.ParallelCoord (Dimensions=dims',?Domain=Domain,?Labelfont=Labelfont,?Tickfont=Tickfont,?Rangefont=Rangefont)             
+            )
+        |> TraceStyle.Line(?Width=Width,?Color=Color,?Dash=Dash,?Colorscale=Colorscale)
+        |> GenericChart.ofTraceObject
+        
 
  
     // ---------------------------------------------------------------------------------------------------------------------------------------------------

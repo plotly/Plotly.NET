@@ -55,6 +55,11 @@ module Trace =
     let initHistogram2dContour (applyStyle:Trace->Trace) = 
         Trace("histogram2dcontour") |> applyStyle
 
+    /// Init trace for a parallel coordinates plot
+    let initParallelCoord (applyStyle:Trace->Trace) = 
+        Trace("parcoords") |> applyStyle
+
+
     /// Functions provide the styling of the Chart objects
     type TraceStyle() =
         
@@ -790,6 +795,31 @@ module Trace =
                     // out ->
                     histogram2dContour
                 ) 
+
+
+        // Applies the styles of parallel coordinates plot to TraceObjects 
+        static member ParallelCoord
+            (                
+                ?Dimensions : seq<Dimensions>,
+                ?Line               ,
+                ?Domain             ,
+                ?Labelfont          ,
+                ?Tickfont   :   Font,
+                ?Rangefont  :   Font        
+            ) =
+                (fun (parcoords:('T :> Trace)) -> 
+                
+                    Dimensions         |> DynObj.setValueOpt parcoords "dimensions"         
+                    Line               |> DynObj.setValueOpt parcoords "line"                     
+                    Domain             |> DynObj.setValueOpt parcoords "domain"     
+                    Labelfont          |> DynObj.setValueOpt parcoords "labelfont"               
+                    Tickfont           |> DynObj.setValueOpt parcoords "tickfont"                
+                    Rangefont          |> DynObj.setValueOpt parcoords "rangefont"              
+                    
+                    // out ->
+                    parcoords 
+                ) 
+
 
 
 

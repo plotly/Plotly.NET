@@ -240,6 +240,8 @@ module DynObj =
             | _ -> first.SetValue(kv.Key,kv.Value)
         first
 
+    let setValue (dyn:DynamicObj) propName o =
+        dyn.SetValue(propName,o)
 
     let setValueOpt (dyn:DynamicObj) propName = 
         function

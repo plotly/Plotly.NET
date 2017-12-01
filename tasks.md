@@ -10,7 +10,7 @@
 - [x] Add missing chart: Wind rose
 - [ ] Add missing chart: Mesh3d
 - [ ] Add missing chart: Ternary Plots 
-- [ ] Add missing chart: Parallel Coordinates Plot
+- [x] Add missing chart: Parallel Coordinates Plot
 - [ ] Add missing chart: Carpet Plot
 - [ ] Add missing chart: scattercarpet
 - [ ] Add missing chart: Carpet Contour Plot
@@ -30,5 +30,5 @@
 - [ ] Add support for Legend
 - [ ] Add support for Annotations
 - [x] Add withTitle extension
-
+- [ ] Add hoverlabel + withHoverlabel
 

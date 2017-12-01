@@ -567,11 +567,13 @@ module StyleParam =
         static member convert = Barmode.toString >> box
 
     /// Defines a Range between min and max value 
-    type RangeValues =
+    type Range =
         | MinMax of float * float
+        | Values of array<float>
         
         static member convert = function
             | MinMax (min,max)   -> box [|min;max|]
+            | Values  arr   -> box arr
  
  
 

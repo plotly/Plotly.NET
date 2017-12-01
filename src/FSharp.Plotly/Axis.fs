@@ -185,7 +185,7 @@ module Axis =
                     
                     Autorange       |> DynObj.setValueOptBy axis "autorange" StyleParam.AutoRange.convert
                     Rangemode       |> DynObj.setValueOptBy axis "rangemode" StyleParam.RangeMode.convert
-                    Range           |> DynObj.setValueOptBy axis "range"     StyleParam.RangeValues.convert       
+                    Range           |> DynObj.setValueOptBy axis "range"     StyleParam.Range.convert       
                     Fixedrange      |> DynObj.setValueOpt   axis "fixedrange"      
                     Tickmode        |> DynObj.setValueOptBy axis "tickmode"  StyleParam.TickMode.convert
                     nTicks          |> DynObj.setValueOpt   axis "nticks"          
@@ -221,7 +221,7 @@ module Axis =
                     Anchor          |> DynObj.setValueOpt   axis "anchor"          
                     Side            |> DynObj.setValueOptBy axis "side"     StyleParam.Side.convert
                     Overlaying      |> DynObj.setValueOpt   axis "overlaying"      
-                    Domain          |> DynObj.setValueOptBy axis "domain"   StyleParam.RangeValues.convert               
+                    Domain          |> DynObj.setValueOptBy axis "domain"   StyleParam.Range.convert               
                     Position        |> DynObj.setValueOpt   axis "position"        
                     IsSubplotObj    |> DynObj.setValueOpt   axis "_isSubplotObj"    
                     Tickvalssrc     |> DynObj.setValueOpt   axis "tickvalssrc"     

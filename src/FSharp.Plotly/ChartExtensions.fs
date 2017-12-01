@@ -120,7 +120,7 @@ module ChartExtensions =
         
          // Sets x-Axis of 2d and 3d- Charts
         static member withX_AxisStyle(title,?MinMax,?Showgrid,?Showline) =                    
-            let range = if MinMax.IsSome then Some (StyleParam.RangeValues.MinMax (MinMax.Value)) else None
+            let range = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
             let xaxis = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,?Showline=Showline)
             Chart.withX_Axis(xaxis)
             
@@ -150,7 +150,7 @@ module ChartExtensions =
         
          // Sets y-Axis of 3d- Charts
         static member withY_AxisStyle(title,?MinMax,?Showgrid,?Showline) =
-            let range = if MinMax.IsSome then Some (StyleParam.RangeValues.MinMax (MinMax.Value)) else None
+            let range = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
             let yaxis = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,?Showline=Showline)
             Chart.withY_Axis(yaxis)                
 
@@ -167,7 +167,7 @@ module ChartExtensions =
         
         // Sets z-Axis style with ... 
         static member withZ_AxisStyle(title,?MinMax,?Showgrid,?Showline) =
-            let range = if MinMax.IsSome then Some (StyleParam.RangeValues.MinMax (MinMax.Value)) else None
+            let range = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
             let zaxis = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,?Showline=Showline)
             Chart.withZ_Axis(zaxis)                
 
