@@ -163,11 +163,11 @@ module Axis =
                 ?Zeroline,         
                 ?Zerolinecolor,    
                 ?Zerolinewidth,    
-                ?Anchor,           
-                ?Side,             
-                ?Overlaying,       
+                ?Anchor :StyleParam.AxisAnchorId,           
+                ?Side :StyleParam.Side,             
+                ?Overlaying :StyleParam.AxisAnchorId,      
                 ?Domain,           
-                ?Position,         
+                ?Position : float,         
                 ?IsSubplotObj,    
                 ?Tickvalssrc,      
                 ?Ticktextsrc,      
@@ -217,10 +217,10 @@ module Axis =
                     Gridwidth       |> DynObj.setValueOpt   axis "gridwidth"       
                     Zeroline        |> DynObj.setValueOpt   axis "zeroline"        
                     Zerolinecolor   |> DynObj.setValueOpt   axis "zerolinecolor"   
-                    Zerolinewidth   |> DynObj.setValueOpt   axis "zerolinewidth"   
-                    Anchor          |> DynObj.setValueOpt   axis "anchor"          
+                    Zerolinewidth   |> DynObj.setValueOpt   axis "zerolinewidth"           
+                    Anchor          |> DynObj.setValueOptBy axis "anchor"     StyleParam.AxisAnchorId.convert
                     Side            |> DynObj.setValueOptBy axis "side"     StyleParam.Side.convert
-                    Overlaying      |> DynObj.setValueOpt   axis "overlaying"      
+                    Overlaying      |> DynObj.setValueOptBy axis "overlaying" StyleParam.AxisAnchorId.convert      
                     Domain          |> DynObj.setValueOptBy axis "domain"   StyleParam.Range.convert               
                     Position        |> DynObj.setValueOpt   axis "position"        
                     IsSubplotObj    |> DynObj.setValueOpt   axis "_isSubplotObj"    

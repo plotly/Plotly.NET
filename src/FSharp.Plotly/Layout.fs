@@ -74,17 +74,17 @@ type Layout() =
     /// Init Layout type
     static member init
         (   
-            ?Title         ,
-            ?Titlefont     ,
-            ?Font:Font     ,
-            ?Showlegend    ,
+            ?Title      : string   ,
+            ?Titlefont  : Font     ,
+            ?Font       : Font     ,
+            ?Showlegend : bool     ,
             ?Autosize      ,
-            ?Width         ,
-            ?Height        ,
-            ?xAxis         ,
-            ?yAxis         ,
+            ?Width      : float   ,
+            ?Height     : float   ,
+            //?xAxis      : Axis.LinearAxis,
+            //?yAxis      : Axis.LinearAxis,
             ?Legend        ,
-            ?Annotations   ,
+            ?Annotations : Annotation  ,
             ?Margin        ,
                            
             ?Paper_bgcolor ,
@@ -117,8 +117,8 @@ type Layout() =
                     ?Autosize      = Autosize      ,
                     ?Width         = Width         ,
                     ?Height        = Height        ,
-                    ?xAxis         = xAxis         ,
-                    ?yAxis         = yAxis         ,
+                    //?xAxis         = xAxis         ,
+                    //?yAxis         = yAxis         ,
                     ?Legend        = Legend        ,
                     ?Annotations   = Annotations   ,
                     ?Margin        = Margin        ,
@@ -153,8 +153,8 @@ type Layout() =
             ?Autosize:bool,
             ?Width,
             ?Height,
-            ?xAxis:Axis.LinearAxis,?xAxis2:Axis.LinearAxis,
-            ?yAxis:Axis.LinearAxis,?yAxis2:Axis.LinearAxis,
+            //?xAxis:Axis.LinearAxis,//?xAxis2:Axis.LinearAxis,
+            //?yAxis:Axis.LinearAxis,//?yAxis2:Axis.LinearAxis,
             ?Legend:Legend,
             // TODO: annotations
             ?Annotations,
@@ -210,21 +210,49 @@ type Layout() =
                 Font        |> DynObj.setValueOpt layout "font"
                 Titlefont   |> DynObj.setValueOpt layout "titlefont"
                 Margin      |> DynObj.setValueOpt layout "margin"
-                xAxis       |> DynObj.setValueOpt layout "xaxis"
-                xAxis2      |> DynObj.setValueOpt layout "xaxis2"
-                yAxis       |> DynObj.setValueOpt layout "yaxis"
-                yAxis2      |> DynObj.setValueOpt layout "yaxis2"
+                //xAxis       |> DynObj.setValueOpt layout "xaxis"
+                //xAxis2      |> DynObj.setValueOpt layout "xaxis2"
+                //yAxis       |> DynObj.setValueOpt layout "yaxis"
+                //yAxis2      |> DynObj.setValueOpt layout "yaxis2"
                 Legend      |> DynObj.setValueOpt layout "legend"
                 Radialaxis  |> DynObj.setValueOpt layout "radialaxis"
                 Angularaxis |> DynObj.setValueOpt layout "angularaxis"
                 Scene       |> DynObj.setValueOpt layout "scene"
                 //Shapes      |> Option.iter (updatePropertyValueAndIgnore layout <@ layout.shapes @>)
 
+                //// xAxis 
+                //match xAxis with
+                //| Some xaxis -> match xaxis.TryGetValue ("anchor") with
+                //                | None -> layout.SetValue("xaxis",xaxis)
+                //                | Some anchor -> let anchor' = StyleParam.AxisAnchorId.parse (unbox anchor)
+                //                                 let pname = StyleParam.AxisAnchorId.toPropertyName anchor'
+                //                                 layout.SetValue(pname,xaxis)
+                //| None -> ()
+
+                //// yAxis 
+                //match yAxis with
+                //| Some yaxis -> match yaxis.TryGetValue ("anchor") with
+                //                | None -> layout.SetValue("xaxis",yaxis)
+                //                | Some anchor -> let anchor' = StyleParam.AxisAnchorId.parse (unbox anchor)
+                //                                 let pname = StyleParam.AxisAnchorId.toPropertyName anchor'
+                //                                 layout.SetValue(pname,yaxis)
+                //| None -> ()
+
+
                 layout
             )
 
 
+    static member AddLinearAxis
+        (   
+            id   : StyleParam.AxisId,
+            axis : Axis.LinearAxis
+        ) =
+            (fun (layout:Layout) -> 
 
+                axis           |> DynObj.setValue layout (StyleParam.AxisId.toString id)
 
+                layout
+            )
 
 

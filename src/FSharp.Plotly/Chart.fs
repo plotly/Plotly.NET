@@ -261,7 +261,8 @@ type Chart =
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)        
         |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
         |> GenericChart.ofTraceObject  
-        |> GenericChart.setLayout (Layout.init (Layout.style(Barmode=StyleParam.Barmode.Stack)))
+        //|> GenericChart.setLayout (Layout.init (Layout.style(Barmode=StyleParam.Barmode.Stack)))
+        |> GenericChart.setLayout (Layout.init (Barmode=StyleParam.Barmode.Stack))
 
 
     /// Displays series of column chart type as stacked columns.
@@ -298,7 +299,8 @@ type Chart =
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)        
         |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
         |> GenericChart.ofTraceObject  
-        |> GenericChart.setLayout (Layout.init (Layout.style(Barmode=StyleParam.Barmode.Stack)))
+        //|> GenericChart.setLayout (Layout.init (Layout.style(Barmode=StyleParam.Barmode.Stack)))
+        |> GenericChart.setLayout (Layout.init (Barmode=StyleParam.Barmode.Stack))
 
 
     /// Displays series of tcolumn chart type as stacked bars.
@@ -435,18 +437,23 @@ type Chart =
 
 
      /// Computes the parallel coordinates plot
-    static member ParallelCoord(dims:seq<'key*#seq<'values>>,?Ranges:seq<StyleParam.Range option>,?Color,?Colorscale,?Width,?Dash,?Domain,?Labelfont,?Tickfont,?Rangefont) =
+    static member ParallelCoord(dims:seq<'key*#seq<'values>>,?Range,?Constraintrange,?Color,?Colorscale,?Width,?Dash,?Domain,?Labelfont,?Tickfont,?Rangefont) =
         let dims' = 
-            if Ranges.IsSome then 
-                Seq.zip dims Ranges.Value
-                |> Seq.map (fun ((k,vals),r) ->  
-                    if r.IsSome then Dimensions.init(values=vals,Label=k,Range=r.Value)
-                    else Dimensions.init(values=vals,Label=k)
-                    )
-            else
-                dims |> Seq.map (fun (k,vals) ->  Dimensions.init(values=vals,Label=k))
+            dims |> Seq.map (fun (k,vals) -> 
+                Dimensions.init(vals)
+                |> Dimensions.style(vals,?Range=Range,?Constraintrange=Constraintrange,Label=k)
+                )
         Trace.initParallelCoord (
             TraceStyle.ParallelCoord (Dimensions=dims',?Domain=Domain,?Labelfont=Labelfont,?Tickfont=Tickfont,?Rangefont=Rangefont)             
+            )
+        |> TraceStyle.Line(?Width=Width,?Color=Color,?Dash=Dash,?Colorscale=Colorscale)
+        |> GenericChart.ofTraceObject
+
+
+     /// Computes the parallel coordinates plot
+    static member ParallelCoord(dims:seq<Dimensions>,?Color,?Colorscale,?Width,?Dash,?Domain,?Labelfont,?Tickfont,?Rangefont) =
+        Trace.initParallelCoord (
+            TraceStyle.ParallelCoord (Dimensions=dims,?Domain=Domain,?Labelfont=Labelfont,?Tickfont=Tickfont,?Rangefont=Rangefont)             
             )
         |> TraceStyle.Line(?Width=Width,?Color=Color,?Dash=Dash,?Colorscale=Colorscale)
         |> GenericChart.ofTraceObject

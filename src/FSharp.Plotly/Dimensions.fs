@@ -10,7 +10,7 @@ type Dimensions () =
     /// Initialized Dimensions object
     static member init
         (
-            values,
+            ?Values,
             ?Range,
             ?Constraintrange,
             ?Visible,
@@ -22,7 +22,7 @@ type Dimensions () =
             Dimensions () 
             |> Dimensions.style
                 (
-                    values           = values    ,
+                    ?Values          = Values    ,
                     ?Range           = Range     ,
                     ?Constraintrange = Constraintrange,
                     ?Visible         = Visible,
@@ -36,7 +36,7 @@ type Dimensions () =
     // Applies the styles to Dimensions()
     static member style
         (
-            values  : seq<#IConvertible>,
+            ?Values  : seq<#IConvertible>,
             ?Range  : StyleParam.Range,
             ?Constraintrange : StyleParam.Range,
             ?Visible,
@@ -46,7 +46,7 @@ type Dimensions () =
             ?TickFormat
         ) =
             (fun (dims:Dimensions) -> 
-                values           |> DynObj.setValue      dims "values"
+                Values           |> DynObj.setValueOpt   dims "values"
                 Range            |> DynObj.setValueOptBy dims "range" StyleParam.Range.convert                
                 Constraintrange  |> DynObj.setValueOptBy dims "constraintrange" StyleParam.Range.convert                 
                 Visible          |> DynObj.setValueOpt   dims "Visible"

@@ -18,11 +18,9 @@ open FSharp.Plotly
 let data = 
     ['A',[|1.;4.;|]; 'B',[|3.;1.5;|]; 'C',[|2.;4.;|]; 'D',[|4.;2.;|];]
 
-let dataRange = 
-    [StyleParam.Range.MinMax (1.,5.);StyleParam.Range.MinMax (1.,5.);StyleParam.Range.MinMax (1.,5.);StyleParam.Range.MinMax (1.,5.);] |> Seq.map (fun b -> Some b)
 
 (*** define-output:parcoords1 ***)
-Chart.ParallelCoord(data,Color="blue",Ranges=dataRange)
+Chart.ParallelCoord(data,Color="blue",Ranges=StyleParam.Range.MinMax (1.,5.))
 (*** include-it:parcoords1 ***)
 
 

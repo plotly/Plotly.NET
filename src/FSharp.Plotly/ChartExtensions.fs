@@ -11,6 +11,7 @@ open GenericChart
 module ChartExtensions =
     
     open Trace
+    //open StyleParam
 
     /// Provides a set of static methods for creating charts.
     type Chart with   
@@ -27,7 +28,20 @@ module ChartExtensions =
                     |> TraceStyle.TraceInfo(?Name=(naming i Name),?Showlegend=Showlegend,?Legendgroup=Legendgroup,?Visible=Visible)
                 )
             )
-        
+ 
+         /// Set the axis anchor id the trace is belonging to
+        static member withAxisAnchor(?X,?Y,?Z) =
+            let idx   = if X.IsSome then Some (StyleParam.AxisAnchorId.X X.Value) else None 
+            let idy   = if Y.IsSome then Some (StyleParam.AxisAnchorId.Y Y.Value) else None 
+            let idz   = if Z.IsSome then Some (StyleParam.AxisAnchorId.Z Z.Value) else None 
+            
+            (fun (ch:GenericChart) ->                   
+                ch |> mapTrace (fun trace -> 
+                    trace 
+                    |> TraceStyle.SetAxisAnchor(?X=idx,?Y=idy,?Z=idz)                    
+                )
+            )
+  
         /// Apply styling to the Marker(s) of the chart as Object.
         static member withMarker(marker:Marker) =
             (fun (ch:GenericChart) ->                   
@@ -94,7 +108,7 @@ module ChartExtensions =
 // ####################### Apply to layout
         
         // Sets x-Axis of 2d and 3d- Charts
-        static member withX_Axis(xAxis:Axis.LinearAxis) =       
+        static member withX_Axis(xAxis:Axis.LinearAxis,?Id) =       
             (fun (ch:GenericChart) ->                                 
                 let contains3d =
                     ch 
@@ -106,8 +120,9 @@ module ChartExtensions =
                 match contains3d with
                 | false -> 
                     let layout =
+                        let id = if Id.IsSome then StyleParam.AxisId.X Id.Value else StyleParam.AxisId.X 1
                         GenericChart.getLayout ch 
-                        |> Layout.style (xAxis=xAxis)
+                        |> Layout.AddLinearAxis(id,axis=xAxis)
                     GenericChart.setLayout layout ch
                 | true  -> 
                     let layout =
@@ -119,14 +134,16 @@ module ChartExtensions =
                              
         
          // Sets x-Axis of 2d and 3d- Charts
-        static member withX_AxisStyle(title,?MinMax,?Showgrid,?Showline) =                    
-            let range = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
-            let xaxis = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,?Showline=Showline)
-            Chart.withX_Axis(xaxis)
+        static member withX_AxisStyle(title,?MinMax,?Showgrid,?Showline,?Side,?Overlaying,?Id,?Domain,?Position,?Anchor) =                    
+            let range  = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
+            let domain = if Domain.IsSome then Some (StyleParam.Range.MinMax (Domain.Value)) else None
+            let xaxis  = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,?Showline=Showline,
+                                    ?Anchor=Anchor,?Side=Side,?Domain=domain,?Overlaying=Overlaying,?Position=Position)
+            Chart.withX_Axis(xaxis,?Id=Id)
             
 
         // Sets y-Axis of 2d and 3d- Charts
-        static member withY_Axis(yAxis:Axis.LinearAxis) =       
+        static member withY_Axis(yAxis:Axis.LinearAxis,?Id) =       
             (fun (ch:GenericChart) ->                                 
                 let contains3d =
                     ch 
@@ -138,8 +155,9 @@ module ChartExtensions =
                 match contains3d with
                 | false -> 
                     let layout =
+                        let id = if Id.IsSome then StyleParam.AxisId.Y Id.Value else StyleParam.AxisId.Y 1
                         GenericChart.getLayout ch 
-                        |> Layout.style(yAxis=yAxis)
+                        |> Layout.AddLinearAxis(id,axis=yAxis)
                     GenericChart.setLayout layout ch
                 | true  -> 
                     let layout =
@@ -149,10 +167,12 @@ module ChartExtensions =
             )
         
          // Sets y-Axis of 3d- Charts
-        static member withY_AxisStyle(title,?MinMax,?Showgrid,?Showline) =
-            let range = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
-            let yaxis = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,?Showline=Showline)
-            Chart.withY_Axis(yaxis)                
+        static member withY_AxisStyle(title,?MinMax,?Showgrid,?Showline,?Side,?Overlaying,?Id,?Domain,?Position,?Anchor) =                    
+            let range  = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
+            let domain = if Domain.IsSome then Some (StyleParam.Range.MinMax (Domain.Value)) else None
+            let yaxis  = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,
+                                    ?Showline=Showline,?Anchor=Anchor,?Side=Side,?Domain=domain,?Overlaying=Overlaying,?Position=Position)
+            Chart.withY_Axis(yaxis,?Id=Id)                
 
 
 
@@ -166,11 +186,45 @@ module ChartExtensions =
              )
         
         // Sets z-Axis style with ... 
-        static member withZ_AxisStyle(title,?MinMax,?Showgrid,?Showline) =
-            let range = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
-            let zaxis = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,?Showline=Showline)
+        static member withZ_AxisStyle(title,?MinMax,?Showgrid,?Showline,?Domain,?Anchor) =                    
+            let range  = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
+            let domain = if Domain.IsSome then Some (StyleParam.Range.MinMax (Domain.Value)) else None
+            let zaxis  = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,?Showline=Showline,?Anchor=Anchor,?Domain=domain)
             Chart.withZ_Axis(zaxis)                
 
+
+        //// Sets second x-Axis of 2d- Charts
+        //static member withX_Axis2(xAxis2:Axis.LinearAxis) =       
+        //    (fun (ch:GenericChart) ->                                 
+        //            let layout =
+        //                GenericChart.getLayout ch 
+        //                |> Layout.style (xAxis2=xAxis2)
+        //            GenericChart.setLayout layout ch
+        //            )
+
+
+        // // Sets second x-Axis of 2d- Charts
+        //static member withX_Axis2Style(title,?MinMax,?Showgrid,?Showline) =                    
+        //    let range = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
+        //    let xaxis = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,?Showline=Showline,Side=StyleParam.Side.Top)
+        //    Chart.withX_Axis2(xaxis)
+
+
+        //// Sets second y-Axis of 2d- Charts
+        //static member withY_Axis2(yAxis2:Axis.LinearAxis) =       
+        //    (fun (ch:GenericChart) ->                                 
+        //            let layout =
+        //                GenericChart.getLayout ch 
+        //                |> Layout.style (yAxis2=yAxis2)
+        //            GenericChart.setLayout layout ch
+        //            )
+
+
+        // // Sets second x-Axis of 2d- Charts
+        //static member withY_Axis2Style(title,?MinMax,?Showgrid,?Showline) =                    
+        //    let range = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
+        //    let yaxis = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,?Showline=Showline,Side=StyleParam.Side.Right)
+        //    Chart.withY_Axis2(yaxis)
 
 
         // Set the Layout options of a Chart

@@ -91,6 +91,21 @@ module Trace =
                     trace
                 ) 
 
+        // Sets Axis anchor id to TraceObjects
+        static member SetAxisAnchor
+            (
+                ?X:StyleParam.AxisAnchorId,
+                ?Y:StyleParam.AxisAnchorId,
+                ?Z:StyleParam.AxisAnchorId
+            ) =  
+                (fun (trace:('T :> Trace)) ->
+
+                    X     |> DynObj.setValueOptBy trace "xaxis" StyleParam.AxisAnchorId.toString
+                    Y     |> DynObj.setValueOptBy trace "yaxis" StyleParam.AxisAnchorId.toString
+                    Z     |> DynObj.setValueOptBy trace "zaxis" StyleParam.AxisAnchorId.toString
+                    
+                    trace
+                )
 
         // Applies the styles of TextLabel to TraceObjects
         static member TextLabel

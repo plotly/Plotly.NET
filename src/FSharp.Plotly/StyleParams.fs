@@ -5,6 +5,7 @@
 // https://plot.ly/javascript-graphing-library/reference/
 
 module StyleParam =
+    open System.Text.RegularExpressions
 
 //Symbol
 //enumerated: 
@@ -644,7 +645,53 @@ module StyleParam =
 
         static member convert = Delaunayaxis.toString >> box
 
- 
+    /// 
+    type AxisAnchorId = 
+        | X of int 
+        | Y of int 
+        | Z of int
+        | Free
+        
+        static member toString = function
+            | X id  -> if id < 2 then "x" else sprintf "x%i" id
+            | Y id  -> if id < 2 then "y" else sprintf "y%i" id
+            | Z id  -> if id < 2 then "z" else sprintf "z%i" id
+            | Free -> "free"
+
+        static member convert = AxisAnchorId.toString >> box 
+
+        //static member parse (str:string) =
+        //    if str.Length > 0 then
+        //        let no =  
+        //            let sub = str.Substring(1,str.Length-1) 
+        //            if sub.Length < 1 then 1 else sub |> int
+        //        match str.ToUpper().Chars(0) with
+        //        | 'X' -> AxisAnchorId.X no
+        //        | 'Y' -> AxisAnchorId.Y no
+        //        | 'Z' -> AxisAnchorId.Z no
+        //        | _   -> failwithf "AxisAnchorId string must be in the form of x1|y1|z1..."
+        //    else
+        //        failwithf "AxisAnchorId string must not be empty."
+
+
+        //static member toPropertyName = function
+        //    | X id  -> if id < 2 then "xaxis" else sprintf "xaxis%i" id
+        //    | Y id  -> if id < 2 then "yaxis" else sprintf "yaxis%i" id
+        //    | Z id  -> if id < 2 then "zaxis" else sprintf "zaxis%i" id
+        //    | Free -> failwithf "Axis property must not be 'free'."
+
+
+    type AxisId = 
+        | X of int 
+        | Y of int 
+        | Z of int
+        
+        static member toString = function
+            | X id  -> if id < 2 then "xaxis" else sprintf "xaxis%i" id
+            | Y id  -> if id < 2 then "yaxis" else sprintf "yaxis%i" id
+            | Z id  -> if id < 2 then "zaxis" else sprintf "zaxis%i" id
+        
+        static member convert = AxisId.toString >> box 
 
 // hoverinfo (flaglist string) 
 //Any combination of "x", "y", "z", "text", "name" joined with a "+" OR "all" or "none" or "skip". 
