@@ -305,11 +305,14 @@ module ChartExtensions =
             GenericChart.combine gCharts
 
         /// Save chart as html single page
-        static member SaveHtmlAs pathName (ch:GenericChart) =                                     
+        static member SaveHtmlAs pathName (ch:GenericChart,?Verbose) =                                     
             let html = GenericChart.toEmbeddedHTML ch
             let file = sprintf "%s.html" pathName // remove file extension
             File.WriteAllText(file, html)
-            System.Diagnostics.Process.Start(file) |> ignore
+            
+            let verbose = defaultArg Verbose false
+            if verbose then
+                System.Diagnostics.Process.Start(file) |> ignore
 
 
         /// Show chart in browser            

@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="StyleParams.fs" />
     <Compile Include="DynamicObj.fs" />
+    <Compile Include="Colors.fs" />
     <Compile Include="Colorbar.fs" />
     <Compile Include="Light.fs" />
     <Compile Include="Contours.fs" />
