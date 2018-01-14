@@ -255,4 +255,22 @@ type Layout() =
                 layout
             )
 
+    // Updates the style of current axis with given AxisId
+    static member UpdateLinearAxisById
+        (   
+            id   : StyleParam.AxisId,
+            axis : Axis.LinearAxis
+        ) =
+            (fun (layout:Layout) -> 
+
+                let axis' = 
+                  match layout.TryGetValue (StyleParam.AxisId.toString id) with
+                  | Some a -> DynObj.combine (unbox a) axis
+                  | None  -> axis :>  DynamicObj
+                
+                axis'           |> DynObj.setValue layout (StyleParam.AxisId.toString id)
+
+                layout
+            )
+
 

@@ -99,6 +99,17 @@ module ReflectionHelper =
         tryUpdatePropertyValue o expr f |> ignore
 
 
+    /// Removes property 
+    let removeProperty (o:obj) (propName:string) =        
+        match tryGetPropertyInfo o propName with         
+        | Some property ->
+            try 
+                property.SetValue(o, null, null)
+                true
+            with
+            | :? System.ArgumentException -> false
+            | :? System.NullReferenceException -> false
+        | None -> false
 
 
 
@@ -118,6 +129,17 @@ type DynamicObj internal (dict:Dictionary<string, obj>) =
         | true,value ->  Some value
         // Next check for Public properties via Reflection
         | _ -> ReflectionHelper.tryGetPropertyValue this name
+
+
+    /// Gets property value
+    member this.TryGetTypedValue<'a> name = 
+        match (this.TryGetValue name) with
+        | None -> None
+        | Some o -> 
+            match o with
+            | :? 'a -> o :?> 'a |> Some
+            | _ -> None
+
         
     /// Sets property value, creating a new property if none exists
     member this.SetValue (name,value) = // private
@@ -141,6 +163,12 @@ type DynamicObj internal (dict:Dictionary<string, obj>) =
             match properties.TryGetValue name with            
             | true,_ -> properties.[name] <- value
             | _      -> properties.Add(name,value)
+
+    member this.Remove name =
+        match ReflectionHelper.removeProperty this name with
+        | true -> true
+        // Maybe in map
+        | false -> properties.Remove(name)
 
 
     override this.TryGetMember(binder:GetMemberBinder,result:obj byref ) =     
@@ -177,6 +205,8 @@ type DynamicObj internal (dict:Dictionary<string, obj>) =
     static member GetValue (lookup:DynamicObj,name) =
         lookup.TryGetValue(name).Value
 
+    static member Remove (lookup:DynamicObj,name) =
+        lookup.Remove(name)
 
 
 // ###############################
@@ -207,7 +237,7 @@ module DynObj =
         new DynamicObj(dict)
 
     
-    // /// Merges two DynamicObj (Warning: In case of dublicate property names the second member override the first)
+    // 
     // let rec merge (first:#DynamicObj) (second:#DynamicObj) = 
     //     let dict = new Dictionary<string, obj>()
 
@@ -225,8 +255,11 @@ module DynObj =
     //     new DynamicObj(dict)
 
     //let rec combine<'t when 't :> DynamicObj > (first:'t) (second:'t) =
+    
+
+    /// Merges two DynamicObj (Warning: In case of dublicate property names the second member override the first)
     let rec combine (first:DynamicObj) (second:DynamicObj) =
-        printfn "Type %A" (first.GetType())
+        //printfn "Type %A" (first.GetType())
         /// Consider deep-copy of first
         for kv in (second.GetProperties true) do 
             match kv.Value with
@@ -259,3 +292,9 @@ module DynObj =
         match dyn.TryGetMember name with
         | true,value ->  Some value
         | _ -> None
+
+    let remove (dyn:DynamicObj) propName = 
+        DynamicObj.Remove (dyn, propName) |> ignore
+
+
+

@@ -13,6 +13,10 @@ module ChartExtensions =
     open Trace
     //open StyleParam
 
+    //open ChartExtensions
+
+    //open StyleParam
+
     /// Provides a set of static methods for creating charts.
     type Chart with   
 
@@ -122,7 +126,7 @@ module ChartExtensions =
                     let layout =
                         let id = if Id.IsSome then StyleParam.AxisId.X Id.Value else StyleParam.AxisId.X 1
                         GenericChart.getLayout ch 
-                        |> Layout.AddLinearAxis(id,axis=xAxis)
+                        |> Layout.UpdateLinearAxisById(id,axis=xAxis)
                     GenericChart.setLayout layout ch
                 | true  -> 
                     let layout =
@@ -157,7 +161,7 @@ module ChartExtensions =
                     let layout =
                         let id = if Id.IsSome then StyleParam.AxisId.Y Id.Value else StyleParam.AxisId.Y 1
                         GenericChart.getLayout ch 
-                        |> Layout.AddLinearAxis(id,axis=yAxis)
+                        |> Layout.UpdateLinearAxisById(id,axis=yAxis)
                     GenericChart.setLayout layout ch
                 | true  -> 
                     let layout =
@@ -275,8 +279,7 @@ module ChartExtensions =
                 let margin = 
                     Margin.init ( ?Left=Left,?Right=Right,?Top=Top,?Bottom=Bottom,?Pad=Pad,?Autoexpand=Autoexpand )
                 Chart.withMargin(margin) 
-
-                
+              
 
         // TODO: Include withLegend & withLegendStyle
 
@@ -303,6 +306,70 @@ module ChartExtensions =
         /// Create a combined chart with the given charts merged   
         static member Combine(gCharts:seq<GenericChart>) =
             GenericChart.combine gCharts
+
+
+        /// Create a combined chart with the given charts merged   
+        static member Stack (?ColCount:int, ?Space) = 
+            (fun (charts:#seq<GenericChart>) ->  
+
+                let col = defaultArg ColCount 2
+                let len      = charts |> Seq.length
+                let colWidth = 1. / float col
+                let rowWidth = 
+                    let tmp = float len / float col |> ceil
+                    1. / tmp
+                let space = 
+                    let s = defaultArg Space 0.05                    
+                    if s < 0. || s > 1. then 
+                        printfn "Space should be between 0.0 - 1.0. Automaticaly set to default (0.05)"
+                        0.05
+                    else
+                        s  
+
+                charts
+                |> Seq.mapi (fun i ch ->
+                    let colI,rowI,index = (i%col+1), (i/col+1),(i+1)
+                    let xdomain = (colWidth * float (colI-1), (colWidth * float colI) - space ) 
+                    let ydomain = (1. - ((rowWidth * float rowI) - space ),1. - (rowWidth * float (rowI-1)))
+                    let xaxis,yaxis,layout = 
+                        let layout = GenericChart.getLayout ch
+                        let xName, yName = StyleParam.AxisId.X 1 |> StyleParam.AxisId.toString, StyleParam.AxisId.Y 1 |> StyleParam.AxisId.toString
+                        match (layout.TryGetTypedValue<Axis.LinearAxis> xName),(layout.TryGetTypedValue<Axis.LinearAxis> yName) with
+                        | Some x, Some y ->                             
+                            // remove axis
+                            DynObj.remove layout xName
+                            DynObj.remove layout yName
+                            
+                            x |> Axis.LinearAxis.style(Anchor=StyleParam.AxisAnchorId.Y index,Domain=StyleParam.Range.MinMax xdomain),
+                            y |> Axis.LinearAxis.style(Anchor=StyleParam.AxisAnchorId.X index,Domain=StyleParam.Range.MinMax ydomain),
+                            layout
+                        | Some x, None -> 
+                            // remove x - axis
+                            DynObj.remove layout xName
+                            x |> Axis.LinearAxis.style(Anchor=StyleParam.AxisAnchorId.Y index,Domain=StyleParam.Range.MinMax xdomain),
+                            Axis.LinearAxis.init(Anchor=StyleParam.AxisAnchorId.X index,Domain=StyleParam.Range.MinMax ydomain),
+                            layout
+                        | None, Some y -> 
+                            // remove y - axis
+                            DynObj.remove layout yName
+                            Axis.LinearAxis.init(Anchor=StyleParam.AxisAnchorId.Y index,Domain=StyleParam.Range.MinMax xdomain),
+                            y |> Axis.LinearAxis.style(Anchor=StyleParam.AxisAnchorId.X index,Domain=StyleParam.Range.MinMax ydomain),
+                            layout
+                        | None, None ->
+                            Axis.LinearAxis.init(Anchor=StyleParam.AxisAnchorId.Y index,Domain=StyleParam.Range.MinMax xdomain),
+                            Axis.LinearAxis.init(Anchor=StyleParam.AxisAnchorId.X index,Domain=StyleParam.Range.MinMax ydomain),
+                            layout
+                    
+                    ch
+                    |> GenericChart.setLayout layout
+                    |> Chart.withAxisAnchor(X=index,Y=index) 
+                    |> Chart.withX_Axis(xaxis,index)
+                    |> Chart.withY_Axis(yaxis,index)
+                    )
+                
+                |> Chart.Combine            
+                )
+
 
         /// Save chart as html single page
         static member SaveHtmlAs pathName (ch:GenericChart,?Verbose) =                                     

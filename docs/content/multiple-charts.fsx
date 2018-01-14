@@ -52,4 +52,14 @@ Chart.Line([1; 2; 3; 4],[90; 110; 190; 120],Name="anchor 2")
 
 
 // Simple Subplot
+[for i=1 to 8 do yield (Chart.Scatter ([1; 2; 3; 4],[12; 9; 15; 12],StyleParam.Mode.Lines_Markers) |> Chart.withY_AxisStyle("y-title") )]
+
+|> Chart.stackHorizontal(Col=2,Space=0.15)
+|> Chart.Combine
+|> Chart.Show
+
+//|> Chart.withX_AxisStyle("Title1")
+//|> Chart.withX_AxisStyle(sprintf "Title%i" 3,Id=3)
+//|> Chart.Show
+
 
