@@ -1,3 +1,9 @@
+### 1.1.0 - Jan 14 2018
+* Add new charts
+* Add multiple axis support
+* Add subplot support
+
+
 ### 1.0.4 - Oct 17 2017
 * Fixed nuget package
 

@@ -5,53 +5,29 @@
 #r "../../lib/FSharp.Care.dll"
 
 (**
-Multiple charts and subcharts
+Error bars
 =============================
 
-How to create subplots in FSharp.Plotly. Find examples of combined, stacked, and plots with multiple axis.
+How to create plots in FSharp.Plotly and add error bars to it.
 
 *)
 
 #r "../../bin/FSharp.Plotly.dll"
 open FSharp.Plotly
 
-
-(**
-Functional F# scripting style for Two Y-Axes
-*)
-
-[
-Chart.Scatter ([1; 2; 3; 4],[12; 9; 15; 12],StyleParam.Mode.Lines_Markers,Name="anchor 1")
-|> Chart.withAxisAnchor(Y=1);
-Chart.Line([1; 2; 3; 4],[90; 110; 190; 120],Name="anchor 2")
-|> Chart.withAxisAnchor(Y=2);
-]
-|> Chart.Combine
-|> Chart.withY_AxisStyle("first",Side=StyleParam.Side.Left,Id=1)
-|> Chart.withY_AxisStyle("second",Side=StyleParam.Side.Right,Id=2,Overlaying=StyleParam.AxisAnchorId.Y 1)
-|> Chart.Show
+let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
+let y' = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
 
 
 
-(**
-Functional F# scripting style for Two Y-Axes same side
-*)
 
-[
-Chart.Scatter ([1; 2; 3; 4],[12; 9; 15; 12],StyleParam.Mode.Lines_Markers,Name="anchor 1")
-|> Chart.withAxisAnchor(Y=1);
-Chart.Line([1; 2; 3; 4],[90; 110; 190; 120],Name="anchor 2")
-|> Chart.withAxisAnchor(Y=2);
-]
-|> Chart.Combine
-|> Chart.withX_AxisStyle("x-axis",Domain=(0.3, 1.0))
-|> Chart.withY_AxisStyle("first y-axis")
-|> Chart.withY_AxisStyle("second y-axis",Side=StyleParam.Side.Left,Id=2,Overlaying=StyleParam.AxisAnchorId.Y 1,Position=0.15,Anchor=StyleParam.AxisAnchorId.Free)
-|> Chart.Show
+(*** define-output:pointsWithErrorBars ***)
+Chart.Point(x,y',Name="points with errors")    
+|> Chart.withXErrorStyle (Array=[|0.2;0.3;0.2;0.1;0.2;0.4;0.2;0.08;0.2;0.1;|])
+|> Chart.withYErrorStyle (Array=[|0.3;0.2;0.1;0.4;0.2;0.4;0.1;0.18;0.02;0.2;|])
+(*** include-it:pointsWithErrorBars ***)
+//|> Chart.Show
 
-
-
-// Simple Subplot
 
 
 

@@ -20,16 +20,18 @@ open FSharp.Plotly
 Functional F# scripting style for Two Y-Axes
 *)
 
+(*** define-output:twoYaxes ***)
 [
-Chart.Scatter ([1; 2; 3; 4],[12; 9; 15; 12],StyleParam.Mode.Lines_Markers,Name="anchor 1")
-|> Chart.withAxisAnchor(Y=1);
-Chart.Line([1; 2; 3; 4],[90; 110; 190; 120],Name="anchor 2")
-|> Chart.withAxisAnchor(Y=2);
+    Chart.Scatter ([1; 2; 3; 4],[12; 9; 15; 12],StyleParam.Mode.Lines_Markers,Name="anchor 1")
+    |> Chart.withAxisAnchor(Y=1);
+    Chart.Line([1; 2; 3; 4],[90; 110; 190; 120],Name="anchor 2")
+    |> Chart.withAxisAnchor(Y=2);
 ]
 |> Chart.Combine
 |> Chart.withY_AxisStyle("first",Side=StyleParam.Side.Left,Id=1)
 |> Chart.withY_AxisStyle("second",Side=StyleParam.Side.Right,Id=2,Overlaying=StyleParam.AxisAnchorId.Y 1)
-|> Chart.Show
+(*** include-it:twoYaxes ***)
+//|> Chart.Show
 
 
 
@@ -37,29 +39,35 @@ Chart.Line([1; 2; 3; 4],[90; 110; 190; 120],Name="anchor 2")
 Functional F# scripting style for Two Y-Axes same side
 *)
 
+(*** define-output:twoYaxesSide ***)
 [
-Chart.Scatter ([1; 2; 3; 4],[12; 9; 15; 12],StyleParam.Mode.Lines_Markers,Name="anchor 1")
-|> Chart.withAxisAnchor(Y=1);
-Chart.Line([1; 2; 3; 4],[90; 110; 190; 120],Name="anchor 2")
-|> Chart.withAxisAnchor(Y=2);
+    Chart.Scatter ([1; 2; 3; 4],[12; 9; 15; 12],StyleParam.Mode.Lines_Markers,Name="anchor 1")
+    |> Chart.withAxisAnchor(Y=1);
+    Chart.Line([1; 2; 3; 4],[90; 110; 190; 120],Name="anchor 2")
+    |> Chart.withAxisAnchor(Y=2);
 ]
 |> Chart.Combine
 |> Chart.withX_AxisStyle("x-axis",Domain=(0.3, 1.0))
 |> Chart.withY_AxisStyle("first y-axis")
 |> Chart.withY_AxisStyle("second y-axis",Side=StyleParam.Side.Left,Id=2,Overlaying=StyleParam.AxisAnchorId.Y 1,Position=0.15,Anchor=StyleParam.AxisAnchorId.Free)
-|> Chart.Show
+(*** include-it:twoYaxesSide ***)
+//|> Chart.Show
 
 
+(**
+Functional F# scripting style simple subplot stacked 2 columns.
+Axis style (like: title) is taken from the single chart, but can also be styled by axis id.
+*)
 
-// Simple Subplot
-[for i=1 to 8 do yield (Chart.Scatter ([1; 2; 3; 4],[12; 9; 15; 12],StyleParam.Mode.Lines_Markers) |> Chart.withY_AxisStyle("y-title") )]
-
-|> Chart.stackHorizontal(Col=2,Space=0.15)
-|> Chart.Combine
-|> Chart.Show
-
-//|> Chart.withX_AxisStyle("Title1")
-//|> Chart.withX_AxisStyle(sprintf "Title%i" 3,Id=3)
+(*** define-output:stack ***)
+[
+    for i=1 to 8 do 
+        yield Chart.Scatter ([1; 2; 3; 4],[12; 9; 15; 12],StyleParam.Mode.Lines_Markers) 
+              |> Chart.withY_AxisStyle(sprintf "y-title %i" i) 
+]
+|> Chart.Stack(Columns=2,Space=0.15)
+|> Chart.withX_AxisStyle(sprintf "x-title %i" 3,Id=3)
+(*** include-it:stack ***)
 //|> Chart.Show
 
 

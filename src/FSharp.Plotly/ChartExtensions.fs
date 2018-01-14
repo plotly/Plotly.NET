@@ -309,10 +309,10 @@ module ChartExtensions =
 
 
         /// Create a combined chart with the given charts merged   
-        static member Stack (?ColCount:int, ?Space) = 
+        static member Stack (?Columns:int, ?Space) = 
             (fun (charts:#seq<GenericChart>) ->  
 
-                let col = defaultArg ColCount 2
+                let col = defaultArg Columns 2
                 let len      = charts |> Seq.length
                 let colWidth = 1. / float col
                 let rowWidth = 
