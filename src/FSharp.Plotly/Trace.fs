@@ -26,6 +26,10 @@ module Trace =
     let initBoxPlot (applyStyle:Trace->Trace) = 
         Trace("box") |> applyStyle
 
+    /// Init trace for box plot
+    let initViolin (applyStyle:Trace->Trace) = 
+        Trace("violin") |> applyStyle
+
     /// Init trace for pie chart
     let initPie (applyStyle:Trace->Trace) = 
         Trace("pie") |> applyStyle
@@ -423,6 +427,44 @@ module Trace =
                     boxPlot
                 ) 
 
+
+        // Applies the styles of violin plot plot to TraceObjects 
+        static member Violin
+            (            
+                ?Y,           
+                ?X,           
+                ?X0,          
+                ?Y0,          
+                ?Points,     
+                ?Jitter,      
+                ?Pointpos,    
+                ?Orientation, 
+                ?Fillcolor,   
+                ?xAxis,       
+                ?yAxis,       
+                ?Ysrc,        
+                ?Xsrc        
+
+            ) =
+                (fun (boxPlot:('T :> Trace)) ->
+
+                    Y            |> DynObj.setValueOpt boxPlot "y"           
+                    X            |> DynObj.setValueOpt boxPlot "x"           
+                    X0           |> DynObj.setValueOpt boxPlot "x0"          
+                    Y0           |> DynObj.setValueOpt boxPlot "y0"          
+                    Points       |> DynObj.setValueOptBy boxPlot "points"  StyleParam.Jitterpoints.convert      
+                    Jitter       |> DynObj.setValueOpt boxPlot "jitter"      
+                    Pointpos     |> DynObj.setValueOpt boxPlot "pointpos"    
+                    Orientation  |> DynObj.setValueOptBy boxPlot "orientation" StyleParam.Orientation.convert
+                    Fillcolor    |> DynObj.setValueOpt boxPlot "fillcolor"   
+                    xAxis        |> DynObj.setValueOpt boxPlot "xaxis"       
+                    yAxis        |> DynObj.setValueOpt boxPlot "yaxis"       
+                    Ysrc         |> DynObj.setValueOpt boxPlot "ysrc"        
+                    Xsrc         |> DynObj.setValueOpt boxPlot "xsrc"        
+                    
+                    // out ->
+                    boxPlot
+                ) 
 
 
 

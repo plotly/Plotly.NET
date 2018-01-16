@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{63297B98-5CED-492C-A5B7-A5B4F73CF142}"
 	ProjectSection(SolutionItems) = preProject
@@ -50,6 +50,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{8E6D
 		docs\content\polar-charts.fsx = docs\content\polar-charts.fsx
 		docs\content\range-plots.fsx = docs\content\range-plots.fsx
 		docs\content\shapes.fsx = docs\content\shapes.fsx
+		docs\content\violin-plots.fsx = docs\content\violin-plots.fsx
 		docs\content\windrose-charts.fsx = docs\content\windrose-charts.fsx
 	EndProjectSection
 EndProject

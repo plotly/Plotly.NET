@@ -210,6 +210,10 @@ module StyleParam =
             | False             -> box false
 
 
+    type Jitterpoints = Boxpoints
+
+
+
     type BoxMean =
         | True
         | False
