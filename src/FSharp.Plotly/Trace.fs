@@ -63,6 +63,9 @@ module Trace =
     let initParallelCoord (applyStyle:Trace->Trace) = 
         Trace("parcoords") |> applyStyle
 
+    /// Init trace for a choropleth map
+    let initChoroplethMap (applyStyle:Trace->Trace) = 
+        Trace("choropleth") |> applyStyle
 
     /// Functions provide the styling of the Chart objects
     type TraceStyle() =
@@ -877,6 +880,40 @@ module Trace =
                     parcoords 
                 ) 
 
+
+        // Applies the styles of choropleth map plot to TraceObjects 
+        static member ChoroplethMap
+            (                
+                ?Locations      : seq<string>,
+                ?Z              : seq<#IConvertible>,
+                ?Text           : seq<#IConvertible>,
+                ?Locationmode                   ,
+                ?Autocolorscale : bool,
+                ?Colorscale,
+                ?Colorbar,
+                ?Marker         : Marker,
+                ?Zmin,
+                ?Zmax
+     
+
+            ) =
+                (fun (choropleth:('T :> Trace)) -> 
+                
+                    Locations          |> DynObj.setValueOpt   choropleth "locations"         
+                    Z                  |> DynObj.setValueOpt   choropleth "z"                     
+                    Text               |> DynObj.setValueOpt   choropleth "text"     
+                    Locationmode       |> DynObj.setValueOptBy choropleth "locationmode" StyleParam.LocationFormat.convert            
+                    Autocolorscale     |> DynObj.setValueOpt   choropleth "autocolorscale"    
+                    
+                    Colorscale         |> DynObj.setValueOptBy choropleth "colorscale" StyleParam.Colorscale.convert
+                    Colorbar           |> DynObj.setValueOpt   choropleth "colorbar"
+                    Marker             |> DynObj.setValueOpt   choropleth "marker"  
+                    Zmin               |> DynObj.setValueOpt   choropleth "zmin"
+                    Zmax               |> DynObj.setValueOpt   choropleth "zmax"  
+                    
+                    // out ->
+                    choropleth 
+                ) 
 
 
 

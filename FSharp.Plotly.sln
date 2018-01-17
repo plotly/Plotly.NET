@@ -35,6 +35,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{8E6D
 		docs\content\bar-charts.fsx = docs\content\bar-charts.fsx
 		docs\content\box-plots.fsx = docs\content\box-plots.fsx
 		docs\content\bubble-charts.fsx = docs\content\bubble-charts.fsx
+		docs\content\choropleth-map.fsx = docs\content\choropleth-map.fsx
 		docs\content\contour-plots.fsx = docs\content\contour-plots.fsx
 		docs\content\errorbars.fsx = docs\content\errorbars.fsx
 		docs\content\extensions.fsx = docs\content\extensions.fsx

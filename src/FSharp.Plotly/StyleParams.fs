@@ -697,6 +697,19 @@ module StyleParam =
         
         static member convert = AxisId.toString >> box 
 
+    /// Determines the set of locations used to match entries in `locations` to regions on the map. Default: ISO-3
+    type LocationFormat = 
+        | CountryNames 
+        | ISO_3
+        | USA_states
+        
+        static member toString = function
+            | CountryNames  -> "country names"
+            | ISO_3         -> "ISO-3" 
+            | USA_states    -> "USA-states"
+        
+        static member convert = LocationFormat.toString >> box 
+
 // hoverinfo (flaglist string) 
 //Any combination of "x", "y", "z", "text", "name" joined with a "+" OR "all" or "none" or "skip". 
 //examples: "x", "y", "x+y", "x+y+z", "all" 

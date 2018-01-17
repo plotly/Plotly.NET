@@ -472,9 +472,16 @@ type Chart =
             )
         |> TraceStyle.Line(?Width=Width,?Color=Color,?Dash=Dash,?Colorscale=Colorscale)
         |> GenericChart.ofTraceObject
-        
 
- 
+
+     /// Computes the choropleth map plot
+    static member ChoroplethMap(locations,z,?Text,?Locationmode,?Autocolorscale,?Colorscale,?Colorbar,?Marker,?Zmin,?Zmax) =
+        Trace.initChoroplethMap (
+            TraceStyle.ChoroplethMap (Locations=locations,Z=z,?Text=Text,?Locationmode=Locationmode,?Autocolorscale=Autocolorscale,
+                ?Colorscale=Colorscale,?Colorbar=Colorbar,?Marker=Marker,?Zmin=Zmin,?Zmax=Zmax)              
+            )
+        |> GenericChart.ofTraceObject        
+
     // ---------------------------------------------------------------------------------------------------------------------------------------------------
     // 3d - Chart --->
 
