@@ -49,7 +49,8 @@ Functional F# scripting style for Two Y-Axes same side
 |> Chart.Combine
 |> Chart.withX_AxisStyle("x-axis",Domain=(0.3, 1.0))
 |> Chart.withY_AxisStyle("first y-axis")
-|> Chart.withY_AxisStyle("second y-axis",Side=StyleParam.Side.Left,Id=2,Overlaying=StyleParam.AxisAnchorId.Y 1,Position=0.15,Anchor=StyleParam.AxisAnchorId.Free)
+|> Chart.withY_AxisStyle("second y-axis",Side=StyleParam.Side.Left,Id=2,
+        Overlaying=StyleParam.AxisAnchorId.Y 1,Position=0.15,Anchor=StyleParam.AxisAnchorId.Free)
 (*** include-it:twoYaxesSide ***)
 //|> Chart.Show
 

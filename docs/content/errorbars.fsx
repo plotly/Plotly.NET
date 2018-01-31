@@ -26,7 +26,6 @@ Chart.Point(x,y',Name="points with errors")
 |> Chart.withXErrorStyle (Array=[|0.2;0.3;0.2;0.1;0.2;0.4;0.2;0.08;0.2;0.1;|])
 |> Chart.withYErrorStyle (Array=[|0.3;0.2;0.1;0.4;0.2;0.4;0.1;0.18;0.02;0.2;|])
 (*** include-it:pointsWithErrorBars ***)
-//|> Chart.Show
 
 
 

@@ -3,14 +3,14 @@
 #r "../../bin/FSharp.Plotly.dll"
 
 (** 
-# FSharp.Plotly: BoxPlot Charts
+# FSharp.Plotly: Violin plot Charts
 
-*Summary:* This example shows how to create boxplot charts in F#.
+*Summary:* This example shows how to create violin plot charts in F#.
 
-A box plot or boxplot is a convenient way of graphically depicting groups of numerical data through their quartiles. 
-Box plots may also have lines extending vertically from the boxes (whiskers) indicating variability outside the upper
-and lower quartiles, hence the terms box-and-whisker plot and box-and-whisker diagram. 
-Outliers may be plotted as individual points.
+A violin plot is a method of plotting numeric data. It is similar to box plot with a rotated kernel density plot 
+on each side. The violin plot is similar to box plots, except that they also show the probability density of the 
+data at different values.
+
 *)
 
 open FSharp.Plotly 
@@ -36,7 +36,7 @@ Chart.Violin (y,x,Jitter=0.1,Points=StyleParam.Jitterpoints.All,Orientation=Styl
 
 
 (**
-You can also produce a boxplot using the `Chart.Combine` syntax.
+You can also produce a violin plot using the `Chart.Combine` syntax.
 *)
 
 let y' =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
