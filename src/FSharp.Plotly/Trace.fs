@@ -26,6 +26,10 @@ module Trace =
     let initBoxPlot (applyStyle:Trace->Trace) = 
         Trace("box") |> applyStyle
 
+    /// Init trace for box plot
+    let initViolin (applyStyle:Trace->Trace) = 
+        Trace("violin") |> applyStyle
+
     /// Init trace for pie chart
     let initPie (applyStyle:Trace->Trace) = 
         Trace("pie") |> applyStyle
@@ -59,6 +63,9 @@ module Trace =
     let initParallelCoord (applyStyle:Trace->Trace) = 
         Trace("parcoords") |> applyStyle
 
+    /// Init trace for a choropleth map
+    let initChoroplethMap (applyStyle:Trace->Trace) = 
+        Trace("choropleth") |> applyStyle
 
     /// Functions provide the styling of the Chart objects
     type TraceStyle() =
@@ -423,6 +430,44 @@ module Trace =
                     boxPlot
                 ) 
 
+
+        // Applies the styles of violin plot plot to TraceObjects 
+        static member Violin
+            (            
+                ?Y,           
+                ?X,           
+                ?X0,          
+                ?Y0,          
+                ?Points,     
+                ?Jitter,      
+                ?Pointpos,    
+                ?Orientation, 
+                ?Fillcolor,   
+                ?xAxis,       
+                ?yAxis,       
+                ?Ysrc,        
+                ?Xsrc        
+
+            ) =
+                (fun (boxPlot:('T :> Trace)) ->
+
+                    Y            |> DynObj.setValueOpt boxPlot "y"           
+                    X            |> DynObj.setValueOpt boxPlot "x"           
+                    X0           |> DynObj.setValueOpt boxPlot "x0"          
+                    Y0           |> DynObj.setValueOpt boxPlot "y0"          
+                    Points       |> DynObj.setValueOptBy boxPlot "points"  StyleParam.Jitterpoints.convert      
+                    Jitter       |> DynObj.setValueOpt boxPlot "jitter"      
+                    Pointpos     |> DynObj.setValueOpt boxPlot "pointpos"    
+                    Orientation  |> DynObj.setValueOptBy boxPlot "orientation" StyleParam.Orientation.convert
+                    Fillcolor    |> DynObj.setValueOpt boxPlot "fillcolor"   
+                    xAxis        |> DynObj.setValueOpt boxPlot "xaxis"       
+                    yAxis        |> DynObj.setValueOpt boxPlot "yaxis"       
+                    Ysrc         |> DynObj.setValueOpt boxPlot "ysrc"        
+                    Xsrc         |> DynObj.setValueOpt boxPlot "xsrc"        
+                    
+                    // out ->
+                    boxPlot
+                ) 
 
 
 
@@ -835,6 +880,40 @@ module Trace =
                     parcoords 
                 ) 
 
+
+        // Applies the styles of choropleth map plot to TraceObjects 
+        static member ChoroplethMap
+            (                
+                ?Locations      : seq<string>,
+                ?Z              : seq<#IConvertible>,
+                ?Text           : seq<#IConvertible>,
+                ?Locationmode                   ,
+                ?Autocolorscale : bool,
+                ?Colorscale,
+                ?Colorbar,
+                ?Marker         : Marker,
+                ?Zmin,
+                ?Zmax
+     
+
+            ) =
+                (fun (choropleth:('T :> Trace)) -> 
+                
+                    Locations          |> DynObj.setValueOpt   choropleth "locations"         
+                    Z                  |> DynObj.setValueOpt   choropleth "z"                     
+                    Text               |> DynObj.setValueOpt   choropleth "text"     
+                    Locationmode       |> DynObj.setValueOptBy choropleth "locationmode" StyleParam.LocationFormat.convert            
+                    Autocolorscale     |> DynObj.setValueOpt   choropleth "autocolorscale"    
+                    
+                    Colorscale         |> DynObj.setValueOptBy choropleth "colorscale" StyleParam.Colorscale.convert
+                    Colorbar           |> DynObj.setValueOpt   choropleth "colorbar"
+                    Marker             |> DynObj.setValueOpt   choropleth "marker"  
+                    Zmin               |> DynObj.setValueOpt   choropleth "zmin"
+                    Zmax               |> DynObj.setValueOpt   choropleth "zmax"  
+                    
+                    // out ->
+                    choropleth 
+                ) 
 
 
 

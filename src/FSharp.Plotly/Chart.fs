@@ -325,6 +325,21 @@ type Chart =
         Chart.BoxPlot(x, y, ?Name=Name,?Showlegend=Showlegend,?Color=Color,?Fillcolor=Fillcolor,?Opacity=Opacity,?Whiskerwidth=Whiskerwidth,?Boxpoints=Boxpoints,?Boxmean=Boxmean,?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation) 
 
 
+    /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.            
+    static member Violin(?x,?y,?Name,?Showlegend,?Color,?Fillcolor,?Opacity,?Points,?Jitter,?Pointpos,?Orientation) = 
+         Trace.initViolin (TraceStyle.Violin(?X=x, ?Y = y,?Points=Points,
+                                ?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation,?Fillcolor=Fillcolor) )
+         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)   
+         |> TraceStyle.Marker(?Color=Color)
+         |> GenericChart.ofTraceObject
+
+
+    /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.       
+    static member Violin(xy,?Name,?Showlegend,?Color,?Fillcolor,?Opacity,?Points,?Jitter,?Pointpos,?Orientation) = 
+        let x,y = Seq.unzip xy
+        Chart.Violin(x, y, ?Name=Name,?Showlegend=Showlegend,?Color=Color,?Fillcolor=Fillcolor,?Opacity=Opacity,?Points=Points,?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation) 
+
+
     /// Shows a graphical representation of a 3-dimensional surface by plotting constant z slices, called contours, on a 2-dimensional format.
     /// That is, given a value for z, lines are drawn for connecting the (x,y) coordinates where that z value occurs.
     static member Heatmap(data:seq<#seq<#IConvertible>>,?ColNames,?RowNames,?Name,?Showlegend,?Opacity,?Colorscale,?Showscale,?Xgap,?Ygap,?zSmooth,?Colorbar) = 
@@ -457,9 +472,16 @@ type Chart =
             )
         |> TraceStyle.Line(?Width=Width,?Color=Color,?Dash=Dash,?Colorscale=Colorscale)
         |> GenericChart.ofTraceObject
-        
 
- 
+
+     /// Computes the choropleth map plot
+    static member ChoroplethMap(locations,z,?Text,?Locationmode,?Autocolorscale,?Colorscale,?Colorbar,?Marker,?Zmin,?Zmax) =
+        Trace.initChoroplethMap (
+            TraceStyle.ChoroplethMap (Locations=locations,Z=z,?Text=Text,?Locationmode=Locationmode,?Autocolorscale=Autocolorscale,
+                ?Colorscale=Colorscale,?Colorbar=Colorbar,?Marker=Marker,?Zmin=Zmin,?Zmax=Zmax)              
+            )
+        |> GenericChart.ofTraceObject        
+
     // ---------------------------------------------------------------------------------------------------------------------------------------------------
     // 3d - Chart --->
 
