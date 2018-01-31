@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>FSharp.Plotly: BoxPlot Charts
+    <title>FSharp.Plotly: Violin plot Charts
 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="A F# interactive charting library using plotly.js"/>
@@ -35,12 +35,11 @@
       <div class="row">
         <div class="span9" id="main">
           
-<h1><a name="FSharp-Plotly-BoxPlot-Charts" class="anchor" href="#FSharp-Plotly-BoxPlot-Charts">FSharp.Plotly: BoxPlot Charts</a></h1>
-<p><em>Summary:</em> This example shows how to create boxplot charts in F#.</p>
-<p>A box plot or boxplot is a convenient way of graphically depicting groups of numerical data through their quartiles.
-Box plots may also have lines extending vertically from the boxes (whiskers) indicating variability outside the upper
-and lower quartiles, hence the terms box-and-whisker plot and box-and-whisker diagram.
-Outliers may be plotted as individual points.</p>
+<h1><a name="FSharp-Plotly-Violin-plot-Charts" class="anchor" href="#FSharp-Plotly-Violin-plot-Charts">FSharp.Plotly: Violin plot Charts</a></h1>
+<p><em>Summary:</em> This example shows how to create violin plot charts in F#.</p>
+<p>A violin plot is a method of plotting numeric data. It is similar to box plot with a rotated kernel density plot
+on each side. The violin plot is similar to box plots, except that they also show the probability density of the
+data at different values.</p>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
@@ -65,11 +64,11 @@ Outliers may be plotted as individual points.</p>
 </code></pre></td>
 </tr>
 </table>
-<div id="84f4acc5-bda8-426c-99d8-e4390fe75983" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>        
+<div id="414b1f41-fc8a-4771-b821-5b248cb43f77" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>        
   <script>
     var data = [{"type":"violin","y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"points":"all","marker":{}}];
     var layout = {};
-    Plotly.newPlot('84f4acc5-bda8-426c-99d8-e4390fe75983', data, layout);
+    Plotly.newPlot('414b1f41-fc8a-4771-b821-5b248cb43f77', data, layout);
   </script>
 <p>By swapping x and y plus using <code>StyleParam.Orientation.Horizontal</code> we can flip the chart horizontaly.</p>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
@@ -78,13 +77,13 @@ Outliers may be plotted as individual points.</p>
 </code></pre></td>
 </tr>
 </table>
-<div id="3539bb24-36b4-4514-8837-4898c5b06240" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>        
+<div id="c6df759a-0ac1-46ef-b756-03bb07e1c3c5" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>        
   <script>
     var data = [{"type":"violin","y":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"x":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"points":"all","jitter":0.1,"orientation":"h","marker":{}}];
     var layout = {};
-    Plotly.newPlot('3539bb24-36b4-4514-8837-4898c5b06240', data, layout);
+    Plotly.newPlot('c6df759a-0ac1-46ef-b756-03bb07e1c3c5', data, layout);
   </script>
-<p>You can also produce a boxplot using the <code>Chart.Combine</code> syntax.</p>
+<p>You can also produce a violin plot using the <code>Chart.Combine</code> syntax.</p>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 </pre></td>
 <td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs12', 26)" onmouseover="showTip(event, 'fs12', 26)" class="i">y&#39;</span> <span class="o">=</span>  [<span class="n">2.</span>; <span class="n">1.5</span>; <span class="n">5.</span>; <span class="n">1.5</span>; <span class="n">2.</span>; <span class="n">2.5</span>; <span class="n">2.1</span>; <span class="n">2.5</span>; <span class="n">1.5</span>; <span class="n">1.</span>;<span class="n">2.</span>; <span class="n">1.5</span>; <span class="n">5.</span>; <span class="n">1.5</span>; <span class="n">3.</span>; <span class="n">2.5</span>; <span class="n">2.5</span>; <span class="n">1.5</span>; <span class="n">3.5</span>; <span class="n">1.</span>]
@@ -105,11 +104,11 @@ Outliers may be plotted as individual points.</p>
 </code></pre></td>
 </tr>
 </table>
-<div id="75ba9569-b016-41ec-98e6-4253ba43a43a" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>        
+<div id="059251aa-c78d-4d1a-bf07-4edf0436c3af" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>        
   <script>
     var data = [{"type":"violin","y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":"y","points":"all","jitter":0.1,"name":"bin1","marker":{}},{"type":"violin","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":"y'","points":"all","jitter":0.1,"name":"bin2","marker":{}}];
     var layout = {};
-    Plotly.newPlot('75ba9569-b016-41ec-98e6-4253ba43a43a', data, layout);
+    Plotly.newPlot('059251aa-c78d-4d1a-bf07-4edf0436c3af', data, layout);
   </script>
 
 <div class="tip" id="fs1">Multiple items<br />namespace FSharp<br /><br />--------------------<br />namespace Microsoft.FSharp</div>
@@ -133,7 +132,10 @@ Outliers may be plotted as individual points.</p>
               <li class="nav-header">FSharp.Plotly</li>
               <li><a href="/FSharp.Plotly/index.html">Home page</a></li>
               <li class="divider"></li>
-              <li><a href="/FSharp.Plotly/getting-started.html">Getting started</a></li>
+              <li>
+                  <a href="/FSharp.Plotly/getting-started.html">Getting started</a>
+              </li>
+              
               <li class="nav-header">Plotly Charts</li>
               <li><a href="/FSharp.Plotly/area-plots.html">Area Plots</a></li>
               <li><a href="/FSharp.Plotly/bar-charts.html">Bar</a></li>

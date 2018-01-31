@@ -68,11 +68,11 @@
 </code></pre></td>
 </tr>
 </table>
-<div id="d3f43824-ce89-424e-b85e-6a757135f3f4" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>        
+<div id="5ae03dc9-9264-4303-a290-a1301b3cc597" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>        
   <script>
     var data = [{"type":"scatter","x":[1,2,3,4],"y":[12,9,15,12],"mode":"lines+markers","name":"anchor 1","line":{"width":{}},"marker":{},"yaxis":"y"},{"type":"scatter","x":[1,2,3,4],"y":[90,110,190,120],"mode":"lines","name":"anchor 2","marker":{},"yaxis":"y2"}];
     var layout = {"yaxis":{"title":"first","side":"left"},"yaxis2":{"title":"second","side":"right","overlaying":"y"}};
-    Plotly.newPlot('d3f43824-ce89-424e-b85e-6a757135f3f4', data, layout);
+    Plotly.newPlot('5ae03dc9-9264-4303-a290-a1301b3cc597', data, layout);
   </script>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 </pre></td>
@@ -91,6 +91,7 @@
 <span class="l"> 8: </span>
 <span class="l"> 9: </span>
 <span class="l">10: </span>
+<span class="l">11: </span>
 </pre></td>
 <td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp">[
     <span onmouseout="hideTip(event, 'fs3', 31)" onmouseover="showTip(event, 'fs3', 31)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs4', 32)" onmouseover="showTip(event, 'fs4', 32)" class="f">Scatter</span> ([<span class="n">1</span>; <span class="n">2</span>; <span class="n">3</span>; <span class="n">4</span>],[<span class="n">12</span>; <span class="n">9</span>; <span class="n">15</span>; <span class="n">12</span>],<span onmouseout="hideTip(event, 'fs5', 33)" onmouseover="showTip(event, 'fs5', 33)" class="t">StyleParam</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs6', 34)" onmouseover="showTip(event, 'fs6', 34)" class="t">Mode</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 35)" onmouseover="showTip(event, 'fs7', 35)" class="p">Lines_Markers</span>,<span class="i">Name</span><span class="o">=</span><span class="s">&quot;anchor 1&quot;</span>)
@@ -101,15 +102,16 @@
 <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs3', 44)" onmouseover="showTip(event, 'fs3', 44)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs11', 45)" onmouseover="showTip(event, 'fs11', 45)" class="f">Combine</span>
 <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs3', 46)" onmouseover="showTip(event, 'fs3', 46)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs18', 47)" onmouseover="showTip(event, 'fs18', 47)" class="f">withX_AxisStyle</span>(<span class="s">&quot;x-axis&quot;</span>,<span class="i">Domain</span><span class="o">=</span>(<span class="n">0.3</span>, <span class="n">1.0</span>))
 <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs3', 48)" onmouseover="showTip(event, 'fs3', 48)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs12', 49)" onmouseover="showTip(event, 'fs12', 49)" class="f">withY_AxisStyle</span>(<span class="s">&quot;first y-axis&quot;</span>)
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs3', 50)" onmouseover="showTip(event, 'fs3', 50)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs12', 51)" onmouseover="showTip(event, 'fs12', 51)" class="f">withY_AxisStyle</span>(<span class="s">&quot;second y-axis&quot;</span>,<span class="i">Side</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs5', 52)" onmouseover="showTip(event, 'fs5', 52)" class="t">StyleParam</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs13', 53)" onmouseover="showTip(event, 'fs13', 53)" class="t">Side</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs14', 54)" onmouseover="showTip(event, 'fs14', 54)" class="p">Left</span>,<span class="i">Id</span><span class="o">=</span><span class="n">2</span>,<span class="i">Overlaying</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs5', 55)" onmouseover="showTip(event, 'fs5', 55)" class="t">StyleParam</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs16', 56)" onmouseover="showTip(event, 'fs16', 56)" class="t">AxisAnchorId</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs17', 57)" onmouseover="showTip(event, 'fs17', 57)" class="p">Y</span> <span class="n">1</span>,<span class="i">Position</span><span class="o">=</span><span class="n">0.15</span>,<span class="i">Anchor</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs5', 58)" onmouseover="showTip(event, 'fs5', 58)" class="t">StyleParam</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs16', 59)" onmouseover="showTip(event, 'fs16', 59)" class="t">AxisAnchorId</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs19', 60)" onmouseover="showTip(event, 'fs19', 60)" class="p">Free</span>)
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs3', 50)" onmouseover="showTip(event, 'fs3', 50)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs12', 51)" onmouseover="showTip(event, 'fs12', 51)" class="f">withY_AxisStyle</span>(<span class="s">&quot;second y-axis&quot;</span>,<span class="i">Side</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs5', 52)" onmouseover="showTip(event, 'fs5', 52)" class="t">StyleParam</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs13', 53)" onmouseover="showTip(event, 'fs13', 53)" class="t">Side</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs14', 54)" onmouseover="showTip(event, 'fs14', 54)" class="p">Left</span>,<span class="i">Id</span><span class="o">=</span><span class="n">2</span>,
+        <span class="i">Overlaying</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs5', 55)" onmouseover="showTip(event, 'fs5', 55)" class="t">StyleParam</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs16', 56)" onmouseover="showTip(event, 'fs16', 56)" class="t">AxisAnchorId</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs17', 57)" onmouseover="showTip(event, 'fs17', 57)" class="p">Y</span> <span class="n">1</span>,<span class="i">Position</span><span class="o">=</span><span class="n">0.15</span>,<span class="i">Anchor</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs5', 58)" onmouseover="showTip(event, 'fs5', 58)" class="t">StyleParam</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs16', 59)" onmouseover="showTip(event, 'fs16', 59)" class="t">AxisAnchorId</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs19', 60)" onmouseover="showTip(event, 'fs19', 60)" class="p">Free</span>)
 </code></pre></td>
 </tr>
 </table>
-<div id="9f374d00-4707-4c47-b19f-bd4a949ced5a" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>        
+<div id="2551a600-af16-47f5-b806-d8d7942eb302" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>        
   <script>
     var data = [{"type":"scatter","x":[1,2,3,4],"y":[12,9,15,12],"mode":"lines+markers","name":"anchor 1","line":{"width":{}},"marker":{},"yaxis":"y"},{"type":"scatter","x":[1,2,3,4],"y":[90,110,190,120],"mode":"lines","name":"anchor 2","marker":{},"yaxis":"y2"}];
     var layout = {"xaxis":{"title":"x-axis","domain":[0.3,1.0]},"yaxis":{"title":"first y-axis"},"yaxis2":{"title":"second y-axis","anchor":"free","side":"left","overlaying":"y","position":0.15}};
-    Plotly.newPlot('9f374d00-4707-4c47-b19f-bd4a949ced5a', data, layout);
+    Plotly.newPlot('2551a600-af16-47f5-b806-d8d7942eb302', data, layout);
   </script>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 </pre></td>
@@ -137,11 +139,11 @@ Axis style (like: title) is taken from the single chart, but can also be styled 
 </code></pre></td>
 </tr>
 </table>
-<div id="67c0a907-beaf-4b44-9709-1f82a0febe78" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>        
+<div id="1fe09329-94f6-424b-b87d-b5442b496d67" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>        
   <script>
     var data = [{"type":"scatter","x":[1,2,3,4],"y":[12,9,15,12],"mode":"lines+markers","line":{"width":{}},"marker":{},"xaxis":"x","yaxis":"y"},{"type":"scatter","x":[1,2,3,4],"y":[12,9,15,12],"mode":"lines+markers","line":{"width":{}},"marker":{},"xaxis":"x2","yaxis":"y2"},{"type":"scatter","x":[1,2,3,4],"y":[12,9,15,12],"mode":"lines+markers","line":{"width":{}},"marker":{},"xaxis":"x3","yaxis":"y3"},{"type":"scatter","x":[1,2,3,4],"y":[12,9,15,12],"mode":"lines+markers","line":{"width":{}},"marker":{},"xaxis":"x4","yaxis":"y4"},{"type":"scatter","x":[1,2,3,4],"y":[12,9,15,12],"mode":"lines+markers","line":{"width":{}},"marker":{},"xaxis":"x5","yaxis":"y5"},{"type":"scatter","x":[1,2,3,4],"y":[12,9,15,12],"mode":"lines+markers","line":{"width":{}},"marker":{},"xaxis":"x6","yaxis":"y6"},{"type":"scatter","x":[1,2,3,4],"y":[12,9,15,12],"mode":"lines+markers","line":{"width":{}},"marker":{},"xaxis":"x7","yaxis":"y7"},{"type":"scatter","x":[1,2,3,4],"y":[12,9,15,12],"mode":"lines+markers","line":{"width":{}},"marker":{},"xaxis":"x8","yaxis":"y8"}];
     var layout = {"xaxis":{"anchor":"y","domain":[0.0,0.35]},"yaxis":{"title":"y-title 1","anchor":"x","domain":[0.9,1.0]},"xaxis2":{"anchor":"y2","domain":[0.5,0.85]},"yaxis2":{"title":"y-title 2","anchor":"x2","domain":[0.9,1.0]},"xaxis3":{"anchor":"y3","domain":[0.0,0.35],"title":"x-title 3"},"yaxis3":{"title":"y-title 3","anchor":"x3","domain":[0.65,0.75]},"xaxis4":{"anchor":"y4","domain":[0.5,0.85]},"yaxis4":{"title":"y-title 4","anchor":"x4","domain":[0.65,0.75]},"xaxis5":{"anchor":"y5","domain":[0.0,0.35]},"yaxis5":{"title":"y-title 5","anchor":"x5","domain":[0.4,0.5]},"xaxis6":{"anchor":"y6","domain":[0.5,0.85]},"yaxis6":{"title":"y-title 6","anchor":"x6","domain":[0.4,0.5]},"xaxis7":{"anchor":"y7","domain":[0.0,0.35]},"yaxis7":{"title":"y-title 7","anchor":"x7","domain":[0.15000000000000002,0.25]},"xaxis8":{"anchor":"y8","domain":[0.5,0.85]},"yaxis8":{"title":"y-title 8","anchor":"x8","domain":[0.15000000000000002,0.25]}};
-    Plotly.newPlot('67c0a907-beaf-4b44-9709-1f82a0febe78', data, layout);
+    Plotly.newPlot('1fe09329-94f6-424b-b87d-b5442b496d67', data, layout);
   </script>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 </pre></td>
@@ -180,7 +182,10 @@ Axis style (like: title) is taken from the single chart, but can also be styled 
               <li class="nav-header">FSharp.Plotly</li>
               <li><a href="/FSharp.Plotly/index.html">Home page</a></li>
               <li class="divider"></li>
-              <li><a href="/FSharp.Plotly/getting-started.html">Getting started</a></li>
+              <li>
+                  <a href="/FSharp.Plotly/getting-started.html">Getting started</a>
+              </li>
+              
               <li class="nav-header">Plotly Charts</li>
               <li><a href="/FSharp.Plotly/area-plots.html">Area Plots</a></li>
               <li><a href="/FSharp.Plotly/bar-charts.html">Bar</a></li>
