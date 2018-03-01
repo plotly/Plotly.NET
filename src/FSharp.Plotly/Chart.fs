@@ -166,7 +166,7 @@ type Chart =
         let upper = 
             Trace.initScatter (
                     TraceStyle.Scatter(X = x,Y = upper, Mode=StyleParam.Lines, ?Fillcolor=RangeColor, Fill=StyleParam.ToNext_y) )               
-            |> TraceStyle.TraceInfo(?Showlegend=Showlegend)
+            |> TraceStyle.TraceInfo(Showlegend=false)
             |> TraceStyle.Line(Width=0)
             |> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,,0.5)")             
  

@@ -16,15 +16,18 @@ The library provides a complete mapping for the configuration options of the und
 #r "../../bin/FSharp.Plotly.dll"
 open FSharp.Plotly
 
-// Functional F# scripting style
+(**
+## Using functional F# scripting style
+*)
 
 
 Chart.Scatter ([1; 2; 3; 4],[12; 9; 15; 12],
       StyleParam.Mode.Lines_Markers,
       Name="lines and markers")
 
-
-// Dynanic object
+(**
+## Using dynamic object style
+*)
 
 let scattern = 
     let dyn = Trace("scatter")
@@ -39,6 +42,9 @@ scattern
 
 
 
+(**
+## Using guided dynamic style
+*)
 
 Trace.initScatter (
        Trace.TraceStyle.Scatter
@@ -50,7 +56,9 @@ Trace.initScatter (
 |> GenericChart.ofTraceObject 
 
 
-
+(**
+## Using mixed dynamic object style
+*)
 Trace.initScatter 
     (fun scatter ->
         scatter?x <- [1; 2; 3; 4]

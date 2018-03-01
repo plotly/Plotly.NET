@@ -3,7 +3,7 @@
 #r "../../bin/FSharp.Plotly.dll"
 
 (** 
-# FSharp.Plotly: Histogram2d
+# FSharp.Plotly: Histogram
 
 *Summary:* This example shows how to create a one-dimensional histogram of a data samples in F#.
 

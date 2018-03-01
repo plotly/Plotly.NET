@@ -3,13 +3,9 @@
 #r "../../bin/FSharp.Plotly.dll"
 
 (** 
-# FSharp.Plotly: Pie and Doughnut Charts
+# FSharp.Plotly: 3D surface plot Charts
 
-*Summary:* This example shows how to create pie and doughnut charts in F#.
-
-A pie or a doughnut chart can be created using the `Chart.Pie` and `Chart.Doughnut` functions.
-When creating pie or doughnut charts, it is usually desirable to provide both labels and 
-values.
+*Summary:* This example shows how to create 3D surface plots in F#.
 *)
 
 open System
@@ -42,11 +38,15 @@ let b = Array.init 50 (fun _ -> rnd.NextDouble())
 let c = Array.init 50 (fun _ -> rnd.NextDouble())
 
 
-(*** define-output:contour1 ***)
+(*** define-output:surface1 ***)
 z
 |> Chart.Surface
-|> Chart.withSize(600.,600.)
-(*** include-it:contour1 ***)
+(*** include-it:surface1 ***)
+
+
+
+
+
 
 // Create simple example data were x y and z is given (z is a xy-Matrix)
 let x' = [0.;2.5]
@@ -56,8 +56,8 @@ let z' = [
     [1.;2.;];
     ] // column (length y)
 
-(*** define-output:contour2 ***)
+(*** define-output:surface2 ***)
 Chart.Surface(z',x',y',Opacity=0.5,Contours=Contours.initXyz(Show=true))
-(*** define-output:contour2 ***)
+(*** define-output:surface2 ***)
 
 

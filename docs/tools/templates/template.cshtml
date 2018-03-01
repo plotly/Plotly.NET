@@ -41,7 +41,17 @@
               <li class="nav-header">@Properties["project-name"]</li>
               <li><a href="@Root/index.html">Home page</a></li>
               <li class="divider"></li>
-              <li><a href="@Root/getting-started.html">Getting started</a></li>
+              <li>
+                  <a href="@Root/getting-started.html">Getting started</a>
+                  @if (Properties.Dictionary.ContainsKey("page-source") && Properties["page-source"].ToString().EndsWith("getting-started.fsx"))
+                  {
+                  <ul class="nav nav-list">
+                      @*<li><a href="@Root/getting-started.html#Using-functional-F#-scripting-style">F# scripting style</a></li>*@
+                      <li><a href="@Root/getting-started.html#Using-dynamic-object-style">Dynamic object style</a></li>
+                  </ul>
+                    }
+              </li>
+              @*<li><a href="@Root/getting-started.html">Getting started</a></li>*@
               <li class="nav-header">Plotly Charts</li>
               <li><a href="@Root/area-plots.html">Area Plots</a></li>
               <li><a href="@Root/bar-charts.html">Bar</a></li>
