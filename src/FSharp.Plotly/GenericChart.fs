@@ -28,6 +28,32 @@ module HTML =
     Plotly.newPlot('[ID]', data, layout);
   </script>"""
 
+    let staticChart =
+        """<div id="[ID]" style="width: [WIDTH]px; height: [HEIGHT]px;display: none;"><!-- Plotly chart will be drawn inside this DIV --></div>        
+  
+  <img id="jpg-export"></img>
+  
+  <script>
+    var d3 = Plotly.d3;
+    var img_jpg= d3.select('#jpg-export');
+    var data = [DATA];
+    var layout = [LAYOUT];
+    Plotly.newPlot('[ID]', data, layout)
+    // static image in jpg format
+
+    .then(
+        function(gd)
+         {
+          Plotly.toImage(gd,{format:'[IMAGEFORMAT]',height: [HEIGHT],width: [WIDTH]})
+             .then(
+                function(url)
+             {
+                 img_jpg.attr("src", url);
+                 
+             }
+             )
+        });
+  </script>"""
 
 /// Module to represent a GenericChart
 module GenericChart =
@@ -117,8 +143,10 @@ module GenericChart =
             |> JsonConvert.SerializeObject 
 
         let html =
-            HTML.chart
-                .Replace("style=\"width: [WIDTH]px; height: [HEIGHT]px;\"","style=\"width: 600px; height: 600px;\"")
+            HTML.staticChart
+                //.Replace("style=\"width: [WIDTH]px; height: [HEIGHT]px;\"","style=\"width: 600px; height: 600px;\"")
+                .Replace("[WIDTH]", string 600 )
+                .Replace("[HEIGHT]", string 600)
                 .Replace("[ID]", guid)                
                 .Replace("[DATA]", tracesJson)
                 .Replace("[LAYOUT]", layoutJson)
@@ -151,6 +179,35 @@ module GenericChart =
             HTML.doc.Replace("[CHART]", chartMarkup)
         html
 
+
+    /// Converts a GenericChart to its Image representation
+    let toChartImage (format:StyleParam.ImageFormat) gChart =
+        let guid = Guid.NewGuid().ToString()
+        let tracesJson =
+            getTraces gChart
+            |> JsonConvert.SerializeObject 
+        let layoutJson = 
+            getLayout gChart
+            |> JsonConvert.SerializeObject 
+
+        let html =
+            HTML.staticChart
+                //.Replace("style=\"width: [WIDTH]px; height: [HEIGHT]px;\"","style=\"width: 600px; height: 600px;\"")
+                .Replace("[WIDTH]", string 600 )
+                .Replace("[HEIGHT]", string 600)
+                .Replace("[ID]", guid)                
+                .Replace("[DATA]", tracesJson)
+                .Replace("[LAYOUT]", layoutJson)
+                .Replace("[IMAGEFORMAT]",format.ToString().ToLower())
+        html
+
+    /// Converts a GenericChart to an image and embeds it into a html page
+    let toEmbeddedImage (format:StyleParam.ImageFormat) gChart =
+        let html =
+            let chartMarkup =
+                toChartImage format gChart
+            HTML.doc.Replace("[CHART]", chartMarkup)
+        html
 
         
     /// Creates a new GenericChart whose traces are the results of applying the given function to each of the trace of the GenericChart.           

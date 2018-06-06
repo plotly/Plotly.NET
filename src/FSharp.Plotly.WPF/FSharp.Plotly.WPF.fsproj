@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="HtmlAgilityPack" Version="1.8.4" />
     <PackageReference Include="Microsoft.Xaml" Version="4.0.0.1" />
   </ItemGroup>
 

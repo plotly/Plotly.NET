@@ -717,3 +717,11 @@ module StyleParam =
 //Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
 
 
+    type ImageFormat =
+        | SVG  | PNG | JPEG
+        static member toString = function
+            | SVG  -> "svg"             
+            | PNG  -> "png"            
+            | JPEG -> "jpeg"    
+
+        static member convert = ImageFormat.toString >> box
