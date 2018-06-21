@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
-    <ProjectGuid>4e235ddd-1b59-4a93-abe9-2feef18b09a1</ProjectGuid>
-    <RootNamespace>FSharp.Plotly</RootNamespace>
-    <AssemblyName>FSharp.Plotly</AssemblyName>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <DocumentationFile>bin\$(Configuration)\$(AssemblyName).XML</DocumentationFile>
-  </PropertyGroup>
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+        <ProjectGuid>4e235ddd-1b59-4a93-abe9-2feef18b09a1</ProjectGuid>
+        <RootNamespace>FSharp.Plotly</RootNamespace>
+        <AssemblyName>FSharp.Plotly</AssemblyName>
+        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+        <DocumentationFile>bin\$(Configuration)\$(AssemblyName).XML</DocumentationFile>
+    </PropertyGroup>
 
   <ItemGroup>
     <Compile Include="StyleParams.fs" />
@@ -47,8 +42,5 @@
   <ItemGroup>
     <Content Include="App.config" />
   </ItemGroup>
-  <Import Project="..\..\.paket\Paket.Restore.targets" />
-    <PackageReference Update="FSharp.Core" Version="4.3.4" />
-  </ItemGroup>
-
+    <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

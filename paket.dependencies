@@ -3,6 +3,9 @@ source https://nuget.org/api/v2
 
 nuget FSharp.Core redirects: force
 nuget Newtonsoft.Json
+nuget HtmlAgilityPack
+nuget Microsoft.Xaml
+
 
 group Build
     framework: net461
