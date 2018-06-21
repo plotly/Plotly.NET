@@ -31,7 +31,6 @@ Functional F# scripting style for Two Y-Axes
 |> Chart.withY_AxisStyle("first",Side=StyleParam.Side.Left,Id=1)
 |> Chart.withY_AxisStyle("second",Side=StyleParam.Side.Right,Id=2,Overlaying=StyleParam.AxisAnchorId.Y 1)
 (*** include-it:twoYaxes ***)
-//|> Chart.Show
 
 
 
@@ -52,7 +51,6 @@ Functional F# scripting style for Two Y-Axes same side
 |> Chart.withY_AxisStyle("second y-axis",Side=StyleParam.Side.Left,Id=2,
         Overlaying=StyleParam.AxisAnchorId.Y 1,Position=0.15,Anchor=StyleParam.AxisAnchorId.Free)
 (*** include-it:twoYaxesSide ***)
-//|> Chart.Show
 
 
 (**
@@ -69,6 +67,6 @@ Axis style (like: title) is taken from the single chart, but can also be styled 
 |> Chart.Stack(Columns=2,Space=0.15)
 |> Chart.withX_AxisStyle(sprintf "x-title %i" 3,Id=3)
 (*** include-it:stack ***)
-//|> Chart.Show
+
 
 

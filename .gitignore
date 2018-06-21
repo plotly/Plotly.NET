@@ -20,6 +20,7 @@ build/
 [Bb]in/
 [Oo]bj/
 
+
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
@@ -170,7 +171,10 @@ $RECYCLE.BIN/
 packages/
 
 # Generated documentation folder
-docs/output/
+docs/formatted/
+
+#ignore local docs
+docs/local/
 
 # Temp folder used for publishing docs
 temp/
@@ -185,18 +189,7 @@ release.sh
 localpackages/
 paket-files
 *.orig
-.paket/paket.exe
 docs/content/license.md
 docs/content/release-notes.md
 .fake
 docs/tools/FSharp.Formatting.svclog
-/nuget/docs/output/content/tips.js
-/nuget/docs/output/content/style_light.css
-/nuget/docs/output/content/style.css.bak
-/nuget/docs/output/content/style.css
-/nuget/docs/output/content/img/github.png
-/nuget/docs/output/content/img/github-blue.png
-/nuget/docs/files/img/logo.png
-/nuget/docs/files/img/logo-template.pdn
-/nuget/lib/net40
-/nuget/FSharp.Plotly.0.6.0-beta.nuspec

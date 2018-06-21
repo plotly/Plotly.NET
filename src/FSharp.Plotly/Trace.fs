@@ -67,6 +67,11 @@ module Trace =
     let initChoroplethMap (applyStyle:Trace->Trace) = 
         Trace("choropleth") |> applyStyle
 
+    /// Init trace for splom plot
+    let initSplom (applyStyle:Trace->Trace) = 
+        Trace("splom") |> applyStyle
+
+
     /// Functions provide the styling of the Chart objects
     type TraceStyle() =
         
@@ -916,4 +921,14 @@ module Trace =
                 ) 
 
 
-
+        // Applies the styles of Splom plot to TraceObjects 
+        static member Splom
+            (   
+                ?Dimensions : seq<Dimensions>
+            ) =
+                (fun (trace:('T :> Trace)) ->
+                    Dimensions   |> DynObj.setValueOpt trace "dimensions"
+                        
+                    // out ->
+                    trace
+                ) 

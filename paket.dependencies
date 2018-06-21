@@ -1,19 +1,26 @@
+framework: netstandard2.0, net461
 source https://nuget.org/api/v2
 
 nuget FSharp.Core redirects: force
 nuget Newtonsoft.Json
 
 group Build
-  source https://nuget.org/api/v2
-  
-  nuget SourceLink.Fake
-  nuget FAKE
-  nuget FSharp.Formatting
-  
-  github fsharp/FAKE modules/Octokit/Octokit.fsx
+    framework: net461
+    source https://nuget.org/api/v2
 
+    nuget FAKE
+    nuget FSharp.Formatting
+
+    nuget xunit.runner.console
+
+    github fsharp/FAKE modules/Octokit/Octokit.fsx
+    
+    nuget FSharp.Plotly
+    
 group Test
-  source https://nuget.org/api/v2
-  
-  nuget NUnit ~> 2
-  nuget NUnit.Runners ~> 2
+    framework: netcoreapp2.0, net461
+    source https://nuget.org/api/v2
+
+    nuget xunit
+    nuget Microsoft.NET.Test.Sdk
+    nuget xunit.runner.visualstudio

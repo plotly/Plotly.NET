@@ -1,10 +1,8 @@
 module FSharp.Plotly.Tests
 
+open FSharp.Plotly
+open Xunit
 
-open NUnit.Framework
-
-[<Test>]
-let ``hello returns 42`` () =
-  let result = 42
-  printfn "%i" result
-  Assert.AreEqual(42,result)
+[<Fact>]
+let ``true is always true`` () =
+    Assert.True(true)

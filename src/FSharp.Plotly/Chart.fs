@@ -482,6 +482,28 @@ type Chart =
             )
         |> GenericChart.ofTraceObject        
 
+     /// Computes the parallel coordinates plot
+    static member Splom(dims:seq<'key*#seq<'values>>,?Range,?Constraintrange,?Color,?Colorscale,?Width,?Dash,?Domain,?Labelfont,?Tickfont,?Rangefont) =
+        let dims' = 
+            dims |> Seq.map (fun (k,vals) -> 
+                Dimensions.init(vals)
+                |> Dimensions.style(vals,?Range=Range,?Constraintrange=Constraintrange,Label=k)
+                )
+        Trace.initSplom (
+            TraceStyle.Splom (Dimensions=dims')             
+            )
+        |> TraceStyle.Line(?Width=Width,?Color=Color,?Dash=Dash,?Colorscale=Colorscale)
+        |> GenericChart.ofTraceObject
+
+
+     /// Computes the Splom plot
+    static member Splom(dims:seq<Dimensions>,?Color,?Colorscale,?Width,?Dash,?Domain,?Labelfont,?Tickfont,?Rangefont) =
+        Trace.initSplom (
+            TraceStyle.Splom (Dimensions=dims)             
+            )
+        |> TraceStyle.Line(?Width=Width,?Color=Color,?Dash=Dash,?Colorscale=Colorscale)
+        |> GenericChart.ofTraceObject
+
     // ---------------------------------------------------------------------------------------------------------------------------------------------------
     // 3d - Chart --->
 

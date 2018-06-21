@@ -7,17 +7,11 @@ open Fake
 open Fake.Git
 open Fake.AssemblyInfoFile
 open Fake.ReleaseNotesHelper
-open Fake.UserInputHelper
 open System
 open System.IO
-#if MONO
-#else
-#load "packages/build/SourceLink.Fake/tools/Fake.fsx"
-open SourceLink
-#endif
 
 // --------------------------------------------------------------------------------------
-// START TODO: Provide project-specific details below
+// Information about the project to be used at NuGet and in AssemblyInfo files
 // --------------------------------------------------------------------------------------
 
 // Information about the project are used
@@ -39,31 +33,34 @@ let summary = "A F# interactive charting library using plotly.js"
 let description = "A F# interactive charting library using plotly.js"
 
 // List of author names (for NuGet package)
-let authors = [ "Timo Mühlhaus" ]
+let authors = [ "Timo M?hlhaus" ]
 
 // Tags for your project (for NuGet package)
-let tags = "Charting FSharp"
+let tags = ""
 
 // File system information
 let solutionFile  = "FSharp.Plotly.sln"
 
-// Pattern specifying assemblies to be tested using NUnit
-let testAssemblies = "tests/**/bin/Release/*Tests*.dll"
+// Default target configuration
+let configuration = environVarOrDefault "Configuration" "Release"
 
 // Git configuration (used for publishing documentation in gh-pages branch)
 // The profile where the project is posted
-let gitOwner = "muehlhaus"
-let gitHome = "https://github.com/" + gitOwner
+let gitOwner = "Timo M?hlhaus"
+let gitHome = sprintf "%s/%s" "https://github.com" gitOwner
 
 // The name of the project on GitHub
 let gitName = "FSharp.Plotly"
 
 // The url for the raw files hosted
-let gitRaw = environVarOrDefault "gitRaw" "https://raw.github.com/muehlhaus"
+let gitRaw = environVarOrDefault "gitRaw" "https://raw.githubusercontent.com/Timo M?hlhaus"
 
 // --------------------------------------------------------------------------------------
-// END TODO: The rest of the file includes standard build steps
+// The rest of the file includes standard build steps
 // --------------------------------------------------------------------------------------
+
+// dotnet cli version
+let dotnetcliVersion = "2.1.101"
 
 // Read additional information from the release notes document
 let release = LoadReleaseNotes "RELEASE_NOTES.md"
@@ -84,7 +81,8 @@ Target "AssemblyInfo" (fun _ ->
           Attribute.Product project
           Attribute.Description summary
           Attribute.Version release.AssemblyVersion
-          Attribute.FileVersion release.AssemblyVersion ]
+          Attribute.FileVersion release.AssemblyVersion
+          Attribute.Configuration configuration ]
 
     let getProjectDetails projectPath =
         let projectName = System.IO.Path.GetFileNameWithoutExtension(projectPath)
@@ -111,7 +109,7 @@ Target "AssemblyInfo" (fun _ ->
 Target "CopyBinaries" (fun _ ->
     !! "src/**/*.??proj"
     -- "src/**/*.shproj"
-    |>  Seq.map (fun f -> ((System.IO.Path.GetDirectoryName f) </> "bin/Release", "bin" </> (System.IO.Path.GetFileNameWithoutExtension f)))
+    |>  Seq.map (fun f -> ((System.IO.Path.GetDirectoryName f) </> "bin" </> configuration, "bin" </> (System.IO.Path.GetFileNameWithoutExtension f)))
     |>  Seq.iter (fun (fromDir, toDir) -> CopyDir toDir fromDir (fun _ -> true))
 )
 
@@ -119,56 +117,83 @@ Target "CopyBinaries" (fun _ ->
 // Clean build results
 
 Target "Clean" (fun _ ->
-    CleanDirs ["bin"; "temp"]
+    !! "src/*/*/bin"
+    ++ "tests/*/*/obj"
+    |> CleanDirs
+
+    CleanDirs ["bin"; "temp"; "docs/formatted"]
 )
 
-Target "CleanDocs" (fun _ ->
-    CleanDirs ["docs/output"]
+// restore and build
+
+Target "InstallDotNetCLI" (fun _ ->
+    let installedVersion =
+        if DotNetCli.isInstalled () then
+            DotNetCli.getVersion ()
+        else
+            ""
+
+    if not (installedVersion.StartsWith("2.1")) then
+        DotNetCli.InstallDotNetSDK dotnetcliVersion |> ignore
 )
 
-// --------------------------------------------------------------------------------------
-// Build library & test project
+Target "Restore" (fun _ ->
+    DotNetCli.Restore id
+)
 
 Target "Build" (fun _ ->
-    !! solutionFile
-#if MONO
-    |> MSBuildReleaseExt "" [ ("DefineConstants","MONO") ] "Rebuild"
-#else
-    |> MSBuildRelease "" "Rebuild"
-#endif
-    |> ignore
+    { BaseDirectory = __SOURCE_DIRECTORY__
+      Includes = [ project + ".sln" ]
+      Excludes = [] }
+    |> MSBuild "" "Build" ["Configuration", configuration;]
+    |> Log "AppBuild-Output: "
 )
 
 // --------------------------------------------------------------------------------------
-// Run the unit tests using test runner
+// Run the unit tests using dotnet cli tool
+
+open Fake.Testing
+
+let runTests config (proj : string) =
+    if EnvironmentHelper.isWindows then
+        DotNetCli.Test (fun c ->
+            { c with
+                Project = proj
+                Configuration = config })
+    else
+        // work around xunit/mono issue
+        let projDir = Path.GetDirectoryName proj
+        let projName = Path.GetFileNameWithoutExtension proj
+        let netcoreFrameworks, legacyFrameworks =
+            !! (projDir @@ "bin" @@ config @@ "*/")
+            |> Seq.map Path.GetFileName
+            |> Seq.toArray
+            |> Array.partition
+                (fun f ->
+                    f.StartsWith "netcore" ||
+                    f.StartsWith "netstandard")
+
+        for framework in netcoreFrameworks do
+            DotNetCli.Test (fun c ->
+                { c with
+                    Project = proj
+                    Framework = framework
+                    Configuration = config })
+
+        for framework in legacyFrameworks do
+            let assembly = projDir @@ "bin" @@ config @@ framework @@ projName + ".dll"
+            !! assembly
+            |> xUnit2 (fun c ->
+                { c with
+                    Parallel = ParallelMode.Collections
+                    TimeOut = TimeSpan.FromMinutes 20. })
+
+let testProjects = "tests/**/*.??proj"
 
 Target "RunTests" (fun _ ->
-    !! testAssemblies
-    |> NUnit (fun p ->
-        { p with
-            DisableShadowCopy = true
-            TimeOut = TimeSpan.FromMinutes 20.
-            OutputFile = "TestResults.xml" })
+    for proj in !! testProjects do
+        runTests "Release" proj
 )
-
-#if MONO
-#else
-// --------------------------------------------------------------------------------------
-// SourceLink allows Source Indexing on the PDB generated by the compiler, this allows
-// the ability to step through the source code of external libraries http://ctaggart.github.io/SourceLink/
-
-Target "SourceLink" (fun _ ->
-    let baseUrl = sprintf "%s/%s/{0}/%%var2%%" gitRaw project
-    !! "src/**/*.??proj"
-    -- "src/**/*.shproj"
-    |> Seq.iter (fun projFile ->
-        let proj = VsProj.LoadRelease projFile
-        proj |> ignore
-        //SourceLink.Index proj.CompilesNotLinked proj.OutputFilePdb __SOURCE_DIRECTORY__ baseUrl
-    )
-)
-
-#endif
 
 // --------------------------------------------------------------------------------------
 // Build a NuGet package
@@ -186,7 +211,6 @@ Target "PublishNuget" (fun _ ->
         { p with
             WorkingDir = "bin" })
 )
-
 
 // --------------------------------------------------------------------------------------
 // Generate the documentation
@@ -327,7 +351,7 @@ Target "ReleaseDocs" (fun _ ->
     CleanDir tempDocsDir
     Repository.cloneSingleBranch "" (gitHome + "/" + gitName + ".git") "gh-pages" tempDocsDir
 
-    CopyRecursive "docs/output" tempDocsDir true |> tracefn "%A"
+    CopyRecursive "docs/formatted" tempDocsDir true |> tracefn "%A"
     StageAll tempDocsDir
     Git.Commit.Commit tempDocsDir (sprintf "Update generated documentation for version %s" release.NugetVersion)
     Branches.push tempDocsDir
@@ -366,6 +390,18 @@ Target "Release" (fun _ ->
     |> Async.RunSynchronously
 )
 
+Target "ReleaseLocal" (fun _ ->
+    let tempDocsDir = "docs/local"
+    CreateDir tempDocsDir
+    CleanDir tempDocsDir
+    CopyRecursive "docs/formatted" tempDocsDir true |> tracefn "%A"
+    ReplaceInFiles
+        (seq {
+            yield "href=\"/" + project + "/","href=\""
+            yield "src=\"/" + project + "/","src=\""})
+        ((filesInDirMatching "*.html" (directoryInfo tempDocsDir)) |> Array.map (fun x -> tempDocsDir + "/" + x.Name))
+)
+
 Target "BuildPackage" DoNothing
 
 // --------------------------------------------------------------------------------------
@@ -374,39 +410,35 @@ Target "BuildPackage" DoNothing
 Target "All" DoNothing
 
 "Clean"
+  ==> "InstallDotNetCLI"
   ==> "AssemblyInfo"
+  ==> "Restore"
   ==> "Build"
   ==> "CopyBinaries"
   ==> "RunTests"
-  ==> "GenerateReferenceDocs"
-  ==> "GenerateDocs"
-  ==> "All"
-  =?> ("ReleaseDocs",isLocalBuild)
-
-"All"
-#if MONO
-#else
-  =?> ("SourceLink", Pdbstr.tryFind().IsSome )
-#endif
   ==> "NuGet"
   ==> "BuildPackage"
-
-"CleanDocs"
-  ==> "GenerateHelp"
+  ==> "All"
   ==> "GenerateReferenceDocs"
   ==> "GenerateDocs"
+  ==> "ReleaseLocal"
+  =?> ("ReleaseDocs",isLocalBuild)
 
-"CleanDocs"
-  ==> "GenerateHelpDebug"
+"GenerateHelp"
+  ==> "GenerateReferenceDocs"
+  ==> "GenerateDocs"
 
 "GenerateHelpDebug"
   ==> "KeepRunning"
 
-"ReleaseDocs"
+"Clean"
   ==> "Release"
 
 "BuildPackage"
   ==> "PublishNuget"
+  ==> "Release"
+
+"ReleaseDocs"
   ==> "Release"
 
 RunTargetOrDefault "All"

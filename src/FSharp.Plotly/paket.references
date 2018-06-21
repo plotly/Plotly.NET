@@ -1,2 +1,2 @@
-nuget FSharp.Core
-nuget Newtonsoft.Json
+FSharp.Core
+Newtonsoft.Json

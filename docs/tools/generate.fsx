@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------
 // Builds the documentation from `.fsx` and `.md` files in the 'docs/content' directory
-// (the generated documentation is stored in the 'docs/output' directory)
+// (the generated documentation is stored in the 'docs/formatted' directory)
 // --------------------------------------------------------------------------------------
 
 // Binaries that have XML documentation (in a corresponding generated XML file)
@@ -13,12 +13,12 @@ let referenceBinaries = []
 // Web site location for the generated documentation
 let website = "/FSharp.Plotly"
 
-let githubLink = "http://github.com/muehlhaus/FSharp.Plotly"
+let githubLink = "https://github.com/Timo M?hlhaus/FSharp.Plotly"
 
 // Specify more information about your project
 let info =
   [ "project-name", "FSharp.Plotly"
-    "project-author", "Timo Mühlhaus"
+    "project-author", "Timo M?hlhaus"
     "project-summary", "A F# interactive charting library using plotly.js"
     "project-github", githubLink
     "project-nuget", "http://nuget.org/packages/FSharp.Plotly" ]
@@ -26,9 +26,9 @@ let info =
 // --------------------------------------------------------------------------------------
 // For typical project, no changes are needed below
 // --------------------------------------------------------------------------------------
-#load "formatters.fsx"
 
 #load "../../packages/build/FSharp.Formatting/FSharp.Formatting.fsx"
+#load "../tools/formatters.fsx"
 #I "../../packages/build/FAKE/tools/"
 #r "FakeLib.dll"
 open Fake
@@ -42,13 +42,13 @@ open FSharp.MetadataFormat
 #if RELEASE
 let root = website
 #else
-let root = "file://" + (__SOURCE_DIRECTORY__ @@ "../output")
+let root = "file://" + (__SOURCE_DIRECTORY__ @@ "../formatted")
 #endif
 
 // Paths with template/source/output locations
 let bin        = __SOURCE_DIRECTORY__ @@ "../../bin"
 let content    = __SOURCE_DIRECTORY__ @@ "../content"
-let output     = __SOURCE_DIRECTORY__ @@ "../output"
+let output     = __SOURCE_DIRECTORY__ @@ "../formatted"
 let files      = __SOURCE_DIRECTORY__ @@ "../files"
 let templates  = __SOURCE_DIRECTORY__ @@ "templates"
 let formatting = __SOURCE_DIRECTORY__ @@ "../../packages/build/FSharp.Formatting/"
@@ -82,7 +82,7 @@ let binaries =
     let conventionBased = 
         directoryInfo bin 
         |> subDirectories
-        |> Array.map (fun d -> d.FullName @@ (sprintf "%s.dll" d.Name))
+        |> Array.map (fun d -> d.FullName @@ "net461" </> (sprintf "%s.dll" d.Name))
         |> List.ofArray
 
     conventionBased @ manuallyAdded
@@ -108,13 +108,11 @@ let buildReference () =
 
 // Build documentation from `fsx` and `md` files in `docs/content`
 let buildDocumentation () =
-  // Create evaluator and parse script
-  let fsi = Formatters.createFsiEvaluator root output
 
   // First, process files which are placed in the content root directory.
 
   Literate.ProcessDirectory
-    ( content, docTemplate, output, fsiEvaluator = fsi, replacements = ("root", root)::info,
+    ( content, docTemplate, output, replacements = ("root", root)::info,
       layoutRoots = layoutRootsAll.["en"],
       generateAnchors = true,
       processRecursive = false)
@@ -134,8 +132,8 @@ let buildDocumentation () =
         | None -> layoutRootsAll.["en"] // "en" is the default language
 
     Literate.ProcessDirectory
-      ( dir, docTemplate, output @@ dirname, fsiEvaluator = fsi, replacements = ("root", root)::info,
-        layoutRoots = layoutRoots,        
+      ( dir, docTemplate, output @@ dirname, replacements = ("root", root)::info,
+        layoutRoots = layoutRoots,
         generateAnchors = true )
 
 // Generate

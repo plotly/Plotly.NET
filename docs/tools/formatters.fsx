@@ -8,8 +8,8 @@ module Formatters
 #r "../../packages/build/FAKE/tools/FakeLib.dll"
 
 //#I "../../bin"
-#r "../../bin/FSharp.Plotly.dll"
-
+//#r "../../bin/FSharp.Plotly.dll"
+#r "../../packages/build/FSharp.Plotly/lib/net45/Fsharp.Plotly.dll"
 
 open Fake
 open System.IO
@@ -24,13 +24,14 @@ open FSharp.Plotly
 
 /// Builds FSI evaluator that can render System.Image, F# Charts, series & frames
 let createFsiEvaluator root output =
-
+  printfn "getting called"
   /// Counter for saving files
   let imageCounter = 
     let count = ref 0
     (fun () -> incr count; !count)
 
   let transformation (value:obj, typ:System.Type) =
+    printfn "transforming"
     match value with 
     | :? System.Drawing.Image as img ->
         // Pretty print image - save the image to the "images" directory 
