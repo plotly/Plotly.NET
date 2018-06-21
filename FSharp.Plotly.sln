@@ -1,6 +1,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{63297B98-5CED-492C-A5B7-A5B4F73CF142}"
 	ProjectSection(SolutionItems) = preProject
@@ -64,6 +65,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{ED8079DD-2B06-4030-9F0F-DC548F98E1C4}"
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FSharp.Plotly.Tests", "tests\FSharp.Plotly.Tests\FSharp.Plotly.Tests.fsproj", "{12CFF99C-5660-42FE-9370-9085A6558F16}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Plotly.Tests", "tests\FSharp.Plotly.Tests\FSharp.Plotly.Tests.fsproj", "{B7F06453-847A-4894-9705-7BFB793E5AFC}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Plotly", "src\FSharp.Plotly\FSharp.Plotly.fsproj", "{AF92DAC1-46E7-4C6A-B784-772A284DD3BD}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Plotly.WPF", "src\FSharp.Plotly.WPF\FSharp.Plotly.WPF.fsproj", "{2869F1FF-BA08-420C-AB41-CFF4835DD954}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +85,18 @@ Global
 		{12CFF99C-5660-42FE-9370-9085A6558F16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12CFF99C-5660-42FE-9370-9085A6558F16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12CFF99C-5660-42FE-9370-9085A6558F16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7F06453-847A-4894-9705-7BFB793E5AFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7F06453-847A-4894-9705-7BFB793E5AFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7F06453-847A-4894-9705-7BFB793E5AFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7F06453-847A-4894-9705-7BFB793E5AFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF92DAC1-46E7-4C6A-B784-772A284DD3BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF92DAC1-46E7-4C6A-B784-772A284DD3BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF92DAC1-46E7-4C6A-B784-772A284DD3BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF92DAC1-46E7-4C6A-B784-772A284DD3BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2869F1FF-BA08-420C-AB41-CFF4835DD954}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2869F1FF-BA08-420C-AB41-CFF4835DD954}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2869F1FF-BA08-420C-AB41-CFF4835DD954}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2869F1FF-BA08-420C-AB41-CFF4835DD954}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

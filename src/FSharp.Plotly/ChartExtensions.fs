@@ -392,4 +392,13 @@ module ChartExtensions =
             File.WriteAllText(path, html)
             System.Diagnostics.Process.Start(path) |> ignore
 
+        /// Show chart in browser            
+        static member ShowAsImage (format:StyleParam.ImageFormat) (ch:GenericChart) = 
+            let guid = Guid.NewGuid().ToString()
+            let html = GenericChart.toEmbeddedImage format ch
+            let tempPath = Path.GetTempPath()
+            let file = sprintf "%s.html" guid
+            let path = Path.Combine(tempPath, file)
+            File.WriteAllText(path, html)
+            System.Diagnostics.Process.Start(path) |> ignore
 

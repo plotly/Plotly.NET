@@ -91,7 +91,7 @@ module Trace =
                 (fun (trace:('T :> Trace)) ->  
                     Name        |> DynObj.setValueOpt trace "name"
                     Visible     |> DynObj.setValueOptBy trace "name" StyleParam.Visible.toString
-                    Showlegend  |> DynObj.setValueOpt trace "showlegendName"
+                    Showlegend  |> DynObj.setValueOpt trace "showlegend"
                     Legendgroup |> DynObj.setValueOpt trace "legendgroup"  
                     Opacity     |> DynObj.setValueOpt trace "opacity"
                     Uid         |> DynObj.setValueOpt trace "uid"
