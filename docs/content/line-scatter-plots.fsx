@@ -1,6 +1,6 @@
 (*** hide ***)
-#r "../../bin/Newtonsoft.Json.dll"
-#r "../../bin/FSharp.Plotly.dll"
+#r "netstandard"
+#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
 
 (** 
 # FSharp.Plotly: Line and Scatter Charts

@@ -1,6 +1,7 @@
 (*** hide ***)
-#r "../../bin/Newtonsoft.Json.dll"
+#r "netstandard"
 #r "../../bin/FSharp.Plotly.dll"
+
 
 (** 
 # FSharp.Plotly: Histogram2d
@@ -48,7 +49,6 @@ let y = Array.init n (fun i -> ((step i)**6.) + (0.3 * (normal (rnd) 0. 2.) ))
 (*** define-output:Histogram2d1 ***)
 Chart.Histogram2d (x,y)
 (*** include-it:Histogram2d1 ***)
-
 
 
 

@@ -1,7 +1,6 @@
 (*** hide ***)
 // This block of code is omitted in the generated HTML documentation. Use 
 // it to define helpers that you do not want to show in the documentation.
-#r "../../bin/Newtonsoft.Json.dll"
 
 (**
 FSharp.Plotly
@@ -12,8 +11,9 @@ The library FSharp.Plotly implements charting suitable for use from F# scripting
 FSharp.Plotly is powered by popular JavaScript charting library [Plotly](https://plot.ly/). The library provides a complete mapping for the configuration options of the underlying library but empowers you to use the comfortable style known from the beautiful library [F# Charting](http://fslab.org/FSharp.Charting/). So you get a nice F# interface support with the full power of Plotly.
 *)
 
-#r "../../bin/FSharp.Plotly.dll"
-#r "../../bin/FSharp.Plotly.WPF.dll"
+#r "../../bin/FSharp.Plotly.WPF/net461/FSharp.Plotly.dll"
+#r "../../bin/FSharp.Plotly.WPF/net461/FSharp.Plotly.WPF.dll"
+
 open FSharp.Plotly
 open FSharp.Plotly.WPF
 

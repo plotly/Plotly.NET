@@ -1,9 +1,8 @@
 (*** hide ***)
 // This block of code is omitted in the generated HTML documentation. Use 
 // it to define helpers that you do not want to show in the documentation.
-#r "../../bin/Newtonsoft.Json.dll"
-#r "../../lib/FSharp.Care.dll"
-
+#r "netstandard"
+#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
 (**
 Error bars
 =============================
@@ -12,7 +11,6 @@ How to create plots in FSharp.Plotly and add error bars to it.
 
 *)
 
-#r "../../bin/FSharp.Plotly.dll"
 open FSharp.Plotly
 
 let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]

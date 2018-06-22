@@ -1,8 +1,9 @@
 (*** hide ***)
 // This block of code is omitted in the generated HTML documentation. Use 
 // it to define helpers that you do not want to show in the documentation.
-#r "../../bin/Newtonsoft.Json.dll"
-#r "../../lib/FSharp.Care.dll"
+#r "netstandard"
+#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+
 
 (**
 Multiple charts and subcharts
@@ -11,8 +12,6 @@ Multiple charts and subcharts
 How to create subplots in FSharp.Plotly. Find examples of combined, stacked, and plots with multiple axis.
 
 *)
-
-#r "../../bin/FSharp.Plotly.dll"
 open FSharp.Plotly
 
 

@@ -1,4 +1,4 @@
-﻿namespace FSharp.Plotly
+namespace FSharp.Plotly
 
 open System
 open Newtonsoft.Json
@@ -143,7 +143,7 @@ module GenericChart =
             |> JsonConvert.SerializeObject 
 
         let html =
-            HTML.staticChart
+            HTML.chart
                 //.Replace("style=\"width: [WIDTH]px; height: [HEIGHT]px;\"","style=\"width: 600px; height: 600px;\"")
                 .Replace("[WIDTH]", string 600 )
                 .Replace("[HEIGHT]", string 600)
@@ -242,7 +242,6 @@ module GenericChart =
     /// Converts from a list of trace objects and a layout object into GenericChart
     let ofTraceObjects traces = // layout =
         GenericChart.MultiChart(traces, Layout() )
-
 
 
 

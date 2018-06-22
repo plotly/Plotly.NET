@@ -1,6 +1,7 @@
 (*** hide ***)
-#r "../../bin/Newtonsoft.Json.dll"
-#r "../../bin/FSharp.Plotly.dll"
+#r "netstandard"
+#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+
 
 (** 
 # FSharp.Plotly: Mesh3d
@@ -56,5 +57,3 @@ Trace3d.initMesh3d
         )
 |> GenericChart.ofTraceObject 
 (*** include-it:mesh3d_1 ***)
-
-
