@@ -147,6 +147,10 @@ Target "Build" (fun _ ->
       Excludes = [] }
     |> MSBuild "" "Build" ["Configuration", configuration;]
     |> Log "AppBuild-Output: "
+    Fake.FileHelper.CopyFile
+        (__SOURCE_DIRECTORY__+ @"\packages\Newtonsoft.Json\lib\netstandard2.0\Newtonsoft.Json.dll")
+        (__SOURCE_DIRECTORY__ + @"\src\FSharp.Plotly\bin\" + configuration + @"\netstandard2.0\Newtonsoft.Json.dll")
+       
 )
 
 // --------------------------------------------------------------------------------------
