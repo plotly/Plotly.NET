@@ -33,7 +33,7 @@ let summary = "A F# interactive charting library using plotly.js"
 let description = "A F# interactive charting library using plotly.js"
 
 // List of author names (for NuGet package)
-let authors = [ "Timo M?hlhaus" ]
+let authors = [ "Timo Mühlhaus" ]
 
 // Tags for your project (for NuGet package)
 let tags = ""
@@ -46,7 +46,7 @@ let configuration = environVarOrDefault "Configuration" "Release"
 
 // Git configuration (used for publishing documentation in gh-pages branch)
 // The profile where the project is posted
-let gitOwner = "Timo M?hlhaus"
+let gitOwner = "Timo Mühlhaus"
 let gitHome = sprintf "%s/%s" "https://github.com" gitOwner
 
 // The name of the project on GitHub
@@ -148,8 +148,8 @@ Target "Build" (fun _ ->
     |> MSBuild "" "Build" ["Configuration", configuration;]
     |> Log "AppBuild-Output: "
     Fake.FileHelper.CopyFile
-        (__SOURCE_DIRECTORY__+ @"\packages\Newtonsoft.Json\lib\netstandard2.0\Newtonsoft.Json.dll")
         (__SOURCE_DIRECTORY__ + @"\src\FSharp.Plotly\bin\" + configuration + @"\netstandard2.0\Newtonsoft.Json.dll")
+        (__SOURCE_DIRECTORY__+ @"\packages\Newtonsoft.Json\lib\netstandard2.0\Newtonsoft.Json.dll")
        
 )
 
