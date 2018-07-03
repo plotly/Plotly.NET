@@ -2,13 +2,12 @@ framework: netstandard2.0, net461
 source https://nuget.org/api/v2
 
 nuget FSharp.Core redirects: force
-nuget Newtonsoft.Json redirects: force
 nuget HtmlAgilityPack
 nuget Microsoft.Xaml
 
 
 group Build
-    framework: net461
+    framework: netstandard2.0, net461
     source https://nuget.org/api/v2
 
     nuget FAKE

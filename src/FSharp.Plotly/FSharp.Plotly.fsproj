@@ -37,8 +37,6 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.1" >
-      <Private>True</Private>
-      <Paket>True</Paket>
     </PackageReference>
   </ItemGroup>
 
