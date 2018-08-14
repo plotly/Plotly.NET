@@ -1,6 +1,6 @@
 FSharp.Core
 
-group Test
-    xunit
-    Microsoft.NET.Test.Sdk
-    xunit.runner.visualstudio
+Expecto
+Expecto.BenchmarkDotNet
+Expecto.FsCheck
+Expecto.VisualStudio.TestAdapter

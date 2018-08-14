@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.0;net461</TargetFrameworks>
-    <ProjectGuid>12cff99c-5660-42fe-9370-9085a6558f16</ProjectGuid>
+    <TargetFramework>net47</TargetFramework>
     <RootNamespace>FSharp.Plotly.Tests</RootNamespace>
     <AssemblyName>FSharp.Plotly.Tests</AssemblyName>
-    <DebugType>portable</DebugType>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Name>FSharp.Plotly.Tests</Name>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
-
   <ItemGroup>
+    <Compile Include="Generators.fs" />
     <Compile Include="Tests.fs" />
-    <Content Include="App.config" />
+    <Compile Include="RunTests.fs" />
+    <None Include="paket.references" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\FSharp.Plotly\FSharp.Plotly.fsproj" />
+    <ProjectReference Include="..\..\src\FSharp.Plotly\FSharp.Plotly.fsproj"></ProjectReference>
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

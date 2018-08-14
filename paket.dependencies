@@ -1,29 +1,38 @@
-framework: netstandard2.0, net461
+framework: auto-detect
+
 source https://nuget.org/api/v2
 
-nuget FSharp.Core redirects: force
+nuget FSharp.Core
 nuget Newtonsoft.Json
-nuget HtmlAgilityPack
-nuget Microsoft.Xaml
+nuget Argu
 
+nuget Expecto
+nuget Expecto.BenchmarkDotNet
+nuget Expecto.FsCheck
+nuget Expecto.VisualStudio.TestAdapter version_in_path: true
 
-group Build
-    framework: netstandard2.0, net461
-    source https://nuget.org/api/v2
+clitool dotnet-fake
 
-    nuget FAKE
-    nuget FSharp.Formatting
+group Formatting
+source https://nuget.org/api/v2
+source https://ci.appveyor.com/nuget/fsharp-formatting
 
-    nuget xunit.runner.console
+nuget FSharp.Formatting prerelease
+nuget FSharp.Formatting.CommandTool prerelease
 
-    github fsharp/FAKE modules/Octokit/Octokit.fsx
-    
-    nuget FSharp.Plotly
-    
-group Test
-    framework: netcoreapp2.0, net461
-    source https://nuget.org/api/v2
+group FakeBuild
+source https://api.nuget.org/v3/index.json
 
-    nuget xunit
-    nuget Microsoft.NET.Test.Sdk
-    nuget xunit.runner.visualstudio
+storage: none
+
+nuget Fake.Core.Target
+nuget Fake.IO.FileSystem
+nuget Fake.DotNet.Cli
+nuget Fake.Tools.Git
+nuget Fake.DotNet.MSBuild
+nuget Fake.Core.ReleaseNotes 
+nuget Fake.DotNet.AssemblyInfoFile
+nuget Fake.DotNet.Paket
+nuget Fake.DotNet.Testing.Expecto 
+nuget Fake.DotNet.FSFormatting 
+nuget Fake.Api.GitHub

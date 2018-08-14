@@ -1,21 +1,15 @@
-#!/bin/bash
-if test "$OS" = "Windows_NT"
-then
-  # use .Net
+#!/usr/bin/env bash
+# to properly set Travis permissions: https://stackoverflow.com/questions/33820638/travis-yml-gradlew-permission-denied
+# git update-index --chmod=+x fake.sh
+# git commit -m "permission access for travis"
 
-  .paket/paket.exe restore
-  exit_code=$?
-  if [ $exit_code -ne 0 ]; then
-  	exit $exit_code
-  fi
+set -eu
+set -o pipefail
 
-  packages/build/FAKE/tools/FAKE.exe $@ --fsiargs build.fsx
-else
-  # use mono
-  mono .paket/paket.exe restore
-  exit_code=$?
-  if [ $exit_code -ne 0 ]; then
-  	exit $exit_code
-  fi
-  mono packages/build/FAKE/tools/FAKE.exe $@ --fsiargs -d:MONO build.fsx
+dotnet restore build.proj
+
+if [ ! -f build.fsx ]; then
+    fake run init.fsx
 fi
+
+fake build $@

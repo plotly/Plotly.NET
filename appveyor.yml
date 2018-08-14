@@ -1,29 +1,11 @@
-version: '0.0.1.{build}'
 image: Visual Studio 2017
-# branches:
-#   only:
-#   - master
-skip_tags: true
+
 init:
-  # Good practise, because Windows line endings are different from Unix/Linux ones
-  - cmd: git config --global core.autocrlf true
-install:
-  # Install repo specific stuff here
-before_build:
-  # Display .NET Core version
-  - cmd: dotnet --version
+  - git config --global core.autocrlf input
 build_script:
-  # output will be in bin
   - cmd: build.cmd All
-after_build:
-  # For once the build has completed
+test: off
+version: 0.0.1.{build}
 artifacts:
- - path: 'bin\*.nupkg'
-   name: FSharp.FGL
-   type: NuGetPackage
-clone_depth: 1
-test_script:
-  # done in build step
-on_finish :
-  # any cleanup in here
-deploy: off
+  - path: bin
+    name: bin

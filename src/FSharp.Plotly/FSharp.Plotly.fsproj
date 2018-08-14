@@ -1,14 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
-        <ProjectGuid>4e235ddd-1b59-4a93-abe9-2feef18b09a1</ProjectGuid>
-        <RootNamespace>FSharp.Plotly</RootNamespace>
-        <AssemblyName>FSharp.Plotly</AssemblyName>
-        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-        <DocumentationFile>bin\$(Configuration)\$(AssemblyName).XML</DocumentationFile>
-    </PropertyGroup>
-
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net45;net47;netstandard2.0</TargetFrameworks>
+    <RootNamespace>FSharp.Plotly</RootNamespace>
+    <AssemblyName>FSharp.Plotly</AssemblyName>
+    <Name>FSharp.Plotly</Name>
+    <OutputType>Library</OutputType>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- Optional: Declare that the Repository URL can be published to NuSpec -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <!-- Optional: Embed source files that are not tracked by the source control manager to the PDB -->
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <!-- Optional: Include PDB in the built .nupkg -->
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="StyleParams.fs" />
     <Compile Include="DynamicObj.fs" />
@@ -32,16 +36,8 @@
     <Compile Include="GenericChart.fs" />
     <Compile Include="Chart.fs" />
     <Compile Include="ChartExtensions.fs" />
-    <None Include="Script.fsx" />
+    <None Include="paket.references" />
+    <None Include="paket.template" />
   </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
-    
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Content Include="App.config" />
-  </ItemGroup>
-    <Import Project="..\..\.paket\Paket.Restore.targets" />
+  <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

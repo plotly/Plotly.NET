@@ -1,25 +1,29 @@
-type project
+type file
+id FSharp.Plotly
 title
-    FSharp.FGL
+    FSharp.Plotly
 owners
     Timo Mühlhaus
-authors
+authors 
     Timo Mühlhaus
 projectUrl
-    https://github.com/CSBiology/FSharp.FGL
+    https://github.com/Timo Mühlhaus/FSharp.Plotly
 iconUrl
-    https://raw.githubusercontent.com/CSBiology/FSharp.FGL/master/docs/files/img/logo.png
+    https://raw.githubusercontent.com/Timo Mühlhaus/FSharp.Plotly/master/docs/files/img/logo.png
 licenseUrl
-    https://github.com/CSBiology/FSharp.FGL/blob/master/LICENSE.txt
+    https://github.com/Timo Mühlhaus/FSharp.Plotly/blob/master/LICENSE.txt
 requireLicenseAcceptance
     false
+language
+    F#
 copyright
-    Copyright 2015
+    Copyright 2017
 tags
-    functional graph library F# FSharp bioinformatics
+    visualization charting plotly F#
 summary
-    Functional graph library for F#
+    A F# interactive charting library using plotly.js
 description
-    Functional graph library for F#
+    A F# interactive charting library using plotly.js
+
 files
-	bin\Release\netstandard2.0\Newtonsoft.Json.dll ==> lib\netstandard2.0\
+	../../bin/FSharp.Plotly ==> lib

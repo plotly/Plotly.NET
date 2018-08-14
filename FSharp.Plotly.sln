@@ -1,29 +1,28 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2036
+VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{63297B98-5CED-492C-A5B7-A5B4F73CF142}"
 	ProjectSection(SolutionItems) = preProject
 		paket.dependencies = paket.dependencies
 		paket.lock = paket.lock
+		paket.references = paket.references
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{A6A6AF7D-D6E3-442D-9B1E-58CC91879BE1}"
 EndProject
-Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FSharp.Plotly", "src\FSharp.Plotly\FSharp.Plotly.fsproj", "{4E235DDD-1B59-4A93-ABE9-2FEEF18B09A1}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FSharp.Plotly", "src\FSharp.Plotly\FSharp.Plotly.fsproj", "{F635BEEF-9609-4485-8C72-D8090A5F40A2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "project", "project", "{BF60BC93-E09B-4E5F-9D85-95A519479D54}"
 	ProjectSection(SolutionItems) = preProject
-		build.fsx = build.fsx
 		README.md = README.md
 		RELEASE_NOTES.md = RELEASE_NOTES.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{83F16175-43B1-4C90-A1EE-8E351C33435D}"
 	ProjectSection(SolutionItems) = preProject
-		docs\tools\formatters.fsx = docs\tools\formatters.fsx
-		docs\tools\generate.fsx = docs\tools\generate.fsx
-		docs\tools\templates\template.cshtml = docs\tools\templates\template.cshtml
+		docsrc\tools\generate.fsx = docsrc\tools\generate.fsx
+		docsrc\tools\templates\template.cshtml = docsrc\tools\templates\template.cshtml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{8E6D5255-776D-4B61-85F9-73C37AA1FB9A}"
@@ -45,7 +44,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{8E6D
 		docs\content\heatmaps.fsx = docs\content\heatmaps.fsx
 		docs\content\histograms.fsx = docs\content\histograms.fsx
 		docs\content\index.fsx = docs\content\index.fsx
-		docs\content\license.md = docs\content\license.md
 		docs\content\line-scatter-plots.fsx = docs\content\line-scatter-plots.fsx
 		docs\content\multiple-charts.fsx = docs\content\multiple-charts.fsx
 		docs\content\parallel-coords.fsx = docs\content\parallel-coords.fsx
@@ -53,19 +51,32 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{8E6D
 		docs\content\plotly-wpf.fsx = docs\content\plotly-wpf.fsx
 		docs\content\polar-charts.fsx = docs\content\polar-charts.fsx
 		docs\content\range-plots.fsx = docs\content\range-plots.fsx
-		docs\content\release-notes.md = docs\content\release-notes.md
 		docs\content\shapes.fsx = docs\content\shapes.fsx
-		docs\content\splom.fsx = docs\content\splom.fsx
-		docs\content\tutorial.fsx = docs\content\tutorial.fsx
 		docs\content\violin-plots.fsx = docs\content\violin-plots.fsx
 		docs\content\windrose-charts.fsx = docs\content\windrose-charts.fsx
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{ED8079DD-2B06-4030-9F0F-DC548F98E1C4}"
 EndProject
-Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FSharp.Plotly.Tests", "tests\FSharp.Plotly.Tests\FSharp.Plotly.Tests.fsproj", "{12CFF99C-5660-42FE-9370-9085A6558F16}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FSharp.Plotly.Tests", "tests\FSharp.Plotly.Tests\FSharp.Plotly.Tests.fsproj", "{82EEB69B-361E-486E-9F54-D346A8C76CC9}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Plotly.WPF", "src\FSharp.Plotly.WPF\FSharp.Plotly.WPF.fsproj", "{2869F1FF-BA08-420C-AB41-CFF4835DD954}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "git", "git", "{078A9C52-DDC1-46F4-9235-9E6C89C87AFD}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{7C6D08E7-3EAC-4335-8F4B-252C193C27C9}"
+	ProjectSection(SolutionItems) = preProject
+		.travis.yml = .travis.yml
+		appveyor.yml = appveyor.yml
+		build.cmd = build.cmd
+		build.fsx = build.fsx
+		build.proj = build.proj
+		build.sh = build.sh
+	EndProjectSection
+EndProject
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FSharp.Plotly.WPF", "src\FSharp.Plotly.WPF\FSharp.Plotly.WPF.fsproj", "{B88586CA-044D-4D65-AB51-A7339C83D42F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,18 +84,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4E235DDD-1B59-4A93-ABE9-2FEEF18B09A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4E235DDD-1B59-4A93-ABE9-2FEEF18B09A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4E235DDD-1B59-4A93-ABE9-2FEEF18B09A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4E235DDD-1B59-4A93-ABE9-2FEEF18B09A1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{12CFF99C-5660-42FE-9370-9085A6558F16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{12CFF99C-5660-42FE-9370-9085A6558F16}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{12CFF99C-5660-42FE-9370-9085A6558F16}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{12CFF99C-5660-42FE-9370-9085A6558F16}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2869F1FF-BA08-420C-AB41-CFF4835DD954}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2869F1FF-BA08-420C-AB41-CFF4835DD954}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2869F1FF-BA08-420C-AB41-CFF4835DD954}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2869F1FF-BA08-420C-AB41-CFF4835DD954}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F635BEEF-9609-4485-8C72-D8090A5F40A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F635BEEF-9609-4485-8C72-D8090A5F40A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F635BEEF-9609-4485-8C72-D8090A5F40A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F635BEEF-9609-4485-8C72-D8090A5F40A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82EEB69B-361E-486E-9F54-D346A8C76CC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82EEB69B-361E-486E-9F54-D346A8C76CC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82EEB69B-361E-486E-9F54-D346A8C76CC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82EEB69B-361E-486E-9F54-D346A8C76CC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B88586CA-044D-4D65-AB51-A7339C83D42F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B88586CA-044D-4D65-AB51-A7339C83D42F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B88586CA-044D-4D65-AB51-A7339C83D42F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B88586CA-044D-4D65-AB51-A7339C83D42F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,9 +103,9 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{83F16175-43B1-4C90-A1EE-8E351C33435D} = {A6A6AF7D-D6E3-442D-9B1E-58CC91879BE1}
 		{8E6D5255-776D-4B61-85F9-73C37AA1FB9A} = {A6A6AF7D-D6E3-442D-9B1E-58CC91879BE1}
-		{12CFF99C-5660-42FE-9370-9085A6558F16} = {ED8079DD-2B06-4030-9F0F-DC548F98E1C4}
+		{82EEB69B-361E-486E-9F54-D346A8C76CC9} = {ED8079DD-2B06-4030-9F0F-DC548F98E1C4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {C50F9EB5-7227-4BA5-AF8F-BCA7F7ECD383}
+		SolutionGuid = {7177F1E1-341C-48AB-9864-6B525FFF7633}
 	EndGlobalSection
 EndGlobal
