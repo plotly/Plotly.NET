@@ -3,6 +3,7 @@
 // --------------------------------------------------------------------------------------
 
 #r "paket: groupref FakeBuild //"
+open Fake.IO
 
 #load "./.fake/build.fsx/intellisense.fsx"
 
@@ -56,7 +57,7 @@ let testAssemblies = "tests/**/bin" </> configuration </> "**" </> "*Tests.exe"
 
 // Git configuration (used for publishing documentation in gh-pages branch)
 // The profile where the project is posted
-let gitOwner = "Timo Mühlhaus"
+let gitOwner = "muehlhaus"
 let gitHome = sprintf "%s/%s" "https://github.com" gitOwner
 
 // The name of the project on GitHub
@@ -374,6 +375,17 @@ Target.create "Release" (fun _ ->
 Target.create "BuildPackage" ignore
 Target.create "GenerateDocs" ignore
 
+Target.create "GitReleaseNuget" (fun _ ->
+    let tempNugetDir = "temp/nuget"
+    Shell.cleanDir tempNugetDir |> ignore
+    Git.Repository.cloneSingleBranch "" (gitHome + "/" + gitName + ".git") "nuget" tempNugetDir
+    let files = Directory.EnumerateFiles bin 
+    Shell.copy tempNugetDir files
+    Git.Staging.stageAll tempNugetDir
+    Git.Commit.exec tempNugetDir (sprintf "Update git nuget packages for version %s" release.NugetVersion)
+    Git.Branches.push tempNugetDir
+)
+
 // --------------------------------------------------------------------------------------
 // Run all targets by default. Invoke 'build <Target>' to override
 
@@ -402,5 +414,9 @@ Target.create "All" ignore
 "BuildPackage"
   ==> "PublishNuget"
   ==> "Release"
+
+
+"BuildPackage"
+  ==> "GitReleaseNuget"
 
 Target.runOrDefault "All"
