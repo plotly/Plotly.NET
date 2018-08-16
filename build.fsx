@@ -161,6 +161,9 @@ Target.create "Build" (fun _ ->
                 ]
          }
     MSBuild.build setParams solutionFile
+    Shell.copyFile
+        (__SOURCE_DIRECTORY__ + @"\src\FSharp.Plotly\bin\" + configuration + @"\netstandard2.0\Newtonsoft.Json.dll")
+        (__SOURCE_DIRECTORY__+ @"\packages\Newtonsoft.Json\lib\netstandard2.0\Newtonsoft.Json.dll")
 )
 
 // --------------------------------------------------------------------------------------
@@ -416,7 +419,12 @@ Target.create "All" ignore
   ==> "Release"
 
 
-"BuildPackage"
+"Clean"
+  ==> "AssemblyInfo"
+  ==> "Build"
+  ==> "CopyBinaries"
+  ==> "RunTests"
+  ==> "NuGet"
   ==> "GitReleaseNuget"
 
 Target.runOrDefault "All"

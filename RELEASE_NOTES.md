@@ -1,3 +1,7 @@
+### 1.1.2 - Aug 16 2018
+* Support .net framework 4.7
+* Minor improvments 
+
 ### 1.1.1 - Jun 22 2018
 * Support netStandard 2.0
 * Add new chart (SLOMP)
