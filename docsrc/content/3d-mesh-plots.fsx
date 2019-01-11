@@ -60,4 +60,4 @@ let mesh3d =
 (***do-not-eval***)
 mesh3d |> Chart.Show
 
-(*** include-value:mesh3d_1 ***)
+(*** include-value:mesh3d ***)

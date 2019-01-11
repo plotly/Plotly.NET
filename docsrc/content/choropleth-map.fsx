@@ -73,5 +73,5 @@ let choroplethMap1 =
 (***do-not-eval***)
 choroplethMap1 |> Chart.Show
 
-(*** include-value:ChoroplethMap1 ***)
+(*** include-value:choroplethMap1 ***)
 
