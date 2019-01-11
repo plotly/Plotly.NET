@@ -1,6 +1,6 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r @"../../lib/Formatting/FSharp.Plotly.dll"
 
 (** 
 # FSharp.Plotly: Wind Rose chart
@@ -20,15 +20,19 @@ let r''' = [20.0; 7.5; 15.0; 22.5; 2.5; 2.5; 12.5; 22.5]
 
 let t = ["North"; "N-E"; "East"; "S-E"; "South"; "S-W"; "West"; "N-W"]
   
-(*** define-output:windrose1 ***)
-[
-    Chart.WindRose (r   ,t,Name="11-14 m/s")
-    Chart.WindRose (r'  ,t,Name="8-11 m/s")
-    Chart.WindRose (r'' ,t,Name="5-8 m/s")
-    Chart.WindRose (r''',t,Name="< 5 m/s")
-]
-|> Chart.Combine
-(*** include-it:windrose1 ***)
+let windrose1 =
+    [
+        Chart.WindRose (r   ,t,Name="11-14 m/s")
+        Chart.WindRose (r'  ,t,Name="8-11 m/s")
+        Chart.WindRose (r'' ,t,Name="5-8 m/s")
+        Chart.WindRose (r''',t,Name="< 5 m/s")
+    ]
+    |> Chart.Combine
+
+(***do-not-eval***)
+windrose1 |> Chart.Show
+
+(*** include-value:windrose1 ***)
 
 
 

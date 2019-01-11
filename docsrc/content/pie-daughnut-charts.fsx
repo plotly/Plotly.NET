@@ -1,6 +1,6 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r @"../../lib/Formatting/FSharp.Plotly.dll"
 
 (** 
 # FSharp.Plotly: Pie and Doughnut Charts
@@ -17,13 +17,18 @@ open FSharp.Plotly
 let values = [19; 26; 55;]
 let labels = ["Residential"; "Non-Residential"; "Utility"]
   
-(*** define-output:pie1 ***)
-Chart.Pie(values,labels)
-(*** include-it:pie1 ***)
+let pie1 =
+    Chart.Pie(values,labels)
 
-(*** define-output:doughnut1 ***)
-Chart.Doughnut(values,labels,Hole=0.3,Textinfo=labels)
-(*** include-it:doughnut1 ***)
-|> Chart.Show
+(***do-not-eval***)
+pie1 |> Chart.Show
 
+(*** include-value:pie1 ***)
 
+let doughnut1 =
+    Chart.Doughnut(values,labels,Hole=0.3,Textinfo=labels)
+
+(***do-not-eval***)
+doughnut1|> Chart.Show
+
+(*** include-value:doughnut1 ***)

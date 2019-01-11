@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>FSharp.Formatting.Razor</name></assembly>
+<members>
+<member name="T:FSharp.Collections.Tree`1">
+<summary>
+ Represents a tree with nodes containing values an a list of children
+
+ [omit]
+</summary>
+</member>
+<member name="M:FSharp.Collections.Tree.ofIndentedList``1(Microsoft.FSharp.Collections.FSharpList{System.Tuple{System.Int32,``0}})">
+<summary>
+ Turns a list of items with an indentation specified by an integer
+ into a tree where indented items are children.
+</summary>
+</member>
+<member name="M:FSharp.Collections.Tree.takeDeeperThan``2(``0,Microsoft.FSharp.Collections.FSharpList{System.Tuple{``0,``1}})">
+<summary>
+ Takes elements that are deeper (children) and turns them into nodes
+</summary>
+</member>
+<member name="M:FSharp.Collections.Tree.takeAtLevel``2(``0,Microsoft.FSharp.Collections.FSharpList{System.Tuple{``0,``1}})">
+<summary>
+ Takes all elements at the specified level and turns them into nodes
+</summary>
+</member>
+<member name="T:FSharp.Collections.Tree">
+<summary>
+ [omit]
+</summary>
+</member>
+<member name="M:FSharp.Collections.List.nestUnderLastMatching``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ A function that nests items of the input sequence 
+ that do not match a specified predicate under the 
+ last item that matches the predicate. 
+</summary>
+</member>
+<member name="M:FSharp.Collections.List.partitionUntilEquals``1(Microsoft.FSharp.Collections.FSharpList{``0},Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Partitions the input list into two parts - the break is added 
+ at a point where the list starts with the specified sub-list.
+</summary>
+</member>
+<member name="M:FSharp.Collections.List.startsWith``1(Microsoft.FSharp.Collections.FSharpList{``0},Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Tests whether a list starts with the elements of another
+ list (specified as the first parameter)
+</summary>
+</member>
+<member name="M:FSharp.Collections.List.iterInterleaved``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.Unit},Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,Microsoft.FSharp.Core.Unit},Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Iterates over the elements of the list and calls the first function for 
+ every element. Between each two elements, the second function is called.
+</summary>
+</member>
+<member name="M:FSharp.Collections.List.partitionUntilLookahead``1(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Collections.FSharpList{``0},System.Boolean},Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Partitions list into an initial sequence (while the 
+ specified predicate returns &apos;false&apos;) and a rest of the list.
+</summary>
+</member>
+<member name="M:FSharp.Collections.List.partitionUntil``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Partitions list into an initial sequence (while the 
+ specified predicate returns &apos;false&apos;) and a rest of the list.
+</summary>
+</member>
+<member name="M:FSharp.Collections.List.partitionWhileLookahead``1(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Collections.FSharpList{``0},System.Boolean},Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Partitions list into an initial sequence (while the specified predicate 
+ returns true) and a rest of the list. The predicate gets the entire 
+ tail of the list and can perform lookahead.
+</summary>
+</member>
+<member name="M:FSharp.Collections.List.partitionWhile``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Partitions list into an initial sequence (while the 
+ specified predicate returns true) and a rest of the list.
+</summary>
+</member>
+<member name="M:FSharp.Collections.List.skipWhile``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Skips elements while the predicate returns &apos;true&apos; and then 
+ returns the rest of the list as a result.
+</summary>
+</member>
+<member name="M:FSharp.Collections.List.skip``1(System.Int32,Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Skips the specified number of elements. Fails if the list is smaller.
+</summary>
+</member>
+<member name="M:FSharp.Collections.List.singleton``1(``0)">
+<summary>
+ Returns a singleton list containing a specified value
+</summary>
+</member>
+<member name="T:FSharp.Collections.List">
+<summary>
+ [omit]
+</summary>
+</member>
+<member name="M:FSharp.Patterns.|Command|_|``2(``0,System.Collections.Generic.IDictionary{``0,``1})">
+<summary>
+ Lookup in a dictionary
+</summary>
+</member>
+<member name="M:FSharp.Patterns.|ParseCommand|_|(System.String)">
+<summary>
+ Utility for parsing commands - this deals with a single command.
+ The key of the command should be identifier with just 
+ characters in it - otherwise, the parsing fails.
+</summary>
+</member>
+<member name="M:FSharp.Patterns.|ParseCommands|_|(System.String)">
+<summary>
+ Utility for parsing commands. Commands can be used in different places. We 
+ recognize `key1=value, key2=value` and also `key1:value, key2:value`
+ The key of the command should be identifier with just 
+ characters in it - otherwise, the parsing fails.
+</summary>
+</member>
+<member name="M:FSharp.Patterns.|Let|``2(``0,``1)">
+<summary>
+ Parameterized pattern that assigns the specified value to the 
+ first component of a tuple. Usage:
+
+    match str with
+    | Let 1 (n, &quot;one&quot;) | Let 2 (n, &quot;two&quot;) -&gt; n
+ 
+</summary>
+</member>
+<member name="M:FSharp.Patterns.Lines.|TrimParagraphLines|(Microsoft.FSharp.Collections.FSharpList{System.Tuple{System.String,FSharp.Formatting.Common.MarkdownRange}})">
+<summary>
+ Trims all lines of the current paragraph
+</summary>
+</member>
+<member name="P:FSharp.Patterns.Lines.|TrimBlankStart|">
+<summary>
+ Removes whitespace lines from the beginning of the list
+</summary>
+</member>
+<member name="M:FSharp.Patterns.Lines.|TakeCodeBlock|_|(Microsoft.FSharp.Collections.FSharpList{System.Tuple{System.String,FSharp.Formatting.Common.MarkdownRange}})">
+<summary>
+ Matches when there are some lines at the beginning that are
+ either empty (or whitespace) or start with at least 4 spaces (a tab counts as 4 spaces here).
+ Returns all such lines from the beginning until a different line and
+ the number of spaces the first line started with.
+</summary>
+</member>
+<member name="M:FSharp.Patterns.Lines.|TakeStartingWithOrBlank|_|(System.String,Microsoft.FSharp.Collections.FSharpList{System.String})">
+<summary>
+ Matches when there are some lines at the beginning that are 
+ either empty (or whitespace) or start with the specified string.
+ Returns all such lines from the beginning until a different line.
+</summary>
+</member>
+<member name="M:FSharp.Patterns.Lines.|TrimBlank|``1(Microsoft.FSharp.Collections.FSharpList{System.Tuple{System.String,``0}})">
+<summary>
+ Removes blank lines from the start and the end of a list
+</summary>
+</member>
+<member name="M:FSharp.Patterns.List.|AsString|(Microsoft.FSharp.Collections.FSharpList{System.Char})">
+<summary>
+ Returns a list of characters as a string.
+</summary>
+</member>
+<member name="M:FSharp.Patterns.List.|BracketDelimited|_|(System.Char,System.Char,Microsoft.FSharp.Collections.FSharpList{System.Char})">
+<summary>
+ Matches a list if it starts with a bracketed list. Nested brackets
+ are skipped (by counting opening and closing brackets) and can be 
+ escaped using the &apos;\&apos; symbol.
+</summary>
+</member>
+<member name="M:FSharp.Patterns.List.|Delimited|_|``1(Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Matches a list if it starts with a sub-list that is delimited
+ using the specified delimiter. Returns a wrapped list and the rest.
+</summary>
+</member>
+<member name="M:FSharp.Patterns.List.|StartsWith|_|``1(Microsoft.FSharp.Collections.FSharpList{``0},Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Matches a list if it starts with a sub-list. Returns the list.
+</summary>
+</member>
+<member name="M:FSharp.Patterns.List.|DelimitedWith|_|``1(Microsoft.FSharp.Collections.FSharpList{``0},Microsoft.FSharp.Collections.FSharpList{``0},Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Matches a list if it starts with a sub-list that is delimited
+ using the specified delimiters. Returns a wrapped list and the rest.
+</summary>
+</member>
+<member name="M:FSharp.Patterns.StringPosition.|EqualsRepeated|_|(System.String,FSharp.Formatting.Common.MarkdownRange,System.String,FSharp.Formatting.Common.MarkdownRange)">
+<summary>
+ Matches when a string consists of some number of 
+ complete repetitions of a specified sub-string.
+</summary>
+</member>
+<member name="M:FSharp.Patterns.StringPosition.|StartsWithWrapped|_|(System.String,System.String,System.String,FSharp.Formatting.Common.MarkdownRange)">
+<summary>
+ Matches when a string starts with a sub-string wrapped using the 
+ opening and closing sub-string specified in the parameter.
+ For example &quot;[aa]bc&quot; is wrapped in [ and ] pair. Returns the wrapped
+ text together with the rest.
+</summary>
+</member>
+<member name="M:FSharp.Patterns.StringPosition.|StartsWithRepeated|_|(System.String,System.String,FSharp.Formatting.Common.MarkdownRange)">
+<summary>
+ Matches when a string starts with a non-zero number of complete
+ repetitions of the specified parameter (and returns the number
+ of repetitions, together with the rest of the string)
+
+    let (StartsWithRepeated &quot;/\&quot; (2, &quot; abc&quot;)) = &quot;/\/\ abc&quot;
+
+</summary>
+</member>
+<member name="M:FSharp.Patterns.StringPosition.|StartsAndEndsWithTrim|_|(System.String,System.String,System.String,FSharp.Formatting.Common.MarkdownRange)">
+<summary>
+ Matches when a string starts with the given value and ends 
+ with a given value (and returns trimmed body)
+</summary>
+</member>
+<member name="M:FSharp.Patterns.StringPosition.|StartsAndEndsWith|_|(System.String,System.String,System.String,FSharp.Formatting.Common.MarkdownRange)">
+<summary>
+ Matches when a string starts with the given value and ends 
+ with a given value (and returns the rest of it)
+</summary>
+</member>
+<member name="M:FSharp.Patterns.StringPosition.|StartsWithNTimesTrimIgnoreStartWhitespace|_|(System.String,System.String,FSharp.Formatting.Common.MarkdownRange)">
+<summary>
+ Matches when a string starts with the specified sub-string (ignoring whitespace at the start)
+ The matched string is trimmed from all whitespace.
+</summary>
+</member>
+<member name="M:FSharp.Patterns.StringPosition.|StartsWithTrim|_|(System.String,System.String,FSharp.Formatting.Common.MarkdownRange)">
+<summary>
+ Matches when a string starts with the specified sub-string
+ The matched string is trimmed from all whitespace.
+</summary>
+</member>
+<member name="M:FSharp.Patterns.StringPosition.|StartsWith|_|(System.String,System.String,FSharp.Formatting.Common.MarkdownRange)">
+<summary>
+ Matches when a string starts with the specified sub-string
+</summary>
+</member>
+<member name="M:FSharp.Patterns.StringPosition.|StartsWithAny|_|(System.Collections.Generic.IEnumerable{System.String},System.String,FSharp.Formatting.Common.MarkdownRange)">
+<summary>
+ Matches when a string starts with any of the specified sub-strings
+</summary>
+</member>
+<member name="M:FSharp.Patterns.StringPosition.|TrimStartAndCount|(System.String,FSharp.Formatting.Common.MarkdownRange)">
+<summary>
+ Returns a string trimmed from the start together with 
+ the number of skipped whitespace characters
+</summary>
+</member>
+<member name="M:FSharp.Patterns.StringPosition.|TrimEndUsing|(System.Collections.Generic.IEnumerable{System.Char},System.String,FSharp.Formatting.Common.MarkdownRange)">
+<summary>
+ Returns a string trimmed from the end using characters given as a parameter
+</summary>
+</member>
+<member name="M:FSharp.Patterns.StringPosition.|TrimStart|(System.String,FSharp.Formatting.Common.MarkdownRange)">
+<summary>
+ Returns a string trimmed from the start
+</summary>
+</member>
+<member name="M:FSharp.Patterns.StringPosition.|TrimEnd|(System.String,FSharp.Formatting.Common.MarkdownRange)">
+<summary>
+ Returns a string trimmed from the end
+</summary>
+</member>
+<member name="M:FSharp.Patterns.StringPosition.|TrimBoth|(System.String,FSharp.Formatting.Common.MarkdownRange)">
+<summary>
+ Returns a string trimmed from both start and end
+</summary>
+</member>
+<member name="M:FSharp.Patterns.StringPosition.|Unindented|_|(System.String,FSharp.Formatting.Common.MarkdownRange)">
+<summary>
+ Matches when a string does starts with non-whitespace
+</summary>
+</member>
+<member name="M:FSharp.Patterns.StringPosition.|WhiteSpace|_|(System.String,FSharp.Formatting.Common.MarkdownRange)">
+<summary>
+ Matches when a string is a whitespace or null
+</summary>
+</member>
+<member name="M:FSharp.Patterns.String.removeSpaces(System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Given a list of lines indented with certan number of whitespace 
+ characters (spaces), remove the spaces from the beginning of each line 
+ and return the string as a list of lines
+</summary>
+</member>
+<member name="M:FSharp.Patterns.String.|SkipSingleLine|(System.String)">
+<summary>
+ Ignores everything until a end-line character is detected, returns the remaining string.
+</summary>
+</member>
+<member name="M:FSharp.Patterns.String.|StartsWithWrapped|_|(System.String,System.String,System.String)">
+<summary>
+ Matches when a string starts with a sub-string wrapped using the 
+ opening and closing sub-string specified in the parameter.
+ For example &quot;[aa]bc&quot; is wrapped in [ and ] pair. Returns the wrapped
+ text together with the rest.
+</summary>
+</member>
+<member name="M:FSharp.Patterns.String.|StartsAndEndsWithTrim|_|(System.String,System.String,System.String)">
+<summary>
+ Matches when a string starts with the given value and ends 
+ with a given value (and returns trimmed body)
+</summary>
+</member>
+<member name="M:FSharp.Patterns.String.|StartsAndEndsWith|_|(System.String,System.String,System.String)">
+<summary>
+ Matches when a string starts with the given value and ends 
+ with a given value (and returns the rest of it)
+</summary>
+</member>
+<member name="M:FSharp.Patterns.String.|StartsWithTrim|_|(System.String,System.String)">
+<summary>
+ Matches when a string starts with the specified sub-string
+ The matched string is trimmed from all whitespace.
+</summary>
+</member>
+<member name="M:FSharp.Patterns.String.|StartsWith|_|(System.String,System.String)">
+<summary>
+ Matches when a string starts with the specified sub-string
+</summary>
+</member>
+<member name="M:FSharp.Patterns.String.|TrimBoth|(System.String)">
+<summary>
+ Returns a string trimmed from both start and end
+</summary>
+</member>
+<member name="M:FSharp.Patterns.String.|WhiteSpace|_|(System.String)">
+<summary>
+ Matches when a string is a whitespace or null
+</summary>
+</member>
+<member name="T:FSharp.Formatting.Razor.RazorRender`1">
+<summary>
+ [omit]
+</summary>
+</member>
+<member name="F:FSharp.Formatting.Razor.RazorRender.ViewBag@">
+<summary>
+ Dynamic object with more properties (?)
+</summary>
+</member>
+<member name="P:FSharp.Formatting.Razor.RazorRender.ViewBag(RazorEngine.Templating.DynamicViewBag)">
+<summary>
+ Dynamic object with more properties (?)
+</summary>
+</member>
+<member name="P:FSharp.Formatting.Razor.RazorRender.ViewBag">
+<summary>
+ Dynamic object with more properties (?)
+</summary>
+</member>
+<member name="T:FSharp.Formatting.Razor.RazorRender">
+<summary>
+ [omit]
+</summary>
+</member>
+<member name="T:FSharp.Formatting.Razor.DocPageTemplateBase`1">
+<summary>
+ [omit]
+</summary>
+</member>
+<member name="P:FSharp.Formatting.Razor.StringDictionary.Item(System.String)">
+<summary>
+ Report more useful errors when key not found (.NET dictionary does not do this...)
+</summary>
+</member>
+<member name="T:FSharp.Formatting.Razor.StringDictionary">
+<summary>
+ [omit]
+</summary>
+</member>
+<member name="T:FSharp.Formatting.Razor.GetMemberBinderImpl">
+<summary>
+ [omit]
+</summary>
+</member>
+<member name="T:FSharp.Formatting.Razor.PathTemplateKey">
+<summary>
+ [omit]
+</summary>
+</member>
+<member name="M:FSharp.Formatting.Razor.RazorMetadataFormat.Generate(System.Collections.Generic.IEnumerable{System.String},System.String,Microsoft.FSharp.Collections.FSharpList{System.String},Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Collections.FSharpList{System.Tuple{System.String,System.String}}},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.Boolean},Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Collections.FSharpList{System.String}},Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Collections.FSharpList{System.String}},Microsoft.FSharp.Core.FSharpOption{System.Boolean},Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Core.FSharpFunc{System.Uri,Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{System.Int32,System.String}}}},Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Collections.FSharpList{System.String}})">
+<summary>
+ This overload generates documentation for multiple files specified by the `dllFiles` parameter
+</summary>
+</member>
+<member name="M:FSharp.Formatting.Razor.RazorMetadataFormat.Generate(Microsoft.FSharp.Collections.FSharpList{System.String},System.String,Microsoft.FSharp.Collections.FSharpList{System.String},Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Collections.FSharpList{System.Tuple{System.String,System.String}}},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.Boolean},Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Collections.FSharpList{System.String}},Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Collections.FSharpList{System.String}},Microsoft.FSharp.Core.FSharpOption{System.Boolean},Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Core.FSharpFunc{System.Uri,Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{System.Int32,System.String}}}},Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Collections.FSharpList{System.String}})">
+<summary>
+ generates documentation for multiple files specified by the `dllFiles` parameter
+</summary>
+</member>
+<member name="T:FSharp.Formatting.Razor.RazorMetadataFormat">
+<summary>
+ This type exposes the functionality for producing documentation from `dll` files with associated `xml` files
+ generated by the F# or C# compiler using Razor templates. To generate documentation, use one of the overloades of the `Generate` method.
+ The overloads have the following optional parameters:
+
+  - `outDir` - specifies the output directory where documentation should be placed
+  - `layoutRoots` - a list of paths where Razor templates can be found
+  - `parameters` - provides additional parameters to the Razor templates
+  - `xmlFile` - can be used to override the default name of the XML file (by default, we assume
+     the file has the same name as the DLL)
+  - `markDownComments` - specifies if you want to use the Markdown parser for in-code comments.
+    With `markDownComments` enabled there is no support for `&lt;see cref=&quot;&quot;&gt;` links, so `false` is
+    recommended for C# assemblies (if not specified, `true` is used).
+  - `typeTemplate` - the templates to be used for normal types (and C# types)
+    (if not specified, `&quot;type.cshtml&quot;` is used).
+  - `moduleTemplate` - the templates to be used for modules
+    (if not specified, `&quot;module.cshtml&quot;` is used).
+  - `namespaceTemplate` - the templates to be used for namespaces
+    (if not specified, `&quot;namespaces.cshtml&quot;` is used).
+  - `assemblyReferences` - The assemblies to use when compiling Razor templates.
+    Use this parameter if templates fail to compile with `mcs` on Linux or Mac or
+    if you need additional references in your templates
+    (if not specified, we use the currently loaded assemblies).
+  - `sourceFolder` and `sourceRepo` - When specified, the documentation generator automatically
+    generates links to GitHub pages for each of the entity.
+  - `publicOnly` - When set to `false`, the tool will also generate documentation for non-public members
+  - `libDirs` - Use this to specify additional paths where referenced DLL files can be found
+  - `otherFlags` - Additional flags that are passed to the F# compiler (you can use this if you want to
+    specify references explicitly etc.)
+  - `urlRangeHighlight` - A function that can be used to override the default way of generating GitHub links
+
+</summary>
+</member>
+<member name="M:FSharp.Formatting.Razor.RazorEngineCache.InvalidateCache(System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Invalidates the given razor template files (does nothing for files which aren&apos;t already cached or unknown).
+ Use this API only when you know what you are doing. It leaks memory on every call, so you should only use this
+ In short lived applications or with an AppDomain recycle strategy in place.
+</summary>
+</member>
+<member name="P:FSharp.Formatting.Razor.RazorEngineCache.razorCache">
+<summary>
+ Caching mechanism for IRazorEngineService instances.
+</summary>
+</member>
+<member name="M:FSharp.Formatting.Razor.RazorEngineCache.tryResolve(System.Collections.Generic.IEnumerable{System.String},System.String)">
+<summary>
+ Find file in one of the specified layout roots
+</summary>
+</member>
+<member name="T:FSharp.Formatting.Razor.RazorEngineCache">
+<summary>
+ A simple RazorEngine caching strategy, this implementation assumes that the current directory never changes.
+
+ [omit]
+</summary>
+</member>
+<member name="T:FSharp.Formatting.Razor.PathHelper">
+<summary>
+ [omit]
+</summary>
+</member>
+<member name="M:FSharp.Formatting.Razor.Parallel.pfor``2(System.Collections.Generic.IEnumerable{``0},Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,``1},Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{System.Threading.Tasks.ParallelLoopState,Microsoft.FSharp.Core.FSharpFunc{``1,``1}}})">
+<summary>
+ Parallel for loop with local state
+</summary>
+</member>
+</members>
+</doc>

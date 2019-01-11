@@ -1,6 +1,6 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r @"../../lib/Formatting/FSharp.Plotly.dll"
 
 (** 
 # FSharp.Plotly: Choropleth Maps
@@ -67,7 +67,11 @@ let locations,z =
 
 // Pure alcohol consumption among adults (age 15+) in 2010
 
-(*** define-output:ChoroplethMap1 ***)
-Chart.ChoroplethMap(locations,z,Locationmode=StyleParam.LocationFormat.CountryNames)
-(*** include-it:ChoroplethMap1 ***)
+let choroplethMap1 =
+    Chart.ChoroplethMap(locations,z,Locationmode=StyleParam.LocationFormat.CountryNames)
+
+(***do-not-eval***)
+choroplethMap1 |> Chart.Show
+
+(*** include-value:ChoroplethMap1 ***)
 

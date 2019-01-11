@@ -1,7 +1,6 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
-
+#r @"../../lib/Formatting/FSharp.Plotly.dll"
 (** 
 # FSharp.Plotly: Bubble chart
 
@@ -18,6 +17,10 @@ let x = [2; 4; 6;]
 let y = [4; 1; 6;]
 let size = [19; 26; 55;]
   
-(*** define-output:pie1 ***)
-Chart.Bubble(x,y,size,Color=["rgba(255,255,100,0.5)";"rgba(255,255,10,0.5)";"rgba(255,2,10,0.5)"])
-(*** include-it:pie1 ***)
+let pie1 =
+    Chart.Bubble(x,y,size,Color=["rgba(255,255,100,0.5)";"rgba(255,255,10,0.5)";"rgba(255,2,10,0.5)"])
+
+(***do-not-eval***)
+pie1 |> Chart.Show
+
+(*** include-value:pie1 ***)

@@ -1,6 +1,6 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r @"../../lib/Formatting/FSharp.Plotly.dll"
 
 (** 
 # FSharp.Plotly: Contour plot
@@ -40,8 +40,12 @@ let z =
                     )
 
   
-(*** define-output:contour1 ***)
-z
-|> Chart.Contour
-|> Chart.withSize(600.,600.)
-(*** include-it:contour1 ***)
+let contour1 =
+    z
+    |> Chart.Contour
+    |> Chart.withSize(600.,600.)
+
+(***do-not-eval***)
+contour1 |> Chart.Show
+
+(*** include-value:contour1 ***)

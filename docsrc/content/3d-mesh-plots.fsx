@@ -1,6 +1,6 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r @"../../lib/Formatting/FSharp.Plotly.dll"
 
 
 (** 
@@ -45,15 +45,19 @@ cont?show <- true
 cont?width <- 3
 
 
-(*** define-output:mesh3d_1 ***)
-Trace3d.initMesh3d 
-    (fun mesh3d ->
-        mesh3d?x <- a
-        mesh3d?y <- b
-        mesh3d?z <- c
-        mesh3d?flatshading <- true
-        mesh3d?contour <- Contours.initXyz(Show=true)
-        mesh3d
-        )
-|> GenericChart.ofTraceObject 
-(*** include-it:mesh3d_1 ***)
+let mesh3d =
+    Trace3d.initMesh3d 
+        (fun mesh3d ->
+            mesh3d?x <- a
+            mesh3d?y <- b
+            mesh3d?z <- c
+            mesh3d?flatshading <- true
+            mesh3d?contour <- Contours.initXyz(Show=true)
+            mesh3d
+            )
+    |> GenericChart.ofTraceObject 
+
+(***do-not-eval***)
+mesh3d |> Chart.Show
+
+(*** include-value:mesh3d_1 ***)

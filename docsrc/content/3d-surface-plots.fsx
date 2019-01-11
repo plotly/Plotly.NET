@@ -1,6 +1,6 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r @"../../lib/Formatting/FSharp.Plotly.dll"
 
 (** 
 # FSharp.Plotly: 3D surface plot Charts
@@ -38,15 +38,14 @@ let b = Array.init 50 (fun _ -> rnd.NextDouble())
 let c = Array.init 50 (fun _ -> rnd.NextDouble())
 
 
-(*** define-output:surface1 ***)
-z
-|> Chart.Surface
-(*** include-it:surface1 ***)
+let surface = 
+    z
+    |> Chart.Surface
 
+(***do-not-eval***)
+surface |> Chart.Show
 
-
-
-
+(*** include-value:surface ***)
 
 // Create simple example data were x y and z is given (z is a xy-Matrix)
 let x' = [0.;2.5]
@@ -56,8 +55,12 @@ let z' = [
     [1.;2.;];
     ] // column (length y)
 
-(*** define-output:surface2 ***)
-Chart.Surface(z',x',y',Opacity=0.5,Contours=Contours.initXyz(Show=true))
-(*** define-output:surface2 ***)
+let surface2 = 
+    Chart.Surface(z',x',y',Opacity=0.5,Contours=Contours.initXyz(Show=true))
+
+(***do-not-eval***)
+surface2 |> Chart.Show
+
+(*** include-value:surface2 ***)
 
 

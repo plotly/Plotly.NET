@@ -186,3 +186,4 @@ docsrc/tools/FSharp.Formatting.svclog
 
 /docs
 AssemblyInfo.fs
+temp/gh-pages

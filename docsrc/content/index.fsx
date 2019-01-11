@@ -2,6 +2,7 @@
 // This block of code is omitted in the generated HTML documentation. Use 
 // it to define helpers that you do not want to show in the documentation.
 #r "netstandard"
+#r @"../../lib/Formatting/FSharp.Plotly.dll"
 
 (**
 FSharp.Plotly
@@ -12,7 +13,6 @@ The library FSharp.Plotly implements charting suitable for use from F# scripting
 FSharp.Plotly is powered by popular JavaScript charting library [Plotly](https://plot.ly/). The library provides a complete mapping for the configuration options of the underlying library but empowers you to use the comfortable style known from the beautiful library [F# Charting](http://fslab.org/FSharp.Charting/). So you get a nice F# interface support with the full power of Plotly.
 *)
 
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
 open FSharp.Plotly
 
 (**
@@ -27,20 +27,20 @@ let y' = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
 (**
 Create the combined chart
 *)
-(*** define-output:pie1 ***)
-[
-    Chart.Point(x,y,Name="scattern");
-    Chart.Line(x,y',Name="line")    
-    |> Chart.withLineStyle(Width=2);
-] 
-|> Chart.Combine
-(*** include-it:pie1 ***)
+let pie1 =
+    [
+        Chart.Point(x,y,Name="scattern");
+        Chart.Line(x,y',Name="line")    
+        |> Chart.withLineStyle(Width=2);
+    ] 
+    |> Chart.Combine
 (**
 By piping the combined chart into `Chart.Show` function it will be displayed in your browser.
 *)
 (*** do-not-eval ***)
-|> Chart.Show
+pie1 |> Chart.Show
 
+(*** include-value:pie1 ***)
 
 (** 
 
@@ -51,12 +51,15 @@ values of a simple function, f(x)=x^2. The values of the function are generated 
 shown below.
 *)
 
-(*** define-output:sq ***)
 // Drawing graph of a 'square' function 
-[ for x in 1.0 .. 100.0 -> (x, x ** 2.0) ]
-|> Chart.Line
-(*** include-it:sq ***)
+let sq =
+    [ for x in 1.0 .. 100.0 -> (x, x ** 2.0) ]
+    |> Chart.Line
 
+(***do-not-eval***)
+sq |> Chart.Show
+
+(*** include-value:sq ***)
 
 (**
 Contributing and copyright

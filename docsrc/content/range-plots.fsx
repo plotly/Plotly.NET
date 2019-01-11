@@ -1,6 +1,6 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r @"../../lib/Formatting/FSharp.Plotly.dll"
 
 
 (** 
@@ -24,9 +24,12 @@ let yUpper = y |> List.map (fun v -> v + rnd.NextDouble())
 let yLower = y |> List.map (fun v -> v - rnd.NextDouble())
 
   
-(*** define-output:range1 ***)
-Chart.Range(x,y,yUpper,yLower,Color="grey",RangeColor="lightblue")
-(*** include-it:range1 ***)
-|> Chart.Show
+let range1 =
+    Chart.Range(x,y,yUpper,yLower,Color="grey",RangeColor="lightblue")
+
+(***do-not-eval***)
+range1 |> Chart.Show
+
+(*** include-value:range1 ***)
 
 
