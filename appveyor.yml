@@ -2,10 +2,17 @@ image: Visual Studio 2017
 
 init:
   - git config --global core.autocrlf input
+  - dotnet tool install fake-cli -g
 build_script:
   - cmd: build.cmd All
 test: off
 version: 0.0.1.{build}
+
+branches:
+  only:
+    - master
+    - developer
+
 artifacts:
   - path: bin
     name: bin
