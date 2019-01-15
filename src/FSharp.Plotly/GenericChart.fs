@@ -94,8 +94,8 @@ module GenericChart =
     let tryGetLayoutSize gChart =
         let layout = getLayout gChart
         let width,height = 
-            ReflectionHelper.tryGetPropertyValueAs<float> layout "width",
-            ReflectionHelper.tryGetPropertyValueAs<float> layout "height"
+            layout.TryGetTypedValue<float> "width",
+            layout.TryGetTypedValue<float> "height"
         match (width,height) with
         |(Some w, Some h) -> Some (w,h)
         |_ -> None
@@ -141,7 +141,7 @@ module GenericChart =
 
         
 
-    /// Converts a GenericChart to it HTML representation
+    /// Converts a GenericChart to it HTML representation. The div layer has a default size of 600 if not specified otherwise.
     let toChartHTML gChart =
         let guid = Guid.NewGuid().ToString()
         let tracesJson =
@@ -150,12 +150,18 @@ module GenericChart =
         let layoutJson = 
             getLayout gChart
             |> JsonConvert.SerializeObject 
+        
+        let dims = tryGetLayoutSize gChart
+        let width,height =
+            match dims with
+            |Some (w,h) -> w,h
+            |None -> 600., 600.
 
         let html =
             HTML.chart
                 //.Replace("style=\"width: [WIDTH]px; height: [HEIGHT]px;\"","style=\"width: 600px; height: 600px;\"")
-                .Replace("[WIDTH]", string 600 )
-                .Replace("[HEIGHT]", string 600)
+                .Replace("[WIDTH]", string width )
+                .Replace("[HEIGHT]", string height)
                 .Replace("[ID]", guid)                
                 .Replace("[DATA]", tracesJson)
                 .Replace("[LAYOUT]", layoutJson)
