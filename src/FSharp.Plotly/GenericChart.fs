@@ -82,7 +82,6 @@ module GenericChart =
         | MultiChart (t,_) -> MultiChart (t,layout)
 
 
-
     // Adds a Layout function to the GenericChart
     let addLayout layout gChart =
         match gChart with
@@ -91,6 +90,16 @@ module GenericChart =
         | MultiChart (traces,l')       -> 
             MultiChart (traces, (DynObj.combine l' layout |> unbox))
     
+    /// Returns a tuple containing the width and height of a GenericChart's layout if the property is set, otherwise returns None
+    let tryGetLayoutSize gChart =
+        let layout = getLayout gChart
+        let width,height = 
+            ReflectionHelper.tryGetPropertyValueAs<float> layout "width",
+            ReflectionHelper.tryGetPropertyValueAs<float> layout "height"
+        match (width,height) with
+        |(Some w, Some h) -> Some (w,h)
+        |_ -> None
+
     // // Adds multiple Layout functions to the GenericChart
     // let addLayouts layouts gChart =
     //     match gChart with
