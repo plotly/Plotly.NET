@@ -83,19 +83,30 @@ module GenericChart =
         | MultiChart (t,_) -> MultiChart (t,layout)
 
 
-
     // Adds a Layout function to the GenericChart
     let addLayout layout gChart =
         match gChart with
-        | Chart (trace,l')       -> 
+        | Chart (trace,l') ->
             Chart (trace, (DynObj.combine l' layout |> unbox) )
-        | MultiChart (traces,l')       -> 
+        | MultiChart (traces,l') ->
             MultiChart (traces, (DynObj.combine l' layout |> unbox))
+
+
+    /// Returns a tuple containing the width and height of a GenericChart's layout if the property is set, otherwise returns None
+    let tryGetLayoutSize gChart =
+        let layout = getLayout gChart
+        let width,height = 
+            layout.TryGetTypedValue<float> "width",
+            layout.TryGetTypedValue<float> "height"
+        match (width,height) with
+        |(Some w, Some h) -> Some (w,h)
+        |_ -> None
+
 
     // // Adds multiple Layout functions to the GenericChart
     // let addLayouts layouts gChart =
     //     match gChart with
-    //     | Chart (trace,_)       -> 
+    //     | Chart (trace,_) ->
     //         let l' = getLayouts gChart
     //         Chart (trace,Some (layouts@l'))
     //     | MultiChart (traces,_) -> 
@@ -132,7 +143,7 @@ module GenericChart =
     //     reduce l' (Layout())
 
 
-    /// Converts a GenericChart to it HTML representation
+    /// Converts a GenericChart to it HTML representation. The div layer has a default size of 600 if not specified otherwise.
     let toChartHTML gChart =
         let guid = Guid.NewGuid().ToString()
         let tracesJson =
@@ -141,12 +152,18 @@ module GenericChart =
         let layoutJson = 
             getLayout gChart
             |> JsonConvert.SerializeObject 
+        
+        let dims = tryGetLayoutSize gChart
+        let width,height =
+            match dims with
+            |Some (w,h) -> w,h
+            |None -> 600., 600.
 
         let html =
             HTML.chart
                 //.Replace("style=\"width: [WIDTH]px; height: [HEIGHT]px;\"","style=\"width: 600px; height: 600px;\"")
-                .Replace("[WIDTH]", string 600 )
-                .Replace("[HEIGHT]", string 600)
+                .Replace("[WIDTH]", string width)
+                .Replace("[HEIGHT]", string height)
                 .Replace("[ID]", guid)
                 .Replace("[DATA]", tracesJson)
                 .Replace("[LAYOUT]", layoutJson)

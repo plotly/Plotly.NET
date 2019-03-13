@@ -1,5 +1,5 @@
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r @"../../lib/Formatting/FSharp.Plotly.dll"
 
 (** 
 # FSharp.Plotly: Histogram
@@ -15,10 +15,14 @@ open FSharp.Plotly
 let rnd = System.Random()
 let x = [for i=0 to 500 do yield rnd.NextDouble() ]
   
-(*** define-output:histo1 ***)
-x
-|> Chart.Histogram
-|> Chart.withSize(500.,500.)
-(*** include-it:histo1 ***)
+let histo1 =
+    x
+    |> Chart.Histogram
+    |> Chart.withSize(500.,500.)
+
+(***do-not-eval***)
+histo1 |> Chart.Show
+
+(*** include-value:histo1 ***)
 
 

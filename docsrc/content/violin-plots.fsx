@@ -1,6 +1,6 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r @"../../lib/Formatting/FSharp.Plotly.dll"
 
 (** 
 # FSharp.Plotly: Violin plot Charts
@@ -20,20 +20,24 @@ let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
 let x = ["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"bin1"]
  
  
-(*** define-output:violin1 ***)
-Chart.Violin (x,y,Points=StyleParam.Jitterpoints.All)
-(*** include-it:violin1 ***)   
+let violin1 =
+    Chart.Violin (x,y,Points=StyleParam.Jitterpoints.All)
 
+(***do-not-eval***)
+violin1 |> Chart.Show
 
+(*** include-value:violin1 ***)   
 
 (**
 By swapping x and y plus using `StyleParam.Orientation.Horizontal` we can flip the chart horizontaly.
 *)
-(*** define-output:violin2 ***)
-Chart.Violin (y,x,Jitter=0.1,Points=StyleParam.Jitterpoints.All,Orientation=StyleParam.Orientation.Horizontal)
-(*** include-it:violin2 ***)
+let violin2 =
+    Chart.Violin (y,x,Jitter=0.1,Points=StyleParam.Jitterpoints.All,Orientation=StyleParam.Orientation.Horizontal)
 
+(***do-not-eval***)
+violin2 |> Chart.Show
 
+(*** include-value:violin2 ***)
 
 (**
 You can also produce a violin plot using the `Chart.Combine` syntax.
@@ -41,12 +45,16 @@ You can also produce a violin plot using the `Chart.Combine` syntax.
 
 let y' =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
 
-(*** define-output:violin3 ***)
-[
-    Chart.Violin ("y" ,y,Name="bin1",Jitter=0.1,Points=StyleParam.Jitterpoints.All);
-    Chart.Violin ("y'",y',Name="bin2",Jitter=0.1,Points=StyleParam.Jitterpoints.All);
-]
-|> Chart.Combine
-(*** include-it:violin3 ***)   
+let violin3 =
+    [
+        Chart.Violin ("y" ,y,Name="bin1",Jitter=0.1,Points=StyleParam.Jitterpoints.All);
+        Chart.Violin ("y'",y',Name="bin2",Jitter=0.1,Points=StyleParam.Jitterpoints.All);
+    ]
+    |> Chart.Combine
+
+(***do-not-eval***)
+violin3 |> Chart.Show
+
+(*** include-value:violin3 ***)   
 
 

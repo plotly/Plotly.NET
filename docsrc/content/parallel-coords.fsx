@@ -1,6 +1,6 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r @"../../lib/Formatting/FSharp.Plotly.dll"
 
 
 (** 
@@ -20,9 +20,13 @@ let data =
     ['A',[|1.;4.;3.4;0.7;|]; 'B',[|3.;1.5;1.7;2.3;|]; 'C',[|2.;4.;3.1;5.|]; 'D',[|4.;2.;2.;4.;|];]
 
 
-(*** define-output:parcoords1 ***)
-Chart.ParallelCoord(data,Color="blue")
-(*** include-it:parcoords1 ***)
+let parcoords1 =
+    Chart.ParallelCoord(data,Color="blue")
+
+(***do-not-eval***)
+parcoords1 |> Chart.Show
+
+(*** include-value:parcoords1 ***)
 
 
 // Dynanic object version
@@ -43,10 +47,12 @@ let parcoords =
     dyn?line <- Line.init(Color = "blue")
     dyn
 
-(*** define-output:parcoords2 ***)
-parcoords
-|> GenericChart.ofTraceObject
-(*** include-it:parcoords2 ***)
+let parcoords2 =
+    parcoords
+    |> GenericChart.ofTraceObject
 
+(***do-not-eval***)
+parcoords2 |> Chart.Show
 
+(*** include-value:parcoords2 ***)
 

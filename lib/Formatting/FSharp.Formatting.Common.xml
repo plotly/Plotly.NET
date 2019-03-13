@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>FSharp.Formatting.Common</name></assembly>
+<members>
+<member name="M:Yaaf.FSharp.Scripting.ScriptHost.CreateNew(Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Collections.FSharpList{System.String}},Microsoft.FSharp.Core.FSharpOption{System.Object},Microsoft.FSharp.Core.FSharpOption{System.Boolean},Microsoft.FSharp.Core.FSharpOption{System.IO.TextWriter},Microsoft.FSharp.Core.FSharpOption{System.IO.TextWriter},Microsoft.FSharp.Core.FSharpOption{System.IO.TextWriter},Microsoft.FSharp.Core.FSharpOption{System.IO.TextWriter},Microsoft.FSharp.Core.FSharpOption{System.Boolean})">
+<summary>
+ Quickly create a new IFsiSession with some sane defaults
+</summary>
+</member>
+<member name="M:Yaaf.FSharp.Scripting.ScriptHost.CreateForwardWriter(Microsoft.FSharp.Core.FSharpFunc{System.String,Microsoft.FSharp.Core.Unit},Microsoft.FSharp.Core.FSharpOption{System.Boolean},Microsoft.FSharp.Core.FSharpOption{System.Boolean})">
+<summary>
+ Creates a forwarder Textwriter, which forwards all output to the given function.
+ Set revertRedirect only to &quot;false&quot; if you know that f doesn&apos;t print anything to the stdout.
+ When revertRedirect is true we capture the Console.Out property and set it before calling f.
+ removeNewLines handles the newline characters properly and calls f for every new line instead of every call to
+ to the underlaying writers.
+ The difference is that with removeNewLines you should use printfn and get lines without newline characters.
+ On the other hand without removeNewLines you are called on every TextWriter.Write call,
+ so you might be called multiple times for a single lines or a single time for multiple lines.
+</summary>
+</member>
+<member name="M:Yaaf.FSharp.Scripting.ScriptHost.Create(Yaaf.FSharp.Scripting.FsiOptions,Microsoft.FSharp.Core.FSharpOption{System.Object},Microsoft.FSharp.Core.FSharpOption{System.Boolean},Microsoft.FSharp.Core.FSharpOption{System.IO.TextWriter},Microsoft.FSharp.Core.FSharpOption{System.IO.TextWriter},Microsoft.FSharp.Core.FSharpOption{System.IO.TextWriter},Microsoft.FSharp.Core.FSharpOption{System.IO.TextWriter},Microsoft.FSharp.Core.FSharpOption{System.Boolean})">
+<summary>
+ Create a new IFsiSession by specifying all fsi arguments manually.
+</summary>
+</member>
+<member name="P:Yaaf.FSharp.Scripting.FsiOptions.WarnLevel">
+<summary>
+ Sets a warning level (0 to 5). The default level is 3. Each warning is given a level based on its severity. Level 5 gives more, but less severe, warnings than level 1.
+ Level 5 warnings are: 21 (recursive use checked at runtime), 22 (let rec evaluated out of order), 45 (full abstraction), and 52 (defensive copy). All other warnings are level 2.
+</summary>
+</member>
+<member name="P:Yaaf.FSharp.Scripting.FsiOptions.Default">
+<summary>
+ Sets a warning level (0 to 5). The default level is 3. Each warning is given a level based on its severity. Level 5 gives more, but less severe, warnings than level 1.
+ Level 5 warnings are: 21 (recursive use checked at runtime), 22 (let rec evaluated out of order), 45 (full abstraction), and 52 (defensive copy). All other warnings are level 2.
+</summary>
+</member>
+<member name="T:Yaaf.FSharp.Scripting.FsiOptions">
+<summary>
+ See https://msdn.microsoft.com/en-us/library/dd233172.aspx
+</summary>
+</member>
+<member name="P:Yaaf.FSharp.Scripting.IFsiSession.DynamicAssembly">
+<summary>
+ Gets the currently build dynamic assembly.
+</summary>
+</member>
+<member name="M:Yaaf.FSharp.Scripting.IFsiSession.TryEvalExpressionWithOutput(System.String)">
+<summary>
+ Try to evaluate the given expression and return its result.
+</summary>
+</member>
+<member name="M:Yaaf.FSharp.Scripting.IFsiSession.EvalScriptWithOutput(System.String)">
+<summary>
+ Evaluate the given script.
+</summary>
+</member>
+<member name="M:Yaaf.FSharp.Scripting.IFsiSession.EvalInteractionWithOutput(System.String)">
+<summary>
+ Evaluate the given interaction.
+</summary>
+</member>
+<member name="T:Yaaf.FSharp.Scripting.IFsiSession">
+<summary>
+ Represents a simple F# interactive session.
+</summary>
+</member>
+<member name="T:Yaaf.FSharp.Scripting.FsiExpressionTypeException">
+<summary>
+ Exception for invalid expression types
+</summary>
+</member>
+<member name="T:Yaaf.FSharp.Scripting.FsiEvaluationException">
+<summary>
+ This exception indicates that an exception happened while compiling or executing given F# code.
+</summary>
+</member>
+<member name="T:Yaaf.FSharp.Scripting.Shell.InteractiveSettings">
+<summary>
+ Implements a simple &apos;fsi&apos; object to be passed to the FSI evaluator
+</summary>
+</member>
+<member name="T:Yaaf.FSharp.Scripting.Shell.SimpleEventLoop">
+<summary>
+ Represents a simple (fake) event loop for the &apos;fsi&apos; object
+</summary>
+</member>
+<member name="M:Yaaf.FSharp.Scripting.Extensions.IFsiSession.Handle``1(Yaaf.FSharp.Scripting.IFsiSession,Microsoft.FSharp.Core.FSharpFunc{System.String,``0},System.String)">
+<summary>
+ Handle the given evaluation function
+</summary>
+</member>
+<member name="M:Yaaf.FSharp.Scripting.Extensions.IFsiSession.WithCurrentDirectory``1(Yaaf.FSharp.Scripting.IFsiSession,System.String,Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,``0})">
+<summary>
+ Same as ChangeCurrentDirectory but takes a function for the scope.
+</summary>
+</member>
+<member name="M:Yaaf.FSharp.Scripting.Extensions.IFsiSession.ChangeCurrentDirectory(Yaaf.FSharp.Scripting.IFsiSession,System.String)">
+<summary>
+ Change the current directory (so that relative paths within scripts work properly).
+ Returns a handle to change the current directory back to it&apos;s initial state
+ (Because this will change the current directory of the currently running code as well!).
+</summary>
+</member>
+<member name="M:Yaaf.FSharp.Scripting.Extensions.IFsiSession.WithCd``1(Yaaf.FSharp.Scripting.IFsiSession,System.String,Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,``0})">
+<summary>
+ Same as Cd but takes a function for the scope.
+</summary>
+</member>
+<member name="M:Yaaf.FSharp.Scripting.Extensions.IFsiSession.Cd(Yaaf.FSharp.Scripting.IFsiSession,System.String)">
+<summary>
+ Change the current directory (so that relative paths within scripts work properly).
+ Returns a handle to change the current directory back to it&apos;s initial state
+ (Because this will change the current directory of the currently running code as well!).
+</summary>
+</member>
+<member name="M:Yaaf.FSharp.Scripting.Extensions.IFsiSession.Let``1(Yaaf.FSharp.Scripting.IFsiSession,System.String,``0)">
+<summary>
+ Assigns the given object to the given name (ie &quot;let varName = obj&quot;)
+</summary>
+</member>
+<member name="M:Yaaf.FSharp.Scripting.Extensions.IFsiSession.EvalExpression``1(Yaaf.FSharp.Scripting.IFsiSession,System.String)">
+<summary>
+ Evaluate the given expression and return its result.
+</summary>
+</member>
+<member name="M:Yaaf.FSharp.Scripting.Extensions.IFsiSession.EvalScriptAsInteraction(Yaaf.FSharp.Scripting.IFsiSession,System.String)">
+<summary>
+ See https://github.com/Microsoft/visualfsharp/issues/1392
+</summary>
+</member>
+<member name="M:Yaaf.FSharp.Scripting.Extensions.IFsiSession.EvalScriptAsInteractionWithOutput(Yaaf.FSharp.Scripting.IFsiSession,System.String)">
+<summary>
+ See https://github.com/Microsoft/visualfsharp/issues/1392
+</summary>
+</member>
+<member name="M:Yaaf.FSharp.Scripting.StringHelpers.String.splitUnescape(System.Char,System.String,System.String)">
+<summary>
+ Reproduces the original substrings from a string created with concatEscape.
+</summary>
+</member>
+<member name="M:Yaaf.FSharp.Scripting.StringHelpers.String.concatEscape(System.Char,System.String,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Returns a new string by connecting the given strings with the given separator.
+</summary>
+</member>
+<member name="M:Yaaf.FSharp.Scripting.StringHelpers.Tokenizer.create(System.Char,System.String)">
+<summary>
+ Returns a function who can convert a given source string to a token stream.
+</summary>
+</member>
+<member name="M:Yaaf.FSharp.Scripting.CompilerServiceExtensions.Type.get_FSharpFullNameWithTypeArgs(System.Type)">
+<summary>
+ Gets a string that can be used in F# source code to reference the current type instance.
+</summary>
+</member>
+<member name="M:Yaaf.FSharp.Scripting.CompilerServiceExtensions.Type.get_FSharpParamList(System.Type)">
+<summary>
+ The parameter list of the current type, sets &quot;_&quot; if the current instance is a generic definition.
+</summary>
+</member>
+<member name="M:Yaaf.FSharp.Scripting.CompilerServiceExtensions.Type.get_FSharpFullName(System.Type)">
+<summary>
+ Gets the FullName of the current type in F# source code.
+</summary>
+</member>
+<member name="M:Yaaf.FSharp.Scripting.CompilerServiceExtensions.Type.get_FSharpName(System.Type)">
+<summary>
+ The name of the current type instance in F# source code.
+</summary>
+</member>
+<member name="M:Yaaf.FSharp.Scripting.CompilerServiceExtensions.Type.get_NamespaceName(System.Type)">
+<summary>
+ The FullName but without any generic parameter types.
+</summary>
+</member>
+</members>
+</doc>

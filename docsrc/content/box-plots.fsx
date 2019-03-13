@@ -1,6 +1,6 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r @"../../lib/Formatting/FSharp.Plotly.dll"
 
 (** 
 # FSharp.Plotly: BoxPlot Charts
@@ -19,19 +19,25 @@ open FSharp.Plotly.StyleParam
 let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
 let x = ["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"bin1"]
   
-(*** define-output:box1 ***)
-Chart.BoxPlot(x,y,Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All)
-(*** include-it:box1 ***)
+let box1 =
+    Chart.BoxPlot(x,y,Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All)
+
+(***do-not-eval***)
+box1 |> Chart.Show
+
+(*** include-value:box1 ***)
 
 
 (**
 By swapping x and y plus using `StyleParam.Orientation.Horizontal` we can flip the chart horizontaly.
 *)
-(*** define-output:box2 ***)
-Chart.BoxPlot(y,x,Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All,Orientation=StyleParam.Orientation.Horizontal)
-(*** include-it:box2 ***)
+let box2 =
+    Chart.BoxPlot(y,x,Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All,Orientation=StyleParam.Orientation.Horizontal)
 
+(***do-not-eval***)
+box2 |> Chart.Show
 
+(*** include-value:box2 ***)
 
 (**
 You can also produce a boxplot using the `Chart.Combine` syntax.
@@ -39,12 +45,16 @@ You can also produce a boxplot using the `Chart.Combine` syntax.
 
 let y' =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
 
-(*** define-output:box3 ***)
-[
-    Chart.BoxPlot("y" ,y,Name="bin1",Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All);
-    Chart.BoxPlot("y'",y',Name="bin2",Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All);
-]
-|> Chart.Combine
-(*** include-it:box3 ***)
+let box3 =
+    [
+        Chart.BoxPlot("y" ,y,Name="bin1",Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All);
+        Chart.BoxPlot("y'",y',Name="bin2",Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All);
+    ]
+    |> Chart.Combine
+
+(***do-not-eval***)
+box3 |> Chart.Show
+
+(*** include-value:box3 ***)
 
 

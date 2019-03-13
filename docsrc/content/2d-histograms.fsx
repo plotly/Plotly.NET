@@ -1,6 +1,6 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly.dll"
+#r @"../../lib/Formatting/FSharp.Plotly.dll"
 
 
 (** 
@@ -37,18 +37,25 @@ let step i = a +  ((b - a) / float (n - 1)) * float i
 let x = Array.init n (fun i -> ((step i)**3.) + (0.3 * (normal (rnd) 0. 2.) ))
 let y = Array.init n (fun i -> ((step i)**6.) + (0.3 * (normal (rnd) 0. 2.) ))
 
-(*** define-output:Histogram2dContour1 ***)
-[
-    Chart.Histogram2dContour (x,y,Line=Line.init(Width=0))
-    Chart.Point(x,y,Opacity=0.3)
-]
-|> Chart.Combine
-(*** include-it:Histogram2dContour1 ***)
+let histogramContour =
+    [
+        Chart.Histogram2dContour (x,y,Line=Line.init(Width=0))
+        Chart.Point(x,y,Opacity=0.3)
+    ]
+    |> Chart.Combine
 
+(***do-not-eval***)
+histogramContour |> Chart.Show
 
-(*** define-output:Histogram2d1 ***)
-Chart.Histogram2d (x,y)
-(*** include-it:Histogram2d1 ***)
+(*** include-value:histogramContour ***)
+
+let histogram2d = 
+    Chart.Histogram2d (x,y)
+
+(***do-not-eval***)
+histogram2d |> Chart.Show
+
+(*** include-value:histogram2d ***)
 
 
 

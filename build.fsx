@@ -3,7 +3,6 @@
 // --------------------------------------------------------------------------------------
 
 #r "paket: groupref FakeBuild //"
-open Fake.IO
 
 #load "./.fake/build.fsx/intellisense.fsx"
 
@@ -13,10 +12,68 @@ open Fake.Core.TargetOperators
 open Fake.DotNet
 open Fake.IO
 open Fake.IO.FileSystemOperators
+open Fake.IO.Globbing
 open Fake.IO.Globbing.Operators
 open Fake.DotNet.Testing
 open Fake.Tools
 open Fake.Api
+open Fake.Tools.Git
+
+[<AutoOpen>]
+module TemporaryDocumentationHelpers =
+
+    type LiterateArguments =
+        { ToolPath : string
+          Source : string
+          OutputDirectory : string 
+          Template : string
+          ProjectParameters : (string * string) list
+          LayoutRoots : string list 
+          FsiEval : bool }
+
+
+    let private run toolPath command = 
+        if 0 <> Process.execSimple ((fun info ->
+                { info with
+                    FileName = toolPath
+                    Arguments = command }) >> Process.withFramework) System.TimeSpan.MaxValue
+
+        then failwithf "FSharp.Formatting %s failed." command
+
+    let createDocs p =
+        let toolPath = Tools.findToolInSubPath "fsformatting.exe" (Directory.GetCurrentDirectory() @@ "lib/Formatting")
+
+        let defaultLiterateArguments =
+            { ToolPath = toolPath
+              Source = ""
+              OutputDirectory = ""
+              Template = ""
+              ProjectParameters = []
+              LayoutRoots = [] 
+              FsiEval = false }
+
+        let arguments = (p:LiterateArguments->LiterateArguments) defaultLiterateArguments
+        let layoutroots =
+            if arguments.LayoutRoots.IsEmpty then []
+            else [ "--layoutRoots" ] @ arguments.LayoutRoots
+        let source = arguments.Source
+        let template = arguments.Template
+        let outputDir = arguments.OutputDirectory
+        let fsiEval = if arguments.FsiEval then [ "--fsieval" ] else []
+
+        let command = 
+            arguments.ProjectParameters
+            |> Seq.map (fun (k, v) -> [ k; v ])
+            |> Seq.concat
+            |> Seq.append 
+                   (["literate"; "--processdirectory" ] @ layoutroots @ [ "--inputdirectory"; source; "--templatefile"; template; 
+                      "--outputDirectory"; outputDir] @ fsiEval @ [ "--replacements" ])
+            |> Seq.map (fun s -> 
+                   if s.StartsWith "\"" then s
+                   else sprintf "\"%s\"" s)
+            |> String.separated " "
+        run arguments.ToolPath command
+        printfn "Successfully generated docs for %s" source
 
 // --------------------------------------------------------------------------------------
 // START TODO: Provide project-specific details below
@@ -319,20 +376,43 @@ Target.create "Docs" (fun _ ->
             | Some lang -> layoutRootsAll.[lang]
             | None -> layoutRootsAll.["en"] // "en" is the default language
 
-        FSFormatting.createDocs (fun args ->
+        createDocs (fun args ->
             { args with
                 Source = content
                 OutputDirectory = output
                 LayoutRoots = layoutRoots
                 ProjectParameters  = ("root", root)::info
-                Template = docTemplate } )
+                Template = docTemplate 
+                FsiEval = true
+                } )
 )
 
 // --------------------------------------------------------------------------------------
 // Release Scripts
 
+
 //#load "paket-files/fsharp/FAKE/modules/Octokit/Octokit.fsx"
 //open Octokit
+Target.create "ReleaseDocs" (fun _ ->
+    let tempDocsDir = "temp/gh-pages"
+    Shell.cleanDir tempDocsDir |> ignore
+    Git.Repository.cloneSingleBranch "" (gitHome + "/" + gitName + ".git") "gh-pages" tempDocsDir
+    Shell.copyRecursive "docs" tempDocsDir true |> printfn "%A"
+    Git.Staging.stageAll tempDocsDir
+    Git.Commit.exec tempDocsDir (sprintf "Update generated documentation for version %s" release.NugetVersion)
+    Git.Branches.push tempDocsDir
+)
+
+Target.create "ReleaseLocal" (fun _ ->
+    let tempDocsDir = "temp/gh-pages"
+    Shell.cleanDir tempDocsDir |> ignore
+    Shell.copyRecursive "docs" tempDocsDir true  |> printfn "%A"
+    Shell.replaceInFiles 
+        (seq {
+            yield "href=\"/" + project + "/","href=\""
+            yield "src=\"/" + project + "/","src=\""}) 
+        (Directory.EnumerateFiles tempDocsDir |> Seq.filter (fun x -> x.EndsWith(".html")))
+)
 
 Target.create "Release" (fun _ ->
     // not fully converted from  FAKE 4
@@ -400,7 +480,7 @@ Target.create "All" ignore
   ==> "Build"
   ==> "CopyBinaries"
   ==> "RunTests"
-//   ==> "GenerateDocs"
+  ==> "GenerateDocs"
   ==> "NuGet"
   ==> "All"
 
@@ -408,8 +488,8 @@ Target.create "All" ignore
 
 "CleanDocs"
   ==>"Docs"
-//   ==> "ReferenceDocs"
-//   ==> "GenerateDocs"
+  ==> "ReferenceDocs"
+  ==> "GenerateDocs"
 
 "Clean"
   ==> "Release"
@@ -418,6 +498,11 @@ Target.create "All" ignore
   ==> "PublishNuget"
   ==> "Release"
 
+"GenerateDocs"
+  ==> "ReleaseDocs"
+
+"All"
+  ==> "ReleaseLocal"
 
 "Clean"
   ==> "AssemblyInfo"
@@ -427,4 +512,4 @@ Target.create "All" ignore
   ==> "NuGet"
   ==> "GitReleaseNuget"
 
-Target.runOrDefault "All"
+Target.runOrDefaultWithArguments "All"
