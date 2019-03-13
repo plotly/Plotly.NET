@@ -383,25 +383,25 @@ module ChartExtensions =
 
 
         /// Show chart in browser
-        static member ShowWithDescription (d : string) (ch:GenericChart) = 
+        static member ShowWithDescription (show : bool) (d : string) (ch:GenericChart) =
             let guid = Guid.NewGuid().ToString()
             let html = GenericChart.toEmbeddedHtmlWithDescription d ch
             let tempPath = Path.GetTempPath()
             let file = sprintf "%s.html" guid
             let path = Path.Combine(tempPath, file)
             File.WriteAllText(path, html)
-            System.Diagnostics.Process.Start(path) |> ignore
+            if show then System.Diagnostics.Process.Start(path) |> ignore
 
 
         /// Saves chart in a specified file name and shows it in the browser. The caller is responsible for full path / filename / extension.
-        static member ShowFileWithDescription (fullFileName : string) (d : string) (ch:GenericChart) = 
+        static member ShowFileWithDescription (show : bool) (fullFileName : string) (d : string) (ch:GenericChart) =
             let html = GenericChart.toEmbeddedHtmlWithDescription d ch
             File.WriteAllText(fullFileName, html)
-            System.Diagnostics.Process.Start(fullFileName) |> ignore
+            if show then System.Diagnostics.Process.Start(fullFileName) |> ignore
 
 
         /// Show chart in browser
-        static member Show (ch:GenericChart) = Chart.ShowWithDescription "" ch
+        static member Show (ch:GenericChart) = Chart.ShowWithDescription true "" ch
 
 
         /// Show chart in browser
