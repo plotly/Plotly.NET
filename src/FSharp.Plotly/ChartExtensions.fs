@@ -4,7 +4,7 @@ open System
 open System.IO
 
 open GenericChart
-
+open ChartDescription
 
 /// Extensions methods for Charts supporting the fluent pipeline style 'Chart.WithXYZ(...)'.
 [<AutoOpen>]
@@ -381,28 +381,36 @@ module ChartExtensions =
             if verbose then
                 System.Diagnostics.Process.Start(file) |> ignore
 
+        /// Saves chart in a specified file name. The caller is responsible for full path / filename / extension.
+        static member SaveHtmlWithDescriptionAs (pathName : string) (description : Description) (ch:GenericChart,?Verbose) =
+            let html = GenericChart.toEmbeddedHtmlWithDescription description ch
+            File.WriteAllText(pathName, html)
+            let verbose = defaultArg Verbose false
+            if verbose then
+                System.Diagnostics.Process.Start(pathName) |> ignore
 
         /// Show chart in browser
-        static member ShowWithDescription (show : bool) (d : string) (ch:GenericChart) =
+        static member ShowWithDescription (description : Description) (ch:GenericChart) =
             let guid = Guid.NewGuid().ToString()
-            let html = GenericChart.toEmbeddedHtmlWithDescription d ch
+            let html = GenericChart.toEmbeddedHtmlWithDescription description ch
             let tempPath = Path.GetTempPath()
             let file = sprintf "%s.html" guid
             let path = Path.Combine(tempPath, file)
             File.WriteAllText(path, html)
-            if show then System.Diagnostics.Process.Start(path) |> ignore
+            System.Diagnostics.Process.Start(path) |> ignore
 
 
-        /// Saves chart in a specified file name and shows it in the browser. The caller is responsible for full path / filename / extension.
-        static member ShowFileWithDescription (show : bool) (fullFileName : string) (d : string) (ch:GenericChart) =
-            let html = GenericChart.toEmbeddedHtmlWithDescription d ch
-            File.WriteAllText(fullFileName, html)
-            if show then System.Diagnostics.Process.Start(fullFileName) |> ignore
 
 
         /// Show chart in browser
-        static member Show (ch:GenericChart) = Chart.ShowWithDescription true "" ch
-
+        static member Show (ch:GenericChart) = 
+            let guid = Guid.NewGuid().ToString()
+            let html = GenericChart.toEmbeddedHTML ch
+            let tempPath = Path.GetTempPath()
+            let file = sprintf "%s.html" guid
+            let path = Path.Combine(tempPath, file)
+            File.WriteAllText(path, html)
+            System.Diagnostics.Process.Start(path) |> ignore
 
         /// Show chart in browser
         static member ShowAsImage (format:StyleParam.ImageFormat) (ch:GenericChart) = 

@@ -14,6 +14,29 @@ module HTML =
         <!-- Plotly.js -->
         <meta http-equiv="X-UA-Compatible" content="IE=11" >
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <style>
+        .container {
+          padding-right: 25px;
+          padding-left: 25px;
+          margin-right: 0 auto;
+          margin-left: 0 auto;
+        }
+        @media (min-width: 768px) {
+          .container {
+            width: 750px;
+          }
+        }
+        @media (min-width: 992px) {
+          .container {
+            width: 970px;
+          }
+        }
+        @media (min-width: 1200px) {
+          .container {
+            width: 1170px;
+          }
+        }
+        </style>
     </head>
     <body>
       [CHART]
@@ -29,6 +52,12 @@ module HTML =
     var layout = [LAYOUT];
     Plotly.newPlot('[ID]', data, layout);
   </script>"""
+
+    let description ="""<div class=container>
+  <h3>[DESCRIPTIONHEADING]</h3>
+  <p>[DESCRIPTIONTEXT]</p>
+  </div>"""
+
 
     let staticChart =
         """<div id="[ID]" style="width: [WIDTH]px; height: [HEIGHT]px;display: none;"><!-- Plotly chart will be drawn inside this DIV --></div>
@@ -57,10 +86,27 @@ module HTML =
         });
   </script>"""
 
+module ChartDescription =
+    
+
+
+    type Description =
+        {
+            Heading : string
+            Text    : string
+        }
+
+    let toDescriptionHtml (d:Description) =
+        HTML.description
+            .Replace("[DESCRIPTIONHEADING]",d.Heading)
+            .Replace("[DESCRIPTIONTEXT]",d.Text)
+
+
 /// Module to represent a GenericChart
 module GenericChart =
 
     open Trace
+    open ChartDescription
 
     type GenericChart =
         | Chart of Trace * Layout
@@ -189,18 +235,26 @@ module GenericChart =
         html
 
 
-    let toEmbeddedHtmlWithDescription description gChart =
+    let toEmbeddedHtmlWithDescription (description:Description) gChart =
+        let chartMarkup =
+            toChartHTML gChart
+
+        let descriptionMarkup =
+            toDescriptionHtml description
+
+        HTML.doc
+            .Replace("[CHART]", chartMarkup)
+            .Replace("[DESCRIPTION]", descriptionMarkup)
+
+
+    /// Converts a GenericChart to it HTML representation and embeds it into a html page.
+    let toEmbeddedHTML gChart = 
         let chartMarkup =
             toChartHTML gChart
 
         HTML.doc
             .Replace("[CHART]", chartMarkup)
-            .Replace("[DESCRIPTION]", description)
-
-
-    /// Converts a GenericChart to it HTML representation and embeds it into a html page.
-    let toEmbeddedHTML gChart = toEmbeddedHtmlWithDescription "" gChart
-
+            .Replace("[DESCRIPTION]", "")
 
     /// Converts a GenericChart to its Image representation
     let toChartImage (format:StyleParam.ImageFormat) gChart =

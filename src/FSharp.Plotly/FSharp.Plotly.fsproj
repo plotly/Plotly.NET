@@ -36,6 +36,7 @@
     <Compile Include="GenericChart.fs" />
     <Compile Include="Chart.fs" />
     <Compile Include="ChartExtensions.fs" />
+    <None Include="TestScript.fsx" />
     <None Include="paket.references" />
     <None Include="paket.template" />
   </ItemGroup>
