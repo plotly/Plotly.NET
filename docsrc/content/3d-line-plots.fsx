@@ -1,6 +1,6 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r @"../../lib/Formatting/FSharp.Plotly.dll"
 
 (** 
 # FSharp.Plotly: Scatter3d Charts with lines 
@@ -25,12 +25,16 @@ let x,y,z =
     |> List.unzip3
 
   
-(*** define-output:scatter3d_line_1 ***)
-Chart.Scatter3d(x,y,z,StyleParam.Mode.Lines_Markers)
-|> Chart.withX_AxisStyle("x-axis")
-|> Chart.withY_AxisStyle("y-axis")
-|> Chart.withZ_AxisStyle("z-axis")
-|> Chart.withSize(800.,800.)
-(*** include-it:scatter3d_line_1 ***)
+let scatter3dLine = 
+    Chart.Scatter3d(x,y,z,StyleParam.Mode.Lines_Markers)
+    |> Chart.withX_AxisStyle("x-axis")
+    |> Chart.withY_AxisStyle("y-axis")
+    |> Chart.withZ_AxisStyle("z-axis")
+    |> Chart.withSize(800.,800.)
+
+(***do-not-eval***)
+scatter3dLine |> Chart.Show
+
+(*** include-value:scatter3dLine ***)
 
 

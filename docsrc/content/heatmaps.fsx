@@ -1,6 +1,6 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r @"../../lib/Formatting/FSharp.Plotly.dll"
 
 (** 
 # FSharp.Plotly: Heatmaps
@@ -27,11 +27,14 @@ let colnames = ["Tp0";"Tp30";"Tp60";"Tp160"]
 let colorscaleValue = 
     //StyleParam.ColorScale.Electric
     StyleParam.Colorscale.Custom [(0.0,"#3D9970");(1.0,"#001f3f")]
-// Generating the Heatmap 
-(*** define-output:heat1 ***)
-Chart.Heatmap(matrix,colnames,rownames,Colorscale=colorscaleValue,Showscale=true)
-|> Chart.withSize(700.,500.)
-|> Chart.withMarginSize(Left=200.)
-(*** include-it:heat1 ***)
-//|> Chart.Show
 
+// Generating the Heatmap 
+let heat1 =
+    Chart.Heatmap(matrix,colnames,rownames,Colorscale=colorscaleValue,Showscale=true)
+    |> Chart.withSize(700.,500.)
+    |> Chart.withMarginSize(Left=200.)
+
+(***do-not-eval***)
+heat1 |> Chart.Show
+
+(***include-value:heat1**)

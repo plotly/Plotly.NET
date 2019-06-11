@@ -2,7 +2,7 @@
 // This block of code is omitted in the generated HTML documentation. Use 
 // it to define helpers that you do not want to show in the documentation.
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r @"../../lib/Formatting/FSharp.Plotly.dll"
 (**
 Error bars
 =============================
@@ -19,12 +19,12 @@ let y' = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
 
 
 
-(*** define-output:pointsWithErrorBars ***)
-Chart.Point(x,y',Name="points with errors")    
-|> Chart.withXErrorStyle (Array=[|0.2;0.3;0.2;0.1;0.2;0.4;0.2;0.08;0.2;0.1;|])
-|> Chart.withYErrorStyle (Array=[|0.3;0.2;0.1;0.4;0.2;0.4;0.1;0.18;0.02;0.2;|])
-(*** include-it:pointsWithErrorBars ***)
+let pointsWithErrorBars =
+    Chart.Point(x,y',Name="points with errors")    
+    |> Chart.withXErrorStyle (Array=[|0.2;0.3;0.2;0.1;0.2;0.4;0.2;0.08;0.2;0.1;|])
+    |> Chart.withYErrorStyle (Array=[|0.3;0.2;0.1;0.4;0.2;0.4;0.1;0.18;0.02;0.2;|])
 
+(***do-not-eval***)
+pointsWithErrorBars |> Chart.Show
 
-
-
+(*** include-value:pointsWithErrorBars ***)

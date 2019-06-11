@@ -1,6 +1,6 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r @"../../lib/Formatting/FSharp.Plotly.dll"
 
 
 (** 
@@ -18,10 +18,13 @@ let data =
     ['A',[|1.;4.;3.4;0.7;|]; 'B',[|3.;1.5;1.7;2.3;|]; 'C',[|2.;4.;3.1;5.|]; 'D',[|4.;2.;2.;4.;|];]
 
 
-(*** define-output:splom1 ***)
-Chart.Splom(data,Color="blue")
-(*** include-it:splom1 ***)
-|> Chart.Show
+let splom1 =
+    Chart.Splom(data,Color="blue")
+
+(***do-not-eval***)
+splom1 |> Chart.Show
+
+(*** include-value:splom1 ***)
 
 
 

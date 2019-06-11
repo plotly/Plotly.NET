@@ -1,6 +1,6 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r @"../../lib/Formatting/FSharp.Plotly.dll"
 
 (** 
 # FSharp.Plotly: Bar and Column Charts
@@ -18,15 +18,22 @@ let values = [20; 14; 23;]
 let keys   = ["Product A"; "Product B"; "Product C";]
 let labels = ["27% market share"; "24% market share"; "19% market share";]
 
-(*** define-output:bar1 ***)
-Chart.Column(keys,values,Labels=labels,Opacity=0.3,Marker=Marker.init(Color="rgba(222,45,38,0.8)",Size=1)) // Changing the thickness of the bar is not possible at the moment
-(*** include-it:bar1 ***)
+let bar1 =
+    Chart.Column(keys,values,Labels=labels,Opacity=0.3,Marker=Marker.init(Color="rgba(222,45,38,0.8)",Size=1)) // Changing the thickness of the bar is not possible at the moment
+
+(***do-not-eval***)
+bar1 |> Chart.Show
+
+(*** include-value:bar1 ***)
 
 
-(*** define-output:bar2 ***)
-Chart.Bar(keys,values)
-(*** include-it:bar2 ***)
+let bar2 =
+    Chart.Bar(keys,values)
 
+(***do-not-eval***)
+bar2 |> Chart.Show
+
+(*** include-value:bar2 ***)
 
 (** 
 
@@ -35,12 +42,16 @@ The following example shows how to create a stacked bar chart by combining bar c
 *)
 
 
-(*** define-output:bar3 ***)
-[
-    Chart.StackedBar(values,keys,Name="old");
-    Chart.StackedBar([8; 21; 13;],keys,Name="new")
-]
-|> Chart.Combine
-(*** include-it:bar3 ***)
+let bar3 =
+    [
+        Chart.StackedBar(values,keys,Name="old");
+        Chart.StackedBar([8; 21; 13;],keys,Name="new")
+    ]
+    |> Chart.Combine
+
+(***do-not-eval***)
+bar3 |> Chart.Show
+
+(*** include-value:bar3 ***)
 
 

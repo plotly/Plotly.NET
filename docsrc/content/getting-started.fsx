@@ -2,7 +2,7 @@
 // This block of code is omitted in the generated HTML documentation. Use 
 // it to define helpers that you do not want to show in the documentation.
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r @"../../lib/Formatting/FSharp.Plotly.dll"
 
 (**
 Getting started...
@@ -19,10 +19,10 @@ open FSharp.Plotly
 ## Using functional F# scripting style
 *)
 
-
-Chart.Scatter ([1; 2; 3; 4],[12; 9; 15; 12],
-      StyleParam.Mode.Lines_Markers,
-      Name="lines and markers")
+let chart = 
+    Chart.Scatter ([1; 2; 3; 4],[12; 9; 15; 12],
+          StyleParam.Mode.Lines_Markers,
+          Name="lines and markers")
 
 (**
 ## Using dynamic object style
@@ -68,3 +68,14 @@ Trace.initScatter
     )
 |> GenericChart.ofTraceObject
 
+(**
+## Rendering Charts
+
+The `Chart.Show` function will render the graph in your standard browser: 
+
+*)
+
+(***do-not-eval***)
+chart |> Chart.Show
+
+(***include-value:chart***)

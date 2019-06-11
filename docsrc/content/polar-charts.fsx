@@ -1,6 +1,6 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r @"../../lib/Formatting/FSharp.Plotly.dll"
 
 
 (** 
@@ -22,13 +22,16 @@ let r'' = [ 3; 1; 5; 2; 8; 7; 5;]
 
 let t  = [0; 45; 90; 135; 200; 320; 184;]
   
-(*** define-output:polar1 ***)
-[
-    Chart.Polar(r,t,StyleParam.Mode.Markers,Name="1")
-    Chart.Polar(r',t,StyleParam.Mode.Markers,Name="2")
-    Chart.Polar(r'',t,StyleParam.Mode.Markers,Name="3")
-]
-|> Chart.Combine
-(*** include-it:polar1 ***)
-|> Chart.Show
+let polar1 =
+        [
+            Chart.Polar(r,t,StyleParam.Mode.Markers,Name="1")
+            Chart.Polar(r',t,StyleParam.Mode.Markers,Name="2")
+            Chart.Polar(r'',t,StyleParam.Mode.Markers,Name="3")
+        ]
+        |> Chart.Combine
+
+(***do-not-eval***)
+polar1 |> Chart.Show
+
+(*** include-value:polar1 ***)
 
