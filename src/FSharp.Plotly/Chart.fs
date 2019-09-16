@@ -170,7 +170,7 @@ type Chart =
             |> TraceStyle.Line(Width=0)
             |> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,,0.5)")             
  
-        GenericChart.MultiChart ([lower;upper;trace],Layout())
+        GenericChart.MultiChart ([lower;upper;trace],Layout(),Config())
 
 
     /// Displays a range of data by plotting two Y values per data point, with each Y value being drawn as a line 

@@ -236,6 +236,9 @@ module ChartExtensions =
             (fun (ch:GenericChart) -> 
                 GenericChart.addLayout layout ch) 
 
+        static member withConfig (config:Config) =
+            (fun (ch:GenericChart) ->
+                GenericChart.setConfig config ch)
 
         // Set the title of a Chart
         static member withTitle(title,?Titlefont) =
