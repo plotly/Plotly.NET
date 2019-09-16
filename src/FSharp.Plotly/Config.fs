@@ -466,13 +466,17 @@ type Config() =
             ?StaticPlot             : bool,
             ?Autosizable            : bool,
             ?Responsive             : bool,
+            ?ShowEditInChartStudio  : bool,
             ?ToImageButtonOptions   : ToImageButtonOptions
         ) = 
             Config()
             |> Config.style
                 (
+                    ?StaticPlot             = StaticPlot,
+                    ?Autosizable            = Autosizable,
+                    ?Responsive             = Responsive,
                     ?ToImageButtonOptions   = ToImageButtonOptions,
-                    ?StaticPlot             = StaticPlot
+                    ?ShowEditInChartStudio  = ShowEditInChartStudio
                 )
 
 
@@ -484,7 +488,8 @@ type Config() =
             ?StaticPlot             : bool,
             ?Autosizable            : bool,
             ?Responsive             : bool,
-            ?ToImageButtonOptions   : ToImageButtonOptions
+            ?ToImageButtonOptions   : ToImageButtonOptions,
+            ?ShowEditInChartStudio  : bool
 
         ) =
             fun (config:Config) ->
@@ -492,4 +497,5 @@ type Config() =
                 Autosizable             |> DynObj.setValueOpt config "autosizable" 
                 Responsive              |> DynObj.setValueOpt config "responsive"
                 ToImageButtonOptions    |> DynObj.setValueOpt config "toImageButtonOptions"
+                ShowEditInChartStudio   |> DynObj.setValueOpt config "showEditInChartStudio"
                 config
