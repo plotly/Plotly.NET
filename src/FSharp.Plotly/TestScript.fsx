@@ -36,7 +36,16 @@ Chart.Spline(x,y',Name="spline")
 //|> GenericChart.toChartHtmlWithSize 500 500
 
 //|> Chart.ShowAsImage StyleParam.ImageFormat.SVG 
-|> Chart.ShowAsImage StyleParam.ImageFormat.SVG 
+
+let dims' =
+    [
+        Dimensions.init(["Cat1";"Cat1";"Cat1";"Cat1";"Cat2";"Cat2";"Cat3"],Label="A")
+        Dimensions.init([0;1;0;1;0;0;0],Label="B",TickText=["YES","NO"])
+    ]
+    
+Chart.ParallelCategories(dims=dims',Color=[0.;1.;0.;1.;0.;0.;0.],Colorscale = StyleParam.Colorscale.Blackbody)
+|> Chart.Show
+
 
 
 
