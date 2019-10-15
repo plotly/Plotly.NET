@@ -273,4 +273,14 @@ type Layout() =
                 layout
             )
 
+    static member AddScene 
+        (
+            name: string,
+            scene:Scene
+        ) =
+            (fun (layout:Layout) -> 
+                scene |> DynObj.setValue layout name
+                layout
+            )
+
 

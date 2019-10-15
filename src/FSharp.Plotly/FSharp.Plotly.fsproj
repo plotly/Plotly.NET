@@ -21,6 +21,7 @@
     <Compile Include="Light.fs" />
     <Compile Include="Contours.fs" />
     <Compile Include="Dimensions.fs" />
+    <Compile Include="Domain.fs" />
     <Compile Include="Line.fs" />
     <Compile Include="Marker.fs" />
     <Compile Include="Font.fs" />
@@ -37,6 +38,7 @@
     <Compile Include="GenericChart.fs" />
     <Compile Include="Chart.fs" />
     <Compile Include="ChartExtensions.fs" />
+    <Compile Include="Templates.fs" />
     <None Include="TestScript.fsx" />
     <None Include="paket.references" />
     <None Include="paket.template" />
