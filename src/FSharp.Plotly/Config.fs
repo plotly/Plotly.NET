@@ -1,111 +1,42 @@
 namespace FSharp.Plotly
 
-//full attributes from the plotly docs :
-//var configAttributes = {
-//    staticPlot: {
-//        valType: 'boolean',
-//        dflt: false,
-//        description: [
-//            'Determines whether the graphs are interactive or not.',
-//            'If *false*, no interactivity, for export or image generation.'
-//        ].join(' ')
-//    },
+//Missing imploementations (from full attributes from the plotly docs) :
+//To string: -> edits: {AnnotationEditOptions}
+type AnnotationEditOptions =
+///Determines if the main anchor of the annotation is editable.The main anchor corresponds to the',
+///text (if no arrow) or the arrow (which drags the whole thing leaving the arrow length & direction unchanged).
+|AnnotationPosition
+///Has only an effect for annotations with arrows. Enables changing the length and direction of the arrow.
+|AnnotationTail
+///Enables editing annotation text.
+|AnnotationText
+///Enables editing axis title text.
+|AxisTitleText
+///Enables moving colorbars.
+|ColorbarPosition
+///Enables editing colorbar title text.
+|ColorbarTitleText
+///Enables moving the legend.
+|LegendPosition
+///Enables editing the trace name fields from the legend
+|LegendText
+///Enables moving shapes.
+|ShapePosition
+    
+    static member toString aeo =
+        match aeo with
+        |AnnotationPosition ->  "annotationPosition" 
+        |AnnotationTail     ->  "annotationTail"     
+        |AnnotationText     ->  "annotationText"     
+        |AxisTitleText      ->  "axisTitleText"      
+        |ColorbarPosition   ->  "colorbarPosition"   
+        |ColorbarTitleText  ->  "colorbarTitleText"  
+        |LegendPosition     ->  "legendPosition"     
+        |LegendText         ->  "legendText"         
+        |ShapePosition      ->  "shapePosition"      
 
-//    plotlyServerURL: {
-//        valType: 'string',
-//        dflt: 'https://plot.ly',
-//        description: [
-//            'Sets base URL for the \'Edit in Chart Studio\' (aka sendDataToCloud) mode bar button',
-//            'and the showLink/sendData on-graph link'
-//        ].join(' ')
-//    },
 
-//    editable: {
-//        valType: 'boolean',
-//        dflt: false,
-//        description: [
-//            'Determines whether the graph is editable or not.',
-//            'Sets all pieces of `edits`',
-//            'unless a separate `edits` config item overrides individual parts.'
-//        ].join(' ')
-//    },
-//    edits: {
-//        annotationPosition: {
-//            valType: 'boolean',
-//            dflt: false,
-//            description: [
-//                'Determines if the main anchor of the annotation is editable.',
-//                'The main anchor corresponds to the',
-//                'text (if no arrow) or the arrow (which drags the whole thing leaving',
-//                'the arrow length & direction unchanged).'
-//            ].join(' ')
-//        },
-//        annotationTail: {
-//            valType: 'boolean',
-//            dflt: false,
-//            description: [
-//                'Has only an effect for annotations with arrows.',
-//                'Enables changing the length and direction of the arrow.'
-//            ].join(' ')
-//        },
-//        annotationText: {
-//            valType: 'boolean',
-//            dflt: false,
-//            description: 'Enables editing annotation text.'
-//        },
-//        axisTitleText: {
-//            valType: 'boolean',
-//            dflt: false,
-//            description: 'Enables editing axis title text.'
-//        },
-//        colorbarPosition: {
-//            valType: 'boolean',
-//            dflt: false,
-//            description: 'Enables moving colorbars.'
-//        },
-//        colorbarTitleText: {
-//            valType: 'boolean',
-//            dflt: false,
-//            description: 'Enables editing colorbar title text.'
-//        },
-//        legendPosition: {
-//            valType: 'boolean',
-//            dflt: false,
-//            description: 'Enables moving the legend.'
-//        },
-//        legendText: {
-//            valType: 'boolean',
-//            dflt: false,
-//            description: 'Enables editing the trace name fields from the legend'
-//        },
-//        shapePosition: {
-//            valType: 'boolean',
-//            dflt: false,
-//            description: 'Enables moving shapes.'
-//        },
-//        titleText: {
-//            valType: 'boolean',
-//            dflt: false,
-//            description: 'Enables editing the global layout title.'
-//        }
-//    },
 
-//    autosizable: {
-//        valType: 'boolean',
-//        dflt: false,
-//        description: [
-//            'Determines whether the graphs are plotted with respect to',
-//            'layout.autosize:true and infer its container size.'
-//        ].join(' ')
-//    },
-//    responsive: {
-//        valType: 'boolean',
-//        dflt: false,
-//        description: [
-//            'Determines whether to change the layout size when window is resized.',
-//            'In v2, this option will be removed and will always be true.'
-//        ].join(' ')
-//    },
 //    fillFrame: {
 //        valType: 'boolean',
 //        dflt: false,
@@ -467,7 +398,9 @@ type Config() =
             ?Autosizable            : bool,
             ?Responsive             : bool,
             ?ShowEditInChartStudio  : bool,
-            ?ToImageButtonOptions   : ToImageButtonOptions
+            ?ToImageButtonOptions   : ToImageButtonOptions,
+            ?Editable               : bool,
+            ?EditableAnnotations    : seq<AnnotationEditOptions>
         ) = 
             Config()
             |> Config.style
@@ -476,7 +409,9 @@ type Config() =
                     ?Autosizable            = Autosizable,
                     ?Responsive             = Responsive,
                     ?ToImageButtonOptions   = ToImageButtonOptions,
-                    ?ShowEditInChartStudio  = ShowEditInChartStudio
+                    ?ShowEditInChartStudio  = ShowEditInChartStudio,
+                    ?Editable               = Editable,
+                    ?EditableAnnotations    = EditableAnnotations
                 )
 
 
@@ -489,7 +424,9 @@ type Config() =
             ?Autosizable            : bool,
             ?Responsive             : bool,
             ?ToImageButtonOptions   : ToImageButtonOptions,
-            ?ShowEditInChartStudio  : bool
+            ?ShowEditInChartStudio  : bool,
+            ?Editable               : bool,
+            ?EditableAnnotations    : seq<AnnotationEditOptions>
 
         ) =
             fun (config:Config) ->
@@ -498,4 +435,20 @@ type Config() =
                 Responsive              |> DynObj.setValueOpt config "responsive"
                 ToImageButtonOptions    |> DynObj.setValueOpt config "toImageButtonOptions"
                 ShowEditInChartStudio   |> DynObj.setValueOpt config "showEditInChartStudio"
+                Editable                |> DynObj.setValueOpt config "editable"
+                EditableAnnotations
+                |> Option.map 
+                    (fun edits ->
+                        let ed = DynamicObj()
+                        edits 
+                        |> Seq.iter 
+                            (fun edit -> 
+                                let fieldName =
+                                    AnnotationEditOptions.toString edit
+                                ed?(fieldName) <- true
+                            )
+                        ed
+                    )
+                |> DynObj.setValueOpt config "edits"
+
                 config
