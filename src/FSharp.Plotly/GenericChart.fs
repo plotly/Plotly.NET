@@ -341,3 +341,8 @@ module GenericChart =
     /// Converts from a list of trace objects and a layout object into GenericChart
     let ofTraceObjects traces = // layout =
         GenericChart.MultiChart(traces, Layout(), Config())
+
+    let mapLayout f gChart =
+        match gChart with
+        | Chart (trace,layout,config)       -> Chart (trace,f layout,config)
+        | MultiChart (traces,layout,config) -> MultiChart (traces,f layout,config)

@@ -240,6 +240,12 @@ module ChartExtensions =
             (fun (ch:GenericChart) ->
                 GenericChart.setConfig config ch)
 
+        static member withAnnotations(annotations:seq<Annotation>) =
+            (fun (ch:GenericChart) -> 
+                ch
+                |> GenericChart.mapLayout 
+                    (Layout.style (Annotations = annotations)))
+
         // Set the title of a Chart
         static member withTitle(title,?Titlefont) =
             (fun (ch:GenericChart) ->

@@ -46,6 +46,19 @@ let dims' =
 Chart.ParallelCategories(dims=dims',Color=[0.;1.;0.;1.;0.;0.;0.],Colorscale = StyleParam.Colorscale.Blackbody)
 |> Chart.Show
 
+let data3d = List.zip3 [0 .. 15] [0 .. 15] [0 .. 15]
+let data2d = List.zip  [0 .. 15] [0 .. 15]
+
+[
+    Chart.Point (data2d)
+    Chart.Scatter3d(xyz=data3d,mode = StyleParam.Mode.Markers)
+    Chart.Scatter3d(xyz=data3d,mode = StyleParam.Mode.Markers)
+    Chart.Scatter3d(xyz=data3d,mode = StyleParam.Mode.Markers)
+    Chart.Scatter3d(xyz=data3d,mode = StyleParam.Mode.Markers)
+]
+|> Chart.Stack 2
+|> Chart.Show
+
 
 
 
