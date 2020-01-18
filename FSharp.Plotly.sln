@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2000
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{63297B98-5CED-492C-A5B7-A5B4F73CF142}"
 	ProjectSection(SolutionItems) = preProject
@@ -36,6 +36,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{8E6D
 		docsrc\content\bar-charts.fsx = docsrc\content\bar-charts.fsx
 		docsrc\content\box-plots.fsx = docsrc\content\box-plots.fsx
 		docsrc\content\bubble-charts.fsx = docsrc\content\bubble-charts.fsx
+		docsrc\content\candlestick.fsx = docsrc\content\candlestick.fsx
 		docsrc\content\choropleth-map.fsx = docsrc\content\choropleth-map.fsx
 		docsrc\content\contour-plots.fsx = docsrc\content\contour-plots.fsx
 		docsrc\content\errorbars.fsx = docsrc\content\errorbars.fsx
@@ -51,6 +52,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{8E6D
 		docsrc\content\plotly-wpf.fsx = docsrc\content\plotly-wpf.fsx
 		docsrc\content\polar-charts.fsx = docsrc\content\polar-charts.fsx
 		docsrc\content\range-plots.fsx = docsrc\content\range-plots.fsx
+		docsrc\content\sankey.fsx = docsrc\content\sankey.fsx
 		docsrc\content\shapes.fsx = docsrc\content\shapes.fsx
 		docsrc\content\splom.fsx = docsrc\content\splom.fsx
 		docsrc\content\violin-plots.fsx = docsrc\content\violin-plots.fsx
