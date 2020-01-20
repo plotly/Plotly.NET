@@ -1,5 +1,5 @@
 namespace FSharp.Plotly
-
+open FSharp.Plotly.StyleParam
 
     
 /// Scene 
@@ -14,9 +14,9 @@ type Scene() =
             ?yAxis        ,
             ?zAxis        ,
             ?isSubplotObj ,
-            ?BgColor          
+            ?BgColor      ,
             // ?Camera           ,
-            // ?Domain           ,
+            (?Domain : Domain)           
             // ?Aspectmode       ,
             // ?Aspectratio
         ) =
@@ -27,7 +27,8 @@ type Scene() =
                     ?yAxis        = yAxis         ,
                     ?zAxis        = zAxis         ,
                     ?isSubplotObj = isSubplotObj  ,
-                    ?BgColor      = BgColor                   
+                    ?BgColor      = BgColor       ,
+                    ?Domain       = Domain         
                 )
 
     // [<JsonIgnore>]
@@ -39,16 +40,16 @@ type Scene() =
             ?yAxis:Axis.LinearAxis,
             ?zAxis:Axis.LinearAxis,
             ?isSubplotObj     ,
-            ?BgColor          
+            ?BgColor          ,
             // ?Camera           ,
-            // ?Domain           ,
+            ?Domain:Domain           
             // ?Aspectmode       ,
             // ?Aspectratio
         ) =
             (fun (scene:Scene) -> 
                 isSubplotObj |> DynObj.setValueOpt scene "_isSubplotObj"
                 BgColor      |> DynObj.setValueOpt scene "bgcolor"
-                    
+                Domain       |> DynObj.setValueOpt scene "domain"
                 // Update
                 xAxis        |> DynObj.setValueOpt scene "xaxis"
                 yAxis        |> DynObj.setValueOpt scene "yaxis"

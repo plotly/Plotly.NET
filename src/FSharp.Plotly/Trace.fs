@@ -54,7 +54,6 @@ module Trace =
     let initHistogram2d (applyStyle:Trace->Trace) = 
         Trace("histogram2d") |> applyStyle
 
-
     /// Init trace for 2d-histogram contour
     let initHistogram2dContour (applyStyle:Trace->Trace) = 
         Trace("histogram2dcontour") |> applyStyle
@@ -62,6 +61,10 @@ module Trace =
     /// Init trace for a parallel coordinates plot
     let initParallelCoord (applyStyle:Trace->Trace) = 
         Trace("parcoords") |> applyStyle
+
+    // Init trace for a parallel category plot
+    let initParallelCategories (applyStyle: Trace -> Trace) =
+        Trace("parcats") |> applyStyle
 
     /// Init trace for a choropleth map
     let initChoroplethMap (applyStyle:Trace->Trace) = 
@@ -884,7 +887,28 @@ module Trace =
                     // out ->
                     parcoords 
                 ) 
-
+    
+        static member ParallelCategories
+            (                
+                ?Dimensions : seq<Dimensions>,
+                ?Line               ,
+                ?Domain             ,
+                ?Labelfont          ,
+                ?Tickfont   :   Font,
+                ?Rangefont  :   Font        
+            ) =
+                (fun (parcats:('T :> Trace)) -> 
+        
+                    Dimensions         |> DynObj.setValueOpt parcats "dimensions"         
+                    Line               |> DynObj.setValueOpt parcats "line"                     
+                    Domain             |> DynObj.setValueOpt parcats "domain"     
+                    Labelfont          |> DynObj.setValueOpt parcats "labelfont"               
+                    Tickfont           |> DynObj.setValueOpt parcats "tickfont"                
+                    Rangefont          |> DynObj.setValueOpt parcats "rangefont"              
+            
+                    // out ->
+                    parcats 
+                ) 
 
         // Applies the styles of choropleth map plot to TraceObjects 
         static member ChoroplethMap

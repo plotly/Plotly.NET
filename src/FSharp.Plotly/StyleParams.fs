@@ -787,3 +787,34 @@ module StyleParam =
             | JPEG -> "jpeg"    
 
         static member convert = ImageFormat.toString >> box
+
+    type HorizontalAlign = 
+        |Left |Center |Right
+        static member toString = function
+            | Left  -> "left"             
+            | Center-> "center"            
+            | Right -> "right"    
+
+        static member convert = HorizontalAlign.toString >> box
+
+    type VerticalAlign = 
+        |Top |Middle |Bottom
+        static member toString = function
+            | Top       -> "top"             
+            | Middle    -> "middle"            
+            | Bottom    -> "bottom"    
+
+        static member convert = VerticalAlign.toString >> box
+
+    type ArrowHead =
+    |TriangleShort |TriangleTall |Barbed |SimpleShort |SimpleTall |Cirle |Square |LineOnly
+        static member toEnum = function
+            |TriangleShort -> 1
+            |TriangleTall  -> 2
+            |Barbed        -> 3
+            |SimpleShort   -> 4
+            |SimpleTall    -> 5
+            |Cirle         -> 6
+            |Square        -> 7
+            |LineOnly      -> 8
+        static member convert = ArrowHead.toEnum >> box
