@@ -170,7 +170,7 @@ type Chart =
             |> TraceStyle.Line(Width=0)
             |> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,,0.5)")             
  
-        GenericChart.MultiChart ([lower;upper;trace],Layout())
+        GenericChart.MultiChart ([lower;upper;trace],Layout(),Config())
 
 
     /// Displays a range of data by plotting two Y values per data point, with each Y value being drawn as a line 
@@ -473,8 +473,27 @@ type Chart =
         |> TraceStyle.Line(?Width=Width,?Color=Color,?Dash=Dash,?Colorscale=Colorscale)
         |> GenericChart.ofTraceObject
 
+    ///Parallel categories diagram for multidimensional categorical data.
+    static member ParallelCategories(dims:seq<'key*#seq<'values>>,?Range,?Constraintrange,?Color,?Colorscale,?Width,?Dash,?Domain,?Labelfont,?Tickfont,?Rangefont) =
+        let dims' = 
+            dims |> Seq.map (fun (k,vals) -> 
+                Dimensions.init(vals)
+                |> Dimensions.style(vals,?Range=Range,?Constraintrange=Constraintrange,Label=k)
+                )
+        Trace.initParallelCategories (
+            TraceStyle.ParallelCategories(Dimensions=dims',?Domain=Domain,?Labelfont=Labelfont,?Tickfont=Tickfont,?Rangefont=Rangefont)
+        )
+        |> TraceStyle.Line(?Width=Width,?Color=Color,?Dash=Dash,?Colorscale=Colorscale)
+        |> GenericChart.ofTraceObject
 
-     /// Computes the choropleth map plot
+    static member ParallelCategories(dims:seq<Dimensions>,?Color,?Colorscale,?Width,?Dash,?Domain,?Labelfont,?Tickfont,?Rangefont) =
+        Trace.initParallelCategories (
+            TraceStyle.ParallelCoord (Dimensions=dims,?Domain=Domain,?Labelfont=Labelfont,?Tickfont=Tickfont,?Rangefont=Rangefont)             
+            )
+        |> TraceStyle.Line(?Width=Width,?Color=Color,?Dash=Dash,?Colorscale=Colorscale)
+        |> GenericChart.ofTraceObject
+
+    /// Computes the choropleth map plot
     static member ChoroplethMap(locations,z,?Text,?Locationmode,?Autocolorscale,?Colorscale,?Colorbar,?Marker,?Zmin,?Zmax) =
         Trace.initChoroplethMap (
             TraceStyle.ChoroplethMap (Locations=locations,Z=z,?Text=Text,?Locationmode=Locationmode,?Autocolorscale=Autocolorscale,

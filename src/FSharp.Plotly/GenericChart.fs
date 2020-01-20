@@ -50,7 +50,8 @@ module HTML =
   <script>
     var data = [DATA];
     var layout = [LAYOUT];
-    Plotly.newPlot('[ID]', data, layout);
+    var config = [CONFIG];
+    Plotly.newPlot('[ID]', data, layout, config);
   </script>"""
 
     let description ="""<div class=container>
@@ -69,7 +70,8 @@ module HTML =
     var img_jpg= d3.select('#jpg-export');
     var data = [DATA];
     var layout = [LAYOUT];
-    Plotly.newPlot('[ID]', data, layout)
+    var config = [CONFIG];
+    Plotly.newPlot('[ID]', data, layout, config)
     // static image in jpg format
 
     .then(
@@ -109,33 +111,32 @@ module GenericChart =
     open ChartDescription
 
     type GenericChart =
-        | Chart of Trace * Layout
-        | MultiChart of Trace list * Layout
-
+        | Chart of Trace * Layout * Config
+        | MultiChart of Trace list * Layout * Config
 
     let getTraces gChart =
         match gChart with
-        | Chart (trace,_)       -> [trace]
-        | MultiChart (traces,_) -> traces
+        | Chart (trace,_,_)       -> [trace]
+        | MultiChart (traces,_,_) -> traces
 
     let getLayout gChart =
         match gChart with
-        | Chart (_,layout)      -> layout
-        | MultiChart (_,layout) -> layout
+        | Chart (_,layout,_)      -> layout
+        | MultiChart (_,layout,_) -> layout
 
     let setLayout layout gChart =
         match gChart with
-        | Chart (t,_)      -> Chart (t,layout)
-        | MultiChart (t,_) -> MultiChart (t,layout)
+        | Chart (t,_,c)      -> Chart (t,layout,c)
+        | MultiChart (t,_,c) -> MultiChart (t,layout,c)
 
 
     // Adds a Layout function to the GenericChart
     let addLayout layout gChart =
         match gChart with
-        | Chart (trace,l') ->
-            Chart (trace, (DynObj.combine l' layout |> unbox) )
-        | MultiChart (traces,l') ->
-            MultiChart (traces, (DynObj.combine l' layout |> unbox))
+        | Chart (trace,l',c) ->
+            Chart (trace, (DynObj.combine l' layout |> unbox),c )
+        | MultiChart (traces,l',c) ->
+            MultiChart (traces, (DynObj.combine l' layout |> unbox),c)
 
 
     /// Returns a tuple containing the width and height of a GenericChart's layout if the property is set, otherwise returns None
@@ -148,6 +149,15 @@ module GenericChart =
         |(Some w, Some h) -> Some (w,h)
         |_ -> None
 
+    let getConfig gChart =
+        match gChart with
+        | Chart (_,_,c)      -> c
+        | MultiChart (_,_,c) -> c
+
+    let setConfig config gChart =
+        match gChart with
+        | Chart (t,l,_)      -> Chart (t,l,config)
+        | MultiChart (t,l,_) -> MultiChart (t,l,config)
 
     // // Adds multiple Layout functions to the GenericChart
     // let addLayouts layouts gChart =
@@ -164,18 +174,20 @@ module GenericChart =
         let combineLayouts (first:Layout) (second:Layout) = 
             DynObj.combine first second |> unbox
 
+        let combineConfigs (first:Config) (second:Config) = 
+            DynObj.combine first second |> unbox
 
         gCharts
         |> Seq.reduce (fun acc elem ->
             match acc,elem with
-            | MultiChart (traces,l1),Chart (trace,l2)         -> 
-                MultiChart (List.append traces [trace], combineLayouts l1 l2)
-            | MultiChart (traces1,l1),MultiChart (traces2,l2) -> 
-                MultiChart (List.append traces1 traces2,combineLayouts l1 l2)
-            | Chart (trace1,l1),Chart (trace2,l2)             -> 
-                MultiChart ([trace1;trace2],combineLayouts l1 l2)
-            | Chart (trace,l1),MultiChart (traces,l2)         -> 
-                MultiChart (List.append [trace] traces ,combineLayouts l1 l2)
+            | MultiChart (traces,l1,c1),Chart (trace,l2,c2)         -> 
+                MultiChart (List.append traces [trace], combineLayouts l1 l2, combineConfigs c1 c2)
+            | MultiChart (traces1,l1,c1),MultiChart (traces2,l2,c2) -> 
+                MultiChart (List.append traces1 traces2,combineLayouts l1 l2, combineConfigs c1 c2)
+            | Chart (trace1,l1,c1),Chart (trace2,l2,c2)             -> 
+                MultiChart ([trace1;trace2],combineLayouts l1 l2, combineConfigs c1 c2)
+            | Chart (trace,l1,c1),MultiChart (traces,l2,c2)         -> 
+                MultiChart (List.append [trace] traces ,combineLayouts l1 l2, combineConfigs c1 c2)
                         ) 
     
     // let private materialzeLayout (layout:(Layout -> Layout) list) =
@@ -198,7 +210,10 @@ module GenericChart =
         let layoutJson = 
             getLayout gChart
             |> JsonConvert.SerializeObject 
-        
+        let configJson =
+            getConfig gChart
+            |> JsonConvert.SerializeObject 
+
         let dims = tryGetLayoutSize gChart
         let width,height =
             match dims with
@@ -213,6 +228,7 @@ module GenericChart =
                 .Replace("[ID]", guid)
                 .Replace("[DATA]", tracesJson)
                 .Replace("[LAYOUT]", layoutJson)
+                .Replace("[CONFIG]", configJson)
         html
 
     /// Converts a GenericChart to it HTML representation and set the size of the div 
@@ -224,6 +240,9 @@ module GenericChart =
         let layoutJson = 
             getLayout gChart            
             |> JsonConvert.SerializeObject 
+        let configJson = 
+            getConfig gChart
+            |> JsonConvert.SerializeObject 
 
         let html =
             HTML.chart
@@ -232,6 +251,7 @@ module GenericChart =
                 .Replace("[HEIGHT]", string height)
                 .Replace("[DATA]", tracesJson)
                 .Replace("[LAYOUT]", layoutJson)
+                .Replace("[CONFIG]", configJson)
         html
 
 
@@ -275,6 +295,7 @@ module GenericChart =
                 .Replace("[DATA]", tracesJson)
                 .Replace("[LAYOUT]", layoutJson)
                 .Replace("[IMAGEFORMAT]",format.ToString().ToLower())
+                .Replace("[CONFIG]","{}")
         html
 
     /// Converts a GenericChart to an image and embeds it into a html page
@@ -282,39 +303,46 @@ module GenericChart =
         let html =
             let chartMarkup =
                 toChartImage format gChart
-            HTML.doc.Replace("[CHART]", chartMarkup)
+            HTML.doc
+                .Replace("[CHART]", chartMarkup)
+                .Replace("[CONFIG]","{}")
         html
 
 
     /// Creates a new GenericChart whose traces are the results of applying the given function to each of the trace of the GenericChart. 
     let mapTrace f gChart =
         match gChart with
-        | Chart (trace,layout)       -> Chart (f trace,layout)
-        | MultiChart (traces,layout) -> MultiChart (traces |> List.map f,layout) 
+        | Chart (trace,layout,config)       -> Chart (f trace,layout,config)
+        | MultiChart (traces,layout,config) -> MultiChart (traces |> List.map f,layout,config) 
 
     /// Creates a new GenericChart whose traces are the results of applying the given function to each of the trace of the GenericChart.
     /// The integer index passed to the function indicates the index (from 0) of element being transformed.
     let mapiTrace f gChart =
         match gChart with
-        | Chart (trace,layout)       -> Chart (f 0 trace,layout)
-        | MultiChart (traces,layout) -> MultiChart (traces |> List.mapi f,layout) 
+        | Chart (trace,layout,config)       -> Chart (f 0 trace,layout,config)
+        | MultiChart (traces,layout,config) -> MultiChart (traces |> List.mapi f,layout,config) 
 
     /// Returns the number of traces within the GenericChart
     let countTrace gChart =
         match gChart with
         | Chart (_)             -> 1
-        | MultiChart (traces,_) -> traces |> Seq.length
+        | MultiChart (traces,_,_) -> traces |> Seq.length
 
     /// Creates a new GenericChart whose traces are the results of applying the given function to each of the trace of the GenericChart.
     let existsTrace (f:Trace->bool) gChart =
         match gChart with
-        | Chart (trace,_)       -> f trace 
-        | MultiChart (traces,_) -> traces |> List.exists f
+        | Chart (trace,_,_)       -> f trace 
+        | MultiChart (traces,_,_) -> traces |> List.exists f
           
     /// Converts from a trace object and a layout object into GenericChart
     let ofTraceObject trace = //layout =
-        GenericChart.Chart(trace, Layout() )
+        GenericChart.Chart(trace, Layout(), Config())
 
     /// Converts from a list of trace objects and a layout object into GenericChart
     let ofTraceObjects traces = // layout =
-        GenericChart.MultiChart(traces, Layout() )
+        GenericChart.MultiChart(traces, Layout(), Config())
+
+    let mapLayout f gChart =
+        match gChart with
+        | Chart (trace,layout,config)       -> Chart (trace,f layout,config)
+        | MultiChart (traces,layout,config) -> MultiChart (traces,f layout,config)

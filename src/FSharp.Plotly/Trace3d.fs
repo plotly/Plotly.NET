@@ -41,7 +41,7 @@ module Trace3d =
                 ?Surfaceaxis,
                 ?Surfacecolor,
                 ?Projection : Projection,
-                ?Scene,          
+                ?Scene  : string,          
                 ?Error_y: Error,
                 ?Error_x: Error,
                 ?Error_z: Error,
@@ -49,9 +49,9 @@ module Trace3d =
                 ?Ysrc   : string,
                 ?Zsrc   : string
             ) =
-                 //(fun (scatter:('T :> Trace3d)) ->
-                 (fun (scatter: Trace3d) ->
-                    //scatter.set_type plotType                     
+                //(fun (scatter:('T :> Trace3d)) ->
+                (fun (scatter: Trace3d) ->
+                //scatter.set_type plotType                     
                     X            |> DynObj.setValueOpt scatter "x"
                     Y            |> DynObj.setValueOpt scatter "y"
                     Z            |> DynObj.setValueOpt scatter "z"
@@ -217,5 +217,16 @@ module Trace3d =
                     // out ->
                     mesh3d
                 ) 
+
+        static member setScene 
+            (
+                ?SceneName:string
+            ) =
+                fun (trace:Trace3d) ->
+                    SceneName |> DynObj.setValueOpt trace "scene"
+                    trace
+                
+                
+
 
 

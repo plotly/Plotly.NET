@@ -236,6 +236,15 @@ module ChartExtensions =
             (fun (ch:GenericChart) -> 
                 GenericChart.addLayout layout ch) 
 
+        static member withConfig (config:Config) =
+            (fun (ch:GenericChart) ->
+                GenericChart.setConfig config ch)
+
+        static member withAnnotations(annotations:seq<Annotation>) =
+            (fun (ch:GenericChart) -> 
+                ch
+                |> GenericChart.mapLayout 
+                    (Layout.style (Annotations = annotations)))
 
         // Set the title of a Chart
         static member withTitle(title,?Titlefont) =
@@ -326,50 +335,86 @@ module ChartExtensions =
                     else
                         s
 
+                let contains3d ch =
+                    ch 
+                    |> existsTrace (fun t -> 
+                        match t with
+                        | :? Trace3d -> true
+                        | _ -> false)
+
                 charts
                 |> Seq.mapi (fun i ch ->
                     let colI,rowI,index = (i%col+1), (i/col+1),(i+1)
                     let xdomain = (colWidth * float (colI-1), (colWidth * float colI) - space ) 
                     let ydomain = (1. - ((rowWidth * float rowI) - space ),1. - (rowWidth * float (rowI-1)))
-                    let xaxis,yaxis,layout = 
-                        let layout = GenericChart.getLayout ch
-                        let xName, yName = StyleParam.AxisId.X 1 |> StyleParam.AxisId.toString, StyleParam.AxisId.Y 1 |> StyleParam.AxisId.toString
-                        match (layout.TryGetTypedValue<Axis.LinearAxis> xName),(layout.TryGetTypedValue<Axis.LinearAxis> yName) with
-                        | Some x, Some y ->
-                            // remove axis
-                            DynObj.remove layout xName
-                            DynObj.remove layout yName
 
-                            x |> Axis.LinearAxis.style(Anchor=StyleParam.AxisAnchorId.Y index,Domain=StyleParam.Range.MinMax xdomain),
-                            y |> Axis.LinearAxis.style(Anchor=StyleParam.AxisAnchorId.X index,Domain=StyleParam.Range.MinMax ydomain),
-                            layout
-                        | Some x, None -> 
-                            // remove x - axis
-                            DynObj.remove layout xName
-                            x |> Axis.LinearAxis.style(Anchor=StyleParam.AxisAnchorId.Y index,Domain=StyleParam.Range.MinMax xdomain),
-                            Axis.LinearAxis.init(Anchor=StyleParam.AxisAnchorId.X index,Domain=StyleParam.Range.MinMax ydomain),
-                            layout
-                        | None, Some y -> 
-                            // remove y - axis
-                            DynObj.remove layout yName
-                            Axis.LinearAxis.init(Anchor=StyleParam.AxisAnchorId.Y index,Domain=StyleParam.Range.MinMax xdomain),
-                            y |> Axis.LinearAxis.style(Anchor=StyleParam.AxisAnchorId.X index,Domain=StyleParam.Range.MinMax ydomain),
-                            layout
-                        | None, None ->
-                            Axis.LinearAxis.init(Anchor=StyleParam.AxisAnchorId.Y index,Domain=StyleParam.Range.MinMax xdomain),
-                            Axis.LinearAxis.init(Anchor=StyleParam.AxisAnchorId.X index,Domain=StyleParam.Range.MinMax ydomain),
-                            layout
+                    if contains3d ch then
+                        let sceneName = sprintf "scene%i" (i+1)
 
-                    ch
-                    |> GenericChart.setLayout layout
-                    |> Chart.withAxisAnchor(X=index,Y=index) 
-                    |> Chart.withX_Axis(xaxis,index)
-                    |> Chart.withY_Axis(yaxis,index)
+                        let scene =
+                            Scene.init (
+                                Domain =
+                                    Domain.init(X = StyleParam.Range.MinMax xdomain,Y= StyleParam.Range.MinMax ydomain)
+                            )
+                        let layout = 
+                            GenericChart.getLayout ch
+                            |> Layout.AddScene (
+                                    sceneName, 
+                                    scene
+                                )
+                        ch
+                        |> mapTrace 
+                            (fun t -> 
+                                t?scene <- sceneName
+                                t
+                            )
+                        |> GenericChart.setLayout layout
+                        //|> Chart.withAxisAnchor(X=index,Y=index) 
+                    else
+
+                        let xaxis,yaxis,layout = 
+                            let layout = GenericChart.getLayout ch
+                            let xName, yName = StyleParam.AxisId.X 1 |> StyleParam.AxisId.toString, StyleParam.AxisId.Y 1 |> StyleParam.AxisId.toString
+                            match (layout.TryGetTypedValue<Axis.LinearAxis> xName),(layout.TryGetTypedValue<Axis.LinearAxis> yName) with
+                            | Some x, Some y ->
+                                // remove axis
+                                DynObj.remove layout xName
+                                DynObj.remove layout yName
+
+                                x |> Axis.LinearAxis.style(Anchor=StyleParam.AxisAnchorId.Y index,Domain=StyleParam.Range.MinMax xdomain),
+                                y |> Axis.LinearAxis.style(Anchor=StyleParam.AxisAnchorId.X index,Domain=StyleParam.Range.MinMax ydomain),
+                                layout
+                            | Some x, None -> 
+                                // remove x - axis
+                                DynObj.remove layout xName
+                                x |> Axis.LinearAxis.style(Anchor=StyleParam.AxisAnchorId.Y index,Domain=StyleParam.Range.MinMax xdomain),
+                                Axis.LinearAxis.init(Anchor=StyleParam.AxisAnchorId.X index,Domain=StyleParam.Range.MinMax ydomain),
+                                layout
+                            | None, Some y -> 
+                                // remove y - axis
+                                DynObj.remove layout yName
+                                Axis.LinearAxis.init(Anchor=StyleParam.AxisAnchorId.Y index,Domain=StyleParam.Range.MinMax xdomain),
+                                y |> Axis.LinearAxis.style(Anchor=StyleParam.AxisAnchorId.X index,Domain=StyleParam.Range.MinMax ydomain),
+                                layout
+                            | None, None ->
+                                Axis.LinearAxis.init(Anchor=StyleParam.AxisAnchorId.Y index,Domain=StyleParam.Range.MinMax xdomain),
+                                Axis.LinearAxis.init(Anchor=StyleParam.AxisAnchorId.X index,Domain=StyleParam.Range.MinMax ydomain),
+                                layout
+
+                        ch
+                        |> GenericChart.setLayout layout
+                        |> Chart.withAxisAnchor(X=index,Y=index) 
+                        |> Chart.withX_Axis(xaxis,index)
+                        |> Chart.withY_Axis(yaxis,index)
                     )
 
                 |> Chart.Combine
                 )
-
+        
+        //static member Stack3D (?Columns:int, ?Space) =
+        //    (fun (charts:#seq<GenericChart>) ->  
+        //        ()
+        //    )
 
         /// Save chart as html single page
         static member SaveHtmlAs pathName (ch:GenericChart,?Verbose) =
