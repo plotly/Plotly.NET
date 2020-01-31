@@ -32,3 +32,15 @@ let area2 =
 area2 |> Chart.Show
 
 (*** include-value:area2 ***)
+
+let stackedArea =
+    [
+    Chart.StackedArea(x,y)
+    Chart.StackedArea(x,y |> Seq.rev)
+    ]
+    |> Chart.Combine
+
+(***do-not-eval***)
+stackedArea |> Chart.Show
+
+(*** include-value:stackedArea ***)
