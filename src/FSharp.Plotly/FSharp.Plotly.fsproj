@@ -46,9 +46,9 @@
     <None Include="paket.template" />
   </ItemGroup>
   
-  <ItemGroup>
+  <!--<ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
-  </ItemGroup>  
+  </ItemGroup>-->  
   
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>
