@@ -276,6 +276,16 @@ module Trace =
                     trace
                 )
 
+        // Sets Stackgroup() to TraceObjects
+        static member SetStackGroup
+            (
+                stackgroup: string
+            ) =  
+               (fun (trace:('T :> Trace)) ->
+
+                    trace.SetValue("stackgroup", stackgroup)
+                    trace
+                )
 
 // #################################
 // # Charts 

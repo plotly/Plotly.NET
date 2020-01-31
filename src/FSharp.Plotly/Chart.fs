@@ -230,6 +230,21 @@ type Chart =
         let x,y = Seq.unzip xy
         Chart.SplineArea(x, y, ?Name=Name,?ShowMarkers=ShowMarkers,?Showlegend=Showlegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width,?Smoothing=Smoothing) 
 
+    /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
+    static member StackedArea(x, y,?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
+        Trace.initScatter (
+                TraceStyle.Scatter(X = x,Y = y, Mode=StyleParam.Mode.Lines) )               
+        |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+        |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
+        |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
+        |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        |> TraceStyle.SetStackGroup "static"
+        |> GenericChart.ofTraceObject 
+
+    /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
+    static member StackedArea(xy,?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
+        let x,y = Seq.unzip xy
+        Chart.StackedArea(x, y, ?Name=Name,?Showlegend=Showlegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width) 
 
     /// Illustrates comparisons among individual items
     static member Column(keys, values,?Name,?Showlegend,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Marker) = 
