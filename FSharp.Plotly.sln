@@ -47,6 +47,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{8E6D
 		docsrc\content\index.fsx = docsrc\content\index.fsx
 		docsrc\content\line-scatter-plots.fsx = docsrc\content\line-scatter-plots.fsx
 		docsrc\content\multiple-charts.fsx = docsrc\content\multiple-charts.fsx
+		docsrc\content\parallel-categories.fsx = docsrc\content\parallel-categories.fsx
 		docsrc\content\parallel-coords.fsx = docsrc\content\parallel-coords.fsx
 		docsrc\content\pie-daughnut-charts.fsx = docsrc\content\pie-daughnut-charts.fsx
 		docsrc\content\plotly-wpf.fsx = docsrc\content\plotly-wpf.fsx
