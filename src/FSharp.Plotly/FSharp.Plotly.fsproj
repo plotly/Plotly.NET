@@ -25,6 +25,9 @@
     <Compile Include="Line.fs" />
     <Compile Include="Marker.fs" />
     <Compile Include="Font.fs" />
+    <Compile Include="Cellcolor.fs" />
+    <Compile Include="Header.fs" />
+    <Compile Include="Cells.fs" />
     <Compile Include="Axis.fs" />
     <Compile Include="Bins.fs" />
     <Compile Include="Cumulative.fs" />

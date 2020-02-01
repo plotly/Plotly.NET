@@ -573,4 +573,27 @@ type Chart =
         |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
         |> GenericChart.ofTraceObject 
 
+    /// cretes table out of header sequence and row sequences
+    static member Table(headerValues, cellValues, ?AlignHeader, ?AlignCells, ?ColumnWidth, ?ColumnOrder, ?ColorHeader, ?ColorCells, ?FontHeader, ?FontCells, ?HeightHeader, ?HeightCells, ?LineHeader, ?LineCells) = //header, cells ) = //,?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
+        Trace.initTable (
 
+                let CellFilling =
+                    match ColorCells with 
+                    | Some color  -> Some (CellColour.init (?Color=ColorCells))
+                    | Option.None -> Option.None
+
+                let HeaderFilling =
+                    match ColorHeader with 
+                    | Some color   -> Some (CellColour.init (?Color=ColorHeader))
+                    | Option.None  -> Option.None
+                              
+
+                TraceStyle.Table (
+                    Header = Header.init (headerValues|> Seq.map seq, ?Align=AlignHeader, ?Fill=HeaderFilling, ?Font=FontHeader, ?Height=HeightHeader, ?Line=LineHeader),
+                    Cells  = 
+                        Cells.init(cellValues |> Seq.transpose, ?Align=AlignCells, ?Fill=CellFilling, ?Font=FontCells, ?Height=HeightCells, ?Line=LineCells),  
+                    ?ColumnWidth = ColumnWidth,
+                    ?ColumnOrder = ColumnOrder
+                    )
+                )
+        |> GenericChart.ofTraceObject 

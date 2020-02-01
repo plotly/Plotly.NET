@@ -74,6 +74,9 @@ module Trace =
     let initSplom (applyStyle:Trace->Trace) = 
         Trace("splom") |> applyStyle
 
+    /// Init trace for table
+    let initTable (applyStyle:Trace->Trace) = 
+        Trace("table") |> applyStyle
 
     /// Functions provide the styling of the Chart objects
     type TraceStyle() =
@@ -963,6 +966,23 @@ module Trace =
                 (fun (trace:('T :> Trace)) ->
                     Dimensions   |> DynObj.setValueOpt trace "dimensions"
                         
+                    // out ->
+                    trace
+                ) 
+
+        // Applies the styles of table plot to TraceObjects 
+        static member Table
+            (   
+                Header       : Header  ,
+                Cells        : Cells   ,
+                ?ColumnWidth : seq<int>,
+                ?ColumnOrder : seq<int>         
+            ) =
+                (fun (trace:('T :> Trace)) ->                  
+                    Header      |> DynObj.setValue    trace "header"
+                    Cells       |> DynObj.setValue    trace "cells"
+                    ColumnWidth |> DynObj.setValueOpt trace "columnwidth"
+                    ColumnOrder |> DynObj.setValueOpt trace "columnorder"
                     // out ->
                     trace
                 ) 
