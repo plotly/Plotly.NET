@@ -16,13 +16,11 @@ open FSharp.Plotly.StyleParam
 let header = ["<b>RowIndex</b>";"A";"simple";"table"]
 let rows = 
     [
-     ["0";"I";"am";"a"]        
+     ["0";"I"     ;"am"     ;"a"]        
      ["1";"little";"example";"!"]       
     ]
 
-let table1 =
-    Chart.Table(header, rows)
-
+let table1 = Chart.Table(header, rows)
 
 
 (***do-not-eval***)
@@ -39,29 +37,29 @@ let table2 =
         header,
         rows,
         //sets global header alignment
-        AlignHeader= [HorizontalAlign.Center],
+        AlignHeader = [HorizontalAlign.Center],
         //sets alignment for each column separately 
         //(The last alignment is applied to all potential following columns)
-        AlignCells= [HorizontalAlign.Left;HorizontalAlign.Center;HorizontalAlign.Right],
+        AlignCells  = [HorizontalAlign.Left;HorizontalAlign.Center;HorizontalAlign.Right],
         //sets global header color
-        ColorHeader="#45546a",    
-        //sets specific header color to each header column
+        ColorHeader = "#45546a",    
+        //sets specific color to each header column
         //ColorHeader=["#45546a";"#deebf7";"#45546a";"#deebf7"],    
         //sets global cell color
-        //ColorRows="#deebf7",
+        //ColorRows = "#deebf7",
         //sets cell column colors
-        ColorCells=["#deebf7";"lightgrey";"#deebf7";"lightgrey"],
+        ColorCells  = ["#deebf7";"lightgrey";"#deebf7";"lightgrey"],
         //sets cell row colors
         //ColorCells=[["#deebf7";"lightgrey"]],
         //sets font of header
-        FontHeader=Font.init(FontFamily.Courier_New, Size=12, Color="white"),      
+        FontHeader  = Font.init(FontFamily.Courier_New, Size=12, Color="white"),      
         //sets the height of the header
         HeightHeader= 30.,
         //sets lines of header
-        LineHeader=Line.init(2.,"black"),                     
-        ColumnWidth=[70;50;100;70],      
+        LineHeader  = Line.init(2.,"black"),                     
+        ColumnWidth = [70;50;100;70],      
         //defines order of columns
-        ColumnOrder= [1;2;3;4]                                  
+        ColumnOrder = [1;2;3;4]                                  
         )
 
 (***do-not-eval***)
@@ -88,11 +86,13 @@ let rowvalues =
 
 //map color from value to hex representation
 let mapColor min max value = 
-    let percentage = (value - min) / (max - min)
-    Colors.fromRgb 255 (255 - (int (255. * percentage)))  (int (255. * percentage))
+    let proportion = 
+        (255. * (value - min) / (max - min))
+        |> int
+    Colors.fromRgb 255 (255 - proportion) proportion
     |> Colors.toWebColor
     
-//assign a color to every cell seperately. Matrix must be transposed for correct orientation
+//Assign a color to every cell seperately. Matrix must be transposed for correct orientation.
 let cellcolor = 
      rowvalues
      |> Seq.map (fun row ->
@@ -114,7 +114,7 @@ table3 |> Chart.Show
 
 
 (**
-Sequence representation
+Sequence representation:
 
 *)
 
@@ -128,10 +128,10 @@ let sequence =
         ]
         |> String.concat ""
 
-let elementsperrow = 60
+let elementsPerRow = 60
 
 let headers = 
-    [0..elementsperrow] 
+    [0..elementsPerRow] 
     |> Seq.map (fun x -> 
         if x%10=0 && x <> 0 then "|" 
         else ""
@@ -139,15 +139,15 @@ let headers =
 
 let cells = 
     sequence
-    |> Seq.chunkBySize elementsperrow
-    |> Seq.mapi (fun i x -> Seq.append [string (i * elementsperrow)] (Seq.map string x))
+    |> Seq.chunkBySize elementsPerRow
+    |> Seq.mapi (fun i x -> Seq.append [string (i * elementsPerRow)] (Seq.map string x))
 
 let cellcolors =
     cells
     |> Seq.map (fun row -> 
         row 
-        |> Seq.map (fun nucleotid -> 
-            match nucleotid with
+        |> Seq.map (fun element -> 
+            match element with
             //colors taken from DRuMS 
             //(http://biomodel.uah.es/en/model4/dna/atgc.htm)
             | "A" -> "#5050FF" 
@@ -163,13 +163,21 @@ let cellcolors =
 
 let font = Font.init(FontFamily.Consolas,Size=14)
 let line = Line.init(0,"white")
-let chartwidth = 50. + 10. * float elementsperrow
+let chartwidth = 50. + 10. * float elementsPerRow
 
 let table4 =
     Chart.Table(
-        headers,cells,LineCells=line,LineHeader=line,HeightCells=20,
-        FontHeader=font,FontCells=font,ColumnWidth=[50;10],
-        AlignCells=[HorizontalAlign.Right;HorizontalAlign.Center],ColorCells=cellcolors)
+        headers,
+        cells,
+        LineCells   = line,
+        LineHeader  = line,
+        HeightCells = 20,
+        FontHeader  = font,
+        FontCells   = font,
+        ColumnWidth = [50;10],
+        AlignCells  = [HorizontalAlign.Right;HorizontalAlign.Center],
+        ColorCells  = cellcolors
+        )
     |> Chart.withSize(chartwidth,nan)
     |> Chart.withTitle "Sequence A"
 
