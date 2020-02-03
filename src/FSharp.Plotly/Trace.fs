@@ -973,8 +973,8 @@ module Trace =
         // Applies the styles of table plot to TraceObjects 
         static member Table
             (   
-                Header       : Header  ,
-                Cells        : Cells   ,
+                Header       : TableHeader  ,
+                Cells        : TableCells   ,
                 ?ColumnWidth : seq<int>,
                 ?ColumnOrder : seq<int>         
             ) =

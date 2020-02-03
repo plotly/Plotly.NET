@@ -579,17 +579,17 @@ type Chart =
 
                 let CellFilling =
                     match ColorCells with 
-                    | Some color  -> Some (CellColour.init (?Color=ColorCells))
+                    | Some color  -> Some (CellColor.init (?Color=ColorCells))
                     | Option.None -> Option.None
 
                 let HeaderFilling =
                     match ColorHeader with 
-                    | Some color   -> Some (CellColour.init (?Color=ColorHeader))
+                    | Some color   -> Some (CellColor.init (?Color=ColorHeader))
                     | Option.None  -> Option.None
                               
                 TraceStyle.Table (
-                    Header = Header.init (headerValues|> Seq.map seq, ?Align=AlignHeader, ?Fill=HeaderFilling, ?Font=FontHeader, ?Height=HeightHeader, ?Line=LineHeader),
-                    Cells  = Cells.init(cellValues |> Seq.transpose, ?Align=AlignCells, ?Fill=CellFilling, ?Font=FontCells, ?Height=HeightCells, ?Line=LineCells),  
+                    Header = TableHeader.init (headerValues|> Seq.map seq, ?Align=AlignHeader, ?Fill=HeaderFilling, ?Font=FontHeader, ?Height=HeightHeader, ?Line=LineHeader),
+                    Cells  = TableCells.init(cellValues |> Seq.transpose, ?Align=AlignCells, ?Fill=CellFilling, ?Font=FontCells, ?Height=HeightCells, ?Line=LineCells),  
                     ?ColumnWidth = ColumnWidth,
                     ?ColumnOrder = ColumnOrder
                     )
