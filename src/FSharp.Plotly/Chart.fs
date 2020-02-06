@@ -137,7 +137,7 @@ type Chart =
 
 
     /// Displays a range of data by plotting two Y values per data point, with each Y value being drawn as a line 
-    static member Range(x, y, upper, lower,?Name,?ShowMarkers,?Showlegend,?Color,?RangeColor,?Labels,?TextPosition,?TextFont) =             
+    static member Range(x, y, upper, lower,mode,?Name,?ShowMarkers,?Showlegend,?Color,?RangeColor,?Labels,?TextPosition,?TextFont) =             
         // if text position or font is set than show labels (not only when hovering)
         let changeMode = 
             let isShowMarker =
@@ -150,7 +150,7 @@ type Chart =
 
         let trace = 
             Trace.initScatter (
-                    TraceStyle.Scatter(X = x,Y = y, Mode=changeMode StyleParam.Markers, ?Fillcolor=Color) )               
+                    TraceStyle.Scatter(X = x,Y = y, Mode=mode, ?Fillcolor=Color) )               
             |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend)
             |> TraceStyle.Line(?Color=Color)
             |> TraceStyle.Marker(?Color=Color)
@@ -161,22 +161,22 @@ type Chart =
                     TraceStyle.Scatter(X = x,Y = lower, Mode=StyleParam.Lines, ?Fillcolor=RangeColor) )               
             |> TraceStyle.TraceInfo(Showlegend=false)
             |> TraceStyle.Line(Width=0)
-            |> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,,0.5)")             
+            |> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,0,0.5)")             
 
         let upper = 
             Trace.initScatter (
                     TraceStyle.Scatter(X = x,Y = upper, Mode=StyleParam.Lines, ?Fillcolor=RangeColor, Fill=StyleParam.ToNext_y) )               
             |> TraceStyle.TraceInfo(Showlegend=false)
             |> TraceStyle.Line(Width=0)
-            |> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,,0.5)")             
+            |> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,0,0.5)")             
  
         GenericChart.MultiChart ([lower;upper;trace],Layout(),Config())
 
 
     /// Displays a range of data by plotting two Y values per data point, with each Y value being drawn as a line 
-    static member Range(xy, upper, lower,?Name,?ShowMarkers,?Showlegend,?Color,?RangeColor,?Labels,?TextPosition,?TextFont) =   
+    static member Range(xy, upper, lower, mode, ?Name,?ShowMarkers,?Showlegend,?Color,?RangeColor,?Labels,?TextPosition,?TextFont) =   
         let x,y = Seq.unzip xy
-        Chart.Range(x, y, upper, lower, ?Name=Name,?ShowMarkers=ShowMarkers,?Showlegend=Showlegend,?Color=Color,?RangeColor=RangeColor,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont)
+        Chart.Range(x, y, upper, lower, mode, ?Name=Name,?ShowMarkers=ShowMarkers,?Showlegend=Showlegend,?Color=Color,?RangeColor=RangeColor,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont)
 
 
     /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
