@@ -14,6 +14,7 @@ values.
 *)
 
 open FSharp.Plotly 
+open StyleParam
 
 let rnd = System.Random()
 
@@ -25,7 +26,7 @@ let yLower = y |> List.map (fun v -> v - rnd.NextDouble())
 
   
 let range1 =
-    Chart.Range(x,y,yUpper,yLower,Color="grey",RangeColor="lightblue")
+    Chart.Range(x,y,yUpper,yLower,Mode.Markers,Color="grey",RangeColor="lightblue")
 
 (***do-not-eval***)
 range1 |> Chart.Show
