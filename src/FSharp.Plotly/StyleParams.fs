@@ -140,7 +140,7 @@ module StyleParam =
         | Markers | Markers_Text
         | Text
         static member toString = function
-            | None               -> "None"             
+            | None               -> "none"             
             | Lines              -> "lines"            
             | Lines_Markers      -> "lines+markers"    
             | Lines_Text         -> "lines+text"       
