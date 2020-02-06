@@ -31,6 +31,7 @@
     <Compile Include="Scene.fs" />
     <Compile Include="Shape.fs" />
     <Compile Include="Error.fs" />
+    <Compile Include="Table.fs" />
     <Compile Include="Trace.fs" />
     <Compile Include="Trace3d.fs" />
     <Compile Include="Layout.fs" />
