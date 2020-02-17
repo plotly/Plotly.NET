@@ -2,8 +2,6 @@
 cls
 
 dotnet restore build.proj
-
-IF NOT EXIST build.fsx (
-  fake run init.fsx
-)
-fake build %*
+dotnet tool restore
+dotnet paket restore
+dotnet fake build %*

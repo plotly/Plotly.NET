@@ -134,9 +134,10 @@ type Chart =
     static member Bubble(xysizes,?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont) = 
         let x,y,sizes = Seq.unzip3 xysizes 
         Chart.Bubble(x, y,sizes=sizes,?Name=Name,?Showlegend=Showlegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont)
-
-
+    
+    
     /// Displays a range of data by plotting two Y values per data point, with each Y value being drawn as a line 
+    [<Obsolete("Use the constructors with the mandatory mode argument for full functionality")>]
     static member Range(x, y, upper, lower,?Name,?ShowMarkers,?Showlegend,?Color,?RangeColor,?Labels,?TextPosition,?TextFont) =             
         // if text position or font is set than show labels (not only when hovering)
         let changeMode = 
@@ -172,11 +173,55 @@ type Chart =
  
         GenericChart.MultiChart ([lower;upper;trace],Layout(),Config())
 
-
+    [<Obsolete("Use the constructors with the mandatory mode argument for full functionality")>]
     /// Displays a range of data by plotting two Y values per data point, with each Y value being drawn as a line 
     static member Range(xy, upper, lower,?Name,?ShowMarkers,?Showlegend,?Color,?RangeColor,?Labels,?TextPosition,?TextFont) =   
         let x,y = Seq.unzip xy
         Chart.Range(x, y, upper, lower, ?Name=Name,?ShowMarkers=ShowMarkers,?Showlegend=Showlegend,?Color=Color,?RangeColor=RangeColor,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont)
+
+
+
+    /// Displays a range of data by plotting two Y values per data point, with each Y value being drawn as a line 
+    static member Range(x, y, upper, lower,mode,?Name,?ShowMarkers,?Showlegend,?Color,?RangeColor,?Labels,?TextPosition,?TextFont) =             
+        // if text position or font is set than show labels (not only when hovering)
+        let changeMode = 
+            let isShowMarker =
+                match ShowMarkers with
+                | Some isShow -> isShow
+                | Option.None        -> false
+            StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
+                >> StyleParam.ModeUtils.showMarker (isShowMarker)
+
+
+        let trace = 
+            Trace.initScatter (
+                    TraceStyle.Scatter(X = x,Y = y, Mode=mode, ?Fillcolor=Color) )               
+            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend)
+            |> TraceStyle.Line(?Color=Color)
+            |> TraceStyle.Marker(?Color=Color)
+            |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+
+        let lower = 
+            Trace.initScatter (
+                    TraceStyle.Scatter(X = x,Y = lower, Mode=StyleParam.Lines, ?Fillcolor=RangeColor) )               
+            |> TraceStyle.TraceInfo(Showlegend=false)
+            |> TraceStyle.Line(Width=0)
+            |> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,0,0.5)")             
+
+        let upper = 
+            Trace.initScatter (
+                    TraceStyle.Scatter(X = x,Y = upper, Mode=StyleParam.Lines, ?Fillcolor=RangeColor, Fill=StyleParam.ToNext_y) )               
+            |> TraceStyle.TraceInfo(Showlegend=false)
+            |> TraceStyle.Line(Width=0)
+            |> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,0,0.5)")             
+ 
+        GenericChart.MultiChart ([lower;upper;trace],Layout(),Config())
+
+
+    /// Displays a range of data by plotting two Y values per data point, with each Y value being drawn as a line 
+    static member Range(xy, upper, lower, mode, ?Name,?ShowMarkers,?Showlegend,?Color,?RangeColor,?Labels,?TextPosition,?TextFont) =   
+        let x,y = Seq.unzip xy
+        Chart.Range(x, y, upper, lower, mode, ?Name=Name,?ShowMarkers=ShowMarkers,?Showlegend=Showlegend,?Color=Color,?RangeColor=RangeColor,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont)
 
 
     /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
@@ -230,6 +275,21 @@ type Chart =
         let x,y = Seq.unzip xy
         Chart.SplineArea(x, y, ?Name=Name,?ShowMarkers=ShowMarkers,?Showlegend=Showlegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width,?Smoothing=Smoothing) 
 
+    /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
+    static member StackedArea(x, y,?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
+        Trace.initScatter (
+                TraceStyle.Scatter(X = x,Y = y, Mode=StyleParam.Mode.Lines) )               
+        |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+        |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
+        |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
+        |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        |> TraceStyle.SetStackGroup "static"
+        |> GenericChart.ofTraceObject 
+
+    /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
+    static member StackedArea(xy,?Name,?Showlegend,?MarkerSymbol,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Dash,?Width) = 
+        let x,y = Seq.unzip xy
+        Chart.StackedArea(x, y, ?Name=Name,?Showlegend=Showlegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width) 
 
     /// Illustrates comparisons among individual items
     static member Column(keys, values,?Name,?Showlegend,?Color,?Opacity,?Labels,?TextPosition,?TextFont,?Marker) = 
@@ -558,4 +618,25 @@ type Chart =
         |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
         |> GenericChart.ofTraceObject 
 
+    /// creates table out of header sequence and row sequences
+    static member Table(headerValues, cellValues, ?AlignHeader, ?AlignCells, ?ColumnWidth, ?ColumnOrder, ?ColorHeader, ?ColorCells, ?FontHeader, ?FontCells, ?HeightHeader, ?HeightCells, ?LineHeader, ?LineCells) = 
+        Trace.initTable (
 
+                let CellFilling =
+                    match ColorCells with 
+                    | Some color  -> Some (CellColor.init (?Color=ColorCells))
+                    | Option.None -> Option.None
+
+                let HeaderFilling =
+                    match ColorHeader with 
+                    | Some color   -> Some (CellColor.init (?Color=ColorHeader))
+                    | Option.None  -> Option.None
+                              
+                TraceStyle.Table (
+                    Header = TableHeader.init (headerValues|> Seq.map seq, ?Align=AlignHeader, ?Fill=HeaderFilling, ?Font=FontHeader, ?Height=HeightHeader, ?Line=LineHeader),
+                    Cells  = TableCells.init(cellValues |> Seq.transpose, ?Align=AlignCells, ?Fill=CellFilling, ?Font=FontCells, ?Height=HeightCells, ?Line=LineCells),  
+                    ?ColumnWidth = ColumnWidth,
+                    ?ColumnOrder = ColumnOrder
+                    )
+                )
+        |> GenericChart.ofTraceObject 

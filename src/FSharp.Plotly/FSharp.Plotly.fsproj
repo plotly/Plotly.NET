@@ -31,6 +31,7 @@
     <Compile Include="Scene.fs" />
     <Compile Include="Shape.fs" />
     <Compile Include="Error.fs" />
+    <Compile Include="Table.fs" />
     <Compile Include="Trace.fs" />
     <Compile Include="Trace3d.fs" />
     <Compile Include="Layout.fs" />
@@ -46,9 +47,9 @@
     <None Include="paket.template" />
   </ItemGroup>
   
-  <ItemGroup>
+  <!--<ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
-  </ItemGroup>  
+  </ItemGroup>-->  
   
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

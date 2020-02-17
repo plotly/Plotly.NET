@@ -140,7 +140,7 @@ module StyleParam =
         | Markers | Markers_Text
         | Text
         static member toString = function
-            | None               -> "None"             
+            | None               -> "none"             
             | Lines              -> "lines"            
             | Lines_Markers      -> "lines+markers"    
             | Lines_Text         -> "lines+text"       
@@ -210,12 +210,13 @@ module StyleParam =
 
     /// Names of installed font families
     type FontFamily =
-        | Arial | Balto | Courier_New | Droid_Sans | Droid_Serif | Droid_Sans_Mono | Gravitas_One | Old_Standard_TT | Open_Sans | Overpass | PT_Sans_Narrow | Raleway | Times_New_Roman
+        | Arial | Balto | Courier_New | Consolas | Droid_Sans | Droid_Serif | Droid_Sans_Mono | Gravitas_One | Old_Standard_TT | Open_Sans | Overpass | PT_Sans_Narrow | Raleway | Times_New_Roman
         
         static member toString = function
             | Arial           -> "Arial"
             | Balto           -> "Balto"
             | Courier_New     -> "Courier New"
+            | Consolas        -> "Consolas"
             | Droid_Sans      -> "Droid Sans"     
             | Droid_Serif     -> "Droid Serif"    
             | Droid_Sans_Mono -> "Droid Sans Mono"
