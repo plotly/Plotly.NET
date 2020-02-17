@@ -1,23 +1,37 @@
-// --------------------------------------------------------------------------------------
-// FAKE build script
-// --------------------------------------------------------------------------------------
 
-#r "paket: groupref FakeBuild //"
+#r @"paket:
+nuget Fake.Core.Target
+nuget Fake.Core.Process
+nuget Fake.Core.ReleaseNotes
+nuget Fake.IO.FileSystem
+nuget Fake.DotNet.Cli
+nuget Fake.DotNet.MSBuild
+nuget Fake.DotNet.AssemblyInfoFile
+nuget Fake.DotNet.Paket
+nuget Fake.DotNet.FSFormatting
+nuget Fake.DotNet.Fsi
+nuget Fake.DotNet.NuGet
+nuget Fake.DotNet.Testing.Expecto
+nuget Fake.Tools.Git
+nuget Fake.Api.GitHub //"
 
+#if !FAKE
 #load "./.fake/build.fsx/intellisense.fsx"
+#r "netstandard" // Temp fix for https://github.com/dotnet/fsharp/issues/5216
+#endif
 
+open System
 open System.IO
 open Fake.Core
 open Fake.Core.TargetOperators
 open Fake.DotNet
+open Fake.IO.Globbing
+open Fake.DotNet.NuGet
+open Fake.DotNet.Testing
 open Fake.IO
 open Fake.IO.FileSystemOperators
-open Fake.IO.Globbing
 open Fake.IO.Globbing.Operators
-open Fake.DotNet.Testing
 open Fake.Tools
-open Fake.Api
-open Fake.Tools.Git
 
 [<AutoOpen>]
 module TemporaryDocumentationHelpers =
@@ -456,7 +470,21 @@ Target.create "Release" (fun _ ->
 )
 
 Target.create "BuildPackage" ignore
-Target.create "GenerateDocs" ignore
+
+//Target.create "GenerateDocs" (fun _ ->
+//    let (exitCode, messages) = 
+//        Fsi.exec 
+//            (fun p -> 
+//                { p with 
+//                    WorkingDirectory="docsrc/tools"
+//                    Define="RELEASE"
+//                }
+//            ) 
+//            "generate.fsx" 
+//            []
+//    if exitCode = 0 then () else 
+//        failwith (messages |> String.concat Environment.NewLine)
+//)
 
 Target.create "GitReleaseNuget" (fun _ ->
     let tempNugetDir = "temp/nuget"
@@ -480,16 +508,16 @@ Target.create "All" ignore
   ==> "Build"
   ==> "CopyBinaries"
   ==> "RunTests"
-  ==> "GenerateDocs"
+  //==> "GenerateDocs"
   ==> "NuGet"
   ==> "All"
 
 "RunTests" ?=> "CleanDocs"
 
 "CleanDocs"
-  ==>"Docs"
+  ==> "Docs"
   ==> "ReferenceDocs"
-  ==> "GenerateDocs"
+  //==> "GenerateDocs"
 
 "Clean"
   ==> "Release"
@@ -498,7 +526,7 @@ Target.create "All" ignore
   ==> "PublishNuget"
   ==> "Release"
 
-"GenerateDocs"
+"Docs"
   ==> "ReleaseDocs"
 
 "All"
