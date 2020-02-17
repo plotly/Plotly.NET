@@ -474,7 +474,7 @@ Target.create "Release" (fun _ ->
 )
 
 Target.create "BuildPackage" ignore
-
+Target.create "GenerateDocs" ignore
 //Target.create "GenerateDocs" (fun _ ->
 //    let (exitCode, messages) = 
 //        Fsi.exec 
@@ -512,7 +512,7 @@ Target.create "All" ignore
   ==> "Build"
   ==> "CopyBinaries"
   ==> "RunTests"
-  //==> "GenerateDocs"
+  ==> "GenerateDocs"
   ==> "NuGet"
   ==> "All"
 
@@ -521,7 +521,7 @@ Target.create "All" ignore
 "CleanDocs"
   ==> "Docs"
   ==> "ReferenceDocs"
-  //==> "GenerateDocs"
+  ==> "GenerateDocs"
 
 "Clean"
   ==> "Release"
