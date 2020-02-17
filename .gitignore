@@ -186,3 +186,4 @@ docsrc/tools/FSharp.Formatting.svclog
 docs
 temp/gh-pages
 /src/FSharp.Plotly/TestScript.fsx
+/pkg
