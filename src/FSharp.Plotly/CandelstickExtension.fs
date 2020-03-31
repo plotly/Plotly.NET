@@ -2,6 +2,7 @@
 
 open Trace
 open System
+open System.Runtime.InteropServices
 
 type Candle = 
     {
@@ -28,6 +29,7 @@ module CandelstickExtension =
 
 
     type TraceStyle with
+        [<CompiledName("Candlestick")>]
         static member Candlestick
             (
                 data            : (#IConvertible*Candle) seq,
@@ -50,12 +52,13 @@ module CandelstickExtension =
             )
 
     type Chart with
+        [<CompiledName("Candelstick")>]
         static member Candelstick
             (
                 data            : (#IConvertible*Candle) seq,
-                ?increasing     : Line,
-                ?decreasing     : Line,
-                ?line           : Line
+                [<Optional;DefaultParameterValue(null)>] ?increasing     : Line,
+                [<Optional;DefaultParameterValue(null)>] ?decreasing     : Line,
+                [<Optional;DefaultParameterValue(null)>] ?line           : Line
             ) =
             Trace.initCandelstick(TraceStyle.Candlestick
                 (
