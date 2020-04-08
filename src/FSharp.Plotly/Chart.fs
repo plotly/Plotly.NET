@@ -419,7 +419,7 @@ type Chart =
             >> StyleParam.ModeUtils.showMarker (isShowMarker)
   
         Trace.initScatter (
-                TraceStyle.Scatter(X = x,Y = y, Mode=changeMode StyleParam.Mode.Lines,Fill=StyleParam.ToZero_y) )               
+                TraceStyle.Scatter(X = x,Y = y, Mode=changeMode StyleParam.Mode.Lines,Fill=StyleParam.Fill.ToZero_y) )               
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
         |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width, Shape=StyleParam.Shape.Spline, ?Smoothing=Smoothing)
         |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
@@ -623,7 +623,8 @@ type Chart =
 
 
     /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.            
-    static member BoxPlot(
+    static member BoxPlot
+        (
             [<Optional;DefaultParameterValue(null)>] ?x,
             [<Optional;DefaultParameterValue(null)>] ?y,
             [<Optional;DefaultParameterValue(null)>] ?Name,
@@ -636,13 +637,14 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?Boxmean,
             [<Optional;DefaultParameterValue(null)>] ?Jitter,
             [<Optional;DefaultParameterValue(null)>] ?Pointpos,
-            [<Optional;DefaultParameterValue(null)>] ?Orientation) = 
-         Trace.initBoxPlot (TraceStyle.BoxPlot(?X=x, ?Y = y,
+            [<Optional;DefaultParameterValue(null)>] ?Orientation
+        ) = 
+            Trace.initBoxPlot (TraceStyle.BoxPlot(?X=x, ?Y = y,
                                 ?Whiskerwidth=Whiskerwidth,?Boxpoints=Boxpoints,
                                 ?Boxmean=Boxmean,?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation,?Fillcolor=Fillcolor) )
-         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)   
-         |> TraceStyle.Marker(?Color=Color)
-         |> GenericChart.ofTraceObject
+            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)   
+            |> TraceStyle.Marker(?Color=Color)
+            |> GenericChart.ofTraceObject
 
 
     /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.       
@@ -663,7 +665,8 @@ type Chart =
 
 
     /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.            
-    static member Violin(
+    static member Violin
+        (
             [<Optional;DefaultParameterValue(null)>] ?x,
             [<Optional;DefaultParameterValue(null)>] ?y,
             [<Optional;DefaultParameterValue(null)>] ?Name,
@@ -674,12 +677,13 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?Points,
             [<Optional;DefaultParameterValue(null)>] ?Jitter,
             [<Optional;DefaultParameterValue(null)>] ?Pointpos,
-            [<Optional;DefaultParameterValue(null)>] ?Orientation) = 
-         Trace.initViolin (TraceStyle.Violin(?X=x, ?Y = y,?Points=Points,
+            [<Optional;DefaultParameterValue(null)>] ?Orientation
+        ) = 
+            Trace.initViolin (TraceStyle.Violin(?X=x, ?Y = y,?Points=Points,
                                 ?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation,?Fillcolor=Fillcolor) )
-         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)   
-         |> TraceStyle.Marker(?Color=Color)
-         |> GenericChart.ofTraceObject
+            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)   
+            |> TraceStyle.Marker(?Color=Color)
+            |> GenericChart.ofTraceObject
 
 
     /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.       
@@ -1203,8 +1207,8 @@ type Chart =
                     | Option.None  -> Option.None
                               
                 TraceStyle.Table (
-                    Header = TableHeader.init (headerValues|> Seq.map seq, ?Align=AlignHeader, ?Fill=HeaderFilling, ?Font=FontHeader, ?Height=HeightHeader, ?Line=LineHeader),
-                    Cells  = TableCells.init(cellValues |> Seq.transpose, ?Align=AlignCells, ?Fill=CellFilling, ?Font=FontCells, ?Height=HeightCells, ?Line=LineCells),  
+                    header = TableHeader.init (headerValues|> Seq.map seq, ?Align=AlignHeader, ?Fill=HeaderFilling, ?Font=FontHeader, ?Height=HeightHeader, ?Line=LineHeader),
+                    cells  = TableCells.init(cellValues |> Seq.transpose, ?Align=AlignCells, ?Fill=CellFilling, ?Font=FontCells, ?Height=HeightCells, ?Line=LineCells),  
                     ?ColumnWidth = ColumnWidth,
                     ?ColumnOrder = ColumnOrder
                     )

@@ -35,7 +35,7 @@ type TableHeader () =
     /// Initialized Header object
     static member init
         (   
-            Values , 
+            values , 
             ?Align ,
             ?Height,
             ?Fill  ,
@@ -46,7 +46,7 @@ type TableHeader () =
         TableHeader () 
         |> TableHeader.style
             (
-                Values  = Values,
+                values  = values,
                 ?Align  = Align ,
                 ?Height = Height,
                 ?Fill   = Fill  ,
@@ -58,7 +58,7 @@ type TableHeader () =
     /// Applies the styles to TableHeader()
     static member style
         (   
-            Values : seq<#seq<#IConvertible>>       , 
+            values : seq<#seq<#IConvertible>>       , 
             ?Align : seq<StyleParam.HorizontalAlign>,
             ?Height                                 ,
             ?Fill                                   ,
@@ -68,7 +68,7 @@ type TableHeader () =
         ) =
             (fun (header: TableHeader) -> 
 
-                Values |> DynObj.setValue      header "values" 
+                values |> DynObj.setValue      header "values" 
                 Align  |> DynObj.setValueOptBy header "align" (Seq.map StyleParam.HorizontalAlign.convert)
                 Height |> DynObj.setValueOpt   header "height"
                 Fill   |> DynObj.setValueOpt   header "fill" 
@@ -84,7 +84,7 @@ type TableCells () =
     /// Initialized Cells object
     static member init
         (   
-            Values , 
+            values , 
             ?Align ,
             ?Height,
             ?Fill  ,
@@ -95,7 +95,7 @@ type TableCells () =
         TableCells () 
         |> TableCells.style
             (
-                Values  = Values,
+                values  = values,
                 ?Align  = Align ,
                 ?Height = Height,
                 ?Fill   = Fill  ,
@@ -107,7 +107,7 @@ type TableCells () =
     //Applies the styles to TableCells()
     static member style
         (   
-            Values : seq<#seq<#IConvertible>>       , 
+            values : seq<#seq<#IConvertible>>       , 
             ?Align : seq<StyleParam.HorizontalAlign>,
             ?Height                                 ,
             ?Fill                                   , 
@@ -117,7 +117,7 @@ type TableCells () =
         ) =
            (fun (cells: TableCells) -> 
 
-                Values |> DynObj.setValue      cells "values" 
+                values |> DynObj.setValue      cells "values" 
                 Align  |> DynObj.setValueOptBy cells "align" (Seq.map StyleParam.HorizontalAlign.convert)
                 Height |> DynObj.setValueOpt   cells "height"
                 Fill   |> DynObj.setValueOpt   cells "fill"

@@ -26,35 +26,39 @@ module ChartExtensions =
         
         /// Set the name related properties of a trace
         [<CompiledName("WithTraceName")>]
-        static member withTraceName(
+        static member withTraceName
+            (
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend,
                 [<Optional;DefaultParameterValue(null)>] ?Legendgroup,
-                [<Optional;DefaultParameterValue(null)>] ?Visible) =
-            (fun (ch:GenericChart) ->
-                ch |> mapiTrace (fun i trace ->
-                    let naming i name = name |> Option.map (fun v -> if i = 0 then v else sprintf "%s_%i" v i)
-                    trace 
-                    |> TraceStyle.TraceInfo(?Name=(naming i Name),?Showlegend=Showlegend,?Legendgroup=Legendgroup,?Visible=Visible)
-                )
-            )
+                [<Optional;DefaultParameterValue(null)>] ?Visible
+            ) =
+                fun (ch:GenericChart) ->
+                    ch |> mapiTrace (fun i trace ->
+                        let naming i name = name |> Option.map (fun v -> if i = 0 then v else sprintf "%s_%i" v i)
+                        trace 
+                        |> TraceStyle.TraceInfo(?Name=(naming i Name),?Showlegend=Showlegend,?Legendgroup=Legendgroup,?Visible=Visible)
+                    )
+                
  
          /// Set the axis anchor id the trace is belonging to
         [<CompiledName("WithAxisAnchor")>]
-        static member withAxisAnchor(
+        static member withAxisAnchor
+            (
                 [<Optional;DefaultParameterValue(null)>] ?X,
                 [<Optional;DefaultParameterValue(null)>] ?Y,
-                [<Optional;DefaultParameterValue(null)>] ?Z) =
-            let idx   = if X.IsSome then Some (StyleParam.AxisAnchorId.X X.Value) else None
-            let idy   = if Y.IsSome then Some (StyleParam.AxisAnchorId.Y Y.Value) else None
-            let idz   = if Z.IsSome then Some (StyleParam.AxisAnchorId.Z Z.Value) else None
+                [<Optional;DefaultParameterValue(null)>] ?Z
+            ) =
+                let idx   = if X.IsSome then Some (StyleParam.AxisAnchorId.X X.Value) else None
+                let idy   = if Y.IsSome then Some (StyleParam.AxisAnchorId.Y Y.Value) else None
+                let idz   = if Z.IsSome then Some (StyleParam.AxisAnchorId.Z Z.Value) else None
             
-            (fun (ch:GenericChart) ->
-                ch |> mapTrace (fun trace ->
-                    trace 
-                    |> TraceStyle.SetAxisAnchor(?X=idx,?Y=idy,?Z=idz)
-                )
-            )
+                fun (ch:GenericChart) ->
+                    ch |> mapTrace (fun trace ->
+                        trace 
+                        |> TraceStyle.SetAxisAnchor(?X=idx,?Y=idy,?Z=idz)
+                    )
+                
   
         /// Apply styling to the Marker(s) of the chart as Object.
         [<CompiledName("WithMarker")>]
@@ -65,16 +69,18 @@ module ChartExtensions =
 
         /// Apply styling to the Marker(s) of the chart.
         [<CompiledName("WithMarkerStyle")>]
-        static member withMarkerStyle(
+        static member withMarkerStyle
+            (
                 [<Optional;DefaultParameterValue(null)>] ?Size,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Symbol,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity) =
-            let marker = 
-                Marker.init ( 
-                    ?Size=Size,?Color=Color,?Symbol=Symbol,?Opacity=Opacity
-                    )
-            Chart.withMarker(marker)
+                [<Optional;DefaultParameterValue(null)>] ?Opacity
+            ) =
+                let marker = 
+                    Marker.init ( 
+                        ?Size=Size,?Color=Color,?Symbol=Symbol,?Opacity=Opacity
+                        )
+                Chart.withMarker(marker)
 
         /// Apply styling to the Line(s) of the chart as Object.
         [<CompiledName("WithLine")>]
@@ -85,18 +91,20 @@ module ChartExtensions =
 
         /// Apply styling to the Line(s) of the chart.
         [<CompiledName("WithLineStyle")>]
-        static member withLineStyle(
+        static member withLineStyle
+            (
                 [<Optional;DefaultParameterValue(null)>] ?Width,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Shape,
                 [<Optional;DefaultParameterValue(null)>] ?Dash,
                 [<Optional;DefaultParameterValue(null)>] ?Smoothing,
-                [<Optional;DefaultParameterValue(null)>] ?Colorscale) =
-            let line =
-                Line.init (
-                    ?Width=Width,?Color=Color,?Shape=Shape,?Dash=Dash,?Smoothing=Smoothing,?Colorscale=Colorscale)
+                [<Optional;DefaultParameterValue(null)>] ?Colorscale
+            ) =
+                let line =
+                    Line.init (
+                        ?Width=Width,?Color=Color,?Shape=Shape,?Dash=Dash,?Smoothing=Smoothing,?Colorscale=Colorscale)
 
-            Chart.withLine(line)
+                Chart.withLine(line)
 
         /// Apply styling to the xError(s) of the chart as Object
         [<CompiledName("WithXError")>]
@@ -107,15 +115,17 @@ module ChartExtensions =
 
         /// Apply styling to the xError(s) of the chart as Object
         [<CompiledName("WithXErrorStyle")>]
-        static member withXErrorStyle(
+        static member withXErrorStyle
+            (
                 [<Optional;DefaultParameterValue(null)>] ?Array,
                 [<Optional;DefaultParameterValue(null)>] ?Arrayminus,
                 [<Optional;DefaultParameterValue(null)>] ?Symmetric,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Thickness,
-                [<Optional;DefaultParameterValue(null)>] ?Width) =
-            let error = Error.init(?Array=Array,?Arrayminus=Arrayminus,?Symmetric=Symmetric,?Color=Color,?Thickness=Thickness,?Width=Width)
-            Chart.withXError error
+                [<Optional;DefaultParameterValue(null)>] ?Width
+            ) =
+                let error = Error.init(?Array=Array,?Arrayminus=Arrayminus,?Symmetric=Symmetric,?Color=Color,?Thickness=Thickness,?Width=Width)
+                Chart.withXError error
 
         /// Apply styling to the yError(s) of the chart as Object
         [<CompiledName("WithYError")>]
@@ -126,15 +136,17 @@ module ChartExtensions =
 
         /// Apply styling to the yError(s) of the chart as Object
         [<CompiledName("WithYErrorStyle")>]
-        static member withYErrorStyle(
+        static member withYErrorStyle
+            (
                 [<Optional;DefaultParameterValue(null)>] ?Array,
                 [<Optional;DefaultParameterValue(null)>] ?Arrayminus,
                 [<Optional;DefaultParameterValue(null)>] ?Symmetric,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Thickness,
-                [<Optional;DefaultParameterValue(null)>] ?Width) =
-            let error = Error.init(?Array=Array,?Arrayminus=Arrayminus,?Symmetric=Symmetric,?Color=Color,?Thickness=Thickness,?Width=Width)
-            Chart.withYError error
+                [<Optional;DefaultParameterValue(null)>] ?Width
+            ) =
+                let error = Error.init(?Array=Array,?Arrayminus=Arrayminus,?Symmetric=Symmetric,?Color=Color,?Thickness=Thickness,?Width=Width)
+                Chart.withYError error
 
         /// Apply styling to the zError(s) of the chart as Object
         [<CompiledName("WithZError")>]
@@ -145,15 +157,17 @@ module ChartExtensions =
         
         /// Apply styling to the zError(s) of the chart as Object
         [<CompiledName("WithZErrorStyle")>]
-        static member withZErrorStyle(
+        static member withZErrorStyle
+            (
                 [<Optional;DefaultParameterValue(null)>] ?Array,
                 [<Optional;DefaultParameterValue(null)>] ?Arrayminus,
                 [<Optional;DefaultParameterValue(null)>] ?Symmetric,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Thickness,
-                [<Optional;DefaultParameterValue(null)>] ?Width) =
-            let error = Error.init(?Array=Array,?Arrayminus=Arrayminus,?Symmetric=Symmetric,?Color=Color,?Thickness=Thickness,?Width=Width)
-            Chart.withZError error
+                [<Optional;DefaultParameterValue(null)>] ?Width
+            ) =
+                let error = Error.init(?Array=Array,?Arrayminus=Arrayminus,?Symmetric=Symmetric,?Color=Color,?Thickness=Thickness,?Width=Width)
+                Chart.withZError error
 
 
 // ############################################################
@@ -369,13 +383,15 @@ module ChartExtensions =
 
         // Set the margin of a Chart
         [<CompiledName("WithMarginSize")>]
-        static member withMarginSize(
-                    [<Optional;DefaultParameterValue(null)>] ?Left,
-                    [<Optional;DefaultParameterValue(null)>] ?Right,
-                    [<Optional;DefaultParameterValue(null)>] ?Top,
-                    [<Optional;DefaultParameterValue(null)>] ?Bottom,
-                    [<Optional;DefaultParameterValue(null)>] ?Pad,
-                    [<Optional;DefaultParameterValue(null)>] ?Autoexpand) =                       
+        static member withMarginSize
+            (
+                [<Optional;DefaultParameterValue(null)>] ?Left,
+                [<Optional;DefaultParameterValue(null)>] ?Right,
+                [<Optional;DefaultParameterValue(null)>] ?Top,
+                [<Optional;DefaultParameterValue(null)>] ?Bottom,
+                [<Optional;DefaultParameterValue(null)>] ?Pad,
+                [<Optional;DefaultParameterValue(null)>] ?Autoexpand
+            ) =                       
                 let margin = 
                     Margin.init ( ?Left=Left,?Right=Right,?Top=Top,?Bottom=Bottom,?Pad=Pad,?Autoexpand=Autoexpand )
                 Chart.withMargin(margin)

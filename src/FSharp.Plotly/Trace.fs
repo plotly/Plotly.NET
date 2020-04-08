@@ -968,19 +968,19 @@ module Trace =
                         
                     // out ->
                     trace
-                ) 
+                )
 
         // Applies the styles of table plot to TraceObjects 
         static member Table
             (   
-                Header       : TableHeader  ,
-                Cells        : TableCells   ,
+                header       : TableHeader  ,
+                cells        : TableCells   ,
                 ?ColumnWidth : seq<int>,
                 ?ColumnOrder : seq<int>         
             ) =
                 (fun (trace:('T :> Trace)) ->                  
-                    Header      |> DynObj.setValue    trace "header"
-                    Cells       |> DynObj.setValue    trace "cells"
+                    header      |> DynObj.setValue    trace "header"
+                    cells       |> DynObj.setValue    trace "cells"
                     ColumnWidth |> DynObj.setValueOpt trace "columnwidth"
                     ColumnOrder |> DynObj.setValueOpt trace "columnorder"
                     // out ->

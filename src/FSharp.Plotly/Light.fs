@@ -90,7 +90,7 @@ module Ligth =
                 ?Z : int
             ) =
             
-                (fun (lightposition:('T :> Lightposition)) -> 
+                (fun (lightposition: Lightposition) -> 
                     X |> DynObj.setValueOpt lightposition "x"
                     Y |> DynObj.setValueOpt lightposition "y"
                     Z |> DynObj.setValueOpt lightposition "z"
