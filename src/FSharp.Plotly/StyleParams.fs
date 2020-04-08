@@ -53,6 +53,30 @@ module StyleParam =
             |LineOnly      -> 8
         static member convert = ArrowHead.toEnum >> box
 
+    /// 
+    [<RequireQualifiedAccess>]
+    type AxisAnchorId = 
+        | X of int | Y of int | Z of int | Free
+    
+        static member toString = function
+            | X id  -> if id < 2 then "x" else sprintf "x%i" id
+            | Y id  -> if id < 2 then "y" else sprintf "y%i" id
+            | Z id  -> if id < 2 then "z" else sprintf "z%i" id
+            | Free -> "free"
+
+        static member convert = AxisAnchorId.toString >> box 
+
+    [<RequireQualifiedAccess>]
+    type AxisId = 
+        | X of int | Y of int | Z of int
+    
+        static member toString = function
+            | X id  -> if id < 2 then "xaxis" else sprintf "xaxis%i" id
+            | Y id  -> if id < 2 then "yaxis" else sprintf "yaxis%i" id
+            | Z id  -> if id < 2 then "zaxis" else sprintf "zaxis%i" id
+    
+        static member convert = AxisId.toString >> box 
+
 //--------------------------
 // #B#
 //--------------------------
