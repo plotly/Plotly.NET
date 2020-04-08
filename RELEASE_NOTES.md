@@ -1,6 +1,9 @@
+### 1.2.1 - Apr 8 2020
+ * [Improve C# interop](https://github.com/muehlhaus/FSharp.Plotly/commit/4bc8a45d4cdea3961c15429680923927b47a2840) by using null as default parameter for optional parameters in chart extensions and requiring qualified access for style parameters
+
+
 ### 1.2.0 - Feb 17 2020
 Additional functionality:
- * *
  * [Various marker style options](https://github.com/muehlhaus/FSharp.Plotly/commit/11a80f94d9fb9f94a4504073955e009746e9fd0d)
  * [Config support](https://github.com/muehlhaus/FSharp.Plotly/commit/70998edd586553b40a8b95de56d86639902a5420)
  * [Chart.Stack works now with both 2D and 3D Charts](https://github.com/muehlhaus/FSharp.Plotly/commit/db7ce675a73f37598590f24ac99c246fce78759e)

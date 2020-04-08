@@ -280,8 +280,9 @@ Target.create "NuGet" (fun _ ->
 Target.create "PublishNuget" (fun _ ->
     Paket.push(fun p ->
         { p with
+            WorkingDir = pkgDir
             PublishUrl = "https://www.nuget.org"
-            WorkingDir = "bin" })
+            ApiKey = Environment.environVarOrDefault "NuGet-key" ""})
 )
 
 
