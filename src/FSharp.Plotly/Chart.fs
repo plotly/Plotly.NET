@@ -94,7 +94,7 @@ type Chart =
         let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
         
         Trace.initScatter (
-                TraceStyle.Scatter(X = x,Y = y, Mode=changeMode StyleParam.Markers) )               
+                TraceStyle.Scatter(X = x,Y = y, Mode=changeMode StyleParam.Mode.Markers) )               
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
         |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
         |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
@@ -137,7 +137,7 @@ type Chart =
             >> StyleParam.ModeUtils.showMarker (isShowMarker)
 
         Trace.initScatter (
-                TraceStyle.Scatter(X = x,Y = y, Mode=changeMode StyleParam.Lines) )               
+                TraceStyle.Scatter(X = x,Y = y, Mode=changeMode StyleParam.Mode.Lines) )               
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
         |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
         |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
@@ -183,7 +183,7 @@ type Chart =
             >> StyleParam.ModeUtils.showMarker (isShowMarker)
 
         Trace.initScatter (
-                TraceStyle.Scatter(X = x,Y = y, Mode=changeMode StyleParam.Lines) )               
+                TraceStyle.Scatter(X = x,Y = y, Mode=changeMode StyleParam.Mode.Lines) )               
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
         |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width, Shape=StyleParam.Shape.Spline, ?Smoothing=Smoothing)
         |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
@@ -223,7 +223,7 @@ type Chart =
         let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
         
         Trace.initScatter (
-                TraceStyle.Scatter(X = x,Y = y, Mode=changeMode StyleParam.Markers) )               
+                TraceStyle.Scatter(X = x,Y = y, Mode=changeMode StyleParam.Mode.Markers) )               
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
         |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol, MultiSizes=sizes)
         |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
@@ -258,7 +258,7 @@ type Chart =
 
         let trace = 
             Trace.initScatter (
-                    TraceStyle.Scatter(X = x,Y = y, Mode=changeMode StyleParam.Markers, ?Fillcolor=Color) )               
+                    TraceStyle.Scatter(X = x,Y = y, Mode=changeMode StyleParam.Mode.Markers, ?Fillcolor=Color) )               
             |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend)
             |> TraceStyle.Line(?Color=Color)
             |> TraceStyle.Marker(?Color=Color)
@@ -266,14 +266,14 @@ type Chart =
 
         let lower = 
             Trace.initScatter (
-                    TraceStyle.Scatter(X = x,Y = lower, Mode=StyleParam.Lines, ?Fillcolor=RangeColor) )               
+                    TraceStyle.Scatter(X = x,Y = lower, Mode=StyleParam.Mode.Lines, ?Fillcolor=RangeColor) )               
             |> TraceStyle.TraceInfo(Showlegend=false)
             |> TraceStyle.Line(Width=0)
             |> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,,0.5)")             
 
         let upper = 
             Trace.initScatter (
-                    TraceStyle.Scatter(X = x,Y = upper, Mode=StyleParam.Lines, ?Fillcolor=RangeColor, Fill=StyleParam.ToNext_y) )               
+                    TraceStyle.Scatter(X = x,Y = upper, Mode=StyleParam.Mode.Lines, ?Fillcolor=RangeColor, Fill=StyleParam.Fill.ToNext_y) )               
             |> TraceStyle.TraceInfo(Showlegend=false)
             |> TraceStyle.Line(Width=0)
             |> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,,0.5)")             
@@ -318,14 +318,14 @@ type Chart =
 
         let lower = 
             Trace.initScatter (
-                    TraceStyle.Scatter(X = x,Y = lower, Mode=StyleParam.Lines, ?Fillcolor=RangeColor) )               
+                    TraceStyle.Scatter(X = x,Y = lower, Mode=StyleParam.Mode.Lines, ?Fillcolor=RangeColor) )               
             |> TraceStyle.TraceInfo(Showlegend=false)
             |> TraceStyle.Line(Width=0)
             |> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,0,0.5)")             
 
         let upper = 
             Trace.initScatter (
-                    TraceStyle.Scatter(X = x,Y = upper, Mode=StyleParam.Lines, ?Fillcolor=RangeColor, Fill=StyleParam.ToNext_y) )               
+                    TraceStyle.Scatter(X = x,Y = upper, Mode=StyleParam.Mode.Lines, ?Fillcolor=RangeColor, Fill=StyleParam.Fill.ToNext_y) )               
             |> TraceStyle.TraceInfo(Showlegend=false)
             |> TraceStyle.Line(Width=0)
             |> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,0,0.5)")             
@@ -370,7 +370,7 @@ type Chart =
             >> StyleParam.ModeUtils.showMarker (isShowMarker)
 
         Trace.initScatter (
-                TraceStyle.Scatter(X = x,Y = y, Mode=changeMode StyleParam.Mode.Lines,Fill=StyleParam.ToZero_y) )               
+                TraceStyle.Scatter(X = x,Y = y, Mode=changeMode StyleParam.Mode.Lines,Fill=StyleParam.Fill.ToZero_y) )               
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
         |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
         |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
