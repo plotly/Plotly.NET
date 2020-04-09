@@ -1,5 +1,5 @@
 #r "netstandard"
-#r @"../../lib/Formatting/FSharp.Plotly.dll"
+#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
 
 (** 
 # FSharp.Plotly: Histogram

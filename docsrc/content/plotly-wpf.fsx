@@ -11,7 +11,7 @@ The library FSharp.Plotly implements charting suitable for use from F# scripting
 FSharp.Plotly is powered by popular JavaScript charting library [Plotly](https://plot.ly/). The library provides a complete mapping for the configuration options of the underlying library but empowers you to use the comfortable style known from the beautiful library [F# Charting](http://fslab.org/FSharp.Charting/). So you get a nice F# interface support with the full power of Plotly.
 *)
 
-#r @"../../lib/Formatting/FSharp.Plotly.dll"
+#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
 #r "../../bin/FSharp.Plotly.WPF/net461/FSharp.Plotly.WPF.dll"
 
 open FSharp.Plotly
