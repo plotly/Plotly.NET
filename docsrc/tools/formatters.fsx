@@ -1,14 +1,12 @@
 module Formatters
-#I "../../packages/formatting/FSharp.Formatting"
-#load "FSharp.Formatting.fsx"
+#load "../../packages/formatting/FSharp.Formatting/FSharp.Formatting.fsx"
 #r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
 #r "../../packages/formatting/FSharp.Compiler.Service/lib/netstandard2.0/FSharp.Compiler.Service.dll"
-#r "netstandard"
+
 // --------------------------------------------------------------------------------------
 // NOTE: Most of this file is the same as in FsLab (https://github.com/fslaborg/FsLab)
 // --------------------------------------------------------------------------------------
 
-open System.IO
 open FSharp.Literate
 open FSharp.Markdown
 open FSharp.Plotly

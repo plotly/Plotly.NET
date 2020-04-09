@@ -7,7 +7,6 @@ open System.Reflection
 [<assembly: AssemblyDescriptionAttribute("A F# interactive charting library using plotly.js")>]
 [<assembly: AssemblyVersionAttribute("1.2.1")>]
 [<assembly: AssemblyFileVersionAttribute("1.2.1")>]
-[<assembly: AssemblyConfigurationAttribute("Release")>]
 do ()
 
 module internal AssemblyVersionInformation =
@@ -16,4 +15,3 @@ module internal AssemblyVersionInformation =
     let [<Literal>] AssemblyDescription = "A F# interactive charting library using plotly.js"
     let [<Literal>] AssemblyVersion = "1.2.1"
     let [<Literal>] AssemblyFileVersion = "1.2.1"
-    let [<Literal>] AssemblyConfiguration = "Release"
