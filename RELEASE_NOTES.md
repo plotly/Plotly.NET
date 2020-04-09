@@ -1,3 +1,7 @@
+### 1.2.2 - Apr 9 2020
+ * [Opening Charts is now more or less OS agnostic](https://github.com/muehlhaus/FSharp.Plotly/commit/f6e3dceade085e43e7e56b478b9cf7b533a4fe55)
+
+
 ### 1.2.1 - Apr 8 2020
  * [Improve C# interop](https://github.com/muehlhaus/FSharp.Plotly/commit/4bc8a45d4cdea3961c15429680923927b47a2840) by using null as default parameter for optional parameters in chart extensions and requiring qualified access for style parameters
 
