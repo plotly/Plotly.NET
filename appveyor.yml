@@ -15,7 +15,7 @@ for:
       - image: Visual Studio 2019
 
   build_script:
-  - cmd: build.cmd
+  - cmd: build.cmd -t CIBuild
 -
   matrix:
     only:

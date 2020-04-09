@@ -339,6 +339,15 @@ Target.create "DotnetCoreBuild" ignore
   ==> "CopyBinaries"
   ==> "BuildOnly"
 
+"Clean"
+  ==> "CleanDocs"
+  ==> "AssemblyInfo"
+  ==> "Build"
+  ==> "CopyBinaries"
+  ==> "RunTests"
+  ==> "BuildReleasePackages"
+  ==> "CIBuild" 
+
 "GenerateDocs"
   ==> "ReleaseDocsLocal"
 
