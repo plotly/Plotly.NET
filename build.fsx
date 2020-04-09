@@ -145,10 +145,20 @@ Target.create "CopyBinaries" (fun _ ->
     |>  Seq.iter (fun (fromDir, toDir) -> Shell.copyDir toDir fromDir (fun _ -> true))
 )
 
+Target.create "CopyBinariesDotnet" (fun _ ->
+    !! "src/**/*.fsproj"
+    -- "src/FSharp.Plotly.WPF/FSharp.Plotly.WPF.fsproj"
+    |>  Seq.map (fun f -> ((Path.getDirectory f) </> "bin" </> "Dotnet", "bin" </> (Path.GetFileNameWithoutExtension f)))
+    |>  Seq.iter (fun (fromDir, toDir) -> Shell.copyDir toDir fromDir (fun _ -> true))
+)
+
+
 // --------------------------------------------------------------------------------------
 // Clean build results
 
 let buildConfiguration = DotNet.Custom <| Environment.environVarOrDefault "configuration" configuration
+
+let dotnetCoreConfiguration = DotNet.Custom "Dotnet"
 
 Target.create "Clean" (fun _ ->
     Shell.cleanDirs ["bin"; "temp"; "pkg"]
@@ -168,6 +178,13 @@ Target.create "Build" (fun _ ->
             Configuration = buildConfiguration })
 )
 
+Target.create "BuildDotnet" (fun _ ->
+    solutionFile 
+    |> DotNet.build (fun p -> 
+        { p with
+            Configuration = dotnetCoreConfiguration }
+        )
+)
 
 // --------------------------------------------------------------------------------------
 // Run the unit tests using test runner
@@ -286,6 +303,7 @@ Target.create "GitReleaseNuget" (fun _ ->
 Target.create "All" ignore
 Target.create "CIBuild" ignore
 Target.create "BuildOnly" ignore
+Target.create "DotnetCoreBuild" ignore
 
 "Clean"
   ==> "CleanDocs"
@@ -306,6 +324,13 @@ Target.create "BuildOnly" ignore
   ==> "GenerateDocs"
   ==> "BuildReleasePackages"
   ==> "All"
+
+"Clean"
+==> "CleanDocs"
+==> "AssemblyInfo"
+==> "BuildDotnet"
+==> "CopyBinariesDotnet"
+==> "DotnetCoreBuild"
 
 "Clean"
   ==> "CleanDocs"

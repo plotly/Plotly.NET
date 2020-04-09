@@ -87,19 +87,24 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Dotnet|Any CPU = Dotnet|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{F635BEEF-9609-4485-8C72-D8090A5F40A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F635BEEF-9609-4485-8C72-D8090A5F40A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F635BEEF-9609-4485-8C72-D8090A5F40A2}.Dotnet|Any CPU.ActiveCfg = Dotnet|Any CPU
+		{F635BEEF-9609-4485-8C72-D8090A5F40A2}.Dotnet|Any CPU.Build.0 = Dotnet|Any CPU
 		{F635BEEF-9609-4485-8C72-D8090A5F40A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F635BEEF-9609-4485-8C72-D8090A5F40A2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{82EEB69B-361E-486E-9F54-D346A8C76CC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{82EEB69B-361E-486E-9F54-D346A8C76CC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82EEB69B-361E-486E-9F54-D346A8C76CC9}.Dotnet|Any CPU.ActiveCfg = Dotnet|Any CPU
 		{82EEB69B-361E-486E-9F54-D346A8C76CC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82EEB69B-361E-486E-9F54-D346A8C76CC9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B88586CA-044D-4D65-AB51-A7339C83D42F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B88586CA-044D-4D65-AB51-A7339C83D42F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B88586CA-044D-4D65-AB51-A7339C83D42F}.Dotnet|Any CPU.ActiveCfg = Dotnet|Any CPU
 		{B88586CA-044D-4D65-AB51-A7339C83D42F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B88586CA-044D-4D65-AB51-A7339C83D42F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection

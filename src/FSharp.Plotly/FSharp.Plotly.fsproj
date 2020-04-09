@@ -1,6 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net45;net47;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net45;net47</TargetFrameworks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Dotnet' ">
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' Or '$(Configuration)' == 'Release' ">
+    <TargetFrameworks>netstandard2.0;net45;net47</TargetFrameworks>
+  </PropertyGroup>
+  <PropertyGroup>
     <RootNamespace>FSharp.Plotly</RootNamespace>
     <AssemblyName>FSharp.Plotly</AssemblyName>
     <Name>FSharp.Plotly</Name>
@@ -12,8 +20,10 @@
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <!-- Optional: Include PDB in the built .nupkg -->
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <Configurations>Debug;Release;Dotnet</Configurations>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AssemblyInfo.fs" />
     <Compile Include="StyleParams.fs" />
     <Compile Include="DynamicObj.fs" />
     <Compile Include="Colors.fs" />

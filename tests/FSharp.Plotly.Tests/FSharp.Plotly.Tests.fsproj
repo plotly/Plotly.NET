@@ -8,6 +8,7 @@
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Configurations>Debug;Release;Dotnet</Configurations>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Generators.fs" />
