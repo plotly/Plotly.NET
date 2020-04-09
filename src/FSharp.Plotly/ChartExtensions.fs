@@ -11,12 +11,19 @@ open System.Runtime.InteropServices
 [<AutoOpen>]
 module ChartExtensions =
 
+    ///Choose process to open plots with depending on OS. Thanks to @zyzhu for hinting at a solution (https://github.com/muehlhaus/FSharp.Plotly/issues/31)
+    let private openOsSpecificFile path =
+        if RuntimeInformation.IsOSPlatform(OSPlatform.Windows) then
+            let psi = new System.Diagnostics.ProcessStartInfo(FileName = path, UseShellExecute = true)
+            System.Diagnostics.Process.Start(psi) |> ignore
+        elif RuntimeInformation.IsOSPlatform(OSPlatform.Linux) then
+            System.Diagnostics.Process.Start("xdg-open", path) |> ignore
+        elif RuntimeInformation.IsOSPlatform(OSPlatform.OSX) then
+            System.Diagnostics.Process.Start("open", path) |> ignore
+        else
+            invalidOp "Not supported OS platform"
+
     open Trace
-    //open StyleParam
-
-    //open ChartExtensions
-
-    //open StyleParam
 
     /// Provides a set of static methods for creating charts.
     type Chart with
@@ -537,7 +544,7 @@ module ChartExtensions =
 
             let verbose = defaultArg Verbose false
             if verbose then
-                System.Diagnostics.Process.Start(file) |> ignore
+                file |> openOsSpecificFile
 
         /// Saves chart in a specified file name. The caller is responsible for full path / filename / extension.
         [<CompiledName("SaveHtmlWithDescriptionAs")>]
@@ -546,7 +553,7 @@ module ChartExtensions =
             File.WriteAllText(pathName, html)
             let verbose = defaultArg Verbose false
             if verbose then
-                System.Diagnostics.Process.Start(pathName) |> ignore
+                pathName |> openOsSpecificFile
 
         /// Show chart in browser
         [<CompiledName("ShowWithDescription")>]
@@ -557,10 +564,7 @@ module ChartExtensions =
             let file = sprintf "%s.html" guid
             let path = Path.Combine(tempPath, file)
             File.WriteAllText(path, html)
-            System.Diagnostics.Process.Start(path) |> ignore
-
-
-
+            path |> openOsSpecificFile
 
         /// Show chart in browser
         [<CompiledName("Show")>]
@@ -571,7 +575,7 @@ module ChartExtensions =
             let file = sprintf "%s.html" guid
             let path = Path.Combine(tempPath, file)
             File.WriteAllText(path, html)
-            System.Diagnostics.Process.Start(path) |> ignore
+            path |> openOsSpecificFile
 
         /// Show chart in browser
         [<CompiledName("ShowAsImage")>]
@@ -582,4 +586,5 @@ module ChartExtensions =
             let file = sprintf "%s.html" guid
             let path = Path.Combine(tempPath, file)
             File.WriteAllText(path, html)
-            System.Diagnostics.Process.Start(path) |> ignore
+            path |> openOsSpecificFile
+
