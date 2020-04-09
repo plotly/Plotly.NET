@@ -229,6 +229,15 @@ Target.create "BuildReleasePackages" (fun _ ->
             ReleaseNotes = release.Notes |> String.toLines })
         )
 
+Target.create "BuildCIPackages" (fun _ ->
+    Paket.pack(fun p ->
+        { p with
+            ToolType = ToolType.CreateLocalTool()
+            OutputPath = pkgDir
+            Version = sprintf "%s-appveyor.%s" release.NugetVersion BuildServer.appVeyorBuildVersion
+            ReleaseNotes = release.Notes |> String.toLines })
+        )
+
 Target.create "PublishNuget" (fun _ ->
     Paket.push(fun p ->
         { p with
@@ -305,6 +314,7 @@ Target.create "CIBuild" ignore
 Target.create "BuildOnly" ignore
 Target.create "DotnetCoreBuild" ignore
 
+
 "Clean"
   ==> "CleanDocs"
   ==> "AssemblyInfo"
@@ -324,6 +334,15 @@ Target.create "DotnetCoreBuild" ignore
   ==> "GenerateDocs"
   ==> "BuildReleasePackages"
   ==> "All"
+
+"Clean"
+  ==> "CleanDocs"
+  ==> "AssemblyInfo"
+  ==> "Build"
+  ==> "CopyBinaries"
+  ==> "RunTests"
+  ==> "BuildCIPackages"
+  ==> "CIBuild"
 
 "Clean"
 ==> "CleanDocs"
