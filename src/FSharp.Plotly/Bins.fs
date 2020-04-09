@@ -29,7 +29,7 @@ type Bins () =
             ?Size
         ) =
             
-            (fun (bins:('T :> Bins)) -> 
+            (fun (bins:Bins) -> 
                 StartBins |> DynObj.setValueOpt bins "start"
                 EndBins   |> DynObj.setValueOpt bins "end"
                 Size      |> DynObj.setValueOpt bins "size"

@@ -5,114 +5,184 @@ open System.IO
 
 open GenericChart
 open ChartDescription
+open System.Runtime.InteropServices
 
 /// Extensions methods for Charts supporting the fluent pipeline style 'Chart.WithXYZ(...)'.
 [<AutoOpen>]
 module ChartExtensions =
 
+    ///Choose process to open plots with depending on OS. Thanks to @zyzhu for hinting at a solution (https://github.com/muehlhaus/FSharp.Plotly/issues/31)
+    let private openOsSpecificFile path =
+        if RuntimeInformation.IsOSPlatform(OSPlatform.Windows) then
+            let psi = new System.Diagnostics.ProcessStartInfo(FileName = path, UseShellExecute = true)
+            System.Diagnostics.Process.Start(psi) |> ignore
+        elif RuntimeInformation.IsOSPlatform(OSPlatform.Linux) then
+            System.Diagnostics.Process.Start("xdg-open", path) |> ignore
+        elif RuntimeInformation.IsOSPlatform(OSPlatform.OSX) then
+            System.Diagnostics.Process.Start("open", path) |> ignore
+        else
+            invalidOp "Not supported OS platform"
+
     open Trace
-    //open StyleParam
-
-    //open ChartExtensions
-
-    //open StyleParam
 
     /// Provides a set of static methods for creating charts.
     type Chart with
 
 // ############################################################
 // ####################### Apply to trace
-
+        
         /// Set the name related properties of a trace
-        static member withTraceName(?Name,?Showlegend,?Legendgroup,?Visible) =
-            (fun (ch:GenericChart) ->
-                ch |> mapiTrace (fun i trace ->
-                    let naming i name = name |> Option.map (fun v -> if i = 0 then v else sprintf "%s_%i" v i)
-                    trace 
-                    |> TraceStyle.TraceInfo(?Name=(naming i Name),?Showlegend=Showlegend,?Legendgroup=Legendgroup,?Visible=Visible)
-                )
-            )
+        [<CompiledName("WithTraceName")>]
+        static member withTraceName
+            (
+                [<Optional;DefaultParameterValue(null)>] ?Name,
+                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?Legendgroup,
+                [<Optional;DefaultParameterValue(null)>] ?Visible
+            ) =
+                fun (ch:GenericChart) ->
+                    ch |> mapiTrace (fun i trace ->
+                        let naming i name = name |> Option.map (fun v -> if i = 0 then v else sprintf "%s_%i" v i)
+                        trace 
+                        |> TraceStyle.TraceInfo(?Name=(naming i Name),?Showlegend=Showlegend,?Legendgroup=Legendgroup,?Visible=Visible)
+                    )
+                
  
          /// Set the axis anchor id the trace is belonging to
-        static member withAxisAnchor(?X,?Y,?Z) =
-            let idx   = if X.IsSome then Some (StyleParam.AxisAnchorId.X X.Value) else None
-            let idy   = if Y.IsSome then Some (StyleParam.AxisAnchorId.Y Y.Value) else None
-            let idz   = if Z.IsSome then Some (StyleParam.AxisAnchorId.Z Z.Value) else None
+        [<CompiledName("WithAxisAnchor")>]
+        static member withAxisAnchor
+            (
+                [<Optional;DefaultParameterValue(null)>] ?X,
+                [<Optional;DefaultParameterValue(null)>] ?Y,
+                [<Optional;DefaultParameterValue(null)>] ?Z
+            ) =
+                let idx   = if X.IsSome then Some (StyleParam.AxisAnchorId.X X.Value) else None
+                let idy   = if Y.IsSome then Some (StyleParam.AxisAnchorId.Y Y.Value) else None
+                let idz   = if Z.IsSome then Some (StyleParam.AxisAnchorId.Z Z.Value) else None
             
-            (fun (ch:GenericChart) ->
-                ch |> mapTrace (fun trace ->
-                    trace 
-                    |> TraceStyle.SetAxisAnchor(?X=idx,?Y=idy,?Z=idz)
-                )
-            )
+                fun (ch:GenericChart) ->
+                    ch |> mapTrace (fun trace ->
+                        trace 
+                        |> TraceStyle.SetAxisAnchor(?X=idx,?Y=idy,?Z=idz)
+                    )
+                
   
         /// Apply styling to the Marker(s) of the chart as Object.
+        [<CompiledName("WithMarker")>]
         static member withMarker(marker:Marker) =
             (fun (ch:GenericChart) ->
                 ch |> mapTrace (TraceStyle.SetMarker(marker))
             )
 
         /// Apply styling to the Marker(s) of the chart.
-        static member withMarkerStyle(?Size,?Color,?Symbol,?Opacity) =
-            let marker = 
-                Marker.init ( 
-                    ?Size=Size,?Color=Color,?Symbol=Symbol,?Opacity=Opacity
-                    )
-            Chart.withMarker(marker)
+        [<CompiledName("WithMarkerStyle")>]
+        static member withMarkerStyle
+            (
+                [<Optional;DefaultParameterValue(null)>] ?Size,
+                [<Optional;DefaultParameterValue(null)>] ?Color,
+                [<Optional;DefaultParameterValue(null)>] ?Symbol,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity
+            ) =
+                let marker = 
+                    Marker.init ( 
+                        ?Size=Size,?Color=Color,?Symbol=Symbol,?Opacity=Opacity
+                        )
+                Chart.withMarker(marker)
 
         /// Apply styling to the Line(s) of the chart as Object.
+        [<CompiledName("WithLine")>]
         static member withLine(line:Line) =
              (fun (ch:GenericChart) ->
                 ch |> mapTrace (TraceStyle.SetLine(line))
             )
 
         /// Apply styling to the Line(s) of the chart.
-        static member withLineStyle(?Width,?Color,?Shape,?Dash,?Smoothing,?Colorscale) =
-            let line =
-                Line.init (
-                    ?Width=Width,?Color=Color,?Shape=Shape,?Dash=Dash,?Smoothing=Smoothing,?Colorscale=Colorscale)
+        [<CompiledName("WithLineStyle")>]
+        static member withLineStyle
+            (
+                [<Optional;DefaultParameterValue(null)>] ?Width,
+                [<Optional;DefaultParameterValue(null)>] ?Color,
+                [<Optional;DefaultParameterValue(null)>] ?Shape,
+                [<Optional;DefaultParameterValue(null)>] ?Dash,
+                [<Optional;DefaultParameterValue(null)>] ?Smoothing,
+                [<Optional;DefaultParameterValue(null)>] ?Colorscale
+            ) =
+                let line =
+                    Line.init (
+                        ?Width=Width,?Color=Color,?Shape=Shape,?Dash=Dash,?Smoothing=Smoothing,?Colorscale=Colorscale)
 
-            Chart.withLine(line)
+                Chart.withLine(line)
 
         /// Apply styling to the xError(s) of the chart as Object
+        [<CompiledName("WithXError")>]
         static member withXError(xError:Error) =
             (fun (ch:GenericChart) ->
                 ch |> mapTrace (TraceStyle.SetErrorX(xError))
             ) 
 
         /// Apply styling to the xError(s) of the chart as Object
-        static member withXErrorStyle(?Array,?Arrayminus,?Symmetric,?Color,?Thickness,?Width) =
-            let error = Error.init(?Array=Array,?Arrayminus=Arrayminus,?Symmetric=Symmetric,?Color=Color,?Thickness=Thickness,?Width=Width)
-            Chart.withXError error
+        [<CompiledName("WithXErrorStyle")>]
+        static member withXErrorStyle
+            (
+                [<Optional;DefaultParameterValue(null)>] ?Array,
+                [<Optional;DefaultParameterValue(null)>] ?Arrayminus,
+                [<Optional;DefaultParameterValue(null)>] ?Symmetric,
+                [<Optional;DefaultParameterValue(null)>] ?Color,
+                [<Optional;DefaultParameterValue(null)>] ?Thickness,
+                [<Optional;DefaultParameterValue(null)>] ?Width
+            ) =
+                let error = Error.init(?Array=Array,?Arrayminus=Arrayminus,?Symmetric=Symmetric,?Color=Color,?Thickness=Thickness,?Width=Width)
+                Chart.withXError error
 
         /// Apply styling to the yError(s) of the chart as Object
+        [<CompiledName("WithYError")>]
         static member withYError(yError:Error) =
             (fun (ch:GenericChart) ->
                 ch |> mapTrace (TraceStyle.SetErrorY(yError))
             )
 
-        /// Apply styling to the yError(s) of the chart as Object 
-        static member withYErrorStyle(?Array,?Arrayminus,?Symmetric,?Color,?Thickness,?Width) =
-            let error = Error.init(?Array=Array,?Arrayminus=Arrayminus,?Symmetric=Symmetric,?Color=Color,?Thickness=Thickness,?Width=Width)
-            Chart.withYError error
+        /// Apply styling to the yError(s) of the chart as Object
+        [<CompiledName("WithYErrorStyle")>]
+        static member withYErrorStyle
+            (
+                [<Optional;DefaultParameterValue(null)>] ?Array,
+                [<Optional;DefaultParameterValue(null)>] ?Arrayminus,
+                [<Optional;DefaultParameterValue(null)>] ?Symmetric,
+                [<Optional;DefaultParameterValue(null)>] ?Color,
+                [<Optional;DefaultParameterValue(null)>] ?Thickness,
+                [<Optional;DefaultParameterValue(null)>] ?Width
+            ) =
+                let error = Error.init(?Array=Array,?Arrayminus=Arrayminus,?Symmetric=Symmetric,?Color=Color,?Thickness=Thickness,?Width=Width)
+                Chart.withYError error
 
         /// Apply styling to the zError(s) of the chart as Object
+        [<CompiledName("WithZError")>]
         static member withZError(zError:Error) =
             (fun (ch:GenericChart) ->
                 ch |> mapTrace (TraceStyle.SetErrorZ(zError))
             )
         
         /// Apply styling to the zError(s) of the chart as Object
-        static member withZErrorStyle(?Array,?Arrayminus,?Symmetric,?Color,?Thickness,?Width) =
-            let error = Error.init(?Array=Array,?Arrayminus=Arrayminus,?Symmetric=Symmetric,?Color=Color,?Thickness=Thickness,?Width=Width)
-            Chart.withZError error
+        [<CompiledName("WithZErrorStyle")>]
+        static member withZErrorStyle
+            (
+                [<Optional;DefaultParameterValue(null)>] ?Array,
+                [<Optional;DefaultParameterValue(null)>] ?Arrayminus,
+                [<Optional;DefaultParameterValue(null)>] ?Symmetric,
+                [<Optional;DefaultParameterValue(null)>] ?Color,
+                [<Optional;DefaultParameterValue(null)>] ?Thickness,
+                [<Optional;DefaultParameterValue(null)>] ?Width
+            ) =
+                let error = Error.init(?Array=Array,?Arrayminus=Arrayminus,?Symmetric=Symmetric,?Color=Color,?Thickness=Thickness,?Width=Width)
+                Chart.withZError error
 
 
 // ############################################################
 // ####################### Apply to layout
         
         // Sets x-Axis of 2d and 3d- Charts
-        static member withX_Axis(xAxis:Axis.LinearAxis,?Id) =
+        [<CompiledName("WithX_Axis")>]
+        static member withX_Axis(xAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id) =
             (fun (ch:GenericChart) ->
                 let contains3d =
                     ch 
@@ -136,8 +206,18 @@ module ChartExtensions =
             )
 
 
-         // Sets x-Axis of 2d and 3d- Charts
-        static member withX_AxisStyle(title,?MinMax,?Showgrid,?Showline,?Side,?Overlaying,?Id,?Domain,?Position,?Anchor) =
+        // Sets x-Axis of 2d and 3d- Charts
+        [<CompiledName("WithX_AxisStyle")>]
+        static member withX_AxisStyle(title,
+                [<Optional;DefaultParameterValue(null)>] ?MinMax,
+                [<Optional;DefaultParameterValue(null)>] ?Showgrid,
+                [<Optional;DefaultParameterValue(null)>] ?Showline,
+                [<Optional;DefaultParameterValue(null)>] ?Side,
+                [<Optional;DefaultParameterValue(null)>] ?Overlaying,
+                [<Optional;DefaultParameterValue(null)>] ?Id,
+                [<Optional;DefaultParameterValue(null)>] ?Domain,
+                [<Optional;DefaultParameterValue(null)>] ?Position,
+                [<Optional;DefaultParameterValue(null)>] ?Anchor) =
             let range  = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
             let domain = if Domain.IsSome then Some (StyleParam.Range.MinMax (Domain.Value)) else None
             let xaxis  = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,?Showline=Showline,
@@ -146,7 +226,8 @@ module ChartExtensions =
 
 
         // Sets y-Axis of 2d and 3d- Charts
-        static member withY_Axis(yAxis:Axis.LinearAxis,?Id) =
+        [<CompiledName("WithY_Axis")>]
+        static member withY_Axis(yAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id) =
             (fun (ch:GenericChart) ->
                 let contains3d =
                     ch 
@@ -171,7 +252,17 @@ module ChartExtensions =
 
 
          // Sets y-Axis of 3d- Charts
-        static member withY_AxisStyle(title,?MinMax,?Showgrid,?Showline,?Side,?Overlaying,?Id,?Domain,?Position,?Anchor) =
+        [<CompiledName("WithY_AxisStyle")>]
+        static member withY_AxisStyle(title,
+                [<Optional;DefaultParameterValue(null)>] ?MinMax,
+                [<Optional;DefaultParameterValue(null)>] ?Showgrid,
+                [<Optional;DefaultParameterValue(null)>] ?Showline,
+                [<Optional;DefaultParameterValue(null)>] ?Side,
+                [<Optional;DefaultParameterValue(null)>] ?Overlaying,
+                [<Optional;DefaultParameterValue(null)>] ?Id,
+                [<Optional;DefaultParameterValue(null)>] ?Domain,
+                [<Optional;DefaultParameterValue(null)>] ?Position,
+                [<Optional;DefaultParameterValue(null)>] ?Anchor) =
             let range  = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
             let domain = if Domain.IsSome then Some (StyleParam.Range.MinMax (Domain.Value)) else None
             let yaxis  = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,
@@ -180,6 +271,7 @@ module ChartExtensions =
 
 
         // Sets z-Axis of 3d- Charts
+        [<CompiledName("WithZ_Axis")>]
         static member withZ_Axis(zAxis:Axis.LinearAxis) =
             (fun (ch:GenericChart) ->
                 let layout =
@@ -189,8 +281,14 @@ module ChartExtensions =
              )
 
 
-// Sets z-Axis style with ...
-        static member withZ_AxisStyle(title,?MinMax,?Showgrid,?Showline,?Domain,?Anchor) =
+        // Sets z-Axis style with ...
+        [<CompiledName("WithZ_AxisStyle")>]
+        static member withZ_AxisStyle(title,
+                [<Optional;DefaultParameterValue(null)>] ?MinMax,
+                [<Optional;DefaultParameterValue(null)>] ?Showgrid,
+                [<Optional;DefaultParameterValue(null)>] ?Showline,
+                [<Optional;DefaultParameterValue(null)>] ?Domain,
+                [<Optional;DefaultParameterValue(null)>] ?Anchor) =
             let range  = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
             let domain = if Domain.IsSome then Some (StyleParam.Range.MinMax (Domain.Value)) else None
             let zaxis  = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,?Showline=Showline,?Anchor=Anchor,?Domain=domain)
@@ -232,14 +330,17 @@ module ChartExtensions =
 
 
         // Set the Layout options of a Chart
+        [<CompiledName("WithLayout")>]
         static member withLayout(layout:Layout) =
             (fun (ch:GenericChart) -> 
                 GenericChart.addLayout layout ch) 
 
+        [<CompiledName("WithConfig")>]
         static member withConfig (config:Config) =
             (fun (ch:GenericChart) ->
                 GenericChart.setConfig config ch)
-
+        
+        [<CompiledName("WithAnnotations")>]
         static member withAnnotations(annotations:seq<Annotation>) =
             (fun (ch:GenericChart) -> 
                 ch
@@ -247,7 +348,8 @@ module ChartExtensions =
                     (Layout.style (Annotations = annotations)))
 
         // Set the title of a Chart
-        static member withTitle(title,?Titlefont) =
+        [<CompiledName("WithTitle")>]
+        static member withTitle(title,[<Optional;DefaultParameterValue(null)>] ?Titlefont) =
             (fun (ch:GenericChart) ->
                 let layout =
                     Layout() 
@@ -257,6 +359,7 @@ module ChartExtensions =
 
 
         // Set showLegend of a Chart
+        [<CompiledName("WithLegend")>]
         static member withLegend(showlegend) =
             (fun (ch:GenericChart) ->
                 let layout =
@@ -267,6 +370,7 @@ module ChartExtensions =
 
         
         // Set the size of a Chart
+        [<CompiledName("WithSize")>]
         static member withSize(width,heigth) =
             (fun (ch:GenericChart) -> 
                 let layout = 
@@ -276,6 +380,7 @@ module ChartExtensions =
             )
 
         // Set the margin of a Chart
+        [<CompiledName("WithMargin")>]
         static member withMargin(margin:Margin) =
             (fun (ch:GenericChart) ->
                 let layout =
@@ -284,7 +389,16 @@ module ChartExtensions =
                 GenericChart.setLayout layout ch)   
 
         // Set the margin of a Chart
-        static member withMarginSize(?Left,?Right,?Top,?Bottom,?Pad,?Autoexpand) =                       
+        [<CompiledName("WithMarginSize")>]
+        static member withMarginSize
+            (
+                [<Optional;DefaultParameterValue(null)>] ?Left,
+                [<Optional;DefaultParameterValue(null)>] ?Right,
+                [<Optional;DefaultParameterValue(null)>] ?Top,
+                [<Optional;DefaultParameterValue(null)>] ?Bottom,
+                [<Optional;DefaultParameterValue(null)>] ?Pad,
+                [<Optional;DefaultParameterValue(null)>] ?Autoexpand
+            ) =                       
                 let margin = 
                     Margin.init ( ?Left=Left,?Right=Right,?Top=Top,?Bottom=Bottom,?Pad=Pad,?Autoexpand=Autoexpand )
                 Chart.withMargin(margin)
@@ -295,6 +409,7 @@ module ChartExtensions =
     //Specifies the shape type to be drawn. If "line", a line is drawn from (`x0`,`y0`) to (`x1`,`y1`) If "circle", a circle is drawn from 
     //((`x0`+`x1`)/2, (`y0`+`y1`)/2)) with radius (|(`x0`+`x1`)/2 - `x0`|, |(`y0`+`y1`)/2 -`y0`)|) If "rect", a rectangle is drawn linking 
     //(`x0`,`y0`), (`x1`,`y0`), (`x1`,`y1`), (`x0`,`y1`), (`x0`,`y0`)  
+        [<CompiledName("WithShape")>]
         static member withShape(shape:Shape) =
             (fun (ch:GenericChart) ->
                 let layout = 
@@ -303,6 +418,7 @@ module ChartExtensions =
                 GenericChart.setLayout layout ch)
 
 
+        [<CompiledName("WithShapes")>]
         static member withShapes(shapes:Shape seq) =
             (fun (ch:GenericChart) ->
                 let layout = 
@@ -313,12 +429,15 @@ module ChartExtensions =
 
         // ####################### 
         /// Create a combined chart with the given charts merged
+        [<CompiledName("Combine")>]
         static member Combine(gCharts:seq<GenericChart>) =
             GenericChart.combine gCharts
 
 
         /// Create a combined chart with the given charts merged
-        static member Stack (?Columns:int, ?Space) = 
+        [<CompiledName("Stack")>]
+        static member Stack ( [<Optional;DefaultParameterValue(null)>] ?Columns:int, 
+                [<Optional;DefaultParameterValue(null)>] ?Space) = 
             (fun (charts:#seq<GenericChart>) ->  
 
                 let col = defaultArg Columns 2
@@ -417,24 +536,27 @@ module ChartExtensions =
         //    )
 
         /// Save chart as html single page
-        static member SaveHtmlAs pathName (ch:GenericChart,?Verbose) =
+        [<CompiledName("SaveHtmlAs")>]
+        static member SaveHtmlAs pathName (ch:GenericChart,[<Optional;DefaultParameterValue(null)>] ?Verbose) =
             let html = GenericChart.toEmbeddedHTML ch
             let file = sprintf "%s.html" pathName // remove file extension
             File.WriteAllText(file, html)
 
             let verbose = defaultArg Verbose false
             if verbose then
-                System.Diagnostics.Process.Start(file) |> ignore
+                file |> openOsSpecificFile
 
         /// Saves chart in a specified file name. The caller is responsible for full path / filename / extension.
+        [<CompiledName("SaveHtmlWithDescriptionAs")>]
         static member SaveHtmlWithDescriptionAs (pathName : string) (description : Description) (ch:GenericChart,?Verbose) =
             let html = GenericChart.toEmbeddedHtmlWithDescription description ch
             File.WriteAllText(pathName, html)
             let verbose = defaultArg Verbose false
             if verbose then
-                System.Diagnostics.Process.Start(pathName) |> ignore
+                pathName |> openOsSpecificFile
 
         /// Show chart in browser
+        [<CompiledName("ShowWithDescription")>]
         static member ShowWithDescription (description : Description) (ch:GenericChart) =
             let guid = Guid.NewGuid().ToString()
             let html = GenericChart.toEmbeddedHtmlWithDescription description ch
@@ -442,12 +564,10 @@ module ChartExtensions =
             let file = sprintf "%s.html" guid
             let path = Path.Combine(tempPath, file)
             File.WriteAllText(path, html)
-            System.Diagnostics.Process.Start(path) |> ignore
-
-
-
+            path |> openOsSpecificFile
 
         /// Show chart in browser
+        [<CompiledName("Show")>]
         static member Show (ch:GenericChart) = 
             let guid = Guid.NewGuid().ToString()
             let html = GenericChart.toEmbeddedHTML ch
@@ -455,9 +575,10 @@ module ChartExtensions =
             let file = sprintf "%s.html" guid
             let path = Path.Combine(tempPath, file)
             File.WriteAllText(path, html)
-            System.Diagnostics.Process.Start(path) |> ignore
+            path |> openOsSpecificFile
 
         /// Show chart in browser
+        [<CompiledName("ShowAsImage")>]
         static member ShowAsImage (format:StyleParam.ImageFormat) (ch:GenericChart) = 
             let guid = Guid.NewGuid().ToString()
             let html = GenericChart.toEmbeddedImage format ch
@@ -465,4 +586,5 @@ module ChartExtensions =
             let file = sprintf "%s.html" guid
             let path = Path.Combine(tempPath, file)
             File.WriteAllText(path, html)
-            System.Diagnostics.Process.Start(path) |> ignore
+            path |> openOsSpecificFile
+

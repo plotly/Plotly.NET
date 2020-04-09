@@ -104,7 +104,7 @@ type Colorbar () =
     static member style
         (   
             ?Thicknessmode,  
-            ?Thickness,      
+            ?Thickness :int,      
             ?Lenmode,        
             ?Len,            
             ?X,              
@@ -147,7 +147,7 @@ type Colorbar () =
         ) =
                 
             (fun (colorbar:Colorbar) ->            
-                Thicknessmode  |> DynObj.setValueOpt colorbar "thicknessmode" 
+                Thicknessmode  |> DynObj.setValueOptBy colorbar "thicknessmode" StyleParam.Thicknessmode.convert
                 Thickness      |> DynObj.setValueOpt colorbar "thickness"      
                 Lenmode        |> DynObj.setValueOpt colorbar "lenmode"        
                 Len            |> DynObj.setValueOpt colorbar "len"            

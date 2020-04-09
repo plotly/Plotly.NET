@@ -45,7 +45,6 @@ module TemporaryDocumentationHelpers =
           LayoutRoots : string list 
           FsiEval : bool }
 
-
     let private run toolPath arguments = 
         Command.RawCommand
             (
@@ -95,41 +94,14 @@ module TemporaryDocumentationHelpers =
         run arguments.ToolPath command
         printfn "Successfully generated docs for %s" source
 
-// --------------------------------------------------------------------------------------
-// START TODO: Provide project-specific details below
-// --------------------------------------------------------------------------------------
-
-// Information about the project are used
-//  - for version and project name in generated AssemblyInfo file
-//  - by the generated NuGet package
-//  - to run tests and to publish documentation on GitHub gh-pages
-//  - for documentation, you also need to edit info in "docsrc/tools/generate.fsx"
-
-// The name of the project
-// (used by attributes in AssemblyInfo, name of a NuGet package and directory in 'src')
 let project = "FSharp.Plotly"
 
-// Short summary of the project
-// (used as description in AssemblyInfo and as a short summary for NuGet package)
 let summary = "A F# interactive charting library using plotly.js"
 
-// Longer description of the project
-// (used as a description for NuGet package; line breaks are automatically cleaned up)
-let description = "A F# interactive charting library using plotly.js"
-
-// List of author names (for NuGet package)
-let author = "Timo Mühlhaus"
-
-// Tags for your project (for NuGet package)
-let tags = "visualization charting plotly F#"
-
-// File system information
 let solutionFile  = "FSharp.Plotly.sln"
 
-// Default target configuration
 let configuration = "Release"
 
-// Pattern specifying assemblies to be tested using Expecto
 let testAssemblies = "tests/**/bin" </> configuration </> "**" </> "*Tests.exe"
 
 // Git configuration (used for publishing documentation in gh-pages branch)
@@ -137,31 +109,13 @@ let testAssemblies = "tests/**/bin" </> configuration </> "**" </> "*Tests.exe"
 let gitOwner = "muehlhaus"
 let gitHome = sprintf "%s/%s" "https://github.com" gitOwner
 
-// The name of the project on GitHub
 let gitName = "FSharp.Plotly"
-
-// The url for the raw files hosted
-let gitRaw = Environment.environVarOrDefault "gitRaw" "https://raw.githubusercontent.com/Timo Mühlhaus"
 
 let website = "/FSharp.Plotly"
 
 let pkgDir = "pkg"
 
-// --------------------------------------------------------------------------------------
-// END TODO: The rest of the file includes standard build steps
-// --------------------------------------------------------------------------------------
-
-// Read additional information from the release notes document
 let release = ReleaseNotes.load "RELEASE_NOTES.md"
-
-// Helper active pattern for project types
-let (|Fsproj|Csproj|Vbproj|Shproj|) (projFileName:string) =
-    match projFileName with
-    | f when f.EndsWith("fsproj") -> Fsproj
-    | f when f.EndsWith("csproj") -> Csproj
-    | f when f.EndsWith("vbproj") -> Vbproj
-    | f when f.EndsWith("shproj") -> Shproj
-    | _                           -> failwith (sprintf "Project file %s not supported. Unknown project type." projFileName)
 
 // Generate assembly info files with the right version & up-to-date information
 Target.create "AssemblyInfo" (fun _ ->
@@ -170,45 +124,44 @@ Target.create "AssemblyInfo" (fun _ ->
           AssemblyInfo.Product project
           AssemblyInfo.Description summary
           AssemblyInfo.Version release.AssemblyVersion
-          AssemblyInfo.FileVersion release.AssemblyVersion
-          AssemblyInfo.Configuration configuration ]
+          AssemblyInfo.FileVersion release.AssemblyVersion ]
 
     let getProjectDetails projectPath =
         let projectName = Path.GetFileNameWithoutExtension(projectPath)
-        ( projectPath,
-          projectName,
-          Path.GetDirectoryName(projectPath),
-          (getAssemblyInfoAttributes projectName)
-        )
+        (Path.GetDirectoryName(projectPath), getAssemblyInfoAttributes projectName)
 
-    !! "src/**/*.??proj"
+    !! "src/**/*.fsproj"
     |> Seq.map getProjectDetails
-    |> Seq.iter (fun (projFileName, _, folderName, attributes) ->
-        match projFileName with
-        | Fsproj -> AssemblyInfoFile.createFSharp (folderName </> "AssemblyInfo.fs") attributes
-        | Csproj -> AssemblyInfoFile.createCSharp ((folderName </> "Properties") </> "AssemblyInfo.cs") attributes
-        | Vbproj -> AssemblyInfoFile.createVisualBasic ((folderName </> "My Project") </> "AssemblyInfo.vb") attributes
-        | Shproj -> ()
-        )
+    |> Seq.iter (fun (folderName, attributes) ->
+        AssemblyInfoFile.createFSharp (folderName </> "AssemblyInfo.fs") attributes )
 )
 
 // Copies binaries from default VS location to expected bin folder
 // But keeps a subdirectory structure for each project in the
 // src folder to support multiple project outputs
 Target.create "CopyBinaries" (fun _ ->
-    !! "src/**/*.??proj"
-    -- "src/**/*.shproj"
+    !! "src/**/*.fsproj"
     |>  Seq.map (fun f -> ((Path.getDirectory f) </> "bin" </> configuration, "bin" </> (Path.GetFileNameWithoutExtension f)))
     |>  Seq.iter (fun (fromDir, toDir) -> Shell.copyDir toDir fromDir (fun _ -> true))
 )
+
+Target.create "CopyBinariesDotnet" (fun _ ->
+    !! "src/**/*.fsproj"
+    -- "src/FSharp.Plotly.WPF/FSharp.Plotly.WPF.fsproj"
+    |>  Seq.map (fun f -> ((Path.getDirectory f) </> "bin" </> "Dotnet", "bin" </> (Path.GetFileNameWithoutExtension f)))
+    |>  Seq.iter (fun (fromDir, toDir) -> Shell.copyDir toDir fromDir (fun _ -> true))
+)
+
 
 // --------------------------------------------------------------------------------------
 // Clean build results
 
 let buildConfiguration = DotNet.Custom <| Environment.environVarOrDefault "configuration" configuration
 
+let dotnetCoreConfiguration = DotNet.Custom "Dotnet"
+
 Target.create "Clean" (fun _ ->
-    Shell.cleanDirs ["bin"; "temp"]
+    Shell.cleanDirs ["bin"; "temp"; "pkg"]
 )
 
 Target.create "CleanDocs" (fun _ ->
@@ -218,31 +171,19 @@ Target.create "CleanDocs" (fun _ ->
 // --------------------------------------------------------------------------------------
 // Build library & test project
 
-Target.create "Restore" (fun _ ->
-    solutionFile
-    |> DotNet.restore id
-)
-
 Target.create "Build" (fun _ ->
-    (*solutionFile
+    solutionFile
     |> DotNet.build (fun p ->
         { p with
-            Configuration = buildConfiguration })*)
-    let setParams (defaults:MSBuildParams) =
-        { defaults with
-            Verbosity = Some(Quiet)
-            Targets = ["Build"]
-            Properties =
-                [
-                    "Optimize", "True"
-                    "DebugSymbols", "True"
-                    "Configuration", configuration
-                ]
-         }
-    MSBuild.build setParams solutionFile
-    Shell.copyFile
-        (__SOURCE_DIRECTORY__ + @"\src\FSharp.Plotly\bin\" + configuration + @"\netstandard2.0\Newtonsoft.Json.dll")
-        (__SOURCE_DIRECTORY__+ @"\packages\Newtonsoft.Json\lib\netstandard2.0\Newtonsoft.Json.dll")
+            Configuration = buildConfiguration })
+)
+
+Target.create "BuildDotnet" (fun _ ->
+    solutionFile 
+    |> DotNet.build (fun p -> 
+        { p with
+            Configuration = dotnetCoreConfiguration }
+        )
 )
 
 // --------------------------------------------------------------------------------------
@@ -266,9 +207,20 @@ Target.create "RunTests" (fun _ ->
 )
 
 // --------------------------------------------------------------------------------------
-// Build a NuGet package
+// Build and publish NuGet package
 
-Target.create "NuGet" (fun _ ->
+Target.create "BuildPreReleasePackages" (fun _ ->
+    printfn "Please enter pre-release package suffix"
+    let suffix = Console.ReadLine()
+    Paket.pack(fun p -> 
+        { p with
+            ToolType = ToolType.CreateLocalTool()
+            OutputPath = pkgDir
+            Version = sprintf "%s-%s" release.NugetVersion suffix
+            ReleaseNotes = release.Notes |> String.toLines })
+)
+
+Target.create "BuildReleasePackages" (fun _ ->
     Paket.pack(fun p ->
         { p with
             ToolType = ToolType.CreateLocalTool()
@@ -280,129 +232,23 @@ Target.create "NuGet" (fun _ ->
 Target.create "PublishNuget" (fun _ ->
     Paket.push(fun p ->
         { p with
+            WorkingDir = pkgDir
             PublishUrl = "https://www.nuget.org"
-            WorkingDir = "bin" })
+            ApiKey = Environment.environVarOrDefault "NuGet-key" ""})
 )
 
 
 // --------------------------------------------------------------------------------------
 // Generate the documentation
 
-// Paths with template/source/output locations
-let bin        = __SOURCE_DIRECTORY__ @@ "bin"
-let content    = __SOURCE_DIRECTORY__ @@ "docsrc/content"
-let output     = __SOURCE_DIRECTORY__ @@ "docs"
-let files      = __SOURCE_DIRECTORY__ @@ "docsrc/files"
-let templates  = __SOURCE_DIRECTORY__ @@ "docsrc/tools/templates"
-let formatting = __SOURCE_DIRECTORY__ @@ "packages/formatting/FSharp.Formatting"
-let docTemplate = "docpage.cshtml"
+Target.create "GenerateDocs" (fun _ ->
+    let result =
+        DotNet.exec
+            (fun p -> { p with WorkingDirectory = __SOURCE_DIRECTORY__ @@ "docsrc" @@ "tools" })
+            "fsi"
+            "--define:RELEASE --define:REFERENCE --define:HELP --exec generate.fsx"
 
-let github_release_user = Environment.environVarOrDefault "github_release_user" gitOwner
-let githubLink = sprintf "https://github.com/%s/%s" github_release_user gitName
-
-// Specify more information about your project
-let info =
-  [ "project-name", "FSharp.Plotly"
-    "project-author", "Timo Mühlhaus"
-    "project-summary", "A F# interactive charting library using plotly.js"
-    "project-github", githubLink
-    "project-nuget", "http://nuget.org/packages/FSharp.Plotly" ]
-
-let root = website
-
-let referenceBinaries = []
-
-let layoutRootsAll = new System.Collections.Generic.Dictionary<string, string list>()
-layoutRootsAll.Add("en",[   templates;
-                            formatting @@ "templates"
-                            formatting @@ "templates/reference" ])
-
-Target.create "ReferenceDocs" (fun _ ->
-    Directory.ensure (output @@ "reference")
-
-    let binaries () =
-        let manuallyAdded =
-            referenceBinaries
-            |> List.map (fun b -> bin @@ b)
-
-        let conventionBased =
-            DirectoryInfo.getSubDirectories <| DirectoryInfo bin
-            |> Array.collect (fun d ->
-                let name, dInfo =
-                    let net45Bin =
-                        DirectoryInfo.getSubDirectories d |> Array.filter(fun x -> x.FullName.ToLower().Contains("net45"))
-                    let net47Bin =
-                        DirectoryInfo.getSubDirectories d |> Array.filter(fun x -> x.FullName.ToLower().Contains("net47"))
-                    if net45Bin.Length > 0 then
-                        d.Name, net45Bin.[0]
-                    else
-                        d.Name, net47Bin.[0]
-
-                dInfo.GetFiles()
-                |> Array.filter (fun x ->
-                    x.Name.ToLower() = (sprintf "%s.dll" name).ToLower())
-                |> Array.map (fun x -> x.FullName)
-                )
-            |> List.ofArray
-
-        conventionBased @ manuallyAdded
-
-    binaries()
-    |> FSFormatting.createDocsForDlls (fun args ->
-        { args with
-            OutputDirectory = output @@ "reference"
-            LayoutRoots =  layoutRootsAll.["en"]
-            ProjectParameters =  ("root", root)::info
-            SourceRepository = githubLink @@ "tree/master" }
-           )
-)
-
-let copyFiles () =
-    Shell.copyRecursive files output true
-    |> Trace.logItems "Copying file: "
-    Directory.ensure (output @@ "content")
-    Shell.copyRecursive (formatting @@ "styles") (output @@ "content") true
-    |> Trace.logItems "Copying styles and scripts: "
-
-Target.create "Docs" (fun _ ->
-    File.delete "docsrc/content/release-notes.md"
-    Shell.copyFile "docsrc/content/" "RELEASE_NOTES.md"
-    Shell.rename "docsrc/content/release-notes.md" "docsrc/content/RELEASE_NOTES.md"
-
-    File.delete "docsrc/content/license.md"
-    Shell.copyFile "docsrc/content/" "LICENSE"
-    Shell.rename "docsrc/content/license.md" "docsrc/content/LICENSE"
-
-
-    DirectoryInfo.getSubDirectories (DirectoryInfo.ofPath templates)
-    |> Seq.iter (fun d ->
-                    let name = d.Name
-                    if name.Length = 2 || name.Length = 3 then
-                        layoutRootsAll.Add(
-                                name, [templates @@ name
-                                       formatting @@ "templates"
-                                       formatting @@ "templates/reference" ]))
-    copyFiles ()
-
-    for dir in  [ content; ] do
-        let langSpecificPath(lang, path:string) =
-            path.Split([|'/'; '\\'|], System.StringSplitOptions.RemoveEmptyEntries)
-            |> Array.exists(fun i -> i = lang)
-        let layoutRoots =
-            let key = layoutRootsAll.Keys |> Seq.tryFind (fun i -> langSpecificPath(i, dir))
-            match key with
-            | Some lang -> layoutRootsAll.[lang]
-            | None -> layoutRootsAll.["en"] // "en" is the default language
-
-        createDocs (fun args ->
-            { args with
-                Source = content
-                OutputDirectory = output
-                LayoutRoots = layoutRoots
-                ProjectParameters  = ("root", root)::info
-                Template = docTemplate 
-                FsiEval = true
-                } )
+    if not result.OK then failwith "error generating docs"
 )
 
 // --------------------------------------------------------------------------------------
@@ -421,7 +267,7 @@ Target.create "ReleaseDocs" (fun _ ->
     Git.Branches.push tempDocsDir
 )
 
-Target.create "ReleaseLocal" (fun _ ->
+Target.create "ReleaseDocsLocal" (fun _ ->
     let tempDocsDir = "temp/gh-pages"
     Shell.cleanDir tempDocsDir |> ignore
     Shell.copyRecursive "docs" tempDocsDir true  |> printfn "%A"
@@ -431,70 +277,20 @@ Target.create "ReleaseLocal" (fun _ ->
             yield "src=\"/" + project + "/","src=\""}) 
         (Directory.EnumerateFiles tempDocsDir |> Seq.filter (fun x -> x.EndsWith(".html")))
 )
-
 Target.create "Release" (fun _ ->
-    // not fully converted from  FAKE 4
-
-    //let user =
-    //    match getBuildParam "github-user" with
-    //    | s when not (String.isNullOrWhiteSpace s) -> s
-    //    | _ -> getUserInput "Username: "
-    //let pw =
-    //    match getBuildParam "github-pw" with
-    //    | s when not (String.isNullOrWhiteSpace s) -> s
-    //    | _ -> getUserPassword "Password: "
-    //let remote =
-    //    Git.CommandHelper.getGitResult "" "remote -v"
-    //    |> Seq.filter (fun (s: string) -> s.EndsWith("(push)"))
-    //    |> Seq.tryFind (fun (s: string) -> s.Contains(gitOwner + "/" + gitName))
-    //    |> function None -> gitHome + "/" + gitName | Some (s: string) -> s.Split().[0]
-
-    //Git.Staging.stageAll ""
-    //Git.Commit.exec "" (sprintf "Bump version to %s" release.NugetVersion)
-    //Git.Branches.pushBranch "" remote (Git.Information.getBranchName "")
-
-    //Git.Branches.tag "" release.NugetVersion
-    //Git.Branches.pushTag "" remote release.NugetVersion
-
-    //// release on github
-    //GitHub.createClient user pw
-    //|> createDraft gitOwner gitName release.NugetVersion (release.SemVer.PreRelease <> None) release.Notes
-    //// TODO: |> uploadFile "PATH_TO_FILE"
-    //|> releaseDraft
-    //|> Async.RunSynchronously
-
-    // using simplified FAKE 5 release for now
-
     Git.Staging.stageAll ""
     Git.Commit.exec "" (sprintf "Bump version to %s" release.NugetVersion)
     Git.Branches.push ""
 
     Git.Branches.tag "" release.NugetVersion
-    Git.Branches.pushTag "" "origin" release.NugetVersion
+    Git.Branches.pushTag "" "upstream" release.NugetVersion
 )
-
-Target.create "BuildPackage" ignore
-
-//Target.create "GenerateDocs" (fun _ ->
-//    let (exitCode, messages) = 
-//        Fsi.exec 
-//            (fun p -> 
-//                { p with 
-//                    WorkingDirectory="docsrc/tools"
-//                    Define="RELEASE"
-//                }
-//            ) 
-//            "generate.fsx" 
-//            []
-//    if exitCode = 0 then () else 
-//        failwith (messages |> String.concat Environment.NewLine)
-//)
 
 Target.create "GitReleaseNuget" (fun _ ->
     let tempNugetDir = "temp/nuget"
     Shell.cleanDir tempNugetDir |> ignore
     Git.Repository.cloneSingleBranch "" (gitHome + "/" + gitName + ".git") "nuget" tempNugetDir
-    let files = Directory.EnumerateFiles bin 
+    let files = Directory.EnumerateFiles(__SOURCE_DIRECTORY__ @@ "bin")
     Shell.copy tempNugetDir files
     Git.Staging.stageAll tempNugetDir
     Git.Commit.exec tempNugetDir (sprintf "Update git nuget packages for version %s" release.NugetVersion)
@@ -505,43 +301,54 @@ Target.create "GitReleaseNuget" (fun _ ->
 // Run all targets by default. Invoke 'build <Target>' to override
 
 Target.create "All" ignore
+Target.create "CIBuild" ignore
+Target.create "BuildOnly" ignore
+Target.create "DotnetCoreBuild" ignore
 
 "Clean"
+  ==> "CleanDocs"
   ==> "AssemblyInfo"
-  ==> "Restore"
   ==> "Build"
   ==> "CopyBinaries"
   ==> "RunTests"
-  //==> "GenerateDocs"
-  ==> "NuGet"
-  ==> "All"
-
-"RunTests" ?=> "CleanDocs"
-
-"CleanDocs"
-  ==> "Docs"
-  ==> "ReferenceDocs"
-  //==> "GenerateDocs"
-
-"Clean"
-  ==> "Release"
-
-"BuildPackage"
+  ==> "BuildReleasePackages"
   ==> "PublishNuget"
   ==> "Release"
 
-"Docs"
-  ==> "ReleaseDocs"
-
-"All"
-  ==> "ReleaseLocal"
-
 "Clean"
+  ==> "CleanDocs"
   ==> "AssemblyInfo"
   ==> "Build"
   ==> "CopyBinaries"
   ==> "RunTests"
-  ==> "NuGet"
+  ==> "GenerateDocs"
+  ==> "BuildReleasePackages"
+  ==> "All"
+
+"Clean"
+==> "CleanDocs"
+==> "AssemblyInfo"
+==> "BuildDotnet"
+==> "CopyBinariesDotnet"
+==> "DotnetCoreBuild"
+
+"Clean"
+  ==> "CleanDocs"
+  ==> "AssemblyInfo"
+  ==> "Build"
+  ==> "CopyBinaries"
+  ==> "BuildOnly"
+
+"GenerateDocs"
+  ==> "ReleaseDocsLocal"
+
+"Clean"
+  ==> "CleanDocs"
+  ==> "AssemblyInfo"
+  ==> "Build"
+  ==> "CopyBinaries"
+  ==> "RunTests"
+  ==> "BuildPreReleasePackages"
   ==> "GitReleaseNuget"
 
 Target.runOrDefaultWithArguments "All"

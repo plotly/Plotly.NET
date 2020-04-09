@@ -1,6 +1,7 @@
 ﻿namespace FSharp.Plotly
 
 open Trace
+open System.Runtime.InteropServices
 
 type Node = 
     {
@@ -55,6 +56,7 @@ module SankeyExtension =
             FSharp.Plotly.Trace("sankey") |> applyStyle
 
     type TraceStyle with
+        [<CompiledName("Sankey")>]
         static member Sankey
             (
                 nodes:Node seq, 
@@ -181,18 +183,19 @@ module SankeyExtension =
             )
 
     type Chart with
+        [<CompiledName("Sankey")>]
         static member Sankey
             (
                 nodes:Node seq, 
                 links:Link seq, 
-                ?nodePadding:float,
-                ?nodeThicknes:float,
-                ?nodeColor:obj,
-                ?nodeLineColor:obj,
-                ?nodeLineWidth:float,
-                ?linkColor:obj, 
-                ?linkLineColor: obj,
-                ?linkLineWidth:float
+                [<Optional;DefaultParameterValue(null)>] ?nodePadding:float,
+                [<Optional;DefaultParameterValue(null)>] ?nodeThicknes:float,
+                [<Optional;DefaultParameterValue(null)>] ?nodeColor:obj,
+                [<Optional;DefaultParameterValue(null)>] ?nodeLineColor:obj,
+                [<Optional;DefaultParameterValue(null)>] ?nodeLineWidth:float,
+                [<Optional;DefaultParameterValue(null)>] ?linkColor:obj, 
+                [<Optional;DefaultParameterValue(null)>] ?linkLineColor: obj,
+                [<Optional;DefaultParameterValue(null)>] ?linkLineWidth:float
             ) =
             Trace.initSankey(TraceStyle.Sankey
                 (

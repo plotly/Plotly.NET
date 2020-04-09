@@ -3,92 +3,126 @@
 // (the generated documentation is stored in the 'docs/output' directory)
 // --------------------------------------------------------------------------------------
 
+// --------------------------------------------------------------------------------------
+// Helpers
+// --------------------------------------------------------------------------------------
+
+#I __SOURCE_DIRECTORY__
+#I "../../packages/formatting/FSharp.Formatting/lib/netstandard2.0"
+#r "FSharp.CodeFormat.dll"
+#r "FSharp.Literate.dll"
+#r "FSharp.Markdown.dll"
+#r "FSharp.MetadataFormat.dll"
+#r "FSharp.Formatting.Common.dll"
+#r "Microsoft.AspNetCore.Razor.dll"
+#r "Microsoft.AspNetCore.Razor.Runtime.dll"
+#r "Microsoft.AspNetCore.Razor.Language.dll"
+#r "RazorEngine.NetCore.dll"
+#r "FSharp.Formatting.Razor.dll"
+
+open System.IO
+open FSharp.Formatting.Razor
+open System.Collections.Generic
+
+let subDirectories (dir: string) = Directory.EnumerateDirectories dir 
+
+let rec copyRecursive dir1 dir2 =
+    Directory.CreateDirectory dir2 |> ignore
+    for subdir1 in Directory.EnumerateDirectories dir1 do
+         let subdir2 = Path.Combine(dir2, Path.GetFileName subdir1)
+         copyRecursive subdir1 subdir2
+    for file in Directory.EnumerateFiles dir1 do
+         File.Copy(file, file.Replace(dir1, dir2), true)
 // Web site location for the generated documentation
-let website = "https://fslab.org/XPlot"
+let website = "https://muehlhaus.github.io/FSharp.Plotly/"
 
-// Specify more information about your project
 let info =
-  [ "project-name", "XPlot"
-    "project-author", "Taha Hachana; Tomas Petricek"
-    "project-summary", "Data visualization library for F#"
-    "project-github", "https://github.com/fslaborg/XPlot"
-    "project-nuget", "http://www.nuget.org/packages?q=XPlot" ]
-
+  [ "project-name", "FSharp.Plotly"
+    "project-author", "Timo Mühlhaus; Kevin Schneider; OSS Contributors"
+    "project-summary", "A F# interactive charting library using plotly.js"
+    "project-github", "https://github.com/muehlhaus/FSharp.Plotly"
+    "project-nuget", "http://nuget.org/packages/FSharp.Plotly" ]
 // --------------------------------------------------------------------------------------
 // For typical project, no changes are needed below
 // --------------------------------------------------------------------------------------
 
 #load "formatters.fsx"
-#load "../../.fake/build.fsx/intellisense.fsx"
-#if !FAKE
-let execContext = Fake.Core.Context.FakeExecutionContext.Create false "generate.fsx" []
-Fake.Core.Context.setExecutionContext (Fake.Core.Context.RuntimeContext.Fake execContext)
-#endif
-open Fake.Core
-open System.IO
-open Fake.IO.FileSystemOperators
-open Fake.IO
-open FSharp.Formatting.Razor
-
 
 // Binaries for which to generate XML documentation
 let referenceBinaries = 
-  [ 
-    __SOURCE_DIRECTORY__ + "/../../bin/XPlot.D3/netstandard2.0/XPlot.D3.dll"
-    __SOURCE_DIRECTORY__ + "/../../bin/XPlot.GoogleCharts/netstandard2.0/XPlot.GoogleCharts.dll"
-    __SOURCE_DIRECTORY__ + "/../../bin/XPlot.GoogleCharts.Deedle/netstandard2.0/XPlot.GoogleCharts.Deedle.dll"
-    __SOURCE_DIRECTORY__ + "/../../bin/XPlot.Plotly/netstandard2.0/XPlot.Plotly.dll"
-  ]
+      [ 
+        __SOURCE_DIRECTORY__ + "/../../src/FSharp.Plotly/bin/Release/netstandard2.0/FSharp.Plotly.dll"
+        __SOURCE_DIRECTORY__ + "/../../src/FSharp.Plotly.WPF//bin/Release/net47/FSharp.Plotly.WPF.dll"
+      ]
+
+let libDirs = 
+    [ 
+      __SOURCE_DIRECTORY__ + "/../../src/FSharp.Plotly/bin/Release/netstandard2.0/"
+      __SOURCE_DIRECTORY__ + "/../../src/FSharp.Plotly.WPF/bin/Release/net47/"
+    ]
 
 // When called from 'build.fsx', use the public project URL as <root>
 // otherwise, use the current 'output' directory.
 #if RELEASE
 let root = website
 #else
-let root = "file://" + (__SOURCE_DIRECTORY__ @@ "../output")
+let root = "file://" + (__SOURCE_DIRECTORY__ + "/../output")
 #endif
 
 // Paths with template/source/output locations
-let bin        = __SOURCE_DIRECTORY__ @@ "../../bin"
-let content    = __SOURCE_DIRECTORY__ @@ "../content"
-let output     = __SOURCE_DIRECTORY__ @@ "../../docs/output"
-let files      = __SOURCE_DIRECTORY__ @@ "../files"
-let templates  = __SOURCE_DIRECTORY__ @@ "templates"
-let formatting = __SOURCE_DIRECTORY__ @@ "../../packages/formatting/FSharp.Formatting/"
-let docTemplate = formatting @@ "templates/docpage.cshtml"
+let bin        = __SOURCE_DIRECTORY__ + "/../../bin"
+let content    = __SOURCE_DIRECTORY__ + "/../content"
+let output     = __SOURCE_DIRECTORY__ + "/../../docs/output"
+let files      = __SOURCE_DIRECTORY__ + "/../files"
+let templates  = __SOURCE_DIRECTORY__ + "/templates"
+let formatting = __SOURCE_DIRECTORY__ + "/../../packages/formatting/FSharp.Formatting/"
+let docTemplate = formatting + "/templates/docpage.cshtml"
+let referenceOut = (output + "/reference")
 
 // Where to look for *.csproj templates (in this order)
 let layoutRoots =
-  [ templates; formatting @@ "templates";
-    formatting @@ "templates/reference" ]
+  [ templates; formatting + "templates";
+    formatting + "/templates/reference" ]
+let layoutRootsAll = Dictionary<string, string list>()
+layoutRootsAll.Add("en",layoutRoots)
 
-// Copy static files and CSS + JS from F# Formatting
-let copyFiles () =
-  Shell.copyRecursive files output true |> Trace.logItems "Copying file: "
-  Directory.ensure (output @@ "content")
-  Shell.copyRecursive (formatting @@ "styles") (output @@ "content") true 
-    |> Trace.logItems "Copying styles and scripts: "
+let copyFiles () = copyRecursive files output
 
 // Build API reference from XML comments
 let buildReference () =
-  Shell.cleanDir (output @@ "reference")
-  RazorMetadataFormat.Generate
-    ( referenceBinaries, output @@ "reference", layoutRoots,
-      parameters = ("root", root)::info,
-      sourceRepo = "https://github.com/fslaborg/XPlot/tree/master/",
-      sourceFolder = __SOURCE_DIRECTORY__.Substring(0, __SOURCE_DIRECTORY__.Length - @"\docsrc\tools".Length))
-
+    if Directory.Exists referenceOut then Directory.Delete(referenceOut, true)
+    Directory.CreateDirectory referenceOut |> ignore
+    RazorMetadataFormat.Generate( 
+        referenceBinaries, (output + "/" + "reference"), layoutRootsAll.["en"],
+        parameters = ("root", root)::info,
+        sourceRepo = "https://github.com/muehlhaus/FSharp.Plotly/tree/master/",
+        sourceFolder = __SOURCE_DIRECTORY__.Substring(0, __SOURCE_DIRECTORY__.Length - @"\docsrc\tools".Length),
+        publicOnly = true,
+        libDirs = libDirs
+        )
 // Build documentation from `fsx` and `md` files in `docs/content`
 let buildDocumentation () =
-  Shell.copyFile content (__SOURCE_DIRECTORY__ @@ "../../RELEASE_NOTES.md")
-  let fsiEvaluator = Formatters.createFsiEvaluator root output "#.####"
-  let subdirs = Directory.EnumerateDirectories(content, "*", SearchOption.AllDirectories)
-  for dir in Seq.append [content] subdirs do
-    let sub = if dir.Length > content.Length then dir.Substring(content.Length + 1) else "."
-    RazorLiterate.ProcessDirectory
-      ( dir, docTemplate, output @@ sub, replacements = ("root", root)::info,
-        layoutRoots = layoutRoots, fsiEvaluator = fsiEvaluator, generateAnchors = true)
-
+    printfn "building docs..."
+    let subdirs = [ content, docTemplate ]
+    let fsiEvaluator = Formatters.createFsiEvaluator root output
+    for dir, template in subdirs do
+        let sub = "." // Everything goes into the same output directory here
+        let langSpecificPath(lang, path:string) =
+            path.Split([|'/'; '\\'|], System.StringSplitOptions.RemoveEmptyEntries)
+            |> Array.exists(fun i -> i = lang)
+        let layoutRoots =
+            let key = layoutRootsAll.Keys |> Seq.tryFind (fun i -> langSpecificPath(i, dir))
+            match key with
+            | Some lang -> layoutRootsAll.[lang]
+            | None -> layoutRootsAll.["en"] // "en" is the default language
+        RazorLiterate.ProcessDirectory
+          ( dir, template, output + "/" + sub, replacements = ("root", root)::info,
+            layoutRoots = layoutRoots,
+            generateAnchors = true,
+            processRecursive = false,
+            includeSource = true,
+            fsiEvaluator = fsiEvaluator
+          )
 // Generate
 copyFiles()
 buildDocumentation()

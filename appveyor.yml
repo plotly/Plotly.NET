@@ -1,10 +1,30 @@
-image: Visual Studio 2017
+image: 
+  - Ubuntu
+  - Visual Studio 2019
 
 init:
   - git config --global core.autocrlf input
-  - dotnet tool install fake-cli -g
-build_script:
-  - cmd: build.cmd All
+
+matrix:
+  fast_finish: true
+
+for:
+-
+  matrix:
+    only:
+      - image: Visual Studio 2019
+
+  build_script:
+  - cmd: build.cmd
+-
+  matrix:
+    only:
+      - image: Ubuntu
+
+  build_script:
+  - chmod +x ./build.sh
+  - sh: ./build.sh -t DotnetCoreBuild
+
 test: off
 version: 0.0.1.{build}
 

@@ -48,7 +48,7 @@ type Contour () =
                 
         ) =
             
-            (fun (contour:('T :> Contour)) -> 
+            (fun (contour:Contour) -> 
                 Show            |> DynObj.setValueOpt contour "show"
                 //?Project      |> DynObj.setValueOpt contour "project"
                 Color           |> DynObj.setValueOpt contour "color"
@@ -140,7 +140,7 @@ type Contours () =
                 
         ) =
             
-            (fun (contours:('T :> Contours)) -> 
+            (fun (contours: Contours) -> 
                 let xyzContour =
                     Contour.init (?Show=Show,?Color=Color,?Usecolor=Usecolor, ?Width=Width, 
                                     ?Highlight=Highlight, ?Highlightcolor=Highlightcolor, ?Highlightwidth=Highlightwidth) 
