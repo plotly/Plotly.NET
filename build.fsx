@@ -336,6 +336,15 @@ Target.create "DotnetCoreBuild" ignore
   ==> "All"
 
 "Clean"
+  ==> "CleanDocs"
+  ==> "AssemblyInfo"
+  ==> "Build"
+  ==> "CopyBinaries"
+  ==> "RunTests"
+  ==> "BuildCIPackages"
+  ==> "CIBuild"
+
+"Clean"
 ==> "CleanDocs"
 ==> "AssemblyInfo"
 ==> "BuildDotnet"
