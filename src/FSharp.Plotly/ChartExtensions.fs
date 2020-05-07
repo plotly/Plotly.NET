@@ -217,11 +217,12 @@ module ChartExtensions =
                 [<Optional;DefaultParameterValue(null)>] ?Id,
                 [<Optional;DefaultParameterValue(null)>] ?Domain,
                 [<Optional;DefaultParameterValue(null)>] ?Position,
+                [<Optional;DefaultParameterValue(null)>] ?Zeroline,
                 [<Optional;DefaultParameterValue(null)>] ?Anchor) =
             let range  = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
             let domain = if Domain.IsSome then Some (StyleParam.Range.MinMax (Domain.Value)) else None
             let xaxis  = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,?Showline=Showline,
-                                    ?Anchor=Anchor,?Side=Side,?Domain=domain,?Overlaying=Overlaying,?Position=Position)
+                                    ?Anchor=Anchor,?Side=Side,?Domain=domain,?Overlaying=Overlaying,?Position=Position,?Zeroline=Zeroline)
             Chart.withX_Axis(xaxis,?Id=Id)
 
 
@@ -262,11 +263,12 @@ module ChartExtensions =
                 [<Optional;DefaultParameterValue(null)>] ?Id,
                 [<Optional;DefaultParameterValue(null)>] ?Domain,
                 [<Optional;DefaultParameterValue(null)>] ?Position,
+                [<Optional;DefaultParameterValue(null)>] ?Zeroline,
                 [<Optional;DefaultParameterValue(null)>] ?Anchor) =
             let range  = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
             let domain = if Domain.IsSome then Some (StyleParam.Range.MinMax (Domain.Value)) else None
             let yaxis  = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,
-                                    ?Showline=Showline,?Anchor=Anchor,?Side=Side,?Domain=domain,?Overlaying=Overlaying,?Position=Position)
+                                    ?Showline=Showline,?Anchor=Anchor,?Side=Side,?Domain=domain,?Overlaying=Overlaying,?Position=Position,?Zeroline=Zeroline)
             Chart.withY_Axis(yaxis,?Id=Id)                
 
 

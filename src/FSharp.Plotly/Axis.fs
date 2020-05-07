@@ -160,7 +160,7 @@ module Axis =
                 ?Showgrid,         
                 ?Gridcolor,        
                 ?Gridwidth,        
-                ?Zeroline,         
+                ?Zeroline : bool,         
                 ?Zerolinecolor,    
                 ?Zerolinewidth,    
                 ?Anchor :StyleParam.AxisAnchorId,           
