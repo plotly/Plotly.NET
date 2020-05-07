@@ -33,12 +33,16 @@
     <Compile Include="Dimensions.fs" />
     <Compile Include="Domain.fs" />
     <Compile Include="Line.fs" />
+    <Compile Include="Box.fs" />
+    <Compile Include="Meanline.fs" />
     <Compile Include="Marker.fs" />
     <Compile Include="Font.fs" />
+    <Compile Include="Hoverlabel.fs" />
     <Compile Include="Axis.fs" />
     <Compile Include="Bins.fs" />
     <Compile Include="Cumulative.fs" />
     <Compile Include="Scene.fs" />
+    <Compile Include="Selected.fs" />
     <Compile Include="Shape.fs" />
     <Compile Include="Error.fs" />
     <Compile Include="Table.fs" />

@@ -15,7 +15,10 @@ type Line () =
             ?Shape:StyleParam.Shape,
             ?Dash,
             ?Smoothing,
-            ?Colorscale:StyleParam.Colorscale
+            ?Colorscale:StyleParam.Colorscale,
+            ?OutlierColor,
+            ?OutlierWidth
+
         ) =
             Line () 
             |> Line.style
@@ -25,7 +28,9 @@ type Line () =
                     ?Shape      = Shape     ,
                     ?Smoothing  = Smoothing ,
                     ?Dash       = Dash      ,
-                    ?Colorscale = Colorscale               
+                    ?Colorscale = Colorscale,
+                    ?OutlierColor = OutlierColor,
+                    ?OutlierWidth = OutlierWidth
                 )
 
 
@@ -37,15 +42,20 @@ type Line () =
             ?Shape:StyleParam.Shape,
             ?Dash,
             ?Smoothing,
-            ?Colorscale:StyleParam.Colorscale
+            ?Colorscale:StyleParam.Colorscale,
+            ?OutlierColor,
+            ?OutlierWidth
+
         ) =
             (fun (line:Line) -> 
-                Color      |> DynObj.setValueOpt   line "color"
-                Width      |> DynObj.setValueOpt   line "width"
-                Shape      |> DynObj.setValueOptBy line "shape" StyleParam.Shape.convert
-                Smoothing  |> DynObj.setValueOpt   line "smoothing"
-                Dash       |> DynObj.setValueOptBy line "dash" StyleParam.DrawingStyle.convert
-                Colorscale |> DynObj.setValueOptBy line "colorscale" StyleParam.Colorscale.convert
+                Color          |> DynObj.setValueOpt   line "color"
+                Width          |> DynObj.setValueOpt   line "width"
+                Shape          |> DynObj.setValueOptBy line "shape" StyleParam.Shape.convert
+                Smoothing      |> DynObj.setValueOpt   line "smoothing"
+                Dash           |> DynObj.setValueOptBy line "dash" StyleParam.DrawingStyle.convert
+                Colorscale     |> DynObj.setValueOptBy line "colorscale" StyleParam.Colorscale.convert
+                OutlierColor   |> DynObj.setValueOpt   line "outliercolor"
+                OutlierWidth   |> DynObj.setValueOpt   line "outlierwidth"
                     
                 // out -> 
                 line

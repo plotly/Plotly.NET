@@ -637,11 +637,20 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?Boxmean,
             [<Optional;DefaultParameterValue(null)>] ?Jitter,
             [<Optional;DefaultParameterValue(null)>] ?Pointpos,
-            [<Optional;DefaultParameterValue(null)>] ?Orientation
+            [<Optional;DefaultParameterValue(null)>] ?Orientation,
+            [<Optional;DefaultParameterValue(null)>] ?Marker,
+            [<Optional;DefaultParameterValue(null)>] ?Line,
+            [<Optional;DefaultParameterValue(null)>] ?Alignmentgroup,
+            [<Optional;DefaultParameterValue(null)>] ?Offsetgroup,
+            [<Optional;DefaultParameterValue(null)>] ?Notched,
+            [<Optional;DefaultParameterValue(null)>] ?NotchWidth,
+            [<Optional;DefaultParameterValue(null)>] ?QuartileMethod
         ) = 
             Trace.initBoxPlot (TraceStyle.BoxPlot(?X=x, ?Y = y,
                                 ?Whiskerwidth=Whiskerwidth,?Boxpoints=Boxpoints,
-                                ?Boxmean=Boxmean,?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation,?Fillcolor=Fillcolor) )
+                                ?Boxmean=Boxmean,?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation,?Fillcolor=Fillcolor,
+                                ?Marker=Marker,?Line=Line,?Alignmentgroup=Alignmentgroup,?Offsetgroup=Offsetgroup,?Notched=Notched,?NotchWidth=NotchWidth,?QuartileMethod=QuartileMethod
+                                ) )
             |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)   
             |> TraceStyle.Marker(?Color=Color)
             |> GenericChart.ofTraceObject
@@ -659,9 +668,18 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?Boxmean,
             [<Optional;DefaultParameterValue(null)>] ?Jitter,
             [<Optional;DefaultParameterValue(null)>] ?Pointpos,
-            [<Optional;DefaultParameterValue(null)>] ?Orientation) = 
+            [<Optional;DefaultParameterValue(null)>] ?Orientation,
+            [<Optional;DefaultParameterValue(null)>] ?Marker,
+            [<Optional;DefaultParameterValue(null)>] ?Line,
+            [<Optional;DefaultParameterValue(null)>] ?Alignmentgroup,
+            [<Optional;DefaultParameterValue(null)>] ?Offsetgroup,
+            [<Optional;DefaultParameterValue(null)>] ?Notched,
+            [<Optional;DefaultParameterValue(null)>] ?NotchWidth,
+            [<Optional;DefaultParameterValue(null)>] ?QuartileMethod
+            ) = 
         let x,y = Seq.unzip xy
-        Chart.BoxPlot(x, y, ?Name=Name,?Showlegend=Showlegend,?Color=Color,?Fillcolor=Fillcolor,?Opacity=Opacity,?Whiskerwidth=Whiskerwidth,?Boxpoints=Boxpoints,?Boxmean=Boxmean,?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation) 
+        Chart.BoxPlot(x, y, ?Name=Name,?Showlegend=Showlegend,?Color=Color,?Fillcolor=Fillcolor,?Opacity=Opacity,?Whiskerwidth=Whiskerwidth,?Boxpoints=Boxpoints,?Boxmean=Boxmean,?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation,
+                            ?Marker=Marker,?Line=Line,?Alignmentgroup=Alignmentgroup,?Offsetgroup=Offsetgroup,?Notched=Notched,?NotchWidth=NotchWidth,?QuartileMethod=QuartileMethod) 
 
 
     /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.            
@@ -677,10 +695,27 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?Points,
             [<Optional;DefaultParameterValue(null)>] ?Jitter,
             [<Optional;DefaultParameterValue(null)>] ?Pointpos,
-            [<Optional;DefaultParameterValue(null)>] ?Orientation
+            [<Optional;DefaultParameterValue(null)>] ?Orientation,
+            [<Optional;DefaultParameterValue(null)>] ?Width,
+            [<Optional;DefaultParameterValue(null)>] ?Marker,
+            [<Optional;DefaultParameterValue(null)>] ?Line,
+            [<Optional;DefaultParameterValue(null)>] ?Alignmentgroup,
+            [<Optional;DefaultParameterValue(null)>] ?Offsetgroup,
+            [<Optional;DefaultParameterValue(null)>] ?Box,
+            [<Optional;DefaultParameterValue(null)>] ?Bandwidth,
+            [<Optional;DefaultParameterValue(null)>] ?Meanline,
+            [<Optional;DefaultParameterValue(null)>] ?Scalegroup,
+            [<Optional;DefaultParameterValue(null)>] ?Scalemode,
+            [<Optional;DefaultParameterValue(null)>] ?Side,
+            [<Optional;DefaultParameterValue(null)>] ?Span,
+            [<Optional;DefaultParameterValue(null)>] ?SpanMode,
+            [<Optional;DefaultParameterValue(null)>] ?Uirevision
         ) = 
             Trace.initViolin (TraceStyle.Violin(?X=x, ?Y = y,?Points=Points,
-                                ?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation,?Fillcolor=Fillcolor) )
+                                ?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation,?Fillcolor=Fillcolor,
+                                ?Width=Width,?Marker=Marker,?Line=Line,?Alignmentgroup=Alignmentgroup,?Offsetgroup=Offsetgroup,?Box=Box,?Bandwidth=Bandwidth,?Meanline=Meanline,
+                                ?Scalegroup=Scalegroup,?Scalemode=Scalemode,?Side=Side,?Span=Span,?SpanMode=SpanMode,?Uirevision=Uirevision
+                                ) )
             |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)   
             |> TraceStyle.Marker(?Color=Color)
             |> GenericChart.ofTraceObject

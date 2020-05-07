@@ -18,6 +18,7 @@ type Marker () =
             ?Colorbar       ,
             ?Colorscale     ,
             ?Colors         ,
+            ?OutlierColor   ,
                             
             ?Maxdisplayed   ,
             ?Sizeref        ,
@@ -50,6 +51,7 @@ type Marker () =
                 ?Colorbar      = Colorbar       ,
                 ?Colorscale    = Colorscale     ,
                 ?Colors        = Colors         ,
+                ?OutlierColor  = OutlierColor   ,
                                         
                 ?Maxdisplayed  = Maxdisplayed   ,
                 ?Sizeref       = Sizeref        ,
@@ -82,6 +84,7 @@ type Marker () =
             ?Colorbar       ,
             ?Colorscale : StyleParam.Colorscale,
             ?Colors         ,
+            ?OutlierColor   ,
                             
             ?Maxdisplayed   ,
             ?Sizeref        ,
@@ -112,6 +115,7 @@ type Marker () =
                 Colorbar       |> DynObj.setValueOpt marker "colorbar"       
                 Colorscale     |> DynObj.setValueOptBy marker "colorscale" StyleParam.Colorscale.convert
                 Colors         |> DynObj.setValueOpt marker "colors"     
+                OutlierColor   |> DynObj.setValueOpt marker "outliercolor"     
                                                 
                 Maxdisplayed   |> DynObj.setValueOpt marker "maxdisplayed"   
                 Sizeref        |> DynObj.setValueOpt marker "sizeref"        

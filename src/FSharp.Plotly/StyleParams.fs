@@ -12,6 +12,18 @@ module StyleParam =
 //--------------------------
 // #A#
 //--------------------------
+    /// Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines
+    [<RequireQualifiedAccess>]
+    type Align =
+        | Auto | Left | Right
+
+        static member toString = function
+            | Auto     -> "auto"            
+            | Left     -> "left"            
+            | Right    -> "right"
+
+
+        static member convert = Align.toString >> box
 
     /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to "false".
     [<RequireQualifiedAccess>]
@@ -574,6 +586,19 @@ module StyleParam =
 //--------------------------
 // #Q#
 //--------------------------
+
+    /// Sets the method used to compute the sample's Q1 and Q3 quartiles
+    [<RequireQualifiedAccess>]
+    type QuartileMethod =
+        | Linear | Exclusive | Inclusive
+
+        static member toString = function
+            | Linear          -> "linear"            
+            | Exclusive -> "exclusive"            
+            | Inclusive       -> "inclusive"
+
+        static member convert = QuartileMethod.toString >> box
+
 
 //--------------------------
 // #R#

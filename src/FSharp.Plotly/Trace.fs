@@ -96,7 +96,7 @@ module Trace =
             ) =
                 (fun (trace:('T :> Trace)) ->  
                     Name        |> DynObj.setValueOpt trace "name"
-                    Visible     |> DynObj.setValueOptBy trace "name" StyleParam.Visible.toString
+                    Visible     |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.toString
                     Showlegend  |> DynObj.setValueOpt trace "showlegend"
                     Legendgroup |> DynObj.setValueOpt trace "legendgroup"  
                     Opacity     |> DynObj.setValueOpt trace "opacity"
@@ -124,6 +124,23 @@ module Trace =
                     
                     trace
                 )
+
+        // Sets selection of data points
+        static member SetSelection
+            (
+                ?Selectedpoints,
+                ?Selected,
+                ?UnSelected
+            ) =  
+                (fun (trace:('T :> Trace)) ->
+
+                    Selectedpoints |> DynObj.setValueOpt trace "Selectedpoints"
+                    Selected       |> DynObj.setValueOpt trace "Selected"
+                    UnSelected     |> DynObj.setValueOpt trace "UnSelected"
+            
+                    trace
+                )
+
 
         // Applies the styles of TextLabel to TraceObjects
         static member TextLabel
@@ -418,11 +435,18 @@ module Trace =
                 ?Y0,          
                 ?Whiskerwidth,
                 ?Boxpoints,   
-                ?Boxmean,     
+                ?Boxmean,
                 ?Jitter,      
                 ?Pointpos,    
                 ?Orientation, 
-                ?Fillcolor,   
+                ?Fillcolor,                   
+                ?Marker,
+                ?Line,
+                ?Alignmentgroup,
+                ?Offsetgroup,
+                ?Notched:bool,
+                ?NotchWidth:float,
+                ?QuartileMethod:StyleParam.QuartileMethod,
                 ?xAxis,       
                 ?yAxis,       
                 ?Ysrc,        
@@ -431,21 +455,29 @@ module Trace =
             ) =
                 (fun (boxPlot:('T :> Trace)) ->
 
-                    Y            |> DynObj.setValueOpt boxPlot "y"           
-                    X            |> DynObj.setValueOpt boxPlot "x"           
-                    X0           |> DynObj.setValueOpt boxPlot "x0"          
-                    Y0           |> DynObj.setValueOpt boxPlot "y0"          
-                    Whiskerwidth |> DynObj.setValueOpt boxPlot "whiskerwidth"
-                    Boxpoints    |> DynObj.setValueOptBy boxPlot "boxpoints"  StyleParam.Boxpoints.convert  
-                    Boxmean      |> DynObj.setValueOptBy boxPlot "boxmean"    StyleParam.BoxMean.convert    
-                    Jitter       |> DynObj.setValueOpt boxPlot "jitter"      
-                    Pointpos     |> DynObj.setValueOpt boxPlot "pointpos"    
-                    Orientation  |> DynObj.setValueOptBy boxPlot "orientation" StyleParam.Orientation.convert
-                    Fillcolor    |> DynObj.setValueOpt boxPlot "fillcolor"   
-                    xAxis        |> DynObj.setValueOpt boxPlot "xaxis"       
-                    yAxis        |> DynObj.setValueOpt boxPlot "yaxis"       
-                    Ysrc         |> DynObj.setValueOpt boxPlot "ysrc"        
-                    Xsrc         |> DynObj.setValueOpt boxPlot "xsrc"        
+                    Y              |> DynObj.setValueOpt boxPlot "y"           
+                    X              |> DynObj.setValueOpt boxPlot "x"           
+                    X0             |> DynObj.setValueOpt boxPlot "x0"          
+                    Y0             |> DynObj.setValueOpt boxPlot "y0"          
+                    Whiskerwidth   |> DynObj.setValueOpt boxPlot "whiskerwidth"
+                    Boxpoints      |> DynObj.setValueOptBy boxPlot "boxpoints"  StyleParam.Boxpoints.convert  
+                    Boxmean        |> DynObj.setValueOptBy boxPlot "boxmean"    StyleParam.BoxMean.convert    
+                    Jitter         |> DynObj.setValueOpt boxPlot "jitter"      
+                    Pointpos       |> DynObj.setValueOpt boxPlot "pointpos"    
+                    Orientation    |> DynObj.setValueOptBy boxPlot "orientation" StyleParam.Orientation.convert
+                    Fillcolor      |> DynObj.setValueOpt boxPlot "fillcolor"   
+                    Marker         |> DynObj.setValueOpt boxPlot "marker"   
+                    Line           |> DynObj.setValueOpt boxPlot "line"   
+                    Alignmentgroup   |> DynObj.setValueOpt boxPlot "Alignmentgroup"   
+                    Offsetgroup      |> DynObj.setValueOpt boxPlot "Offsetgroup"                     
+                    Notched        |> DynObj.setValueOpt boxPlot "notched"   
+                    NotchWidth     |> DynObj.setValueOpt boxPlot "notchwidth"   
+                    QuartileMethod |> DynObj.setValueOptBy boxPlot "quartilemethod" StyleParam.QuartileMethod.convert
+
+                    xAxis          |> DynObj.setValueOpt boxPlot "xaxis"       
+                    yAxis          |> DynObj.setValueOpt boxPlot "yaxis"       
+                    Ysrc           |> DynObj.setValueOpt boxPlot "ysrc"        
+                    Xsrc           |> DynObj.setValueOpt boxPlot "xsrc"        
                     
                     // out ->
                     boxPlot
@@ -459,6 +491,24 @@ module Trace =
                 ?X,           
                 ?X0,          
                 ?Y0,          
+                
+                ?Width,
+                ?Marker,
+                ?Line,
+                ?Alignmentgroup,
+                ?Offsetgroup,
+
+                ?Box,
+                ?Bandwidth,
+                ?Meanline,
+                ?Scalegroup,
+                ?Scalemode,
+                ?Side,
+                ?Span,
+                ?SpanMode,
+                ?Uirevision,
+
+
                 ?Points,     
                 ?Jitter,      
                 ?Pointpos,    
@@ -472,15 +522,33 @@ module Trace =
             ) =
                 (fun (boxPlot:('T :> Trace)) ->
 
-                    Y            |> DynObj.setValueOpt boxPlot "y"           
-                    X            |> DynObj.setValueOpt boxPlot "x"           
-                    X0           |> DynObj.setValueOpt boxPlot "x0"          
-                    Y0           |> DynObj.setValueOpt boxPlot "y0"          
-                    Points       |> DynObj.setValueOptBy boxPlot "points"  StyleParam.Jitterpoints.convert      
-                    Jitter       |> DynObj.setValueOpt boxPlot "jitter"      
-                    Pointpos     |> DynObj.setValueOpt boxPlot "pointpos"    
-                    Orientation  |> DynObj.setValueOptBy boxPlot "orientation" StyleParam.Orientation.convert
-                    Fillcolor    |> DynObj.setValueOpt boxPlot "fillcolor"   
+                    Y                |> DynObj.setValueOpt boxPlot "y"           
+                    X                |> DynObj.setValueOpt boxPlot "x"           
+                    X0               |> DynObj.setValueOpt boxPlot "x0"          
+                    Y0               |> DynObj.setValueOpt boxPlot "y0"          
+                    Points           |> DynObj.setValueOptBy boxPlot "points"  StyleParam.Jitterpoints.convert      
+                    Jitter           |> DynObj.setValueOpt boxPlot "jitter"      
+                    Pointpos         |> DynObj.setValueOpt boxPlot "pointpos"    
+                    Orientation      |> DynObj.setValueOptBy boxPlot "orientation" StyleParam.Orientation.convert
+                    Fillcolor        |> DynObj.setValueOpt boxPlot "fillcolor"   
+                                     
+                    Width            |> DynObj.setValueOpt boxPlot "width"  
+                    Marker           |> DynObj.setValueOpt boxPlot "marker"   
+                    Line             |> DynObj.setValueOpt boxPlot "line" 
+                    Alignmentgroup   |> DynObj.setValueOpt boxPlot "Alignmentgroup"   
+                    Offsetgroup      |> DynObj.setValueOpt boxPlot "Offsetgroup"  
+                                    
+                    Box              |> DynObj.setValueOpt boxPlot "Box"  
+                    Bandwidth        |> DynObj.setValueOpt boxPlot "bandwidth"  
+                    Meanline         |> DynObj.setValueOpt boxPlot "meanline"  
+                    Scalegroup       |> DynObj.setValueOpt boxPlot "scalegroup"  
+                    Scalemode        |> DynObj.setValueOpt boxPlot "scalemode"  
+                    Side             |> DynObj.setValueOpt boxPlot "side"  
+                    Span             |> DynObj.setValueOpt boxPlot "span"  
+                    SpanMode         |> DynObj.setValueOpt boxPlot "spanmode"  
+                    Uirevision       |> DynObj.setValueOpt boxPlot "uirevision"  
+
+                    
                     xAxis        |> DynObj.setValueOpt boxPlot "xaxis"       
                     yAxis        |> DynObj.setValueOpt boxPlot "yaxis"       
                     Ysrc         |> DynObj.setValueOpt boxPlot "ysrc"        
