@@ -731,9 +731,27 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?Points,
             [<Optional;DefaultParameterValue(null)>] ?Jitter,
             [<Optional;DefaultParameterValue(null)>] ?Pointpos,
-            [<Optional;DefaultParameterValue(null)>] ?Orientation) = 
+            [<Optional;DefaultParameterValue(null)>] ?Orientation,
+            [<Optional;DefaultParameterValue(null)>] ?Width,
+            [<Optional;DefaultParameterValue(null)>] ?Marker,
+            [<Optional;DefaultParameterValue(null)>] ?Line,
+            [<Optional;DefaultParameterValue(null)>] ?Alignmentgroup,
+            [<Optional;DefaultParameterValue(null)>] ?Offsetgroup,
+            [<Optional;DefaultParameterValue(null)>] ?Box,
+            [<Optional;DefaultParameterValue(null)>] ?Bandwidth,
+            [<Optional;DefaultParameterValue(null)>] ?Meanline,
+            [<Optional;DefaultParameterValue(null)>] ?Scalegroup,
+            [<Optional;DefaultParameterValue(null)>] ?Scalemode,
+            [<Optional;DefaultParameterValue(null)>] ?Side,
+            [<Optional;DefaultParameterValue(null)>] ?Span,
+            [<Optional;DefaultParameterValue(null)>] ?SpanMode,
+            [<Optional;DefaultParameterValue(null)>] ?Uirevision        
+        ) = 
         let x,y = Seq.unzip xy
-        Chart.Violin(x, y, ?Name=Name,?Showlegend=Showlegend,?Color=Color,?Fillcolor=Fillcolor,?Opacity=Opacity,?Points=Points,?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation) 
+        Chart.Violin(x, y, ?Name=Name,?Showlegend=Showlegend,?Color=Color,?Fillcolor=Fillcolor,?Opacity=Opacity,?Points=Points,?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation,
+                        ?Width=Width,?Marker=Marker,?Line=Line,?Alignmentgroup=Alignmentgroup,?Offsetgroup=Offsetgroup,?Box=Box,?Bandwidth=Bandwidth,?Meanline=Meanline,
+                        ?Scalegroup=Scalegroup,?Scalemode=Scalemode,?Side=Side,?Span=Span,?SpanMode=SpanMode,?Uirevision=Uirevision
+            ) 
 
 
     /// Shows a graphical representation of a 3-dimensional surface by plotting constant z slices, called contours, on a 2-dimensional format.
