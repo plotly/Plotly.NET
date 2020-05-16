@@ -32,7 +32,7 @@ violin1 |> Chart.Show
 By swapping x and y plus using `StyleParam.Orientation.Horizontal` we can flip the chart horizontaly.
 *)
 let violin2 =
-    Chart.Violin (y,x,Jitter=0.1,Points=StyleParam.Jitterpoints.All,Orientation=StyleParam.Orientation.Horizontal)
+    Chart.Violin (y,x,Jitter=0.1,Points=StyleParam.Jitterpoints.All,Orientation=StyleParam.Orientation.Horizontal,Meanline=Meanline.init(Visible=true))
 
 (***do-not-eval***)
 violin2 |> Chart.Show

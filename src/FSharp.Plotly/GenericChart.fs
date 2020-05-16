@@ -45,14 +45,43 @@ module HTML =
 </html>"""
 
 
+  //  let chart =
+  //      """<div id="[ID]" style="width: [WIDTH]px; height: [HEIGHT]px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+  //<script>
+  //  var data = [DATA];
+  //  var layout = [LAYOUT];
+  //  var config = [CONFIG];
+  //  Plotly.newPlot('[ID]', data, layout, config);
+  //</script>"""
     let chart =
-        """<div id="[ID]" style="width: [WIDTH]px; height: [HEIGHT]px;"><!-- Plotly chart will be drawn inside this DIV --></div>
-  <script>
-    var data = [DATA];
-    var layout = [LAYOUT];
-    var config = [CONFIG];
-    Plotly.newPlot('[ID]', data, layout, config);
-  </script>"""
+        let newScript = new System.Text.StringBuilder()
+        newScript.AppendLine("""<div id="[ID]" style="width: [WIDTH]px; height: [HEIGHT]px;"><!-- Plotly chart will be drawn inside this DIV --></div>""") |> ignore
+        newScript.AppendLine("<script type=\"text/javascript\">") |> ignore
+        newScript.AppendLine(@"
+            var renderPlotly = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}});
+            fsharpPlotlyRequire(['plotly'], function(Plotly) {")  |> ignore
+        newScript.AppendLine(@"
+            var data = [DATA];
+            var layout = [LAYOUT];
+            var config = [CONFIG];
+            Plotly.newPlot('[ID]', data, layout, config);")  |> ignore
+        newScript.AppendLine("""});
+            };
+            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) { 
+                var script = document.createElement("script"); 
+                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"); 
+                script.onload = function(){
+                    renderPlotly();
+                };
+                document.getElementsByTagName("head")[0].appendChild(script); 
+            }
+            else {
+                renderPlotly();
+            }""") |> ignore
+        newScript.AppendLine("</script>") |> ignore
+        newScript.ToString()
+
 
     let description ="""<div class=container>
   <h3>[DESCRIPTIONHEADING]</h3>

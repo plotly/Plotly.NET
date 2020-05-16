@@ -468,8 +468,8 @@ module Trace =
                     Fillcolor      |> DynObj.setValueOpt boxPlot "fillcolor"   
                     Marker         |> DynObj.setValueOpt boxPlot "marker"   
                     Line           |> DynObj.setValueOpt boxPlot "line"   
-                    Alignmentgroup   |> DynObj.setValueOpt boxPlot "Alignmentgroup"   
-                    Offsetgroup      |> DynObj.setValueOpt boxPlot "Offsetgroup"                     
+                    Alignmentgroup   |> DynObj.setValueOpt boxPlot "alignmentgroup"   
+                    Offsetgroup      |> DynObj.setValueOpt boxPlot "offsetgroup"                     
                     Notched        |> DynObj.setValueOpt boxPlot "notched"   
                     NotchWidth     |> DynObj.setValueOpt boxPlot "notchwidth"   
                     QuartileMethod |> DynObj.setValueOptBy boxPlot "quartilemethod" StyleParam.QuartileMethod.convert
@@ -500,7 +500,7 @@ module Trace =
 
                 ?Box:Box,
                 ?Bandwidth,
-                ?Meanline,
+                ?Meanline:Meanline,
                 ?Scalegroup,
                 ?Scalemode,
                 ?Side,
@@ -535,10 +535,10 @@ module Trace =
                     Width            |> DynObj.setValueOpt boxPlot "width"  
                     Marker           |> DynObj.setValueOpt boxPlot "marker"   
                     Line             |> DynObj.setValueOpt boxPlot "line" 
-                    Alignmentgroup   |> DynObj.setValueOpt boxPlot "Alignmentgroup"   
-                    Offsetgroup      |> DynObj.setValueOpt boxPlot "Offsetgroup"  
+                    Alignmentgroup   |> DynObj.setValueOpt boxPlot "alignmentgroup"   
+                    Offsetgroup      |> DynObj.setValueOpt boxPlot "offsetgroup"  
                                     
-                    Box              |> DynObj.setValueOpt boxPlot "Box"  
+                    Box              |> DynObj.setValueOpt boxPlot "box"  
                     Bandwidth        |> DynObj.setValueOpt boxPlot "bandwidth"  
                     Meanline         |> DynObj.setValueOpt boxPlot "meanline"  
                     Scalegroup       |> DynObj.setValueOpt boxPlot "scalegroup"  
