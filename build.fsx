@@ -1,4 +1,3 @@
-
 #r @"paket:
 nuget Fake.Core.Target
 nuget Fake.Core.Process
@@ -25,74 +24,10 @@ open System.IO
 open Fake.Core
 open Fake.Core.TargetOperators
 open Fake.DotNet
-open Fake.IO.Globbing
-open Fake.DotNet.NuGet
-open Fake.DotNet.Testing
 open Fake.IO
 open Fake.IO.FileSystemOperators
 open Fake.IO.Globbing.Operators
 open Fake.Tools
-
-[<AutoOpen>]
-module TemporaryDocumentationHelpers =
-
-    type LiterateArguments =
-        { ToolPath : string
-          Source : string
-          OutputDirectory : string 
-          Template : string
-          ProjectParameters : (string * string) list
-          LayoutRoots : string list 
-          FsiEval : bool }
-
-    let private run toolPath arguments = 
-        Command.RawCommand
-            (
-                toolPath,
-                arguments
-            )
-        |> CreateProcess.fromCommand
-        |> CreateProcess.withFramework
-        |> CreateProcess.ensureExitCode
-        |> Proc.run
-        |> ignore
-
-
-    let createDocs p =
-        let toolPath = 
-            match ProcessUtils.tryFindLocalTool "" "fsformatting.exe"  [(Directory.GetCurrentDirectory() @@ "/lib")] with
-            |Some tool -> tool
-            | _ -> failwith "FSFormatting executable not found"
-        //let toolPath = Tools.findToolInSubPath "fsformatting.exe" (Directory.GetCurrentDirectory() @@ "lib/Formatting")
-
-        let defaultLiterateArguments =
-            { ToolPath = toolPath
-              Source = ""
-              OutputDirectory = ""
-              Template = ""
-              ProjectParameters = []
-              LayoutRoots = [] 
-              FsiEval = false }
-
-        let arguments = (p:LiterateArguments->LiterateArguments) defaultLiterateArguments
-        let layoutroots =
-            if arguments.LayoutRoots.IsEmpty then []
-            else [ "--layoutRoots" ] @ arguments.LayoutRoots
-        let source = arguments.Source
-        let template = arguments.Template
-        let outputDir = arguments.OutputDirectory
-        let fsiEval = if arguments.FsiEval then [ "--fsieval" ] else []
-
-        let command = 
-            arguments.ProjectParameters
-            |> Seq.map (fun (k, v) -> [ k; v ])
-            |> Seq.concat
-            |> Seq.append 
-                   (["literate"; "--processdirectory" ] @ layoutroots @ [ "--inputdirectory"; source; "--templatefile"; template; 
-                      "--outputDirectory"; outputDir] @ fsiEval @ [ "--replacements" ])
-            |> Arguments.OfArgs
-        run arguments.ToolPath command
-        printfn "Successfully generated docs for %s" source
 
 let project = "FSharp.Plotly"
 
@@ -116,6 +51,29 @@ let website = "/FSharp.Plotly"
 let pkgDir = "pkg"
 
 let release = ReleaseNotes.load "RELEASE_NOTES.md"
+
+let mutable prereleaseTag = ""
+let mutable isPrerelease = false
+
+[<AutoOpen>]
+module MessagePrompts =
+
+    let prompt (msg:string) =
+        System.Console.Write(msg)
+        System.Console.ReadLine().Trim()
+        |> function | "" -> None | s -> Some s
+        |> Option.map (fun s -> s.Replace ("\"","\\\""))
+
+    let rec promptYesNo msg =
+        match prompt (sprintf "%s [Yn]: " msg) with
+        | Some "Y" | Some "y" -> true
+        | Some "N" | Some "n" -> false
+        | _ -> System.Console.WriteLine("Sorry, invalid answer"); promptYesNo msg
+
+    let releaseMsg = """This will stage all uncommitted changes, push them to the origin and bump the release version to the latest number in the RELEASE_NOTES.md file. 
+        Do you want to continue?"""
+
+    let releaseDocsMsg = """This will push the docs to gh-pages. Remember building the docs prior to this. Do you want to continue?"""
 
 // Generate assembly info files with the right version & up-to-date information
 Target.create "AssemblyInfo" (fun _ ->
@@ -209,26 +167,33 @@ Target.create "RunTests" (fun _ ->
 // --------------------------------------------------------------------------------------
 // Build and publish NuGet package
 
-Target.create "BuildPreReleasePackages" (fun _ ->
-    printfn "Please enter pre-release package suffix"
-    let suffix = Console.ReadLine()
-    Paket.pack(fun p -> 
-        { p with
-            ToolType = ToolType.CreateLocalTool()
-            OutputPath = pkgDir
-            Version = sprintf "%s-%s" release.NugetVersion suffix
-            ReleaseNotes = release.Notes |> String.toLines })
-)
+Target.create "buildPrereleasePackages" (fun _ -> 
+        printfn "Please enter pre-release package suffix"
+        let suffix = System.Console.ReadLine()
+        isPrerelease <- true
+        prereleaseTag <- (sprintf "%s-%s" release.NugetVersion suffix)
+        if promptYesNo (sprintf "package tag will be %s OK?" prereleaseTag )
+            then 
+                Paket.pack(fun p -> 
+                    { p with
+                
+                        ToolType = ToolType.CreateLocalTool()
+                        OutputPath = pkgDir
+                        Version = prereleaseTag
+                        ReleaseNotes = release.Notes |> String.toLines })
+            else 
+                failwith "aborted"
+    )
 
 Target.create "BuildReleasePackages" (fun _ ->
-    Paket.pack(fun p ->
-        { p with
-            ToolType = ToolType.CreateLocalTool()
-            OutputPath = pkgDir
-            Version = release.NugetVersion
-            ReleaseNotes = release.Notes |> String.toLines })
-        )
-
+        isPrerelease <- false
+        Paket.pack(fun p ->
+            { p with
+                ToolType = ToolType.CreateLocalTool()
+                OutputPath = pkgDir
+                Version = release.NugetVersion
+                ReleaseNotes = release.Notes |> String.toLines })
+)
 Target.create "BuildCIPackages" (fun _ ->
     Paket.pack(fun p ->
         { p with
@@ -246,6 +211,13 @@ Target.create "PublishNuget" (fun _ ->
             ApiKey = Environment.environVarOrDefault "NuGet-key" ""})
 )
 
+Target.create "publishPrereleaseNugetPackages"(fun _ ->
+    Paket.push(fun p ->
+        { p with
+            WorkingDir = pkgDir
+            ToolType = ToolType.CreateLocalTool()
+            ApiKey = Environment.environVarOrDefault "NuGet-key" "" })
+)
 
 // --------------------------------------------------------------------------------------
 // Generate the documentation
@@ -368,6 +340,6 @@ Target.create "DotnetCoreBuild" ignore
   ==> "CopyBinaries"
   ==> "RunTests"
   ==> "BuildPreReleasePackages"
-  ==> "GitReleaseNuget"
+  ==> "publishPrereleaseNugetPackages"
 
 Target.runOrDefaultWithArguments "All"
