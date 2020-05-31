@@ -225,6 +225,12 @@ module ChartExtensions =
                                     ?Anchor=Anchor,?Side=Side,?Domain=domain,?Overlaying=Overlaying,?Position=Position,?Zeroline=Zeroline)
             Chart.withX_Axis(xaxis,?Id=Id)
 
+        /// Sets the range slider for the xAxis
+        [<CompiledName("WithX_AxisRangeSlider")>]
+        static member withX_AxisRangeSlider(rangeSlider:RangeSlider,
+                [<Optional;DefaultParameterValue(null)>] ?Id) =
+            let xaxis  = Axis.LinearAxis.init(RangeSlider = rangeSlider)
+            Chart.withX_Axis(xaxis,?Id=Id)
 
         // Sets y-Axis of 2d and 3d- Charts
         [<CompiledName("WithY_Axis")>]

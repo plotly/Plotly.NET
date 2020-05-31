@@ -31,12 +31,27 @@ let candles =
     |> Array.map (fun (d,o,h,l,c)->System.DateTime.Parse d, Candle.Create(o,h,l,c))
 
   
-let ch1 = candles |> Chart.Candelstick
 
+let ch1 = 
+    candles 
+    |> Chart.Candelstick
 
 (***do-not-eval***)
 ch1 |> Chart.Show
 
 (*** include-value:ch1 ***)
 
+(**
+If you want to hide the rangeslider, use `withX_AxisRangeSlider` and hide it:
+*)
+let rangeslider = RangeSlider.init(Visible=false)
+
+let ch2 = 
+    ch1
+    |> Chart.withX_AxisRangeSlider rangeslider
+
+(***do-not-eval***)
+ch2 |> Chart.Show
+
+(*** include-value:ch2 ***)
 

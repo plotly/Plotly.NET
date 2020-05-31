@@ -16,6 +16,7 @@ module Axis =
                 ?Autorange      ,        
                 ?Rangemode      ,        
                 ?Range          ,            
+                ?RangeSlider:RangeSlider,
                 ?Fixedrange     ,       
                 ?Tickmode       ,         
                 ?nTicks         ,           
@@ -73,6 +74,7 @@ module Axis =
                         ?Autorange       = Autorange      ,
                         ?Rangemode       = Rangemode      ,
                         ?Range           = Range          ,
+                        ?RangeSlider     = RangeSlider    ,
                         ?Fixedrange      = Fixedrange     ,
                         ?Tickmode        = Tickmode       ,
                         ?nTicks          = nTicks         ,
@@ -131,6 +133,7 @@ module Axis =
                 ?Autorange,        
                 ?Rangemode,        
                 ?Range,            
+                ?RangeSlider:RangeSlider,
                 ?Fixedrange,       
                 ?Tickmode,         
                 ?nTicks,           
@@ -186,6 +189,7 @@ module Axis =
                     Autorange       |> DynObj.setValueOptBy axis "autorange" StyleParam.AutoRange.convert
                     Rangemode       |> DynObj.setValueOptBy axis "rangemode" StyleParam.RangeMode.convert
                     Range           |> DynObj.setValueOptBy axis "range"     StyleParam.Range.convert       
+                    RangeSlider     |> DynObj.setValueOpt   axis "rangeslider"
                     Fixedrange      |> DynObj.setValueOpt   axis "fixedrange"      
                     Tickmode        |> DynObj.setValueOptBy axis "tickmode"  StyleParam.TickMode.convert
                     nTicks          |> DynObj.setValueOpt   axis "nticks"          
