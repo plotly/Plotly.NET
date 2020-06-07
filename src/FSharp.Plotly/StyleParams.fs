@@ -485,6 +485,70 @@ module StyleParam =
     
         static member convert = LocationFormat.toString >> box 
 
+    
+    /// Determines wether the rows of a LayoutGrid are enumerated from the top or the bottom.
+    [<RequireQualifiedAccess>]
+    type LayoutGridRowOrder =
+        |TopToBottom
+        |BottomToTop
+
+        static member toString = function
+            |TopToBottom -> "top to bottom"
+            |BottomToTop -> "bottom to top"       
+
+        static member convert = 
+            LayoutGridRowOrder.toString >> box
+
+    /// Pattern to use for autogenerating Axis Ids when not specifically specifying subplot axes IDs in LayoutGrids
+    [<RequireQualifiedAccess>]
+    type LayoutGridPattern =
+        /// Uses a new xy pair for each cell, left-to-right across each row then iterating rows according to `roworder`
+        | Independent
+        /// Gives one x axis per column and one y axis per row
+        | Coupled
+        
+        static member toString = function
+            | Independent -> "independent"
+            | Coupled     -> "coupled"  
+            
+        static member convert = 
+            LayoutGridPattern.toString >> box
+
+
+    /// Sets where the x axis labels and titles go on a layout grid.
+    [<RequireQualifiedAccess>]
+    type LayoutGridXSide =
+        | Bottom
+        | BottomPlot
+        | Top
+        | TopPlot
+
+        static member toString = function
+            | Bottom     -> "bottom"
+            | BottomPlot -> "bottom plot"
+            | Top        -> "top"
+            | TopPlot    -> "top plot"
+
+        static member convert = LayoutGridXSide.toString >> box
+
+    /// Sets where the y axis labels and titles go on a layout grid.
+    [<RequireQualifiedAccess>]
+    type LayoutGridYSide =
+        | Left
+        | LeftPlot
+        | Right
+        | RightPlot
+
+        static member toString = function
+            | Left      -> "left"
+            | LeftPlot  -> "left plot"
+            | Right     -> "right"
+            | RightPlot -> "right plot"
+
+        static member convert = LayoutGridYSide.toString >> box
+
+
+
 //--------------------------
 // #M#
 //--------------------------
@@ -626,6 +690,8 @@ module StyleParam =
         static member convert = function
             | MinMax (min,max)   -> box [|min;max|]
             | Values  arr   -> box arr
+
+
 
 //--------------------------
 // #S#

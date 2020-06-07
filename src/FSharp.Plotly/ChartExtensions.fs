@@ -343,6 +343,15 @@ module ChartExtensions =
             (fun (ch:GenericChart) -> 
                 GenericChart.addLayout layout ch) 
 
+        // Set the LayoutGrid options of a Chart
+        [<CompiledName("WithLayoutGrid")>]
+        static member withLayoutGrid(layoutGrid:LayoutGrid) =
+            (fun (ch:GenericChart) -> 
+                let layout = 
+                    GenericChart.getLayout ch
+                    |> Layout.SetLayoutGrid layoutGrid 
+                GenericChart.setLayout layout ch) 
+
         [<CompiledName("WithConfig")>]
         static member withConfig (config:Config) =
             (fun (ch:GenericChart) ->
@@ -441,6 +450,83 @@ module ChartExtensions =
         static member Combine(gCharts:seq<GenericChart>) =
             GenericChart.combine gCharts
 
+
+        [<CompiledName("Grid")>]
+        static member Grid ((gCharts:seq<#seq<GenericChart>>),
+            sharedAxes:bool
+            ) =
+
+            let nRows = Seq.length gCharts
+            let rowWidth = 1. / float nRows
+
+            let nCols = gCharts |> Seq.maxBy Seq.length |> Seq.length
+            let colWidth = 1. / float nCols
+
+            let pattern = if sharedAxes then StyleParam.LayoutGridPattern.Coupled else StyleParam.LayoutGridPattern.Independent
+            let grid = 
+                LayoutGrid.init(
+                    Rows=nRows,Columns=nCols,Pattern=pattern
+                )
+            gCharts
+            |> Seq.mapi (fun rowIndex row ->
+                row |> Seq.mapi (fun colIndex gChart ->
+                    let xdomain = (colWidth * float (colIndex-1), (colWidth * float colIndex)) 
+                    let ydomain = (1. - ((rowWidth * float rowIndex)),1. - (rowWidth * float (rowIndex-1)))
+
+                    let newXIndex, newYIndex =
+                        (if sharedAxes then colIndex + 1 else (rowIndex + colIndex + 1)),
+                        (if sharedAxes then rowIndex + 1 else (rowIndex + colIndex + 1))
+
+
+                    let xaxis,yaxis,layout = 
+                        let layout = GenericChart.getLayout gChart
+                        let xAxisName, yAxisName = StyleParam.AxisId.X 1 |> StyleParam.AxisId.toString, StyleParam.AxisId.Y 1 |> StyleParam.AxisId.toString
+                        
+                        let updateXAxis index domain axis = 
+                            axis |> Axis.LinearAxis.style(Anchor=StyleParam.AxisAnchorId.X index,Domain=StyleParam.Range.MinMax domain)
+                        
+                        let updateYAxis index domain axis = 
+                            axis |> Axis.LinearAxis.style(Anchor=StyleParam.AxisAnchorId.Y index,Domain=StyleParam.Range.MinMax domain)
+                        match (layout.TryGetTypedValue<Axis.LinearAxis> xAxisName),(layout.TryGetTypedValue<Axis.LinearAxis> yAxisName) with
+                        | Some x, Some y ->
+                            // remove axis
+                            DynObj.remove layout xAxisName
+                            DynObj.remove layout yAxisName
+
+                            x |> updateXAxis newXIndex xdomain,
+                            y |> updateYAxis newYIndex ydomain,
+                            layout
+
+                        | Some x, None -> 
+                            // remove x - axis
+                            DynObj.remove layout xAxisName
+
+                            x |> updateXAxis newXIndex xdomain,
+                            Axis.LinearAxis.init(Anchor=StyleParam.AxisAnchorId.Y newYIndex ,Domain=StyleParam.Range.MinMax ydomain),
+                            layout
+
+                        | None, Some y -> 
+                            // remove y - axis
+                            DynObj.remove layout yAxisName
+
+                            Axis.LinearAxis.init(Anchor=StyleParam.AxisAnchorId.X newXIndex,Domain=StyleParam.Range.MinMax xdomain),
+                            y |> updateYAxis newYIndex ydomain,
+                            layout
+                        | None, None ->
+                            Axis.LinearAxis.init(Anchor=StyleParam.AxisAnchorId.X newXIndex,Domain=StyleParam.Range.MinMax xdomain),
+                            Axis.LinearAxis.init(Anchor=StyleParam.AxisAnchorId.Y newYIndex,Domain=StyleParam.Range.MinMax ydomain),
+                            layout
+
+                    gChart
+                    |> GenericChart.setLayout layout
+                    |> Chart.withAxisAnchor(X=newXIndex,Y=newYIndex) 
+                    |> Chart.withX_Axis(xaxis,newXIndex)
+                    |> Chart.withY_Axis(yaxis,newYIndex)
+                )
+            )
+            |> Seq.map Chart.Combine
+            |> Chart.Combine
+            |> Chart.withLayoutGrid grid
 
         /// Create a combined chart with the given charts merged
         [<CompiledName("Stack")>]
