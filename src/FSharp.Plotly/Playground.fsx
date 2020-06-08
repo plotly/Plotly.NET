@@ -38,24 +38,15 @@ open FSharp.Plotly
 open GenericChart
 
 
-let grid ((gCharts:seq<#seq<GenericChart>>),sharedXAxes:bool,sharedYAxes:bool) =
+let grid ((gCharts:seq<#seq<GenericChart>>),sharedAxes:bool,xGap,yGap) =
+
     let nRows = Seq.length gCharts
-    let rowWidth = 1. / float nRows
-
     let nCols = gCharts |> Seq.maxBy Seq.length |> Seq.length
-    let colWidth = 1. / float nCols
-
-    let xGap = 0.1
-    let yGap = 0.1
-
-    let pattern = StyleParam.LayoutGridPattern.Independent
-    
-    let xSide = StyleParam.LayoutGridXSide.Bottom
-    let ySide = StyleParam.LayoutGridYSide.Left
+    let pattern = if sharedAxes then StyleParam.LayoutGridPattern.Coupled else StyleParam.LayoutGridPattern.Independent
 
     let grid = 
         LayoutGrid.init(
-            Rows=nRows,Columns=nCols,XGap= 0.05,YGap= 0.05
+            Rows=nRows,Columns=nCols,XGap= xGap,YGap= yGap,Pattern=pattern
         )
 
     let generateDomainRanges (count:int) (gap:float) =
@@ -82,8 +73,8 @@ let grid ((gCharts:seq<#seq<GenericChart>>),sharedXAxes:bool,sharedYAxes:bool) =
             let ydomain = yDomains.[rowIndex]
 
             let newXIndex, newYIndex =
-                (if sharedXAxes then colIndex + 1 else ((nRows * rowIndex) + (colIndex + 1))),
-                (if sharedYAxes then rowIndex + 1 else ((nRows * rowIndex) + (colIndex + 1)))
+                (if sharedAxes then colIndex + 1 else ((nRows * rowIndex) + (colIndex + 1))),
+                (if sharedAxes then rowIndex + 1 else ((nRows * rowIndex) + (colIndex + 1)))
 
 
             let xaxis,yaxis,layout = 
@@ -138,11 +129,47 @@ let grid ((gCharts:seq<#seq<GenericChart>>),sharedXAxes:bool,sharedYAxes:bool) =
 
 
 grid ([
-    [Chart.Point([(0,1)]);Chart.Point([(1,1)])]
-    [Chart.Point([(0,1)]);Chart.Point([(1,1)])]
-],false,true)
+    [Chart.Point([(0,1)]);Chart.Point([(0,1)]);Chart.Point([(0,1)]);]
+    [Chart.Point([(0,1)]);Chart.Point([(0,1)]);Chart.Point([(0,1)]);]
+    [Chart.Point([(0,1)]);Chart.Point([(0,1)]);Chart.Point([(0,1)]);]
+],true, 0.05,0.05)
 |> Chart.Show
 
+let stack ( columns:int, space) = 
+    (fun (charts:#seq<GenericChart>) ->  
+
+        let col = columns
+        let len      = charts |> Seq.length
+        let colWidth = 1. / float col
+        let rowWidth = 
+            let tmp = float len / float col |> ceil
+            1. / tmp
+        let space = 
+            let s = defaultArg space 0.05
+            if s < 0. || s > 1. then 
+                printfn "Space should be between 0.0 - 1.0. Automaticaly set to default (0.05)"
+                0.05
+            else
+                s
+
+        let contains3d ch =
+            ch 
+            |> existsTrace (fun t -> 
+                match t with
+                | :? Trace3d -> true
+                | _ -> false)
+
+        charts
+        |> Seq.mapi (fun i ch ->
+            let colI,rowI,index = (i%col+1), (i/col+1),(i+1)
+            let xdomain = (colWidth * float (colI-1), (colWidth * float colI) - space ) 
+            let ydomain = (1. - ((rowWidth * float rowI) - space ),1. - (rowWidth * float (rowI-1)))
+            xdomain)
+        )
+
+let a = 
+    stack (2, None) [Chart.Point([0,1]);Chart.Point([0,1])]
+    |> Array.ofSeq
 
 let generateDomainRanges nRows nCols =
     
@@ -159,3 +186,19 @@ let generateDomainRanges nRows nCols =
     else failwith "negative amount of rows or columns is stupid."
 
 generateDomainRanges 8 1
+
+
+
+
+[
+    Chart.Point([(0,1)]) |> Chart.withY_AxisStyle("This title")
+    Chart.Point([(0,1)]) 
+    |> Chart.withY_AxisStyle("Must be set",Zeroline=false)
+    Chart.Point([(0,1)]) 
+    |> Chart.withY_AxisStyle("on the respective charts",Zeroline=false)
+]
+|> Chart.SingleStack
+|> Chart.withLayoutGridStyle(XSide=StyleParam.LayoutGridXSide.Bottom)
+|> Chart.withTitle("Hi i am the new SingleStackChart")
+|> Chart.withX_AxisStyle("im the shared xAxis")
+|> Chart.Show

@@ -397,4 +397,14 @@ type Layout() =
                 layout
             )
 
+    
+    static member GetLayoutGrid 
+        (
+            grid: LayoutGrid
+        ) =
+            (fun (layout:Layout) ->
+                grid |> DynObj.setValue layout "grid"
+                layout
+            )
+
 

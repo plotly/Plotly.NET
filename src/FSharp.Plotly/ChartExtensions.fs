@@ -352,6 +352,46 @@ module ChartExtensions =
                     |> Layout.SetLayoutGrid layoutGrid 
                 GenericChart.setLayout layout ch) 
 
+        // Set the LayoutGrid options of a Chart
+        [<CompiledName("WithLayoutGridStyle")>]
+        static member withLayoutGridStyle([<Optional;DefaultParameterValue(null)>]?SubPlots   : StyleParam.AxisId [] [],
+            [<Optional;DefaultParameterValue(null)>]?XAxes      : StyleParam.AxisId [],
+            [<Optional;DefaultParameterValue(null)>]?YAxes      : StyleParam.AxisId [],
+            [<Optional;DefaultParameterValue(null)>]?Rows       : int,
+            [<Optional;DefaultParameterValue(null)>]?Columns    : int,
+            [<Optional;DefaultParameterValue(null)>]?RowOrder   : StyleParam.LayoutGridRowOrder,
+            [<Optional;DefaultParameterValue(null)>]?Pattern    : StyleParam.LayoutGridPattern,
+            [<Optional;DefaultParameterValue(null)>]?XGap       : float,
+            [<Optional;DefaultParameterValue(null)>]?YGap       : float,
+            [<Optional;DefaultParameterValue(null)>]?Domain     : Domain,
+            [<Optional;DefaultParameterValue(null)>]?XSide      : StyleParam.LayoutGridXSide,
+            [<Optional;DefaultParameterValue(null)>]?YSide      : StyleParam.LayoutGridYSide
+        ) =
+            (fun (ch:GenericChart) -> 
+                let layout = GenericChart.getLayout ch
+                let updatedGrid =   
+                    let currentGrid = 
+                        match layout.TryGetTypedValue<LayoutGrid> "grid" with
+                        | Some grid -> grid
+                        | None -> LayoutGrid()
+                    currentGrid
+                    |> LayoutGrid.style(
+                        ?SubPlots    = SubPlots,
+                        ?XAxes       = XAxes   ,
+                        ?YAxes       = YAxes   ,
+                        ?Rows        = Rows    ,
+                        ?Columns     = Columns ,
+                        ?RowOrder    = RowOrder,
+                        ?Pattern     = Pattern ,
+                        ?XGap        = XGap    ,
+                        ?YGap        = YGap    ,
+                        ?Domain      = Domain  ,
+                        ?XSide       = XSide   ,
+                        ?YSide       = YSide   
+                    )
+                let updatedLayout = layout |> Layout.SetLayoutGrid updatedGrid
+                GenericChart.setLayout updatedLayout ch) 
+
         [<CompiledName("WithConfig")>]
         static member withConfig (config:Config) =
             (fun (ch:GenericChart) ->
@@ -450,41 +490,71 @@ module ChartExtensions =
         static member Combine(gCharts:seq<GenericChart>) =
             GenericChart.combine gCharts
 
-
+        ///Creates a Grid containing the given plots as subplots with the dimensions of the input (amount of columns equal to the largest inner sequence).
+        ///
+        ///Parameters:
+        ///
+        ///sharedAxes   : Wether the subplots share one xAxis per column and one yAxis per row or not. (default:TopToBottom)
+        ///
+        ///rowOrder     : the order in which the rows of the grid will be rendered (default:false)
+        /// 
+        ///xGap         : The space between columns of the grid relative to the x dimension of the grid
+        ///
+        ///yGap         : The space between rows of the grid relative to the y dimension of the grid
+        ///
+        ///Use Chart.withLayoutGridStyle to further style the grid object contained in the returned chart.
         [<CompiledName("Grid")>]
         static member Grid ((gCharts:seq<#seq<GenericChart>>),
-            sharedAxes:bool
+            [<Optional;DefaultParameterValue(false)>]?sharedAxes:bool,
+            [<Optional;DefaultParameterValue(null)>]?rowOrder:StyleParam.LayoutGridRowOrder,
+            [<Optional;DefaultParameterValue(0.05)>] ?xGap,
+            [<Optional;DefaultParameterValue(0.05)>] ?yGap
             ) =
 
+            let sharedAxes = defaultArg sharedAxes false
+            let rowOrder = defaultArg rowOrder StyleParam.LayoutGridRowOrder.TopToBottom
+            let xGap = defaultArg xGap 0.05
+            let yGap = defaultArg yGap 0.05
+
             let nRows = Seq.length gCharts
-            let rowWidth = 1. / float nRows
-
             let nCols = gCharts |> Seq.maxBy Seq.length |> Seq.length
-            let colWidth = 1. / float nCols
-
             let pattern = if sharedAxes then StyleParam.LayoutGridPattern.Coupled else StyleParam.LayoutGridPattern.Independent
-            let grid = 
-                LayoutGrid.init(
-                    Rows=nRows,Columns=nCols,Pattern=pattern
-                )
+
+            let generateDomainRanges (count:int) (gap:float) =
+                [|0. .. (1. / (float count)) .. 1.|]
+                |> fun doms -> 
+                    doms
+                    |> Array.windowed 2
+                    |> Array.mapi (fun i x -> 
+                        if i = 0 then
+                            x.[0], (x.[1] - (gap / 2.))
+                        elif i = (doms.Length - 1) then
+                           (x.[0] + (gap / 2.)),x.[1]
+                        else
+                           (x.[0] + (gap / 2.)) , (x.[1] - (gap / 2.))
+                    )
+
+            let yDomains = generateDomainRanges nRows yGap
+            let xDomains = generateDomainRanges nCols xGap
+
             gCharts
             |> Seq.mapi (fun rowIndex row ->
                 row |> Seq.mapi (fun colIndex gChart ->
-                    let xdomain = (colWidth * float (colIndex-1), (colWidth * float colIndex)) 
-                    let ydomain = (1. - ((rowWidth * float rowIndex)),1. - (rowWidth * float (rowIndex-1)))
+                    let xdomain = xDomains.[colIndex]
+                    let ydomain = yDomains.[rowIndex]
 
                     let newXIndex, newYIndex =
-                        (if sharedAxes then colIndex + 1 else (rowIndex + colIndex + 1)),
-                        (if sharedAxes then rowIndex + 1 else (rowIndex + colIndex + 1))
+                        (if sharedAxes then colIndex + 1 else ((nRows * rowIndex) + (colIndex + 1))),
+                        (if sharedAxes then rowIndex + 1 else ((nRows * rowIndex) + (colIndex + 1)))
 
 
                     let xaxis,yaxis,layout = 
                         let layout = GenericChart.getLayout gChart
                         let xAxisName, yAxisName = StyleParam.AxisId.X 1 |> StyleParam.AxisId.toString, StyleParam.AxisId.Y 1 |> StyleParam.AxisId.toString
-                        
+                
                         let updateXAxis index domain axis = 
                             axis |> Axis.LinearAxis.style(Anchor=StyleParam.AxisAnchorId.X index,Domain=StyleParam.Range.MinMax domain)
-                        
+                
                         let updateYAxis index domain axis = 
                             axis |> Axis.LinearAxis.style(Anchor=StyleParam.AxisAnchorId.Y index,Domain=StyleParam.Range.MinMax domain)
                         match (layout.TryGetTypedValue<Axis.LinearAxis> xAxisName),(layout.TryGetTypedValue<Axis.LinearAxis> yAxisName) with
@@ -526,9 +596,30 @@ module ChartExtensions =
             )
             |> Seq.map Chart.Combine
             |> Chart.Combine
-            |> Chart.withLayoutGrid grid
+            |> Chart.withLayoutGrid(
+                LayoutGrid.init(
+                    Rows=nRows,Columns=nCols,XGap= xGap,YGap= yGap,Pattern=pattern,RowOrder=rowOrder
+                )
+            )
+        
+        ///Creates a chart stack from the input charts by stacking them on top of each other starting from the first chart.
+        ///
+        ///Parameters:
+        ///
+        ///sharedAxis   : wether the stack has a shared x axis (default:true)
+        [<CompiledName("SingleStack")>]
+        static member SingleStack (charts:#seq<GenericChart>,
+            [<Optional;DefaultParameterValue(true)>] ?sharedXAxis:bool) =
+            
+            let sharedAxis = defaultArg sharedXAxis true
+            let singleCol = seq {
+                    for i = 0 to ((Seq.length charts) - 1) do
+                        yield seq {Seq.item i charts}
+                }
+            Chart.Grid(gCharts = singleCol, sharedAxes = sharedAxis, rowOrder = StyleParam.LayoutGridRowOrder.BottomToTop)
 
         /// Create a combined chart with the given charts merged
+        [<Obsolete("Use Chart.Grid for multi column grid charts or singleStack for one-column stacked charts.")>]
         [<CompiledName("Stack")>]
         static member Stack ( [<Optional;DefaultParameterValue(null)>] ?Columns:int, 
                 [<Optional;DefaultParameterValue(null)>] ?Space) = 
