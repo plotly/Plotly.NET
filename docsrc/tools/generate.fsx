@@ -33,6 +33,7 @@ let rec copyRecursive dir1 dir2 =
          copyRecursive subdir1 subdir2
     for file in Directory.EnumerateFiles dir1 do
          File.Copy(file, file.Replace(dir1, dir2), true)
+
 // Web site location for the generated documentation
 let website = "https://muehlhaus.github.io/FSharp.Plotly/"
 

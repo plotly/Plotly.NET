@@ -49,6 +49,7 @@
     <Compile Include="Table.fs" />
     <Compile Include="Trace.fs" />
     <Compile Include="Trace3d.fs" />
+    <Compile Include="LayoutGrid.fs" />
     <Compile Include="Layout.fs" />
     <Compile Include="Config.fs" />
     <Compile Include="GenericChart.fs" />
@@ -57,6 +58,7 @@
     <Compile Include="CandelstickExtension.fs" />
     <Compile Include="SankeyExtension.fs" />
     <Compile Include="Templates.fs" />
+    <None Include="Playground.fsx" />
     <None Include="TestScript.fsx" />
     <None Include="paket.references" />
     <None Include="paket.template" />
