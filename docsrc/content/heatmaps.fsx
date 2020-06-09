@@ -37,4 +37,24 @@ let heat1 =
 (***do-not-eval***)
 heat1 |> Chart.Show
 
-(***include-value:heat1**)
+(***include-value:heat1***)
+
+(**
+## Styling Colorbars
+
+All charts that contain colorbars can be styled by the `Chart.withColorBarStyle` function.
+Here is an example that adds a title to the colorbar:
+*)
+
+let heat2 =
+    heat1
+    |> Chart.withColorBarStyle(
+        "Im the Colorbar",
+        TitleSide = StyleParam.Side.Right,
+        TitleFont = Font.init(Size=20)
+    )
+
+(***do-not-eval***)
+heat2 |> Chart.Show
+
+(***include-value:heat2***)
