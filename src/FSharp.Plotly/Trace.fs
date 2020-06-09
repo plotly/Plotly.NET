@@ -419,9 +419,12 @@ module Trace =
                     trace
                 )
 
-// #################################
-// # Charts 
-
+        //#############################################################################################################################################
+        //# Chart trace style abstractions
+        //#############################################################################################################################################
+        
+        //-------------------------------------------------------------------------------------------------------------------------------------------------
+        //Simple
 
         // Applies the styles of scatter plot to TraceObjects 
         static member Scatter
@@ -1166,3 +1169,45 @@ module Trace =
                     // out ->
                     trace
                 ) 
+
+        /// Applies the styles of sundburst plot to TraceObjects 
+        ///
+        /// Parameters:
+        ///
+        /// labels: Sets the labels of each of the sectors.
+        ///
+        /// parents: Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be "ids" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
+        ///
+        /// Ids: Assigns id labels to each datum. These ids for object constancy of data points during animation.
+        ///
+        /// Values: Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
+        ///
+        /// Text: Sets text elements associated with each sector. If trace `textinfo` contains a "text" flag, these elements will be seen on the chart. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.
+        ///
+        /// Branchvalues: Determines how the items in `values` are summed. When set to "total", items in `values` are taken to be value of all its descendants. When set to "remainder", items in `values` corresponding to the root and the branches sectors are taken to be the extra part not part of the sum of the values at their leaves.
+        ///
+        /// Level: Sets the level from which this trace hierarchy is rendered. Set `level` to `''` to start from the root node in the hierarchy. Must be an "id" if `ids` is filled in, otherwise plotly attempts to find a matching item in `labels`.
+        ///
+        /// Maxdepth: Sets the number of rendered sectors from any given `level`. Set `maxdepth` to "-1" to render all the levels in the hierarchy.
+        static member Sunburst
+            (
+                labels          : seq<#IConvertible>,
+                parents         : seq<#IConvertible>,
+                ?Ids            : seq<string>,
+                ?Values         : seq<float>,
+                ?Text           : seq<string>,
+                ?Branchvalues   : StyleParam.BranchValues,
+                ?Level          ,
+                ?Maxdepth       : int
+            ) =
+                (fun (trace:('T :> Trace)) -> 
+                    labels       |> DynObj.setValue trace       "labels"
+                    parents       |> DynObj.setValue trace      "parents"
+                    Ids           |> DynObj.setValueOpt trace   "ids"
+                    Values        |> DynObj.setValueOpt trace   "values"
+                    Text          |> DynObj.setValueOpt trace   "text"
+                    Branchvalues  |> DynObj.setValueOptBy trace "branchvalues" StyleParam.BranchValues.convert
+                    Level         |> DynObj.setValueOpt trace   "level"
+                    Maxdepth      |> DynObj.setValueOpt trace   "maxdepth"
+                    trace
+                )

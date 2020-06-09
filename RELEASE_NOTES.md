@@ -7,7 +7,7 @@
      * Chart.Grid: Uses the grid object of plotly.js to generate various types of subplot grids
      * Chart.SingleStack: Basically Chart.Grid with one Column
  * Add Chart.withColorBar and Chart.withColorBarStyle to change the appearance of colorbars
-
+ * [Add Sunburst Chart]()
 
 ### 1.2.2 - Apr 9 2020
  * [Opening Charts is now more or less OS agnostic](https://github.com/muehlhaus/FSharp.Plotly/commit/f6e3dceade085e43e7e56b478b9cf7b533a4fe55)

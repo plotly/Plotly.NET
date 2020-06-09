@@ -133,6 +133,17 @@ module StyleParam =
 
         static member convert = Barmode.toString >> box
 
+    [<RequireQualifiedAccess>]
+    type BranchValues =
+        | Remainder 
+        | Total
+    
+        static member toString = function
+            | Remainder -> "remainder"            
+            | Total     -> "total"            
+
+        static member convert = BranchValues.toString >> box
+
 //--------------------------
 // #C#
 //--------------------------
