@@ -12,7 +12,8 @@ nuget Fake.DotNet.Fsi
 nuget Fake.DotNet.NuGet
 nuget Fake.DotNet.Testing.Expecto
 nuget Fake.Tools.Git
-nuget Fake.Api.GitHub //"
+nuget Fake.Api.GitHub 
+nuget System.Runtime.InteropServices.RuntimeInformation //"
 
 #if !FAKE
 #load "./.fake/build.fsx/intellisense.fsx"
@@ -28,6 +29,18 @@ open Fake.IO
 open Fake.IO.FileSystemOperators
 open Fake.IO.Globbing.Operators
 open Fake.Tools
+open System.Runtime.InteropServices
+
+let openOsSpecificFile path =
+    if RuntimeInformation.IsOSPlatform(OSPlatform.Windows) then
+        let psi = new System.Diagnostics.ProcessStartInfo(FileName = path, UseShellExecute = true)
+        System.Diagnostics.Process.Start(psi) |> ignore
+    elif RuntimeInformation.IsOSPlatform(OSPlatform.Linux) then
+        System.Diagnostics.Process.Start("xdg-open", path) |> ignore
+    elif RuntimeInformation.IsOSPlatform(OSPlatform.OSX) then
+        System.Diagnostics.Process.Start("open", path) |> ignore
+    else
+        invalidOp "Not supported OS platform"
 
 let project = "FSharp.Plotly"
 
@@ -229,7 +242,14 @@ Target.create "GenerateDocs" (fun _ ->
             "fsi"
             "--define:RELEASE --define:REFERENCE --define:HELP --exec generate.fsx"
 
-    if not result.OK then failwith "error generating docs"
+    if not result.OK then 
+        failwith "error generating docs" 
+    else
+        Shell.copyRecursive 
+            (__SOURCE_DIRECTORY__ @@ "packages/formatting/FSharp.Formatting/styles")
+            "docs/output/content"
+            true 
+        |> printfn "%A"
 )
 
 // --------------------------------------------------------------------------------------
@@ -242,7 +262,7 @@ Target.create "ReleaseDocs" (fun _ ->
     let tempDocsDir = "temp/gh-pages"
     Shell.cleanDir tempDocsDir |> ignore
     Git.Repository.cloneSingleBranch "" (gitHome + "/" + gitName + ".git") "gh-pages" tempDocsDir
-    Shell.copyRecursive "docs" tempDocsDir true |> printfn "%A"
+    Shell.copyRecursive "docs/output" tempDocsDir true |> printfn "%A"
     Git.Staging.stageAll tempDocsDir
     Git.Commit.exec tempDocsDir (sprintf "Update generated documentation for version %s" release.NugetVersion)
     Git.Branches.push tempDocsDir
@@ -251,12 +271,23 @@ Target.create "ReleaseDocs" (fun _ ->
 Target.create "ReleaseDocsLocal" (fun _ ->
     let tempDocsDir = "temp/gh-pages"
     Shell.cleanDir tempDocsDir |> ignore
-    Shell.copyRecursive "docs" tempDocsDir true  |> printfn "%A"
+    Shell.copyRecursive "docs/output" tempDocsDir true  |> printfn "%A"
+    let filesToReplaceIn = 
+        !! (tempDocsDir @@ "*.html")
+    printfn "%A" filesToReplaceIn
     Shell.replaceInFiles 
-        (seq {
-            yield "href=\"/" + project + "/","href=\""
-            yield "src=\"/" + project + "/","src=\""}) 
-        (Directory.EnumerateFiles tempDocsDir |> Seq.filter (fun x -> x.EndsWith(".html")))
+        [
+            """href="https://muehlhaus.github.io/FSharp.Plotly/""","""href=./""" 
+            """src="https://muehlhaus.github.io/FSharp.Plotly/""", """src=./""" 
+            ".html\"", ".html"
+            ".css\"", ".css"
+            ".jpg\"", ".jpg"
+            ".png\"", ".png"
+            ".svg\"", ".svg"
+            "tips.js\"", "tips.js"
+        ]
+        filesToReplaceIn
+    openOsSpecificFile (tempDocsDir @@ "index.html")
 )
 Target.create "Release" (fun _ ->
     Git.Staging.stageAll ""
