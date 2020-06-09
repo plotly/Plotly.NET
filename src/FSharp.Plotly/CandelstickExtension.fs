@@ -47,6 +47,24 @@ module CandelstickExtension =
             )
 
     type Chart with
+        [<CompiledName("Candlestick")>]
+        static member Candlestick
+            (
+                data            : (#IConvertible*Candle) seq,
+                [<Optional;DefaultParameterValue(null)>] ?increasing     : Line,
+                [<Optional;DefaultParameterValue(null)>] ?decreasing     : Line,
+                [<Optional;DefaultParameterValue(null)>] ?line           : Line
+            ) =
+            Trace.initCandlestick(TraceStyle.Candlestick
+                (
+                    data, 
+                    ?increasing=increasing, 
+                    ?decreasing=decreasing,
+                    ?line=line
+                ))
+            |> GenericChart.ofTraceObject
+
+        [<Obsolete("Function Name has a typo and will be removed in 2.0. use Chart.Candlestick")>]
         [<CompiledName("Candelstick")>]
         static member Candelstick
             (
@@ -55,7 +73,7 @@ module CandelstickExtension =
                 [<Optional;DefaultParameterValue(null)>] ?decreasing     : Line,
                 [<Optional;DefaultParameterValue(null)>] ?line           : Line
             ) =
-            Trace.initCandelstick(TraceStyle.Candlestick
+            Trace.initCandlestick(TraceStyle.Candlestick
                 (
                     data, 
                     ?increasing=increasing, 

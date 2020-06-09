@@ -127,7 +127,6 @@ let grid ((gCharts:seq<#seq<GenericChart>>),sharedAxes:bool,xGap,yGap) =
     |> Chart.Combine
     |> Chart.withLayoutGrid grid
 
-
 grid ([
     [Chart.Point([(0,1)]);Chart.Point([(0,1)]);Chart.Point([(0,1)]);]
     [Chart.Point([(0,1)]);Chart.Point([(0,1)]);Chart.Point([(0,1)]);]
@@ -208,7 +207,7 @@ generateDomainRanges 8 1
     [3;4]
 ]
 |> Chart.Heatmap
-|> Chart.withColorbarStyle(
+|> Chart.withColorBarStyle(
     "Hallo?",
     TitleSide=StyleParam.Side.Right,
     TitleFont=Font.init(Size=20)
