@@ -12,8 +12,84 @@ Multiple charts and subcharts
 How to create subplots in FSharp.Plotly. Find examples of combined, stacked, and plots with multiple axis.
 
 *)
+
+
+(**
+## Chart subplot grids
+
+### Chart.Grid
+
+`Chart.Grid` takes a 2D input sequence of charts and creates a subplot grid with the dimensions outerlength x (max (innerLengths))
+
+
+
+*)
 open FSharp.Plotly
 
+
+//simple 3x3 subplot grid
+let grid = 
+    Chart.Grid(
+        [
+            [Chart.Point([(0,1)]); Chart.Point([(0,1)]); Chart.Point([(0,1)]);]
+            [Chart.Point([(0,1)]); Chart.Point([(0,1)]); Chart.Point([(0,1)]);]
+            [Chart.Point([(0,1)]); Chart.Point([(0,1)]); Chart.Point([(0,1)]);]
+        ]
+    )
+
+(***do-not-eval***)
+grid |> Chart.Show
+
+(*** include-value:grid ***)
+
+
+(**
+use `sharedAxis=true` to use one shared x axis per column and one shared y axis per row. 
+(Try zooming in the single subplots below)
+*)
+
+let grid2 =
+    Chart.Grid(
+        [
+            [Chart.Point([(0,1)]); Chart.Point([(0,1)]); Chart.Point([(0,1)]);]
+            [Chart.Point([(0,1)]); Chart.Point([(0,1)]); Chart.Point([(0,1)]);]
+            [Chart.Point([(0,1)]); Chart.Point([(0,1)]); Chart.Point([(0,1)]);]
+        ],sharedAxes=true,rowOrder = StyleParam.LayoutGridRowOrder.BottomToTop
+    )
+
+(***do-not-eval***)
+grid2 |> Chart.Show
+
+(*** include-value:grid2 ***)
+
+
+(** 
+### Chart.SingleStack
+
+The `Chart.SingleStack` function is a special version of Chart.Grid that creates only one column from a 1D input chart sequence.
+It uses a shared x axis per default. You can also use the Chart.withLayoutGridStyle to further style subplot grids:
+
+*)
+
+let singleStack =
+    [
+        Chart.Point([(0,1)]) |> Chart.withY_AxisStyle("This title must")
+        Chart.Point([(0,1)]) 
+        |> Chart.withY_AxisStyle("be set on the",Zeroline=false)
+        Chart.Point([(0,1)]) 
+        |> Chart.withY_AxisStyle("respective subplots",Zeroline=false)
+    ]
+    |> Chart.SingleStack
+    //move xAxis to bottom and increase spacing between plots by using the withLayoutGridStyle function
+    |> Chart.withLayoutGridStyle(XSide=StyleParam.LayoutGridXSide.Bottom,YGap= 0.1)
+    |> Chart.withTitle("Hi i am the new SingleStackChart")
+    |> Chart.withX_AxisStyle("im the shared xAxis")
+
+
+(***do-not-eval***)
+singleStack |> Chart.Show
+
+(*** include-value:singleStack ***)
 
 (**
 Functional F# scripting style for Two Y-Axes
@@ -56,22 +132,3 @@ let twoYaxesSide =
 twoYaxesSide |> Chart.Show
 
 (*** include-value:twoYaxesSide ***)
-
-(**
-Functional F# scripting style simple subplot stacked 2 columns.
-Axis style (like: title) is taken from the single chart, but can also be styled by axis id.
-*)
-
-let stack =
-    [
-        for i=1 to 8 do 
-            yield Chart.Scatter ([1; 2; 3; 4],[12; 9; 15; 12],StyleParam.Mode.Lines_Markers) 
-                  |> Chart.withY_AxisStyle(sprintf "y-title %i" i) 
-    ]
-    |> Chart.Stack(Columns=2,Space=0.15)
-    |> Chart.withX_AxisStyle(sprintf "x-title %i" 3,Id=3)
-
-(***do-not-eval***)
-stack |> Chart.Show
-
-(*** include-value:stack ***)
