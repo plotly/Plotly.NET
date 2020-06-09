@@ -51,10 +51,6 @@ type Link =
 [<AutoOpen>]
 module SankeyExtension =
 
-    module Trace =
-        let initSankey (applyStyle:Trace->Trace) = 
-            FSharp.Plotly.Trace("sankey") |> applyStyle
-
     type TraceStyle with
         [<CompiledName("Sankey")>]
         static member Sankey

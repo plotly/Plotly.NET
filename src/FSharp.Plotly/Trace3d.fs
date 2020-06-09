@@ -10,21 +10,40 @@ type Trace3d (traceTypeName) =
 
 [<CompilationRepresentationAttribute(CompilationRepresentationFlags.ModuleSuffix)>]
 module Trace3d = 
+    //TO-DO: we need to think about if all subgroups of traces should be seperate, e.g. also "TraceFinance" or leave it at the current separation
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+    //3D
 
-    /// Init trace for 3d-scatter plot
+    ///initializes a trace of type "scatter3d" applying the givin trace styling function
     let initScatter3d (applyStyle:Trace3d->Trace3d) = 
         Trace3d("scatter3d") |> applyStyle
 
-    /// Init trace for 3d-contour plot
+    ///initializes a trace of type "surface" applying the givin trace styling function
     let initSurface (applyStyle:Trace3d->Trace3d) = 
         Trace3d("surface") |> applyStyle
-        
-    /// Init trace for 3d-mesh plot
+
+    ///initializes a trace of type "mesh3d" applying the givin trace styling function
     let initMesh3d (applyStyle:Trace3d->Trace3d) = 
         Trace3d("mesh3d") |> applyStyle
 
+    ///initializes a trace of type "cone" applying the givin trace styling function
+    let initCone (applyStyle:Trace3d->Trace3d) = 
+        Trace3d("cone") |> applyStyle
+
+    ///initializes a trace of type "streamtube" applying the givin trace styling function
+    let initStreamTube (applyStyle:Trace3d->Trace3d) = 
+        Trace3d("streamtube") |> applyStyle
+
+    ///initializes a trace of type "volume" applying the givin trace styling function
+    let initVolume (applyStyle:Trace3d->Trace3d) = 
+        Trace3d("volume") |> applyStyle
+
+    ///initializes a trace of type "isosurface" applying the givin trace styling function
+    let initIsoSurface (applyStyle:Trace3d->Trace3d) = 
+        Trace3d("isosurface") |> applyStyle
 
 
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
     /// Functions provide the styling of the Chart objects
     type Trace3dStyle() =
 

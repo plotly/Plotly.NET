@@ -23,11 +23,6 @@ type Candle =
 [<AutoOpen>]
 module CandelstickExtension =
 
-    module Trace =
-        let initCandelstick (applyStyle:Trace->Trace) = 
-            FSharp.Plotly.Trace("candlestick") |> applyStyle
-
-
     type TraceStyle with
         [<CompiledName("Candlestick")>]
         static member Candlestick
