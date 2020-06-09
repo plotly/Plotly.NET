@@ -1,6 +1,7 @@
 ﻿#load "StyleParams.fs"
 #load "DynamicObj.fs"
 #load "Colors.fs"
+#load "Font.fs"
 #load "Colorbar.fs"
 #load "RangeSlider.fs"
 #load "Light.fs"
@@ -11,7 +12,6 @@
 #load "Box.fs"
 #load "Meanline.fs"
 #load "Marker.fs"
-#load "Font.fs"
 #load "Hoverlabel.fs"
 #load "Axis.fs"
 #load "Bins.fs"
@@ -201,4 +201,16 @@ generateDomainRanges 8 1
 |> Chart.withLayoutGridStyle(XSide=StyleParam.LayoutGridXSide.Bottom)
 |> Chart.withTitle("Hi i am the new SingleStackChart")
 |> Chart.withX_AxisStyle("im the shared xAxis")
+|> Chart.Show
+
+[
+    [1;2]
+    [3;4]
+]
+|> Chart.Heatmap
+|> Chart.withColorbarStyle(
+    "Hallo?",
+    TitleSide=StyleParam.Side.Right,
+    TitleFont=Font.init(Size=20)
+)
 |> Chart.Show

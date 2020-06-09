@@ -27,6 +27,7 @@
     <Compile Include="StyleParams.fs" />
     <Compile Include="DynamicObj.fs" />
     <Compile Include="Colors.fs" />
+    <Compile Include="Font.fs" />
     <Compile Include="Colorbar.fs" />
     <Compile Include="RangeSlider.fs" />
     <Compile Include="Light.fs" />
@@ -37,7 +38,6 @@
     <Compile Include="Box.fs" />
     <Compile Include="Meanline.fs" />
     <Compile Include="Marker.fs" />
-    <Compile Include="Font.fs" />
     <Compile Include="Hoverlabel.fs" />
     <Compile Include="Axis.fs" />
     <Compile Include="Bins.fs" />

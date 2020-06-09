@@ -45,9 +45,9 @@ type Colorbar () =
             ?Showticksuffix, 
             ?Exponentformat, 
             ?Showexponent,   
-            ?Title,          
-            ?Titlefont,      
-            ?Titleside,      
+            ?Title:string,          
+            ?Titlefont:Font,      
+            ?Titleside:StyleParam.Side,      
             ?Tickvalssrc,
             ?Ticktextsrc    
 
@@ -138,9 +138,9 @@ type Colorbar () =
             ?Showticksuffix, 
             ?Exponentformat, 
             ?Showexponent,   
-            ?Title,          
-            ?Titlefont,      
-            ?Titleside,      
+            ?Title:string,          
+            ?Titlefont:Font,      
+            ?Titleside:StyleParam.Side,      
             ?Tickvalssrc,
             ?Ticktextsrc    
 
@@ -184,7 +184,7 @@ type Colorbar () =
                 Showexponent   |> DynObj.setValueOpt colorbar "showexponent"   
                 Title          |> DynObj.setValueOpt colorbar "title"          
                 Titlefont      |> DynObj.setValueOpt colorbar "titlefont"      
-                Titleside      |> DynObj.setValueOpt colorbar "titleside"      
+                Titleside      |> DynObj.setValueOptBy colorbar "titleside" (StyleParam.Side.convert)     
                 Tickvalssrc    |> DynObj.setValueOpt colorbar "tickvalssrc"    
                 Ticktextsrc    |> DynObj.setValueOpt colorbar "ticktextsrc"         
 

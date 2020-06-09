@@ -2,6 +2,12 @@
  * [Add Rangesliders for linear Axis](https://github.com/muehlhaus/FSharp.Plotly/commit/544641492195b1938697721b72814e0187a6c979)
  * [Improve jupyter notebook integration](https://github.com/muehlhaus/FSharp.Plotly/commit/e9560656bbc8dbf767c9eb6ca35f321c98195238)
  * [Updated Violin Chart](https://github.com/muehlhaus/FSharp.Plotly/commit/4d3afc527b11cd2f5a18c1d9876ad4e3f83beb02)
+ * [Refactor Chart.Stack]():
+   * new Charts: 
+     * Chart.Grid: Uses the grid object of plotly.js to generate various types of subplot grids
+     * Chart.SingleStack: Basically Chart.Grid with one Column
+ * Add Chart.withColorBar and Chart.withColorBarStyle to change the appearance of colorbars
+
 
 ### 1.2.2 - Apr 9 2020
  * [Opening Charts is now more or less OS agnostic](https://github.com/muehlhaus/FSharp.Plotly/commit/f6e3dceade085e43e7e56b478b9cf7b533a4fe55)
