@@ -944,6 +944,33 @@ module StyleParam =
 
         static member convert = Thicknessmode.toString >> box
 
+
+    [<RequireQualifiedAccess>]
+    type TreemapEdgeShape =
+        | ArrowRight | ArrowLeft | Straight | Slash | BackSlash 
+
+        static member toString = function
+             | ArrowRight-> ">"
+             | ArrowLeft -> "<"
+             | Straight  -> "|"
+             | Slash     -> "/"
+             | BackSlash -> """\"""
+
+        static member convert = TreemapEdgeShape.toString >> box
+
+    [<RequireQualifiedAccess>]
+    type TreemapTilingPacking =
+        | Squarify | Binary | Dice | Slice | SliceDice
+
+        static member toString = function
+            | Squarify  -> "squarify"
+            | Binary    -> "binary"
+            | Dice      -> "dice"
+            | Slice     -> "slice"
+            | SliceDice -> "slice-dice"
+
+        static member convert = TreemapTilingPacking.toString >> box
+
 //--------------------------
 // #U#
 //--------------------------

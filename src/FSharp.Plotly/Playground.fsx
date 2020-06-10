@@ -2,6 +2,8 @@
 #load "DynamicObj.fs"
 #load "Colors.fs"
 #load "Font.fs"
+#load "Pathbar.fs"
+#load "TreemapTiling.fs"
 #load "Colorbar.fs"
 #load "RangeSlider.fs"
 #load "Light.fs"
@@ -37,6 +39,15 @@
 open FSharp.Plotly
 open GenericChart
 
+Chart.Treemap(
+    ["Eve"; "Cain"; "Seth"; "Enos"; "Noam"; "Abel"; "Awan"; "Enoch"; "Azura"],
+    [""; "Eve"; "Eve"; "Seth"; "Seth"; "Eve"; "Eve"; "Awan"; "Eve" ],
+    Values = [10.; 14.; 12.; 10.; 2.; 6.; 6.; 4.; 4.]
+)
+|> Chart.withTitle "Treemap test"
+|> Chart.Show
+
+
 //Sunbursst example from plotly docs: https://plotly.com/javascript/sunburst-charts
 Chart.Sunburst(
     ["Eve"; "Cain"; "Seth"; "Enos"; "Noam"; "Abel"; "Awan"; "Enoch"; "Azura"],
@@ -45,6 +56,8 @@ Chart.Sunburst(
 )
 |> Chart.withTitle "Sunburst test"
 |> Chart.Show
+
+
 
 
 let grid ((gCharts:seq<#seq<GenericChart>>),sharedAxes:bool,xGap,yGap) =

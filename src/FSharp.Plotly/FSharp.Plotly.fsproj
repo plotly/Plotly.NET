@@ -28,6 +28,8 @@
     <Compile Include="DynamicObj.fs" />
     <Compile Include="Colors.fs" />
     <Compile Include="Font.fs" />
+    <Compile Include="Pathbar.fs" />
+    <Compile Include="TreemapTiling.fs" />
     <Compile Include="Colorbar.fs" />
     <Compile Include="RangeSlider.fs" />
     <Compile Include="Light.fs" />

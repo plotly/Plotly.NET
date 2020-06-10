@@ -1316,3 +1316,56 @@ type Chart =
         )
         |> TraceStyle.Marker(?Colors=Colors,?Colorbar=Colorbar)
         |> GenericChart.ofTraceObject
+
+
+    /// Creates a treemap chart. Treemap charts visualize hierarchical data using nested rectangles. Same as Sunburst the hierarchy is defined by labels and parents attributes. Click on one sector to zoom in/out, which also displays a pathbar in the upper-left corner of your treemap. To zoom out you can use the path bar as well.
+    ///
+    /// Parameters:
+    ///
+    /// labels: Sets the labels of each of the sectors.
+    ///
+    /// parents: Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be "ids" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
+    ///
+    /// Ids: Assigns id labels to each datum. These ids for object constancy of data points during animation.
+    ///
+    /// Values: Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
+    ///
+    /// Text: Sets text elements associated with each sector. If trace `textinfo` contains a "text" flag, these elements will be seen on the chart. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.
+    ///
+    /// Branchvalues: Determines how the items in `values` are summed. When set to "total", items in `values` are taken to be value of all its descendants. When set to "remainder", items in `values` corresponding to the root and the branches sectors are taken to be the extra part not part of the sum of the values at their leaves.
+    ///
+    /// Level: Sets the level from which this trace hierarchy is rendered. Set `level` to `''` to start from the root node in the hierarchy. Must be an "id" if `ids` is filled in, otherwise plotly attempts to find a matching item in `labels`.
+    ///
+    /// Maxdepth: Sets the number of rendered sectors from any given `level`. Set `maxdepth` to "-1" to render all the levels in the hierarchy.
+    ///
+    /// Colorbar: Sets the Colorbar for the chart
+    ///
+    ///Colors: Sets the color of each sector of this trace. If not specified, the default trace color set is used to pick the sector colors.
+    static member Treemap(labels,parents,
+        [<Optional;DefaultParameterValue(null)>]?Ids,
+        [<Optional;DefaultParameterValue(null)>]?Values             ,
+        [<Optional;DefaultParameterValue(null)>]?Text               ,
+        [<Optional;DefaultParameterValue(null)>]?Branchvalues       ,
+        [<Optional;DefaultParameterValue(null)>]?Tiling             ,
+        [<Optional;DefaultParameterValue(null)>]?PathBar            ,
+        [<Optional;DefaultParameterValue(null)>]?Level              ,
+        [<Optional;DefaultParameterValue(null)>]?Maxdepth           ,
+        [<Optional;DefaultParameterValue(null)>]?Colors: seq<string>,
+        [<Optional;DefaultParameterValue(null)>]?Colorbar:Colorbar
+        ) =
+        Trace.initTreemap(
+            TraceStyle.Treemap(
+                labels          = labels,
+                parents         = parents,
+                ?Ids            = Ids,
+                ?Values         = Values,
+                ?Text           = Text,
+                ?Branchvalues   = Branchvalues,
+                ?Tiling         = Tiling,
+                ?PathBar        = PathBar,
+                ?Level          = Level,
+                ?Maxdepth       = Maxdepth
+            )
+        )
+        |> TraceStyle.Marker(?Colors=Colors,?Colorbar=Colorbar)
+        |> GenericChart.ofTraceObject
