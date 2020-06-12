@@ -10,7 +10,6 @@ open Trace3d
 open StyleParam
 open System.Runtime.InteropServices
 
-
 // ###########
 // Copied from FSharp.Care.Collections to remove dependancies
 [<AutoOpen>]
@@ -34,18 +33,42 @@ module Seq =
 /// Provides a set of static methods for creating charts.
 type Chart =
 
-    /// Uses points, line or both depending on the mode to represent data points
+
+    /// Creates a Scatter plot. Scatter plots are the basis of Point, Line, and Bubble Charts in Plotly, and can be customized as such. We also provide abstractions for those: Chart.Line, Chart.Point, Chart.Bubble
+    ///
+    ///Parameters:
+    ///
+    ///Name         : Sets the trace name. The trace name appear as the legend item and on hover
+    ///
+    ///Showlegend   : Determines whether or not an item corresponding to this trace is shown in the legend.
+    ///
+    ///MarkerSymbol : Sets the type of symbol that datums are displayed as
+    ///
+    ///Color        : Sets Line/Marker Color
+    ///
+    ///Opacity      : Sets the Opacity of the trace
+    ///
+    ///Labels       : Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.
+    ///
+    ///TextPosition : Sets the positions of the `text` elements with respects to the (x,y) coordinates.
+    ///
+    ///TextFont     : Sets the text font of this trace
+    ///
+    ///Dash         : Sets the Line Dash style
+    ///
+    ///Width        : Sets the Line width
     static member Scatter(x, y,mode,
-            [<Optional;DefaultParameterValue(null)>] ?Name,
-            [<Optional;DefaultParameterValue(null)>] ?Showlegend,
-            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
-            [<Optional;DefaultParameterValue(null)>] ?Color,
-            [<Optional;DefaultParameterValue(null)>] ?Opacity,
-            [<Optional;DefaultParameterValue(null)>] ?Labels,
-            [<Optional;DefaultParameterValue(null)>] ?TextPosition,
-            [<Optional;DefaultParameterValue(null)>] ?TextFont,
-            [<Optional;DefaultParameterValue(null)>] ?Dash,
-            [<Optional;DefaultParameterValue(null)>] ?Width) = 
+            [<Optional;DefaultParameterValue(null)>] ?Name          ,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend    ,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol  ,
+            [<Optional;DefaultParameterValue(null)>] ?Color         ,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity       ,
+            [<Optional;DefaultParameterValue(null)>] ?Labels        ,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition  ,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont      ,
+            [<Optional;DefaultParameterValue(null)>] ?Dash          ,
+            [<Optional;DefaultParameterValue(null)>] ?Width : float
+        ) = 
         Trace.initScatter (
                 TraceStyle.Scatter(X = x,Y = y, Mode=mode) )               
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
