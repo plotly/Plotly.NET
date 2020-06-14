@@ -1262,3 +1262,107 @@ module Trace =
                     trace
                 )
 
+
+        /// Applies the styles of ohlc plot to TraceObjects 
+        ///
+        /// ``open``    : Sets the open values.
+        ///
+        /// high        : Sets the high values.
+        ///
+        /// low         : Sets the low values.
+        ///
+        /// close       : Sets the close values.
+        ///
+        /// x           : Sets the x coordinates. If absent, linear coordinate will be generated.
+        ///
+        /// ?Increasing : Sets the Line style of the Increasing part of the chart
+        ///
+        /// ?Decreasing : Sets the Line style of the Decreasing part of the chart
+        ///
+        /// ?Line       : Sets the Line style of both the Decreasing and Increasing part of the chart
+        ///
+        /// ?Tickwidth  : Sets the width of the open/close tick marks relative to the "x" minimal interval.
+        ///
+        /// ?XCalendar  : Sets the calendar system to use with `x` date data.
+        static member OHLC
+            (
+                ``open``        : #IConvertible seq,
+                high            : #IConvertible seq,
+                low             : #IConvertible seq,
+                close           : #IConvertible seq,
+                x               : #IConvertible seq,
+                ?Increasing     : Line,
+                ?Decreasing     : Line,
+                ?Line           : Line,
+                ?Tickwidth      : float,
+                ?XCalendar      : StyleParam.Calendar
+            ) =
+                (fun (trace:('T :> Trace)) ->
+                    DynObj.setValue     trace "open"        ``open``
+                    DynObj.setValue     trace "high"        high
+                    DynObj.setValue     trace "low"         low
+                    DynObj.setValue     trace "close"       close
+                    DynObj.setValue     trace "x"           x
+                    DynObj.setValue     trace "xaxis"       "x"
+                    DynObj.setValue     trace "yaxis"       "y"
+                    DynObj.setValueOpt  trace "increasing"  Increasing
+                    DynObj.setValueOpt  trace "decreasing"  Decreasing
+                    DynObj.setValueOpt  trace "tickwidth"   Tickwidth
+                    DynObj.setValueOpt  trace "line"        Line
+                    DynObj.setValueOpt  trace "xcalendar"   XCalendar
+                    
+                    trace
+                )
+
+
+        /// Applies the styles of candlestick plot to TraceObjects 
+        ///
+        /// ``open``        : Sets the open values.
+        ///
+        /// high            : Sets the high values.
+        ///
+        /// low             : Sets the low values.
+        ///
+        /// close           : Sets the close values.
+        ///
+        /// x               : Sets the x coordinates. If absent, linear coordinate will be generated.
+        ///
+        /// ?Increasing     : Sets the Line style of the Increasing part of the chart
+        ///
+        /// ?Decreasing     : Sets the Line style of the Decreasing part of the chart
+        ///
+        /// ?Line           : Sets the Line style of both the Decreasing and Increasing part of the chart
+        ///
+        /// ?WhiskerWidth   : Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).
+        ///
+        /// ?XCalendar      : Sets the calendar system to use with `x` date data.
+        static member Candlestick
+            (
+                ``open``        : #IConvertible seq,
+                high            : #IConvertible seq,
+                low             : #IConvertible seq,
+                close           : #IConvertible seq,
+                x               : #IConvertible seq,
+                ?Increasing     : Line,
+                ?Decreasing     : Line,
+                ?WhiskerWidth   : float,
+                ?Line           : Line,
+                ?XCalendar      : StyleParam.Calendar
+            ) =
+                (fun (trace:('T :> Trace)) ->
+                    DynObj.setValue     trace "open"        ``open``
+                    DynObj.setValue     trace "high"        high
+                    DynObj.setValue     trace "low"         low
+                    DynObj.setValue     trace "close"       close
+                    DynObj.setValue     trace "x"           x
+                    DynObj.setValue     trace "xaxis"       "x"
+                    DynObj.setValue     trace "yaxis"       "y"
+                    DynObj.setValueOpt  trace "increasing"  Increasing
+                    DynObj.setValueOpt  trace "decreasing"  Decreasing
+                    DynObj.setValueOpt  trace "whiskerwidth"WhiskerWidth
+                    DynObj.setValueOpt  trace "line"        Line
+                    DynObj.setValueOpt  trace "xcalendar"   XCalendar
+
+                    trace
+                )
+

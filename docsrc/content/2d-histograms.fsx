@@ -1,6 +1,8 @@
 (*** hide ***)
 #r "netstandard"
+#r "../../packages/Newtonsoft.Json/lib/netstandard2.0/Newtonsoft.Json.dll"
 #r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+
 
 
 (** 

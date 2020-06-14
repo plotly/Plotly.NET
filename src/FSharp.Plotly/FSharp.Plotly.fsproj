@@ -27,6 +27,7 @@
     <Compile Include="StyleParams.fs" />
     <Compile Include="DynamicObj.fs" />
     <Compile Include="Colors.fs" />
+    <Compile Include="StockData.fs" />
     <Compile Include="Font.fs" />
     <Compile Include="Pathbar.fs" />
     <Compile Include="TreemapTiling.fs" />
