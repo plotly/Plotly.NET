@@ -1999,7 +1999,6 @@ type Chart =
     static member Candlestick
         (
             stockTimeSeries: seq<System.DateTime*StockData>, 
-            [<Optional;DefaultParameterValue(true)>]?ShowRangeSlider: bool,
             [<Optional;DefaultParameterValue(null)>]?Increasing     : Line,
             [<Optional;DefaultParameterValue(null)>]?Decreasing     : Line,
             [<Optional;DefaultParameterValue(null)>]?WhiskerWidth   : float,
@@ -2018,6 +2017,103 @@ type Chart =
                     ?WhiskerWidth   = WhiskerWidth,
                     ?Line           = Line        ,
                     ?XCalendar      = XCalendar   
+                )
+            )
+            |> GenericChart.ofTraceObject
+
+
+    /// Creates a waterfall chart. Waterfall charts are special bar charts that help visualizing the cumulative effect of sequentially introduced positive or negative values
+    ///
+    /// Parameters:
+    ///
+    /// x               : Sets the x coordinates.
+    ///
+    /// y               : Sets the y coordinates.
+    ///
+    /// Base            : Sets where the bar base is drawn (in position axis units).
+    ///
+    /// Width           : Sets the bar width (in position axis units).
+    ///
+    /// Measure         : An array containing types of values. By default the values are considered as 'relative'. However; it is possible to use 'total' to compute the sums. Also 'absolute' could be applied to reset the computed total or to declare an initial value where needed.
+    ///
+    /// Orientation     : Sets the orientation of the bars. With "v" ("h"), the value of the each bar spans along the vertical (horizontal).
+    ///
+    /// Connector       : Sets the styling of the connector lines
+    ///
+    /// AlignmentGroup  : Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.
+    ///
+    /// OffsetGroup     : Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.
+    ///
+    /// Offset          : Shifts the position where the bar is drawn (in position axis units). In "group" barmode, traces that set "offset" will be excluded and drawn in "overlay" mode instead.
+    static member Waterfall 
+        (
+            x               : #IConvertible seq,
+            y               : #IConvertible seq,
+            [<Optional;DefaultParameterValue(null)>]?Base           : IConvertible  ,
+            [<Optional;DefaultParameterValue(null)>]?Width          : float         ,
+            [<Optional;DefaultParameterValue(null)>]?Measure        : StyleParam.WaterfallMeasure seq,
+            [<Optional;DefaultParameterValue(null)>]?Orientation    : StyleParam.Orientation,
+            [<Optional;DefaultParameterValue(null)>]?Connector      : WaterfallConnector    ,
+            [<Optional;DefaultParameterValue(null)>]?AlignmentGroup : string,
+            [<Optional;DefaultParameterValue(null)>]?OffsetGroup    : string,
+            [<Optional;DefaultParameterValue(null)>]?Offset
+        ) =
+            Trace.initWaterfall(
+                TraceStyle.Waterfall(x,y,
+                    ?Base           = Base          ,
+                    ?Width          = Width         ,
+                    ?Measure        = Measure       ,
+                    ?Orientation    = Orientation   ,
+                    ?Connector      = Connector     ,
+                    ?AlignmentGroup = AlignmentGroup,
+                    ?OffsetGroup    = OffsetGroup   ,
+                    ?Offset         = Offset        
+                )
+            )
+            |> GenericChart.ofTraceObject
+
+
+    /// Creates a waterfall chart. Waterfall charts are special bar charts that help visualizing the cumulative effect of sequentially introduced positive or negative values
+    ///
+    /// Parameters:
+    ///
+    /// xyMeasures      : triple sequence containing x coordinates, y coordinates, and the type of measure used for each bar.
+    ///
+    /// Base            : Sets where the bar base is drawn (in position axis units).
+    ///
+    /// Width           : Sets the bar width (in position axis units).
+    ///
+    /// Orientation     : Sets the orientation of the bars. With "v" ("h"), the value of the each bar spans along the vertical (horizontal).
+    ///
+    /// Connector       : Sets the styling of the connector lines
+    ///
+    /// AlignmentGroup  : Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.
+    ///
+    /// OffsetGroup     : Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.
+    ///
+    /// Offset          : Shifts the position where the bar is drawn (in position axis units). In "group" barmode, traces that set "offset" will be excluded and drawn in "overlay" mode instead.
+    static member Waterfall 
+        (
+            xyMeasure: (#IConvertible*#IConvertible*StyleParam.WaterfallMeasure) seq,
+            [<Optional;DefaultParameterValue(null)>]?Base           : IConvertible  ,
+            [<Optional;DefaultParameterValue(null)>]?Width          : float         ,
+            [<Optional;DefaultParameterValue(null)>]?Orientation    : StyleParam.Orientation,
+            [<Optional;DefaultParameterValue(null)>]?Connector      : WaterfallConnector    ,
+            [<Optional;DefaultParameterValue(null)>]?AlignmentGroup : string,
+            [<Optional;DefaultParameterValue(null)>]?OffsetGroup    : string,
+            [<Optional;DefaultParameterValue(null)>]?Offset
+        ) =
+            let x,y,measure = Seq.unzip3 xyMeasure
+            Trace.initWaterfall(
+                TraceStyle.Waterfall(x,y,
+                    ?Base           = Base          ,
+                    ?Width          = Width         ,
+                    ?Measure        = Some measure  ,
+                    ?Orientation    = Orientation   ,
+                    ?Connector      = Connector     ,
+                    ?AlignmentGroup = AlignmentGroup,
+                    ?OffsetGroup    = OffsetGroup   ,
+                    ?Offset         = Offset        
                 )
             )
             |> GenericChart.ofTraceObject

@@ -12,6 +12,7 @@
 #load "Dimensions.fs"
 #load "Domain.fs"
 #load "Line.fs"
+#load "WaterfallConnector.fs"
 #load "Box.fs"
 #load "Meanline.fs"
 #load "Marker.fs"
@@ -39,6 +40,20 @@
 
 open FSharp.Plotly
 open GenericChart
+
+
+let waterfallData = [
+    "Sales"              , 60   ,  StyleParam.WaterfallMeasure.Relative
+    "Consulting"         , 80   ,  StyleParam.WaterfallMeasure.Relative
+    "Net revenue"        , 0    ,  StyleParam.WaterfallMeasure.Total
+    "Purchases"          , -60  ,  StyleParam.WaterfallMeasure.Relative
+    "Other expenses"     , -20  ,  StyleParam.WaterfallMeasure.Relative
+    "Profit before tax"  , 0    ,  StyleParam.WaterfallMeasure.Total
+]
+
+Chart.Waterfall(waterfallData)
+|> Chart.Show
+
 
 let manyPoints = 
     let rnd = new System.Random()

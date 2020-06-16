@@ -1396,4 +1396,56 @@ module Trace =
 
                     trace
                 )
+        
+        /// Applies the styles of candlestick plot to TraceObjects 
+        ///
+        /// Parameters:
+        ///
+        /// x               : Sets the x coordinates.
+        ///
+        /// y               : Sets the y coordinates.
+        ///
+        /// Base            : Sets where the bar base is drawn (in position axis units).
+        ///
+        /// Width           : Sets the bar width (in position axis units).
+        ///
+        /// Measure         : An array containing types of values. By default the values are considered as 'relative'. However; it is possible to use 'total' to compute the sums. Also 'absolute' could be applied to reset the computed total or to declare an initial value where needed.
+        ///
+        /// Orientation     : Sets the orientation of the bars. With "v" ("h"), the value of the each bar spans along the vertical (horizontal).
+        ///
+        /// Connector       : Sets the styling of the connector lines
+        ///
+        /// AlignmentGroup  : Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.
+        ///
+        /// OffsetGroup     : Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.
+        ///
+        /// Offset          : Shifts the position where the bar is drawn (in position axis units). In "group" barmode, traces that set "offset" will be excluded and drawn in "overlay" mode instead.
+        static member Waterfall 
+            (
+                x               : #IConvertible seq,
+                y               : #IConvertible seq,
+                ?Base           : IConvertible,
+                ?Width          : float,
+                ?Measure        : StyleParam.WaterfallMeasure seq,
+                ?Orientation    : StyleParam.Orientation,
+                ?Connector      : WaterfallConnector,
+                ?AlignmentGroup : string,
+                ?OffsetGroup    : string,
+                ?Offset             
 
+            ) =
+                (fun (trace:('T :> Trace)) ->
+                    
+                    x               |> DynObj.setValue      trace "x"
+                    y               |> DynObj.setValue      trace "y"
+                    Base            |> DynObj.setValueOpt   trace "base"
+                    Width           |> DynObj.setValueOpt   trace "width"
+                    Measure         |> DynObj.setValueOptBy trace "measure" (Seq.map StyleParam.WaterfallMeasure.convert)
+                    Orientation     |> DynObj.setValueOptBy trace "orientation" StyleParam.Orientation.convert
+                    AlignmentGroup  |> DynObj.setValueOpt   trace "alignmentgroup"
+                    Connector       |> DynObj.setValueOpt   trace "connector"
+                    OffsetGroup     |> DynObj.setValueOpt   trace "offsetgroup"
+                    Offset          |> DynObj.setValueOpt   trace "offset"
+                    
+                    trace
+                )

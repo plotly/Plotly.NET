@@ -239,6 +239,17 @@ module StyleParam =
 
         static member convert = CategoryOrder.toString >> box
 
+    ///The shape of connector lines in Waterfall charts.
+    [<RequireQualifiedAccess>]
+    type ConnectorMode =
+        | Spanning | Between
+
+        static member toString = function
+            | Spanning  -> "spanning"
+            | Between   -> "between"
+
+        static member convert = ConnectorMode.toString >> box
+
 //--------------------------
 // #D#
 //--------------------------
@@ -1021,6 +1032,16 @@ module StyleParam =
 //--------------------------
 // #W#
 //--------------------------
+
+    ///How to compute differences between bars in Waterfall Charts
+    [<RequireQualifiedAccess>]
+    type WaterfallMeasure =
+        |Relative | Total
+        static member toString = function
+            | Relative  -> "relative"
+            | Total     -> "total"
+
+        static member convert = WaterfallMeasure.toString >> box
 
 //--------------------------
 // #X#
