@@ -372,6 +372,17 @@ module StyleParam =
 // #G#
 //--------------------------
 
+    [<RequireQualifiedAccess>]
+    type GroupNorm =
+           | None | Fraction | Percent
+       
+           static member toString = function
+               | None               -> ""
+               | Fraction           -> "fraction"
+               | Percent            -> "percent"
+
+           static member convert = GroupNorm.toString >> box
+
 //--------------------------
 // #H#
 //--------------------------
@@ -650,9 +661,13 @@ module StyleParam =
         | Horizontal
         | Vertical
 
-        static member convert = function
-            | Horizontal -> box "h"
-            | Vertical   -> box "v"
+        static member toString = function
+            | Horizontal -> "h"
+            | Vertical   -> "v"
+
+        static member convert = 
+            Orientation.toString >> box
+            
 
 //--------------------------
 // #P#

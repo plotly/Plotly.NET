@@ -40,6 +40,60 @@
 open FSharp.Plotly
 open GenericChart
 
+let manyPoints = 
+    let rnd = new System.Random()
+    [for i = 0 to 50000 do (rnd.NextDouble(),rnd.NextDouble()) ]
+  
+let manyBubbles =  
+    let rnd = new System.Random()
+    [for i = 0 to 50000 do (rnd.NextDouble(),rnd.NextDouble(),rnd.NextDouble()) ]
+//we can see here that the advantage of webgl fades with many small scattergl traces.
+let manyLines = 
+    let rnd = new System.Random()
+    [for i = 0 to 5000 do 
+        [for i in [0 .. 10 .. 100] do (rnd.NextDouble(),rnd.NextDouble())]
+    ]
+  
+  
+//Test Stackgroups
+
+[
+    Chart.Scatter(x = [1;2;3], y = [2;3;4],mode=StyleParam.Mode.Markers, StackGroup = "meem", Orientation= StyleParam.Orientation.Vertical, GroupNorm = StyleParam.GroupNorm.Percent )
+    Chart.Scatter(x = [1;2;3], y = [4;3;4],mode=StyleParam.Mode.Markers, StackGroup = "meem", Orientation= StyleParam.Orientation.Vertical, GroupNorm = StyleParam.GroupNorm.Percent )
+]
+|> Chart.Combine
+|> Chart.Show
+
+//Just try this, its amazing how much faster WebGL loads and zooms
+Chart.Point(manyPoints,UseWebGL=true)
+|> Chart.Show
+
+Chart.Point(manyPoints)
+|> Chart.Show
+
+manyLines
+|> List.map (fun l -> Chart.Line(l,UseWebGL=true))
+|> Chart.Combine
+|> Chart.Show
+
+Chart.Line(manyPoints,UseWebGL=true)
+|> Chart.Show
+
+Chart.Line(manyPoints,UseWebGL=false)
+|> Chart.Show
+
+Chart.Spline(manyPoints,UseWebGL=true)
+|> Chart.Show
+
+Chart.Spline(manyPoints,UseWebGL=false)
+|> Chart.Show
+
+Chart.Bubble(manyBubbles,UseWebGL=true)
+|> Chart.Show
+
+Chart.Bubble(manyBubbles,UseWebGL=false)
+|> Chart.Show
+
 let stockData =
     [|("2020-01-17T13:40:00", 0.68888, 0.68888, 0.68879, 0.6888);
       ("2020-01-17T13:41:00", 0.68883, 0.68884, 0.68875, 0.68877);

@@ -426,38 +426,69 @@ module Trace =
         //-------------------------------------------------------------------------------------------------------------------------------------------------
         //Simple
 
-        // Applies the styles of scatter plot to TraceObjects 
+        /// Applies the styles of scatter plot to TraceObjects 
+        ///
+        /// Parameters:
+        ///
+        /// X           : Sets the x coordinates of the plotted data.
+        ///
+        /// Y           : Sets the y coordinates of the plotted data.
+        ///
+        /// Mode        : Determines the drawing mode for this scatter trace.
+        ///
+        /// Fill        : Sets the area to fill with a solid color
+        ///
+        /// Fillcolor   :
+        ///
+        /// Connectgaps : Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
+        ///
+        /// StackGroup  : Set several scatter traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order
+        ///
+        /// Orientation : Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.
+        ///
+        /// GroupNorm   : Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used
+        ///
+        /// R           : [Legacy] used for polar charts. Will be removed when adding the new polar charts.
+        ///
+        /// T           : [Legacy] used for polar charts. Will be removed when adding the new polar charts.
+        ///
+        /// Error_y     : Sets vertical error bars for this this scatter trace.
+        ///
+        /// Error_x     : Sets horizontal error bars for this this scatter trace.
         static member Scatter
             (   
-                ?X      : seq<#IConvertible>,
-                ?Y      : seq<#IConvertible>,
-                ?Mode: StyleParam.Mode,         
-                ?Fill: StyleParam.Fill,
-                ?Fillcolor: string,                        
+                ?X          : seq<#IConvertible>,
+                ?Y          : seq<#IConvertible>,
+                ?Mode       : StyleParam.Mode,         
+                ?Fill       : StyleParam.Fill,
+                ?Fillcolor  : string,                        
                 ?Connectgaps: bool, 
-                ?R      : seq<#IConvertible>,
-                ?T      : seq<#IConvertible>,
-                ?Error_y: Error,
-                ?Error_x: Error
+                ?StackGroup : string,
+                ?Orientation: StyleParam.Orientation,
+                ?GroupNorm  : StyleParam.GroupNorm, 
+                ?R          : seq<#IConvertible>,
+                ?T          : seq<#IConvertible>,
+                ?Error_y    : Error,
+                ?Error_x    : Error
             ) =
-                (fun (trace:('T :> Trace)) ->
-                    //scatter.set_type plotType                     
-                    X            |> DynObj.setValueOpt trace "x"
-                    Y            |> DynObj.setValueOpt trace "y"
-                    Mode         |> DynObj.setValueOptBy trace "mode" StyleParam.Mode.toString
-                    Connectgaps  |> DynObj.setValueOpt trace "connectgaps"
-                    Fill         |> DynObj.setValueOptBy trace "fill" StyleParam.Fill.toString
-                    Fillcolor    |> DynObj.setValueOpt trace "fillcolor"                    
-                    R            |> DynObj.setValueOpt trace "r"
-                    T            |> DynObj.setValueOpt trace "t"
-                    // Update
-                    Error_x      |> DynObj.setValueOpt trace "error_x"
-                    Error_y      |> DynObj.setValueOpt trace "error_y"
-                        
-                    // out ->
+                (fun (trace:('T :> Trace)) ->    
+                
+                    X           |> DynObj.setValueOpt   trace "x"
+                    Y           |> DynObj.setValueOpt   trace "y"
+                    Mode        |> DynObj.setValueOptBy trace "mode"        StyleParam.Mode.toString
+                    Connectgaps |> DynObj.setValueOpt   trace "connectgaps"
+                    StackGroup  |> DynObj.setValueOpt   trace "stackgroup"
+                    Orientation |> DynObj.setValueOptBy trace "orientation" StyleParam.Orientation.convert
+                    GroupNorm   |> DynObj.setValueOptBy trace "groupnorm"   StyleParam.GroupNorm.convert
+                    Fill        |> DynObj.setValueOptBy trace "fill"        StyleParam.Fill.toString
+                    Fillcolor   |> DynObj.setValueOpt   trace "fillcolor"                    
+                    R           |> DynObj.setValueOpt   trace "r"
+                    T           |> DynObj.setValueOpt   trace "t"
+                    Error_x     |> DynObj.setValueOpt   trace "error_x"
+                    Error_y     |> DynObj.setValueOpt   trace "error_y"
+
                     trace
                 ) 
-
 
         // Applies the styles of bar plot to TraceObjects 
         static member Bar
