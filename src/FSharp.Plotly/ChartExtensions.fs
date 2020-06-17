@@ -372,6 +372,178 @@ module ChartExtensions =
                     |> Layout.SetLayoutGrid layoutGrid 
                 GenericChart.setLayout layout ch) 
 
+        /// Sets a map for the given chart (will only work with traces supporting geo, e.g. choropleth, scattergeo)
+        [<CompiledName("WithMap")>]
+        static member withMap(map:Geo,[<Optional;DefaultParameterValue(null)>] ?Id ) =
+            (fun (ch:GenericChart) ->
+                let layout =
+                    let id = defaultArg Id 1
+                    GenericChart.getLayout ch 
+                    |> Layout.UpdateMapById(id,map)
+                GenericChart.setLayout layout ch
+            )
+
+        /// Sets the map style for the given chart (will only work with traces supporting geo, e.g. choropleth, scattergeo)
+        ///
+        /// Parameters      :
+        ///
+        /// FitBounds       : Determines if and how this subplot's view settings are auto-computed to fit trace data
+        ///
+        /// Resolution      : Sets the resolution of the base layers
+        ///
+        /// Scope           : Set the scope of the map.
+        ///
+        /// Projection      : Determines the type of projection used to display the map
+        ///
+        /// Center          : Sets the (lon,lat) coordinates of the map's center. By default, the map's longitude center lies at the middle of the longitude range for scoped projection and above `projection.rotation.lon` otherwise. For all projection types, the map's latitude center lies at the middle of the latitude range by default.
+        ///
+        /// Visible         : Wether or not the base layers are visible
+        ///
+        /// Domain          : The domain of this geo subplot
+        ///
+        /// ShowCoastLine   : Sets whether or not the coastlines are drawn.
+        ///
+        /// CoastLineColor  : Sets the coastline color.
+        ///
+        /// CoastLineWidth  : Sets the coastline stroke width (in px).
+        ///
+        /// ShowLand        : Sets whether or not land masses are filled in color.
+        ///
+        /// LandColor       : Sets the land mass color.
+        ///
+        /// ShowOcean       : Sets whether or not oceans are filled in color.
+        ///
+        /// OceanColor      : Sets the ocean color
+        ///
+        /// ShowLakes       : Sets whether or not lakes are drawn.
+        ///
+        /// LakeColor       : Sets the color of the lakes.
+        ///
+        /// ShowRivers      : Sets whether or not rivers are drawn.
+        ///
+        /// RiverColor      : Sets color of the rivers.
+        ///
+        /// RiverWidth      : Sets the stroke width (in px) of the rivers.
+        ///
+        /// ShowCountries   : Sets whether or not country boundaries are drawn.
+        ///
+        /// CountryColor    : Sets line color of the country boundaries.
+        ///
+        /// CountryWidth    : Sets line width (in px) of the country boundaries.
+        ///
+        /// ShowSubunits    : Sets whether or not boundaries of subunits within countries (e.g. states, provinces) are drawn.
+        ///
+        /// SubunitColor    : Sets the color of the subunits boundaries.
+        ///
+        /// SubunitWidth    : Sets the stroke width (in px) of the subunits boundaries.
+        ///
+        /// ShowFrame       : Sets whether or not a frame is drawn around the map.
+        ///
+        /// FrameColor      : Sets the color the frame.
+        ///
+        /// FrameWidth      : Sets the stroke width (in px) of the frame.
+        ///
+        /// BgColor         : Set the background color of the map
+        ///
+        /// LatAxis         : Sets the latitudinal axis for this geo trace
+        ///
+        /// LonAxis         : Sets the longitudinal axis for this geo trace
+        [<CompiledName("WithMapStyle")>]
+        static member withMapStyle([<Optional;DefaultParameterValue(null)>] ?Id,
+            [<Optional;DefaultParameterValue(null)>]?FitBounds       : StyleParam.GeoFitBounds,
+            [<Optional;DefaultParameterValue(null)>]?Resolution      : StyleParam.GeoResolution,
+            [<Optional;DefaultParameterValue(null)>]?Scope           : StyleParam.GeoScope,
+            [<Optional;DefaultParameterValue(null)>]?Projection      : GeoProjection,
+            [<Optional;DefaultParameterValue(null)>]?Center          : (float*float),
+            [<Optional;DefaultParameterValue(null)>]?Visible         : bool,
+            [<Optional;DefaultParameterValue(null)>]?Domain          : Domain,
+            [<Optional;DefaultParameterValue(null)>]?ShowCoastLines  : bool,
+            [<Optional;DefaultParameterValue(null)>]?CoastLineColor,
+            [<Optional;DefaultParameterValue(null)>]?CoastLineWidth  : float,
+            [<Optional;DefaultParameterValue(null)>]?ShowLand        : bool,
+            [<Optional;DefaultParameterValue(null)>]?LandColor,
+            [<Optional;DefaultParameterValue(null)>]?ShowOcean       : bool,
+            [<Optional;DefaultParameterValue(null)>]?OceanColor,
+            [<Optional;DefaultParameterValue(null)>]?ShowLakes       : bool,
+            [<Optional;DefaultParameterValue(null)>]?LakeColor,
+            [<Optional;DefaultParameterValue(null)>]?ShowRivers      : bool,
+            [<Optional;DefaultParameterValue(null)>]?RiverColor,
+            [<Optional;DefaultParameterValue(null)>]?RiverWidth      : float,
+            [<Optional;DefaultParameterValue(null)>]?ShowCountries   : bool,
+            [<Optional;DefaultParameterValue(null)>]?CountryColor,
+            [<Optional;DefaultParameterValue(null)>]?CountryWidth    : float,
+            [<Optional;DefaultParameterValue(null)>]?ShowSubunits    : bool,
+            [<Optional;DefaultParameterValue(null)>]?SubunitColor,
+            [<Optional;DefaultParameterValue(null)>]?SubunitWidth    : float,
+            [<Optional;DefaultParameterValue(null)>]?ShowFrame       : bool,
+            [<Optional;DefaultParameterValue(null)>]?FrameColor,
+            [<Optional;DefaultParameterValue(null)>]?FrameWidth      : float,
+            [<Optional;DefaultParameterValue(null)>]?BgColor,
+            [<Optional;DefaultParameterValue(null)>]?LatAxis         : Axis.LinearAxis,
+            [<Optional;DefaultParameterValue(null)>]?LonAxis         : Axis.LinearAxis
+        ) =
+            (fun (ch:GenericChart) ->
+                
+                let map = 
+                    Geo.init(
+                        ?FitBounds      = FitBounds     ,
+                        ?Resolution     = Resolution    ,
+                        ?Scope          = Scope         ,
+                        ?Projection     = Projection    ,
+                        ?Center         = Center        ,
+                        ?Visible        = Visible       ,
+                        ?Domain         = Domain        ,
+                        ?ShowCoastLines = ShowCoastLines,
+                        ?CoastLineColor = CoastLineColor,
+                        ?CoastLineWidth = CoastLineWidth,
+                        ?ShowLand       = ShowLand      ,
+                        ?LandColor      = LandColor     ,
+                        ?ShowOcean      = ShowOcean     ,
+                        ?OceanColor     = OceanColor    ,
+                        ?ShowLakes      = ShowLakes     ,
+                        ?LakeColor      = LakeColor     ,
+                        ?ShowRivers     = ShowRivers    ,
+                        ?RiverColor     = RiverColor    ,
+                        ?RiverWidth     = RiverWidth    ,
+                        ?ShowCountries  = ShowCountries ,
+                        ?CountryColor   = CountryColor  ,
+                        ?CountryWidth   = CountryWidth  ,
+                        ?ShowSubunits   = ShowSubunits  ,
+                        ?SubunitColor   = SubunitColor  ,
+                        ?SubunitWidth   = SubunitWidth  ,
+                        ?ShowFrame      = ShowFrame     ,
+                        ?FrameColor     = FrameColor    ,
+                        ?FrameWidth     = FrameWidth    ,
+                        ?BgColor        = BgColor       ,
+                        ?LatAxis        = LatAxis       ,
+                        ?LonAxis        = LonAxis       
+                    )
+                let id = defaultArg Id 1
+                ch |> Chart.withMap(map,id)
+            )
+
+        [<CompiledName("WithMapProjection")>]
+        static member withMapProjection(projectionType : StyleParam.GeoProjectionType,
+             [<Optional;DefaultParameterValue(null)>]?Rotation ,
+             [<Optional;DefaultParameterValue(null)>]?Parallels,
+             [<Optional;DefaultParameterValue(null)>]?Scale    ,
+             [<Optional;DefaultParameterValue(null)>]?Id
+            ) =
+            (fun (ch:GenericChart) ->
+
+                let projection = 
+                    GeoProjection.init(
+                        projectionType  = projectionType,
+                        ?Rotation       = Rotation      ,
+                        ?Parallels      = Parallels     ,
+                        ?Scale          = Scale        
+                    )
+
+                let map = Geo.init(Projection     = projection)
+                let id = defaultArg Id 1
+                ch |> Chart.withMap(map,id)
+            )
+
         // Set the LayoutGrid options of a Chart
         [<CompiledName("WithLayoutGridStyle")>]
         static member withLayoutGridStyle([<Optional;DefaultParameterValue(null)>]?SubPlots   : StyleParam.AxisId [] [],

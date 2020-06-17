@@ -209,7 +209,7 @@ type Layout() =
                            
             ?Hidesources   ,
             ?Smith         ,
-            ?Geo           
+            ?Geo           : Geo
 
         ) =
             Layout()
@@ -282,7 +282,9 @@ type Layout() =
             ?Orientation,
             ?Shapes:Shape seq,
                 
-            ?Hidesources,?Smith,?Geo
+            ?Hidesources,
+            ?Smith,
+            ?Geo:Geo
 
         ) =
             (fun (layout:Layout) -> 
@@ -407,4 +409,34 @@ type Layout() =
                 layout
             )
 
+    
+    static member AddMap
+        (   
+            id   : int,
+            map  : Geo
+        ) =
+            (fun (layout:Layout) -> 
+                
+                let key = if id < 2 then "geo" else sprintf "geo%i" id
+                map |> DynObj.setValue layout key
 
+                layout
+            )
+
+    // Updates the style of current axis with given AxisId
+    static member UpdateMapById
+        (   
+           id   : int,
+           map  : Geo
+        ) =
+            (fun (layout:Layout) -> 
+                let key = if id < 2 then "geo" else sprintf "geo%i" id
+                let geo' = 
+                    match layout.TryGetTypedValue<Geo>(key) with
+                    | Some a  -> DynObj.combine (unbox a) map
+                    | None    -> map :> DynamicObj
+                
+                geo'|> DynObj.setValue layout key
+
+                layout
+            )

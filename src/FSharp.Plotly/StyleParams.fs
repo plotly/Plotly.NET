@@ -394,6 +394,95 @@ module StyleParam =
 
            static member convert = GroupNorm.toString >> box
 
+    ///Used for the Layout.geo field. Determines if this subplot's view settings are auto-computed to fit trace data. On scoped maps, setting `fitbounds` leads to `center.lon` and `center.lat` getting auto-filled. On maps with a non-clipped projection, setting `fitbounds` leads to `center.lon`, `center.lat`, and `projection.rotation.lon` getting auto-filled. On maps with a clipped projection, setting `fitbounds` leads to `center.lon`, `center.lat`, `projection.rotation.lon`, `projection.rotation.lat`, `lonaxis.range` and `lonaxis.range` getting auto-filled. If "locations", only the trace's visible locations are considered in the `fitbounds` computations. If "geojson", the entire trace input `geojson` (if provided) is considered in the `fitbounds` computations, Defaults to "false".
+    [<RequireQualifiedAccess>]
+    type GeoFitBounds =
+           | False | Locations | GeoJson
+       
+           static member toString = function
+               | False          -> "false"
+               | Locations      -> "locations"
+               | GeoJson        -> "geojson"
+
+           static member convert = GeoFitBounds.toString >> box
+
+    ///Used for the Layout.geo field. Sets the resolution of the base layers. The values have units of km/mm e.g. 110 corresponds to a scale ratio of 1:110,000,000.
+    [<RequireQualifiedAccess>]
+    type GeoResolution =
+           | R110 | R50 
+
+           static member toString = function
+               | R110   -> "110"
+               | R50    -> "50"
+
+           static member convert = GeoResolution.toString >> box
+
+    [<RequireQualifiedAccess>]
+    type GeoScope =
+            | World | Usa | Europe | Asia | Africa | NorthAmerica | SouthAmerica
+
+            static member toString = function
+                | World           -> "world"
+                | Usa             -> "usa"
+                | Europe          -> "europe"
+                | Asia            -> "asia"
+                | Africa          -> "africa"
+                | NorthAmerica    -> "north america"
+                | SouthAmerica    -> "south america"
+
+            static member convert = GeoScope.toString >> box
+
+    [<RequireQualifiedAccess>]
+    type GeoProjectionType =
+            | EquiRectangular         
+            | Mercator            
+            | Orthographic        
+            | NaturalEarth           
+            | Kavrayskiy7         
+            | Miller 
+            | Robinson                
+            | Eckert4             
+            | AzimuthalEqualArea
+            | AzimuthalEquidistant   
+            | ConicEqualArea    
+            | ConicConformal         
+            | ConicEquidistant       
+            | Gnomonic            
+            | Stereographic
+            | Mollweide               
+            | Hammer              
+            | TransverseMercator     
+            | AlbersUSA              
+            | WinkelTripel       
+            | Aitoff      
+            | Sinusoidal
+
+            static member toString = function
+                | EquiRectangular       -> "equirectangular" 
+                | Mercator              -> "mercator" 
+                | Orthographic          -> "orthographic" 
+                | NaturalEarth          -> "natural earth" 
+                | Kavrayskiy7           -> "kavrayskiy7" 
+                | Miller                -> "miller" 
+                | Robinson              -> "robinson" 
+                | Eckert4               -> "eckert4"
+                | AzimuthalEqualArea    -> "azimuthal equal area" 
+                | AzimuthalEquidistant  -> "azimuthal equidistant" 
+                | ConicEqualArea        -> "conic equal area" 
+                | ConicConformal        -> "conic conformal" 
+                | ConicEquidistant      -> "conic equidistant" 
+                | Gnomonic              -> "gnomonic" 
+                | Stereographic         -> "stereographic" 
+                | Mollweide             -> "mollweide" 
+                | Hammer                -> "hammer" 
+                | TransverseMercator    -> "transverse mercator" 
+                | AlbersUSA             -> "albers usa" 
+                | WinkelTripel          -> "winkel tripel" 
+                | Aitoff                -> "aitoff" 
+                | Sinusoidal            -> "sinusoidal"
+
+            static member convert = GeoProjectionType.toString >> box
+
 //--------------------------
 // #H#
 //--------------------------

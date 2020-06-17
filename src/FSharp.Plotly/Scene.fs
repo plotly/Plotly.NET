@@ -59,17 +59,3 @@ type Scene() =
                 scene
             ) 
 
-
-
-
-/// Projection 
-type Projection() = 
-    inherit DynamicObj ()
-        
-    /// Initialized Projection object
-    //[<CompiledName("init")>]
-    static member init (apply:Projection->Projection) =
-        Projection () |> apply
-
-
-
