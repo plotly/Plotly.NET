@@ -59,7 +59,7 @@ module Trace3d =
                 ?Mode   : StyleParam.Mode,             
                 ?Surfaceaxis,
                 ?Surfacecolor,
-                ?Projection : Projection,
+                //?Projection : Projection,
                 ?Scene  : string,          
                 ?Error_y: Error,
                 ?Error_x: Error,
@@ -87,7 +87,7 @@ module Trace3d =
                     Error_x      |> DynObj.setValueOpt scatter "error_x"
                     Error_y      |> DynObj.setValueOpt scatter "error_y"
                     Error_z      |> DynObj.setValueOpt scatter "error_z"
-                    Projection   |> DynObj.setValueOpt scatter "projecton"
+                    //Projection   |> DynObj.setValueOpt scatter "projecton"
 
                     // out ->
                     scatter

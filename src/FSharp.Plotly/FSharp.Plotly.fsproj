@@ -38,6 +38,7 @@
     <Compile Include="Dimensions.fs" />
     <Compile Include="Domain.fs" />
     <Compile Include="Line.fs" />
+    <Compile Include="WaterfallConnector.fs" />
     <Compile Include="Box.fs" />
     <Compile Include="Meanline.fs" />
     <Compile Include="Marker.fs" />
