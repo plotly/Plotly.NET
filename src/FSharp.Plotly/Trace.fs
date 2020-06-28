@@ -1449,3 +1449,29 @@ module Trace =
                     
                     trace
                 )
+
+        static member ScatterGeo 
+            (
+                mode       : StyleParam.Mode,
+                ?Longitudes : #IConvertible seq,
+                ?Latitudes  : #IConvertible seq,
+                ?Locations  : seq<string>,
+                ?GeoJson    ,
+                ?Connectgaps : bool,
+                ?Fill        : StyleParam.Fill,
+                ?Fillcolor   
+            ) =
+                (fun (trace:('T :> Trace)) -> 
+                
+                    mode        |> StyleParam.Mode.convert |> DynObj.setValue trace "mode"
+                    Longitudes  |> DynObj.setValueOpt   trace "lon"
+                    Latitudes   |> DynObj.setValueOpt   trace "lat"
+                    Locations   |> DynObj.setValueOpt   trace "locations"
+                    GeoJson     |> DynObj.setValueOpt   trace "geojson"
+                    Connectgaps |> DynObj.setValueOpt   trace "connectgaps"
+                    Fill        |> DynObj.setValueOptBy trace "fill" StyleParam.Fill.convert
+                    Fillcolor   |> DynObj.setValueOpt   trace "fillcolor"
+
+                    trace
+
+                )

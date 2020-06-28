@@ -43,6 +43,36 @@
 open FSharp.Plotly
 open GenericChart
 
+Chart.LineGeo(
+    [
+        -73.57; -79.24; -123.06; -114.1; -113.28;
+        -75.43; -63.57; -123.21; -97.13; -104.6
+    ],
+    [
+        45.5;  43.4;  49.13; 51.1; 53.34; 45.24;
+        44.64; 48.25; 49.89; 50.45
+    ],ShowMarkers = true,MarkerSymbol = StyleParam.Symbol.Cross
+)
+|> Chart.Show
+
+Chart.ScatterGeo(
+    [
+        -73.57; -79.24; -123.06; -114.1; -113.28;
+        -75.43; -63.57; -123.21; -97.13; -104.6
+    ],
+    [
+        45.5;  43.4;  49.13; 51.1; 53.34; 45.24;
+        44.64; 48.25; 49.89; 50.45
+    ],
+    StyleParam.Mode.Lines
+)
+|> Chart.withMapStyle(
+    Projection=GeoProjection.init(projectionType=StyleParam.GeoProjectionType.AzimuthalEqualArea),
+    ShowLakes=true,
+    ShowOcean=true,
+    OceanColor="lightblue",
+    ShowRivers=true)
+|> Chart.Show
 //test new withMapStyle function
 
 let locations,z = 

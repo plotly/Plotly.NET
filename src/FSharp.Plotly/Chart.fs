@@ -2117,3 +2117,627 @@ type Chart =
                 )
             )
             |> GenericChart.ofTraceObject
+
+    /// Creates a ScatterGeo chart, where data is visualized on a geographic map.
+    /// ScatterGeo charts are the basis of GeoPoint, GeoLine, and GeoBubble Charts, and can be customized as such. We also provide abstractions for those: Chart.GeoPoint, Chart.GeoLine, Chart.GeoBubble
+    ///
+    /// Parameters:
+    /// 
+    /// longitudes  : Sets the longitude coordinates (in degrees East).
+    ///
+    /// latitudes   : Sets the latitude coordinates (in degrees North).
+    ///
+    /// Name        : Sets the trace name. The trace name appear as the legend item and on hover
+    ///
+    /// Showlegend  : Determines whether or not an item corresponding to this trace is shown in the legend.
+    ///
+    /// MarkerSymbol: Sets the type of symbol that datums are displayed as
+    ///
+    /// Color       : Sets Line/Marker Color
+    ///
+    /// Opacity     : Sets the Opacity of the trace
+    ///
+    /// Labels      : Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.
+    ///
+    /// TextPosition: Sets the positions of the `text` elements with respects to the (x,y) coordinates.
+    ///
+    /// TextFont    : Sets the text font of this trace
+    ///
+    /// Dash        : Sets the Line Dash style
+    ///
+    /// Width       : Sets the Line width
+    ///
+    /// GeoJson     : Sets optional GeoJSON data associated with this trace. If not given, the features on the base map are used when `locations` is set. It can be set as a valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs of type "FeatureCollection" or "Feature" with geometries of type "Polygon" or "MultiPolygon".
+    ///
+    /// Connectgaps : Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
+    ///
+    /// Fill        : Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.
+    ///
+    /// Fillcolor   : Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
+    static member ScatterGeo(longitudes, latitudes, mode,
+            [<Optional;DefaultParameterValue(null)>] ?Name                          ,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol                  ,
+            [<Optional;DefaultParameterValue(null)>] ?Color                         ,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
+            [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
+            [<Optional;DefaultParameterValue(null)>] ?Dash                          ,
+            [<Optional;DefaultParameterValue(null)>] ?Width : float                 ,
+            [<Optional;DefaultParameterValue(null)>] ?GeoJson                       ,
+            [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
+            [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
+            [<Optional;DefaultParameterValue(null)>] ?Fillcolor   
+        ) = 
+
+        Trace.initScatterGeo(
+            TraceStyle.ScatterGeo(
+                mode        = mode          ,
+                Longitudes  = longitudes    ,
+                Latitudes   = latitudes     ,
+                ?GeoJson    = GeoJson      ,
+                ?Connectgaps= Connectgaps  ,
+                ?Fill       = Fill         ,
+                ?Fillcolor  = Fillcolor    
+            )               
+        )
+        |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+        |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
+        |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
+        |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        |> GenericChart.ofTraceObject
+
+
+    /// Creates a ScatterGeo chart, where data is visualized on a geographic map.
+    /// ScatterGeo charts are the basis of GeoPoint, GeoLine, and GeoBubble Charts, and can be customized as such. We also provide abstractions for those: Chart.GeoPoint, Chart.GeoLine, Chart.GeoBubble
+    ///
+    /// Parameters:
+    ///
+    /// lonlat      : Sets the (longitude,latitude) coordinates (in degrees North, degrees South).
+    ///
+    /// mode        : Determines the drawing mode for this scatter trace.
+    ///
+    /// Name        : Sets the trace name. The trace name appear as the legend item and on hover
+    ///
+    /// Showlegend  : Determines whether or not an item corresponding to this trace is shown in the legend.
+    ///
+    /// MarkerSymbol: Sets the type of symbol that datums are displayed as
+    ///
+    /// Color       : Sets Line/Marker Color
+    ///
+    /// Opacity     : Sets the Opacity of the trace
+    ///
+    /// Labels      : Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.
+    ///
+    /// TextPosition: Sets the positions of the `text` elements with respects to the (x,y) coordinates.
+    ///
+    /// TextFont    : Sets the text font of this trace
+    ///
+    /// Dash        : Sets the Line Dash style
+    ///
+    /// Width       : Sets the Line width
+    ///
+    /// GeoJson     : Sets optional GeoJSON data associated with this trace. If not given, the features on the base map are used when `locations` is set. It can be set as a valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs of type "FeatureCollection" or "Feature" with geometries of type "Polygon" or "MultiPolygon".
+    ///
+    /// Connectgaps : Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
+    ///
+    /// Fill        : Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.
+    ///
+    /// Fillcolor   : Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
+    static member ScatterGeo(lonlat, mode,
+            [<Optional;DefaultParameterValue(null)>] ?Name                          ,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol                  ,
+            [<Optional;DefaultParameterValue(null)>] ?Color                         ,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
+            [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
+            [<Optional;DefaultParameterValue(null)>] ?Dash                          ,
+            [<Optional;DefaultParameterValue(null)>] ?Width : float                 ,
+            [<Optional;DefaultParameterValue(null)>] ?GeoJson                       ,
+            [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
+            [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
+            [<Optional;DefaultParameterValue(null)>] ?Fillcolor   
+        ) = 
+        let longitudes, latitudes = Seq.unzip lonlat
+
+        Trace.initScatterGeo(
+            TraceStyle.ScatterGeo(
+                mode        = mode          ,
+                Longitudes  = longitudes    ,
+                Latitudes   = latitudes     ,
+                ?GeoJson    = GeoJson      ,
+                ?Connectgaps= Connectgaps  ,
+                ?Fill       = Fill         ,
+                ?Fillcolor  = Fillcolor    
+            )               
+        )
+        |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+        |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
+        |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
+        |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        |> GenericChart.ofTraceObject
+
+    /// Creates a ScatterGeo chart, where data is visualized on a geographic map.
+    /// ScatterGeo charts are the basis of GeoPoint, GeoLine, and GeoBubble Charts, and can be customized as such. We also provide abstractions for those: Chart.GeoPoint, Chart.GeoLine, Chart.GeoBubble
+    ///
+    /// Parameters:
+    ///
+    /// locations   : Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.
+    ///
+    /// mode        : Determines the drawing mode for this scatter trace.
+    ///
+    /// Name        : Sets the trace name. The trace name appear as the legend item and on hover
+    ///
+    /// Showlegend  : Determines whether or not an item corresponding to this trace is shown in the legend.
+    ///
+    /// MarkerSymbol: Sets the type of symbol that datums are displayed as
+    ///
+    /// Color       : Sets Line/Marker Color
+    ///
+    /// Opacity     : Sets the Opacity of the trace
+    ///
+    /// Labels      : Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.
+    ///
+    /// TextPosition: Sets the positions of the `text` elements with respects to the (x,y) coordinates.
+    ///
+    /// TextFont    : Sets the text font of this trace
+    ///
+    /// Dash        : Sets the Line Dash style
+    ///
+    /// Width       : Sets the Line width
+    ///
+    /// GeoJson     : Sets optional GeoJSON data associated with this trace. If not given, the features on the base map are used when `locations` is set. It can be set as a valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs of type "FeatureCollection" or "Feature" with geometries of type "Polygon" or "MultiPolygon".
+    ///
+    /// Connectgaps : Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
+    ///
+    /// Fill        : Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.
+    ///
+    /// Fillcolor   : Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
+    static member ScatterGeo(locations, mode,
+            [<Optional;DefaultParameterValue(null)>] ?Name                          ,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol                  ,
+            [<Optional;DefaultParameterValue(null)>] ?Color                         ,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
+            [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
+            [<Optional;DefaultParameterValue(null)>] ?Dash                          ,
+            [<Optional;DefaultParameterValue(null)>] ?Width : float                 ,
+            [<Optional;DefaultParameterValue(null)>] ?GeoJson                       ,
+            [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
+            [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
+            [<Optional;DefaultParameterValue(null)>] ?Fillcolor   
+        ) = 
+
+        Trace.initScatterGeo(
+            TraceStyle.ScatterGeo(
+                mode        = mode          ,
+                ?Locations  = locations     ,
+                ?GeoJson    = GeoJson       ,
+                ?Connectgaps= Connectgaps   ,
+                ?Fill       = Fill          ,
+                ?Fillcolor  = Fillcolor    
+            )               
+        )
+        |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+        |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
+        |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
+        |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        |> GenericChart.ofTraceObject
+
+    /// Creates a PointGeo chart, where data is visualized as points on a geographic map.
+    ///
+    /// Parameters:
+    /// 
+    /// longitudes  : Sets the longitude coordinates (in degrees East).
+    ///
+    /// latitudes   : Sets the latitude coordinates (in degrees North).
+    ///
+    /// Name        : Sets the trace name. The trace name appear as the legend item and on hover
+    ///
+    /// Showlegend  : Determines whether or not an item corresponding to this trace is shown in the legend.
+    ///
+    /// MarkerSymbol: Sets the type of symbol that datums are displayed as
+    ///
+    /// Color       : Sets Line/Marker Color
+    ///
+    /// Opacity     : Sets the Opacity of the trace
+    ///
+    /// Labels      : Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.
+    ///
+    /// TextPosition: Sets the positions of the `text` elements with respects to the (x,y) coordinates.
+    ///
+    /// TextFont    : Sets the text font of this trace
+    ///
+    /// GeoJson     : Sets optional GeoJSON data associated with this trace. If not given, the features on the base map are used when `locations` is set. It can be set as a valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs of type "FeatureCollection" or "Feature" with geometries of type "Polygon" or "MultiPolygon".
+    ///
+    /// Connectgaps : Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
+    ///
+    /// Fill        : Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.
+    ///
+    /// Fillcolor   : Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
+    static member PointGeo(longitudes, latitudes,
+            [<Optional;DefaultParameterValue(null)>] ?Name                          ,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol                  ,
+            [<Optional;DefaultParameterValue(null)>] ?Color                         ,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
+            [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
+            [<Optional;DefaultParameterValue(null)>] ?GeoJson                       ,
+            [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
+            [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
+            [<Optional;DefaultParameterValue(null)>] ?Fillcolor   
+        ) = 
+
+        let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
+
+        Trace.initScatterGeo(
+            TraceStyle.ScatterGeo(
+                mode        = changeMode StyleParam.Mode.Markers ,
+                Longitudes  = longitudes    ,
+                Latitudes   = latitudes     ,
+                ?GeoJson    = GeoJson      ,
+                ?Connectgaps= Connectgaps  ,
+                ?Fill       = Fill         ,
+                ?Fillcolor  = Fillcolor    
+            )               
+        )
+        |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+        |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
+        |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        |> GenericChart.ofTraceObject
+
+    /// Creates a PointGeo chart, where data is visualized as points on a geographic map.
+    ///
+    /// Parameters:
+    /// 
+    /// lonlat      : Sets the (longitude,latitude) coordinates (in degrees North, degrees South).
+    ///
+    /// Name        : Sets the trace name. The trace name appear as the legend item and on hover
+    ///
+    /// Showlegend  : Determines whether or not an item corresponding to this trace is shown in the legend.
+    ///
+    /// MarkerSymbol: Sets the type of symbol that datums are displayed as
+    ///
+    /// Color       : Sets Line/Marker Color
+    ///
+    /// Opacity     : Sets the Opacity of the trace
+    ///
+    /// Labels      : Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.
+    ///
+    /// TextPosition: Sets the positions of the `text` elements with respects to the (x,y) coordinates.
+    ///
+    /// TextFont    : Sets the text font of this trace
+    ///
+    /// GeoJson     : Sets optional GeoJSON data associated with this trace. If not given, the features on the base map are used when `locations` is set. It can be set as a valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs of type "FeatureCollection" or "Feature" with geometries of type "Polygon" or "MultiPolygon".
+    ///
+    /// Connectgaps : Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
+    ///
+    /// Fill        : Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.
+    ///
+    /// Fillcolor   : Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
+    static member PointGeo(lonlat,
+            [<Optional;DefaultParameterValue(null)>] ?Name                          ,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol                  ,
+            [<Optional;DefaultParameterValue(null)>] ?Color                         ,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
+            [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
+            [<Optional;DefaultParameterValue(null)>] ?GeoJson                       ,
+            [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
+            [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
+            [<Optional;DefaultParameterValue(null)>] ?Fillcolor    
+        ) = 
+
+        let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
+        let longitudes, latitudes = Seq.unzip lonlat
+
+        Trace.initScatterGeo(
+            TraceStyle.ScatterGeo(
+                mode        = changeMode StyleParam.Mode.Markers ,
+                Longitudes  = longitudes    ,
+                Latitudes   = latitudes     ,
+                ?GeoJson    = GeoJson      ,
+                ?Connectgaps= Connectgaps  ,
+                ?Fill       = Fill         ,
+                ?Fillcolor  = Fillcolor    
+            )               
+        )
+        |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+        |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
+        |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        |> GenericChart.ofTraceObject
+
+    /// Creates a PointGeo chart, where data is visualized as points on a geographic map.
+    ///
+    /// Parameters:
+    ///
+    /// locations   : Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.
+    ///
+    /// Name        : Sets the trace name. The trace name appear as the legend item and on hover
+    ///
+    /// Showlegend  : Determines whether or not an item corresponding to this trace is shown in the legend.
+    ///
+    /// MarkerSymbol: Sets the type of symbol that datums are displayed as
+    ///
+    /// Color       : Sets Line/Marker Color
+    ///
+    /// Opacity     : Sets the Opacity of the trace
+    ///
+    /// Labels      : Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.
+    ///
+    /// TextPosition: Sets the positions of the `text` elements with respects to the (x,y) coordinates.
+    ///
+    /// TextFont    : Sets the text font of this trace
+    ///
+    /// GeoJson     : Sets optional GeoJSON data associated with this trace. If not given, the features on the base map are used when `locations` is set. It can be set as a valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs of type "FeatureCollection" or "Feature" with geometries of type "Polygon" or "MultiPolygon".
+    ///
+    /// Connectgaps : Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
+    ///
+    /// Fill        : Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.
+    ///
+    /// Fillcolor   : Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
+    static member PointGeo(locations,
+            [<Optional;DefaultParameterValue(null)>] ?Name                          ,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol                  ,
+            [<Optional;DefaultParameterValue(null)>] ?Color                         ,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
+            [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
+            [<Optional;DefaultParameterValue(null)>] ?GeoJson                       ,
+            [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
+            [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
+            [<Optional;DefaultParameterValue(null)>] ?Fillcolor    
+        ) = 
+        
+        let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
+
+        Trace.initScatterGeo(
+            TraceStyle.ScatterGeo(
+                mode        = changeMode StyleParam.Mode.Markers ,
+                ?Locations  = locations     ,
+                ?GeoJson    = GeoJson       ,
+                ?Connectgaps= Connectgaps   ,
+                ?Fill       = Fill          ,
+                ?Fillcolor  = Fillcolor    
+            )               
+        )
+        |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+        |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
+        |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        |> GenericChart.ofTraceObject
+
+    /// Creates a LineGeo chart, where data is visualized as coordinates connected via lines on a geographic map.
+    ///
+    /// Parameters:
+    /// 
+    /// longitudes  : Sets the longitude coordinates (in degrees East).
+    ///
+    /// latitudes   : Sets the latitude coordinates (in degrees North).
+    ///
+    /// Name        : Sets the trace name. The trace name appear as the legend item and on hover
+    ///
+    /// ShowMarkers : Determines wether or not markers will be rendered for each datum.
+    ///
+    /// Showlegend  : Determines whether or not an item corresponding to this trace is shown in the legend.
+    ///
+    /// MarkerSymbol: Sets the type of symbol that datums are displayed as
+    ///
+    /// Color       : Sets Line/Marker Color
+    ///
+    /// Opacity     : Sets the Opacity of the trace
+    ///
+    /// Labels      : Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.
+    ///
+    /// TextPosition: Sets the positions of the `text` elements with respects to the (lon,lat) coordinates.
+    ///
+    /// TextFont    : Sets the text font of this trace
+    ///
+    /// Dash        : Sets the Line Dash style
+    ///
+    /// Width       : Sets the Line width
+    ///
+    /// TextFont    : Sets the text font of this trace
+    ///
+    /// GeoJson     : Sets optional GeoJSON data associated with this trace. If not given, the features on the base map are used when `locations` is set. It can be set as a valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs of type "FeatureCollection" or "Feature" with geometries of type "Polygon" or "MultiPolygon".
+    ///
+    /// Connectgaps : Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
+    ///
+    /// Fill        : Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.
+    ///
+    /// Fillcolor   : Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
+    static member LineGeo(longitudes, latitudes,
+            [<Optional;DefaultParameterValue(null)>] ?Name                          ,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol                  ,
+            [<Optional;DefaultParameterValue(null)>] ?ShowMarkers                   ,
+            [<Optional;DefaultParameterValue(null)>] ?Color                         ,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
+            [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
+            [<Optional;DefaultParameterValue(null)>] ?GeoJson                       ,
+            [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
+            [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
+            [<Optional;DefaultParameterValue(null)>] ?Fillcolor    
+        ) = 
+
+        let changeMode = 
+            let isShowMarker =
+                match ShowMarkers with
+                | Some isShow -> isShow
+                | Option.None        -> false
+            StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
+            >> StyleParam.ModeUtils.showMarker (isShowMarker)
+
+        Trace.initScatterGeo(
+            TraceStyle.ScatterGeo(
+                mode        = changeMode StyleParam.Mode.Lines,
+                Longitudes  = longitudes    ,
+                Latitudes   = latitudes     ,
+                ?GeoJson    = GeoJson      ,
+                ?Connectgaps= Connectgaps  ,
+                ?Fill       = Fill         ,
+                ?Fillcolor  = Fillcolor    
+            )               
+        )
+        |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+        |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
+        |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        |> GenericChart.ofTraceObject
+
+    /// Creates a LineGeo chart, where data is visualized as coordinates connected via lines on a geographic map.
+    ///
+    /// Parameters:
+    /// 
+    /// lonlat      : Sets the (longitude,latitude) coordinates (in degrees North, degrees South).
+    ///
+    /// Name        : Sets the trace name. The trace name appear as the legend item and on hover
+    ///
+    /// ShowMarkers : Determines wether or not markers will be rendered for each datum.
+    ///
+    /// Showlegend  : Determines whether or not an item corresponding to this trace is shown in the legend.
+    ///
+    /// MarkerSymbol: Sets the type of symbol that datums are displayed as
+    ///
+    /// Color       : Sets Line/Marker Color
+    ///
+    /// Opacity     : Sets the Opacity of the trace
+    ///
+    /// Labels      : Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.
+    ///
+    /// TextPosition: Sets the positions of the `text` elements with respects to the (lon,lat) coordinates.
+    ///
+    /// TextFont    : Sets the text font of this trace
+    ///
+    /// TextFont    : Sets the text font of this trace
+    ///
+    /// GeoJson     : Sets optional GeoJSON data associated with this trace. If not given, the features on the base map are used when `locations` is set. It can be set as a valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs of type "FeatureCollection" or "Feature" with geometries of type "Polygon" or "MultiPolygon".
+    ///
+    /// Connectgaps : Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
+    ///
+    /// Fill        : Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.
+    ///
+    /// Fillcolor   : Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
+    static member LineGeo(lonlat,
+            [<Optional;DefaultParameterValue(null)>] ?Name                          ,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol                  ,
+            [<Optional;DefaultParameterValue(null)>] ?ShowMarkers                   ,
+            [<Optional;DefaultParameterValue(null)>] ?Color                         ,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
+            [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
+            [<Optional;DefaultParameterValue(null)>] ?GeoJson                       ,
+            [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
+            [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
+            [<Optional;DefaultParameterValue(null)>] ?Fillcolor    
+        ) = 
+
+        let changeMode = 
+            let isShowMarker =
+                match ShowMarkers with
+                | Some isShow -> isShow
+                | Option.None        -> false
+            StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
+            >> StyleParam.ModeUtils.showMarker (isShowMarker)
+        let longitudes, latitudes = Seq.unzip lonlat
+
+        Trace.initScatterGeo(
+            TraceStyle.ScatterGeo(
+                mode        = changeMode StyleParam.Mode.Lines,
+                Longitudes  = longitudes    ,
+                Latitudes   = latitudes     ,
+                ?GeoJson    = GeoJson      ,
+                ?Connectgaps= Connectgaps  ,
+                ?Fill       = Fill         ,
+                ?Fillcolor  = Fillcolor    
+            )               
+        )
+        |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+        |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
+        |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        |> GenericChart.ofTraceObject
+
+    /// Creates a LineGeo chart, where data is visualized as coordinates connected via lines on a geographic map.
+    ///
+    /// Parameters:
+    ///
+    /// locations   : Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.
+    ///
+    /// Name        : Sets the trace name. The trace name appear as the legend item and on hover
+    ///
+    /// ShowMarkers : Determines wether or not markers will be rendered for each datum.
+    ///
+    /// Showlegend  : Determines whether or not an item corresponding to this trace is shown in the legend.
+    ///
+    /// MarkerSymbol: Sets the type of symbol that datums are displayed as
+    ///
+    /// Color       : Sets Line/Marker Color
+    ///
+    /// Opacity     : Sets the Opacity of the trace
+    ///
+    /// Labels      : Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.
+    ///
+    /// TextPosition: Sets the positions of the `text` elements with respects to the (lon,lat) coordinates.
+    ///
+    /// TextFont    : Sets the text font of this trace
+    ///
+    /// TextFont    : Sets the text font of this trace
+    ///
+    /// GeoJson     : Sets optional GeoJSON data associated with this trace. If not given, the features on the base map are used when `locations` is set. It can be set as a valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs of type "FeatureCollection" or "Feature" with geometries of type "Polygon" or "MultiPolygon".
+    ///
+    /// Connectgaps : Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
+    ///
+    /// Fill        : Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.
+    ///
+    /// Fillcolor   : Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
+    static member LineGeo(locations,
+            [<Optional;DefaultParameterValue(null)>] ?Name                          ,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol                  ,
+            [<Optional;DefaultParameterValue(null)>] ?ShowMarkers                   ,
+            [<Optional;DefaultParameterValue(null)>] ?Color                         ,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
+            [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
+            [<Optional;DefaultParameterValue(null)>] ?GeoJson                       ,
+            [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
+            [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
+            [<Optional;DefaultParameterValue(null)>] ?Fillcolor    
+        ) = 
+
+        let changeMode = 
+            let isShowMarker =
+                match ShowMarkers with
+                | Some isShow -> isShow
+                | Option.None        -> false
+            StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
+            >> StyleParam.ModeUtils.showMarker (isShowMarker)
+
+        Trace.initScatterGeo(
+            TraceStyle.ScatterGeo(
+                mode        = changeMode StyleParam.Mode.Lines,
+                Locations   = locations    ,
+                ?GeoJson    = GeoJson      ,
+                ?Connectgaps= Connectgaps  ,
+                ?Fill       = Fill         ,
+                ?Fillcolor  = Fillcolor    
+            )               
+        )
+        |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+        |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
+        |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        |> GenericChart.ofTraceObject
