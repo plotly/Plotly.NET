@@ -1,0 +1,33 @@
+type project
+id Plotly.NET.WPF
+title
+    Plotly.NET.WPF
+owners
+    Timo Mühlhaus, Kevin Schneider
+authors 
+    Timo Mühlhaus, Kevin Schneider, F# open source contributors
+projectUrl
+    https://muehlhaus.github.io/FSharp.Plotly/
+iconUrl
+    https://raw.githubusercontent.com/plotly/Plotly.NET/master/docsrc/files/img/logo.png
+licenseUrl
+    https://github.com/plotly/Plotly.NET/blob/master/LICENSE
+requireLicenseAcceptance
+    false
+language
+    F#
+copyright
+    Copyright 2017-2020
+tags
+    visualization charting plotly F# WPF
+summary
+    A F# interactive charting library using plotly.js for WPF
+description
+    A F# interactive charting library using plotly.js for WPF
+#files
+#   ../../bin/Plotly.NET ==> lib
+repositoryType
+    git
+repositoryUrl
+    https://github.com/plotly/Plotly.NET
+include-pdbs true

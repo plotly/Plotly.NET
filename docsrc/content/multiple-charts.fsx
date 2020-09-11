@@ -2,14 +2,14 @@
 // This block of code is omitted in the generated HTML documentation. Use 
 // it to define helpers that you do not want to show in the documentation.
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r "../../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
 
 
 (**
 Multiple charts and subcharts
 =============================
 
-How to create subplots in FSharp.Plotly. Find examples of combined, stacked, and plots with multiple axis.
+How to create subplots in Plotly.NET. Find examples of combined, stacked, and plots with multiple axis.
 
 *)
 
@@ -24,7 +24,7 @@ How to create subplots in FSharp.Plotly. Find examples of combined, stacked, and
 
 
 *)
-open FSharp.Plotly
+open Plotly.NET
 
 
 //simple 3x3 subplot grid

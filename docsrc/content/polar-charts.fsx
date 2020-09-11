@@ -1,10 +1,10 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r "../../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
 
 
 (** 
-# FSharp.Plotly: Polar chart
+# Plotly.NET: Polar chart
 
 *Summary:* This example shows how to create polar charts in F#.
 
@@ -13,7 +13,7 @@ of three or more quantitative variables represented on axes starting from the sa
 The relative position and angle of the axes is typically uninformative.
 *)
 
-open FSharp.Plotly 
+open Plotly.NET 
   
 let r   = [1; 2; 3; 4; 5; 6; 7;]
 let r'  = [ 5; 6; 7; 1; 2; 3; 4;]

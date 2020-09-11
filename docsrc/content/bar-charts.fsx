@@ -1,9 +1,9 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r "../../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
 
 (** 
-# FSharp.Plotly: Bar and Column Charts
+# Plotly.NET: Bar and Column Charts
 
 *Summary:* This example shows how to create bar and a column charts in F#.
 
@@ -12,7 +12,7 @@ lengths proportional to the values that they represent. The bars can be plotted 
 or horizontally. A vertical bar chart is called a column bar chart.
 *)
 
-open FSharp.Plotly 
+open Plotly.NET 
   
 let values = [20; 14; 23;]
 let keys   = ["Product A"; "Product B"; "Product C";]

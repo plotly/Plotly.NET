@@ -1,10 +1,10 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r "../../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
 
 
 (** 
-# FSharp.Plotly: Range plot Charts
+# Plotly.NET: Range plot Charts
 
 *Summary:* This example shows how to create Range plot charts in F#.
 
@@ -13,7 +13,7 @@ When creating pie or doughnut charts, it is usually desirable to provide both la
 values.
 *)
 
-open FSharp.Plotly 
+open Plotly.NET 
 open StyleParam
 
 let rnd = System.Random()

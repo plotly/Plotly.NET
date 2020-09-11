@@ -1,15 +1,15 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r "../../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
 
 (** 
-# FSharp.Plotly: 3D surface plot Charts
+# Plotly.NET: 3D surface plot Charts
 
 *Summary:* This example shows how to create 3D surface plots in F#.
 *)
 
 open System
-open FSharp.Plotly 
+open Plotly.NET 
 
 
 // Generate linearly spaced vector

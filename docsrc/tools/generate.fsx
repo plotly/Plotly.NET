@@ -35,14 +35,14 @@ let rec copyRecursive dir1 dir2 =
          File.Copy(file, file.Replace(dir1, dir2), true)
 
 // Web site location for the generated documentation
-let website = "https://muehlhaus.github.io/FSharp.Plotly/"
+let website = "https://muehlhaus.github.io/Plotly.NET/"
 
 let info =
-  [ "project-name", "FSharp.Plotly"
+  [ "project-name", "Plotly.NET"
     "project-author", "Timo Mühlhaus; Kevin Schneider; OSS Contributors"
     "project-summary", "A F# interactive charting library using plotly.js"
-    "project-github", "https://github.com/muehlhaus/FSharp.Plotly"
-    "project-nuget", "http://nuget.org/packages/FSharp.Plotly" ]
+    "project-github", "https://github.com/plotly/Plotly.NET"
+    "project-nuget", "http://nuget.org/packages/Plotly.NET" ]
 // --------------------------------------------------------------------------------------
 // For typical project, no changes are needed below
 // --------------------------------------------------------------------------------------
@@ -52,14 +52,14 @@ let info =
 // Binaries for which to generate XML documentation
 let referenceBinaries = 
       [ 
-        __SOURCE_DIRECTORY__ + "/../../src/FSharp.Plotly/bin/Release/netstandard2.0/FSharp.Plotly.dll"
-        __SOURCE_DIRECTORY__ + "/../../src/FSharp.Plotly.WPF//bin/Release/net47/FSharp.Plotly.WPF.dll"
+        __SOURCE_DIRECTORY__ + "/../../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+        __SOURCE_DIRECTORY__ + "/../../src/Plotly.NET.WPF//bin/Release/net47/Plotly.NET.WPF.dll"
       ]
 
 let libDirs = 
     [ 
-      __SOURCE_DIRECTORY__ + "/../../src/FSharp.Plotly/bin/Release/netstandard2.0/"
-      __SOURCE_DIRECTORY__ + "/../../src/FSharp.Plotly.WPF/bin/Release/net47/"
+      __SOURCE_DIRECTORY__ + "/../../src/Plotly.NET/bin/Release/netstandard2.0/"
+      __SOURCE_DIRECTORY__ + "/../../src/Plotly.NET.WPF/bin/Release/net47/"
     ]
 
 // When called from 'build.fsx', use the public project URL as <root>
@@ -96,7 +96,7 @@ let buildReference () =
     RazorMetadataFormat.Generate( 
         referenceBinaries, (output + "/" + "reference"), layoutRootsAll.["en"],
         parameters = ("root", root)::info,
-        sourceRepo = "https://github.com/muehlhaus/FSharp.Plotly/tree/master/",
+        sourceRepo = "https://github.com/plotly/Plotly.NET/tree/master/",
         sourceFolder = __SOURCE_DIRECTORY__.Substring(0, __SOURCE_DIRECTORY__.Length - @"\docsrc\tools".Length),
         publicOnly = true,
         libDirs = libDirs

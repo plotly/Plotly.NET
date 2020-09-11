@@ -42,11 +42,11 @@ let openOsSpecificFile path =
     else
         invalidOp "Not supported OS platform"
 
-let project = "FSharp.Plotly"
+let project = "Plotly.NET"
 
 let summary = "A F# interactive charting library using plotly.js"
 
-let solutionFile  = "FSharp.Plotly.sln"
+let solutionFile  = "Plotly.NET.sln"
 
 let configuration = "Release"
 
@@ -54,12 +54,12 @@ let testAssemblies = "tests/**/bin" </> configuration </> "**" </> "*Tests.exe"
 
 // Git configuration (used for publishing documentation in gh-pages branch)
 // The profile where the project is posted
-let gitOwner = "muehlhaus"
+let gitOwner = "plotly"
 let gitHome = sprintf "%s/%s" "https://github.com" gitOwner
 
-let gitName = "FSharp.Plotly"
+let gitName = "Plotly.NET"
 
-let website = "/FSharp.Plotly"
+let website = "/Plotly.NET"
 
 let pkgDir = "pkg"
 
@@ -118,7 +118,7 @@ Target.create "CopyBinaries" (fun _ ->
 
 Target.create "CopyBinariesDotnet" (fun _ ->
     !! "src/**/*.fsproj"
-    -- "src/FSharp.Plotly.WPF/FSharp.Plotly.WPF.fsproj"
+    -- "src/Plotly.NET.WPF/Plotly.NET.WPF.fsproj"
     |>  Seq.map (fun f -> ((Path.getDirectory f) </> "bin" </> "Dotnet", "bin" </> (Path.GetFileNameWithoutExtension f)))
     |>  Seq.iter (fun (fromDir, toDir) -> Shell.copyDir toDir fromDir (fun _ -> true))
 )

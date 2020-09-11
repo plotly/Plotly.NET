@@ -1,9 +1,9 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r "../../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
 
 (** 
-# FSharp.Plotly: Wind Rose chart
+# Plotly.NET: Wind Rose chart
 
 *Summary:* This example shows how to create wind rose charts in F#.
 
@@ -11,7 +11,7 @@ A wind rose is a graphic tool used by meteorologists to give a succinct view
 of how wind speed and direction are typically distributed at a particular location.
 *)
 
-open FSharp.Plotly 
+open Plotly.NET 
   
 let r    = [77.5; 72.5; 70.0; 45.0; 22.5; 42.5; 40.0; 62.5]
 let r'   = [57.5; 50.0; 45.0; 35.0; 20.0; 22.5; 37.5; 55.0]

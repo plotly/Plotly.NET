@@ -1,17 +1,17 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r "../../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
 
 (** 
-# FSharp.Plotly: Tables
+# Plotly.NET: Tables
 
 This example shows how to create tables in F#.
 
 
 *)
 
-open FSharp.Plotly 
-open FSharp.Plotly.StyleParam
+open Plotly.NET 
+open Plotly.NET.StyleParam
   
 let header = ["<b>RowIndex</b>";"A";"simple";"table"]
 let rows = 

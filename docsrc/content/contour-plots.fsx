@@ -1,9 +1,9 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r "../../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
 
 (** 
-# FSharp.Plotly: Contour plot
+# Plotly.NET: Contour plot
 
 *Summary:* This example shows how to create contour plot in F#.
 
@@ -17,7 +17,7 @@ The contour plot is an alternative to a 3-D surface plot.
 *)
 
 open System
-open FSharp.Plotly 
+open Plotly.NET 
 
 
 // Generate linearly spaced vector

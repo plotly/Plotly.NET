@@ -1,9 +1,9 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r "../../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
 
 (** 
-# FSharp.Plotly: Pie and Doughnut Charts
+# Plotly.NET: Pie and Doughnut Charts
 
 *Summary:* This example shows how to create pie and doughnut charts in F#.
 
@@ -12,7 +12,7 @@ When creating pie or doughnut charts, it is usually desirable to provide both la
 values.
 *)
 
-open FSharp.Plotly 
+open Plotly.NET 
   
 let values = [19; 26; 55;]
 let labels = ["Residential"; "Non-Residential"; "Utility"]

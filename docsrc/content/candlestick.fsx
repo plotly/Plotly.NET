@@ -1,9 +1,9 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r "../../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
 
 (** 
-# FSharp.Plotly: Candlestick Charts
+# Plotly.NET: Candlestick Charts
 
 *Summary:* This example shows how to create candlestick charts in F#.
 
@@ -12,8 +12,8 @@ is a group of high, open, close and low values over a period of time, e.g. 1 min
 The x-axis is usually dateime values and y is a sequence of candle structures.
 *)
 
-open FSharp.Plotly 
-open FSharp.Plotly.StyleParam
+open Plotly.NET 
+open Plotly.NET.StyleParam
 
 let candles =
     [|("2020-01-17T13:40:00", 0.68888, 0.68888, 0.68879, 0.6888);

@@ -1,9 +1,9 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r "../../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
 
 (** 
-# FSharp.Plotly: BoxPlot Charts
+# Plotly.NET: BoxPlot Charts
 
 *Summary:* This example shows how to create boxplot charts in F#.
 
@@ -13,8 +13,8 @@ and lower quartiles, hence the terms box-and-whisker plot and box-and-whisker di
 Outliers may be plotted as individual points.
 *)
 
-open FSharp.Plotly 
-open FSharp.Plotly.StyleParam
+open Plotly.NET 
+open Plotly.NET.StyleParam
   
 let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
 let x = ["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"bin1"]
