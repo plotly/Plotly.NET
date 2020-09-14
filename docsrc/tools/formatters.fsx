@@ -1,6 +1,6 @@
 module Formatters
 #load "../../packages/formatting/FSharp.Formatting/FSharp.Formatting.fsx"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r "../../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
 #r "../../packages/formatting/FSharp.Compiler.Service/lib/netstandard2.0/FSharp.Compiler.Service.dll"
 
 // --------------------------------------------------------------------------------------
@@ -9,7 +9,7 @@ module Formatters
 
 open FSharp.Literate
 open FSharp.Markdown
-open FSharp.Plotly
+open Plotly.NET
 
 // --------------------------------------------------------------------------------------
 // Build FSI evaluator

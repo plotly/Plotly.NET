@@ -1,10 +1,10 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
-open FSharp.Plotly
+#r "../../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
+open Plotly.NET
 
 (** 
-# FSharp.Plotly: Parallel Categories Plot
+# Plotly.NET: Parallel Categories Plot
 
 *Summary:* This example shows how to create parallel categories plot in F#.
 

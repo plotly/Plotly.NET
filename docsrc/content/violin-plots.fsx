@@ -1,9 +1,9 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r "../../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
 
 (** 
-# FSharp.Plotly: Violin plot Charts
+# Plotly.NET: Violin plot Charts
 
 *Summary:* This example shows how to create violin plot charts in F#.
 
@@ -13,8 +13,8 @@ data at different values.
 
 *)
 
-open FSharp.Plotly 
-open FSharp.Plotly.StyleParam
+open Plotly.NET 
+open Plotly.NET.StyleParam
   
 let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
 let x = ["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"bin1"]

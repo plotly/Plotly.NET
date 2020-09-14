@@ -1,9 +1,9 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r "../../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
 
 (** 
-# FSharp.Plotly: Sankey Charts
+# Plotly.NET: Sankey Charts
 
 *Summary:* This example shows how to create sankey charts in F#.
 
@@ -13,8 +13,8 @@ To create Sankey, a set of nodes and links between them are required.
 These are created using the provided Node and Link structures.
 *)
 
-open FSharp.Plotly 
-open FSharp.Plotly.StyleParam
+open Plotly.NET 
+open Plotly.NET.StyleParam
 let n1 = Node.Create("a",color="Black")
 let n2 = Node.Create("b",color="Red")
 let n3 = Node.Create("c",color="Purple")

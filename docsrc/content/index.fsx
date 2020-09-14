@@ -2,18 +2,18 @@
 // This block of code is omitted in the generated HTML documentation. Use 
 // it to define helpers that you do not want to show in the documentation.
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r "../../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
 
 (**
-FSharp.Plotly
+Plotly.NET
 ======================
 
-The library FSharp.Plotly implements charting suitable for use from F# scripting. Once you load the library as followed, you can use the members of the `Chart` type to easily build charts.
+The library Plotly.NET implements charting suitable for use from F# scripting. Once you load the library as followed, you can use the members of the `Chart` type to easily build charts.
 
-FSharp.Plotly is powered by popular JavaScript charting library [Plotly](https://plot.ly/). The library provides a complete mapping for the configuration options of the underlying library but empowers you to use the comfortable style known from the beautiful library [F# Charting](http://fslab.org/FSharp.Charting/). So you get a nice F# interface support with the full power of Plotly.
+Plotly.NET is powered by popular JavaScript charting library [Plotly](https://plot.ly/). The library provides a complete mapping for the configuration options of the underlying library but empowers you to use the comfortable style known from the beautiful library [F# Charting](http://fslab.org/FSharp.Charting/). So you get a nice F# interface support with the full power of Plotly.
 *)
 
-open FSharp.Plotly
+open Plotly.NET
 
 (**
 Example
@@ -45,7 +45,7 @@ pie1 |> Chart.Show
 (** 
 
 ## Pipelining into Chart.Line
-FSharp.Plotly supports also convenient pipelining of value pairs. 
+Plotly.NET supports also convenient pipelining of value pairs. 
 The following example calls the `Chart.Line` method with a list of X and Y values as tuples. The snippet generates
 values of a simple function, f(x)=x^2. The values of the function are generated for X ranging from 1 to 100. The chart generated is 
 shown below.
@@ -74,9 +74,9 @@ The library is available under Public Domain license, which allows modification 
 redistribution for both commercial and non-commercial purposes. For more information see the 
 [License file][license] in the GitHub repository. 
 
-  [content]: https://github.com/fsprojects/FSharp.Plotly/tree/master/docs/content
-  [gh]: https://github.com/fsprojects/FSharp.Plotly
-  [issues]: https://github.com/fsprojects/FSharp.Plotly/issues
-  [readme]: https://github.com/fsprojects/FSharp.Plotly/blob/master/README.md
-  [license]: https://github.com/fsprojects/FSharp.Plotly/blob/master/LICENSE.txt
+  [content]: https://github.com/plotly/Plotly.NET/tree/master/docs/content
+  [gh]: https://github.com/plotly/Plotly.NET
+  [issues]: https://github.com/plotly/Plotly.NET/issues
+  [readme]: https://github.com/plotly/Plotly.NET/blob/master/README.md
+  [license]: https://github.com/plotly/Plotly.NET/blob/master/LICENSE.txt
 *)

@@ -1,9 +1,9 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r "../../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
 
 (** 
-# FSharp.Plotly: Choropleth Maps
+# Plotly.NET: Choropleth Maps
 
 *Summary:* This example shows how to create choropleth map in F#.
 
@@ -12,7 +12,7 @@ a data variable. This provides a way to visualise values over a geographical are
 patterns across the displayed location.
 *)
 
-open FSharp.Plotly 
+open Plotly.NET 
 
 let locations,z = 
    [("Belarus",17.5); ("Moldova",16.8);("Lithuania",15.4);("Russia",15.1);

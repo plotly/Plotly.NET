@@ -1,9 +1,9 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r "../../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
 
 (** 
-# FSharp.Plotly: Heatmaps
+# Plotly.NET: Heatmaps
 
 *Summary:* This example shows how to create heatmap charts in F#.
 
@@ -11,7 +11,7 @@ A heatmap chart can be created using the `Chart.HeatMap` functions.
 When creating heatmap charts, it is usually desirable to provide the values in matrix form, rownames and colnames.
 *)
 
-open FSharp.Plotly 
+open Plotly.NET 
  
 
 let matrix =

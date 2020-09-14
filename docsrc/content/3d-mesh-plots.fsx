@@ -1,17 +1,17 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r "../../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
 
 
 (** 
-# FSharp.Plotly: Mesh3d
+# Plotly.NET: Mesh3d
 
 *Summary:* This example shows how to create 3D-Mesh charts in F#.
 
 *)
 
 open System
-open FSharp.Plotly 
+open Plotly.NET 
 
 
 // Generate linearly spaced vector

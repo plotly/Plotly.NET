@@ -1,8 +1,8 @@
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r "../../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
 
 (** 
-# FSharp.Plotly: Histogram
+# Plotly.NET: Histogram
 
 *Summary:* This example shows how to create a one-dimensional histogram of a data samples in F#.
 
@@ -10,7 +10,7 @@ A histogram consisting of rectangles whose area is proportional to the frequency
 The histogram chart represents the distribution of numerical data and can be created using the `Chart.Histogram`.
 *)
 
-open FSharp.Plotly 
+open Plotly.NET 
 
 let rnd = System.Random()
 let x = [for i=0 to 500 do yield rnd.NextDouble() ]

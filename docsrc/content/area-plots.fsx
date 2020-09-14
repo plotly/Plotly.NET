@@ -1,9 +1,9 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r "../../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
 
 (** 
-# FSharp.Plotly: Area Charts
+# Plotly.NET: Area Charts
 
 *Summary:* This example shows how to create an area charts in F#.
 
@@ -11,7 +11,7 @@ An area chart or area graph displays graphically quantitive data. It is based on
 The area between axis and line are commonly emphasized with colors, textures and hatchings.
 *)
 
-open FSharp.Plotly 
+open Plotly.NET 
   
 let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
 let y  = [5.; 2.5; 5.; 7.5; 5.; 2.5; 7.5; 4.5; 5.5; 5.]

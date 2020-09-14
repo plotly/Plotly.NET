@@ -1,19 +1,19 @@
 (*** hide ***)
 #r "netstandard"
 #r "../../packages/Newtonsoft.Json/lib/netstandard2.0/Newtonsoft.Json.dll"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r "../../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
 
 
 
 (** 
-# FSharp.Plotly: Histogram2d
+# Plotly.NET: Histogram2d
 
 *Summary:* This example shows how to create a bi-dimensional histogram of two data samples in F#.
 
 A Histogram2d chart can be created using the `Chart.Histogram2d` or `Chart.Histogram2dContour` functions.
 *)
 
-open FSharp.Plotly 
+open Plotly.NET 
 
 // generate random normaly distributed data
 let normal (rnd:System.Random) mu tau =

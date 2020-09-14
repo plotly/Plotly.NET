@@ -1,16 +1,16 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r "../../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
 
 (** 
-# FSharp.Plotly: Scatter3d Charts
+# Plotly.NET: Scatter3d Charts
 
 *Summary:* This example shows how to create three-dimensional scatter charts in F#.
 
 A Scatter3d chart report shows a three-dimensional spinnable view of your data
 *)
 
-open FSharp.Plotly 
+open Plotly.NET 
   
 let x = [19; 26; 55;]
 let y = [19; 26; 55;]

@@ -1,10 +1,10 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r "../../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
 
 
 (** 
-# FSharp.Plotly: Parallel Coordinates Plot
+# Plotly.NET: Parallel Coordinates Plot
 
 *Summary:* This example shows how to create parallel coordinates plot in F#.
 
@@ -14,7 +14,7 @@ vertical and equally spaced. A point in n-dimensional space is represented as a 
 the position of the vertex on the i-th axis corresponds to the i-th coordinate of the point.
 *)
 
-open FSharp.Plotly 
+open Plotly.NET 
 
 let data = 
     ['A',[|1.;4.;3.4;0.7;|]; 'B',[|3.;1.5;1.7;2.3;|]; 'C',[|2.;4.;3.1;5.|]; 'D',[|4.;2.;2.;4.;|];]

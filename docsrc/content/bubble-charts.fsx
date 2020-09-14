@@ -1,8 +1,8 @@
 (*** hide ***)
 #r "netstandard"
-#r "../../bin/FSharp.Plotly/netstandard2.0/FSharp.Plotly.dll"
+#r "../../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
 (** 
-# FSharp.Plotly: Bubble chart
+# Plotly.NET: Bubble chart
 
 *Summary:* This example shows how to create pie and doughnut charts in F#.
 
@@ -11,7 +11,7 @@ of associated data is plotted as a disk. The first two values determine the disk
 third its size.
 *)
 
-open FSharp.Plotly 
+open Plotly.NET 
   
 let x = [2; 4; 6;]
 let y = [4; 1; 6;]
