@@ -3,6 +3,7 @@ namespace Plotly.NET
 open System
 open Newtonsoft.Json
 
+
 /// HTML template for Plotly.js 
 module HTML =
 
@@ -132,16 +133,38 @@ module ChartDescription =
             .Replace("[DESCRIPTIONHEADING]",d.Heading)
             .Replace("[DESCRIPTIONTEXT]",d.Text)
 
-
 /// Module to represent a GenericChart
 module GenericChart =
 
     open Trace
     open ChartDescription
 
+    type Figure = 
+        {
+            [<JsonProperty("data")>]
+            Data: Trace list
+            [<JsonProperty("layout")>]
+            Layout: Layout
+        } 
+        static member create data layout = {Data = data; Layout = layout}
+
+    //TO-DO refactor as type with static members to remove verbose top namespace from 'GenericChart.GenericChart'
     type GenericChart =
         | Chart of Trace * Layout * Config
         | MultiChart of Trace list * Layout * Config
+
+    let toFigure (gChart:GenericChart) =
+        match gChart with
+        | Chart (trace,layout,_) -> Figure.create [trace] layout
+        | MultiChart (traces,layout,_) -> Figure.create traces layout
+
+    let fromFigure (fig:Figure) =
+        let traces = fig.Data
+        let layout = fig.Layout
+        if traces.Length <> 1 then
+            MultiChart (traces,layout,Config())
+        else
+            Chart (traces.[0], layout, Config())
 
     let getTraces gChart =
         match gChart with
