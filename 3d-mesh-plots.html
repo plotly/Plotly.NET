@@ -2,20 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>FSharp.Plotly: Mesh3d
+    <title>Plotly.NET: Mesh3d
 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="A F# interactive charting library using plotly.js" />
-    <meta name="author" content="Timo Mühlhaus" />
+    <meta name="author" content="Timo M�hlhaus; Kevin Schneider; OSS Contributors" />
 
     <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
     <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
     <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
     <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet" />
 
-    <link type="text/css" rel="stylesheet" href="/FSharp.Plotly/content/style.css" />
-    <link type="text/css" rel="stylesheet" href="/FSharp.Plotly/style/CSBstyle.css" /> <!--/FSharp.Plotly-->
-    <script type="text/javascript" src="/FSharp.Plotly/content/tips.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://plotly.github.io/Plotly.NET/content/style.css" />
+    <link type="text/css" rel="stylesheet" href="https://plotly.github.io/Plotly.NET/style/CSBstyle.css" /> <!--https://plotly.github.io/Plotly.NET-->
+    <script type="text/javascript" src="https://plotly.github.io/Plotly.NET/content/tips.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -28,15 +28,14 @@
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
           <li><a href="http://fsharp.org">fsharp.org</a></li>
-          <li><a href="https://github.com/muehlhaus/FSharp.Plotly">github page</a></li>
+          <li><a href="https://github.com/plotly/Plotly.NET">github page</a></li>
         </ul>
-        <h3 class="muted"><a href="/FSharp.Plotly/index.html">FSharp.Plotly</a></h3>
+        <h3 class="muted"><a href="https://plotly.github.io/Plotly.NET/index.html">Plotly.NET</a></h3>
       </div>
       <hr />
       <div class="row">
         <div class="span9" id="main">
-          
-<h1><a name="FSharp-Plotly-Mesh3d" class="anchor" href="#FSharp-Plotly-Mesh3d">FSharp.Plotly: Mesh3d</a></h1>
+          <h1><a name="Plotly-NET-Mesh3d" class="anchor" href="#Plotly-NET-Mesh3d">Plotly.NET: Mesh3d</a></h1>
 <p><em>Summary:</em> This example shows how to create 3D-Mesh charts in F#.</p>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
 <span class="l"> 2: </span>
@@ -86,7 +85,7 @@
 <span class="l">46: </span>
 </pre></td>
 <td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">System</span>
-<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">FSharp</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="id">Plotly</span> 
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">Plotly</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="id">NET</span> 
 
 
 <span class="c">// Generate linearly spaced vector</span>
@@ -140,17 +139,36 @@
 </code></pre></td>
 </tr>
 </table>
-<div id="c126d75f-902d-4807-97e8-34942167de66" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>
-  <script>
-    var data = [{"type":"mesh3d","x":[0.23009973542303766,0.36692443786511403,0.18807178371961777,0.61740527004814016,0.33409857299835355,0.35518240852057115,0.30298268855688287,0.17347960414992628,0.6942964180811757,0.42772798166970161,0.5202715753206385,0.645677618051729,0.73263791284181079,0.18601213730220317,0.62825089303229509,0.54721159280613607,0.62072848790359147,0.32159947386085963,0.16339899281198111,0.39584391489431442,0.72610292431251278,0.31077979612666173,0.7553535777867556,0.56405055735448872,0.25323896587511474,0.79337765127112048,0.410446326905138,0.29591777841370448,0.67927090994979766,0.0634679096115138,0.2954563881715091,0.61491236491823209,0.67686359615850433,0.24766778678059009,0.016482837040202151,0.77838739882148211,0.21970626396113366,0.068904657880265577,0.61661481001256724,0.73059886448578859,0.8209286177628341,0.19230693960204112,0.8039857492800736,0.927476907115186,0.42383258762947867,0.9505900130377104,0.9226926904743038,0.02634726419409144,0.99160459823515479,0.57109610902662211],"y":[0.87170924519733961,0.012118744669537407,0.34731273834934118,0.43854187682203105,0.46218370341797532,0.9193199392963759,0.61157086007835848,0.62402122636512913,0.36416630417302542,0.54072092172723307,0.9447360816154331,0.00706491014317838,0.49420869420012864,0.630828508469662,0.13227159349819254,0.90535921040240641,0.96881402189322474,0.4849701260612207,0.16952930026200103,0.849863494210813,0.32750532884500239,0.55182383002332591,0.70498466384829239,0.43280012832619258,0.57491529713148037,0.53379598471047174,0.50679404684658813,0.82787667067156945,0.14021796972500997,0.30264895283740428,0.87068496079681668,0.38409906271104655,0.30431318017854969,0.10817480092317555,0.19175866441417425,0.28333764350197166,0.26759962656889091,0.23832171933647325,0.78548408336261477,0.097162897743826221,0.16681653874312366,0.59568503759600455,0.70473835370724014,0.075893888285334166,0.78586278287035538,0.81386370761965576,0.69809824540191245,0.17315724081041162,0.79520531361699354,0.51847337722707232],"z":[0.98177599114448577,0.43772256441308305,0.85681796393209042,0.14174110402434184,0.2435907801816197,0.31988541517401364,0.307134080821245,0.91451261002314865,0.86362657969055068,0.92838771870750358,0.41252589244978777,0.783694189406789,0.48380325664011914,0.06151735133562114,0.6700359609304164,0.56063701890438655,0.70275172996462865,0.38603389327695309,0.43906984405548771,0.84893394999622085,0.6377595838335155,0.73049230255675146,0.69948604269860593,0.0723664025181748,0.68304695546768934,0.73182029124899783,0.84708547631608577,0.62909077556295823,0.64693734545583714,0.76105158951182461,0.83569773930855917,0.33363680603617651,0.032671357054575981,0.62174459249793768,0.32087296169291851,0.43296239638373368,0.52728109877895613,0.16257207615420785,0.86458402074155583,0.87187324924016052,0.97620356268072672,0.35308701654574232,0.37469513964592255,0.85709636465511119,0.68463700529403848,0.38312234933633466,0.11188178095588544,0.64322100237161894,0.40585792735491782,0.22522576396596886],"flatshading":true,"contour":{"x":{"show":true},"y":{"show":true},"z":{"show":true}}}];
-    var layout = {};
-    var config = {};
-    Plotly.newPlot('c126d75f-902d-4807-97e8-34942167de66', data, layout, config);
-  </script>
+<div id="d034c275-5621-40f8-8741-fdbe7a5bc9ce" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<script type="text/javascript">
+
+            var renderPlotly = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}});
+            fsharpPlotlyRequire(['plotly'], function(Plotly) {
+
+            var data = [{"type":"mesh3d","x":[0.9240642427113206,0.2294344260494385,0.1246295539311271,0.8710419223043332,0.169414754104528,0.14917532501238182,0.9366411892402178,0.28941795336521137,0.06907826432449662,0.12024510331463306,0.6119180189501112,0.5094308697196799,0.35930454561454456,0.2606033884271064,0.45582782824329465,0.9404565407617281,0.6846481639354715,0.2972369013806977,0.9629414970813978,0.05475992385985326,0.7305228727546161,0.3986803267144972,0.6086874579119903,0.8684686458988435,0.3819232962010071,0.16516227003427328,0.6258596268602925,0.7641124295834976,0.4234817770419092,0.8534798998634703,0.5949990547238845,0.060010659536351756,0.16969910365049687,0.47310377679444093,0.3086637604556343,0.4537048667919379,0.6606372788830834,0.7860090927155731,0.8320926725082531,0.733096513772894,0.7224884073820377,0.6545901231721929,0.3502610234312066,0.4807557149234953,0.8860101345395717,0.6512484600074815,0.6811406880994982,0.8586729326558639,0.5125635431672276,0.807533924843899],"y":[0.5359777205325559,0.7197726372255816,0.7633889884517476,0.14351505792863437,0.8722631963306401,0.5253839159968234,0.6207469681374481,0.2561609080322836,0.489118626103326,0.004252484070254715,0.5233156981520893,0.1725287596567202,0.8659361763233022,0.21559836446102632,0.5252460485907486,0.5519073594137595,0.33973176606918304,0.8862007688201036,0.951939627971472,0.0021229614513567467,0.2798192618786447,0.8986390712198983,0.4651442288724446,0.22984498330850386,0.3322715164778156,0.07593274958242324,0.04841930328329061,0.12793174298849502,0.9824585113592719,0.7306748361935256,0.484021581934775,0.7671866942044285,0.2515488864162699,0.6159478521980103,0.31750217933091435,0.8752264174983029,0.2966216710846041,0.026184045721862486,0.6008405804638008,0.7832798444588109,0.8329578986544898,0.4044763708507998,0.29689046661224705,0.8278401884379983,0.20978081562080458,0.5499596477253175,0.7886539468488907,0.1346626589701803,0.9555096663327467,0.33410277512581216],"z":[0.31151669393829845,0.7949399192793947,0.9067333046843918,0.5104405817158709,0.5277146629652543,0.6373386493126576,0.25462840835313705,0.5335440051432438,0.8112435414508188,0.7963304467482168,0.4769646127135328,0.49281522514895315,0.27370239667301177,0.7584437899098004,0.5202309021354797,0.7561290039476608,0.9209798732404504,0.24998832412529193,0.8980961851301119,0.6500196310924458,0.25528568832915544,0.31354772034732054,0.2853601883563028,0.16865978351266114,0.16916506279686702,0.8753428910278449,0.6017486046076513,0.6373040404344462,0.020064167687699277,0.7823118687524981,0.2872788027335325,0.9137566443131103,0.17242207665574832,0.6483557362334597,0.41915814225522713,0.6890816626553804,0.8604533895200367,0.741108304700399,0.08823318923275601,0.6801635300182568,0.6205980091451658,0.7630776659413603,0.2149405042710437,0.804510133715584,0.3063152317452781,0.3401426735055366,0.130773974177788,0.5384466767024466,0.3076092863025187,0.4536518116731438],"flatshading":true,"contour":{"x":{"show":true},"y":{"show":true},"z":{"show":true}}}];
+            var layout = {};
+            var config = {};
+            Plotly.newPlot('d034c275-5621-40f8-8741-fdbe7a5bc9ce', data, layout, config);
+});
+            };
+            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) { 
+                var script = document.createElement("script"); 
+                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"); 
+                script.onload = function(){
+                    renderPlotly();
+                };
+                document.getElementsByTagName("head")[0].appendChild(script); 
+            }
+            else {
+                renderPlotly();
+            }
+</script>
+
 
 <div class="tip" id="fs1">namespace System</div>
-<div class="tip" id="fs2">Multiple items<br />namespace FSharp<br /><br />--------------------<br />namespace Microsoft.FSharp</div>
-<div class="tip" id="fs3">namespace FSharp.Plotly</div>
+<div class="tip" id="fs2">namespace Plotly</div>
+<div class="tip" id="fs3">namespace Plotly.NET</div>
 <div class="tip" id="fs4">val linspace : min:float * max:float * n:int -&gt; float []</div>
 <div class="tip" id="fs5">val min : float</div>
 <div class="tip" id="fs6">val max : float</div>
@@ -163,7 +181,7 @@
 <div class="tip" id="fs13">val i : int</div>
 <div class="tip" id="fs14">val size : int</div>
 <div class="tip" id="fs15">val x : float []</div>
-<div class="tip" id="fs16">type Math =<br />&#160;&#160;static val PI : float<br />&#160;&#160;static val E : float<br />&#160;&#160;static member Abs : value:sbyte -&gt; sbyte + 6 overloads<br />&#160;&#160;static member Acos : d:float -&gt; float<br />&#160;&#160;static member Asin : d:float -&gt; float<br />&#160;&#160;static member Atan : d:float -&gt; float<br />&#160;&#160;static member Atan2 : y:float * x:float -&gt; float<br />&#160;&#160;static member BigMul : a:int * b:int -&gt; int64<br />&#160;&#160;static member Ceiling : d:decimal -&gt; decimal + 1 overload<br />&#160;&#160;static member Cos : d:float -&gt; float<br />&#160;&#160;...</div>
+<div class="tip" id="fs16">type Math =<br />&#160;&#160;static val E : float<br />&#160;&#160;static val PI : float<br />&#160;&#160;static member Abs : value:float -&gt; float + 6 overloads<br />&#160;&#160;static member Acos : d:float -&gt; float<br />&#160;&#160;static member Acosh : d:float -&gt; float<br />&#160;&#160;static member Asin : d:float -&gt; float<br />&#160;&#160;static member Asinh : d:float -&gt; float<br />&#160;&#160;static member Atan : d:float -&gt; float<br />&#160;&#160;static member Atan2 : y:float * x:float -&gt; float<br />&#160;&#160;static member Atanh : d:float -&gt; float<br />&#160;&#160;...</div>
 <div class="tip" id="fs17">field Math.PI: float = 3.14159265359</div>
 <div class="tip" id="fs18">val y : float []</div>
 <div class="tip" id="fs19">val f : x:float -&gt; y:float -&gt; float</div>
@@ -172,79 +190,75 @@
 <div class="tip" id="fs22">val z : float [] []</div>
 <div class="tip" id="fs23">val j : int</div>
 <div class="tip" id="fs24">val rnd : Random</div>
-<div class="tip" id="fs25">Multiple items<br />type Random =<br />&#160;&#160;new : unit -&gt; Random + 1 overload<br />&#160;&#160;member Next : unit -&gt; int + 2 overloads<br />&#160;&#160;member NextBytes : buffer:byte[] -&gt; unit<br />&#160;&#160;member NextDouble : unit -&gt; float<br /><br />--------------------<br />Random() : Random<br />Random(Seed: int) : Random</div>
+<div class="tip" id="fs25">Multiple items<br />type Random =<br />&#160;&#160;new : unit -&gt; Random + 1 overload<br />&#160;&#160;member Next : unit -&gt; int + 2 overloads<br />&#160;&#160;member NextBytes : buffer:byte[] -&gt; unit + 1 overload<br />&#160;&#160;member NextDouble : unit -&gt; float<br /><br />--------------------<br />Random() : Random<br />Random(Seed: int) : Random</div>
 <div class="tip" id="fs26">val a : float []</div>
-<div class="tip" id="fs27">Random.NextDouble() : float</div>
+<div class="tip" id="fs27"></div>
 <div class="tip" id="fs28">val b : float []</div>
 <div class="tip" id="fs29">val c : float []</div>
 <div class="tip" id="fs30">val cont : DynamicObj</div>
 <div class="tip" id="fs31">Multiple items<br />type DynamicObj =<br />&#160;&#160;inherit DynamicObject<br />&#160;&#160;new : unit -&gt; DynamicObj<br />&#160;&#160;private new : dict:Dictionary&lt;string,obj&gt; -&gt; DynamicObj<br />&#160;&#160;override GetDynamicMemberNames : unit -&gt; IEnumerable&lt;string&gt;<br />&#160;&#160;member GetProperties : includeInstanceProperties:bool -&gt; seq&lt;KeyValuePair&lt;string,obj&gt;&gt;<br />&#160;&#160;member Remove : name:string -&gt; bool<br />&#160;&#160;member SetValue : name:string * value:&#39;a -&gt; unit<br />&#160;&#160;override TryGetMember : binder:GetMemberBinder * result:byref&lt;obj&gt; -&gt; bool<br />&#160;&#160;member TryGetTypedValue : name:string -&gt; &#39;a option<br />&#160;&#160;member TryGetValue : name:string -&gt; obj option<br />&#160;&#160;...<br /><br />--------------------<br />new : unit -&gt; DynamicObj</div>
 <div class="tip" id="fs32">val mesh3d : GenericChart.GenericChart</div>
-<div class="tip" id="fs33">Multiple items<br />module Trace3d<br /><br />from FSharp.Plotly<br /><br />--------------------<br />type Trace3d =<br />&#160;&#160;inherit Trace<br />&#160;&#160;new : traceTypeName:string -&gt; Trace3d<br /><br />--------------------<br />new : traceTypeName:string -&gt; Trace3d</div>
+<div class="tip" id="fs33">Multiple items<br />module Trace3d<br /><br />from Plotly.NET<br /><br />--------------------<br />type Trace3d =<br />&#160;&#160;inherit Trace<br />&#160;&#160;new : traceTypeName:string -&gt; Trace3d<br /><br />--------------------<br />new : traceTypeName:string -&gt; Trace3d</div>
 <div class="tip" id="fs34">val initMesh3d : applyStyle:(Trace3d -&gt; Trace3d) -&gt; Trace3d</div>
 <div class="tip" id="fs35">val mesh3d : Trace3d</div>
 <div class="tip" id="fs36">Multiple items<br />type Contours =<br />&#160;&#160;inherit DynamicObj<br />&#160;&#160;new : unit -&gt; Contours<br />&#160;&#160;static member init : ?X:Contour * ?Y:Contour * ?Z:Contour -&gt; Contours<br />&#160;&#160;static member initXyz : ?Show:bool * ?Color:&#39;a * ?Usecolor:bool * ?Width:int * ?Highlight:bool * ?Highlightcolor:&#39;b * ?Highlightwidth:int -&gt; Contours<br />&#160;&#160;static member style : ?X:Contour * ?Y:Contour * ?Z:Contour -&gt; (Contours -&gt; Contours)<br />&#160;&#160;static member styleXyz : ?Show:bool * ?Color:&#39;a0 * ?Usecolor:bool * ?Width:int * ?Highlight:bool * ?Highlightcolor:&#39;a1 * ?Highlightwidth:int -&gt; (Contours -&gt; Contours)<br /><br />--------------------<br />new : unit -&gt; Contours</div>
 <div class="tip" id="fs37">static member Contours.initXyz : ?Show:bool * ?Color:&#39;a * ?Usecolor:bool * ?Width:int * ?Highlight:bool * ?Highlightcolor:&#39;b * ?Highlightwidth:int -&gt; Contours</div>
-<div class="tip" id="fs38">module GenericChart<br /><br />from FSharp.Plotly</div>
+<div class="tip" id="fs38">module GenericChart<br /><br />from Plotly.NET</div>
 <div class="tip" id="fs39">val ofTraceObject : trace:Trace -&gt; GenericChart.GenericChart</div>
-<div class="tip" id="fs40">type Chart =<br />&#160;&#160;static member Area : xy:seq&lt;#IConvertible * #IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:&#39;a4 -&gt; GenericChart<br />&#160;&#160;static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:&#39;a4 -&gt; GenericChart<br />&#160;&#160;static member Bar : keysvalues:seq&lt;#IConvertible * #IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart<br />&#160;&#160;static member Bar : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart<br />&#160;&#160;static member BoxPlot : xy:seq&lt;&#39;a0 * &#39;a1&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Fillcolor:&#39;a3 * ?Opacity:float * ?Whiskerwidth:&#39;a4 * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:&#39;a5 * ?Pointpos:&#39;a6 * ?Orientation:Orientation -&gt; GenericChart<br />&#160;&#160;static member BoxPlot : ?x:&#39;a0 * ?y:&#39;a1 * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Fillcolor:&#39;a3 * ?Opacity:float * ?Whiskerwidth:&#39;a4 * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:&#39;a5 * ?Pointpos:&#39;a6 * ?Orientation:Orientation -&gt; GenericChart<br />&#160;&#160;static member Bubble : xysizes:seq&lt;#IConvertible * #IConvertible * #IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:&#39;a3 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font -&gt; GenericChart<br />&#160;&#160;static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:&#39;a3 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font -&gt; GenericChart<br />&#160;&#160;static member ChoroplethMap : locations:seq&lt;string&gt; * z:seq&lt;#IConvertible&gt; * ?Text:seq&lt;#IConvertible&gt; * ?Locationmode:LocationFormat * ?Autocolorscale:bool * ?Colorscale:Colorscale * ?Colorbar:&#39;a2 * ?Marker:Marker * ?Zmin:&#39;a3 * ?Zmax:&#39;a4 -&gt; GenericChart<br />&#160;&#160;static member Column : keysvalues:seq&lt;#IConvertible * #IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart<br />&#160;&#160;...</div>
+<div class="tip" id="fs40">type Chart =<br />&#160;&#160;static member Area : xy:seq&lt;#IConvertible * #IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:&#39;a4 -&gt; GenericChart<br />&#160;&#160;static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:&#39;a4 -&gt; GenericChart<br />&#160;&#160;static member Bar : keysvalues:seq&lt;#IConvertible * #IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart<br />&#160;&#160;static member Bar : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart<br />&#160;&#160;static member BoxPlot : xy:seq&lt;&#39;a0 * &#39;a1&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Fillcolor:&#39;a3 * ?Opacity:float * ?Whiskerwidth:&#39;a4 * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:&#39;a5 * ?Pointpos:&#39;a6 * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?Alignmentgroup:&#39;a7 * ?Offsetgroup:&#39;a8 * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod -&gt; GenericChart<br />&#160;&#160;static member BoxPlot : ?x:&#39;a0 * ?y:&#39;a1 * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Fillcolor:&#39;a3 * ?Opacity:float * ?Whiskerwidth:&#39;a4 * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:&#39;a5 * ?Pointpos:&#39;a6 * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?Alignmentgroup:&#39;a7 * ?Offsetgroup:&#39;a8 * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod -&gt; GenericChart<br />&#160;&#160;static member Bubble : xysizes:seq&lt;#IConvertible * #IConvertible * #IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:&#39;a3 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:Orientation * ?GroupNorm:GroupNorm * ?UseWebGL:bool -&gt; GenericChart<br />&#160;&#160;static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:&#39;a3 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:Orientation * ?GroupNorm:GroupNorm * ?UseWebGL:bool -&gt; GenericChart<br />&#160;&#160;static member Candlestick : stockTimeSeries:seq&lt;DateTime * StockData&gt; * ?Increasing:Line * ?Decreasing:Line * ?WhiskerWidth:float * ?Line:Line * ?XCalendar:Calendar -&gt; GenericChart<br />&#160;&#160;static member Candlestick : open:seq&lt;#IConvertible&gt; * high:seq&lt;#IConvertible&gt; * low:seq&lt;#IConvertible&gt; * close:seq&lt;#IConvertible&gt; * x:seq&lt;#IConvertible&gt; * ?Increasing:Line * ?Decreasing:Line * ?WhiskerWidth:float * ?Line:Line * ?XCalendar:Calendar -&gt; GenericChart<br />&#160;&#160;...</div>
 <div class="tip" id="fs41">static member Chart.Show : ch:GenericChart.GenericChart -&gt; unit</div>
 
         </div>
         <div class="span3">
-          <img src="/FSharp.Plotly/img/logo.png" alt="FSharp.Plotly" style="width:150px;margin:10px" />  
+          <img src="https://plotly.github.io/Plotly.NET/img/logo.png" alt="Plotly.NET" style="width:150px;margin:10px" />  
           <ul class="nav nav-list" id="menu" style="margin-top: 20px;">
-              <li class="nav-header">FSharp.Plotly</li>
-              <li><a href="/FSharp.Plotly/index.html">Home page</a></li>
+              <li class="nav-header">Plotly.NET</li>
+              <li><a href="https://plotly.github.io/Plotly.NET/index.html">Home page</a></li>
               <li class="divider"></li>
               <li>
-                  <a href="/FSharp.Plotly/getting-started.html">Getting started</a>
+                  <a href="https://plotly.github.io/Plotly.NET/getting-started.html">Getting started</a>
               </li>
-              
               <li class="nav-header">Plotly Charts</li>
-              <li><a href="/FSharp.Plotly/area-plots.html">Area Plots</a></li>
-              <li><a href="/FSharp.Plotly/bar-charts.html">Bar</a></li>
-              <li><a href="/FSharp.Plotly/box-plots.html">Box Plots</a></li>
-              <li><a href="/FSharp.Plotly/violin-plots.html">Violin Plots</a></li>
-              <li><a href="/FSharp.Plotly/bubble-charts.html">Bubble Charts</a></li>
-              <li><a href="/FSharp.Plotly/candlestick.html">Candlestick Plots</a></li>
-              <li><a href="/FSharp.Plotly/contour-plots.html">Contour Plots</a></li>
-              <li><a href="/FSharp.Plotly/heatmaps.html">Heatmaps</a></li>
-              <li><a href="/FSharp.Plotly/histograms.html">Histograms</a></li>
-              <li><a href="/FSharp.Plotly/2d-histograms.html">2D Histograms</a></li>
-              <li><a href="/FSharp.Plotly/line-scatter-plots.html">Line and Scatter Plots</a></li>
-              <li><a href="/FSharp.Plotly/parallel-coords.html">Parallel coords Plots</a></li>
-              <li><a href="/FSharp.Plotly/parallel-categories.html">Parallel Categories Plots</a></li>
-              <li><a href="/FSharp.Plotly/pie-daughnut-charts.html">Pie and Doughnut Charts</a></li>
-              <li><a href="/FSharp.Plotly/polar-charts.html">Polar Charts</a></li>
-              <li><a href="/FSharp.Plotly/windrose-charts.html">Windrose Charts</a></li>
-              <li><a href="/FSharp.Plotly/range-plots.html">Range Plots</a></li>
-              <li><a href="/FSharp.Plotly/candlestick.html">Candlestick Charts</a></li>
-              <li><a href="/FSharp.Plotly/sankey.html">Sankey Diagrams</a></li>
-              <li><a href="/FSharp.Plotly/splom.html">Splom Plots</a></li>
-              <li><a href="/FSharp.Plotly/sankey.html">Sankey Plots</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/area-plots.html">Area Plots</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/bar-charts.html">Bar</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/box-plots.html">Box Plots</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/violin-plots.html">Violin Plots</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/bubble-charts.html">Bubble Charts</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/candlestick.html">Candlestick Plots</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/contour-plots.html">Contour Plots</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/heatmaps.html">Heatmaps</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/histograms.html">Histograms</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/2d-histograms.html">2D Histograms</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/line-scatter-plots.html">Line and Scatter Plots</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/parallel-coords.html">Parallel coords Plots</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/parallel-categories.html">Parallel Categories Plots</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/pie-daughnut-charts.html">Pie and Doughnut Charts</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/polar-charts.html">Polar Charts</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/windrose-charts.html">Windrose Charts</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/range-plots.html">Range Plots</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/candlestick.html">Candlestick Charts</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/sankey.html">Sankey Diagrams</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/splom.html">Splom Plots</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/sankey.html">Sankey Plots</a></li>
               <li class="nav-header">Map Charts</li>
-              <li><a href="/FSharp.Plotly/choropleth-map.html">Choropleth</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/choropleth-map.html">Choropleth</a></li>
               <li class="nav-header">Plotly 3d-Charts</li>
-              <li><a href="/FSharp.Plotly/3d-scatter-plots.html">3D Scatter Plots</a></li>
-              <li><a href="/FSharp.Plotly/3d-line-plots.html">3D Line Plots</a></li>
-              <li><a href="/FSharp.Plotly/3d-surface-plots.html">3D Surface Plots</a></li>
-              <li><a href="/FSharp.Plotly/3d-mesh-plots.html">3D Mesh Plots</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/3d-scatter-plots.html">3D Scatter Plots</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/3d-line-plots.html">3D Line Plots</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/3d-surface-plots.html">3D Surface Plots</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/3d-mesh-plots.html">3D Mesh Plots</a></li>
               <li class="nav-header">Plotly Tables</li>
-              <li><a href="/FSharp.Plotly/table.html">Table</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/table.html">Table</a></li>
               <li class="nav-header">Styling</li>
-              <li><a href="/FSharp.Plotly/multiple-charts.html">Multiple Charts</a></li>
-              <li><a href="/FSharp.Plotly/errorbars.html">Error bars</a></li>
-              <li><a href="/FSharp.Plotly/shapes.html">Shapes</a></li>
-              <li class="nav-header">Plotly WPF</li>
-              <li><a href="/FSharp.Plotly/plotly-wpf.html">Using Plotly PopUp window</a></li>
-
+              <li><a href="https://plotly.github.io/Plotly.NET/multiple-charts.html">Multiple Charts</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/errorbars.html">Error bars</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/shapes.html">Shapes</a></li>
               <li class="nav-header">Documentation</li>
-              <li><a href="/FSharp.Plotly/reference/index.html">API Reference</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/reference/index.html">API Reference</a></li>
           </ul>
         </div>
       </div>
     </div>
-    <a href="https://github.com/muehlhaus/FSharp.Plotly"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"/></a>
+    <a href="https://github.com/plotly/Plotly.NET"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"/></a>
   </body>
   </html>

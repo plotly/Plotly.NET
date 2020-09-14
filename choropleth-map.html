@@ -2,20 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>FSharp.Plotly: Choropleth Maps
+    <title>Plotly.NET: Choropleth Maps
 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="A F# interactive charting library using plotly.js" />
-    <meta name="author" content="Timo Mühlhaus" />
+    <meta name="author" content="Timo M�hlhaus; Kevin Schneider; OSS Contributors" />
 
     <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
     <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
     <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
     <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet" />
 
-    <link type="text/css" rel="stylesheet" href="/FSharp.Plotly/content/style.css" />
-    <link type="text/css" rel="stylesheet" href="/FSharp.Plotly/style/CSBstyle.css" /> <!--/FSharp.Plotly-->
-    <script type="text/javascript" src="/FSharp.Plotly/content/tips.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://plotly.github.io/Plotly.NET/content/style.css" />
+    <link type="text/css" rel="stylesheet" href="https://plotly.github.io/Plotly.NET/style/CSBstyle.css" /> <!--https://plotly.github.io/Plotly.NET-->
+    <script type="text/javascript" src="https://plotly.github.io/Plotly.NET/content/tips.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -28,15 +28,14 @@
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
           <li><a href="http://fsharp.org">fsharp.org</a></li>
-          <li><a href="https://github.com/muehlhaus/FSharp.Plotly">github page</a></li>
+          <li><a href="https://github.com/plotly/Plotly.NET">github page</a></li>
         </ul>
-        <h3 class="muted"><a href="/FSharp.Plotly/index.html">FSharp.Plotly</a></h3>
+        <h3 class="muted"><a href="https://plotly.github.io/Plotly.NET/index.html">Plotly.NET</a></h3>
       </div>
       <hr />
       <div class="row">
         <div class="span9" id="main">
-          
-<h1><a name="FSharp-Plotly-Choropleth-Maps" class="anchor" href="#FSharp-Plotly-Choropleth-Maps">FSharp.Plotly: Choropleth Maps</a></h1>
+          <h1><a name="Plotly-NET-Choropleth-Maps" class="anchor" href="#Plotly-NET-Choropleth-Maps">Plotly.NET: Choropleth Maps</a></h1>
 <p><em>Summary:</em> This example shows how to create choropleth map in F#.</p>
 <p>Choropleth Maps display divided geographical areas or regions that are coloured, shaded or patterned in relation to
 a data variable. This provides a way to visualise values over a geographical area, which can show variation or
@@ -99,7 +98,7 @@ patterns across the displayed location.</p>
 <span class="l">56: </span>
 <span class="l">57: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">FSharp</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">Plotly</span> 
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">Plotly</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">NET</span> 
 
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="id">locations</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="id">z</span> <span class="o">=</span> 
    <span class="pn">[</span><span class="pn">(</span><span class="s">&quot;Belarus&quot;</span><span class="pn">,</span><span class="n">17.5</span><span class="pn">)</span><span class="pn">;</span> <span class="pn">(</span><span class="s">&quot;Moldova&quot;</span><span class="pn">,</span><span class="n">16.8</span><span class="pn">)</span><span class="pn">;</span><span class="pn">(</span><span class="s">&quot;Lithuania&quot;</span><span class="pn">,</span><span class="n">15.4</span><span class="pn">)</span><span class="pn">;</span><span class="pn">(</span><span class="s">&quot;Russia&quot;</span><span class="pn">,</span><span class="n">15.1</span><span class="pn">)</span><span class="pn">;</span>
@@ -165,83 +164,98 @@ patterns across the displayed location.</p>
 </code></pre></td>
 </tr>
 </table>
-<div id="92ade7b2-6fb4-4453-95e7-0f99d60484ba" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>
-  <script>
-    var data = [{"type":"choropleth","locations":["Belarus","Moldova","Lithuania","Russia","Romania","Ukraine","Andorra","Hungary","Czech Republic","Slovakia","Portugal","Serbia","Grenada","Poland","Latvia","Finland","South Korea","France","Australia","Croatia","Ireland","Luxembourg","Germany","Slovenia","United Kingdom","Denmark","Bulgaria","Spain","Belgium","South Africa","New Zealand","Gabon","Namibia","Switzerland","Saint Lucia","Austria","Estonia","Greece","Kazakhstan","Canada","Nigeria","Netherlands","Uganda","Rwanda","Chile","Argentina","Burundi","United States","Cyprus","Sweden","Venezuela","Paraguay","Brazil","Sierra Leone","Montenegro","Belize","Cameroon","Botswana","Saint Kitts and Nevis","Guyana","Peru","Panama","Niue","Palau","Norway","Tanzania","Georgia","Uruguay","Angola","Laos","Japan","Mexico","Ecuador","Dominica","Iceland","Thailand","Bosnia and Herzegovina","Sao Tome and Principe","Malta","Albania","Bahamas","Dominican Republic","Mongolia","Cape Verde","Barbados","Burkina Faso","Italy","Trinidad and Tobago","China","Macedonia","Saint Vincent and the Grenadines","Equatorial Guinea","Suriname","Vietnam","Lesotho","Haiti","Cook Islands","Colombia","Ivory Coast","Bolivia","Swaziland","Zimbabwe","Seychelles","Cambodia","Puerto Rico","Netherlands Antilles","Philippines","Costa Rica","Armenia","Cuba","Nicaragua","Jamaica","Ghana","Liberia","Uzbekistan","Chad","United Arab Emirates","Kyrgyzstan","India","Turkmenistan","Kenya","Ethiopia","Honduras","Guinea-Bissau","Zambia","Republic of the Congo","Guatemala","Central African Republic","North Korea","Sri Lanka","Mauritius","Samoa","Democratic Republic of the Congo","Nauru","Gambia","Federated States of Micronesia","El Salvador","Fiji","Papua New Guinea","Kiribati","Tajikistan","Israel","Sudan","Malawi","Lebanon","Azerbaijan","Mozambique","Togo","Nepal","Brunei","Benin","Singapore","Turkey","Madagascar","Solomon Islands","Tonga","Tunisia","Tuvalu","Qatar","Vanuatu","Djibouti","Malaysia","Syria","Maldives","Mali","Eritrea","Algeria","Iran","Oman","Brunei","Morocco","Jordan","Bhutan","Guinea","Burma","Afghanistan","Senegal","Indonesia","Timor-Leste","Iraq","Somalia","Egypt","Niger","Yemen","Comoros","Saudi Arabia","Bangladesh","Kuwait","Libya","Mauritania","Pakistan"],"z":[17.5,16.8,15.4,15.1,14.4,13.9,13.8,13.3,13.0,13.0,12.9,12.6,12.5,12.5,12.3,12.3,12.3,12.2,12.2,12.2,11.9,11.9,11.8,11.6,11.6,11.4,11.4,11.2,11.0,11.0,10.9,10.9,10.8,10.7,10.4,10.3,10.3,10.3,10.3,10.2,10.1,9.9,9.8,9.8,9.6,9.3,9.3,9.2,9.2,9.2,8.9,8.8,8.7,8.7,8.7,8.5,8.4,8.4,8.2,8.1,8.1,8.0,8.0,7.9,7.7,7.7,7.7,7.6,7.5,7.3,7.2,7.2,7.2,7.1,7.1,7.1,7.1,7.1,7.0,7.0,6.9,6.9,6.9,6.9,6.8,6.8,6.7,6.7,6.7,6.7,6.6,6.6,6.6,6.6,6.5,6.4,6.4,6.2,6.0,5.9,5.7,5.7,5.6,5.5,5.4,5.4,5.4,5.4,5.3,5.2,5.0,4.9,4.8,4.7,4.6,4.4,4.3,4.3,4.3,4.3,4.3,4.2,4.0,4.0,4.0,3.9,3.8,3.8,3.7,3.7,3.6,3.6,3.6,3.5,3.4,3.3,3.2,3.0,3.0,3.0,2.8,2.8,2.7,2.5,2.4,2.3,2.3,2.3,2.2,2.1,2.1,2.0,2.0,1.8,1.7,1.6,1.5,1.5,1.5,1.4,1.3,1.3,1.2,1.2,1.1,1.1,1.0,1.0,0.9,0.9,0.9,0.7,0.7,0.7,0.7,0.7,0.6,0.6,0.6,0.5,0.5,0.4,0.3,0.3,0.2,0.2,0.2,0.1,0.1,0.1,0.1],"locationmode":"country names"}];
-    var layout = {};
-    var config = {};
-    Plotly.newPlot('92ade7b2-6fb4-4453-95e7-0f99d60484ba', data, layout, config);
-  </script>
+<div id="2b41cdc2-7da9-4861-a7c8-a040b7c0b42a" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<script type="text/javascript">
 
-<div class="tip" id="fs1">Multiple items<br />namespace FSharp<br /><br />--------------------<br />namespace Microsoft.FSharp</div>
-<div class="tip" id="fs2">namespace FSharp.Plotly</div>
+            var renderPlotly = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}});
+            fsharpPlotlyRequire(['plotly'], function(Plotly) {
+
+            var data = [{"type":"choropleth","locations":["Belarus","Moldova","Lithuania","Russia","Romania","Ukraine","Andorra","Hungary","Czech Republic","Slovakia","Portugal","Serbia","Grenada","Poland","Latvia","Finland","South Korea","France","Australia","Croatia","Ireland","Luxembourg","Germany","Slovenia","United Kingdom","Denmark","Bulgaria","Spain","Belgium","South Africa","New Zealand","Gabon","Namibia","Switzerland","Saint Lucia","Austria","Estonia","Greece","Kazakhstan","Canada","Nigeria","Netherlands","Uganda","Rwanda","Chile","Argentina","Burundi","United States","Cyprus","Sweden","Venezuela","Paraguay","Brazil","Sierra Leone","Montenegro","Belize","Cameroon","Botswana","Saint Kitts and Nevis","Guyana","Peru","Panama","Niue","Palau","Norway","Tanzania","Georgia","Uruguay","Angola","Laos","Japan","Mexico","Ecuador","Dominica","Iceland","Thailand","Bosnia and Herzegovina","Sao Tome and Principe","Malta","Albania","Bahamas","Dominican Republic","Mongolia","Cape Verde","Barbados","Burkina Faso","Italy","Trinidad and Tobago","China","Macedonia","Saint Vincent and the Grenadines","Equatorial Guinea","Suriname","Vietnam","Lesotho","Haiti","Cook Islands","Colombia","Ivory Coast","Bolivia","Swaziland","Zimbabwe","Seychelles","Cambodia","Puerto Rico","Netherlands Antilles","Philippines","Costa Rica","Armenia","Cuba","Nicaragua","Jamaica","Ghana","Liberia","Uzbekistan","Chad","United Arab Emirates","Kyrgyzstan","India","Turkmenistan","Kenya","Ethiopia","Honduras","Guinea-Bissau","Zambia","Republic of the Congo","Guatemala","Central African Republic","North Korea","Sri Lanka","Mauritius","Samoa","Democratic Republic of the Congo","Nauru","Gambia","Federated States of Micronesia","El Salvador","Fiji","Papua New Guinea","Kiribati","Tajikistan","Israel","Sudan","Malawi","Lebanon","Azerbaijan","Mozambique","Togo","Nepal","Brunei","Benin","Singapore","Turkey","Madagascar","Solomon Islands","Tonga","Tunisia","Tuvalu","Qatar","Vanuatu","Djibouti","Malaysia","Syria","Maldives","Mali","Eritrea","Algeria","Iran","Oman","Brunei","Morocco","Jordan","Bhutan","Guinea","Burma","Afghanistan","Senegal","Indonesia","Timor-Leste","Iraq","Somalia","Egypt","Niger","Yemen","Comoros","Saudi Arabia","Bangladesh","Kuwait","Libya","Mauritania","Pakistan"],"z":[17.5,16.8,15.4,15.1,14.4,13.9,13.8,13.3,13.0,13.0,12.9,12.6,12.5,12.5,12.3,12.3,12.3,12.2,12.2,12.2,11.9,11.9,11.8,11.6,11.6,11.4,11.4,11.2,11.0,11.0,10.9,10.9,10.8,10.7,10.4,10.3,10.3,10.3,10.3,10.2,10.1,9.9,9.8,9.8,9.6,9.3,9.3,9.2,9.2,9.2,8.9,8.8,8.7,8.7,8.7,8.5,8.4,8.4,8.2,8.1,8.1,8.0,8.0,7.9,7.7,7.7,7.7,7.6,7.5,7.3,7.2,7.2,7.2,7.1,7.1,7.1,7.1,7.1,7.0,7.0,6.9,6.9,6.9,6.9,6.8,6.8,6.7,6.7,6.7,6.7,6.6,6.6,6.6,6.6,6.5,6.4,6.4,6.2,6.0,5.9,5.7,5.7,5.6,5.5,5.4,5.4,5.4,5.4,5.3,5.2,5.0,4.9,4.8,4.7,4.6,4.4,4.3,4.3,4.3,4.3,4.3,4.2,4.0,4.0,4.0,3.9,3.8,3.8,3.7,3.7,3.6,3.6,3.6,3.5,3.4,3.3,3.2,3.0,3.0,3.0,2.8,2.8,2.7,2.5,2.4,2.3,2.3,2.3,2.2,2.1,2.1,2.0,2.0,1.8,1.7,1.6,1.5,1.5,1.5,1.4,1.3,1.3,1.2,1.2,1.1,1.1,1.0,1.0,0.9,0.9,0.9,0.7,0.7,0.7,0.7,0.7,0.6,0.6,0.6,0.5,0.5,0.4,0.3,0.3,0.2,0.2,0.2,0.1,0.1,0.1,0.1],"locationmode":"country names"}];
+            var layout = {};
+            var config = {};
+            Plotly.newPlot('2b41cdc2-7da9-4861-a7c8-a040b7c0b42a', data, layout, config);
+});
+            };
+            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) { 
+                var script = document.createElement("script"); 
+                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"); 
+                script.onload = function(){
+                    renderPlotly();
+                };
+                document.getElementsByTagName("head")[0].appendChild(script); 
+            }
+            else {
+                renderPlotly();
+            }
+</script>
+
+
+<div class="tip" id="fs1">namespace Plotly</div>
+<div class="tip" id="fs2">namespace Plotly.NET</div>
 <div class="tip" id="fs3">val locations : string list</div>
 <div class="tip" id="fs4">val z : float list</div>
-<div class="tip" id="fs5">Multiple items<br />module List<br /><br />from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List&lt;&#39;T&gt; =<br />&#160;&#160;| ( [] )<br />&#160;&#160;| ( :: ) of Head: &#39;T * Tail: &#39;T list<br />&#160;&#160;&#160;&#160;interface IReadOnlyList&lt;&#39;T&gt;<br />&#160;&#160;&#160;&#160;interface IReadOnlyCollection&lt;&#39;T&gt;<br />&#160;&#160;&#160;&#160;interface IEnumerable<br />&#160;&#160;&#160;&#160;interface IEnumerable&lt;&#39;T&gt;<br />&#160;&#160;&#160;&#160;member GetSlice : startIndex:int option * endIndex:int option -&gt; &#39;T list<br />&#160;&#160;&#160;&#160;member Head : &#39;T<br />&#160;&#160;&#160;&#160;member IsEmpty : bool<br />&#160;&#160;&#160;&#160;member Item : index:int -&gt; &#39;T with get<br />&#160;&#160;&#160;&#160;member Length : int<br />&#160;&#160;&#160;&#160;member Tail : &#39;T list<br />&#160;&#160;&#160;&#160;...</div>
+<div class="tip" id="fs5">Multiple items<br />module List<br /><br />from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List&lt;&#39;T&gt; =<br />&#160;&#160;| ( [] )<br />&#160;&#160;| ( :: ) of Head: &#39;T * Tail: &#39;T list<br />&#160;&#160;&#160;&#160;interface IReadOnlyList&lt;&#39;T&gt;<br />&#160;&#160;&#160;&#160;interface IReadOnlyCollection&lt;&#39;T&gt;<br />&#160;&#160;&#160;&#160;interface IEnumerable<br />&#160;&#160;&#160;&#160;interface IEnumerable&lt;&#39;T&gt;<br />&#160;&#160;&#160;&#160;member GetReverseIndex : rank:int * offset:int -&gt; int<br />&#160;&#160;&#160;&#160;member GetSlice : startIndex:int option * endIndex:int option -&gt; &#39;T list<br />&#160;&#160;&#160;&#160;member Head : &#39;T<br />&#160;&#160;&#160;&#160;member IsEmpty : bool<br />&#160;&#160;&#160;&#160;member Item : index:int -&gt; &#39;T with get<br />&#160;&#160;&#160;&#160;member Length : int<br />&#160;&#160;&#160;&#160;...</div>
 <div class="tip" id="fs6">val unzip : list:(&#39;T1 * &#39;T2) list -&gt; &#39;T1 list * &#39;T2 list</div>
 <div class="tip" id="fs7">val choroplethMap1 : GenericChart.GenericChart</div>
-<div class="tip" id="fs8">type Chart =<br />&#160;&#160;static member Area : xy:seq&lt;#IConvertible * #IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:&#39;a4 -&gt; GenericChart<br />&#160;&#160;static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:&#39;a4 -&gt; GenericChart<br />&#160;&#160;static member Bar : keysvalues:seq&lt;#IConvertible * #IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart<br />&#160;&#160;static member Bar : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart<br />&#160;&#160;static member BoxPlot : xy:seq&lt;&#39;a0 * &#39;a1&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Fillcolor:&#39;a3 * ?Opacity:float * ?Whiskerwidth:&#39;a4 * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:&#39;a5 * ?Pointpos:&#39;a6 * ?Orientation:Orientation -&gt; GenericChart<br />&#160;&#160;static member BoxPlot : ?x:&#39;a0 * ?y:&#39;a1 * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Fillcolor:&#39;a3 * ?Opacity:float * ?Whiskerwidth:&#39;a4 * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:&#39;a5 * ?Pointpos:&#39;a6 * ?Orientation:Orientation -&gt; GenericChart<br />&#160;&#160;static member Bubble : xysizes:seq&lt;#IConvertible * #IConvertible * #IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:&#39;a3 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font -&gt; GenericChart<br />&#160;&#160;static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:&#39;a3 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font -&gt; GenericChart<br />&#160;&#160;static member ChoroplethMap : locations:seq&lt;string&gt; * z:seq&lt;#IConvertible&gt; * ?Text:seq&lt;#IConvertible&gt; * ?Locationmode:LocationFormat * ?Autocolorscale:bool * ?Colorscale:Colorscale * ?Colorbar:&#39;c * ?Marker:Marker * ?Zmin:&#39;d * ?Zmax:&#39;e -&gt; GenericChart<br />&#160;&#160;static member Column : keysvalues:seq&lt;#IConvertible * #IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart<br />&#160;&#160;...</div>
+<div class="tip" id="fs8">type Chart =<br />&#160;&#160;static member Area : xy:seq&lt;#IConvertible * #IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:&#39;a4 -&gt; GenericChart<br />&#160;&#160;static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:&#39;a4 -&gt; GenericChart<br />&#160;&#160;static member Bar : keysvalues:seq&lt;#IConvertible * #IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart<br />&#160;&#160;static member Bar : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart<br />&#160;&#160;static member BoxPlot : xy:seq&lt;&#39;a0 * &#39;a1&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Fillcolor:&#39;a3 * ?Opacity:float * ?Whiskerwidth:&#39;a4 * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:&#39;a5 * ?Pointpos:&#39;a6 * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?Alignmentgroup:&#39;a7 * ?Offsetgroup:&#39;a8 * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod -&gt; GenericChart<br />&#160;&#160;static member BoxPlot : ?x:&#39;a0 * ?y:&#39;a1 * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Fillcolor:&#39;a3 * ?Opacity:float * ?Whiskerwidth:&#39;a4 * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:&#39;a5 * ?Pointpos:&#39;a6 * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?Alignmentgroup:&#39;a7 * ?Offsetgroup:&#39;a8 * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod -&gt; GenericChart<br />&#160;&#160;static member Bubble : xysizes:seq&lt;#IConvertible * #IConvertible * #IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:&#39;a3 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:Orientation * ?GroupNorm:GroupNorm * ?UseWebGL:bool -&gt; GenericChart<br />&#160;&#160;static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:&#39;a3 * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:Orientation * ?GroupNorm:GroupNorm * ?UseWebGL:bool -&gt; GenericChart<br />&#160;&#160;static member Candlestick : stockTimeSeries:seq&lt;DateTime * StockData&gt; * ?Increasing:Line * ?Decreasing:Line * ?WhiskerWidth:float * ?Line:Line * ?XCalendar:Calendar -&gt; GenericChart<br />&#160;&#160;static member Candlestick : open:seq&lt;#IConvertible&gt; * high:seq&lt;#IConvertible&gt; * low:seq&lt;#IConvertible&gt; * close:seq&lt;#IConvertible&gt; * x:seq&lt;#IConvertible&gt; * ?Increasing:Line * ?Decreasing:Line * ?WhiskerWidth:float * ?Line:Line * ?XCalendar:Calendar -&gt; GenericChart<br />&#160;&#160;...</div>
 <div class="tip" id="fs9">static member Chart.ChoroplethMap : locations:seq&lt;string&gt; * z:seq&lt;#System.IConvertible&gt; * ?Text:seq&lt;#System.IConvertible&gt; * ?Locationmode:StyleParam.LocationFormat * ?Autocolorscale:bool * ?Colorscale:StyleParam.Colorscale * ?Colorbar:&#39;c * ?Marker:Marker * ?Zmin:&#39;d * ?Zmax:&#39;e -&gt; GenericChart.GenericChart</div>
-<div class="tip" id="fs10">module StyleParam<br /><br />from FSharp.Plotly</div>
+<div class="tip" id="fs10">module StyleParam<br /><br />from Plotly.NET</div>
 <div class="tip" id="fs11">type LocationFormat =<br />&#160;&#160;| CountryNames<br />&#160;&#160;| ISO_3<br />&#160;&#160;| USA_states<br />&#160;&#160;&#160;&#160;static member convert : (LocationFormat -&gt; obj)<br />&#160;&#160;&#160;&#160;static member toString : (LocationFormat -&gt; string)</div>
 <div class="tip" id="fs12">union case StyleParam.LocationFormat.CountryNames: StyleParam.LocationFormat</div>
 <div class="tip" id="fs13">static member Chart.Show : ch:GenericChart.GenericChart -&gt; unit</div>
 
         </div>
         <div class="span3">
-          <img src="/FSharp.Plotly/img/logo.png" alt="FSharp.Plotly" style="width:150px;margin:10px" />  
+          <img src="https://plotly.github.io/Plotly.NET/img/logo.png" alt="Plotly.NET" style="width:150px;margin:10px" />  
           <ul class="nav nav-list" id="menu" style="margin-top: 20px;">
-              <li class="nav-header">FSharp.Plotly</li>
-              <li><a href="/FSharp.Plotly/index.html">Home page</a></li>
+              <li class="nav-header">Plotly.NET</li>
+              <li><a href="https://plotly.github.io/Plotly.NET/index.html">Home page</a></li>
               <li class="divider"></li>
               <li>
-                  <a href="/FSharp.Plotly/getting-started.html">Getting started</a>
+                  <a href="https://plotly.github.io/Plotly.NET/getting-started.html">Getting started</a>
               </li>
-              
               <li class="nav-header">Plotly Charts</li>
-              <li><a href="/FSharp.Plotly/area-plots.html">Area Plots</a></li>
-              <li><a href="/FSharp.Plotly/bar-charts.html">Bar</a></li>
-              <li><a href="/FSharp.Plotly/box-plots.html">Box Plots</a></li>
-              <li><a href="/FSharp.Plotly/violin-plots.html">Violin Plots</a></li>
-              <li><a href="/FSharp.Plotly/bubble-charts.html">Bubble Charts</a></li>
-              <li><a href="/FSharp.Plotly/candlestick.html">Candlestick Plots</a></li>
-              <li><a href="/FSharp.Plotly/contour-plots.html">Contour Plots</a></li>
-              <li><a href="/FSharp.Plotly/heatmaps.html">Heatmaps</a></li>
-              <li><a href="/FSharp.Plotly/histograms.html">Histograms</a></li>
-              <li><a href="/FSharp.Plotly/2d-histograms.html">2D Histograms</a></li>
-              <li><a href="/FSharp.Plotly/line-scatter-plots.html">Line and Scatter Plots</a></li>
-              <li><a href="/FSharp.Plotly/parallel-coords.html">Parallel coords Plots</a></li>
-              <li><a href="/FSharp.Plotly/parallel-categories.html">Parallel Categories Plots</a></li>
-              <li><a href="/FSharp.Plotly/pie-daughnut-charts.html">Pie and Doughnut Charts</a></li>
-              <li><a href="/FSharp.Plotly/polar-charts.html">Polar Charts</a></li>
-              <li><a href="/FSharp.Plotly/windrose-charts.html">Windrose Charts</a></li>
-              <li><a href="/FSharp.Plotly/range-plots.html">Range Plots</a></li>
-              <li><a href="/FSharp.Plotly/candlestick.html">Candlestick Charts</a></li>
-              <li><a href="/FSharp.Plotly/sankey.html">Sankey Diagrams</a></li>
-              <li><a href="/FSharp.Plotly/splom.html">Splom Plots</a></li>
-              <li><a href="/FSharp.Plotly/sankey.html">Sankey Plots</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/area-plots.html">Area Plots</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/bar-charts.html">Bar</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/box-plots.html">Box Plots</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/violin-plots.html">Violin Plots</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/bubble-charts.html">Bubble Charts</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/candlestick.html">Candlestick Plots</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/contour-plots.html">Contour Plots</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/heatmaps.html">Heatmaps</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/histograms.html">Histograms</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/2d-histograms.html">2D Histograms</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/line-scatter-plots.html">Line and Scatter Plots</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/parallel-coords.html">Parallel coords Plots</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/parallel-categories.html">Parallel Categories Plots</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/pie-daughnut-charts.html">Pie and Doughnut Charts</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/polar-charts.html">Polar Charts</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/windrose-charts.html">Windrose Charts</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/range-plots.html">Range Plots</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/candlestick.html">Candlestick Charts</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/sankey.html">Sankey Diagrams</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/splom.html">Splom Plots</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/sankey.html">Sankey Plots</a></li>
               <li class="nav-header">Map Charts</li>
-              <li><a href="/FSharp.Plotly/choropleth-map.html">Choropleth</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/choropleth-map.html">Choropleth</a></li>
               <li class="nav-header">Plotly 3d-Charts</li>
-              <li><a href="/FSharp.Plotly/3d-scatter-plots.html">3D Scatter Plots</a></li>
-              <li><a href="/FSharp.Plotly/3d-line-plots.html">3D Line Plots</a></li>
-              <li><a href="/FSharp.Plotly/3d-surface-plots.html">3D Surface Plots</a></li>
-              <li><a href="/FSharp.Plotly/3d-mesh-plots.html">3D Mesh Plots</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/3d-scatter-plots.html">3D Scatter Plots</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/3d-line-plots.html">3D Line Plots</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/3d-surface-plots.html">3D Surface Plots</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/3d-mesh-plots.html">3D Mesh Plots</a></li>
               <li class="nav-header">Plotly Tables</li>
-              <li><a href="/FSharp.Plotly/table.html">Table</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/table.html">Table</a></li>
               <li class="nav-header">Styling</li>
-              <li><a href="/FSharp.Plotly/multiple-charts.html">Multiple Charts</a></li>
-              <li><a href="/FSharp.Plotly/errorbars.html">Error bars</a></li>
-              <li><a href="/FSharp.Plotly/shapes.html">Shapes</a></li>
-              <li class="nav-header">Plotly WPF</li>
-              <li><a href="/FSharp.Plotly/plotly-wpf.html">Using Plotly PopUp window</a></li>
-
+              <li><a href="https://plotly.github.io/Plotly.NET/multiple-charts.html">Multiple Charts</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/errorbars.html">Error bars</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/shapes.html">Shapes</a></li>
               <li class="nav-header">Documentation</li>
-              <li><a href="/FSharp.Plotly/reference/index.html">API Reference</a></li>
+              <li><a href="https://plotly.github.io/Plotly.NET/reference/index.html">API Reference</a></li>
           </ul>
         </div>
       </div>
     </div>
-    <a href="https://github.com/muehlhaus/FSharp.Plotly"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"/></a>
+    <a href="https://github.com/plotly/Plotly.NET"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"/></a>
   </body>
   </html>
