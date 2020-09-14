@@ -116,14 +116,6 @@ Target.create "CopyBinaries" (fun _ ->
     |>  Seq.iter (fun (fromDir, toDir) -> Shell.copyDir toDir fromDir (fun _ -> true))
 )
 
-Target.create "CopyBinariesDotnet" (fun _ ->
-    !! "src/**/*.fsproj"
-    -- "src/Plotly.NET.WPF/Plotly.NET.WPF.fsproj"
-    |>  Seq.map (fun f -> ((Path.getDirectory f) </> "bin" </> "Dotnet", "bin" </> (Path.GetFileNameWithoutExtension f)))
-    |>  Seq.iter (fun (fromDir, toDir) -> Shell.copyDir toDir fromDir (fun _ -> true))
-)
-
-
 // --------------------------------------------------------------------------------------
 // Clean build results
 
@@ -149,13 +141,6 @@ Target.create "Build" (fun _ ->
             Configuration = buildConfiguration })
 )
 
-Target.create "BuildDotnet" (fun _ ->
-    solutionFile 
-    |> DotNet.build (fun p -> 
-        { p with
-            Configuration = dotnetCoreConfiguration }
-        )
-)
 
 // --------------------------------------------------------------------------------------
 // Run the unit tests using test runner
@@ -277,8 +262,8 @@ Target.create "ReleaseDocsLocal" (fun _ ->
     printfn "%A" filesToReplaceIn
     Shell.replaceInFiles 
         [
-            """href="https://muehlhaus.github.io/FSharp.Plotly/""","""href=./""" 
-            """src="https://muehlhaus.github.io/FSharp.Plotly/""", """src=./""" 
+            """href="https://plotly.github.io/Plotly.NET/""","""href=./""" 
+            """src="https://plotly.github.io/Plotly.NET/""", """src=./""" 
             ".html\"", ".html"
             ".css\"", ".css"
             ".jpg\"", ".jpg"
@@ -296,17 +281,6 @@ Target.create "Release" (fun _ ->
 
     Git.Branches.tag "" release.NugetVersion
     Git.Branches.pushTag "" "upstream" release.NugetVersion
-)
-
-Target.create "GitReleaseNuget" (fun _ ->
-    let tempNugetDir = "temp/nuget"
-    Shell.cleanDir tempNugetDir |> ignore
-    Git.Repository.cloneSingleBranch "" (gitHome + "/" + gitName + ".git") "nuget" tempNugetDir
-    let files = Directory.EnumerateFiles(__SOURCE_DIRECTORY__ @@ "bin")
-    Shell.copy tempNugetDir files
-    Git.Staging.stageAll tempNugetDir
-    Git.Commit.exec tempNugetDir (sprintf "Update git nuget packages for version %s" release.NugetVersion)
-    Git.Branches.push tempNugetDir
 )
 
 // --------------------------------------------------------------------------------------
@@ -346,13 +320,6 @@ Target.create "DotnetCoreBuild" ignore
   ==> "RunTests"
   ==> "BuildCIPackages"
   ==> "CIBuild"
-
-"Clean"
-==> "CleanDocs"
-==> "AssemblyInfo"
-==> "BuildDotnet"
-==> "CopyBinariesDotnet"
-==> "DotnetCoreBuild"
 
 "Clean"
   ==> "CleanDocs"

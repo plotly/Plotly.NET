@@ -35,7 +35,7 @@ let rec copyRecursive dir1 dir2 =
          File.Copy(file, file.Replace(dir1, dir2), true)
 
 // Web site location for the generated documentation
-let website = "https://muehlhaus.github.io/Plotly.NET/"
+let website = "https://plotly.github.io/Plotly.NET"
 
 let info =
   [ "project-name", "Plotly.NET"
@@ -53,13 +53,11 @@ let info =
 let referenceBinaries = 
       [ 
         __SOURCE_DIRECTORY__ + "/../../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
-        __SOURCE_DIRECTORY__ + "/../../src/Plotly.NET.WPF//bin/Release/net47/Plotly.NET.WPF.dll"
       ]
 
 let libDirs = 
     [ 
       __SOURCE_DIRECTORY__ + "/../../src/Plotly.NET/bin/Release/netstandard2.0/"
-      __SOURCE_DIRECTORY__ + "/../../src/Plotly.NET.WPF/bin/Release/net47/"
     ]
 
 // When called from 'build.fsx', use the public project URL as <root>

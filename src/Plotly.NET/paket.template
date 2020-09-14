@@ -7,7 +7,7 @@ owners
 authors 
     Timo Mühlhaus, Kevin Schneider, F# open source contributors
 projectUrl
-    https://muehlhaus.github.io/FSharp.Plotly/
+    https://plotly.github.io/Plotly.NET/
 iconUrl
     https://raw.githubusercontent.com/plotly/Plotly.NET/master/docsrc/files/img/logo.png
 licenseUrl
@@ -29,5 +29,5 @@ description
 repositoryType
     git
 repositoryUrl
-    https://github.com/muehlhaus/plotly/Plotly.NET
+    https://github.com/plotly/Plotly.NET
 include-pdbs true

@@ -6,7 +6,7 @@ The library Plotly.NET implements charting suitable for use from F# scripting. O
 Documentation
 =============
 
-The documentation can be found [here.](http://muehlhaus.github.io/Plotly.NET/)
+The documentation can be found [here.](http://plotly.github.io/Plotly.NET/)
 The documentation for this library is automatically generated (using the F# Formatting) from *.fsx and *.md files in the docs folder. If you find a typo, please submit a pull request!
 
 

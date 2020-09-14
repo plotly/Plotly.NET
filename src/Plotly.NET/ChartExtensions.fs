@@ -11,7 +11,7 @@ open System.Runtime.InteropServices
 [<AutoOpen>]
 module ChartExtensions =
 
-    ///Choose process to open plots with depending on OS. Thanks to @zyzhu for hinting at a solution (https://github.com/muehlhaus/Plotly.NET/issues/31)
+    ///Choose process to open plots with depending on OS. Thanks to @zyzhu for hinting at a solution (https://github.com/plotly/Plotly.NET/issues/31)
     let private openOsSpecificFile path =
         if RuntimeInformation.IsOSPlatform(OSPlatform.Windows) then
             let psi = new System.Diagnostics.ProcessStartInfo(FileName = path, UseShellExecute = true)
