@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build-linux:
     docker:
-      - image: https://hub.docker.com/r/plotly/plotly.net
+      - image: plotly/plotly.net:ci
       
     steps:
       - checkout
