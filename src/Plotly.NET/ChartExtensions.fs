@@ -6,13 +6,15 @@ open System.IO
 open GenericChart
 open ChartDescription
 open System.Runtime.InteropServices
+open System.Runtime.CompilerServices
 
 /// Extensions methods for Charts supporting the fluent pipeline style 'Chart.WithXYZ(...)'.
 [<AutoOpen>]
+
 module ChartExtensions =
 
     ///Choose process to open plots with depending on OS. Thanks to @zyzhu for hinting at a solution (https://github.com/plotly/Plotly.NET/issues/31)
-    let private openOsSpecificFile path =
+    let internal openOsSpecificFile path =
         if RuntimeInformation.IsOSPlatform(OSPlatform.Windows) then
             let psi = new System.Diagnostics.ProcessStartInfo(FileName = path, UseShellExecute = true)
             System.Diagnostics.Process.Start(psi) |> ignore
@@ -46,8 +48,7 @@ module ChartExtensions =
                         trace 
                         |> TraceStyle.TraceInfo(?Name=(naming i Name),?Showlegend=Showlegend,?Legendgroup=Legendgroup,?Visible=Visible)
                     )
-                
- 
+
          /// Set the axis anchor id the trace is belonging to
         [<CompiledName("WithAxisAnchor")>]
         static member withAxisAnchor
@@ -65,7 +66,15 @@ module ChartExtensions =
                         trace 
                         |> TraceStyle.SetAxisAnchor(?X=idx,?Y=idy,?Z=idz)
                     )
-                
+        [<CompiledName("WithAxisAnchor")>]
+        static member withAxisAnchor
+            (
+                (ch:GenericChart),
+                [<Optional;DefaultParameterValue(null)>] ?X,
+                [<Optional;DefaultParameterValue(null)>] ?Y,
+                [<Optional;DefaultParameterValue(null)>] ?Z
+            ) =
+                ch |> Chart.withAxisAnchor(?X=X,?Y=Y,?Z=Z)
   
         /// Apply styling to the Marker(s) of the chart as Object.
         [<CompiledName("WithMarker")>]
@@ -620,11 +629,11 @@ module ChartExtensions =
         
         // Set the size of a Chart
         [<CompiledName("WithSize")>]
-        static member withSize(width,heigth) =
+        static member withSize(width,height) =
             (fun (ch:GenericChart) -> 
                 let layout = 
                     GenericChart.getLayout ch
-                    |> Layout.style (Width=width,Height=heigth)
+                    |> Layout.style (Width=width,Height=height)
                 GenericChart.setLayout layout ch
             )
 
@@ -964,4 +973,3 @@ module ChartExtensions =
             let path = Path.Combine(tempPath, file)
             File.WriteAllText(path, html)
             path |> openOsSpecificFile
-

@@ -36,12 +36,61 @@
 #load "GenericChart.fs"
 #load "Chart.fs"
 #load "ChartExtensions.fs"
+#load "GenericChartExtensions.fs"
 #load "CandelstickExtension.fs"
 #load "SankeyExtension.fs"
 #load "Templates.fs"
 
 open Plotly.NET
 open GenericChart
+
+//F# functional pipeline to compose a chart with functions
+//
+[(1,5);(2,10)]
+|> Chart.Point
+|> Chart.withTraceName("Hello from F#",Showlegend=true)
+|> Chart.withY_AxisStyle("xAxis",Showgrid= false, Showline=true)
+|> Chart.withX_AxisStyle("yAxis",Showgrid= false, Showline=true)
+|> Chart.Show
+
+
+// Dynamic object style, which is more or less equivalent to how you would create figure objects in plotly.js.
+// Member names set via the `?` operator must be named exactly tzhe same as the javascript equivalent
+// It is more verbose, but has the advantage of being able to generate any type of Chart. Usefull if there are no abstractions provided for a certain property
+let xAxis = 
+    let tmp = Axis.LinearAxis()
+    tmp?title <- "xAxis"
+    tmp?showgrid <- false
+    tmp?showline <- true    
+    tmp
+
+let yAxis =
+    let tmp = Axis.LinearAxis()
+    tmp?title <- "yAxis"
+    tmp?showgrid <- false
+    tmp?showline <- true    
+    tmp
+
+let layout =
+    let tmp = Layout()
+    tmp?xaxis <- xAxis
+    tmp?yaxis <- yAxis
+    tmp?showlegend <- true
+    tmp
+
+let trace = 
+    let tmp = Trace("scatter")
+    tmp?x <- [1;2]
+    tmp?y <- [5;10]
+    tmp?mode <- "markers"
+    tmp?name <- "Hello from F#"
+    tmp
+
+trace
+|> GenericChart.ofTraceObject
+|> GenericChart.setLayout layout
+|> Chart.Show
+
 
 Chart.LineGeo(
     [

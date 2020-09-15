@@ -55,6 +55,7 @@
     <Compile Include="GenericChart.fs" />
     <Compile Include="Chart.fs" />
     <Compile Include="ChartExtensions.fs" />
+    <Compile Include="GenericChartExtensions.fs" />
     <Compile Include="CandelstickExtension.fs" />
     <Compile Include="SankeyExtension.fs" />
     <Compile Include="Templates.fs" />

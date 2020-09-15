@@ -11,7 +11,7 @@ module Axis =
         static member init
             (
                 ?AxisType       , 
-                ?Title          ,            
+                ?Title : string         ,            
                 ?Titlefont      ,                             
                 ?Autorange      ,        
                 ?Rangemode      ,        
@@ -157,10 +157,10 @@ module Axis =
                 ?Exponentformat,   
                 ?Tickformat,       
                 ?Hoverformat,      
-                ?Showline,         
+                ?Showline: bool,         
                 ?Linecolor,        
                 ?Linewidth,        
-                ?Showgrid,         
+                ?Showgrid: bool,         
                 ?Gridcolor,        
                 ?Gridwidth,        
                 ?Zeroline : bool,         

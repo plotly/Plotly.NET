@@ -257,7 +257,7 @@ module Trace =
         // Applies the styles of TextLabel to TraceObjects
         static member TextLabel
             (    
-                ?Text   : seq<#IConvertible>,
+                ?Text   : seq<string>,
                 ?Textposition: StyleParam.TextPosition,
                 ?Textfont: Font,
                 ?Textsrc : string,
@@ -326,7 +326,7 @@ module Trace =
         static member Marker
             (   
                 ?Size:int,
-                ?Color,
+                ?Color: string,
                 ?Symbol:StyleParam.Symbol,
                 ?Opacity:float,
                 ?MultiSizes:seq<#IConvertible>,

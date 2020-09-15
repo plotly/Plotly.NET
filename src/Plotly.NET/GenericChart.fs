@@ -2,7 +2,7 @@ namespace Plotly.NET
 
 open System
 open Newtonsoft.Json
-
+open System.Runtime.CompilerServices
 
 /// HTML template for Plotly.js 
 module HTML =
@@ -134,6 +134,7 @@ module ChartDescription =
             .Replace("[DESCRIPTIONTEXT]",d.Text)
 
 /// Module to represent a GenericChart
+[<Extension>]
 module GenericChart =
 
     open Trace
@@ -180,7 +181,6 @@ module GenericChart =
         match gChart with
         | Chart (t,_,c)      -> Chart (t,layout,c)
         | MultiChart (t,_,c) -> MultiChart (t,layout,c)
-
 
     // Adds a Layout function to the GenericChart
     let addLayout layout gChart =
