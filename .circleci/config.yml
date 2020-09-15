@@ -7,6 +7,6 @@ jobs:
       
     steps:
       - checkout
-      - command: "dotnet tool restore"
-      - command: "dotnet paket restore"
-      - command: "dotnet fake build -t BuildOnly"
+      - run: "dotnet tool restore"
+      - run: "dotnet paket restore"
+      - run: "dotnet fake build -t BuildOnly"
