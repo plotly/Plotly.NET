@@ -10,3 +10,9 @@ jobs:
       - run: "dotnet tool restore"
       - run: "dotnet paket restore"
       - run: "dotnet fake build -t BuildOnly"
+
+workflows:
+  version: 2
+  workflow:
+    jobs:
+    - build-linux
