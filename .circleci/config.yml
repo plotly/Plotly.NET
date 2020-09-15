@@ -1,0 +1,18 @@
+version: 2.1
+
+jobs:
+  build-linux:
+    docker:
+      - image: https://hub.docker.com/r/plotly/plotly.net
+      
+    steps:
+      - checkout
+      - run:
+        name: Restore tools
+        command: "dotnet tool restore"
+      - run:
+        name: Restore packages
+        command: "dotnet paket restore"
+      - run: 
+        name: Build binaries
+        command: "dotnet fake build -t BuildOnly"
