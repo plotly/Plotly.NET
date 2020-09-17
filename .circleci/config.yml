@@ -28,5 +28,5 @@ workflows:
   version: 2
   Plotly.NET-build-test:
     jobs:
-    - build-linux
-    - build-windows
+    - linux-build-test
+    - windows-build-test
