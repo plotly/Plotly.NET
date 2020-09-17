@@ -4,7 +4,7 @@ orbs:
   windows: circleci/windows@2.4.0
 
 jobs:
-  build-linux:
+  linux-build+test:
     docker:
       - image: plotly/plotly.net:ci
       
@@ -15,7 +15,7 @@ jobs:
       - run: "dotnet fake build -t BuildOnly"
       - run: "dotnet test"
 
-  build-windows:
+  windows-build+test:
     executor: windows/default
     steps:
       - checkout
