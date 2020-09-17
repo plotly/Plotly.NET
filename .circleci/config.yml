@@ -16,7 +16,7 @@ jobs:
       - run: "dotnet test"
 
   build-windows:
-    executor: win/default
+    executor: default
     steps:
       - checkout
       - run: dotnet tool restore
