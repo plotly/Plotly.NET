@@ -16,15 +16,13 @@ jobs:
       - run: "dotnet test"
 
   build-windows:
-    executor:
-      name: win/default
-      shell: powershell.exe
+    executor: win/default
     steps:
       - checkout
-      - run: "dotnet tool restore"
-      - run: "dotnet paket restore"
-      - run: "dotnet fake build -t BuildOnly"
-      - run: "dotnet test"
+      - run: dotnet tool restore
+      - run: dotnet paket restore
+      - run: dotnet fake build -t BuildOnly
+      - run: dotnet test
 
 workflows:
   version: 2
