@@ -69,8 +69,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "git", "git", "{078A9C52-DDC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{7C6D08E7-3EAC-4335-8F4B-252C193C27C9}"
 	ProjectSection(SolutionItems) = preProject
-		.travis.yml = .travis.yml
-		appveyor.yml = appveyor.yml
 		build.cmd = build.cmd
 		build.fsx = build.fsx
 		build.sh = build.sh
@@ -78,9 +76,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{7C6D08
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Plotly.NET", "src\Plotly.NET\Plotly.NET.fsproj", "{DFAC135B-36B8-4347-B1DD-B5E0144610C2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8C673526-8416-4DB2-AA73-908B5871A733}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Plotly.NET.Tests", "tests\Plotly.NET.Tests\Plotly.NET.Tests.fsproj", "{2C9916F4-817A-4B70-8D83-F48E9A30544F}"
 EndProject
-Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Plotly.NET.Tests", "tests\Plotly.NET.Tests\Plotly.NET.Tests.fsproj", "{DA6EFE18-664F-4915-A4A9-46B679D1E598}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".ci", ".ci", "{2461AFBF-6E10-4F7B-A0EA-3D62541C2EB1}"
+	ProjectSection(SolutionItems) = preProject
+		.circleci\config.yml = .circleci\config.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -95,18 +96,15 @@ Global
 		{DFAC135B-36B8-4347-B1DD-B5E0144610C2}.Dotnet|Any CPU.Build.0 = Dotnet|Any CPU
 		{DFAC135B-36B8-4347-B1DD-B5E0144610C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFAC135B-36B8-4347-B1DD-B5E0144610C2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DA6EFE18-664F-4915-A4A9-46B679D1E598}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DA6EFE18-664F-4915-A4A9-46B679D1E598}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DA6EFE18-664F-4915-A4A9-46B679D1E598}.Dotnet|Any CPU.ActiveCfg = Dotnet|Any CPU
-		{DA6EFE18-664F-4915-A4A9-46B679D1E598}.Dotnet|Any CPU.Build.0 = Dotnet|Any CPU
-		{DA6EFE18-664F-4915-A4A9-46B679D1E598}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DA6EFE18-664F-4915-A4A9-46B679D1E598}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C9916F4-817A-4B70-8D83-F48E9A30544F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C9916F4-817A-4B70-8D83-F48E9A30544F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C9916F4-817A-4B70-8D83-F48E9A30544F}.Dotnet|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C9916F4-817A-4B70-8D83-F48E9A30544F}.Dotnet|Any CPU.Build.0 = Debug|Any CPU
+		{2C9916F4-817A-4B70-8D83-F48E9A30544F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C9916F4-817A-4B70-8D83-F48E9A30544F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{DA6EFE18-664F-4915-A4A9-46B679D1E598} = {8C673526-8416-4DB2-AA73-908B5871A733}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7177F1E1-341C-48AB-9864-6B525FFF7633}

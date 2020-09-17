@@ -1,0 +1,32 @@
+version: 2.1
+
+orbs:
+  windows: circleci/windows@2.4.0
+
+jobs:
+  linux-build-test:
+    docker:
+      - image: plotly/plotly.net:ci
+      
+    steps:
+      - checkout
+      - run: "dotnet tool restore"
+      - run: "dotnet paket restore"
+      - run: "dotnet fake build -t BuildOnly"
+      - run: "dotnet test"
+
+  windows-build-test:
+    executor: windows/default
+    steps:
+      - checkout
+      - run: dotnet tool restore
+      - run: dotnet paket restore
+      - run: dotnet fake build -t BuildOnly
+      - run: dotnet test
+
+workflows:
+  version: 2
+  Plotly.NET-build-test:
+    jobs:
+    - linux-build-test
+    - windows-build-test
