@@ -7,9 +7,6 @@ nuget FSharp.Core       >= 4.7
 nuget Newtonsoft.Json   >= 12.0.3
 nuget Argu              
 
-nuget Expecto
-nuget Expecto.BenchmarkDotNet
-nuget Expecto.FsCheck
 nuget System.Runtime.InteropServices.RuntimeInformation >= 4.3.0
 
 group Formatting

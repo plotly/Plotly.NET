@@ -1,23 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <TargetFramework>net47</TargetFramework>
-    <RootNamespace>FSharp.Plotly.Tests</RootNamespace>
-    <AssemblyName>FSharp.Plotly.Tests</AssemblyName>
-    <Name>FSharp.Plotly.Tests</Name>
     <OutputType>Exe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <Configurations>Debug;Release;Dotnet</Configurations>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <GenerateProgramFile>false</GenerateProgramFile>
   </PropertyGroup>
+
   <ItemGroup>
-    <Compile Include="Generators.fs" />
-    <Compile Include="Tests.fs" />
-    <Compile Include="RunTests.fs" />
-    <None Include="paket.references" />
+    <Compile Include="BasicHtmlGeneration.fs" />
+    <Compile Include="Main.fs" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Expecto" Version="9.*" />
+    <PackageReference Include="FSharp.Core" Version="4.*" />
+    <PackageReference Include="YoloDev.Expecto.TestSdk" Version="0.*" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.*" />
+  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\src\Plotly.NET\Plotly.NET.fsproj" />
   </ItemGroup>
-  <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

@@ -44,13 +44,13 @@ let openOsSpecificFile path =
 
 let project = "Plotly.NET"
 
+let testProject = "tests/Plotly.NET.Tests/Plotly.NET.Tests.fsproj"
+
 let summary = "A F# interactive charting library using plotly.js"
 
 let solutionFile  = "Plotly.NET.sln"
 
 let configuration = "Release"
-
-let testAssemblies = "tests/**/bin" </> configuration </> "**" </> "*Tests.exe"
 
 // Git configuration (used for publishing documentation in gh-pages branch)
 // The profile where the project is posted
@@ -146,20 +146,7 @@ Target.create "Build" (fun _ ->
 // Run the unit tests using test runner
 
 Target.create "RunTests" (fun _ ->
-    let assemblies = !! testAssemblies
-
-    assemblies
-    |> Seq.iter (fun f ->
-        Command.RawCommand (
-            f,
-            Arguments.OfArgs []
-        )
-        |> CreateProcess.fromCommand
-        |> CreateProcess.withFramework
-        |> CreateProcess.ensureExitCode
-        |> Proc.run
-        |> ignore
-    )
+   Fake.DotNet.DotNet.test id ""
 )
 
 // --------------------------------------------------------------------------------------
