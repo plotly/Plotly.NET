@@ -16,7 +16,7 @@ jobs:
       - run: "dotnet test"
 
   build-windows:
-    executor: default
+    executor: win/default
     steps:
       - checkout
       - run: dotnet tool restore
@@ -25,7 +25,6 @@ jobs:
       - run: dotnet test
 
 workflows:
-  version: 2
   Plotly.NET-build-test:
     jobs:
     - build-linux
