@@ -1,7 +1,23 @@
 # Plotly.NET
 
-Formerly FSharp.Plotly, Plotly.NET provides functions for generating and rendering Plotly.js Charts in .NET. The main design point of 
-it is to provide support for multiple flavors of chart generation. Here are 2 examples in different styles and languages that create an equivalent Chart:
+![](https://img.shields.io/circleci/build/github/plotly/Plotly.NET)
+[![](https://img.shields.io/nuget/vpre/Plotly.NET)](https://www.nuget.org/packages/Plotly.NET/)
+
+Formerly FSharp.Plotly, Plotly.NET provides functions for generating and rendering plotly.js charts in .NET languages. 
+
+### Installation
+
+Plotly.NET will be available as 2.0.0 version of FSharp.Plotly. The feature roadmap can be seen [here](https://github.com/plotly/Plotly.NET/issues/43). Contributions are very welcome!
+
+A preview version of 2.0.0 is currently available on nuget:
+
+```shell
+dotnet add package Plotly.NET --version 2.0.0-alpha2
+```
+
+### Overview
+
+One of the main design points of Plotly.NET it is to provide support for multiple flavors of chart generation. Here are 2 examples in different styles and languages that create an equivalent chart:
 
  - **Functional pipeline style in F#:**
     ```F#

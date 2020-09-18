@@ -5,13 +5,13 @@ open System.Reflection
 [<assembly: AssemblyTitleAttribute("Plotly.NET")>]
 [<assembly: AssemblyProductAttribute("Plotly.NET")>]
 [<assembly: AssemblyDescriptionAttribute("A F# interactive charting library using plotly.js")>]
-[<assembly: AssemblyVersionAttribute("1.2.3")>]
-[<assembly: AssemblyFileVersionAttribute("1.2.3")>]
+[<assembly: AssemblyVersionAttribute("2.0.0")>]
+[<assembly: AssemblyFileVersionAttribute("2.0.0")>]
 do ()
 
 module internal AssemblyVersionInformation =
     let [<Literal>] AssemblyTitle = "Plotly.NET"
     let [<Literal>] AssemblyProduct = "Plotly.NET"
     let [<Literal>] AssemblyDescription = "A F# interactive charting library using plotly.js"
-    let [<Literal>] AssemblyVersion = "1.2.3"
-    let [<Literal>] AssemblyFileVersion = "1.2.3"
+    let [<Literal>] AssemblyVersion = "2.0.0"
+    let [<Literal>] AssemblyFileVersion = "2.0.0"

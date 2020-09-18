@@ -1,4 +1,7 @@
-### 1.2.3 - May 31 2020
+### 2.0.0 - TBD
+
+**Fsharp.Plotly joined the Plotly family and will from now on be released under `Plotly.NET`**
+
  * [Add Rangesliders for linear Axis](https://github.com/plotly/Plotly.NET/commit/544641492195b1938697721b72814e0187a6c979)
  * [Improve jupyter notebook integration](https://github.com/plotly/Plotly.NET/commit/e9560656bbc8dbf767c9eb6ca35f321c98195238)
  * [Updated Violin Chart](https://github.com/plotly/Plotly.NET/commit/4d3afc527b11cd2f5a18c1d9876ad4e3f83beb02)
@@ -12,8 +15,10 @@
  * [Add Treemap Chart]()
  * [Add OHLC Chart]()
  * [Add option to render all charts derived from the scatter trace type via WebGL as scattergl trace]()
- * [Add Waterfall Chart]()
- * [Add ScatterGeo, PointGeo, LineGeo Charts]
+ * [Add Waterfall Chart](https://github.com/plotly/Plotly.NET/commit/4d93598aa03a965abc75007aea2885ff4d282059)
+ * [Add ScatterGeo, PointGeo, LineGeo Charts](https://github.com/plotly/Plotly.NET/commit/4865c5ac0356bfb2465422a2352e18c4fce018c3)
+ * [Add new `Figure` type to interop with Dash/Kaleido](https://github.com/plotly/Plotly.NET/commit/918adc20843d8ca1194e4511add09ba3cab5415f)
+ * [Greatly improve C# interop](https://github.com/plotly/Plotly.NET/commit/c1ed1be0234a4fcfab921acb43f1c0cf128cc233)
 
 ### 1.2.2 - Apr 9 2020
  * [Opening Charts is now more or less OS agnostic](https://github.com/plotly/Plotly.NET/commit/f6e3dceade085e43e7e56b478b9cf7b533a4fe55)
