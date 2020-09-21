@@ -120,8 +120,6 @@ module HTML =
 
 module ChartDescription =
     
-
-
     type Description =
         {
             Heading : string
@@ -146,8 +144,10 @@ module GenericChart =
             Data: Trace list
             [<JsonProperty("layout")>]
             Layout: Layout
+            [<JsonProperty("frames")>]
+            Frames: Frame list
         } 
-        static member create data layout = {Data = data; Layout = layout}
+        static member create data layout = {Data = data; Layout = layout; Frames=[]}
 
     //TO-DO refactor as type with static members to remove verbose top namespace from 'GenericChart.GenericChart'
     type GenericChart =
