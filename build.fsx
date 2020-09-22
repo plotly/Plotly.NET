@@ -327,4 +327,4 @@ Target.create "DotnetCoreBuild" ignore
   ==> "BuildPreReleasePackages"
   ==> "publishPrereleaseNugetPackages"
 
-Target.runOrDefaultWithArguments "All"
+Target.runOrDefaultWithArguments "BuildOnly"
