@@ -187,3 +187,4 @@ docs
 temp/gh-pages
 /src/FSharp.Plotly/TestScript.fsx
 /pkg
+.ionide/

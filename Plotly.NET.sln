@@ -83,6 +83,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".ci", ".ci", "{2461AFBF-6E1
 		.circleci\config.yml = .circleci\config.yml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FDA42E0F-C03B-47C1-B24B-EAEEFE281514}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Plotly.NET.Interactive.Extension", "src\Plotly.NET.Interactive.Extension\Plotly.NET.Interactive.Extension.fsproj", "{F077EBB9-194D-4492-A81D-105BE535F11B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -102,11 +106,20 @@ Global
 		{2C9916F4-817A-4B70-8D83-F48E9A30544F}.Dotnet|Any CPU.Build.0 = Debug|Any CPU
 		{2C9916F4-817A-4B70-8D83-F48E9A30544F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C9916F4-817A-4B70-8D83-F48E9A30544F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F077EBB9-194D-4492-A81D-105BE535F11B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F077EBB9-194D-4492-A81D-105BE535F11B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F077EBB9-194D-4492-A81D-105BE535F11B}.Dotnet|Any CPU.ActiveCfg = Debug|Any CPU
+		{F077EBB9-194D-4492-A81D-105BE535F11B}.Dotnet|Any CPU.Build.0 = Debug|Any CPU
+		{F077EBB9-194D-4492-A81D-105BE535F11B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F077EBB9-194D-4492-A81D-105BE535F11B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7177F1E1-341C-48AB-9864-6B525FFF7633}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F077EBB9-194D-4492-A81D-105BE535F11B} = {FDA42E0F-C03B-47C1-B24B-EAEEFE281514}
 	EndGlobalSection
 EndGlobal
