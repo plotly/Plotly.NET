@@ -83,6 +83,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".ci", ".ci", "{2461AFBF-6E1
 		.circleci\config.yml = .circleci\config.yml
 	EndProjectSection
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Plotly.NET.Interactive", "src\Plotly.NET.Interactive\Plotly.NET.Interactive.fsproj", "{0F135E3B-B0E1-42A9-B180-18C0221DC7B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -102,6 +104,12 @@ Global
 		{2C9916F4-817A-4B70-8D83-F48E9A30544F}.Dotnet|Any CPU.Build.0 = Debug|Any CPU
 		{2C9916F4-817A-4B70-8D83-F48E9A30544F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C9916F4-817A-4B70-8D83-F48E9A30544F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F135E3B-B0E1-42A9-B180-18C0221DC7B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F135E3B-B0E1-42A9-B180-18C0221DC7B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F135E3B-B0E1-42A9-B180-18C0221DC7B8}.Dotnet|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F135E3B-B0E1-42A9-B180-18C0221DC7B8}.Dotnet|Any CPU.Build.0 = Debug|Any CPU
+		{0F135E3B-B0E1-42A9-B180-18C0221DC7B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F135E3B-B0E1-42A9-B180-18C0221DC7B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

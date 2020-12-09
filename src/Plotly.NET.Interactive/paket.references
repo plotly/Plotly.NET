@@ -1,0 +1,6 @@
+group DotnetInteractive
+
+FSharp.Core
+Microsoft.DotNet.Interactive
+Microsoft.DotNet.Interactive.Formatting
+Microsoft.DotNet.Interactive.FSharp

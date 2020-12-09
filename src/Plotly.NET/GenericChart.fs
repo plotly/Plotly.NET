@@ -4,7 +4,7 @@ open System
 open Newtonsoft.Json
 open System.Runtime.CompilerServices
 
-/// HTML template for Plotly.js 
+/// HTML template for Plotly.js
 module HTML =
 
     let doc =
@@ -60,7 +60,7 @@ module HTML =
         newScript.AppendLine("<script type=\"text/javascript\">") |> ignore
         newScript.AppendLine(@"
             var renderPlotly = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}});
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {")  |> ignore
         newScript.AppendLine(@"
             var data = [DATA];
@@ -69,13 +69,13 @@ module HTML =
             Plotly.newPlot('[ID]', data, layout, config);")  |> ignore
         newScript.AppendLine("""});
             };
-            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) { 
-                var script = document.createElement("script"); 
-                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"); 
+            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
+                var script = document.createElement("script");
+                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
                     renderPlotly();
                 };
-                document.getElementsByTagName("head")[0].appendChild(script); 
+                document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
                 renderPlotly();
@@ -112,14 +112,14 @@ module HTML =
                 function(url)
              {
                  img_jpg.attr("src", url);
-                 
+
              }
              )
         });
   </script>"""
 
 module ChartDescription =
-    
+
     type Description =
         {
             Heading : string
@@ -138,7 +138,7 @@ module GenericChart =
     open Trace
     open ChartDescription
 
-    type Figure = 
+    type Figure =
         {
             [<JsonProperty("data")>]
             Data: Trace list
@@ -146,7 +146,7 @@ module GenericChart =
             Layout: Layout
             [<JsonProperty("frames")>]
             Frames: Frame list
-        } 
+        }
         static member create data layout = {Data = data; Layout = layout; Frames=[]}
 
     //TO-DO refactor as type with static members to remove verbose top namespace from 'GenericChart.GenericChart'
@@ -194,7 +194,7 @@ module GenericChart =
     /// Returns a tuple containing the width and height of a GenericChart's layout if the property is set, otherwise returns None
     let tryGetLayoutSize gChart =
         let layout = getLayout gChart
-        let width,height = 
+        let width,height =
             layout.TryGetTypedValue<float> "width",
             layout.TryGetTypedValue<float> "height"
         match (width,height) with
@@ -217,35 +217,35 @@ module GenericChart =
     //     | Chart (trace,_) ->
     //         let l' = getLayouts gChart
     //         Chart (trace,Some (layouts@l'))
-    //     | MultiChart (traces,_) -> 
+    //     | MultiChart (traces,_) ->
     //         let l' = getLayouts gChart
     //         MultiChart (traces, Some (layouts@l'))
 
     // Combines two GenericChart
     let combine(gCharts:seq<GenericChart>) =
-        let combineLayouts (first:Layout) (second:Layout) = 
+        let combineLayouts (first:Layout) (second:Layout) =
             DynObj.combine first second |> unbox
 
-        let combineConfigs (first:Config) (second:Config) = 
+        let combineConfigs (first:Config) (second:Config) =
             DynObj.combine first second |> unbox
 
         gCharts
         |> Seq.reduce (fun acc elem ->
             match acc,elem with
-            | MultiChart (traces,l1,c1),Chart (trace,l2,c2)         -> 
+            | MultiChart (traces,l1,c1),Chart (trace,l2,c2)         ->
                 MultiChart (List.append traces [trace], combineLayouts l1 l2, combineConfigs c1 c2)
-            | MultiChart (traces1,l1,c1),MultiChart (traces2,l2,c2) -> 
+            | MultiChart (traces1,l1,c1),MultiChart (traces2,l2,c2) ->
                 MultiChart (List.append traces1 traces2,combineLayouts l1 l2, combineConfigs c1 c2)
-            | Chart (trace1,l1,c1),Chart (trace2,l2,c2)             -> 
+            | Chart (trace1,l1,c1),Chart (trace2,l2,c2)             ->
                 MultiChart ([trace1;trace2],combineLayouts l1 l2, combineConfigs c1 c2)
-            | Chart (trace,l1,c1),MultiChart (traces,l2,c2)         -> 
+            | Chart (trace,l1,c1),MultiChart (traces,l2,c2)         ->
                 MultiChart (List.append [trace] traces ,combineLayouts l1 l2, combineConfigs c1 c2)
-                        ) 
-    
+                        )
+
     // let private materialzeLayout (layout:(Layout -> Layout) list) =
     //     let rec reduce fl v =
     //         match fl with
-    //         | h::t -> reduce t (h v) 
+    //         | h::t -> reduce t (h v)
     //         | [] -> v
 
     //     // Attention order ov layout functions is reverse
@@ -258,13 +258,13 @@ module GenericChart =
         let guid = Guid.NewGuid().ToString()
         let tracesJson =
             getTraces gChart
-            |> JsonConvert.SerializeObject 
-        let layoutJson = 
+            |> JsonConvert.SerializeObject
+        let layoutJson =
             getLayout gChart
-            |> JsonConvert.SerializeObject 
+            |> JsonConvert.SerializeObject
         let configJson =
             getConfig gChart
-            |> JsonConvert.SerializeObject 
+            |> JsonConvert.SerializeObject
 
         let dims = tryGetLayoutSize gChart
         let width,height =
@@ -283,18 +283,18 @@ module GenericChart =
                 .Replace("[CONFIG]", configJson)
         html
 
-    /// Converts a GenericChart to it HTML representation and set the size of the div 
+    /// Converts a GenericChart to it HTML representation and set the size of the div
     let toChartHtmlWithSize (width:int) (height:int) (gChart:GenericChart) =
         let guid = Guid.NewGuid().ToString()
         let tracesJson =
             getTraces gChart
-            |> JsonConvert.SerializeObject 
-        let layoutJson = 
-            getLayout gChart            
-            |> JsonConvert.SerializeObject 
-        let configJson = 
+            |> JsonConvert.SerializeObject
+        let layoutJson =
+            getLayout gChart
+            |> JsonConvert.SerializeObject
+        let configJson =
             getConfig gChart
-            |> JsonConvert.SerializeObject 
+            |> JsonConvert.SerializeObject
 
         let html =
             HTML.chart
@@ -320,7 +320,7 @@ module GenericChart =
 
 
     /// Converts a GenericChart to it HTML representation and embeds it into a html page.
-    let toEmbeddedHTML gChart = 
+    let toEmbeddedHTML gChart =
         let chartMarkup =
             toChartHTML gChart
 
@@ -333,10 +333,10 @@ module GenericChart =
         let guid = Guid.NewGuid().ToString()
         let tracesJson =
             getTraces gChart
-            |> JsonConvert.SerializeObject 
-        let layoutJson = 
+            |> JsonConvert.SerializeObject
+        let layoutJson =
             getLayout gChart
-            |> JsonConvert.SerializeObject 
+            |> JsonConvert.SerializeObject
 
         let html =
             HTML.staticChart
@@ -361,18 +361,18 @@ module GenericChart =
         html
 
 
-    /// Creates a new GenericChart whose traces are the results of applying the given function to each of the trace of the GenericChart. 
+    /// Creates a new GenericChart whose traces are the results of applying the given function to each of the trace of the GenericChart.
     let mapTrace f gChart =
         match gChart with
         | Chart (trace,layout,config)       -> Chart (f trace,layout,config)
-        | MultiChart (traces,layout,config) -> MultiChart (traces |> List.map f,layout,config) 
+        | MultiChart (traces,layout,config) -> MultiChart (traces |> List.map f,layout,config)
 
     /// Creates a new GenericChart whose traces are the results of applying the given function to each of the trace of the GenericChart.
     /// The integer index passed to the function indicates the index (from 0) of element being transformed.
     let mapiTrace f gChart =
         match gChart with
         | Chart (trace,layout,config)       -> Chart (f 0 trace,layout,config)
-        | MultiChart (traces,layout,config) -> MultiChart (traces |> List.mapi f,layout,config) 
+        | MultiChart (traces,layout,config) -> MultiChart (traces |> List.mapi f,layout,config)
 
     /// Returns the number of traces within the GenericChart
     let countTrace gChart =
@@ -383,9 +383,9 @@ module GenericChart =
     /// Creates a new GenericChart whose traces are the results of applying the given function to each of the trace of the GenericChart.
     let existsTrace (f:Trace->bool) gChart =
         match gChart with
-        | Chart (trace,_,_)       -> f trace 
+        | Chart (trace,_,_)       -> f trace
         | MultiChart (traces,_,_) -> traces |> List.exists f
-          
+
     /// Converts from a trace object and a layout object into GenericChart
     let ofTraceObject trace = //layout =
         GenericChart.Chart(trace, Layout(), Config())
