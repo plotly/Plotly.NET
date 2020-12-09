@@ -1,11 +1,11 @@
 type project
-id Plotly.NET.Interactive.Extension
+id Plotly.NET.Interactive
 title
-    Plotly.NET
+    Plotly.NET.Interactive
 owners
     Timo Mühlhaus, Kevin Schneider
 authors
-    Timo Mühlhaus, Kevin Schneider, F# open source contributors
+    Timo Mühlhaus, Kevin Schneider, Gregor Beyerle, F# open source contributors
 projectUrl
     https://plotly.github.io/Plotly.NET/
 iconUrl
@@ -25,7 +25,7 @@ summary
 description
     A .NET Interactive Kernel Extension for displaying Plotly.NET charts
 files
-   bin/Release/netcoreapp3.1/Plotly.NET.Interactive.Extension.dll ==> interactive-extensions/dotnet
+   bin/Release/netstandard2.1/Plotly.NET.Interactive.dll ==> interactive-extensions/dotnet
 repositoryType
     git
 repositoryUrl

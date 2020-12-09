@@ -2,7 +2,7 @@
 namespace System
 open System.Reflection
 
-[<assembly: AssemblyTitleAttribute("Plotly.NET.Interactive.Extension")>]
+[<assembly: AssemblyTitleAttribute("Plotly.NET.Interactive")>]
 [<assembly: AssemblyProductAttribute("Plotly.NET")>]
 [<assembly: AssemblyDescriptionAttribute("A F# interactive charting library using plotly.js")>]
 [<assembly: AssemblyVersionAttribute("2.0.0")>]
@@ -10,7 +10,7 @@ open System.Reflection
 do ()
 
 module internal AssemblyVersionInformation =
-    let [<Literal>] AssemblyTitle = "Plotly.NET.Interactive.Extension"
+    let [<Literal>] AssemblyTitle = "Plotly.NET.Interactive"
     let [<Literal>] AssemblyProduct = "Plotly.NET"
     let [<Literal>] AssemblyDescription = "A F# interactive charting library using plotly.js"
     let [<Literal>] AssemblyVersion = "2.0.0"

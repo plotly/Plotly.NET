@@ -1,11 +1,11 @@
-﻿namespace Plotly.NET.Interactive.Extension
+﻿namespace Plotly.NET.Interactive
 
 open System.Threading.Tasks
 open Microsoft.DotNet.Interactive
 open Microsoft.DotNet.Interactive.Formatting
 open Plotly.NET.GenericChart
 
-type PlotlyNetFormatterKernelExtension() =
+type FormatterKernelExtension() =
 
     let registerFormatter () =
         Formatter.Register<GenericChart>
