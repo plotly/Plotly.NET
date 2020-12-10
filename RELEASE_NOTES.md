@@ -11,14 +11,15 @@
    * new Charts: 
      * Chart.Grid: Uses the grid object of plotly.js to generate various types of subplot grids
      * Chart.SingleStack: Basically Chart.Grid with one Column
- * [Add Sunburst Chart]()
- * [Add Treemap Chart]()
- * [Add OHLC Chart]()
+ * [Add Sunburst Chart](https://github.com/plotly/Plotly.NET/commit/3c6cd67219c6cd81f294f0453c62fd8b70c1e689)
+ * [Add Treemap Chart](https://github.com/plotly/Plotly.NET/commit/70b86d0cf2e3c446d7d1c501871999a88222b5bf)
+ * [Add OHLC Chart](https://github.com/plotly/Plotly.NET/commit/0d787cf070ea10892dfd77d42ef6a162f360408d)
  * [Add option to render all charts derived from the scatter trace type via WebGL as scattergl trace]()
  * [Add Waterfall Chart](https://github.com/plotly/Plotly.NET/commit/4d93598aa03a965abc75007aea2885ff4d282059)
  * [Add ScatterGeo, PointGeo, LineGeo Charts](https://github.com/plotly/Plotly.NET/commit/4865c5ac0356bfb2465422a2352e18c4fce018c3)
  * [Add new `Figure` type to interop with Dash/Kaleido](https://github.com/plotly/Plotly.NET/commit/918adc20843d8ca1194e4511add09ba3cab5415f)
  * [Greatly improve C# interop](https://github.com/plotly/Plotly.NET/commit/c1ed1be0234a4fcfab921acb43f1c0cf128cc233)
+ * [Add kernel formatting extension for dotnet interactive notebooks](https://github.com/plotly/Plotly.NET/commit/fa990371dd68ec1f5784288ccd9e2d28d761ac93) (thanks [@WalternativeE](https://github.com/WalternativE))
 
 ### 1.2.2 - Apr 9 2020
  * [Opening Charts is now more or less OS agnostic](https://github.com/plotly/Plotly.NET/commit/f6e3dceade085e43e7e56b478b9cf7b533a4fe55)
