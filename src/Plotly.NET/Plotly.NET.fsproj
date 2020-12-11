@@ -52,6 +52,7 @@
     <Compile Include="Trace3d.fs" />
     <Compile Include="LayoutGrid.fs" />
     <Compile Include="Layout.fs" />
+    <Compile Include="Template.fs" />
     <Compile Include="Config.fs" />
     <Compile Include="GenericChart.fs" />
     <Compile Include="Chart.fs" />
@@ -59,7 +60,6 @@
     <Compile Include="GenericChartExtensions.fs" />
     <Compile Include="CandelstickExtension.fs" />
     <Compile Include="SankeyExtension.fs" />
-    <Compile Include="Templates.fs" />
     <None Include="Playground.fsx" />
     <None Include="TestScript.fsx" />
     <None Include="paket.references" />

@@ -592,6 +592,15 @@ module GenericChartExtensions =
                     Margin.init ( ?Left=Left,?Right=Right,?Top=Top,?Bottom=Bottom,?Pad=Pad,?Autoexpand=Autoexpand )
                 this |> Chart.withMargin(margin)
 
+        [<CompiledName("WithTemplate")>]
+        [<Extension>]
+        member this.WithTemplate(template: Template) =
+            this
+            |> GenericChart.mapLayout (fun l ->
+                template |> DynObj.setValue l "template"
+                l
+            )
+
         // TODO: Include withLegend & withLegendStyle
 
             //Specifies the shape type to be drawn. If "line", a line is drawn from (`x0`,`y0`) to (`x1`,`y1`) If "circle", a circle is drawn from 

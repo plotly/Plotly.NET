@@ -661,6 +661,15 @@ module ChartExtensions =
                     Margin.init ( ?Left=Left,?Right=Right,?Top=Top,?Bottom=Bottom,?Pad=Pad,?Autoexpand=Autoexpand )
                 Chart.withMargin(margin)
 
+        [<CompiledName("WithTemplate")>]
+        static member withTemplate(template: Template) =
+            (fun (ch:GenericChart) ->
+                ch
+                |> GenericChart.mapLayout (fun l ->
+                    template |> DynObj.setValue l "template"
+                    l
+                    )
+            )
 
         // TODO: Include withLegend & withLegendStyle
 

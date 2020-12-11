@@ -1,5 +1,6 @@
 ﻿#load "StyleParams.fs"
 #load "DynamicObj.fs"
+#load "Frame.fs"
 #load "Colors.fs"
 #load "StockData.fs"
 #load "Font.fs"
@@ -31,6 +32,7 @@
 #load "Geo.fs"
 #load "LayoutGrid.fs"
 #load "Layout.fs"
+#load "Template.fs"
 #load "Config.fs"
 #r @"..\..\packages\Newtonsoft.Json\lib\netstandard2.0\Newtonsoft.Json.dll"
 #load "GenericChart.fs"
@@ -39,18 +41,30 @@
 #load "GenericChartExtensions.fs"
 #load "CandelstickExtension.fs"
 #load "SankeyExtension.fs"
-#load "Templates.fs"
 
 open Plotly.NET
 open GenericChart
 
+let myTemplate = 
+    ChartTemplates.dark
+    |> Template.withColorWay ChartTemplates.ColorWays.plotly
+
 //F# functional pipeline to compose a chart with functions
 //
-[(1,5);(2,10)]
-|> Chart.Point
+[
+    [(1,5);(2,10)]
+    [(2,4);(3,9)]
+    [(3,3);(4,8)]
+    [(4,2);(5,7)]
+    [(5,1);(6,6)]
+
+]
+|> List.map Chart.Line
+|> Chart.Combine
 |> Chart.withTraceName("Hello from F#",Showlegend=true)
-|> Chart.withY_AxisStyle("xAxis",Showgrid= false, Showline=true)
-|> Chart.withX_AxisStyle("yAxis",Showgrid= false, Showline=true)
+//|> Chart.withY_AxisStyle("xAxis",Showline=true)
+//|> Chart.withX_AxisStyle("yAxis",Showline=true)
+|> Chart.withTemplate myTemplate
 |> Chart.Show
 
 
