@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <GenerateProgramFile>false</GenerateProgramFile>
   </PropertyGroup>
 
@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="Expecto" Version="9.*" />
-    <PackageReference Include="FSharp.Core" Version="4.*" />
+    <PackageReference Include="FSharp.Core" Version="5.*" />
     <PackageReference Include="YoloDev.Expecto.TestSdk" Version="0.*" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.*" />
   </ItemGroup>
