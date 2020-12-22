@@ -70,15 +70,15 @@ module ChartTemplates =
 
         let fslab = [|
             "#A00975" // darkmagenta
-            "#F99BDE" // lightmagenta
             "#D12F67" // rose
-            "#ff9b9b" // light rose
-            "#d59a1b" // dark yellow
-            "#d2c572" // yellow
             "#44d57f" // green
-            "#c6ffdd" // light green
             "#438AFE" // aquamarine
+            "#d59a1b" // dark yellow
+            "#F99BDE" // lightmagenta
+            "#ff9b9b" // light rose
+            "#c6ffdd" // light green
             "#00d4ff" // light aquamarine
+            "#d2c572" // yellow
         |]
 
     let light = 
@@ -154,3 +154,4 @@ module ChartTemplates =
             |> Layout.AddLinearAxis((StyleParam.AxisId.Y 1),(initFslabAxisTemplate()))
 
         Template.init(fslabLayoutTemplate)
+        |> Template.withColorWay ColorWays.fslab
