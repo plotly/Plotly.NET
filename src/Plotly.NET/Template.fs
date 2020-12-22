@@ -52,6 +52,7 @@ type Template() =
 
 module ChartTemplates =
     
+    /// A colorway is an array of colors that contains the default colors for traces
     module ColorWays = 
         
         let plotly = [|
@@ -65,6 +66,19 @@ module ChartTemplates =
             "#B6E880"
             "#FF97FF"
             "#FECB52"
+        |]
+
+        let fslab = [|
+            "#A00975" // darkmagenta
+            "#F99BDE" // lightmagenta
+            "#D12F67" // rose
+            "#ff9b9b" // light rose
+            "#d59a1b" // dark yellow
+            "#d2c572" // yellow
+            "#44d57f" // green
+            "#c6ffdd" // light green
+            "#438AFE" // aquamarine
+            "#00d4ff" // light aquamarine
         |]
 
     let light = 
@@ -117,3 +131,26 @@ module ChartTemplates =
 
             l
         )
+
+    let fslab = 
+
+        let initFslabAxisTemplate() =
+            Axis.LinearAxis.init(
+                Linecolor = "#438AFE", 
+                Zerolinecolor = "rgba(67, 138, 254, 0.5)",
+                Gridcolor = "rgba(67, 138, 254, 0.5)",
+                Tickcolor = "rgba(67, 138, 254, 0.5)",
+                Showline= true,
+                Zeroline=true
+            )
+
+        let fslabLayoutTemplate =
+            Layout.init(
+                Paper_bgcolor = "#2D3E50",
+                Plot_bgcolor= "#2D3E50",
+                Font = Font.init(Color = "#438AFE")
+            )
+            |> Layout.AddLinearAxis((StyleParam.AxisId.X 1),(initFslabAxisTemplate()))
+            |> Layout.AddLinearAxis((StyleParam.AxisId.Y 1),(initFslabAxisTemplate()))
+
+        Template.init(fslabLayoutTemplate)
