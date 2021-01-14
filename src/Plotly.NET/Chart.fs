@@ -1039,7 +1039,7 @@ type Chart =
             match Marker with 
             | Some marker -> marker |> Plotly.NET.Marker.style(?Color=Color)
             | Option.None        -> Plotly.NET.Marker.init (?Color=Color)
-        Trace.initBar (TraceStyle.Bar(X = keys,Y = values,Marker=marker,Orientation = StyleParam.Orientation.Horizontal))
+        Trace.initBar (TraceStyle.Bar(X = values,Y = keys,Marker=marker,Orientation = StyleParam.Orientation.Horizontal))
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)        
         |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
         |> GenericChart.ofTraceObject  
