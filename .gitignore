@@ -179,12 +179,10 @@ release.sh
 localpackages/
 paket-files
 *.orig
-docsrc/content/license.md
-docsrc/content/release-notes.md
 .fake
-docsrc/tools/FSharp.Formatting.svclog
-docs
 temp/gh-pages
 /src/FSharp.Plotly/TestScript.fsx
 /pkg
 .ionide/
+/.fsdocs
+/tmp/watch
