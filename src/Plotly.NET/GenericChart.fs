@@ -59,7 +59,7 @@ module HTML =
         newScript.AppendLine("""<div id="[ID]" style="width: [WIDTH]px; height: [HEIGHT]px;"><!-- Plotly chart will be drawn inside this DIV --></div>""") |> ignore
         newScript.AppendLine("<script type=\"text/javascript\">") |> ignore
         newScript.AppendLine(@"
-            var renderPlotly = function() {
+            var renderPlotly_[SCRIPTID] = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {")  |> ignore
         newScript.AppendLine(@"
@@ -73,12 +73,12 @@ module HTML =
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly();
+                    renderPlotly_[SCRIPTID]();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly();
+                renderPlotly_[SCRIPTID]();
             }""") |> ignore
         newScript.AppendLine("</script>") |> ignore
         newScript.ToString()
@@ -278,6 +278,7 @@ module GenericChart =
                 .Replace("[WIDTH]", string width)
                 .Replace("[HEIGHT]", string height)
                 .Replace("[ID]", guid)
+                .Replace("[SCRIPTID]", guid.Replace("-",""))
                 .Replace("[DATA]", tracesJson)
                 .Replace("[LAYOUT]", layoutJson)
                 .Replace("[CONFIG]", configJson)
