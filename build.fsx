@@ -128,7 +128,8 @@ Target.create "Clean" (fun _ ->
 )
 
 Target.create "CleanDocs" (fun _ ->
-    Shell.cleanDirs ["docs"]
+    //Shell.cleanDirs ["docs"]
+    ()
 )
 
 // --------------------------------------------------------------------------------------
