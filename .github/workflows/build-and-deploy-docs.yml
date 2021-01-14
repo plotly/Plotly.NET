@@ -18,7 +18,7 @@ jobs:
     - name: Restore tools
       run: dotnet tool restore
     - name: Build docs
-      working-directory: ./docs
+      working-directory: ./
       run: dotnet fsdocs build --eval
     - name: deploy
       uses: JamesIves/github-pages-deploy-action@3.7.1
