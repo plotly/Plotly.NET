@@ -12,7 +12,7 @@ jobs:
       - checkout
       - run: "dotnet tool restore"
       - run: "dotnet paket restore"
-      - run: "dotnet fake build -t BuildOnly"
+      - run: "dotnet fake build -t copyBinaries"
       - run: "dotnet test"
 
   windows-build-test:
@@ -21,7 +21,7 @@ jobs:
       - checkout
       - run: dotnet tool restore
       - run: dotnet paket restore
-      - run: dotnet fake build -t BuildOnly
+      - run: dotnet fake build -t copyBinaries
       - run: dotnet test
 
 workflows:
