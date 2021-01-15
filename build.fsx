@@ -12,7 +12,8 @@ nuget Fake.DotNet.FSFormatting
 nuget Fake.DotNet.Fsi
 nuget Fake.DotNet.NuGet
 nuget Fake.Api.Github
-nuget Fake.DotNet.Testing.Expecto //"
+nuget Fake.DotNet.Testing.Expecto 
+nuget Fake.Tools.Git //"
 
 #if !FAKE
 #load "./.fake/build.fsx/intellisense.fsx"
@@ -26,6 +27,7 @@ open Fake.DotNet
 open Fake.IO
 open Fake.IO.FileSystemOperators
 open Fake.IO.Globbing.Operators
+open Fake.Tools
 
 let runDotNet cmd workingDir =
     let result =
@@ -54,6 +56,8 @@ let website = "/Plotly.NET"
 let pkgDir = "pkg"
 
 let release = ReleaseNotes.load "RELEASE_NOTES.md"
+
+let projectRepo = "https://github.com/plotly/Plotly.NET"
 
 let stableVersion   = SemVer.parse release.NugetVersion
 
@@ -152,7 +156,7 @@ let packPrerelease = BuildTask.create "PackPrerelease" [clean; build] {
 // --------------------------------------------------------------------------------------
 // Generate the documentation
 
-let docs = BuildTask.create "BuildDocs" [cleanDocs; build; copyBinaries] {
+let buildDocs = BuildTask.create "BuildDocs" [cleanDocs; build; copyBinaries] {
     runDotNet "fsdocs build --eval --property Configuration=Release" "./"
 }
 
@@ -168,6 +172,16 @@ let runTests = BuildTask.create "RunTests" [clean; build; copyBinaries] {
                 Logger = Some "console;verbosity=detailed"
         }
     ) testProject
+}
+
+let releaseDocs =  BuildTask.create "ReleaseDocs" [buildDocs] {
+    Shell.cleanDir "temp"
+    Git.CommandHelper.runSimpleGitCommand "." (sprintf "clone %s temp/gh-pages --depth 1 -b gh-pages" projectRepo) |> ignore
+    Shell.copyRecursive "output" "temp/gh-pages" true |> printfn "%A"
+    Git.CommandHelper.runSimpleGitCommand "temp/gh-pages" "add ." |> printfn "%s"
+    let cmd = sprintf """commit -a -m "Update generated documentation for version %s""" release.NugetVersion
+    Git.CommandHelper.runSimpleGitCommand "temp/gh-pages" cmd |> printfn "%s"
+    Git.Branches.push "temp/gh-pages"
 }
 
 // let runTestsWithCodeCov = BuildTask.create "RunTestsWithCodeCov" [clean; build; copyBinaries] {
@@ -188,6 +202,6 @@ let runTests = BuildTask.create "RunTests" [clean; build; copyBinaries] {
 //     ) testProject
 //}
 
-let _all = BuildTask.createEmpty "All" [clean; cleanDocs; build; copyBinaries; runTests (*runTestsWithCodeCov*); pack; docs]
+let _all = BuildTask.createEmpty "All" [clean; cleanDocs; build; copyBinaries; runTests (*runTestsWithCodeCov*); pack; buildDocs]
 
 BuildTask.runOrDefault copyBinaries
