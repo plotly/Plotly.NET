@@ -91,6 +91,9 @@ let clean = BuildTask.create "Clean" [] {
 
 let cleanDocs = BuildTask.create "CleanDocs" [] {
     !! "output"
+    ++ ".fsdocs"
+    ++ "tmp"
+    ++ "temp"
     |> Shell.cleanDirs 
 }
 
@@ -117,6 +120,7 @@ let pack = BuildTask.create "Pack" [clean; build] {
                 {p.MSBuildParams with 
                     Properties = ([
                         "Version",(sprintf "%i.%i.%i" stableVersion.Major stableVersion.Minor stableVersion.Patch )
+                        "PackageReleaseNotes",  (release.Notes |> String.concat "\r\n")
                     ] @ p.MSBuildParams.Properties)
                 }
             {
@@ -140,6 +144,7 @@ let packPrerelease = BuildTask.create "PackPrerelease" [clean; build] {
                     {p.MSBuildParams with 
                         Properties = ([
                             "Version", prereleaseTag
+                            "PackageReleaseNotes",  (release.Notes |> String.concat "\r\n")
                         ] @ p.MSBuildParams.Properties)
                     }
                 {
@@ -153,6 +158,16 @@ let packPrerelease = BuildTask.create "PackPrerelease" [clean; build] {
     ))
 }
 
+let runTests = BuildTask.create "RunTests" [clean; build; copyBinaries] {
+    let standardParams = Fake.DotNet.MSBuild.CliArguments.Create ()
+    Fake.DotNet.DotNet.test(fun testParams ->
+        {
+            testParams with
+                Logger = Some "console;verbosity=detailed"
+        }
+    ) testProject
+}
+
 // --------------------------------------------------------------------------------------
 // Generate the documentation
 
@@ -162,16 +177,6 @@ let buildDocs = BuildTask.create "BuildDocs" [cleanDocs; build; copyBinaries] {
 
 let watchDocs = BuildTask.create "WatchDocs" [cleanDocs; build; copyBinaries] {
    runDotNet "fsdocs watch --eval --property Configuration=Release" "./"
-}
-
-let runTests = BuildTask.create "RunTests" [clean; build; copyBinaries] {
-    let standardParams = Fake.DotNet.MSBuild.CliArguments.Create ()
-    Fake.DotNet.DotNet.test(fun testParams ->
-        {
-            testParams with
-                Logger = Some "console;verbosity=detailed"
-        }
-    ) testProject
 }
 
 let releaseDocs =  BuildTask.create "ReleaseDocs" [buildDocs] {
@@ -184,23 +189,24 @@ let releaseDocs =  BuildTask.create "ReleaseDocs" [buildDocs] {
     Git.Branches.push "temp/gh-pages"
 }
 
-// let runTestsWithCodeCov = BuildTask.create "RunTestsWithCodeCov" [clean; build; copyBinaries] {
-//     let standardParams = Fake.DotNet.MSBuild.CliArguments.Create ()
-//     Fake.DotNet.DotNet.test(fun testParams ->
-//         {
-//             testParams with
-//                 MSBuildParams = {
-//                     standardParams with
-//                         Properties = [
-//                             "AltCover","true"
-//                             "AltCoverCobertura","../../codeCov.xml"
-//                             "AltCoverForce","true"
-//                         ]
-//                 };
-//                 Logger = Some "console;verbosity=detailed"
-//         }
-//     ) testProject
-//}
+// to do: use this once we have actual tests
+let runTestsWithCodeCov = BuildTask.create "RunTestsWithCodeCov" [clean; build; copyBinaries] {
+    let standardParams = Fake.DotNet.MSBuild.CliArguments.Create ()
+    Fake.DotNet.DotNet.test(fun testParams ->
+        {
+            testParams with
+                MSBuildParams = {
+                    standardParams with
+                        Properties = [
+                            "AltCover","true"
+                            "AltCoverCobertura","../../codeCov.xml"
+                            "AltCoverForce","true"
+                        ]
+                };
+                Logger = Some "console;verbosity=detailed"
+        }
+    ) testProject
+}
 
 let _all = BuildTask.createEmpty "All" [clean; cleanDocs; build; copyBinaries; runTests (*runTestsWithCodeCov*); pack; buildDocs]
 
