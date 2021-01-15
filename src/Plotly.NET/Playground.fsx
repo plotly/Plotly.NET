@@ -56,7 +56,12 @@ let myTemplate =
     [(2,4);(3,9)]
     [(3,3);(4,8)]
     [(4,2);(5,7)]
-    [(5,1);(6,6)]
+    [(5,1);(6,6)]    
+    [(6,-1);(7,5)]
+    [(7,-2);(8,4)]
+    [(8,-3);(9,3)]
+    [(9,-4);(10,2)]
+    [(10,-5);(11,1)]
 
 ]
 |> List.map Chart.Line
@@ -64,7 +69,7 @@ let myTemplate =
 |> Chart.withTraceName("Hello from F#",Showlegend=true)
 //|> Chart.withY_AxisStyle("xAxis",Showline=true)
 //|> Chart.withX_AxisStyle("yAxis",Showline=true)
-|> Chart.withTemplate myTemplate
+|> Chart.withTemplate ChartTemplates.fslab
 |> Chart.Show
 
 

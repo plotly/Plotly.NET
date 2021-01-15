@@ -19,48 +19,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "project", "project", "{BF60
 		RELEASE_NOTES.md = RELEASE_NOTES.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{83F16175-43B1-4C90-A1EE-8E351C33435D}"
-	ProjectSection(SolutionItems) = preProject
-		docsrc\tools\formatters.fsx = docsrc\tools\formatters.fsx
-		docsrc\tools\generate.fsx = docsrc\tools\generate.fsx
-		docsrc\tools\templates\template.cshtml = docsrc\tools\templates\template.cshtml
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{8E6D5255-776D-4B61-85F9-73C37AA1FB9A}"
-	ProjectSection(SolutionItems) = preProject
-		docsrc\content\2d-histograms.fsx = docsrc\content\2d-histograms.fsx
-		docsrc\content\3d-line-plots.fsx = docsrc\content\3d-line-plots.fsx
-		docsrc\content\3d-mesh-plots.fsx = docsrc\content\3d-mesh-plots.fsx
-		docsrc\content\3d-scatter-plots.fsx = docsrc\content\3d-scatter-plots.fsx
-		docsrc\content\3d-surface-plots.fsx = docsrc\content\3d-surface-plots.fsx
-		docsrc\content\area-plots.fsx = docsrc\content\area-plots.fsx
-		docsrc\content\bar-charts.fsx = docsrc\content\bar-charts.fsx
-		docsrc\content\box-plots.fsx = docsrc\content\box-plots.fsx
-		docsrc\content\bubble-charts.fsx = docsrc\content\bubble-charts.fsx
-		docsrc\content\candlestick.fsx = docsrc\content\candlestick.fsx
-		docsrc\content\choropleth-map.fsx = docsrc\content\choropleth-map.fsx
-		docsrc\content\contour-plots.fsx = docsrc\content\contour-plots.fsx
-		docsrc\content\errorbars.fsx = docsrc\content\errorbars.fsx
-		docsrc\content\extensions.fsx = docsrc\content\extensions.fsx
-		docsrc\content\getting-started.fsx = docsrc\content\getting-started.fsx
-		docsrc\content\heatmaps.fsx = docsrc\content\heatmaps.fsx
-		docsrc\content\histograms.fsx = docsrc\content\histograms.fsx
-		docsrc\content\index.fsx = docsrc\content\index.fsx
-		docsrc\content\line-scatter-plots.fsx = docsrc\content\line-scatter-plots.fsx
-		docsrc\content\multiple-charts.fsx = docsrc\content\multiple-charts.fsx
-		docsrc\content\parallel-categories.fsx = docsrc\content\parallel-categories.fsx
-		docsrc\content\parallel-coords.fsx = docsrc\content\parallel-coords.fsx
-		docsrc\content\pie-daughnut-charts.fsx = docsrc\content\pie-daughnut-charts.fsx
-		docsrc\content\polar-charts.fsx = docsrc\content\polar-charts.fsx
-		docsrc\content\range-plots.fsx = docsrc\content\range-plots.fsx
-		docsrc\content\sankey.fsx = docsrc\content\sankey.fsx
-		docsrc\content\shapes.fsx = docsrc\content\shapes.fsx
-		docsrc\content\splom.fsx = docsrc\content\splom.fsx
-		docsrc\content\table.fsx = docsrc\content\table.fsx
-		docsrc\content\violin-plots.fsx = docsrc\content\violin-plots.fsx
-		docsrc\content\windrose-charts.fsx = docsrc\content\windrose-charts.fsx
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "git", "git", "{078A9C52-DDC1-46F4-9235-9E6C89C87AFD}"
 	ProjectSection(SolutionItems) = preProject
 		.gitattributes = .gitattributes
@@ -76,14 +34,66 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{7C6D08
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Plotly.NET", "src\Plotly.NET\Plotly.NET.fsproj", "{DFAC135B-36B8-4347-B1DD-B5E0144610C2}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Plotly.NET.Tests", "tests\Plotly.NET.Tests\Plotly.NET.Tests.fsproj", "{2C9916F4-817A-4B70-8D83-F48E9A30544F}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Plotly.NET.Tests", "tests\Plotly.NET.Tests\Plotly.NET.Tests.fsproj", "{2C9916F4-817A-4B70-8D83-F48E9A30544F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".ci", ".ci", "{2461AFBF-6E10-4F7B-A0EA-3D62541C2EB1}"
 	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build-and-deploy-docs.yml = .github\workflows\build-and-deploy-docs.yml
 		.circleci\config.yml = .circleci\config.yml
 	EndProjectSection
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Plotly.NET.Interactive", "src\Plotly.NET.Interactive\Plotly.NET.Interactive.fsproj", "{0F135E3B-B0E1-42A9-B180-18C0221DC7B8}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Plotly.NET.Interactive", "src\Plotly.NET.Interactive\Plotly.NET.Interactive.fsproj", "{0F135E3B-B0E1-42A9-B180-18C0221DC7B8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{7B09CC0A-F1E1-4094-9DE4-B047581E01F0}"
+	ProjectSection(SolutionItems) = preProject
+		docs\_template.html = docs\_template.html
+		docs\index.fsx = docs\index.fsx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "reference", "reference", "{5219BAC7-ACE6-435F-A983-BC63DD7B745E}"
+	ProjectSection(SolutionItems) = preProject
+		docs\reference\_template.html = docs\reference\_template.html
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{60FB82C0-F472-494E-BCF7-7B3C54212406}"
+	ProjectSection(SolutionItems) = preProject
+		docs\content\2d-histograms.fsx = docs\content\2d-histograms.fsx
+		docs\content\3d-line-plots.fsx = docs\content\3d-line-plots.fsx
+		docs\content\3d-mesh-plots.fsx = docs\content\3d-mesh-plots.fsx
+		docs\content\3d-scatter-plots.fsx = docs\content\3d-scatter-plots.fsx
+		docs\content\3d-surface-plots.fsx = docs\content\3d-surface-plots.fsx
+		docs\content\area-plots.fsx = docs\content\area-plots.fsx
+		docs\content\axis-styling.fsx = docs\content\axis-styling.fsx
+		docs\content\bar-and-column-charts.fsx = docs\content\bar-and-column-charts.fsx
+		docs\content\box-plots.fsx = docs\content\box-plots.fsx
+		docs\content\bubble-charts.fsx = docs\content\bubble-charts.fsx
+		docs\content\candlestick.fsx = docs\content\candlestick.fsx
+		docs\content\choropleth-map.fsx = docs\content\choropleth-map.fsx
+		docs\content\contour-plots.fsx = docs\content\contour-plots.fsx
+		docs\content\errorbars.fsx = docs\content\errorbars.fsx
+		docs\content\fsdocs-custom.css = docs\content\fsdocs-custom.css
+		docs\content\heatmaps.fsx = docs\content\heatmaps.fsx
+		docs\content\histograms.fsx = docs\content\histograms.fsx
+		docs\content\line-scatter-plots.fsx = docs\content\line-scatter-plots.fsx
+		docs\content\multiple-charts.fsx = docs\content\multiple-charts.fsx
+		docs\content\parallel-categories.fsx = docs\content\parallel-categories.fsx
+		docs\content\parallel-coords.fsx = docs\content\parallel-coords.fsx
+		docs\content\pie-daughnut-charts.fsx = docs\content\pie-daughnut-charts.fsx
+		docs\content\polar-charts.fsx = docs\content\polar-charts.fsx
+		docs\content\range-plots.fsx = docs\content\range-plots.fsx
+		docs\content\sankey.fsx = docs\content\sankey.fsx
+		docs\content\shapes.fsx = docs\content\shapes.fsx
+		docs\content\splom.fsx = docs\content\splom.fsx
+		docs\content\table.fsx = docs\content\table.fsx
+		docs\content\violin-plots.fsx = docs\content\violin-plots.fsx
+		docs\content\windrose-charts.fsx = docs\content\windrose-charts.fsx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "img", "img", "{CDB973F2-0F60-4ADB-84A8-924AFA8B6D49}"
+	ProjectSection(SolutionItems) = preProject
+		docs\img\favicon.ico = docs\img\favicon.ico
+		docs\img\logo.png = docs\img\logo.png
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -113,6 +123,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5219BAC7-ACE6-435F-A983-BC63DD7B745E} = {7B09CC0A-F1E1-4094-9DE4-B047581E01F0}
+		{60FB82C0-F472-494E-BCF7-7B3C54212406} = {7B09CC0A-F1E1-4094-9DE4-B047581E01F0}
+		{CDB973F2-0F60-4ADB-84A8-924AFA8B6D49} = {7B09CC0A-F1E1-4094-9DE4-B047581E01F0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7177F1E1-341C-48AB-9864-6B525FFF7633}
