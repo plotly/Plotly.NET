@@ -28,11 +28,11 @@ workflows:
   version: 2
   Plotly.NET-build-test:
     jobs:
-    - linux-build-test
-      filters:
-        branches:
-          ignore: gh-pages
-    - windows-build-test
-      filters:
-        branches:
-          ignore: gh-pages
+    - linux-build-test:
+        filters:
+          branches:
+            ignore: gh-pages
+    - windows-build-test:
+        filters:
+          branches:
+            ignore: gh-pages

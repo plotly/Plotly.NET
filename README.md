@@ -1,127 +1,130 @@
-# Plotly.NET
+
+![](docs/img/logo_title.svg)
 
 ![](https://img.shields.io/circleci/build/github/plotly/Plotly.NET)
 [![](https://img.shields.io/nuget/vpre/Plotly.NET)](https://www.nuget.org/packages/Plotly.NET/)
 
-Formerly FSharp.Plotly, Plotly.NET provides functions for generating and rendering plotly.js charts in .NET languages. 
 
-### Installation
+Plotly.NET provides functions for generating and rendering plotly.js charts in **.NET** programming languages 📈🚀. 
 
-Plotly.NET will be available as 2.0.0 version of FSharp.Plotly. The feature roadmap can be seen [here](https://github.com/plotly/Plotly.NET/issues/43). Contributions are very welcome!
+### Table of contents 
 
-A preview version of 2.0.0 is currently available on nuget:
+- [Installation](#installation)
+    - [For applications and libraries](#for-applications-and-libraries)
+    - [For scripting](#for-scripting)
+    - [For dotnet interactive notebooks](#for-dotnet-interactive-notebooks)
+- [Documentation](#documentation)
+    - [Getting started](#getting-started)
+    - [Full library reference](#full-library-reference)
+- [Develop](#develop)
+    - [build](#build)
+    - [docs](#docs)
+- [Library license](#library-license)
+
+
+
+# Installation
+
+Plotly.NET will be available as 2.0.0 version of its predecessor FSharp.Plotly. The feature roadmap can be seen [here](https://github.com/plotly/Plotly.NET/issues/43). Contributions are very welcome!
+
+Old packages up until version 1.2.2 can be accessed via the old package name *FSharp.Plotly* [here](https://www.nuget.org/packages/FSharp.Plotly/)
+
+### For applications and libraries
+
+A preview version of Plotly.NET 2.0.0 is available on nuget to plug into your favorite package manager:
+
+ - dotnet CLI
 
 ```shell
-dotnet add package Plotly.NET --version 2.0.0-alpha2
+dotnet add package Plotly.NET --version 2.0.0-alpha5
 ```
 
-### Overview
+ - paket CLI
 
-One of the main design points of Plotly.NET it is to provide support for multiple flavors of chart generation. Here are 2 examples in different styles and languages that create an equivalent chart:
+```shell
+paket add Plotly.NET --version 2.0.0-beta1
+```
 
- - **Functional pipeline style in F#:**
-    ```F#
-    [(1,5);(2,10)]
-    |> Chart.Point
-    |> Chart.withTraceName("Hello from F#",Showlegend=true)
-    |> Chart.withY_AxisStyle("xAxis",Showgrid= false, Showline=true)
-    |> Chart.withX_AxisStyle("yAxis",Showgrid= false, Showline=true)
-    |> Chart.Show
-    ``` 
+ - package manager
 
- - **Fluent interface style in C#:**
-    ```C#
-    static void Main(string[] args)
-    {
-        double[] x = new double[] { 1, 2 };
-        double[] y = new double[] { 5, 10 };
-        GenericChart.GenericChart chart = Chart.Point(x: x, y: y);
-        chart
-            .WithTraceName("Hello from C#", true)
-            .WithX_AxisStyle(title: "xAxis", Showgrid: false, Showline: true)
-            .WithY_AxisStyle(title: "yAxis", Showgrid: false, Showline: true)
-            .Show();
-    }
-    ```
- - **Declarative style in F# using the underlying `DynamicObj`:**
-    ```F#
-    let xAxis = 
-        let tmp = Axis.LinearAxis()
-        tmp?title <- "xAxis"
-        tmp?showgrid <- false
-        tmp?showline <- true    
-        tmp
+```shell
+Install-Package Plotly.NET -Version 2.0.0-beta1
+```
 
-    let yAxis =
-        let tmp = Axis.LinearAxis()
-        tmp?title <- "yAxis"
-        tmp?showgrid <- false
-        tmp?showline <- true    
-        tmp
+Or add the package reference directly to your `.*proj` file:
 
-    let layout =
-        let tmp = Layout()
-        tmp?xaxis <- xAxis
-        tmp?yaxis <- yAxis
-        tmp?showlegend <- true
-        tmp
+```
+<PackageReference Include="Plotly.NET" Version="2.0.0-beta1" />
+```
 
-    let trace = 
-        let tmp = Trace("scatter")
-        tmp?x <- [1;2]
-        tmp?y <- [5;10]
-        tmp?mode <- "markers"
-        tmp?name <- "Hello from F#"
-        tmp
+### For scripting
 
-    GenericChart.ofTraceObject(trace)
-    |> GenericChart.setLayout layout
-    |> Chart.Show
-    ```
+You can include the package via an inline package reference:
 
- - **Declarative style in C# using the underlying `DynamicObj`:**
-    ```C#
-    static void Main(string[] args)
-    {
-        double[] x = new double[] { 1, 2 };
-        double[] y = new double[] { 5, 10 };
+```
+#r "nuget: Plotly.NET, 2.0.0-beta1"
+```
 
-        Axis.LinearAxis xAxis = new Axis.LinearAxis();
-        xAxis.SetValue("title", "xAxis");
-        xAxis.SetValue("showgrid", false);
-        xAxis.SetValue("showline", true);
+### For dotnet interactive notebooks
 
-        Axis.LinearAxis yAxis = new Axis.LinearAxis();
-        yAxis.SetValue("title", "yAxis");
-        yAxis.SetValue("showgrid", false);
-        yAxis.SetValue("showline", true);
+You can use the same inline package reference as in script, but as an additional goodie, 
+the interactive extensions for dotnet interactive have you covered for seamless chart rendering:
 
-        Layout layout = new Layout();
-        layout.SetValue("xaxis", xAxis);
-        layout.SetValue("yaxis", yAxis);
-        layout.SetValue("showlegend", true);
+```
+#r "nuget: Plotly.NET, 2.0.0-beta1"
+#r "nuget: Plotly.NET.Interactive, 2.0.0-beta1"
+```
 
-        Trace trace = new Trace("scatter");
-        trace.SetValue("x", x);
-        trace.SetValue("y", y);
-        trace.SetValue("mode", "markers");
-        trace.SetValue("name", "Hello from C#");
+# Documentation
 
-        GenericChart
-            .ofTraceObject(trace)
-            .WithLayout(layout)
-            .Show();
-    }
-    ```
+## Getting started
 
-![](./docsrc/files/img/ExampleChart.png)
+The landing page of our docs contains everything to get you started fast, check it out [📖 here](http://plotly.github.io/Plotly.NET/) 
 
-Documentation
-=============
+## Full library reference
 
-The documentation can be found [here.](http://plotly.github.io/Plotly.NET/)
-The documentation for this library is automatically generated (using FSharp.Formatting) from *.fsx and *.md files in the docsrc folder. If you find a typo, please submit a pull request!
+The API reference is available [📚 here]()
 
+The documentation for this library is automatically generated (using FSharp.Formatting) from *.fsx and *.md files in the docs folder. If you find a typo, please submit a pull request!
+
+# Development
+
+### build
+
+Check the [build.fsx file](https://github.com/plotly/Plotly.NET/blob/dev/build.fsx) to take a look at the  build targets. Here are some examples:
+
+```shell
+# Windows
+
+# Build, test, pack nuget, build docs
+./build.cmd -t all 
+
+# Build only
+./build.cmd
+
+# Linux/mac
+
+# Build, test, pack nuget, build docs
+./build.sh -t all 
+
+# Build only
+./build.sh
+```
+
+### docs
+
+The docs are contained in `.fsx` and `.md` files in the `docs` folder. To develop docs on a local server with hot reload, run the following in the root of the project:
+
+```shell
+# Windows
+./build.cmd -t watchdocs
+
+# Linux/mac
+./build.sh -t watchdocs
+```
+
+
+### release
 
 Library license
 ===============
