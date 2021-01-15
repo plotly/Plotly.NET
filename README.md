@@ -83,7 +83,7 @@ The landing page of our docs contains everything to get you started fast, check 
 
 ## Full library reference
 
-The API reference is available [📚 here]()
+The API reference is available [📚 here](http://plotly.github.io/Plotly.NET/reference/index.html)
 
 The documentation for this library is automatically generated (using FSharp.Formatting) from *.fsx and *.md files in the docs folder. If you find a typo, please submit a pull request!
 
