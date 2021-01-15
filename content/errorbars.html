@@ -264,29 +264,29 @@
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs8', 12)" onmouseover="showTip(event, 'fs8', 12)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 13)" onmouseover="showTip(event, 'fs10', 13)" class="id">withXErrorStyle</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs11', 14)" onmouseover="showTip(event, 'fs11', 14)" class="fn">Array</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs5', 15)" onmouseover="showTip(event, 'fs5', 15)" class="id">xError</span><span class="pn">,</span><span class="fn">Symmetric</span><span class="o">=</span><span class="k">true</span><span class="pn">)</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs8', 16)" onmouseover="showTip(event, 'fs8', 16)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 17)" onmouseover="showTip(event, 'fs12', 17)" class="id">withYErrorStyle</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs11', 18)" onmouseover="showTip(event, 'fs11', 18)" class="fn">Array</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs6', 19)" onmouseover="showTip(event, 'fs6', 19)" class="id">yError</span><span class="pn">,</span> <span class="fn">Arrayminus</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs5', 20)" onmouseover="showTip(event, 'fs5', 20)" class="id">xError</span><span class="pn">)</span> <span class="c">// for negative error, use positive values in the `Arrayminus` argument </span>
 </code></pre>
-<div id="32bdabbe-86d8-4f06-a359-9506fac4da06" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="e32d559c-075e-4325-a484-545f66d6cae1" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_32bdabbe86d84f06a3599506fac4da06 = function() {
+            var renderPlotly_e32d559c075e4325a484545f66d6cae1 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"mode":"markers","name":"points with errors","marker":{},"error_x":{"symmetric":true,"array":[0.2,0.3,0.2,0.1,0.2,0.4,0.2,0.08,0.2,0.1]},"error_y":{"array":[0.3,0.2,0.1,0.4,0.2,0.4,0.1,0.18,0.02,0.2],"arrayminus":[0.2,0.3,0.2,0.1,0.2,0.4,0.2,0.08,0.2,0.1]}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('32bdabbe-86d8-4f06-a359-9506fac4da06', data, layout, config);
+            Plotly.newPlot('e32d559c-075e-4325-a484-545f66d6cae1', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_32bdabbe86d84f06a3599506fac4da06();
+                    renderPlotly_e32d559c075e4325a484545f66d6cae1();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_32bdabbe86d84f06a3599506fac4da06();
+                renderPlotly_e32d559c075e4325a484545f66d6cae1();
             }
 </script>
 
