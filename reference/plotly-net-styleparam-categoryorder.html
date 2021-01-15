@@ -1,229 +1,395 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <title>CategoryOrder - Plotly.NET</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="" />
-    <meta name="author" content="Timo M�hlhaus; Kevin Schneider; OSS Contributors" />
+    <meta charset="utf-8">
+    <title>CategoryOrder (Plotly.NET)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Timo Mühlhaus, Kevin Schneider, F# open source contributors">
+    <link rel="shortcut icon" type="image/x-icon" href="http://plotly.github.io/Plotly.NET//img/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script> -->
 
-    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
-    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
-    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet" />
-
-    <link type="text/css" rel="stylesheet" href="https://plotly.github.io/Plotly.NET/content/style.css" />
-    <link type="text/css" rel="stylesheet" href="https://plotly.github.io/Plotly.NET/style/CSBstyle.css" /> <!--https://plotly.github.io/Plotly.NET-->
-    <script type="text/javascript" src="https://plotly.github.io/Plotly.NET/content/tips.js"></script>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-
+    <link type="text/css" rel="stylesheet" href="http://plotly.github.io/Plotly.NET/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="http://plotly.github.io/Plotly.NET/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="http://plotly.github.io/Plotly.NET/content/fsdocs-tips.js"></script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-</head>
-  <body>
-    <div class="container">
-      <div class="masthead">
-        <ul class="nav nav-pills pull-right">
-          <li><a href="http://fsharp.org">fsharp.org</a></li>
-          <li><a href="https://github.com/plotly/Plotly.NET">github page</a></li>
-        </ul>
-        <h3 class="muted"><a href="https://plotly.github.io/Plotly.NET/index.html">Plotly.NET</a></h3>
-      </div>
-      <hr />
-      <div class="row">
-        <div class="span9" id="main">
-          
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head> 
 
-<h1>CategoryOrder</h1>
-<p>
+<body>
+    <div class="columns is-fullheight m-0">
+        <div id="fsdocs-menu" class="column is-2 is-paddingless">
+            <aside class="menu">
+                <div class="container is-paddingless is-marginless has-background-dark">
+                    <a href="http://plotly.github.io/Plotly.NET/">
+                        <figure class="image is-128x128 container">
+                            <img src="http://plotly.github.io/Plotly.NET/img/logo.png">
+                        </figure>
+                    </a>
+                    <h2 class="title has-text-centered has-text-white pb-4">Plotly.NET</h2>
+                </div>
+                <div class="content">
+                    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+                    <div id="header">
+                        <div class="searchbox" id="fsdocs-searchbox">
+                            <label for="search-by">
+                                <i class="fas fa-search"></i>
+                            </label>
+                            <input data-search-input="" id="search-by" type="search" placeholder="Search..." class="input"/>
+                            <span data-search-clear="">
+                                <i class="fas fa-times"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- END SEARCH BOX: this adds support for the search box -->
+                    <ul class="navbar-nav">
+                        <li class="nav-header">Links</li>
+                        <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License (MIT)</a></li>
+                        <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release Notes</a></li>
+                        <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source Repository</a></li>
+                        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+        <div class="column is-10 is-paddingless">
+            <div class="section pt-4">
+                <div class="container" id="fsdocs-content">
+                    <div>
+  <h1>
+    CategoryOrder Type
+  </h1>
+  <p>
+    Namespace: 
+    <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net.html">
+      Plotly.NET
+    </a>
+  </p>
+  <p>
+    Assembly: Plotly.NET.dll
+  </p>
+  <span>
+    Parent Module: 
+    <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam.html">
+      StyleParam
+    </a>
+  </span>
+  <p>
+    Base Type: 
+    <code>obj</code>
+  </p>
+  <p>
+    All Interfaces: 
+    <code><span><a href="https://docs.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-categoryorder.html">CategoryOrder</a>&gt;</span></code>
+    , 
+    <code><a href="https://docs.microsoft.com/dotnet/api/system.collections.istructuralequatable">IStructuralEquatable</a></code>
+    , 
+    <code><span><a href="https://docs.microsoft.com/dotnet/api/system.icomparable-1">IComparable</a>&lt;<a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-categoryorder.html">CategoryOrder</a>&gt;</span></code>
+    , 
+    <code><a href="https://docs.microsoft.com/dotnet/api/system.icomparable">IComparable</a></code>
+    , 
+    <code><a href="https://docs.microsoft.com/dotnet/api/system.collections.istructuralcomparable">IStructuralComparable</a></code>
+  </p>
+  <div class="fsdocs-xmldoc">
+    
+ Specifies the ordering logic for the case of categorical variables. By default, plotly uses "trace", which specifies the order that is present in the data supplied. Set `categoryorder` to "category ascending" or "category descending" if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to "array" to derive the ordering from the attribute `categoryarray`. 
+ If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the "trace" mode. The unspecified categories will follow the categories in `categoryarray`.
 
-    <span>Namespace: Plotly.NET</span><br />
-        <span>Parent Module: <a href="plotly-net-styleparam.html">StyleParam</a></span><br />
-            <span>
-            Attributes: <br />
-[&lt;RequireQualifiedAccess&gt;]<br />
-            
-        </span>
-</p>
-<div class="xmldoc">
-<p>Specifies the ordering logic for the case of categorical variables. By default, plotly uses "trace", which specifies the order that is present in the data supplied. Set <code>categoryorder</code> to "category ascending" or "category descending" if order should be determined by the alphanumerical order of the category names. Set <code>categoryorder</code> to "array" to derive the ordering from the attribute <code>categoryarray</code>.
-If a category is not found in the <code>categoryarray</code> array, the sorting behavior for that attribute will be identical to the "trace" mode. The unspecified categories will follow the categories in <code>categoryarray</code>.</p>
-
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div>
+    <h3>
+      Union cases
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Union case
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '330', 330)" onmouseover="showTip(event, '330', 330)">
+                <p>
+                  <a id="Array">
+                    <a href="#Array">
+                      <code><span>Array</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="330">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Array</span></code>
+                  <br/>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L232-232" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '331', 331)" onmouseover="showTip(event, '331', 331)">
+                <p>
+                  <a id="Ascending">
+                    <a href="#Ascending">
+                      <code><span>Ascending</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="331">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Ascending</span></code>
+                  <br/>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L232-232" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '332', 332)" onmouseover="showTip(event, '332', 332)">
+                <p>
+                  <a id="Descending">
+                    <a href="#Descending">
+                      <code><span>Descending</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="332">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Descending</span></code>
+                  <br/>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L232-232" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '333', 333)" onmouseover="showTip(event, '333', 333)">
+                <p>
+                  <a id="Trace">
+                    <a href="#Trace">
+                      <code><span>Trace</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="333">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Trace</span></code>
+                  <br/>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L232-232" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div>
+    <h3>
+      Static members
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Static member
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '334', 334)" onmouseover="showTip(event, '334', 334)">
+                <p>
+                  <a id="convert">
+                    <a href="#convert">
+                      <code><span>CategoryOrder.convert&#32;</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="334">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>CategoryOrder.convert&#32;</span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-categoryorder.html">CategoryOrder</a>&#32;->&#32;obj</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L240-240" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns:
+                </span>
+                <code><span><a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-categoryorder.html">CategoryOrder</a>&#32;->&#32;obj</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '335', 335)" onmouseover="showTip(event, '335', 335)">
+                <p>
+                  <a id="toString">
+                    <a href="#toString">
+                      <code><span>CategoryOrder.toString&#32;</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="335">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>CategoryOrder.toString&#32;</span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-categoryorder.html">CategoryOrder</a>&#32;->&#32;string</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L234-234" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns:
+                </span>
+                <code><span><a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-categoryorder.html">CategoryOrder</a>&#32;->&#32;string</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
-  <h3>Union Cases</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Union Case</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '279', 279)" onmouseover="showTip(event, '279', 279)">
-            Array
-          </code>
-          <div class="tip" id="279">
-            <strong>Signature:</strong> <br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L232-232" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '280', 280)" onmouseover="showTip(event, '280', 280)">
-            Ascending
-          </code>
-          <div class="tip" id="280">
-            <strong>Signature:</strong> <br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L232-232" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '281', 281)" onmouseover="showTip(event, '281', 281)">
-            Descending
-          </code>
-          <div class="tip" id="281">
-            <strong>Signature:</strong> <br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L232-232" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '282', 282)" onmouseover="showTip(event, '282', 282)">
-            Trace
-          </code>
-          <div class="tip" id="282">
-            <strong>Signature:</strong> <br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L232-232" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h3>Static members</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Static member</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '283', 283)" onmouseover="showTip(event, '283', 283)">
-            CategoryOrder.convert
-          </code>
-          <div class="tip" id="283">
-            <strong>Signature:</strong> CategoryOrder -&gt; obj<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L240-240" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-              <p>CompiledName: <code>get_convert</code></p>
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '284', 284)" onmouseover="showTip(event, '284', 284)">
-            CategoryOrder.toString
-          </code>
-          <div class="tip" id="284">
-            <strong>Signature:</strong> CategoryOrder -&gt; string<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L234-234" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-              <p>CompiledName: <code>get_toString</code></p>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
+                </div>
+            </div>
         </div>
-        <div class="span3">
-          <img src="https://plotly.github.io/Plotly.NET/img/logo.png" alt="Plotly.NET" style="width:150px;margin:10px" />  
-          <ul class="nav nav-list" id="menu" style="margin-top: 20px;">
-              <li class="nav-header">Plotly.NET</li>
-              <li><a href="https://plotly.github.io/Plotly.NET/index.html">Home page</a></li>
-              <li class="divider"></li>
-              <li>
-                  <a href="https://plotly.github.io/Plotly.NET/getting-started.html">Getting started</a>
-              </li>
-              <li class="nav-header">Plotly Charts</li>
-              <li><a href="https://plotly.github.io/Plotly.NET/area-plots.html">Area Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/bar-charts.html">Bar</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/box-plots.html">Box Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/violin-plots.html">Violin Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/bubble-charts.html">Bubble Charts</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/candlestick.html">Candlestick Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/contour-plots.html">Contour Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/heatmaps.html">Heatmaps</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/histograms.html">Histograms</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/2d-histograms.html">2D Histograms</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/line-scatter-plots.html">Line and Scatter Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/parallel-coords.html">Parallel coords Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/parallel-categories.html">Parallel Categories Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/pie-daughnut-charts.html">Pie and Doughnut Charts</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/polar-charts.html">Polar Charts</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/windrose-charts.html">Windrose Charts</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/range-plots.html">Range Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/candlestick.html">Candlestick Charts</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/sankey.html">Sankey Diagrams</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/splom.html">Splom Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/sankey.html">Sankey Plots</a></li>
-              <li class="nav-header">Map Charts</li>
-              <li><a href="https://plotly.github.io/Plotly.NET/choropleth-map.html">Choropleth</a></li>
-              <li class="nav-header">Plotly 3d-Charts</li>
-              <li><a href="https://plotly.github.io/Plotly.NET/3d-scatter-plots.html">3D Scatter Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/3d-line-plots.html">3D Line Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/3d-surface-plots.html">3D Surface Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/3d-mesh-plots.html">3D Mesh Plots</a></li>
-              <li class="nav-header">Plotly Tables</li>
-              <li><a href="https://plotly.github.io/Plotly.NET/table.html">Table</a></li>
-              <li class="nav-header">Styling</li>
-              <li><a href="https://plotly.github.io/Plotly.NET/multiple-charts.html">Multiple Charts</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/errorbars.html">Error bars</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/shapes.html">Shapes</a></li>
-              <li class="nav-header">Documentation</li>
-              <li><a href="https://plotly.github.io/Plotly.NET/reference/index.html">API Reference</a></li>
-          </ul>
-        </div>
-      </div>
+        
     </div>
-    <a href="https://github.com/plotly/Plotly.NET"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"/></a>
-  </body>
-  </html>
+
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <script type="text/javascript">var fsdocs_search_baseurl = 'http://plotly.github.io/Plotly.NET/'</script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+    <script type="text/javascript" src="http://plotly.github.io/Plotly.NET/content/fsdocs-search.js"></script>
+    <!-- END SEARCH BOX: this adds support for the search box -->
+</body>
+
+</html>

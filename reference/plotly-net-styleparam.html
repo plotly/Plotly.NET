@@ -1,768 +1,1564 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <title>StyleParam - Plotly.NET</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="" />
-    <meta name="author" content="Timo M�hlhaus; Kevin Schneider; OSS Contributors" />
+    <meta charset="utf-8">
+    <title>StyleParam (Plotly.NET)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Timo Mühlhaus, Kevin Schneider, F# open source contributors">
+    <link rel="shortcut icon" type="image/x-icon" href="http://plotly.github.io/Plotly.NET//img/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script> -->
 
-    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
-    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
-    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet" />
-
-    <link type="text/css" rel="stylesheet" href="https://plotly.github.io/Plotly.NET/content/style.css" />
-    <link type="text/css" rel="stylesheet" href="https://plotly.github.io/Plotly.NET/style/CSBstyle.css" /> <!--https://plotly.github.io/Plotly.NET-->
-    <script type="text/javascript" src="https://plotly.github.io/Plotly.NET/content/tips.js"></script>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-
+    <link type="text/css" rel="stylesheet" href="http://plotly.github.io/Plotly.NET/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="http://plotly.github.io/Plotly.NET/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="http://plotly.github.io/Plotly.NET/content/fsdocs-tips.js"></script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-</head>
-  <body>
-    <div class="container">
-      <div class="masthead">
-        <ul class="nav nav-pills pull-right">
-          <li><a href="http://fsharp.org">fsharp.org</a></li>
-          <li><a href="https://github.com/plotly/Plotly.NET">github page</a></li>
-        </ul>
-        <h3 class="muted"><a href="https://plotly.github.io/Plotly.NET/index.html">Plotly.NET</a></h3>
-      </div>
-      <hr />
-      <div class="row">
-        <div class="span9" id="main">
-          
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head> 
 
-<h1>StyleParam</h1>
-<p>
-  <span>Namespace: Plotly.NET</span><br />
+<body>
+    <div class="columns is-fullheight m-0">
+        <div id="fsdocs-menu" class="column is-2 is-paddingless">
+            <aside class="menu">
+                <div class="container is-paddingless is-marginless has-background-dark">
+                    <a href="http://plotly.github.io/Plotly.NET/">
+                        <figure class="image is-128x128 container">
+                            <img src="http://plotly.github.io/Plotly.NET/img/logo.png">
+                        </figure>
+                    </a>
+                    <h2 class="title has-text-centered has-text-white pb-4">Plotly.NET</h2>
+                </div>
+                <div class="content">
+                    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+                    <div id="header">
+                        <div class="searchbox" id="fsdocs-searchbox">
+                            <label for="search-by">
+                                <i class="fas fa-search"></i>
+                            </label>
+                            <input data-search-input="" id="search-by" type="search" placeholder="Search..." class="input"/>
+                            <span data-search-clear="">
+                                <i class="fas fa-times"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- END SEARCH BOX: this adds support for the search box -->
+                    <ul class="navbar-nav">
+                        <li class="nav-header">Links</li>
+                        <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License (MIT)</a></li>
+                        <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release Notes</a></li>
+                        <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source Repository</a></li>
+                        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+        <div class="column is-10 is-paddingless">
+            <div class="section pt-4">
+                <div class="container" id="fsdocs-content">
+                    <div>
+  <h1>
+    StyleParam Module
+  </h1>
+  <p>
+    Namespace: 
+    <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net.html">
+      Plotly.NET
+    </a>
   </p>
-<div class="xmldoc">
-</div>
-
-<!-- Render nested types and modules, if there are any -->
-  <h2>Nested types and modules</h2>
-  <div>
-      <table class="table table-bordered type-list">
-    <thead>
-      <tr><td>Type</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-align.html">Align</a>
-          </td>
-          <td class="xmldoc">
-          <p>Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-arrowhead.html">ArrowHead</a>
-          </td>
-          <td class="xmldoc">
-          
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-autorange.html">AutoRange</a>
-          </td>
-          <td class="xmldoc">
-          <p>Determines whether or not the range of this axis is computed in relation to the input data. See <code>rangemode</code> for more info. If <code>range</code> is provided, then <code>autorange</code> is set to "false".</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-axisanchorid.html">AxisAnchorId</a>
-          </td>
-          <td class="xmldoc">
-          
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-axisid.html">AxisId</a>
-          </td>
-          <td class="xmldoc">
-          
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-axistype.html">AxisType</a>
-          </td>
-          <td class="xmldoc">
-          <p>Sets the axis type. By default (Auto), plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-barmode.html">Barmode</a>
-          </td>
-          <td class="xmldoc">
-          <p>For bar and histogram plots only. This sets how multiple bar objects are plotted together. In other words, this defines how bars at the same location
-appear on the plot. If set to 'stack' the bars are stacked on top of one another. If set to 'group', the bars are plotted next to one another, centered
-around the shared location. If set to 'overlay', the bars are simply plotted over one another, you may need to set the opacity to see this.</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-boxmean.html">BoxMean</a>
-          </td>
-          <td class="xmldoc">
-          
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-boxpoints.html">Boxpoints</a>
-          </td>
-          <td class="xmldoc">
-          
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-branchvalues.html">BranchValues</a>
-          </td>
-          <td class="xmldoc">
-          
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-calendar.html">Calendar</a>
-          </td>
-          <td class="xmldoc">
-          <p>Sets the calendar system to use with <code>x y z</code> date data. Default: "gregorian"</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-categoryorder.html">CategoryOrder</a>
-          </td>
-          <td class="xmldoc">
-          <p>Specifies the ordering logic for the case of categorical variables. By default, plotly uses "trace", which specifies the order that is present in the data supplied. Set <code>categoryorder</code> to "category ascending" or "category descending" if order should be determined by the alphanumerical order of the category names. Set <code>categoryorder</code> to "array" to derive the ordering from the attribute <code>categoryarray</code>.
-If a category is not found in the <code>categoryarray</code> array, the sorting behavior for that attribute will be identical to the "trace" mode. The unspecified categories will follow the categories in <code>categoryarray</code>.</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-colorscale.html">Colorscale</a>
-          </td>
-          <td class="xmldoc">
-          <p>The colorscale must be a collection containing a mapping of a normalized value (between 0.0 and 1.0) to it's color. At minimum, a mapping for the lowest (0.0) and highest (1.0) values are required.</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-connectormode.html">ConnectorMode</a>
-          </td>
-          <td class="xmldoc">
-          <p>The shape of connector lines in Waterfall charts.</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-cumulativedirection.html">CumulativeDirection</a>
-          </td>
-          <td class="xmldoc">
-          <p>Only applies if cumulative is enabled. If "increasing" (default) we sum all prior bins, so the result increases from left to right.
-If "decreasing" we sum later bins so the result decreases from left to right.  default: "increasing"</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-currentbin.html">Currentbin</a>
-          </td>
-          <td class="xmldoc">
-          <p>Only applies if cumulative is enabled. Sets whether the current bin is included, excluded, or has half of its value included in
-the current cumulative value. "include" is the default for compatibility with various other tools, however it introduces
-a half-bin bias to the results. "exclude" makes the opposite half-bin bias, and "half" removes it.</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-delaunayaxis.html">Delaunayaxis</a>
-          </td>
-          <td class="xmldoc">
-          <p>Sets the Delaunay axis, which is the axis that is perpendicular to the surface of the Delaunay triangulation.
-It has an effect if <code>i</code>, <code>j</code>, <code>k</code> are not provided and <code>alphahull</code> is set to indicate Delaunay triangulation.
-Default is "z"</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-direction.html">Direction</a>
-          </td>
-          <td class="xmldoc">
-          <p>Specifies the direction at which succeeding sectors follow one another.</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-dragmode.html">Dragmode</a>
-          </td>
-          <td class="xmldoc">
-          <p>Sets this figure's behavior when a user preforms a mouse 'drag' in the plot area. When set to 'zoom', a portion of the plot will be highlighted,
-when the viewer exits the drag, this highlighted section will be zoomed in on. When set to 'pan', data in the plot will move along with the viewers
-dragging motions. A user can always depress the 'shift' key to access the whatever functionality has not been set as the default. In 3D plots, the
-default drag mode is 'rotate' which rotates the scene.</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-drawingstyle.html">DrawingStyle</a>
-          </td>
-          <td class="xmldoc">
-          <p>Dash: Sets the drawing style of the lines segments in this trace.
-Sets the style of the lines. Set to a dash string type or a dash length in px.</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-exponentformat.html">ExponentFormat</a>
-          </td>
-          <td class="xmldoc">
-          <p>Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If "none", it appears as 1,000,000,000. If "e", 1e+9. If "E", 1E+9.
-If "power", 1x10^9 (with 9 in a super script). If "SI", 1G. If "B", 1B.</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-fill.html">Fill</a>
-          </td>
-          <td class="xmldoc">
-          <p>Sets the area to fill with a solid color. (default: "none" )</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-fontfamily.html">FontFamily</a>
-          </td>
-          <td class="xmldoc">
-          <p>Names of installed font families</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-geofitbounds.html">GeoFitBounds</a>
-          </td>
-          <td class="xmldoc">
-          <p>Used for the Layout.geo field. Determines if this subplot's view settings are auto-computed to fit trace data. On scoped maps, setting <code>fitbounds</code> leads to <code>center.lon</code> and <code>center.lat</code> getting auto-filled. On maps with a non-clipped projection, setting <code>fitbounds</code> leads to <code>center.lon</code>, <code>center.lat</code>, and <code>projection.rotation.lon</code> getting auto-filled. On maps with a clipped projection, setting <code>fitbounds</code> leads to <code>center.lon</code>, <code>center.lat</code>, <code>projection.rotation.lon</code>, <code>projection.rotation.lat</code>, <code>lonaxis.range</code> and <code>lonaxis.range</code> getting auto-filled. If "locations", only the trace's visible locations are considered in the <code>fitbounds</code> computations. If "geojson", the entire trace input <code>geojson</code> (if provided) is considered in the <code>fitbounds</code> computations, Defaults to "false".</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-geoprojectiontype.html">GeoProjectionType</a>
-          </td>
-          <td class="xmldoc">
-          
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-georesolution.html">GeoResolution</a>
-          </td>
-          <td class="xmldoc">
-          <p>Used for the Layout.geo field. Sets the resolution of the base layers. The values have units of km/mm e.g. 110 corresponds to a scale ratio of 1:110,000,000.</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-geoscope.html">GeoScope</a>
-          </td>
-          <td class="xmldoc">
-          
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-groupnorm.html">GroupNorm</a>
-          </td>
-          <td class="xmldoc">
-          
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-histfunc.html">HistFunc</a>
-          </td>
-          <td class="xmldoc">
-          <p>Sets the binning function used for this histogram trace. The default value is 'count' where the histogram values are computed
-by counting the number of values lying inside each bin. With 'histfunc' set to 'sum', 'avg', 'min' or 'max', the histogram values
-are computed using the sum, the average, the minimum or the 'maximum' of the values lying inside each bin respectively.
-default: Count</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-histnorm.html">HistNorm</a>
-          </td>
-          <td class="xmldoc">
-          <p>Sets the type of normalization for this histogram trace. By default ('histnorm' set to '') the height of each bar
-displays the frequency of occurrence, i.e., the number of times this value was found in the corresponding bin.
-If set to 'percent', the height of each bar displays the percentage of total occurrences found within the corresponding bin.
-If set to 'probability', the height of each bar displays the probability that an event will fall into the corresponding bin.
-If set to 'density', the height of each bar is equal to the number of occurrences in a bin divided by the size of the bin
-interval such that summing the area of all bins will yield the total number of occurrences. If set to 'probability density',
-the height of each bar is equal to the number of probability that an event will fall into the corresponding bin divided by
-the size of the bin interval such that summing the area of all bins will yield 1.
-default: None</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-horizontalalign.html">HorizontalAlign</a>
-          </td>
-          <td class="xmldoc">
-          
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-hovermode.html">Hovermode</a>
-          </td>
-          <td class="xmldoc">
-          <p>Sets this figure's behavior when a user hovers over it. When set to 'x', all data sharing the same 'x' coordinate will be shown on screen
-with corresponding trace labels. When set to 'y' all data sharing the same 'y' coordinates will be shown on the screen with corresponding
-trace labels. When set to 'closest', information about the data point closest to where the viewer is hovering will appear.</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-imageformat.html">ImageFormat</a>
-          </td>
-          <td class="xmldoc">
-          
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-jitterpoints.html">Jitterpoints</a>
-          </td>
-          <td class="xmldoc">
-          
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-layer.html">Layer</a>
-          </td>
-          <td class="xmldoc">
-          <p>Specifies whether shapes are drawn below or above traces. Default is Above</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-layoutgridpattern.html">LayoutGridPattern</a>
-          </td>
-          <td class="xmldoc">
-          <p>Pattern to use for autogenerating Axis Ids when not specifically specifying subplot axes IDs in LayoutGrids</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-layoutgridroworder.html">LayoutGridRowOrder</a>
-          </td>
-          <td class="xmldoc">
-          <p>Determines wether the rows of a LayoutGrid are enumerated from the top or the bottom.</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-layoutgridxside.html">LayoutGridXSide</a>
-          </td>
-          <td class="xmldoc">
-          <p>Sets where the x axis labels and titles go on a layout grid.</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-layoutgridyside.html">LayoutGridYSide</a>
-          </td>
-          <td class="xmldoc">
-          <p>Sets where the y axis labels and titles go on a layout grid.</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-locationformat.html">LocationFormat</a>
-          </td>
-          <td class="xmldoc">
-          <p>Determines the set of locations used to match entries in <code>locations</code> to regions on the map. Default: ISO-3</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-mirror.html">Mirror</a>
-          </td>
-          <td class="xmldoc">
-          <p>Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. If "true", the axis lines are mirrored.
-If "ticks", the axis lines and ticks are mirrored. If "false", mirroring is disable. If "all", axis lines are mirrored on all shared-axes subplots. If "allticks", axis lines and ticks are mirrored on all shared-axes subplots.</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-mode.html">Mode</a>
-          </td>
-          <td class="xmldoc">
-          
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-orientation.html">Orientation</a>
-          </td>
-          <td class="xmldoc">
-          
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-quartilemethod.html">QuartileMethod</a>
-          </td>
-          <td class="xmldoc">
-          <p>Sets the method used to compute the sample's Q1 and Q3 quartiles</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-range.html">Range</a>
-          </td>
-          <td class="xmldoc">
-          <p>Defines a Range between min and max value</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-rangemode.html">RangeMode</a>
-          </td>
-          <td class="xmldoc">
-          <p>If "normal", the range is computed in relation to the extrema of the input data. If "tozero"`, the range extends to 0, regardless of the input data If "nonnegative", the range is non-negative, regardless of the input data.</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-shape.html">Shape</a>
-          </td>
-          <td class="xmldoc">
-          <p>Determines the line shape. With "spline" the lines are drawn using spline interpolation. The other available values correspond to step-wise line shapes.</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-shapetype.html">ShapeType</a>
-          </td>
-          <td class="xmldoc">
-          <p>Specifies the shape type to be drawn. If "line", a line is drawn from (<code>x0</code>,<code>y0</code>) to (<code>x1</code>,<code>y1</code>) If "circle", a circle is drawn from ((<code>x0</code>+<code>x1</code>)/2, (<code>y0</code>+<code>y1</code>)/2))
-with radius (|(<code>x0</code>+<code>x1</code>)/2 - <code>x0</code>|, |(<code>y0</code>+<code>y1</code>)/2 -<code>y0</code>)|) If "rect", a rectangle is drawn linking (<code>x0</code>,<code>y0</code>), (<code>x1</code>,<code>y0</code>), (<code>x1</code>,<code>y1</code>), (<code>x0</code>,<code>y1</code>), (<code>x0</code>,<code>y0</code>)
-If "path", draw a custom SVG path using <code>path</code>.</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-showexponent.html">ShowExponent</a>
-          </td>
-          <td class="xmldoc">
-          <p>If "all", all exponents are shown besides their significands. If "first", only the exponent of the first tick is shown. If "last", only the exponent of the last tick is shown. If "none", no exponents appear.</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-showtickoption.html">ShowTickOption</a>
-          </td>
-          <td class="xmldoc">
-          <p>If "all", all tick labels are displayed with a prefix. If "first", only the first tick is displayed with a prefix. If "last", only the last tick is displayed with a suffix. If "none", tick prefixes are hidden.</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-side.html">Side</a>
-          </td>
-          <td class="xmldoc">
-          
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-smoothalg.html">SmoothAlg</a>
-          </td>
-          <td class="xmldoc">
-          <p>Choose between algorithms ('best' or 'fast') to smooth data linked to 'z'. The default value is false corresponding to no smoothing.</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-symbol.html">Symbol</a>
-          </td>
-          <td class="xmldoc">
-          
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-symbolstyle.html">SymbolStyle</a>
-          </td>
-          <td class="xmldoc">
-          
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-textinfo.html">TextInfo</a>
-          </td>
-          <td class="xmldoc">
-          <p>Determines which trace information appear on the graph and  on hove (HoverInfo)</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-textinfoposition.html">TextInfoPosition</a>
-          </td>
-          <td class="xmldoc">
-          <p>Specifies the location of the <code>textinfo</code>.</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-textposition.html">TextPosition</a>
-          </td>
-          <td class="xmldoc">
-          <p>Sets the positions of the <code>text</code> elements with respects to the (x,y) coordinates. (default: MiddleCenter)</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-thicknessmode.html">Thicknessmode</a>
-          </td>
-          <td class="xmldoc">
-          
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-tickmode.html">TickMode</a>
-          </td>
-          <td class="xmldoc">
-          <p>Sets the tick mode for this axis. If "auto", the number of ticks is set via <code>nticks</code>. If "linear", the placement of the ticks is determined by a starting position <code>tick0</code> and a tick step <code>dtick</code> ("linear" is the default value if <code>tick0</code> and <code>dtick</code> are provided).
-If "array", the placement of the ticks is set via <code>tickvals</code> and the tick text is <code>ticktext</code>. ("array" is the default value if <code>tickvals</code> is provided).</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-tickoptions.html">TickOptions</a>
-          </td>
-          <td class="xmldoc">
-          <p>Determines whether ticks are drawn or not. If "", this axis' ticks are not drawn. If "outside" ("inside"), this axis' are drawn outside (inside) the axis lines.</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-treemapedgeshape.html">TreemapEdgeShape</a>
-          </td>
-          <td class="xmldoc">
-          
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-treemaptilingpacking.html">TreemapTilingPacking</a>
-          </td>
-          <td class="xmldoc">
-          
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-verticalalign.html">VerticalAlign</a>
-          </td>
-          <td class="xmldoc">
-          
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-visible.html">Visible</a>
-          </td>
-          <td class="xmldoc">
-          <p>Determines whether or not this trace is visible. If "legendonly", the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).</p>
-
-
-          </td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="plotly-net-styleparam-waterfallmeasure.html">WaterfallMeasure</a>
-          </td>
-          <td class="xmldoc">
-          <p>How to compute differences between bars in Waterfall Charts</p>
-
-
-          </td>
-        </tr>
-    </tbody>
-  </table>
-  <table class="table table-bordered module-list">
-    <thead>
-      <tr><td>Module</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td class="module-name">
-            <a href="plotly-net-styleparam-modeutils.html">ModeUtils</a>
-          </td>
-          <td class="xmldoc">
-          <p>Functions to manipulate StyleParam Mode</p>
-
-
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
+  <p>
+    Assembly: Plotly.NET.dll
+  </p>
+  <div class="fsdocs-xmldoc">
+    
   </div>
+  <div>
+    <h3>
+      Types and nested modules
+    </h3>
+    <table class="table outer-list fsdocs-entity-list">
+      <thead>
+        <tr>
+          <td>
+            Type/Module
+          </td>
+          <td>
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="ModeUtils">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-modeutils.html">
+                  ModeUtils
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L714-714" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Functions to manipulate StyleParam Mode
 
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="Align">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-align.html">
+                  Align
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L17-17" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines
 
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="ArrowHead">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-arrowhead.html">
+                  ArrowHead
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L55-55" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="AutoRange">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-autorange.html">
+                  AutoRange
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L30-30" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to "false".
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="AxisAnchorId">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-axisanchorid.html">
+                  AxisAnchorId
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L70-70" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="AxisId">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-axisid.html">
+                  AxisId
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L82-82" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="AxisType">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-axistype.html">
+                  AxisType
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L42-42" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Sets the axis type. By default (Auto), plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="Barmode">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-barmode.html">
+                  Barmode
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L125-125" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ For bar and histogram plots only. This sets how multiple bar objects are plotted together. In other words, this defines how bars at the same location
+ appear on the plot. If set to 'stack' the bars are stacked on top of one another. If set to 'group', the bars are plotted next to one another, centered 
+ around the shared location. If set to 'overlay', the bars are simply plotted over one another, you may need to set the opacity to see this.
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="BoxMean">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-boxmean.html">
+                  BoxMean
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L111-111" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="Boxpoints">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-boxpoints.html">
+                  Boxpoints
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L97-97" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="BranchValues">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-branchvalues.html">
+                  BranchValues
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L137-137" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="Calendar">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-calendar.html">
+                  Calendar
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L153-153" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Sets the calendar system to use with `x y z` date data. Default: "gregorian"
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="CategoryOrder">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-categoryorder.html">
+                  CategoryOrder
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L231-231" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Specifies the ordering logic for the case of categorical variables. By default, plotly uses "trace", which specifies the order that is present in the data supplied. Set `categoryorder` to "category ascending" or "category descending" if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to "array" to derive the ordering from the attribute `categoryarray`. 
+ If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the "trace" mode. The unspecified categories will follow the categories in `categoryarray`.
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="Colorscale">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-colorscale.html">
+                  Colorscale
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L205-205" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ The colorscale must be a collection containing a mapping of a normalized value (between 0.0 and 1.0) to it's color. At minimum, a mapping for the lowest (0.0) and highest (1.0) values are required. 
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="ConnectorMode">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-connectormode.html">
+                  ConnectorMode
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L244-244" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+The shape of connector lines in Waterfall charts.
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="CumulativeDirection">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-cumulativedirection.html">
+                  CumulativeDirection
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L180-180" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Only applies if cumulative is enabled. If "increasing" (default) we sum all prior bins, so the result increases from left to right.
+ If "decreasing" we sum later bins so the result decreases from left to right.  default: "increasing"
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="Currentbin">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-currentbin.html">
+                  Currentbin
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L193-193" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Only applies if cumulative is enabled. Sets whether the current bin is included, excluded, or has half of its value included in 
+ the current cumulative value. "include" is the default for compatibility with various other tools, however it introduces
+ a half-bin bias to the results. "exclude" makes the opposite half-bin bias, and "half" removes it.
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="Delaunayaxis">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-delaunayaxis.html">
+                  Delaunayaxis
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L277-277" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Sets the Delaunay axis, which is the axis that is perpendicular to the surface of the Delaunay triangulation.
+ It has an effect if `i`, `j`, `k` are not provided and `alphahull` is set to indicate Delaunay triangulation. 
+ Default is "z"
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="Direction">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-direction.html">
+                  Direction
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L289-289" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Specifies the direction at which succeeding sectors follow one another.
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="Dragmode">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-dragmode.html">
+                  Dragmode
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L262-262" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Sets this figure's behavior when a user preforms a mouse 'drag' in the plot area. When set to 'zoom', a portion of the plot will be highlighted,
+ when the viewer exits the drag, this highlighted section will be zoomed in on. When set to 'pan', data in the plot will move along with the viewers
+ dragging motions. A user can always depress the 'shift' key to access the whatever functionality has not been set as the default. In 3D plots, the 
+ default drag mode is 'rotate' which rotates the scene.
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="DrawingStyle">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-drawingstyle.html">
+                  DrawingStyle
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L301-301" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Dash: Sets the drawing style of the lines segments in this trace.
+ Sets the style of the lines. Set to a dash string type or a dash length in px.
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="ExponentFormat">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-exponentformat.html">
+                  ExponentFormat
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L323-323" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If "none", it appears as 1,000,000,000. If "e", 1e+9. If "E", 1E+9. 
+ If "power", 1x10^9 (with 9 in a super script). If "SI", 1G. If "B", 1B.
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="Fill">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-fill.html">
+                  Fill
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L368-368" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Sets the area to fill with a solid color. (default: "none" )
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="FontFamily">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-fontfamily.html">
+                  FontFamily
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L344-344" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Names of installed font families
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="GeoFitBounds">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-geofitbounds.html">
+                  GeoFitBounds
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L399-399" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+Used for the Layout.geo field. Determines if this subplot's view settings are auto-computed to fit trace data. On scoped maps, setting `fitbounds` leads to `center.lon` and `center.lat` getting auto-filled. On maps with a non-clipped projection, setting `fitbounds` leads to `center.lon`, `center.lat`, and `projection.rotation.lon` getting auto-filled. On maps with a clipped projection, setting `fitbounds` leads to `center.lon`, `center.lat`, `projection.rotation.lon`, `projection.rotation.lat`, `lonaxis.range` and `lonaxis.range` getting auto-filled. If "locations", only the trace's visible locations are considered in the `fitbounds` computations. If "geojson", the entire trace input `geojson` (if provided) is considered in the `fitbounds` computations, Defaults to "false".
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="GeoProjectionType">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-geoprojectiontype.html">
+                  GeoProjectionType
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L436-436" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="GeoResolution">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-georesolution.html">
+                  GeoResolution
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L411-411" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+Used for the Layout.geo field. Sets the resolution of the base layers. The values have units of km/mm e.g. 110 corresponds to a scale ratio of 1:110,000,000.
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="GeoScope">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-geoscope.html">
+                  GeoScope
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L421-421" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="GroupNorm">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-groupnorm.html">
+                  GroupNorm
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L387-387" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="HistFunc">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-histfunc.html">
+                  HistFunc
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L518-518" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Sets the binning function used for this histogram trace. The default value is 'count' where the histogram values are computed 
+ by counting the number of values lying inside each bin. With 'histfunc' set to 'sum', 'avg', 'min' or 'max', the histogram values 
+ are computed using the sum, the average, the minimum or the 'maximum' of the values lying inside each bin respectively.
+ default: Count    
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="HistNorm">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-histnorm.html">
+                  HistNorm
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L500-500" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Sets the type of normalization for this histogram trace. By default ('histnorm' set to '') the height of each bar 
+ displays the frequency of occurrence, i.e., the number of times this value was found in the corresponding bin.
+ If set to 'percent', the height of each bar displays the percentage of total occurrences found within the corresponding bin. 
+ If set to 'probability', the height of each bar displays the probability that an event will fall into the corresponding bin. 
+ If set to 'density', the height of each bar is equal to the number of occurrences in a bin divided by the size of the bin 
+ interval such that summing the area of all bins will yield the total number of occurrences. If set to 'probability density', 
+ the height of each bar is equal to the number of probability that an event will fall into the corresponding bin divided by 
+ the size of the bin interval such that summing the area of all bins will yield 1.
+ default: None  
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="HorizontalAlign">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-horizontalalign.html">
+                  HorizontalAlign
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L547-547" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="Hovermode">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-hovermode.html">
+                  Hovermode
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L535-535" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Sets this figure's behavior when a user hovers over it. When set to 'x', all data sharing the same 'x' coordinate will be shown on screen
+ with corresponding trace labels. When set to 'y' all data sharing the same 'y' coordinates will be shown on the screen with corresponding
+ trace labels. When set to 'closest', information about the data point closest to where the viewer is hovering will appear.
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="ImageFormat">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-imageformat.html">
+                  ImageFormat
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L561-561" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="Jitterpoints">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-jitterpoints.html">
+                  Jitterpoints
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L574-574" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="Layer">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-layer.html">
+                  Layer
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L587-587" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Specifies whether shapes are drawn below or above traces. Default is Above
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="LayoutGridPattern">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-layoutgridpattern.html">
+                  LayoutGridPattern
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L626-626" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Pattern to use for autogenerating Axis Ids when not specifically specifying subplot axes IDs in LayoutGrids
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="LayoutGridRowOrder">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-layoutgridroworder.html">
+                  LayoutGridRowOrder
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L613-613" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Determines wether the rows of a LayoutGrid are enumerated from the top or the bottom.
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="LayoutGridXSide">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-layoutgridxside.html">
+                  LayoutGridXSide
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L642-642" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Sets where the x axis labels and titles go on a layout grid.
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="LayoutGridYSide">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-layoutgridyside.html">
+                  LayoutGridYSide
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L658-658" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Sets where the y axis labels and titles go on a layout grid.
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="LocationFormat">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-locationformat.html">
+                  LocationFormat
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L598-598" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Determines the set of locations used to match entries in `locations` to regions on the map. Default: ISO-3
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="Mirror">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-mirror.html">
+                  Mirror
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L681-681" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. If "true", the axis lines are mirrored. 
+ If "ticks", the axis lines and ticks are mirrored. If "false", mirroring is disable. If "all", axis lines are mirrored on all shared-axes subplots. If "allticks", axis lines and ticks are mirrored on all shared-axes subplots.
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="Mode">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-mode.html">
+                  Mode
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L695-695" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="Orientation">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-orientation.html">
+                  Orientation
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L760-760" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="QuartileMethod">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-quartilemethod.html">
+                  QuartileMethod
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L782-782" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Sets the method used to compute the sample's Q1 and Q3 quartiles
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="Range">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-range.html">
+                  Range
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L812-812" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Defines a Range between min and max value 
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="RangeMode">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-rangemode.html">
+                  RangeMode
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L799-799" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ If "normal", the range is computed in relation to the extrema of the input data. If "tozero"`, the range extends to 0, regardless of the input data If "nonnegative", the range is non-negative, regardless of the input data.
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="Shape">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-shape.html">
+                  Shape
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L906-906" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Determines the line shape. With "spline" the lines are drawn using spline interpolation. The other available values correspond to step-wise line shapes.
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="ShapeType">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-shapetype.html">
+                  ShapeType
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L831-831" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Specifies the shape type to be drawn. If "line", a line is drawn from (`x0`,`y0`) to (`x1`,`y1`) If "circle", a circle is drawn from ((`x0`+`x1`)/2, (`y0`+`y1`)/2))
+ with radius (|(`x0`+`x1`)/2 - `x0`|, |(`y0`+`y1`)/2 -`y0`)|) If "rect", a rectangle is drawn linking (`x0`,`y0`), (`x1`,`y0`), (`x1`,`y1`), (`x0`,`y1`), (`x0`,`y0`)
+ If "path", draw a custom SVG path using `path`.          
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="ShowExponent">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-showexponent.html">
+                  ShowExponent
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L937-937" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ If "all", all exponents are shown besides their significands. If "first", only the exponent of the first tick is shown. If "last", only the exponent of the last tick is shown. If "none", no exponents appear.
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="ShowTickOption">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-showtickoption.html">
+                  ShowTickOption
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L922-922" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ If "all", all tick labels are displayed with a prefix. If "first", only the first tick is displayed with a prefix. If "last", only the last tick is displayed with a suffix. If "none", tick prefixes are hidden.
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="Side">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-side.html">
+                  Side
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L951-951" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="SmoothAlg">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-smoothalg.html">
+                  SmoothAlg
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L964-964" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Choose between algorithms ('best' or 'fast') to smooth data linked to 'z'. The default value is false corresponding to no smoothing.
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="Symbol">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-symbol.html">
+                  Symbol
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L856-856" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="SymbolStyle">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-symbolstyle.html">
+                  SymbolStyle
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L844-844" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="TextInfo">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-textinfo.html">
+                  TextInfo
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L997-997" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Determines which trace information appear on the graph and  on hove (HoverInfo)
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="TextInfoPosition">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-textinfoposition.html">
+                  TextInfoPosition
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L1015-1015" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Specifies the location of the `textinfo`.
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="TextPosition">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-textposition.html">
+                  TextPosition
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L978-978" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Sets the positions of the `text` elements with respects to the (x,y) coordinates. (default: MiddleCenter)
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="Thicknessmode">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-thicknessmode.html">
+                  Thicknessmode
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L1054-1054" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="TickMode">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-tickmode.html">
+                  TickMode
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L1030-1030" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Sets the tick mode for this axis. If "auto", the number of ticks is set via `nticks`. If "linear", the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` ("linear" is the default value if `tick0` and `dtick` are provided). 
+ If "array", the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. ("array" is the default value if `tickvals` is provided).
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="TickOptions">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-tickoptions.html">
+                  TickOptions
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L1042-1042" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Determines whether ticks are drawn or not. If "", this axis' ticks are not drawn. If "outside" ("inside"), this axis' are drawn outside (inside) the axis lines.
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="TreemapEdgeShape">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-treemapedgeshape.html">
+                  TreemapEdgeShape
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L1064-1064" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="TreemapTilingPacking">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-treemaptilingpacking.html">
+                  TreemapTilingPacking
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L1077-1077" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="VerticalAlign">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-verticalalign.html">
+                  VerticalAlign
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L1112-1112" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="Visible">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-visible.html">
+                  Visible
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L1099-1099" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+ Determines whether or not this trace is visible. If "legendonly", the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
+
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="WaterfallMeasure">
+                <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam-waterfallmeasure.html">
+                  WaterfallMeasure
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L1127-1127" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+How to compute differences between bars in Waterfall Charts
+
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+                </div>
+            </div>
         </div>
-        <div class="span3">
-          <img src="https://plotly.github.io/Plotly.NET/img/logo.png" alt="Plotly.NET" style="width:150px;margin:10px" />  
-          <ul class="nav nav-list" id="menu" style="margin-top: 20px;">
-              <li class="nav-header">Plotly.NET</li>
-              <li><a href="https://plotly.github.io/Plotly.NET/index.html">Home page</a></li>
-              <li class="divider"></li>
-              <li>
-                  <a href="https://plotly.github.io/Plotly.NET/getting-started.html">Getting started</a>
-              </li>
-              <li class="nav-header">Plotly Charts</li>
-              <li><a href="https://plotly.github.io/Plotly.NET/area-plots.html">Area Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/bar-charts.html">Bar</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/box-plots.html">Box Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/violin-plots.html">Violin Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/bubble-charts.html">Bubble Charts</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/candlestick.html">Candlestick Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/contour-plots.html">Contour Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/heatmaps.html">Heatmaps</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/histograms.html">Histograms</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/2d-histograms.html">2D Histograms</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/line-scatter-plots.html">Line and Scatter Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/parallel-coords.html">Parallel coords Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/parallel-categories.html">Parallel Categories Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/pie-daughnut-charts.html">Pie and Doughnut Charts</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/polar-charts.html">Polar Charts</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/windrose-charts.html">Windrose Charts</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/range-plots.html">Range Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/candlestick.html">Candlestick Charts</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/sankey.html">Sankey Diagrams</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/splom.html">Splom Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/sankey.html">Sankey Plots</a></li>
-              <li class="nav-header">Map Charts</li>
-              <li><a href="https://plotly.github.io/Plotly.NET/choropleth-map.html">Choropleth</a></li>
-              <li class="nav-header">Plotly 3d-Charts</li>
-              <li><a href="https://plotly.github.io/Plotly.NET/3d-scatter-plots.html">3D Scatter Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/3d-line-plots.html">3D Line Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/3d-surface-plots.html">3D Surface Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/3d-mesh-plots.html">3D Mesh Plots</a></li>
-              <li class="nav-header">Plotly Tables</li>
-              <li><a href="https://plotly.github.io/Plotly.NET/table.html">Table</a></li>
-              <li class="nav-header">Styling</li>
-              <li><a href="https://plotly.github.io/Plotly.NET/multiple-charts.html">Multiple Charts</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/errorbars.html">Error bars</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/shapes.html">Shapes</a></li>
-              <li class="nav-header">Documentation</li>
-              <li><a href="https://plotly.github.io/Plotly.NET/reference/index.html">API Reference</a></li>
-          </ul>
-        </div>
-      </div>
+        
     </div>
-    <a href="https://github.com/plotly/Plotly.NET"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"/></a>
-  </body>
-  </html>
+
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <script type="text/javascript">var fsdocs_search_baseurl = 'http://plotly.github.io/Plotly.NET/'</script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+    <script type="text/javascript" src="http://plotly.github.io/Plotly.NET/content/fsdocs-search.js"></script>
+    <!-- END SEARCH BOX: this adds support for the search box -->
+</body>
+
+</html>

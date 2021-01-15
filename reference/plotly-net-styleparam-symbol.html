@@ -1,924 +1,1731 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <title>Symbol - Plotly.NET</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="" />
-    <meta name="author" content="Timo M�hlhaus; Kevin Schneider; OSS Contributors" />
+    <meta charset="utf-8">
+    <title>Symbol (Plotly.NET)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Timo Mühlhaus, Kevin Schneider, F# open source contributors">
+    <link rel="shortcut icon" type="image/x-icon" href="http://plotly.github.io/Plotly.NET//img/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script> -->
 
-    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
-    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
-    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet" />
-
-    <link type="text/css" rel="stylesheet" href="https://plotly.github.io/Plotly.NET/content/style.css" />
-    <link type="text/css" rel="stylesheet" href="https://plotly.github.io/Plotly.NET/style/CSBstyle.css" /> <!--https://plotly.github.io/Plotly.NET-->
-    <script type="text/javascript" src="https://plotly.github.io/Plotly.NET/content/tips.js"></script>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-
+    <link type="text/css" rel="stylesheet" href="http://plotly.github.io/Plotly.NET/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="http://plotly.github.io/Plotly.NET/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="http://plotly.github.io/Plotly.NET/content/fsdocs-tips.js"></script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-</head>
-  <body>
-    <div class="container">
-      <div class="masthead">
-        <ul class="nav nav-pills pull-right">
-          <li><a href="http://fsharp.org">fsharp.org</a></li>
-          <li><a href="https://github.com/plotly/Plotly.NET">github page</a></li>
-        </ul>
-        <h3 class="muted"><a href="https://plotly.github.io/Plotly.NET/index.html">Plotly.NET</a></h3>
-      </div>
-      <hr />
-      <div class="row">
-        <div class="span9" id="main">
-          
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head> 
 
-<h1>Symbol</h1>
-<p>
-
-    <span>Namespace: Plotly.NET</span><br />
-        <span>Parent Module: <a href="plotly-net-styleparam.html">StyleParam</a></span><br />
-            <span>
-            Attributes: <br />
-[&lt;RequireQualifiedAccess&gt;]<br />
-            
-        </span>
-</p>
-<div class="xmldoc">
+<body>
+    <div class="columns is-fullheight m-0">
+        <div id="fsdocs-menu" class="column is-2 is-paddingless">
+            <aside class="menu">
+                <div class="container is-paddingless is-marginless has-background-dark">
+                    <a href="http://plotly.github.io/Plotly.NET/">
+                        <figure class="image is-128x128 container">
+                            <img src="http://plotly.github.io/Plotly.NET/img/logo.png">
+                        </figure>
+                    </a>
+                    <h2 class="title has-text-centered has-text-white pb-4">Plotly.NET</h2>
+                </div>
+                <div class="content">
+                    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+                    <div id="header">
+                        <div class="searchbox" id="fsdocs-searchbox">
+                            <label for="search-by">
+                                <i class="fas fa-search"></i>
+                            </label>
+                            <input data-search-input="" id="search-by" type="search" placeholder="Search..." class="input"/>
+                            <span data-search-clear="">
+                                <i class="fas fa-times"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- END SEARCH BOX: this adds support for the search box -->
+                    <ul class="navbar-nav">
+                        <li class="nav-header">Links</li>
+                        <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License (MIT)</a></li>
+                        <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release Notes</a></li>
+                        <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source Repository</a></li>
+                        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+        <div class="column is-10 is-paddingless">
+            <div class="section pt-4">
+                <div class="container" id="fsdocs-content">
+                    <div>
+  <h1>
+    Symbol Type
+  </h1>
+  <p>
+    Namespace: 
+    <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net.html">
+      Plotly.NET
+    </a>
+  </p>
+  <p>
+    Assembly: Plotly.NET.dll
+  </p>
+  <span>
+    Parent Module: 
+    <a href="http://plotly.github.io/Plotly.NET/reference/plotly-net-styleparam.html">
+      StyleParam
+    </a>
+  </span>
+  <p>
+    Base Type: 
+    <code><a href="https://docs.microsoft.com/dotnet/api/system.enum">Enum</a></code>
+  </p>
+  <p>
+    All Interfaces: 
+    <code><a href="https://docs.microsoft.com/dotnet/api/system.icomparable">IComparable</a></code>
+    , 
+    <code><a href="https://docs.microsoft.com/dotnet/api/system.iconvertible">IConvertible</a></code>
+    , 
+    <code><a href="https://docs.microsoft.com/dotnet/api/system.iformattable">IFormattable</a></code>
+  </p>
+  <p>
+    Kind: Struct
+  </p>
+  <p>
+    This is an enum type definition
+  </p>
+  <div class="fsdocs-xmldoc">
+    
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div>
+    <h3>
+      Record fields
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Record Field
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '594', 594)" onmouseover="showTip(event, '594', 594)">
+                <p>
+                  <a id="Asterisk">
+                    <a href="#Asterisk">
+                      <code>Asterisk</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="594">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Asterisk</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L892-892" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '595', 595)" onmouseover="showTip(event, '595', 595)">
+                <p>
+                  <a id="Bowtie">
+                    <a href="#Bowtie">
+                      <code>Bowtie</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="595">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Bowtie</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L883-883" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '596', 596)" onmouseover="showTip(event, '596', 596)">
+                <p>
+                  <a id="Circle">
+                    <a href="#Circle">
+                      <code>Circle</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="596">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Circle</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L857-857" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '597', 597)" onmouseover="showTip(event, '597', 597)">
+                <p>
+                  <a id="CircleCross">
+                    <a href="#CircleCross">
+                      <code>CircleCross</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="597">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>CircleCross</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L884-884" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '598', 598)" onmouseover="showTip(event, '598', 598)">
+                <p>
+                  <a id="CircleX">
+                    <a href="#CircleX">
+                      <code>CircleX</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="598">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>CircleX</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L885-885" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '599', 599)" onmouseover="showTip(event, '599', 599)">
+                <p>
+                  <a id="Cross">
+                    <a href="#Cross">
+                      <code>Cross</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="599">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Cross</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L860-860" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '600', 600)" onmouseover="showTip(event, '600', 600)">
+                <p>
+                  <a id="CrossThin">
+                    <a href="#CrossThin">
+                      <code>CrossThin</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="600">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>CrossThin</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L890-890" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '601', 601)" onmouseover="showTip(event, '601', 601)">
+                <p>
+                  <a id="Diamond">
+                    <a href="#Diamond">
+                      <code>Diamond</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="601">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Diamond</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L859-859" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '602', 602)" onmouseover="showTip(event, '602', 602)">
+                <p>
+                  <a id="DiamondCross">
+                    <a href="#DiamondCross">
+                      <code>DiamondCross</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="602">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>DiamondCross</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L888-888" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '603', 603)" onmouseover="showTip(event, '603', 603)">
+                <p>
+                  <a id="DiamondTall">
+                    <a href="#DiamondTall">
+                      <code>DiamondTall</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="603">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>DiamondTall</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L880-880" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '604', 604)" onmouseover="showTip(event, '604', 604)">
+                <p>
+                  <a id="DiamondWide">
+                    <a href="#DiamondWide">
+                      <code>DiamondWide</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="604">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>DiamondWide</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L881-881" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '605', 605)" onmouseover="showTip(event, '605', 605)">
+                <p>
+                  <a id="DiamondX">
+                    <a href="#DiamondX">
+                      <code>DiamondX</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="605">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>DiamondX</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L889-889" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '606', 606)" onmouseover="showTip(event, '606', 606)">
+                <p>
+                  <a id="Hash">
+                    <a href="#Hash">
+                      <code>Hash</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="606">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Hash</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L893-893" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '607', 607)" onmouseover="showTip(event, '607', 607)">
+                <p>
+                  <a id="Hexagon">
+                    <a href="#Hexagon">
+                      <code>Hexagon</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="607">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Hexagon</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L871-871" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '608', 608)" onmouseover="showTip(event, '608', 608)">
+                <p>
+                  <a id="Hexagon2">
+                    <a href="#Hexagon2">
+                      <code>Hexagon2</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="608">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Hexagon2</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L872-872" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '609', 609)" onmouseover="showTip(event, '609', 609)">
+                <p>
+                  <a id="Hexagram">
+                    <a href="#Hexagram">
+                      <code>Hexagram</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="609">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Hexagram</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L875-875" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '610', 610)" onmouseover="showTip(event, '610', 610)">
+                <p>
+                  <a id="Hourglass">
+                    <a href="#Hourglass">
+                      <code>Hourglass</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="610">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Hourglass</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L882-882" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '611', 611)" onmouseover="showTip(event, '611', 611)">
+                <p>
+                  <a id="LineEW">
+                    <a href="#LineEW">
+                      <code>LineEW</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="611">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>LineEW</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L898-898" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '612', 612)" onmouseover="showTip(event, '612', 612)">
+                <p>
+                  <a id="LineNE">
+                    <a href="#LineNE">
+                      <code>LineNE</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="612">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>LineNE</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L900-900" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '613', 613)" onmouseover="showTip(event, '613', 613)">
+                <p>
+                  <a id="LineNS">
+                    <a href="#LineNS">
+                      <code>LineNS</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="613">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>LineNS</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L899-899" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '614', 614)" onmouseover="showTip(event, '614', 614)">
+                <p>
+                  <a id="LineNW">
+                    <a href="#LineNW">
+                      <code>LineNW</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="614">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>LineNW</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L901-901" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '615', 615)" onmouseover="showTip(event, '615', 615)">
+                <p>
+                  <a id="Octagon">
+                    <a href="#Octagon">
+                      <code>Octagon</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="615">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Octagon</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L873-873" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '616', 616)" onmouseover="showTip(event, '616', 616)">
+                <p>
+                  <a id="Pentagon">
+                    <a href="#Pentagon">
+                      <code>Pentagon</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="616">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Pentagon</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L870-870" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '617', 617)" onmouseover="showTip(event, '617', 617)">
+                <p>
+                  <a id="Square">
+                    <a href="#Square">
+                      <code>Square</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="617">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Square</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L858-858" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '618', 618)" onmouseover="showTip(event, '618', 618)">
+                <p>
+                  <a id="SquareCross">
+                    <a href="#SquareCross">
+                      <code>SquareCross</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="618">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>SquareCross</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L886-886" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '619', 619)" onmouseover="showTip(event, '619', 619)">
+                <p>
+                  <a id="SquareX">
+                    <a href="#SquareX">
+                      <code>SquareX</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="619">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>SquareX</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L887-887" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '620', 620)" onmouseover="showTip(event, '620', 620)">
+                <p>
+                  <a id="Star">
+                    <a href="#Star">
+                      <code>Star</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="620">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Star</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L874-874" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '621', 621)" onmouseover="showTip(event, '621', 621)">
+                <p>
+                  <a id="StarDiamond">
+                    <a href="#StarDiamond">
+                      <code>StarDiamond</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="621">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>StarDiamond</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L879-879" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '622', 622)" onmouseover="showTip(event, '622', 622)">
+                <p>
+                  <a id="StarSquare">
+                    <a href="#StarSquare">
+                      <code>StarSquare</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="622">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>StarSquare</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L878-878" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '623', 623)" onmouseover="showTip(event, '623', 623)">
+                <p>
+                  <a id="StarTriangleDown">
+                    <a href="#StarTriangleDown">
+                      <code>StarTriangleDown</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="623">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>StarTriangleDown</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L877-877" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '624', 624)" onmouseover="showTip(event, '624', 624)">
+                <p>
+                  <a id="StarTriangleUp">
+                    <a href="#StarTriangleUp">
+                      <code>StarTriangleUp</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="624">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>StarTriangleUp</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L876-876" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '625', 625)" onmouseover="showTip(event, '625', 625)">
+                <p>
+                  <a id="TriangleDown">
+                    <a href="#TriangleDown">
+                      <code>TriangleDown</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="625">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>TriangleDown</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L863-863" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '626', 626)" onmouseover="showTip(event, '626', 626)">
+                <p>
+                  <a id="TriangleLeft">
+                    <a href="#TriangleLeft">
+                      <code>TriangleLeft</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="626">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>TriangleLeft</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L864-864" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '627', 627)" onmouseover="showTip(event, '627', 627)">
+                <p>
+                  <a id="TriangleNE">
+                    <a href="#TriangleNE">
+                      <code>TriangleNE</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="627">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>TriangleNE</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L866-866" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '628', 628)" onmouseover="showTip(event, '628', 628)">
+                <p>
+                  <a id="TriangleNW">
+                    <a href="#TriangleNW">
+                      <code>TriangleNW</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="628">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>TriangleNW</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L869-869" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '629', 629)" onmouseover="showTip(event, '629', 629)">
+                <p>
+                  <a id="TriangleRight">
+                    <a href="#TriangleRight">
+                      <code>TriangleRight</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="629">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>TriangleRight</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L865-865" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '630', 630)" onmouseover="showTip(event, '630', 630)">
+                <p>
+                  <a id="TriangleSE">
+                    <a href="#TriangleSE">
+                      <code>TriangleSE</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="630">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>TriangleSE</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L867-867" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '631', 631)" onmouseover="showTip(event, '631', 631)">
+                <p>
+                  <a id="TriangleSW">
+                    <a href="#TriangleSW">
+                      <code>TriangleSW</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="631">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>TriangleSW</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L868-868" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '632', 632)" onmouseover="showTip(event, '632', 632)">
+                <p>
+                  <a id="TriangleUp">
+                    <a href="#TriangleUp">
+                      <code>TriangleUp</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="632">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>TriangleUp</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L862-862" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '633', 633)" onmouseover="showTip(event, '633', 633)">
+                <p>
+                  <a id="X">
+                    <a href="#X">
+                      <code>X</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="633">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>X</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L861-861" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '634', 634)" onmouseover="showTip(event, '634', 634)">
+                <p>
+                  <a id="XThin">
+                    <a href="#XThin">
+                      <code>XThin</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="634">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>XThin</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L891-891" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '635', 635)" onmouseover="showTip(event, '635', 635)">
+                <p>
+                  <a id="YDown">
+                    <a href="#YDown">
+                      <code>YDown</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="635">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>YDown</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L895-895" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '636', 636)" onmouseover="showTip(event, '636', 636)">
+                <p>
+                  <a id="YLeft">
+                    <a href="#YLeft">
+                      <code>YLeft</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="636">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>YLeft</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L896-896" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '637', 637)" onmouseover="showTip(event, '637', 637)">
+                <p>
+                  <a id="YRight">
+                    <a href="#YRight">
+                      <code>YRight</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="637">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>YRight</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L897-897" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-name">
+            <div>
+              <code onmouseout="hideTip(event, '638', 638)" onmouseover="showTip(event, '638', 638)">
+                <p>
+                  <a id="YUp">
+                    <a href="#YUp">
+                      <code>YUp</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="638">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>YUp</code>
+                  <br/>
+                  <br/>
+                  Modifiers: 
+                  static
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-xmldoc">
+            <p class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L894-894" class="fsdocs-source-link">
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github.png" class="normal"/>
+                <img src="http://plotly.github.io/Plotly.NET/content/img/github-blue.png" class="hover"/>
+              </a>
+              
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
 </div>
-  <h3>Record Fields</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Record Field</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '543', 543)" onmouseover="showTip(event, '543', 543)">
-            Asterisk
-          </code>
-          <div class="tip" id="543">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L892-892" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '544', 544)" onmouseover="showTip(event, '544', 544)">
-            Bowtie
-          </code>
-          <div class="tip" id="544">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L883-883" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '545', 545)" onmouseover="showTip(event, '545', 545)">
-            Circle
-          </code>
-          <div class="tip" id="545">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L857-857" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '546', 546)" onmouseover="showTip(event, '546', 546)">
-            CircleCross
-          </code>
-          <div class="tip" id="546">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L884-884" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '547', 547)" onmouseover="showTip(event, '547', 547)">
-            CircleX
-          </code>
-          <div class="tip" id="547">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L885-885" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '548', 548)" onmouseover="showTip(event, '548', 548)">
-            Cross
-          </code>
-          <div class="tip" id="548">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L860-860" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '549', 549)" onmouseover="showTip(event, '549', 549)">
-            CrossThin
-          </code>
-          <div class="tip" id="549">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L890-890" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '550', 550)" onmouseover="showTip(event, '550', 550)">
-            Diamond
-          </code>
-          <div class="tip" id="550">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L859-859" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '551', 551)" onmouseover="showTip(event, '551', 551)">
-            DiamondCross
-          </code>
-          <div class="tip" id="551">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L888-888" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '552', 552)" onmouseover="showTip(event, '552', 552)">
-            DiamondTall
-          </code>
-          <div class="tip" id="552">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L880-880" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '553', 553)" onmouseover="showTip(event, '553', 553)">
-            DiamondWide
-          </code>
-          <div class="tip" id="553">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L881-881" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '554', 554)" onmouseover="showTip(event, '554', 554)">
-            DiamondX
-          </code>
-          <div class="tip" id="554">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L889-889" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '555', 555)" onmouseover="showTip(event, '555', 555)">
-            Hash
-          </code>
-          <div class="tip" id="555">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L893-893" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '556', 556)" onmouseover="showTip(event, '556', 556)">
-            Hexagon
-          </code>
-          <div class="tip" id="556">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L871-871" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '557', 557)" onmouseover="showTip(event, '557', 557)">
-            Hexagon2
-          </code>
-          <div class="tip" id="557">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L872-872" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '558', 558)" onmouseover="showTip(event, '558', 558)">
-            Hexagram
-          </code>
-          <div class="tip" id="558">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L875-875" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '559', 559)" onmouseover="showTip(event, '559', 559)">
-            Hourglass
-          </code>
-          <div class="tip" id="559">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L882-882" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '560', 560)" onmouseover="showTip(event, '560', 560)">
-            LineEW
-          </code>
-          <div class="tip" id="560">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L898-898" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '561', 561)" onmouseover="showTip(event, '561', 561)">
-            LineNE
-          </code>
-          <div class="tip" id="561">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L900-900" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '562', 562)" onmouseover="showTip(event, '562', 562)">
-            LineNS
-          </code>
-          <div class="tip" id="562">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L899-899" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '563', 563)" onmouseover="showTip(event, '563', 563)">
-            LineNW
-          </code>
-          <div class="tip" id="563">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L901-901" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '564', 564)" onmouseover="showTip(event, '564', 564)">
-            Octagon
-          </code>
-          <div class="tip" id="564">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L873-873" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '565', 565)" onmouseover="showTip(event, '565', 565)">
-            Pentagon
-          </code>
-          <div class="tip" id="565">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L870-870" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '566', 566)" onmouseover="showTip(event, '566', 566)">
-            Square
-          </code>
-          <div class="tip" id="566">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L858-858" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '567', 567)" onmouseover="showTip(event, '567', 567)">
-            SquareCross
-          </code>
-          <div class="tip" id="567">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L886-886" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '568', 568)" onmouseover="showTip(event, '568', 568)">
-            SquareX
-          </code>
-          <div class="tip" id="568">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L887-887" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '569', 569)" onmouseover="showTip(event, '569', 569)">
-            Star
-          </code>
-          <div class="tip" id="569">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L874-874" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '570', 570)" onmouseover="showTip(event, '570', 570)">
-            StarDiamond
-          </code>
-          <div class="tip" id="570">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L879-879" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '571', 571)" onmouseover="showTip(event, '571', 571)">
-            StarSquare
-          </code>
-          <div class="tip" id="571">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L878-878" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '572', 572)" onmouseover="showTip(event, '572', 572)">
-            StarTriangleDown
-          </code>
-          <div class="tip" id="572">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L877-877" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '573', 573)" onmouseover="showTip(event, '573', 573)">
-            StarTriangleUp
-          </code>
-          <div class="tip" id="573">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L876-876" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '574', 574)" onmouseover="showTip(event, '574', 574)">
-            TriangleDown
-          </code>
-          <div class="tip" id="574">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L863-863" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '575', 575)" onmouseover="showTip(event, '575', 575)">
-            TriangleLeft
-          </code>
-          <div class="tip" id="575">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L864-864" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '576', 576)" onmouseover="showTip(event, '576', 576)">
-            TriangleNE
-          </code>
-          <div class="tip" id="576">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L866-866" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '577', 577)" onmouseover="showTip(event, '577', 577)">
-            TriangleNW
-          </code>
-          <div class="tip" id="577">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L869-869" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '578', 578)" onmouseover="showTip(event, '578', 578)">
-            TriangleRight
-          </code>
-          <div class="tip" id="578">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L865-865" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '579', 579)" onmouseover="showTip(event, '579', 579)">
-            TriangleSE
-          </code>
-          <div class="tip" id="579">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L867-867" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '580', 580)" onmouseover="showTip(event, '580', 580)">
-            TriangleSW
-          </code>
-          <div class="tip" id="580">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L868-868" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '581', 581)" onmouseover="showTip(event, '581', 581)">
-            TriangleUp
-          </code>
-          <div class="tip" id="581">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L862-862" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '582', 582)" onmouseover="showTip(event, '582', 582)">
-            X
-          </code>
-          <div class="tip" id="582">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L861-861" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '583', 583)" onmouseover="showTip(event, '583', 583)">
-            XThin
-          </code>
-          <div class="tip" id="583">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L891-891" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '584', 584)" onmouseover="showTip(event, '584', 584)">
-            YDown
-          </code>
-          <div class="tip" id="584">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L895-895" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '585', 585)" onmouseover="showTip(event, '585', 585)">
-            YLeft
-          </code>
-          <div class="tip" id="585">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L896-896" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '586', 586)" onmouseover="showTip(event, '586', 586)">
-            YRight
-          </code>
-          <div class="tip" id="586">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L897-897" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '587', 587)" onmouseover="showTip(event, '587', 587)">
-            YUp
-          </code>
-          <div class="tip" id="587">
-            <strong>Signature:</strong> Symbol<br />
-              <strong>Modifiers:</strong> static<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/plotly/Plotly.NET/tree/master//src/Plotly.NET/StyleParams.fs#L894-894" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
+                </div>
+            </div>
         </div>
-        <div class="span3">
-          <img src="https://plotly.github.io/Plotly.NET/img/logo.png" alt="Plotly.NET" style="width:150px;margin:10px" />  
-          <ul class="nav nav-list" id="menu" style="margin-top: 20px;">
-              <li class="nav-header">Plotly.NET</li>
-              <li><a href="https://plotly.github.io/Plotly.NET/index.html">Home page</a></li>
-              <li class="divider"></li>
-              <li>
-                  <a href="https://plotly.github.io/Plotly.NET/getting-started.html">Getting started</a>
-              </li>
-              <li class="nav-header">Plotly Charts</li>
-              <li><a href="https://plotly.github.io/Plotly.NET/area-plots.html">Area Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/bar-charts.html">Bar</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/box-plots.html">Box Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/violin-plots.html">Violin Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/bubble-charts.html">Bubble Charts</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/candlestick.html">Candlestick Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/contour-plots.html">Contour Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/heatmaps.html">Heatmaps</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/histograms.html">Histograms</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/2d-histograms.html">2D Histograms</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/line-scatter-plots.html">Line and Scatter Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/parallel-coords.html">Parallel coords Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/parallel-categories.html">Parallel Categories Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/pie-daughnut-charts.html">Pie and Doughnut Charts</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/polar-charts.html">Polar Charts</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/windrose-charts.html">Windrose Charts</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/range-plots.html">Range Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/candlestick.html">Candlestick Charts</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/sankey.html">Sankey Diagrams</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/splom.html">Splom Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/sankey.html">Sankey Plots</a></li>
-              <li class="nav-header">Map Charts</li>
-              <li><a href="https://plotly.github.io/Plotly.NET/choropleth-map.html">Choropleth</a></li>
-              <li class="nav-header">Plotly 3d-Charts</li>
-              <li><a href="https://plotly.github.io/Plotly.NET/3d-scatter-plots.html">3D Scatter Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/3d-line-plots.html">3D Line Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/3d-surface-plots.html">3D Surface Plots</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/3d-mesh-plots.html">3D Mesh Plots</a></li>
-              <li class="nav-header">Plotly Tables</li>
-              <li><a href="https://plotly.github.io/Plotly.NET/table.html">Table</a></li>
-              <li class="nav-header">Styling</li>
-              <li><a href="https://plotly.github.io/Plotly.NET/multiple-charts.html">Multiple Charts</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/errorbars.html">Error bars</a></li>
-              <li><a href="https://plotly.github.io/Plotly.NET/shapes.html">Shapes</a></li>
-              <li class="nav-header">Documentation</li>
-              <li><a href="https://plotly.github.io/Plotly.NET/reference/index.html">API Reference</a></li>
-          </ul>
-        </div>
-      </div>
+        
     </div>
-    <a href="https://github.com/plotly/Plotly.NET"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"/></a>
-  </body>
-  </html>
+
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <script type="text/javascript">var fsdocs_search_baseurl = 'http://plotly.github.io/Plotly.NET/'</script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+    <script type="text/javascript" src="http://plotly.github.io/Plotly.NET/content/fsdocs-search.js"></script>
+    <!-- END SEARCH BOX: this adds support for the search box -->
+</body>
+
+</html>

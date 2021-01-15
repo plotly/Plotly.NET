@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Histograms
+</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Timo Mühlhaus, Kevin Schneider, F# open source contributors">
+    <link rel="shortcut icon" type="image/x-icon" href="http://plotly.github.io/Plotly.NET//img/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script> -->
+
+    <link type="text/css" rel="stylesheet" href="http://plotly.github.io/Plotly.NET/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="http://plotly.github.io/Plotly.NET/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="http://plotly.github.io/Plotly.NET/content/fsdocs-tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head> 
+
+<body>
+    <div class="columns is-fullheight m-0">
+        <div id="fsdocs-menu" class="column is-2 is-paddingless">
+            <aside class="menu">
+                <div class="container is-paddingless is-marginless has-background-dark">
+                    <a href="http://plotly.github.io/Plotly.NET/">
+                        <figure class="image is-128x128 container">
+                            <img src="http://plotly.github.io/Plotly.NET/img/logo.png">
+                        </figure>
+                    </a>
+                    <h2 class="title has-text-centered has-text-white pb-4">Plotly.NET</h2>
+                </div>
+                <div class="content">
+                    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+                    <div id="header">
+                        <div class="searchbox" id="fsdocs-searchbox">
+                            <label for="search-by">
+                                <i class="fas fa-search"></i>
+                            </label>
+                            <input data-search-input="" id="search-by" type="search" placeholder="Search..." class="input"/>
+                            <span data-search-clear="">
+                                <i class="fas fa-times"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- END SEARCH BOX: this adds support for the search box -->
+                    <ul class="navbar-nav">
+                        <li class="nav-header">Links</li>
+                        <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License (MIT)</a></li>
+                        <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release Notes</a></li>
+                        <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source Repository</a></li>
+                        <li class="nav-header">
+  Documentation
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/content/3d-line-plots.html">
+    3D line charts
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/content/area-plots.html">
+    Area charts
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/content/bar-and-column-charts.html">
+    Bar and column charts
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/content/splom.html">
+    Scatterplot matrix
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/content/heatmaps.html">
+    Heatmaps
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/content/polar-charts.html">
+    Polar charts
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/content/choropleth-map.html">
+    Choropleth maps
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/content/shapes.html">
+    Shapes
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/content/violin-plots.html">
+    Violin plots
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/content/box-plots.html">
+    BoxPlots
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/content/3d-mesh-plots.html">
+    Mesh3d
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/content/2d-histograms.html">
+    Histogram2D
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/content/3d-surface-plots.html">
+    3D surface plots
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/content/multiple-charts.html">
+    Multicharts and subplots
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/content/contour-plots.html">
+    Contour plots
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/content/errorbars.html">
+    Error bars
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/content/table.html">
+    Tables
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/content/pie-daughnut-charts.html">
+    Pie and doughnut Charts
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/content/windrose-charts.html">
+    Wind rose charts
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/content/histograms.html">
+    Histograms
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/content/line-scatter-plots.html">
+    Line and scatter plots
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/content/bubble-charts.html">
+    Bubble charts
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/content/sankey.html">
+    Sankey charts
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/content/parallel-categories.html">
+    Parallel categories
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/content/candlestick.html">
+    Candlestick Charts
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/content/axis-styling.html">
+    Axis styling
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/content/range-plots.html">
+    Range plots
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/content/3d-scatter-plots.html">
+    Scatter3d charts
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/content/parallel-coords.html">
+    Parallel coordinates
+
+  </a>
+</li>
+                        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+        <div class="column is-10 is-paddingless">
+            <div class="section pt-4">
+                <div class="container" id="fsdocs-content">
+                    <h1><a name="Histograms" class="anchor" href="#Histograms">Histograms</a></h1>
+<p><em>Summary:</em> This example shows how to create a one-dimensional histogram of a data samples in F#.</p>
+<p>let's first create some data for the purpose of creating example charts:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">Plotly</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">NET</span> 
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="id">rnd</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="id">System</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="id">Random</span><span class="pn">(</span><span class="pn">)</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="id">x</span> <span class="o">=</span> <span class="pn">[</span><span class="k">for</span> <span onmouseout="hideTip(event, 'fs7', 7)" onmouseover="showTip(event, 'fs7', 7)" class="fn">i</span><span class="o">=</span><span class="n">0</span> <span class="k">to</span> <span class="n">500</span> <span class="k">do</span> <span class="k">yield</span> <span onmouseout="hideTip(event, 'fs3', 8)" onmouseover="showTip(event, 'fs3', 8)" class="id">rnd</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs8', 9)" onmouseover="showTip(event, 'fs8', 9)" class="id">NextDouble</span><span class="pn">(</span><span class="pn">)</span> <span class="pn">]</span>
+</code></pre>
+<p>A histogram consisting of rectangles whose area is proportional to the frequency of a variable and whose width is equal to the class interval.
+The histogram chart represents the distribution of numerical data and can be created using the <code>Chart.Histogram</code> function:.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs9', 10)" onmouseover="showTip(event, 'fs9', 10)" class="id">histo1</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs6', 11)" onmouseover="showTip(event, 'fs6', 11)" class="id">x</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs10', 12)" onmouseover="showTip(event, 'fs10', 12)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 13)" onmouseover="showTip(event, 'fs11', 13)" class="id">Histogram</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs10', 14)" onmouseover="showTip(event, 'fs10', 14)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 15)" onmouseover="showTip(event, 'fs12', 15)" class="id">withSize</span><span class="pn">(</span><span class="n">500.</span><span class="pn">,</span><span class="n">500.</span><span class="pn">)</span>
+</code></pre>
+<div id="c222d23e-f369-4009-ad65-013e405d9f27" style="width: 500px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<script type="text/javascript">
+
+            var renderPlotly_c222d23ef3694009ad65013e405d9f27 = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            fsharpPlotlyRequire(['plotly'], function(Plotly) {
+
+            var data = [{"type":"histogram","x":[0.48230962058636806,0.2904178110372358,0.7952149583935807,0.765815220198508,0.8805401524903905,0.21866918411975222,0.8084674309047253,0.4116705299409435,0.916659745814586,0.7491214241595573,0.39255138411771107,0.5606235794539673,0.3305949560974701,0.8387862368667434,0.11427689069615532,0.14272124140650091,0.5668528045373283,0.47118156145847473,0.28273018928371846,0.08973039085498563,0.5926624800044403,0.35185875806578376,0.6034825093129103,0.025154894695223726,0.30584460650842854,0.046589610188542685,0.7917985682337538,0.301619987143958,0.690667176940789,0.7509089506933972,0.277454303706742,0.5302075927752106,0.9770525251408352,0.7197625551930454,0.4201841868554168,0.9675168734823898,0.9265856854275734,0.12457624223296355,0.7319716432746368,0.5450523484242392,0.4642515654974857,0.939151665167488,0.3550014036498039,0.25840661826469313,0.2724471275100704,0.3657340283346055,0.9724150686396356,0.11382998997058254,0.6703009017139212,0.662436993635463,0.9224726417672228,0.12128610821500704,0.277428819927121,0.7454357839866708,0.9253038130352756,0.1304508625205843,0.6869353017243255,0.770060063698357,0.45997061369007947,0.8339505423018478,0.4268706158859984,0.5068474437607673,0.7210033530001544,0.16575079512118865,0.4716671204528153,0.8623437913425005,0.583571054313132,0.6108324009044247,0.4186020500113266,0.14676001721376555,0.21613555597892756,0.4422765623043648,0.739209918183838,0.7376778408594792,0.6254788253574999,0.6535108148369523,0.9968573544159799,0.3450758910482171,0.7527077671851533,0.940110578173823,0.07417454154890708,0.6779685782631713,0.6313190854300368,0.028230183305326003,0.8284363089261746,0.156168195491735,0.2527787728480896,0.23161674115416442,0.7944587421577697,0.2897333243348325,0.28058157175806425,0.15652562172921636,0.6646056285428841,0.8980211009727889,0.11818173253824084,0.9574041217367184,0.21814831216733357,0.18925060852861525,0.7867394978118779,0.4101033361675699,0.7821629740214734,0.3615826677352109,0.6952279399592559,0.5235408845001557,0.4463014376565355,0.48019607946285797,0.38207619003116905,0.5397509790676418,0.11995695862917088,0.2717929981983234,0.13359350810460444,0.3418594106761084,0.01735229651320367,0.5198600355162565,0.7597760007529408,0.7489020376228271,0.8755283583307305,0.6927731696948284,0.3373144861950141,0.3154989249610803,0.6095650184944109,0.3519543131589677,0.8163736587466549,0.12886872567649404,0.8661784454557013,0.05960993424971119,0.7776709337614807,0.8411888172110491,0.6194961083212384,0.6680747036207815,0.4353625026696187,0.8076067458873646,0.5583363932363393,0.3426044310175834,0.15794760415234957,0.7125918738136962,0.9827406383039153,0.10777820092988116,0.5819287456487905,0.3482402294633166,0.7740920054605659,0.7130277937804478,0.11165978252499355,0.5226657439594463,0.15613981623022807,0.9387221610819558,0.1391733252160127,0.1447455930266276,0.13824510021984815,0.36927969491541374,0.08187576340598789,0.5253751424725052,0.8519361223336012,0.47124057285079757,0.800538317673159,0.43020866086250575,0.545209008988556,0.5663592142827619,0.6573624390444543,0.3866915034068243,0.7025251457013773,0.54088737282012,0.9202548707464034,0.45188225500838936,0.8364304955287047,0.3259867622172398,0.7835230174397692,0.6747478654956203,0.36191243136390694,0.047184126939244626,0.7661613993189118,0.7677501574008494,0.11084442404603792,0.9890742567316975,0.5414069195005143,0.8965372247139631,0.24029453063397413,0.29370791478720865,0.972728909446266,0.9274562843737455,0.9204366090336985,0.6329253407348531,0.702943716991201,0.2502164134058246,0.5861989402147937,0.9099873601971136,0.9556706235537634,0.08709582038554169,0.5420661133444244,0.7277389432898438,0.16738286482514014,0.41638142402115347,0.4504157618854268,0.19523724224196617,0.6457150837619393,0.23320463264044589,0.7927729230340445,0.6597775275166042,0.6862352484307416,0.8301530540129882,0.15519914364218673,0.46442545972039245,0.7828331616627207,0.09106097328060352,0.6031182955965019,0.31412560600513856,0.41453071842646727,0.8628618656019037,0.9298336533502832,0.9040010929591958,0.1899141302285316,0.25150109420134736,0.5936303048364959,0.7299061546707089,0.46625489437312584,0.06959980496652415,0.837943655828919,0.6700384573405788,0.8656833147935957,0.9264431353315912,0.3703161386634764,0.6964271970542274,0.13268175215119576,0.634173488074063,0.8798012621141045,0.34977997529775834,0.31733439551542253,0.9156071818040717,0.34335917296975815,0.30820228686006845,0.10376430167991868,0.58051700311737,0.607472666356467,0.14257585543327772,0.7722571407315587,0.45601114931330605,0.8500921790721324,0.6118827437105974,0.6470981178093227,0.2720733342096551,0.4954566417706463,0.09280875795185974,0.15726216703525844,0.6380650203852286,0.5378248130613122,0.9158817706237928,0.8227511191846575,0.7205096072147179,0.7289823478688404,0.5761152787954152,0.3952609768115268,0.12273446569346565,0.7940942127230085,0.7597921130991504,0.4598369153495119,0.4587719465879593,0.3317437075691967,0.1486596735886576,0.21125971116649905,0.2533383202987436,0.996791210489716,0.4989235366223955,0.5195026926321455,0.6216313664902148,0.8002367912792772,0.6093971271111617,0.6440284278448803,0.4510544494032182,0.9576490139391501,0.010243745059819773,0.21950762589439174,0.22606091211832172,0.022940339531256043,0.5936099805839407,0.4309864935609449,0.2775073807116167,0.539165030018969,0.4946167317659672,0.09634867501275086,0.9639194914903116,0.5270288561131008,0.5968247883007046,0.18662483393523135,0.7672438941743429,0.9129413100485416,0.981029835986453,0.7864227903943615,0.8476805532573166,0.6827389400837659,0.31348519414359943,0.12426744174410935,0.7014325054834748,0.40062303254409837,0.39375979751057916,0.2752821237199391,0.9965331051482508,0.5733060653197142,0.5356308005450436,0.8378282291059513,0.9284276859501506,0.27185334277891243,0.37169666978143934,0.7628605932755678,0.7187386028090206,0.3566076529010235,0.1692000646932051,0.0997941261622096,0.20048423213906783,0.3288056195382055,0.1823295346378952,0.9196069165689903,0.8371269758032295,0.052310998575906736,0.24734021967618736,0.7263094641856428,0.39996642218901146,0.31229870268716414,0.7522587984578026,0.7086900564416732,0.8192069552928242,0.8229743367168002,0.7963478745875637,0.7683155093194524,0.6441638197955507,0.8859763033157104,0.518075120410917,0.8254378795742233,0.6291805420206769,0.31832785686400156,0.43445338841269415,0.7042013153919024,0.0035342294739253025,0.6567885026600159,0.1679209890626003,0.6920661487113993,0.15533218633166151,0.8339641950251367,0.46788623112621075,0.41063624127331944,0.7437412453553366,0.8812357098242434,0.5859385582552936,0.5188749337191111,0.5004094054458706,0.39387827757460914,0.2871404659408799,0.6491215069075681,0.15328281286791098,0.6674503333249364,0.8753157015309276,0.6842344024610866,0.8210472668619115,0.8269407441033706,0.0186212738131272,0.10545334923335041,0.4755054681913487,0.603381160461987,0.1186967734800171,0.8327622994933102,0.8385325324901065,0.3437621851189817,0.4706135841415327,0.8821563752750663,0.8943522311255113,0.4781282192459927,0.916072687095065,0.18033847314321366,0.8843900095133065,0.5552740709647881,0.5709772778539812,0.5660022271638746,0.8444124715609534,0.3416225571844832,0.9649488110863366,0.9379712454685808,0.23703577846150647,0.27747294086845264,0.26790610387358166,0.2502855422209415,0.5988358373748306,0.8689536135033489,0.6721550667063124,0.9617302086957406,0.44301215533307386,0.7502189859516075,0.883154048529991,0.17659348537055472,0.6381672288468886,0.06246763982924988,0.21656068052005054,0.5519510258696745,0.7152674215451197,0.6351239316329006,0.5721037087832129,0.3999790602363549,0.4106221256827107,0.7037821829802273,0.6245227025935998,0.022281186199877963,0.4778055904795442,0.10680199279766622,0.7647314973942616,0.5980087419031228,0.09647305547095512,0.309313474367053,0.8398219309001331,0.47942470967742834,0.861991933017034,0.08065002834454646,0.8684175707718439,0.19803252732289606,0.3354750565884053,0.8684112312590756,0.23392646211847964,0.9695789189867577,0.6716071184126693,0.5088833754457922,0.43914421994199243,0.14413324517390377,0.5949741707160018,0.7394792017245103,0.542171244296325,0.8219223696840565,0.3387133904447376,0.019026251984306727,0.8507348056187549,0.20928853992805282,0.7695188484012703,0.5649697508499817,0.5273491197858701,0.5332535954812792,0.6529502382748529,0.2456249176737037,0.7724799517413974,0.4920338445771643,0.10422211610908719,0.07414632480318953,0.8652571532247855,0.1336986809660209,0.9103970550514744,0.4037293388525626,0.31460155235352066,0.5575172005023422,0.19405006905740596,0.018528153197154475,0.21647596928126922,0.8468561902860441,0.4011974695144209,0.6025247897964552,0.7283719418236855,0.9017387502369185,0.26463796303823495,0.480389457419696,0.42730701548387623,0.7383263887550339,0.5646307485013412,0.9428091277102051,0.2592953514583853,0.0774468034866484,0.45857866874829806,0.6305333909720804,0.7099058612761581,0.2970221821670524,0.5533009085586764,0.3351639752905648,0.5450822890480432,0.08985013891470159,0.09593127951767821,0.7418926175413153,0.8653568028776705,0.5974607936094798,0.6436262222210067,0.30544553897597154,0.23373619012242938,0.1912448318634391,0.4248776493709896,0.9846540437939828,0.6278723006266506,0.3201852372475831,0.8025502827030375,0.0038786153327108434,0.8080910704136319,0.16699405860481506,0.8365978090262962,0.6256103695489514,0.26861563244304415,0.17256078085515683,0.8183179021898275,0.034153562986363455,0.9274030960758232,0.1614129883988821,0.8148509733448043,0.787810349738137,0.6751200122177229,0.27986366407939406,0.6938234775764046,0.017579370186468293,0.004216291943665729,0.8588860937668411,0.4734458641491113,0.12662583036656763],"marker":{}}];
+            var layout = {"width":500.0,"height":500.0};
+            var config = {};
+            Plotly.newPlot('c222d23e-f369-4009-ad65-013e405d9f27', data, layout, config);
+});
+            };
+            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
+                var script = document.createElement("script");
+                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
+                script.onload = function(){
+                    renderPlotly_c222d23ef3694009ad65013e405d9f27();
+                };
+                document.getElementsByTagName("head")[0].appendChild(script);
+            }
+            else {
+                renderPlotly_c222d23ef3694009ad65013e405d9f27();
+            }
+</script>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="fsdocs-tip" id="fs1">namespace Plotly</div>
+<div class="fsdocs-tip" id="fs2">namespace Plotly.NET</div>
+<div class="fsdocs-tip" id="fs3">val rnd : System.Random</div>
+<div class="fsdocs-tip" id="fs4">namespace System</div>
+<div class="fsdocs-tip" id="fs5">Multiple items<br />type Random =<br />&#160;&#160;new : unit -&gt; Random + 1 overload<br />&#160;&#160;member Next : unit -&gt; int + 2 overloads<br />&#160;&#160;member NextBytes : buffer:byte[] -&gt; unit + 1 overload<br />&#160;&#160;member NextDouble : unit -&gt; float<br /><br />--------------------<br />System.Random() : System.Random<br />System.Random(Seed: int) : System.Random</div>
+<div class="fsdocs-tip" id="fs6">val x : float list</div>
+<div class="fsdocs-tip" id="fs7">val i : int</div>
+<div class="fsdocs-tip" id="fs8">System.Random.NextDouble() : float</div>
+<div class="fsdocs-tip" id="fs9">val histo1 : GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs10">type Chart =<br />&#160;&#160;static member Area : xy:seq&lt;#IConvertible * #IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;string&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:&#39;a2 -&gt; GenericChart<br />&#160;&#160;static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;string&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:&#39;a2 -&gt; GenericChart<br />&#160;&#160;static member Bar : keysvalues:seq&lt;#IConvertible * #IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;string&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart<br />&#160;&#160;static member Bar : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:&#39;a2 * ?Opacity:float * ?Labels:seq&lt;string&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart<br />&#160;&#160;static member BoxPlot : xy:seq&lt;&#39;a0 * &#39;a1&gt; * ?Name:string * ?Showlegend:bool * ?Color:string * ?Fillcolor:&#39;a2 * ?Opacity:float * ?Whiskerwidth:&#39;a3 * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:&#39;a4 * ?Pointpos:&#39;a5 * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?Alignmentgroup:&#39;a6 * ?Offsetgroup:&#39;a7 * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod -&gt; GenericChart<br />&#160;&#160;static member BoxPlot : ?x:&#39;a0 * ?y:&#39;a1 * ?Name:string * ?Showlegend:bool * ?Color:string * ?Fillcolor:&#39;a2 * ?Opacity:float * ?Whiskerwidth:&#39;a3 * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:&#39;a4 * ?Pointpos:&#39;a5 * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?Alignmentgroup:&#39;a6 * ?Offsetgroup:&#39;a7 * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod -&gt; GenericChart<br />&#160;&#160;static member Bubble : xysizes:seq&lt;#IConvertible * #IConvertible * #IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;string&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:Orientation * ?GroupNorm:GroupNorm * ?UseWebGL:bool -&gt; GenericChart<br />&#160;&#160;static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;string&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:Orientation * ?GroupNorm:GroupNorm * ?UseWebGL:bool -&gt; GenericChart<br />&#160;&#160;static member Candlestick : stockTimeSeries:seq&lt;DateTime * StockData&gt; * ?Increasing:Line * ?Decreasing:Line * ?WhiskerWidth:float * ?Line:Line * ?XCalendar:Calendar -&gt; GenericChart<br />&#160;&#160;static member Candlestick : open:seq&lt;#IConvertible&gt; * high:seq&lt;#IConvertible&gt; * low:seq&lt;#IConvertible&gt; * close:seq&lt;#IConvertible&gt; * x:seq&lt;#IConvertible&gt; * ?Increasing:Line * ?Decreasing:Line * ?WhiskerWidth:float * ?Line:Line * ?XCalendar:Calendar -&gt; GenericChart<br />&#160;&#160;...</div>
+<div class="fsdocs-tip" id="fs11">static member Chart.Histogram : data:seq&lt;#System.IConvertible&gt; * ?Orientation:StyleParam.Orientation * ?Name:string * ?Showlegend:bool * ?Opacity:float * ?Color:string * ?HistNorm:StyleParam.HistNorm * ?HistFunc:StyleParam.HistNorm * ?nBinsx:int * ?nBinsy:int * ?Xbins:Bins * ?Ybins:Bins * ?xError:&#39;b * ?yError:&#39;c -&gt; GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs12">static member Chart.withSize : width:float * height:float -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
+<div class="fsdocs-tip" id="fs13">module GenericChart<br /><br />from Plotly.NET</div>
+<div class="fsdocs-tip" id="fs14">val toChartHTML : gChart:GenericChart.GenericChart -&gt; string</div>
+
+    </div>
+
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <script type="text/javascript">var fsdocs_search_baseurl = 'http://plotly.github.io/Plotly.NET/'</script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+    <script type="text/javascript" src="http://plotly.github.io/Plotly.NET/content/fsdocs-search.js"></script>
+    <!-- END SEARCH BOX: this adds support for the search box -->
+</body>
+
+</html>
