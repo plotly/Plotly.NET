@@ -1,7 +1,6 @@
 (*** hide ***)
-#r "../../packages/Newtonsoft.Json/lib/netstandard2.0/Newtonsoft.Json.dll"
-#r "../../bin/Plotly.NET/net5.0/Plotly.NET.dll"
-
+#r "../packages/Newtonsoft.Json/lib/netstandard2.0/Newtonsoft.Json.dll"
+#r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
 
 (** 
 # Histogram2D

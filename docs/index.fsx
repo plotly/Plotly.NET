@@ -54,19 +54,19 @@ dotnet add package Plotly.NET --version 2.0.0-alpha5
  - paket CLI
 
 ```shell
-paket add Plotly.NET --version 2.0.0-alpha5
+paket add Plotly.NET --version 2.0.0-beta1
 ```
 
  - package manager
 
 ```shell
-Install-Package Plotly.NET -Version 2.0.0-alpha5
+Install-Package Plotly.NET -Version 2.0.0-beta1
 ```
 
 Or add the package reference directly to your `.*proj` file:
 
 ```
-<PackageReference Include="Plotly.NET" Version="2.0.0-alpha5" />
+<PackageReference Include="Plotly.NET" Version="2.0.0-beta1" />
 ```
 
 ### For scripting
@@ -74,7 +74,7 @@ Or add the package reference directly to your `.*proj` file:
 You can include the package via an inline package reference:
 
 ```
-#r "nuget: Plotly.NET, 2.0.0-alpha5"
+#r "nuget: Plotly.NET, 2.0.0-beta1"
 ```
 
 ### For dotnet interactive notebooks
@@ -83,8 +83,8 @@ You can use the same inline package reference as in script, but as an additional
 the interactive extensions for dotnet interactive have you covered for seamless chart rendering:
 
 ```
-#r "nuget: Plotly.NET, 2.0.0-alpha5"
-#r "nuget: Plotly.NET.Interactive, 2.0.0-alpha5"
+#r "nuget: Plotly.NET, 2.0.0-beta1"
+#r "nuget: Plotly.NET.Interactive, 2.0.0-beta1"
 ```
 
 # Overview
@@ -141,17 +141,19 @@ The `Chart.Show` function will open a browser window and render the input chart 
 
 *)
 
-(***do-not-eval***)
 myFirstChart
 |> Chart.Show
+
+(**Should render this chart in your brower:*)
 
 (***hide***)
 myFirstChart |> GenericChart.toChartHTML
 (*** include-it-raw ***)
 
-(***do-not-eval***)
 myFirstStyledChart
 |> Chart.Show
+
+(**And here is what happened after applying the styles from above:*)
 
 (***hide***)
 myFirstStyledChart |> GenericChart.toChartHTML

@@ -1,6 +1,5 @@
 (*** hide ***)
-#r "netstandard"
-#r "../../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+#r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
 
 (** 
 # Tables

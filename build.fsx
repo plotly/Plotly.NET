@@ -89,14 +89,6 @@ let clean = BuildTask.create "Clean" [] {
     |> Shell.cleanDirs 
 }
 
-let cleanDocs = BuildTask.create "CleanDocs" [] {
-    !! "output"
-    ++ ".fsdocs"
-    ++ "tmp"
-    ++ "temp"
-    |> Shell.cleanDirs 
-}
-
 let build = BuildTask.create "Build" [clean] {
     solutionFile
     |> DotNet.build id
@@ -171,12 +163,12 @@ let runTests = BuildTask.create "RunTests" [clean; build; copyBinaries] {
 // --------------------------------------------------------------------------------------
 // Generate the documentation
 
-let buildDocs = BuildTask.create "BuildDocs" [cleanDocs; build; copyBinaries] {
-    runDotNet "fsdocs build --eval --property Configuration=Release" "./"
+let buildDocs = BuildTask.create "BuildDocs" [build; copyBinaries] {
+    runDotNet "fsdocs build --eval --clean --strict --property Configuration=Release" "./"
 }
 
-let watchDocs = BuildTask.create "WatchDocs" [cleanDocs; build; copyBinaries] {
-   runDotNet "fsdocs watch --eval --property Configuration=Release" "./"
+let watchDocs = BuildTask.create "WatchDocs" [build; copyBinaries] {
+   runDotNet "fsdocs watch --eval --clean --property Configuration=Release" "./"
 }
 
 let releaseDocs =  BuildTask.create "ReleaseDocs" [buildDocs] {
@@ -208,6 +200,6 @@ let runTestsWithCodeCov = BuildTask.create "RunTestsWithCodeCov" [clean; build; 
     ) testProject
 }
 
-let _all = BuildTask.createEmpty "All" [clean; cleanDocs; build; copyBinaries; runTests (*runTestsWithCodeCov*); pack; buildDocs]
+let _all = BuildTask.createEmpty "All" [clean; build; copyBinaries; runTests (*runTestsWithCodeCov*); pack; buildDocs]
 
 BuildTask.runOrDefault copyBinaries

@@ -1,25 +1,20 @@
 (*** hide ***)
-#r "../../bin/Plotly.NET/net5.0/Plotly.NET.dll"
-
-
+#r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
 (** 
-# Mesh3d
+# 3D surface plots
 
-*Summary:* This example shows how to create 3D-Mesh charts in F#.
+*Summary:* This example shows how to create 3D surface plots in F#.
 
 let's first create some data for the purpose of creating example charts:
 *)
-
 open System
 open Plotly.NET 
-
 
 //---------------------- Generate linearly spaced vector ----------------------
 let linspace (min,max,n) = 
     if n <= 2 then failwithf "n needs to be larger then 2"
     let bw = float (max - min) / (float n - 1.)
     Array.init n (fun i -> min + (bw * float i))
-    //[|min ..bw ..max|]
 
 //---------------------- Create example data ----------------------
 let size = 100
@@ -30,29 +25,35 @@ let f x y = - (5. * x / (x**2. + y**2. + 1.) )
 
 let z = 
     Array.init size (fun i -> 
-        Array.init size (fun j -> 
-            f x.[j] y.[i] 
-        )
-    )
+        Array.init size (fun j -> f x.[j] y.[i] )
+                    )
 
 let rnd = System.Random()
 let a = Array.init 50 (fun _ -> rnd.NextDouble())
 let b = Array.init 50 (fun _ -> rnd.NextDouble())
 let c = Array.init 50 (fun _ -> rnd.NextDouble())
 
-
-let mesh3d =
-    Trace3d.initMesh3d 
-        (fun mesh3d ->
-            mesh3d?x <- a
-            mesh3d?y <- b
-            mesh3d?z <- c
-            mesh3d?flatshading <- true
-            mesh3d?contour <- Contours.initXyz(Show=true)
-            mesh3d
-            )
-    |> GenericChart.ofTraceObject 
+let surface = 
+    z
+    |> Chart.Surface
 
 (***hide***)
-mesh3d |> GenericChart.toChartHTML
+surface |> GenericChart.toChartHTML
 (*** include-it-raw ***)
+
+// Create simple example data were x y and z is given (z is a xy-Matrix)
+let x' = [0.;2.5]
+let y' = [0.;2.5]
+let z' = [
+    [1.;1.;]; // row wise (length x)
+    [1.;2.;];
+    ] // column (length y)
+
+let surface2 = 
+    Chart.Surface(z',x',y',Opacity=0.5,Contours=Contours.initXyz(Show=true))
+
+(***hide***)
+surface2 |> GenericChart.toChartHTML
+(*** include-it-raw ***)
+
+
