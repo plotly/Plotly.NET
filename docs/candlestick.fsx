@@ -1,8 +1,22 @@
 (*** hide ***)
+
+(*** condition: prepare ***)
 #r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+(*** condition: fsx ***)
+#if FSX
+#r "../packages/Newtonsoft.Json/lib/netstandard2.0/Newtonsoft.Json.dll"
+#r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+#endif // FSX
+(*** condition: ipynb ***)
+#if IPYNB
+#r "nuget: Plotly.NET, 2.0.0-beta1"
+#r "nuget: Plotly.NET.Interactive, 2.0.0-alpha5"
+#endif // IPYNB
 
 (** 
 # Candlestick Charts
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=candlestick.ipynb)
 
 *Summary:* This example shows how to create candlestick charts in F#.
 
@@ -33,6 +47,11 @@ The x-axis is usually dateime values and y is a sequence of candle structures.
 
 let candles1 = Chart.Candlestick candles
 
+(*** condition: ipynb ***)
+#if IPYNB
+candles1
+#endif // IPYNB
+
 (***hide***)
 candles1 |> GenericChart.toChartHTML
 (***include-it-raw***)
@@ -45,6 +64,11 @@ let rangeslider = RangeSlider.init(Visible=false)
 let candles2 = 
     Chart.Candlestick candles
     |> Chart.withX_AxisRangeSlider rangeslider
+
+(*** condition: ipynb ***)
+#if IPYNB
+candles2
+#endif // IPYNB
 
 (***hide***)
 candles2 |> GenericChart.toChartHTML

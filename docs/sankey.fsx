@@ -1,8 +1,22 @@
 (*** hide ***)
+
+(*** condition: prepare ***)
 #r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+(*** condition: fsx ***)
+#if FSX
+#r "../packages/Newtonsoft.Json/lib/netstandard2.0/Newtonsoft.Json.dll"
+#r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+#endif // FSX
+(*** condition: ipynb ***)
+#if IPYNB
+#r "nuget: Plotly.NET, 2.0.0-beta1"
+#r "nuget: Plotly.NET.Interactive, 2.0.0-alpha5"
+#endif // IPYNB
 
 (** 
 # Sankey charts
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=sankey.ipynb)
 
 *Summary:* This example shows how to create sankey charts in F#.
 
@@ -35,6 +49,10 @@ let sankey1 =
     )
     |> Chart.withTitle "Sankey Sample"
 
+(*** condition: ipynb ***)
+#if IPYNB
+sankey1
+#endif // IPYNB
 
 (***hide***)
 sankey1 |> GenericChart.toChartHTML

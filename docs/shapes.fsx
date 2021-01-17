@@ -1,8 +1,22 @@
 (*** hide ***)
+
+(*** condition: prepare ***)
 #r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+(*** condition: fsx ***)
+#if FSX
+#r "../packages/Newtonsoft.Json/lib/netstandard2.0/Newtonsoft.Json.dll"
+#r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+#endif // FSX
+(*** condition: ipynb ***)
+#if IPYNB
+#r "nuget: Plotly.NET, 2.0.0-beta1"
+#r "nuget: Plotly.NET.Interactive, 2.0.0-alpha5"
+#endif // IPYNB
 
 (** 
 # Shapes
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=shapes.ipynb)
 
 *Summary:* This example shows how to create Shapes and add them to the Charts in F#.
 
@@ -29,6 +43,11 @@ let shapes =
     Chart.Line(x,y',Name="line")    
     |> Chart.withShapes([s1;s2])
 //|> Chart.withShape(Options.Shape(StyleOption.ShapeType.Rectangle,2.,4.,3.,4.,Opacity=0.3,Fillcolor="#d3d3d3"))
+
+(*** condition: ipynb ***)
+#if IPYNB
+shapes
+#endif // IPYNB
 
 (***hide***)
 shapes |> GenericChart.toChartHTML

@@ -1,9 +1,22 @@
 (*** hide ***)
-#r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
 
+(*** condition: prepare ***)
+#r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+(*** condition: fsx ***)
+#if FSX
+#r "../packages/Newtonsoft.Json/lib/netstandard2.0/Newtonsoft.Json.dll"
+#r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+#endif // FSX
+(*** condition: ipynb ***)
+#if IPYNB
+#r "nuget: Plotly.NET, 2.0.0-beta1"
+#r "nuget: Plotly.NET.Interactive, 2.0.0-alpha5"
+#endif // IPYNB
 
 (**
 # Multicharts and subplots
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=multiple-charts.ipynb)
 
 *Summary:* This example shows how to create charts with multiple subplots in F#.
 
@@ -33,6 +46,9 @@ let combinedChart =
     ]
     |> Chart.Combine
 
+#if IPYNB
+combinedChart
+#endif // end cell with chart value in a notebook context
 (***hide***)
 combinedChart |> GenericChart.toChartHTML
 (***include-it-raw***)
@@ -58,6 +74,11 @@ let grid =
         ]
     )
 
+(*** condition: ipynb ***)
+#if IPYNB
+grid
+#endif // IPYNB
+
 (***hide***)
 grid |> GenericChart.toChartHTML
 (***include-it-raw***)
@@ -80,6 +101,11 @@ let grid2 =
     |> Chart.withLayoutGridStyle(
         XSide = StyleParam.LayoutGridXSide.Bottom
     )
+
+(*** condition: ipynb ***)
+#if IPYNB
+grid2
+#endif // IPYNB
 
 (***hide***)
 grid2 |> GenericChart.toChartHTML
@@ -111,6 +137,10 @@ let singleStack =
     |> Chart.withTitle("Hi i am the new SingleStackChart")
     |> Chart.withX_AxisStyle("im the shared xAxis")
 
+(*** condition: ipynb ***)
+#if IPYNB
+singleStack
+#endif // IPYNB
 
 (***hide***)
 singleStack |> GenericChart.toChartHTML

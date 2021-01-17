@@ -1,8 +1,22 @@
 (*** hide ***)
+
+(*** condition: prepare ***)
 #r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+(*** condition: fsx ***)
+#if FSX
+#r "../packages/Newtonsoft.Json/lib/netstandard2.0/Newtonsoft.Json.dll"
+#r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+#endif // FSX
+(*** condition: ipynb ***)
+#if IPYNB
+#r "nuget: Plotly.NET, 2.0.0-beta1"
+#r "nuget: Plotly.NET.Interactive, 2.0.0-alpha5"
+#endif // IPYNB
 
 (** 
 # Contour plots
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=contour-plots.ipynb)
 
 *Summary:* This example shows how to create contour plot in F#.
 
@@ -47,6 +61,11 @@ let contour1 =
     z
     |> Chart.Contour
     |> Chart.withSize(600.,600.)
+
+(*** condition: ipynb ***)
+#if IPYNB
+contour1
+#endif // IPYNB
 
 (***hide***)
 contour1 |> GenericChart.toChartHTML

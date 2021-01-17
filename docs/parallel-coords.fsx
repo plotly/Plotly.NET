@@ -1,9 +1,22 @@
 (*** hide ***)
-#r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
 
+(*** condition: prepare ***)
+#r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+(*** condition: fsx ***)
+#if FSX
+#r "../packages/Newtonsoft.Json/lib/netstandard2.0/Newtonsoft.Json.dll"
+#r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+#endif // FSX
+(*** condition: ipynb ***)
+#if IPYNB
+#r "nuget: Plotly.NET, 2.0.0-beta1"
+#r "nuget: Plotly.NET.Interactive, 2.0.0-alpha5"
+#endif // IPYNB
 
 (** 
 # Parallel coordinates
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=parallel-coords.ipynb)
 
 *Summary:* This example shows how to create parallel coordinates plot in F#.
 
@@ -32,6 +45,11 @@ the position of the vertex on the i-th axis corresponds to the i-th coordinate o
 let parcoords1 =
     Chart.ParallelCoord(data,Color="blue")
 
+(*** condition: ipynb ***)
+#if IPYNB
+parcoords1
+#endif // IPYNB
+
 (***hide***)
 parcoords1 |> GenericChart.toChartHTML
 (***include-it-raw***)
@@ -57,6 +75,11 @@ let parcoords =
 
     dyn
     |> GenericChart.ofTraceObject
+
+(*** condition: ipynb ***)
+#if IPYNB
+parcoords
+#endif // IPYNB
 
 (***hide***)
 parcoords |> GenericChart.toChartHTML

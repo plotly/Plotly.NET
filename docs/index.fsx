@@ -1,8 +1,13 @@
 (*** hide ***)
-// This block of code is omitted in the generated HTML documentation. Use 
-// it to define helpers that you do not want to show in the documentation.
-#r "netstandard"
+
+(*** condition: prepare ***)
 #r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+(*** condition: ipynb ***)
+#if IPYNB
+#r "nuget: Plotly.NET, 2.0.0-beta1"
+#r "nuget: Plotly.NET.Interactive, 2.0.0-alpha5"
+#endif // IPYNB
+
 open Plotly.NET
 
 let simpleChart = 
@@ -14,6 +19,8 @@ let simpleChart =
 
 (**
 # Plotly.NET
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=index.ipynb)
 
 Plotly.NET provides functions for generating and rendering plotly.js charts in **.NET** programming languages 📈🚀. 
 
@@ -146,6 +153,11 @@ myFirstChart
 
 (**Should render this chart in your brower:*)
 
+(*** condition: ipynb ***)
+#if IPYNB
+myFirstChart
+#endif // IPYNB
+
 (***hide***)
 myFirstChart |> GenericChart.toChartHTML
 (*** include-it-raw ***)
@@ -154,6 +166,11 @@ myFirstStyledChart
 |> Chart.Show
 
 (**And here is what happened after applying the styles from above:*)
+
+(*** condition: ipynb ***)
+#if IPYNB
+myFirstStyledChart
+#endif // IPYNB
 
 (***hide***)
 myFirstStyledChart |> GenericChart.toChartHTML

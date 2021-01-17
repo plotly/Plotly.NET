@@ -1,8 +1,22 @@
 (*** hide ***)
+
+(*** condition: prepare ***)
 #r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+(*** condition: fsx ***)
+#if FSX
+#r "../packages/Newtonsoft.Json/lib/netstandard2.0/Newtonsoft.Json.dll"
+#r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+#endif // FSX
+(*** condition: ipynb ***)
+#if IPYNB
+#r "nuget: Plotly.NET, 2.0.0-beta1"
+#r "nuget: Plotly.NET.Interactive, 2.0.0-alpha5"
+#endif // IPYNB
 
 (** 
 # Choropleth maps
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=choropleth-map.ipynb)
 
 *Summary:* This example shows how to create choropleth map in F#.
 
@@ -75,6 +89,11 @@ let choroplethMap1 =
         Locationmode=StyleParam.LocationFormat.CountryNames
     )
 
+(*** condition: ipynb ***)
+#if IPYNB
+choroplethMap1
+#endif // IPYNB
+
 (***hide***)
 choroplethMap1 |> GenericChart.toChartHTML
 (***include-it-raw***)
@@ -96,6 +115,11 @@ let choroplethMap2 =
         OceanColor="lightblue",
         ShowRivers=true)
     |> Chart.withColorBarStyle ("Alcohol consumption[l/y]",Length=0.5)
+
+(*** condition: ipynb ***)
+#if IPYNB
+choroplethMap2
+#endif // IPYNB
 
 (***hide***)
 choroplethMap2 |> GenericChart.toChartHTML

@@ -1,7 +1,23 @@
 (*** hide ***)
+
+(*** condition: prepare ***)
 #r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+(*** condition: fsx ***)
+#if FSX
+#r "../packages/Newtonsoft.Json/lib/netstandard2.0/Newtonsoft.Json.dll"
+#r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+#endif // FSX
+(*** condition: ipynb ***)
+#if IPYNB
+#r "nuget: Plotly.NET, 2.0.0-beta1"
+#r "nuget: Plotly.NET.Interactive, 2.0.0-alpha5"
+#endif // IPYNB
+
+
 (** 
 # 3D line charts
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=3d-line-plots.ipynb)
 
 *Summary:* This example shows how to create three-dimensional scatter charts in F#.
 
@@ -33,6 +49,11 @@ let scatter3dLine =
     |> Chart.withY_AxisStyle("y-axis")
     |> Chart.withZ_AxisStyle("z-axis")
     |> Chart.withSize(800.,800.)
+
+(*** condition: ipynb ***)
+#if IPYNB
+scatter3dLine
+#endif // IPYNB
 
 (***hide***)
 scatter3dLine |> GenericChart.toChartHTML

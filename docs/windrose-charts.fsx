@@ -1,7 +1,22 @@
 (*** hide ***)
+
+(*** condition: prepare ***)
 #r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+(*** condition: fsx ***)
+#if FSX
+#r "../packages/Newtonsoft.Json/lib/netstandard2.0/Newtonsoft.Json.dll"
+#r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+#endif // FSX
+(*** condition: ipynb ***)
+#if IPYNB
+#r "nuget: Plotly.NET, 2.0.0-beta1"
+#r "nuget: Plotly.NET.Interactive, 2.0.0-alpha5"
+#endif // IPYNB
+
 (** 
 # Wind rose charts
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=windrose-charts.ipynb)
 
 *Summary:* This example shows how to create wind rose charts in F#.
 
@@ -31,6 +46,11 @@ let windrose1 =
         Chart.WindRose (r''',t,Name="< 5 m/s")
     ]
     |> Chart.Combine
+
+(*** condition: ipynb ***)
+#if IPYNB
+windrose1
+#endif // IPYNB
 
 (***hide***)
 windrose1 |> GenericChart.toChartHTML

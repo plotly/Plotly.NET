@@ -1,8 +1,22 @@
 (*** hide ***)
+
+(*** condition: prepare ***)
 #r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+(*** condition: fsx ***)
+#if FSX
+#r "../packages/Newtonsoft.Json/lib/netstandard2.0/Newtonsoft.Json.dll"
+#r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+#endif // FSX
+(*** condition: ipynb ***)
+#if IPYNB
+#r "nuget: Plotly.NET, 2.0.0-beta1"
+#r "nuget: Plotly.NET.Interactive, 2.0.0-alpha5"
+#endif // IPYNB
 
 (** 
 # Tables
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=table.ipynb)
 
 This example shows how to create tables in F#.
 
@@ -22,6 +36,11 @@ let rows =
 
 
 let table1 = Chart.Table(header, rows)
+
+(*** condition: ipynb ***)
+#if IPYNB
+table1
+#endif // IPYNB
 
 (***hide***)
 table1 |> GenericChart.toChartHTML
@@ -60,6 +79,11 @@ let table2 =
         //defines order of columns
         ColumnOrder = [1;2;3;4]                                  
         )
+
+(*** condition: ipynb ***)
+#if IPYNB
+table2
+#endif // IPYNB
 
 (***hide***)
 table2 |> GenericChart.toChartHTML
@@ -103,6 +127,11 @@ let cellcolor =
     |> Seq.transpose
 
 let table3 = Chart.Table(header2,rowvalues,ColorCells=cellcolor)
+
+(*** condition: ipynb ***)
+#if IPYNB
+table3
+#endif // IPYNB
 
 (***hide***)
 table3 |> GenericChart.toChartHTML
@@ -177,6 +206,10 @@ let table4 =
     |> Chart.withSize(chartwidth,nan)
     |> Chart.withTitle "Sequence A"
 
+(*** condition: ipynb ***)
+#if IPYNB
+table4
+#endif // IPYNB
 
 (***hide***)
 table4 |> GenericChart.toChartHTML

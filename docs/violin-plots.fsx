@@ -1,8 +1,22 @@
 (*** hide ***)
+
+(*** condition: prepare ***)
 #r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+(*** condition: fsx ***)
+#if FSX
+#r "../packages/Newtonsoft.Json/lib/netstandard2.0/Newtonsoft.Json.dll"
+#r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+#endif // FSX
+(*** condition: ipynb ***)
+#if IPYNB
+#r "nuget: Plotly.NET, 2.0.0-beta1"
+#r "nuget: Plotly.NET.Interactive, 2.0.0-alpha5"
+#endif // IPYNB
 
 (** 
 # Violin plots
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=violin-plots.ipynb)
 
 *Summary:* This example shows how to create violin plot charts in F#.
 
@@ -27,6 +41,11 @@ let violin1 =
         Points=StyleParam.Jitterpoints.All
     )
 
+(*** condition: ipynb ***)
+#if IPYNB
+violin1
+#endif // IPYNB
+
 (***hide***)
 violin1 |> GenericChart.toChartHTML
 (***include-it-raw***)
@@ -42,6 +61,11 @@ let violin2 =
         Orientation=StyleParam.Orientation.Horizontal,
         Meanline=Meanline.init(Visible=true)
     )
+
+(*** condition: ipynb ***)
+#if IPYNB
+violin2
+#endif // IPYNB
 
 (***hide***)
 violin2 |> GenericChart.toChartHTML
@@ -59,6 +83,11 @@ let violin3 =
         Chart.Violin ("y'",y',Name="bin2",Jitter=0.1,Points=StyleParam.Jitterpoints.All);
     ]
     |> Chart.Combine
+
+(*** condition: ipynb ***)
+#if IPYNB
+violin3
+#endif // IPYNB
 
 (***hide***)
 violin3 |> GenericChart.toChartHTML

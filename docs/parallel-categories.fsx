@@ -1,8 +1,22 @@
 (*** hide ***)
+
+(*** condition: prepare ***)
 #r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+(*** condition: fsx ***)
+#if FSX
+#r "../packages/Newtonsoft.Json/lib/netstandard2.0/Newtonsoft.Json.dll"
+#r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+#endif // FSX
+(*** condition: ipynb ***)
+#if IPYNB
+#r "nuget: Plotly.NET, 2.0.0-beta1"
+#r "nuget: Plotly.NET.Interactive, 2.0.0-alpha5"
+#endif // IPYNB
 
 (** 
 # Parallel categories
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=parallel-categories.ipynb)
 
 *Summary:* This example shows how to create parallel categories plot in F#.
 
@@ -25,6 +39,10 @@ let parcats =
         Colorscale = StyleParam.Colorscale.Blackbody
     )
 
+(*** condition: ipynb ***)
+#if IPYNB
+parcats
+#endif // IPYNB
 
 (***hide***)
 parcats |> GenericChart.toChartHTML

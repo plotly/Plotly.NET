@@ -1,8 +1,22 @@
 (*** hide ***)
+
+(*** condition: prepare ***)
 #r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+(*** condition: fsx ***)
+#if FSX
+#r "../packages/Newtonsoft.Json/lib/netstandard2.0/Newtonsoft.Json.dll"
+#r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+#endif // FSX
+(*** condition: ipynb ***)
+#if IPYNB
+#r "nuget: Plotly.NET, 2.0.0-beta1"
+#r "nuget: Plotly.NET.Interactive, 2.0.0-alpha5"
+#endif // IPYNB
 
 (** 
 # Heatmaps
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=heatmaps.ipynb)
 
 *Summary:* This example shows how to create heatmap charts in F#.
 
@@ -33,6 +47,11 @@ let heat1 =
     |> Chart.withSize(700.,500.)
     |> Chart.withMarginSize(Left=200.)
 
+(*** condition: ipynb ***)
+#if IPYNB
+heat1
+#endif // IPYNB
+
 (***hide***)
 heat1 |> GenericChart.toChartHTML
 (***include-it-raw***)
@@ -56,6 +75,11 @@ let heat2 =
         TitleSide = StyleParam.Side.Right,
         TitleFont = Font.init(Size=20)
     )
+
+(*** condition: ipynb ***)
+#if IPYNB
+heat2
+#endif // IPYNB
 
 (***hide***)
 heat2 |> GenericChart.toChartHTML

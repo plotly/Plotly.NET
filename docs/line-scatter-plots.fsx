@@ -1,8 +1,22 @@
 (*** hide ***)
+
+(*** condition: prepare ***)
 #r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+(*** condition: fsx ***)
+#if FSX
+#r "../packages/Newtonsoft.Json/lib/netstandard2.0/Newtonsoft.Json.dll"
+#r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+#endif // FSX
+(*** condition: ipynb ***)
+#if IPYNB
+#r "nuget: Plotly.NET, 2.0.0-beta1"
+#r "nuget: Plotly.NET.Interactive, 2.0.0-alpha5"
+#endif // IPYNB
 
 (** 
 # Line and scatter plots
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=line-scatter-plots.ipynb)
 
 *Summary:* This example shows how to create line and point charts in F#.
 
@@ -32,6 +46,11 @@ let line1 =
         MarkerSymbol=StyleParam.Symbol.Square)    
     |> Chart.withLineStyle(Width=2,Dash=StyleParam.DrawingStyle.Dot)
 
+(*** condition: ipynb ***)
+#if IPYNB
+line1
+#endif // IPYNB
+
 (***hide***)
 line1 |> GenericChart.toChartHTML
 (***include-it-raw***)
@@ -49,6 +68,11 @@ let line2 =
     [ for x in 1.0 .. 100.0 -> (x, x ** 2.0) ]
     |> Chart.Line
 
+(*** condition: ipynb ***)
+#if IPYNB
+line2
+#endif // IPYNB
+
 (***hide***)
 line2 |> GenericChart.toChartHTML
 (***include-it-raw***)
@@ -62,6 +86,11 @@ the chart to generate a smoother version of the line chart.
 
 let spline1 = Chart.Spline(x,y,Name="spline")    
 
+(*** condition: ipynb ***)
+#if IPYNB
+spline1
+#endif // IPYNB
+
 (***hide***)
 spline1 |> GenericChart.toChartHTML
 (***include-it-raw***)
@@ -73,6 +102,11 @@ let spline2 =
         Smoothing = 0.4
     )      
     
+(*** condition: ipynb ***)
+#if IPYNB
+spline2
+#endif // IPYNB
+
 (***hide***)
 spline2 |> GenericChart.toChartHTML
 (***include-it-raw***)
@@ -96,6 +130,11 @@ let pointsWithLabels =
         Labels=labels,
         TextPosition=StyleParam.TextPosition.TopRight
     )    
+
+(*** condition: ipynb ***)
+#if IPYNB
+pointsWithLabels
+#endif // IPYNB
 
 (***hide***)
 pointsWithLabels |> GenericChart.toChartHTML

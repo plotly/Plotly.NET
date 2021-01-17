@@ -1,8 +1,22 @@
 (*** hide ***)
+
+(*** condition: prepare ***)
 #r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+(*** condition: fsx ***)
+#if FSX
+#r "../packages/Newtonsoft.Json/lib/netstandard2.0/Newtonsoft.Json.dll"
+#r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+#endif // FSX
+(*** condition: ipynb ***)
+#if IPYNB
+#r "nuget: Plotly.NET, 2.0.0-beta1"
+#r "nuget: Plotly.NET.Interactive, 2.0.0-alpha5"
+#endif // IPYNB
 
 (** 
 # Bar and column charts
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=bar-and-column-charts.ipynb)
 
 *Summary:* This example shows how to create bar and a column charts in F#.
 
@@ -24,6 +38,11 @@ or horizontally. A vertical bar chart is called a column bar chart.
 
 let column = Chart.Column(keys,values)
 
+(*** condition: ipynb ***)
+#if IPYNB
+column
+#endif // IPYNB
+
 (***hide***)
 column |> GenericChart.toChartHTML
 (***include-it-raw***)
@@ -34,6 +53,11 @@ column |> GenericChart.toChartHTML
 
 let bar =
     Chart.Bar(keys,values)
+
+(*** condition: ipynb ***)
+#if IPYNB
+bar
+#endif // IPYNB
 
 (***hide***)
 bar |> GenericChart.toChartHTML
@@ -54,6 +78,11 @@ let stackedBar =
     ]
     |> Chart.Combine
 
+(*** condition: ipynb ***)
+#if IPYNB
+stackedBar
+#endif // IPYNB
+
 (***hide***)
 stackedBar |> GenericChart.toChartHTML
 (***include-it-raw***)
@@ -68,6 +97,11 @@ let stackedColumn =
         Chart.StackedColumn(keys,[8; 21; 13;],Name="new")
     ]
     |> Chart.Combine
+
+(*** condition: ipynb ***)
+#if IPYNB
+stackedColumn
+#endif // IPYNB
 
 (***hide***)
 stackedColumn |> GenericChart.toChartHTML

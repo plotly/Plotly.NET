@@ -1,8 +1,22 @@
 (*** hide ***)
+
+(*** condition: prepare ***)
 #r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+(*** condition: fsx ***)
+#if FSX
+#r "../packages/Newtonsoft.Json/lib/netstandard2.0/Newtonsoft.Json.dll"
+#r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+#endif // FSX
+(*** condition: ipynb ***)
+#if IPYNB
+#r "nuget: Plotly.NET, 2.0.0-beta1"
+#r "nuget: Plotly.NET.Interactive, 2.0.0-alpha5"
+#endif // IPYNB
 
 (**
 # Axis styling
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=axis-styling.ipynb)
 
 *Summary:* This example shows how to style chart axes in F#.
 
@@ -25,6 +39,11 @@ let plot1 =
     Chart.Point(x,y)
     |> Chart.withX_AxisStyle ("X axis title", MinMax = (-1.,10.))
     |> Chart.withY_AxisStyle ("Y axis title", MinMax = (-1.,10.))
+
+(*** condition: ipynb ***)
+#if IPYNB
+plot1
+#endif // IPYNB
 
 (***hide***)
 plot1 |> GenericChart.toChartHTML
@@ -58,6 +77,11 @@ let plot2 =
     Chart.Point(x,y)
     |> Chart.withX_Axis mirroredXAxis
     |> Chart.withY_Axis mirroredLogYAxis
+
+(*** condition: ipynb ***)
+#if IPYNB
+plot2
+#endif // IPYNB
 
 (***hide***)
 plot2 |> GenericChart.toChartHTML
@@ -103,6 +127,10 @@ let twoXAxes1 =
         Overlaying=StyleParam.AxisAnchorId.Y 1
     )
         
+(*** condition: ipynb ***)
+#if IPYNB
+twoXAxes1
+#endif // IPYNB
 
 (***hide***)
 twoXAxes1 |> GenericChart.toChartHTML
@@ -138,6 +166,11 @@ let twoXAxes2 =
         Anchor=StyleParam.AxisAnchorId.Free,
         Showline=true
     )
+
+(*** condition: ipynb ***)
+#if IPYNB
+twoXAxes2
+#endif // IPYNB
 
 (***hide***)
 twoXAxes2 |> GenericChart.toChartHTML
