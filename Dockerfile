@@ -2,7 +2,7 @@ FROM jupyter/base-notebook:latest
 
 # Install .NET CLI dependencies
 
-ARG NB_USER=jovyan
+ARG NB_USER=plotly
 ARG NB_UID=1000
 ENV USER ${NB_USER}
 ENV NB_UID ${NB_UID}
@@ -54,7 +54,7 @@ RUN dotnet_sdk_version=5.0.101 \
 
 # Copy notebooks
 
-COPY ./notebooks/ ${HOME}/notebooks/
+COPY ./ ${HOME}/notebooks/
 
 # Copy package sources
 
