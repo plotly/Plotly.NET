@@ -180,7 +180,7 @@
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/pie-daughnut-charts.html">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/pie-doughnut-charts.html">
     Pie and doughnut Charts
 
   </a>
@@ -249,6 +249,7 @@
             <div class="section pt-4">
                 <div class="container" id="fsdocs-content">
                     <h1><a name="Heatmaps" class="anchor" href="#Heatmaps">Heatmaps</a></h1>
+<p><a href="https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=heatmaps.ipynb"><img src="https://mybinder.org/badge_logo.svg" alt="Binder" /></a></p>
 <p><em>Summary:</em> This example shows how to create heatmap charts in F#.</p>
 <p>let's first create some data for the purpose of creating example charts:</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">Plotly</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">NET</span> 
@@ -274,32 +275,7 @@
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 17)" onmouseover="showTip(event, 'fs11', 17)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 18)" onmouseover="showTip(event, 'fs13', 18)" class="id">withSize</span><span class="pn">(</span><span class="n">700.</span><span class="pn">,</span><span class="n">500.</span><span class="pn">)</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 19)" onmouseover="showTip(event, 'fs11', 19)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 20)" onmouseover="showTip(event, 'fs14', 20)" class="id">withMarginSize</span><span class="pn">(</span><span class="fn">Left</span><span class="o">=</span><span class="n">200.</span><span class="pn">)</span>
 </code></pre>
-<div id="3e9c64c0-1b9f-4728-a35d-89faa3ee3408" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>
-<script type="text/javascript">
-
-            var renderPlotly_3e9c64c01b9f4728a35d89faa3ee3408 = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
-            fsharpPlotlyRequire(['plotly'], function(Plotly) {
-
-            var data = [{"type":"heatmap","z":[[1.0,1.5,0.7,2.7],[2.0,0.5,1.2,1.4],[0.1,2.6,2.4,3.0]],"x":["Tp0","Tp30","Tp60","Tp160"],"y":["p3","p2","p1"],"colorscale":[[0.0,"#3D9970"],[1.0,"#001f3f"]],"showscale":true}];
-            var layout = {"width":700.0,"height":500.0,"margin":{"l":200.0}};
-            var config = {};
-            Plotly.newPlot('3e9c64c0-1b9f-4728-a35d-89faa3ee3408', data, layout, config);
-});
-            };
-            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
-                var script = document.createElement("script");
-                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
-                script.onload = function(){
-                    renderPlotly_3e9c64c01b9f4728a35d89faa3ee3408();
-                };
-                document.getElementsByTagName("head")[0].appendChild(script);
-            }
-            else {
-                renderPlotly_3e9c64c01b9f4728a35d89faa3ee3408();
-            }
-</script>
-
+<table class="pre"><tr><td><pre><code>No value returned by any evaluator</code></pre></td></tr></table>
 <p>A heatmap chart can be created using the <code>Chart.HeatMap</code> functions.
 When creating heatmap charts, it is usually desirable to provide the values in matrix form, rownames and colnames.</p>
 <h2><a name="Styling-Colorbars" class="anchor" href="#Styling-Colorbars">Styling Colorbars</a></h2>
@@ -313,32 +289,7 @@ Here is an example that adds a title to the colorbar:</p>
         <span class="fn">TitleFont</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs21', 31)" onmouseover="showTip(event, 'fs21', 31)" class="rt">Font</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs22', 32)" onmouseover="showTip(event, 'fs22', 32)" class="id">init</span><span class="pn">(</span><span class="fn">Size</span><span class="o">=</span><span class="n">20</span><span class="pn">)</span>
     <span class="pn">)</span>
 </code></pre>
-<div id="93e74cab-b04a-482f-9b14-f991f4e39d8d" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>
-<script type="text/javascript">
-
-            var renderPlotly_93e74cabb04a482f9b14f991f4e39d8d = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
-            fsharpPlotlyRequire(['plotly'], function(Plotly) {
-
-            var data = [{"type":"heatmap","z":[[1.0,1.5,0.7,2.7],[2.0,0.5,1.2,1.4],[0.1,2.6,2.4,3.0]],"x":["Tp0","Tp30","Tp60","Tp160"],"y":["p3","p2","p1"],"colorscale":[[0.0,"#3D9970"],[1.0,"#001f3f"]],"showscale":true,"colorbar":{"title":"Im the Colorbar","titlefont":{"size":20},"titleside":"right"}}];
-            var layout = {"width":700.0,"height":500.0,"margin":{"l":200.0}};
-            var config = {};
-            Plotly.newPlot('93e74cab-b04a-482f-9b14-f991f4e39d8d', data, layout, config);
-});
-            };
-            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
-                var script = document.createElement("script");
-                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
-                script.onload = function(){
-                    renderPlotly_93e74cabb04a482f9b14f991f4e39d8d();
-                };
-                document.getElementsByTagName("head")[0].appendChild(script);
-            }
-            else {
-                renderPlotly_93e74cabb04a482f9b14f991f4e39d8d();
-            }
-</script>
-
+<table class="pre"><tr><td><pre><code>No value returned by any evaluator</code></pre></td></tr></table>
 
                 </div>
             </div>

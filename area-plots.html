@@ -180,7 +180,7 @@
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/pie-daughnut-charts.html">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/pie-doughnut-charts.html">
     Pie and doughnut Charts
 
   </a>
@@ -249,6 +249,7 @@
             <div class="section pt-4">
                 <div class="container" id="fsdocs-content">
                     <h1><a name="Area-charts" class="anchor" href="#Area-charts">Area charts</a></h1>
+<p><a href="https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=area-plots.ipynb"><img src="https://mybinder.org/badge_logo.svg" alt="Binder" /></a></p>
 <p><em>Summary:</em> This example shows how to create area charts, area charts with splines, and stackes area charts in F#.</p>
 <p>let's first create some data for the purpose of creating example charts:</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">Plotly</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">NET</span> 
@@ -261,62 +262,12 @@ The area between axis and line are commonly emphasized with colors, textures and
 <h3><a name="Simple-area-chart" class="anchor" href="#Simple-area-chart">Simple area chart</a></h3>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="id">area1</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 7)" onmouseover="showTip(event, 'fs7', 7)" class="id">Area</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs3', 8)" onmouseover="showTip(event, 'fs3', 8)" class="id">x</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs4', 9)" onmouseover="showTip(event, 'fs4', 9)" class="id">y</span><span class="pn">)</span>
 </code></pre>
-<div id="13099fff-3151-457f-8960-502523e46512" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
-<script type="text/javascript">
-
-            var renderPlotly_13099fff3151457f8960502523e46512 = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
-            fsharpPlotlyRequire(['plotly'], function(Plotly) {
-
-            var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,2.5,5.0,7.5,5.0,2.5,7.5,4.5,5.5,5.0],"mode":"lines","fill":"tozeroy","line":{"width":{}},"marker":{}}];
-            var layout = {};
-            var config = {};
-            Plotly.newPlot('13099fff-3151-457f-8960-502523e46512', data, layout, config);
-});
-            };
-            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
-                var script = document.createElement("script");
-                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
-                script.onload = function(){
-                    renderPlotly_13099fff3151457f8960502523e46512();
-                };
-                document.getElementsByTagName("head")[0].appendChild(script);
-            }
-            else {
-                renderPlotly_13099fff3151457f8960502523e46512();
-            }
-</script>
-
+<table class="pre"><tr><td><pre><code>No value returned by any evaluator</code></pre></td></tr></table>
 <h3><a name="Area-chart-with-a-spline" class="anchor" href="#Area-chart-with-a-spline">Area chart with a spline</a></h3>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs10', 13)" onmouseover="showTip(event, 'fs10', 13)" class="id">area2</span> <span class="o">=</span>
     <span onmouseout="hideTip(event, 'fs6', 14)" onmouseover="showTip(event, 'fs6', 14)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 15)" onmouseover="showTip(event, 'fs11', 15)" class="id">SplineArea</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs3', 16)" onmouseover="showTip(event, 'fs3', 16)" class="id">x</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs4', 17)" onmouseover="showTip(event, 'fs4', 17)" class="id">y</span><span class="pn">)</span>
 </code></pre>
-<div id="70d90af1-803b-4c7b-9377-3279f4e54aea" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
-<script type="text/javascript">
-
-            var renderPlotly_70d90af1803b4c7b93773279f4e54aea = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
-            fsharpPlotlyRequire(['plotly'], function(Plotly) {
-
-            var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,2.5,5.0,7.5,5.0,2.5,7.5,4.5,5.5,5.0],"mode":"lines","fill":"tozeroy","line":{"width":{},"shape":"spline"},"marker":{}}];
-            var layout = {};
-            var config = {};
-            Plotly.newPlot('70d90af1-803b-4c7b-9377-3279f4e54aea', data, layout, config);
-});
-            };
-            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
-                var script = document.createElement("script");
-                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
-                script.onload = function(){
-                    renderPlotly_70d90af1803b4c7b93773279f4e54aea();
-                };
-                document.getElementsByTagName("head")[0].appendChild(script);
-            }
-            else {
-                renderPlotly_70d90af1803b4c7b93773279f4e54aea();
-            }
-</script>
-
+<table class="pre"><tr><td><pre><code>No value returned by any evaluator</code></pre></td></tr></table>
 <h3><a name="Stacked-Area-chart" class="anchor" href="#Stacked-Area-chart">Stacked Area chart</a></h3>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs12', 21)" onmouseover="showTip(event, 'fs12', 21)" class="id">stackedArea</span> <span class="o">=</span>
     <span class="pn">[</span>
@@ -325,32 +276,7 @@ The area between axis and line are commonly emphasized with colors, textures and
     <span class="pn">]</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 32)" onmouseover="showTip(event, 'fs6', 32)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs16', 33)" onmouseover="showTip(event, 'fs16', 33)" class="id">Combine</span>
 </code></pre>
-<div id="fe20d5c6-0531-4ae6-b220-cb74e5d3a34c" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
-<script type="text/javascript">
-
-            var renderPlotly_fe20d5c605314ae6b220cb74e5d3a34c = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
-            fsharpPlotlyRequire(['plotly'], function(Plotly) {
-
-            var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,2.5,5.0,7.5,5.0,2.5,7.5,4.5,5.5,5.0],"mode":"lines","line":{"width":{}},"marker":{},"stackgroup":"static"},{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,5.5,4.5,7.5,2.5,5.0,7.5,5.0,2.5,5.0],"mode":"lines","line":{"width":{}},"marker":{},"stackgroup":"static"}];
-            var layout = {};
-            var config = {};
-            Plotly.newPlot('fe20d5c6-0531-4ae6-b220-cb74e5d3a34c', data, layout, config);
-});
-            };
-            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
-                var script = document.createElement("script");
-                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
-                script.onload = function(){
-                    renderPlotly_fe20d5c605314ae6b220cb74e5d3a34c();
-                };
-                document.getElementsByTagName("head")[0].appendChild(script);
-            }
-            else {
-                renderPlotly_fe20d5c605314ae6b220cb74e5d3a34c();
-            }
-</script>
-
+<table class="pre"><tr><td><pre><code>No value returned by any evaluator</code></pre></td></tr></table>
 
                 </div>
             </div>

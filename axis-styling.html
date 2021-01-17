@@ -180,7 +180,7 @@
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/pie-daughnut-charts.html">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/pie-doughnut-charts.html">
     Pie and doughnut Charts
 
   </a>
@@ -249,6 +249,7 @@
             <div class="section pt-4">
                 <div class="container" id="fsdocs-content">
                     <h1><a name="Axis-styling" class="anchor" href="#Axis-styling">Axis styling</a></h1>
+<p><a href="https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=axis-styling.ipynb"><img src="https://mybinder.org/badge_logo.svg" alt="Binder" /></a></p>
 <p><em>Summary:</em> This example shows how to style chart axes in F#.</p>
 <p>let's first create some data for the purpose of creating example charts:</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">Plotly</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">NET</span> 
@@ -264,32 +265,7 @@
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 18)" onmouseover="showTip(event, 'fs11', 18)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 19)" onmouseover="showTip(event, 'fs13', 19)" class="id">withX_AxisStyle</span> <span class="pn">(</span><span class="s">&quot;X axis title&quot;</span><span class="pn">,</span> <span class="fn">MinMax</span> <span class="o">=</span> <span class="pn">(</span><span class="o">-</span><span class="n">1.</span><span class="pn">,</span><span class="n">10.</span><span class="pn">)</span><span class="pn">)</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 20)" onmouseover="showTip(event, 'fs11', 20)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 21)" onmouseover="showTip(event, 'fs14', 21)" class="id">withY_AxisStyle</span> <span class="pn">(</span><span class="s">&quot;Y axis title&quot;</span><span class="pn">,</span> <span class="fn">MinMax</span> <span class="o">=</span> <span class="pn">(</span><span class="o">-</span><span class="n">1.</span><span class="pn">,</span><span class="n">10.</span><span class="pn">)</span><span class="pn">)</span>
 </code></pre>
-<div id="e9c03144-557a-4637-b939-84f3f26d19e4" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
-<script type="text/javascript">
-
-            var renderPlotly_e9c03144557a4637b93984f3f26d19e4 = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
-            fsharpPlotlyRequire(['plotly'], function(Plotly) {
-
-            var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"mode":"markers","marker":{}}];
-            var layout = {"xaxis":{"title":"X axis title","range":[-1.0,10.0]},"yaxis":{"title":"Y axis title","range":[-1.0,10.0]}};
-            var config = {};
-            Plotly.newPlot('e9c03144-557a-4637-b939-84f3f26d19e4', data, layout, config);
-});
-            };
-            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
-                var script = document.createElement("script");
-                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
-                script.onload = function(){
-                    renderPlotly_e9c03144557a4637b93984f3f26d19e4();
-                };
-                document.getElementsByTagName("head")[0].appendChild(script);
-            }
-            else {
-                renderPlotly_e9c03144557a4637b93984f3f26d19e4();
-            }
-</script>
-
+<table class="pre"><tr><td><pre><code>No value returned by any evaluator</code></pre></td></tr></table>
 <p>for even more fine-grained control, initialize a new axis and replace the old one of the plot with ````.
 The following example creates two mirrored axes with inside ticks, one of them with a log scale:</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs17', 25)" onmouseover="showTip(event, 'fs17', 25)" class="id">mirroredXAxis</span> <span class="o">=</span>
@@ -316,32 +292,7 @@ The following example creates two mirrored axes with inside ticks, one of them w
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 53)" onmouseover="showTip(event, 'fs11', 53)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 54)" onmouseover="showTip(event, 'fs30', 54)" class="id">withX_Axis</span> <span onmouseout="hideTip(event, 'fs17', 55)" onmouseover="showTip(event, 'fs17', 55)" class="id">mirroredXAxis</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 56)" onmouseover="showTip(event, 'fs11', 56)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs31', 57)" onmouseover="showTip(event, 'fs31', 57)" class="id">withY_Axis</span> <span onmouseout="hideTip(event, 'fs26', 58)" onmouseover="showTip(event, 'fs26', 58)" class="id">mirroredLogYAxis</span>
 </code></pre>
-<div id="a32daebe-3942-493f-8408-b5f019e2b2b2" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
-<script type="text/javascript">
-
-            var renderPlotly_a32daebe3942493f8408b5f019e2b2b2 = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
-            fsharpPlotlyRequire(['plotly'], function(Plotly) {
-
-            var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"mode":"markers","marker":{}}];
-            var layout = {"xaxis":{"title":"Log axis","ticks":"inside","mirror":"allticks","showline":true,"showgrid":false},"yaxis":{"type":"log","title":"Log axis","ticks":"inside","mirror":"allticks","showline":true,"showgrid":false}};
-            var config = {};
-            Plotly.newPlot('a32daebe-3942-493f-8408-b5f019e2b2b2', data, layout, config);
-});
-            };
-            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
-                var script = document.createElement("script");
-                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
-                script.onload = function(){
-                    renderPlotly_a32daebe3942493f8408b5f019e2b2b2();
-                };
-                document.getElementsByTagName("head")[0].appendChild(script);
-            }
-            else {
-                renderPlotly_a32daebe3942493f8408b5f019e2b2b2();
-            }
-</script>
-
+<table class="pre"><tr><td><pre><code>No value returned by any evaluator</code></pre></td></tr></table>
 <h2><a name="Multiple-axes" class="anchor" href="#Multiple-axes">Multiple axes</a></h2>
 <p>Assign different axis anchors to subplots to map them to different axes.</p>
 <h3><a name="Multiple-axes-on-different-sides-of-the-chart" class="anchor" href="#Multiple-axes-on-different-sides-of-the-chart">Multiple axes on different sides of the chart</a></h3>
@@ -375,32 +326,7 @@ Note that the same can be done as above, defining axes beforehand.</p>
     <span class="pn">)</span>
         
 </code></pre>
-<div id="8941f426-185c-4d7b-820f-21b74a7ec289" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
-<script type="text/javascript">
-
-            var renderPlotly_8941f426185c4d7b820f21b74a7ec289 = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
-            fsharpPlotlyRequire(['plotly'], function(Plotly) {
-
-            var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"mode":"lines","name":"anchor 1","marker":{},"yaxis":"y"},{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,7.0,3.0,5.0,5.0,6.0,3.0,10.0,3.0,4.0],"mode":"lines","name":"anchor 2","marker":{},"yaxis":"y2"}];
-            var layout = {"yaxis":{"title":"axis 1","side":"left"},"yaxis2":{"title":"axis2","side":"right","overlaying":"y"}};
-            var config = {};
-            Plotly.newPlot('8941f426-185c-4d7b-820f-21b74a7ec289', data, layout, config);
-});
-            };
-            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
-                var script = document.createElement("script");
-                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
-                script.onload = function(){
-                    renderPlotly_8941f426185c4d7b820f21b74a7ec289();
-                };
-                document.getElementsByTagName("head")[0].appendChild(script);
-            }
-            else {
-                renderPlotly_8941f426185c4d7b820f21b74a7ec289();
-            }
-</script>
-
+<table class="pre"><tr><td><pre><code>No value returned by any evaluator</code></pre></td></tr></table>
 <h3><a name="Multiple-axes-on-the-same-side-of-the-chart" class="anchor" href="#Multiple-axes-on-the-same-side-of-the-chart">Multiple axes on the same side of the chart</a></h3>
 <p>Analogous to above, but move the whole plot to the right by adjusting its domain, and then add a second axis to the left:</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs44', 99)" onmouseover="showTip(event, 'fs44', 99)" class="id">twoXAxes2</span> <span class="o">=</span>
@@ -427,32 +353,7 @@ Note that the same can be done as above, defining axes beforehand.</p>
         <span class="fn">Showline</span><span class="o">=</span><span class="k">true</span>
     <span class="pn">)</span>
 </code></pre>
-<div id="182736d8-48bc-4a0d-a3ca-657ecc2162cd" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
-<script type="text/javascript">
-
-            var renderPlotly_182736d848bc4a0da3ca657ecc2162cd = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
-            fsharpPlotlyRequire(['plotly'], function(Plotly) {
-
-            var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"mode":"lines","name":"anchor 1","marker":{},"yaxis":"y"},{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,7.0,3.0,5.0,5.0,6.0,3.0,10.0,3.0,4.0],"mode":"lines","name":"anchor 2","marker":{},"yaxis":"y2"}];
-            var layout = {"yaxis":{"title":"first y-axis","side":"left","showline":true},"yaxis2":{"title":"second y-axis","side":"left","overlaying":"y","showline":true,"anchor":"free","position":0.1},"xaxis":{"title":"x-axis","domain":[0.3,1.0]}};
-            var config = {};
-            Plotly.newPlot('182736d8-48bc-4a0d-a3ca-657ecc2162cd', data, layout, config);
-});
-            };
-            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
-                var script = document.createElement("script");
-                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
-                script.onload = function(){
-                    renderPlotly_182736d848bc4a0da3ca657ecc2162cd();
-                };
-                document.getElementsByTagName("head")[0].appendChild(script);
-            }
-            else {
-                renderPlotly_182736d848bc4a0da3ca657ecc2162cd();
-            }
-</script>
-
+<table class="pre"><tr><td><pre><code>No value returned by any evaluator</code></pre></td></tr></table>
 
                 </div>
             </div>

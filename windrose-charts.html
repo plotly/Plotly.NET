@@ -180,7 +180,7 @@
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/pie-daughnut-charts.html">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/pie-doughnut-charts.html">
     Pie and doughnut Charts
 
   </a>
@@ -249,6 +249,7 @@
             <div class="section pt-4">
                 <div class="container" id="fsdocs-content">
                     <h1><a name="Wind-rose-charts" class="anchor" href="#Wind-rose-charts">Wind rose charts</a></h1>
+<p><a href="https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=windrose-charts.ipynb"><img src="https://mybinder.org/badge_logo.svg" alt="Binder" /></a></p>
 <p><em>Summary:</em> This example shows how to create wind rose charts in F#.</p>
 <p>let's first create some data for the purpose of creating example charts:</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">Plotly</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">NET</span> 
@@ -271,32 +272,7 @@ of how wind speed and direction are typically distributed at a particular locati
     <span class="pn">]</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs9', 25)" onmouseover="showTip(event, 'fs9', 25)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 26)" onmouseover="showTip(event, 'fs11', 26)" class="id">Combine</span>
 </code></pre>
-<div id="539458be-a539-4f91-bc45-c495235569a4" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
-<script type="text/javascript">
-
-            var renderPlotly_539458bea5394f91bc45c495235569a4 = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
-            fsharpPlotlyRequire(['plotly'], function(Plotly) {
-
-            var data = [{"type":"area","r":[77.5,72.5,70.0,45.0,22.5,42.5,40.0,62.5],"t":["North","N-E","East","S-E","South","S-W","West","N-W"],"name":"11-14 m/s","line":{"width":{}},"marker":{}},{"type":"area","r":[57.5,50.0,45.0,35.0,20.0,22.5,37.5,55.0],"t":["North","N-E","East","S-E","South","S-W","West","N-W"],"name":"8-11 m/s","line":{"width":{}},"marker":{}},{"type":"area","r":[40.0,30.0,30.0,35.0,7.5,7.5,32.5,40.0],"t":["North","N-E","East","S-E","South","S-W","West","N-W"],"name":"5-8 m/s","line":{"width":{}},"marker":{}},{"type":"area","r":[20.0,7.5,15.0,22.5,2.5,2.5,12.5,22.5],"t":["North","N-E","East","S-E","South","S-W","West","N-W"],"name":"< 5 m/s","line":{"width":{}},"marker":{}}];
-            var layout = {};
-            var config = {};
-            Plotly.newPlot('539458be-a539-4f91-bc45-c495235569a4', data, layout, config);
-});
-            };
-            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
-                var script = document.createElement("script");
-                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
-                script.onload = function(){
-                    renderPlotly_539458bea5394f91bc45c495235569a4();
-                };
-                document.getElementsByTagName("head")[0].appendChild(script);
-            }
-            else {
-                renderPlotly_539458bea5394f91bc45c495235569a4();
-            }
-</script>
-
+<table class="pre"><tr><td><pre><code>No value returned by any evaluator</code></pre></td></tr></table>
 
                 </div>
             </div>

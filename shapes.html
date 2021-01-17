@@ -180,7 +180,7 @@
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/pie-daughnut-charts.html">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/pie-doughnut-charts.html">
     Pie and doughnut Charts
 
   </a>
@@ -249,6 +249,7 @@
             <div class="section pt-4">
                 <div class="container" id="fsdocs-content">
                     <h1><a name="Shapes" class="anchor" href="#Shapes">Shapes</a></h1>
+<p><a href="https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=shapes.ipynb"><img src="https://mybinder.org/badge_logo.svg" alt="Binder" /></a></p>
 <p><em>Summary:</em> This example shows how to create Shapes and add them to the Charts in F#.</p>
 <p>let's first create some data for the purpose of creating example charts:</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">Plotly</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">NET</span> 
@@ -267,32 +268,7 @@ multiple shapes at once.</p>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs13', 22)" onmouseover="showTip(event, 'fs13', 22)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs15', 23)" onmouseover="showTip(event, 'fs15', 23)" class="id">withShapes</span><span class="pn">(</span><span class="pn">[</span><span onmouseout="hideTip(event, 'fs5', 24)" onmouseover="showTip(event, 'fs5', 24)" class="id">s1</span><span class="pn">;</span><span onmouseout="hideTip(event, 'fs11', 25)" onmouseover="showTip(event, 'fs11', 25)" class="id">s2</span><span class="pn">]</span><span class="pn">)</span>
 <span class="c">//|&gt; Chart.withShape(Options.Shape(StyleOption.ShapeType.Rectangle,2.,4.,3.,4.,Opacity=0.3,Fillcolor=&quot;#d3d3d3&quot;))</span>
 </code></pre>
-<div id="bbdf66fc-6bf0-4ca7-a652-bad9ebbf4588" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
-<script type="text/javascript">
-
-            var renderPlotly_bbdf66fc6bf04ca7a652bad9ebbf4588 = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
-            fsharpPlotlyRequire(['plotly'], function(Plotly) {
-
-            var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"mode":"lines","name":"line","marker":{}}];
-            var layout = {"shapes":[{"type":"rect","x0":2.0,"x1":4.0,"y0":3.0,"y1":4.0,"opacity":0.3,"fillcolor":"#d3d3d3"},{"type":"rect","x0":5.0,"x1":7.0,"y0":3.0,"y1":4.0,"opacity":0.3,"fillcolor":"#d3d3d3"}]};
-            var config = {};
-            Plotly.newPlot('bbdf66fc-6bf0-4ca7-a652-bad9ebbf4588', data, layout, config);
-});
-            };
-            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
-                var script = document.createElement("script");
-                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
-                script.onload = function(){
-                    renderPlotly_bbdf66fc6bf04ca7a652bad9ebbf4588();
-                };
-                document.getElementsByTagName("head")[0].appendChild(script);
-            }
-            else {
-                renderPlotly_bbdf66fc6bf04ca7a652bad9ebbf4588();
-            }
-</script>
-
+<table class="pre"><tr><td><pre><code>No value returned by any evaluator</code></pre></td></tr></table>
 
                 </div>
             </div>

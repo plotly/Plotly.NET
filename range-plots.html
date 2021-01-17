@@ -180,7 +180,7 @@
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/pie-daughnut-charts.html">
+  <a class="nav-link" href="http://plotly.github.io/Plotly.NET/pie-doughnut-charts.html">
     Pie and doughnut Charts
 
   </a>
@@ -249,6 +249,7 @@
             <div class="section pt-4">
                 <div class="container" id="fsdocs-content">
                     <h1><a name="Range-plots" class="anchor" href="#Range-plots">Range plots</a></h1>
+<p><a href="https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=range-plots.ipynb"><img src="https://mybinder.org/badge_logo.svg" alt="Binder" /></a></p>
 <p><em>Summary:</em> This example shows how to create Range plot charts in F#.</p>
 <p>let's first create some data for the purpose of creating example charts:</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">Plotly</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">NET</span> 
@@ -270,32 +271,7 @@ for example the range of all predictions from different models, scattering aroun
         <span class="fn">Color</span><span class="o">=</span><span class="s">&quot;grey&quot;</span><span class="pn">,</span>
         <span class="fn">RangeColor</span><span class="o">=</span><span class="s">&quot;lightblue&quot;</span><span class="pn">)</span>
 </code></pre>
-<div id="5c495dc5-160a-4ee9-89cb-cd125f882350" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
-<script type="text/javascript">
-
-            var renderPlotly_5c495dc5160a4ee989cbcd125f882350 = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
-            fsharpPlotlyRequire(['plotly'], function(Plotly) {
-
-            var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[1.3107369948694187,0.6901860615192847,4.7724045397585275,0.6544015343088664,2.7678025615251634,1.6064664256323438,2.4309908966212492,1.4757165978549591,3.2583884721428102,0.9420623066565312],"mode":"lines","fillcolor":"lightblue","showlegend":false,"line":{"width":0},"marker":{"color":"lightblue"}},{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.4857869131890062,2.0533643698102626,5.678142845015108,1.7492659782288904,3.728156208399756,3.285781116125072,3.4711613822594103,1.82660719208727,3.673787114757014,1.3400628777873065],"mode":"lines","fill":"tonexty","fillcolor":"lightblue","showlegend":false,"line":{"width":0},"marker":{"color":"lightblue"}},{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"mode":"lines+markers","fillcolor":"grey","line":{"width":{},"color":"grey"},"marker":{"color":"grey"}}];
-            var layout = {};
-            var config = {};
-            Plotly.newPlot('5c495dc5-160a-4ee9-89cb-cd125f882350', data, layout, config);
-});
-            };
-            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
-                var script = document.createElement("script");
-                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
-                script.onload = function(){
-                    renderPlotly_5c495dc5160a4ee989cbcd125f882350();
-                };
-                document.getElementsByTagName("head")[0].appendChild(script);
-            }
-            else {
-                renderPlotly_5c495dc5160a4ee989cbcd125f882350();
-            }
-</script>
-
+<table class="pre"><tr><td><pre><code>No value returned by any evaluator</code></pre></td></tr></table>
 
                 </div>
             </div>
