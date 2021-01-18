@@ -266,7 +266,32 @@ data at different values.</p>
         <span class="fn">Points</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs9', 11)" onmouseover="showTip(event, 'fs9', 11)" class="rt">Jitterpoints</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 12)" onmouseover="showTip(event, 'fs10', 12)" class="id">All</span>
     <span class="pn">)</span>
 </code></pre>
-<table class="pre"><tr><td><pre><code>No value returned by any evaluator</code></pre></td></tr></table>
+<div id="ea67c621-38f6-4b8c-8219-b1f4be85b293" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<script type="text/javascript">
+
+            var renderPlotly_ea67c62138f64b8c8219b1f4be85b293 = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            fsharpPlotlyRequire(['plotly'], function(Plotly) {
+
+            var data = [{"type":"violin","y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"points":"all","marker":{}}];
+            var layout = {};
+            var config = {};
+            Plotly.newPlot('ea67c621-38f6-4b8c-8219-b1f4be85b293', data, layout, config);
+});
+            };
+            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
+                var script = document.createElement("script");
+                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
+                script.onload = function(){
+                    renderPlotly_ea67c62138f64b8c8219b1f4be85b293();
+                };
+                document.getElementsByTagName("head")[0].appendChild(script);
+            }
+            else {
+                renderPlotly_ea67c62138f64b8c8219b1f4be85b293();
+            }
+</script>
+
 <p>By swapping x and y plus using <code>StyleParam.Orientation.Horizontal</code> we can flip the chart horizontaly.</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs13', 16)" onmouseover="showTip(event, 'fs13', 16)" class="id">violin2</span> <span class="o">=</span>
     <span onmouseout="hideTip(event, 'fs6', 17)" onmouseover="showTip(event, 'fs6', 17)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 18)" onmouseover="showTip(event, 'fs7', 18)" class="id">Violin</span><span class="pn">(</span>
@@ -277,7 +302,32 @@ data at different values.</p>
         <span onmouseout="hideTip(event, 'fs16', 27)" onmouseover="showTip(event, 'fs16', 27)" class="fn">Meanline</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs16', 28)" onmouseover="showTip(event, 'fs16', 28)" class="rt">Meanline</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 29)" onmouseover="showTip(event, 'fs17', 29)" class="id">init</span><span class="pn">(</span><span class="fn">Visible</span><span class="o">=</span><span class="k">true</span><span class="pn">)</span>
     <span class="pn">)</span>
 </code></pre>
-<table class="pre"><tr><td><pre><code>No value returned by any evaluator</code></pre></td></tr></table>
+<div id="57b0fbc4-0766-4f7f-8999-aa584d7afc26" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<script type="text/javascript">
+
+            var renderPlotly_57b0fbc407664f7f8999aa584d7afc26 = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            fsharpPlotlyRequire(['plotly'], function(Plotly) {
+
+            var data = [{"type":"violin","y":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"x":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"points":"all","jitter":0.1,"orientation":"h","meanline":{"visible":true},"marker":{}}];
+            var layout = {};
+            var config = {};
+            Plotly.newPlot('57b0fbc4-0766-4f7f-8999-aa584d7afc26', data, layout, config);
+});
+            };
+            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
+                var script = document.createElement("script");
+                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
+                script.onload = function(){
+                    renderPlotly_57b0fbc407664f7f8999aa584d7afc26();
+                };
+                document.getElementsByTagName("head")[0].appendChild(script);
+            }
+            else {
+                renderPlotly_57b0fbc407664f7f8999aa584d7afc26();
+            }
+</script>
+
 <p>You can also produce a violin plot using the <code>Chart.Combine</code> syntax.</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs18', 33)" onmouseover="showTip(event, 'fs18', 33)" class="id">y&#39;</span> <span class="o">=</span>  <span class="pn">[</span><span class="n">2.</span><span class="pn">;</span> <span class="n">1.5</span><span class="pn">;</span> <span class="n">5.</span><span class="pn">;</span> <span class="n">1.5</span><span class="pn">;</span> <span class="n">2.</span><span class="pn">;</span> <span class="n">2.5</span><span class="pn">;</span> <span class="n">2.1</span><span class="pn">;</span> <span class="n">2.5</span><span class="pn">;</span> <span class="n">1.5</span><span class="pn">;</span> <span class="n">1.</span><span class="pn">;</span><span class="n">2.</span><span class="pn">;</span> <span class="n">1.5</span><span class="pn">;</span> <span class="n">5.</span><span class="pn">;</span> <span class="n">1.5</span><span class="pn">;</span> <span class="n">3.</span><span class="pn">;</span> <span class="n">2.5</span><span class="pn">;</span> <span class="n">2.5</span><span class="pn">;</span> <span class="n">1.5</span><span class="pn">;</span> <span class="n">3.5</span><span class="pn">;</span> <span class="n">1.</span><span class="pn">]</span>
 
@@ -288,7 +338,32 @@ data at different values.</p>
     <span class="pn">]</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 47)" onmouseover="showTip(event, 'fs6', 47)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 48)" onmouseover="showTip(event, 'fs20', 48)" class="id">Combine</span>
 </code></pre>
-<table class="pre"><tr><td><pre><code>No value returned by any evaluator</code></pre></td></tr></table>
+<div id="6b39864d-936b-4578-a073-0b6112967c7f" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<script type="text/javascript">
+
+            var renderPlotly_6b39864d936b4578a0730b6112967c7f = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            fsharpPlotlyRequire(['plotly'], function(Plotly) {
+
+            var data = [{"type":"violin","y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":"y","points":"all","jitter":0.1,"name":"bin1","marker":{}},{"type":"violin","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":"y'","points":"all","jitter":0.1,"name":"bin2","marker":{}}];
+            var layout = {};
+            var config = {};
+            Plotly.newPlot('6b39864d-936b-4578-a073-0b6112967c7f', data, layout, config);
+});
+            };
+            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
+                var script = document.createElement("script");
+                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
+                script.onload = function(){
+                    renderPlotly_6b39864d936b4578a0730b6112967c7f();
+                };
+                document.getElementsByTagName("head")[0].appendChild(script);
+            }
+            else {
+                renderPlotly_6b39864d936b4578a0730b6112967c7f();
+            }
+</script>
+
 
                 </div>
             </div>

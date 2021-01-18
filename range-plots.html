@@ -271,7 +271,32 @@ for example the range of all predictions from different models, scattering aroun
         <span class="fn">Color</span><span class="o">=</span><span class="s">&quot;grey&quot;</span><span class="pn">,</span>
         <span class="fn">RangeColor</span><span class="o">=</span><span class="s">&quot;lightblue&quot;</span><span class="pn">)</span>
 </code></pre>
-<table class="pre"><tr><td><pre><code>No value returned by any evaluator</code></pre></td></tr></table>
+<div id="945bee19-577d-4b9e-abed-5ceb2735aa13" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<script type="text/javascript">
+
+            var renderPlotly_945bee19577d4b9eabed5ceb2735aa13 = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            fsharpPlotlyRequire(['plotly'], function(Plotly) {
+
+            var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[1.3313063230976958,1.321830378296706,4.870630527786273,1.406404898458349,2.6247856950502775,2.149639260326344,2.10251628868399,0.7798758057318049,2.8160000137593597,0.8095953654542544],"mode":"lines","fillcolor":"lightblue","showlegend":false,"line":{"width":0},"marker":{"color":"lightblue"}},{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.1142825722295244,1.8733923436949924,5.714562896040531,1.5926048863179072,3.0265780543100917,2.613564699941112,2.6266871253618445,1.5787081029632632,3.738865656889447,1.1190658286768318],"mode":"lines","fill":"tonexty","fillcolor":"lightblue","showlegend":false,"line":{"width":0},"marker":{"color":"lightblue"}},{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"mode":"lines+markers","fillcolor":"grey","line":{"width":{},"color":"grey"},"marker":{"color":"grey"}}];
+            var layout = {};
+            var config = {};
+            Plotly.newPlot('945bee19-577d-4b9e-abed-5ceb2735aa13', data, layout, config);
+});
+            };
+            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
+                var script = document.createElement("script");
+                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
+                script.onload = function(){
+                    renderPlotly_945bee19577d4b9eabed5ceb2735aa13();
+                };
+                document.getElementsByTagName("head")[0].appendChild(script);
+            }
+            else {
+                renderPlotly_945bee19577d4b9eabed5ceb2735aa13();
+            }
+</script>
+
 
                 </div>
             </div>
