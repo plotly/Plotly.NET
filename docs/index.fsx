@@ -1,7 +1,13 @@
 (*** hide ***)
 
 (*** condition: prepare ***)
+#r @"..\packages\Newtonsoft.Json\lib\netstandard2.0\Newtonsoft.Json.dll"
 #r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+(*** condition: fsx ***)
+#if FSX
+#r "../packages/Newtonsoft.Json/lib/netstandard2.0/Newtonsoft.Json.dll"
+#r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
+#endif // FSX
 (*** condition: ipynb ***)
 #if IPYNB
 #r "nuget: Plotly.NET, 2.0.0-beta1"
@@ -9,13 +15,6 @@
 #endif // IPYNB
 
 open Plotly.NET
-
-let simpleChart = 
-    [(1,5);(2,10)]
-    |> Chart.Point
-    |> Chart.withTraceName("Hello from F#",Showlegend=true)
-    |> Chart.withY_AxisStyle("xAxis",Showgrid= false, Showline=true)
-    |> Chart.withX_AxisStyle("yAxis",Showgrid= false, Showline=true)
 
 (**
 # Plotly.NET
@@ -141,40 +140,52 @@ let myFirstStyledChart =
 **Attention:** Styling functions mutate 😈 the input chart, therefore possibly affecting bindings to intermediary results. 
 We recommend creating a single chart for each workflow to prevent unexpected results
 
-### Displaying a chart
+### Displaying a chart in the browser
 
 The `Chart.Show` function will open a browser window and render the input chart there. When working in a notebook context, after
 [referencing Plotly.NET.Interactive](#For-dotnet-interactive-notebooks), the function is not necessary, just end the cell with the value of the chart.
 
 *)
 
+(***do-not-eval***)
 myFirstChart
 |> Chart.Show
 
 (**Should render this chart in your brower:*)
 
-(*** condition: ipynb ***)
-#if IPYNB
-myFirstChart
-#endif // IPYNB
-
 (***hide***)
 myFirstChart |> GenericChart.toChartHTML
 (*** include-it-raw ***)
 
+(***do-not-eval***)
 myFirstStyledChart
 |> Chart.Show
 
 (**And here is what happened after applying the styles from above:*)
 
-(*** condition: ipynb ***)
-#if IPYNB
-myFirstStyledChart
-#endif // IPYNB
-
 (***hide***)
 myFirstStyledChart |> GenericChart.toChartHTML
 (*** include-it-raw ***)
+
+
+(**
+### Displaying a chart in a notbook cell output
+
+In a notebook context you usually have (at leat when running on a jupyter server like binder) no access to the browser on the machine where plotly runs on.
+That's why you can render charts directly in the cell output. Just end the cell with the chart value:
+*)
+
+let xData = [0. .. 10.]
+let yData = [0. .. 10.]
+Chart.Point(xData,yData)
+
+(**Here is the styled chart:*)
+
+Chart.Point(xData,yData)
+|> Chart.withTitle "Hello world!"
+|> Chart.withX_AxisStyle ("xAxis", Showgrid=false)
+|> Chart.withY_AxisStyle ("yAxis", Showgrid=false)
+
 
 (**
 ## Comparison: Usage in F# and C#

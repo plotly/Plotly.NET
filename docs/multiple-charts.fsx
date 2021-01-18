@@ -1,6 +1,7 @@
 (*** hide ***)
 
 (*** condition: prepare ***)
+#r @"..\packages\Newtonsoft.Json\lib\netstandard2.0\Newtonsoft.Json.dll"
 #r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
 (*** condition: fsx ***)
 #if FSX
@@ -12,7 +13,6 @@
 #r "nuget: Plotly.NET, 2.0.0-beta1"
 #r "nuget: Plotly.NET.Interactive, 2.0.0-alpha5"
 #endif // IPYNB
-
 (**
 # Multicharts and subplots
 
