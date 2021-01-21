@@ -21,7 +21,7 @@ type FormatterKernelExtension() =
 
             if isNull KernelInvocationContext.Current |> not then
                 let message =
-                    "Added Kernerl Extension including formatters for GenericChart"
+                    "Added Kernel Extension including formatters for GenericChart"
 
                 KernelInvocationContext.Current.Display(message, "text/markdown")
                 |> ignore
