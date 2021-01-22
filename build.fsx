@@ -296,12 +296,14 @@ let createPrereleaseTag = BuildTask.create "CreatePrereleaseTag" [setPrereleaseT
 }
 
 let publishNuget = BuildTask.create "PublishNuget" [clean; build; copyBinaries; runTests; pack.IfNeeded; packPrerelease.IfNeeded] {
+    let targets = (!! (sprintf "%s/*.*pkg" pkgDir ))
+    for target in targets do printfn "%A" target
     let msg = sprintf "release package with version %s?" (if isPrerelease then prereleaseTag else stableVersionTag)
     if promptYesNo msg then
         let source = "https://api.nuget.org/v3/index.json"
         let apikey =  Environment.environVar "NUGET_KEY"
-        for artifact in !! pkgDir do
-            let result = DotNet.exec id "nuget" (sprintf "push -s %s -k %s %s" source apikey artifact)
+        for artifact in targets do
+            let result = DotNet.exec id "nuget" (sprintf "push -s %s -k %s %s --skip-duplicate" source apikey artifact)
             if not result.OK then failwith "failed to push packages"
     else failwith "aborted"
 }
