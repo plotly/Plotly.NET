@@ -14,7 +14,20 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Authors>Gregor Beyerle, Timo Mühlhaus, Kevin Schneider, F# open source contributors</Authors>
+    <Description>A .NET Interactive Kernel Extension for displaying Plotly.NET charts. </Description>
+    <Summary>A .NET Interactive Kernel Extension for displaying Plotly.NET charts.</Summary>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://plotly.github.io/Plotly.NET/</PackageProjectUrl>
     <PackageIcon>logo.png</PackageIcon>
+    <PackageTags>visualization charting plotly fsharp csharp</PackageTags>
+    <RepositoryUrl>https://github.com/plotly/Plotly.NET/</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <FsDocsLicenseLink>https://github.com/plotly/Plotly.NET/blob/dev/LICENSE</FsDocsLicenseLink>
+    <FsDocsReleaseNotesLink>https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md</FsDocsReleaseNotesLink>
   </PropertyGroup>
 
   <ItemGroup>
