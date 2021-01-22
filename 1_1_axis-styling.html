@@ -272,29 +272,29 @@
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 18)" onmouseover="showTip(event, 'fs11', 18)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 19)" onmouseover="showTip(event, 'fs13', 19)" class="id">withX_AxisStyle</span> <span class="pn">(</span><span class="s">&quot;X axis title&quot;</span><span class="pn">,</span> <span class="fn">MinMax</span> <span class="o">=</span> <span class="pn">(</span><span class="o">-</span><span class="n">1.</span><span class="pn">,</span><span class="n">10.</span><span class="pn">)</span><span class="pn">)</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 20)" onmouseover="showTip(event, 'fs11', 20)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 21)" onmouseover="showTip(event, 'fs14', 21)" class="id">withY_AxisStyle</span> <span class="pn">(</span><span class="s">&quot;Y axis title&quot;</span><span class="pn">,</span> <span class="fn">MinMax</span> <span class="o">=</span> <span class="pn">(</span><span class="o">-</span><span class="n">1.</span><span class="pn">,</span><span class="n">10.</span><span class="pn">)</span><span class="pn">)</span>
 </code></pre>
-<div id="1e6aecda-e46e-40e2-9ff4-c3c7bba603c3" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="8a569023-9eb7-49c1-9531-028b6e173211" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_1e6aecdae46e40e29ff4c3c7bba603c3 = function() {
+            var renderPlotly_8a5690239eb749c19531028b6e173211 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"mode":"markers","marker":{}}];
             var layout = {"xaxis":{"title":"X axis title","range":[-1.0,10.0]},"yaxis":{"title":"Y axis title","range":[-1.0,10.0]}};
             var config = {};
-            Plotly.newPlot('1e6aecda-e46e-40e2-9ff4-c3c7bba603c3', data, layout, config);
+            Plotly.newPlot('8a569023-9eb7-49c1-9531-028b6e173211', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_1e6aecdae46e40e29ff4c3c7bba603c3();
+                    renderPlotly_8a5690239eb749c19531028b6e173211();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_1e6aecdae46e40e29ff4c3c7bba603c3();
+                renderPlotly_8a5690239eb749c19531028b6e173211();
             }
 </script>
 
@@ -324,29 +324,29 @@ The following example creates two mirrored axes with inside ticks, one of them w
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 53)" onmouseover="showTip(event, 'fs11', 53)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 54)" onmouseover="showTip(event, 'fs30', 54)" class="id">withX_Axis</span> <span onmouseout="hideTip(event, 'fs17', 55)" onmouseover="showTip(event, 'fs17', 55)" class="id">mirroredXAxis</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 56)" onmouseover="showTip(event, 'fs11', 56)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs31', 57)" onmouseover="showTip(event, 'fs31', 57)" class="id">withY_Axis</span> <span onmouseout="hideTip(event, 'fs26', 58)" onmouseover="showTip(event, 'fs26', 58)" class="id">mirroredLogYAxis</span>
 </code></pre>
-<div id="1e028cb7-f242-4e4c-bbb5-d91b74f04c7e" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="7a513108-8e1a-4947-b95f-d30b925b4a0a" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_1e028cb7f2424e4cbbb5d91b74f04c7e = function() {
+            var renderPlotly_7a5131088e1a4947b95fd30b925b4a0a = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"mode":"markers","marker":{}}];
             var layout = {"xaxis":{"title":"Log axis","ticks":"inside","mirror":"allticks","showline":true,"showgrid":false},"yaxis":{"type":"log","title":"Log axis","ticks":"inside","mirror":"allticks","showline":true,"showgrid":false}};
             var config = {};
-            Plotly.newPlot('1e028cb7-f242-4e4c-bbb5-d91b74f04c7e', data, layout, config);
+            Plotly.newPlot('7a513108-8e1a-4947-b95f-d30b925b4a0a', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_1e028cb7f2424e4cbbb5d91b74f04c7e();
+                    renderPlotly_7a5131088e1a4947b95fd30b925b4a0a();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_1e028cb7f2424e4cbbb5d91b74f04c7e();
+                renderPlotly_7a5131088e1a4947b95fd30b925b4a0a();
             }
 </script>
 
@@ -383,29 +383,29 @@ Note that the same can be done as above, defining axes beforehand.</p>
     <span class="pn">)</span>
         
 </code></pre>
-<div id="1b3c6c86-094b-465f-9948-db639d596b83" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="ce5605b9-32d8-4a33-8502-ecbbf6598d4f" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_1b3c6c86094b465f9948db639d596b83 = function() {
+            var renderPlotly_ce5605b932d84a338502ecbbf6598d4f = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"mode":"lines","name":"anchor 1","marker":{},"yaxis":"y"},{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,7.0,3.0,5.0,5.0,6.0,3.0,10.0,3.0,4.0],"mode":"lines","name":"anchor 2","marker":{},"yaxis":"y2"}];
             var layout = {"yaxis":{"title":"axis 1","side":"left"},"yaxis2":{"title":"axis2","side":"right","overlaying":"y"}};
             var config = {};
-            Plotly.newPlot('1b3c6c86-094b-465f-9948-db639d596b83', data, layout, config);
+            Plotly.newPlot('ce5605b9-32d8-4a33-8502-ecbbf6598d4f', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_1b3c6c86094b465f9948db639d596b83();
+                    renderPlotly_ce5605b932d84a338502ecbbf6598d4f();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_1b3c6c86094b465f9948db639d596b83();
+                renderPlotly_ce5605b932d84a338502ecbbf6598d4f();
             }
 </script>
 
@@ -435,29 +435,29 @@ Note that the same can be done as above, defining axes beforehand.</p>
         <span class="fn">Showline</span><span class="o">=</span><span class="k">true</span>
     <span class="pn">)</span>
 </code></pre>
-<div id="bc2e62ce-838c-43eb-b8c6-081522840b32" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="9fb76478-eb0f-41ca-a873-4c09b7ddf02c" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_bc2e62ce838c43ebb8c6081522840b32 = function() {
+            var renderPlotly_9fb76478eb0f41caa8734c09b7ddf02c = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"mode":"lines","name":"anchor 1","marker":{},"yaxis":"y"},{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,7.0,3.0,5.0,5.0,6.0,3.0,10.0,3.0,4.0],"mode":"lines","name":"anchor 2","marker":{},"yaxis":"y2"}];
             var layout = {"yaxis":{"title":"first y-axis","side":"left","showline":true},"yaxis2":{"title":"second y-axis","side":"left","overlaying":"y","showline":true,"anchor":"free","position":0.1},"xaxis":{"title":"x-axis","domain":[0.3,1.0]}};
             var config = {};
-            Plotly.newPlot('bc2e62ce-838c-43eb-b8c6-081522840b32', data, layout, config);
+            Plotly.newPlot('9fb76478-eb0f-41ca-a873-4c09b7ddf02c', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_bc2e62ce838c43ebb8c6081522840b32();
+                    renderPlotly_9fb76478eb0f41caa8734c09b7ddf02c();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_bc2e62ce838c43ebb8c6081522840b32();
+                renderPlotly_9fb76478eb0f41caa8734c09b7ddf02c();
             }
 </script>
 

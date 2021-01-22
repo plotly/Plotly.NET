@@ -275,29 +275,29 @@
         <span class="fn">Colorscale</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs9', 12)" onmouseover="showTip(event, 'fs9', 12)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 13)" onmouseover="showTip(event, 'fs10', 13)" class="rt">Colorscale</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 14)" onmouseover="showTip(event, 'fs11', 14)" class="id">Blackbody</span>
     <span class="pn">)</span>
 </code></pre>
-<div id="87ae5ae7-b54e-4f86-bebd-46bfb5afeb90" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="baedf50e-5845-4411-b49f-00aafe17c466" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_87ae5ae7b54e4f86bebd46bfb5afeb90 = function() {
+            var renderPlotly_baedf50e58454411b49f00aafe17c466 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"parcats","dimensions":[{"values":["Cat1","Cat1","Cat1","Cat1","Cat2","Cat2","Cat3"],"label":"A"},{"values":[0,1,0,1,0,0,0],"label":"B","ticktext":[{"Item1":"YES","Item2":"NO"}]}],"line":{"width":{},"color":[0.0,1.0,0.0,1.0,0.0,0.0,0.0],"colorscale":"Blackbody"}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('87ae5ae7-b54e-4f86-bebd-46bfb5afeb90', data, layout, config);
+            Plotly.newPlot('baedf50e-5845-4411-b49f-00aafe17c466', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_87ae5ae7b54e4f86bebd46bfb5afeb90();
+                    renderPlotly_baedf50e58454411b49f00aafe17c466();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_87ae5ae7b54e4f86bebd46bfb5afeb90();
+                renderPlotly_baedf50e58454411b49f00aafe17c466();
             }
 </script>
 

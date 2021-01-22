@@ -285,29 +285,29 @@ These are created using the provided Node and Link structures.</p>
     <span class="pn">)</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs18', 56)" onmouseover="showTip(event, 'fs18', 56)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 57)" onmouseover="showTip(event, 'fs20', 57)" class="id">withTitle</span> <span class="s">&quot;Sankey Sample&quot;</span>
 </code></pre>
-<div id="477ff875-257b-43eb-b445-7bfbfa332216" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="72895480-ffe5-40e8-bd6f-dacbde803bc3" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_477ff875257b43ebb4457bfbfa332216 = function() {
+            var renderPlotly_72895480ffe540e8bd6fdacbde803bc3 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"sankey","node":{"label":["a","b","c","d","e"],"color":["Black","Red","Purple","Green","Orange"]},"link":{"source":[0,1,0,3,2],"target":[1,2,4,4,4],"value":[1.0,2.0,1.3,1.5,0.5]}}];
             var layout = {"title":"Sankey Sample"};
             var config = {};
-            Plotly.newPlot('477ff875-257b-43eb-b445-7bfbfa332216', data, layout, config);
+            Plotly.newPlot('72895480-ffe5-40e8-bd6f-dacbde803bc3', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_477ff875257b43ebb4457bfbfa332216();
+                    renderPlotly_72895480ffe540e8bd6fdacbde803bc3();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_477ff875257b43ebb4457bfbfa332216();
+                renderPlotly_72895480ffe540e8bd6fdacbde803bc3();
             }
 </script>
 
