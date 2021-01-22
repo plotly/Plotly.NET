@@ -105,49 +105,71 @@ let copyBinaries = BuildTask.create "CopyBinaries" [clean; build] {
 }
 
 let pack = BuildTask.create "Pack" [clean; build] {
-    if promptYesNo (sprintf "creating stable package with version %i.%i.%i OK?" stableVersion.Major stableVersion.Minor stableVersion.Patch ) then
-        !! "src/**/*.*proj"
-        |> Seq.iter (Fake.DotNet.DotNet.pack (fun p ->
-            let msBuildParams =
-                {p.MSBuildParams with 
-                    Properties = ([
-                        "Version",(sprintf "%i.%i.%i" stableVersion.Major stableVersion.Minor stableVersion.Patch )
-                        "PackageReleaseNotes",  (release.Notes |> String.concat "\r\n")
-                    ] @ p.MSBuildParams.Properties)
-                }
-            {
-                p with 
-                    MSBuildParams = msBuildParams
-                    OutputPath = Some pkgDir
-            }
-        ))
-    else failwith "aborted"
-}
-
-let packPrerelease = BuildTask.create "PackPrerelease" [clean; build] {
-    !! "src/**/*.*proj"
-    |> Seq.iter (Fake.DotNet.DotNet.pack (fun p ->
-        printfn "Please enter pre-release package suffix"
-        let suffix = System.Console.ReadLine()
-        let prereleaseTag = (sprintf "%s-%s" release.NugetVersion suffix)
-        if promptYesNo (sprintf "package tag will be %s OK?" prereleaseTag )
-            then 
+    let stableVersionTag = (sprintf "%i.%i.%i" stableVersion.Major stableVersion.Minor stableVersion.Patch )
+    if promptYesNo (sprintf "creating stable package with version %s OK?" stableVersionTag ) 
+        then
+            !! "src/**/*.*proj"
+            -- "src/**/Plotly.NET.Interactive.fsproj"
+            |> Seq.iter (Fake.DotNet.DotNet.pack (fun p ->
                 let msBuildParams =
                     {p.MSBuildParams with 
                         Properties = ([
-                            "Version", prereleaseTag
+                            "Version",stableVersionTag
                             "PackageReleaseNotes",  (release.Notes |> String.concat "\r\n")
                         ] @ p.MSBuildParams.Properties)
                     }
                 {
                     p with 
-                        VersionSuffix = Some suffix
-                        OutputPath = Some pkgDir
                         MSBuildParams = msBuildParams
+                        OutputPath = Some pkgDir
                 }
-            else
-                failwith "aborted"
-    ))
+            ))
+            Paket.pack(fun p ->
+                { p with
+                    TemplateFile = "src/Plotly.NET.Interactive/paket.template"
+                    ToolType = ToolType.CreateLocalTool()
+                    OutputPath = pkgDir
+                    Version = stableVersionTag
+                    ReleaseNotes = release.Notes |> String.toLines 
+                }
+            )
+    else failwith "aborted"
+}
+
+let packPrerelease = BuildTask.create "PackPrerelease" [clean; build] {
+    printfn "Please enter pre-release package suffix"
+    let suffix = System.Console.ReadLine()
+    let prereleaseTag = (sprintf "%s-%s" release.NugetVersion suffix)
+    if promptYesNo (sprintf "package tag will be %s OK?" prereleaseTag )
+        then 
+            !! "src/**/*.*proj"
+            -- "src/**/Plotly.NET.Interactive.fsproj"
+            |> Seq.iter (Fake.DotNet.DotNet.pack (fun p ->
+                        let msBuildParams =
+                            {p.MSBuildParams with 
+                                Properties = ([
+                                    "Version", prereleaseTag
+                                    "PackageReleaseNotes",  (release.Notes |> String.toLines )
+                                ] @ p.MSBuildParams.Properties)
+                            }
+                        {
+                            p with 
+                                VersionSuffix = Some suffix
+                                OutputPath = Some pkgDir
+                                MSBuildParams = msBuildParams
+                        }
+            ))
+            Paket.pack(fun p ->
+                { p with
+                    TemplateFile = "src/Plotly.NET.Interactive/paket.template"
+                    ToolType = ToolType.CreateLocalTool()
+                    OutputPath = pkgDir
+                    Version = prereleaseTag
+                    ReleaseNotes = release.Notes |> String.toLines 
+                }
+            )
+    else
+        failwith "aborted"
 }
 
 let runTests = BuildTask.create "RunTests" [clean; build; copyBinaries] {
