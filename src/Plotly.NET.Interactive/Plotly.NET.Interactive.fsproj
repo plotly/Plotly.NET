@@ -18,7 +18,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\docs\img\logo.png" Pack="true" PackagePath="\"/>
+    <None Include="..\..\docs\img\logo.png" Pack="true" PackagePath="\" />
+    <None Include="..\..\bin\Plotly.NET.Interactive\netstandard2.1\Plotly.NET.Interactive.dll" Pack="true" PackagePath="interactive-extensions/dotnet" />
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Extension.fs" />
   </ItemGroup>
@@ -33,5 +34,10 @@
     <ProjectReference Include="..\Plotly.NET\Plotly.NET.fsproj" />
   </ItemGroup>
 
-  <Import Project="..\..\.paket\Paket.Restore.targets" />
+  <ItemGroup>
+    <PackageReference Include="Microsoft.DotNet.Interactive" Version="1.0.0-beta.20574.9" />
+    <PackageReference Include="Microsoft.DotNet.Interactive.Formatting" Version="1.0.0-beta.20574.9" />
+    <PackageReference Include="Microsoft.DotNet.Interactive.FSharp" Version="1.0.0-beta.20574.9" />
+  </ItemGroup>
+
 </Project>

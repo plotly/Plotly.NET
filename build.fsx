@@ -59,7 +59,14 @@ let release = ReleaseNotes.load "RELEASE_NOTES.md"
 
 let projectRepo = "https://github.com/plotly/Plotly.NET"
 
-let stableVersion   = SemVer.parse release.NugetVersion
+let stableVersion = SemVer.parse release.NugetVersion
+
+let stableVersionTag = (sprintf "%i.%i.%i" stableVersion.Major stableVersion.Minor stableVersion.Patch )
+
+let mutable prereleaseSuffix = ""
+
+let mutable prereleaseTag = ""
+
 
 [<AutoOpen>]
 module MessagePrompts =
@@ -80,6 +87,14 @@ module MessagePrompts =
         Do you want to continue?"""
 
     let releaseDocsMsg = """This will push the docs to gh-pages. Remember building the docs prior to this. Do you want to continue?"""
+
+
+let setPrereleaseTag = BuildTask.create "SetPrereleaseTag" [] {
+    printfn "Please enter pre-release package suffix"
+    let suffix = System.Console.ReadLine()
+    prereleaseSuffix <- suffix
+    prereleaseTag <- (sprintf "%s-%s" release.NugetVersion suffix)
+}
 
 let clean = BuildTask.create "Clean" [] {
     !! "src/**/bin"
@@ -104,12 +119,10 @@ let copyBinaries = BuildTask.create "CopyBinaries" [clean; build] {
     |>  Seq.iter (fun (fromDir, toDir) -> Shell.copyDir toDir fromDir (fun _ -> true))
 }
 
-let pack = BuildTask.create "Pack" [clean; build] {
-    let stableVersionTag = (sprintf "%i.%i.%i" stableVersion.Major stableVersion.Minor stableVersion.Patch )
+let pack = BuildTask.create "Pack" [clean; build; copyBinaries] {
     if promptYesNo (sprintf "creating stable package with version %s OK?" stableVersionTag ) 
         then
             !! "src/**/*.*proj"
-            -- "src/**/Plotly.NET.Interactive.fsproj"
             |> Seq.iter (Fake.DotNet.DotNet.pack (fun p ->
                 let msBuildParams =
                     {p.MSBuildParams with 
@@ -124,26 +137,14 @@ let pack = BuildTask.create "Pack" [clean; build] {
                         OutputPath = Some pkgDir
                 }
             ))
-            Paket.pack(fun p ->
-                { p with
-                    TemplateFile = "src/Plotly.NET.Interactive/paket.template"
-                    ToolType = ToolType.CreateLocalTool()
-                    OutputPath = pkgDir
-                    Version = stableVersionTag
-                    ReleaseNotes = release.Notes |> String.toLines 
-                }
-            )
     else failwith "aborted"
 }
 
-let packPrerelease = BuildTask.create "PackPrerelease" [clean; build] {
-    printfn "Please enter pre-release package suffix"
-    let suffix = System.Console.ReadLine()
-    let prereleaseTag = (sprintf "%s-%s" release.NugetVersion suffix)
+let packPrerelease = BuildTask.create "PackPrerelease" [setPrereleaseTag; clean; build; copyBinaries] {
     if promptYesNo (sprintf "package tag will be %s OK?" prereleaseTag )
         then 
             !! "src/**/*.*proj"
-            -- "src/**/Plotly.NET.Interactive.fsproj"
+            //-- "src/**/Plotly.NET.Interactive.fsproj"
             |> Seq.iter (Fake.DotNet.DotNet.pack (fun p ->
                         let msBuildParams =
                             {p.MSBuildParams with 
@@ -154,20 +155,11 @@ let packPrerelease = BuildTask.create "PackPrerelease" [clean; build] {
                             }
                         {
                             p with 
-                                VersionSuffix = Some suffix
+                                VersionSuffix = Some prereleaseSuffix
                                 OutputPath = Some pkgDir
                                 MSBuildParams = msBuildParams
                         }
             ))
-            Paket.pack(fun p ->
-                { p with
-                    TemplateFile = "src/Plotly.NET.Interactive/paket.template"
-                    ToolType = ToolType.CreateLocalTool()
-                    OutputPath = pkgDir
-                    Version = prereleaseTag
-                    ReleaseNotes = release.Notes |> String.toLines 
-                }
-            )
     else
         failwith "aborted"
 }
@@ -189,7 +181,15 @@ let buildDocs = BuildTask.create "BuildDocs" [build; copyBinaries] {
     runDotNet "fsdocs build --eval --clean --strict --property Configuration=Release" "./"
 }
 
+let buildDocsPrerelease = BuildTask.create "BuildDocsPrerelease" [build; copyBinaries] {
+    runDotNet "fsdocs build --eval --clean --strict --property Configuration=Release" "./"
+}
+
 let watchDocs = BuildTask.create "WatchDocs" [build; copyBinaries] {
+   runDotNet "fsdocs watch --eval --clean --property Configuration=Release" "./"
+}
+
+let watchDocsPrerelease = BuildTask.create "WatchDocsPrerelease" [build; copyBinaries] {
    runDotNet "fsdocs watch --eval --clean --property Configuration=Release" "./"
 }
 
@@ -220,6 +220,22 @@ let runTestsWithCodeCov = BuildTask.create "RunTestsWithCodeCov" [clean; build; 
                 Logger = Some "console;verbosity=detailed"
         }
     ) testProject
+}
+
+let createTag = BuildTask.create "CreateTag" [clean; build; copyBinaries; runTests; pack] {
+    if promptYesNo (sprintf "tagging branch with %s OK?" stableVersionTag ) then
+        Git.Branches.tag "" stableVersionTag
+        Git.Branches.pushTag "" projectRepo stableVersionTag
+    else
+        failwith "aborted"
+}
+
+let createPrereleaseTag = BuildTask.create "CreatePrereleaseTag" [setPrereleaseTag; clean; build; copyBinaries; runTests; pack] {
+    if promptYesNo (sprintf "tagging branch with %s OK?" prereleaseTag ) then 
+        Git.Branches.tag "" prereleaseTag
+        Git.Branches.pushTag "" projectRepo prereleaseTag
+    else
+        failwith "aborted"
 }
 
 let _all = BuildTask.createEmpty "All" [clean; build; copyBinaries; runTests (*runTestsWithCodeCov*); pack; buildDocs]
