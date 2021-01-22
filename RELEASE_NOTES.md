@@ -23,7 +23,7 @@
  * [Add chart templates and related functions](https://github.com/plotly/Plotly.NET/commit/62f297649320783ea0e64725ff4703bb225268d0)
  * [Fix multiple chart htmls not correctly rendering on the same page](https://github.com/plotly/Plotly.NET/commit/ae6680049b02abd259c8989d1abd55e4665445c8)
  * [**Breaking:** Fix keys values order for bar charts](https://github.com/plotly/Plotly.NET/commit/ccb6af7df8bc071f2a0baf020805fc25d2df70b4)
- * [**Possibly breaking:** Update to F# 5 and target .net 5](https://github.com/plotly/Plotly.NET/commit/bd6f12023e189622c30898136425afe3ccdec5eb)
+ * [**Possibly breaking:** target netstandad 2.1](https://github.com/plotly/Plotly.NET/commit/0fd6d42d755c060f42cf48465cbcfd02e0a07088)
  * [Add fslab chart template](https://github.com/plotly/Plotly.NET/commit/efde9d82e14319b8c06081aae5568c2eae76ae6b)
 
 ### 1.2.2 - Apr 9 2020
