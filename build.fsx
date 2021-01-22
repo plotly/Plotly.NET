@@ -286,9 +286,18 @@ let createPrereleaseTag = BuildTask.create "CreatePrereleaseTag" [setPrereleaseT
         failwith "aborted"
 }
 
-let _release = BuildTask.createEmpty "Release" [clean; build; copyBinaries; runTests; pack; buildDocs; createTag; releaseDocs]
+let publishNuget = BuildTask.create "PublishNuget" [clean; build; copyBinaries; runTests; pack] {
+    let source = "https://api.nuget.org/v3/index.json"
+    let apikey =  Environment.environVar "NUGET_KEY"
+    for artifact in !! pkgDir do
+        let result = DotNet.exec id "nuget" (sprintf "push -s %s -k %s %s" source apikey artifact)
+        if not result.OK then failwith "failed to push packages"
+}
 
-let _releasePreview = BuildTask.createEmpty "ReleasePreview" [setPrereleaseTag; clean; build; copyBinaries; runTests; packPrerelease; buildDocsPrerelease; createPrereleaseTag; releaseDocs]
+
+let _release = BuildTask.createEmpty "Release" [clean; build; copyBinaries; runTests; pack; buildDocs; createTag; publishNuget; releaseDocs]
+
+let _releasePreview = BuildTask.createEmpty "ReleasePreview" [setPrereleaseTag; clean; build; copyBinaries; runTests; packPrerelease; buildDocsPrerelease; createPrereleaseTag; publishNuget; releaseDocs]
 
 let _all = BuildTask.createEmpty "All" [clean; build; copyBinaries; runTests (*runTestsWithCodeCov*); pack; buildDocs]
 
