@@ -1,20 +1,15 @@
 (*** hide ***)
 
 (*** condition: prepare ***)
-#r @"..\packages\Newtonsoft.Json\lib\netstandard2.0\Newtonsoft.Json.dll"
-#r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
-(*** condition: fsx ***)
-#if FSX
-#r "../packages/Newtonsoft.Json/lib/netstandard2.0/Newtonsoft.Json.dll"
-#r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
-#endif // FSX
+#r "nuget: Newtonsoft.JSON, 12.0.3"
+#r "../bin/Plotly.NET/netstandard2.1/Plotly.NET.dll"
+
 (*** condition: ipynb ***)
 #if IPYNB
-#r "nuget: Plotly.NET, 2.0.0-beta1"
-#r "nuget: Plotly.NET.Interactive, 2.0.0-alpha5"
+#r "nuget: Plotly.NET, {{fsdocs-package-version}}"
+#r "nuget: Plotly.NET.Interactive, {{fsdocs-package-version}}"
 #endif // IPYNB
 
-open Plotly.NET
 
 (**
 # Plotly.NET
@@ -49,30 +44,32 @@ Old packages up until version 1.2.2 can be accessed via the old package name *FS
 
 ### For applications and libraries
 
-A preview version of Plotly.NET 2.0.0 is available on nuget to plug into your favorite package manager:
+A preview version of Plotly.NET 2.0.0 is available on nuget to plug into your favorite package manager.
+
+You can find all available package versions on the [nuget page](https://www.nuget.org/packages/Plotly.NET/).
 
  - dotnet CLI
 
 ```shell
-dotnet add package Plotly.NET --version 2.0.0-alpha5
+dotnet add package Plotly.NET --version <desired-version-here>
 ```
 
  - paket CLI
 
 ```shell
-paket add Plotly.NET --version 2.0.0-beta1
+paket add Plotly.NET --version <desired-version-here>
 ```
 
  - package manager
 
 ```shell
-Install-Package Plotly.NET -Version 2.0.0-beta1
+Install-Package Plotly.NET -Version <desired-version-here>
 ```
 
 Or add the package reference directly to your `.*proj` file:
 
 ```
-<PackageReference Include="Plotly.NET" Version="2.0.0-beta1" />
+<PackageReference Include="Plotly.NET" Version="<desired-version-here>" />
 ```
 
 ### For scripting
@@ -80,7 +77,7 @@ Or add the package reference directly to your `.*proj` file:
 You can include the package via an inline package reference:
 
 ```
-#r "nuget: Plotly.NET, 2.0.0-beta1"
+#r "nuget: Plotly.NET, <desired-version-here>"
 ```
 
 ### For dotnet interactive notebooks
@@ -89,8 +86,8 @@ You can use the same inline package reference as in script, but as an additional
 the interactive extensions for dotnet interactive have you covered for seamless chart rendering:
 
 ```
-#r "nuget: Plotly.NET, 2.0.0-beta1"
-#r "nuget: Plotly.NET.Interactive, 2.0.0-beta1"
+#r "nuget: Plotly.NET, <desired-version-here>"
+#r "nuget: Plotly.NET.Interactive,<desired-version-here>"
 ```
 
 # Overview
@@ -114,6 +111,7 @@ mandatory arguments are the data to visualize.
 Example: The first two arguments of the `Chart.Point` function are the x and y data. You can therefore initialize a point chart like this:
 
 *)
+open Plotly.NET
 let xData = [0. .. 10.]
 let yData = [0. .. 10.]
 let myFirstChart = Chart.Point(xData,yData)
@@ -175,9 +173,9 @@ In a notebook context you usually have (at leat when running on a jupyter server
 That's why you can render charts directly in the cell output. Just end the cell with the chart value:
 *)
 
-let xData = [0. .. 10.]
-let yData = [0. .. 10.]
-Chart.Point(xData,yData)
+let xData' = [0. .. 10.]
+let yData' = [0. .. 10.]
+Chart.Point(xData',yData')
 
 (**Here is the styled chart:*)
 

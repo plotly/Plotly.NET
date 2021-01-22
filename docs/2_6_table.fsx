@@ -1,23 +1,19 @@
 (*** hide ***)
 
 (*** condition: prepare ***)
-#r @"..\packages\Newtonsoft.Json\lib\netstandard2.0\Newtonsoft.Json.dll"
-#r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
-(*** condition: fsx ***)
-#if FSX
-#r "../packages/Newtonsoft.Json/lib/netstandard2.0/Newtonsoft.Json.dll"
-#r "../bin/Plotly.NET/net5.0/Plotly.NET.dll"
-#endif // FSX
+#r "nuget: Newtonsoft.JSON, 12.0.3"
+#r "../bin/Plotly.NET/netstandard2.1/Plotly.NET.dll"
+
 (*** condition: ipynb ***)
 #if IPYNB
-#r "nuget: Plotly.NET, 2.0.0-beta1"
-#r "nuget: Plotly.NET.Interactive, 2.0.0-alpha5"
+#r "nuget: Plotly.NET, {{fsdocs-package-version}}"
+#r "nuget: Plotly.NET.Interactive, {{fsdocs-package-version}}"
 #endif // IPYNB
 
 (** 
 # Tables
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=table.ipynb)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=2_5_table.ipynb)
 
 This example shows how to create tables in F#.
 

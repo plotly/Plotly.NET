@@ -177,20 +177,68 @@ let runTests = BuildTask.create "RunTests" [clean; build; copyBinaries] {
 // --------------------------------------------------------------------------------------
 // Generate the documentation
 
-let buildDocs = BuildTask.create "BuildDocs" [build; copyBinaries] {
-    runDotNet "fsdocs build --eval --clean --strict --property Configuration=Release" "./"
+let initDocPage = BuildTask.create "InitDocsPage" [] {
+    printfn "Please enter filename"
+    let filename = System.Console.ReadLine()
+    
+    printfn "Please enter title"
+    let title = System.Console.ReadLine()
+
+    let path = "./docs" </> filename
+
+    let lines = """
+(*** hide ***)
+
+(*** condition: prepare ***)
+#r @"..\packages\Newtonsoft.Json\lib\netstandard2.0\Newtonsoft.Json.dll"
+#r "../bin/Plotly.NET/netstandard2.1/Plotly.NET.dll"
+
+(*** condition: ipynb ***)
+#if IPYNB
+#r "nuget: Plotly.NET, {{fsdocs-package-version}}"
+#r "nuget: Plotly.NET.Interactive, {{fsdocs-package-version}}"
+#endif // IPYNB
+
+(**
+# {{TITLE}}
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{FILENAME}}.ipynb)
+*)
+"""
+
+    if (promptYesNo (sprintf "creating file %s with title %s OK?" path title)) then
+        lines
+        |> String.replace "{{FILENAME}}" filename
+        |> String.replace "{{TITLE}}" title
+        |> fun content -> File.WriteAllText (path,content)
+    else
+        failwith "aborted"
 }
 
-let buildDocsPrerelease = BuildTask.create "BuildDocsPrerelease" [build; copyBinaries] {
-    runDotNet "fsdocs build --eval --clean --strict --property Configuration=Release" "./"
+    
+
+let buildDocs = BuildTask.create "BuildDocs" [build; copyBinaries] {
+    runDotNet 
+        (sprintf "fsdocs watch --eval --clean --property Configuration=Release --parameters fsdocs-package-version %s" stableVersionTag)
+        "./"
+}
+
+let buildDocsPrerelease = BuildTask.create "BuildDocsPrerelease" [setPrereleaseTag; build; copyBinaries] {
+    runDotNet 
+        (sprintf "fsdocs watch --eval --clean --property Configuration=Release --parameters fsdocs-package-version %s" prereleaseTag)
+        "./"
 }
 
 let watchDocs = BuildTask.create "WatchDocs" [build; copyBinaries] {
-   runDotNet "fsdocs watch --eval --clean --property Configuration=Release" "./"
+    runDotNet 
+        (sprintf "fsdocs watch --eval --clean --property Configuration=Release --parameters fsdocs-package-version %s" stableVersionTag)
+        "./"
 }
 
-let watchDocsPrerelease = BuildTask.create "WatchDocsPrerelease" [build; copyBinaries] {
-   runDotNet "fsdocs watch --eval --clean --property Configuration=Release" "./"
+let watchDocsPrerelease = BuildTask.create "WatchDocsPrerelease" [setPrereleaseTag; build; copyBinaries] {
+    runDotNet 
+        (sprintf "fsdocs watch --eval --clean --property Configuration=Release --parameters fsdocs-package-version %s" prereleaseTag)
+        "./"
 }
 
 let releaseDocs =  BuildTask.create "ReleaseDocs" [buildDocs] {
@@ -237,6 +285,10 @@ let createPrereleaseTag = BuildTask.create "CreatePrereleaseTag" [setPrereleaseT
     else
         failwith "aborted"
 }
+
+let _release = BuildTask.createEmpty "Release" [clean; build; copyBinaries; runTests; pack; buildDocs; createTag; releaseDocs]
+
+let _releasePreview = BuildTask.createEmpty "ReleasePreview" [setPrereleaseTag; clean; build; copyBinaries; runTests; packPrerelease; buildDocsPrerelease; createPrereleaseTag; releaseDocs]
 
 let _all = BuildTask.createEmpty "All" [clean; build; copyBinaries; runTests (*runTestsWithCodeCov*); pack; buildDocs]
 
