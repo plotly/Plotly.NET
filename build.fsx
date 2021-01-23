@@ -247,8 +247,21 @@ let watchDocsPrerelease = BuildTask.create "WatchDocsPrerelease" [setPrereleaseT
         "./"
 }
 
-let releaseDocs =  BuildTask.create "ReleaseDocs" [buildDocs.IfNeeded; buildDocsPrerelease.IfNeeded] {
-    let msg = sprintf "release docs for version %s?" (if isPrerelease then prereleaseTag else stableVersionTag)
+let releaseDocs =  BuildTask.create "ReleaseDocs" [buildDocs] {
+    let msg = sprintf "release docs for version %s?" stableVersionTag
+    if promptYesNo msg then
+        Shell.cleanDir "temp"
+        Git.CommandHelper.runSimpleGitCommand "." (sprintf "clone %s temp/gh-pages --depth 1 -b gh-pages" projectRepo) |> ignore
+        Shell.copyRecursive "output" "temp/gh-pages" true |> printfn "%A"
+        Git.CommandHelper.runSimpleGitCommand "temp/gh-pages" "add ." |> printfn "%s"
+        let cmd = sprintf """commit -a -m "Update generated documentation for version %s""" release.NugetVersion
+        Git.CommandHelper.runSimpleGitCommand "temp/gh-pages" cmd |> printfn "%s"
+        Git.Branches.push "temp/gh-pages"
+    else failwith "aborted"
+}
+
+let releaseDocsPrerelease =  BuildTask.create "releaseDocsPrerelease" [buildDocsPrerelease] {
+    let msg = sprintf "release docs for version %s?" prereleaseTag
     if promptYesNo msg then
         Shell.cleanDir "temp"
         Git.CommandHelper.runSimpleGitCommand "." (sprintf "clone %s temp/gh-pages --depth 1 -b gh-pages" projectRepo) |> ignore
@@ -295,7 +308,20 @@ let createPrereleaseTag = BuildTask.create "CreatePrereleaseTag" [setPrereleaseT
         failwith "aborted"
 }
 
-let publishNuget = BuildTask.create "PublishNuget" [clean; build; copyBinaries; runTests; pack.IfNeeded; packPrerelease.IfNeeded] {
+let publishNuget = BuildTask.create "PublishNuget" [clean; build; copyBinaries; runTests; pack] {
+    let targets = (!! (sprintf "%s/*.*pkg" pkgDir ))
+    for target in targets do printfn "%A" target
+    let msg = sprintf "release package with version %s?" (if isPrerelease then prereleaseTag else stableVersionTag)
+    if promptYesNo msg then
+        let source = "https://api.nuget.org/v3/index.json"
+        let apikey =  Environment.environVar "NUGET_KEY"
+        for artifact in targets do
+            let result = DotNet.exec id "nuget" (sprintf "push -s %s -k %s %s --skip-duplicate" source apikey artifact)
+            if not result.OK then failwith "failed to push packages"
+    else failwith "aborted"
+}
+
+let publishNugetPrerelease = BuildTask.create "PublishNugetPrerelease" [clean; build; copyBinaries; runTests; packPrerelease] {
     let targets = (!! (sprintf "%s/*.*pkg" pkgDir ))
     for target in targets do printfn "%A" target
     let msg = sprintf "release package with version %s?" (if isPrerelease then prereleaseTag else stableVersionTag)
@@ -311,7 +337,7 @@ let publishNuget = BuildTask.create "PublishNuget" [clean; build; copyBinaries; 
 
 let _release = BuildTask.createEmpty "Release" [clean; build; copyBinaries; runTests; pack; buildDocs; createTag; publishNuget; releaseDocs]
 
-let _releasePreview = BuildTask.createEmpty "ReleasePreview" [setPrereleaseTag; clean; build; copyBinaries; runTests; packPrerelease; buildDocsPrerelease; createPrereleaseTag; publishNuget; releaseDocs]
+let _releasePreview = BuildTask.createEmpty "ReleasePreview" [setPrereleaseTag; clean; build; copyBinaries; runTests; packPrerelease; buildDocsPrerelease; createPrereleaseTag; publishNugetPrerelease; releaseDocs]
 
 let _all = BuildTask.createEmpty "All" [clean; build; copyBinaries; runTests (*runTestsWithCodeCov*); pack; buildDocs]
 
