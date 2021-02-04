@@ -29,32 +29,32 @@ Plotly.NET will be available as 2.0.0 version of its predecessor FSharp.Plotly. 
 
 Old packages up until version 1.2.2 can be accessed via the old package name *FSharp.Plotly* [here](https://www.nuget.org/packages/FSharp.Plotly/)
 
-### For applications and libraries
+The most recent Plotly.NET package is [![](https://img.shields.io/nuget/vpre/Plotly.NET)](https://www.nuget.org/packages/Plotly.NET/).
 
-A preview version of Plotly.NET 2.0.0 is available on nuget to plug into your favorite package manager:
+### For applications and libraries
 
  - dotnet CLI
 
 ```shell
-dotnet add package Plotly.NET --version 2.0.0-alpha5
+dotnet add package Plotly.NET <version>
 ```
 
  - paket CLI
 
 ```shell
-paket add Plotly.NET --version 2.0.0-beta1
+paket add Plotly.NET --version <version>
 ```
 
  - package manager
 
 ```shell
-Install-Package Plotly.NET -Version 2.0.0-beta1
+Install-Package Plotly.NET -Version <version>
 ```
 
 Or add the package reference directly to your `.*proj` file:
 
 ```
-<PackageReference Include="Plotly.NET" Version="2.0.0-beta1" />
+<PackageReference Include="Plotly.NET" Version="<version>" />
 ```
 
 ### For scripting
@@ -62,7 +62,7 @@ Or add the package reference directly to your `.*proj` file:
 You can include the package via an inline package reference:
 
 ```
-#r "nuget: Plotly.NET, 2.0.0-beta1"
+#r "nuget: Plotly.NET, <version>"
 ```
 
 ### For dotnet interactive notebooks
@@ -71,8 +71,8 @@ You can use the same inline package reference as in script, but as an additional
 the interactive extensions for dotnet interactive have you covered for seamless chart rendering:
 
 ```
-#r "nuget: Plotly.NET, 2.0.0-beta1"
-#r "nuget: Plotly.NET.Interactive, 2.0.0-beta1"
+#r "nuget: Plotly.NET, <version>"
+#r "nuget: Plotly.NET.Interactive, <version>"
 ```
 
 # Documentation
@@ -89,6 +89,8 @@ The documentation for this library is automatically generated (using FSharp.Form
 
 # Development
 
+_Note:_ The `release` and `prerelease` build targets assume that there is a `NUGET_KEY` environment variable that contains a valid Nuget.org API key.
+
 ### build
 
 Check the [build.fsx file](https://github.com/plotly/Plotly.NET/blob/dev/build.fsx) to take a look at the  build targets. Here are some examples:
@@ -96,19 +98,27 @@ Check the [build.fsx file](https://github.com/plotly/Plotly.NET/blob/dev/build.f
 ```shell
 # Windows
 
-# Build, test, pack nuget, build docs
-./build.cmd -t all 
-
 # Build only
 ./build.cmd
 
+# Full release buildchain: build, test, pack, build the docs, push a git tag, publsih thze nuget package, release the docs
+./build.cmd -t release
+
+# The same for prerelease versions:
+./build.cmd -t prerelease
+
+
 # Linux/mac
 
-# Build, test, pack nuget, build docs
-./build.sh -t all 
-
 # Build only
-./build.sh
+build.sh
+
+# Full release buildchain: build, test, pack, build the docs, push a git tag, publsih thze nuget package, release the docs
+build.sh -t release
+
+# The same for prerelease versions:
+build.sh -t prerelease
+
 ```
 
 ### docs
