@@ -25,6 +25,8 @@
  * [**Breaking:** Fix keys values order for bar charts](https://github.com/plotly/Plotly.NET/commit/ccb6af7df8bc071f2a0baf020805fc25d2df70b4)
  * [**Possibly breaking:** target netstandad 2.1](https://github.com/plotly/Plotly.NET/commit/0fd6d42d755c060f42cf48465cbcfd02e0a07088)
  * [Add fslab chart template](https://github.com/plotly/Plotly.NET/commit/efde9d82e14319b8c06081aae5568c2eae76ae6b)
+ * [Add Legend creation properties and related functions](https://github.com/plotly/Plotly.NET/commit/a96af40901c627817ebd75b517b872f4cc6a941d)
+
 
 ### 1.2.2 - Apr 9 2020
  * [Opening Charts is now more or less OS agnostic](https://github.com/plotly/Plotly.NET/commit/f6e3dceade085e43e7e56b478b9cf7b533a4fe55)
