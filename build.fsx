@@ -383,11 +383,23 @@ let _release =
         "Release" 
         [clean; build; copyBinaries; runTests; pack; buildDocs; createTag; publishNuget; releaseDocs]
 
+/// Full release of nuget package, git tag, and documentation for the stable version.
+let _releaseNoDocs = 
+    BuildTask.createEmpty 
+        "ReleaseNoDocs" 
+        [clean; build; copyBinaries; runTests; pack; createTag; publishNuget]
+
 /// Full release of nuget package, git tag, and documentation for the prerelease version.
 let _preRelease = 
     BuildTask.createEmpty 
         "PreRelease" 
         [setPrereleaseTag; clean; build; copyBinaries; runTests; packPrerelease; buildDocsPrerelease; createPrereleaseTag; publishNugetPrerelease; prereleaseDocs]
+
+/// Full release of nuget package, git tag, and documentation for the prerelease version.
+let _preReleaseNoDocs = 
+    BuildTask.createEmpty 
+        "PreReleaseNoDocs" 
+        [setPrereleaseTag; clean; build; copyBinaries; runTests; packPrerelease; createPrereleaseTag; publishNugetPrerelease]
 
 // run copyBinaries by default
 BuildTask.runOrDefault copyBinaries
