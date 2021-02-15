@@ -381,11 +381,11 @@ module GenericChart =
         | Chart (_)             -> 1
         | MultiChart (traces,_,_) -> traces |> Seq.length
 
-    /// Creates a new GenericChart whose traces are the results of applying the given function to each of the trace of the GenericChart.
-    let existsTrace (f:Trace->bool) gChart =
+    /// Returns true if the given chart contains a trace for which the predicate function returns true
+    let existsTrace (predicate: Trace -> bool) gChart =
         match gChart with
-        | Chart (trace,_,_)       -> f trace
-        | MultiChart (traces,_,_) -> traces |> List.exists f
+        | Chart (trace,_,_)       -> predicate trace
+        | MultiChart (traces,_,_) -> traces |> List.exists predicate
 
     /// Converts from a trace object and a layout object into GenericChart
     let ofTraceObject trace = //layout =
@@ -395,6 +395,7 @@ module GenericChart =
     let ofTraceObjects traces = // layout =
         GenericChart.MultiChart(traces, Layout(), Config())
 
+    ///
     let mapLayout f gChart =
         match gChart with
         | Chart (trace,layout,config)       -> Chart (trace,f layout,config)

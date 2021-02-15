@@ -32,7 +32,7 @@
     <FsDocsReleaseNotesLink>https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md</FsDocsReleaseNotesLink>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="..\..\docs\img\logo.png" Pack="true" PackagePath="\"/>
+    <None Include="..\..\docs\img\logo.png" Pack="true" PackagePath="\" />
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="StyleParams.fs" />
     <Compile Include="DynamicObj.fs" />
@@ -45,6 +45,7 @@
     <Compile Include="Colorbar.fs" />
     <Compile Include="RangeSlider.fs" />
     <Compile Include="Light.fs" />
+    <Compile Include="Legend.fs" />
     <Compile Include="Contours.fs" />
     <Compile Include="Dimensions.fs" />
     <Compile Include="Domain.fs" />

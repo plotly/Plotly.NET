@@ -9,6 +9,7 @@
 #load "Colorbar.fs"
 #load "RangeSlider.fs"
 #load "Light.fs"
+#load "Legend.fs"
 #load "Contours.fs"
 #load "Dimensions.fs"
 #load "Domain.fs"
@@ -49,6 +50,11 @@ let myTemplate =
     ChartTemplates.dark
     |> Template.withColorWay ChartTemplates.ColorWays.plotly
 
+let myLegend = 
+    Legend.init(
+        Orientation = StyleParam.Orientation.Horizontal
+    )
+
 //F# functional pipeline to compose a chart with functions
 //
 [
@@ -66,10 +72,7 @@ let myTemplate =
 ]
 |> List.map Chart.Line
 |> Chart.Combine
-|> Chart.withTraceName("Hello from F#",Showlegend=true)
-//|> Chart.withY_AxisStyle("xAxis",Showline=true)
-//|> Chart.withX_AxisStyle("yAxis",Showline=true)
-|> Chart.withTemplate ChartTemplates.fslab
+|> Chart.withLegend(myLegend)
 |> Chart.Show
 
 

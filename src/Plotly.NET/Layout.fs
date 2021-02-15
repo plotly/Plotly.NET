@@ -1,14 +1,6 @@
 namespace Plotly.NET
 
 
-/// Legend 
-type Legend() = 
-    inherit DynamicObj ()
-
-    /// Init Legend type
-    static member init (applyStyle:Legend->Legend) = 
-        Legend() |> applyStyle
-
 /// Margin 
 type Margin() = 
     inherit DynamicObj ()
@@ -188,7 +180,7 @@ type Layout() =
             ?Height     : float   ,
             //?xAxis      : Axis.LinearAxis,
             //?yAxis      : Axis.LinearAxis,
-            ?Legend        ,
+            ?Legend       : Legend,
             ?Annotations : seq<Annotation>  ,
             ?Margin        ,
                            
@@ -440,3 +432,9 @@ type Layout() =
 
                 layout
             )
+
+    static member setLegend(legend:Legend) =
+        (fun (layout:Layout) -> 
+            legend |> DynObj.setValue layout "legend"
+            layout
+        )

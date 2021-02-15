@@ -669,7 +669,35 @@ module StyleParam =
 
         static member convert = LayoutGridYSide.toString >> box
 
+    [<RequireQualifiedAccess>]
+    type LegendXAnchorPosition =
+        | Auto
+        | Left
+        | Center
+        | Right
 
+        static member toString = function
+            | Auto      -> "auto"
+            | Left      -> "left"
+            | Center    -> "center"
+            | Right     -> "right"
+
+        static member convert = LegendXAnchorPosition.toString >> box
+
+    [<RequireQualifiedAccess>]
+    type LegendYAnchorPosition =
+        | Auto
+        | Top
+        | Middle
+        | Bottom
+
+        static member toString = function
+            | Auto      -> "auto"
+            | Top       -> "top"
+            | Middle    -> "middle"
+            | Bottom    -> "bottom"
+
+        static member convert = LegendYAnchorPosition.toString >> box
 
 //--------------------------
 // #M#
@@ -1085,6 +1113,46 @@ module StyleParam =
             | SliceDice -> "slice-dice"
 
         static member convert = TreemapTilingPacking.toString >> box
+
+    [<RequireQualifiedAccess>]
+    type TraceOrder =
+        | Normal
+        | Reversed
+        | Grouped
+        | ReversedGrouped
+
+        static member toString = function
+            | Normal            -> "normal"
+            | Reversed          -> "reversed"
+            | Grouped           -> "grouped"
+            | ReversedGrouped   -> "reversed+grouped"
+    
+        static member convert = TraceOrder.toString >> box
+
+    [<RequireQualifiedAccess>]
+    type TraceItemSizing =
+        | Trace
+        | Constant
+
+        static member toString = function
+            | Trace            -> "trace"
+            | Constant          -> "constant"
+
+        static member convert = TraceItemSizing.toString >> box    
+        
+    [<RequireQualifiedAccess>]
+    type TraceItemClickOptions =
+        | Toggle
+        | ToggleOthers
+        | False
+
+        static member toString = function
+            | Toggle            -> "toggle"
+            | ToggleOthers      -> "toggleothers"
+            | False             -> "False"
+
+        static member convert = TraceItemClickOptions.toString >> box
+
 
 //--------------------------
 // #U#

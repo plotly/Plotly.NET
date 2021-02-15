@@ -381,6 +381,15 @@ module ChartExtensions =
                     |> Layout.SetLayoutGrid layoutGrid 
                 GenericChart.setLayout layout ch) 
 
+        // Set the LayoutGrid options of a Chart
+        [<CompiledName("WithLegend")>]
+        static member withLegend(legend:Legend) =
+            (fun (ch:GenericChart) -> 
+                let layout = 
+                    GenericChart.getLayout ch
+                    |> Layout.setLegend legend 
+                GenericChart.setLayout layout ch) 
+
         /// Sets a map for the given chart (will only work with traces supporting geo, e.g. choropleth, scattergeo)
         [<CompiledName("WithMap")>]
         static member withMap(map:Geo,[<Optional;DefaultParameterValue(null)>] ?Id ) =
