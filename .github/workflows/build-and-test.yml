@@ -16,11 +16,11 @@ jobs:
     - name: Setup .NET 3.1
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.x
+        dotnet-version: '3.1.x'
     - name: Setup .NET 5
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 5.x.x
+        dotnet-version: '5.0.201'
     - name: Restore local tools
       run: dotnet tool restore
     - name: Build and test
@@ -35,11 +35,11 @@ jobs:
     - name: Setup .NET 3.1
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.x
+        dotnet-version: '3.1.x'
     - name: Setup .NET 5
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 5.x.x
+        dotnet-version: '5.0.201'
     - name: Restore local tools
       run: dotnet tool restore
     - name: Build and test
