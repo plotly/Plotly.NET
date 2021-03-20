@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <OutputType>Library</OutputType>
     <NoWarn>$(NoWarn);NU5100</NoWarn><!-- dll outside of lib/ folder -->
     <OutputType>Library</OutputType>
@@ -32,7 +32,7 @@
 
   <ItemGroup>
     <None Include="..\..\docs\img\logo.png" Pack="true" PackagePath="\" />
-    <None Include="..\..\bin\Plotly.NET.Interactive\netstandard2.1\Plotly.NET.Interactive.dll" Pack="true" PackagePath="interactive-extensions/dotnet" />
+    <None Include="..\..\bin\Plotly.NET.Interactive\net5.0\Plotly.NET.Interactive.dll" Pack="true" PackagePath="interactive-extensions/dotnet" />
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Extension.fs" />
   </ItemGroup>
@@ -48,9 +48,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.DotNet.Interactive" Version="1.0.0-beta.20574.9" />
-    <PackageReference Include="Microsoft.DotNet.Interactive.Formatting" Version="1.0.0-beta.20574.9" />
-    <PackageReference Include="Microsoft.DotNet.Interactive.FSharp" Version="1.0.0-beta.20574.9" />
+    <PackageReference Include="Microsoft.DotNet.Interactive" Version="1.0.0-beta.21155.3" />
+    <PackageReference Include="Microsoft.DotNet.Interactive.Formatting" Version="1.0.0-beta.21155.3" />
   </ItemGroup>
 
 </Project>

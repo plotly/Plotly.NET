@@ -2,28 +2,39 @@
 
 **Fsharp.Plotly joined the Plotly family and will from now on be released under `Plotly.NET`**
 
- * [Add Rangesliders for linear Axis](https://github.com/plotly/Plotly.NET/commit/544641492195b1938697721b72814e0187a6c979)
- * [Improve jupyter notebook integration](https://github.com/plotly/Plotly.NET/commit/e9560656bbc8dbf767c9eb6ca35f321c98195238)
- * [Updated Violin Chart](https://github.com/plotly/Plotly.NET/commit/4d3afc527b11cd2f5a18c1d9876ad4e3f83beb02)
- * Add Chart.withColorBar and Chart.withColorBarStyle to change the appearance of colorbars
- * [Add Stackgroup related parameters to all charts derived from the scatter trace]()
- * [Refactor Chart.Stack]():
-   * new Charts: 
+#### Breaking changes compared to 1.x.x / previous 2.0.0 beta versions:
+
+ * [**Breaking:** Fix keys values order for bar charts](https://github.com/plotly/Plotly.NET/commit/ccb6af7df8bc071f2a0baf020805fc25d2df70b4)
+ * [**Breaking: fix color assignment of pie and doughnut charts**](https://github.com/plotly/Plotly.NET/commit/2bbb35ad5d44c6de1bf79b23b7b0a64effa8bdf9)
+ * [**Possibly breaking:** target netstandad 2.0](https://github.com/plotly/Plotly.NET/commit/0fd6d42d755c060f42cf48465cbcfd02e0a07088)
+
+#### Major Additions
+
+ * [Add kernel formatting extension for dotnet interactive notebooks](https://github.com/plotly/Plotly.NET/commit/fa990371dd68ec1f5784288ccd9e2d28d761ac93) (thanks [@WalternativeE](https://github.com/WalternativE))
+ * [Greatly improve C# interop](https://github.com/plotly/Plotly.NET/commit/c1ed1be0234a4fcfab921acb43f1c0cf128cc233)
+
+#### New Charts
+
+ * [Refactor Chart.Stack into]():
      * Chart.Grid: Uses the grid object of plotly.js to generate various types of subplot grids
      * Chart.SingleStack: Basically Chart.Grid with one Column
  * [Add Sunburst Chart](https://github.com/plotly/Plotly.NET/commit/3c6cd67219c6cd81f294f0453c62fd8b70c1e689)
  * [Add Treemap Chart](https://github.com/plotly/Plotly.NET/commit/70b86d0cf2e3c446d7d1c501871999a88222b5bf)
  * [Add OHLC Chart](https://github.com/plotly/Plotly.NET/commit/0d787cf070ea10892dfd77d42ef6a162f360408d)
- * [Add option to render all charts derived from the scatter trace type via WebGL as scattergl trace]()
+ * [Add option to render all charts derived from the scatter trace type via WebGL as scattergl trace](https://github.com/plotly/Plotly.NET/commit/75c7a32bb5a72f68cbbea9fd3872e77c30a180ec)
  * [Add Waterfall Chart](https://github.com/plotly/Plotly.NET/commit/4d93598aa03a965abc75007aea2885ff4d282059)
  * [Add ScatterGeo, PointGeo, LineGeo Charts](https://github.com/plotly/Plotly.NET/commit/4865c5ac0356bfb2465422a2352e18c4fce018c3)
+
+#### Minor Additions/fixes
+
+ * [Add Rangesliders for linear Axis](https://github.com/plotly/Plotly.NET/commit/544641492195b1938697721b72814e0187a6c979)
+ * [Improve jupyter notebook integration](https://github.com/plotly/Plotly.NET/commit/e9560656bbc8dbf767c9eb6ca35f321c98195238)
+ * [Updated Violin Chart](https://github.com/plotly/Plotly.NET/commit/4d3afc527b11cd2f5a18c1d9876ad4e3f83beb02)
+ * [Add Chart.withColorBar and Chart.withColorBarStyle to change the appearance of colorbars](https://github.com/plotly/Plotly.NET/commit/d73145acf388df727a7cb1876885d758b463bd7f)
+ * [Add Stackgroup related parameters to all charts derived from the scatter trace](https://github.com/plotly/Plotly.NET/commit/75c7a32bb5a72f68cbbea9fd3872e77c30a180ec)
  * [Add new `Figure` type to interop with Dash/Kaleido](https://github.com/plotly/Plotly.NET/commit/918adc20843d8ca1194e4511add09ba3cab5415f)
- * [Greatly improve C# interop](https://github.com/plotly/Plotly.NET/commit/c1ed1be0234a4fcfab921acb43f1c0cf128cc233)
- * [Add kernel formatting extension for dotnet interactive notebooks](https://github.com/plotly/Plotly.NET/commit/fa990371dd68ec1f5784288ccd9e2d28d761ac93) (thanks [@WalternativeE](https://github.com/WalternativE))
  * [Add chart templates and related functions](https://github.com/plotly/Plotly.NET/commit/62f297649320783ea0e64725ff4703bb225268d0)
  * [Fix multiple chart htmls not correctly rendering on the same page](https://github.com/plotly/Plotly.NET/commit/ae6680049b02abd259c8989d1abd55e4665445c8)
- * [**Breaking:** Fix keys values order for bar charts](https://github.com/plotly/Plotly.NET/commit/ccb6af7df8bc071f2a0baf020805fc25d2df70b4)
- * [**Possibly breaking:** target netstandad 2.1](https://github.com/plotly/Plotly.NET/commit/0fd6d42d755c060f42cf48465cbcfd02e0a07088)
  * [Add fslab chart template](https://github.com/plotly/Plotly.NET/commit/efde9d82e14319b8c06081aae5568c2eae76ae6b)
  * [Add Legend creation properties and related functions](https://github.com/plotly/Plotly.NET/commit/a96af40901c627817ebd75b517b872f4cc6a941d)
 

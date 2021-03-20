@@ -2,7 +2,7 @@
 
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 12.0.3"
-#r "../bin/Plotly.NET/netstandard2.1/Plotly.NET.dll"
+#r "../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
 
 (*** condition: ipynb ***)
 #if IPYNB
