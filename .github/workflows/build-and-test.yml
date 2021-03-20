@@ -2,9 +2,9 @@ name: Build and test
 
 on:
   push:
-    branches: [ developer ]
+    branches: [ dev ]
   pull_request:
-    branches: [ developer ]
+    branches: [ dev ]
 
 jobs:
   build-and-test-linux:
