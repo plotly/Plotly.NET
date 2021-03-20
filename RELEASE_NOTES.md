@@ -1,19 +1,18 @@
 ### 2.0.0 - TBD
 
 **Fsharp.Plotly joined the Plotly family and will from now on be released under `Plotly.NET`**
-
-#### Breaking changes compared to 1.x.x / previous 2.0.0 beta versions:
+** Breaking changes compared to 1.x.x / previous 2.0.0 beta versions:**
 
  * [**Breaking:** Fix keys values order for bar charts](https://github.com/plotly/Plotly.NET/commit/ccb6af7df8bc071f2a0baf020805fc25d2df70b4)
  * [**Breaking: fix color assignment of pie and doughnut charts**](https://github.com/plotly/Plotly.NET/commit/2bbb35ad5d44c6de1bf79b23b7b0a64effa8bdf9)
  * [**Possibly breaking:** target netstandad 2.0](https://github.com/plotly/Plotly.NET/commit/0fd6d42d755c060f42cf48465cbcfd02e0a07088)
 
-#### Major Additions
+**Major Additions:**
 
  * [Add kernel formatting extension for dotnet interactive notebooks](https://github.com/plotly/Plotly.NET/commit/fa990371dd68ec1f5784288ccd9e2d28d761ac93) (thanks [@WalternativeE](https://github.com/WalternativE))
  * [Greatly improve C# interop](https://github.com/plotly/Plotly.NET/commit/c1ed1be0234a4fcfab921acb43f1c0cf128cc233)
 
-#### New Charts
+**New Charts:**
 
  * [Refactor Chart.Stack into]():
      * Chart.Grid: Uses the grid object of plotly.js to generate various types of subplot grids
@@ -25,7 +24,7 @@
  * [Add Waterfall Chart](https://github.com/plotly/Plotly.NET/commit/4d93598aa03a965abc75007aea2885ff4d282059)
  * [Add ScatterGeo, PointGeo, LineGeo Charts](https://github.com/plotly/Plotly.NET/commit/4865c5ac0356bfb2465422a2352e18c4fce018c3)
 
-#### Minor Additions/fixes
+**Minor Additions/fixes:**
 
  * [Add Rangesliders for linear Axis](https://github.com/plotly/Plotly.NET/commit/544641492195b1938697721b72814e0187a6c979)
  * [Improve jupyter notebook integration](https://github.com/plotly/Plotly.NET/commit/e9560656bbc8dbf767c9eb6ca35f321c98195238)
