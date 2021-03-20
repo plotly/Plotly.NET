@@ -27,9 +27,8 @@ let labels = ["Residential"; "Non-Residential"; "Utility"]
 
 (**
 
-A pie or a doughnut chart can be created using the `Chart.Pie` and `Chart.Doughnut` functions.
-When creating pie or doughnut charts, it is usually desirable to provide both labels and 
-values.
+A pie, doughnut, or sunburst chart can be created using the `Chart.Pie`, `Chart.Doughnut`, and `Chart.Sunburst` functions.
+When creating pie charts, it is usually desirable to provide both labels and values.
 
 *)
 
@@ -60,4 +59,21 @@ doughnut1
 
 (***hide***)
 doughnut1 |> GenericChart.toChartHTML
+(***include-it-raw***)
+
+let sunburst1 =
+    Chart.Sunburst(
+        ["A";"B";"C";"D";"E"],
+        ["";"";"B";"B";""],
+        Values=[5.;0.;3.;2.;3.],
+        Text=["At";"Bt";"Ct";"Dt";"Et"]
+    )
+
+(*** condition: ipynb ***)
+#if IPYNB
+sunburst1
+#endif // IPYNB
+
+(***hide***)
+sunburst1 |> GenericChart.toChartHTML
 (***include-it-raw***)

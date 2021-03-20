@@ -1269,7 +1269,7 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>]  ?Labels,
             [<Optional;DefaultParameterValue(null)>]  ?Name,
             [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
-            [<Optional;DefaultParameterValue(null)>]  ?Color,
+            [<Optional;DefaultParameterValue(null)>]  ?Colors,
             [<Optional;DefaultParameterValue(null)>]  ?TextPosition,
             [<Optional;DefaultParameterValue(null)>]  ?TextFont,
             [<Optional;DefaultParameterValue(null)>]  ?Hoverinfo,
@@ -1277,7 +1277,7 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>]  ?Opacity) =         
         Trace.initPie (TraceStyle.Pie(Values=values,?Labels=Labels,?Textinfo=Textinfo))
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity,?Hoverinfo=Hoverinfo)        
-        |> TraceStyle.Marker(?Color=Color)
+        |> TraceStyle.Marker(?Colors=Colors)
         |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
         |> GenericChart.ofTraceObject 
 
@@ -1286,14 +1286,14 @@ type Chart =
     static member Pie(data:seq<#IConvertible*#IConvertible>,
             [<Optional;DefaultParameterValue(null)>]  ?Name,
             [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
-            [<Optional;DefaultParameterValue(null)>]  ?Color,
+            [<Optional;DefaultParameterValue(null)>]  ?Colors,
             [<Optional;DefaultParameterValue(null)>]  ?TextPosition,
             [<Optional;DefaultParameterValue(null)>]  ?TextFont,
             [<Optional;DefaultParameterValue(null)>]  ?Hoverinfo,
             [<Optional;DefaultParameterValue(null)>]  ?Textinfo,
             [<Optional;DefaultParameterValue(null)>]  ?Opacity) =         
         let values,labels = Seq.unzip data 
-        Chart.Pie(values,Labels=labels,?Name=Name,?Showlegend=Showlegend,?Color=Color,?TextPosition=TextPosition,?TextFont=TextFont,?Hoverinfo=Hoverinfo,?Textinfo=Textinfo,?Opacity=Opacity)
+        Chart.Pie(values,Labels=labels,?Name=Name,?Showlegend=Showlegend,?Colors=Colors,?TextPosition=TextPosition,?TextFont=TextFont,?Hoverinfo=Hoverinfo,?Textinfo=Textinfo,?Opacity=Opacity)
 
 
     /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data as a whole.
@@ -1301,7 +1301,7 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>]  ?Labels,
             [<Optional;DefaultParameterValue(null)>]  ?Name,
             [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
-            [<Optional;DefaultParameterValue(null)>]  ?Color,
+            [<Optional;DefaultParameterValue(null)>]  ?Colors,
             [<Optional;DefaultParameterValue(null)>]  ?Hole,
             [<Optional;DefaultParameterValue(null)>]  ?TextPosition,
             [<Optional;DefaultParameterValue(null)>]  ?TextFont,
@@ -1311,7 +1311,7 @@ type Chart =
         let hole' = if Hole.IsSome then Hole.Value else 0.4
         Trace.initPie (TraceStyle.Pie(Values=values,?Labels=Labels,?Textinfo=Textinfo,Hole=hole'))
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity,?Hoverinfo=Hoverinfo)        
-        |> TraceStyle.Marker(?Color=Color)
+        |> TraceStyle.Marker(?Colors=Colors)
         |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
         |> GenericChart.ofTraceObject 
 
@@ -1320,7 +1320,7 @@ type Chart =
     static member Doughnut(data:seq<#IConvertible*#IConvertible>,
             [<Optional;DefaultParameterValue(null)>]  ?Name,
             [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
-            [<Optional;DefaultParameterValue(null)>]  ?Color,
+            [<Optional;DefaultParameterValue(null)>]  ?Colors,
             [<Optional;DefaultParameterValue(null)>]  ?Hole,
             [<Optional;DefaultParameterValue(null)>]  ?TextPosition,
             [<Optional;DefaultParameterValue(null)>]  ?TextFont,
@@ -1328,7 +1328,7 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>]  ?Textinfo,
             [<Optional;DefaultParameterValue(null)>]  ?Opacity) =         
         let values,labels = Seq.unzip data 
-        Chart.Doughnut(values,Labels=labels,?Name=Name,?Showlegend=Showlegend,?Color=Color,?Hole=Hole,?TextPosition=TextPosition,?TextFont=TextFont,?Hoverinfo=Hoverinfo,?Textinfo=Textinfo,?Opacity=Opacity)
+        Chart.Doughnut(values,Labels=labels,?Name=Name,?Showlegend=Showlegend,?Colors=Colors,?Hole=Hole,?TextPosition=TextPosition,?TextFont=TextFont,?Hoverinfo=Hoverinfo,?Textinfo=Textinfo,?Opacity=Opacity)
 
 
     /// Uses points, line or both depending on the mode to represent data points in a polar chart

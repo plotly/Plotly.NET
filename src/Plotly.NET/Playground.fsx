@@ -35,7 +35,7 @@
 #load "Layout.fs"
 #load "Template.fs"
 #load "Config.fs"
-#r @"..\..\packages\Newtonsoft.Json\lib\netstandard2.0\Newtonsoft.Json.dll"
+#r "nuget: Newtonsoft.Json, 12.0.3"
 #load "GenericChart.fs"
 #load "Chart.fs"
 #load "ChartExtensions.fs"
@@ -493,3 +493,21 @@ generateDomainRanges 8 1
     TitleFont=Font.init(Size=20)
 )
 |> Chart.Show
+
+let values,labels = 
+    [
+    1,"v1"
+    2,"v2"
+    ]
+    |> Seq.unzip
+
+let cols =[|"black";"blue"|]
+
+let doughnut1 =
+    Chart.Pie(
+        values,
+        labels,
+        Colors=cols,
+        Textinfo=labels
+    )
+    |> Chart.Show

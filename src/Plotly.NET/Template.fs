@@ -82,18 +82,41 @@ module ChartTemplates =
         |]
 
     let light = 
-
-        let defaultFont = Font.init (Size = 40)
+        let initLightAxisTemplate() =
+            Axis.LinearAxis.init(
+                Showline =      true,
+                Zeroline =      true
+            )
 
         let defaultLayout = 
             Layout.init (
                 Paper_bgcolor = "white",
-                Plot_bgcolor= "white",
-                Font = defaultFont
+                Plot_bgcolor =  "white"
+            )
+            |> Layout.AddLinearAxis((StyleParam.AxisId.X 1),(initLightAxisTemplate()))
+            |> Layout.AddLinearAxis((StyleParam.AxisId.Y 1),(initLightAxisTemplate()))
+
+        Template.init(defaultLayout)
+
+    let lightMirrored = 
+        let initLightAxisTemplate() =
+            Axis.LinearAxis.init(
+                Showline =      true,
+                Zeroline =      true,
+                Mirror   =      StyleParam.Mirror.All,
+                Ticks    =      StyleParam.TickOptions.Inside
+                //Showgrid =      false
             )
 
+        let defaultLayout = 
+            Layout.init (
+                Paper_bgcolor = "white",
+                Plot_bgcolor =  "white"
+            )
+            |> Layout.AddLinearAxis((StyleParam.AxisId.X 1),(initLightAxisTemplate()))
+            |> Layout.AddLinearAxis((StyleParam.AxisId.Y 1),(initLightAxisTemplate()))
 
-        Template.init(defaultLayout, TraceTemplates = [||])
+        Template.init(defaultLayout)
 
     let dark = 
 
@@ -103,8 +126,9 @@ module ChartTemplates =
                 Zerolinecolor = "rgb(204, 204, 204)",
                 Gridcolor = "rgba(204, 204, 204, 0.3)",
                 Tickcolor = "rgba(204, 204, 204, 0.5)",
-                Showline= true,
-                Zeroline=true
+                Ticks     = StyleParam.TickOptions.Inside,
+                Showline  = true,
+                Zeroline  = true
             )
 
         let darkLayoutTemplate =
@@ -136,22 +160,60 @@ module ChartTemplates =
 
         let initFslabAxisTemplate() =
             Axis.LinearAxis.init(
-                Linecolor = "#438AFE", 
+                Linecolor = "white", 
                 Zerolinecolor = "rgba(67, 138, 254, 0.5)",
                 Gridcolor = "rgba(67, 138, 254, 0.5)",
                 Tickcolor = "rgba(67, 138, 254, 0.5)",
-                Showline= true,
-                Zeroline=true
+                Ticks     = StyleParam.TickOptions.Inside,
+                Showline  = true,
+                Zeroline  = true
             )
 
         let fslabLayoutTemplate =
             Layout.init(
-                Paper_bgcolor = "#2D3E50",
-                Plot_bgcolor= "#2D3E50",
-                Font = Font.init(Color = "#438AFE")
+                Paper_bgcolor = "#200117",
+                Plot_bgcolor= "#200117",
+                Font = Font.init(Color = "white")
             )
             |> Layout.AddLinearAxis((StyleParam.AxisId.X 1),(initFslabAxisTemplate()))
             |> Layout.AddLinearAxis((StyleParam.AxisId.Y 1),(initFslabAxisTemplate()))
 
         Template.init(fslabLayoutTemplate)
         |> Template.withColorWay ColorWays.fslab
+
+
+    let transparent = 
+        let initTransparentAxisTemplate() =
+            Axis.LinearAxis.init(
+                Showline =      true,
+                Zeroline =      true
+            )
+
+        let defaultLayout = 
+            Layout.init (
+                Paper_bgcolor = "rgba(255, 255, 255, 0)",
+                Plot_bgcolor =  "rgba(255, 255, 255, 0)"
+            )
+            |> Layout.AddLinearAxis((StyleParam.AxisId.X 1),(initTransparentAxisTemplate()))
+            |> Layout.AddLinearAxis((StyleParam.AxisId.Y 1),(initTransparentAxisTemplate()))
+
+        Template.init(defaultLayout)
+
+    let transparentMirrored = 
+        let initTransparentAxisTemplate() =
+            Axis.LinearAxis.init(
+                Showline =      true,
+                Zeroline =      true,
+                Mirror   =      StyleParam.Mirror.All,
+                Ticks    =      StyleParam.TickOptions.Inside
+            )
+
+        let defaultLayout = 
+            Layout.init (
+                Paper_bgcolor = "rgba(255, 255, 255, 0)",
+                Plot_bgcolor =  "rgba(255, 255, 255, 0)"
+            )
+            |> Layout.AddLinearAxis((StyleParam.AxisId.X 1),(initTransparentAxisTemplate()))
+            |> Layout.AddLinearAxis((StyleParam.AxisId.Y 1),(initTransparentAxisTemplate()))
+
+        Template.init(defaultLayout)
