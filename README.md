@@ -1,7 +1,7 @@
 
 ![](docs/img/logo_title.svg)
 
-![](https://img.shields.io/circleci/build/github/plotly/Plotly.NET)
+[![Build and test](https://github.com/plotly/Plotly.NET/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/plotly/Plotly.NET/actions/workflows/build-and-test.yml)
 [![](https://img.shields.io/nuget/vpre/Plotly.NET)](https://www.nuget.org/packages/Plotly.NET/)
 
 
