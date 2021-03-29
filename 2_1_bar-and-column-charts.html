@@ -36,7 +36,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-beta7</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-beta8</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -270,29 +270,29 @@ or horizontally. A vertical bar chart is called a column bar chart.</p>
 <h3><a name="Column-Charts" class="anchor" href="#Column-Charts">Column Charts</a></h3>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="id">column</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 7)" onmouseover="showTip(event, 'fs7', 7)" class="id">Column</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs4', 8)" onmouseover="showTip(event, 'fs4', 8)" class="id">keys</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs3', 9)" onmouseover="showTip(event, 'fs3', 9)" class="id">values</span><span class="pn">)</span>
 </code></pre>
-<div id="14e6356b-470e-4545-acf6-ba6521b99346" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="be9c2794-97b6-4546-a6f7-957e5a5a1db4" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_14e6356b470e4545acf6ba6521b99346 = function() {
+            var renderPlotly_be9c279497b64546a6f7957e5a5a1db4 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"bar","x":["Product A","Product B","Product C"],"y":[20,14,23],"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('14e6356b-470e-4545-acf6-ba6521b99346', data, layout, config);
+            Plotly.newPlot('be9c2794-97b6-4546-a6f7-957e5a5a1db4', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_14e6356b470e4545acf6ba6521b99346();
+                    renderPlotly_be9c279497b64546a6f7957e5a5a1db4();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_14e6356b470e4545acf6ba6521b99346();
+                renderPlotly_be9c279497b64546a6f7957e5a5a1db4();
             }
 </script>
 
@@ -300,29 +300,29 @@ or horizontally. A vertical bar chart is called a column bar chart.</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs10', 13)" onmouseover="showTip(event, 'fs10', 13)" class="id">bar</span> <span class="o">=</span>
     <span onmouseout="hideTip(event, 'fs6', 14)" onmouseover="showTip(event, 'fs6', 14)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 15)" onmouseover="showTip(event, 'fs11', 15)" class="id">Bar</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs4', 16)" onmouseover="showTip(event, 'fs4', 16)" class="id">keys</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs3', 17)" onmouseover="showTip(event, 'fs3', 17)" class="id">values</span><span class="pn">)</span>
 </code></pre>
-<div id="baccec00-a8ed-44cd-a05f-e512ebb86df6" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="852eedca-1111-44c7-8ea6-eb9f83ae016d" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_baccec00a8ed44cda05fe512ebb86df6 = function() {
+            var renderPlotly_852eedca111144c78ea6eb9f83ae016d = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"bar","x":[20,14,23],"y":["Product A","Product B","Product C"],"orientation":"h","marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('baccec00-a8ed-44cd-a05f-e512ebb86df6', data, layout, config);
+            Plotly.newPlot('852eedca-1111-44c7-8ea6-eb9f83ae016d', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_baccec00a8ed44cda05fe512ebb86df6();
+                    renderPlotly_852eedca111144c78ea6eb9f83ae016d();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_baccec00a8ed44cda05fe512ebb86df6();
+                renderPlotly_852eedca111144c78ea6eb9f83ae016d();
             }
 </script>
 
@@ -336,29 +336,29 @@ or horizontally. A vertical bar chart is called a column bar chart.</p>
     <span class="pn">]</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 29)" onmouseover="showTip(event, 'fs6', 29)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 30)" onmouseover="showTip(event, 'fs14', 30)" class="id">Combine</span>
 </code></pre>
-<div id="567b6914-7c38-4f25-9371-703c21c45159" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="c904cbe3-2459-41e9-86e1-50fa27689092" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_567b69147c384f259371703c21c45159 = function() {
+            var renderPlotly_c904cbe3245941e986e150fa27689092 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"bar","x":[20,14,23],"y":["Product A","Product B","Product C"],"orientation":"h","marker":{},"name":"old"},{"type":"bar","x":[8,21,13],"y":["Product A","Product B","Product C"],"orientation":"h","marker":{},"name":"new"}];
             var layout = {"barmode":"stack"};
             var config = {};
-            Plotly.newPlot('567b6914-7c38-4f25-9371-703c21c45159', data, layout, config);
+            Plotly.newPlot('c904cbe3-2459-41e9-86e1-50fa27689092', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_567b69147c384f259371703c21c45159();
+                    renderPlotly_c904cbe3245941e986e150fa27689092();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_567b69147c384f259371703c21c45159();
+                renderPlotly_c904cbe3245941e986e150fa27689092();
             }
 </script>
 
@@ -373,29 +373,29 @@ or horizontally. A vertical bar chart is called a column bar chart.</p>
     <span class="pn">]</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 42)" onmouseover="showTip(event, 'fs6', 42)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 43)" onmouseover="showTip(event, 'fs14', 43)" class="id">Combine</span>
 </code></pre>
-<div id="b8fba7f5-7bf5-4c5e-86f9-b3b56582cc05" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="ba74ef91-dffb-4a5a-9499-7934c30820d1" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_b8fba7f57bf54c5e86f9b3b56582cc05 = function() {
+            var renderPlotly_ba74ef91dffb4a5a94997934c30820d1 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"bar","x":["Product A","Product B","Product C"],"y":[20,14,23],"marker":{},"name":"old"},{"type":"bar","x":["Product A","Product B","Product C"],"y":[8,21,13],"marker":{},"name":"new"}];
             var layout = {"barmode":"stack"};
             var config = {};
-            Plotly.newPlot('b8fba7f5-7bf5-4c5e-86f9-b3b56582cc05', data, layout, config);
+            Plotly.newPlot('ba74ef91-dffb-4a5a-9499-7934c30820d1', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_b8fba7f57bf54c5e86f9b3b56582cc05();
+                    renderPlotly_ba74ef91dffb4a5a94997934c30820d1();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_b8fba7f57bf54c5e86f9b3b56582cc05();
+                renderPlotly_ba74ef91dffb4a5a94997934c30820d1();
             }
 </script>
 

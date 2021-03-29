@@ -36,7 +36,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-beta7</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-beta8</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -275,29 +275,29 @@
         <span class="fn">Colorscale</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs9', 12)" onmouseover="showTip(event, 'fs9', 12)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 13)" onmouseover="showTip(event, 'fs10', 13)" class="rt">Colorscale</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 14)" onmouseover="showTip(event, 'fs11', 14)" class="id">Blackbody</span>
     <span class="pn">)</span>
 </code></pre>
-<div id="bfe76db3-1b22-4cdc-9f25-0bf29ad6155d" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="c8e862a0-8e91-4047-a9e4-ce6dd8da6176" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_bfe76db31b224cdc9f250bf29ad6155d = function() {
+            var renderPlotly_c8e862a08e914047a9e4ce6dd8da6176 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"parcats","dimensions":[{"values":["Cat1","Cat1","Cat1","Cat1","Cat2","Cat2","Cat3"],"label":"A"},{"values":[0,1,0,1,0,0,0],"label":"B","ticktext":[{"Item1":"YES","Item2":"NO"}]}],"line":{"width":{},"color":[0.0,1.0,0.0,1.0,0.0,0.0,0.0],"colorscale":"Blackbody"}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('bfe76db3-1b22-4cdc-9f25-0bf29ad6155d', data, layout, config);
+            Plotly.newPlot('c8e862a0-8e91-4047-a9e4-ce6dd8da6176', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_bfe76db31b224cdc9f250bf29ad6155d();
+                    renderPlotly_c8e862a08e914047a9e4ce6dd8da6176();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_bfe76db31b224cdc9f250bf29ad6155d();
+                renderPlotly_c8e862a08e914047a9e4ce6dd8da6176();
             }
 </script>
 

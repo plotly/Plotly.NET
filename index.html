@@ -36,7 +36,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-beta7</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-beta8</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -323,6 +323,7 @@
 <h3><a name="For-dotnet-interactive-notebooks" class="anchor" href="#For-dotnet-interactive-notebooks">For dotnet interactive notebooks</a></h3>
 <p>You can use the same inline package reference as in script, but as an additional goodie,
 the interactive extensions for dotnet interactive have you covered for seamless chart rendering:</p>
+<p><em>Note: due to the currently fast development cycles of Dotnet Interactive, there might be increments in their versioning that renders the current version of Plotly.NET.Interactive incompatible (example <a href="https://github.com/plotly/Plotly.NET/issues/67">here</a>). If the interactive extension does not work, please file an issue and we will try to get it running again as soon as possible.</em></p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;nuget: Plotly.NET, &lt;desired-version-here&gt;&quot;</span>
 <span class="pp">#r</span> <span class="s">&quot;nuget: Plotly.NET.Interactive,&lt;desired-version-here&gt;&quot;</span>
 </code></pre>
@@ -367,29 +368,29 @@ We recommend creating a single chart for each workflow to prevent unexpected res
 <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 22)" onmouseover="showTip(event, 'fs6', 22)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 23)" onmouseover="showTip(event, 'fs12', 23)" class="id">Show</span>
 </code></pre>
 <p>Should render this chart in your brower:</p>
-<div id="50675514-730c-4bc3-9137-a3c3ddae5109" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="e0f97777-469e-4192-8c1b-dea9b5a2a375" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_50675514730c4bc39137a3c3ddae5109 = function() {
+            var renderPlotly_e0f97777469e41928c1bdea9b5a2a375 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"mode":"markers","marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('50675514-730c-4bc3-9137-a3c3ddae5109', data, layout, config);
+            Plotly.newPlot('e0f97777-469e-4192-8c1b-dea9b5a2a375', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_50675514730c4bc39137a3c3ddae5109();
+                    renderPlotly_e0f97777469e41928c1bdea9b5a2a375();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_50675514730c4bc39137a3c3ddae5109();
+                renderPlotly_e0f97777469e41928c1bdea9b5a2a375();
             }
 </script>
 
@@ -397,29 +398,29 @@ We recommend creating a single chart for each workflow to prevent unexpected res
 <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 28)" onmouseover="showTip(event, 'fs6', 28)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 29)" onmouseover="showTip(event, 'fs12', 29)" class="id">Show</span>
 </code></pre>
 <p>And here is what happened after applying the styles from above:</p>
-<div id="ffe0c146-225a-456b-9a5c-1c41682ecedc" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="e4fc963c-d513-400e-9c30-f4962a8ca7ef" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_ffe0c146225a456b9a5c1c41682ecedc = function() {
+            var renderPlotly_e4fc963cd513400e9c30f4962a8ca7ef = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"mode":"markers","marker":{}}];
             var layout = {"title":"Hello world!","xaxis":{"title":"xAxis","showgrid":false},"yaxis":{"title":"yAxis","showgrid":false}};
             var config = {};
-            Plotly.newPlot('ffe0c146-225a-456b-9a5c-1c41682ecedc', data, layout, config);
+            Plotly.newPlot('e4fc963c-d513-400e-9c30-f4962a8ca7ef', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_ffe0c146225a456b9a5c1c41682ecedc();
+                    renderPlotly_e4fc963cd513400e9c30f4962a8ca7ef();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_ffe0c146225a456b9a5c1c41682ecedc();
+                renderPlotly_e4fc963cd513400e9c30f4962a8ca7ef();
             }
 </script>
 
