@@ -7,9 +7,9 @@ type Legend() =
     /// Init Legend type
     static member init 
         (
-            ?BGColor,
-            ?BorderColor,
-            ?Borderwidth,
+            ?BGColor: string,
+            ?BorderColor: string,
+            ?Borderwidth: float,
             ?Orientation: StyleParam.Orientation,
             ?TraceOrder: StyleParam.TraceOrder,
             ?TraceGroupGap: float,
@@ -17,9 +17,9 @@ type Legend() =
             ?ItemWidth: int,
             ?ItemClick: StyleParam.TraceItemClickOptions,
             ?ItemDoubleClick: StyleParam.TraceItemClickOptions,
-            ?X,
+            ?X: float,
             ?XAnchor: StyleParam.LegendXAnchorPosition,
-            ?Y,
+            ?Y: float,
             ?YAnchor: StyleParam.LegendYAnchorPosition,
             ?VerticalAlign  : StyleParam.VerticalAlign,
             ?Title: string
@@ -46,9 +46,9 @@ type Legend() =
 
     static member style
         (
-            ?BGColor,
-            ?BorderColor,
-            ?Borderwidth,
+            ?BGColor: string,
+            ?BorderColor: string,
+            ?Borderwidth: float,
             ?Orientation: StyleParam.Orientation,
             ?TraceOrder: StyleParam.TraceOrder,
             ?TraceGroupGap: float,
@@ -56,9 +56,9 @@ type Legend() =
             ?ItemWidth: int,
             ?ItemClick: StyleParam.TraceItemClickOptions,
             ?ItemDoubleClick: StyleParam.TraceItemClickOptions,
-            ?X,
+            ?X: float,
             ?XAnchor: StyleParam.LegendXAnchorPosition,
-            ?Y,
+            ?Y: float,
             ?YAnchor: StyleParam.LegendYAnchorPosition,
             ?VerticalAlign  : StyleParam.VerticalAlign,
             ?Title: string

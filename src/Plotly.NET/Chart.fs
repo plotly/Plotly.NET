@@ -78,7 +78,7 @@ type Chart =
     /// GroupNorm   : Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used
     ///
     /// UseWebGL    : If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.
-    static member Scatter(x, y,mode,
+    static member Scatter(x, y, mode,
             [<Optional;DefaultParameterValue(null)>] ?Name          ,
             [<Optional;DefaultParameterValue(null)>] ?Showlegend    ,
             [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol  ,
@@ -377,6 +377,7 @@ type Chart =
                 ?StackGroup = StackGroup, 
                 ?Orientation= Orientation, 
                 ?GroupNorm  = GroupNorm)          
+            >> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
             >> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
             >> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
             >> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
@@ -741,14 +742,14 @@ type Chart =
             Trace.initScatter (
                     TraceStyle.Scatter(X = x,Y = lower, Mode=StyleParam.Mode.Lines, ?Fillcolor=RangeColor) )               
             |> TraceStyle.TraceInfo(Showlegend=false)
-            |> TraceStyle.Line(Width=0)
+            |> TraceStyle.Line(Width=0.)
             |> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,,0.5)")             
 
         let upper = 
             Trace.initScatter (
                     TraceStyle.Scatter(X = x,Y = upper, Mode=StyleParam.Mode.Lines, ?Fillcolor=RangeColor, Fill=StyleParam.Fill.ToNext_y) )               
             |> TraceStyle.TraceInfo(Showlegend=false)
-            |> TraceStyle.Line(Width=0)
+            |> TraceStyle.Line(Width=0.)
             |> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,,0.5)")             
  
         GenericChart.MultiChart ([lower;upper;trace],Layout(),Config())
@@ -793,14 +794,14 @@ type Chart =
             Trace.initScatter (
                     TraceStyle.Scatter(X = x,Y = lower, Mode=StyleParam.Mode.Lines, ?Fillcolor=RangeColor) )               
             |> TraceStyle.TraceInfo(Showlegend=false)
-            |> TraceStyle.Line(Width=0)
+            |> TraceStyle.Line(Width=0.)
             |> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,0,0.5)")             
 
         let upper = 
             Trace.initScatter (
                     TraceStyle.Scatter(X = x,Y = upper, Mode=StyleParam.Mode.Lines, ?Fillcolor=RangeColor, Fill=StyleParam.Fill.ToNext_y) )               
             |> TraceStyle.TraceInfo(Showlegend=false)
-            |> TraceStyle.Line(Width=0)
+            |> TraceStyle.Line(Width=0.)
             |> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,0,0.5)")             
  
         GenericChart.MultiChart ([lower;upper;trace],Layout(),Config())

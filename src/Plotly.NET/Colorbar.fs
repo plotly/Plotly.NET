@@ -10,46 +10,44 @@ type Colorbar () =
     //[<CompiledName("init")>]
     static member init
         (   
-            ?Thicknessmode,  
-            ?Thickness,      
-            ?Lenmode,        
-            ?Len,            
-            ?X,              
-            ?Xanchor,
-            ?Xpad,           
-            ?Y,              
-            ?Yanchor,        
-            ?Ypad,           
-            ?Outlinecolor,   
-            ?Outlinewidth,   
-            ?Bordercolor,    
-            ?Borderwidth,    
-            ?Bgcolor,        
-            ?Tickmode,       
-            ?nTicks,         
-            ?Tick0,          
-            ?dTick,          
-            ?Tickvals,       
-            ?Ticktext,       
-            ?Ticks,          
-            ?Ticklen,        
-            ?Tickwidth,      
-            ?Tickcolor,      
-            ?Showticklabels, 
-            ?Tickfont,       
-            ?Tickangle,      
-            ?Tickformat,     
-            ?Tickprefix,     
-            ?Showtickprefix, 
-            ?Ticksuffix,     
-            ?Showticksuffix, 
-            ?Exponentformat, 
-            ?Showexponent,   
-            ?Title:string,          
-            ?Titlefont:Font,      
-            ?Titleside:StyleParam.Side,      
-            ?Tickvalssrc,
-            ?Ticktextsrc    
+            ?Thicknessmode: StyleParam.UnitMode,  
+            ?Thickness: int,      
+            ?Lenmode: StyleParam.UnitMode,        
+            ?Len: float,            
+            ?X: float,              
+            ?Xanchor: StyleParam.HorizontalAlign,
+            ?Xpad: float,           
+            ?Y: float,              
+            ?Yanchor: StyleParam.VerticalAlign,        
+            ?Ypad: float,           
+            ?Outlinecolor: string,   
+            ?Outlinewidth: float,   
+            ?Bordercolor: string,    
+            ?Borderwidth: float,    
+            ?Bgcolor: string,        
+            ?Tickmode: StyleParam.TickMode,       
+            ?nTicks: int,         
+            ?Tick0: IConvertible,          
+            ?dTick: IConvertible,          
+            ?Tickvals: seq<IConvertible>,       
+            ?Ticktext: seq<IConvertible>,       
+            ?Ticks: StyleParam.TickOptions,          
+            ?Ticklen: float,        
+            ?Tickwidth: float,      
+            ?Tickcolor: string,      
+            ?Showticklabels: bool, 
+            ?Tickfont: Font,       
+            ?Tickangle: int,      
+            ?Tickformat: string,     
+            ?Tickprefix: string,     
+            ?Showtickprefix: StyleParam.ShowTickOption, 
+            ?Ticksuffix: string,     
+            ?Showticksuffix: StyleParam.ShowTickOption, 
+            ?Exponentformat: StyleParam.ExponentFormat, 
+            ?Showexponent: StyleParam.ShowExponent,   
+            ?Title: string,          
+            ?Titlefont: Font,      
+            ?Titleside: StyleParam.Side
 
         ) = 
             Colorbar()
@@ -92,9 +90,7 @@ type Colorbar () =
                     ?Showexponent   = Showexponent  ,   
                     ?Title          = Title         ,          
                     ?Titlefont      = Titlefont     ,      
-                    ?Titleside      = Titleside     ,      
-                    ?Tickvalssrc    = Tickvalssrc   ,
-                    ?Ticktextsrc    = Ticktextsrc    
+                    ?Titleside      = Titleside     
 
                 )
 
@@ -103,53 +99,51 @@ type Colorbar () =
     //[<CompiledName("style")>]
     static member style
         (   
-            ?Thicknessmode,  
-            ?Thickness :int,      
-            ?Lenmode,        
-            ?Len,            
-            ?X,              
-            ?Xanchor,
-            ?Xpad,           
-            ?Y,              
-            ?Yanchor,        
-            ?Ypad,           
-            ?Outlinecolor,   
-            ?Outlinewidth,   
-            ?Bordercolor,    
-            ?Borderwidth,    
-            ?Bgcolor,        
-            ?Tickmode,       
-            ?nTicks,         
-            ?Tick0,          
-            ?dTick,          
-            ?Tickvals,       
-            ?Ticktext,       
-            ?Ticks,          
-            ?Ticklen,        
-            ?Tickwidth,      
-            ?Tickcolor,      
-            ?Showticklabels, 
-            ?Tickfont,       
-            ?Tickangle,      
-            ?Tickformat,     
-            ?Tickprefix,     
-            ?Showtickprefix, 
-            ?Ticksuffix,     
-            ?Showticksuffix, 
-            ?Exponentformat, 
-            ?Showexponent,   
-            ?Title:string,          
-            ?Titlefont:Font,      
-            ?Titleside:StyleParam.Side,      
-            ?Tickvalssrc,
-            ?Ticktextsrc    
+            ?Thicknessmode: StyleParam.UnitMode,  
+            ?Thickness: int,      
+            ?Lenmode: StyleParam.UnitMode,        
+            ?Len: float,            
+            ?X: float,              
+            ?Xanchor: StyleParam.HorizontalAlign,
+            ?Xpad: float,           
+            ?Y: float,              
+            ?Yanchor: StyleParam.VerticalAlign,        
+            ?Ypad: float,           
+            ?Outlinecolor: string,   
+            ?Outlinewidth: float,   
+            ?Bordercolor: string,    
+            ?Borderwidth: float,    
+            ?Bgcolor: string,        
+            ?Tickmode: StyleParam.TickMode,       
+            ?nTicks: int,         
+            ?Tick0: IConvertible,          
+            ?dTick: IConvertible,          
+            ?Tickvals: seq<IConvertible>,       
+            ?Ticktext: seq<IConvertible>,       
+            ?Ticks: StyleParam.TickOptions,          
+            ?Ticklen: float,        
+            ?Tickwidth: float,      
+            ?Tickcolor: string,      
+            ?Showticklabels: bool, 
+            ?Tickfont: Font,       
+            ?Tickangle: int,      
+            ?Tickformat: string,     
+            ?Tickprefix: string,     
+            ?Showtickprefix: StyleParam.ShowTickOption, 
+            ?Ticksuffix: string,     
+            ?Showticksuffix: StyleParam.ShowTickOption, 
+            ?Exponentformat: StyleParam.ExponentFormat, 
+            ?Showexponent: StyleParam.ShowExponent,   
+            ?Title: string,          
+            ?Titlefont: Font,      
+            ?Titleside: StyleParam.Side
 
         ) =
                 
             (fun (colorbar:Colorbar) ->            
-                Thicknessmode  |> DynObj.setValueOptBy colorbar "thicknessmode" StyleParam.Thicknessmode.convert
+                Thicknessmode  |> DynObj.setValueOptBy colorbar "thicknessmode" StyleParam.UnitMode.convert
                 Thickness      |> DynObj.setValueOpt colorbar "thickness"      
-                Lenmode        |> DynObj.setValueOpt colorbar "lenmode"        
+                Lenmode        |> DynObj.setValueOptBy colorbar "lenmode" StyleParam.UnitMode.convert
                 Len            |> DynObj.setValueOpt colorbar "len"            
                 X              |> DynObj.setValueOpt colorbar "x"              
                 Xanchor        |> DynObj.setValueOpt colorbar "xanchor"        
@@ -184,9 +178,7 @@ type Colorbar () =
                 Showexponent   |> DynObj.setValueOpt colorbar "showexponent"   
                 Title          |> DynObj.setValueOpt colorbar "title"          
                 Titlefont      |> DynObj.setValueOpt colorbar "titlefont"      
-                Titleside      |> DynObj.setValueOptBy colorbar "titleside" (StyleParam.Side.convert)     
-                Tickvalssrc    |> DynObj.setValueOpt colorbar "tickvalssrc"    
-                Ticktextsrc    |> DynObj.setValueOpt colorbar "ticktextsrc"         
+                Titleside      |> DynObj.setValueOptBy colorbar "titleside" (StyleParam.Side.convert)              
 
                 colorbar
             )

@@ -9,20 +9,14 @@ type Font () =
         (    
             ?Family    ,
             ?Size      ,
-            ?Color     ,
-            ?Familysrc ,
-            ?Sizesrc   ,
-            ?Colorsrc
+            ?Color     
         ) =    
             Font()
             |> Font.style
                 (
                     ?Family    = Family    ,
                     ?Size      = Size      ,
-                    ?Color     = Color     ,
-                    ?Familysrc = Familysrc ,
-                    ?Sizesrc   = Sizesrc   ,
-                    ?Colorsrc  = Colorsrc
+                    ?Color     = Color     
                 )
 
 
@@ -30,22 +24,15 @@ type Font () =
     static member style
         (    
             ?Family: StyleParam.FontFamily,
-            ?Size,
-            ?Color,
-            ?Familysrc,
-            ?Sizesrc,
-            ?Colorsrc
+            ?Size: float,
+            ?Color: string
         ) =
             (fun (font:Font) -> 
                     
                 Family       |> DynObj.setValueOptBy font "family" StyleParam.FontFamily.toString                
                 Size         |> DynObj.setValueOpt   font "size"
                 Color        |> DynObj.setValueOpt   font "color"
-                Familysrc    |> DynObj.setValueOpt   font "familysrc"
-                Sizesrc      |> DynObj.setValueOpt   font "sizesrc"
-                Colorsrc     |> DynObj.setValueOpt   font "colorsrc"
                         
-                // out ->
                 font
             )
 

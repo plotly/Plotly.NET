@@ -10,14 +10,14 @@ type Dimensions () =
     /// Initialized Dimensions object
     static member init
         (
-            ?Values,
-            ?Range,
-            ?Constraintrange,
-            ?Visible,
-            ?Label,
-            ?Tickvals,
-            ?TickText,
-            ?TickFormat
+            ?Values: seq<#IConvertible>,
+            ?Range: StyleParam.Range,
+            ?Constraintrange: StyleParam.Range,
+            ?Visible: bool,
+            ?Label: string,
+            ?Tickvals: seq<IConvertible>,
+            ?TickText: seq<IConvertible>,
+            ?TickFormat: StyleParam.TickMode
         ) =
             Dimensions () 
             |> Dimensions.style
@@ -36,14 +36,14 @@ type Dimensions () =
     // Applies the styles to Dimensions()
     static member style
         (
-            ?Values  : seq<#IConvertible>,
-            ?Range  : StyleParam.Range,
-            ?Constraintrange : StyleParam.Range,
-            ?Visible,
-            ?Label,
-            ?Tickvals,
-            ?TickText,
-            ?TickFormat
+            ?Values: seq<#IConvertible>,
+            ?Range: StyleParam.Range,
+            ?Constraintrange: StyleParam.Range,
+            ?Visible: bool,
+            ?Label: string,
+            ?Tickvals: seq<IConvertible>,
+            ?TickText: seq<IConvertible>,
+            ?TickFormat: StyleParam.TickMode
         ) =
             (fun (dims:Dimensions) -> 
                 Values           |> DynObj.setValueOpt   dims "values"

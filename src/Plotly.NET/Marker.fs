@@ -9,34 +9,28 @@ type Marker () =
     /// Initialized Marker object
     static member init
         (   
-            ?Size           ,
-            ?Color          ,
-            ?Symbol         ,
-            ?Opacity        ,
-            ?MultiSizes     ,
-            ?Line           ,
-            ?Colorbar       ,
-            ?Colorscale     ,
-            ?Colors         ,
-            ?OutlierColor   ,
+            ?Size: int,
+            ?Opacity: float,
+            ?Color: string,
+            ?Symbol: StyleParam.Symbol,
+            ?MultiSizes: seq<#IConvertible>,
+            ?Line: Line,
+            ?Colorbar: Colorbar,
+            ?Colorscale : StyleParam.Colorscale,
+            ?Colors: seq<string>,
+            ?OutlierColor:string,
                             
-            ?Maxdisplayed   ,
-            ?Sizeref        ,
-            ?Sizemin        ,
-            ?Sizemode       ,
-            ?Cauto          ,
-            ?Cmax           ,
-            ?Cmin           ,
-            ?Autocolorscale ,
-            ?Reversescale   ,
-            ?Showscale      ,
-                            
-            ?Symbolsrc      ,
-            ?Opacitysrc     ,
-            ?Sizesrc        ,
-            ?Colorsrc       ,
-            ?Cutliercolor   ,
-            ?Colorssrc      
+            ?Maxdisplayed: int,
+            ?Sizeref: float,
+            ?Sizemin: float,
+            ?Sizemode: StyleParam.SizeMode,
+            ?Cauto: bool,
+            ?Cmax: float,
+            ?Cmin: float,
+            ?Cmid: float,
+            ?Autocolorscale: bool,
+            ?Reversescale: bool,
+            ?Showscale: bool
 
         ) =
         Marker () 
@@ -62,48 +56,35 @@ type Marker () =
                 ?Cmin          = Cmin           ,
                 ?Autocolorscale= Autocolorscale ,
                 ?Reversescale  = Reversescale   ,
-                ?Showscale     = Showscale      ,
-                                           
-                ?Symbolsrc     = Symbolsrc      ,
-                ?Opacitysrc    = Opacitysrc     ,
-                ?Sizesrc       = Sizesrc        ,
-                ?Colorsrc      = Colorsrc       ,
-                ?Cutliercolor  = Cutliercolor   ,
-                ?Colorssrc     = Colorssrc      
+                ?Showscale     = Showscale      
+
             )
 
     // Applies the styles to Marker()
     static member style
         (   
-            ?Size:int,
-            ?Color,
-            ?Symbol:StyleParam.Symbol,
-            ?Opacity:float,
-            ?MultiSizes:seq<#IConvertible>,
-            ?Line : Line,
-            ?Colorbar       ,
+            ?Size: int,
+            ?Opacity: float,
+            ?Color: string,
+            ?Symbol: StyleParam.Symbol,
+            ?MultiSizes: seq<#IConvertible>,
+            ?Line: Line,
+            ?Colorbar: Colorbar,
             ?Colorscale : StyleParam.Colorscale,
-            ?Colors         ,
-            ?OutlierColor   ,
+            ?Colors: seq<string>,
+            ?OutlierColor:string,
                             
-            ?Maxdisplayed   ,
-            ?Sizeref        ,
-            ?Sizemin        ,
-            ?Sizemode       ,
-            ?Cauto          ,
-            ?Cmax           ,
-            ?Cmin           ,
-            ?Autocolorscale ,
-            ?Reversescale   ,
-            ?Showscale      ,
-                            
-            ?Symbolsrc      ,
-            ?Opacitysrc     ,
-            ?Sizesrc        ,
-            ?Colorsrc       ,
-            ?Cutliercolor   ,
-            ?Colorssrc      
-
+            ?Maxdisplayed: int,
+            ?Sizeref: float,
+            ?Sizemin: float,
+            ?Sizemode: StyleParam.SizeMode,
+            ?Cauto: bool,
+            ?Cmax: float,
+            ?Cmin: float,
+            ?Cmid: float,
+            ?Autocolorscale: bool,
+            ?Reversescale: bool,
+            ?Showscale: bool
         ) =
             (fun (marker: Marker) -> 
                 Size           |> DynObj.setValueOpt marker "size" 
@@ -127,13 +108,6 @@ type Marker () =
                 Autocolorscale |> DynObj.setValueOpt marker "autocolorscale" 
                 Reversescale   |> DynObj.setValueOpt marker "reversescale"   
                 Showscale      |> DynObj.setValueOpt marker "showscale"      
-                                                    
-                Symbolsrc      |> DynObj.setValueOpt marker "symbolsrc"      
-                Opacitysrc     |> DynObj.setValueOpt marker "opacitysrc"     
-                Sizesrc        |> DynObj.setValueOpt marker "sizesrc"        
-                Colorsrc       |> DynObj.setValueOpt marker "colorsrc"       
-                Cutliercolor   |> DynObj.setValueOpt marker "outliercolor"            
-                Colorssrc      |> DynObj.setValueOpt marker "colorssrc"      
 
                 marker
             )

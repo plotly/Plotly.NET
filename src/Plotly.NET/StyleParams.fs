@@ -987,6 +987,17 @@ module StyleParam =
    
         static member convert = Side.toString >> box
 
+    [<RequireQualifiedAccess>]
+    type SizeMode =
+        | Diameter | Area
+    
+        static member toString = function
+            | Diameter  -> "diameter"
+            | Area      -> "area"
+      
+   
+        static member convert = Side.toString >> box
+
     /// Choose between algorithms ('best' or 'fast') to smooth data linked to 'z'. The default value is false corresponding to no smoothing.
     [<RequireQualifiedAccess>]
     type SmoothAlg =
@@ -1079,13 +1090,13 @@ module StyleParam =
 
 
     [<RequireQualifiedAccess>]
-    type Thicknessmode = 
+    type UnitMode = 
         | Fraction | Pixels 
         static member toString = function
             | Fraction  -> "fraction"             
             | Pixels    -> "pixels"              
 
-        static member convert = Thicknessmode.toString >> box
+        static member convert = UnitMode.toString >> box
 
 
     [<RequireQualifiedAccess>]

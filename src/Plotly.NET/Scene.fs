@@ -10,13 +10,13 @@ type Scene() =
     //[<CompiledName("init")>]
     static member init
         (   
-            ?xAxis        ,
-            ?yAxis        ,
-            ?zAxis        ,
-            ?isSubplotObj ,
-            ?BgColor      ,
+            ?xAxis:Axis.LinearAxis,
+            ?yAxis:Axis.LinearAxis,
+            ?zAxis:Axis.LinearAxis,
+            ?isSubplotObj: bool     ,
+            ?BgColor: string,
             // ?Camera           ,
-            (?Domain : Domain)           
+            ?Domain:Domain           
             // ?Aspectmode       ,
             // ?Aspectratio
         ) =
@@ -39,8 +39,8 @@ type Scene() =
             ?xAxis:Axis.LinearAxis,
             ?yAxis:Axis.LinearAxis,
             ?zAxis:Axis.LinearAxis,
-            ?isSubplotObj     ,
-            ?BgColor          ,
+            ?isSubplotObj: bool     ,
+            ?BgColor: string,
             // ?Camera           ,
             ?Domain:Domain           
             // ?Aspectmode       ,

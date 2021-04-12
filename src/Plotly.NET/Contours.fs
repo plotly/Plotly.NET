@@ -10,14 +10,16 @@ type Contour () =
     //[<CompiledName("init")>]
     static member init 
         (
-            ?Show           ,
-            //?Project      : Project,
-            ?Color          ,
-            ?Usecolor       ,
-            ?Width          ,
-            ?Highlight      ,
-            ?Highlightcolor ,
-            ?Highlightwidth                 
+            ?Show: bool,
+            ?Start: float,
+            ?End: float,
+            ?Size: float,
+            ?Color: string,
+            ?UseColorMap: bool,
+            ?Width: float,
+            ?Highlight: bool,
+            ?Highlightcolor: string ,
+            ?Highlightwidth : float                
         ) =
             Contour ()
             |> Contour.style
@@ -25,7 +27,7 @@ type Contour () =
                     ?Show           = Show           ,
                     //?Project      = Project        ,
                     ?Color          = Color          ,
-                    ?Usecolor       = Usecolor       ,
+                    ?UseColorMap    = UseColorMap    ,
                     ?Width          = Width          ,
                     ?Highlight      = Highlight      ,
                     ?Highlightcolor = Highlightcolor ,
@@ -37,22 +39,25 @@ type Contour () =
     //[<CompiledName("style")>]
     static member style
         (
-            ?Show           : bool,
-            //?Project      : Project,
-            ?Color                ,
-            ?Usecolor       : bool,
-            ?Width          : int,
-            ?Highlight      : bool,
-            ?Highlightcolor,
-            ?Highlightwidth : int
-                
+            ?Show: bool,
+            ?Start: float,
+            ?End: float,
+            ?Size: float,
+            ?Color: string,
+            ?UseColorMap: bool,
+            ?Width: float,
+            ?Highlight: bool,
+            ?Highlightcolor: string ,
+            ?Highlightwidth : float                
         ) =
             
             (fun (contour:Contour) -> 
                 Show            |> DynObj.setValueOpt contour "show"
-                //?Project      |> DynObj.setValueOpt contour "project"
                 Color           |> DynObj.setValueOpt contour "color"
-                Usecolor        |> DynObj.setValueOpt contour "usecolor" 
+                Start           |> DynObj.setValueOpt contour "start"
+                End             |> DynObj.setValueOpt contour "end"
+                Size            |> DynObj.setValueOpt contour "size"
+                UseColorMap     |> DynObj.setValueOpt contour "usecolormap" 
                 Width           |> DynObj.setValueOpt contour "width"
                 Highlight       |> DynObj.setValueOpt contour "highlight" 
                 Highlightcolor  |> DynObj.setValueOpt contour "highlightcolor"
@@ -105,7 +110,7 @@ type Contours () =
             ?Show           ,
             //?Project      ,
             ?Color,
-            ?Usecolor       ,
+            ?UseColorMap       ,
             ?Width          ,
             ?Highlight      ,
             ?Highlightcolor ,
@@ -118,7 +123,7 @@ type Contours () =
                     ?Show=Show                    ,
                     //?Project                      ,
                     ?Color=Color                  ,
-                    ?Usecolor=Usecolor            ,
+                    ?UseColorMap=UseColorMap            ,
                     ?Width=Width                  ,
                     ?Highlight=Highlight          ,
                     ?Highlightcolor=Highlightcolor,
@@ -132,7 +137,7 @@ type Contours () =
             ?Show           ,
             //?Project      ,
             ?Color,
-            ?Usecolor       ,
+            ?UseColorMap       ,
             ?Width          ,
             ?Highlight      ,
             ?Highlightcolor ,
@@ -142,7 +147,7 @@ type Contours () =
             
             (fun (contours: Contours) -> 
                 let xyzContour =
-                    Contour.init (?Show=Show,?Color=Color,?Usecolor=Usecolor, ?Width=Width, 
+                    Contour.init (?Show=Show,?Color=Color,?UseColorMap=UseColorMap, ?Width=Width, 
                                     ?Highlight=Highlight, ?Highlightcolor=Highlightcolor, ?Highlightwidth=Highlightwidth) 
                 contours 
                 |> Contours.style(X=xyzContour,Y=xyzContour,Z=xyzContour)

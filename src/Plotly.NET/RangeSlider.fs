@@ -1,4 +1,5 @@
 ﻿namespace Plotly.NET
+open System 
 
 //rangeslider
 //Parent: layout.xaxis
@@ -16,15 +17,15 @@ type RangeSlider () =
             //The height of the range slider as a fraction of the total plot area height.
             //Determines whether or not the range of this axis in the rangeslider use the same value than in the main plot when zooming in/out. If "auto", the autorange will be used. If "fixed", the `range` is used. If "match", the current range of the corresponding y-axis on the main subplot is used. one of ( "auto" | "fixed" | "match" )
             //Sets the range of this axis for the rangeslider.
-            ?BgColor            ,
-            ?BorderColor        ,
-            (?BorderWidth:float),
-            (?AutoRange : bool) ,
-            (?Range:'Range [])  ,
-            (?Thickness:float)  ,
-            (?Visible:bool)     ,
-            ?YAxisRangeMode     ,
-            (?YAxisRange: 'Range [])
+            ?BgColor: string,
+            ?BorderColor: string,
+            ?BorderWidth: float,
+            ?AutoRange : bool ,
+            ?Range: seq<IConvertible>  ,
+            ?Thickness: float,
+            ?Visible: bool,
+            ?YAxisRangeMode: StyleParam.RangeMode,
+            ?YAxisRange: seq<IConvertible>
         ) = 
             RangeSlider ()
             |> RangeSlider.style (
@@ -50,15 +51,15 @@ type RangeSlider () =
             //The height of the range slider as a fraction of the total plot area height.
             //Determines whether or not the range of this axis in the rangeslider use the same value than in the main plot when zooming in/out. If "auto", the autorange will be used. If "fixed", the `range` is used. If "match", the current range of the corresponding y-axis on the main subplot is used. one of ( "auto" | "fixed" | "match" )
             //Sets the range of this axis for the rangeslider.
-            ?BgColor            ,
-            ?BorderColor        ,
-            (?BorderWidth:float),
-            (?AutoRange : bool) ,
-            (?Range:'Range [])  ,
-            (?Thickness:float)  ,
-            (?Visible:bool)     ,
-            ?YAxisRangeMode     ,
-            (?YAxisRange: 'Range [])
+            ?BgColor: string,
+            ?BorderColor: string,
+            ?BorderWidth: float,
+            ?AutoRange : bool,
+            ?Range: seq<IConvertible>,
+            ?Thickness: float,
+            ?Visible: bool,
+            ?YAxisRangeMode: StyleParam.RangeMode,
+            ?YAxisRange: seq<IConvertible>
         ) = 
             fun (rangeslider : RangeSlider) ->
                 BgColor        |> DynObj.setValueOpt rangeslider "bgcolor"

@@ -8,9 +8,9 @@ type Bins () =
     // Init Bins()
     static member init
         (
-            ?StartBins ,
-            ?EndBins   ,
-            ?Size
+            ?StartBins: float,
+            ?EndBins: float,
+            ?Size: float
         ) =
             Bins () 
             |> Bins.style
@@ -24,9 +24,9 @@ type Bins () =
     // Applies the styles to Bins()
     static member style
         (
-            ?StartBins:float,
-            ?EndBins  :float,
-            ?Size
+            ?StartBins: float,
+            ?EndBins: float,
+            ?Size: float
         ) =
             
             (fun (bins:Bins) -> 

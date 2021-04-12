@@ -35,9 +35,9 @@ type Cumulative () =
     // Applies the styles to Cumulative()
     static member style
         (
-            ?Enabled, 
-            ?Direction, 
-            ?Currentbin
+            ?Enabled    : bool,
+            ?Direction  : StyleParam.CumulativeDirection,
+            ?Currentbin : StyleParam.Currentbin
         ) =
             
             (fun (cumulative: Cumulative) -> 

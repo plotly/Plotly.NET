@@ -10,14 +10,14 @@ type Line () =
     /// Initialized Line object
     static member init
         (
-            ?Width,
-            ?Color,
+            ?Width:float,
+            ?Color:string,
             ?Shape:StyleParam.Shape,
-            ?Dash,
-            ?Smoothing,
+            ?Dash:StyleParam.DrawingStyle,
+            ?Smoothing:float,
             ?Colorscale:StyleParam.Colorscale,
-            ?OutlierColor,
-            ?OutlierWidth
+            ?OutlierColor:string,
+            ?OutlierWidth:float
 
         ) =
             Line () 
@@ -37,14 +37,14 @@ type Line () =
     // Applies the styles to Line()
     static member style
         (
-            ?Width,
-            ?Color,
+            ?Width:float,
+            ?Color:string,
             ?Shape:StyleParam.Shape,
-            ?Dash,
-            ?Smoothing,
+            ?Dash:StyleParam.DrawingStyle,
+            ?Smoothing:float,
             ?Colorscale:StyleParam.Colorscale,
-            ?OutlierColor,
-            ?OutlierWidth
+            ?OutlierColor:string,
+            ?OutlierWidth:float
 
         ) =
             (fun (line:Line) -> 

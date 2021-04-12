@@ -10,10 +10,10 @@ type Box () =
     /// Initialized Line object
     static member init
         (            
-            ?Visible   :bool,
-            ?Width     :float,
-            ?FillColor,
-            ?Line      :Line
+            ?Visible: bool,
+            ?Width: float,
+            ?FillColor: string,
+            ?Line: Line
         ) =
             Box () 
             |> Box.style
@@ -28,10 +28,10 @@ type Box () =
     // Applies the styles to Line()
     static member style
         (
-            ?Visible   :bool,
-            ?Width     :float,
-            ?FillColor :Colors.Color,
-            ?Line      :Line
+            ?Visible: bool,
+            ?Width: float,
+            ?FillColor: string,
+            ?Line: Line
         ) =
             (fun (box:Box) -> 
                 Visible    |> DynObj.setValueOpt box "visible"

@@ -10,11 +10,11 @@ type Hoverlabel () =
     /// Initialized Line object
     static member init
         (
-            ?BgColor     ,
-            ?BorderColor ,
-            ?Font        :Font,
-            ?Align       :StyleParam.Align,
-            ?Namelength
+            ?BgColor: string,
+            ?BorderColor: string,
+            ?Font: Font,
+            ?Align: StyleParam.Align,
+            ?Namelength: int
         ) =
             Hoverlabel () 
             |> Hoverlabel.style
@@ -30,11 +30,11 @@ type Hoverlabel () =
     // Applies the styles to Line()
     static member style
         (
-            ?BgColor     ,
-            ?BorderColor ,
-            ?Font        ,
-            ?Align       ,
-            ?Namelength
+            ?BgColor: string,
+            ?BorderColor: string,
+            ?Font: Font,
+            ?Align: StyleParam.Align,
+            ?Namelength: int
         ) =
             (fun (label:Hoverlabel) -> 
                 BgColor       |> DynObj.setValueOpt   label "bgcolor"

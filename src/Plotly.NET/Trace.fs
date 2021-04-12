@@ -291,18 +291,18 @@ module Trace =
         // Applies the styles to Line()
         static member Line
             (
-                ?Width,
-                ?Color,
-                ?Shape:StyleParam.Shape,
-                ?Dash,
-                ?Smoothing,
+                ?Width: float,
+                ?Color: string,
+                ?Shape: StyleParam.Shape,
+                ?Dash: StyleParam.DrawingStyle,
+                ?Smoothing: float,
                 ?Colorscale : StyleParam.Colorscale
             ) =
                 (fun (trace:('T :> Trace)) ->
                     let line =
                         match (trace.TryGetValue "line") with
                         | Some line -> line :?> Line
-                        | None -> Line.init (id)
+                        | None -> Line.init()
                         |> Line.style(?Width=Width,?Color=Color,?Shape=Shape,?Dash=Dash,?Smoothing=Smoothing,?Colorscale=Colorscale)
                     
                     trace.SetValue("line", line)
@@ -325,33 +325,28 @@ module Trace =
         // Applies the styles to Marker()
         static member Marker
             (   
-                ?Size:int,
+                ?Size: int,
+                ?Opacity: float,
                 ?Color: string,
-                ?Symbol:StyleParam.Symbol,
-                ?Opacity:float,
-                ?MultiSizes:seq<#IConvertible>,
-                ?Line : Line,
-                ?Colorbar       ,
+                ?Symbol: StyleParam.Symbol,
+                ?MultiSizes: seq<#IConvertible>,
+                ?Line: Line,
+                ?Colorbar: Colorbar,
                 ?Colorscale : StyleParam.Colorscale,
-                ?Colors         ,
-                            
-                ?Maxdisplayed   ,
-                ?Sizeref        ,
-                ?Sizemin        ,
-                ?Sizemode       ,
-                ?Cauto          ,
-                ?Cmax           ,
-                ?Cmin           ,
-                ?Autocolorscale : bool,
-                ?Reversescale   : bool,
-                ?Showscale      : bool,
-                            
-                ?Symbolsrc      ,
-                ?Opacitysrc     ,
-                ?Sizesrc        ,
-                ?Colorsrc       ,
-                ?Cutliercolor   ,
-                ?Colorssrc      
+                ?Colors: seq<string>,
+                ?OutlierColor:string,
+                ?Maxdisplayed: int,
+                ?Sizeref: float,
+                ?Sizemin: float,
+                ?Sizemode: StyleParam.SizeMode,
+                ?Cauto: bool,
+                ?Cmax: float,
+                ?Cmin: float,
+                ?Cmid: float,
+                ?Autocolorscale: bool,
+                ?Reversescale: bool,
+                ?Showscale: bool
+
 
             ) =
                 (fun (trace:('T :> Trace)) ->
@@ -362,12 +357,10 @@ module Trace =
                     
                         |> Marker.style(?Size=Size,?Color=Color,?Symbol=Symbol,
                             ?Opacity=Opacity,?MultiSizes=MultiSizes,?Line=Line,
-                            ?Colorbar=Colorbar,?Colorscale=Colorscale,?Colors=Colors,
+                            ?Colorbar=Colorbar,?Colorscale=Colorscale,?Colors=Colors,?OutlierColor=OutlierColor,
                             ?Maxdisplayed=Maxdisplayed,?Sizeref=Sizeref,?Sizemin=Sizemin,
-                            ?Sizemode=Sizemode,?Cauto=Cauto,?Cmax=Cmax,?Cmin=Cmin,
-                            ?Autocolorscale=Autocolorscale,?Reversescale=Reversescale,?Showscale=Showscale,
-                            ?Symbolsrc=Symbolsrc,?Opacitysrc=Opacitysrc,?Sizesrc=Sizesrc,
-                            ?Colorsrc=Colorsrc,?Cutliercolor=Cutliercolor,?Colorssrc=Colorssrc
+                            ?Sizemode=Sizemode,?Cauto=Cauto,?Cmax=Cmax,?Cmin=Cmin,?Cmid=Cmid,
+                            ?Autocolorscale=Autocolorscale,?Reversescale=Reversescale,?Showscale=Showscale
                             )
 
                     trace.SetValue("marker", marker)
@@ -522,8 +515,8 @@ module Trace =
         // Applies the styles of pie plot to TraceObjects 
         static member Pie
             (                
-                ?Values,
-                ?Labels,
+                ?Values: seq<#IConvertible>,
+                ?Labels: seq<string>,
                 ?Label0,
                 ?dLabel,   
                 ?Scalegroup,

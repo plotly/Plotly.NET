@@ -10,9 +10,9 @@ type Meanline () =
     /// Initialized Line object
     static member init
         (
-            ?Visible : bool,
-            ?Color,
-            ?Width   : float            
+            ?Visible: bool,
+            ?Color: string,
+            ?Width: float
         ) =
             Meanline () 
             |> Meanline.style
@@ -26,9 +26,9 @@ type Meanline () =
     // Applies the styles to Line()
     static member style
         (
-            ?Visible : bool,
-            ?Color,
-            ?Width   : float
+            ?Visible: bool,
+            ?Color: string,
+            ?Width: float
         ) =
             (fun (line:Meanline) -> 
                 Visible    |> DynObj.setValueOpt line "visible"
