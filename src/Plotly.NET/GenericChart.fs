@@ -84,12 +84,6 @@ module HTML =
         newScript.ToString()
 
 
-    let description ="""<div class=container>
-  <h3>[DESCRIPTIONHEADING]</h3>
-  <p>[DESCRIPTIONTEXT]</p>
-  </div>"""
-
-
     let staticChart =
         """<div id="[ID]" style="width: [WIDTH]px; height: [HEIGHT]px;display: none;"><!-- Plotly chart will be drawn inside this DIV --></div>
 
@@ -118,25 +112,12 @@ module HTML =
         });
   </script>"""
 
-module ChartDescription =
-
-    type Description =
-        {
-            Heading : string
-            Text    : string
-        }
-
-    let toDescriptionHtml (d:Description) =
-        HTML.description
-            .Replace("[DESCRIPTIONHEADING]",d.Heading)
-            .Replace("[DESCRIPTIONTEXT]",d.Text)
 
 /// Module to represent a GenericChart
 [<Extension>]
 module GenericChart =
 
     open Trace
-    open ChartDescription
 
     type Figure =
         {
@@ -308,12 +289,12 @@ module GenericChart =
         html
 
 
-    let toEmbeddedHtmlWithDescription (description:Description) gChart =
+    let toEmbeddedHtmlWithDescription (description:ChartDescription) gChart =
         let chartMarkup =
             toChartHTML gChart
 
         let descriptionMarkup =
-            toDescriptionHtml description
+            ChartDescription.toHtml description
 
         HTML.doc
             .Replace("[CHART]", chartMarkup)

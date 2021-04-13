@@ -4,7 +4,6 @@ open System
 open System.IO
 
 open GenericChart
-open ChartDescription
 open System.Runtime.InteropServices
 open System.Runtime.CompilerServices
 
@@ -952,7 +951,7 @@ module ChartExtensions =
 
         /// Saves chart in a specified file name. The caller is responsible for full path / filename / extension.
         [<CompiledName("SaveHtmlWithDescriptionAs")>]
-        static member SaveHtmlWithDescriptionAs (pathName : string) (description : Description) (ch:GenericChart,?Verbose) =
+        static member SaveHtmlWithDescriptionAs (pathName : string) (description : ChartDescription) (ch:GenericChart,?Verbose) =
             let html = GenericChart.toEmbeddedHtmlWithDescription description ch
             File.WriteAllText(pathName, html)
             let verbose = defaultArg Verbose false
@@ -961,7 +960,7 @@ module ChartExtensions =
 
         /// Show chart in browser
         [<CompiledName("ShowWithDescription")>]
-        static member ShowWithDescription (description : Description) (ch:GenericChart) =
+        static member ShowWithDescription (description : ChartDescription) (ch:GenericChart) =
             let guid = Guid.NewGuid().ToString()
             let html = GenericChart.toEmbeddedHtmlWithDescription description ch
             let tempPath = Path.GetTempPath()

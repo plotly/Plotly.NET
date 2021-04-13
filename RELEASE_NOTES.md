@@ -5,7 +5,8 @@
 
  * [**Breaking:** Fix keys values order for bar charts](https://github.com/plotly/Plotly.NET/commit/ccb6af7df8bc071f2a0baf020805fc25d2df70b4)
  * [**Breaking: fix color assignment of pie and doughnut charts**](https://github.com/plotly/Plotly.NET/commit/2bbb35ad5d44c6de1bf79b23b7b0a64effa8bdf9)
- * [**Breaking:** Chart methods now have static type annotations, which may lead to incompatibilities in some cases]
+ * **Breaking:** Chart methods now have static type annotations, which may lead to incompatibilities in some cases
+ * **Breaking:** Rename ChartDescription type: Plotly.NET.ChartDescription.Description -> Plotly.NET.ChartDescription
  * [**Possibly breaking:** target netstandad 2.0](https://github.com/plotly/Plotly.NET/commit/0fd6d42d755c060f42cf48465cbcfd02e0a07088)
 
 **Major Additions:**

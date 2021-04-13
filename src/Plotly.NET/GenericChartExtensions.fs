@@ -4,7 +4,6 @@ open System
 open System.IO
 
 open GenericChart
-open ChartDescription
 open System.Runtime.InteropServices
 open System.Runtime.CompilerServices
 
@@ -642,7 +641,7 @@ module GenericChartExtensions =
         member this.SaveHtmlWithDescriptionAs 
             (   
                 pathName : string, 
-                description : Description, 
+                description : ChartDescription, 
                 [<Optional;DefaultParameterValue(null)>] ?Verbose
             ) =
                 Chart.SaveHtmlWithDescriptionAs pathName description this
@@ -650,7 +649,7 @@ module GenericChartExtensions =
         /// Show chart in browser
         [<CompiledName("ShowWithDescription")>]
         [<Extension>]
-        member this.ShowWithDescription (description : Description) =
+        member this.ShowWithDescription (description : ChartDescription) =
             Chart.ShowWithDescription description this
 
         /// Show chart in browser

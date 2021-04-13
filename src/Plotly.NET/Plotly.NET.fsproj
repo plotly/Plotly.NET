@@ -71,6 +71,7 @@
     <Compile Include="Layout.fs" />
     <Compile Include="Template.fs" />
     <Compile Include="Config.fs" />
+    <Compile Include="DisplayOptions.fs" />
     <Compile Include="GenericChart.fs" />
     <Compile Include="Chart.fs" />
     <Compile Include="ChartExtensions.fs" />

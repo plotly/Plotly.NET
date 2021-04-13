@@ -45,6 +45,12 @@
 
 open Plotly.NET
 open GenericChart
+[
+    Chart.Line([(1.,2.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$")
+    Chart.Line([(1.,2.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$")
+]
+|> Chart.Combine
+|> Chart.Show
 
 let myTemplate = 
     ChartTemplates.dark
