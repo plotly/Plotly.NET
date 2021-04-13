@@ -41,7 +41,7 @@ let line1 =
         Name="line",
         ShowMarkers=true,
         MarkerSymbol=StyleParam.Symbol.Square)    
-    |> Chart.withLineStyle(Width=2,Dash=StyleParam.DrawingStyle.Dot)
+    |> Chart.withLineStyle(Width=2.,Dash=StyleParam.DrawingStyle.Dot)
 
 (*** condition: ipynb ***)
 #if IPYNB

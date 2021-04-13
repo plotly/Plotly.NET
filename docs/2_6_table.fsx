@@ -183,8 +183,8 @@ let cellcolors =
     |> Seq.transpose
     |> Seq.map (fun x -> Seq.append x (seq ["white"]))
 
-let font = Font.init(FontFamily.Consolas,Size=14)
-let line = Line.init(0,"white")
+let font = Font.init(FontFamily.Consolas,Size=14.)
+let line = Line.init(0.,"white")
 let chartwidth = 50. + 10. * float elementsPerRow
 
 let table4 =

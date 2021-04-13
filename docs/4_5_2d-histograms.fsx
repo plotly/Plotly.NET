@@ -50,7 +50,7 @@ A Histogram2d chart can be created using the `Chart.Histogram2d` or `Chart.Histo
 
 let histogramContour =
     [
-        Chart.Histogram2dContour (x,y,Line=Line.init(Width=0))
+        Chart.Histogram2dContour (x,y,Line=Line.init(Width=0.))
         Chart.Point(x,y,Opacity=0.3)
     ]
     |> Chart.Combine

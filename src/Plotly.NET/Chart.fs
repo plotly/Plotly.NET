@@ -1430,9 +1430,9 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?Tickfont,
             [<Optional;DefaultParameterValue(null)>] ?Rangefont) =
         Trace.initParallelCategories (
-            TraceStyle.ParallelCoord (Dimensions=dims,?Domain=Domain,?Labelfont=Labelfont,?Tickfont=Tickfont,?Rangefont=Rangefont)             
+            TraceStyle.ParallelCategories (Dimensions=dims,?Domain=Domain,?Color=Color,?Labelfont=Labelfont,?Tickfont=Tickfont,?Rangefont=Rangefont)             
             )
-        |> TraceStyle.Line(?Width=Width,?Color=Color,?Dash=Dash,?Colorscale=Colorscale)
+        |> TraceStyle.Line(?Width=Width,?Dash=Dash,?Colorscale=Colorscale)
         |> GenericChart.ofTraceObject
 
     /// Computes the choropleth map plot

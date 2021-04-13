@@ -26,7 +26,7 @@ open Plotly.NET
 let dims =
     [
         Dimensions.init(["Cat1";"Cat1";"Cat1";"Cat1";"Cat2";"Cat2";"Cat3"],Label="A")
-        Dimensions.init([0;1;0;1;0;0;0],Label="B",TickText=["YES","NO"])
+        Dimensions.init([0;1;0;1;0;0;0],Label="B",TickText=["YES";"NO"])
     ]
 
 let parcats =

@@ -1113,6 +1113,7 @@ module Trace =
                 ?Dimensions : seq<Dimensions>,
                 ?Line               ,
                 ?Domain             ,
+                ?Color      : seq<IConvertible>,
                 ?Labelfont          ,
                 ?Tickfont   :   Font,
                 ?Rangefont  :   Font        
@@ -1122,6 +1123,7 @@ module Trace =
                     Dimensions         |> DynObj.setValueOpt parcats "dimensions"         
                     Line               |> DynObj.setValueOpt parcats "line"                     
                     Domain             |> DynObj.setValueOpt parcats "domain"     
+                    Color              |> DynObj.setValueOpt parcats "color"     
                     Labelfont          |> DynObj.setValueOpt parcats "labelfont"               
                     Tickfont           |> DynObj.setValueOpt parcats "tickfont"                
                     Rangefont          |> DynObj.setValueOpt parcats "rangefont"              

@@ -70,7 +70,7 @@ let heat2 =
     |> Chart.withColorBarStyle(
         "Im the Colorbar",
         TitleSide = StyleParam.Side.Right,
-        TitleFont = Font.init(Size=20)
+        TitleFont = Font.init(Size=20.)
     )
 
 (*** condition: ipynb ***)
