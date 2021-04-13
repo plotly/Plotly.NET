@@ -193,7 +193,7 @@ module Trace =
     /// Functions provide the styling of the Chart objects
     type TraceStyle() =
         
-        /// Applies the TraceInfo styles to TraceObjects
+        /// Applies the given TraceInfo style parameters to a Trace object.
         static member TraceInfo
             (    
                 ?Name: string,
@@ -221,7 +221,7 @@ module Trace =
                     trace
                 ) 
 
-        // Sets Axis anchor id to TraceObjects
+        /// Sets the given axis anchor id(s) on a Trace object.
         static member SetAxisAnchor
             (
                 ?X:StyleParam.AxisAnchorId,
@@ -237,7 +237,7 @@ module Trace =
                     trace
                 )
 
-        // Sets selection of data points
+        /// Sets selection of data points on a Trace object.
         static member SetSelection
             (
                 ?Selectedpoints,
@@ -254,7 +254,7 @@ module Trace =
                 )
 
 
-        // Applies the styles of TextLabel to TraceObjects
+        /// Sets the given text label styles on a Trace object.
         static member TextLabel
             (    
                 ?Text   : seq<string>,
@@ -276,7 +276,7 @@ module Trace =
                 )  
 
 
-        // Sets Line() to TraceObjects
+        /// Sets the given line on a Trace object.
         static member SetLine
             (
                 line:Line
@@ -288,7 +288,7 @@ module Trace =
                 )
 
 
-        // Applies the styles to Line()
+        /// Sets the given Line styles on the line property of a Trace object
         static member Line
             (
                 ?Width: float,
@@ -310,7 +310,7 @@ module Trace =
                 )    
 
 
-        // Sets Marker() to TraceObjects
+        /// Sets the given marker on a Trace object.
         static member SetMarker
             (
                 marker:Marker
@@ -322,7 +322,7 @@ module Trace =
                 )
 
 
-        // Applies the styles to Marker()
+        /// Sets the given Marker styles on the marker property of a Trace object
         static member Marker
             (   
                 ?Size: int,
@@ -368,7 +368,7 @@ module Trace =
 
                 )
 
-        // Sets X-Error() to TraceObjects
+        // Sets the X-Error an a Trace object.
         static member SetErrorX
             (
                 error:Error
@@ -415,39 +415,21 @@ module Trace =
         //#############################################################################################################################################
         //# Chart trace style abstractions
         //#############################################################################################################################################
-        
-        //-------------------------------------------------------------------------------------------------------------------------------------------------
-        //Simple
 
-        /// Applies the styles of scatter plot to TraceObjects 
-        ///
-        /// Parameters:
-        ///
-        /// X           : Sets the x coordinates of the plotted data.
-        ///
-        /// Y           : Sets the y coordinates of the plotted data.
-        ///
-        /// Mode        : Determines the drawing mode for this scatter trace.
-        ///
-        /// Fill        : Sets the area to fill with a solid color
-        ///
-        /// Fillcolor   :
-        ///
-        /// Connectgaps : Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
-        ///
-        /// StackGroup  : Set several scatter traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order
-        ///
-        /// Orientation : Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.
-        ///
-        /// GroupNorm   : Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used
-        ///
-        /// R           : [Legacy] used for polar charts. Will be removed when adding the new polar charts.
-        ///
-        /// T           : [Legacy] used for polar charts. Will be removed when adding the new polar charts.
-        ///
-        /// Error_y     : Sets vertical error bars for this this scatter trace.
-        ///
-        /// Error_x     : Sets horizontal error bars for this this scatter trace.
+        /// <summary>Create a function that applies the styles of a scatter plot to a Trace object</summary>
+        /// <param name="X">Sets the x coordinates of the plotted data.</param>
+        /// <param name="Y">Sets the y coordinates of the plotted data.</param>
+        /// <param name="Mode">Determines the drawing mode for this scatter trace.</param>
+        /// <param name="Fill">Sets the area to fill with a solid color</param>
+        /// <param name="Fillcolor">Sets the color applied to the fill area</param>
+        /// <param name="Connectgaps">Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.</param>
+        /// <param name="StackGroup">Set several scatter traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
+        /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
+        /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
+        /// <param name="R">[Legacy] used for polar charts. Will be removed when adding the new polar charts.</param>
+        /// <param name="T">[Legacy] used for polar charts. Will be removed when adding the new polar charts.</param>
+        /// <param name="Error_y">Sets vertical error bars for this this scatter trace.</param>
+        /// <param name="Error_x">Sets horizontal error bars for this this scatter trace.</param>
         static member Scatter
             (   
                 ?X          : seq<#IConvertible>,
@@ -483,16 +465,24 @@ module Trace =
                     trace
                 ) 
 
-        // Applies the styles of bar plot to TraceObjects 
+        /// <summary>Create a function that applies the styles of a bar plot to a Trace object</summary>
+        /// <param name="X">Sets the x coordinates of the plotted data.</param>
+        /// <param name="Y">Sets the y coordinates of the plotted data.</param>
+        /// <param name="Marker">Sets Marker</param>
+        /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
+        /// <param name="R">[Legacy] used for polar charts. Will be removed when adding the new polar charts.</param>
+        /// <param name="T">[Legacy] used for polar charts. Will be removed when adding the new polar charts.</param>
+        /// <param name="Error_y">Sets vertical error bars for this this scatter trace.</param>
+        /// <param name="Error_x">Sets horizontal error bars for this this scatter trace.</param>
         static member Bar
             (   
                 ?X      : seq<#IConvertible>,
                 ?Y      : seq<#IConvertible>,                                 
                 ?Marker : Marker,            
-                ?R: _, ?T: _,
+                ?R      : seq<#IConvertible>,
+                ?T      : seq<#IConvertible>,
                 ?Error_y: Error,
-                ?Error_x: Error,
-                // 
+                ?Error_x: Error, 
                 ?Orientation
             ) =
                 (fun (bar:('T :> Trace)) ->    
@@ -1113,7 +1103,7 @@ module Trace =
                 ?Dimensions : seq<Dimensions>,
                 ?Line               ,
                 ?Domain             ,
-                ?Color      : seq<IConvertible>,
+                ?Color      : seq<#IConvertible>,
                 ?Labelfont          ,
                 ?Tickfont   :   Font,
                 ?Rangefont  :   Font        

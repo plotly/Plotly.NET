@@ -15,8 +15,8 @@ type Dimensions () =
             ?Constraintrange: StyleParam.Range,
             ?Visible: bool,
             ?Label: string,
-            ?Tickvals: seq<IConvertible>,
-            ?TickText: seq<IConvertible>,
+            ?Tickvals: seq<#IConvertible>,
+            ?TickText: seq<#IConvertible>,
             ?TickFormat: StyleParam.TickMode
         ) =
             Dimensions () 
@@ -41,8 +41,8 @@ type Dimensions () =
             ?Constraintrange: StyleParam.Range,
             ?Visible: bool,
             ?Label: string,
-            ?Tickvals: seq<IConvertible>,
-            ?TickText: seq<IConvertible>,
+            ?Tickvals: seq<#IConvertible>,
+            ?TickText: seq<#IConvertible>,
             ?TickFormat: StyleParam.TickMode
         ) =
             (fun (dims:Dimensions) -> 

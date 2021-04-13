@@ -35,12 +35,12 @@ type TableHeader () =
     /// Initialized Header object
     static member init
         (   
-            values , 
-            ?Align ,
-            ?Height,
-            ?Fill  ,
-            ?Font  ,
-            ?Line
+            values: seq<#seq<#IConvertible>>, 
+            ?Align: seq<StyleParam.HorizontalAlign>,
+            ?Height: float,
+            ?Fill: CellColor,
+            ?Font: Font,
+            ?Line: Line
 
         ) =
         TableHeader () 
@@ -58,12 +58,12 @@ type TableHeader () =
     /// Applies the styles to TableHeader()
     static member style
         (   
-            values : seq<#seq<#IConvertible>>       , 
+            values : seq<#seq<#IConvertible>>, 
             ?Align : seq<StyleParam.HorizontalAlign>,
-            ?Height                                 ,
-            ?Fill                                   ,
-            ?Font  : Font                           ,
-            ?Line  : Line 
+            ?Height: float,
+            ?Fill: CellColor,
+            ?Font: Font,
+            ?Line: Line
 
         ) =
             (fun (header: TableHeader) -> 
@@ -84,12 +84,12 @@ type TableCells () =
     /// Initialized Cells object
     static member init
         (   
-            values , 
-            ?Align ,
-            ?Height,
-            ?Fill  ,
-            ?Font  ,
-            ?Line   
+            values : seq<#seq<#IConvertible>>, 
+            ?Align : seq<StyleParam.HorizontalAlign>,
+            ?Height: float,
+            ?Fill: CellColor, 
+            ?Font: Font,
+            ?Line: Line 
 
         ) =
         TableCells () 
@@ -107,12 +107,12 @@ type TableCells () =
     //Applies the styles to TableCells()
     static member style
         (   
-            values : seq<#seq<#IConvertible>>       , 
+            values : seq<#seq<#IConvertible>>, 
             ?Align : seq<StyleParam.HorizontalAlign>,
-            ?Height                                 ,
-            ?Fill                                   , 
-            ?Font  : Font                           ,
-            ?Line  : Line 
+            ?Height: float,
+            ?Fill: CellColor, 
+            ?Font: Font,
+            ?Line: Line 
 
         ) =
            (fun (cells: TableCells) -> 

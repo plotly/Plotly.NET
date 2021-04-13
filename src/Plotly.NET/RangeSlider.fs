@@ -21,11 +21,11 @@ type RangeSlider () =
             ?BorderColor: string,
             ?BorderWidth: float,
             ?AutoRange : bool ,
-            ?Range: seq<IConvertible>  ,
+            ?Range: seq<#IConvertible>  ,
             ?Thickness: float,
             ?Visible: bool,
             ?YAxisRangeMode: StyleParam.RangeMode,
-            ?YAxisRange: seq<IConvertible>
+            ?YAxisRange: seq<#IConvertible>
         ) = 
             RangeSlider ()
             |> RangeSlider.style (
@@ -55,11 +55,11 @@ type RangeSlider () =
             ?BorderColor: string,
             ?BorderWidth: float,
             ?AutoRange : bool,
-            ?Range: seq<IConvertible>,
+            ?Range: seq<#IConvertible>,
             ?Thickness: float,
             ?Visible: bool,
             ?YAxisRangeMode: StyleParam.RangeMode,
-            ?YAxisRange: seq<IConvertible>
+            ?YAxisRange: seq<#IConvertible>
         ) = 
             fun (rangeslider : RangeSlider) ->
                 BgColor        |> DynObj.setValueOpt rangeslider "bgcolor"

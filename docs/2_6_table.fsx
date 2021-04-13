@@ -193,7 +193,7 @@ let table4 =
         cells,
         LineCells   = line,
         LineHeader  = line,
-        HeightCells = 20,
+        HeightCells = 20.,
         FontHeader  = font,
         FontCells   = font,
         ColumnWidth = [50;10],

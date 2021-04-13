@@ -1,5 +1,5 @@
 namespace Plotly.NET
-
+open System
 
 /// Shape type inherits from dynamic object
 type Shape () =
@@ -8,18 +8,18 @@ type Shape () =
     /// Init Shape type
     static member init
         (   
-            ?ShapeType ,
-            ?X0        ,
-            ?X1        ,           
-            ?Y0        ,
-            ?Y1        ,
-            ?Path      ,
-            ?Opacity   ,
-            ?Line      ,
-            ?Fillcolor ,
-            ?Layer     ,
-            ?Xref      ,
-            ?Yref           
+            ?ShapeType: StyleParam.ShapeType,
+            ?X0: IConvertible,
+            ?X1: IConvertible,
+            ?Y0: IConvertible,
+            ?Y1: IConvertible,
+            ?Path: string,
+            ?Opacity: float,
+            ?Line: Line,
+            ?Fillcolor: string ,
+            ?Layer: StyleParam.Layer,
+            ?Xref: string,
+            ?Yref: string
         ) =
             Shape() 
             |> Shape.style
@@ -41,18 +41,18 @@ type Shape () =
     // Applies the styles to Shape()
     static member style
         (   
-            ?ShapeType : StyleParam.ShapeType,
-            ?X0        ,
-            ?X1        ,           
-            ?Y0        ,
-            ?Y1        ,
-            ?Path      ,
-            ?Opacity   ,
-            ?Line : Line,
-            ?Fillcolor ,
-            ?Layer :StyleParam.Layer,
-            ?Xref      ,
-            ?Yref           
+            ?ShapeType: StyleParam.ShapeType,
+            ?X0: IConvertible,
+            ?X1: IConvertible,
+            ?Y0: IConvertible,
+            ?Y1: IConvertible,
+            ?Path: string,
+            ?Opacity: float,
+            ?Line: Line,
+            ?Fillcolor: string ,
+            ?Layer: StyleParam.Layer,
+            ?Xref: string,
+            ?Yref: string
         ) =
             (fun (shape:Shape) -> 
 

@@ -1,18 +1,14 @@
 ﻿namespace Plotly.NET
 
-/// Determines Map rotation in GeoProjections
-///
-/// Parameters  :
-///
-/// Longitude   : Rotates the map along parallels (in degrees East). Defaults to the center of the `lonaxis.range` values.
-///
-/// Latitude    : Rotates the map along meridians (in degrees North).
-/// 
-/// Roll        : Roll the map (in degrees) For example, a roll of "180" makes the map appear upside down.
 
+/// <summary>Determines Map rotation in GeoProjections</summary>
 type GeoProjectionRotation () = 
     inherit DynamicObj ()
 
+    /// <summary>Initialize a GeoProjectionRotation object that determines Map rotation in GeoProjections</summary>
+    /// <param name="Longitude">Rotates the map along parallels (in degrees East). Defaults to the center of the `lonaxis.range` values.</param>
+    /// <param name="Latitude">Rotates the map along meridians (in degrees North).</param>
+    /// <param name="Roll">Roll the map (in degrees) For example, a roll of "180" makes the map appear upside down.</param>
     static member init
         (   
             ?Longitude  :float,
@@ -28,6 +24,10 @@ type GeoProjectionRotation () =
                     ?Roll       = Roll     
                 )
 
+    /// <summary>Create a function that applies the given style parameters to a GeoProjectionRotation object</summary>
+    /// <param name="Longitude">Rotates the map along parallels (in degrees East). Defaults to the center of the `lonaxis.range` values.</param>
+    /// <param name="Latitude">Rotates the map along meridians (in degrees North).</param>
+    /// <param name="Roll">Roll the map (in degrees) For example, a roll of "180" makes the map appear upside down.</param>
     static member style
         (   
             ?Longitude  :float,
@@ -42,20 +42,15 @@ type GeoProjectionRotation () =
                 rotation
             ) 
 
-/// Determines the map projection in geo traces.
-/// 
-/// Parameters      :
-///
-/// projectionType  : Sets the type of projection
-///
-/// Rotation       : Sets the rotation applied to the map
-///
-/// Parallels      : For conic projection types only. Sets the parallels (tangent, secant) where the cone intersects the sphere.
-///
-/// Scale          : Zooms in or out on the map view. A scale of "1" corresponds to the largest zoom level that fits the map's lon and lat ranges.
+/// <summary>Determines the map projection in geo traces.</summary>
 type GeoProjection() = 
     inherit DynamicObj ()
 
+    /// <summary>Initialize a GeoProjection object that determines the map projection in geo traces.</summary>
+    /// <param name="projectionType">Sets the type of projection</param>
+    /// <param name="Rotation">Sets the rotation applied to the map</param>
+    /// <param name="Parallels">For conic projection types only. Sets the parallels (tangent, secant) where the cone intersects the sphere.</param>
+    /// <param name="Scale">Zooms in or out on the map view. A scale of "1" corresponds to the largest zoom level that fits the map's lon and lat ranges.</param>
     static member init
         (   
             projectionType  : StyleParam.GeoProjectionType  ,
@@ -73,6 +68,11 @@ type GeoProjection() =
                     ?Scale          = Scale        
                 )
 
+    /// <summary>Create a function that applies the given style parameters to a GeoProjection object.</summary>
+    /// <param name="projectionType">Sets the type of projection</param>
+    /// <param name="Rotation">Sets the rotation applied to the map</param>
+    /// <param name="Parallels">For conic projection types only. Sets the parallels (tangent, secant) where the cone intersects the sphere.</param>
+    /// <param name="Scale">Zooms in or out on the map view. A scale of "1" corresponds to the largest zoom level that fits the map's lon and lat ranges.</param>
     static member style
         (   
             projectionType  : StyleParam.GeoProjectionType  ,

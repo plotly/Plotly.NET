@@ -1,107 +1,75 @@
 ﻿namespace Plotly.NET
 
-/// Determines the style of the map shown in geo traces
-///
-/// Parameters      :
-///
-/// FitBounds       : Determines if and how this subplot's view settings are auto-computed to fit trace data
-///
-/// Resolution      : Sets the resolution of the base layers
-///
-/// Scope           : Set the scope of the map.
-///
-/// Projection      : Determines the type of projection used to display the map
-///
-/// Center          : Sets the (lon,lat) coordinates of the map's center. By default, the map's longitude center lies at the middle of the longitude range for scoped projection and above `projection.rotation.lon` otherwise. For all projection types, the map's latitude center lies at the middle of the latitude range by default.
-///
-/// Visible         : Wether or not the base layers are visible
-///
-/// Domain          : The domain of this geo subplot
-///
-/// ShowCoastLine   : Sets whether or not the coastlines are drawn.
-///
-/// CoastLineColor  : Sets the coastline color.
-///
-/// CoastLineWidth  : Sets the coastline stroke width (in px).
-///
-/// ShowLand        : Sets whether or not land masses are filled in color.
-///
-/// LandColor       : Sets the land mass color.
-///
-/// ShowOcean       : Sets whether or not oceans are filled in color.
-///
-/// OceanColor      : Sets the ocean color
-///
-/// ShowLakes       : Sets whether or not lakes are drawn.
-///
-/// LakeColor       : Sets the color of the lakes.
-///
-/// ShowRivers      : Sets whether or not rivers are drawn.
-///
-/// RiverColor      : Sets color of the rivers.
-///
-/// RiverWidth      : Sets the stroke width (in px) of the rivers.
-///
-/// ShowCountries   : Sets whether or not country boundaries are drawn.
-///
-/// CountryColor    : Sets line color of the country boundaries.
-///
-/// CountryWidth    : Sets line width (in px) of the country boundaries.
-///
-/// ShowSubunits    : Sets whether or not boundaries of subunits within countries (e.g. states, provinces) are drawn.
-///
-/// SubunitColor    : Sets the color of the subunits boundaries.
-///
-/// SubunitWidth    : Sets the stroke width (in px) of the subunits boundaries.
-///
-/// ShowFrame       : Sets whether or not a frame is drawn around the map.
-///
-/// FrameColor      : Sets the color the frame.
-///
-/// FrameWidth      : Sets the stroke width (in px) of the frame.
-///
-/// BgColor         : Set the background color of the map
-///
-/// LatAxis         : Sets the latitudinal axis for this geo trace
-///
-/// LonAxis         : Sets the longitudinal axis for this geo trace
+/// <summary>Determines the style of the map shown in geo traces</summary>
 type Geo() = 
 
     inherit DynamicObj ()
 
+    /// <summary>Initialize a Geo object that determines the style of the map shown in geo traces</summary>
+    /// <param name="FitBounds">Determines if and how this subplot's view settings are auto-computed to fit trace data</param>
+    /// <param name="Resolution">Sets the resolution of the base layers</param>
+    /// <param name="Scope">Set the scope of the map.</param>
+    /// <param name="Projection">Determines the type of projection used to display the map</param>
+    /// <param name="Center">Sets the (lon,lat) coordinates of the map's center. By default, the map's longitude center lies at the middle of the longitude range for scoped projection and above `projection.rotation.lon` otherwise. For all projection types, the map's latitude center lies at the middle of the latitude range by default.</param>
+    /// <param name="Visible">Wether or not the base layers are visible</param>
+    /// <param name="Domain">The domain of this geo subplot</param>
+    /// <param name="ShowCoastLines">Sets whether or not the coastlines are drawn.</param>
+    /// <param name="CoastLineColor">Sets the coastline color.</param>
+    /// <param name="CoastLineWidth">Sets the coastline stroke width (in px).</param>
+    /// <param name="ShowLand">Sets whether or not land masses are filled in color.</param>
+    /// <param name="LandColor">Sets the land mass color.</param>
+    /// <param name="ShowOcean">Sets whether or not oceans are filled in color.</param>
+    /// <param name="OceanColor">Sets the ocean color</param>
+    /// <param name="ShowLakes">Sets whether or not lakes are drawn.</param>
+    /// <param name="LakeColor">Sets the color of the lakes.</param>
+    /// <param name="ShowRivers">Sets whether or not rivers are drawn.</param>
+    /// <param name="RiverColor">Sets color of the rivers.</param>
+    /// <param name="RiverWidth">Sets the stroke width (in px) of the rivers.</param>
+    /// <param name="ShowCountries">Sets whether or not country boundaries are drawn.</param>
+    /// <param name="CountryColor">Sets line color of the country boundaries.</param>
+    /// <param name="CountryWidth">Sets line width (in px) of the country boundaries.</param>
+    /// <param name="ShowSubunits">Sets whether or not boundaries of subunits within countries (e.g. states, provinces) are drawn.</param>
+    /// <param name="SubunitColor">Sets the color of the subunits boundaries.</param>
+    /// <param name="SubunitWidth">Sets the stroke width (in px) of the subunits boundaries.</param>
+    /// <param name="ShowFrame">Sets whether or not a frame is drawn around the map.</param>
+    /// <param name="FrameColor">Sets the color the frame.</param>
+    /// <param name="FrameWidth">Sets the stroke width (in px) of the frame.</param>
+    /// <param name="BgColor">Set the background color of the map</param>
+    /// <param name="LatAxis">Sets the latitudinal axis for this geo trace</param>
+    /// <param name="LonAxis">Sets the longitudinal axis for this geo trace</param>
     static member init
         (   
-           ?FitBounds       : StyleParam.GeoFitBounds,
-           ?Resolution      : StyleParam.GeoResolution,
-           ?Scope           : StyleParam.GeoScope,
-           ?Projection      : GeoProjection,
-           ?Center          : (float*float),
-           ?Visible         : bool,
-           ?Domain          : Domain,
-           ?ShowCoastLines  : bool,
-           ?CoastLineColor,
-           ?CoastLineWidth  : float,
-           ?ShowLand        : bool,
-           ?LandColor,
-           ?ShowOcean       : bool,
-           ?OceanColor,
-           ?ShowLakes       : bool,
-           ?LakeColor,
-           ?ShowRivers      : bool,
-           ?RiverColor,
-           ?RiverWidth      : float,
-           ?ShowCountries   : bool,
-           ?CountryColor,
-           ?CountryWidth    : float,
-           ?ShowSubunits    : bool,
-           ?SubunitColor,
-           ?SubunitWidth    : float,
-           ?ShowFrame       : bool,
-           ?FrameColor,
-           ?FrameWidth      : float,
-           ?BgColor,
-           ?LatAxis         : Axis.LinearAxis,
-           ?LonAxis         : Axis.LinearAxis
+           ?FitBounds: StyleParam.GeoFitBounds,
+           ?Resolution: StyleParam.GeoResolution,
+           ?Scope: StyleParam.GeoScope,
+           ?Projection: GeoProjection,
+           ?Center: (float*float),
+           ?Visible: bool,
+           ?Domain: Domain,
+           ?ShowCoastLines: bool,
+           ?CoastLineColor: string,
+           ?CoastLineWidth: float,
+           ?ShowLand: bool,
+           ?LandColor: string,
+           ?ShowOcean: bool,
+           ?OceanColor: string,
+           ?ShowLakes: bool,
+           ?LakeColor: string,
+           ?ShowRivers: bool,
+           ?RiverColor: string,
+           ?RiverWidth: float,
+           ?ShowCountries: bool,
+           ?CountryColor: string,
+           ?CountryWidth: float,
+           ?ShowSubunits: bool,
+           ?SubunitColor: string,
+           ?SubunitWidth: float,
+           ?ShowFrame: bool,
+           ?FrameColor: string,
+           ?FrameWidth: float,
+           ?BgColor: string,
+           ?LatAxis: Axis.LinearAxis,
+           ?LonAxis: Axis.LinearAxis
 
         ) =
             Geo()
@@ -140,39 +108,71 @@ type Geo() =
                     ?LonAxis        = LonAxis       
                 )
 
+    /// <summary>Create a function that applies the given style parameters to a Geo object.</summary>
+    /// <param name="FitBounds">Determines if and how this subplot's view settings are auto-computed to fit trace data</param>
+    /// <param name="Resolution">Sets the resolution of the base layers</param>
+    /// <param name="Scope">Set the scope of the map.</param>
+    /// <param name="Projection">Determines the type of projection used to display the map</param>
+    /// <param name="Center">Sets the (lon,lat) coordinates of the map's center. By default, the map's longitude center lies at the middle of the longitude range for scoped projection and above `projection.rotation.lon` otherwise. For all projection types, the map's latitude center lies at the middle of the latitude range by default.</param>
+    /// <param name="Visible">Wether or not the base layers are visible</param>
+    /// <param name="Domain">The domain of this geo subplot</param>
+    /// <param name="ShowCoastLines">Sets whether or not the coastlines are drawn.</param>
+    /// <param name="CoastLineColor">Sets the coastline color.</param>
+    /// <param name="CoastLineWidth">Sets the coastline stroke width (in px).</param>
+    /// <param name="ShowLand">Sets whether or not land masses are filled in color.</param>
+    /// <param name="LandColor">Sets the land mass color.</param>
+    /// <param name="ShowOcean">Sets whether or not oceans are filled in color.</param>
+    /// <param name="OceanColor">Sets the ocean color</param>
+    /// <param name="ShowLakes">Sets whether or not lakes are drawn.</param>
+    /// <param name="LakeColor">Sets the color of the lakes.</param>
+    /// <param name="ShowRivers">Sets whether or not rivers are drawn.</param>
+    /// <param name="RiverColor">Sets color of the rivers.</param>
+    /// <param name="RiverWidth">Sets the stroke width (in px) of the rivers.</param>
+    /// <param name="ShowCountries">Sets whether or not country boundaries are drawn.</param>
+    /// <param name="CountryColor">Sets line color of the country boundaries.</param>
+    /// <param name="CountryWidth">Sets line width (in px) of the country boundaries.</param>
+    /// <param name="ShowSubunits">Sets whether or not boundaries of subunits within countries (e.g. states, provinces) are drawn.</param>
+    /// <param name="SubunitColor">Sets the color of the subunits boundaries.</param>
+    /// <param name="SubunitWidth">Sets the stroke width (in px) of the subunits boundaries.</param>
+    /// <param name="ShowFrame">Sets whether or not a frame is drawn around the map.</param>
+    /// <param name="FrameColor">Sets the color the frame.</param>
+    /// <param name="FrameWidth">Sets the stroke width (in px) of the frame.</param>
+    /// <param name="BgColor">Set the background color of the map</param>
+    /// <param name="LatAxis">Sets the latitudinal axis for this geo trace</param>
+    /// <param name="LonAxis">Sets the longitudinal axis for this geo trace</param>
     static member style
         (   
-            ?Domain          : Domain,
-            ?FitBounds       : StyleParam.GeoFitBounds,
-            ?Resolution      : StyleParam.GeoResolution,
-            ?Scope           : StyleParam.GeoScope,
-            ?Projection      : GeoProjection,
-            ?Center          : (float*float),
-            ?Visible         : bool,
-            ?ShowCoastLines  : bool,
-            ?CoastLineColor,
-            ?CoastLineWidth  : float,
-            ?ShowLand        : bool,
-            ?LandColor,
-            ?ShowOcean       : bool,
-            ?OceanColor,
-            ?ShowLakes       : bool,
-            ?LakeColor,
-            ?ShowRivers      : bool,
-            ?RiverColor,
-            ?RiverWidth      : float,
-            ?ShowCountries   : bool,
-            ?CountryColor,
-            ?CountryWidth    : float,
-            ?ShowSubunits    : bool,
-            ?SubunitColor,
-            ?SubunitWidth    : float,
-            ?ShowFrame       : bool,
-            ?FrameColor,
-            ?FrameWidth      : float,
-            ?BgColor,
-            ?LatAxis         : Axis.LinearAxis,
-            ?LonAxis         : Axis.LinearAxis
+            ?FitBounds: StyleParam.GeoFitBounds,
+            ?Resolution: StyleParam.GeoResolution,
+            ?Scope: StyleParam.GeoScope,
+            ?Projection: GeoProjection,
+            ?Center: (float*float),
+            ?Visible: bool,
+            ?Domain: Domain,
+            ?ShowCoastLines: bool,
+            ?CoastLineColor: string,
+            ?CoastLineWidth: float,
+            ?ShowLand: bool,
+            ?LandColor: string,
+            ?ShowOcean: bool,
+            ?OceanColor: string,
+            ?ShowLakes: bool,
+            ?LakeColor: string,
+            ?ShowRivers: bool,
+            ?RiverColor: string,
+            ?RiverWidth: float,
+            ?ShowCountries: bool,
+            ?CountryColor: string,
+            ?CountryWidth: float,
+            ?ShowSubunits: bool,
+            ?SubunitColor: string,
+            ?SubunitWidth: float,
+            ?ShowFrame: bool,
+            ?FrameColor: string,
+            ?FrameWidth: float,
+            ?BgColor: string,
+            ?LatAxis: Axis.LinearAxis,
+            ?LonAxis: Axis.LinearAxis
         ) =
             (fun (geo:Geo) -> 
                 
