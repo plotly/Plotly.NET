@@ -51,7 +51,6 @@ open GenericChart
     Chart.Line([(1.,2.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$")
 ]
 |> Chart.Combine
-|> Chart.WithDescription(ChartDescription.create "SOOS" "MEEM")
 |> Chart.withTitle @"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$"
 |> Chart.WithMathTex(true)
 |> Chart.Show

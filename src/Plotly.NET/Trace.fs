@@ -257,7 +257,7 @@ module Trace =
         /// Sets the given text label styles on a Trace object.
         static member TextLabel
             (    
-                ?Text   : seq<IConvertible>,
+                ?Text   : seq<#IConvertible>,
                 ?Textposition: StyleParam.TextPosition,
                 ?Textfont: Font,
                 ?Textsrc : string,
@@ -1409,7 +1409,7 @@ module Trace =
             (
                 x               : #IConvertible seq,
                 y               : #IConvertible seq,
-                ?Base           : IConvertible,
+                ?Base           : #IConvertible,
                 ?Width          : float,
                 ?Measure        : StyleParam.WaterfallMeasure seq,
                 ?Orientation    : StyleParam.Orientation,
