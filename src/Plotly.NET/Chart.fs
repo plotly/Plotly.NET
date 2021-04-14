@@ -607,7 +607,7 @@ type Chart =
             |> TraceStyle.Line(Width=0.)
             |> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,,0.5)")             
  
-        GenericChart.MultiChart ([lower;upper;trace],Layout(),Config())
+        GenericChart.MultiChart ([lower;upper;trace],Layout(),Config(), DisplayOptions())
 
     [<Obsolete("Use the constructors with the mandatory mode argument for full functionality")>]
     /// Displays a range of data by plotting two Y values per data point, with each Y value being drawn as a line 
@@ -659,7 +659,7 @@ type Chart =
             |> TraceStyle.Line(Width=0.)
             |> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,0,0.5)")             
  
-        GenericChart.MultiChart ([lower;upper;trace],Layout(),Config())
+        GenericChart.MultiChart ([lower;upper;trace],Layout(),Config(), DisplayOptions())
 
 
     /// Displays a range of data by plotting two Y values per data point, with each Y value being drawn as a line 
@@ -1122,7 +1122,7 @@ type Chart =
 
     /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data.
     static member Pie(values,
-            [<Optional;DefaultParameterValue(null)>]  ?Labels,
+            [<Optional;DefaultParameterValue(null)>]  ?Labels:seq<'IConvertible>,
             [<Optional;DefaultParameterValue(null)>]  ?Name,
             [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
             [<Optional;DefaultParameterValue(null)>]  ?Colors,

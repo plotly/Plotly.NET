@@ -36,6 +36,7 @@
 #load "Template.fs"
 #load "Config.fs"
 #r "nuget: Newtonsoft.Json, 12.0.3"
+#load "DisplayOptions.fs"
 #load "GenericChart.fs"
 #load "Chart.fs"
 #load "ChartExtensions.fs"
@@ -50,7 +51,11 @@ open GenericChart
     Chart.Line([(1.,2.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$")
 ]
 |> Chart.Combine
+|> Chart.WithDescription(ChartDescription.create "SOOS" "MEEM")
+|> Chart.withTitle @"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$"
+|> Chart.WithMathTex(true)
 |> Chart.Show
+
 
 let myTemplate = 
     ChartTemplates.dark
@@ -496,7 +501,7 @@ generateDomainRanges 8 1
 |> Chart.withColorBarStyle(
     "Hallo?",
     TitleSide=StyleParam.Side.Right,
-    TitleFont=Font.init(Size=20)
+    TitleFont=Font.init(Size=20.)
 )
 |> Chart.Show
 

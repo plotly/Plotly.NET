@@ -629,28 +629,40 @@ module GenericChartExtensions =
                 |> Layout.style (Shapes=shapes)
             GenericChart.setLayout layout this
 
+        // ############################################################
+        // ####################### Apply to DisplayOptions
+        
+        /// Show chart in browser
+        [<CompiledName("WithDescription")>]
+        [<Extension>]
+        member this.WithDescription (description:ChartDescription) = 
+            this |> Chart.WithDescription description
+
+        /// Adds the given additional script tags on the chart's DisplayOptions.
+        [<CompiledName("WithAdditionalScriptTags")>]
+        [<Extension>]
+        member this.WithAdditionalScriptTags (additionalScriptTags:seq<string>) = 
+            this |> Chart.WithAdditionalScriptTags additionalScriptTags
+
+        /// Sets the given additional script tags on the chart's DisplayOptions.
+        [<CompiledName("WithScriptTags")>]
+        [<Extension>]
+        member this.WithScriptTags (scriptTags:seq<string>) = 
+            this |> Chart.WithScriptTags scriptTags
+        
+        /// Adds the necessary script tags to render tex strings to the chart's DisplayOptions
+        [<CompiledName("WithMathTex")>]
+        [<Extension>]
+        member this.WithMathTex([<Optional;DefaultParameterValue(true)>]?AppendTags:bool) =
+            let append = Option.defaultValue true AppendTags
+            this |> Chart.WithMathTex(append)
+
+
         /// Save chart as html single page
         [<CompiledName("SaveHtmlAs")>]
         [<Extension>]
         member this.SaveHtmlAs (pathName:string, [<Optional;DefaultParameterValue(null)>] ?Verbose) =
             Chart.SaveHtmlAs pathName this
-
-        /// Saves chart in a specified file name. The caller is responsible for full path / filename / extension.
-        [<CompiledName("SaveHtmlWithDescriptionAs")>]
-        [<Extension>]
-        member this.SaveHtmlWithDescriptionAs 
-            (   
-                pathName : string, 
-                description : ChartDescription, 
-                [<Optional;DefaultParameterValue(null)>] ?Verbose
-            ) =
-                Chart.SaveHtmlWithDescriptionAs pathName description this
-
-        /// Show chart in browser
-        [<CompiledName("ShowWithDescription")>]
-        [<Extension>]
-        member this.ShowWithDescription (description : ChartDescription) =
-            Chart.ShowWithDescription description this
 
         /// Show chart in browser
         [<CompiledName("Show")>]

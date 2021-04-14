@@ -14,7 +14,7 @@ type Dimensions () =
             ?Range: StyleParam.Range,
             ?Constraintrange: StyleParam.Range,
             ?Visible: bool,
-            ?Label: string,
+            ?Label: IConvertible,
             ?Tickvals: seq<#IConvertible>,
             ?TickText: seq<#IConvertible>,
             ?TickFormat: StyleParam.TickMode
@@ -40,7 +40,7 @@ type Dimensions () =
             ?Range: StyleParam.Range,
             ?Constraintrange: StyleParam.Range,
             ?Visible: bool,
-            ?Label: string,
+            ?Label: IConvertible,
             ?Tickvals: seq<#IConvertible>,
             ?TickText: seq<#IConvertible>,
             ?TickFormat: StyleParam.TickMode

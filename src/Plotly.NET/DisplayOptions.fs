@@ -6,6 +6,12 @@ type ChartDescription =
         Text    : string
     }
 
+    static member create heading text =
+        {
+            Heading = heading
+            Text = text
+        }
+
     //to-do: when finally using a html dsl, adapt to return XMLNode
     static member toHtml (d:ChartDescription) =
     
@@ -56,16 +62,17 @@ type DisplayOptions() =
                 (displayOptions.TryGetTypedValue<seq<string>>("AdditionalScriptTags") 
                 |> Option.map (String.concat "\r\n")
                 |> Option.defaultValue "")
-            "[ADDITIONAL_SCRIPT_TAGS]", 
-                (displayOptions.TryGetTypedValue<ChartDescription>("AdditionalScriptTags") 
+            "[DESCRIPTION]", 
+                (displayOptions.TryGetTypedValue<ChartDescription>("Description") 
                 |> Option.map ChartDescription.toHtml
                 |> Option.defaultValue "")
         ]
 
-    static member replaceHtmlPlaceholders (html:string) (displayOptions:DisplayOptions) =
+    static member replaceHtmlPlaceholders (displayOptions:DisplayOptions) (html:string) =
         displayOptions
         |> DisplayOptions.getReplacements
         |> List.fold (fun (html:string) (placeholder,replacement) ->
+            printfn $"replacing {placeholder} {replacement}"
             html.Replace(placeholder,replacement)
         ) html
 

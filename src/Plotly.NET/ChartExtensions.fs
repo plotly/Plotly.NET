@@ -933,10 +933,50 @@ module ChartExtensions =
                 |> Chart.Combine
                 )
         
-        //static member Stack3D (?Columns:int, ?Space) =
-        //    (fun (charts:#seq<GenericChart>) ->  
-        //        ()
-        //    )
+// ############################################################
+// ####################### Apply to DisplayOptions
+
+        /// Show chart in browser
+        [<CompiledName("WithDescription")>]
+        static member WithDescription (description:ChartDescription) (ch:GenericChart) = 
+            ch 
+            |> mapDisplayOptions (DisplayOptions.style(Description=description))
+
+
+        /// Adds the given additional script tags on the chart's DisplayOptions.
+        [<CompiledName("WithAdditionalScriptTags")>]
+        static member WithAdditionalScriptTags (additionalScriptTags:seq<string>) (ch:GenericChart) = 
+            ch 
+            |> mapDisplayOptions ( fun d ->
+                let tags = d.TryGetTypedValue<seq<string>>("AdditionalScriptTags")
+                let newTags =
+                    tags
+                    |> Option.map (fun tags -> seq{yield! tags; yield! additionalScriptTags})
+                    |> Option.defaultValue additionalScriptTags
+                d |> DisplayOptions.style(AdditionalScriptTags=newTags)
+            )
+
+        /// Sets the given additional script tags on the chart's DisplayOptions.
+        [<CompiledName("WithScriptTags")>]
+        static member WithScriptTags (scriptTags:seq<string>) (ch:GenericChart) = 
+            ch 
+            |> mapDisplayOptions (DisplayOptions.style(AdditionalScriptTags=scriptTags))
+
+        
+        /// Adds the necessary script tags to render tex strings to the chart's DisplayOptions
+        [<CompiledName("WithMathTex")>]
+        static member WithMathTex ([<Optional;DefaultParameterValue(true)>]?AppendTags:bool) = 
+            let tags = [
+                """<script type="text/x-mathjax-config;executed=true">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']], processEscapes: true}});</script>"""
+                """<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML%2CSafe.js&ver=4.1"></script>"""
+            ]
+            (fun (ch:GenericChart) ->
+            
+                if (AppendTags |> Option.defaultValue true) then
+                    ch |> Chart.WithAdditionalScriptTags tags
+                else
+                    ch |> Chart.WithScriptTags tags
+            )
 
         /// Save chart as html single page
         [<CompiledName("SaveHtmlAs")>]
@@ -948,26 +988,6 @@ module ChartExtensions =
             let verbose = defaultArg Verbose false
             if verbose then
                 file |> openOsSpecificFile
-
-        /// Saves chart in a specified file name. The caller is responsible for full path / filename / extension.
-        [<CompiledName("SaveHtmlWithDescriptionAs")>]
-        static member SaveHtmlWithDescriptionAs (pathName : string) (description : ChartDescription) (ch:GenericChart,?Verbose) =
-            let html = GenericChart.toEmbeddedHtmlWithDescription description ch
-            File.WriteAllText(pathName, html)
-            let verbose = defaultArg Verbose false
-            if verbose then
-                pathName |> openOsSpecificFile
-
-        /// Show chart in browser
-        [<CompiledName("ShowWithDescription")>]
-        static member ShowWithDescription (description : ChartDescription) (ch:GenericChart) =
-            let guid = Guid.NewGuid().ToString()
-            let html = GenericChart.toEmbeddedHtmlWithDescription description ch
-            let tempPath = Path.GetTempPath()
-            let file = sprintf "%s.html" guid
-            let path = Path.Combine(tempPath, file)
-            File.WriteAllText(path, html)
-            path |> openOsSpecificFile
 
         /// Show chart in browser
         [<CompiledName("Show")>]

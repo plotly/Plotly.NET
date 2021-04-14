@@ -15,6 +15,7 @@ module HTML =
         <!-- Plotly.js -->
         <meta http-equiv="X-UA-Compatible" content="IE=11" >
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        [ADDITIONAL_SCRIPT_TAGS]
         <style>
         .container {
           padding-right: 25px;
@@ -132,45 +133,44 @@ module GenericChart =
 
     //TO-DO refactor as type with static members to remove verbose top namespace from 'GenericChart.GenericChart'
     type GenericChart =
-        | Chart of Trace * Layout * Config
-        | MultiChart of Trace list * Layout * Config
+        | Chart of Trace * Layout * Config * DisplayOptions
+        | MultiChart of Trace list * Layout * Config * DisplayOptions
 
     let toFigure (gChart:GenericChart) =
         match gChart with
-        | Chart (trace,layout,_) -> Figure.create [trace] layout
-        | MultiChart (traces,layout,_) -> Figure.create traces layout
+        | Chart (trace,layout,_,_) -> Figure.create [trace] layout
+        | MultiChart (traces,layout,_,_) -> Figure.create traces layout
 
     let fromFigure (fig:Figure) =
         let traces = fig.Data
         let layout = fig.Layout
         if traces.Length <> 1 then
-            MultiChart (traces,layout,Config())
+            MultiChart (traces,layout,Config(), DisplayOptions())
         else
-            Chart (traces.[0], layout, Config())
+            Chart (traces.[0], layout, Config(), DisplayOptions())
 
     let getTraces gChart =
         match gChart with
-        | Chart (trace,_,_)       -> [trace]
-        | MultiChart (traces,_,_) -> traces
+        | Chart (trace,_,_,_)       -> [trace]
+        | MultiChart (traces,_,_,_) -> traces
 
     let getLayout gChart =
         match gChart with
-        | Chart (_,layout,_)      -> layout
-        | MultiChart (_,layout,_) -> layout
+        | Chart (_,layout,_,_)      -> layout
+        | MultiChart (_,layout,_,_) -> layout
 
     let setLayout layout gChart =
         match gChart with
-        | Chart (t,_,c)      -> Chart (t,layout,c)
-        | MultiChart (t,_,c) -> MultiChart (t,layout,c)
+        | Chart (t,_,c,d)      -> Chart (t,layout,c,d)
+        | MultiChart (t,_,c,d) -> MultiChart (t,layout,c,d)
 
     // Adds a Layout function to the GenericChart
     let addLayout layout gChart =
         match gChart with
-        | Chart (trace,l',c) ->
-            Chart (trace, (DynObj.combine l' layout |> unbox),c )
-        | MultiChart (traces,l',c) ->
-            MultiChart (traces, (DynObj.combine l' layout |> unbox),c)
-
+        | Chart (trace,l', c, d) ->
+            Chart (trace, (DynObj.combine l' layout |> unbox), c, d )
+        | MultiChart (traces, l', c, d) ->
+            MultiChart (traces, (DynObj.combine l' layout |> unbox), c, d)
 
     /// Returns a tuple containing the width and height of a GenericChart's layout if the property is set, otherwise returns None
     let tryGetLayoutSize gChart =
@@ -184,13 +184,23 @@ module GenericChart =
 
     let getConfig gChart =
         match gChart with
-        | Chart (_,_,c)      -> c
-        | MultiChart (_,_,c) -> c
+        | Chart (_,_,c,_)      -> c
+        | MultiChart (_,_,c,_) -> c
 
     let setConfig config gChart =
         match gChart with
-        | Chart (t,l,_)      -> Chart (t,l,config)
-        | MultiChart (t,l,_) -> MultiChart (t,l,config)
+        | Chart (t,l,_,d)      -> Chart (t,l,config,d)
+        | MultiChart (t,l,_,d) -> MultiChart (t,l,config,d)
+
+    let getDisplayOptions gChart =
+        match gChart with
+        | Chart (_,_,_,d)      -> d
+        | MultiChart (_,_,_,d) -> d
+
+    let setDisplayOptions displayOpts gChart =
+        match gChart with
+        | Chart (t,l,c,_)      -> Chart (t,l,c,displayOpts)
+        | MultiChart (t,l,c,_) -> MultiChart (t,l,c,displayOpts)
 
     // // Adds multiple Layout functions to the GenericChart
     // let addLayouts layouts gChart =
@@ -210,17 +220,20 @@ module GenericChart =
         let combineConfigs (first:Config) (second:Config) =
             DynObj.combine first second |> unbox
 
+        let combineDisplayOptions (first:DisplayOptions) (second:DisplayOptions) =
+            DynObj.combine first second |> unbox
+
         gCharts
         |> Seq.reduce (fun acc elem ->
             match acc,elem with
-            | MultiChart (traces,l1,c1),Chart (trace,l2,c2)         ->
-                MultiChart (List.append traces [trace], combineLayouts l1 l2, combineConfigs c1 c2)
-            | MultiChart (traces1,l1,c1),MultiChart (traces2,l2,c2) ->
-                MultiChart (List.append traces1 traces2,combineLayouts l1 l2, combineConfigs c1 c2)
-            | Chart (trace1,l1,c1),Chart (trace2,l2,c2)             ->
-                MultiChart ([trace1;trace2],combineLayouts l1 l2, combineConfigs c1 c2)
-            | Chart (trace,l1,c1),MultiChart (traces,l2,c2)         ->
-                MultiChart (List.append [trace] traces ,combineLayouts l1 l2, combineConfigs c1 c2)
+            | MultiChart (traces, l1, c1, d1),Chart (trace, l2, c2, d2)         ->
+                MultiChart (List.append traces [trace], combineLayouts l1 l2, combineConfigs c1 c2, combineDisplayOptions d1 d2)
+            | MultiChart (traces1,l1,c1,d1),MultiChart (traces2,l2,c2,d2) ->
+                MultiChart (List.append traces1 traces2,combineLayouts l1 l2, combineConfigs c1 c2, combineDisplayOptions d1 d2)
+            | Chart (trace1,l1,c1,d1),Chart (trace2,l2,c2,d2)             ->
+                MultiChart ([trace1;trace2],combineLayouts l1 l2, combineConfigs c1 c2, combineDisplayOptions d1 d2)
+            | Chart (trace,l1,c1,d1),MultiChart (traces,l2,c2,d2)         ->
+                MultiChart (List.append [trace] traces ,combineLayouts l1 l2, combineConfigs c1 c2, combineDisplayOptions d1 d2)
                         )
 
     // let private materialzeLayout (layout:(Layout -> Layout) list) =
@@ -247,23 +260,31 @@ module GenericChart =
             getConfig gChart
             |> JsonConvert.SerializeObject
 
+        let displayOpts = getDisplayOptions gChart
+
         let dims = tryGetLayoutSize gChart
         let width,height =
             match dims with
             |Some (w,h) -> w,h
             |None -> 600., 600.
 
-        let html =
-            HTML.chart
-                //.Replace("style=\"width: [WIDTH]px; height: [HEIGHT]px;\"","style=\"width: 600px; height: 600px;\"")
-                .Replace("[WIDTH]", string width)
-                .Replace("[HEIGHT]", string height)
-                .Replace("[ID]", guid)
-                .Replace("[SCRIPTID]", guid.Replace("-",""))
-                .Replace("[DATA]", tracesJson)
-                .Replace("[LAYOUT]", layoutJson)
-                .Replace("[CONFIG]", configJson)
-        html
+
+        HTML.chart
+            //.Replace("style=\"width: [WIDTH]px; height: [HEIGHT]px;\"","style=\"width: 600px; height: 600px;\"")
+            .Replace("[WIDTH]", string width)
+            .Replace("[HEIGHT]", string height)
+            .Replace("[ID]", guid)
+            .Replace("[SCRIPTID]", guid.Replace("-",""))
+            .Replace("[DATA]", tracesJson)
+            .Replace("[LAYOUT]", layoutJson)
+            .Replace("[CONFIG]", configJson)
+            |> DisplayOptions.replaceHtmlPlaceholders displayOpts
+
+
+
+
+
+
 
     /// Converts a GenericChart to it HTML representation and set the size of the div
     let toChartHtmlWithSize (width:int) (height:int) (gChart:GenericChart) =
@@ -278,37 +299,28 @@ module GenericChart =
             getConfig gChart
             |> JsonConvert.SerializeObject
 
-        let html =
-            HTML.chart
-                .Replace("[ID]", guid)
-                .Replace("[WIDTH]", string width )
-                .Replace("[HEIGHT]", string height)
-                .Replace("[DATA]", tracesJson)
-                .Replace("[LAYOUT]", layoutJson)
-                .Replace("[CONFIG]", configJson)
-        html
+        let displayOpts = getDisplayOptions gChart
 
-
-    let toEmbeddedHtmlWithDescription (description:ChartDescription) gChart =
-        let chartMarkup =
-            toChartHTML gChart
-
-        let descriptionMarkup =
-            ChartDescription.toHtml description
-
-        HTML.doc
-            .Replace("[CHART]", chartMarkup)
-            .Replace("[DESCRIPTION]", descriptionMarkup)
-
+       
+        HTML.chart
+            .Replace("[ID]", guid)
+            .Replace("[WIDTH]", string width )
+            .Replace("[HEIGHT]", string height)
+            .Replace("[DATA]", tracesJson)
+            .Replace("[LAYOUT]", layoutJson)
+            .Replace("[CONFIG]", configJson)
+            |> DisplayOptions.replaceHtmlPlaceholders displayOpts
 
     /// Converts a GenericChart to it HTML representation and embeds it into a html page.
     let toEmbeddedHTML gChart =
         let chartMarkup =
             toChartHTML gChart
 
+        let displayOpts = getDisplayOptions gChart
+
         HTML.doc
             .Replace("[CHART]", chartMarkup)
-            .Replace("[DESCRIPTION]", "")
+            |> DisplayOptions.replaceHtmlPlaceholders displayOpts
 
     /// Converts a GenericChart to its Image representation
     let toChartImage (format:StyleParam.ImageFormat) gChart =
@@ -346,38 +358,45 @@ module GenericChart =
     /// Creates a new GenericChart whose traces are the results of applying the given function to each of the trace of the GenericChart.
     let mapTrace f gChart =
         match gChart with
-        | Chart (trace,layout,config)       -> Chart (f trace,layout,config)
-        | MultiChart (traces,layout,config) -> MultiChart (traces |> List.map f,layout,config)
+        | Chart (trace, layout, config, displayOpts)       -> Chart (f trace, layout, config, displayOpts)
+        | MultiChart (traces, layout, config, displayOpts) -> MultiChart (traces |> List.map f, layout, config, displayOpts)
 
     /// Creates a new GenericChart whose traces are the results of applying the given function to each of the trace of the GenericChart.
     /// The integer index passed to the function indicates the index (from 0) of element being transformed.
     let mapiTrace f gChart =
         match gChart with
-        | Chart (trace,layout,config)       -> Chart (f 0 trace,layout,config)
-        | MultiChart (traces,layout,config) -> MultiChart (traces |> List.mapi f,layout,config)
+        | Chart (trace, layout, config, displayOpts)       -> Chart (f 0 trace, layout, config, displayOpts)
+        | MultiChart (traces, layout, config, displayOpts) -> MultiChart (traces |> List.mapi f, layout, config, displayOpts)
 
     /// Returns the number of traces within the GenericChart
     let countTrace gChart =
         match gChart with
         | Chart (_)             -> 1
-        | MultiChart (traces,_,_) -> traces |> Seq.length
+        | MultiChart (traces,_,_,_) -> traces |> Seq.length
 
     /// Returns true if the given chart contains a trace for which the predicate function returns true
     let existsTrace (predicate: Trace -> bool) gChart =
         match gChart with
-        | Chart (trace,_,_)       -> predicate trace
-        | MultiChart (traces,_,_) -> traces |> List.exists predicate
+        | Chart (trace,_,_,_)       -> predicate trace
+        | MultiChart (traces,_,_,_) -> traces |> List.exists predicate
 
     /// Converts from a trace object and a layout object into GenericChart
     let ofTraceObject trace = //layout =
-        GenericChart.Chart(trace, Layout(), Config())
+        GenericChart.Chart(trace, Layout(), Config(), DisplayOptions())
 
     /// Converts from a list of trace objects and a layout object into GenericChart
     let ofTraceObjects traces = // layout =
-        GenericChart.MultiChart(traces, Layout(), Config())
+        GenericChart.MultiChart(traces, Layout(), Config(), DisplayOptions())
 
     ///
     let mapLayout f gChart =
         match gChart with
-        | Chart (trace,layout,config)       -> Chart (trace,f layout,config)
-        | MultiChart (traces,layout,config) -> MultiChart (traces,f layout,config)
+        | Chart (trace, layout, config, displayOpts)       -> Chart (trace,f layout,config, displayOpts)
+        | MultiChart (traces, layout, config, displayOpts) -> MultiChart (traces,f layout,config, displayOpts)    ///
+    
+    let mapDisplayOptions f gChart =
+        match gChart with
+        | Chart (trace, layout, config, displayOpts)       -> Chart (trace, layout, config, f displayOpts)
+        | MultiChart (traces, layout, config, displayOpts) -> MultiChart (traces,layout,config, f displayOpts)
+
+
