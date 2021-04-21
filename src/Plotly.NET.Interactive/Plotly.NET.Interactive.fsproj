@@ -4,7 +4,6 @@
     <TargetFramework>net5.0</TargetFramework>
     <OutputType>Library</OutputType>
     <NoWarn>$(NoWarn);NU5100</NoWarn><!-- dll outside of lib/ folder -->
-    <OutputType>Library</OutputType>
     <!-- Optional: Declare that the Repository URL can be published to NuSpec -->
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <!-- Optional: Embed source files that are not tracked by the source control manager to the PDB -->
