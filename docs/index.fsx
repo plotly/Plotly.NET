@@ -85,10 +85,10 @@ You can include the package via an inline package reference:
 You can use the same inline package reference as in script, but as an additional goodie, 
 the interactive extensions for dotnet interactive have you covered for seamless chart rendering:
 
-    ```
-    #r "nuget: Plotly.NET, {{fsdocs-package-version}}"
-    #r "nuget: Plotly.NET.Interactive, {{fsdocs-package-version}}"
-    ```
+```
+#r "nuget: Plotly.NET, {{fsdocs-package-version}}"
+#r "nuget: Plotly.NET.Interactive, {{fsdocs-package-version}}"
+```
 
 _Note_: 
 
@@ -98,10 +98,10 @@ If the interactive extension does not work, please file an issue and we will try
 
 A possible fix for this is the inclusion of Dotnet.Interactive preview package sources. To use these, add the following lines before referencning Plotly.NET.Interactive:
 
-    ```fsharp
-    #i "nuget:https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet5/nuget/v3/index.json"
-    #i "nuget:https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-tools/nuget/v3/index.json"
-    ```
+```fsharp
+#i "nuget:https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet5/nuget/v3/index.json"
+#i "nuget:https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-tools/nuget/v3/index.json"
+```
 
 # Overview
 

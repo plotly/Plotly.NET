@@ -1,7 +1,7 @@
 (**
 ---
-title: Choropleth maps
-category: Finance
+title: Candlestick Charts
+category: Finance Charts
 categoryindex: 7
 index: 1
 ---
