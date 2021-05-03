@@ -638,17 +638,17 @@ module GenericChartExtensions =
         member this.WithDescription (description:ChartDescription) = 
             this |> Chart.WithDescription description
 
-        /// Adds the given additional script tags on the chart's DisplayOptions.
-        [<CompiledName("WithAdditionalScriptTags")>]
+        /// Adds the given additional script tags on the chart's DisplayOptions. They will be included in the document's <head>
+        [<CompiledName("WithAdditionalHeadTags")>]
         [<Extension>]
-        member this.WithAdditionalScriptTags (additionalScriptTags:seq<string>) = 
-            this |> Chart.WithAdditionalScriptTags additionalScriptTags
+        member this.WithAdditionalHeadTags (additionalHeadTags:seq<string>) = 
+            this |> Chart.WithAdditionalHeadTags additionalHeadTags
 
-        /// Sets the given additional script tags on the chart's DisplayOptions.
-        [<CompiledName("WithScriptTags")>]
+        /// Sets the given additional script tags on the chart's DisplayOptions. They will be included in the document's <head>
+        [<CompiledName("WithHeadTags")>]
         [<Extension>]
-        member this.WithScriptTags (scriptTags:seq<string>) = 
-            this |> Chart.WithScriptTags scriptTags
+        member this.WithHeadTags (headTags:seq<string>) = 
+            this |> Chart.WithHeadTags headTags
         
         /// Adds the necessary script tags to render tex strings to the chart's DisplayOptions
         [<CompiledName("WithMathTex")>]

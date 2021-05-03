@@ -15,7 +15,7 @@ module HTML =
         <!-- Plotly.js -->
         <meta http-equiv="X-UA-Compatible" content="IE=11" >
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-        [ADDITIONAL_SCRIPT_TAGS]
+        [ADDITIONAL_HEAD_TAGS]
         <style>
         .container {
           padding-right: 25px;

@@ -943,24 +943,24 @@ module ChartExtensions =
             |> mapDisplayOptions (DisplayOptions.style(Description=description))
 
 
-        /// Adds the given additional script tags on the chart's DisplayOptions.
-        [<CompiledName("WithAdditionalScriptTags")>]
-        static member WithAdditionalScriptTags (additionalScriptTags:seq<string>) (ch:GenericChart) = 
+        /// Adds the given additional html tags on the chart's DisplayOptions. They will be included in the document's <head>
+        [<CompiledName("WithAdditionalHeadTags")>]
+        static member WithAdditionalHeadTags (additionalHeadTags:seq<string>) (ch:GenericChart) = 
             ch 
             |> mapDisplayOptions ( fun d ->
-                let tags = d.TryGetTypedValue<seq<string>>("AdditionalScriptTags")
+                let tags = d.TryGetTypedValue<seq<string>>("AdditionalHeadTags")
                 let newTags =
                     tags
-                    |> Option.map (fun tags -> seq{yield! tags; yield! additionalScriptTags})
-                    |> Option.defaultValue additionalScriptTags
-                d |> DisplayOptions.style(AdditionalScriptTags=newTags)
+                    |> Option.map (fun tags -> seq{yield! tags; yield! additionalHeadTags})
+                    |> Option.defaultValue additionalHeadTags
+                d |> DisplayOptions.style(AdditionalHeadTags=newTags)
             )
 
-        /// Sets the given additional script tags on the chart's DisplayOptions.
-        [<CompiledName("WithScriptTags")>]
-        static member WithScriptTags (scriptTags:seq<string>) (ch:GenericChart) = 
+        /// Sets the given additional head tags on the chart's DisplayOptions. They will be included in the document's <head>
+        [<CompiledName("WithHeadTags")>]
+        static member WithHeadTags (headTags:seq<string>) (ch:GenericChart) = 
             ch 
-            |> mapDisplayOptions (DisplayOptions.style(AdditionalScriptTags=scriptTags))
+            |> mapDisplayOptions (DisplayOptions.style(AdditionalHeadTags=headTags))
 
         
         /// Adds the necessary script tags to render tex strings to the chart's DisplayOptions
@@ -973,9 +973,9 @@ module ChartExtensions =
             (fun (ch:GenericChart) ->
             
                 if (AppendTags |> Option.defaultValue true) then
-                    ch |> Chart.WithAdditionalScriptTags tags
+                    ch |> Chart.WithAdditionalHeadTags tags
                 else
-                    ch |> Chart.WithScriptTags tags
+                    ch |> Chart.WithHeadTags tags
             )
 
         /// Save chart as html single page

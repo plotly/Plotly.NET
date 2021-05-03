@@ -30,13 +30,13 @@ type DisplayOptions() =
 
     static member init
         (    
-            ?AdditionalScriptTags:seq<string>,
+            ?AdditionalHeadTags:seq<string>,
             ?Description:ChartDescription
         ) =    
             DisplayOptions()
             |> DisplayOptions.style
                 (
-                    ?AdditionalScriptTags = AdditionalScriptTags,
+                    ?AdditionalHeadTags = AdditionalHeadTags,
                     ?Description = Description
                 )
 
@@ -44,12 +44,12 @@ type DisplayOptions() =
     // Applies the styles to Font()
     static member style
         (    
-            ?AdditionalScriptTags:seq<string>,
+            ?AdditionalHeadTags:seq<string>,
             ?Description:ChartDescription
         ) =
             (fun (displayOptions:DisplayOptions) -> 
 
-                AdditionalScriptTags    |> DynObj.setValueOpt displayOptions "AdditionalScriptTags"
+                AdditionalHeadTags    |> DynObj.setValueOpt displayOptions "AdditionalHeadTags"
                 Description             |> DynObj.setValueOpt displayOptions "Description"
 
                 displayOptions
@@ -58,8 +58,8 @@ type DisplayOptions() =
 
     static member getReplacements (displayOptions:DisplayOptions) =
         [
-            "[ADDITIONAL_SCRIPT_TAGS]", 
-                (displayOptions.TryGetTypedValue<seq<string>>("AdditionalScriptTags") 
+            "[ADDITIONAL_HEAD_TAGS]", 
+                (displayOptions.TryGetTypedValue<seq<string>>("AdditionalHeadTags") 
                 |> Option.map (String.concat "\r\n")
                 |> Option.defaultValue "")
             "[DESCRIPTION]", 
