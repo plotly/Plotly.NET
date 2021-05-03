@@ -20,35 +20,35 @@ module Trace =
     //-------------------------------------------------------------------------------------------------------------------------------------------------
     //Simple
 
-    ///initializes a trace of type "scatter" applying the givin trace styling function
+    ///initializes a trace of type "scatter" applying the given trace styling function
     let initScatter (applyStyle:Trace->Trace) = 
         Trace("scatter") |> applyStyle
 
-    ///initializes a trace of type "scattergl" applying the givin trace styling function
+    ///initializes a trace of type "scattergl" applying the given trace styling function
     let initScatterGL (applyStyle:Trace->Trace) = 
         Trace("scattergl") |> applyStyle
 
-    ///initializes a trace of type "bar" applying the givin trace styling function
+    ///initializes a trace of type "bar" applying the given trace styling function
     let initBar (applyStyle:Trace->Trace) = 
         Trace("bar") |> applyStyle
 
-    ///initializes a trace of type "pie" applying the givin trace styling function
+    ///initializes a trace of type "pie" applying the given trace styling function
     let initPie (applyStyle:Trace->Trace) = 
         Trace("pie") |> applyStyle
 
-    ///initializes a trace of type "heatmap" applying the givin trace styling function
+    ///initializes a trace of type "heatmap" applying the given trace styling function
     let initHeatmap (applyStyle:Trace->Trace) = 
         Trace("heatmap") |> applyStyle
 
-    ///initializes a trace of type "image" applying the givin trace styling function
+    ///initializes a trace of type "image" applying the given trace styling function
     let initImage (applyStyle:Trace->Trace) = 
          Trace("image") |> applyStyle
 
-    ///initializes a trace of type "contour" applying the givin trace styling function
+    ///initializes a trace of type "contour" applying the given trace styling function
     let initContour (applyStyle:Trace->Trace) = 
         Trace("contour") |> applyStyle
 
-    ///initializes a trace of type "Table" applying the givin trace styling function
+    ///initializes a trace of type "Table" applying the given trace styling function
     /// Init trace for table
     let initTable (applyStyle:Trace->Trace) = 
         Trace("table") |> applyStyle
@@ -56,127 +56,127 @@ module Trace =
     //-------------------------------------------------------------------------------------------------------------------------------------------------
     //Distributions
 
-    ///initializes a trace of type "box" applying the givin trace styling function
+    ///initializes a trace of type "box" applying the given trace styling function
     let initBoxPlot (applyStyle:Trace->Trace) = 
         Trace("box") |> applyStyle
 
-    ///initializes a trace of type "violin" applying the givin trace styling function
+    ///initializes a trace of type "violin" applying the given trace styling function
     let initViolin (applyStyle:Trace->Trace) = 
         Trace("violin") |> applyStyle
 
-    ///initializes a trace of type "histogram" applying the givin trace styling function
+    ///initializes a trace of type "histogram" applying the given trace styling function
     let initHistogram (applyStyle:Trace->Trace) = 
         Trace("histogram") |> applyStyle
 
-    ///initializes a trace of type "histogram2d" applying the givin trace styling function
+    ///initializes a trace of type "histogram2d" applying the given trace styling function
     let initHistogram2d (applyStyle:Trace->Trace) = 
         Trace("histogram2d") |> applyStyle
 
-    ///initializes a trace of type "histogram2dcontour" applying the givin trace styling function
+    ///initializes a trace of type "histogram2dcontour" applying the given trace styling function
     let initHistogram2dContour (applyStyle:Trace->Trace) = 
         Trace("histogram2dcontour") |> applyStyle
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------
     //Finance
 
-    ///initializes a trace of type "ohlc" applying the givin trace styling function
+    ///initializes a trace of type "ohlc" applying the given trace styling function
     let initOHLC (applyStyle:Trace->Trace) = 
         Trace("ohlc") |> applyStyle
 
-    ///initializes a trace of type "candlestick" applying the givin trace styling function
+    ///initializes a trace of type "candlestick" applying the given trace styling function
     let initCandlestick (applyStyle:Trace->Trace) = 
         Trace("candlestick") |> applyStyle
 
-    ///initializes a trace of type "waterfall" applying the givin trace styling function
+    ///initializes a trace of type "waterfall" applying the given trace styling function
     let initWaterfall (applyStyle:Trace->Trace) = 
         Trace("waterfall") |> applyStyle
 
-    ///initializes a trace of type "funnel" applying the givin trace styling function
+    ///initializes a trace of type "funnel" applying the given trace styling function
     let initFunnel (applyStyle:Trace->Trace) = 
         Trace("funnel") |> applyStyle
 
-    ///initializes a trace of type "funnelarea" applying the givin trace styling function
+    ///initializes a trace of type "funnelarea" applying the given trace styling function
     let initFunnelArea (applyStyle:Trace->Trace) = 
         Trace("funnelarea") |> applyStyle
 
-    ///initializes a trace of type "indicator" applying the givin trace styling function
+    ///initializes a trace of type "indicator" applying the given trace styling function
     let initIndicator (applyStyle:Trace->Trace) = 
         Trace("indicator") |> applyStyle
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------
     //Maps
 
-    ///initializes a trace of type "scattergeo" applying the givin trace styling function
+    ///initializes a trace of type "scattergeo" applying the given trace styling function
     let initScatterGeo (applyStyle:Trace->Trace) = 
         Trace("scattergeo") |> applyStyle
 
-    ///initializes a trace of type "choropleth" applying the givin trace styling function
+    ///initializes a trace of type "choropleth" applying the given trace styling function
     let initChoroplethMap (applyStyle:Trace->Trace) = 
         Trace("choropleth") |> applyStyle
 
-    ///initializes a trace of type "scattermapbox" applying the givin trace styling function
+    ///initializes a trace of type "scattermapbox" applying the given trace styling function
     let initScatterMapbox (applyStyle:Trace->Trace) = 
         Trace("scattermapbox") |> applyStyle
 
-    ///initializes a trace of type "choroplethmapbox" applying the givin trace styling function
+    ///initializes a trace of type "choroplethmapbox" applying the given trace styling function
     let initChoroplethMapbox (applyStyle:Trace->Trace) = 
         Trace("choroplethmapbox") |> applyStyle
 
-    ///initializes a trace of type "densitymapbox" applying the givin trace styling function
+    ///initializes a trace of type "densitymapbox" applying the given trace styling function
     let initDensityMapbox (applyStyle:Trace->Trace) = 
         Trace("densitymapbox") |> applyStyle
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------
     //Specialized
-    ///initializes a trace of type "scatterpolar" applying the givin trace styling function
+    ///initializes a trace of type "scatterpolar" applying the given trace styling function
     let initScatterPolar (applyStyle:Trace->Trace) = 
         Trace("scatterpolar") |> applyStyle
 
-    ///initializes a trace of type "scatterpolargl" applying the givin trace styling function
+    ///initializes a trace of type "scatterpolargl" applying the given trace styling function
     let initScatterPolarGL (applyStyle:Trace->Trace) = 
         Trace("scatterpolargl") |> applyStyle
 
-    ///initializes a trace of type "barpolar" applying the givin trace styling function
+    ///initializes a trace of type "barpolar" applying the given trace styling function
     let initBarPolar (applyStyle:Trace->Trace) = 
         Trace("barpolar") |> applyStyle
 
-    ///initializes a trace of type "scatterternary" applying the givin trace styling function
+    ///initializes a trace of type "scatterternary" applying the given trace styling function
     let initScatterTernary (applyStyle:Trace->Trace) = 
         Trace("scatterternary") |> applyStyle
 
-    ///initializes a trace of type "sunburst" applying the givin trace styling function
+    ///initializes a trace of type "sunburst" applying the given trace styling function
     let initSunburst (applyStyle:Trace->Trace) = 
         Trace("sunburst") |> applyStyle
 
-    ///initializes a trace of type "treemap" applying the givin trace styling function
+    ///initializes a trace of type "treemap" applying the given trace styling function
     let initTreemap (applyStyle:Trace->Trace) = 
         Trace("treemap") |> applyStyle
 
-    ///initializes a trace of type "sankey" applying the givin trace styling function
+    ///initializes a trace of type "sankey" applying the given trace styling function
     let initSankey (applyStyle:Trace->Trace) = 
         Trace("sankey") |> applyStyle
 
-    ///initializes a trace of type "SPLOM" applying the givin trace styling function
+    ///initializes a trace of type "SPLOM" applying the given trace styling function
     let initSplom (applyStyle:Trace->Trace) = 
         Trace("splom") |> applyStyle
 
-    ///initializes a trace of type "parcoords" applying the givin trace styling function
+    ///initializes a trace of type "parcoords" applying the given trace styling function
     let initParallelCoord (applyStyle:Trace->Trace) = 
         Trace("parcoords") |> applyStyle
 
-    ///initializes a trace of type "parcats" applying the givin trace styling function
+    ///initializes a trace of type "parcats" applying the given trace styling function
     let initParallelCategories (applyStyle: Trace -> Trace) =
         Trace("parcats") |> applyStyle
 
-    ///initializes a trace of type "carpet" applying the givin trace styling function
+    ///initializes a trace of type "carpet" applying the given trace styling function
     let initCarpet (applyStyle:Trace->Trace) = 
         Trace("carpet") |> applyStyle
 
-    ///initializes a trace of type "scattercarpet" applying the givin trace styling function
+    ///initializes a trace of type "scattercarpet" applying the given trace styling function
     let initScatterCarpet (applyStyle:Trace->Trace) = 
         Trace("scattercarpet") |> applyStyle
 
-    ///initializes a trace of type "contourcarpet" applying the givin trace styling function
+    ///initializes a trace of type "contourcarpet" applying the given trace styling function
     let initContourCarpet (applyStyle:Trace->Trace) = 
         Trace("contourcarpet") |> applyStyle
 
@@ -191,6 +191,8 @@ module Trace =
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------
     /// Functions provide the styling of the Chart objects
+    /// These functions are used internally to style traces of Chart objects. Users are usually pointed
+    /// to the API layer provided by the `Chart` module/object
     type TraceStyle() =
         
         /// Applies the given TraceInfo style parameters to a Trace object.
@@ -414,6 +416,8 @@ module Trace =
 
         //#############################################################################################################################################
         //# Chart trace style abstractions
+        //# Ideally, these functions cover the full parameter list supported by plotly.js, while the higher API layers 
+        //# omit some for the sake of usability.
         //#############################################################################################################################################
 
         /// <summary>Create a function that applies the styles of a scatter plot to a Trace object</summary>
@@ -507,8 +511,8 @@ module Trace =
             (                
                 ?Values: seq<#IConvertible>,
                 ?Labels: seq<#IConvertible>,
-                ?Label0,
-                ?dLabel,   
+                ?Label0: #IConvertible,
+                ?dLabel: #IConvertible,   
                 ?Scalegroup,
                 ?Textinfo,
                 //?Textfont: FontOptions,                    
@@ -584,29 +588,29 @@ module Trace =
             ) =
                 (fun (boxPlot:('T :> Trace)) ->
 
-                    Y              |> DynObj.setValueOpt boxPlot "y"           
-                    X              |> DynObj.setValueOpt boxPlot "x"           
-                    X0             |> DynObj.setValueOpt boxPlot "x0"          
-                    Y0             |> DynObj.setValueOpt boxPlot "y0"          
-                    Whiskerwidth   |> DynObj.setValueOpt boxPlot "whiskerwidth"
-                    Boxpoints      |> DynObj.setValueOptBy boxPlot "boxpoints"  StyleParam.Boxpoints.convert  
-                    Boxmean        |> DynObj.setValueOptBy boxPlot "boxmean"    StyleParam.BoxMean.convert    
-                    Jitter         |> DynObj.setValueOpt boxPlot "jitter"      
-                    Pointpos       |> DynObj.setValueOpt boxPlot "pointpos"    
-                    Orientation    |> DynObj.setValueOptBy boxPlot "orientation" StyleParam.Orientation.convert
-                    Fillcolor      |> DynObj.setValueOpt boxPlot "fillcolor"   
-                    Marker         |> DynObj.setValueOpt boxPlot "marker"   
-                    Line           |> DynObj.setValueOpt boxPlot "line"   
-                    Alignmentgroup   |> DynObj.setValueOpt boxPlot "alignmentgroup"   
-                    Offsetgroup      |> DynObj.setValueOpt boxPlot "offsetgroup"                     
-                    Notched        |> DynObj.setValueOpt boxPlot "notched"   
-                    NotchWidth     |> DynObj.setValueOpt boxPlot "notchwidth"   
-                    QuartileMethod |> DynObj.setValueOptBy boxPlot "quartilemethod" StyleParam.QuartileMethod.convert
+                    Y               |> DynObj.setValueOpt boxPlot "y"           
+                    X               |> DynObj.setValueOpt boxPlot "x"           
+                    X0              |> DynObj.setValueOpt boxPlot "x0"          
+                    Y0              |> DynObj.setValueOpt boxPlot "y0"          
+                    Whiskerwidth    |> DynObj.setValueOpt boxPlot "whiskerwidth"
+                    Boxpoints       |> DynObj.setValueOptBy boxPlot "boxpoints"  StyleParam.Boxpoints.convert  
+                    Boxmean         |> DynObj.setValueOptBy boxPlot "boxmean"    StyleParam.BoxMean.convert    
+                    Jitter          |> DynObj.setValueOpt boxPlot "jitter"      
+                    Pointpos        |> DynObj.setValueOpt boxPlot "pointpos"    
+                    Orientation     |> DynObj.setValueOptBy boxPlot "orientation" StyleParam.Orientation.convert
+                    Fillcolor       |> DynObj.setValueOpt boxPlot "fillcolor"   
+                    Marker          |> DynObj.setValueOpt boxPlot "marker"   
+                    Line            |> DynObj.setValueOpt boxPlot "line"   
+                    Alignmentgroup  |> DynObj.setValueOpt boxPlot "alignmentgroup"   
+                    Offsetgroup     |> DynObj.setValueOpt boxPlot "offsetgroup"                     
+                    Notched         |> DynObj.setValueOpt boxPlot "notched"   
+                    NotchWidth      |> DynObj.setValueOpt boxPlot "notchwidth"   
+                    QuartileMethod  |> DynObj.setValueOptBy boxPlot "quartilemethod" StyleParam.QuartileMethod.convert
 
-                    xAxis          |> DynObj.setValueOpt boxPlot "xaxis"       
-                    yAxis          |> DynObj.setValueOpt boxPlot "yaxis"       
-                    Ysrc           |> DynObj.setValueOpt boxPlot "ysrc"        
-                    Xsrc           |> DynObj.setValueOpt boxPlot "xsrc"        
+                    xAxis           |> DynObj.setValueOpt boxPlot "xaxis"       
+                    yAxis           |> DynObj.setValueOpt boxPlot "yaxis"       
+                    Ysrc            |> DynObj.setValueOpt boxPlot "ysrc"        
+                    Xsrc            |> DynObj.setValueOpt boxPlot "xsrc"        
                     
                     // out ->
                     boxPlot

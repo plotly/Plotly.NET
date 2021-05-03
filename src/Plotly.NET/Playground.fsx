@@ -46,6 +46,25 @@
 
 open Plotly.NET
 open GenericChart
+
+let descritptionTable ="""<table>
+<thead>
+    <th colspan="2">A</td>
+    <th colspan="2">B</td>
+</thead>
+<tr>
+    <td>A</td>
+    <td>A</td>
+    <td>B</td>
+    <td>B</td>
+</tr>
+</table>
+"""
+
+Chart.Point([1.,2.])
+|> Chart.WithDescription (ChartDescription.create "Some Table" descritptionTable)
+|> Chart.Show
+
 [
     Chart.Line([(1.,2.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$")
     Chart.Line([(1.,2.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$")

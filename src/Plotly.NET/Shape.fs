@@ -9,10 +9,10 @@ type Shape () =
     static member init
         (   
             ?ShapeType: StyleParam.ShapeType,
-            ?X0: IConvertible,
-            ?X1: IConvertible,
-            ?Y0: IConvertible,
-            ?Y1: IConvertible,
+            ?X0: #IConvertible,
+            ?X1: #IConvertible,
+            ?Y0: #IConvertible,
+            ?Y1: #IConvertible,
             ?Path: string,
             ?Opacity: float,
             ?Line: Line,
@@ -42,10 +42,10 @@ type Shape () =
     static member style
         (   
             ?ShapeType: StyleParam.ShapeType,
-            ?X0: IConvertible,
-            ?X1: IConvertible,
-            ?Y0: IConvertible,
-            ?Y1: IConvertible,
+            ?X0: #IConvertible,
+            ?X1: #IConvertible,
+            ?Y0: #IConvertible,
+            ?Y1: #IConvertible,
             ?Path: string,
             ?Opacity: float,
             ?Line: Line,

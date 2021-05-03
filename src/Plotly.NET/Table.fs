@@ -9,7 +9,7 @@ type CellColor () =
     /// Initialized Line object
     static member init
         (
-            ?Color
+            ?Color: string
         ) =
             CellColor () 
             |> CellColor.style
@@ -19,7 +19,7 @@ type CellColor () =
     // Applies the styles to CellColor()
     static member style
         (
-            ?Color
+            ?Color: string
         ) =
             (fun (cell:CellColor) -> 
                 Color      |> DynObj.setValueOpt cell "color" 
