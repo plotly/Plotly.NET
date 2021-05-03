@@ -123,6 +123,7 @@ By popular request, `Chart.WithMathTex` is a prebuilt function to enable MathTeX
 
 *)
 
+(***do-not-eval***)
 [
     Chart.Point([(1.,2.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$")
     Chart.Point([(2.,4.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$")
