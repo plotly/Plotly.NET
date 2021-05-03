@@ -30,29 +30,29 @@ Until that is fixed, consider creating splom plot programatically using `Chart.G
 *)
 let splom1 =
     Chart.Splom(data,Color="blue")(* output: 
-<div id="713886d9-c0b4-4133-bf3b-dbead13efb00" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="9c69964e-4c78-4812-8a3d-ece00b88db34" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_713886d9c0b44133bf3bdbead13efb00 = function() {
+            var renderPlotly_9c69964e4c7848128a3dece00b88db34 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"splom","dimensions":[{"values":[1.0,4.0,3.4,0.7],"label":"A"},{"values":[3.0,1.5,1.7,2.3],"label":"B"},{"values":[2.0,4.0,3.1,5.0],"label":"C"},{"values":[4.0,2.0,2.0,4.0],"label":"D"}],"line":{"color":"blue"}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('713886d9-c0b4-4133-bf3b-dbead13efb00', data, layout, config);
+            Plotly.newPlot('9c69964e-4c78-4812-8a3d-ece00b88db34', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_713886d9c0b44133bf3bdbead13efb00();
+                    renderPlotly_9c69964e4c7848128a3dece00b88db34();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_713886d9c0b44133bf3bdbead13efb00();
+                renderPlotly_9c69964e4c7848128a3dece00b88db34();
             }
 </script>
 *)

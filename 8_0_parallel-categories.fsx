@@ -27,29 +27,29 @@ let parcats =
         Color=[0.;1.;0.;1.;0.;0.;0.],
         Colorscale = StyleParam.Colorscale.Blackbody
     )(* output: 
-<div id="d5af7653-6f36-48a2-b206-51f80b48874f" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="2395c856-41b3-4140-bc52-e1e4d4b3f6ad" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_d5af76536f3648a2b20651f80b48874f = function() {
+            var renderPlotly_2395c85641b34140bc52e1e4d4b3f6ad = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"parcats","dimensions":[{"values":["Cat1","Cat1","Cat1","Cat1","Cat2","Cat2","Cat3"],"label":"A"},{"values":[0,1,0,1,0,0,0],"label":"B","ticktext":["YES","NO"]}],"color":[0.0,1.0,0.0,1.0,0.0,0.0,0.0],"line":{"colorscale":"Blackbody"}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('d5af7653-6f36-48a2-b206-51f80b48874f', data, layout, config);
+            Plotly.newPlot('2395c856-41b3-4140-bc52-e1e4d4b3f6ad', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_d5af76536f3648a2b20651f80b48874f();
+                    renderPlotly_2395c85641b34140bc52e1e4d4b3f6ad();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_d5af76536f3648a2b20651f80b48874f();
+                renderPlotly_2395c85641b34140bc52e1e4d4b3f6ad();
             }
 </script>
 *)

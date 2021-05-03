@@ -200,11 +200,11 @@
   </a>
 </li>             
 <li class="nav-header">
-  Finance
+  Finance Charts
 </li>             
 <li class="nav-item">
   <a class="nav-link" href="https://plotly.github.io/Plotly.NET/6_0_candlestick.html">
-    Choropleth maps
+    Candlestick Charts
   </a>
 </li>             
 <li class="nav-header">
@@ -271,29 +271,29 @@ of associated data is plotted as a disk. The first two values determine the disk
 third its size.</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="id">bubble1</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs7', 7)" onmouseover="showTip(event, 'fs7', 7)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs8', 8)" onmouseover="showTip(event, 'fs8', 8)" class="id">Bubble</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs3', 9)" onmouseover="showTip(event, 'fs3', 9)" class="id">x</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs4', 10)" onmouseover="showTip(event, 'fs4', 10)" class="id">y</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs5', 11)" onmouseover="showTip(event, 'fs5', 11)" class="id">size</span><span class="pn">)</span>
 </code></pre>
-<div id="ac2c2dd3-75d2-4a15-92b2-98fb3eff14ed" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="96779436-abb4-4416-bc96-b82160cd9723" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_ac2c2dd375d24a1592b298fb3eff14ed = function() {
+            var renderPlotly_96779436abb44416bc96b82160cd9723 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[2,4,6],"y":[4,1,6],"mode":"markers","marker":{"size":[19,26,55]}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('ac2c2dd3-75d2-4a15-92b2-98fb3eff14ed', data, layout, config);
+            Plotly.newPlot('96779436-abb4-4416-bc96-b82160cd9723', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_ac2c2dd375d24a1592b298fb3eff14ed();
+                    renderPlotly_96779436abb44416bc96b82160cd9723();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_ac2c2dd375d24a1592b298fb3eff14ed();
+                renderPlotly_96779436abb44416bc96b82160cd9723();
             }
 </script>
 
