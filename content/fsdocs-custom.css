@@ -1,25 +1,72 @@
 ﻿@import url("https://fonts.googleapis.com/css?family=Nunito+Sans:400,700");
-/*! bulma.io v0.9.1 | MIT License | github.com/jgthms/bulma */
+/*! bulma.io v0.9.2 | MIT License | github.com/jgthms/bulma */
 /* Bulma Utilities */
-@-webkit-keyframes spinAround {
-  from {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg); }
-  to {
-    -webkit-transform: rotate(359deg);
-            transform: rotate(359deg); } }
-@keyframes spinAround {
-  from {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg); }
-  to {
-    -webkit-transform: rotate(359deg);
-            transform: rotate(359deg); } }
+.pagination-previous,
+.pagination-next,
+.pagination-link,
+.pagination-ellipsis, .file-cta,
+.file-name, .select select, .textarea, .input, .button {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  font-size: 1rem;
+  height: 2.5em;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  line-height: 1.5;
+  padding-bottom: calc(0.5em - 1px);
+  padding-left: calc(0.75em - 1px);
+  padding-right: calc(0.75em - 1px);
+  padding-top: calc(0.5em - 1px);
+  position: relative;
+  vertical-align: top; }
+  .pagination-previous:focus,
+  .pagination-next:focus,
+  .pagination-link:focus,
+  .pagination-ellipsis:focus, .file-cta:focus,
+  .file-name:focus, .select select:focus, .textarea:focus, .input:focus, .button:focus, .is-focused.pagination-previous,
+  .is-focused.pagination-next,
+  .is-focused.pagination-link,
+  .is-focused.pagination-ellipsis, .is-focused.file-cta,
+  .is-focused.file-name, .select select.is-focused, .is-focused.textarea, .is-focused.input, .is-focused.button, .pagination-previous:active,
+  .pagination-next:active,
+  .pagination-link:active,
+  .pagination-ellipsis:active, .file-cta:active,
+  .file-name:active, .select select:active, .textarea:active, .input:active, .button:active, .is-active.pagination-previous, .pagination-previous.active,
+  .is-active.pagination-next,
+  .pagination-next.active,
+  .is-active.pagination-link,
+  .pagination-link.active,
+  .is-active.pagination-ellipsis,
+  .pagination-ellipsis.active, .is-active.file-cta, .file-cta.active,
+  .is-active.file-name,
+  .file-name.active, .select select.is-active, .select select.active, .is-active.textarea, .textarea.active, .is-active.input, .input.active, .is-active.button, .button.active {
+    outline: none; }
+  .pagination-previous[disabled],
+  .pagination-next[disabled],
+  .pagination-link[disabled],
+  .pagination-ellipsis[disabled], .file-cta[disabled],
+  .file-name[disabled], .select select[disabled], .textarea[disabled], .input[disabled], .button[disabled], fieldset[disabled] .pagination-previous,
+  fieldset[disabled] .pagination-next,
+  fieldset[disabled] .pagination-link,
+  fieldset[disabled] .pagination-ellipsis, fieldset[disabled] .file-cta,
+  fieldset[disabled] .file-name, fieldset[disabled] .select select, .select fieldset[disabled] select, fieldset[disabled] .textarea, fieldset[disabled] .input, fieldset[disabled] .button {
+    cursor: not-allowed; }
 
 .is-unselectable, .tabs, .pagination-previous,
 .pagination-next,
 .pagination-link,
-.pagination-ellipsis, .breadcrumb, .file, .button, .modal-close, .delete {
+.pagination-ellipsis, .breadcrumb, .file, .button {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -51,6 +98,11 @@
   margin-bottom: 1.5rem; }
 
 .modal-close, .delete {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   -moz-appearance: none;
   -webkit-appearance: none;
   background-color: rgba(10, 10, 10, 0.2);
@@ -154,68 +206,6 @@
   position: absolute;
   right: 0;
   top: 0; }
-
-.pagination-previous,
-.pagination-next,
-.pagination-link,
-.pagination-ellipsis, .file-cta,
-.file-name, .select select, .textarea, .input, .button {
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  font-size: 1rem;
-  height: 2.5em;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  line-height: 1.5;
-  padding-bottom: calc(0.5em - 1px);
-  padding-left: calc(0.75em - 1px);
-  padding-right: calc(0.75em - 1px);
-  padding-top: calc(0.5em - 1px);
-  position: relative;
-  vertical-align: top; }
-  .pagination-previous:focus,
-  .pagination-next:focus,
-  .pagination-link:focus,
-  .pagination-ellipsis:focus, .file-cta:focus,
-  .file-name:focus, .select select:focus, .textarea:focus, .input:focus, .button:focus, .is-focused.pagination-previous,
-  .is-focused.pagination-next,
-  .is-focused.pagination-link,
-  .is-focused.pagination-ellipsis, .is-focused.file-cta,
-  .is-focused.file-name, .select select.is-focused, .is-focused.textarea, .is-focused.input, .is-focused.button, .pagination-previous:active,
-  .pagination-next:active,
-  .pagination-link:active,
-  .pagination-ellipsis:active, .file-cta:active,
-  .file-name:active, .select select:active, .textarea:active, .input:active, .button:active, .is-active.pagination-previous, .pagination-previous.active,
-  .is-active.pagination-next,
-  .pagination-next.active,
-  .is-active.pagination-link,
-  .pagination-link.active,
-  .is-active.pagination-ellipsis,
-  .pagination-ellipsis.active, .is-active.file-cta, .file-cta.active,
-  .is-active.file-name,
-  .file-name.active, .select select.is-active, .select select.active, .is-active.textarea, .textarea.active, .is-active.input, .input.active, .is-active.button, .button.active {
-    outline: none; }
-  .pagination-previous[disabled],
-  .pagination-next[disabled],
-  .pagination-link[disabled],
-  .pagination-ellipsis[disabled], .file-cta[disabled],
-  .file-name[disabled], .select select[disabled], .textarea[disabled], .input[disabled], .button[disabled], fieldset[disabled] .pagination-previous,
-  fieldset[disabled] .pagination-next,
-  fieldset[disabled] .pagination-link,
-  fieldset[disabled] .pagination-ellipsis, fieldset[disabled] .file-cta,
-  fieldset[disabled] .file-name, fieldset[disabled] .select select, .select fieldset[disabled] select, fieldset[disabled] .textarea, fieldset[disabled] .input, fieldset[disabled] .button {
-    cursor: not-allowed; }
 
 /* Bulma Base */
 /*! minireset.css v0.0.6 | MIT License | github.com/jgthms/minireset.css */
@@ -403,6 +393,22 @@ table th {
 table th {
   color: #363636; }
 
+@-webkit-keyframes spinAround {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg); } }
+
+@keyframes spinAround {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg); } }
+
 /* Bulma Elements */
 .box {
   background-color: white;
@@ -478,6 +484,14 @@ a.box:active {
       border-color: transparent;
       -webkit-box-shadow: none;
               box-shadow: none; }
+  .button.is-ghost {
+    background: none;
+    border-color: transparent;
+    color: #378BBA;
+    text-decoration: none; }
+    .button.is-ghost:hover, .button.is-ghost.is-hovered {
+      color: #378BBA;
+      text-decoration: underline; }
   .button.is-white {
     background-color: white;
     border-color: transparent;
@@ -1235,8 +1249,9 @@ a.box:active {
         border-color: transparent;
         color: #cc0f35; }
   .button.is-small {
-    border-radius: 2px;
     font-size: 0.75rem; }
+    .button.is-small:not(.is-rounded) {
+      border-radius: 2px; }
   .button.is-normal {
     font-size: 1rem; }
   .button.is-medium {
@@ -1295,8 +1310,9 @@ a.box:active {
   .buttons:not(:last-child) {
     margin-bottom: 1rem; }
   .buttons.are-small .button:not(.is-normal):not(.is-medium):not(.is-large) {
-    border-radius: 2px;
     font-size: 0.75rem; }
+    .buttons.are-small .button:not(.is-normal):not(.is-medium):not(.is-large):not(.is-rounded) {
+      border-radius: 2px; }
   .buttons.are-medium .button:not(.is-small):not(.is-normal):not(.is-large) {
     font-size: 1.25rem; }
   .buttons.are-large .button:not(.is-small):not(.is-normal):not(.is-medium) {
@@ -1530,6 +1546,34 @@ a.box:active {
   .icon.is-large {
     height: 3rem;
     width: 3rem; }
+
+.icon-text {
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  color: inherit;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  line-height: 1.5rem;
+  vertical-align: top; }
+  .icon-text .icon {
+    -webkit-box-flex: 0;
+        -ms-flex-positive: 0;
+            flex-grow: 0;
+    -ms-flex-negative: 0;
+        flex-shrink: 0; }
+    .icon-text .icon:not(:last-child) {
+      margin-right: 0.25em; }
+    .icon-text .icon:not(:first-child) {
+      margin-left: 0.25em; }
+
+div.icon-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
 
 .image {
   display: block;
@@ -3255,8 +3299,15 @@ a.tag:hover {
           box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
   color: #4a4a4a;
   max-width: 100%;
-  overflow: hidden;
   position: relative; }
+
+.card-footer:first-child, .card-content:first-child, .card-header:first-child {
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem; }
+
+.card-footer:last-child, .card-content:last-child, .card-header:last-child {
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem; }
 
 .card-header {
   background-color: transparent;
@@ -3303,6 +3354,12 @@ a.tag:hover {
 .card-image {
   display: block;
   position: relative; }
+  .card-image:first-child img {
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem; }
+  .card-image:last-child img {
+    border-bottom-left-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem; }
 
 .card-content {
   background-color: transparent;
@@ -4860,6 +4917,8 @@ a.navbar-item,
 .pagination-list {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap; }
+  .pagination-list li {
+    list-style: none; }
 
 @media screen and (max-width: 768px) {
   .pagination {
@@ -5260,7 +5319,8 @@ label.panel-block {
   .columns.is-mobile > .column.is-narrow {
     -webkit-box-flex: 0;
         -ms-flex: none;
-            flex: none; }
+            flex: none;
+    width: unset; }
   .columns.is-mobile > .column.is-full {
     -webkit-box-flex: 0;
         -ms-flex: none;
@@ -5424,7 +5484,8 @@ label.panel-block {
     .column.is-narrow-mobile {
       -webkit-box-flex: 0;
           -ms-flex: none;
-              flex: none; }
+              flex: none;
+      width: unset; }
     .column.is-full-mobile {
       -webkit-box-flex: 0;
           -ms-flex: none;
@@ -5588,7 +5649,8 @@ label.panel-block {
     .column.is-narrow, .column.is-narrow-tablet {
       -webkit-box-flex: 0;
           -ms-flex: none;
-              flex: none; }
+              flex: none;
+      width: unset; }
     .column.is-full, .column.is-full-tablet {
       -webkit-box-flex: 0;
           -ms-flex: none;
@@ -5752,7 +5814,8 @@ label.panel-block {
     .column.is-narrow-touch {
       -webkit-box-flex: 0;
           -ms-flex: none;
-              flex: none; }
+              flex: none;
+      width: unset; }
     .column.is-full-touch {
       -webkit-box-flex: 0;
           -ms-flex: none;
@@ -5916,7 +5979,8 @@ label.panel-block {
     .column.is-narrow-desktop {
       -webkit-box-flex: 0;
           -ms-flex: none;
-              flex: none; }
+              flex: none;
+      width: unset; }
     .column.is-full-desktop {
       -webkit-box-flex: 0;
           -ms-flex: none;
@@ -6080,7 +6144,8 @@ label.panel-block {
     .column.is-narrow-widescreen {
       -webkit-box-flex: 0;
           -ms-flex: none;
-              flex: none; }
+              flex: none;
+      width: unset; }
     .column.is-full-widescreen {
       -webkit-box-flex: 0;
           -ms-flex: none;
@@ -6244,7 +6309,8 @@ label.panel-block {
     .column.is-narrow-fullhd {
       -webkit-box-flex: 0;
           -ms-flex: none;
-              flex: none; }
+              flex: none;
+      width: unset; }
     .column.is-full-fullhd {
       -webkit-box-flex: 0;
           -ms-flex: none;
@@ -6452,7 +6518,7 @@ label.panel-block {
   --columnGap: 0.75rem;
   margin-left: calc(-1 * var(--columnGap));
   margin-right: calc(-1 * var(--columnGap)); }
-  .columns.is-variable .column {
+  .columns.is-variable > .column {
     padding-left: var(--columnGap);
     padding-right: var(--columnGap); }
   .columns.is-variable.is-0 {
@@ -7335,7 +7401,8 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
           box-shadow: none !important; }
 
 .is-clickable {
-  cursor: pointer !important; }
+  cursor: pointer !important;
+  pointer-events: all !important; }
 
 .is-clipped {
   overflow: hidden !important; }
@@ -8967,6 +9034,7 @@ em {
 
 #fsdocs-content table.pre, #fsdocs-content pre.fssnip, #fsdocs-content pre {
   background-color: #200117;
+  color: #fafafa;
   overflow-x: auto;
   display: block; }
 
@@ -9004,8 +9072,11 @@ em {
   Formatting for F# code snippets
 /*--------------------------------------------------------------------------*/
 .fsdocs-param-name,
-.fsdocs-return-name {
-  font-weight: 600; }
+.fsdocs-return-name,
+.fsdocs-param {
+  font-weight: 900;
+  font-size: 0.85rem;
+  font-family: 'Roboto Mono', monospace; }
 
 /* strings --- and stlyes for other string related formats */
 #fsdocs-content span.s {
@@ -9015,9 +9086,13 @@ em {
 #fsdocs-content span.pf {
   color: #A00975; }
 
+/* escaped chars */
+#fsdocs-content span.e {
+  color: #d59a1b; }
+
 /* identifiers --- and styles for more specific identifier types */
 #fsdocs-content span.id {
-  color: white; }
+  color: #fafafa; }
 
 /* module */
 #fsdocs-content span.m {
@@ -9042,6 +9117,20 @@ em {
 /* disposable */
 #fsdocs-content span.d {
   color: #c6ffdd; }
+
+/* property */
+#fsdocs-content span.prop {
+  color: #fafafa; }
+
+/* punctuation */
+#fsdocs-content span.p {
+  color: #fafafa; }
+
+#fsdocs-content span.pn {
+  color: #fafafa; }
+
+#fsdocs-content span.f {
+  color: #fafafa; }
 
 #fsdocs-content span.fn {
   color: #d2c572; }
@@ -9073,6 +9162,23 @@ em {
 #fsdocs-content span.n {
   color: #c6ffdd; }
 
+/* line number */
+#fsdocs-content span.l {
+  color: #fafafa; }
+
+/* mutable var or ref cell */
+#fsdocs-content span.v {
+  color: #d2c572;
+  font-weight: bold; }
+
+/* inactive code */
+#fsdocs-content span.inactive {
+  color: #808080; }
+
+/* preprocessor */
+#fsdocs-content span.prep {
+  color: #ff9b9b; }
+
 /* fsi output */
 #fsdocs-content span.fsi {
   color: #fafafa; }
@@ -9090,4 +9196,4 @@ div.fsdocs-tip {
 div.fsdocs-tip code {
   color: #d1d1d1;
   font: 11pt 'Droid Sans', arial, sans-serif; }
-/*# sourceMappingURL=C:\Users\Kevin\source\repos\fslaborg\docs-template\Content\docs\content\fsdocs-custom.css.map */
+/*# sourceMappingURL=C:\Users\schne\source\repos\fslaborg\docs-template\Content\docs\content\fsdocs-custom.css.map */
