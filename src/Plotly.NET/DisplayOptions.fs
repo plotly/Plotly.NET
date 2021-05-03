@@ -72,7 +72,7 @@ type DisplayOptions() =
         displayOptions
         |> DisplayOptions.getReplacements
         |> List.fold (fun (html:string) (placeholder,replacement) ->
-            printfn $"replacing {placeholder} {replacement}"
+            //printfn $"replacing {placeholder} {replacement}"
             html.Replace(placeholder,replacement)
         ) html
 
