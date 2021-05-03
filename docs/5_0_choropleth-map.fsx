@@ -1,3 +1,12 @@
+(**
+---
+title: Choropleth maps
+category: Map Charts
+categoryindex: 6
+index: 1
+---
+*)
+
 (*** hide ***)
 
 (*** condition: prepare ***)
@@ -13,7 +22,9 @@
 (** 
 # Choropleth maps
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=5_0_choropleth-map.ipynb)
+[![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
+[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
+[![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
 *Summary:* This example shows how to create choropleth map in F#.
 

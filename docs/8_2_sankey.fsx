@@ -1,3 +1,13 @@
+(**
+---
+title: Sankey Charts
+category: Categorical Charts
+categoryindex: 10
+index: 3
+---
+*)
+
+
 (*** hide ***)
 
 (*** condition: prepare ***)
@@ -13,7 +23,9 @@
 (** 
 # Sankey charts
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=8_2_sankey.ipynb)
+[![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
+[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
+[![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
 *Summary:* This example shows how to create sankey charts in F#.
 

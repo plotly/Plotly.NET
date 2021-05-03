@@ -1,3 +1,12 @@
+(**
+---
+title: 2D Histograms
+category: Distribution Charts
+categoryindex: 5
+index: 4
+---
+*)
+
 (*** hide ***)
 
 (*** condition: prepare ***)
@@ -13,7 +22,9 @@
 (** 
 # 2D Histograms
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=4_5_2d-histograms.ipynb)
+[![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
+[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
+[![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
 *Summary:* This example shows how to create a bi-dimensional histogram of two data samples in F#.
 

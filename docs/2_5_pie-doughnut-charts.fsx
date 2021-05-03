@@ -1,3 +1,12 @@
+(**
+---
+title: Pie and doughnut Charts
+category: Simple Charts
+categoryindex: 3
+index: 6
+---
+*)
+
 (*** hide ***)
 
 (*** condition: prepare ***)
@@ -13,7 +22,9 @@
 (** 
 # Pie and doughnut Charts
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=2_5_pie-doughnut-charts.ipynb)
+[![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
+[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
+[![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
 *Summary:* This example shows how to create pie and doughnut charts in F#.
 

@@ -1,3 +1,13 @@
+(**
+---
+title: Basics 
+category: General
+categoryindex: 1
+index: 1
+---
+*)
+
+
 (*** hide ***)
 
 (*** condition: prepare ***)
@@ -13,6 +23,10 @@
 open Plotly.NET
 
 (**
+[![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
+[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
+[![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
+
 # Plotly.NET basics
 
 _This section is WIP._
@@ -25,7 +39,6 @@ _This section is WIP._
 
 ## GenericChart
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=1_0_basics.fsx.ipynb)
 
 Plotly.NET is a .NET wrapper for creation of [plotly charts]() written in F#. This means that, under the hood, all functionality creates JSON objects that can be rendered by plotly.
 
@@ -35,15 +48,16 @@ The central type that gets created by all Chart constructors is `GenericChart`, 
 
 (***do-not-eval***)
 type GenericChart =
-    | Chart of Trace * Layout * Config
-    | MultiChart of Trace list * Layout * Config
+    | Chart of Trace * Layout * Config * DisplayOptions
+    | MultiChart of Trace list * Layout * Config * DisplayOptions
 
 (**
-As you can see, a `GenericChart` consists of three top level objects - `Trace` (multiple of those in the case of a MultiChart) , `Layout`, and `Config`.
+As you can see, a `GenericChart` consists of four top level objects - `Trace` (multiple of those in the case of a MultiChart) , `Layout`, `Config`, and `DisplayOptions`.
 
 - `Trace` is in principle the representation of a dataset on a chart, including for example the data itself, color and shape of the visualization, etc.
 - `Layout` is everything of the chart that is not dataset specifivc - e.g. the shape and style of axes, the chart title, etc.
 - `Config` is an object that configures high level properties of the chart like making all chart elements editable or the tool bar on top
+- `DisplayOptions` is an object that contains meta information about how the html document that contains the chart.
 
 ## Working with GenericCharts
 

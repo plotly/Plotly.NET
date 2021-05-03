@@ -1,3 +1,12 @@
+(**
+---
+title: Parallel coordinates
+category: Categorical Charts
+categoryindex: 10
+index: 2
+---
+*)
+
 (*** hide ***)
 
 (*** condition: prepare ***)
@@ -14,7 +23,9 @@
 (** 
 # Parallel coordinates
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=8_1_parallel-coords.ipynb)
+[![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
+[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
+[![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
 *Summary:* This example shows how to create parallel coordinates plot in F#.
 

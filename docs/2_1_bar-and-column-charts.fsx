@@ -1,3 +1,12 @@
+(**
+---
+title: Bar and column charts
+category: Simple Charts
+categoryindex: 3
+index: 2
+---
+*)
+
 (*** hide ***)
 
 (*** condition: prepare ***)
@@ -13,7 +22,9 @@
 (** 
 # Bar and column charts
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=2_1_bar-and-column-charts.ipynb)
+[![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
+[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
+[![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
 *Summary:* This example shows how to create bar and a column charts in F#.
 

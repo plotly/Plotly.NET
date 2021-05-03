@@ -13,7 +13,7 @@
 
 (**
 # Plotly.NET
-
+ 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=index.ipynb)
 
 Plotly.NET provides functions for generating and rendering plotly.js charts in **.NET** programming languages 📈🚀. 
@@ -50,34 +50,34 @@ You can find all available package versions on the [nuget page](https://www.nuge
 
  - dotnet CLI
 
-```shell
-dotnet add package Plotly.NET --version <desired-version-here>
-```
+    ```shell
+    dotnet add package Plotly.NET --version {{fsdocs-package-version}}
+    ```
 
  - paket CLI
 
-```shell
-paket add Plotly.NET --version <desired-version-here>
-```
+    ```shell
+    paket add Plotly.NET --version {{fsdocs-package-version}}
+    ```
 
  - package manager
 
-```shell
-Install-Package Plotly.NET -Version <desired-version-here>
-```
+    ```shell
+    Install-Package Plotly.NET -Version {{fsdocs-package-version}}
+    ```
 
-Or add the package reference directly to your `.*proj` file:
+    Or add the package reference directly to your `.*proj` file:
 
-```
-<PackageReference Include="Plotly.NET" Version="<desired-version-here>" />
-```
+    ```
+    <PackageReference Include="Plotly.NET" Version="{{fsdocs-package-version}}" />
+    ```
 
 ### For scripting
 
 You can include the package via an inline package reference:
 
 ```
-#r "nuget: Plotly.NET, <desired-version-here>"
+#r "nuget: Plotly.NET, {{fsdocs-package-version}}"
 ```
 
 ### For dotnet interactive notebooks
@@ -85,10 +85,10 @@ You can include the package via an inline package reference:
 You can use the same inline package reference as in script, but as an additional goodie, 
 the interactive extensions for dotnet interactive have you covered for seamless chart rendering:
 
-```
-#r "nuget: Plotly.NET, <desired-version-here>"
-#r "nuget: Plotly.NET.Interactive,<desired-version-here>"
-```
+    ```
+    #r "nuget: Plotly.NET, {{fsdocs-package-version}}"
+    #r "nuget: Plotly.NET.Interactive, {{fsdocs-package-version}}"
+    ```
 
 _Note_: 
 
@@ -98,10 +98,10 @@ If the interactive extension does not work, please file an issue and we will try
 
 A possible fix for this is the inclusion of Dotnet.Interactive preview package sources. To use these, add the following lines before referencning Plotly.NET.Interactive:
 
-```fsharp
-#i "nuget:https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet5/nuget/v3/index.json"
-#i "nuget:https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-tools/nuget/v3/index.json"
-```
+    ```fsharp
+    #i "nuget:https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet5/nuget/v3/index.json"
+    #i "nuget:https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-tools/nuget/v3/index.json"
+    ```
 
 # Overview
 
