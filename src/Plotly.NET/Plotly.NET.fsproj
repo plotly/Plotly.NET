@@ -23,7 +23,7 @@
     <Description>plotly.js charts in .NET programming languages 📈🚀. </Description>
     <Summary>Plotly.NET provides functions for generating and rendering plotly.js charts in .NET programming languages 📈🚀.</Summary>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://plotly.github.io/Plotly.NET/</PackageProjectUrl>
+    <PackageProjectUrl>https://plotly.net</PackageProjectUrl>
     <PackageIcon>logo.png</PackageIcon>
     <PackageTags>visualization charting plotly fsharp csharp</PackageTags>
     <RepositoryUrl>https://github.com/plotly/Plotly.NET/</RepositoryUrl>

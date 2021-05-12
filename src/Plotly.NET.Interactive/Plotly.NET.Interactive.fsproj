@@ -20,7 +20,7 @@
     <Description>A .NET Interactive Kernel Extension for displaying Plotly.NET charts. </Description>
     <Summary>A .NET Interactive Kernel Extension for displaying Plotly.NET charts.</Summary>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://plotly.github.io/Plotly.NET/</PackageProjectUrl>
+    <PackageProjectUrl>https://plotly.net</PackageProjectUrl>
     <PackageIcon>logo.png</PackageIcon>
     <PackageTags>visualization charting plotly fsharp csharp</PackageTags>
     <RepositoryUrl>https://github.com/plotly/Plotly.NET/</RepositoryUrl>
