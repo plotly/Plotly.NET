@@ -3,9 +3,9 @@
 
 # Pie and doughnut Charts
 
-[![Binder](https://plotly.github.io/Plotly.NET/img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=2_5_pie-doughnut-charts.ipynb)&emsp;
-[![Script](https://plotly.github.io/Plotly.NET/img/badge-script.svg)](https://plotly.github.io/Plotly.NET/2_5_pie-doughnut-charts.fsx)&emsp;
-[![Notebook](https://plotly.github.io/Plotly.NET/img/badge-notebook.svg)](https://plotly.github.io/Plotly.NET/2_5_pie-doughnut-charts.ipynb)
+[![Binder](https://plotly.net/img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=2_5_pie-doughnut-charts.ipynb)&emsp;
+[![Script](https://plotly.net/img/badge-script.svg)](https://plotly.net/2_5_pie-doughnut-charts.fsx)&emsp;
+[![Notebook](https://plotly.net/img/badge-notebook.svg)](https://plotly.net/2_5_pie-doughnut-charts.ipynb)
 
 *Summary:* This example shows how to create pie and doughnut charts in F#.
 
@@ -23,29 +23,29 @@ When creating pie charts, it is usually desirable to provide both labels and val
 *)
 let pie1 =
     Chart.Pie(values,labels)(* output: 
-<div id="660779ca-6b44-4119-94f8-d640289c5b44" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="2c0899a4-b183-4eaf-bf82-35c297806e7a" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_660779ca6b44411994f8d640289c5b44 = function() {
+            var renderPlotly_2c0899a4b1834eafbf8235c297806e7a = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"pie","values":[19,26,55],"labels":["Residential","Non-Residential","Utility"],"marker":{},"text":["Residential","Non-Residential","Utility"]}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('660779ca-6b44-4119-94f8-d640289c5b44', data, layout, config);
+            Plotly.newPlot('2c0899a4-b183-4eaf-bf82-35c297806e7a', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_660779ca6b44411994f8d640289c5b44();
+                    renderPlotly_2c0899a4b1834eafbf8235c297806e7a();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_660779ca6b44411994f8d640289c5b44();
+                renderPlotly_2c0899a4b1834eafbf8235c297806e7a();
             }
 </script>
 *)
@@ -56,29 +56,29 @@ let doughnut1 =
         Hole=0.3,
         Textinfo=labels
     )(* output: 
-<div id="8837b1d9-f2cc-488d-878f-f3421e33f615" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="3690db6d-239c-442f-a7aa-57e0d2501769" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_8837b1d9f2cc488d878ff3421e33f615 = function() {
+            var renderPlotly_3690db6d239c442fa7aa57e0d2501769 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"pie","values":[19,26,55],"labels":["Residential","Non-Residential","Utility"],"textinfo":["Residential","Non-Residential","Utility"],"hole":0.3,"marker":{},"text":["Residential","Non-Residential","Utility"]}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('8837b1d9-f2cc-488d-878f-f3421e33f615', data, layout, config);
+            Plotly.newPlot('3690db6d-239c-442f-a7aa-57e0d2501769', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_8837b1d9f2cc488d878ff3421e33f615();
+                    renderPlotly_3690db6d239c442fa7aa57e0d2501769();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_8837b1d9f2cc488d878ff3421e33f615();
+                renderPlotly_3690db6d239c442fa7aa57e0d2501769();
             }
 </script>
 *)
@@ -89,29 +89,29 @@ let sunburst1 =
         Values=[5.;0.;3.;2.;3.],
         Text=["At";"Bt";"Ct";"Dt";"Et"]
     )(* output: 
-<div id="1c96f4d7-924b-4a33-b4e0-8426c5441acb" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="ebd9977e-7720-4c09-afd1-26ba4644a34e" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_1c96f4d7924b4a33b4e08426c5441acb = function() {
+            var renderPlotly_ebd9977e77204c09afd126ba4644a34e = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"sunburst","labels":["A","B","C","D","E"],"parents":["","","B","B",""],"values":[5.0,0.0,3.0,2.0,3.0],"text":["At","Bt","Ct","Dt","Et"],"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('1c96f4d7-924b-4a33-b4e0-8426c5441acb', data, layout, config);
+            Plotly.newPlot('ebd9977e-7720-4c09-afd1-26ba4644a34e', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_1c96f4d7924b4a33b4e08426c5441acb();
+                    renderPlotly_ebd9977e77204c09afd126ba4644a34e();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_1c96f4d7924b4a33b4e08426c5441acb();
+                renderPlotly_ebd9977e77204c09afd126ba4644a34e();
             }
 </script>
 *)

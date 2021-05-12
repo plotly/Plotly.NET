@@ -1,9 +1,9 @@
 (**
 // can't yet format YamlFrontmatter (["title: Basics "; "category: General"; "categoryindex: 1"; "index: 1"], Some { StartLine = 2 StartColumn = 0 EndLine = 6 EndColumn = 8 }) to pynb markdown
 
-[![Binder](https://plotly.github.io/Plotly.NET/img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=0_0_basics.ipynb)&emsp;
-[![Script](https://plotly.github.io/Plotly.NET/img/badge-script.svg)](https://plotly.github.io/Plotly.NET/0_0_basics.fsx)&emsp;
-[![Notebook](https://plotly.github.io/Plotly.NET/img/badge-notebook.svg)](https://plotly.github.io/Plotly.NET/0_0_basics.ipynb)
+[![Binder](https://plotly.net/img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=0_0_basics.ipynb)&emsp;
+[![Script](https://plotly.net/img/badge-script.svg)](https://plotly.net/0_0_basics.fsx)&emsp;
+[![Notebook](https://plotly.net/img/badge-notebook.svg)](https://plotly.net/0_0_basics.ipynb)
 
 # Plotly.NET basics
 

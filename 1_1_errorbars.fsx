@@ -3,9 +3,9 @@
 
 # Error bars
 
-[![Binder](https://plotly.github.io/Plotly.NET/img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=1_1_errorbars.ipynb)&emsp;
-[![Script](https://plotly.github.io/Plotly.NET/img/badge-script.svg)](https://plotly.github.io/Plotly.NET/1_1_errorbars.fsx)&emsp;
-[![Notebook](https://plotly.github.io/Plotly.NET/img/badge-notebook.svg)](https://plotly.github.io/Plotly.NET/1_1_errorbars.ipynb)
+[![Binder](https://plotly.net/img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=1_1_errorbars.ipynb)&emsp;
+[![Script](https://plotly.net/img/badge-script.svg)](https://plotly.net/1_1_errorbars.fsx)&emsp;
+[![Notebook](https://plotly.net/img/badge-notebook.svg)](https://plotly.net/1_1_errorbars.ipynb)
 
 *Summary:* This example shows how to add error bars to plots in F#.
 
@@ -25,29 +25,29 @@ let pointsWithErrorBars =
     Chart.Point(x,y',Name="points with errors")    
     |> Chart.withXErrorStyle (Array=xError,Symmetric=true)
     |> Chart.withYErrorStyle (Array=yError, Arrayminus = xError) // for negative error, use positive values in the `Arrayminus` argument (* output: 
-<div id="14b331cd-d901-45e9-b53a-44a48ee3c68a" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="c673b7d3-14e6-407d-9f94-936a40be81f3" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_14b331cdd90145e9b53a44a48ee3c68a = function() {
+            var renderPlotly_c673b7d314e6407d9f94936a40be81f3 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"mode":"markers","name":"points with errors","marker":{},"error_x":{"symmetric":true,"array":[0.2,0.3,0.2,0.1,0.2,0.4,0.2,0.08,0.2,0.1]},"error_y":{"array":[0.3,0.2,0.1,0.4,0.2,0.4,0.1,0.18,0.02,0.2],"arrayminus":[0.2,0.3,0.2,0.1,0.2,0.4,0.2,0.08,0.2,0.1]}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('14b331cd-d901-45e9-b53a-44a48ee3c68a', data, layout, config);
+            Plotly.newPlot('c673b7d3-14e6-407d-9f94-936a40be81f3', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_14b331cdd90145e9b53a44a48ee3c68a();
+                    renderPlotly_c673b7d314e6407d9f94936a40be81f3();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_14b331cdd90145e9b53a44a48ee3c68a();
+                renderPlotly_c673b7d314e6407d9f94936a40be81f3();
             }
 </script>
 *)

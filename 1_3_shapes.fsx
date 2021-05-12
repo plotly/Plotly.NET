@@ -3,9 +3,9 @@
 
 # Shapes
 
-[![Binder](https://plotly.github.io/Plotly.NET/img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=1_3_shapes.ipynb)&emsp;
-[![Script](https://plotly.github.io/Plotly.NET/img/badge-script.svg)](https://plotly.github.io/Plotly.NET/1_3_shapes.fsx)&emsp;
-[![Notebook](https://plotly.github.io/Plotly.NET/img/badge-notebook.svg)](https://plotly.github.io/Plotly.NET/1_3_shapes.ipynb)
+[![Binder](https://plotly.net/img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=1_3_shapes.ipynb)&emsp;
+[![Script](https://plotly.net/img/badge-script.svg)](https://plotly.net/1_3_shapes.fsx)&emsp;
+[![Notebook](https://plotly.net/img/badge-notebook.svg)](https://plotly.net/1_3_shapes.ipynb)
 
 *Summary:* This example shows how to create Shapes and add them to the Charts in F#.
 
@@ -29,29 +29,29 @@ let shapes =
     Chart.Line(x,y',Name="line")    
     |> Chart.withShapes([s1;s2])
 //|> Chart.withShape(Options.Shape(StyleOption.ShapeType.Rectangle,2.,4.,3.,4.,Opacity=0.3,Fillcolor="#d3d3d3"))(* output: 
-<div id="803e13ae-07f5-4de5-8834-adab1a3ece1a" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="bdfc2e4e-efc2-4774-8e33-6ac5ba6d874e" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_803e13ae07f54de58834adab1a3ece1a = function() {
+            var renderPlotly_bdfc2e4eefc247748e336ac5ba6d874e = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"mode":"lines","line":{},"name":"line","marker":{}}];
             var layout = {"shapes":[{"type":"rect","x0":2.0,"x1":4.0,"y0":3.0,"y1":4.0,"opacity":0.3,"fillcolor":"#d3d3d3"},{"type":"rect","x0":5.0,"x1":7.0,"y0":3.0,"y1":4.0,"opacity":0.3,"fillcolor":"#d3d3d3"}]};
             var config = {};
-            Plotly.newPlot('803e13ae-07f5-4de5-8834-adab1a3ece1a', data, layout, config);
+            Plotly.newPlot('bdfc2e4e-efc2-4774-8e33-6ac5ba6d874e', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_803e13ae07f54de58834adab1a3ece1a();
+                    renderPlotly_bdfc2e4eefc247748e336ac5ba6d874e();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_803e13ae07f54de58834adab1a3ece1a();
+                renderPlotly_bdfc2e4eefc247748e336ac5ba6d874e();
             }
 </script>
 *)

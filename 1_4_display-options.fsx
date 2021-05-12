@@ -3,9 +3,9 @@
 
 # Display Options
 
-[![Binder](https://plotly.github.io/Plotly.NET/img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=1_4_display-options.ipynb)&emsp;
-[![Script](https://plotly.github.io/Plotly.NET/img/badge-script.svg)](https://plotly.github.io/Plotly.NET/1_4_display-options.fsx)&emsp;
-[![Notebook](https://plotly.github.io/Plotly.NET/img/badge-notebook.svg)](https://plotly.github.io/Plotly.NET/1_4_display-options.ipynb)
+[![Binder](https://plotly.net/img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=1_4_display-options.ipynb)&emsp;
+[![Script](https://plotly.net/img/badge-script.svg)](https://plotly.net/1_4_display-options.fsx)&emsp;
+[![Notebook](https://plotly.net/img/badge-notebook.svg)](https://plotly.net/1_4_display-options.ipynb)
 
 *Summary:* This example shows how to alter the display options that control the html document that contains plotly charts
 
@@ -33,7 +33,7 @@ let desc1 =
     |> Chart.WithDescription(description1)
     |> Chart.Show
 (**
-![](https://plotly.github.io/Plotly.NET/img/desc1.png)
+![](https://plotly.net/img/desc1.png)
 
 The `ChartDescription` type is a bit barebones for now, but you can contain any valid html in both `Heading` and `Text` fields:
 *)
@@ -44,7 +44,7 @@ let desc2 =
     |> Chart.WithDescription(description2)
     |> Chart.Show
 (**
-![](https://plotly.github.io/Plotly.NET/img/desc2.png)
+![](https://plotly.net/img/desc2.png)
 
 ## Adding additional head tags
 
@@ -78,7 +78,7 @@ let desc3 =
     |> Chart.WithAdditionalHeadTags ["""<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">"""]
     |> Chart.Show
 (**
-![](https://plotly.github.io/Plotly.NET/img/desc3.png)
+![](https://plotly.net/img/desc3.png)
 
 ## Using MathTeX
 
@@ -95,7 +95,7 @@ By popular request, `Chart.WithMathTex` is a prebuilt function to enable MathTeX
 |> Chart.WithMathTex(true)
 |> Chart.Show
 (**
-![](https://plotly.github.io/Plotly.NET/img/desc4.png)
+![](https://plotly.net/img/desc4.png)
 
 *)
 

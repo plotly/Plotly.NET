@@ -3,9 +3,9 @@
 
 # Range plots
 
-[![Binder](https://plotly.github.io/Plotly.NET/img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=2_3_range-plots.ipynb)&emsp;
-[![Script](https://plotly.github.io/Plotly.NET/img/badge-script.svg)](https://plotly.github.io/Plotly.NET/2_3_range-plots.fsx)&emsp;
-[![Notebook](https://plotly.github.io/Plotly.NET/img/badge-notebook.svg)](https://plotly.github.io/Plotly.NET/2_3_range-plots.ipynb)
+[![Binder](https://plotly.net/img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=2_3_range-plots.ipynb)&emsp;
+[![Script](https://plotly.net/img/badge-script.svg)](https://plotly.net/2_3_range-plots.fsx)&emsp;
+[![Notebook](https://plotly.net/img/badge-notebook.svg)](https://plotly.net/2_3_range-plots.ipynb)
 
 *Summary:* This example shows how to create Range plot charts in F#.
 
@@ -31,29 +31,29 @@ let range1 =
         StyleParam.Mode.Lines_Markers,
         Color="grey",
         RangeColor="lightblue")(* output: 
-<div id="8e7dab7d-993e-40e6-8bd7-5d45cee17378" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="40354315-73a3-4e54-8945-5332f23e17a3" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_8e7dab7d993e40e68bd75d45cee17378 = function() {
+            var renderPlotly_4035431573a34e5489455332f23e17a3 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
-            var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[1.264739887912171,1.4874502238759073,4.459104448305026,0.9748202052315791,2.1886677808075525,2.434123351673653,1.6619897052468684,1.036234079644193,3.4723479780239743,0.015559256549719347],"mode":"lines","fillcolor":"lightblue","showlegend":false,"line":{"width":0.0},"marker":{"color":"lightblue"}},{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0291430428759862,1.9757671377043087,5.674410565604647,2.3031675870545056,3.4779066506204694,3.2298768804082076,3.0114382722002633,1.5251757451450338,4.348870576288957,1.870334536708116],"mode":"lines","fill":"tonexty","fillcolor":"lightblue","showlegend":false,"line":{"width":0.0},"marker":{"color":"lightblue"}},{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"mode":"lines+markers","fillcolor":"grey","line":{"color":"grey"},"marker":{"color":"grey"}}];
+            var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[1.7547341407065904,1.0440387090407492,4.771191915390637,1.3555206329820308,2.5995077321303577,1.8186053886630598,1.8169619679995637,1.165672230378572,2.686723381367849,0.26636533404996865],"mode":"lines","fillcolor":"lightblue","showlegend":false,"line":{"width":0.0},"marker":{"color":"lightblue"}},{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.3233294847064325,2.3924213353974846,5.615513393476379,1.8260769994585202,3.0869986373404967,2.60194356325173,3.111799177067261,1.6737553883221725,3.9250133072142552,1.4198159516881295],"mode":"lines","fill":"tonexty","fillcolor":"lightblue","showlegend":false,"line":{"width":0.0},"marker":{"color":"lightblue"}},{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"mode":"lines+markers","fillcolor":"grey","line":{"color":"grey"},"marker":{"color":"grey"}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('8e7dab7d-993e-40e6-8bd7-5d45cee17378', data, layout, config);
+            Plotly.newPlot('40354315-73a3-4e54-8945-5332f23e17a3', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_8e7dab7d993e40e68bd75d45cee17378();
+                    renderPlotly_4035431573a34e5489455332f23e17a3();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_8e7dab7d993e40e68bd75d45cee17378();
+                renderPlotly_4035431573a34e5489455332f23e17a3();
             }
 </script>
 *)

@@ -1,9 +1,9 @@
 (**
 # Plotly.NET
  
-[![Binder](https://plotly.github.io/Plotly.NET/img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=index.ipynb)&emsp;
-[![Script](https://plotly.github.io/Plotly.NET/img/badge-script.svg)](https://plotly.github.io/Plotly.NET/index.fsx)&emsp;
-[![Notebook](https://plotly.github.io/Plotly.NET/img/badge-notebook.svg)](https://plotly.github.io/Plotly.NET/index.ipynb)
+[![Binder](https://plotly.net/img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=index.ipynb)&emsp;
+[![Script](https://plotly.net/img/badge-script.svg)](https://plotly.net/index.fsx)&emsp;
+[![Notebook](https://plotly.net/img/badge-notebook.svg)](https://plotly.net/index.ipynb)
 
 Plotly.NET provides functions for generating and rendering plotly.js charts in **.NET** programming languages 📈🚀. 
 
@@ -146,29 +146,29 @@ myFirstChart
 |> Chart.Show
 (**
 Should render this chart in your brower:
-<div id="ed1b619e-c436-4b1c-b732-1c7229d61e97" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="381fc331-c8d6-4ee3-935a-3457ac3a67ea" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_ed1b619ec4364b1cb7321c7229d61e97 = function() {
+            var renderPlotly_381fc331c8d64ee3935a3457ac3a67ea = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"mode":"markers","marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('ed1b619e-c436-4b1c-b732-1c7229d61e97', data, layout, config);
+            Plotly.newPlot('381fc331-c8d6-4ee3-935a-3457ac3a67ea', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_ed1b619ec4364b1cb7321c7229d61e97();
+                    renderPlotly_381fc331c8d64ee3935a3457ac3a67ea();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_ed1b619ec4364b1cb7321c7229d61e97();
+                renderPlotly_381fc331c8d64ee3935a3457ac3a67ea();
             }
 </script>
 
@@ -177,29 +177,29 @@ myFirstStyledChart
 |> Chart.Show
 (**
 And here is what happened after applying the styles from above:
-<div id="ba21b795-60e6-4e9e-bf61-be2496abffad" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="0b17ad03-fdf2-44da-8806-36dcdfc6553b" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_ba21b79560e64e9ebf61be2496abffad = function() {
+            var renderPlotly_0b17ad03fdf244da880636dcdfc6553b = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"mode":"markers","marker":{}}];
             var layout = {"title":"Hello world!","xaxis":{"title":"xAxis","showgrid":false},"yaxis":{"title":"yAxis","showgrid":false}};
             var config = {};
-            Plotly.newPlot('ba21b795-60e6-4e9e-bf61-be2496abffad', data, layout, config);
+            Plotly.newPlot('0b17ad03-fdf2-44da-8806-36dcdfc6553b', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_ba21b79560e64e9ebf61be2496abffad();
+                    renderPlotly_0b17ad03fdf244da880636dcdfc6553b();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_ba21b79560e64e9ebf61be2496abffad();
+                renderPlotly_0b17ad03fdf244da880636dcdfc6553b();
             }
 </script>
 

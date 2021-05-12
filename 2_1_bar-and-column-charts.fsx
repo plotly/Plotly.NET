@@ -3,9 +3,9 @@
 
 # Bar and column charts
 
-[![Binder](https://plotly.github.io/Plotly.NET/img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=2_1_bar-and-column-charts.ipynb)&emsp;
-[![Script](https://plotly.github.io/Plotly.NET/img/badge-script.svg)](https://plotly.github.io/Plotly.NET/2_1_bar-and-column-charts.fsx)&emsp;
-[![Notebook](https://plotly.github.io/Plotly.NET/img/badge-notebook.svg)](https://plotly.github.io/Plotly.NET/2_1_bar-and-column-charts.ipynb)
+[![Binder](https://plotly.net/img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=2_1_bar-and-column-charts.ipynb)&emsp;
+[![Script](https://plotly.net/img/badge-script.svg)](https://plotly.net/2_1_bar-and-column-charts.fsx)&emsp;
+[![Notebook](https://plotly.net/img/badge-notebook.svg)](https://plotly.net/2_1_bar-and-column-charts.ipynb)
 
 *Summary:* This example shows how to create bar and a column charts in F#.
 
@@ -23,29 +23,29 @@ or horizontally. A vertical bar chart is called a column bar chart.
 ### Column Charts
 *)
 let column = Chart.Column(keys,values)(* output: 
-<div id="12d8f18e-1b0a-4a27-bac3-097144ce302b" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="725955e8-469c-4ae2-9e04-9c903e73e2b9" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_12d8f18e1b0a4a27bac3097144ce302b = function() {
+            var renderPlotly_725955e8469c4ae29e049c903e73e2b9 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"bar","x":["Product A","Product B","Product C"],"y":[20,14,23],"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('12d8f18e-1b0a-4a27-bac3-097144ce302b', data, layout, config);
+            Plotly.newPlot('725955e8-469c-4ae2-9e04-9c903e73e2b9', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_12d8f18e1b0a4a27bac3097144ce302b();
+                    renderPlotly_725955e8469c4ae29e049c903e73e2b9();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_12d8f18e1b0a4a27bac3097144ce302b();
+                renderPlotly_725955e8469c4ae29e049c903e73e2b9();
             }
 </script>
 *)
@@ -54,29 +54,29 @@ let column = Chart.Column(keys,values)(* output:
 *)
 let bar =
     Chart.Bar(keys,values)(* output: 
-<div id="6028aba2-752d-471a-bf8c-f6a815911f96" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="533bf5fb-bc67-4f23-aeb7-be2d108c6c36" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_6028aba2752d471abf8cf6a815911f96 = function() {
+            var renderPlotly_533bf5fbbc674f23aeb7be2d108c6c36 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"bar","x":[20,14,23],"y":["Product A","Product B","Product C"],"orientation":"h","marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('6028aba2-752d-471a-bf8c-f6a815911f96', data, layout, config);
+            Plotly.newPlot('533bf5fb-bc67-4f23-aeb7-be2d108c6c36', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_6028aba2752d471abf8cf6a815911f96();
+                    renderPlotly_533bf5fbbc674f23aeb7be2d108c6c36();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_6028aba2752d471abf8cf6a815911f96();
+                renderPlotly_533bf5fbbc674f23aeb7be2d108c6c36();
             }
 </script>
 *)
@@ -92,29 +92,29 @@ let stackedBar =
         Chart.StackedBar(keys,[8; 21; 13;],Name="new")
     ]
     |> Chart.Combine(* output: 
-<div id="0146a026-3038-478f-8645-f24cd9fd9187" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="3f65877d-1d17-482f-804b-ba47282727c4" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_0146a0263038478f8645f24cd9fd9187 = function() {
+            var renderPlotly_3f65877d1d17482f804bba47282727c4 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"bar","x":[20,14,23],"y":["Product A","Product B","Product C"],"orientation":"h","marker":{},"name":"old"},{"type":"bar","x":[8,21,13],"y":["Product A","Product B","Product C"],"orientation":"h","marker":{},"name":"new"}];
             var layout = {"barmode":"stack"};
             var config = {};
-            Plotly.newPlot('0146a026-3038-478f-8645-f24cd9fd9187', data, layout, config);
+            Plotly.newPlot('3f65877d-1d17-482f-804b-ba47282727c4', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_0146a0263038478f8645f24cd9fd9187();
+                    renderPlotly_3f65877d1d17482f804bba47282727c4();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_0146a0263038478f8645f24cd9fd9187();
+                renderPlotly_3f65877d1d17482f804bba47282727c4();
             }
 </script>
 *)
@@ -128,29 +128,29 @@ let stackedColumn =
         Chart.StackedColumn(keys,[8; 21; 13;],Name="new")
     ]
     |> Chart.Combine(* output: 
-<div id="06f9df56-7efc-4a4d-822d-b533f030ad7e" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="4ede372a-fb66-4298-a177-7572643016ea" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_06f9df567efc4a4d822db533f030ad7e = function() {
+            var renderPlotly_4ede372afb664298a1777572643016ea = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"bar","x":["Product A","Product B","Product C"],"y":[20,14,23],"marker":{},"name":"old"},{"type":"bar","x":["Product A","Product B","Product C"],"y":[8,21,13],"marker":{},"name":"new"}];
             var layout = {"barmode":"stack"};
             var config = {};
-            Plotly.newPlot('06f9df56-7efc-4a4d-822d-b533f030ad7e', data, layout, config);
+            Plotly.newPlot('4ede372a-fb66-4298-a177-7572643016ea', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_06f9df567efc4a4d822db533f030ad7e();
+                    renderPlotly_4ede372afb664298a1777572643016ea();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_06f9df567efc4a4d822db533f030ad7e();
+                renderPlotly_4ede372afb664298a1777572643016ea();
             }
 </script>
 *)

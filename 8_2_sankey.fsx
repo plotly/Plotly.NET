@@ -3,9 +3,9 @@
 
 # Sankey charts
 
-[![Binder](https://plotly.github.io/Plotly.NET/img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=8_2_sankey.ipynb)&emsp;
-[![Script](https://plotly.github.io/Plotly.NET/img/badge-script.svg)](https://plotly.github.io/Plotly.NET/8_2_sankey.fsx)&emsp;
-[![Notebook](https://plotly.github.io/Plotly.NET/img/badge-notebook.svg)](https://plotly.github.io/Plotly.NET/8_2_sankey.ipynb)
+[![Binder](https://plotly.net/img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=8_2_sankey.ipynb)&emsp;
+[![Script](https://plotly.net/img/badge-script.svg)](https://plotly.net/8_2_sankey.fsx)&emsp;
+[![Notebook](https://plotly.net/img/badge-notebook.svg)](https://plotly.net/8_2_sankey.ipynb)
 
 *Summary:* This example shows how to create sankey charts in F#.
 
@@ -36,29 +36,29 @@ let sankey1 =
         [link1;link2;link3;link4;link5]
     )
     |> Chart.withTitle "Sankey Sample"(* output: 
-<div id="3065c390-bec1-4fff-b1da-7d35157d97fb" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="fd24dd7d-c3ea-48d3-a735-f551b95a697f" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_3065c390bec14fffb1da7d35157d97fb = function() {
+            var renderPlotly_fd24dd7dc3ea48d3a735f551b95a697f = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"sankey","node":{"label":["a","b","c","d","e"],"color":["Black","Red","Purple","Green","Orange"]},"link":{"source":[0,1,0,3,2],"target":[1,2,4,4,4],"value":[1.0,2.0,1.3,1.5,0.5]}}];
             var layout = {"title":"Sankey Sample"};
             var config = {};
-            Plotly.newPlot('3065c390-bec1-4fff-b1da-7d35157d97fb', data, layout, config);
+            Plotly.newPlot('fd24dd7d-c3ea-48d3-a735-f551b95a697f', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_3065c390bec14fffb1da7d35157d97fb();
+                    renderPlotly_fd24dd7dc3ea48d3a735f551b95a697f();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_3065c390bec14fffb1da7d35157d97fb();
+                renderPlotly_fd24dd7dc3ea48d3a735f551b95a697f();
             }
 </script>
 *)

@@ -3,9 +3,9 @@
 
 # 3D Scatter charts
 
-[![Binder](https://plotly.github.io/Plotly.NET/img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=3_0_3d-scatter-plots.ipynb)&emsp;
-[![Script](https://plotly.github.io/Plotly.NET/img/badge-script.svg)](https://plotly.github.io/Plotly.NET/3_0_3d-scatter-plots.fsx)&emsp;
-[![Notebook](https://plotly.github.io/Plotly.NET/img/badge-notebook.svg)](https://plotly.github.io/Plotly.NET/3_0_3d-scatter-plots.ipynb)
+[![Binder](https://plotly.net/img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=3_0_3d-scatter-plots.ipynb)&emsp;
+[![Script](https://plotly.net/img/badge-script.svg)](https://plotly.net/3_0_3d-scatter-plots.fsx)&emsp;
+[![Notebook](https://plotly.net/img/badge-notebook.svg)](https://plotly.net/3_0_3d-scatter-plots.ipynb)
 
 *Summary:* This example shows how to create three-dimensional scatter charts in F#.
 
@@ -23,29 +23,29 @@ let scatter3d =
     |> Chart.withY_AxisStyle("my y-axis")
     |> Chart.withZ_AxisStyle("my z-axis")
     |> Chart.withSize(800.,800.)(* output: 
-<div id="ce7e5d4a-36db-4d57-a015-63f9a7676a1f" style="width: 800px; height: 800px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="b4c4586c-4515-4857-9d3d-622110e7af37" style="width: 800px; height: 800px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_ce7e5d4a36db4d57a01563f9a7676a1f = function() {
+            var renderPlotly_b4c4586c451548579d3d622110e7af37 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter3d","x":[19,26,55],"y":[19,26,55],"z":[19,26,55],"mode":"markers","line":{},"marker":{}}];
             var layout = {"scene":{"xaxis":{"title":"my x-axis"},"yaxis":{"title":"my y-axis"},"zaxis":{"title":"my z-axis"}},"width":800.0,"height":800.0};
             var config = {};
-            Plotly.newPlot('ce7e5d4a-36db-4d57-a015-63f9a7676a1f', data, layout, config);
+            Plotly.newPlot('b4c4586c-4515-4857-9d3d-622110e7af37', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_ce7e5d4a36db4d57a01563f9a7676a1f();
+                    renderPlotly_b4c4586c451548579d3d622110e7af37();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_ce7e5d4a36db4d57a01563f9a7676a1f();
+                renderPlotly_b4c4586c451548579d3d622110e7af37();
             }
 </script>
 *)

@@ -3,9 +3,9 @@
 
 # Candlestick Charts
 
-[![Binder](https://plotly.github.io/Plotly.NET/img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=6_0_candlestick.ipynb)&emsp;
-[![Script](https://plotly.github.io/Plotly.NET/img/badge-script.svg)](https://plotly.github.io/Plotly.NET/6_0_candlestick.fsx)&emsp;
-[![Notebook](https://plotly.github.io/Plotly.NET/img/badge-notebook.svg)](https://plotly.github.io/Plotly.NET/6_0_candlestick.ipynb)
+[![Binder](https://plotly.net/img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=6_0_candlestick.ipynb)&emsp;
+[![Script](https://plotly.net/img/badge-script.svg)](https://plotly.net/6_0_candlestick.fsx)&emsp;
+[![Notebook](https://plotly.net/img/badge-notebook.svg)](https://plotly.net/6_0_candlestick.ipynb)
 
 *Summary:* This example shows how to create candlestick charts in F#.
 
@@ -33,29 +33,29 @@ is a group of high, open, close and low values over a period of time, e.g. 1 min
 The x-axis is usually dateime values and y is a sequence of candle structures.
 *)
 let candles1 = Chart.Candlestick candles(* output: 
-<div id="6ea3be83-4320-4ce7-baf9-4bcb11a9be11" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="d3450f60-beec-459f-9594-d75933244a7a" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_6ea3be8343204ce7baf94bcb11a9be11 = function() {
+            var renderPlotly_d3450f60beec459f9594d75933244a7a = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"candlestick","open":[0.68888,0.68883,0.68878,0.68886,0.68879,0.68875,0.68869,0.68883,0.68898,0.68889,0.68891],"high":[0.68888,0.68884,0.68889,0.68886,0.68879,0.68877,0.68887,0.68899,0.689,0.68893,0.68896],"low":[0.68879,0.68875,0.68878,0.68876,0.68873,0.68867,0.68869,0.68883,0.68885,0.68881,0.68886],"close":[0.6888,0.68877,0.68886,0.68879,0.68874,0.68868,0.68883,0.68899,0.68889,0.68893,0.68891],"x":["2020-01-17T13:40:00","2020-01-17T13:41:00","2020-01-17T13:42:00","2020-01-17T13:43:00","2020-01-17T13:44:00","2020-01-17T13:45:00","2020-01-17T13:46:00","2020-01-17T13:47:00","2020-01-17T13:48:00","2020-01-17T13:49:00","2020-01-17T13:50:00"],"xaxis":"x","yaxis":"y"}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('6ea3be83-4320-4ce7-baf9-4bcb11a9be11', data, layout, config);
+            Plotly.newPlot('d3450f60-beec-459f-9594-d75933244a7a', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_6ea3be8343204ce7baf94bcb11a9be11();
+                    renderPlotly_d3450f60beec459f9594d75933244a7a();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_6ea3be8343204ce7baf94bcb11a9be11();
+                renderPlotly_d3450f60beec459f9594d75933244a7a();
             }
 </script>
 *)
@@ -67,29 +67,29 @@ let rangeslider = RangeSlider.init(Visible=false)
 let candles2 = 
     Chart.Candlestick candles
     |> Chart.withX_AxisRangeSlider rangeslider(* output: 
-<div id="f435d6cd-5bbf-446a-a8b6-12e93d314617" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="19993745-4550-4e37-8aad-222ff42c12cb" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_f435d6cd5bbf446aa8b612e93d314617 = function() {
+            var renderPlotly_1999374545504e378aad222ff42c12cb = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"candlestick","open":[0.68888,0.68883,0.68878,0.68886,0.68879,0.68875,0.68869,0.68883,0.68898,0.68889,0.68891],"high":[0.68888,0.68884,0.68889,0.68886,0.68879,0.68877,0.68887,0.68899,0.689,0.68893,0.68896],"low":[0.68879,0.68875,0.68878,0.68876,0.68873,0.68867,0.68869,0.68883,0.68885,0.68881,0.68886],"close":[0.6888,0.68877,0.68886,0.68879,0.68874,0.68868,0.68883,0.68899,0.68889,0.68893,0.68891],"x":["2020-01-17T13:40:00","2020-01-17T13:41:00","2020-01-17T13:42:00","2020-01-17T13:43:00","2020-01-17T13:44:00","2020-01-17T13:45:00","2020-01-17T13:46:00","2020-01-17T13:47:00","2020-01-17T13:48:00","2020-01-17T13:49:00","2020-01-17T13:50:00"],"xaxis":"x","yaxis":"y"}];
             var layout = {"xaxis":{"rangeslider":{"visible":false,"yaxis":{}}}};
             var config = {};
-            Plotly.newPlot('f435d6cd-5bbf-446a-a8b6-12e93d314617', data, layout, config);
+            Plotly.newPlot('19993745-4550-4e37-8aad-222ff42c12cb', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_f435d6cd5bbf446aa8b612e93d314617();
+                    renderPlotly_1999374545504e378aad222ff42c12cb();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_f435d6cd5bbf446aa8b612e93d314617();
+                renderPlotly_1999374545504e378aad222ff42c12cb();
             }
 </script>
 *)
