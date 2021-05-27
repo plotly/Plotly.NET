@@ -39,6 +39,8 @@
  * [Add fslab chart template](https://github.com/plotly/Plotly.NET/commit/efde9d82e14319b8c06081aae5568c2eae76ae6b)
  * [Add Legend creation properties and related functions](https://github.com/plotly/Plotly.NET/commit/a96af40901c627817ebd75b517b872f4cc6a941d)
  * [Add Chart.withWithAdditionalHeadTags, Chart.withHeadTags, Chart.WithMathTex extensions for manipulating display options](https://github.com/plotly/Plotly.NET/commit/6ae1212d18a5282f631723342a685ed3b4280315)
+ * [Fix Annotation type annotations ([#78](https://github.com/plotly/Plotly.NET/issues/78))](https://github.com/plotly/Plotly.NET/commit/a920492ac03e333c52766928a3771357ca9f669b)
+
 
 ### 1.2.2 - Apr 9 2020
  * [Opening Charts is now more or less OS agnostic](https://github.com/plotly/Plotly.NET/commit/f6e3dceade085e43e7e56b478b9cf7b533a4fe55)
