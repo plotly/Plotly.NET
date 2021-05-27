@@ -29,29 +29,29 @@ let shapes =
     Chart.Line(x,y',Name="line")    
     |> Chart.withShapes([s1;s2])
 //|> Chart.withShape(Options.Shape(StyleOption.ShapeType.Rectangle,2.,4.,3.,4.,Opacity=0.3,Fillcolor="#d3d3d3"))(* output: 
-<div id="bdfc2e4e-efc2-4774-8e33-6ac5ba6d874e" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="b2a26b0a-5fa1-4da7-b1e9-8141a9a971e3" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_bdfc2e4eefc247748e336ac5ba6d874e = function() {
+            var renderPlotly_b2a26b0a5fa14da7b1e98141a9a971e3 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"mode":"lines","line":{},"name":"line","marker":{}}];
             var layout = {"shapes":[{"type":"rect","x0":2.0,"x1":4.0,"y0":3.0,"y1":4.0,"opacity":0.3,"fillcolor":"#d3d3d3"},{"type":"rect","x0":5.0,"x1":7.0,"y0":3.0,"y1":4.0,"opacity":0.3,"fillcolor":"#d3d3d3"}]};
             var config = {};
-            Plotly.newPlot('bdfc2e4e-efc2-4774-8e33-6ac5ba6d874e', data, layout, config);
+            Plotly.newPlot('b2a26b0a-5fa1-4da7-b1e9-8141a9a971e3', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_bdfc2e4eefc247748e336ac5ba6d874e();
+                    renderPlotly_b2a26b0a5fa14da7b1e98141a9a971e3();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_bdfc2e4eefc247748e336ac5ba6d874e();
+                renderPlotly_b2a26b0a5fa14da7b1e98141a9a971e3();
             }
 </script>
 *)
