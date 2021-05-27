@@ -32,6 +32,7 @@
 #load "GeoProjection.fs"
 #load "Geo.fs"
 #load "LayoutGrid.fs"
+#load "Annotation.fs"
 #load "Layout.fs"
 #load "Template.fs"
 #load "Config.fs"
@@ -46,6 +47,14 @@
 
 open Plotly.NET
 open GenericChart
+
+let testAnnotation =
+    Annotation.init(X=System.DateTime.Now, Y=0,Text="test")
+
+Chart.Line([System.DateTime.Now, 5])
+|> Chart.withAnnotations [testAnnotation]
+|> Chart.Show
+
 
 let descritptionTable ="""<table>
 <thead>

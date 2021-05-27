@@ -68,6 +68,7 @@
     <Compile Include="Trace.fs" />
     <Compile Include="Trace3d.fs" />
     <Compile Include="LayoutGrid.fs" />
+    <Compile Include="Annotation.fs" />
     <Compile Include="Layout.fs" />
     <Compile Include="Template.fs" />
     <Compile Include="Config.fs" />
