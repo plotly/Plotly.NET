@@ -146,29 +146,29 @@ myFirstChart
 |> Chart.Show
 (**
 Should render this chart in your brower:
-<div id="be997001-a0c2-4552-950a-8fdb640d88d6" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="3c34e583-73ca-4815-9115-9900fbf02758" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_be997001a0c24552950a8fdb640d88d6 = function() {
+            var renderPlotly_3c34e58373ca481591159900fbf02758 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"mode":"markers","marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('be997001-a0c2-4552-950a-8fdb640d88d6', data, layout, config);
+            Plotly.newPlot('3c34e583-73ca-4815-9115-9900fbf02758', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_be997001a0c24552950a8fdb640d88d6();
+                    renderPlotly_3c34e58373ca481591159900fbf02758();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_be997001a0c24552950a8fdb640d88d6();
+                renderPlotly_3c34e58373ca481591159900fbf02758();
             }
 </script>
 
@@ -177,29 +177,29 @@ myFirstStyledChart
 |> Chart.Show
 (**
 And here is what happened after applying the styles from above:
-<div id="16fe7c99-369f-43d2-be51-21ec75d6e9bb" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="fcd3a5c8-1c59-40d3-ae1b-8bc6318dadc7" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_16fe7c99369f43d2be5121ec75d6e9bb = function() {
+            var renderPlotly_fcd3a5c81c5940d3ae1b8bc6318dadc7 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"mode":"markers","marker":{}}];
             var layout = {"title":"Hello world!","xaxis":{"title":"xAxis","showgrid":false},"yaxis":{"title":"yAxis","showgrid":false}};
             var config = {};
-            Plotly.newPlot('16fe7c99-369f-43d2-be51-21ec75d6e9bb', data, layout, config);
+            Plotly.newPlot('fcd3a5c8-1c59-40d3-ae1b-8bc6318dadc7', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_16fe7c99369f43d2be5121ec75d6e9bb();
+                    renderPlotly_fcd3a5c81c5940d3ae1b8bc6318dadc7();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_16fe7c99369f43d2be5121ec75d6e9bb();
+                renderPlotly_fcd3a5c81c5940d3ae1b8bc6318dadc7();
             }
 </script>
 
