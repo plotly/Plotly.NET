@@ -23,29 +23,29 @@ or horizontally. A vertical bar chart is called a column bar chart.
 ### Column Charts
 *)
 let column = Chart.Column(keys,values)(* output: 
-<div id="2d26b4e0-df6a-4ef4-b854-81b7c935d2eb" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="625004a3-9dbb-453d-9bef-683661d242ad" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_2d26b4e0df6a4ef4b85481b7c935d2eb = function() {
+            var renderPlotly_625004a39dbb453d9bef683661d242ad = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"bar","x":["Product A","Product B","Product C"],"y":[20,14,23],"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('2d26b4e0-df6a-4ef4-b854-81b7c935d2eb', data, layout, config);
+            Plotly.newPlot('625004a3-9dbb-453d-9bef-683661d242ad', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_2d26b4e0df6a4ef4b85481b7c935d2eb();
+                    renderPlotly_625004a39dbb453d9bef683661d242ad();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_2d26b4e0df6a4ef4b85481b7c935d2eb();
+                renderPlotly_625004a39dbb453d9bef683661d242ad();
             }
 </script>
 *)
@@ -54,29 +54,29 @@ let column = Chart.Column(keys,values)(* output:
 *)
 let bar =
     Chart.Bar(keys,values)(* output: 
-<div id="0b27d9a1-ba6c-4f27-899a-52ca210057bc" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="c0016f50-f9c0-4ed2-8fe4-c7e2901fe35f" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_0b27d9a1ba6c4f27899a52ca210057bc = function() {
+            var renderPlotly_c0016f50f9c04ed28fe4c7e2901fe35f = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"bar","x":[20,14,23],"y":["Product A","Product B","Product C"],"orientation":"h","marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('0b27d9a1-ba6c-4f27-899a-52ca210057bc', data, layout, config);
+            Plotly.newPlot('c0016f50-f9c0-4ed2-8fe4-c7e2901fe35f', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_0b27d9a1ba6c4f27899a52ca210057bc();
+                    renderPlotly_c0016f50f9c04ed28fe4c7e2901fe35f();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_0b27d9a1ba6c4f27899a52ca210057bc();
+                renderPlotly_c0016f50f9c04ed28fe4c7e2901fe35f();
             }
 </script>
 *)
@@ -92,29 +92,29 @@ let stackedBar =
         Chart.StackedBar(keys,[8; 21; 13;],Name="new")
     ]
     |> Chart.Combine(* output: 
-<div id="275a7ed9-65e1-4bf9-8ac1-1619515613c2" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="50f596d0-8fa9-4433-b9ca-3bf50b1dfed0" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_275a7ed965e14bf98ac11619515613c2 = function() {
+            var renderPlotly_50f596d08fa94433b9ca3bf50b1dfed0 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"bar","x":[20,14,23],"y":["Product A","Product B","Product C"],"orientation":"h","marker":{},"name":"old"},{"type":"bar","x":[8,21,13],"y":["Product A","Product B","Product C"],"orientation":"h","marker":{},"name":"new"}];
             var layout = {"barmode":"stack"};
             var config = {};
-            Plotly.newPlot('275a7ed9-65e1-4bf9-8ac1-1619515613c2', data, layout, config);
+            Plotly.newPlot('50f596d0-8fa9-4433-b9ca-3bf50b1dfed0', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_275a7ed965e14bf98ac11619515613c2();
+                    renderPlotly_50f596d08fa94433b9ca3bf50b1dfed0();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_275a7ed965e14bf98ac11619515613c2();
+                renderPlotly_50f596d08fa94433b9ca3bf50b1dfed0();
             }
 </script>
 *)
@@ -128,29 +128,29 @@ let stackedColumn =
         Chart.StackedColumn(keys,[8; 21; 13;],Name="new")
     ]
     |> Chart.Combine(* output: 
-<div id="e1736b72-2d25-41cd-b61b-32215b15e8e7" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="888ced9a-9a3f-4299-8060-cde854dca002" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_e1736b722d2541cdb61b32215b15e8e7 = function() {
+            var renderPlotly_888ced9a9a3f42998060cde854dca002 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"bar","x":["Product A","Product B","Product C"],"y":[20,14,23],"marker":{},"name":"old"},{"type":"bar","x":["Product A","Product B","Product C"],"y":[8,21,13],"marker":{},"name":"new"}];
             var layout = {"barmode":"stack"};
             var config = {};
-            Plotly.newPlot('e1736b72-2d25-41cd-b61b-32215b15e8e7', data, layout, config);
+            Plotly.newPlot('888ced9a-9a3f-4299-8060-cde854dca002', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_e1736b722d2541cdb61b32215b15e8e7();
+                    renderPlotly_888ced9a9a3f42998060cde854dca002();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_e1736b722d2541cdb61b32215b15e8e7();
+                renderPlotly_888ced9a9a3f42998060cde854dca002();
             }
 </script>
 *)
