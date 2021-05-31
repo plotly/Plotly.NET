@@ -626,7 +626,13 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?RangeColor,
             [<Optional;DefaultParameterValue(null)>] ?Labels,
             [<Optional;DefaultParameterValue(null)>] ?TextPosition,
-            [<Optional;DefaultParameterValue(null)>] ?TextFont) =             
+            [<Optional;DefaultParameterValue(null)>] ?TextFont,
+            [<Optional;DefaultParameterValue(null)>] ?LowerName,
+            [<Optional;DefaultParameterValue(null)>] ?UpperName) =            
+            
+        let upperName = defaultArg UpperName "upper" 
+        let lowerName = defaultArg LowerName "lower" 
+
         // if text position or font is set than show labels (not only when hovering)
         let changeMode = 
             let isShowMarker =
@@ -635,7 +641,6 @@ type Chart =
                 | Option.None        -> false
             StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
                 >> StyleParam.ModeUtils.showMarker (isShowMarker)
-
 
         let trace = 
             Trace.initScatter (
@@ -648,14 +653,14 @@ type Chart =
         let lower = 
             Trace.initScatter (
                     TraceStyle.Scatter(X = x,Y = lower, Mode=StyleParam.Mode.Lines, ?Fillcolor=RangeColor) )               
-            |> TraceStyle.TraceInfo(Showlegend=false)
+            |> TraceStyle.TraceInfo(?Name = Some lowerName, Showlegend=false)
             |> TraceStyle.Line(Width=0.)
             |> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,0,0.5)")             
 
         let upper = 
             Trace.initScatter (
                     TraceStyle.Scatter(X = x,Y = upper, Mode=StyleParam.Mode.Lines, ?Fillcolor=RangeColor, Fill=StyleParam.Fill.ToNext_y) )               
-            |> TraceStyle.TraceInfo(Showlegend=false)
+            |> TraceStyle.TraceInfo(?Name = Some upperName, Showlegend=false)
             |> TraceStyle.Line(Width=0.)
             |> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,0,0.5)")             
  
@@ -671,9 +676,11 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?RangeColor,
             [<Optional;DefaultParameterValue(null)>] ?Labels,
             [<Optional;DefaultParameterValue(null)>] ?TextPosition,
-            [<Optional;DefaultParameterValue(null)>] ?TextFont) =    
+            [<Optional;DefaultParameterValue(null)>] ?TextFont,
+            [<Optional;DefaultParameterValue(null)>] ?LowerName,
+            [<Optional;DefaultParameterValue(null)>] ?UpperName) =  
         let x,y = Seq.unzip xy
-        Chart.Range(x, y, upper, lower, mode, ?Name=Name,?ShowMarkers=ShowMarkers,?Showlegend=Showlegend,?Color=Color,?RangeColor=RangeColor,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont)
+        Chart.Range(x, y, upper, lower, mode, ?Name=Name,?ShowMarkers=ShowMarkers,?Showlegend=Showlegend,?Color=Color,?RangeColor=RangeColor,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?LowerName=LowerName,?UpperName=UpperName)
 
 
     /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
