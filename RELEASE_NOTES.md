@@ -25,6 +25,7 @@
  * [Add option to render all charts derived from the scatter trace type via WebGL as scattergl trace](https://github.com/plotly/Plotly.NET/commit/75c7a32bb5a72f68cbbea9fd3872e77c30a180ec)
  * [Add Waterfall Chart](https://github.com/plotly/Plotly.NET/commit/4d93598aa03a965abc75007aea2885ff4d282059)
  * [Add ScatterGeo, PointGeo, LineGeo Charts](https://github.com/plotly/Plotly.NET/commit/4865c5ac0356bfb2465422a2352e18c4fce018c3)
+ * [Add HeatmapGL, thanks [@Joott](https://github.com/Joott)](https://github.com/plotly/Plotly.NET/commit/b39f4705b86653aebf8ccb0fadf5d12b89150848)
 
 **Minor Additions/fixes:**
 
@@ -40,7 +41,7 @@
  * [Add Legend creation properties and related functions](https://github.com/plotly/Plotly.NET/commit/a96af40901c627817ebd75b517b872f4cc6a941d)
  * [Add Chart.withWithAdditionalHeadTags, Chart.withHeadTags, Chart.WithMathTex extensions for manipulating display options](https://github.com/plotly/Plotly.NET/commit/6ae1212d18a5282f631723342a685ed3b4280315)
  * [Fix Annotation type annotations ([#78](https://github.com/plotly/Plotly.NET/issues/78))](https://github.com/plotly/Plotly.NET/commit/a920492ac03e333c52766928a3771357ca9f669b)
-
+ * [Add name option with defaults for the upper and lower bound traces in range charts](https://github.com/plotly/Plotly.NET/commit/3cbb5f116b8b3b0467e8a88707858252780a39f0)
 
 ### 1.2.2 - Apr 9 2020
  * [Opening Charts is now more or less OS agnostic](https://github.com/plotly/Plotly.NET/commit/f6e3dceade085e43e7e56b478b9cf7b533a4fe55)
