@@ -40,6 +40,10 @@ module Trace =
     let initHeatmap (applyStyle:Trace->Trace) = 
         Trace("heatmap") |> applyStyle
 
+    ///initializes a trace of type "heatmapgl" applying the given trace styling function
+    let initHeatmapGL (applyStyle:Trace->Trace) = 
+        Trace("heatmapgl") |> applyStyle
+
     ///initializes a trace of type "image" applying the given trace styling function
     let initImage (applyStyle:Trace->Trace) = 
          Trace("image") |> applyStyle

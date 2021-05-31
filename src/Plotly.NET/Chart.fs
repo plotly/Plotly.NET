@@ -1082,6 +1082,13 @@ type Chart =
                         ?Scalegroup=Scalegroup,?Scalemode=Scalemode,?Side=Side,?Span=Span,?SpanMode=SpanMode,?Uirevision=Uirevision
             ) 
 
+    static member private renderHeatmapTrace (useWebGL:bool) (style: Trace -> Trace) =
+        if useWebGL then
+            Trace.initHeatmapGL style
+            |> GenericChart.ofTraceObject
+        else
+            Trace.initHeatmap style
+            |> GenericChart.ofTraceObject
 
     /// Shows a graphical representation of a 3-dimensional surface by plotting constant z slices, called contours, on a 2-dimensional format.
     /// That is, given a value for z, lines are drawn for connecting the (x,y) coordinates where that z value occurs.
@@ -1096,11 +1103,17 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?Xgap,
             [<Optional;DefaultParameterValue(null)>] ?Ygap,
             [<Optional;DefaultParameterValue(null)>] ?zSmooth,
-            [<Optional;DefaultParameterValue(null)>] ?Colorbar) = 
-        Trace.initHeatmap (TraceStyle.Heatmap(Z=data,?X=ColNames, ?Y=RowNames,
-                                ?Xgap=Xgap,?Ygap=Ygap,?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?Colorbar=Colorbar) )
-        |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)   
-        |> GenericChart.ofTraceObject
+            [<Optional;DefaultParameterValue(null)>] ?Colorbar,
+            [<Optional;DefaultParameterValue(false)>]?UseWebGL : bool)
+            = 
+        let style =
+            TraceStyle.Heatmap(Z=data,?X=ColNames, ?Y=RowNames,
+                                    ?Xgap=Xgap,?Ygap=Ygap,?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?Colorbar=Colorbar)
+            >> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+
+        let useWebGL = defaultArg UseWebGL false
+
+        Chart.renderHeatmapTrace useWebGL style
 
 
     /// Shows a graphical representation of data where the individual values contained in a matrix are represented as colors.
