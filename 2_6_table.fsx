@@ -24,29 +24,29 @@ let rows =
 
 
 let table1 = Chart.Table(header, rows)(* output: 
-<div id="ddf713a4-ee7f-420a-8563-73e8dae9a1a7" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="912c544a-3e34-44db-8ec4-7cdc6db005c5" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_ddf713a4ee7f420a856373e8dae9a1a7 = function() {
+            var renderPlotly_912c544a3e3444db8ec47cdc6db005c5 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"table","header":{"values":["<b>RowIndex</b>","A","simple","table"]},"cells":{"values":[["0","1"],["I","little"],["am","example"],["a","!"]]}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('ddf713a4-ee7f-420a-8563-73e8dae9a1a7', data, layout, config);
+            Plotly.newPlot('912c544a-3e34-44db-8ec4-7cdc6db005c5', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_ddf713a4ee7f420a856373e8dae9a1a7();
+                    renderPlotly_912c544a3e3444db8ec47cdc6db005c5();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_ddf713a4ee7f420a856373e8dae9a1a7();
+                renderPlotly_912c544a3e3444db8ec47cdc6db005c5();
             }
 </script>
 *)
@@ -82,29 +82,29 @@ let table2 =
         //defines order of columns
         ColumnOrder = [1;2;3;4]                                  
         )(* output: 
-<div id="ba234382-2b33-4851-a8f5-e1a24304d4f2" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="853f4ae3-902a-4e88-b9e0-7f0f0a8fa0b2" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_ba2343822b334851a8f5e1a24304d4f2 = function() {
+            var renderPlotly_853f4ae3902a4e88b9e07f0f0a8fa0b2 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"table","header":{"values":["<b>RowIndex</b>","A","simple","table"],"align":["center"],"height":30.0,"fill":{"color":"#45546a"},"line":{"color":"black","width":2.0},"font":{"family":"Courier New","size":12.0,"color":"white"}},"cells":{"values":[["0","1"],["I","little"],["am","example"],["a","!"]],"align":["left","center","right"],"fill":{"color":["#deebf7","lightgrey","#deebf7","lightgrey"]}},"columnwidth":[70,50,100,70],"columnorder":[1,2,3,4]}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('ba234382-2b33-4851-a8f5-e1a24304d4f2', data, layout, config);
+            Plotly.newPlot('853f4ae3-902a-4e88-b9e0-7f0f0a8fa0b2', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_ba2343822b334851a8f5e1a24304d4f2();
+                    renderPlotly_853f4ae3902a4e88b9e07f0f0a8fa0b2();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_ba2343822b334851a8f5e1a24304d4f2();
+                renderPlotly_853f4ae3902a4e88b9e07f0f0a8fa0b2();
             }
 </script>
 *)
@@ -145,29 +145,29 @@ let cellcolor =
     |> Seq.transpose
 
 let table3 = Chart.Table(header2,rowvalues,ColorCells=cellcolor)(* output: 
-<div id="b7488c99-4b45-447a-99cf-fe3afba4cfa7" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="e9ff8d3c-5495-4f22-92c1-a20eb617086e" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_b7488c994b45447a99cffe3afba4cfa7 = function() {
+            var renderPlotly_e9ff8d3c54954f2292c1a20eb617086e = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"table","header":{"values":["Identifier","T0","T1","T2","T3"]},"cells":{"values":[[10004.0,10001.0,10005.0,10006.0,10007.0,10002.0,10003.0],[0.0,0.2,1.0,1.0,2.0,2.1,4.5],[0.1,2.0,1.6,0.8,2.0,2.0,3.0],[0.3,4.0,1.8,1.5,2.1,1.8,2.0],[0.2,5.0,2.2,0.7,1.9,2.1,2.5]],"fill":{"color":[["white","white","white","white","white","white","white"],["#FFFF00","#FFF50A","#FFCC33","#FFCC33","#FF9966","#FF946B","#FF1AE5"],["#FFFA05","#FF9966","#FFAE51","#FFD728","#FF9966","#FF9966","#FF6699"],["#FFF00F","#FF33CC","#FFA45B","#FFB34C","#FF946B","#FFA45B","#FF9966"],["#FFF50A","#FF00FF","#FF8F70","#FFDC23","#FF9F60","#FF946B","#FF807F"]]}}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('b7488c99-4b45-447a-99cf-fe3afba4cfa7', data, layout, config);
+            Plotly.newPlot('e9ff8d3c-5495-4f22-92c1-a20eb617086e', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_b7488c994b45447a99cffe3afba4cfa7();
+                    renderPlotly_e9ff8d3c54954f2292c1a20eb617086e();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_b7488c994b45447a99cffe3afba4cfa7();
+                renderPlotly_e9ff8d3c54954f2292c1a20eb617086e();
             }
 </script>
 *)
@@ -237,29 +237,29 @@ let table4 =
         )
     |> Chart.withSize(chartwidth,nan)
     |> Chart.withTitle "Sequence A"(* output: 
-<div id="b5d94b1b-6e28-4a59-875d-29cfe5f55db2" style="width: 650px; height: NaNpx;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="04eb9105-a6a5-415a-9a72-53d3d270a4fd" style="width: 650px; height: NaNpx;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_b5d94b1b6e284a59875d29cfe5f55db2 = function() {
+            var renderPlotly_04eb9105a6a5415a9a7253d3d270a4fd = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"table","header":{"values":["","","","","","","","","","","|","","","","","","","","","","|","","","","","","","","","","|","","","","","","","","","","|","","","","","","","","","","|","","","","","","","","","","|"],"line":{"color":"white","width":0.0},"font":{"family":"Consolas","size":14.0}},"cells":{"values":[["0","60","120","180"],["A","A","G","A"],["T","C","T","C"],["G","G","C","G"],["A","T","G","T"],["G","C","A","C"],["A","G","T","G"],["C","A","A","A"],["G","T","G","T"],["T","A","A","A"],["C","G","C","G"],["G","A","G","A"],["A","C","T","C"],["G","G","C","C"],["A","T","G","G"],["C","C","A","T"],["T","G","T","A"],["G","A","A","G"],["A","T","G","A"],["T","A","A","C"],["A","G","G","G"],["G","A","A","T"],["A","G","T","C"],["C","T","A","G"],["G","A","G","A"],["T","T","A","T"],["C","A","C","A"],["G","G","G","G"],["A","A","T","A"],["T","C","C","C"],["A","C","G","G"],["G","G","A","T"],["A","T","T","C"],["C","G","A","G"],["G","A","G","A"],["T","T","A","T"],["C","A","C","A"],["G","G","C","G"],["A","A","G","A"],["T","C","T","C"],["A","G","A","C"],["G","T","T","G"],["A","C","A","T"],["C","G","G"],["C","A","A"],["G","G","A"],["A","A","G"],["T","A","A"],["A","G","C"],["G","A","G"],["A","C","T"],["C","G","C"],["T","T","G"],["C","C","A"],["G","G","T"],["T","A","A"],["G","T","G"],["A","A","A"],["T","G","T"],["A","A","A"],["G","C","G"]],"align":["right","center"],"height":20.0,"fill":{"color":[["white","white","white","white","white"],["#5050FF","#5050FF","#00C000","#5050FF","white"],["#E6E600","#E00000","#E6E600","#E00000","white"],["#00C000","#00C000","#E00000","#00C000","white"],["#5050FF","#E6E600","#00C000","#E6E600","white"],["#00C000","#E00000","#5050FF","#E00000","white"],["#5050FF","#00C000","#E6E600","#00C000","white"],["#E00000","#5050FF","#5050FF","#5050FF","white"],["#00C000","#E6E600","#00C000","#E6E600","white"],["#E6E600","#5050FF","#5050FF","#5050FF","white"],["#E00000","#00C000","#E00000","#00C000","white"],["#00C000","#5050FF","#00C000","#5050FF","white"],["#5050FF","#E00000","#E6E600","#E00000","white"],["#00C000","#00C000","#E00000","#E00000","white"],["#5050FF","#E6E600","#00C000","#00C000","white"],["#E00000","#E00000","#5050FF","#E6E600","white"],["#E6E600","#00C000","#E6E600","#5050FF","white"],["#00C000","#5050FF","#5050FF","#00C000","white"],["#5050FF","#E6E600","#00C000","#5050FF","white"],["#E6E600","#5050FF","#5050FF","#E00000","white"],["#5050FF","#00C000","#00C000","#00C000","white"],["#00C000","#5050FF","#5050FF","#E6E600","white"],["#5050FF","#00C000","#E6E600","#E00000","white"],["#E00000","#E6E600","#5050FF","#00C000","white"],["#00C000","#5050FF","#00C000","#5050FF","white"],["#E6E600","#E6E600","#5050FF","#E6E600","white"],["#E00000","#5050FF","#E00000","#5050FF","white"],["#00C000","#00C000","#00C000","#00C000","white"],["#5050FF","#5050FF","#E6E600","#5050FF","white"],["#E6E600","#E00000","#E00000","#E00000","white"],["#5050FF","#E00000","#00C000","#00C000","white"],["#00C000","#00C000","#5050FF","#E6E600","white"],["#5050FF","#E6E600","#E6E600","#E00000","white"],["#E00000","#00C000","#5050FF","#00C000","white"],["#00C000","#5050FF","#00C000","#5050FF","white"],["#E6E600","#E6E600","#5050FF","#E6E600","white"],["#E00000","#5050FF","#E00000","#5050FF","white"],["#00C000","#00C000","#E00000","#00C000","white"],["#5050FF","#5050FF","#00C000","#5050FF","white"],["#E6E600","#E00000","#E6E600","#E00000","white"],["#5050FF","#00C000","#5050FF","#E00000","white"],["#00C000","#E6E600","#E6E600","#00C000","white"],["#5050FF","#E00000","#5050FF","#E6E600","white"],["#E00000","#00C000","#00C000","white"],["#E00000","#5050FF","#5050FF","white"],["#00C000","#00C000","#5050FF","white"],["#5050FF","#5050FF","#00C000","white"],["#E6E600","#5050FF","#5050FF","white"],["#5050FF","#00C000","#E00000","white"],["#00C000","#5050FF","#00C000","white"],["#5050FF","#E00000","#E6E600","white"],["#E00000","#00C000","#E00000","white"],["#E6E600","#E6E600","#00C000","white"],["#E00000","#E00000","#5050FF","white"],["#00C000","#00C000","#E6E600","white"],["#E6E600","#5050FF","#5050FF","white"],["#00C000","#E6E600","#00C000","white"],["#5050FF","#5050FF","#5050FF","white"],["#E6E600","#00C000","#E6E600","white"],["#5050FF","#5050FF","#5050FF","white"],["#00C000","#E00000","#00C000","white"]]},"line":{"color":"white","width":0.0},"font":{"family":"Consolas","size":14.0}},"columnwidth":[50,10]}];
             var layout = {"width":650.0,"height":"NaN","title":"Sequence A"};
             var config = {};
-            Plotly.newPlot('b5d94b1b-6e28-4a59-875d-29cfe5f55db2', data, layout, config);
+            Plotly.newPlot('04eb9105-a6a5-415a-9a72-53d3d270a4fd', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_b5d94b1b6e284a59875d29cfe5f55db2();
+                    renderPlotly_04eb9105a6a5415a9a7253d3d270a4fd();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_b5d94b1b6e284a59875d29cfe5f55db2();
+                renderPlotly_04eb9105a6a5415a9a7253d3d270a4fd();
             }
 </script>
 *)

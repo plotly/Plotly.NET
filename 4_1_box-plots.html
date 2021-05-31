@@ -35,7 +35,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-beta10</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-beta.10</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -272,29 +272,29 @@ Outliers may be plotted as individual points.</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="id">box1</span> <span class="o">=</span>
     <span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 7)" onmouseover="showTip(event, 'fs7', 7)" class="id">BoxPlot</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs4', 8)" onmouseover="showTip(event, 'fs4', 8)" class="id">x</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs3', 9)" onmouseover="showTip(event, 'fs3', 9)" class="id">y</span><span class="pn">,</span><span class="fn">Jitter</span><span class="o">=</span><span class="n">0.1</span><span class="pn">,</span><span class="fn">Boxpoints</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs9', 11)" onmouseover="showTip(event, 'fs9', 11)" class="rt">Boxpoints</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 12)" onmouseover="showTip(event, 'fs10', 12)" class="id">All</span><span class="pn">)</span>
 </code></pre>
-<div id="c55db9d2-2ab8-4eea-877a-59d8cbcf1c1e" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="1de8a404-098b-493d-8fb0-8322e4a5424d" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_c55db9d22ab84eea877a59d8cbcf1c1e = function() {
+            var renderPlotly_1de8a404098b493d8fb08322e4a5424d = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"box","y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"boxpoints":"all","jitter":0.1,"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('c55db9d2-2ab8-4eea-877a-59d8cbcf1c1e', data, layout, config);
+            Plotly.newPlot('1de8a404-098b-493d-8fb0-8322e4a5424d', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_c55db9d22ab84eea877a59d8cbcf1c1e();
+                    renderPlotly_1de8a404098b493d8fb08322e4a5424d();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_c55db9d22ab84eea877a59d8cbcf1c1e();
+                renderPlotly_1de8a404098b493d8fb08322e4a5424d();
             }
 </script>
 
@@ -302,29 +302,29 @@ Outliers may be plotted as individual points.</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs13', 16)" onmouseover="showTip(event, 'fs13', 16)" class="id">box2</span> <span class="o">=</span>
     <span onmouseout="hideTip(event, 'fs6', 17)" onmouseover="showTip(event, 'fs6', 17)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 18)" onmouseover="showTip(event, 'fs7', 18)" class="id">BoxPlot</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs3', 19)" onmouseover="showTip(event, 'fs3', 19)" class="id">y</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs4', 20)" onmouseover="showTip(event, 'fs4', 20)" class="id">x</span><span class="pn">,</span><span class="fn">Jitter</span><span class="o">=</span><span class="n">0.1</span><span class="pn">,</span><span class="fn">Boxpoints</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs8', 21)" onmouseover="showTip(event, 'fs8', 21)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs9', 22)" onmouseover="showTip(event, 'fs9', 22)" class="rt">Boxpoints</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 23)" onmouseover="showTip(event, 'fs10', 23)" class="id">All</span><span class="pn">,</span><span class="fn">Orientation</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs8', 24)" onmouseover="showTip(event, 'fs8', 24)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 25)" onmouseover="showTip(event, 'fs14', 25)" class="rt">Orientation</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs15', 26)" onmouseover="showTip(event, 'fs15', 26)" class="id">Horizontal</span><span class="pn">)</span>
 </code></pre>
-<div id="1f3b338b-5dac-4c71-88f6-1155b8ec2593" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="44317d38-6f3e-401f-bc13-b8b4f266952f" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_1f3b338b5dac4c7188f61155b8ec2593 = function() {
+            var renderPlotly_44317d386f3e401fbc13b8b4f266952f = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"box","y":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"x":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"boxpoints":"all","jitter":0.1,"orientation":"h","marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('1f3b338b-5dac-4c71-88f6-1155b8ec2593', data, layout, config);
+            Plotly.newPlot('44317d38-6f3e-401f-bc13-b8b4f266952f', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_1f3b338b5dac4c7188f61155b8ec2593();
+                    renderPlotly_44317d386f3e401fbc13b8b4f266952f();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_1f3b338b5dac4c7188f61155b8ec2593();
+                renderPlotly_44317d386f3e401fbc13b8b4f266952f();
             }
 </script>
 
@@ -338,29 +338,29 @@ Outliers may be plotted as individual points.</p>
     <span class="pn">]</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 44)" onmouseover="showTip(event, 'fs6', 44)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 45)" onmouseover="showTip(event, 'fs18', 45)" class="id">Combine</span>
 </code></pre>
-<div id="8102b5ba-29cb-4878-9393-2a97044f3954" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="01ac4ac6-0322-47ce-ab24-646ae1b3ced0" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_8102b5ba29cb487893932a97044f3954 = function() {
+            var renderPlotly_01ac4ac6032247ceab24646ae1b3ced0 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"box","y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":"y","boxpoints":"all","jitter":0.1,"name":"bin1","marker":{}},{"type":"box","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":"y'","boxpoints":"all","jitter":0.1,"name":"bin2","marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('8102b5ba-29cb-4878-9393-2a97044f3954', data, layout, config);
+            Plotly.newPlot('01ac4ac6-0322-47ce-ab24-646ae1b3ced0', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_8102b5ba29cb487893932a97044f3954();
+                    renderPlotly_01ac4ac6032247ceab24646ae1b3ced0();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_8102b5ba29cb487893932a97044f3954();
+                renderPlotly_01ac4ac6032247ceab24646ae1b3ced0();
             }
 </script>
 

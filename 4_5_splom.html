@@ -35,7 +35,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-beta10</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-beta.10</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -277,29 +277,29 @@ Until that is fixed, consider creating splom plot programatically using <code>Ch
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="id">splom1</span> <span class="o">=</span>
     <span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="id">Splom</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs3', 7)" onmouseover="showTip(event, 'fs3', 7)" class="id">data</span><span class="pn">,</span><span class="fn">Color</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="pn">)</span>
 </code></pre>
-<div id="32e15b9d-0a2b-4601-b263-95a43ba68b66" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="28c5d379-917e-4e8d-8739-6f86eb8f7895" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_32e15b9d0a2b4601b26395a43ba68b66 = function() {
+            var renderPlotly_28c5d379917e4e8d87396f86eb8f7895 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"splom","dimensions":[{"values":[1.0,4.0,3.4,0.7],"label":"A"},{"values":[3.0,1.5,1.7,2.3],"label":"B"},{"values":[2.0,4.0,3.1,5.0],"label":"C"},{"values":[4.0,2.0,2.0,4.0],"label":"D"}],"line":{"color":"blue"}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('32e15b9d-0a2b-4601-b263-95a43ba68b66', data, layout, config);
+            Plotly.newPlot('28c5d379-917e-4e8d-8739-6f86eb8f7895', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_32e15b9d0a2b4601b26395a43ba68b66();
+                    renderPlotly_28c5d379917e4e8d87396f86eb8f7895();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_32e15b9d0a2b4601b26395a43ba68b66();
+                renderPlotly_28c5d379917e4e8d87396f86eb8f7895();
             }
 </script>
 

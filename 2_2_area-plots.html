@@ -35,7 +35,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-beta10</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-beta.10</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -270,29 +270,29 @@ The area between axis and line are commonly emphasized with colors, textures and
 <h3><a name="Simple-area-chart" class="anchor" href="#Simple-area-chart">Simple area chart</a></h3>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="id">area1</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 7)" onmouseover="showTip(event, 'fs7', 7)" class="id">Area</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs3', 8)" onmouseover="showTip(event, 'fs3', 8)" class="id">x</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs4', 9)" onmouseover="showTip(event, 'fs4', 9)" class="id">y</span><span class="pn">)</span>
 </code></pre>
-<div id="29169699-e94c-4d8c-8a2c-3fe15a9fc61a" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="5200f770-caed-4df0-8df0-64ddedb1c57d" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_29169699e94c4d8c8a2c3fe15a9fc61a = function() {
+            var renderPlotly_5200f770caed4df08df064ddedb1c57d = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,2.5,5.0,7.5,5.0,2.5,7.5,4.5,5.5,5.0],"mode":"lines","fill":"tozeroy","line":{},"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('29169699-e94c-4d8c-8a2c-3fe15a9fc61a', data, layout, config);
+            Plotly.newPlot('5200f770-caed-4df0-8df0-64ddedb1c57d', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_29169699e94c4d8c8a2c3fe15a9fc61a();
+                    renderPlotly_5200f770caed4df08df064ddedb1c57d();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_29169699e94c4d8c8a2c3fe15a9fc61a();
+                renderPlotly_5200f770caed4df08df064ddedb1c57d();
             }
 </script>
 
@@ -300,29 +300,29 @@ The area between axis and line are commonly emphasized with colors, textures and
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs10', 13)" onmouseover="showTip(event, 'fs10', 13)" class="id">area2</span> <span class="o">=</span>
     <span onmouseout="hideTip(event, 'fs6', 14)" onmouseover="showTip(event, 'fs6', 14)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 15)" onmouseover="showTip(event, 'fs11', 15)" class="id">SplineArea</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs3', 16)" onmouseover="showTip(event, 'fs3', 16)" class="id">x</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs4', 17)" onmouseover="showTip(event, 'fs4', 17)" class="id">y</span><span class="pn">)</span>
 </code></pre>
-<div id="f8c0d634-8b00-44a2-93db-76f97831a612" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="3931295b-e067-4070-af55-e45cdce5d789" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_f8c0d6348b0044a293db76f97831a612 = function() {
+            var renderPlotly_3931295be0674070af55e45cdce5d789 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,2.5,5.0,7.5,5.0,2.5,7.5,4.5,5.5,5.0],"mode":"lines","fill":"tozeroy","line":{"shape":"spline"},"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('f8c0d634-8b00-44a2-93db-76f97831a612', data, layout, config);
+            Plotly.newPlot('3931295b-e067-4070-af55-e45cdce5d789', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_f8c0d6348b0044a293db76f97831a612();
+                    renderPlotly_3931295be0674070af55e45cdce5d789();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_f8c0d6348b0044a293db76f97831a612();
+                renderPlotly_3931295be0674070af55e45cdce5d789();
             }
 </script>
 
@@ -334,29 +334,29 @@ The area between axis and line are commonly emphasized with colors, textures and
     <span class="pn">]</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 32)" onmouseover="showTip(event, 'fs6', 32)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs16', 33)" onmouseover="showTip(event, 'fs16', 33)" class="id">Combine</span>
 </code></pre>
-<div id="dc6e61ad-ba7e-4110-8c91-8f3f81458fd3" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="26f7aac6-b949-4346-a7fa-00929d306bf0" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_dc6e61adba7e41108c918f3f81458fd3 = function() {
+            var renderPlotly_26f7aac6b9494346a7fa00929d306bf0 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,2.5,5.0,7.5,5.0,2.5,7.5,4.5,5.5,5.0],"mode":"lines","line":{},"marker":{},"stackgroup":"static"},{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,5.5,4.5,7.5,2.5,5.0,7.5,5.0,2.5,5.0],"mode":"lines","line":{},"marker":{},"stackgroup":"static"}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('dc6e61ad-ba7e-4110-8c91-8f3f81458fd3', data, layout, config);
+            Plotly.newPlot('26f7aac6-b949-4346-a7fa-00929d306bf0', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_dc6e61adba7e41108c918f3f81458fd3();
+                    renderPlotly_26f7aac6b9494346a7fa00929d306bf0();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_dc6e61adba7e41108c918f3f81458fd3();
+                renderPlotly_26f7aac6b9494346a7fa00929d306bf0();
             }
 </script>
 

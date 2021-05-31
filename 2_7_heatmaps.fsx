@@ -34,29 +34,29 @@ let heat1 =
     )
     |> Chart.withSize(700.,500.)
     |> Chart.withMarginSize(Left=200.)(* output: 
-<div id="323f4647-ac46-4d67-9a2f-11fc9f057828" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="366e697f-fbfd-42f4-b880-5d8ffb791df3" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_323f4647ac464d679a2f11fc9f057828 = function() {
+            var renderPlotly_366e697ffbfd42f4b8805d8ffb791df3 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"heatmap","z":[[1.0,1.5,0.7,2.7],[2.0,0.5,1.2,1.4],[0.1,2.6,2.4,3.0]],"x":["Tp0","Tp30","Tp60","Tp160"],"y":["p3","p2","p1"],"colorscale":[[0.0,"#3D9970"],[1.0,"#001f3f"]],"showscale":true}];
             var layout = {"width":700.0,"height":500.0,"margin":{"l":200.0}};
             var config = {};
-            Plotly.newPlot('323f4647-ac46-4d67-9a2f-11fc9f057828', data, layout, config);
+            Plotly.newPlot('366e697f-fbfd-42f4-b880-5d8ffb791df3', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_323f4647ac464d679a2f11fc9f057828();
+                    renderPlotly_366e697ffbfd42f4b8805d8ffb791df3();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_323f4647ac464d679a2f11fc9f057828();
+                renderPlotly_366e697ffbfd42f4b8805d8ffb791df3();
             }
 </script>
 *)
@@ -75,29 +75,29 @@ let heat2 =
         TitleSide = StyleParam.Side.Right,
         TitleFont = Font.init(Size=20.)
     )(* output: 
-<div id="ab43848e-e86b-46d5-8ac6-556079a51c9d" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="9f32a2b4-4751-48c8-b153-a2e5365e47f5" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_ab43848ee86b46d58ac6556079a51c9d = function() {
+            var renderPlotly_9f32a2b4475148c8b153a2e5365e47f5 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"heatmap","z":[[1.0,1.5,0.7,2.7],[2.0,0.5,1.2,1.4],[0.1,2.6,2.4,3.0]],"x":["Tp0","Tp30","Tp60","Tp160"],"y":["p3","p2","p1"],"colorscale":[[0.0,"#3D9970"],[1.0,"#001f3f"]],"showscale":true,"colorbar":{"title":"Im the Colorbar","titlefont":{"size":20.0},"titleside":"right"}}];
             var layout = {"width":700.0,"height":500.0,"margin":{"l":200.0}};
             var config = {};
-            Plotly.newPlot('ab43848e-e86b-46d5-8ac6-556079a51c9d', data, layout, config);
+            Plotly.newPlot('9f32a2b4-4751-48c8-b153-a2e5365e47f5', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_ab43848ee86b46d58ac6556079a51c9d();
+                    renderPlotly_9f32a2b4475148c8b153a2e5365e47f5();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_ab43848ee86b46d58ac6556079a51c9d();
+                renderPlotly_9f32a2b4475148c8b153a2e5365e47f5();
             }
 </script>
 *)

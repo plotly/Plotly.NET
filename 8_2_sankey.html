@@ -35,7 +35,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-beta10</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-beta.10</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -286,29 +286,29 @@ These are created using the provided Node and Link structures.</p>
     <span class="pn">)</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs18', 56)" onmouseover="showTip(event, 'fs18', 56)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 57)" onmouseover="showTip(event, 'fs20', 57)" class="id">withTitle</span> <span class="s">&quot;Sankey Sample&quot;</span>
 </code></pre>
-<div id="a348cf9d-8488-4c4e-8950-f38431294cf4" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="9565dd38-8df8-4dba-808f-0de891b52b6d" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_a348cf9d84884c4e8950f38431294cf4 = function() {
+            var renderPlotly_9565dd388df84dba808f0de891b52b6d = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"sankey","node":{"label":["a","b","c","d","e"],"color":["Black","Red","Purple","Green","Orange"]},"link":{"source":[0,1,0,3,2],"target":[1,2,4,4,4],"value":[1.0,2.0,1.3,1.5,0.5]}}];
             var layout = {"title":"Sankey Sample"};
             var config = {};
-            Plotly.newPlot('a348cf9d-8488-4c4e-8950-f38431294cf4', data, layout, config);
+            Plotly.newPlot('9565dd38-8df8-4dba-808f-0de891b52b6d', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_a348cf9d84884c4e8950f38431294cf4();
+                    renderPlotly_9565dd388df84dba808f0de891b52b6d();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_a348cf9d84884c4e8950f38431294cf4();
+                renderPlotly_9565dd388df84dba808f0de891b52b6d();
             }
 </script>
 
