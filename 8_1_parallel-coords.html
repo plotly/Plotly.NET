@@ -35,7 +35,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.1</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.2</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -277,29 +277,29 @@ the position of the vertex on the i-th axis corresponds to the i-th coordinate o
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="id">parcoords1</span> <span class="o">=</span>
     <span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="id">ParallelCoord</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs3', 7)" onmouseover="showTip(event, 'fs3', 7)" class="id">data</span><span class="pn">,</span><span class="fn">Color</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="pn">)</span>
 </code></pre>
-<div id="7571dad1-c3bd-44eb-92ec-20eff2296b54" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="7b4934a6-38b6-419f-9b94-dbc390f522c2" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_7571dad1c3bd44eb92ec20eff2296b54 = function() {
+            var renderPlotly_7b4934a638b6419f9b94dbc390f522c2 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"parcoords","dimensions":[{"values":[1.0,4.0,3.4,0.7],"label":"A"},{"values":[3.0,1.5,1.7,2.3],"label":"B"},{"values":[2.0,4.0,3.1,5.0],"label":"C"},{"values":[4.0,2.0,2.0,4.0],"label":"D"}],"line":{"color":"blue"}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('7571dad1-c3bd-44eb-92ec-20eff2296b54', data, layout, config);
+            Plotly.newPlot('7b4934a6-38b6-419f-9b94-dbc390f522c2', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_7571dad1c3bd44eb92ec20eff2296b54();
+                    renderPlotly_7b4934a638b6419f9b94dbc390f522c2();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_7571dad1c3bd44eb92ec20eff2296b54();
+                renderPlotly_7b4934a638b6419f9b94dbc390f522c2();
             }
 </script>
 
@@ -325,29 +325,29 @@ the position of the vertex on the i-th axis corresponds to the i-th coordinate o
     <span onmouseout="hideTip(event, 'fs16', 43)" onmouseover="showTip(event, 'fs16', 43)" class="fn">dyn</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs7', 44)" onmouseover="showTip(event, 'fs7', 44)" class="m">GenericChart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 45)" onmouseover="showTip(event, 'fs20', 45)" class="id">ofTraceObject</span>
 </code></pre>
-<div id="3a086049-9f19-4bc5-b0c4-900255d4dce7" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="590124ef-c611-472c-b80e-f466eee8e57f" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_3a0860499f194bc5b0c4900255d4dce7 = function() {
+            var renderPlotly_590124efc611472cb80ef466eee8e57f = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"parcoords","dimensions":[{"values":[1.0,4.0],"range":[1.0,5.0],"constraintrange":[1.0,2.0],"label":"A"},{"values":[3.0,1.5],"range":[1.0,5.0],"label":"B","tickvals":[1.5,3.0,4.0,5.0]},{"values":[2.0,4.0],"range":[1.0,5.0],"label":"C","tickvals":[1.0,2.0,4.0,5.0],"ticktext":["txt 1","txt 2","txt 4","txt 5"]},{"values":[4.0,2.0],"range":[1.0,5.0],"label":"D"}],"line":{"color":"blue"}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('3a086049-9f19-4bc5-b0c4-900255d4dce7', data, layout, config);
+            Plotly.newPlot('590124ef-c611-472c-b80e-f466eee8e57f', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_3a0860499f194bc5b0c4900255d4dce7();
+                    renderPlotly_590124efc611472cb80ef466eee8e57f();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_3a0860499f194bc5b0c4900255d4dce7();
+                renderPlotly_590124efc611472cb80ef466eee8e57f();
             }
 </script>
 

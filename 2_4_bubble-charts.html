@@ -35,7 +35,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.1</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.2</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -271,29 +271,29 @@ of associated data is plotted as a disk. The first two values determine the disk
 third its size.</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="id">bubble1</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs7', 7)" onmouseover="showTip(event, 'fs7', 7)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs8', 8)" onmouseover="showTip(event, 'fs8', 8)" class="id">Bubble</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs3', 9)" onmouseover="showTip(event, 'fs3', 9)" class="id">x</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs4', 10)" onmouseover="showTip(event, 'fs4', 10)" class="id">y</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs5', 11)" onmouseover="showTip(event, 'fs5', 11)" class="id">size</span><span class="pn">)</span>
 </code></pre>
-<div id="120e49d5-1f89-4a90-81e8-6c7748c7b19e" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="628e2aed-d845-4fc9-b93f-ba9135e8d1f4" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_120e49d51f894a9081e86c7748c7b19e = function() {
+            var renderPlotly_628e2aedd8454fc9b93fba9135e8d1f4 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[2,4,6],"y":[4,1,6],"mode":"markers","marker":{"size":[19,26,55]}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('120e49d5-1f89-4a90-81e8-6c7748c7b19e', data, layout, config);
+            Plotly.newPlot('628e2aed-d845-4fc9-b93f-ba9135e8d1f4', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_120e49d51f894a9081e86c7748c7b19e();
+                    renderPlotly_628e2aedd8454fc9b93fba9135e8d1f4();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_120e49d51f894a9081e86c7748c7b19e();
+                renderPlotly_628e2aedd8454fc9b93fba9135e8d1f4();
             }
 </script>
 
