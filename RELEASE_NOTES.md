@@ -8,6 +8,7 @@
  * **Breaking:** Chart methods now have static type annotations, which may lead to incompatibilities in some cases
  * **Breaking:** Rename ChartDescription type: Plotly.NET.ChartDescription.Description -> Plotly.NET.ChartDescription
  * [**Possibly breaking:** target netstandad 2.0](https://github.com/plotly/Plotly.NET/commit/0fd6d42d755c060f42cf48465cbcfd02e0a07088)
+ * [**Possibly breaking:** target net5.0 as well](https://github.com/plotly/Plotly.NET/commit/4f0633f0481df91cb2e310da61175d7ddb26ee11)
 
 **Major Additions:**
 
