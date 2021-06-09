@@ -1443,6 +1443,46 @@ module Trace =
                     trace
                 )
 
+        static member Funnel
+            (
+                x               : seq<#IConvertible>,
+                y               : seq<#IConvertible>,
+                ?x0,
+                ?dX             : float,
+                ?y0,
+                ?dY             : float,
+                ?Width          : float,
+                ?Offset         : float,
+                ?Orientation    : StyleParam.Orientation,
+                ?Alignmentgroup : string,
+                ?Offsetgroup    : string,
+                ?Cliponaxis     : bool,
+                ?Connector      : FunnelConnector,
+                ?Insidetextfont : Font,
+                ?Outsidetextfont: Font
+            ) = 
+                (fun (trace:('T :> Trace)) -> 
+                
+                    x               |> DynObj.setValue      trace "x"
+                    y               |> DynObj.setValue      trace "y"
+                    x0              |> DynObj.setValueOpt   trace "x0"
+                    dX              |> DynObj.setValueOpt   trace "dx"
+                    y0              |> DynObj.setValueOpt   trace "y0"
+                    dY              |> DynObj.setValueOpt   trace "dy"
+                    Width           |> DynObj.setValueOpt   trace "width"
+                    Offset          |> DynObj.setValueOpt   trace "offset"
+                    Orientation     |> DynObj.setValueOptBy trace "orientation" StyleParam.Orientation.convert
+                    Alignmentgroup  |> DynObj.setValueOpt   trace "alignmentgroup"
+                    Offsetgroup     |> DynObj.setValueOpt   trace "offsetgroup"
+                    Cliponaxis      |> DynObj.setValueOpt   trace "cliponaxis"
+                    Connector       |> DynObj.setValueOpt   trace "connector"
+                    Insidetextfont  |> DynObj.setValueOpt   trace "insidetextfont"
+                    Outsidetextfont |> DynObj.setValueOpt   trace "insidetextfont"
+
+                    trace
+
+                )
+
         static member ScatterGeo 
             (
                 mode       : StyleParam.Mode,
