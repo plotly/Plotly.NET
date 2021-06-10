@@ -15,6 +15,7 @@
 #load "Domain.fs"
 #load "Line.fs"
 #load "WaterfallConnector.fs"
+#load "FunnelConnector.fs"
 #load "Box.fs"
 #load "Meanline.fs"
 #load "Marker.fs"
@@ -569,4 +570,15 @@ let doughnut1 =
         Colors=cols,
         Textinfo=labels
     )
+    |> Chart.Show
+
+// Funnel example adapted from Plotly docs: https://plotly.com/javascript/funnel-charts/
+let funnel =
+    let y = [|"Sales person A"; "Sales person B"; "Sales person C"; "Sales person D"; "Sales person E"|]
+    let x = [|1200.; 909.4; 600.6; 300.; 80.|]
+    let line = Line.init(Width=2.,Color="3E4E88")
+    let connectorLine = Line.init (Color="royalblue", Dash=StyleParam.DrawingStyle.Dot, Width=3.)
+    let connector = FunnelConnector.init(Line=connectorLine)
+    Chart.Funnel (x,y,Color="59D4E8", Line=line, Connector=connector)
+    |> Chart.withMarginSize(Left=100)
     |> Chart.Show

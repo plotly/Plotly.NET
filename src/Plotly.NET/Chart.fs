@@ -1994,6 +1994,104 @@ type Chart =
             )
             |> GenericChart.ofTraceObject
 
+    /// Creates a Funnel chart.
+    /// Funnel charts Visualize stages in a process using length-encoded bars. This trace can be used to show data in either a part-to-whole representation wherein each item appears in a single stage, or in a "drop-off" representation wherein each item appears in each stage it traversed. See also the "funnelarea" trace type for a different approach to visualizing funnel data.
+    ///
+    /// Parameters:
+    /// 
+    /// x              : Sets the x coordinates.
+    ///
+    /// y              : Sets the y coordinates.
+    ///
+    /// Name           : Sets the trace name. The trace name appear as the legend item and on hover
+    ///
+    /// Showlegend     : Determines whether or not an item corresponding to this trace is shown in the legend.
+    ///
+    /// Opacity        : Sets the Opacity of the trace
+    ///
+    /// Labels         : Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.
+    ///
+    /// TextPosition   : Sets the positions of the `text` elements with respects to the (x,y) coordinates.
+    ///
+    /// TextFont       : Sets the text font of this trace
+    ///
+    /// Color          : Sets Marker Color
+    ///
+    /// Line           : Line type
+    ///
+    /// x0             : Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
+    ///
+    /// dX             : Sets the x coordinate step. See `x0` for more info.
+    ///
+    /// y0             : Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
+    ///
+    /// dY             : Sets the y coordinate step. See `y0` for more info.
+    ///
+    /// Width          : Sets the bar width (in position axis units).
+    /// 
+    /// Offset         : Shifts the position where the bar is drawn (in position axis units). In "group" barmode, traces that set "offset" will be excluded and drawn in "overlay" mode instead.
+    /// 
+    /// Orientation    : Sets the orientation of the funnels. With "v" ("h"), the value of the each bar spans along the vertical (horizontal). By default funnels are tend to be oriented horizontally; unless only "y" array is presented or orientation is set to "v". Also regarding graphs including only 'horizontal' funnels, "autorange" on the "y-axis" are set to "reversed".
+    /// 
+    /// Alignmentgroup : Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.
+    /// 
+    /// Offsetgroup    : Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.
+    /// 
+    /// Cliponaxis     : Determines whether the text nodes are clipped about the subplot axes. To show the text nodes above axis lines and tick labels, make sure to set `xaxis.layer` and `yaxis.layer` to "below traces".
+    /// 
+    /// Connector      : Connector type
+    ///
+    /// Insidetextfont : Sets the font used for `text` lying inside the bar.
+    ///
+    /// Outsidetextfont: Sets the font used for `text` lying outside the bar.
+    static member Funnel (x, y,
+            [<Optional;DefaultParameterValue(null)>] ?Name                          ,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
+            [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
+            [<Optional;DefaultParameterValue(null)>] ?Color                         ,
+            [<Optional;DefaultParameterValue(null)>] ?Line                          ,
+            [<Optional;DefaultParameterValue(null)>] ?x0                            ,
+            [<Optional;DefaultParameterValue(null)>] ?dX                            ,
+            [<Optional;DefaultParameterValue(null)>] ?y0                            ,
+            [<Optional;DefaultParameterValue(null)>] ?dY                            ,
+            [<Optional;DefaultParameterValue(null)>] ?Width                         ,
+            [<Optional;DefaultParameterValue(null)>] ?Offset                        ,
+            [<Optional;DefaultParameterValue(null)>] ?Orientation                   ,
+            [<Optional;DefaultParameterValue(null)>] ?Alignmentgroup                ,
+            [<Optional;DefaultParameterValue(null)>] ?Offsetgroup                   ,
+            [<Optional;DefaultParameterValue(null)>] ?Cliponaxis                    ,
+            [<Optional;DefaultParameterValue(null)>] ?Connector                     ,
+            [<Optional;DefaultParameterValue(null)>] ?Insidetextfont                ,
+            [<Optional;DefaultParameterValue(null)>] ?Outsidetextfont
+        ) = 
+
+        Trace.initFunnel(
+            TraceStyle.Funnel(
+                x               = x               ,
+                y               = y               ,
+                ?x0              = x0             ,
+                ?dX              = dX             ,
+                ?y0              = y0             ,
+                ?dY              = dY             ,
+                ?Width           = Width          ,
+                ?Offset          = Offset         ,
+                ?Orientation     = Orientation    ,
+                ?Alignmentgroup  = Alignmentgroup ,
+                ?Offsetgroup     = Offsetgroup    ,
+                ?Cliponaxis      = Cliponaxis     ,
+                ?Connector       = Connector      ,
+                ?Insidetextfont  = Insidetextfont ,
+                ?Outsidetextfont = Outsidetextfont
+            )
+        )
+        |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+        |> TraceStyle.Marker(?Color=Color,?Line=Line)
+        |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        |> GenericChart.ofTraceObject
+
     /// Creates a ScatterGeo chart, where data is visualized on a geographic map.
     /// ScatterGeo charts are the basis of GeoPoint, GeoLine, and GeoBubble Charts, and can be customized as such. We also provide abstractions for those: Chart.GeoPoint, Chart.GeoLine, Chart.GeoBubble
     ///
