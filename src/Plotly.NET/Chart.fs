@@ -1995,7 +1995,7 @@ type Chart =
             |> GenericChart.ofTraceObject
 
     /// Creates a Funnel chart.
-    /// Funnel charts Visualize stages in a process using length-encoded bars. This trace can be used to show data in either a part-to-whole representation wherein each item appears in a single stage, or in a "drop-off" representation wherein each item appears in each stage it traversed. See also the "funnelarea" trace type for a different approach to visualizing funnel data.
+    /// Funnel charts visualize stages in a process using length-encoded bars. This trace can be used to show data in either a part-to-whole representation wherein each item appears in a single stage, or in a "drop-off" representation wherein each item appears in each stage it traversed. See also the "funnelarea" trace type for a different approach to visualizing funnel data.
     ///
     /// Parameters:
     /// 
@@ -2090,6 +2090,89 @@ type Chart =
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
         |> TraceStyle.Marker(?Color=Color,?Line=Line)
         |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        |> GenericChart.ofTraceObject
+
+    /// Creates a FunnelArea chart.
+    /// FunnelArea charts visualize stages in a process using area-encoded trapezoids. This trace can be used to show data in a part-to-whole representation similar to a "pie" trace, wherein each item appears in a single stage. See also the "funnel" trace type for a different approach to visualizing funnel data.
+    ///
+    /// Parameters:
+    /// 
+    /// Values        : Sets the values of the sectors. If omitted, we count occurrences of each label.
+    ///
+    /// Labels        : Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
+    ///
+    /// dLabel        : Sets the label step. See `label0` for more info.
+    ///
+    /// Label0        : Alternate to `labels`. Builds a numeric set of labels. Use with `dlabel` where `label0` is the starting label and `dlabel` the step.
+    ///
+    /// Name          : Sets the trace name. The trace name appear as the legend item and on hover.
+    ///
+    /// Showlegend    : Determines whether or not an item corresponding to this trace is shown in the legend.
+    ///
+    /// Opacity       : Sets the opacity of the trace.
+    ///
+    /// Color         : Sets Marker Color
+    ///
+    /// Line          : Line type
+    ///
+    /// Text          : Sets text elements associated with each sector. If trace `textinfo` contains a "text" flag, these elements will be seen on the chart. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.
+    ///
+    /// TextPosition  : Specifies the location of the `textinfo`.
+    ///
+    /// X             : Sets the horizontal domain of this funnelarea trace (in plot fraction).
+    ///
+    /// Y             : Sets the vertical domain of this funnelarea trace (in plot fraction).
+    ///
+    /// Row           : If there is a layout grid, use the domain for this row in the grid for this funnelarea trace .
+    ///
+    /// Column        : If there is a layout grid, use the domain for this column in the grid for this funnelarea trace .
+    ///
+    /// Aspectratio   : Sets the ratio between height and width
+    ///
+    /// Baseratio     : Sets the ratio between bottom length and maximum top length.
+    ///
+    /// Insidetextfont: Sets the font used for `textinfo` lying inside the sector.
+    ///
+    /// Scalegroup    : If there are multiple funnelareas that should be sized according to their totals, link them by providing a non-empty group id here shared by every trace in the same group.
+    static member FunnelArea 
+        (
+            [<Optional;DefaultParameterValue(null)>] ?Values        ,
+            [<Optional;DefaultParameterValue(null)>] ?Labels        ,
+            [<Optional;DefaultParameterValue(null)>] ?dLabel        ,
+            [<Optional;DefaultParameterValue(null)>] ?Label0        ,
+            [<Optional;DefaultParameterValue(null)>] ?Name          ,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend    ,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity       ,
+            [<Optional;DefaultParameterValue(null)>] ?Color         ,
+            [<Optional;DefaultParameterValue(null)>] ?Line          ,
+            [<Optional;DefaultParameterValue(null)>] ?Text          ,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition  ,
+            [<Optional;DefaultParameterValue(null)>] ?X             ,
+            [<Optional;DefaultParameterValue(null)>] ?Y             ,
+            [<Optional;DefaultParameterValue(null)>] ?Row           ,
+            [<Optional;DefaultParameterValue(null)>] ?Column        ,
+            [<Optional;DefaultParameterValue(null)>] ?Aspectratio   ,
+            [<Optional;DefaultParameterValue(null)>] ?Baseratio     ,
+            [<Optional;DefaultParameterValue(null)>] ?Insidetextfont,
+            [<Optional;DefaultParameterValue(null)>] ?Scalegroup
+        ) = 
+
+        Trace.initFunnelArea(
+            TraceStyle.FunnelArea(
+                ?Values         = Values        ,
+                ?Labels         = Labels        ,
+                ?dLabel         = dLabel        ,
+                ?Label0         = Label0        ,
+                ?Aspectratio    = Aspectratio   ,
+                ?Baseratio      = Baseratio     ,
+                ?Insidetextfont = Insidetextfont,
+                ?Scalegroup     = Scalegroup
+            )
+        )
+        |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+        |> TraceStyle.Marker(?Color=Color,?Line=Line)
+        |> TraceStyle.Domain(?X=X,?Y=Y,?Row=Row,?Column=Column)
+        |> TraceStyle.TextLabel(?Text=Text,?Textposition=TextPosition)
         |> GenericChart.ofTraceObject
 
     /// Creates a ScatterGeo chart, where data is visualized on a geographic map.
