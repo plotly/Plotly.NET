@@ -374,6 +374,37 @@ module Trace =
 
                 )
 
+        /// Sets the given domain on a Trace object.
+        static member SetDomain
+            (
+                domain:Domain
+            ) =  
+                (fun (trace:('T :> Trace)) ->
+
+                    trace.SetValue("domain", domain)
+                    trace
+                )
+        
+        /// Sets the given Domain styles on the domain property of a Trace object
+        static member Domain
+            (
+                ?X     : StyleParam.Range,
+                ?Y     : StyleParam.Range,
+                ?Row   : int,
+                ?Column: int
+            ) =
+                 (fun (trace:('T :> Trace)) ->
+                     let domain =
+                         match (trace.TryGetValue "domain") with
+                         | Some m -> m :?> Domain
+                         | None -> Domain ()
+     
+                         |> Domain.style(?X=X,?Y=Y,?Row=Row,?Column=Column)
+
+                     trace.SetValue("domain", domain)
+                     trace
+                 )
+
         // Sets the X-Error an a Trace object.
         static member SetErrorX
             (
@@ -1477,7 +1508,33 @@ module Trace =
                     Cliponaxis      |> DynObj.setValueOpt   trace "cliponaxis"
                     Connector       |> DynObj.setValueOpt   trace "connector"
                     Insidetextfont  |> DynObj.setValueOpt   trace "insidetextfont"
-                    Outsidetextfont |> DynObj.setValueOpt   trace "insidetextfont"
+                    Outsidetextfont |> DynObj.setValueOpt   trace "outsidetextfont"
+
+                    trace
+
+                )
+
+        static member FunnelArea
+            (
+                ?Values        : seq<#IConvertible>,
+                ?Labels        : seq<#IConvertible>,
+                ?dLabel        : float,
+                ?Label0        : float,
+                ?Aspectratio   : float,
+                ?Baseratio     : float,
+                ?Insidetextfont: Font,
+                ?Scalegroup    : string
+            ) = 
+                (fun (trace:('T :> Trace)) -> 
+        
+                    Values         |> DynObj.setValueOpt   trace "values"
+                    Labels         |> DynObj.setValueOpt   trace "labels"
+                    dLabel         |> DynObj.setValueOpt   trace "dlabel"
+                    Label0         |> DynObj.setValueOpt   trace "label0"
+                    Aspectratio    |> DynObj.setValueOpt   trace "aspectratio"
+                    Baseratio      |> DynObj.setValueOpt   trace "baseratio"
+                    Insidetextfont |> DynObj.setValueOpt   trace "insidetextfont"
+                    Scalegroup     |> DynObj.setValueOpt   trace "scalegroup"
 
                     trace
 

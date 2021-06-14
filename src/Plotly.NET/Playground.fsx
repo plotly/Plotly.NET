@@ -572,7 +572,7 @@ let doughnut1 =
     )
     |> Chart.Show
 
-// Funnel example adapted from Plotly docs: https://plotly.com/javascript/funnel-charts/
+// Funnel examples adapted from Plotly docs: https://plotly.com/javascript/funnel-charts/
 let funnel =
     let y = [|"Sales person A"; "Sales person B"; "Sales person C"; "Sales person D"; "Sales person E"|]
     let x = [|1200.; 909.4; 600.6; 300.; 80.|]
@@ -581,4 +581,16 @@ let funnel =
     let connector = FunnelConnector.init(Line=connectorLine)
     Chart.Funnel (x,y,Color="59D4E8", Line=line, Connector=connector)
     |> Chart.withMarginSize(Left=100)
+    |> Chart.Show
+
+let funnelArea =
+    let values = [|5; 4; 3; 2; 1|]
+    let text = [|"The 1st"; "The 2nd"; "The 3rd"; "The 4th"; "The 5th"|]
+    let line = Line.init (Color="purple", Width=3.)
+    Chart.FunnelArea(Values=values, Text=text, Line=line)
+    |> Chart.Show
+
+let funnelArea2 =
+    let labels = [|1;2;2;3;3;3|]
+    Chart.FunnelArea(Labels=labels)
     |> Chart.Show
