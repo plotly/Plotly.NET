@@ -49,6 +49,57 @@
 open Plotly.NET
 open GenericChart
 
+// Funnel examples adapted from Plotly docs: https://plotly.com/javascript/funnel-charts/
+let funnel =
+    let y = [|"Sales person A"; "Sales person B"; "Sales person C"; "Sales person D"; "Sales person E"|]
+    let x = [|1200.; 909.4; 600.6; 300.; 80.|]
+    let line = Line.init(Width=2.,Color="3E4E88")
+    let connectorLine = Line.init (Color="royalblue", Dash=StyleParam.DrawingStyle.Dot, Width=3.)
+    let connector = FunnelConnector.init(Line=connectorLine)
+    Chart.Funnel (x,y,Color="59D4E8", Line=line, Connector=connector)
+    |> Chart.withMarginSize(Left=100)
+    |> Chart.Show
+
+let funnelArea =
+    let values = [|5; 4; 3; 2; 1|]
+    let text = [|"The 1st"; "The 2nd"; "The 3rd"; "The 4th"; "The 5th"|]
+    let line = Line.init (Color="purple", Width=3.)
+    Chart.FunnelArea(Values=values, Text=text, Line=line)
+    |> Chart.Show
+
+let funnelArea2 =
+    let labels = [|1;2;2;3;3;3|]
+    Chart.FunnelArea(Labels=labels)
+    |> Chart.Show
+
+let yAxis =
+    Axis.LinearAxis.init(
+        Title = "Y",
+        Showline = true,
+        Range = StyleParam.Range.MinMax (0.0, 2.0),
+        Tickvals = [0.0 .. 2.0],
+        Ticktext = [ "zero"; "one"; "two" ]
+    )
+
+Chart.Range(
+    [1;2],
+    [1;1],
+    [0.0;0.53622183],
+    [1.0;2.0],
+    StyleParam.Mode.None,
+    Name = "",
+    LowerName = "Lower",
+    UpperName = "Upper",
+    Labels = [])
+|> Chart.withY_Axis (yAxis)
+|> GenericChart.mapiTrace (fun i t ->
+    match i with
+    | 0 -> t |> Trace.TraceStyle.TextLabel ["upperOne";"upperTwo"]
+    | 1 -> t |> Trace.TraceStyle.TextLabel ["lowerOne";"lowerTwo"]
+    | 2 -> t
+)
+|> Chart.Show
+
 let testAnnotation =
     Annotation.init(X=System.DateTime.Now, Y=0,Text="test")
 
@@ -125,7 +176,7 @@ let xAxis =
     tmp?showline <- true    
     tmp
 
-let yAxis =
+let yAxis2 =
     let tmp = Axis.LinearAxis()
     tmp?title <- "yAxis"
     tmp?showgrid <- false
@@ -135,7 +186,7 @@ let yAxis =
 let layout =
     let tmp = Layout()
     tmp?xaxis <- xAxis
-    tmp?yaxis <- yAxis
+    tmp?yaxis <- yAxis2
     tmp?showlegend <- true
     tmp
 
@@ -572,25 +623,3 @@ let doughnut1 =
     )
     |> Chart.Show
 
-// Funnel examples adapted from Plotly docs: https://plotly.com/javascript/funnel-charts/
-let funnel =
-    let y = [|"Sales person A"; "Sales person B"; "Sales person C"; "Sales person D"; "Sales person E"|]
-    let x = [|1200.; 909.4; 600.6; 300.; 80.|]
-    let line = Line.init(Width=2.,Color="3E4E88")
-    let connectorLine = Line.init (Color="royalblue", Dash=StyleParam.DrawingStyle.Dot, Width=3.)
-    let connector = FunnelConnector.init(Line=connectorLine)
-    Chart.Funnel (x,y,Color="59D4E8", Line=line, Connector=connector)
-    |> Chart.withMarginSize(Left=100)
-    |> Chart.Show
-
-let funnelArea =
-    let values = [|5; 4; 3; 2; 1|]
-    let text = [|"The 1st"; "The 2nd"; "The 3rd"; "The 4th"; "The 5th"|]
-    let line = Line.init (Color="purple", Width=3.)
-    Chart.FunnelArea(Values=values, Text=text, Line=line)
-    |> Chart.Show
-
-let funnelArea2 =
-    let labels = [|1;2;2;3;3;3|]
-    Chart.FunnelArea(Labels=labels)
-    |> Chart.Show

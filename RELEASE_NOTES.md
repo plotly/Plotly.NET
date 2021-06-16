@@ -27,6 +27,8 @@
  * [Add Waterfall Chart](https://github.com/plotly/Plotly.NET/commit/4d93598aa03a965abc75007aea2885ff4d282059)
  * [Add ScatterGeo, PointGeo, LineGeo Charts](https://github.com/plotly/Plotly.NET/commit/4865c5ac0356bfb2465422a2352e18c4fce018c3)
  * [Add HeatmapGL, thanks [@Joott](https://github.com/Joott)](https://github.com/plotly/Plotly.NET/commit/b39f4705b86653aebf8ccb0fadf5d12b89150848)
+ * [Add Funnel Chart, thanks [@Joott](https://github.com/Joott)](https://github.com/plotly/Plotly.NET/commit/aae24a780e88d74786f25854559ff44c7350d035)
+ * [Add FunnelArea Chart, thanks [@Joott](https://github.com/Joott)](https://github.com/plotly/Plotly.NET/commit/126f5513afcc259ba2945ffe32aaeb987a1ded71)
 
 **Minor Additions/fixes:**
 

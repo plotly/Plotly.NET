@@ -1,0 +1,64 @@
+(**
+---
+title: Funnel Charts
+category: Finance Charts
+categoryindex: 7
+index: 2
+---
+*)
+
+(*** hide ***)
+
+(*** condition: prepare ***)
+#r "nuget: Newtonsoft.JSON, 12.0.3"
+#r "../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
+
+(*** condition: ipynb ***)
+#if IPYNB
+#r "nuget: Plotly.NET, {{fsdocs-package-version}}"
+#r "nuget: Plotly.NET.Interactive, {{fsdocs-package-version}}"
+#endif // IPYNB
+
+(** 
+# Funnel Charts
+
+[![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
+[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
+[![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
+
+*Summary:* This example shows how to create funnel charts in F#.
+
+let's first create some data for the purpose of creating example charts:
+*)
+
+let y = [|"Sales person A"; "Sales person B"; "Sales person C"; "Sales person D"; "Sales person E"|]
+let x = [|1200.; 909.4; 600.6; 300.; 80.|]
+
+(**
+Funnel charts visualize stages in a process using length-encoded bars. This trace can be used to show data in either a part-to-whole 
+representation wherein each item appears in a single stage, or in a "drop-off" representation wherein each item appears in each stage 
+it traversed. See also the [FunnelArea]({{root}}/6_2_funnel_area.html) chart for a different approach to visualizing funnel data.
+*)
+
+open Plotly.NET 
+
+// Customize the connector lines used to connect the funnel bars
+let connectorLine = Line.init (Color="royalblue", Dash=StyleParam.DrawingStyle.Dot, Width=3.)
+let connector = FunnelConnector.init(Line=connectorLine)
+
+// Customize the outline of the funnel bars
+let line = Line.init(Width=2.,Color="3E4E88")
+
+// create a funnel chart using custom connectors and outlines
+let funnel =
+    Chart.Funnel (x,y,Color="59D4E8", Line=line, Connector=connector)
+    |> Chart.withMarginSize(Left=100)
+
+(*** condition: ipynb ***)
+#if IPYNB
+funnel
+#endif // IPYNB
+
+(***hide***)
+funnel |> GenericChart.toChartHTML
+(***include-it-raw***)
