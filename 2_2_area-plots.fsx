@@ -23,29 +23,29 @@ The area between axis and line are commonly emphasized with colors, textures and
 ### Simple area chart
 *)
 let area1 = Chart.Area(x,y)(* output: 
-<div id="78d4dafb-0d68-4864-bec7-f834a7cbffe7" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="d34d3a9f-0bd4-45db-a144-43a018955bc2" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_78d4dafb0d684864bec7f834a7cbffe7 = function() {
+            var renderPlotly_d34d3a9f0bd445dba14443a018955bc2 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,2.5,5.0,7.5,5.0,2.5,7.5,4.5,5.5,5.0],"mode":"lines","fill":"tozeroy","line":{},"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('78d4dafb-0d68-4864-bec7-f834a7cbffe7', data, layout, config);
+            Plotly.newPlot('d34d3a9f-0bd4-45db-a144-43a018955bc2', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_78d4dafb0d684864bec7f834a7cbffe7();
+                    renderPlotly_d34d3a9f0bd445dba14443a018955bc2();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_78d4dafb0d684864bec7f834a7cbffe7();
+                renderPlotly_d34d3a9f0bd445dba14443a018955bc2();
             }
 </script>
 *)
@@ -54,29 +54,29 @@ let area1 = Chart.Area(x,y)(* output:
 *)
 let area2 =
     Chart.SplineArea(x,y)(* output: 
-<div id="85a090e7-49fd-49ea-b462-1575f9b6fdcd" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="1f26461e-8f7e-4f05-a77f-3e2139c40f6d" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_85a090e749fd49eab4621575f9b6fdcd = function() {
+            var renderPlotly_1f26461e8f7e4f05a77f3e2139c40f6d = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,2.5,5.0,7.5,5.0,2.5,7.5,4.5,5.5,5.0],"mode":"lines","fill":"tozeroy","line":{"shape":"spline"},"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('85a090e7-49fd-49ea-b462-1575f9b6fdcd', data, layout, config);
+            Plotly.newPlot('1f26461e-8f7e-4f05-a77f-3e2139c40f6d', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_85a090e749fd49eab4621575f9b6fdcd();
+                    renderPlotly_1f26461e8f7e4f05a77f3e2139c40f6d();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_85a090e749fd49eab4621575f9b6fdcd();
+                renderPlotly_1f26461e8f7e4f05a77f3e2139c40f6d();
             }
 </script>
 *)
@@ -89,29 +89,29 @@ let stackedArea =
         Chart.StackedArea(x,y |> Seq.rev)
     ]
     |> Chart.Combine(* output: 
-<div id="51a9c355-301c-4f2c-8e3a-afd7d5998339" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="e864cffd-9a02-4810-8fd1-4d2a77af8c22" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_51a9c355301c4f2c8e3aafd7d5998339 = function() {
+            var renderPlotly_e864cffd9a0248108fd14d2a77af8c22 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,2.5,5.0,7.5,5.0,2.5,7.5,4.5,5.5,5.0],"mode":"lines","line":{},"marker":{},"stackgroup":"static"},{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,5.5,4.5,7.5,2.5,5.0,7.5,5.0,2.5,5.0],"mode":"lines","line":{},"marker":{},"stackgroup":"static"}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('51a9c355-301c-4f2c-8e3a-afd7d5998339', data, layout, config);
+            Plotly.newPlot('e864cffd-9a02-4810-8fd1-4d2a77af8c22', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_51a9c355301c4f2c8e3aafd7d5998339();
+                    renderPlotly_e864cffd9a0248108fd14d2a77af8c22();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_51a9c355301c4f2c8e3aafd7d5998339();
+                renderPlotly_e864cffd9a0248108fd14d2a77af8c22();
             }
 </script>
 *)

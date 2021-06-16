@@ -29,29 +29,29 @@ the position of the vertex on the i-th axis corresponds to the i-th coordinate o
 *)
 let parcoords1 =
     Chart.ParallelCoord(data,Color="blue")(* output: 
-<div id="8fd6bc7f-22bb-43f7-ba8a-066402e0d8d9" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="ce841dfc-c6e2-42bf-a6a2-97195826c538" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_8fd6bc7f22bb43f7ba8a066402e0d8d9 = function() {
+            var renderPlotly_ce841dfcc6e242bfa6a297195826c538 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"parcoords","dimensions":[{"values":[1.0,4.0,3.4,0.7],"label":"A"},{"values":[3.0,1.5,1.7,2.3],"label":"B"},{"values":[2.0,4.0,3.1,5.0],"label":"C"},{"values":[4.0,2.0,2.0,4.0],"label":"D"}],"line":{"color":"blue"}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('8fd6bc7f-22bb-43f7-ba8a-066402e0d8d9', data, layout, config);
+            Plotly.newPlot('ce841dfc-c6e2-42bf-a6a2-97195826c538', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_8fd6bc7f22bb43f7ba8a066402e0d8d9();
+                    renderPlotly_ce841dfcc6e242bfa6a297195826c538();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_8fd6bc7f22bb43f7ba8a066402e0d8d9();
+                renderPlotly_ce841dfcc6e242bfa6a297195826c538();
             }
 </script>
 *)
@@ -76,29 +76,29 @@ let parcoords =
 
     dyn
     |> GenericChart.ofTraceObject(* output: 
-<div id="a0263c64-c305-4761-bbc7-fd4a72d48da4" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="dfa90150-af4a-4919-8c8d-2b73f22b5c77" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_a0263c64c3054761bbc7fd4a72d48da4 = function() {
+            var renderPlotly_dfa90150af4a49198c8d2b73f22b5c77 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"parcoords","dimensions":[{"values":[1.0,4.0],"range":[1.0,5.0],"constraintrange":[1.0,2.0],"label":"A"},{"values":[3.0,1.5],"range":[1.0,5.0],"label":"B","tickvals":[1.5,3.0,4.0,5.0]},{"values":[2.0,4.0],"range":[1.0,5.0],"label":"C","tickvals":[1.0,2.0,4.0,5.0],"ticktext":["txt 1","txt 2","txt 4","txt 5"]},{"values":[4.0,2.0],"range":[1.0,5.0],"label":"D"}],"line":{"color":"blue"}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('a0263c64-c305-4761-bbc7-fd4a72d48da4', data, layout, config);
+            Plotly.newPlot('dfa90150-af4a-4919-8c8d-2b73f22b5c77', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_a0263c64c3054761bbc7fd4a72d48da4();
+                    renderPlotly_dfa90150af4a49198c8d2b73f22b5c77();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_a0263c64c3054761bbc7fd4a72d48da4();
+                renderPlotly_dfa90150af4a49198c8d2b73f22b5c77();
             }
 </script>
 *)

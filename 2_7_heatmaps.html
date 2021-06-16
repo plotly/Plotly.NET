@@ -35,7 +35,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.2</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.3</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -207,6 +207,16 @@
     Candlestick Charts
   </a>
 </li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/6_1_funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/6_2_funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
 <li class="nav-header">
   Polar Charts
 </li>             
@@ -283,29 +293,29 @@
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 17)" onmouseover="showTip(event, 'fs11', 17)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 18)" onmouseover="showTip(event, 'fs13', 18)" class="id">withSize</span><span class="pn">(</span><span class="n">700.</span><span class="pn">,</span><span class="n">500.</span><span class="pn">)</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 19)" onmouseover="showTip(event, 'fs11', 19)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 20)" onmouseover="showTip(event, 'fs14', 20)" class="id">withMarginSize</span><span class="pn">(</span><span class="fn">Left</span><span class="o">=</span><span class="n">200.</span><span class="pn">)</span>
 </code></pre>
-<div id="55d68c49-9317-44b7-865a-9216628582ee" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="2bb98ad4-c4de-437c-8c3d-3e44bb8103ff" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_55d68c49931744b7865a9216628582ee = function() {
+            var renderPlotly_2bb98ad4c4de437c8c3d3e44bb8103ff = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"heatmap","z":[[1.0,1.5,0.7,2.7],[2.0,0.5,1.2,1.4],[0.1,2.6,2.4,3.0]],"x":["Tp0","Tp30","Tp60","Tp160"],"y":["p3","p2","p1"],"colorscale":[[0.0,"#3D9970"],[1.0,"#001f3f"]],"showscale":true}];
             var layout = {"width":700.0,"height":500.0,"margin":{"l":200.0}};
             var config = {};
-            Plotly.newPlot('55d68c49-9317-44b7-865a-9216628582ee', data, layout, config);
+            Plotly.newPlot('2bb98ad4-c4de-437c-8c3d-3e44bb8103ff', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_55d68c49931744b7865a9216628582ee();
+                    renderPlotly_2bb98ad4c4de437c8c3d3e44bb8103ff();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_55d68c49931744b7865a9216628582ee();
+                renderPlotly_2bb98ad4c4de437c8c3d3e44bb8103ff();
             }
 </script>
 
@@ -322,29 +332,29 @@ Here is an example that adds a title to the colorbar:</p>
         <span class="fn">TitleFont</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs21', 31)" onmouseover="showTip(event, 'fs21', 31)" class="rt">Font</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs22', 32)" onmouseover="showTip(event, 'fs22', 32)" class="id">init</span><span class="pn">(</span><span class="fn">Size</span><span class="o">=</span><span class="n">20.</span><span class="pn">)</span>
     <span class="pn">)</span>
 </code></pre>
-<div id="4cb9839f-ccff-418d-8ba6-205b302601d1" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="7ffb51cf-3343-4fad-a18e-f6059cc7f877" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_4cb9839fccff418d8ba6205b302601d1 = function() {
+            var renderPlotly_7ffb51cf33434fada18ef6059cc7f877 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"heatmap","z":[[1.0,1.5,0.7,2.7],[2.0,0.5,1.2,1.4],[0.1,2.6,2.4,3.0]],"x":["Tp0","Tp30","Tp60","Tp160"],"y":["p3","p2","p1"],"colorscale":[[0.0,"#3D9970"],[1.0,"#001f3f"]],"showscale":true,"colorbar":{"title":"Im the Colorbar","titlefont":{"size":20.0},"titleside":"right"}}];
             var layout = {"width":700.0,"height":500.0,"margin":{"l":200.0}};
             var config = {};
-            Plotly.newPlot('4cb9839f-ccff-418d-8ba6-205b302601d1', data, layout, config);
+            Plotly.newPlot('7ffb51cf-3343-4fad-a18e-f6059cc7f877', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_4cb9839fccff418d8ba6205b302601d1();
+                    renderPlotly_7ffb51cf33434fada18ef6059cc7f877();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_4cb9839fccff418d8ba6205b302601d1();
+                renderPlotly_7ffb51cf33434fada18ef6059cc7f877();
             }
 </script>
 
@@ -362,7 +372,7 @@ Here is an example that adds a title to the colorbar:</p>
 <div class="fsdocs-tip" id="fs8">type Colorscale =<br />&#160;&#160;| Custom of seq&lt;float * string&gt;<br />&#160;&#160;| RdBu<br />&#160;&#160;| Earth<br />&#160;&#160;| Blackbody<br />&#160;&#160;| YIOrRd<br />&#160;&#160;| YIGnBu<br />&#160;&#160;| Bluered<br />&#160;&#160;| Portland<br />&#160;&#160;| Electric<br />&#160;&#160;| Jet<br />&#160;&#160;...<br />&#160;&#160;&#160;&#160;static member convert : (Colorscale -&gt; obj)</div>
 <div class="fsdocs-tip" id="fs9">union case StyleParam.Colorscale.Custom: seq&lt;float * string&gt; -&gt; StyleParam.Colorscale</div>
 <div class="fsdocs-tip" id="fs10">val heat1 : GenericChart.GenericChart</div>
-<div class="fsdocs-tip" id="fs11">type Chart =<br />&#160;&#160;static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:float -&gt; GenericChart + 1 overload<br />&#160;&#160;static member Bar : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart + 1 overload<br />&#160;&#160;static member BoxPlot : ?x:&#39;a0 * ?y:&#39;a1 * ?Name:string * ?Showlegend:bool * ?Color:string * ?Fillcolor:&#39;a2 * ?Opacity:float * ?Whiskerwidth:&#39;a3 * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:&#39;a4 * ?Pointpos:&#39;a5 * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?Alignmentgroup:&#39;a6 * ?Offsetgroup:&#39;a7 * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod -&gt; GenericChart + 1 overload<br />&#160;&#160;static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:Orientation * ?GroupNorm:GroupNorm * ?UseWebGL:bool -&gt; GenericChart + 1 overload<br />&#160;&#160;static member Candlestick : open:seq&lt;#IConvertible&gt; * high:seq&lt;#IConvertible&gt; * low:seq&lt;#IConvertible&gt; * close:seq&lt;#IConvertible&gt; * x:seq&lt;#IConvertible&gt; * ?Increasing:Line * ?Decreasing:Line * ?WhiskerWidth:float * ?Line:Line * ?XCalendar:Calendar -&gt; GenericChart + 1 overload<br />&#160;&#160;static member ChoroplethMap : locations:seq&lt;string&gt; * z:seq&lt;#IConvertible&gt; * ?Text:seq&lt;#IConvertible&gt; * ?Locationmode:LocationFormat * ?Autocolorscale:bool * ?Colorscale:Colorscale * ?Colorbar:&#39;a2 * ?Marker:Marker * ?Zmin:&#39;a3 * ?Zmax:&#39;a4 -&gt; GenericChart<br />&#160;&#160;static member Column : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart + 1 overload<br />&#160;&#160;static member Contour : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;a4 * ?zSmooth:SmoothAlg * ?Colorbar:&#39;a5 -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)<br />&#160;&#160;static member Doughnut : values:seq&lt;#IConvertible&gt; * ?Labels:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Colors:seq&lt;string&gt; * ?Hole:float * ?TextPosition:TextPosition * ?TextFont:Font * ?Hoverinfo:string * ?Textinfo:&#39;a2 * ?Opacity:float -&gt; GenericChart + 1 overload<br />&#160;&#160;static member Heatmap : data:seq&lt;#seq&lt;&#39;b&gt;&gt; * ?ColNames:seq&lt;#IConvertible&gt; * ?RowNames:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;e * ?Xgap:&#39;f * ?Ygap:&#39;g * ?zSmooth:SmoothAlg * ?Colorbar:&#39;h * ?UseWebGL:bool -&gt; GenericChart (requires &#39;b :&gt; IConvertible)<br />&#160;&#160;...</div>
+<div class="fsdocs-tip" id="fs11">type Chart =<br />&#160;&#160;static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:float -&gt; GenericChart + 1 overload<br />&#160;&#160;static member Bar : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart + 1 overload<br />&#160;&#160;static member BoxPlot : ?x:&#39;a0 * ?y:&#39;a1 * ?Name:string * ?Showlegend:bool * ?Color:string * ?Fillcolor:&#39;a2 * ?Opacity:float * ?Whiskerwidth:&#39;a3 * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:&#39;a4 * ?Pointpos:&#39;a5 * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?Alignmentgroup:&#39;a6 * ?Offsetgroup:&#39;a7 * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod -&gt; GenericChart + 1 overload<br />&#160;&#160;static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:Orientation * ?GroupNorm:GroupNorm * ?UseWebGL:bool -&gt; GenericChart + 1 overload<br />&#160;&#160;static member Candlestick : open:seq&lt;#IConvertible&gt; * high:seq&lt;#IConvertible&gt; * low:seq&lt;#IConvertible&gt; * close:seq&lt;#IConvertible&gt; * x:seq&lt;#IConvertible&gt; * ?Increasing:Line * ?Decreasing:Line * ?WhiskerWidth:float * ?Line:Line * ?XCalendar:Calendar -&gt; GenericChart + 1 overload<br />&#160;&#160;static member ChoroplethMap : locations:seq&lt;string&gt; * z:seq&lt;#IConvertible&gt; * ?Text:seq&lt;#IConvertible&gt; * ?Locationmode:LocationFormat * ?Autocolorscale:bool * ?Colorscale:Colorscale * ?Colorbar:&#39;a2 * ?Marker:Marker * ?Zmin:&#39;a3 * ?Zmax:&#39;a4 -&gt; GenericChart<br />&#160;&#160;static member Column : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart + 1 overload<br />&#160;&#160;static member Contour : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;a4 * ?zSmooth:SmoothAlg * ?Colorbar:&#39;a5 -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)<br />&#160;&#160;static member Doughnut : values:seq&lt;#IConvertible&gt; * ?Labels:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Colors:seq&lt;string&gt; * ?Hole:float * ?TextPosition:TextPosition * ?TextFont:Font * ?Hoverinfo:string * ?Textinfo:&#39;a2 * ?Opacity:float -&gt; GenericChart + 1 overload<br />&#160;&#160;static member Funnel : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Color:string * ?Line:Line * ?x0:&#39;a3 * ?dX:float * ?y0:&#39;a4 * ?dY:float * ?Width:float * ?Offset:float * ?Orientation:Orientation * ?Alignmentgroup:string * ?Offsetgroup:string * ?Cliponaxis:bool * ?Connector:FunnelConnector * ?Insidetextfont:Font * ?Outsidetextfont:Font -&gt; GenericChart<br />&#160;&#160;...</div>
 <div class="fsdocs-tip" id="fs12">static member Chart.Heatmap : data:seq&lt;#seq&lt;&#39;b&gt;&gt; * ?ColNames:seq&lt;#System.IConvertible&gt; * ?RowNames:seq&lt;#System.IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Opacity:float * ?Colorscale:StyleParam.Colorscale * ?Showscale:&#39;e * ?Xgap:&#39;f * ?Ygap:&#39;g * ?zSmooth:StyleParam.SmoothAlg * ?Colorbar:&#39;h * ?UseWebGL:bool -&gt; GenericChart.GenericChart (requires &#39;b :&gt; System.IConvertible)</div>
 <div class="fsdocs-tip" id="fs13">static member Chart.withSize : width:float * height:float -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
 <div class="fsdocs-tip" id="fs14">static member Chart.withMarginSize : ?Left:&#39;a * ?Right:&#39;b * ?Top:&#39;c * ?Bottom:&#39;d * ?Pad:&#39;e * ?Autoexpand:&#39;f -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
