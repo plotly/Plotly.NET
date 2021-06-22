@@ -26,29 +26,29 @@ let violin1 =
         x,y,
         Points=StyleParam.Jitterpoints.All
     )(* output: 
-<div id="c59a1394-6c31-4792-b869-7d122c22c2c1" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="bc8fd537-2544-4ac5-93ae-5d51a642564d" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_c59a13946c314792b8697d122c22c2c1 = function() {
+            var renderPlotly_bc8fd53725444ac593ae5d51a642564d = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"violin","y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"points":"all","marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('c59a1394-6c31-4792-b869-7d122c22c2c1', data, layout, config);
+            Plotly.newPlot('bc8fd537-2544-4ac5-93ae-5d51a642564d', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_c59a13946c314792b8697d122c22c2c1();
+                    renderPlotly_bc8fd53725444ac593ae5d51a642564d();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_c59a13946c314792b8697d122c22c2c1();
+                renderPlotly_bc8fd53725444ac593ae5d51a642564d();
             }
 </script>
 *)
@@ -63,29 +63,29 @@ let violin2 =
         Orientation=StyleParam.Orientation.Horizontal,
         Meanline=Meanline.init(Visible=true)
     )(* output: 
-<div id="80d75137-21ff-4170-8bcd-b01f0a783f69" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="018f18e6-e9bf-478d-b2fd-7e9fe80712c1" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_80d7513721ff41708bcdb01f0a783f69 = function() {
+            var renderPlotly_018f18e6e9bf478db2fd7e9fe80712c1 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"violin","y":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"x":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"points":"all","jitter":0.1,"orientation":"h","meanline":{"visible":true},"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('80d75137-21ff-4170-8bcd-b01f0a783f69', data, layout, config);
+            Plotly.newPlot('018f18e6-e9bf-478d-b2fd-7e9fe80712c1', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_80d7513721ff41708bcdb01f0a783f69();
+                    renderPlotly_018f18e6e9bf478db2fd7e9fe80712c1();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_80d7513721ff41708bcdb01f0a783f69();
+                renderPlotly_018f18e6e9bf478db2fd7e9fe80712c1();
             }
 </script>
 *)
@@ -100,29 +100,29 @@ let violin3 =
         Chart.Violin ("y'",y',Name="bin2",Jitter=0.1,Points=StyleParam.Jitterpoints.All);
     ]
     |> Chart.Combine(* output: 
-<div id="06f2783c-b35f-4beb-958a-ab3289c09357" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="6ccdc32c-3f3a-42bd-98b6-e95d89786e49" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_06f2783cb35f4beb958aab3289c09357 = function() {
+            var renderPlotly_6ccdc32c3f3a42bd98b6e95d89786e49 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"violin","y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":"y","points":"all","jitter":0.1,"name":"bin1","marker":{}},{"type":"violin","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":"y'","points":"all","jitter":0.1,"name":"bin2","marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('06f2783c-b35f-4beb-958a-ab3289c09357', data, layout, config);
+            Plotly.newPlot('6ccdc32c-3f3a-42bd-98b6-e95d89786e49', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_06f2783cb35f4beb958aab3289c09357();
+                    renderPlotly_6ccdc32c3f3a42bd98b6e95d89786e49();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_06f2783cb35f4beb958aab3289c09357();
+                renderPlotly_6ccdc32c3f3a42bd98b6e95d89786e49();
             }
 </script>
 *)

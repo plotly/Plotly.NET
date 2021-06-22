@@ -33,29 +33,29 @@ is a group of high, open, close and low values over a period of time, e.g. 1 min
 The x-axis is usually dateime values and y is a sequence of candle structures.
 *)
 let candles1 = Chart.Candlestick candles(* output: 
-<div id="9700c72f-2665-49e6-888a-af93c9a3f084" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="bc1e6e59-1e38-4157-af90-62828e95a4e6" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_9700c72f266549e6888aaf93c9a3f084 = function() {
+            var renderPlotly_bc1e6e591e384157af9062828e95a4e6 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"candlestick","open":[0.68888,0.68883,0.68878,0.68886,0.68879,0.68875,0.68869,0.68883,0.68898,0.68889,0.68891],"high":[0.68888,0.68884,0.68889,0.68886,0.68879,0.68877,0.68887,0.68899,0.689,0.68893,0.68896],"low":[0.68879,0.68875,0.68878,0.68876,0.68873,0.68867,0.68869,0.68883,0.68885,0.68881,0.68886],"close":[0.6888,0.68877,0.68886,0.68879,0.68874,0.68868,0.68883,0.68899,0.68889,0.68893,0.68891],"x":["2020-01-17T13:40:00","2020-01-17T13:41:00","2020-01-17T13:42:00","2020-01-17T13:43:00","2020-01-17T13:44:00","2020-01-17T13:45:00","2020-01-17T13:46:00","2020-01-17T13:47:00","2020-01-17T13:48:00","2020-01-17T13:49:00","2020-01-17T13:50:00"],"xaxis":"x","yaxis":"y"}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('9700c72f-2665-49e6-888a-af93c9a3f084', data, layout, config);
+            Plotly.newPlot('bc1e6e59-1e38-4157-af90-62828e95a4e6', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_9700c72f266549e6888aaf93c9a3f084();
+                    renderPlotly_bc1e6e591e384157af9062828e95a4e6();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_9700c72f266549e6888aaf93c9a3f084();
+                renderPlotly_bc1e6e591e384157af9062828e95a4e6();
             }
 </script>
 *)
@@ -67,29 +67,29 @@ let rangeslider = RangeSlider.init(Visible=false)
 let candles2 = 
     Chart.Candlestick candles
     |> Chart.withX_AxisRangeSlider rangeslider(* output: 
-<div id="3b016727-fe1f-4b5f-9f26-390cfe229a5e" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="1f26beec-baab-496c-b813-03c2b4d8ef82" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_3b016727fe1f4b5f9f26390cfe229a5e = function() {
+            var renderPlotly_1f26beecbaab496cb81303c2b4d8ef82 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"candlestick","open":[0.68888,0.68883,0.68878,0.68886,0.68879,0.68875,0.68869,0.68883,0.68898,0.68889,0.68891],"high":[0.68888,0.68884,0.68889,0.68886,0.68879,0.68877,0.68887,0.68899,0.689,0.68893,0.68896],"low":[0.68879,0.68875,0.68878,0.68876,0.68873,0.68867,0.68869,0.68883,0.68885,0.68881,0.68886],"close":[0.6888,0.68877,0.68886,0.68879,0.68874,0.68868,0.68883,0.68899,0.68889,0.68893,0.68891],"x":["2020-01-17T13:40:00","2020-01-17T13:41:00","2020-01-17T13:42:00","2020-01-17T13:43:00","2020-01-17T13:44:00","2020-01-17T13:45:00","2020-01-17T13:46:00","2020-01-17T13:47:00","2020-01-17T13:48:00","2020-01-17T13:49:00","2020-01-17T13:50:00"],"xaxis":"x","yaxis":"y"}];
             var layout = {"xaxis":{"rangeslider":{"visible":false,"yaxis":{}}}};
             var config = {};
-            Plotly.newPlot('3b016727-fe1f-4b5f-9f26-390cfe229a5e', data, layout, config);
+            Plotly.newPlot('1f26beec-baab-496c-b813-03c2b4d8ef82', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_3b016727fe1f4b5f9f26390cfe229a5e();
+                    renderPlotly_1f26beecbaab496cb81303c2b4d8ef82();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_3b016727fe1f4b5f9f26390cfe229a5e();
+                renderPlotly_1f26beecbaab496cb81303c2b4d8ef82();
             }
 </script>
 *)
