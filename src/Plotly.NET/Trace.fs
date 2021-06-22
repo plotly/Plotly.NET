@@ -1172,6 +1172,8 @@ module Trace =
                 ?Colorscale,
                 ?Colorbar,
                 ?Marker         : Marker,
+                ?GeoJson,
+                ?FeatureIdKey: string,
                 ?Zmin,
                 ?Zmax
      
@@ -1188,6 +1190,8 @@ module Trace =
                     Colorscale         |> DynObj.setValueOptBy choropleth "colorscale" StyleParam.Colorscale.convert
                     Colorbar           |> DynObj.setValueOpt   choropleth "colorbar"
                     Marker             |> DynObj.setValueOpt   choropleth "marker"  
+                    GeoJson            |> DynObj.setValueOpt   choropleth "geojson" 
+                    FeatureIdKey       |> DynObj.setValueOpt   choropleth "featureidkey"
                     Zmin               |> DynObj.setValueOpt   choropleth "zmin"
                     Zmax               |> DynObj.setValueOpt   choropleth "zmax"  
                     
@@ -1547,6 +1551,7 @@ module Trace =
                 ?Latitudes  : #IConvertible seq,
                 ?Locations  : seq<string>,
                 ?GeoJson    ,
+                ?FeatureIdKey:string,
                 ?Connectgaps : bool,
                 ?Fill        : StyleParam.Fill,
                 ?Fillcolor   
@@ -1558,6 +1563,7 @@ module Trace =
                     Latitudes   |> DynObj.setValueOpt   trace "lat"
                     Locations   |> DynObj.setValueOpt   trace "locations"
                     GeoJson     |> DynObj.setValueOpt   trace "geojson"
+                    FeatureIdKey|> DynObj.setValueOpt   trace "featureidkey"
                     Connectgaps |> DynObj.setValueOpt   trace "connectgaps"
                     Fill        |> DynObj.setValueOptBy trace "fill" StyleParam.Fill.convert
                     Fillcolor   |> DynObj.setValueOpt   trace "fillcolor"

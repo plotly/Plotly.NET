@@ -616,7 +616,6 @@ type Chart =
         Chart.Range(x, y, upper, lower, ?Name=Name,?ShowMarkers=ShowMarkers,?Showlegend=Showlegend,?Color=Color,?RangeColor=RangeColor,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont)
 
 
-
     /// Displays a range of data by plotting two Y values per data point, with each Y value being drawn as a line 
     static member Range(x, y, upper, lower,mode,
             [<Optional;DefaultParameterValue(null)>] ?Name,
@@ -1463,11 +1462,13 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?Colorscale,
             [<Optional;DefaultParameterValue(null)>] ?Colorbar,
             [<Optional;DefaultParameterValue(null)>] ?Marker,
+            [<Optional;DefaultParameterValue(null)>] ?GeoJson,
+            [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey: string,
             [<Optional;DefaultParameterValue(null)>] ?Zmin,
             [<Optional;DefaultParameterValue(null)>] ?Zmax) =
         Trace.initChoroplethMap (
             TraceStyle.ChoroplethMap (Locations=locations,Z=z,?Text=Text,?Locationmode=Locationmode,?Autocolorscale=Autocolorscale,
-                ?Colorscale=Colorscale,?Colorbar=Colorbar,?Marker=Marker,?Zmin=Zmin,?Zmax=Zmax)              
+                ?Colorscale=Colorscale,?Colorbar=Colorbar,?Marker=Marker,?Zmin=Zmin,?Zmax=Zmax,?GeoJson=GeoJson,?FeatureIdKey=FeatureIdKey)              
             )
         |> GenericChart.ofTraceObject        
 
@@ -2223,6 +2224,7 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?Dash                          ,
             [<Optional;DefaultParameterValue(null)>] ?Width : float                 ,
             [<Optional;DefaultParameterValue(null)>] ?GeoJson                       ,
+            [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey: string          ,
             [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
             [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
             [<Optional;DefaultParameterValue(null)>] ?Fillcolor   
@@ -2230,13 +2232,14 @@ type Chart =
 
         Trace.initScatterGeo(
             TraceStyle.ScatterGeo(
-                mode        = mode          ,
-                Longitudes  = longitudes    ,
-                Latitudes   = latitudes     ,
-                ?GeoJson    = GeoJson      ,
-                ?Connectgaps= Connectgaps  ,
-                ?Fill       = Fill         ,
-                ?Fillcolor  = Fillcolor    
+                mode            = mode          ,
+                Longitudes      = longitudes    ,
+                Latitudes       = latitudes     ,
+                ?GeoJson        = GeoJson      ,
+                ?FeatureIdKey   = FeatureIdKey ,
+                ?Connectgaps    = Connectgaps  ,
+                ?Fill           = Fill         ,
+                ?Fillcolor      = Fillcolor    
             )               
         )
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
@@ -2294,6 +2297,7 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?Dash                          ,
             [<Optional;DefaultParameterValue(null)>] ?Width : float                 ,
             [<Optional;DefaultParameterValue(null)>] ?GeoJson                       ,
+            [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey: string          ,
             [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
             [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
             [<Optional;DefaultParameterValue(null)>] ?Fillcolor   
@@ -2302,13 +2306,14 @@ type Chart =
 
         Trace.initScatterGeo(
             TraceStyle.ScatterGeo(
-                mode        = mode          ,
-                Longitudes  = longitudes    ,
-                Latitudes   = latitudes     ,
-                ?GeoJson    = GeoJson      ,
-                ?Connectgaps= Connectgaps  ,
-                ?Fill       = Fill         ,
-                ?Fillcolor  = Fillcolor    
+                mode            = mode          ,
+                Longitudes      = longitudes    ,
+                Latitudes       = latitudes     ,
+                ?GeoJson        = GeoJson      ,
+                ?FeatureIdKey   = FeatureIdKey ,
+                ?Connectgaps    = Connectgaps  ,
+                ?Fill           = Fill         ,
+                ?Fillcolor      = Fillcolor    
             )               
         )
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
@@ -2365,6 +2370,7 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?Dash                          ,
             [<Optional;DefaultParameterValue(null)>] ?Width : float                 ,
             [<Optional;DefaultParameterValue(null)>] ?GeoJson                       ,
+            [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey: string          ,
             [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
             [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
             [<Optional;DefaultParameterValue(null)>] ?Fillcolor   
@@ -2372,12 +2378,13 @@ type Chart =
 
         Trace.initScatterGeo(
             TraceStyle.ScatterGeo(
-                mode        = mode          ,
-                ?Locations  = locations     ,
-                ?GeoJson    = GeoJson       ,
-                ?Connectgaps= Connectgaps   ,
-                ?Fill       = Fill          ,
-                ?Fillcolor  = Fillcolor    
+                mode            = mode          ,
+                ?Locations      = locations     ,
+                ?GeoJson        = GeoJson       ,
+                ?FeatureIdKey   = FeatureIdKey ,
+                ?Connectgaps    = Connectgaps   ,
+                ?Fill           = Fill          ,
+                ?Fillcolor      = Fillcolor    
             )               
         )
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
@@ -2427,6 +2434,7 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
             [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
             [<Optional;DefaultParameterValue(null)>] ?GeoJson                       ,
+            [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey: string          ,
             [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
             [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
             [<Optional;DefaultParameterValue(null)>] ?Fillcolor   
@@ -2436,13 +2444,14 @@ type Chart =
 
         Trace.initScatterGeo(
             TraceStyle.ScatterGeo(
-                mode        = changeMode StyleParam.Mode.Markers ,
-                Longitudes  = longitudes    ,
-                Latitudes   = latitudes     ,
-                ?GeoJson    = GeoJson      ,
-                ?Connectgaps= Connectgaps  ,
-                ?Fill       = Fill         ,
-                ?Fillcolor  = Fillcolor    
+                mode            = changeMode StyleParam.Mode.Markers ,
+                Longitudes      = longitudes    ,
+                Latitudes       = latitudes     ,
+                ?GeoJson        = GeoJson      ,
+                ?FeatureIdKey   = FeatureIdKey ,
+                ?Connectgaps    = Connectgaps  ,
+                ?Fill           = Fill         ,
+                ?Fillcolor      = Fillcolor    
             )               
         )
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
@@ -2489,6 +2498,7 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
             [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
             [<Optional;DefaultParameterValue(null)>] ?GeoJson                       ,
+            [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey: string          ,
             [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
             [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
             [<Optional;DefaultParameterValue(null)>] ?Fillcolor    
@@ -2499,13 +2509,14 @@ type Chart =
 
         Trace.initScatterGeo(
             TraceStyle.ScatterGeo(
-                mode        = changeMode StyleParam.Mode.Markers ,
-                Longitudes  = longitudes    ,
-                Latitudes   = latitudes     ,
-                ?GeoJson    = GeoJson      ,
-                ?Connectgaps= Connectgaps  ,
-                ?Fill       = Fill         ,
-                ?Fillcolor  = Fillcolor    
+                mode            = changeMode StyleParam.Mode.Markers ,
+                Longitudes      = longitudes    ,
+                Latitudes       = latitudes     ,
+                ?GeoJson        = GeoJson      ,
+                ?FeatureIdKey   = FeatureIdKey ,
+                ?Connectgaps    = Connectgaps  ,
+                ?Fill           = Fill         ,
+                ?Fillcolor      = Fillcolor    
             )               
         )
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
@@ -2552,6 +2563,7 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
             [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
             [<Optional;DefaultParameterValue(null)>] ?GeoJson                       ,
+            [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey: string          ,
             [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
             [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
             [<Optional;DefaultParameterValue(null)>] ?Fillcolor    
@@ -2624,6 +2636,7 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
             [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
             [<Optional;DefaultParameterValue(null)>] ?GeoJson                       ,
+            [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey: string          ,
             [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
             [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
             [<Optional;DefaultParameterValue(null)>] ?Fillcolor    
@@ -2639,13 +2652,14 @@ type Chart =
 
         Trace.initScatterGeo(
             TraceStyle.ScatterGeo(
-                mode        = changeMode StyleParam.Mode.Lines,
-                Longitudes  = longitudes    ,
-                Latitudes   = latitudes     ,
-                ?GeoJson    = GeoJson      ,
-                ?Connectgaps= Connectgaps  ,
-                ?Fill       = Fill         ,
-                ?Fillcolor  = Fillcolor    
+                mode            = changeMode StyleParam.Mode.Lines,
+                Longitudes      = longitudes    ,
+                Latitudes       = latitudes     ,
+                ?GeoJson        = GeoJson      ,
+                ?FeatureIdKey   = FeatureIdKey ,
+                ?Connectgaps    = Connectgaps  ,
+                ?Fill           = Fill         ,
+                ?Fillcolor      = Fillcolor    
             )               
         )
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
@@ -2697,6 +2711,7 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
             [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
             [<Optional;DefaultParameterValue(null)>] ?GeoJson                       ,
+            [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey: string          ,
             [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
             [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
             [<Optional;DefaultParameterValue(null)>] ?Fillcolor    
@@ -2713,13 +2728,14 @@ type Chart =
 
         Trace.initScatterGeo(
             TraceStyle.ScatterGeo(
-                mode        = changeMode StyleParam.Mode.Lines,
-                Longitudes  = longitudes    ,
-                Latitudes   = latitudes     ,
-                ?GeoJson    = GeoJson      ,
-                ?Connectgaps= Connectgaps  ,
-                ?Fill       = Fill         ,
-                ?Fillcolor  = Fillcolor    
+                mode            = changeMode StyleParam.Mode.Lines,
+                Longitudes      = longitudes    ,
+                Latitudes       = latitudes     ,
+                ?GeoJson        = GeoJson      ,
+                ?FeatureIdKey   = FeatureIdKey ,
+                ?Connectgaps    = Connectgaps  ,
+                ?Fill           = Fill         ,
+                ?Fillcolor      = Fillcolor    
             )               
         )
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
@@ -2771,6 +2787,7 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
             [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
             [<Optional;DefaultParameterValue(null)>] ?GeoJson                       ,
+            [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey: string          ,
             [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
             [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
             [<Optional;DefaultParameterValue(null)>] ?Fillcolor    
@@ -2786,12 +2803,13 @@ type Chart =
 
         Trace.initScatterGeo(
             TraceStyle.ScatterGeo(
-                mode        = changeMode StyleParam.Mode.Lines,
-                Locations   = locations    ,
-                ?GeoJson    = GeoJson      ,
-                ?Connectgaps= Connectgaps  ,
-                ?Fill       = Fill         ,
-                ?Fillcolor  = Fillcolor    
+                mode            = changeMode StyleParam.Mode.Lines,
+                Locations       = locations    ,
+                ?GeoJson        = GeoJson      ,
+                ?FeatureIdKey   = FeatureIdKey ,
+                ?Connectgaps    = Connectgaps  ,
+                ?Fill           = Fill         ,
+                ?Fillcolor      = Fillcolor    
             )               
         )
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)

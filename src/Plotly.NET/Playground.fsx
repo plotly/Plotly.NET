@@ -1,4 +1,8 @@
-﻿#load "StyleParams.fs"
+﻿#r "nuget: FSharp.Data"
+#r "nuget: Deedle"
+#r "nuget: FSharpAux"
+
+#load "StyleParams.fs"
 #load "DynamicObj.fs"
 #load "Frame.fs"
 #load "Colors.fs"
@@ -48,6 +52,67 @@
 
 open Plotly.NET
 open GenericChart
+
+open FSharp.Data
+open Newtonsoft.Json
+open System.Text
+open System.IO
+open Deedle
+open FSharpAux
+
+let geoJson = 
+    Http.RequestString "https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json"
+    |> JsonConvert.DeserializeObject
+
+let data = 
+     let dataString = Http.RequestString "https://raw.githubusercontent.com/plotly/datasets/master/fips-unemp-16.csv"
+     let byteArray = Encoding.UTF8.GetBytes(dataString)
+     use stream = new MemoryStream(byteArray)
+     Frame.ReadCsv(stream,true,separators=",",schema="fips=string,unemp=float")
+
+let locations: string [] = 
+    data
+    |> Frame.getCol "fips"
+    |> Series.values
+    |> Array.ofSeq
+
+let z: int [] = 
+    data
+    |> Frame.getCol "unemp"
+    |> Series.values
+    |> Array.ofSeq
+
+Chart.ChoroplethMap(
+    locations = locations,
+    z = z,
+    Locationmode=StyleParam.LocationFormat.GeoJson_Id,
+    GeoJson = geoJson,
+    FeatureIdKey="id"
+)
+|> Chart.withMap(
+    Geo.init(
+        Scope=StyleParam.GeoScope.Usa
+    )
+)
+|> Chart.Show
+
+Trace.initChoroplethMap(id)
+|> fun t ->
+    t?z <- z
+    t?locations <- locations
+    t?geojson <- geoJson
+    t?featureidkey <- "id"
+    t?locationmode <- "geojson-id"
+    t
+|> GenericChart.ofTraceObject
+|> Chart.withMap(
+    Geo.init(
+        Scope=StyleParam.GeoScope.Usa
+    )
+)
+|> Chart.Show
+
+System.Random().Next(1,40)
 
 // Funnel examples adapted from Plotly docs: https://plotly.com/javascript/funnel-charts/
 let funnel =

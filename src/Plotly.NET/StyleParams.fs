@@ -599,11 +599,13 @@ module StyleParam =
         | CountryNames 
         | ISO_3
         | USA_states
+        | GeoJson_Id
     
         static member toString = function
             | CountryNames  -> "country names"
             | ISO_3         -> "ISO-3" 
             | USA_states    -> "USA-states"
+            | GeoJson_Id    -> "geojson-id"
     
         static member convert = LocationFormat.toString >> box 
 
