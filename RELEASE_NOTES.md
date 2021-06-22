@@ -45,6 +45,8 @@
  * [Add Chart.withWithAdditionalHeadTags, Chart.withHeadTags, Chart.WithMathTex extensions for manipulating display options](https://github.com/plotly/Plotly.NET/commit/6ae1212d18a5282f631723342a685ed3b4280315)
  * [Fix Annotation type annotations ([#78](https://github.com/plotly/Plotly.NET/issues/78))](https://github.com/plotly/Plotly.NET/commit/a920492ac03e333c52766928a3771357ca9f669b)
  * [Add name option with defaults for the upper and lower bound traces in range charts](https://github.com/plotly/Plotly.NET/commit/3cbb5f116b8b3b0467e8a88707858252780a39f0)
+ * [Add functionality and docs for using GeoJSON with geo charts [#86](https://github.com/plotly/Plotly.NET/issues/86)](https://github.com/plotly/Plotly.NET/commit/a68db7de0109e6714aeb044b806be2796f2bd400)
+ * [Add functionality to customize Lower and upper labels of range charts [#83](https://github.com/plotly/Plotly.NET/issues/86)](https://github.com/plotly/Plotly.NET/commit/86357cf05e9cfe2f264369255dcf90e31861275a)
 
 ### 1.2.2 - Apr 9 2020
  * [Opening Charts is now more or less OS agnostic](https://github.com/plotly/Plotly.NET/commit/f6e3dceade085e43e7e56b478b9cf7b533a4fe55)
