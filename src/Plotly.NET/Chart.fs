@@ -624,10 +624,12 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?Color,
             [<Optional;DefaultParameterValue(null)>] ?RangeColor,
             [<Optional;DefaultParameterValue(null)>] ?Labels,
+            [<Optional;DefaultParameterValue(null)>] ?UpperLabels,
+            [<Optional;DefaultParameterValue(null)>] ?LowerLabels,
             [<Optional;DefaultParameterValue(null)>] ?TextPosition,
             [<Optional;DefaultParameterValue(null)>] ?TextFont,
-            [<Optional;DefaultParameterValue(null)>] ?LowerName,
-            [<Optional;DefaultParameterValue(null)>] ?UpperName) =            
+            [<Optional;DefaultParameterValue("lower" )>] ?LowerName: string,
+            [<Optional;DefaultParameterValue("upper" )>] ?UpperName: string) =            
             
         let upperName = defaultArg UpperName "upper" 
         let lowerName = defaultArg LowerName "lower" 
@@ -655,6 +657,7 @@ type Chart =
             |> TraceStyle.TraceInfo(?Name = Some lowerName, Showlegend=false)
             |> TraceStyle.Line(Width=0.)
             |> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,0,0.5)")             
+            |> TraceStyle.TextLabel(?Text=LowerLabels,?Textposition=TextPosition,?Textfont=TextFont)
 
         let upper = 
             Trace.initScatter (
@@ -662,7 +665,8 @@ type Chart =
             |> TraceStyle.TraceInfo(?Name = Some upperName, Showlegend=false)
             |> TraceStyle.Line(Width=0.)
             |> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,0,0.5)")             
- 
+            |> TraceStyle.TextLabel(?Text=UpperLabels,?Textposition=TextPosition,?Textfont=TextFont)
+
         GenericChart.MultiChart ([lower;upper;trace],Layout(),Config(), DisplayOptions())
 
 
@@ -674,12 +678,14 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?Color,
             [<Optional;DefaultParameterValue(null)>] ?RangeColor,
             [<Optional;DefaultParameterValue(null)>] ?Labels,
+            [<Optional;DefaultParameterValue(null)>] ?UpperLabels,
+            [<Optional;DefaultParameterValue(null)>] ?LowerLabels,
             [<Optional;DefaultParameterValue(null)>] ?TextPosition,
             [<Optional;DefaultParameterValue(null)>] ?TextFont,
             [<Optional;DefaultParameterValue(null)>] ?LowerName,
             [<Optional;DefaultParameterValue(null)>] ?UpperName) =  
         let x,y = Seq.unzip xy
-        Chart.Range(x, y, upper, lower, mode, ?Name=Name,?ShowMarkers=ShowMarkers,?Showlegend=Showlegend,?Color=Color,?RangeColor=RangeColor,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?LowerName=LowerName,?UpperName=UpperName)
+        Chart.Range(x, y, upper, lower, mode, ?Name=Name,?ShowMarkers=ShowMarkers,?Showlegend=Showlegend,?Color=Color,?RangeColor=RangeColor,?Labels=Labels,?UpperLabels=UpperLabels,?LowerLabels=LowerLabels,?TextPosition=TextPosition,?TextFont=TextFont,?LowerName=LowerName,?UpperName=UpperName)
 
 
     /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.

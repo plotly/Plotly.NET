@@ -60,6 +60,17 @@ open System.IO
 open Deedle
 open FSharpAux
 
+Chart.Range(
+    x = [1;2],
+    y = [2;3],
+    upper=[3;4],
+    lower=[1;2],
+    mode=StyleParam.Mode.Lines,
+    UpperLabels=["upper1";"upper2"],
+    LowerLabels=["lower1";"lower2"]
+)
+|> Chart.Show
+
 let geoJson = 
     Http.RequestString "https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json"
     |> JsonConvert.DeserializeObject
