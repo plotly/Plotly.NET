@@ -8,7 +8,7 @@ module Axis =
     type LinearAxis () =
         inherit DynamicObj ()
 
-        /// Init LinearAxis type
+        /// Init Generic LinearAxis type
         static member init
             (
                 ?AxisType: StyleParam.AxisType, 
@@ -21,8 +21,8 @@ module Axis =
                 ?Fixedrange:bool,       
                 ?Tickmode: StyleParam.TickMode,         
                 ?nTicks: int,           
-                ?Tick0: IConvertible,            
-                ?dTick: IConvertible,            
+                ?Tick0: #IConvertible,            
+                ?dTick: #IConvertible,            
                 ?Tickvals: seq<#IConvertible>,         
                 ?Ticktext: seq<#IConvertible>,         
                 ?Ticks: StyleParam.TickOptions,            
@@ -62,7 +62,9 @@ module Axis =
                 ?Showbackground: bool,   
                 ?Backgroundcolor: string,  
                 ?Showaxeslabels: bool,
-                ?Visible: bool
+                ?Visible: bool,
+                ?CategoryOrder: StyleParam.CategoryOrder,
+                ?CategoryArray: seq<#IConvertible>
             ) =
                 LinearAxis() 
                 |> LinearAxis.style
@@ -118,13 +120,14 @@ module Axis =
                         ?Showbackground  = Showbackground ,
                         ?Backgroundcolor = Backgroundcolor,
                         ?Showaxeslabels  = Showaxeslabels,
-                        ?Visible = Visible
+                        ?Visible         = Visible,
+                        ?CategoryOrder   = CategoryOrder,
+                        ?CategoryArray   = CategoryArray
                     )
 
-        // Applies the styles to LinearAxis()
-        static member style
+        static member initCategorical
             (
-                ?AxisType: StyleParam.AxisType, 
+                categoryOrder: StyleParam.CategoryOrder,
                 ?Title: string,            
                 ?Titlefont: Font,                             
                 ?Autorange: StyleParam.AutoRange,        
@@ -134,8 +137,8 @@ module Axis =
                 ?Fixedrange:bool,       
                 ?Tickmode: StyleParam.TickMode,         
                 ?nTicks: int,           
-                ?Tick0: IConvertible,            
-                ?dTick: IConvertible,            
+                ?Tick0: #IConvertible,            
+                ?dTick: #IConvertible,            
                 ?Tickvals: seq<#IConvertible>,         
                 ?Ticktext: seq<#IConvertible>,         
                 ?Ticks: StyleParam.TickOptions,            
@@ -175,7 +178,125 @@ module Axis =
                 ?Showbackground: bool,   
                 ?Backgroundcolor: string,  
                 ?Showaxeslabels: bool,
-                ?Visible: bool
+                ?Visible: bool,
+                ?CategoryArray: seq<#IConvertible>
+            ) =
+                LinearAxis() 
+                |> LinearAxis.style
+                    (
+                        AxisType         = StyleParam.AxisType.Category ,
+                        ?Title           = Title          ,
+                        ?Titlefont       = Titlefont      ,
+                        ?Autorange       = Autorange      ,
+                        ?Rangemode       = Rangemode      ,
+                        ?Range           = Range          ,
+                        ?RangeSlider     = RangeSlider    ,
+                        ?Fixedrange      = Fixedrange     ,
+                        ?Tickmode        = Tickmode       ,
+                        ?nTicks          = nTicks         ,
+                        ?Tick0           = Tick0          ,
+                        ?dTick           = dTick          ,
+                        ?Tickvals        = Tickvals       ,
+                        ?Ticktext        = Ticktext       ,
+                        ?Ticks           = Ticks          ,
+                        ?Mirror          = Mirror         ,
+                        ?Ticklen         = Ticklen        ,
+                        ?Tickwidth       = Tickwidth      ,
+                        ?Tickcolor       = Tickcolor      ,
+                        ?Showticklabels  = Showticklabels ,
+                        ?Tickfont        = Tickfont       ,
+                        ?Tickangle       = Tickangle      ,
+                        ?Tickprefix      = Tickprefix     ,
+                        ?Showtickprefix  = Showtickprefix ,
+                        ?Ticksuffix      = Ticksuffix     ,
+                        ?Showticksuffix  = Showticksuffix ,
+                        ?Showexponent    = Showexponent   ,
+                        ?Exponentformat  = Exponentformat ,
+                        ?Tickformat      = Tickformat     ,
+                        ?Hoverformat     = Hoverformat    ,
+                        ?Showline        = Showline       ,
+                        ?Linecolor       = Linecolor      ,
+                        ?Linewidth       = Linewidth      ,
+                        ?Showgrid        = Showgrid       ,
+                        ?Gridcolor       = Gridcolor      ,
+                        ?Gridwidth       = Gridwidth      ,
+                        ?Zeroline        = Zeroline       ,
+                        ?Zerolinecolor   = Zerolinecolor  ,
+                        ?Zerolinewidth   = Zerolinewidth  ,
+                        ?Anchor          = Anchor         ,
+                        ?Side            = Side           ,
+                        ?Overlaying      = Overlaying     ,
+                        ?Domain          = Domain         ,
+                        ?Position        = Position       ,
+                        ?IsSubplotObj    = IsSubplotObj   ,
+                        ?Showspikes      = Showspikes     ,
+                        ?Spikethickness  = Spikethickness ,
+                        ?Spikecolor      = Spikecolor     ,
+                        ?Showbackground  = Showbackground ,
+                        ?Backgroundcolor = Backgroundcolor,
+                        ?Showaxeslabels  = Showaxeslabels,
+                        ?Visible         = Visible,
+                        CategoryOrder    = categoryOrder,
+                        ?CategoryArray   = CategoryArray
+                    )
+
+        // Applies the styles to LinearAxis()
+        static member style
+            (
+                ?AxisType: StyleParam.AxisType, 
+                ?Title: string,            
+                ?Titlefont: Font,                             
+                ?Autorange: StyleParam.AutoRange,        
+                ?Rangemode: StyleParam.RangeMode,        
+                ?Range: StyleParam.Range,            
+                ?RangeSlider: RangeSlider,
+                ?Fixedrange:bool,       
+                ?Tickmode: StyleParam.TickMode,         
+                ?nTicks: int,           
+                ?Tick0: #IConvertible,            
+                ?dTick: #IConvertible,            
+                ?Tickvals: seq<#IConvertible>,         
+                ?Ticktext: seq<#IConvertible>,         
+                ?Ticks: StyleParam.TickOptions,            
+                ?Mirror: StyleParam.Mirror,           
+                ?Ticklen: float,
+                ?Tickwidth: float,        
+                ?Tickcolor: string,        
+                ?Showticklabels: bool,   
+                ?Tickfont: Font,         
+                ?Tickangle: int,        
+                ?Tickprefix: string,       
+                ?Showtickprefix: StyleParam.ShowTickOption,   
+                ?Ticksuffix: string,       
+                ?Showticksuffix: StyleParam.ShowTickOption,   
+                ?Showexponent: StyleParam.ShowExponent,     
+                ?Exponentformat: StyleParam.ExponentFormat,   
+                ?Tickformat: string,       
+                ?Hoverformat: string,      
+                ?Showline: bool,         
+                ?Linecolor: string,        
+                ?Linewidth: float,        
+                ?Showgrid: bool,         
+                ?Gridcolor: string,        
+                ?Gridwidth: float,        
+                ?Zeroline : bool,         
+                ?Zerolinecolor: string,    
+                ?Zerolinewidth: float,    
+                ?Anchor: StyleParam.AxisAnchorId,           
+                ?Side: StyleParam.Side,             
+                ?Overlaying: StyleParam.AxisAnchorId,      
+                ?Domain: StyleParam.Range,           
+                ?Position: float,         
+                ?IsSubplotObj: bool,
+                ?Showspikes: bool,       
+                ?Spikethickness: float,   
+                ?Spikecolor: string,       
+                ?Showbackground: bool,   
+                ?Backgroundcolor: string,  
+                ?Showaxeslabels: bool,
+                ?Visible: bool,
+                ?CategoryOrder: StyleParam.CategoryOrder,
+                ?CategoryArray: seq<#IConvertible>
             ) =
                 (fun (axis:LinearAxis) -> 
                     AxisType        |> DynObj.setValueOptBy axis "type" StyleParam.AxisType.convert
@@ -233,6 +354,8 @@ module Axis =
                     //Update
                     Titlefont       |> DynObj.setValueOpt   axis "titlefont" 
                     Tickfont        |> DynObj.setValueOpt   axis "tickfont"
+                    CategoryOrder   |> DynObj.setValueOptBy axis "categoryorder" StyleParam.CategoryOrder.convert
+                    CategoryArray   |> DynObj.setValueOpt   axis "categoryarray"
 
                     axis
                 )

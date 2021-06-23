@@ -40,14 +40,15 @@ module StyleParam =
     /// Sets the axis type. By default (Auto), plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
     [<RequireQualifiedAccess>]
     type AxisType =
-        | Auto | Linear | Log | Date | Category
+        | Auto | Linear | Log | Date | Category | MultiCategory
     
         static member toString = function
-            | Auto     -> "-"            
-            | Linear   -> "linear"            
-            | Log      -> "log"
-            | Date     -> "date"
-            | Category -> "category"
+            | Auto          -> "-"            
+            | Linear        -> "linear"            
+            | Log           -> "log"
+            | Date          -> "date"
+            | Category      -> "category"
+            | MultiCategory -> "multicategory"
 
         static member convert = AxisType.toString >> box
 
@@ -225,17 +226,47 @@ module StyleParam =
             | Greens          -> box "Greens"   
             | Picnic          -> box "Picnic"   
 
-    /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses "trace", which specifies the order that is present in the data supplied. Set `categoryorder` to "category ascending" or "category descending" if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to "array" to derive the ordering from the attribute `categoryarray`. 
-    /// If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the "trace" mode. The unspecified categories will follow the categories in `categoryarray`.
+    /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses "trace", which specifies the order that is present in the data supplied. 
+    /// Set `categoryorder` to "category ascending" or "category descending" if order should be determined by the alphanumerical order of the category names. 
+    /// Set `categoryorder` to "array" to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the "trace" mode. 
+    /// The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to "total ascending" or "total descending" if order should be determined by the numerical order of the values. 
+    /// Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
     [<RequireQualifiedAccess>]
     type CategoryOrder =
-        | Trace | Ascending | Descending | Array
+        | Trace
+        | CategoryAscending
+        | CategoryDescending
+        | Array
+        | TotalAscending
+        | TotalDescending
+        | MinAscending
+        | MinDescending
+        | MaxAscending
+        | MaxDescending
+        | SumAscending
+        | SumDescending
+        | MeanAscending
+        | MeanDescending
+        | MedianAscending
+        | MedianDescending
     
         static member toString = function
-            | Trace      -> "trace"            
-            | Ascending      -> "category ascending"            
-            | Descending -> "category descending"
-            | Array -> "array"
+            | Trace -> "trace" 
+            | CategoryAscending -> "category ascending" 
+            | CategoryDescending -> "category descending" 
+            | Array -> "array" 
+            | TotalAscending -> "total ascending" 
+            | TotalDescending -> "total descending" 
+            | MinAscending -> "min ascending" 
+            | MinDescending -> "min descending" 
+            | MaxAscending -> "max ascending" 
+            | MaxDescending -> "max descending" 
+            | SumAscending -> "sum ascending" 
+            | SumDescending -> "sum descending" 
+            | MeanAscending -> "mean ascending" 
+            | MeanDescending -> "mean descending" 
+            | MedianAscending -> "median ascending" 
+            | MedianDescending -> "median descending"
 
         static member convert = CategoryOrder.toString >> box
 

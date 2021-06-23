@@ -60,6 +60,21 @@ open System.IO
 open Deedle
 open FSharpAux
 
+Chart.Column(
+    keysvalues= [
+        "second",3
+        "first", 6
+        "third", 1
+    ]
+)
+|> Chart.withX_Axis(
+    Axis.LinearAxis.initCategorical(
+        StyleParam.CategoryOrder.Array,
+        CategoryArray = ["first"; "second"; "third"]
+    )
+)
+|> Chart.Show
+
 Chart.Range(
     x = [1;2],
     y = [2;3],
