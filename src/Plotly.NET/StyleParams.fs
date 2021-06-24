@@ -809,6 +809,103 @@ module StyleParam =
             else
                 cmode
 
+    /// Defines the map layers that are rendered by default below the trace layers defined in `data`, which are themselves by default rendered below the layers defined in `layout.mapbox.layers`. 
+    /// These layers can be defined either explicitly as a Mapbox Style object which can contain multiple layer definitions that load data from any public or private Tile Map Service (TMS or XYZ) or Web Map Service (WMS) or implicitly by using one of the built-in style objects which use WMSes which do not require any access tokens, 
+    /// or by using a default Mapbox style or custom Mapbox style URL, both of which require a Mapbox access token Note that Mapbox access token can be set in the `accesstoken` attribute or in the `mapboxAccessToken` config option. 
+    /// Mapbox Style objects are of the form described in the Mapbox GL JS documentation available at https://docs.mapbox.com/mapbox-gl-js/style-spec The built-in plotly.js styles objects are: open-street-map, white-bg, carto-positron, carto-darkmatter, stamen-terrain, stamen-toner, stamen-watercolor 
+    /// The built-in Mapbox styles are: basic, streets, outdoors, light, dark, satellite, satellite-streets Mapbox style URLs are of the form: mapbox://mapbox.mapbox-<name>-<version>
+    [<RequireQualifiedAccess>]
+    type MapBoxStyle =
+        // plotly presets
+        | OpenStreetMap
+        | WhiteBG
+        | CartoPositron
+        | CartoDarkmatter
+        | StamenTerrain
+        | StamenToner
+        | StamenWatercolor
+        
+        // Mapbox presets
+        | MapBoxBasic
+        | MapBoxStreets
+        | MapBoxOutdoors
+        | MapBoxLight
+        | MapBoxDark
+        | MapBoxSatellite
+        | MapBoxSatelliteStreets
+
+        //Custom
+        | Custom of string
+
+        static member toString = function
+
+            | OpenStreetMap -> "open-street-map"
+            | WhiteBG -> "white-bg"
+            | CartoPositron -> "carto-positron"
+            | CartoDarkmatter -> "carto-darkmatter"
+            | StamenTerrain -> "stamen-terrain"
+            | StamenToner -> "stamen-toner"
+            | StamenWatercolor -> "stamen-watercolor"
+            
+            | MapBoxBasic -> "basic"
+            | MapBoxStreets -> "streets"
+            | MapBoxOutdoors -> "outdoors"
+            | MapBoxLight -> "light"
+            | MapBoxDark -> "dark"
+            | MapBoxSatellite -> "satellite"
+            | MapBoxSatelliteStreets -> "satellite-streets"
+
+            | Custom s -> s
+
+        static member convert = MapBoxStyle.toString >> box
+    
+    [<RequireQualifiedAccess>]
+    type MapBoxLayerSourceType =
+        | GeoJson
+        | Vector
+        | Raster
+        | Image
+
+        static member toString = function
+            | GeoJson -> "geojson"
+            | Vector  -> "vector"
+            | Raster  -> "raster"
+            | Image   -> "image"
+
+        static member convert = MapBoxLayerSourceType.toString >> box
+
+    [<RequireQualifiedAccess>]
+    type MapBoxLayerType =
+        | Circle
+        | Line
+        | Fill
+        | Symbol
+        | Raster
+
+        static member toString = function
+            | Circle -> "circle"
+            | Line -> "line"
+            | Fill -> "fill"
+            | Symbol -> "symbol"
+            | Raster -> "raster"
+
+        static member convert = MapBoxLayerType.toString >> box
+
+
+    [<RequireQualifiedAccess>]
+    type MapBoxLayerSymbolPlacement =
+        | Point
+        | Line
+        | LineCenter
+
+        static member toString = function
+        | Point -> "point"
+        | Line -> "line"
+        | LineCenter -> "line-center"
+
+        static member convert = MapBoxLayerSymbolPlacement.toString >> box
+
+
 //--------------------------
 // #N#
 //--------------------------

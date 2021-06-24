@@ -400,6 +400,17 @@ module ChartExtensions =
                 GenericChart.setLayout layout ch
             )
 
+        /// Sets a mapbox for the given chart (will only work with traces supporting mapboxes, e.g. choroplethmapbox, scattermapbox)
+        [<CompiledName("WithMapBox")>]
+        static member withMapBox(mapBox:MapBox,[<Optional;DefaultParameterValue(null)>] ?Id ) =
+            (fun (ch:GenericChart) ->
+                let layout =
+                    let id = defaultArg Id 1
+                    GenericChart.getLayout ch 
+                    |> Layout.UpdateMapBoxById(id,mapBox)
+                GenericChart.setLayout layout ch
+            )
+
         /// Sets the map style for the given chart (will only work with traces supporting geo, e.g. choropleth, scattergeo)
         ///
         /// Parameters      :

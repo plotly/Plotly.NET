@@ -300,7 +300,7 @@ type Layout() =
                 layout
             )
 
-    // Updates the style of current axis with given AxisId
+    // Updates the style of current geo map with given Id
     static member UpdateMapById
         (   
            id   : int,
@@ -314,6 +314,24 @@ type Layout() =
                     | None    -> map :> DynamicObj
                 
                 geo'|> DynObj.setValue layout key
+
+                layout
+            )
+            
+    // Updates the style of current geo map with given Id
+    static member UpdateMapBoxById
+        (   
+           id       : int,
+           mapbox   : MapBox
+        ) =
+            (fun (layout:Layout) -> 
+                let key = if id < 2 then "mapbox" else sprintf "mapbox%i" id
+                let mapbox' = 
+                    match layout.TryGetTypedValue<MapBox>(key) with
+                    | Some a  -> DynObj.combine (unbox a) mapbox
+                    | None    -> mapbox :> DynamicObj
+                
+                mapbox' |> DynObj.setValue layout key
 
                 layout
             )

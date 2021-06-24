@@ -66,6 +66,9 @@
     <Compile Include="Table.fs" />
     <Compile Include="GeoProjection.fs" />
     <Compile Include="Geo.fs" />
+    <Compile Include="MapBoxLayerSymbol.fs" />
+    <Compile Include="MapBoxLayer.fs" />
+    <Compile Include="MapBox.fs" />
     <Compile Include="Trace.fs" />
     <Compile Include="Trace3d.fs" />
     <Compile Include="LayoutGrid.fs" />
