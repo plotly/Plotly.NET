@@ -1,0 +1,127 @@
+(**
+---
+title: Geo vs. Mapbox
+category: Mapbox map charts
+categoryindex: 7
+index: 1
+---
+*)
+
+(*** hide ***)
+
+(*** condition: prepare ***)
+#r "nuget: Newtonsoft.JSON, 12.0.3"
+#r "../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
+
+(*** condition: ipynb ***)
+#if IPYNB
+#r "nuget: Plotly.NET, {{fsdocs-package-version}}"
+#r "nuget: Plotly.NET.Interactive, {{fsdocs-package-version}}"
+#endif // IPYNB
+
+(** 
+# Mapbox Maps vs Geo Maps
+
+[![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
+[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
+[![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
+
+*Summary:* This introduction shows the differences between Geo and Mapbox based geographical charts.
+
+Plotly and therefore Plotly.NET supports two different kinds of maps:
+
+- **Mapbox maps** are tile-based maps. If your figure is created with a `Chart.*MapBox` function or otherwise contains one or more traces of type `scattermapbox`, 
+    `choroplethmapbox` or `densitymapbox`, the layout.mapbox object in your figure contains configuration information for the map itself.
+    
+- **Geo maps** are outline-based maps. If your figure is created with a `Chart.ScatterGeo, `Chart.PointGeo`, `Chart.LineGeo` or `Chart.Choropleth` function or 
+    otherwise contains one or more traces of type `scattergeo` or `choropleth`, the layout.geo object in your figure contains configuration information for the map itself.
+    
+_This page documents Mapbox tile-based maps, and the [Geo map documentation]({{root}}/5_0_geo-vs-mapbox.html) describes how to configure outline-based maps_
+
+## How Layers Work in Mapbox Tile Maps
+
+Mapbox tile maps are composed of various layers, of three different types:
+
+- the `style` property of the `MapBox` object defines is the lowest layers, also known as your "base map"
+- The various traces in data are by default rendered above the base map (although this can be controlled via the below attribute).
+- the `layers` property of the `MapBox` object is an array that defines more layers that are by default rendered above the traces in data (although this can also be controlled via the below attribute).
+    
+a `MapBox` object where these properties can be set can be initialized via `MapBox.init`. To use it in a chart, use the `Chart.withMapBox` function:
+*)
+open Plotly.NET
+
+// a simple MapBox with a OpenStreetMap base layer.
+let mb =
+    MapBox.init(
+        Style = StyleParam.MapBoxStyle.OpenStreetMap
+    )
+
+let baseLayerOnly = 
+    Chart.PointMapBox([],[]) // deliberately empty chart to show the base map only
+    |> Chart.withMapBox mb // add the mapBox
+
+(*** condition: ipynb ***)
+#if IPYNB
+baseLayerOnly
+#endif // IPYNB
+
+(***hide***)
+baseLayerOnly |> GenericChart.toChartHTML
+(***include-it-raw***)
+
+(**
+
+## Mapbox Access Tokens and When You Need Them
+
+The word "mapbox" in the trace names and layout.mapbox refers to the Mapbox GL JS open-source library, which is integrated into Plotly.NET. 
+
+If your basemap uses data from the Mapbox service, then you will need to register for a free account at https://mapbox.com/ 
+and obtain a Mapbox Access token. 
+
+This token should be provided via the `AccessToken` property:
+*)
+
+let mbWithToken =
+    MapBox.init(
+        Style = StyleParam.MapBoxStyle.OpenStreetMap,
+        AccessToken = "your_token_here"
+    )
+
+(**
+
+If your base map does not use data from the Mapbox service, you do not need to register for a Mapbox account.
+
+## Base Maps
+
+- `WhiteBG` yields an empty white canvas which results in no external HTTP requests
+- The plotly presets yield maps composed of raster tiles from various public tile servers which do not require signups or access tokens
+- The Mapbox presets yield maps composed of vector tiles from the Mapbox service, and do require a Mapbox Access Token or an on-premise Mapbox installation.
+- Use `StyleParam.MapBoxStyle.Custom` for:
+    - Mapbox service style URL, which requires a Mapbox Access Token or an on-premise Mapbox installation.
+    - A Mapbox Style object as defined at https://docs.mapbox.com/mapbox-gl-js/style-spec/
+
+
+The accepted values for the `style` property of the `MapBox` object are represented in `StyleParam.MapBoxStyle`:
+
+*)
+type MapBoxStyle =
+    // plotly presets, no token needed
+    | WhiteBG
+    | OpenStreetMap
+    | CartoPositron
+    | CartoDarkmatter
+    | StamenTerrain
+    | StamenToner
+    | StamenWatercolor
+
+    // Mapbox presets, you might need a free token
+    | MapBoxBasic
+    | MapBoxStreets
+    | MapBoxOutdoors
+    | MapBoxLight
+    | MapBoxDark
+    | MapBoxSatellite
+    | MapBoxSatelliteStreets
+
+    //Custom - provide custom maps
+    | Custom of string

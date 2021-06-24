@@ -1,9 +1,9 @@
 (**
 ---
 title: Choropleth maps
-category: Map Charts
+category: Geo map charts
 categoryindex: 6
-index: 1
+index: 3
 ---
 *)
 

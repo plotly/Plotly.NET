@@ -2,7 +2,7 @@
 ---
 title: Candlestick Charts
 category: Finance Charts
-categoryindex: 7
+categoryindex: 8
 index: 1
 ---
 *)
