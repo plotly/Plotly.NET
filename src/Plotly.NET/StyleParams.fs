@@ -899,9 +899,9 @@ module StyleParam =
         | LineCenter
 
         static member toString = function
-        | Point -> "point"
-        | Line -> "line"
-        | LineCenter -> "line-center"
+            | Point -> "point"
+            | Line -> "line"
+            | LineCenter -> "line-center"
 
         static member convert = MapBoxLayerSymbolPlacement.toString >> box
 

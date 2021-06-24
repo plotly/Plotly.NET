@@ -2782,6 +2782,7 @@ type Chart =
     /// Fill        : Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.
     ///
     /// Fillcolor   : Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
+
     static member LineGeo(locations,
             [<Optional;DefaultParameterValue(null)>] ?Name                          ,
             [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
@@ -2822,3 +2823,357 @@ type Chart =
         |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
         |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
         |> GenericChart.ofTraceObject
+
+    /// <summary>
+    /// Creates a ScatterMapBox chart, where data is visualized by (longitude,latitude) pairs on a geographic map using mapbox.
+    ///
+    /// Customize the mapbox layers, style, etc. by using Chart.withMapBox.
+    ///
+    /// You might need a MapBox token, which you can also configure with Chart.withMapBox.
+    ///
+    /// ScatterGeo charts are the basis of PointMapBox and LineMapBox Charts, and can be customized as such. We also provide abstractions for those: Chart.PointMapBox and Chart.LineMapBox
+    /// </summary>
+    /// <param name="longitudes">Sets the longitude coordinates (in degrees East).</param>
+    /// <param name="latitudes">Sets the latitude coordinates (in degrees North).</param>
+    /// <param name="mode">Determines the drawing mode for this scatter trace. If the provided `mode` includes "text" then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover.</param>
+    /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+    /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+    /// <param name="Color">Sets the marker color. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.</param>
+    /// <param name="Opacity">Sets the opacity of the trace.</param>
+    /// <param name="Labels">Sets text elements associated with each (lon,lat) pair If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (lon,lat) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+    /// <param name="TextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
+    /// <param name="TextFont">Sets the icon text font (color=mapbox.layer.paint.text-color, size=mapbox.layer.layout.text-size). Has an effect only when `type` is set to "symbol".</param>
+    /// <param name="Width">Sets the line width (in px).</param>
+    /// <param name="Below">Determines if this scattermapbox trace's layers are to be inserted before the layer with the specified ID. By default, scattermapbox layers are inserted above all the base layers. To place the scattermapbox layers above every other layer, set `below` to "''".</param>
+    /// <param name="Connectgaps">Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.</param>
+    /// <param name="Fill">Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.</param>
+    /// <param name="Fillcolor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+    static member ScatterMapBox(longitudes, latitudes, mode,
+        [<Optional;DefaultParameterValue(null)>] ?Name                          ,
+        [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
+        [<Optional;DefaultParameterValue(null)>] ?Color                         ,
+        [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
+        [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
+        [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
+        [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
+        [<Optional;DefaultParameterValue(null)>] ?Width : float                 ,
+        [<Optional;DefaultParameterValue(null)>] ?Below : string                ,
+        [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
+        [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
+        [<Optional;DefaultParameterValue(null)>] ?Fillcolor   
+        ) = 
+
+        Trace.initScatterMapbox(
+            TraceStyle.ScatterMapBox(
+                mode            = mode          ,
+                Longitudes      = longitudes    ,
+                Latitudes       = latitudes     ,
+                ?Below          = Below         ,
+                ?Connectgaps    = Connectgaps  ,
+                ?Fill           = Fill         ,
+                ?Fillcolor      = Fillcolor    
+            )               
+        )
+        |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=ShowLegend,?Opacity=Opacity)
+        |> TraceStyle.Line(?Color=Color,?Width=Width)
+        |> TraceStyle.Marker(?Color=Color)
+        |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        |> GenericChart.ofTraceObject 
+
+    /// <summary>
+    /// Creates a ScatterMapBox chart, where data is visualized by (longitude,latitude) pairs on a geographic map using mapbox.
+    ///
+    /// Customize the mapbox layers, style, etc. by using Chart.withMapBox.
+    ///
+    /// You might need a MapBox token, which you can also configure with Chart.withMapBox.
+    ///
+    /// ScatterGeo charts are the basis of PointMapBox and LineMapBox Charts, and can be customized as such. We also provide abstractions for those: Chart.PointMapBox and Chart.LineMapBox
+    /// </summary>
+    /// <param name="lonlat">Sets the (longitude,latitude) coordinates (in degrees North, degrees South).</param>
+    /// <param name="mode">Determines the drawing mode for this scatter trace. If the provided `mode` includes "text" then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover.</param>
+    /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+    /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+    /// <param name="Color">Sets the marker color. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.</param>
+    /// <param name="Opacity">Sets the opacity of the trace.</param>
+    /// <param name="Labels">Sets text elements associated with each (lon,lat) pair If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (lon,lat) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+    /// <param name="TextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
+    /// <param name="TextFont">Sets the icon text font (color=mapbox.layer.paint.text-color, size=mapbox.layer.layout.text-size). Has an effect only when `type` is set to "symbol".</param>
+    /// <param name="Width">Sets the line width (in px).</param>
+    /// <param name="Below">Determines if this scattermapbox trace's layers are to be inserted before the layer with the specified ID. By default, scattermapbox layers are inserted above all the base layers. To place the scattermapbox layers above every other layer, set `below` to "''".</param>
+    /// <param name="Connectgaps">Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.</param>
+    /// <param name="Fill">Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.</param>
+    /// <param name="Fillcolor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+    static member ScatterMapBox(lonlat, mode,
+        [<Optional;DefaultParameterValue(null)>] ?Name                          ,
+        [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
+        [<Optional;DefaultParameterValue(null)>] ?Color                         ,
+        [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
+        [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
+        [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
+        [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
+        [<Optional;DefaultParameterValue(null)>] ?Width : float                 ,
+        [<Optional;DefaultParameterValue(null)>] ?Below : string                ,
+        [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
+        [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
+        [<Optional;DefaultParameterValue(null)>] ?Fillcolor   
+        ) = 
+
+            let longitudes, latitudes = Seq.unzip lonlat
+
+            Chart.ScatterMapBox(
+                longitudes, 
+                latitudes, 
+                mode,
+                ?Name        =  Name       ,
+                ?ShowLegend  =  ShowLegend ,
+                ?Color       =  Color      ,
+                ?Opacity     =  Opacity    ,
+                ?Labels      =  Labels     ,
+                ?TextPosition=  TextPosition,
+                ?TextFont    =  TextFont   ,
+                ?Width       =  Width      ,
+                ?Below       =  Below      ,
+                ?Connectgaps =  Connectgaps,
+                ?Fill        =  Fill       ,
+                ?Fillcolor   =  Fillcolor  
+            )                  
+                           
+    /// <summary>
+    /// Creates a PointMapBox chart, where data is visualized by (longitude,latitude) pairs as Points on a geographic map using mapbox.
+    ///
+    /// Customize the mapbox layers, style, etc. by using Chart.withMapBox.
+    ///
+    /// You might need a MapBox token, which you can also configure with Chart.withMapBox.
+    /// </summary>
+    /// <param name="longitudes">Sets the longitude coordinates (in degrees East).</param>
+    /// <param name="latitudes">Sets the latitude coordinates (in degrees North).</param>
+    /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+    /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+    /// <param name="Color">Sets the marker color. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.</param>
+    /// <param name="Opacity">Sets the opacity of the trace.</param>
+    /// <param name="Labels">Sets text elements associated with each (lon,lat) pair If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (lon,lat) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+    /// <param name="TextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
+    /// <param name="TextFont">Sets the icon text font (color=mapbox.layer.paint.text-color, size=mapbox.layer.layout.text-size). Has an effect only when `type` is set to "symbol".</param>
+    /// <param name="Width">Sets the line width (in px).</param>
+    /// <param name="Below">Determines if this scattermapbox trace's layers are to be inserted before the layer with the specified ID. By default, scattermapbox layers are inserted above all the base layers. To place the scattermapbox layers above every other layer, set `below` to "''".</param>
+    /// <param name="Connectgaps">Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.</param>
+    /// <param name="Fill">Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.</param>
+    /// <param name="Fillcolor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+    static member PointMapBox(longitudes,latitudes,
+        [<Optional;DefaultParameterValue(null)>] ?Name                          ,
+        [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
+        [<Optional;DefaultParameterValue(null)>] ?Color                         ,
+        [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
+        [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
+        [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
+        [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
+        [<Optional;DefaultParameterValue(null)>] ?Width : float                 ,
+        [<Optional;DefaultParameterValue(null)>] ?Below : string                ,
+        [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
+        [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
+        [<Optional;DefaultParameterValue(null)>] ?Fillcolor   
+        ) = 
+            
+            let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
+
+            Chart.ScatterMapBox(
+                longitudes, 
+                latitudes, 
+                mode = changeMode StyleParam.Mode.Markers ,
+                ?Name        =  Name       ,
+                ?ShowLegend  =  ShowLegend ,
+                ?Color       =  Color      ,
+                ?Opacity     =  Opacity    ,
+                ?Labels      =  Labels     ,
+                ?TextPosition=  TextPosition,
+                ?TextFont    =  TextFont   ,
+                ?Width       =  Width      ,
+                ?Below       =  Below      ,
+                ?Connectgaps =  Connectgaps,
+                ?Fill        =  Fill       ,
+                ?Fillcolor   =  Fillcolor  
+            )                  
+                                                      
+    /// <summary>
+    /// Creates a PointMapBox chart, where data is visualized by (longitude,latitude) pairs as Points on a geographic map using mapbox.
+    ///
+    /// Customize the mapbox layers, style, etc. by using Chart.withMapBox.
+    ///
+    /// You might need a MapBox token, which you can also configure with Chart.withMapBox.
+    /// </summary>
+    /// <param name="lonlat">Sets the (longitude,latitude) coordinates (in degrees North, degrees South).</param>
+    /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+    /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+    /// <param name="Color">Sets the marker color. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.</param>
+    /// <param name="Opacity">Sets the opacity of the trace.</param>
+    /// <param name="Labels">Sets text elements associated with each (lon,lat) pair If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (lon,lat) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+    /// <param name="TextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
+    /// <param name="TextFont">Sets the icon text font (color=mapbox.layer.paint.text-color, size=mapbox.layer.layout.text-size). Has an effect only when `type` is set to "symbol".</param>
+    /// <param name="Width">Sets the line width (in px).</param>
+    /// <param name="Below">Determines if this scattermapbox trace's layers are to be inserted before the layer with the specified ID. By default, scattermapbox layers are inserted above all the base layers. To place the scattermapbox layers above every other layer, set `below` to "''".</param>
+    /// <param name="Connectgaps">Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.</param>
+    /// <param name="Fill">Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.</param>
+    /// <param name="Fillcolor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+    static member PointMapBox(lonlat,
+        [<Optional;DefaultParameterValue(null)>] ?Name                          ,
+        [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
+        [<Optional;DefaultParameterValue(null)>] ?Color                         ,
+        [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
+        [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
+        [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
+        [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
+        [<Optional;DefaultParameterValue(null)>] ?Width : float                 ,
+        [<Optional;DefaultParameterValue(null)>] ?Below : string                ,
+        [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
+        [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
+        [<Optional;DefaultParameterValue(null)>] ?Fillcolor   
+        ) = 
+            
+            let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
+            let longitudes, latitudes = Seq.unzip lonlat
+
+            Chart.ScatterMapBox(
+                longitudes, 
+                latitudes, 
+                mode = changeMode StyleParam.Mode.Markers ,
+                ?Name        =  Name       ,
+                ?ShowLegend  =  ShowLegend ,
+                ?Color       =  Color      ,
+                ?Opacity     =  Opacity    ,
+                ?Labels      =  Labels     ,
+                ?TextPosition=  TextPosition,
+                ?TextFont    =  TextFont   ,
+                ?Width       =  Width      ,
+                ?Below       =  Below      ,
+                ?Connectgaps =  Connectgaps,
+                ?Fill        =  Fill       ,
+                ?Fillcolor   =  Fillcolor  
+            )                                             
+    /// <summary>
+    /// Creates a LineMapBox chart, where data is visualized by (longitude,latitude) pairs connected by a line on a geographic map using mapbox.
+    ///
+    /// Customize the mapbox layers, style, etc. by using Chart.withMapBox.
+    ///
+    /// You might need a MapBox token, which you can also configure with Chart.withMapBox.
+    /// </summary>
+    /// <param name="longitudes">Sets the longitude coordinates (in degrees East).</param>
+    /// <param name="latitudes">Sets the latitude coordinates (in degrees North).</param>
+    /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+    /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+    /// <param name="ShowMarkers">Determines whether or not To show markers for the individual datums.</param>
+    /// <param name="Color">Sets the marker color. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.</param>
+    /// <param name="Opacity">Sets the opacity of the trace.</param>
+    /// <param name="Labels">Sets text elements associated with each (lon,lat) pair If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (lon,lat) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+    /// <param name="TextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
+    /// <param name="TextFont">Sets the icon text font (color=mapbox.layer.paint.text-color, size=mapbox.layer.layout.text-size). Has an effect only when `type` is set to "symbol".</param>
+    /// <param name="Width">Sets the line width (in px).</param>
+    /// <param name="Below">Determines if this scattermapbox trace's layers are to be inserted before the layer with the specified ID. By default, scattermapbox layers are inserted above all the base layers. To place the scattermapbox layers above every other layer, set `below` to "''".</param>
+    /// <param name="Connectgaps">Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.</param>
+    /// <param name="Fill">Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.</param>
+    /// <param name="Fillcolor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+    static member LineMapBox(longitudes,latitudes,
+        [<Optional;DefaultParameterValue(null)>] ?Name                          ,
+        [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
+        [<Optional;DefaultParameterValue(null)>] ?ShowMarkers                   ,
+        [<Optional;DefaultParameterValue(null)>] ?Color                         ,
+        [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
+        [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
+        [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
+        [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
+        [<Optional;DefaultParameterValue(null)>] ?Width : float                 ,
+        [<Optional;DefaultParameterValue(null)>] ?Below : string                ,
+        [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
+        [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
+        [<Optional;DefaultParameterValue(null)>] ?Fillcolor   
+        ) = 
+            
+            
+            let changeMode = 
+                let isShowMarker =
+                    match ShowMarkers with
+                    | Some isShow -> isShow
+                    | Option.None        -> false
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
+                >> StyleParam.ModeUtils.showMarker (isShowMarker)
+
+            Chart.ScatterMapBox(
+                longitudes, 
+                latitudes, 
+                mode = changeMode StyleParam.Mode.Lines ,
+                ?Name        =  Name       ,
+                ?ShowLegend  =  ShowLegend ,
+                ?Color       =  Color      ,
+                ?Opacity     =  Opacity    ,
+                ?Labels      =  Labels     ,
+                ?TextPosition=  TextPosition,
+                ?TextFont    =  TextFont   ,
+                ?Width       =  Width      ,
+                ?Below       =  Below      ,
+                ?Connectgaps =  Connectgaps,
+                ?Fill        =  Fill       ,
+                ?Fillcolor   =  Fillcolor  
+            )                  
+                                                      
+    /// <summary>
+    /// Creates a LineMapBox chart, where data is visualized by (longitude,latitude) pairs connected by a line on a geographic map using mapbox.
+    ///
+    /// Customize the mapbox layers, style, etc. by using Chart.withMapBox.
+    ///
+    /// You might need a MapBox token, which you can also configure with Chart.withMapBox.
+    /// </summary>
+    /// <param name="lonlat">Sets the (longitude,latitude) coordinates (in degrees North, degrees South).</param>
+    /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+    /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+    /// <param name="ShowMarkers">Determines whether or not To show markers for the individual datums.</param>
+    /// <param name="Color">Sets the marker color. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.</param>
+    /// <param name="Opacity">Sets the opacity of the trace.</param>
+    /// <param name="Labels">Sets text elements associated with each (lon,lat) pair If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (lon,lat) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+    /// <param name="TextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
+    /// <param name="TextFont">Sets the icon text font (color=mapbox.layer.paint.text-color, size=mapbox.layer.layout.text-size). Has an effect only when `type` is set to "symbol".</param>
+    /// <param name="Width">Sets the line width (in px).</param>
+    /// <param name="Below">Determines if this scattermapbox trace's layers are to be inserted before the layer with the specified ID. By default, scattermapbox layers are inserted above all the base layers. To place the scattermapbox layers above every other layer, set `below` to "''".</param>
+    /// <param name="Connectgaps">Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.</param>
+    /// <param name="Fill">Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.</param>
+    /// <param name="Fillcolor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+    static member LineMapBox(lonlat,
+        [<Optional;DefaultParameterValue(null)>] ?Name                          ,
+        [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
+        [<Optional;DefaultParameterValue(null)>] ?ShowMarkers                   ,
+        [<Optional;DefaultParameterValue(null)>] ?Color                         ,
+        [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
+        [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
+        [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
+        [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
+        [<Optional;DefaultParameterValue(null)>] ?Width : float                 ,
+        [<Optional;DefaultParameterValue(null)>] ?Below : string                ,
+        [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
+        [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
+        [<Optional;DefaultParameterValue(null)>] ?Fillcolor   
+        ) = 
+            
+            let changeMode = 
+                let isShowMarker =
+                    match ShowMarkers with
+                    | Some isShow -> isShow
+                    | Option.None        -> false
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
+                >> StyleParam.ModeUtils.showMarker (isShowMarker)
+            let longitudes, latitudes = Seq.unzip lonlat
+
+            Chart.ScatterMapBox(
+                longitudes, 
+                latitudes, 
+                mode = changeMode StyleParam.Mode.Lines ,
+                ?Name        =  Name       ,
+                ?ShowLegend  =  ShowLegend ,
+                ?Color       =  Color      ,
+                ?Opacity     =  Opacity    ,
+                ?Labels      =  Labels     ,
+                ?TextPosition=  TextPosition,
+                ?TextFont    =  TextFont   ,
+                ?Width       =  Width      ,
+                ?Below       =  Below      ,
+                ?Connectgaps =  Connectgaps,
+                ?Fill        =  Fill       ,
+                ?Fillcolor   =  Fillcolor  
+            )                  

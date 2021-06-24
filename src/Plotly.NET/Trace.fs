@@ -374,6 +374,9 @@ module Trace =
 
                 )
 
+
+
+
         /// Sets the given domain on a Trace object.
         static member SetDomain
             (
@@ -1570,4 +1573,27 @@ module Trace =
 
                     trace
 
+                )
+
+        static member ScatterMapBox 
+            (
+                mode       : StyleParam.Mode,
+                ?Longitudes : #IConvertible seq,
+                ?Latitudes  : #IConvertible seq,
+                ?Below: string,
+                ?Connectgaps : bool,
+                ?Fill        : StyleParam.Fill,
+                ?Fillcolor   
+            ) =
+                (fun (trace:('T :> Trace)) -> 
+                
+                    mode        |> StyleParam.Mode.convert |> DynObj.setValue trace "mode"
+                    Longitudes  |> DynObj.setValueOpt   trace "lon"
+                    Latitudes   |> DynObj.setValueOpt   trace "lat"
+                    Below       |> DynObj.setValueOpt   trace "below"
+                    Connectgaps |> DynObj.setValueOpt   trace "connectgaps"
+                    Fill        |> DynObj.setValueOptBy trace "fill" StyleParam.Fill.convert
+                    Fillcolor   |> DynObj.setValueOpt   trace "fillcolor"
+
+                    trace
                 )
