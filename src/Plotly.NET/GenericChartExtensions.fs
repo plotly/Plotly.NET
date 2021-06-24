@@ -335,6 +335,16 @@ module GenericChartExtensions =
                 |> Layout.UpdateMapById(id,map)
             GenericChart.setLayout layout this
             
+        /// Sets a mapbox for the given chart (will only work with traces supporting mapboxes, e.g. choroplethmapbox, scattermapbox)
+        [<CompiledName("WithMapBox")>]
+        [<Extension>]
+        member this.withMapBox(mapBox:MapBox,[<Optional;DefaultParameterValue(null)>] ?Id ) =
+            let layout =
+                let id = defaultArg Id 1
+                GenericChart.getLayout this 
+                |> Layout.UpdateMapBoxById(id,mapBox)
+            GenericChart.setLayout layout this
+            
 
         /// Sets the map style for the given chart (will only work with traces supporting geo, e.g. choropleth, scattergeo)
         ///
