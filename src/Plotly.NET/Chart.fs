@@ -2825,13 +2825,13 @@ type Chart =
         |> GenericChart.ofTraceObject
 
     /// <summary>
-    /// Creates a ScatterMapBox chart, where data is visualized by (longitude,latitude) pairs on a geographic map using mapbox.
+    /// Creates a ScatterMapbox chart, where data is visualized by (longitude,latitude) pairs on a geographic map using mapbox.
     ///
-    /// Customize the mapbox layers, style, etc. by using Chart.withMapBox.
+    /// Customize the mapbox layers, style, etc. by using Chart.withMapbox.
     ///
-    /// You might need a MapBox token, which you can also configure with Chart.withMapBox.
+    /// You might need a Mapbox token, which you can also configure with Chart.withMapbox.
     ///
-    /// ScatterGeo charts are the basis of PointMapBox and LineMapBox Charts, and can be customized as such. We also provide abstractions for those: Chart.PointMapBox and Chart.LineMapBox
+    /// ScatterGeo charts are the basis of PointMapbox and LineMapbox Charts, and can be customized as such. We also provide abstractions for those: Chart.PointMapbox and Chart.LineMapbox
     /// </summary>
     /// <param name="longitudes">Sets the longitude coordinates (in degrees East).</param>
     /// <param name="latitudes">Sets the latitude coordinates (in degrees North).</param>
@@ -2848,7 +2848,7 @@ type Chart =
     /// <param name="Connectgaps">Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.</param>
     /// <param name="Fill">Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.</param>
     /// <param name="Fillcolor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
-    static member ScatterMapBox(longitudes, latitudes, mode,
+    static member ScatterMapbox(longitudes, latitudes, mode,
         [<Optional;DefaultParameterValue(null)>] ?Name                          ,
         [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
         [<Optional;DefaultParameterValue(null)>] ?Color                         ,
@@ -2864,7 +2864,7 @@ type Chart =
         ) = 
 
         Trace.initScatterMapbox(
-            TraceStyle.ScatterMapBox(
+            TraceStyle.ScatterMapbox(
                 mode            = mode          ,
                 Longitudes      = longitudes    ,
                 Latitudes       = latitudes     ,
@@ -2881,13 +2881,13 @@ type Chart =
         |> GenericChart.ofTraceObject 
 
     /// <summary>
-    /// Creates a ScatterMapBox chart, where data is visualized by (longitude,latitude) pairs on a geographic map using mapbox.
+    /// Creates a ScatterMapbox chart, where data is visualized by (longitude,latitude) pairs on a geographic map using mapbox.
     ///
-    /// Customize the mapbox layers, style, etc. by using Chart.withMapBox.
+    /// Customize the mapbox layers, style, etc. by using Chart.withMapbox.
     ///
-    /// You might need a MapBox token, which you can also configure with Chart.withMapBox.
+    /// You might need a Mapbox token, which you can also configure with Chart.withMapbox.
     ///
-    /// ScatterGeo charts are the basis of PointMapBox and LineMapBox Charts, and can be customized as such. We also provide abstractions for those: Chart.PointMapBox and Chart.LineMapBox
+    /// ScatterGeo charts are the basis of PointMapbox and LineMapbox Charts, and can be customized as such. We also provide abstractions for those: Chart.PointMapbox and Chart.LineMapbox
     /// </summary>
     /// <param name="lonlat">Sets the (longitude,latitude) coordinates (in degrees North, degrees South).</param>
     /// <param name="mode">Determines the drawing mode for this scatter trace. If the provided `mode` includes "text" then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover.</param>
@@ -2903,7 +2903,7 @@ type Chart =
     /// <param name="Connectgaps">Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.</param>
     /// <param name="Fill">Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.</param>
     /// <param name="Fillcolor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
-    static member ScatterMapBox(lonlat, mode,
+    static member ScatterMapbox(lonlat, mode,
         [<Optional;DefaultParameterValue(null)>] ?Name                          ,
         [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
         [<Optional;DefaultParameterValue(null)>] ?Color                         ,
@@ -2920,7 +2920,7 @@ type Chart =
 
             let longitudes, latitudes = Seq.unzip lonlat
 
-            Chart.ScatterMapBox(
+            Chart.ScatterMapbox(
                 longitudes, 
                 latitudes, 
                 mode,
@@ -2939,11 +2939,11 @@ type Chart =
             )                  
                            
     /// <summary>
-    /// Creates a PointMapBox chart, where data is visualized by (longitude,latitude) pairs as Points on a geographic map using mapbox.
+    /// Creates a PointMapbox chart, where data is visualized by (longitude,latitude) pairs as Points on a geographic map using mapbox.
     ///
-    /// Customize the mapbox layers, style, etc. by using Chart.withMapBox.
+    /// Customize the mapbox layers, style, etc. by using Chart.withMapbox.
     ///
-    /// You might need a MapBox token, which you can also configure with Chart.withMapBox.
+    /// You might need a Mapbox token, which you can also configure with Chart.withMapbox.
     /// </summary>
     /// <param name="longitudes">Sets the longitude coordinates (in degrees East).</param>
     /// <param name="latitudes">Sets the latitude coordinates (in degrees North).</param>
@@ -2959,7 +2959,7 @@ type Chart =
     /// <param name="Connectgaps">Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.</param>
     /// <param name="Fill">Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.</param>
     /// <param name="Fillcolor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
-    static member PointMapBox(longitudes,latitudes,
+    static member PointMapbox(longitudes,latitudes,
         [<Optional;DefaultParameterValue(null)>] ?Name                          ,
         [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
         [<Optional;DefaultParameterValue(null)>] ?Color                         ,
@@ -2976,7 +2976,7 @@ type Chart =
             
             let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
 
-            Chart.ScatterMapBox(
+            Chart.ScatterMapbox(
                 longitudes, 
                 latitudes, 
                 mode = changeMode StyleParam.Mode.Markers ,
@@ -2995,11 +2995,11 @@ type Chart =
             )                  
                                                       
     /// <summary>
-    /// Creates a PointMapBox chart, where data is visualized by (longitude,latitude) pairs as Points on a geographic map using mapbox.
+    /// Creates a PointMapbox chart, where data is visualized by (longitude,latitude) pairs as Points on a geographic map using mapbox.
     ///
-    /// Customize the mapbox layers, style, etc. by using Chart.withMapBox.
+    /// Customize the mapbox layers, style, etc. by using Chart.withMapbox.
     ///
-    /// You might need a MapBox token, which you can also configure with Chart.withMapBox.
+    /// You might need a Mapbox token, which you can also configure with Chart.withMapbox.
     /// </summary>
     /// <param name="lonlat">Sets the (longitude,latitude) coordinates (in degrees North, degrees South).</param>
     /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
@@ -3014,7 +3014,7 @@ type Chart =
     /// <param name="Connectgaps">Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.</param>
     /// <param name="Fill">Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.</param>
     /// <param name="Fillcolor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
-    static member PointMapBox(lonlat,
+    static member PointMapbox(lonlat,
         [<Optional;DefaultParameterValue(null)>] ?Name                          ,
         [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
         [<Optional;DefaultParameterValue(null)>] ?Color                         ,
@@ -3032,7 +3032,7 @@ type Chart =
             let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
             let longitudes, latitudes = Seq.unzip lonlat
 
-            Chart.ScatterMapBox(
+            Chart.ScatterMapbox(
                 longitudes, 
                 latitudes, 
                 mode = changeMode StyleParam.Mode.Markers ,
@@ -3050,11 +3050,11 @@ type Chart =
                 ?Fillcolor   =  Fillcolor  
             )                                             
     /// <summary>
-    /// Creates a LineMapBox chart, where data is visualized by (longitude,latitude) pairs connected by a line on a geographic map using mapbox.
+    /// Creates a LineMapbox chart, where data is visualized by (longitude,latitude) pairs connected by a line on a geographic map using mapbox.
     ///
-    /// Customize the mapbox layers, style, etc. by using Chart.withMapBox.
+    /// Customize the mapbox layers, style, etc. by using Chart.withMapbox.
     ///
-    /// You might need a MapBox token, which you can also configure with Chart.withMapBox.
+    /// You might need a Mapbox token, which you can also configure with Chart.withMapbox.
     /// </summary>
     /// <param name="longitudes">Sets the longitude coordinates (in degrees East).</param>
     /// <param name="latitudes">Sets the latitude coordinates (in degrees North).</param>
@@ -3071,7 +3071,7 @@ type Chart =
     /// <param name="Connectgaps">Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.</param>
     /// <param name="Fill">Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.</param>
     /// <param name="Fillcolor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
-    static member LineMapBox(longitudes,latitudes,
+    static member LineMapbox(longitudes,latitudes,
         [<Optional;DefaultParameterValue(null)>] ?Name                          ,
         [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
         [<Optional;DefaultParameterValue(null)>] ?ShowMarkers                   ,
@@ -3096,7 +3096,7 @@ type Chart =
                 StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
                 >> StyleParam.ModeUtils.showMarker (isShowMarker)
 
-            Chart.ScatterMapBox(
+            Chart.ScatterMapbox(
                 longitudes, 
                 latitudes, 
                 mode = changeMode StyleParam.Mode.Lines ,
@@ -3115,11 +3115,11 @@ type Chart =
             )                  
                                                       
     /// <summary>
-    /// Creates a LineMapBox chart, where data is visualized by (longitude,latitude) pairs connected by a line on a geographic map using mapbox.
+    /// Creates a LineMapbox chart, where data is visualized by (longitude,latitude) pairs connected by a line on a geographic map using mapbox.
     ///
-    /// Customize the mapbox layers, style, etc. by using Chart.withMapBox.
+    /// Customize the mapbox layers, style, etc. by using Chart.withMapbox.
     ///
-    /// You might need a MapBox token, which you can also configure with Chart.withMapBox.
+    /// You might need a Mapbox token, which you can also configure with Chart.withMapbox.
     /// </summary>
     /// <param name="lonlat">Sets the (longitude,latitude) coordinates (in degrees North, degrees South).</param>
     /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
@@ -3135,7 +3135,7 @@ type Chart =
     /// <param name="Connectgaps">Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.</param>
     /// <param name="Fill">Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.</param>
     /// <param name="Fillcolor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
-    static member LineMapBox(lonlat,
+    static member LineMapbox(lonlat,
         [<Optional;DefaultParameterValue(null)>] ?Name                          ,
         [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
         [<Optional;DefaultParameterValue(null)>] ?ShowMarkers                   ,
@@ -3160,7 +3160,7 @@ type Chart =
                 >> StyleParam.ModeUtils.showMarker (isShowMarker)
             let longitudes, latitudes = Seq.unzip lonlat
 
-            Chart.ScatterMapBox(
+            Chart.ScatterMapbox(
                 longitudes, 
                 latitudes, 
                 mode = changeMode StyleParam.Mode.Lines ,

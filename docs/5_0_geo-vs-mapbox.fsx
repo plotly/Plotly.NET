@@ -30,7 +30,7 @@ index: 1
 
 Plotly and therefore Plotly.NET supports two different kinds of maps:
 
-- **Mapbox maps** are tile-based maps. If your figure is created with a `Chart.*MapBox` function or otherwise contains one or more traces of type `scattermapbox`, 
+- **Mapbox maps** are tile-based maps. If your figure is created with a `Chart.*Mapbox` function or otherwise contains one or more traces of type `scattermapbox`, 
     `choroplethmapbox` or `densitymapbox`, the layout.mapbox object in your figure contains configuration information for the map itself.
     
 - **Geo maps** are outline-based maps. If your figure is created with a `Chart.ScatterGeo, `Chart.PointGeo`, `Chart.LineGeo` or `Chart.Choropleth` function or 

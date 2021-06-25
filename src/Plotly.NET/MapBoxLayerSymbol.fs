@@ -3,23 +3,23 @@
 open System
 
 /// <summary></summary>
-type MapBoxLayerSymbol() = 
+type MapboxLayerSymbol() = 
 
     inherit DynamicObj ()
 
-    /// <summary>Initialize a MapBoxLayer object</summary>
+    /// <summary>Initialize a MapboxLayer object</summary>
 
     static member init
         (   
             ?Icon: string,
             ?IconSize:float,
             ?Text: string,
-            ?Placement: StyleParam.MapBoxLayerSymbolPlacement,
+            ?Placement: StyleParam.MapboxLayerSymbolPlacement,
             ?TextFont: Font,
             ?TextPosition: StyleParam.TextPosition
         ) =
-            MapBoxLayerSymbol()
-            |> MapBoxLayerSymbol.style
+            MapboxLayerSymbol()
+            |> MapboxLayerSymbol.style
                 (
                     ?Icon           = Icon        ,
                     ?IconSize       = IconSize    ,
@@ -29,24 +29,24 @@ type MapBoxLayerSymbol() =
                     ?TextPosition   = TextPosition
                 )
 
-    /// <summary>Create a function that applies the given style parameters to a MapBoxLayer object.</summary>
+    /// <summary>Create a function that applies the given style parameters to a MapboxLayer object.</summary>
 
     static member style
         (   
             ?Icon: string,
             ?IconSize:float,
             ?Text: string,
-            ?Placement: StyleParam.MapBoxLayerSymbolPlacement,
+            ?Placement: StyleParam.MapboxLayerSymbolPlacement,
             ?TextFont: Font,
             ?TextPosition: StyleParam.TextPosition
 
         ) =
-            (fun (mapBoxLayerSymbol:MapBoxLayerSymbol) -> 
+            (fun (mapBoxLayerSymbol:MapboxLayerSymbol) -> 
                 
                 Icon        |> DynObj.setValueOpt mapBoxLayerSymbol "icon"
                 IconSize    |> DynObj.setValueOpt mapBoxLayerSymbol "iconsize"
                 Text        |> DynObj.setValueOpt mapBoxLayerSymbol "text"
-                Placement   |> DynObj.setValueOptBy mapBoxLayerSymbol "placement" StyleParam.MapBoxLayerSymbolPlacement.convert 
+                Placement   |> DynObj.setValueOptBy mapBoxLayerSymbol "placement" StyleParam.MapboxLayerSymbolPlacement.convert 
                 TextFont    |> DynObj.setValueOpt mapBoxLayerSymbol "textfont"
                 TextPosition|> DynObj.setValueOptBy mapBoxLayerSymbol "textposition" StyleParam.TextPosition.convert
                 

@@ -815,7 +815,7 @@ module StyleParam =
     /// Mapbox Style objects are of the form described in the Mapbox GL JS documentation available at https://docs.mapbox.com/mapbox-gl-js/style-spec The built-in plotly.js styles objects are: open-street-map, white-bg, carto-positron, carto-darkmatter, stamen-terrain, stamen-toner, stamen-watercolor 
     /// The built-in Mapbox styles are: basic, streets, outdoors, light, dark, satellite, satellite-streets Mapbox style URLs are of the form: mapbox://mapbox.mapbox-<name>-<version>
     [<RequireQualifiedAccess>]
-    type MapBoxStyle =
+    type MapboxStyle =
         // plotly presets
         | OpenStreetMap
         | WhiteBG
@@ -826,13 +826,13 @@ module StyleParam =
         | StamenWatercolor
         
         // Mapbox presets
-        | MapBoxBasic
-        | MapBoxStreets
-        | MapBoxOutdoors
-        | MapBoxLight
-        | MapBoxDark
-        | MapBoxSatellite
-        | MapBoxSatelliteStreets
+        | MapboxBasic
+        | MapboxStreets
+        | MapboxOutdoors
+        | MapboxLight
+        | MapboxDark
+        | MapboxSatellite
+        | MapboxSatelliteStreets
 
         //Custom
         | Custom of string
@@ -847,20 +847,20 @@ module StyleParam =
             | StamenToner -> "stamen-toner"
             | StamenWatercolor -> "stamen-watercolor"
             
-            | MapBoxBasic -> "basic"
-            | MapBoxStreets -> "streets"
-            | MapBoxOutdoors -> "outdoors"
-            | MapBoxLight -> "light"
-            | MapBoxDark -> "dark"
-            | MapBoxSatellite -> "satellite"
-            | MapBoxSatelliteStreets -> "satellite-streets"
+            | MapboxBasic -> "basic"
+            | MapboxStreets -> "streets"
+            | MapboxOutdoors -> "outdoors"
+            | MapboxLight -> "light"
+            | MapboxDark -> "dark"
+            | MapboxSatellite -> "satellite"
+            | MapboxSatelliteStreets -> "satellite-streets"
 
             | Custom s -> s
 
-        static member convert = MapBoxStyle.toString >> box
+        static member convert = MapboxStyle.toString >> box
     
     [<RequireQualifiedAccess>]
-    type MapBoxLayerSourceType =
+    type MapboxLayerSourceType =
         | GeoJson
         | Vector
         | Raster
@@ -872,10 +872,10 @@ module StyleParam =
             | Raster  -> "raster"
             | Image   -> "image"
 
-        static member convert = MapBoxLayerSourceType.toString >> box
+        static member convert = MapboxLayerSourceType.toString >> box
 
     [<RequireQualifiedAccess>]
-    type MapBoxLayerType =
+    type MapboxLayerType =
         | Circle
         | Line
         | Fill
@@ -889,11 +889,11 @@ module StyleParam =
             | Symbol -> "symbol"
             | Raster -> "raster"
 
-        static member convert = MapBoxLayerType.toString >> box
+        static member convert = MapboxLayerType.toString >> box
 
 
     [<RequireQualifiedAccess>]
-    type MapBoxLayerSymbolPlacement =
+    type MapboxLayerSymbolPlacement =
         | Point
         | Line
         | LineCenter
@@ -903,7 +903,7 @@ module StyleParam =
             | Line -> "line"
             | LineCenter -> "line-center"
 
-        static member convert = MapBoxLayerSymbolPlacement.toString >> box
+        static member convert = MapboxLayerSymbolPlacement.toString >> box
 
 
 //--------------------------

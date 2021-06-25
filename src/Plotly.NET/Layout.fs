@@ -319,15 +319,15 @@ type Layout() =
             )
             
     // Updates the style of current geo map with given Id
-    static member UpdateMapBoxById
+    static member UpdateMapboxById
         (   
            id       : int,
-           mapbox   : MapBox
+           mapbox   : Mapbox
         ) =
             (fun (layout:Layout) -> 
                 let key = if id < 2 then "mapbox" else sprintf "mapbox%i" id
                 let mapbox' = 
-                    match layout.TryGetTypedValue<MapBox>(key) with
+                    match layout.TryGetTypedValue<Mapbox>(key) with
                     | Some a  -> DynObj.combine (unbox a) mapbox
                     | None    -> mapbox :> DynamicObj
                 

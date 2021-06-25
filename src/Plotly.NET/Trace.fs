@@ -1575,7 +1575,7 @@ module Trace =
 
                 )
 
-        static member ScatterMapBox 
+        static member ScatterMapbox 
             (
                 mode       : StyleParam.Mode,
                 ?Longitudes : #IConvertible seq,

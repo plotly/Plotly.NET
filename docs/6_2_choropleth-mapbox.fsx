@@ -1,6 +1,6 @@
 (**
 ---
-title: ChoroplethMapBox
+title: ChoroplethMapbox
 category: Mapbox map charts
 categoryindex: 7
 index: 3
@@ -20,7 +20,7 @@ index: 3
 #endif // IPYNB
 
 (** 
-# ChoroplethMapBox
+# ChoroplethMapbox
 
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
 [![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;

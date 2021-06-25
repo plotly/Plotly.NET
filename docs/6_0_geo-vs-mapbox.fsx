@@ -30,7 +30,7 @@ index: 1
 
 Plotly and therefore Plotly.NET supports two different kinds of maps:
 
-- **Mapbox maps** are tile-based maps. If your figure is created with a `Chart.*MapBox` function or otherwise contains one or more traces of type `scattermapbox`, 
+- **Mapbox maps** are tile-based maps. If your figure is created with a `Chart.*Mapbox` function or otherwise contains one or more traces of type `scattermapbox`, 
     `choroplethmapbox` or `densitymapbox`, the layout.mapbox object in your figure contains configuration information for the map itself.
     
 - **Geo maps** are outline-based maps. If your figure is created with a `Chart.ScatterGeo, `Chart.PointGeo`, `Chart.LineGeo` or `Chart.Choropleth` function or 
@@ -42,23 +42,23 @@ _This page documents Mapbox tile-based maps, and the [Geo map documentation]({{r
 
 Mapbox tile maps are composed of various layers, of three different types:
 
-- the `style` property of the `MapBox` object defines is the lowest layers, also known as your "base map"
+- the `style` property of the `Mapbox` object defines is the lowest layers, also known as your "base map"
 - The various traces in data are by default rendered above the base map (although this can be controlled via the below attribute).
-- the `layers` property of the `MapBox` object is an array that defines more layers that are by default rendered above the traces in data (although this can also be controlled via the below attribute).
+- the `layers` property of the `Mapbox` object is an array that defines more layers that are by default rendered above the traces in data (although this can also be controlled via the below attribute).
     
-a `MapBox` object where these properties can be set can be initialized via `MapBox.init`. To use it in a chart, use the `Chart.withMapBox` function:
+a `Mapbox` object where these properties can be set can be initialized via `Mapbox.init`. To use it in a chart, use the `Chart.withMapbox` function:
 *)
 open Plotly.NET
 
-// a simple MapBox with a OpenStreetMap base layer.
+// a simple Mapbox with a OpenStreetMap base layer.
 let mb =
-    MapBox.init(
-        Style = StyleParam.MapBoxStyle.OpenStreetMap
+    Mapbox.init(
+        Style = StyleParam.MapboxStyle.OpenStreetMap
     )
 
 let baseLayerOnly = 
-    Chart.PointMapBox([],[]) // deliberately empty chart to show the base map only
-    |> Chart.withMapBox mb // add the mapBox
+    Chart.PointMapbox([],[]) // deliberately empty chart to show the base map only
+    |> Chart.withMapbox mb // add the mapBox
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -82,8 +82,8 @@ This token should be provided via the `AccessToken` property:
 *)
 
 let mbWithToken =
-    MapBox.init(
-        Style = StyleParam.MapBoxStyle.OpenStreetMap,
+    Mapbox.init(
+        Style = StyleParam.MapboxStyle.OpenStreetMap,
         AccessToken = "your_token_here"
     )
 
@@ -96,15 +96,15 @@ If your base map does not use data from the Mapbox service, you do not need to r
 - `WhiteBG` yields an empty white canvas which results in no external HTTP requests
 - The plotly presets yield maps composed of raster tiles from various public tile servers which do not require signups or access tokens
 - The Mapbox presets yield maps composed of vector tiles from the Mapbox service, and do require a Mapbox Access Token or an on-premise Mapbox installation.
-- Use `StyleParam.MapBoxStyle.Custom` for:
+- Use `StyleParam.MapboxStyle.Custom` for:
     - Mapbox service style URL, which requires a Mapbox Access Token or an on-premise Mapbox installation.
     - A Mapbox Style object as defined at https://docs.mapbox.com/mapbox-gl-js/style-spec/
 
 
-The accepted values for the `style` property of the `MapBox` object are represented in `StyleParam.MapBoxStyle`:
+The accepted values for the `style` property of the `Mapbox` object are represented in `StyleParam.MapboxStyle`:
 
 *)
-type MapBoxStyle =
+type MapboxStyle =
     // plotly presets, no token needed
     | WhiteBG
     | OpenStreetMap
@@ -115,13 +115,13 @@ type MapBoxStyle =
     | StamenWatercolor
 
     // Mapbox presets, you might need a free token
-    | MapBoxBasic
-    | MapBoxStreets
-    | MapBoxOutdoors
-    | MapBoxLight
-    | MapBoxDark
-    | MapBoxSatellite
-    | MapBoxSatelliteStreets
+    | MapboxBasic
+    | MapboxStreets
+    | MapboxOutdoors
+    | MapboxLight
+    | MapboxDark
+    | MapboxSatellite
+    | MapboxSatelliteStreets
 
     //Custom - provide custom maps
     | Custom of string

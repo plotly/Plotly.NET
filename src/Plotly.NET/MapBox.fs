@@ -1,25 +1,25 @@
 ﻿namespace Plotly.NET
 
 /// <summary>Determines the style of the map shown in mapbox traces</summary>
-type MapBox() = 
+type Mapbox() = 
 
     inherit DynamicObj ()
 
-    /// <summary>Initialize a MapBox object that determines the style of the map shown in geo mapbox</summary>
+    /// <summary>Initialize a Mapbox object that determines the style of the map shown in geo mapbox</summary>
 
     static member init
         (   
             ?Domain: Domain,
             ?AccessToken: string,
-            ?Style: StyleParam.MapBoxStyle,
+            ?Style: StyleParam.MapboxStyle,
             ?Center: (float*float),
             ?Zoom: float,
             ?Bearing: float,
             ?Pitch: float,
-            ?Layers: seq<MapBoxLayer>
+            ?Layers: seq<MapboxLayer>
         ) =
-            MapBox()
-            |> MapBox.style
+            Mapbox()
+            |> Mapbox.style
                 (
                     ?Domain     = Domain,
                     ?AccessToken= AccessToken,
@@ -31,25 +31,25 @@ type MapBox() =
                     ?Layers     = Layers
                 )
 
-    /// <summary>Create a function that applies the given style parameters to a MapBox object.</summary>
+    /// <summary>Create a function that applies the given style parameters to a Mapbox object.</summary>
 
     static member style
         (   
             ?Domain: Domain,
             ?AccessToken: string,
-            ?Style: StyleParam.MapBoxStyle,
+            ?Style: StyleParam.MapboxStyle,
             ?Center: (float*float),
             ?Zoom: float,
             ?Bearing: float,
             ?Pitch: float,
-            ?Layers: seq<MapBoxLayer>
+            ?Layers: seq<MapboxLayer>
 
         ) =
-            (fun (mapBox:MapBox) -> 
+            (fun (mapBox:Mapbox) -> 
                 
                 Domain          |> DynObj.setValueOpt   mapBox "domain"
                 AccessToken     |> DynObj.setValueOpt   mapBox "accesstoken"
-                Style           |> DynObj.setValueOptBy mapBox "style" StyleParam.MapBoxStyle.convert
+                Style           |> DynObj.setValueOptBy mapBox "style" StyleParam.MapboxStyle.convert
 
                 Center         
                 |> Option.map (fun (lon,lat) -> 

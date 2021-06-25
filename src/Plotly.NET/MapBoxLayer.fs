@@ -3,20 +3,20 @@
 open System
 
 /// <summary></summary>
-type MapBoxLayer() = 
+type MapboxLayer() = 
 
     inherit DynamicObj ()
 
-    /// <summary>Initialize a MapBoxLayer object</summary>
+    /// <summary>Initialize a MapboxLayer object</summary>
 
     static member init
         (   
             ?Visible: bool,
-            ?SourceType: StyleParam.MapBoxLayerSourceType,
+            ?SourceType: StyleParam.MapboxLayerSourceType,
             ?Source: #IConvertible,
             ?SourceLayer: string,
             ?SourceAttribution: string,
-            ?Type: StyleParam.MapBoxLayerType,
+            ?Type: StyleParam.MapboxLayerType,
             ?Coordinates:seq<#IConvertible*#IConvertible>,
             ?Below: string,
             ?Color: string,
@@ -26,11 +26,11 @@ type MapBoxLayer() =
             ?CircleRadius: float,
             ?Line:Line,
             ?FillOutlineColor:string,
-            ?Symbol:MapBoxLayerSymbol,
+            ?Symbol:MapboxLayerSymbol,
             ?Name: string
         ) =
-            MapBoxLayer()
-            |> MapBoxLayer.style
+            MapboxLayer()
+            |> MapboxLayer.style
                 (
                     ?Visible            = Visible          ,
                     ?SourceType         = SourceType       ,
@@ -51,16 +51,16 @@ type MapBoxLayer() =
                     ?Name               = Name             
                 )
 
-    /// <summary>Create a function that applies the given style parameters to a MapBoxLayer object.</summary>
+    /// <summary>Create a function that applies the given style parameters to a MapboxLayer object.</summary>
 
     static member style
         (   
             ?Visible: bool,
-            ?SourceType: StyleParam.MapBoxLayerSourceType,
+            ?SourceType: StyleParam.MapboxLayerSourceType,
             ?Source: #IConvertible,
             ?SourceLayer: string,
             ?SourceAttribution: string,
-            ?Type: StyleParam.MapBoxLayerType,
+            ?Type: StyleParam.MapboxLayerType,
             ?Coordinates:seq<#IConvertible*#IConvertible>,
             ?Below: string,
             ?Color: string,
@@ -70,18 +70,18 @@ type MapBoxLayer() =
             ?CircleRadius: float,
             ?Line:Line,
             ?FillOutlineColor:string,
-            ?Symbol:MapBoxLayerSymbol,
+            ?Symbol:MapboxLayerSymbol,
             ?Name: string
 
         ) =
-            (fun (mapBoxLayer:MapBoxLayer) -> 
+            (fun (mapBoxLayer:MapboxLayer) -> 
 
                 Visible          |> DynObj.setValueOpt mapBoxLayer "visible"
-                SourceType       |> DynObj.setValueOptBy mapBoxLayer "sourcetype" StyleParam.MapBoxLayerSourceType.convert
+                SourceType       |> DynObj.setValueOptBy mapBoxLayer "sourcetype" StyleParam.MapboxLayerSourceType.convert
                 Source           |> DynObj.setValueOpt mapBoxLayer "source"
                 SourceLayer      |> DynObj.setValueOpt mapBoxLayer "sourcelayer"
                 SourceAttribution|> DynObj.setValueOpt mapBoxLayer "sourceattribution"
-                Type             |> DynObj.setValueOptBy mapBoxLayer "type" StyleParam.MapBoxLayerType.convert
+                Type             |> DynObj.setValueOptBy mapBoxLayer "type" StyleParam.MapboxLayerType.convert
                 Coordinates      |> DynObj.setValueOpt mapBoxLayer "coordinates"
                 Below            |> DynObj.setValueOpt mapBoxLayer "below"
                 Color            |> DynObj.setValueOpt mapBoxLayer "color"

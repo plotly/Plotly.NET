@@ -36,9 +36,9 @@
 #load "Trace3d.fs"
 #load "GeoProjection.fs"
 #load "Geo.fs"
-#load "MapBoxLayerSymbol.fs"
-#load "MapBoxLayer.fs"
-#load "MapBox.fs"
+#load "MapboxLayerSymbol.fs"
+#load "MapboxLayer.fs"
+#load "Mapbox.fs"
 #load "LayoutGrid.fs"
 #load "Annotation.fs"
 #load "Layout.fs"
@@ -63,35 +63,35 @@ open System.IO
 open Deedle
 open FSharpAux
 
-let dataMapBox = 
+let dataMapbox = 
      let dataString = Http.RequestString "https://raw.githubusercontent.com/plotly/datasets/master/us-cities-top-1k.csv"
      let byteArray = Encoding.UTF8.GetBytes(dataString)
      use stream = new MemoryStream(byteArray)
      Frame.ReadCsv(stream,true,separators=",",schema="City=string,State=string,Population=int,lat=float,lon=float")
 
-dataMapBox.Print()
+dataMapbox.Print()
 
 let lon: float [] = 
-    dataMapBox
+    dataMapbox
     |> Frame.getCol "lon"
     |> Series.values
     |> Array.ofSeq
 
 let lat: float [] = 
-    dataMapBox
+    dataMapbox
     |> Frame.getCol "lat"
     |> Series.values
     |> Array.ofSeq
 
-Chart.LineMapBox(
+Chart.LineMapbox(
     longitudes=lon,
     latitudes=lat,
     ShowMarkers=true,
     Name="soos"
 )
-|> Chart.withMapBox(
-    MapBox.init(
-        Style = StyleParam.MapBoxStyle.OpenStreetMap,
+|> Chart.withMapbox(
+    Mapbox.init(
+        Style = StyleParam.MapboxStyle.OpenStreetMap,
         Center = (-97.61142,38.84028)
     )
 )
