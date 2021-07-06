@@ -193,10 +193,8 @@ open System.IO
 open System.Text
 
 let data = 
-     let dataString = Http.RequestString "https://raw.githubusercontent.com/plotly/datasets/master/fips-unemp-16.csv"
-     let byteArray = Encoding.UTF8.GetBytes(dataString)
-     use stream = new MemoryStream(byteArray)
-     Frame.ReadCsv(stream,true,separators=",",schema="fips=string,unemp=float")
+    Http.RequestString "https://raw.githubusercontent.com/plotly/datasets/master/fips-unemp-16.csv"
+    |> fun csv -> Frame.ReadCsvString(csv,true,separators=",",schema="fips=string,unemp=float")
 
 
 (**

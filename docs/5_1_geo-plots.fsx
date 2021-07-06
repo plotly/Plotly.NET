@@ -76,7 +76,9 @@ pointGeo |> GenericChart.toChartHTML
 
 
 (**
-To connect the given (lon,lat) pairs via straight lines, use `Chart.LineGeo`:
+To connect the given (lon,lat) pairs via straight lines, use `Chart.LineGeo`. 
+Below is an example that pulls external data as a Deedle data 
+frame containing the source and target locations of American Airlines flights from Feb. 2011:
 *)
 
 #r "nuget: Deedle"
@@ -87,10 +89,8 @@ open System.IO
 open System.Text
 
 let data = 
-     let dataString = Http.RequestString "https://raw.githubusercontent.com/plotly/datasets/c34aaa0b1b3cddad335173cb7bc0181897201ee6/2011_february_aa_flight_paths.csv"
-     let byteArray = Encoding.UTF8.GetBytes(dataString)
-     use stream = new MemoryStream(byteArray)
-     Frame.ReadCsv(stream,true,separators=",")
+    Http.RequestString "https://raw.githubusercontent.com/plotly/datasets/c34aaa0b1b3cddad335173cb7bc0181897201ee6/2011_february_aa_flight_paths.csv"
+    |> fun csv -> Frame.ReadCsvString(csv,true,separators=",")
 
 let opacityVals : float [] = data.["cnt"] |> Series.values |> fun s -> s |> Seq.map (fun v -> v/(Seq.max s)) |> Array.ofSeq
 let startCoords = Series.zipInner data.["start_lon"] data.["start_lat"]
