@@ -3177,3 +3177,55 @@ type Chart =
                 ?Fill        =  Fill       ,
                 ?Fillcolor   =  Fillcolor  
             )                  
+
+    /// <summary>
+    /// Creates a ChoroplethMapbox Chart. 
+    ///
+    /// Choropleth Maps display divided geographical areas or regions that are coloured, shaded or patterned in relation to 
+    /// a data variable. This provides a way to visualise values over a geographical area, which can show variation or 
+    /// patterns across the displayed location.
+    ///
+    /// GeoJSON features to be filled are set in `geojson` The data that describes the choropleth value-to-color mapping is set in `locations` and `z`.
+    /// </summary>
+    /// <param name="locations">Sets which features found in "geojson" to plot using their feature `id` field.</param>
+    /// <param name="z">Sets the color values.</param>
+    /// <param name="geoJson">Sets the GeoJSON data associated with this trace. It can be set as a valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs of type "FeatureCollection" or "Feature" with geometries of type "Polygon" or "MultiPolygon".</param>
+    /// <param name="FeatureIdKey">Sets the key in GeoJSON features which is used as id to match the items included in the `locations` array. Support nested property, for example "properties.name".</param>
+    /// <param name="Text">Sets the text elements associated with each location.</param>
+    /// <param name="Below">Determines if the choropleth polygons will be inserted before the layer with the specified ID. By default, choroplethmapbox traces are placed above the water layers. If set to '', the layer will be inserted above every existing layer.</param>
+    /// <param name="Colorscale">Sets the colorscale.</param>
+    /// <param name="Colorbar">Sets the Colorbar object asociated with this trace</param>
+    /// <param name="ZAuto">Determines whether or not the color domain is computed with respect to the input data (here in `z`) or the bounds set in `zmin` and `zmax` Defaults to `false` when `zmin` and `zmax` are set by the user.</param>
+    /// <param name="ZMin">Sets the lower bound of the color domain. Value should have the same units as in `z` and if set, `zmax` must be set as well.</param>
+    /// <param name="ZMid">Sets the mid-point of the color domain by scaling `zmin` and/or `zmax` to be equidistant to this point. Value should have the same units as in `z`. Has no effect when `zauto` is `false`.</param>
+    /// <param name="ZMax">Sets the upper bound of the color domain. Value should have the same units as in `z` and if set, `zmin` must be set as well.</param>
+    static member ChoroplethMapbox(locations,z,geoJson,
+        [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey,
+        [<Optional;DefaultParameterValue(null)>] ?Text,
+        [<Optional;DefaultParameterValue(null)>] ?Below,
+        [<Optional;DefaultParameterValue(null)>] ?Colorscale,
+        [<Optional;DefaultParameterValue(null)>] ?Colorbar,
+        [<Optional;DefaultParameterValue(null)>] ?ZAuto,
+        [<Optional;DefaultParameterValue(null)>] ?ZMin,
+        [<Optional;DefaultParameterValue(null)>] ?ZMid,
+        [<Optional;DefaultParameterValue(null)>] ?ZMax
+        ) =
+            
+            Trace.initChoroplethMapbox (
+                TraceStyle.ChoroplethMapbox (
+                    Z              = z,
+                    Locations      = locations,
+                    GeoJson        = geoJson,
+                    ?FeatureIdKey   = FeatureIdKey,
+                    ?Text           = Text,
+                    ?Below          = Below,
+                    ?Colorscale     = Colorscale,
+                    ?Colorbar       = Colorbar,
+                    ?ZAuto          = ZAuto,
+                    ?ZMin           = ZMin,
+                    ?ZMid           = ZMid,
+                    ?ZMax           = ZMax
+                )
+            )
+            |> GenericChart.ofTraceObject
+            

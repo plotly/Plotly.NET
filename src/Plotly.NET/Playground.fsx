@@ -131,9 +131,7 @@ let geoJson =
 
 let data = 
      let dataString = Http.RequestString "https://raw.githubusercontent.com/plotly/datasets/master/fips-unemp-16.csv"
-     let byteArray = Encoding.UTF8.GetBytes(dataString)
-     use stream = new MemoryStream(byteArray)
-     Frame.ReadCsv(stream,true,separators=",",schema="fips=string,unemp=float")
+     Frame.ReadCsvString(dataString,true,separators=",",schema="fips=string,unemp=float")
 
 let locations: string [] = 
     data
@@ -146,6 +144,17 @@ let z: int [] =
     |> Frame.getCol "unemp"
     |> Series.values
     |> Array.ofSeq
+
+Chart.ChoroplethMapbox(
+    locations = locations,
+    z = z,
+    geoJson = geoJson,
+    FeatureIdKey="id"
+)
+|> Chart.withMapbox(
+    Mapbox.init(Style=StyleParam.MapboxStyle.OpenStreetMap)
+)
+|> Chart.Show
 
 Chart.ChoroplethMap(
     locations = locations,

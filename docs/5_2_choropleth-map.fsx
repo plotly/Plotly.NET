@@ -237,7 +237,10 @@ let choroplethGeoJSON =
     )
     |> Chart.withMap(
         Geo.init(
-            Scope=StyleParam.GeoScope.Usa
+            Scope=StyleParam.GeoScope.NorthAmerica, 
+            Projection=GeoProjection.init(StyleParam.GeoProjectionType.AzimuthalEqualArea),
+            ShowLand=true,
+            LandColor = "lightgrey"
         )
     )
     |> Chart.withSize (800.,800.)

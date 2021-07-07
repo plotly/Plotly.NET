@@ -1170,15 +1170,16 @@ module Trace =
                 ?Locations      : seq<string>,
                 ?Z              : seq<#IConvertible>,
                 ?Text           : seq<#IConvertible>,
-                ?Locationmode                   ,
+                ?Locationmode   : StyleParam.LocationFormat,
                 ?Autocolorscale : bool,
-                ?Colorscale,
-                ?Colorbar,
+                ?Colorscale     : StyleParam.Colorscale,
+                ?Colorbar       : Colorbar,
                 ?Marker         : Marker,
                 ?GeoJson,
-                ?FeatureIdKey: string,
-                ?Zmin,
-                ?Zmax
+                ?FeatureIdKey   : string,
+                ?Zmin           : float,
+                ?Zmid           : float,
+                ?Zmax           : float
      
 
             ) =
@@ -1196,6 +1197,7 @@ module Trace =
                     GeoJson            |> DynObj.setValueOpt   choropleth "geojson" 
                     FeatureIdKey       |> DynObj.setValueOpt   choropleth "featureidkey"
                     Zmin               |> DynObj.setValueOpt   choropleth "zmin"
+                    Zmid               |> DynObj.setValueOpt   choropleth "zmid"
                     Zmax               |> DynObj.setValueOpt   choropleth "zmax"  
                     
                     // out ->
@@ -1577,13 +1579,13 @@ module Trace =
 
         static member ScatterMapbox 
             (
-                mode       : StyleParam.Mode,
+                mode        : StyleParam.Mode,
                 ?Longitudes : #IConvertible seq,
                 ?Latitudes  : #IConvertible seq,
-                ?Below: string,
-                ?Connectgaps : bool,
-                ?Fill        : StyleParam.Fill,
-                ?Fillcolor   
+                ?Below      : string,
+                ?Connectgaps: bool,
+                ?Fill       : StyleParam.Fill,
+                ?Fillcolor  : string
             ) =
                 (fun (trace:('T :> Trace)) -> 
                 
@@ -1594,6 +1596,39 @@ module Trace =
                     Connectgaps |> DynObj.setValueOpt   trace "connectgaps"
                     Fill        |> DynObj.setValueOptBy trace "fill" StyleParam.Fill.convert
                     Fillcolor   |> DynObj.setValueOpt   trace "fillcolor"
+
+                    trace
+                )
+
+        static member ChoroplethMapbox
+            (
+                ?Z              : seq<#IConvertible>,
+                ?GeoJson,
+                ?FeatureIdKey   : string,
+                ?Locations      : seq<#IConvertible>,
+                ?Text           : seq<#IConvertible>,
+                ?Below          : string,
+                ?Colorscale     : StyleParam.Colorscale,
+                ?Colorbar       : Colorbar,
+                ?ZAuto          : bool,
+                ?ZMin           : float,
+                ?ZMid           : float,
+                ?ZMax           : float
+            ) =
+                (fun (trace:('T :> Trace)) -> 
+                    
+                    Z           |> DynObj.setValueOpt   trace "z"
+                    GeoJson     |> DynObj.setValueOpt   trace "geojson"
+                    FeatureIdKey|> DynObj.setValueOpt   trace "featureidkey"
+                    Locations   |> DynObj.setValueOpt   trace "locations"
+                    Text        |> DynObj.setValueOpt   trace "text"
+                    Below       |> DynObj.setValueOpt   trace "below"
+                    Colorscale  |> DynObj.setValueOptBy trace "colorscale" StyleParam.Colorscale.convert
+                    Colorbar    |> DynObj.setValueOpt   trace "colorbar"
+                    ZAuto       |> DynObj.setValueOpt   trace "zauto"
+                    ZMin        |> DynObj.setValueOpt   trace "zmin"
+                    ZMid        |> DynObj.setValueOpt   trace "zmid"
+                    ZMax        |> DynObj.setValueOpt   trace "zmax"
 
                     trace
                 )
