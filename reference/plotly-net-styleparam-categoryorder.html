@@ -35,7 +35,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.4</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.5</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -112,8 +112,11 @@
     <div>
       <p class="fsdocs-summary">
         
- Specifies the ordering logic for the case of categorical variables. By default, plotly uses "trace", which specifies the order that is present in the data supplied. Set `categoryorder` to "category ascending" or "category descending" if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to "array" to derive the ordering from the attribute `categoryarray`. 
- If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the "trace" mode. The unspecified categories will follow the categories in `categoryarray`.
+ Specifies the ordering logic for the case of categorical variables. By default, plotly uses "trace", which specifies the order that is present in the data supplied. 
+ Set `categoryorder` to "category ascending" or "category descending" if order should be determined by the alphanumerical order of the category names. 
+ Set `categoryorder` to "array" to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the "trace" mode. 
+ The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to "total ascending" or "total descending" if order should be determined by the numerical order of the values. 
+ Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
 
       </p>
     </div>
@@ -140,7 +143,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '341', 341)" onmouseover="showTip(event, '341', 341)">
+              <code onmouseout="hideTip(event, '345', 345)" onmouseover="showTip(event, '345', 345)">
                 <p>
                   <a id="Array">
                     <a href="#Array">
@@ -149,7 +152,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="341">
+              <div class="fsdocs-tip" id="345">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Array</span></code>
@@ -161,7 +164,7 @@
           </td>
           <td class="fsdocs-member-xmldoc">
             <div class="fsdocs-summary">
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L232-232" class="fsdocs-source-link">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L242-242" class="fsdocs-source-link">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-blue.png" class="hover"/>
               </a>
@@ -174,19 +177,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '342', 342)" onmouseover="showTip(event, '342', 342)">
+              <code onmouseout="hideTip(event, '346', 346)" onmouseover="showTip(event, '346', 346)">
                 <p>
-                  <a id="Ascending">
-                    <a href="#Ascending">
-                      <code><span>Ascending</span></code>
+                  <a id="CategoryAscending">
+                    <a href="#CategoryAscending">
+                      <code><span>CategoryAscending</span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="342">
+              <div class="fsdocs-tip" id="346">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Ascending</span></code>
+                  <code><span>CategoryAscending</span></code>
                   <br/>
                   <br/>
                 </div>
@@ -195,7 +198,7 @@
           </td>
           <td class="fsdocs-member-xmldoc">
             <div class="fsdocs-summary">
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L232-232" class="fsdocs-source-link">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L240-240" class="fsdocs-source-link">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-blue.png" class="hover"/>
               </a>
@@ -208,19 +211,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '343', 343)" onmouseover="showTip(event, '343', 343)">
+              <code onmouseout="hideTip(event, '347', 347)" onmouseover="showTip(event, '347', 347)">
                 <p>
-                  <a id="Descending">
-                    <a href="#Descending">
-                      <code><span>Descending</span></code>
+                  <a id="CategoryDescending">
+                    <a href="#CategoryDescending">
+                      <code><span>CategoryDescending</span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="343">
+              <div class="fsdocs-tip" id="347">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Descending</span></code>
+                  <code><span>CategoryDescending</span></code>
                   <br/>
                   <br/>
                 </div>
@@ -229,7 +232,7 @@
           </td>
           <td class="fsdocs-member-xmldoc">
             <div class="fsdocs-summary">
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L232-232" class="fsdocs-source-link">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L241-241" class="fsdocs-source-link">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-blue.png" class="hover"/>
               </a>
@@ -242,7 +245,415 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '344', 344)" onmouseover="showTip(event, '344', 344)">
+              <code onmouseout="hideTip(event, '348', 348)" onmouseover="showTip(event, '348', 348)">
+                <p>
+                  <a id="MaxAscending">
+                    <a href="#MaxAscending">
+                      <code><span>MaxAscending</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="348">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>MaxAscending</span></code>
+                  <br/>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L247-247" class="fsdocs-source-link">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-blue.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '349', 349)" onmouseover="showTip(event, '349', 349)">
+                <p>
+                  <a id="MaxDescending">
+                    <a href="#MaxDescending">
+                      <code><span>MaxDescending</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="349">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>MaxDescending</span></code>
+                  <br/>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L248-248" class="fsdocs-source-link">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-blue.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '350', 350)" onmouseover="showTip(event, '350', 350)">
+                <p>
+                  <a id="MeanAscending">
+                    <a href="#MeanAscending">
+                      <code><span>MeanAscending</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="350">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>MeanAscending</span></code>
+                  <br/>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L251-251" class="fsdocs-source-link">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-blue.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '351', 351)" onmouseover="showTip(event, '351', 351)">
+                <p>
+                  <a id="MeanDescending">
+                    <a href="#MeanDescending">
+                      <code><span>MeanDescending</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="351">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>MeanDescending</span></code>
+                  <br/>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L252-252" class="fsdocs-source-link">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-blue.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '352', 352)" onmouseover="showTip(event, '352', 352)">
+                <p>
+                  <a id="MedianAscending">
+                    <a href="#MedianAscending">
+                      <code><span>MedianAscending</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="352">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>MedianAscending</span></code>
+                  <br/>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L253-253" class="fsdocs-source-link">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-blue.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '353', 353)" onmouseover="showTip(event, '353', 353)">
+                <p>
+                  <a id="MedianDescending">
+                    <a href="#MedianDescending">
+                      <code><span>MedianDescending</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="353">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>MedianDescending</span></code>
+                  <br/>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L254-254" class="fsdocs-source-link">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-blue.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '354', 354)" onmouseover="showTip(event, '354', 354)">
+                <p>
+                  <a id="MinAscending">
+                    <a href="#MinAscending">
+                      <code><span>MinAscending</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="354">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>MinAscending</span></code>
+                  <br/>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L245-245" class="fsdocs-source-link">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-blue.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '355', 355)" onmouseover="showTip(event, '355', 355)">
+                <p>
+                  <a id="MinDescending">
+                    <a href="#MinDescending">
+                      <code><span>MinDescending</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="355">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>MinDescending</span></code>
+                  <br/>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L246-246" class="fsdocs-source-link">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-blue.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '356', 356)" onmouseover="showTip(event, '356', 356)">
+                <p>
+                  <a id="SumAscending">
+                    <a href="#SumAscending">
+                      <code><span>SumAscending</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="356">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>SumAscending</span></code>
+                  <br/>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L249-249" class="fsdocs-source-link">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-blue.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '357', 357)" onmouseover="showTip(event, '357', 357)">
+                <p>
+                  <a id="SumDescending">
+                    <a href="#SumDescending">
+                      <code><span>SumDescending</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="357">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>SumDescending</span></code>
+                  <br/>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L250-250" class="fsdocs-source-link">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-blue.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '358', 358)" onmouseover="showTip(event, '358', 358)">
+                <p>
+                  <a id="TotalAscending">
+                    <a href="#TotalAscending">
+                      <code><span>TotalAscending</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="358">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>TotalAscending</span></code>
+                  <br/>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L243-243" class="fsdocs-source-link">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-blue.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '359', 359)" onmouseover="showTip(event, '359', 359)">
+                <p>
+                  <a id="TotalDescending">
+                    <a href="#TotalDescending">
+                      <code><span>TotalDescending</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="359">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>TotalDescending</span></code>
+                  <br/>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L244-244" class="fsdocs-source-link">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-blue.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '360', 360)" onmouseover="showTip(event, '360', 360)">
                 <p>
                   <a id="Trace">
                     <a href="#Trace">
@@ -251,7 +662,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="344">
+              <div class="fsdocs-tip" id="360">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Trace</span></code>
@@ -263,7 +674,7 @@
           </td>
           <td class="fsdocs-member-xmldoc">
             <div class="fsdocs-summary">
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L232-232" class="fsdocs-source-link">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L239-239" class="fsdocs-source-link">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-blue.png" class="hover"/>
               </a>
@@ -299,7 +710,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '345', 345)" onmouseover="showTip(event, '345', 345)">
+              <code onmouseout="hideTip(event, '361', 361)" onmouseover="showTip(event, '361', 361)">
                 <p>
                   <a id="convert">
                     <a href="#convert">
@@ -308,7 +719,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="345">
+              <div class="fsdocs-tip" id="361">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>CategoryOrder.convert&#32;</span></code>
@@ -333,7 +744,7 @@
                 <img src="https://plotly.net/content/img/copy.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-blue.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L240-240" class="fsdocs-source-link">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L274-274" class="fsdocs-source-link">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-blue.png" class="hover"/>
               </a>
@@ -355,7 +766,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '346', 346)" onmouseover="showTip(event, '346', 346)">
+              <code onmouseout="hideTip(event, '362', 362)" onmouseover="showTip(event, '362', 362)">
                 <p>
                   <a id="toString">
                     <a href="#toString">
@@ -364,7 +775,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="346">
+              <div class="fsdocs-tip" id="362">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>CategoryOrder.toString&#32;</span></code>
@@ -389,7 +800,7 @@
                 <img src="https://plotly.net/content/img/copy.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-blue.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L234-234" class="fsdocs-source-link">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/StyleParams.fs#L256-256" class="fsdocs-source-link">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-blue.png" class="hover"/>
               </a>

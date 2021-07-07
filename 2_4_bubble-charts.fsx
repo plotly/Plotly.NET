@@ -23,29 +23,29 @@ third its size.
 
 *)
 let bubble1 = Chart.Bubble(x,y,size)(* output: 
-<div id="d69ae304-c4ce-4f8e-b38f-616d7a85447b" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="b9c2f412-d146-4531-be4b-06eb3f6c2313" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_d69ae304c4ce4f8eb38f616d7a85447b = function() {
+            var renderPlotly_b9c2f412d1464531be4b06eb3f6c2313 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[2,4,6],"y":[4,1,6],"mode":"markers","marker":{"size":[19,26,55]}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('d69ae304-c4ce-4f8e-b38f-616d7a85447b', data, layout, config);
+            Plotly.newPlot('b9c2f412-d146-4531-be4b-06eb3f6c2313', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_d69ae304c4ce4f8eb38f616d7a85447b();
+                    renderPlotly_b9c2f412d1464531be4b06eb3f6c2313();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_d69ae304c4ce4f8eb38f616d7a85447b();
+                renderPlotly_b9c2f412d1464531be4b06eb3f6c2313();
             }
 </script>
 *)

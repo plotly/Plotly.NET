@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Geo vs. Mapbox</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Timo Mühlhaus, Kevin Schneider, F# open source contributors">
+    
+    <!--Opengraph properties (https://ogp.me/)-->
+    <meta property="og:title" content="Geo vs. Mapbox" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Plotly.NET" />
+    
+    <link rel="shortcut icon" type="image/x-icon" href="https://plotly.net//img/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script> -->
+
+    <link type="text/css" rel="stylesheet" href="https://plotly.net/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="https://plotly.net/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="https://plotly.net/content/fsdocs-tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head> 
+
+<body>
+    <div class="columns is-fullheight m-0">
+        <div id="fsdocs-menu" class="column is-2 is-paddingless">
+            <aside class="menu">
+                <div class="container is-paddingless is-marginless has-background-dark">
+                    <a href="https://plotly.net/">
+                        <figure class="image is-128x128 container">
+                            <img src="https://plotly.net/img/logo.png">
+                        </figure>
+                    </a>
+                    <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.5</h5>
+                </div>
+                <div class="content">
+                    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+                    <div id="header">
+                        <div class="searchbox" id="fsdocs-searchbox">
+                            <label for="search-by">
+                                <i class="fas fa-search"></i>
+                            </label>
+                            <input data-search-input="" id="search-by" type="search" placeholder="Search..." class="input"/>
+                            <span data-search-clear="">
+                                <i class="fas fa-times"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- END SEARCH BOX: this adds support for the search box -->
+                    <ul class="navbar-nav">
+                        <li class="nav-header">Links</li>
+                        <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License (MIT)</a></li>
+                        <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release Notes</a></li>
+                        <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source Repository</a></li>
+                        <li class="nav-header">
+  General
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/0_0_basics.html">
+    Basics
+  </a>
+</li>             
+<li class="nav-header">
+  Chart Layout
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/1_0_axis-styling.html">
+    Axis styling
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/1_1_errorbars.html">
+    Error bars
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/1_2_multiple-charts.html">
+    Multicharts and subplots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/1_3_shapes.html">
+    Shapes
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/1_4_display-options.html">
+    Display Options
+  </a>
+</li>             
+<li class="nav-header">
+  Simple Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/2_0_line-scatter-plots.html">
+    Line and scatter plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/2_1_bar-and-column-charts.html">
+    Bar and column charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/2_2_area-plots.html">
+    Area charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/2_3_range-plots.html">
+    Range plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/2_4_bubble-charts.html">
+    Bubble charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/2_5_pie-doughnut-charts.html">
+    Pie and doughnut Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/2_6_table.html">
+    Tables
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/2_7_heatmaps.html">
+    Heatmaps
+  </a>
+</li>             
+<li class="nav-header">
+  3D Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/3_0_3d-scatter-plots.html">
+    3D Scatter charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/3_1_3d-line-plots.html">
+    3D line charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/3_2_3d-surface-plots.html">
+    3D surface plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/3_3_3d-mesh-plots.html">
+    3D Mesh plots
+  </a>
+</li>             
+<li class="nav-header">
+  Distribution Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/4_0_histograms.html">
+    Histograms
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/4_1_box-plots.html">
+    BoxPlots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/4_2_violin-plots.html">
+    Violin plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/4_3_contour-plots.html">
+    Contour plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/4_4_2d-histograms.html">
+    2D Histograms
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/4_5_splom.html">
+    Scatterplot matrix
+  </a>
+</li>             
+<li class="nav-header">
+  Geo map charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/5_0_geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/5_1_geo-plots.html">
+    Scatter and line plots on Geo maps
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/5_2_choropleth-map.html">
+    Choropleth maps
+  </a>
+</li>             
+<li class="nav-header">
+  Mapbox map charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/6_0_geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/6_1_mapbox-plots.html">
+    Scatter and line plots on Mapbox maps
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/6_2_choropleth-mapbox.html">
+    ChoroplethMapbox
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/6_3_density-mapbox.html">
+    DensityMapbox charts
+  </a>
+</li>             
+<li class="nav-header">
+  Finance Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/7_0_candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/7_1_funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/7_2_funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
+<li class="nav-header">
+  Polar Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/8_0_polar-charts.html">
+    Polar charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/8_1_windrose-charts.html">
+    Windrose charts
+  </a>
+</li>             
+<li class="nav-header">
+  Categorical Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/9_0_parallel-categories.html">
+    Parallel categories
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/9_1_parallel-coords.html">
+    Parallel coordinates
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/9_2_sankey.html">
+    Sankey Charts
+  </a>
+</li>
+                        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+        <div class="column is-10 is-paddingless">
+            <div class="section pt-4">
+                <div class="container" id="fsdocs-content">
+                    
+<h1><a name="Mapbox-Maps-vs-Geo-Maps" class="anchor" href="#Mapbox-Maps-vs-Geo-Maps">Mapbox Maps vs Geo Maps</a></h1>
+<p><a href="https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=5_0_geo-vs-mapbox.ipynb"><img src="https://plotly.net/img/badge-binder.svg" alt="Binder" /></a>&emsp;
+<a href="https://plotly.net/5_0_geo-vs-mapbox.fsx"><img src="https://plotly.net/img/badge-script.svg" alt="Script" /></a>&emsp;
+<a href="https://plotly.net/5_0_geo-vs-mapbox.ipynb"><img src="https://plotly.net/img/badge-notebook.svg" alt="Notebook" /></a></p>
+<p><em>Summary:</em> This introduction shows the differences between Geo and Mapbox based geographical charts.</p>
+<p>Plotly and therefore Plotly.NET supports two different kinds of maps:</p>
+<ul>
+<li>
+<p><strong>Mapbox maps</strong> are tile-based maps. If your figure is created with a <code>Chart.*Mapbox</code> function or otherwise contains one or more traces of type <code>scattermapbox</code>,
+<code>choroplethmapbox</code> or <code>densitymapbox</code>, the layout.mapbox object in your figure contains configuration information for the map itself.</p>
+</li>
+<li>
+<p><strong>Geo maps</strong> are outline-based maps. If your figure is created with a <code>Chart.ScatterGeo,</code>Chart.PointGeo<code>,</code>Chart.LineGeo<code>or</code>Chart.Choropleth<code>function or
+otherwise contains one or more traces of type</code>scattergeo<code>or</code>choropleth`, the layout.geo object in your figure contains configuration information for the map itself.</p>
+</li>
+</ul>
+<p><em>This page documents Geo outline-based maps, and the [Mapbox Layers documentation](https://plotly.net//6</em>0<em>geo-vs-mapbox.html) describes how to configure Mapbox tile-based maps.</em></p>
+<h2><a name="Physical-Base-Maps" class="anchor" href="#Physical-Base-Maps">Physical Base Maps</a></h2>
+<p>Plotly Geo maps have a built-in base map layer composed of "physical" and "cultural" (i.e. administrative border) data from the Natural Earth Dataset.
+Various lines and area fills can be shown or hidden, and their color and line-widths specified.
+In the default plotly template, a map frame and physical features such as a coastal outline and filled land areas are shown, at a small-scale 1:110m resolution:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">Plotly</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">NET</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="id">baseMapOnly</span> <span class="o">=</span> 
+    <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="id">PointGeo</span><span class="pn">(</span><span class="pn">[</span><span class="pn">]</span><span class="pn">)</span> <span class="c">// deliberately empty chart to show the base map only</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 7)" onmouseover="showTip(event, 'fs6', 7)" class="id">withMarginSize</span><span class="pn">(</span><span class="n">0</span><span class="pn">,</span><span class="n">0</span><span class="pn">,</span><span class="n">0</span><span class="pn">,</span><span class="n">0</span><span class="pn">)</span>
+</code></pre>
+<div id="5845ebed-ea06-41a1-897c-eccf0faad7da" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<script type="text/javascript">
+
+            var renderPlotly_5845ebedea0641a1897ceccf0faad7da = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            fsharpPlotlyRequire(['plotly'], function(Plotly) {
+
+            var data = [{"type":"scattergeo","mode":"markers","lon":[],"lat":[],"marker":{}}];
+            var layout = {"margin":{"l":0,"r":0,"t":0,"b":0}};
+            var config = {};
+            Plotly.newPlot('5845ebed-ea06-41a1-897c-eccf0faad7da', data, layout, config);
+});
+            };
+            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
+                var script = document.createElement("script");
+                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
+                script.onload = function(){
+                    renderPlotly_5845ebedea0641a1897ceccf0faad7da();
+                };
+                document.getElementsByTagName("head")[0].appendChild(script);
+            }
+            else {
+                renderPlotly_5845ebedea0641a1897ceccf0faad7da();
+            }
+</script>
+
+<p>To control the features of the map, a <code>Geo</code> object is used that can be associtaed with a given chart using the <code>Chart.WithGeo</code> function.
+Here is a map with all physical features enabled and styled, at a larger-scale 1:50m resolution:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs9', 11)" onmouseover="showTip(event, 'fs9', 11)" class="id">myGeo</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs10', 12)" onmouseover="showTip(event, 'fs10', 12)" class="rt">Geo</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 13)" onmouseover="showTip(event, 'fs11', 13)" class="id">init</span><span class="pn">(</span>
+        <span class="fn">Resolution</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs12', 14)" onmouseover="showTip(event, 'fs12', 14)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 15)" onmouseover="showTip(event, 'fs13', 15)" class="rt">GeoResolution</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 16)" onmouseover="showTip(event, 'fs14', 16)" class="id">R50</span><span class="pn">,</span>
+        <span class="fn">ShowCoastLines</span><span class="o">=</span><span class="k">true</span><span class="pn">,</span> 
+        <span class="fn">CoastLineColor</span><span class="o">=</span><span class="s">&quot;RebeccaPurple&quot;</span><span class="pn">,</span>
+        <span class="fn">ShowLand</span><span class="o">=</span><span class="k">true</span><span class="pn">,</span> 
+        <span class="fn">LandColor</span><span class="o">=</span><span class="s">&quot;LightGreen&quot;</span><span class="pn">,</span>
+        <span class="fn">ShowOcean</span><span class="o">=</span><span class="k">true</span><span class="pn">,</span> 
+        <span class="fn">OceanColor</span><span class="o">=</span><span class="s">&quot;LightBlue&quot;</span><span class="pn">,</span>
+        <span class="fn">ShowLakes</span><span class="o">=</span><span class="k">true</span><span class="pn">,</span> 
+        <span class="fn">LakeColor</span><span class="o">=</span><span class="s">&quot;Blue&quot;</span><span class="pn">,</span>
+        <span class="fn">ShowRivers</span><span class="o">=</span><span class="k">true</span><span class="pn">,</span> 
+        <span class="fn">RiverColor</span><span class="o">=</span><span class="s">&quot;Blue&quot;</span>
+    <span class="pn">)</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs15', 17)" onmouseover="showTip(event, 'fs15', 17)" class="id">moreFeaturesBaseMap</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs4', 18)" onmouseover="showTip(event, 'fs4', 18)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 19)" onmouseover="showTip(event, 'fs5', 19)" class="id">PointGeo</span><span class="pn">(</span><span class="pn">[</span><span class="pn">]</span><span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs4', 20)" onmouseover="showTip(event, 'fs4', 20)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs16', 21)" onmouseover="showTip(event, 'fs16', 21)" class="id">withMap</span> <span onmouseout="hideTip(event, 'fs9', 22)" onmouseover="showTip(event, 'fs9', 22)" class="id">myGeo</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs4', 23)" onmouseover="showTip(event, 'fs4', 23)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 24)" onmouseover="showTip(event, 'fs6', 24)" class="id">withMarginSize</span><span class="pn">(</span><span class="n">0</span><span class="pn">,</span><span class="n">0</span><span class="pn">,</span><span class="n">0</span><span class="pn">,</span><span class="n">0</span><span class="pn">)</span>
+</code></pre>
+<div id="7a31f1a8-6788-459d-b53b-2960525ccd0b" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<script type="text/javascript">
+
+            var renderPlotly_7a31f1a86788459db53b2960525ccd0b = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            fsharpPlotlyRequire(['plotly'], function(Plotly) {
+
+            var data = [{"type":"scattergeo","mode":"markers","lon":[],"lat":[],"marker":{}}];
+            var layout = {"geo":{"resolution":"50","showcoastline":true,"coastlinecolor":"RebeccaPurple","showland":true,"landcolor":"LightGreen","showocean":true,"oceancolor":"LightBlue","showlakes":true,"lakecolor":"Blue","showrivers":true,"rivercolor":"Blue"},"margin":{"l":0,"r":0,"t":0,"b":0}};
+            var config = {};
+            Plotly.newPlot('7a31f1a8-6788-459d-b53b-2960525ccd0b', data, layout, config);
+});
+            };
+            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
+                var script = document.createElement("script");
+                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
+                script.onload = function(){
+                    renderPlotly_7a31f1a86788459db53b2960525ccd0b();
+                };
+                document.getElementsByTagName("head")[0].appendChild(script);
+            }
+            else {
+                renderPlotly_7a31f1a86788459db53b2960525ccd0b();
+            }
+</script>
+
+<h2><a name="Cultural-Base-Maps" class="anchor" href="#Cultural-Base-Maps">Cultural Base Maps</a></h2>
+<p>In addition to physical base map features, a "cultural" base map is included which is composed of country borders and selected sub-country borders such as states.</p>
+<p><em>Note and disclaimer: cultural features are by definition subject to change, debate and dispute. Plotly includes data from Natural Earth "as-is" and defers to the Natural Earth policy regarding disputed borders which read:</em></p>
+<blockquote>
+<p>Natural Earth Vector draws boundaries of countries according to defacto status. We show who actually controls the situation on the ground.</p>
+</blockquote>
+<p>Here is a map with only cultural features enabled and styled, at a 1:50m resolution, which includes only country boundaries. See below for country sub-unit cultural base map features:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs17', 28)" onmouseover="showTip(event, 'fs17', 28)" class="id">countryGeo</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs10', 29)" onmouseover="showTip(event, 'fs10', 29)" class="rt">Geo</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 30)" onmouseover="showTip(event, 'fs11', 30)" class="id">init</span><span class="pn">(</span>
+        <span class="fn">Visible</span><span class="o">=</span><span class="k">false</span><span class="pn">,</span> 
+        <span class="fn">Resolution</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs12', 31)" onmouseover="showTip(event, 'fs12', 31)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 32)" onmouseover="showTip(event, 'fs13', 32)" class="rt">GeoResolution</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 33)" onmouseover="showTip(event, 'fs14', 33)" class="id">R50</span><span class="pn">,</span>
+        <span class="fn">ShowCountries</span><span class="o">=</span><span class="k">true</span><span class="pn">,</span> 
+        <span class="fn">CountryColor</span><span class="o">=</span><span class="s">&quot;RebeccaPurple&quot;</span>
+    <span class="pn">)</span>
+
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs18', 34)" onmouseover="showTip(event, 'fs18', 34)" class="id">countryBaseMap</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs4', 35)" onmouseover="showTip(event, 'fs4', 35)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 36)" onmouseover="showTip(event, 'fs5', 36)" class="id">PointGeo</span><span class="pn">(</span><span class="pn">[</span><span class="pn">]</span><span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs4', 37)" onmouseover="showTip(event, 'fs4', 37)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs16', 38)" onmouseover="showTip(event, 'fs16', 38)" class="id">withMap</span> <span onmouseout="hideTip(event, 'fs17', 39)" onmouseover="showTip(event, 'fs17', 39)" class="id">countryGeo</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs4', 40)" onmouseover="showTip(event, 'fs4', 40)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 41)" onmouseover="showTip(event, 'fs6', 41)" class="id">withMarginSize</span><span class="pn">(</span><span class="n">0</span><span class="pn">,</span><span class="n">0</span><span class="pn">,</span><span class="n">0</span><span class="pn">,</span><span class="n">0</span><span class="pn">)</span>
+</code></pre>
+<div id="5e2bdcbf-f102-4940-a34f-cb582c567d88" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<script type="text/javascript">
+
+            var renderPlotly_5e2bdcbff1024940a34fcb582c567d88 = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            fsharpPlotlyRequire(['plotly'], function(Plotly) {
+
+            var data = [{"type":"scattergeo","mode":"markers","lon":[],"lat":[],"marker":{}}];
+            var layout = {"geo":{"resolution":"50","visible":false,"showcountries":true,"countrycolor":"RebeccaPurple"},"margin":{"l":0,"r":0,"t":0,"b":0}};
+            var config = {};
+            Plotly.newPlot('5e2bdcbf-f102-4940-a34f-cb582c567d88', data, layout, config);
+});
+            };
+            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
+                var script = document.createElement("script");
+                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
+                script.onload = function(){
+                    renderPlotly_5e2bdcbff1024940a34fcb582c567d88();
+                };
+                document.getElementsByTagName("head")[0].appendChild(script);
+            }
+            else {
+                renderPlotly_5e2bdcbff1024940a34fcb582c567d88();
+            }
+</script>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="fsdocs-tip" id="fs1">namespace Plotly</div>
+<div class="fsdocs-tip" id="fs2">namespace Plotly.NET</div>
+<div class="fsdocs-tip" id="fs3">val baseMapOnly : GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs4">type Chart =<br />&#160;&#160;static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:float -&gt; GenericChart + 1 overload<br />&#160;&#160;static member Bar : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart + 1 overload<br />&#160;&#160;static member BoxPlot : ?x:&#39;a0 * ?y:&#39;a1 * ?Name:string * ?Showlegend:bool * ?Color:string * ?Fillcolor:&#39;a2 * ?Opacity:float * ?Whiskerwidth:&#39;a3 * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:&#39;a4 * ?Pointpos:&#39;a5 * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?Alignmentgroup:&#39;a6 * ?Offsetgroup:&#39;a7 * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod -&gt; GenericChart + 1 overload<br />&#160;&#160;static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:Orientation * ?GroupNorm:GroupNorm * ?UseWebGL:bool -&gt; GenericChart + 1 overload<br />&#160;&#160;static member Candlestick : open:seq&lt;#IConvertible&gt; * high:seq&lt;#IConvertible&gt; * low:seq&lt;#IConvertible&gt; * close:seq&lt;#IConvertible&gt; * x:seq&lt;#IConvertible&gt; * ?Increasing:Line * ?Decreasing:Line * ?WhiskerWidth:float * ?Line:Line * ?XCalendar:Calendar -&gt; GenericChart + 1 overload<br />&#160;&#160;static member ChoroplethMap : locations:seq&lt;string&gt; * z:seq&lt;#IConvertible&gt; * ?Text:seq&lt;#IConvertible&gt; * ?Locationmode:LocationFormat * ?Autocolorscale:bool * ?Colorscale:Colorscale * ?Colorbar:Colorbar * ?Marker:Marker * ?GeoJson:&#39;a2 * ?FeatureIdKey:string * ?Zmin:float * ?Zmax:float -&gt; GenericChart<br />&#160;&#160;static member ChoroplethMapbox : locations:seq&lt;#IConvertible&gt; * z:seq&lt;#IConvertible&gt; * geoJson:&#39;a2 * ?FeatureIdKey:string * ?Text:seq&lt;#IConvertible&gt; * ?Below:string * ?Colorscale:Colorscale * ?Colorbar:Colorbar * ?ZAuto:bool * ?ZMin:float * ?ZMid:float * ?ZMax:float -&gt; GenericChart<br />&#160;&#160;static member Column : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart + 1 overload<br />&#160;&#160;static member Contour : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;a4 * ?zSmooth:SmoothAlg * ?Colorbar:&#39;a5 -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)<br />&#160;&#160;static member DensityMapbox : lon:seq&lt;#IConvertible&gt; * lat:seq&lt;#IConvertible&gt; * ?Z:seq&lt;#IConvertible&gt; * ?Radius:float * ?Opacity:float * ?Text:seq&lt;#IConvertible&gt; * ?Below:string * ?Colorscale:Colorscale * ?Colorbar:Colorbar * ?Showscale:bool * ?ZAuto:bool * ?ZMin:float * ?ZMid:float * ?ZMax:float -&gt; GenericChart + 1 overload<br />&#160;&#160;...</div>
+<div class="fsdocs-tip" id="fs5">static member Chart.PointGeo : locations:seq&lt;string&gt; option * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:StyleParam.Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?GeoJson:&#39;a1 * ?FeatureIdKey:string * ?Connectgaps:bool * ?Fill:StyleParam.Fill * ?Fillcolor:&#39;a2 -&gt; GenericChart.GenericChart<br />static member Chart.PointGeo : lonlat:seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:StyleParam.Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?GeoJson:&#39;d * ?FeatureIdKey:string * ?Connectgaps:bool * ?Fill:StyleParam.Fill * ?Fillcolor:&#39;e -&gt; GenericChart.GenericChart<br />static member Chart.PointGeo : longitudes:seq&lt;#System.IConvertible&gt; * latitudes:seq&lt;#System.IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:StyleParam.Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?GeoJson:&#39;a3 * ?FeatureIdKey:string * ?Connectgaps:bool * ?Fill:StyleParam.Fill * ?Fillcolor:&#39;a4 -&gt; GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs6">static member Chart.withMarginSize : ?Left:&#39;a * ?Right:&#39;b * ?Top:&#39;c * ?Bottom:&#39;d * ?Pad:&#39;e * ?Autoexpand:&#39;f -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
+<div class="fsdocs-tip" id="fs7">module GenericChart<br /><br />from Plotly.NET</div>
+<div class="fsdocs-tip" id="fs8">val toChartHTML : gChart:GenericChart.GenericChart -&gt; string</div>
+<div class="fsdocs-tip" id="fs9">val myGeo : Geo</div>
+<div class="fsdocs-tip" id="fs10">Multiple items<br />type Geo =<br />&#160;&#160;inherit DynamicObj<br />&#160;&#160;new : unit -&gt; Geo<br />&#160;&#160;static member init : ?FitBounds:GeoFitBounds * ?Resolution:GeoResolution * ?Scope:GeoScope * ?Projection:GeoProjection * ?Center:(float * float) * ?Visible:bool * ?Domain:Domain * ?ShowCoastLines:bool * ?CoastLineColor:string * ?CoastLineWidth:float * ?ShowLand:bool * ?LandColor:string * ?ShowOcean:bool * ?OceanColor:string * ?ShowLakes:bool * ?LakeColor:string * ?ShowRivers:bool * ?RiverColor:string * ?RiverWidth:float * ?ShowCountries:bool * ?CountryColor:string * ?CountryWidth:float * ?ShowSubunits:bool * ?SubunitColor:string * ?SubunitWidth:float * ?ShowFrame:bool * ?FrameColor:string * ?FrameWidth:float * ?BgColor:string * ?LatAxis:LinearAxis * ?LonAxis:LinearAxis -&gt; Geo<br />&#160;&#160;static member style : ?FitBounds:GeoFitBounds * ?Resolution:GeoResolution * ?Scope:GeoScope * ?Projection:GeoProjection * ?Center:(float * float) * ?Visible:bool * ?Domain:Domain * ?ShowCoastLines:bool * ?CoastLineColor:string * ?CoastLineWidth:float * ?ShowLand:bool * ?LandColor:string * ?ShowOcean:bool * ?OceanColor:string * ?ShowLakes:bool * ?LakeColor:string * ?ShowRivers:bool * ?RiverColor:string * ?RiverWidth:float * ?ShowCountries:bool * ?CountryColor:string * ?CountryWidth:float * ?ShowSubunits:bool * ?SubunitColor:string * ?SubunitWidth:float * ?ShowFrame:bool * ?FrameColor:string * ?FrameWidth:float * ?BgColor:string * ?LatAxis:LinearAxis * ?LonAxis:LinearAxis -&gt; (Geo -&gt; Geo)<br /><br />--------------------<br />new : unit -&gt; Geo</div>
+<div class="fsdocs-tip" id="fs11">static member Geo.init : ?FitBounds:StyleParam.GeoFitBounds * ?Resolution:StyleParam.GeoResolution * ?Scope:StyleParam.GeoScope * ?Projection:GeoProjection * ?Center:(float * float) * ?Visible:bool * ?Domain:Domain * ?ShowCoastLines:bool * ?CoastLineColor:string * ?CoastLineWidth:float * ?ShowLand:bool * ?LandColor:string * ?ShowOcean:bool * ?OceanColor:string * ?ShowLakes:bool * ?LakeColor:string * ?ShowRivers:bool * ?RiverColor:string * ?RiverWidth:float * ?ShowCountries:bool * ?CountryColor:string * ?CountryWidth:float * ?ShowSubunits:bool * ?SubunitColor:string * ?SubunitWidth:float * ?ShowFrame:bool * ?FrameColor:string * ?FrameWidth:float * ?BgColor:string * ?LatAxis:Axis.LinearAxis * ?LonAxis:Axis.LinearAxis -&gt; Geo</div>
+<div class="fsdocs-tip" id="fs12">module StyleParam<br /><br />from Plotly.NET</div>
+<div class="fsdocs-tip" id="fs13">type GeoResolution =<br />&#160;&#160;| R110<br />&#160;&#160;| R50<br />&#160;&#160;&#160;&#160;static member convert : (GeoResolution -&gt; obj)<br />&#160;&#160;&#160;&#160;static member toString : (GeoResolution -&gt; string)</div>
+<div class="fsdocs-tip" id="fs14">union case StyleParam.GeoResolution.R50: StyleParam.GeoResolution</div>
+<div class="fsdocs-tip" id="fs15">val moreFeaturesBaseMap : GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs16">static member Chart.withMap : map:Geo * ?Id:int -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
+<div class="fsdocs-tip" id="fs17">val countryGeo : Geo</div>
+<div class="fsdocs-tip" id="fs18">val countryBaseMap : GenericChart.GenericChart</div>
+
+    </div>
+
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <script type="text/javascript">var fsdocs_search_baseurl = 'https://plotly.net/'</script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+    <script type="text/javascript" src="https://plotly.net/content/fsdocs-search.js"></script>
+    <!-- END SEARCH BOX: this adds support for the search box -->
+</body>
+
+</html>

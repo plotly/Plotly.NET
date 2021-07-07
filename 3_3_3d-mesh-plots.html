@@ -6,6 +6,12 @@
     <title>3D Mesh plots</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Timo Mühlhaus, Kevin Schneider, F# open source contributors">
+    
+    <!--Opengraph properties (https://ogp.me/)-->
+    <meta property="og:title" content="3D Mesh plots" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Plotly.NET" />
+    
     <link rel="shortcut icon" type="image/x-icon" href="https://plotly.net//img/favicon.ico">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -35,7 +41,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.4</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.5</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -192,28 +198,61 @@
   </a>
 </li>             
 <li class="nav-header">
-  Map Charts
+  Geo map charts
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/5_0_choropleth-map.html">
+  <a class="nav-link" href="https://plotly.net/5_0_geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/5_1_geo-plots.html">
+    Scatter and line plots on Geo maps
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/5_2_choropleth-map.html">
     Choropleth maps
+  </a>
+</li>             
+<li class="nav-header">
+  Mapbox map charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/6_0_geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/6_1_mapbox-plots.html">
+    Scatter and line plots on Mapbox maps
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/6_2_choropleth-mapbox.html">
+    ChoroplethMapbox
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/6_3_density-mapbox.html">
+    DensityMapbox charts
   </a>
 </li>             
 <li class="nav-header">
   Finance Charts
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/6_0_candlestick.html">
+  <a class="nav-link" href="https://plotly.net/7_0_candlestick.html">
     Candlestick Charts
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/6_1_funnel.html">
+  <a class="nav-link" href="https://plotly.net/7_1_funnel.html">
     Funnel Charts
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/6_2_funnel_area.html">
+  <a class="nav-link" href="https://plotly.net/7_2_funnel_area.html">
     FunnelArea Charts
   </a>
 </li>             
@@ -221,12 +260,12 @@
   Polar Charts
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/7_0_polar-charts.html">
+  <a class="nav-link" href="https://plotly.net/8_0_polar-charts.html">
     Polar charts
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/7_1_windrose-charts.html">
+  <a class="nav-link" href="https://plotly.net/8_1_windrose-charts.html">
     Windrose charts
   </a>
 </li>             
@@ -234,17 +273,17 @@
   Categorical Charts
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/8_0_parallel-categories.html">
+  <a class="nav-link" href="https://plotly.net/9_0_parallel-categories.html">
     Parallel categories
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/8_1_parallel-coords.html">
+  <a class="nav-link" href="https://plotly.net/9_1_parallel-coords.html">
     Parallel coordinates
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/8_2_sankey.html">
+  <a class="nav-link" href="https://plotly.net/9_2_sankey.html">
     Sankey Charts
   </a>
 </li>
@@ -314,29 +353,29 @@
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs36', 95)" onmouseover="showTip(event, 'fs36', 95)" class="m">GenericChart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs37', 96)" onmouseover="showTip(event, 'fs37', 96)" class="id">ofTraceObject</span> 
     
 </code></pre>
-<div id="e0d9d441-21a5-4f5f-9265-e3ab310992ca" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="d2bf5daf-184d-49e4-9905-ca1c87597ccb" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_e0d9d44121a54f5f9265e3ab310992ca = function() {
+            var renderPlotly_d2bf5daf184d49e49905ca1c87597ccb = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
-            var data = [{"type":"mesh3d","x":[0.8071833671104085,0.8938718768273815,0.7920618675612201,0.3088305389084064,0.6805111121761198,0.023981272719791752,0.6816121547862944,0.28636163393331765,0.049166965786911064,0.7211781440867009,0.2676996361779513,0.045673456995595926,0.5202973142826451,0.4656513559006394,0.0524387564754294,0.4952427817020765,0.8267518774730861,0.6080611160062538,0.17224747369636198,0.1773745572089099,0.9711206899821389,0.2126286063402093,0.4410193173405804,0.9167787544041773,0.2626746982627896,0.45367846146862884,0.1150034741102734,0.021353810104240575,0.9849976692278859,0.8607994792334733,0.036373501660476204,0.07851812619646924,0.7515210009885585,0.5649921277374924,0.039281870256775,0.7513890558627383,0.837997557519934,0.5324894797673866,0.7123767867276337,0.4306678014950211,0.7884725075161422,0.34891710027536244,0.5749072882229962,0.19118596855140568,0.5174140187527119,0.4898955633351093,0.18701187110832515,0.004287226593255636,0.32406461673046677,0.7949985171644941],"y":[0.3367315602194199,0.2111101165465592,0.18137598092731833,0.6595941822322059,0.9062137649889168,0.5945547607701992,0.4528525594868011,0.8752831131570428,0.0461558406456168,0.22683265070749103,0.9089777986095183,0.6602583446820538,0.3013639647054318,0.18836748655343777,0.6848046424262247,0.18918150998148206,0.29415245600703754,0.9553051865451527,0.42636948564386434,0.3010497006126911,0.6572452241821425,0.2942623977056995,0.8956843292786201,0.7415796722013409,0.3889020496927677,0.6222035897067765,0.6377213181172131,0.24983334878917474,0.39936473565146546,0.7727791349276804,0.26666659036030366,0.11071624751701777,0.6972891933737738,0.1899991520633917,0.5240679190140534,0.8252633851139171,0.8971421452691509,0.09192681875635256,0.6587783627485756,0.44472710948657573,0.29853649637593727,0.9627144443628911,0.48633363912176975,0.4855441360201426,0.5216900028855027,0.1282141628340884,0.047553135569930606,0.3865398016695584,0.5063813261251809,0.3282325087712298],"z":[0.19574310732807176,0.23170668456317237,0.5779177409493913,0.02301491611777568,0.13775329298235164,0.04246916251372041,0.3154257872679391,0.43979630872597747,0.27069213253943814,0.28401017528214034,0.9568334426529861,0.20301921069762632,0.47591837750557736,0.2733767057179365,0.9601660603471873,0.7982615510925006,0.96296915130828,0.11136481264204011,0.6642995675393844,0.8595412573123077,0.29203936471233116,0.20222563725068496,0.2965268237965772,0.9816423761572887,0.0025132042367538455,0.6945307798192514,0.8079287585839298,0.41014019325847745,0.2198896693158381,0.2606878868586793,0.5746504541368459,0.2511815164476547,0.7434520226639938,0.0711322268802357,0.5770360275996086,0.03495990579713132,0.5327985065676265,0.6742742772559981,0.05224585908104007,0.48159875650033296,0.5098375978459779,0.45734583654317346,0.8212346862169144,0.3747681874664352,0.48789366683358965,0.09551728567831091,0.48679606685731375,0.21295693340383326,0.5253780756729552,0.7234284517930022],"flatshading":true,"contour":{"x":{"show":true},"y":{"show":true},"z":{"show":true}}}];
+            var data = [{"type":"mesh3d","x":[0.06186179027979345,0.34437151082994955,0.9190678638029228,0.07070766346096417,0.6162016040720985,0.32434111103617635,0.5886818638950037,0.30293571031789096,0.35515887120513195,0.8687371010280852,0.9377991934017275,0.289112160116952,0.21931159180556964,0.7798716657701282,0.692562091021129,0.2831316340170482,0.4609015343994375,0.2719191421158235,0.7846104771758479,0.16189591175033521,0.5870165212950746,0.3897391522255443,0.2441666541826756,0.004969635049332694,0.5961244304646386,0.12692699354464515,0.5891606428609978,0.5708542887917041,0.3277709895408577,0.39063730295311533,0.12425245909218326,0.11833469668325722,0.014750946785673008,0.4046764277874848,0.4262825252610643,0.6139026440744766,0.5682618923337487,0.7719645210411235,0.22714880538505913,0.1921515651942005,0.12643064983488556,0.14397880255429948,0.11870942829116686,0.5832893883731632,0.1325024013093218,0.48131164325462267,0.7068373713208537,0.5116356762645933,0.9152541430272414,0.040787316877761534],"y":[0.46655498140796786,0.8405388863014704,0.551600134257041,0.022478863607383735,0.3039155659749711,0.6721226380542492,0.10020485664727392,0.9140982287535901,0.4745832329963256,0.4892746105274533,0.7351804681751786,0.017827575103299496,0.9751647207770332,0.9645215682520166,0.744484641935902,0.8194644967184702,0.274361213331279,0.8146351640180849,0.3535891405090639,0.07865944694665235,0.7148697416832995,0.688937013358314,0.0447703367307644,0.5924589119816474,0.03546526191544964,0.44303771874077513,0.2710297239343774,0.6608772658095123,0.8724672337400109,0.11481278721001595,0.4200896222237915,0.07752496659640454,0.6556001457644627,0.2869836726630962,0.9240823215451475,0.28371357279071285,0.5667345624262162,0.9922720831782893,0.10076086181251372,0.7541598872068151,0.5136977874272027,0.6541636635801585,0.29738128804479785,0.7378741948576059,0.4569710970190219,0.10860307473158606,0.16881408177726626,0.15418786003915028,0.8388047464372612,0.31303790459085157],"z":[0.20695042992334367,0.8922022073027688,0.15804653575552932,0.836594696080589,0.325917575194462,0.7776179680496538,0.795768549570706,0.9591412222753937,0.9870136016919341,0.8608778472341959,0.40109291411987175,0.4393275908377616,0.04163099501357926,0.3597704457863096,0.0691849883036618,0.6576555015787741,0.3622274293388368,0.6881810481139371,0.0404392467068691,0.46077106914518917,0.252729934292254,0.2820891301529897,0.7138743022055711,0.5994292533022488,0.5649616595194497,0.060706078103140965,0.3915557253135162,0.30689614187315856,0.1354878149626254,0.9268621871838636,0.2742236369635089,0.11684186389522713,0.8220725193722511,0.5594293291491593,0.9078623572866723,0.5278874149210226,0.9194784308408752,0.8190054496838737,0.9610660974686341,0.1464643534954937,0.4879450232200069,0.6075933401508226,0.005258481486355179,0.23988301457831776,0.35306697308694335,0.07437019658944113,0.6125326685665793,0.9376108422584882,0.668689206553944,0.7993155954402479],"flatshading":true,"contour":{"x":{"show":true},"y":{"show":true},"z":{"show":true}}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('e0d9d441-21a5-4f5f-9265-e3ab310992ca', data, layout, config);
+            Plotly.newPlot('d2bf5daf-184d-49e4-9905-ca1c87597ccb', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_e0d9d44121a54f5f9265e3ab310992ca();
+                    renderPlotly_d2bf5daf184d49e49905ca1c87597ccb();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_e0d9d44121a54f5f9265e3ab310992ca();
+                renderPlotly_d2bf5daf184d49e49905ca1c87597ccb();
             }
 </script>
 
