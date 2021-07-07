@@ -207,7 +207,7 @@ module StyleParam =
         | Custom of seq<float*string> 
         | RdBu | Earth | Blackbody | YIOrRd | YIGnBu | Bluered
         | Portland | Electric | Jet | Hot | Greys | Greens | Picnic 
-    
+        | Rainbow | Viridis | Cividis
         static member convert = function
             | Custom (cScale) -> cScale
                                  |> Seq.map (fun (v,color) -> [|box v;box color|])
@@ -224,7 +224,10 @@ module StyleParam =
             | Hot             -> box "Hot"      
             | Greys           -> box "Greys"    
             | Greens          -> box "Greens"   
-            | Picnic          -> box "Picnic"   
+            | Picnic          -> box "Picnic"  
+            | Rainbow         -> box "Rainbow"
+            | Viridis         -> box "Viridis"
+            | Cividis         -> box "Cividis"
 
     /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses "trace", which specifies the order that is present in the data supplied. 
     /// Set `categoryorder` to "category ascending" or "category descending" if order should be determined by the alphanumerical order of the category names. 
@@ -808,6 +811,103 @@ module StyleParam =
                 | _             -> cmode
             else
                 cmode
+
+    /// Defines the map layers that are rendered by default below the trace layers defined in `data`, which are themselves by default rendered below the layers defined in `layout.mapbox.layers`. 
+    /// These layers can be defined either explicitly as a Mapbox Style object which can contain multiple layer definitions that load data from any public or private Tile Map Service (TMS or XYZ) or Web Map Service (WMS) or implicitly by using one of the built-in style objects which use WMSes which do not require any access tokens, 
+    /// or by using a default Mapbox style or custom Mapbox style URL, both of which require a Mapbox access token Note that Mapbox access token can be set in the `accesstoken` attribute or in the `mapboxAccessToken` config option. 
+    /// Mapbox Style objects are of the form described in the Mapbox GL JS documentation available at https://docs.mapbox.com/mapbox-gl-js/style-spec The built-in plotly.js styles objects are: open-street-map, white-bg, carto-positron, carto-darkmatter, stamen-terrain, stamen-toner, stamen-watercolor 
+    /// The built-in Mapbox styles are: basic, streets, outdoors, light, dark, satellite, satellite-streets Mapbox style URLs are of the form: mapbox://mapbox.mapbox-<name>-<version>
+    [<RequireQualifiedAccess>]
+    type MapboxStyle =
+        // plotly presets
+        | OpenStreetMap
+        | WhiteBG
+        | CartoPositron
+        | CartoDarkmatter
+        | StamenTerrain
+        | StamenToner
+        | StamenWatercolor
+        
+        // Mapbox presets
+        | MapboxBasic
+        | MapboxStreets
+        | MapboxOutdoors
+        | MapboxLight
+        | MapboxDark
+        | MapboxSatellite
+        | MapboxSatelliteStreets
+
+        //Custom
+        | Custom of string
+
+        static member toString = function
+
+            | OpenStreetMap -> "open-street-map"
+            | WhiteBG -> "white-bg"
+            | CartoPositron -> "carto-positron"
+            | CartoDarkmatter -> "carto-darkmatter"
+            | StamenTerrain -> "stamen-terrain"
+            | StamenToner -> "stamen-toner"
+            | StamenWatercolor -> "stamen-watercolor"
+            
+            | MapboxBasic -> "basic"
+            | MapboxStreets -> "streets"
+            | MapboxOutdoors -> "outdoors"
+            | MapboxLight -> "light"
+            | MapboxDark -> "dark"
+            | MapboxSatellite -> "satellite"
+            | MapboxSatelliteStreets -> "satellite-streets"
+
+            | Custom s -> s
+
+        static member convert = MapboxStyle.toString >> box
+    
+    [<RequireQualifiedAccess>]
+    type MapboxLayerSourceType =
+        | GeoJson
+        | Vector
+        | Raster
+        | Image
+
+        static member toString = function
+            | GeoJson -> "geojson"
+            | Vector  -> "vector"
+            | Raster  -> "raster"
+            | Image   -> "image"
+
+        static member convert = MapboxLayerSourceType.toString >> box
+
+    [<RequireQualifiedAccess>]
+    type MapboxLayerType =
+        | Circle
+        | Line
+        | Fill
+        | Symbol
+        | Raster
+
+        static member toString = function
+            | Circle -> "circle"
+            | Line -> "line"
+            | Fill -> "fill"
+            | Symbol -> "symbol"
+            | Raster -> "raster"
+
+        static member convert = MapboxLayerType.toString >> box
+
+
+    [<RequireQualifiedAccess>]
+    type MapboxLayerSymbolPlacement =
+        | Point
+        | Line
+        | LineCenter
+
+        static member toString = function
+            | Point -> "point"
+            | Line -> "line"
+            | LineCenter -> "line-center"
+
+        static member convert = MapboxLayerSymbolPlacement.toString >> box
+
 
 //--------------------------
 // #N#

@@ -1,9 +1,9 @@
 (**
 ---
 title: Choropleth maps
-category: Map Charts
+category: Geo map charts
 categoryindex: 6
-index: 1
+index: 3
 ---
 *)
 
@@ -193,10 +193,8 @@ open System.IO
 open System.Text
 
 let data = 
-     let dataString = Http.RequestString "https://raw.githubusercontent.com/plotly/datasets/master/fips-unemp-16.csv"
-     let byteArray = Encoding.UTF8.GetBytes(dataString)
-     use stream = new MemoryStream(byteArray)
-     Frame.ReadCsv(stream,true,separators=",",schema="fips=string,unemp=float")
+    Http.RequestString "https://raw.githubusercontent.com/plotly/datasets/master/fips-unemp-16.csv"
+    |> fun csv -> Frame.ReadCsvString(csv,true,separators=",",schema="fips=string,unemp=float")
 
 
 (**
@@ -239,7 +237,10 @@ let choroplethGeoJSON =
     )
     |> Chart.withMap(
         Geo.init(
-            Scope=StyleParam.GeoScope.Usa
+            Scope=StyleParam.GeoScope.NorthAmerica, 
+            Projection=GeoProjection.init(StyleParam.GeoProjectionType.AzimuthalEqualArea),
+            ShowLand=true,
+            LandColor = "lightgrey"
         )
     )
     |> Chart.withSize (800.,800.)

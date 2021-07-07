@@ -36,6 +36,9 @@
 #load "Trace3d.fs"
 #load "GeoProjection.fs"
 #load "Geo.fs"
+#load "MapboxLayerSymbol.fs"
+#load "MapboxLayer.fs"
+#load "Mapbox.fs"
 #load "LayoutGrid.fs"
 #load "Annotation.fs"
 #load "Layout.fs"
@@ -59,6 +62,68 @@ open System.Text
 open System.IO
 open Deedle
 open FSharpAux
+
+let dataDensityMapbox = 
+    Http.RequestString "https://raw.githubusercontent.com/plotly/datasets/master/earthquakes-23k.csv"
+    |> fun d -> Frame.ReadCsvString(d,true,separators=",")
+
+dataDensityMapbox.Print()
+
+let lonDensity = dataDensityMapbox.["Longitude"] |> Series.values
+let latDensity = dataDensityMapbox.["Latitude"] |> Series.values
+let magnitudes = dataDensityMapbox.["Magnitude"] |> Series.values
+
+Chart.DensityMapbox(
+    lonDensity,
+    latDensity,
+    Z = magnitudes,
+    Radius=8.,
+    Colorscale=StyleParam.Colorscale.Viridis
+)
+|> Chart.withMapbox(
+    Mapbox.init(
+        Style = StyleParam.MapboxStyle.StamenTerrain,
+        Center = (60.,30.)
+    )
+)
+|> Chart.Show
+
+
+let dataMapbox = 
+     let dataString = Http.RequestString "https://raw.githubusercontent.com/plotly/datasets/master/us-cities-top-1k.csv"
+     let byteArray = Encoding.UTF8.GetBytes(dataString)
+     use stream = new MemoryStream(byteArray)
+     Frame.ReadCsv(stream,true,separators=",",schema="City=string,State=string,Population=int,lat=float,lon=float")
+
+dataMapbox.Print()
+
+let lon: float [] = 
+    dataMapbox
+    |> Frame.getCol "lon"
+    |> Series.values
+    |> Array.ofSeq
+
+let lat: float [] = 
+    dataMapbox
+    |> Frame.getCol "lat"
+    |> Series.values
+    |> Array.ofSeq
+
+Chart.LineMapbox(
+    longitudes=lon,
+    latitudes=lat,
+    ShowMarkers=true,
+    Name="soos"
+)
+|> Chart.withMapbox(
+    Mapbox.init(
+        Style = StyleParam.MapboxStyle.OpenStreetMap,
+        Center = (-97.61142,38.84028)
+    )
+)
+|> Chart.withSize(1000.,1000.)
+|> Chart.withTitle "lol?"
+|> Chart.Show
 
 Chart.Column(
     keysvalues= [
@@ -92,9 +157,7 @@ let geoJson =
 
 let data = 
      let dataString = Http.RequestString "https://raw.githubusercontent.com/plotly/datasets/master/fips-unemp-16.csv"
-     let byteArray = Encoding.UTF8.GetBytes(dataString)
-     use stream = new MemoryStream(byteArray)
-     Frame.ReadCsv(stream,true,separators=",",schema="fips=string,unemp=float")
+     Frame.ReadCsvString(dataString,true,separators=",",schema="fips=string,unemp=float")
 
 let locations: string [] = 
     data
@@ -107,6 +170,17 @@ let z: int [] =
     |> Frame.getCol "unemp"
     |> Series.values
     |> Array.ofSeq
+
+Chart.ChoroplethMapbox(
+    locations = locations,
+    z = z,
+    geoJson = geoJson,
+    FeatureIdKey="id"
+)
+|> Chart.withMapbox(
+    Mapbox.init(Style=StyleParam.MapboxStyle.OpenStreetMap)
+)
+|> Chart.Show
 
 Chart.ChoroplethMap(
     locations = locations,
@@ -327,7 +401,7 @@ Chart.ScatterGeo(
 |> Chart.Show
 //test new withMapStyle function
 
-let locations,z = 
+let locations2,z2 = 
    [("Belarus",17.5); ("Moldova",16.8);("Lithuania",15.4);("Russia",15.1);
    ("Romania",14.4);("Ukraine",13.9);("Andorra",13.8);("Hungary",13.3);
    ("Czech Republic",13.);("Slovakia",13.);("Portugal",12.9);("Serbia",12.6);
@@ -379,7 +453,7 @@ let locations,z =
 
 
 // Pure alcohol consumption among adults (age 15+) in 2010
-Chart.ChoroplethMap(locations,z,Locationmode=StyleParam.LocationFormat.CountryNames,Colorscale=StyleParam.Colorscale.Electric)
+Chart.ChoroplethMap(locations2,z2,Locationmode=StyleParam.LocationFormat.CountryNames,Colorscale=StyleParam.Colorscale.Electric)
 |> Chart.withMapStyle(
     Projection=GeoProjection.init(projectionType=StyleParam.GeoProjectionType.Mollweide),
     ShowLakes=true,

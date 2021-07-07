@@ -1,0 +1,75 @@
+(**
+---
+title: DensityMapbox charts
+category: Mapbox map charts
+categoryindex: 7
+index: 4
+---
+*)
+
+(*** hide ***)
+
+(*** condition: prepare ***)
+#r "nuget: Newtonsoft.JSON, 12.0.3"
+#r "../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
+
+(*** condition: ipynb ***)
+#if IPYNB
+#r "nuget: Plotly.NET, {{fsdocs-package-version}}"
+#r "nuget: Plotly.NET.Interactive, {{fsdocs-package-version}}"
+#endif // IPYNB
+
+(** 
+# DensityMapbox charts
+
+[![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
+[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
+[![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
+
+*Summary:* This example shows how to create DensityMapbox charts in F#.
+
+`Chart.DensityMapbox` draws a bivariate kernel density estimation with a Gaussian kernel from `lon` and `lat` coordinates and optional `z` values using a colorscale.
+This Chart uses [Mapbox layers]({{root}}/6_0_geo-vs-mapbox.html) and might need a Mapbox API token depending on the desired base map layer style.
+
+*)
+// we are using the awesome FSharp.Data project here to perform a http request,
+// and the awesome Deedle library to read the data as a data frame
+#r "nuget: FSharp.Data"
+#r "nuget: Deedle"
+
+open FSharp.Data
+open Deedle
+
+let dataDensityMapbox = 
+    Http.RequestString "https://raw.githubusercontent.com/plotly/datasets/master/earthquakes-23k.csv"
+    |> fun d -> Frame.ReadCsvString(d,true,separators=",")
+
+let lon = dataDensityMapbox.["Longitude"] |> Series.values
+let lat= dataDensityMapbox.["Latitude"] |> Series.values
+let magnitudes = dataDensityMapbox.["Magnitude"] |> Series.values
+
+open Plotly.NET
+
+let densityMapbox = 
+    Chart.DensityMapbox(
+        lon,
+        lat,
+        Z = magnitudes,
+        Radius=8.,
+        Colorscale=StyleParam.Colorscale.Viridis
+    )
+    |> Chart.withMapbox(
+        Mapbox.init(
+            Style = StyleParam.MapboxStyle.StamenTerrain,
+            Center = (60.,30.)
+        )
+    )
+
+(*** condition: ipynb ***)
+#if IPYNB
+densityMapbox
+#endif // IPYNB
+
+(***hide***)
+densityMapbox |> GenericChart.toChartHTML
+(***include-it-raw***)

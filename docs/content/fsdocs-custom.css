@@ -8975,8 +8975,11 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
       border: none; } }
 
 .nav-header {
-  list-style: none;
-  color: #A00975; }
+    list-style: none;
+    color: #A00975;
+    border-bottom: 1px dashed #A00975;
+    margin-right: 1em
+}
 
 #fsdocs-content h1 a, #fsdocs-content h1 a:hover, #fsdocs-content h1 a:focus,
 #fsdocs-content h2 a, #fsdocs-content h2 a:hover, #fsdocs-content h2 a:focus,
