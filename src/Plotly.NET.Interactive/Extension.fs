@@ -1,5 +1,6 @@
 ﻿namespace Plotly.NET.Interactive
 
+open System
 open System.Threading.Tasks
 open Microsoft.DotNet.Interactive
 open Microsoft.DotNet.Interactive.Formatting
@@ -9,11 +10,12 @@ type FormatterKernelExtension() =
 
     let registerFormatter () =
         Formatter.Register<GenericChart>
-            ((fun chart writer ->
-                let html = toChartHTML chart
-
-                writer.Write(html)),
-             HtmlFormatter.MimeType)
+            (
+                Action<_,_>(fun chart (writer: IO.TextWriter) ->
+                    let html = toChartHTML chart
+                    writer.Write(html)
+            ),
+            HtmlFormatter.MimeType)
 
     interface IKernelExtension with
         member _.OnLoadAsync _ =
@@ -21,7 +23,7 @@ type FormatterKernelExtension() =
 
             if isNull KernelInvocationContext.Current |> not then
                 let message =
-                    "Added Kernel Extension including formatters for GenericChart"
+                    "Added Kernel Extension including formatters for Plotly.NET charts."
 
                 KernelInvocationContext.Current.Display(message, "text/markdown")
                 |> ignore
