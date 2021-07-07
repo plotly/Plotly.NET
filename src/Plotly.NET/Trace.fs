@@ -1610,6 +1610,7 @@ module Trace =
                 ?Below          : string,
                 ?Colorscale     : StyleParam.Colorscale,
                 ?Colorbar       : Colorbar,
+                ?Showscale      : bool,
                 ?ZAuto          : bool,
                 ?ZMin           : float,
                 ?ZMid           : float,
@@ -1625,6 +1626,45 @@ module Trace =
                     Below       |> DynObj.setValueOpt   trace "below"
                     Colorscale  |> DynObj.setValueOptBy trace "colorscale" StyleParam.Colorscale.convert
                     Colorbar    |> DynObj.setValueOpt   trace "colorbar"
+                    Showscale   |> DynObj.setValueOpt   trace "showscale"
+                    ZAuto       |> DynObj.setValueOpt   trace "zauto"
+                    ZMin        |> DynObj.setValueOpt   trace "zmin"
+                    ZMid        |> DynObj.setValueOpt   trace "zmid"
+                    ZMax        |> DynObj.setValueOpt   trace "zmax"
+
+                    trace
+                )
+
+        static member DensityMapbox
+            (
+                ?Z              : seq<#IConvertible>,
+                ?Radius         : float,
+                ?Longitudes     : #IConvertible seq,
+                ?Latitudes      : #IConvertible seq,
+                ?Opacity        : float,
+                ?Text           : seq<#IConvertible>,
+                ?Below          : string,
+                ?Colorscale     : StyleParam.Colorscale,
+                ?Colorbar       : Colorbar,
+                ?Showscale      : bool,
+                ?ZAuto          : bool,
+                ?ZMin           : float,
+                ?ZMid           : float,
+                ?ZMax           : float
+
+            ) =
+                (fun (trace:('T :> Trace)) -> 
+                    
+                    Z           |> DynObj.setValueOpt   trace "z"
+                    Radius      |> DynObj.setValueOpt   trace "radius"
+                    Longitudes  |> DynObj.setValueOpt   trace "lon"
+                    Latitudes   |> DynObj.setValueOpt   trace "lat"
+                    Opacity     |> DynObj.setValueOpt   trace "opacity"
+                    Text        |> DynObj.setValueOpt   trace "text"
+                    Below       |> DynObj.setValueOpt   trace "below"
+                    Colorscale  |> DynObj.setValueOptBy trace "colorscale" StyleParam.Colorscale.convert
+                    Colorbar    |> DynObj.setValueOpt   trace "colorbar"
+                    Showscale   |> DynObj.setValueOpt   trace "showscale"
                     ZAuto       |> DynObj.setValueOpt   trace "zauto"
                     ZMin        |> DynObj.setValueOpt   trace "zmin"
                     ZMid        |> DynObj.setValueOpt   trace "zmid"

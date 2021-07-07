@@ -3213,9 +3213,9 @@ type Chart =
             
             Trace.initChoroplethMapbox (
                 TraceStyle.ChoroplethMapbox (
-                    Z              = z,
-                    Locations      = locations,
-                    GeoJson        = geoJson,
+                    Z               = z,
+                    Locations       = locations,
+                    GeoJson         = geoJson,
                     ?FeatureIdKey   = FeatureIdKey,
                     ?Text           = Text,
                     ?Below          = Below,
@@ -3229,3 +3229,103 @@ type Chart =
             )
             |> GenericChart.ofTraceObject
             
+    /// <summary>
+    /// Creates a DensityMapbox Chart that draws a bivariate kernel density estimation with a Gaussian kernel from `lon` and `lat` coordinates and optional `z` values using a colorscale.
+    /// </summary>
+    /// <param name="lon">Sets the longitude coordinates (in degrees East).</param>
+    /// <param name="lat">Sets the latitude coordinates (in degrees North).</param>
+    /// <param name="Z">Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot</param>
+    /// <param name="Radius">Sets the radius of influence of one `lon` / `lat` point in pixels. Increasing the value makes the densitymapbox trace smoother, but less detailed.</param>
+    /// <param name="Opacity">Sets the opacity of the trace.</param>
+    /// <param name="Text">Sets text elements associated with each (lon,lat) pair If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (lon,lat) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+    /// <param name="Below">Determines if the densitymapbox trace will be inserted before the layer with the specified ID. By default, densitymapbox traces are placed below the first layer of type symbol If set to '', the layer will be inserted above every existing layer.</param>
+    /// <param name="Colorscale">Sets the colorscale.</param>
+    /// <param name="Colorbar">Sets the Colorbar object asociated with this trace</param>
+    /// <param name="Showscale">Determines whether or not a colorbar is displayed for this trace.</param>
+    /// <param name="ZAuto">Determines whether or not the color domain is computed with respect to the input data (here in `z`) or the bounds set in `zmin` and `zmax` Defaults to `false` when `zmin` and `zmax` are set by the user.</param>
+    /// <param name="ZMin">Sets the lower bound of the color domain. Value should have the same units as in `z` and if set, `zmax` must be set as well.</param>
+    /// <param name="ZMid">Sets the mid-point of the color domain by scaling `zmin` and/or `zmax` to be equidistant to this point. Value should have the same units as in `z`. Has no effect when `zauto` is `false`.</param>
+    /// <param name="ZMax">Sets the upper bound of the color domain. Value should have the same units as in `z` and if set, `zmin` must be set as well.</param>
+    static member DensityMapbox (lon,lat,
+        [<Optional;DefaultParameterValue(null)>] ?Z,
+        [<Optional;DefaultParameterValue(null)>] ?Radius,
+        [<Optional;DefaultParameterValue(null)>] ?Opacity,
+        [<Optional;DefaultParameterValue(null)>] ?Text,
+        [<Optional;DefaultParameterValue(null)>] ?Below,
+        [<Optional;DefaultParameterValue(null)>] ?Colorscale,
+        [<Optional;DefaultParameterValue(null)>] ?Colorbar,
+        [<Optional;DefaultParameterValue(null)>] ?Showscale ,
+        [<Optional;DefaultParameterValue(null)>] ?ZAuto,
+        [<Optional;DefaultParameterValue(null)>] ?ZMin,
+        [<Optional;DefaultParameterValue(null)>] ?ZMid,
+        [<Optional;DefaultParameterValue(null)>] ?ZMax
+        ) =
+            Trace.initDensityMapbox(
+                TraceStyle.DensityMapbox(
+                    Longitudes  = lon,
+                    Latitudes   = lat,
+                    ?Z          = Z,
+                    ?Radius     = Radius,
+                    ?Opacity    = Opacity,
+                    ?Text       = Text,
+                    ?Below      = Below,
+                    ?Colorscale = Colorscale,
+                    ?Colorbar   = Colorbar,
+                    ?Showscale  = Showscale,
+                    ?ZAuto      = ZAuto,
+                    ?ZMin       = ZMin,
+                    ?ZMid       = ZMid,
+                    ?ZMax       = ZMax
+                )
+            )
+            |> GenericChart.ofTraceObject
+    
+    /// <summary>
+    /// Creates a DensityMapbox Chart that draws a bivariate kernel density estimation with a Gaussian kernel from `lon` and `lat` coordinates and optional `z` values using a colorscale.
+    /// </summary>
+    /// <param name="lonlat">Sets the (longitude,latitude) coordinates (in degrees North, degrees South).</param>
+    /// <param name="Z">Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot</param>
+    /// <param name="Radius">Sets the radius of influence of one `lon` / `lat` point in pixels. Increasing the value makes the densitymapbox trace smoother, but less detailed.</param>
+    /// <param name="Opacity">Sets the opacity of the trace.</param>
+    /// <param name="Text">Sets text elements associated with each (lon,lat) pair If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (lon,lat) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+    /// <param name="Below">Determines if the densitymapbox trace will be inserted before the layer with the specified ID. By default, densitymapbox traces are placed below the first layer of type symbol If set to '', the layer will be inserted above every existing layer.</param>
+    /// <param name="Colorscale">Sets the colorscale.</param>
+    /// <param name="Colorbar">Sets the Colorbar object asociated with this trace</param>
+    /// <param name="Showscale">Determines whether or not a colorbar is displayed for this trace.</param>
+    /// <param name="ZAuto">Determines whether or not the color domain is computed with respect to the input data (here in `z`) or the bounds set in `zmin` and `zmax` Defaults to `false` when `zmin` and `zmax` are set by the user.</param>
+    /// <param name="ZMin">Sets the lower bound of the color domain. Value should have the same units as in `z` and if set, `zmax` must be set as well.</param>
+    /// <param name="ZMid">Sets the mid-point of the color domain by scaling `zmin` and/or `zmax` to be equidistant to this point. Value should have the same units as in `z`. Has no effect when `zauto` is `false`.</param>
+    /// <param name="ZMax">Sets the upper bound of the color domain. Value should have the same units as in `z` and if set, `zmin` must be set as well.</param>
+    static member DensityMapbox (lonlat,
+        [<Optional;DefaultParameterValue(null)>] ?Z,
+        [<Optional;DefaultParameterValue(null)>] ?Radius,
+        [<Optional;DefaultParameterValue(null)>] ?Opacity,
+        [<Optional;DefaultParameterValue(null)>] ?Text,
+        [<Optional;DefaultParameterValue(null)>] ?Below,
+        [<Optional;DefaultParameterValue(null)>] ?Colorscale,
+        [<Optional;DefaultParameterValue(null)>] ?Colorbar,
+        [<Optional;DefaultParameterValue(null)>] ?Showscale ,
+        [<Optional;DefaultParameterValue(null)>] ?ZAuto,
+        [<Optional;DefaultParameterValue(null)>] ?ZMin,
+        [<Optional;DefaultParameterValue(null)>] ?ZMid,
+        [<Optional;DefaultParameterValue(null)>] ?ZMax
+        ) = 
+
+            let longitudes, latitudes = Seq.unzip lonlat
+            
+            Chart.DensityMapbox(
+                longitudes,
+                latitudes,
+                ?Z          = Z,
+                ?Radius     = Radius,
+                ?Opacity    = Opacity,
+                ?Text       = Text,
+                ?Below      = Below,
+                ?Colorscale = Colorscale,
+                ?Colorbar   = Colorbar, 
+                ?Showscale  = Showscale,
+                ?ZAuto      = ZAuto,
+                ?ZMin       = ZMin,
+                ?ZMid       = ZMid,
+                ?ZMax       = ZMax      
+            )

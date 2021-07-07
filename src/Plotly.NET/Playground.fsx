@@ -63,6 +63,32 @@ open System.IO
 open Deedle
 open FSharpAux
 
+let dataDensityMapbox = 
+    Http.RequestString "https://raw.githubusercontent.com/plotly/datasets/master/earthquakes-23k.csv"
+    |> fun d -> Frame.ReadCsvString(d,true,separators=",")
+
+dataDensityMapbox.Print()
+
+let lonDensity = dataDensityMapbox.["Longitude"] |> Series.values
+let latDensity = dataDensityMapbox.["Latitude"] |> Series.values
+let magnitudes = dataDensityMapbox.["Magnitude"] |> Series.values
+
+Chart.DensityMapbox(
+    lonDensity,
+    latDensity,
+    Z = magnitudes,
+    Radius=8.,
+    Colorscale=StyleParam.Colorscale.Viridis
+)
+|> Chart.withMapbox(
+    Mapbox.init(
+        Style = StyleParam.MapboxStyle.StamenTerrain,
+        Center = (60.,30.)
+    )
+)
+|> Chart.Show
+
+
 let dataMapbox = 
      let dataString = Http.RequestString "https://raw.githubusercontent.com/plotly/datasets/master/us-cities-top-1k.csv"
      let byteArray = Encoding.UTF8.GetBytes(dataString)

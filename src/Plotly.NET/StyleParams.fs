@@ -207,7 +207,7 @@ module StyleParam =
         | Custom of seq<float*string> 
         | RdBu | Earth | Blackbody | YIOrRd | YIGnBu | Bluered
         | Portland | Electric | Jet | Hot | Greys | Greens | Picnic 
-    
+        | Rainbow | Viridis | Cividis
         static member convert = function
             | Custom (cScale) -> cScale
                                  |> Seq.map (fun (v,color) -> [|box v;box color|])
@@ -224,7 +224,10 @@ module StyleParam =
             | Hot             -> box "Hot"      
             | Greys           -> box "Greys"    
             | Greens          -> box "Greens"   
-            | Picnic          -> box "Picnic"   
+            | Picnic          -> box "Picnic"  
+            | Rainbow         -> box "Rainbow"
+            | Viridis         -> box "Viridis"
+            | Cividis         -> box "Cividis"
 
     /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses "trace", which specifies the order that is present in the data supplied. 
     /// Set `categoryorder` to "category ascending" or "category descending" if order should be determined by the alphanumerical order of the category names. 

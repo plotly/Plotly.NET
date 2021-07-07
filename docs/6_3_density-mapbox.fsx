@@ -28,6 +28,48 @@ index: 4
 
 *Summary:* This example shows how to create DensityMapbox charts in F#.
 
-*More coming soon<sup>TM</sup>*
+`Chart.DensityMapbox` draws a bivariate kernel density estimation with a Gaussian kernel from `lon` and `lat` coordinates and optional `z` values using a colorscale.
+This Chart uses [Mapbox layers]({{root}}/6_0_geo-vs-mapbox.html) and might need a Mapbox API token depending on the desired base map layer style.
 
 *)
+// we are using the awesome FSharp.Data project here to perform a http request,
+// and the awesome Deedle library to read the data as a data frame
+#r "nuget: FSharp.Data"
+#r "nuget: Deedle"
+
+open FSharp.Data
+open Deedle
+
+let dataDensityMapbox = 
+    Http.RequestString "https://raw.githubusercontent.com/plotly/datasets/master/earthquakes-23k.csv"
+    |> fun d -> Frame.ReadCsvString(d,true,separators=",")
+
+let lon = dataDensityMapbox.["Longitude"] |> Series.values
+let lat= dataDensityMapbox.["Latitude"] |> Series.values
+let magnitudes = dataDensityMapbox.["Magnitude"] |> Series.values
+
+open Plotly.NET
+
+let densityMapbox = 
+    Chart.DensityMapbox(
+        lon,
+        lat,
+        Z = magnitudes,
+        Radius=8.,
+        Colorscale=StyleParam.Colorscale.Viridis
+    )
+    |> Chart.withMapbox(
+        Mapbox.init(
+            Style = StyleParam.MapboxStyle.StamenTerrain,
+            Center = (60.,30.)
+        )
+    )
+
+(*** condition: ipynb ***)
+#if IPYNB
+densityMapbox
+#endif // IPYNB
+
+(***hide***)
+densityMapbox |> GenericChart.toChartHTML
+(***include-it-raw***)
