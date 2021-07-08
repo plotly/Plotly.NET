@@ -11,24 +11,24 @@ let testBase64PNG   = File.ReadAllText (__SOURCE_DIRECTORY__ + "/data/testBase64
 
 let testChart = Chart.Point([1.,1.])
 
-[<Tests>]
-let jpgTests =
-    testList "ImageExport_JPG" [
-        testCase "Chart.toBase64JPGString should create valid base64 JPG string" ( fun () ->
-            Expect.equal
-                (testChart |> Chart.toBase64JPGString())
-                testBase64JPG
-                "Nope"
-        )        
-    ]
+//[<Tests>]
+//let jpgTests =
+//    testList "ImageExport_JPG" [
+//        testCase "Chart.toBase64JPGString should create valid base64 JPG string" ( fun () ->
+//            Expect.equal
+//                (testChart |> Chart.toBase64JPGString())
+//                testBase64JPG
+//                "Nope"
+//        )        
+//    ]
 
-[<Tests>]
-let pngTests =
-    testList "ImageExport_PNG" [
-        testCase "Chart.toBase64PNGString should create valid base64 PNG string" ( fun () ->
-            Expect.equal
-                (testChart |> Chart.toBase64PNGString())
-                testBase64PNG
-                "Nope"
-        )        
-    ]
+//[<Tests>]
+//let pngTests =
+//    testList "ImageExport_PNG" [
+//        testCase "Chart.toBase64PNGString should create valid base64 PNG string" ( fun () ->
+//            Expect.equal
+//                (testChart |> Chart.toBase64PNGString())
+//                testBase64PNG
+//                "Nope"
+//        )        
+//    ]
