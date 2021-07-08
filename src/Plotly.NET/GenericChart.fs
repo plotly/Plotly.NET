@@ -392,8 +392,15 @@ module GenericChart =
     let mapLayout f gChart =
         match gChart with
         | Chart (trace, layout, config, displayOpts)       -> Chart (trace,f layout,config, displayOpts)
-        | MultiChart (traces, layout, config, displayOpts) -> MultiChart (traces,f layout,config, displayOpts)    ///
+        | MultiChart (traces, layout, config, displayOpts) -> MultiChart (traces,f layout,config, displayOpts)
+        
+    ///
+    let mapConfig f gChart =
+        match gChart with
+        | Chart (trace, layout, config, displayOpts)       -> Chart (trace, layout, f config, displayOpts)
+        | MultiChart (traces, layout, config, displayOpts) -> MultiChart (traces, layout, f config, displayOpts)
     
+    ///
     let mapDisplayOptions f gChart =
         match gChart with
         | Chart (trace, layout, config, displayOpts)       -> Chart (trace, layout, config, f displayOpts)

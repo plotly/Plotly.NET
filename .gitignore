@@ -187,3 +187,4 @@ temp/gh-pages
 /.fsdocs
 /tmp/watch
 /output
+/src/Plotly.NET.ImageExport/.local-chromium/Win64-848005/chrome-win

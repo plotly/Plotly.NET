@@ -1,4 +1,4 @@
-module Tests
+module Tests.Core
 
 open Expecto
 open Plotly.NET

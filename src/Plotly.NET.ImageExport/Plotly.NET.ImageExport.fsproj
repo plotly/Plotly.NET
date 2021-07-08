@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <WarnOn>3390;$(WarnOn)</WarnOn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="IGenericChartRenderer.fs" />
+    <Compile Include="PuppeteerSharpRenderer.fs" />
+    <Compile Include="ExportEngine.fs" />
+    <Compile Include="ChartExtensions.fs" />
+    <Compile Include="GenericChartExtensions.fs" />
+    <None Include="Playground.fsx" />
+  </ItemGroup>
+
+  <ItemGroup />
+
+  <ItemGroup>
+    <ProjectReference Include="..\Plotly.NET\Plotly.NET.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PuppeteerSharp" Version="4.0.0" />
+  </ItemGroup>
+
+</Project>
