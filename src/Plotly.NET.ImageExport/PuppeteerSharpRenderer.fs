@@ -43,6 +43,7 @@ type PuppeteerSharpRenderer() =
             )
         patchedHtml
 
+    /// adapted from the original C# implementation by @ilyalatt : https://github.com/ilyalatt/Plotly.NET.PuppeteerRenderer
     let tryRender (browser:Browser) (width: int) (height: int) (format: StyleParam.ImageFormat) (html: string) =
         let page = browser.NewPageAsync() |> Async.AwaitTask |> Async.RunSynchronously
         try 
