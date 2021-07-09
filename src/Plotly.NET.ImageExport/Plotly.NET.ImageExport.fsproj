@@ -6,7 +6,22 @@
     <WarnOn>3390;$(WarnOn)</WarnOn>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <Authors>Kevin Schneider, F# open source contributors</Authors>
+    <Description>An easily extensible library to render static images from Plotly.NET charts.</Description>
+    <Summary>An easily extensible library to render static images from Plotly.NET charts.</Summary>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://plotly.net</PackageProjectUrl>
+    <PackageIcon>logo.png</PackageIcon>
+    <PackageTags>visualization charting plotly fsharp csharp jpg png svg image</PackageTags>
+    <RepositoryUrl>https://github.com/plotly/Plotly.NET/</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <FsDocsLicenseLink>https://github.com/plotly/Plotly.NET/blob/dev/LICENSE</FsDocsLicenseLink>
+    <FsDocsReleaseNotesLink>https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md</FsDocsReleaseNotesLink>
+  </PropertyGroup>
+  
   <ItemGroup>
+    <None Include="..\..\docs\img\logo.png" Pack="true" PackagePath="\" />
     <Compile Include="IGenericChartRenderer.fs" />
     <Compile Include="PuppeteerSharpRenderer.fs" />
     <Compile Include="ExportEngine.fs" />
