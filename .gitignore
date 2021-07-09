@@ -188,3 +188,4 @@ temp/gh-pages
 /tmp/watch
 /output
 /src/Plotly.NET.ImageExport/.local-chromium
+/src/Plotly.NET.ImageExport/testrenders

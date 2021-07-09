@@ -75,18 +75,44 @@ open PuppeteerSharp
 #load "GenericChartExtensions.fs"
 
 open Plotly.NET.ImageExport
+open GenericChartExtensions
 
-Chart.Point([1.,1.])
-|> Chart.saveJPG @"C:\Users\Kevin\source\test.jpg"
+let x = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
+let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+let xyz = Seq.zip3 x y x
 
-Chart.Point([1.,1.])
-|> Chart.savePNG @"C:\Users\Kevin\source\test.png"
+let simpleChart = Chart.Point([1.,1.])
 
-Chart.Point([1.,1.])
-|> Chart.saveSVG @"C:\Users\Kevin\source\test.svg"
+let complexChart = 
+    Chart.Grid(
+        [
+            [Chart.Line(x,y); Chart.Line(x,y); Chart.Line(x,y)]
+            [Chart.Histogram2dContour(x,y); Chart.Point(x,y); Chart.Point(x,y)]
+            [Chart.Spline(x,y); Chart.Spline(x,y); Chart.Spline(x,y)]
+        ]
+    )
+
+complexChart
+|> Chart.Show
+
+simpleChart
+|> Chart.saveJPG (__SOURCE_DIRECTORY__ + "/testrenders/simple.jpg")
+
+complexChart.SaveJPG (__SOURCE_DIRECTORY__ + "/testrenders/complex.jpg")
+
+simpleChart
+|> Chart.savePNG (__SOURCE_DIRECTORY__ + "/testrenders/simple.png")
+
+complexChart.SavePNG(__SOURCE_DIRECTORY__ + "/testrenders/complex.png")
+
+simpleChart
+|> Chart.saveSVG (__SOURCE_DIRECTORY__ + "/testrenders/simple.svg")
+
+complexChart.SaveSVG (__SOURCE_DIRECTORY__ + "/testrenders/complex.svg")
 
 let jpgString =
     Chart.Point([1.,1.])
+
     |> Chart.toBase64JPGString()
     |> fun f -> File.WriteAllText(@"C:\Users\Kevin\source\repos\plotly\Plotly.NET\tests\Plotly.NET.Tests\data\testBase64JPG.txt", f)
 

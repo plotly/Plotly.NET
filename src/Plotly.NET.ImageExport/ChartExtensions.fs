@@ -12,117 +12,162 @@ open System.Runtime.CompilerServices
 [<AutoOpen>]
 module ChartExtensions =
     
+    type internal RenderOptions
+        (
+            ?EngineType: ExportEngine,
+            ?Width : int,
+            ?Height : int
+        ) =
+            member _.Engine = (defaultArg EngineType ExportEngine.PuppeteerSharp) |> ExportEngine.getEngine
+            member _.Width = defaultArg Width 600
+            member _.Height = defaultArg Height 600
+
     type Chart with
         
-        [<CompiledName("ToBase64JPGString")>]
-        static member toBase64JPGString 
+        [<CompiledName("ToBase64JPGStringAsync")>]
+        static member toBase64JPGStringAsync
             (
-                [<Optional;DefaultParameterValue(null)>] ?Engine: ExportEngine,
+                [<Optional;DefaultParameterValue(null)>] ?EngineType: ExportEngine,
                 [<Optional;DefaultParameterValue(null)>] ?Width : int,
                 [<Optional;DefaultParameterValue(null)>] ?Height : int
-            ) : GenericChart -> string = 
-            
-                let engineType = defaultArg Engine ExportEngine.PuppeteerSharp
-                let width  = defaultArg Width 600
-                let height = defaultArg Height 600
+            ) = 
 
-                let engine = ExportEngine.getEngine engineType
+                let opts = RenderOptions(?EngineType=EngineType, ?Width=Width, ?Height=Height)
+                
+                fun (gChart:GenericChart) -> opts.Engine.RenderJPGAsync(opts.Width, opts.Height, gChart)
+               
+        [<CompiledName("ToBase64JPGString")>]
+        static member toBase64JPGString
+            (
+                [<Optional;DefaultParameterValue(null)>] ?EngineType: ExportEngine,
+                [<Optional;DefaultParameterValue(null)>] ?Width : int,
+                [<Optional;DefaultParameterValue(null)>] ?Height : int
+            ) = 
+                fun (gChart:GenericChart) ->
+                    gChart
+                    |> Chart.toBase64JPGStringAsync(?EngineType=EngineType, ?Width=Width, ?Height=Height)
+                    |> Async.RunSynchronously
 
-                (fun (gChart:GenericChart) ->
-                    engine.RenderJPG(width, height, gChart)
-                )
-
-        [<CompiledName("SaveJPG")>]
-        static member saveJPG 
+        [<CompiledName("SaveJPGAsync")>]
+        static member saveJPGAsync 
             (
                 path: string,
-                [<Optional;DefaultParameterValue(null)>] ?Engine: ExportEngine,
+                [<Optional;DefaultParameterValue(null)>] ?EngineType: ExportEngine,
                 [<Optional;DefaultParameterValue(null)>] ?Width : int,
                 [<Optional;DefaultParameterValue(null)>] ?Height : int
-            ) : GenericChart -> unit = 
-            
-                let engineType = defaultArg Engine ExportEngine.PuppeteerSharp
-                let width  = defaultArg Width 600
-                let height = defaultArg Height 600
+            ) = 
 
-                let engine = ExportEngine.getEngine engineType
+                let opts = RenderOptions(?EngineType=EngineType, ?Width=Width, ?Height=Height)
                 
-                (fun (gChart:GenericChart) ->
-                    engine.SaveJPG(path, width, height, gChart)
-                )
+                fun (gChart:GenericChart) -> opts.Engine.SaveJPGAsync(path, opts.Width, opts.Height, gChart)
 
-        
-        [<CompiledName("ToBase64PNGString")>]
-        static member toBase64PNGString 
+        [<CompiledName("SaveJPG")>]
+        static member saveJPG
             (
-                [<Optional;DefaultParameterValue(null)>] ?Engine: ExportEngine,
+                path: string,
+                [<Optional;DefaultParameterValue(null)>] ?EngineType: ExportEngine,
                 [<Optional;DefaultParameterValue(null)>] ?Width : int,
                 [<Optional;DefaultParameterValue(null)>] ?Height : int
-            ) : GenericChart -> string = 
+            ) = 
+                fun (gChart:GenericChart) ->
+                    gChart
+                    |> Chart.saveJPGAsync(path, ?EngineType=EngineType, ?Width=Width, ?Height=Height)
+                    |> Async.RunSynchronously
+
+
+        [<CompiledName("ToBase64PNGStringAsync")>]
+        static member toBase64PNGStringAsync
+            (
+                [<Optional;DefaultParameterValue(null)>] ?EngineType: ExportEngine,
+                [<Optional;DefaultParameterValue(null)>] ?Width : int,
+                [<Optional;DefaultParameterValue(null)>] ?Height : int
+            ) = 
             
-                let engineType = defaultArg Engine ExportEngine.PuppeteerSharp
-                let width  = defaultArg Width 600
-                let height = defaultArg Height 600
+                let opts = RenderOptions(?EngineType=EngineType, ?Width=Width, ?Height=Height)
+                
+                fun (gChart:GenericChart) -> opts.Engine.RenderPNGAsync(opts.Width, opts.Height, gChart)
 
-                let engine = ExportEngine.getEngine engineType
+        [<CompiledName("ToBase64PNGString")>]
+        static member toBase64PNGString
+            (
+                [<Optional;DefaultParameterValue(null)>] ?EngineType: ExportEngine,
+                [<Optional;DefaultParameterValue(null)>] ?Width : int,
+                [<Optional;DefaultParameterValue(null)>] ?Height : int
+            ) = 
+                fun (gChart:GenericChart) ->
+                    gChart
+                    |> Chart.toBase64PNGStringAsync(?EngineType=EngineType, ?Width=Width, ?Height=Height)
+                    |> Async.RunSynchronously
 
-                (fun (gChart:GenericChart) ->
-                    engine.RenderPNG(width, height, gChart)
-                )
+        [<CompiledName("SavePNGAsync")>]
+        static member savePNGAsync
+            (
+                path: string,
+                [<Optional;DefaultParameterValue(null)>] ?EngineType: ExportEngine,
+                [<Optional;DefaultParameterValue(null)>] ?Width : int,
+                [<Optional;DefaultParameterValue(null)>] ?Height : int
+            ) = 
+                let opts = RenderOptions(?EngineType=EngineType, ?Width=Width, ?Height=Height)
+                
+                fun (gChart:GenericChart) -> opts.Engine.SavePNGAsync(path, opts.Width, opts.Height, gChart)
 
         [<CompiledName("SavePNG")>]
         static member savePNG
             (
                 path: string,
-                [<Optional;DefaultParameterValue(null)>] ?Engine: ExportEngine,
+                [<Optional;DefaultParameterValue(null)>] ?EngineType: ExportEngine,
                 [<Optional;DefaultParameterValue(null)>] ?Width : int,
                 [<Optional;DefaultParameterValue(null)>] ?Height : int
-            ) : GenericChart -> unit = 
+            ) = 
+                fun (gChart:GenericChart) ->
+                    gChart
+                    |> Chart.savePNGAsync(path, ?EngineType=EngineType, ?Width=Width, ?Height=Height)
+                    |> Async.RunSynchronously
             
-                let engineType = defaultArg Engine ExportEngine.PuppeteerSharp
-                let width  = defaultArg Width 600
-                let height = defaultArg Height 600
+        [<CompiledName("ToSVGStringAsync")>]
+        static member toSVGStringAsync
+            (
+                [<Optional;DefaultParameterValue(null)>] ?EngineType: ExportEngine,
+                [<Optional;DefaultParameterValue(null)>] ?Width : int,
+                [<Optional;DefaultParameterValue(null)>] ?Height : int
+            ) = 
+                let opts = RenderOptions(?EngineType=EngineType, ?Width=Width, ?Height=Height)
+                
+                fun (gChart:GenericChart) -> opts.Engine.RenderSVGAsync(opts.Width, opts.Height, gChart)
 
-                let engine = ExportEngine.getEngine engineType
-
-                (fun (gChart:GenericChart) ->
-                    engine.SavePNG(path, width, height, gChart)
-                )
-
-        
         [<CompiledName("ToSVGString")>]
         static member toSVGString 
             (
-                [<Optional;DefaultParameterValue(null)>] ?Engine: ExportEngine,
+                [<Optional;DefaultParameterValue(null)>] ?EngineType: ExportEngine,
                 [<Optional;DefaultParameterValue(null)>] ?Width : int,
                 [<Optional;DefaultParameterValue(null)>] ?Height : int
-            ) : GenericChart -> string = 
+            ) = 
+                fun (gChart:GenericChart) ->
+                    gChart
+                    |> Chart.toSVGStringAsync(?EngineType=EngineType, ?Width=Width, ?Height=Height)
+                    |> Async.RunSynchronously
             
-                let engineType = defaultArg Engine ExportEngine.PuppeteerSharp
-                let width  = defaultArg Width 600
-                let height = defaultArg Height 600
-
-                let engine = ExportEngine.getEngine engineType
-
-                (fun (gChart:GenericChart) ->
-                    engine.RenderSVG(width, height, gChart)
-                )
-
+        [<CompiledName("SaveSVGAsync")>]
+        static member saveSVGAsync
+            (
+                path: string,
+                [<Optional;DefaultParameterValue(null)>] ?EngineType: ExportEngine,
+                [<Optional;DefaultParameterValue(null)>] ?Width : int,
+                [<Optional;DefaultParameterValue(null)>] ?Height : int
+            ) = 
+                let opts = RenderOptions(?EngineType=EngineType, ?Width=Width, ?Height=Height)
+                
+                fun (gChart:GenericChart) -> opts.Engine.SaveSVGAsync(path, opts.Width, opts.Height, gChart)
+        
         [<CompiledName("SaveSVG")>]
         static member saveSVG
             (
                 path: string,
-                [<Optional;DefaultParameterValue(null)>] ?Engine: ExportEngine,
+                [<Optional;DefaultParameterValue(null)>] ?EngineType: ExportEngine,
                 [<Optional;DefaultParameterValue(null)>] ?Width : int,
                 [<Optional;DefaultParameterValue(null)>] ?Height : int
-            ) : GenericChart -> unit = 
-            
-                let engineType = defaultArg Engine ExportEngine.PuppeteerSharp
-                let width  = defaultArg Width 600
-                let height = defaultArg Height 600
-
-                let engine = ExportEngine.getEngine engineType
-
-                (fun (gChart:GenericChart) ->
-                    engine.SaveSVG(path, width, height, gChart)
-                )
+            ) = 
+                fun (gChart:GenericChart) ->
+                    gChart
+                    |> Chart.saveSVGAsync(path, ?EngineType=EngineType, ?Width=Width, ?Height=Height)
+                    |> Async.RunSynchronously
