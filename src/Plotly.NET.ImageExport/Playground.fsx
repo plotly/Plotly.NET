@@ -96,19 +96,57 @@ complexChart
 |> Chart.Show
 
 simpleChart
-|> Chart.saveJPG (__SOURCE_DIRECTORY__ + "/testrenders/simple.jpg")
+|> Chart.saveJPG (
+    __SOURCE_DIRECTORY__ + "/testrenders/simple",
+    EngineType = ExportEngine.PuppeteerSharp,
+    Width= 1000,
+    Height= 1000
+)
 
-complexChart.SaveJPG (__SOURCE_DIRECTORY__ + "/testrenders/complex.jpg")
+open FSharp.Data
+open Deedle
+
+let dataDensityMapbox = 
+    Http.RequestString "https://raw.githubusercontent.com/plotly/datasets/master/earthquakes-23k.csv"
+    |> fun d -> Frame.ReadCsvString(d,true,separators=",")
+
+dataDensityMapbox.Print()
+
+let lonDensity = dataDensityMapbox.["Longitude"] |> Series.values
+let latDensity = dataDensityMapbox.["Latitude"] |> Series.values
+let magnitudes = dataDensityMapbox.["Magnitude"] |> Series.values
+
+let map =
+    Chart.DensityMapbox(
+        lonDensity,
+        latDensity,
+        Z = magnitudes,
+        Radius=8.,
+        Colorscale=StyleParam.Colorscale.Viridis
+    )
+    |> Chart.withMapbox(
+        Mapbox.init(
+            Style = StyleParam.MapboxStyle.StamenTerrain,
+            Center = (60.,30.)
+        )
+    )
+
+
+map.SaveSVG(__SOURCE_DIRECTORY__ + "/testrenders/map")
+
+complexChart.SaveJPG (__SOURCE_DIRECTORY__ + "/testrenders/complex")
 
 simpleChart
-|> Chart.savePNG (__SOURCE_DIRECTORY__ + "/testrenders/simple.png")
+|> Chart.savePNG (__SOURCE_DIRECTORY__ + "/testrenders/simple")
 
-complexChart.SavePNG(__SOURCE_DIRECTORY__ + "/testrenders/complex.png")
+complexChart
+    .WithTitle("soos")
+    .SavePNG(__SOURCE_DIRECTORY__ + "/testrenders/complex")
 
 simpleChart
-|> Chart.saveSVG (__SOURCE_DIRECTORY__ + "/testrenders/simple.svg")
+|> Chart.saveSVG (__SOURCE_DIRECTORY__ + "/testrenders/simple")
 
-complexChart.SaveSVG (__SOURCE_DIRECTORY__ + "/testrenders/complex.svg")
+complexChart.SaveSVG (__SOURCE_DIRECTORY__ + "/testrenders/complex")
 
 let jpgString =
     Chart.Point([1.,1.])

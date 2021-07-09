@@ -7,5 +7,6 @@ type ExportEngine =
 
     static member getEngine (engineType: ExportEngine) =
         match engineType with
+        ///<summary>This engine uses PuppeteerSharp to render GenericCharts as static images using a chromium headless browser.</summary>
         | PuppeteerSharp ->
             PuppeteerSharpRenderer() :> IGenericChartRenderer

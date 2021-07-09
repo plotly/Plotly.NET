@@ -23,7 +23,13 @@ module ChartExtensions =
             member _.Height = defaultArg Height 600
 
     type Chart with
-        
+
+        /// <summary>
+        /// Returns an async function that converts a GenericChart to a base64 encoded JPG string
+        /// </summary>
+        /// <param name="EngineType">The Render engine to use</param>
+        /// <param name="Width">width of the resulting image</param>
+        /// <param name="Height">height of the resulting image</param>
         [<CompiledName("ToBase64JPGStringAsync")>]
         static member toBase64JPGStringAsync
             (
@@ -36,6 +42,12 @@ module ChartExtensions =
                 
                 fun (gChart:GenericChart) -> opts.Engine.RenderJPGAsync(opts.Width, opts.Height, gChart)
                
+        /// <summary>
+        /// Returns a function that converts a GenericChart to a base64 encoded JPG string
+        /// </summary>
+        /// <param name="EngineType">The Render engine to use</param>
+        /// <param name="Width">width of the resulting image</param>
+        /// <param name="Height">height of the resulting image</param>
         [<CompiledName("ToBase64JPGString")>]
         static member toBase64JPGString
             (
@@ -48,6 +60,13 @@ module ChartExtensions =
                     |> Chart.toBase64JPGStringAsync(?EngineType=EngineType, ?Width=Width, ?Height=Height)
                     |> Async.RunSynchronously
 
+        /// <summary>
+        /// Returns an async function that saves a GenericChart as JPG image
+        /// </summary>
+        /// <param name="path">The path (without extension) where the image will be saved</param>
+        /// <param name="EngineType">The Render engine to use</param>
+        /// <param name="Width">width of the resulting image</param>
+        /// <param name="Height">height of the resulting image</param>
         [<CompiledName("SaveJPGAsync")>]
         static member saveJPGAsync 
             (
@@ -61,6 +80,13 @@ module ChartExtensions =
                 
                 fun (gChart:GenericChart) -> opts.Engine.SaveJPGAsync(path, opts.Width, opts.Height, gChart)
 
+        /// <summary>
+        /// Returns a function that saves a GenericChart as JPG image
+        /// </summary>
+        /// <param name="path">The path (without extension) where the image will be saved</param>
+        /// <param name="EngineType">The Render engine to use</param>
+        /// <param name="Width">width of the resulting image</param>
+        /// <param name="Height">height of the resulting image</param>
         [<CompiledName("SaveJPG")>]
         static member saveJPG
             (
@@ -74,7 +100,12 @@ module ChartExtensions =
                     |> Chart.saveJPGAsync(path, ?EngineType=EngineType, ?Width=Width, ?Height=Height)
                     |> Async.RunSynchronously
 
-
+        /// <summary>
+        /// Returns an async function that converts a GenericChart to a base64 encoded PNG string
+        /// </summary>
+        /// <param name="EngineType">The Render engine to use</param>
+        /// <param name="Width">width of the resulting image</param>
+        /// <param name="Height">height of the resulting image</param>
         [<CompiledName("ToBase64PNGStringAsync")>]
         static member toBase64PNGStringAsync
             (
@@ -87,6 +118,12 @@ module ChartExtensions =
                 
                 fun (gChart:GenericChart) -> opts.Engine.RenderPNGAsync(opts.Width, opts.Height, gChart)
 
+        /// <summary>
+        /// Returns a function that converts a GenericChart to a base64 encoded PNG string
+        /// </summary>
+        /// <param name="EngineType">The Render engine to use</param>
+        /// <param name="Width">width of the resulting image</param>
+        /// <param name="Height">height of the resulting image</param>
         [<CompiledName("ToBase64PNGString")>]
         static member toBase64PNGString
             (
@@ -99,6 +136,13 @@ module ChartExtensions =
                     |> Chart.toBase64PNGStringAsync(?EngineType=EngineType, ?Width=Width, ?Height=Height)
                     |> Async.RunSynchronously
 
+        /// <summary>
+        /// Returns an async function that saves a GenericChart as PNG image
+        /// </summary>
+        /// <param name="path">The path (without extension) where the image will be saved</param>
+        /// <param name="EngineType">The Render engine to use</param>
+        /// <param name="Width">width of the resulting image</param>
+        /// <param name="Height">height of the resulting image</param>
         [<CompiledName("SavePNGAsync")>]
         static member savePNGAsync
             (
@@ -111,6 +155,14 @@ module ChartExtensions =
                 
                 fun (gChart:GenericChart) -> opts.Engine.SavePNGAsync(path, opts.Width, opts.Height, gChart)
 
+
+        /// <summary>
+        /// Returns a function that saves a GenericChart as PNG image
+        /// </summary>
+        /// <param name="path">The path (without extension) where the image will be saved</param>
+        /// <param name="EngineType">The Render engine to use</param>
+        /// <param name="Width">width of the resulting image</param>
+        /// <param name="Height">height of the resulting image</param>
         [<CompiledName("SavePNG")>]
         static member savePNG
             (
@@ -124,6 +176,12 @@ module ChartExtensions =
                     |> Chart.savePNGAsync(path, ?EngineType=EngineType, ?Width=Width, ?Height=Height)
                     |> Async.RunSynchronously
             
+        /// <summary>
+        /// Returns an async function that converts a GenericChart to a SVG string
+        /// </summary>
+        /// <param name="EngineType">The Render engine to use</param>
+        /// <param name="Width">width of the resulting image</param>
+        /// <param name="Height">height of the resulting image</param>
         [<CompiledName("ToSVGStringAsync")>]
         static member toSVGStringAsync
             (
@@ -135,6 +193,12 @@ module ChartExtensions =
                 
                 fun (gChart:GenericChart) -> opts.Engine.RenderSVGAsync(opts.Width, opts.Height, gChart)
 
+        /// <summary>
+        /// Returns a function that converts a GenericChart to a SVG string
+        /// </summary>
+        /// <param name="EngineType">The Render engine to use</param>
+        /// <param name="Width">width of the resulting image</param>
+        /// <param name="Height">height of the resulting image</param>
         [<CompiledName("ToSVGString")>]
         static member toSVGString 
             (
@@ -147,6 +211,13 @@ module ChartExtensions =
                     |> Chart.toSVGStringAsync(?EngineType=EngineType, ?Width=Width, ?Height=Height)
                     |> Async.RunSynchronously
             
+        /// <summary>
+        /// Returns an async function that saves a GenericChart as SVG image
+        /// </summary>
+        /// <param name="path">The path (without extension) where the image will be saved</param>
+        /// <param name="EngineType">The Render engine to use</param>
+        /// <param name="Width">width of the resulting image</param>
+        /// <param name="Height">height of the resulting image</param>
         [<CompiledName("SaveSVGAsync")>]
         static member saveSVGAsync
             (
@@ -159,6 +230,13 @@ module ChartExtensions =
                 
                 fun (gChart:GenericChart) -> opts.Engine.SaveSVGAsync(path, opts.Width, opts.Height, gChart)
         
+        /// <summary>
+        /// Returns a function that saves a GenericChart as SVG image
+        /// </summary>
+        /// <param name="path">The path (without extension) where the image will be saved</param>
+        /// <param name="EngineType">The Render engine to use</param>
+        /// <param name="Width">width of the resulting image</param>
+        /// <param name="Height">height of the resulting image</param>
         [<CompiledName("SaveSVG")>]
         static member saveSVG
             (
