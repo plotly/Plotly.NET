@@ -84,7 +84,6 @@
     <Compile Include="CandelstickExtension.fs" />
     <Compile Include="SankeyExtension.fs" />
     <None Include="Playground.fsx" />
-    <None Include="TestScript.fsx" />
     <None Include="paket.references" />
     <None Include="paket.template" />
   </ItemGroup>

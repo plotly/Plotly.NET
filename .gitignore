@@ -187,3 +187,7 @@ temp/gh-pages
 /.fsdocs
 /tmp/watch
 /output
+/src/Plotly.NET.ImageExport/.local-chromium
+/src/Plotly.NET.ImageExport/testrenders
+/src/Plotly.NET.Interactive/.local-chromium/
+/docs/.local-chromium/
