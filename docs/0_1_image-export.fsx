@@ -158,15 +158,17 @@ In fact, the images shown on this site are included just the same way.
 ## Including static images in dotnet interactive notebooks
 
 To include the images in dotnet interactive, convert them to html tags as above and include them via 
-dotnet interactive's `DisplayAs` function. The content type for PNG/JPB is "text/html", and "image/svg+xml" for SVG.
+dotnet interactive's `DisplayAs` function. The content type for PNG/JPG is "text/html", and "image/svg+xml" for SVG.
 *)
 
-let base64PNG =
-    exampleChart
-    |> Chart.toBase64PNGString(
-        Width=300,
-        Height=300
-    )
+let base64PNGTag =
+    let base64 =
+        exampleChart
+        |> Chart.toBase64PNGString(
+            Width=300,
+            Height=300
+        )
+    $"""<img src= "{base64JPG}"/>"""
 
 let svgString2 =
     exampleChart
