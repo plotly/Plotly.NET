@@ -178,7 +178,7 @@ let svgString2 =
     )
 
 // DisplayExtensions.DisplayAs(base64PNG,"text/html")
-// DisplayExtensions.DisplayAs(svgString,"image/svg+xml")
+// DisplayExtensions.DisplayAs(svgString2,"image/svg+xml")
 
 (*** condition: ipynb ***)
 #if IPYNB
