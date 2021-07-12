@@ -41,7 +41,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.5</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.6</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -68,6 +68,11 @@
 <li class="nav-item">
   <a class="nav-link" href="https://plotly.net/0_0_basics.html">
     Basics
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/0_1_image-export.html">
+    Static image export
   </a>
 </li>             
 <li class="nav-header">
@@ -325,29 +330,29 @@
         <span class="fn">MarkerSymbol</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs9', 11)" onmouseover="showTip(event, 'fs9', 11)" class="en">Symbol</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 12)" onmouseover="showTip(event, 'fs10', 12)" class="id">Square</span><span class="pn">)</span>    
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 13)" onmouseover="showTip(event, 'fs6', 13)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 14)" onmouseover="showTip(event, 'fs11', 14)" class="id">withLineStyle</span><span class="pn">(</span><span class="fn">Width</span><span class="o">=</span><span class="n">2.</span><span class="pn">,</span><span class="fn">Dash</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs8', 15)" onmouseover="showTip(event, 'fs8', 15)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 16)" onmouseover="showTip(event, 'fs12', 16)" class="rt">DrawingStyle</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 17)" onmouseover="showTip(event, 'fs13', 17)" class="id">Dot</span><span class="pn">)</span>
 </code></pre>
-<div id="f1ecdb6d-edea-4630-b76c-5f6d44725271" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="47674a0d-32a0-4a47-9c94-603182072e68" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_f1ecdb6dedea4630b76c5f6d44725271 = function() {
+            var renderPlotly_47674a0d32a04a479c94603182072e68 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"mode":"lines+markers","line":{"width":2.0,"dash":"dot"},"name":"line","marker":{"symbol":1}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('f1ecdb6d-edea-4630-b76c-5f6d44725271', data, layout, config);
+            Plotly.newPlot('47674a0d-32a0-4a47-9c94-603182072e68', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_f1ecdb6dedea4630b76c5f6d44725271();
+                    renderPlotly_47674a0d32a04a479c94603182072e68();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_f1ecdb6dedea4630b76c5f6d44725271();
+                renderPlotly_47674a0d32a04a479c94603182072e68();
             }
 </script>
 
@@ -360,29 +365,29 @@ shown below.</p>
     <span class="pn">[</span> <span class="k">for</span> <span onmouseout="hideTip(event, 'fs17', 22)" onmouseover="showTip(event, 'fs17', 22)" class="fn">x</span> <span class="k">in</span> <span class="n">1.0</span> <span class="o">..</span> <span class="n">100.0</span> <span class="k">-&gt;</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs17', 23)" onmouseover="showTip(event, 'fs17', 23)" class="fn">x</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs17', 24)" onmouseover="showTip(event, 'fs17', 24)" class="fn">x</span> <span class="o">**</span> <span class="n">2.0</span><span class="pn">)</span> <span class="pn">]</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 25)" onmouseover="showTip(event, 'fs6', 25)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 26)" onmouseover="showTip(event, 'fs7', 26)" class="id">Line</span>
 </code></pre>
-<div id="4bcbdf47-3d63-4736-85d2-3aff4bca9be2" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="606d7f8c-395a-434a-aaee-b8efb2119948" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_4bcbdf473d63473685d23aff4bca9be2 = function() {
+            var renderPlotly_606d7f8c395a434aaaeeb8efb2119948 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0,21.0,22.0,23.0,24.0,25.0,26.0,27.0,28.0,29.0,30.0,31.0,32.0,33.0,34.0,35.0,36.0,37.0,38.0,39.0,40.0,41.0,42.0,43.0,44.0,45.0,46.0,47.0,48.0,49.0,50.0,51.0,52.0,53.0,54.0,55.0,56.0,57.0,58.0,59.0,60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0,75.0,76.0,77.0,78.0,79.0,80.0,81.0,82.0,83.0,84.0,85.0,86.0,87.0,88.0,89.0,90.0,91.0,92.0,93.0,94.0,95.0,96.0,97.0,98.0,99.0,100.0],"y":[1.0,4.0,9.0,16.0,25.0,36.0,49.0,64.0,81.0,100.0,121.0,144.0,169.0,196.0,225.0,256.0,289.0,324.0,361.0,400.0,441.0,484.0,529.0,576.0,625.0,676.0,729.0,784.0,841.0,900.0,961.0,1024.0,1089.0,1156.0,1225.0,1296.0,1369.0,1444.0,1521.0,1600.0,1681.0,1764.0,1849.0,1936.0,2025.0,2116.0,2209.0,2304.0,2401.0,2500.0,2601.0,2704.0,2809.0,2916.0,3025.0,3136.0,3249.0,3364.0,3481.0,3600.0,3721.0,3844.0,3969.0,4096.0,4225.0,4356.0,4489.0,4624.0,4761.0,4900.0,5041.0,5184.0,5329.0,5476.0,5625.0,5776.0,5929.0,6084.0,6241.0,6400.0,6561.0,6724.0,6889.0,7056.0,7225.0,7396.0,7569.0,7744.0,7921.0,8100.0,8281.0,8464.0,8649.0,8836.0,9025.0,9216.0,9409.0,9604.0,9801.0,10000.0],"mode":"lines","line":{},"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('4bcbdf47-3d63-4736-85d2-3aff4bca9be2', data, layout, config);
+            Plotly.newPlot('606d7f8c-395a-434a-aaee-b8efb2119948', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_4bcbdf473d63473685d23aff4bca9be2();
+                    renderPlotly_606d7f8c395a434aaaeeb8efb2119948();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_4bcbdf473d63473685d23aff4bca9be2();
+                renderPlotly_606d7f8c395a434aaaeeb8efb2119948();
             }
 </script>
 
@@ -391,29 +396,29 @@ shown below.</p>
 the chart to generate a smoother version of the line chart.</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs18', 30)" onmouseover="showTip(event, 'fs18', 30)" class="id">spline1</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 31)" onmouseover="showTip(event, 'fs6', 31)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs19', 32)" onmouseover="showTip(event, 'fs19', 32)" class="id">Spline</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs3', 33)" onmouseover="showTip(event, 'fs3', 33)" class="id">x</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs4', 34)" onmouseover="showTip(event, 'fs4', 34)" class="id">y</span><span class="pn">,</span><span class="fn">Name</span><span class="o">=</span><span class="s">&quot;spline&quot;</span><span class="pn">)</span>    
 </code></pre>
-<div id="0f649a23-56c9-4677-942b-915e8c98059a" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="2dbbc0af-ae93-4e78-b289-7018fa4040ef" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_0f649a2356c94677942b915e8c98059a = function() {
+            var renderPlotly_2dbbc0afae934e78b2897018fa4040ef = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"mode":"lines","name":"spline","line":{"shape":"spline"},"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('0f649a23-56c9-4677-942b-915e8c98059a', data, layout, config);
+            Plotly.newPlot('2dbbc0af-ae93-4e78-b289-7018fa4040ef', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_0f649a2356c94677942b915e8c98059a();
+                    renderPlotly_2dbbc0afae934e78b2897018fa4040ef();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_0f649a2356c94677942b915e8c98059a();
+                renderPlotly_2dbbc0afae934e78b2897018fa4040ef();
             }
 </script>
 
@@ -425,29 +430,29 @@ the chart to generate a smoother version of the line chart.</p>
     <span class="pn">)</span>      
     
 </code></pre>
-<div id="cc472d57-1fad-4dc4-a656-7f16b1a67fbc" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="9d73b41b-0785-47b3-8efc-56f7bf5e6d78" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_cc472d571fad4dc4a6567f16b1a67fbc = function() {
+            var renderPlotly_9d73b41b078547b38efc56f7bf5e6d78 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"mode":"lines","name":"spline","line":{"shape":"spline","smoothing":0.4},"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('cc472d57-1fad-4dc4-a656-7f16b1a67fbc', data, layout, config);
+            Plotly.newPlot('9d73b41b-0785-47b3-8efc-56f7bf5e6d78', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_cc472d571fad4dc4a6567f16b1a67fbc();
+                    renderPlotly_9d73b41b078547b38efc56f7bf5e6d78();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_cc472d571fad4dc4a6567f16b1a67fbc();
+                renderPlotly_9d73b41b078547b38efc56f7bf5e6d78();
             }
 </script>
 
@@ -465,29 +470,29 @@ Addtionally, text labels are added .</p>
         <span class="fn">TextPosition</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs8', 53)" onmouseover="showTip(event, 'fs8', 53)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs24', 54)" onmouseover="showTip(event, 'fs24', 54)" class="rt">TextPosition</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 55)" onmouseover="showTip(event, 'fs25', 55)" class="id">TopRight</span>
     <span class="pn">)</span>    
 </code></pre>
-<div id="72d8de9d-cc6a-48b5-b8b7-78b4e1be3cf4" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="5066c4d0-5549-473d-9e05-d65c148be090" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_72d8de9dcc6a48b5b8b778b4e1be3cf4 = function() {
+            var renderPlotly_5066c4d05549473d9e05d65c148be090 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"mode":"markers+text","name":"points","marker":{},"text":["a","b","c","d","e","f","g","h","i","j"],"textposition":"top right"}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('72d8de9d-cc6a-48b5-b8b7-78b4e1be3cf4', data, layout, config);
+            Plotly.newPlot('5066c4d0-5549-473d-9e05-d65c148be090', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_72d8de9dcc6a48b5b8b778b4e1be3cf4();
+                    renderPlotly_5066c4d05549473d9e05d65c148be090();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_72d8de9dcc6a48b5b8b778b4e1be3cf4();
+                renderPlotly_5066c4d05549473d9e05d65c148be090();
             }
 </script>
 

@@ -26,29 +26,29 @@ let plot1 =
     Chart.Point(x,y)
     |> Chart.withX_AxisStyle ("X axis title", MinMax = (-1.,10.))
     |> Chart.withY_AxisStyle ("Y axis title", MinMax = (-1.,10.))(* output: 
-<div id="4dae1db7-c176-42fe-bd33-8c42546a4e7d" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="3b48c3bc-897b-4303-8d46-298c2f7b07a6" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_4dae1db7c17642febd338c42546a4e7d = function() {
+            var renderPlotly_3b48c3bc897b43038d46298c2f7b07a6 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"mode":"markers","marker":{}}];
             var layout = {"xaxis":{"title":"X axis title","range":[-1.0,10.0]},"yaxis":{"title":"Y axis title","range":[-1.0,10.0]}};
             var config = {};
-            Plotly.newPlot('4dae1db7-c176-42fe-bd33-8c42546a4e7d', data, layout, config);
+            Plotly.newPlot('3b48c3bc-897b-4303-8d46-298c2f7b07a6', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_4dae1db7c17642febd338c42546a4e7d();
+                    renderPlotly_3b48c3bc897b43038d46298c2f7b07a6();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_4dae1db7c17642febd338c42546a4e7d();
+                renderPlotly_3b48c3bc897b43038d46298c2f7b07a6();
             }
 </script>
 *)
@@ -79,29 +79,29 @@ let plot2 =
     Chart.Point(x,y)
     |> Chart.withX_Axis mirroredXAxis
     |> Chart.withY_Axis mirroredLogYAxis(* output: 
-<div id="4d16c306-6249-4d4b-9bb6-f616dc5b1535" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="68edd72c-4506-4269-9cfa-c84a6a37bfe1" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_4d16c30662494d4b9bb6f616dc5b1535 = function() {
+            var renderPlotly_68edd72c450642699cfac84a6a37bfe1 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"mode":"markers","marker":{}}];
             var layout = {"xaxis":{"title":"Log axis","ticks":"inside","mirror":"allticks","showline":true,"showgrid":false},"yaxis":{"type":"log","title":"Log axis","ticks":"inside","mirror":"allticks","showline":true,"showgrid":false}};
             var config = {};
-            Plotly.newPlot('4d16c306-6249-4d4b-9bb6-f616dc5b1535', data, layout, config);
+            Plotly.newPlot('68edd72c-4506-4269-9cfa-c84a6a37bfe1', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_4d16c30662494d4b9bb6f616dc5b1535();
+                    renderPlotly_68edd72c450642699cfac84a6a37bfe1();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_4d16c30662494d4b9bb6f616dc5b1535();
+                renderPlotly_68edd72c450642699cfac84a6a37bfe1();
             }
 </script>
 *)
@@ -143,29 +143,29 @@ let twoXAxes1 =
         Overlaying=StyleParam.AxisAnchorId.Y 1
     )
         (* output: 
-<div id="0aaf5e58-3769-4724-b663-74bbe56a9414" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="dacaf11a-8e8a-49cf-a952-205a5457990c" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_0aaf5e5837694724b66374bbe56a9414 = function() {
+            var renderPlotly_dacaf11a8e8a49cfa952205a5457990c = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"mode":"lines","line":{},"name":"anchor 1","marker":{},"yaxis":"y"},{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,7.0,3.0,5.0,5.0,6.0,3.0,10.0,3.0,4.0],"mode":"lines","line":{},"name":"anchor 2","marker":{},"yaxis":"y2"}];
             var layout = {"yaxis":{"title":"axis 1","side":"left"},"yaxis2":{"title":"axis2","side":"right","overlaying":"y"}};
             var config = {};
-            Plotly.newPlot('0aaf5e58-3769-4724-b663-74bbe56a9414', data, layout, config);
+            Plotly.newPlot('dacaf11a-8e8a-49cf-a952-205a5457990c', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_0aaf5e5837694724b66374bbe56a9414();
+                    renderPlotly_dacaf11a8e8a49cfa952205a5457990c();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_0aaf5e5837694724b66374bbe56a9414();
+                renderPlotly_dacaf11a8e8a49cfa952205a5457990c();
             }
 </script>
 *)
@@ -198,29 +198,29 @@ let twoXAxes2 =
         Anchor=StyleParam.AxisAnchorId.Free,
         Showline=true
     )(* output: 
-<div id="0d52a808-ecd8-4920-93da-b521a3a73203" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="4bf490b0-81ec-43e5-9d3c-707a4ad9d498" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_0d52a808ecd8492093dab521a3a73203 = function() {
+            var renderPlotly_4bf490b081ec43e59d3c707a4ad9d498 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"mode":"lines","line":{},"name":"anchor 1","marker":{},"yaxis":"y"},{"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,7.0,3.0,5.0,5.0,6.0,3.0,10.0,3.0,4.0],"mode":"lines","line":{},"name":"anchor 2","marker":{},"yaxis":"y2"}];
             var layout = {"yaxis":{"title":"first y-axis","side":"left","showline":true},"yaxis2":{"title":"second y-axis","side":"left","overlaying":"y","showline":true,"anchor":"free","position":0.1},"xaxis":{"title":"x-axis","domain":[0.3,1.0]}};
             var config = {};
-            Plotly.newPlot('0d52a808-ecd8-4920-93da-b521a3a73203', data, layout, config);
+            Plotly.newPlot('4bf490b0-81ec-43e5-9d3c-707a4ad9d498', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_0d52a808ecd8492093dab521a3a73203();
+                    renderPlotly_4bf490b081ec43e59d3c707a4ad9d498();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_0d52a808ecd8492093dab521a3a73203();
+                renderPlotly_4bf490b081ec43e59d3c707a4ad9d498();
             }
 </script>
 *)

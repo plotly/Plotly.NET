@@ -41,7 +41,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.5</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.6</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -68,6 +68,11 @@
 <li class="nav-item">
   <a class="nav-link" href="https://plotly.net/0_0_basics.html">
     Basics
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/0_1_image-export.html">
+    Static image export
   </a>
 </li>             
 <li class="nav-header">
@@ -340,29 +345,29 @@ otherwise contains one or more traces of type</code>scattergeo<code>or</code>cho
     <span onmouseout="hideTip(event, 'fs10', 10)" onmouseover="showTip(event, 'fs10', 10)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 11)" onmouseover="showTip(event, 'fs11', 11)" class="id">PointMapbox</span><span class="pn">(</span><span class="pn">[</span><span class="pn">]</span><span class="pn">,</span><span class="pn">[</span><span class="pn">]</span><span class="pn">)</span> <span class="c">// deliberately empty chart to show the base map only</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs10', 12)" onmouseover="showTip(event, 'fs10', 12)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 13)" onmouseover="showTip(event, 'fs12', 13)" class="id">withMapbox</span> <span onmouseout="hideTip(event, 'fs3', 14)" onmouseover="showTip(event, 'fs3', 14)" class="id">mb</span> <span class="c">// add the mapBox</span>
 </code></pre>
-<div id="d2cebdf0-d0f7-4f2c-a243-83ec3f8aab85" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="628660fc-47a0-45e0-a9b8-e61d18b625bd" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_d2cebdf0d0f74f2ca24383ec3f8aab85 = function() {
+            var renderPlotly_628660fc47a045e0a9b8e61d18b625bd = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scattermapbox","mode":"markers","lon":[],"lat":[],"line":{},"marker":{}}];
             var layout = {"mapbox":{"style":"open-street-map"}};
             var config = {};
-            Plotly.newPlot('d2cebdf0-d0f7-4f2c-a243-83ec3f8aab85', data, layout, config);
+            Plotly.newPlot('628660fc-47a0-45e0-a9b8-e61d18b625bd', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_d2cebdf0d0f74f2ca24383ec3f8aab85();
+                    renderPlotly_628660fc47a045e0a9b8e61d18b625bd();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_d2cebdf0d0f74f2ca24383ec3f8aab85();
+                renderPlotly_628660fc47a045e0a9b8e61d18b625bd();
             }
 </script>
 

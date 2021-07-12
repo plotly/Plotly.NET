@@ -41,7 +41,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.5</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.6</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -68,6 +68,11 @@
 <li class="nav-item">
   <a class="nav-link" href="https://plotly.net/0_0_basics.html">
     Basics
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/0_1_image-export.html">
+    Static image export
   </a>
 </li>             
 <li class="nav-header">
@@ -335,29 +340,29 @@ These are created using the provided Node and Link structures.</p>
     <span class="pn">)</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs18', 56)" onmouseover="showTip(event, 'fs18', 56)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 57)" onmouseover="showTip(event, 'fs20', 57)" class="id">withTitle</span> <span class="s">&quot;Sankey Sample&quot;</span>
 </code></pre>
-<div id="418fc876-2236-4044-b730-a24498ecec17" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="f08135c0-25e4-4acb-af98-68205e8a450e" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_418fc87622364044b730a24498ecec17 = function() {
+            var renderPlotly_f08135c025e44acbaf9868205e8a450e = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"sankey","node":{"label":["a","b","c","d","e"],"color":["Black","Red","Purple","Green","Orange"]},"link":{"source":[0,1,0,3,2],"target":[1,2,4,4,4],"value":[1.0,2.0,1.3,1.5,0.5]}}];
             var layout = {"title":"Sankey Sample"};
             var config = {};
-            Plotly.newPlot('418fc876-2236-4044-b730-a24498ecec17', data, layout, config);
+            Plotly.newPlot('f08135c0-25e4-4acb-af98-68205e8a450e', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_418fc87622364044b730a24498ecec17();
+                    renderPlotly_f08135c025e44acbaf9868205e8a450e();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_418fc87622364044b730a24498ecec17();
+                renderPlotly_f08135c025e44acbaf9868205e8a450e();
             }
 </script>
 

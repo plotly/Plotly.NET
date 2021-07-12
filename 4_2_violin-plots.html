@@ -41,7 +41,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.5</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.6</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -68,6 +68,11 @@
 <li class="nav-item">
   <a class="nav-link" href="https://plotly.net/0_0_basics.html">
     Basics
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/0_1_image-export.html">
+    Static image export
   </a>
 </li>             
 <li class="nav-header">
@@ -323,29 +328,29 @@ data at different values.</p>
         <span class="fn">Points</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs9', 11)" onmouseover="showTip(event, 'fs9', 11)" class="rt">Jitterpoints</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 12)" onmouseover="showTip(event, 'fs10', 12)" class="id">All</span>
     <span class="pn">)</span>
 </code></pre>
-<div id="9874b2d3-2553-4f07-9482-4162adc68df4" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="3a411543-7f13-42dd-8b08-925c74fa563c" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_9874b2d325534f0794824162adc68df4 = function() {
+            var renderPlotly_3a4115437f1342dd8b08925c74fa563c = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"violin","y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"points":"all","marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('9874b2d3-2553-4f07-9482-4162adc68df4', data, layout, config);
+            Plotly.newPlot('3a411543-7f13-42dd-8b08-925c74fa563c', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_9874b2d325534f0794824162adc68df4();
+                    renderPlotly_3a4115437f1342dd8b08925c74fa563c();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_9874b2d325534f0794824162adc68df4();
+                renderPlotly_3a4115437f1342dd8b08925c74fa563c();
             }
 </script>
 
@@ -359,29 +364,29 @@ data at different values.</p>
         <span onmouseout="hideTip(event, 'fs16', 27)" onmouseover="showTip(event, 'fs16', 27)" class="fn">Meanline</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs16', 28)" onmouseover="showTip(event, 'fs16', 28)" class="rt">Meanline</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 29)" onmouseover="showTip(event, 'fs17', 29)" class="id">init</span><span class="pn">(</span><span class="fn">Visible</span><span class="o">=</span><span class="k">true</span><span class="pn">)</span>
     <span class="pn">)</span>
 </code></pre>
-<div id="54682a13-8c94-4943-9bcf-355b66d8ccbd" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="db708bde-b87c-4aa2-a04f-1e8000d799cc" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_54682a138c9449439bcf355b66d8ccbd = function() {
+            var renderPlotly_db708bdeb87c4aa2a04f1e8000d799cc = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"violin","y":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"x":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"points":"all","jitter":0.1,"orientation":"h","meanline":{"visible":true},"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('54682a13-8c94-4943-9bcf-355b66d8ccbd', data, layout, config);
+            Plotly.newPlot('db708bde-b87c-4aa2-a04f-1e8000d799cc', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_54682a138c9449439bcf355b66d8ccbd();
+                    renderPlotly_db708bdeb87c4aa2a04f1e8000d799cc();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_54682a138c9449439bcf355b66d8ccbd();
+                renderPlotly_db708bdeb87c4aa2a04f1e8000d799cc();
             }
 </script>
 
@@ -395,29 +400,29 @@ data at different values.</p>
     <span class="pn">]</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 47)" onmouseover="showTip(event, 'fs6', 47)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 48)" onmouseover="showTip(event, 'fs20', 48)" class="id">Combine</span>
 </code></pre>
-<div id="552f8520-7d33-45c8-aaf4-8ff89d197f94" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="63a0e904-2c96-47e2-99d7-91f2670aa469" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_552f85207d3345c8aaf48ff89d197f94 = function() {
+            var renderPlotly_63a0e9042c9647e299d791f2670aa469 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"violin","y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":"y","points":"all","jitter":0.1,"name":"bin1","marker":{}},{"type":"violin","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":"y'","points":"all","jitter":0.1,"name":"bin2","marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('552f8520-7d33-45c8-aaf4-8ff89d197f94', data, layout, config);
+            Plotly.newPlot('63a0e904-2c96-47e2-99d7-91f2670aa469', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_552f85207d3345c8aaf48ff89d197f94();
+                    renderPlotly_63a0e9042c9647e299d791f2670aa469();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_552f85207d3345c8aaf48ff89d197f94();
+                renderPlotly_63a0e9042c9647e299d791f2670aa469();
             }
 </script>
 

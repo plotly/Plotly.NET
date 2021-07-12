@@ -23,29 +23,29 @@ let scatter3d =
     |> Chart.withY_AxisStyle("my y-axis")
     |> Chart.withZ_AxisStyle("my z-axis")
     |> Chart.withSize(800.,800.)(* output: 
-<div id="4dad20bb-2f66-4248-8953-7309e6cf10dc" style="width: 800px; height: 800px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="86a0dbc0-4c72-45e1-b382-df8b1d20548b" style="width: 800px; height: 800px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_4dad20bb2f66424889537309e6cf10dc = function() {
+            var renderPlotly_86a0dbc04c7245e1b382df8b1d20548b = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter3d","x":[19,26,55],"y":[19,26,55],"z":[19,26,55],"mode":"markers","line":{},"marker":{}}];
             var layout = {"scene":{"xaxis":{"title":"my x-axis"},"yaxis":{"title":"my y-axis"},"zaxis":{"title":"my z-axis"}},"width":800.0,"height":800.0};
             var config = {};
-            Plotly.newPlot('4dad20bb-2f66-4248-8953-7309e6cf10dc', data, layout, config);
+            Plotly.newPlot('86a0dbc0-4c72-45e1-b382-df8b1d20548b', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_4dad20bb2f66424889537309e6cf10dc();
+                    renderPlotly_86a0dbc04c7245e1b382df8b1d20548b();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_4dad20bb2f66424889537309e6cf10dc();
+                renderPlotly_86a0dbc04c7245e1b382df8b1d20548b();
             }
 </script>
 *)

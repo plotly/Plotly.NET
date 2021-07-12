@@ -23,29 +23,29 @@ When creating pie charts, it is usually desirable to provide both labels and val
 *)
 let pie1 =
     Chart.Pie(values,labels)(* output: 
-<div id="4195b1c4-244f-40d7-b766-27d488535cbd" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="f8d63c90-335b-4d75-8121-f2ef4355e248" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_4195b1c4244f40d7b76627d488535cbd = function() {
+            var renderPlotly_f8d63c90335b4d758121f2ef4355e248 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"pie","values":[19,26,55],"labels":["Residential","Non-Residential","Utility"],"marker":{},"text":["Residential","Non-Residential","Utility"]}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('4195b1c4-244f-40d7-b766-27d488535cbd', data, layout, config);
+            Plotly.newPlot('f8d63c90-335b-4d75-8121-f2ef4355e248', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_4195b1c4244f40d7b76627d488535cbd();
+                    renderPlotly_f8d63c90335b4d758121f2ef4355e248();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_4195b1c4244f40d7b76627d488535cbd();
+                renderPlotly_f8d63c90335b4d758121f2ef4355e248();
             }
 </script>
 *)
@@ -56,29 +56,29 @@ let doughnut1 =
         Hole=0.3,
         Textinfo=labels
     )(* output: 
-<div id="5ca02dac-b393-49f3-b926-0458e16fe657" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="64864290-fb34-438c-9fb4-60612306df42" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_5ca02dacb39349f3b9260458e16fe657 = function() {
+            var renderPlotly_64864290fb34438c9fb460612306df42 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"pie","values":[19,26,55],"labels":["Residential","Non-Residential","Utility"],"textinfo":["Residential","Non-Residential","Utility"],"hole":0.3,"marker":{},"text":["Residential","Non-Residential","Utility"]}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('5ca02dac-b393-49f3-b926-0458e16fe657', data, layout, config);
+            Plotly.newPlot('64864290-fb34-438c-9fb4-60612306df42', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_5ca02dacb39349f3b9260458e16fe657();
+                    renderPlotly_64864290fb34438c9fb460612306df42();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_5ca02dacb39349f3b9260458e16fe657();
+                renderPlotly_64864290fb34438c9fb460612306df42();
             }
 </script>
 *)
@@ -89,29 +89,29 @@ let sunburst1 =
         Values=[5.;0.;3.;2.;3.],
         Text=["At";"Bt";"Ct";"Dt";"Et"]
     )(* output: 
-<div id="e981c7b0-b2e7-4d88-83c7-a9b6ff3a5a4f" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="e7951267-9c4e-47c9-81f7-f44d1e5d8279" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_e981c7b0b2e74d8883c7a9b6ff3a5a4f = function() {
+            var renderPlotly_e79512679c4e47c981f7f44d1e5d8279 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"sunburst","labels":["A","B","C","D","E"],"parents":["","","B","B",""],"values":[5.0,0.0,3.0,2.0,3.0],"text":["At","Bt","Ct","Dt","Et"],"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('e981c7b0-b2e7-4d88-83c7-a9b6ff3a5a4f', data, layout, config);
+            Plotly.newPlot('e7951267-9c4e-47c9-81f7-f44d1e5d8279', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_e981c7b0b2e74d8883c7a9b6ff3a5a4f();
+                    renderPlotly_e79512679c4e47c981f7f44d1e5d8279();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_e981c7b0b2e74d8883c7a9b6ff3a5a4f();
+                renderPlotly_e79512679c4e47c981f7f44d1e5d8279();
             }
 </script>
 *)

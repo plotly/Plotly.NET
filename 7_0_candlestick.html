@@ -41,7 +41,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.5</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.6</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -68,6 +68,11 @@
 <li class="nav-item">
   <a class="nav-link" href="https://plotly.net/0_0_basics.html">
     Basics
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/0_1_image-export.html">
+    Static image export
   </a>
 </li>             
 <li class="nav-header">
@@ -331,29 +336,29 @@ is a group of high, open, close and low values over a period of time, e.g. 1 min
 The x-axis is usually dateime values and y is a sequence of candle structures.</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs16', 21)" onmouseover="showTip(event, 'fs16', 21)" class="id">candles1</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs17', 22)" onmouseover="showTip(event, 'fs17', 22)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 23)" onmouseover="showTip(event, 'fs18', 23)" class="id">Candlestick</span> <span onmouseout="hideTip(event, 'fs3', 24)" onmouseover="showTip(event, 'fs3', 24)" class="id">candles</span>
 </code></pre>
-<div id="7ee426e7-c4aa-4c38-9579-495eeaf9c4ac" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="b1746107-43cc-41af-84a3-10f3eae3df3a" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_7ee426e7c4aa4c389579495eeaf9c4ac = function() {
+            var renderPlotly_b174610743cc41af84a310f3eae3df3a = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"candlestick","open":[0.68888,0.68883,0.68878,0.68886,0.68879,0.68875,0.68869,0.68883,0.68898,0.68889,0.68891],"high":[0.68888,0.68884,0.68889,0.68886,0.68879,0.68877,0.68887,0.68899,0.689,0.68893,0.68896],"low":[0.68879,0.68875,0.68878,0.68876,0.68873,0.68867,0.68869,0.68883,0.68885,0.68881,0.68886],"close":[0.6888,0.68877,0.68886,0.68879,0.68874,0.68868,0.68883,0.68899,0.68889,0.68893,0.68891],"x":["2020-01-17T13:40:00","2020-01-17T13:41:00","2020-01-17T13:42:00","2020-01-17T13:43:00","2020-01-17T13:44:00","2020-01-17T13:45:00","2020-01-17T13:46:00","2020-01-17T13:47:00","2020-01-17T13:48:00","2020-01-17T13:49:00","2020-01-17T13:50:00"],"xaxis":"x","yaxis":"y"}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('7ee426e7-c4aa-4c38-9579-495eeaf9c4ac', data, layout, config);
+            Plotly.newPlot('b1746107-43cc-41af-84a3-10f3eae3df3a', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_7ee426e7c4aa4c389579495eeaf9c4ac();
+                    renderPlotly_b174610743cc41af84a310f3eae3df3a();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_7ee426e7c4aa4c389579495eeaf9c4ac();
+                renderPlotly_b174610743cc41af84a310f3eae3df3a();
             }
 </script>
 
@@ -364,29 +369,29 @@ The x-axis is usually dateime values and y is a sequence of candle structures.</
     <span onmouseout="hideTip(event, 'fs17', 32)" onmouseover="showTip(event, 'fs17', 32)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 33)" onmouseover="showTip(event, 'fs18', 33)" class="id">Candlestick</span> <span onmouseout="hideTip(event, 'fs3', 34)" onmouseover="showTip(event, 'fs3', 34)" class="id">candles</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs17', 35)" onmouseover="showTip(event, 'fs17', 35)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 36)" onmouseover="showTip(event, 'fs25', 36)" class="id">withX_AxisRangeSlider</span> <span onmouseout="hideTip(event, 'fs21', 37)" onmouseover="showTip(event, 'fs21', 37)" class="id">rangeslider</span>
 </code></pre>
-<div id="cf2838e2-5277-41a1-a36a-dbe28b40e794" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="0c61a867-ea01-4ab2-916f-0d47c4e14f2b" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_cf2838e2527741a1a36adbe28b40e794 = function() {
+            var renderPlotly_0c61a867ea014ab2916f0d47c4e14f2b = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"candlestick","open":[0.68888,0.68883,0.68878,0.68886,0.68879,0.68875,0.68869,0.68883,0.68898,0.68889,0.68891],"high":[0.68888,0.68884,0.68889,0.68886,0.68879,0.68877,0.68887,0.68899,0.689,0.68893,0.68896],"low":[0.68879,0.68875,0.68878,0.68876,0.68873,0.68867,0.68869,0.68883,0.68885,0.68881,0.68886],"close":[0.6888,0.68877,0.68886,0.68879,0.68874,0.68868,0.68883,0.68899,0.68889,0.68893,0.68891],"x":["2020-01-17T13:40:00","2020-01-17T13:41:00","2020-01-17T13:42:00","2020-01-17T13:43:00","2020-01-17T13:44:00","2020-01-17T13:45:00","2020-01-17T13:46:00","2020-01-17T13:47:00","2020-01-17T13:48:00","2020-01-17T13:49:00","2020-01-17T13:50:00"],"xaxis":"x","yaxis":"y"}];
             var layout = {"xaxis":{"rangeslider":{"visible":false,"yaxis":{}}}};
             var config = {};
-            Plotly.newPlot('cf2838e2-5277-41a1-a36a-dbe28b40e794', data, layout, config);
+            Plotly.newPlot('0c61a867-ea01-4ab2-916f-0d47c4e14f2b', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_cf2838e2527741a1a36adbe28b40e794();
+                    renderPlotly_0c61a867ea014ab2916f0d47c4e14f2b();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_cf2838e2527741a1a36adbe28b40e794();
+                renderPlotly_0c61a867ea014ab2916f0d47c4e14f2b();
             }
 </script>
 

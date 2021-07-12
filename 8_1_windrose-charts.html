@@ -41,7 +41,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.5</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.6</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -68,6 +68,11 @@
 <li class="nav-item">
   <a class="nav-link" href="https://plotly.net/0_0_basics.html">
     Basics
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/0_1_image-export.html">
+    Static image export
   </a>
 </li>             
 <li class="nav-header">
@@ -329,29 +334,29 @@ of how wind speed and direction are typically distributed at a particular locati
     <span class="pn">]</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs9', 25)" onmouseover="showTip(event, 'fs9', 25)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 26)" onmouseover="showTip(event, 'fs11', 26)" class="id">Combine</span>
 </code></pre>
-<div id="e13b975f-01b1-4fed-a3e3-2e2b484dbc4d" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="854ccdd7-b838-430b-a6a1-634dbd36b691" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_e13b975f01b14feda3e32e2b484dbc4d = function() {
+            var renderPlotly_854ccdd7b838430ba6a1634dbd36b691 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"area","r":[77.5,72.5,70.0,45.0,22.5,42.5,40.0,62.5],"t":["North","N-E","East","S-E","South","S-W","West","N-W"],"name":"11-14 m/s","line":{},"marker":{}},{"type":"area","r":[57.5,50.0,45.0,35.0,20.0,22.5,37.5,55.0],"t":["North","N-E","East","S-E","South","S-W","West","N-W"],"name":"8-11 m/s","line":{},"marker":{}},{"type":"area","r":[40.0,30.0,30.0,35.0,7.5,7.5,32.5,40.0],"t":["North","N-E","East","S-E","South","S-W","West","N-W"],"name":"5-8 m/s","line":{},"marker":{}},{"type":"area","r":[20.0,7.5,15.0,22.5,2.5,2.5,12.5,22.5],"t":["North","N-E","East","S-E","South","S-W","West","N-W"],"name":"< 5 m/s","line":{},"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('e13b975f-01b1-4fed-a3e3-2e2b484dbc4d', data, layout, config);
+            Plotly.newPlot('854ccdd7-b838-430b-a6a1-634dbd36b691', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_e13b975f01b14feda3e32e2b484dbc4d();
+                    renderPlotly_854ccdd7b838430ba6a1634dbd36b691();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_e13b975f01b14feda3e32e2b484dbc4d();
+                renderPlotly_854ccdd7b838430ba6a1634dbd36b691();
             }
 </script>
 

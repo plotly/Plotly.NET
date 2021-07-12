@@ -41,7 +41,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.5</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.6</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -68,6 +68,11 @@
 <li class="nav-item">
   <a class="nav-link" href="https://plotly.net/0_0_basics.html">
     Basics
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/0_1_image-export.html">
+    Static image export
   </a>
 </li>             
 <li class="nav-header">
@@ -332,29 +337,29 @@
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 17)" onmouseover="showTip(event, 'fs11', 17)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 18)" onmouseover="showTip(event, 'fs13', 18)" class="id">withSize</span><span class="pn">(</span><span class="n">700.</span><span class="pn">,</span><span class="n">500.</span><span class="pn">)</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 19)" onmouseover="showTip(event, 'fs11', 19)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 20)" onmouseover="showTip(event, 'fs14', 20)" class="id">withMarginSize</span><span class="pn">(</span><span class="fn">Left</span><span class="o">=</span><span class="n">200.</span><span class="pn">)</span>
 </code></pre>
-<div id="3b602894-6e38-4c95-a062-3d0b94ef60f5" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="d804236f-5a99-48f1-af8e-2fba3c72bc8d" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_3b6028946e384c95a0623d0b94ef60f5 = function() {
+            var renderPlotly_d804236f5a9948f1af8e2fba3c72bc8d = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"heatmap","z":[[1.0,1.5,0.7,2.7],[2.0,0.5,1.2,1.4],[0.1,2.6,2.4,3.0]],"x":["Tp0","Tp30","Tp60","Tp160"],"y":["p3","p2","p1"],"colorscale":[[0.0,"#3D9970"],[1.0,"#001f3f"]],"showscale":true}];
             var layout = {"width":700.0,"height":500.0,"margin":{"l":200.0}};
             var config = {};
-            Plotly.newPlot('3b602894-6e38-4c95-a062-3d0b94ef60f5', data, layout, config);
+            Plotly.newPlot('d804236f-5a99-48f1-af8e-2fba3c72bc8d', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_3b6028946e384c95a0623d0b94ef60f5();
+                    renderPlotly_d804236f5a9948f1af8e2fba3c72bc8d();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_3b6028946e384c95a0623d0b94ef60f5();
+                renderPlotly_d804236f5a9948f1af8e2fba3c72bc8d();
             }
 </script>
 
@@ -371,29 +376,29 @@ Here is an example that adds a title to the colorbar:</p>
         <span class="fn">TitleFont</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs21', 31)" onmouseover="showTip(event, 'fs21', 31)" class="rt">Font</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs22', 32)" onmouseover="showTip(event, 'fs22', 32)" class="id">init</span><span class="pn">(</span><span class="fn">Size</span><span class="o">=</span><span class="n">20.</span><span class="pn">)</span>
     <span class="pn">)</span>
 </code></pre>
-<div id="feb05372-adfd-43bc-a4fd-5cfacc14d912" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="0523244b-116b-4a87-955c-4b085e64ac0d" style="width: 700px; height: 500px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_feb05372adfd43bca4fd5cfacc14d912 = function() {
+            var renderPlotly_0523244b116b4a87955c4b085e64ac0d = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"heatmap","z":[[1.0,1.5,0.7,2.7],[2.0,0.5,1.2,1.4],[0.1,2.6,2.4,3.0]],"x":["Tp0","Tp30","Tp60","Tp160"],"y":["p3","p2","p1"],"colorscale":[[0.0,"#3D9970"],[1.0,"#001f3f"]],"showscale":true,"colorbar":{"title":"Im the Colorbar","titlefont":{"size":20.0},"titleside":"right"}}];
             var layout = {"width":700.0,"height":500.0,"margin":{"l":200.0}};
             var config = {};
-            Plotly.newPlot('feb05372-adfd-43bc-a4fd-5cfacc14d912', data, layout, config);
+            Plotly.newPlot('0523244b-116b-4a87-955c-4b085e64ac0d', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_feb05372adfd43bca4fd5cfacc14d912();
+                    renderPlotly_0523244b116b4a87955c4b085e64ac0d();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_feb05372adfd43bca4fd5cfacc14d912();
+                renderPlotly_0523244b116b4a87955c4b085e64ac0d();
             }
 </script>
 
