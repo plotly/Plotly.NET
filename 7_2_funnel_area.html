@@ -328,29 +328,29 @@ to visualizing funnel data.</p>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs8', 8)" onmouseover="showTip(event, 'fs8', 8)" class="id">funnelArea</span> <span class="o">=</span> 
     <span onmouseout="hideTip(event, 'fs9', 9)" onmouseover="showTip(event, 'fs9', 9)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 10)" onmouseover="showTip(event, 'fs10', 10)" class="id">FunnelArea</span><span class="pn">(</span><span class="fn">Values</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs1', 11)" onmouseover="showTip(event, 'fs1', 11)" class="id">values</span><span class="pn">,</span> <span class="fn">Text</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs2', 12)" onmouseover="showTip(event, 'fs2', 12)" class="id">text</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs6', 13)" onmouseover="showTip(event, 'fs6', 13)" class="fn">Line</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs5', 14)" onmouseover="showTip(event, 'fs5', 14)" class="id">line</span><span class="pn">)</span>
 </code></pre>
-<div id="feb1e23c-0101-402b-ab5d-bf61f47eaf54" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="c6852be6-70e2-437f-962d-57868bd50ee4" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_feb1e23c0101402bab5dbf61f47eaf54 = function() {
+            var renderPlotly_c6852be670e2437f962d57868bd50ee4 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"funnelarea","values":[5,4,3,2,1],"marker":{"line":{"color":"purple","width":3.0}},"domain":{},"text":["The 1st","The 2nd","The 3rd","The 4th","The 5th"]}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('feb1e23c-0101-402b-ab5d-bf61f47eaf54', data, layout, config);
+            Plotly.newPlot('c6852be6-70e2-437f-962d-57868bd50ee4', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_feb1e23c0101402bab5dbf61f47eaf54();
+                    renderPlotly_c6852be670e2437f962d57868bd50ee4();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_feb1e23c0101402bab5dbf61f47eaf54();
+                renderPlotly_c6852be670e2437f962d57868bd50ee4();
             }
 </script>
 

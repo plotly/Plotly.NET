@@ -334,29 +334,29 @@ it traversed. See also the <a href="https://plotly.net//6_2_funnel_area.html">Fu
     <span onmouseout="hideTip(event, 'fs16', 20)" onmouseover="showTip(event, 'fs16', 20)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 21)" onmouseover="showTip(event, 'fs17', 21)" class="id">Funnel</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs2', 22)" onmouseover="showTip(event, 'fs2', 22)" class="id">x</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs1', 23)" onmouseover="showTip(event, 'fs1', 23)" class="id">y</span><span class="pn">,</span><span class="fn">Color</span><span class="o">=</span><span class="s">&quot;59D4E8&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs6', 24)" onmouseover="showTip(event, 'fs6', 24)" class="fn">Line</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs14', 25)" onmouseover="showTip(event, 'fs14', 25)" class="id">line</span><span class="pn">,</span> <span class="fn">Connector</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs11', 26)" onmouseover="showTip(event, 'fs11', 26)" class="id">connector</span><span class="pn">)</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs16', 27)" onmouseover="showTip(event, 'fs16', 27)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 28)" onmouseover="showTip(event, 'fs18', 28)" class="id">withMarginSize</span><span class="pn">(</span><span class="fn">Left</span><span class="o">=</span><span class="n">100</span><span class="pn">)</span>
 </code></pre>
-<div id="50b831d4-cdd0-43fc-a641-060ed14966cd" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="372422ea-8788-43b7-ae9f-50ef3d42b4bf" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_50b831d4cdd043fca641060ed14966cd = function() {
+            var renderPlotly_372422ea878843b7ae9f50ef3d42b4bf = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"funnel","x":[1200.0,909.4,600.6,300.0,80.0],"y":["Sales person A","Sales person B","Sales person C","Sales person D","Sales person E"],"connector":{"line":{"color":"royalblue","width":3.0,"dash":"dot"}},"marker":{"color":"59D4E8","line":{"color":"3E4E88","width":2.0}}}];
             var layout = {"margin":{"l":100}};
             var config = {};
-            Plotly.newPlot('50b831d4-cdd0-43fc-a641-060ed14966cd', data, layout, config);
+            Plotly.newPlot('372422ea-8788-43b7-ae9f-50ef3d42b4bf', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_50b831d4cdd043fca641060ed14966cd();
+                    renderPlotly_372422ea878843b7ae9f50ef3d42b4bf();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_50b831d4cdd043fca641060ed14966cd();
+                renderPlotly_372422ea878843b7ae9f50ef3d42b4bf();
             }
 </script>
 

@@ -402,27 +402,29 @@ not even that is necessary and just the SVG string can be used.</p>
 <span onmouseout="hideTip(event, 'fs10', 25)" onmouseover="showTip(event, 'fs10', 25)" class="id">svgString</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 26)" onmouseover="showTip(event, 'fs12', 26)" class="id">Substring</span><span class="pn">(</span><span class="n">0</span><span class="pn">,</span><span class="n">300</span><span class="pn">)</span>
 <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs13', 27)" onmouseover="showTip(event, 'fs13', 27)" class="fn">printfn</span> <span class="s">&quot;</span><span class="pf">%s</span><span class="s">&quot;</span>
 </code></pre>
-<table class="pre"><tr><td><pre><code>&lt;svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600" height="600" style="" viewBox="0 0 300 300"&gt;&lt;rect x="0" y="0" width="300" height="300" style="fill: rgb(255, 255, 255); fill-opacity: 1;"/&gt;&lt;defs id="defs-62a5e0"&gt;&lt;g class="clips"&gt;&lt;clipPath</code></pre></td></tr></table>
+<table class="pre"><tr><td><pre><code>&lt;svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600" height="600" style="" viewBox="0 0 300 300"&gt;&lt;rect x="0" y="0" width="300" height="300" style="fill: rgb(255, 255, 255); fill-opacity: 1;"/&gt;&lt;defs id="defs-450a18"&gt;&lt;g class="clips"&gt;&lt;clipPath</code></pre></td></tr></table>
 <p>In fact, the images shown on this site are included just the same way.</p>
 <h2><a name="Including-static-images-in-dotnet-interactive-notebooks" class="anchor" href="#Including-static-images-in-dotnet-interactive-notebooks">Including static images in dotnet interactive notebooks</a></h2>
 <p>To include the images in dotnet interactive, convert them to html tags as above and include them via
-dotnet interactive's <code>DisplayAs</code> function. The content type for PNG/JPB is "text/html", and "image/svg+xml" for SVG.</p>
-<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs14', 28)" onmouseover="showTip(event, 'fs14', 28)" class="id">base64PNG</span> <span class="o">=</span>
-    <span onmouseout="hideTip(event, 'fs4', 29)" onmouseover="showTip(event, 'fs4', 29)" class="id">exampleChart</span>
-    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs5', 30)" onmouseover="showTip(event, 'fs5', 30)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs15', 31)" onmouseover="showTip(event, 'fs15', 31)" class="id">toBase64PNGString</span><span class="pn">(</span>
-        <span class="fn">Width</span><span class="o">=</span><span class="n">300</span><span class="pn">,</span>
-        <span class="fn">Height</span><span class="o">=</span><span class="n">300</span>
-    <span class="pn">)</span>
+dotnet interactive's <code>DisplayAs</code> function. The content type for PNG/JPG is "text/html", and "image/svg+xml" for SVG.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs14', 28)" onmouseover="showTip(event, 'fs14', 28)" class="id">base64PNGTag</span> <span class="o">=</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs15', 29)" onmouseover="showTip(event, 'fs15', 29)" class="fn">base64</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs4', 30)" onmouseover="showTip(event, 'fs4', 30)" class="id">exampleChart</span>
+        <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs5', 31)" onmouseover="showTip(event, 'fs5', 31)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs16', 32)" onmouseover="showTip(event, 'fs16', 32)" class="id">toBase64PNGString</span><span class="pn">(</span>
+            <span class="fn">Width</span><span class="o">=</span><span class="n">300</span><span class="pn">,</span>
+            <span class="fn">Height</span><span class="o">=</span><span class="n">300</span>
+        <span class="pn">)</span>
+    <span class="s">$&quot;&quot;&quot;&lt;img src= &quot;{</span><span onmouseout="hideTip(event, 'fs9', 33)" onmouseover="showTip(event, 'fs9', 33)" class="id">base64JPG</span><span class="s">}&quot;/&gt;&quot;&quot;&quot;</span>
 
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs16', 32)" onmouseover="showTip(event, 'fs16', 32)" class="id">svgString2</span> <span class="o">=</span>
-    <span onmouseout="hideTip(event, 'fs4', 33)" onmouseover="showTip(event, 'fs4', 33)" class="id">exampleChart</span>
-    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs5', 34)" onmouseover="showTip(event, 'fs5', 34)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 35)" onmouseover="showTip(event, 'fs11', 35)" class="id">toSVGString</span><span class="pn">(</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs17', 34)" onmouseover="showTip(event, 'fs17', 34)" class="id">svgString2</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs4', 35)" onmouseover="showTip(event, 'fs4', 35)" class="id">exampleChart</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs5', 36)" onmouseover="showTip(event, 'fs5', 36)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 37)" onmouseover="showTip(event, 'fs11', 37)" class="id">toSVGString</span><span class="pn">(</span>
         <span class="fn">Width</span><span class="o">=</span><span class="n">300</span><span class="pn">,</span>
         <span class="fn">Height</span><span class="o">=</span><span class="n">300</span>
     <span class="pn">)</span>
 
 <span class="c">// DisplayExtensions.DisplayAs(base64PNG,&quot;text/html&quot;)</span>
-<span class="c">// DisplayExtensions.DisplayAs(svgString,&quot;image/svg+xml&quot;)</span>
+<span class="c">// DisplayExtensions.DisplayAs(svgString2,&quot;image/svg+xml&quot;)</span>
 </code></pre>
 
                 </div>
@@ -441,9 +443,10 @@ dotnet interactive's <code>DisplayAs</code> function. The content type for PNG/J
 <div class="fsdocs-tip" id="fs11">static member Chart.toSVGString : ?EngineType:ExportEngine * ?Width:int * ?Height:int -&gt; (GenericChart.GenericChart -&gt; string)</div>
 <div class="fsdocs-tip" id="fs12">System.String.Substring(startIndex: int) : string<br />System.String.Substring(startIndex: int, length: int) : string</div>
 <div class="fsdocs-tip" id="fs13">val printfn : format:Printf.TextWriterFormat&lt;&#39;T&gt; -&gt; &#39;T</div>
-<div class="fsdocs-tip" id="fs14">val base64PNG : string</div>
-<div class="fsdocs-tip" id="fs15">static member Chart.toBase64PNGString : ?EngineType:ExportEngine * ?Width:int * ?Height:int -&gt; (GenericChart.GenericChart -&gt; string)</div>
-<div class="fsdocs-tip" id="fs16">val svgString2 : string</div>
+<div class="fsdocs-tip" id="fs14">val base64PNGTag : string</div>
+<div class="fsdocs-tip" id="fs15">val base64 : string</div>
+<div class="fsdocs-tip" id="fs16">static member Chart.toBase64PNGString : ?EngineType:ExportEngine * ?Width:int * ?Height:int -&gt; (GenericChart.GenericChart -&gt; string)</div>
+<div class="fsdocs-tip" id="fs17">val svgString2 : string</div>
 
     </div>
 

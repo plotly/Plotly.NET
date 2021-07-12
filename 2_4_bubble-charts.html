@@ -325,29 +325,29 @@ of associated data is plotted as a disk. The first two values determine the disk
 third its size.</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="id">bubble1</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs7', 7)" onmouseover="showTip(event, 'fs7', 7)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs8', 8)" onmouseover="showTip(event, 'fs8', 8)" class="id">Bubble</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs3', 9)" onmouseover="showTip(event, 'fs3', 9)" class="id">x</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs4', 10)" onmouseover="showTip(event, 'fs4', 10)" class="id">y</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs5', 11)" onmouseover="showTip(event, 'fs5', 11)" class="id">size</span><span class="pn">)</span>
 </code></pre>
-<div id="56f61e6a-9e07-475e-8d0b-07690f15d557" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="c9cc6d54-8407-4f2d-9828-c70d418b07be" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_56f61e6a9e07475e8d0b07690f15d557 = function() {
+            var renderPlotly_c9cc6d5484074f2d9828c70d418b07be = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[2,4,6],"y":[4,1,6],"mode":"markers","marker":{"size":[19,26,55]}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('56f61e6a-9e07-475e-8d0b-07690f15d557', data, layout, config);
+            Plotly.newPlot('c9cc6d54-8407-4f2d-9828-c70d418b07be', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_56f61e6a9e07475e8d0b07690f15d557();
+                    renderPlotly_c9cc6d5484074f2d9828c70d418b07be();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_56f61e6a9e07475e8d0b07690f15d557();
+                renderPlotly_c9cc6d5484074f2d9828c70d418b07be();
             }
 </script>
 

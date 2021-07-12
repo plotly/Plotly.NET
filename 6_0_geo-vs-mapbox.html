@@ -345,29 +345,29 @@ otherwise contains one or more traces of type</code>scattergeo<code>or</code>cho
     <span onmouseout="hideTip(event, 'fs10', 10)" onmouseover="showTip(event, 'fs10', 10)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 11)" onmouseover="showTip(event, 'fs11', 11)" class="id">PointMapbox</span><span class="pn">(</span><span class="pn">[</span><span class="pn">]</span><span class="pn">,</span><span class="pn">[</span><span class="pn">]</span><span class="pn">)</span> <span class="c">// deliberately empty chart to show the base map only</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs10', 12)" onmouseover="showTip(event, 'fs10', 12)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 13)" onmouseover="showTip(event, 'fs12', 13)" class="id">withMapbox</span> <span onmouseout="hideTip(event, 'fs3', 14)" onmouseover="showTip(event, 'fs3', 14)" class="id">mb</span> <span class="c">// add the mapBox</span>
 </code></pre>
-<div id="628660fc-47a0-45e0-a9b8-e61d18b625bd" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="7ce32df4-531e-47d5-b8aa-484b350db785" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_628660fc47a045e0a9b8e61d18b625bd = function() {
+            var renderPlotly_7ce32df4531e47d5b8aa484b350db785 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scattermapbox","mode":"markers","lon":[],"lat":[],"line":{},"marker":{}}];
             var layout = {"mapbox":{"style":"open-street-map"}};
             var config = {};
-            Plotly.newPlot('628660fc-47a0-45e0-a9b8-e61d18b625bd', data, layout, config);
+            Plotly.newPlot('7ce32df4-531e-47d5-b8aa-484b350db785', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_628660fc47a045e0a9b8e61d18b625bd();
+                    renderPlotly_7ce32df4531e47d5b8aa484b350db785();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_628660fc47a045e0a9b8e61d18b625bd();
+                renderPlotly_7ce32df4531e47d5b8aa484b350db785();
             }
 </script>
 
