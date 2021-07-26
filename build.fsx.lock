@@ -8,7 +8,7 @@ NUGET
     BlackFox.VsWhere (1.1)
       FSharp.Core (>= 4.2.3)
       Microsoft.Win32.Registry (>= 4.7)
-    Fake.Api.Github (5.20.4)
+    Fake.Api.GitHub (5.20.4)
       FSharp.Core (>= 4.7.2)
       Octokit (>= 0.48)
     Fake.Core.CommandLineParsing (5.20.4)

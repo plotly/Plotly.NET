@@ -116,12 +116,28 @@ module BasicTasks =
         |> Shell.cleanDirs 
     }
 
+    let restoreLocked = BuildTask.create "RestoreLocked" [clean] {
+        solutionFile
+        |> DotNet.restore (fun p -> 
+            {
+                p with MSBuildParams = {
+                    p.MSBuildParams with Properties=["RestoreLockedMode","true"]
+                }
+            }
+        )
+    }
+
+    let buildNoRestore = BuildTask.create "BuildNoRestore" [clean; restoreLocked.IfNeeded] {
+        solutionFile
+        |> DotNet.build (fun p -> {p with NoRestore=true})
+    }
+
     let build = BuildTask.create "Build" [clean] {
         solutionFile
         |> DotNet.build id
     }
 
-    let copyBinaries = BuildTask.create "CopyBinaries" [clean; build] {
+    let copyBinaries = BuildTask.create "CopyBinaries" [clean.Always; build.IfNeeded; buildNoRestore.IfNeeded] {
         let targets = 
             !! "src/**/*.??proj"
             -- "src/**/*.shproj"
@@ -137,7 +153,7 @@ module TestTasks =
     open ProjectInfo
     open BasicTasks
 
-    let runTests = BuildTask.create "RunTests" [clean; build; copyBinaries] {
+    let runTests = BuildTask.create "RunTests" [clean; build.IfNeeded; buildNoRestore.IfNeeded; copyBinaries] {
         let standardParams = Fake.DotNet.MSBuild.CliArguments.Create ()
         Fake.DotNet.DotNet.test(fun testParams ->
             {
@@ -402,6 +418,8 @@ let _preReleaseNoDocs =
     BuildTask.createEmpty 
         "PreReleaseNoDocs" 
         [setPrereleaseTag; clean; build; copyBinaries; runTests; packPrerelease; createPrereleaseTag; publishNugetPrerelease]
+
+let _buildCI = BuildTask.createEmpty "BuildAndTestCI" [clean; restoreLocked; buildNoRestore; copyBinaries; runTests]
 
 // run copyBinaries by default
 BuildTask.runOrDefault copyBinaries
