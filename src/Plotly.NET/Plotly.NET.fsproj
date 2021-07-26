@@ -17,6 +17,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     <Configurations>Debug;Release;Dotnet</Configurations>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
   </PropertyGroup>
   <PropertyGroup>
     <Authors>Timo Mühlhaus, Kevin Schneider, F# open source contributors</Authors>
