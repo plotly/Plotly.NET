@@ -32,15 +32,9 @@
   <ItemGroup>
     <None Include="Repack.ps1" />
     <None Include="..\..\docs\img\logo.png" Pack="true" PackagePath="\" />
-    <None Include="..\Plotly.NET.Interactive\bin\Release\$(TargetFramework)\Plotly.NET.Interactive.dll" Pack="true" PackagePath="interactive-extensions/dotnet" />
+    <None Include="$(OutputPath)/Plotly.NET.Interactive.dll" Pack="true" PackagePath="interactive-extensions/dotnet" />
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Extension.fs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="bin\**" />
-    <EmbeddedResource Remove="bin\**" />
-    <None Remove="bin\**" />
   </ItemGroup>
 
   <ItemGroup>
