@@ -32,7 +32,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".ci", ".ci", "{2461AFBF-6E10-4F7B-A0EA-3D62541C2EB1}"
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\build-and-deploy-docs.yml = .github\workflows\build-and-deploy-docs.yml
-		.github\workflows\build-and-test.yml = .github\workflows\build-and-test.yml
+		.circleci\config.yml = .circleci\config.yml
 	EndProjectSection
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Plotly.NET.Interactive", "src\Plotly.NET.Interactive\Plotly.NET.Interactive.fsproj", "{0F135E3B-B0E1-42A9-B180-18C0221DC7B8}"

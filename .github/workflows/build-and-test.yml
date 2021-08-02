@@ -20,11 +20,11 @@ jobs:
     - name: Setup .NET 5
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '5.0.302'
+        dotnet-version: '5.0.201'
     - name: Restore local tools
       run: dotnet tool restore
     - name: Build and test
-      run: dotnet fake build -t BuildAndTestCI
+      run: dotnet fake build -t runTests
 
   build-and-test-windows:
     
@@ -39,8 +39,8 @@ jobs:
     - name: Setup .NET 5
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '5.0.302'
+        dotnet-version: '5.0.201'
     - name: Restore local tools
       run: dotnet tool restore
     - name: Build and test
-      run: dotnet fake build -t BuildAndTestCI
+      run: dotnet fake build -t runTests
