@@ -7,8 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="HtmlCodegen\TestUtils.fs" />
+    <Compile Include="HtmlCodegen\SimpleTests.fs" />
+    <Compile Include="HtmlCodegen\ChartLayout.fs" />
     <Compile Include="ImageExport.fs" />
-    <Compile Include="BasicHtmlGeneration.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>
 
