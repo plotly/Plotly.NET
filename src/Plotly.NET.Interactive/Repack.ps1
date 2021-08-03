@@ -8,3 +8,4 @@ cd ../../
 dotnet tool restore
 dotnet fake build
 dotnet pack -c Release -p:PackageVersion=0.0.0-dev -o "./pkg"
+cd src/Plotly.NET.Interactive
