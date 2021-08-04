@@ -808,20 +808,10 @@ let doughnut1 =
     |> Chart.Show
 
 
-let x = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
-let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
-[
-    Chart.Point(x, y, Name="1,1")
-    |> Chart.withX_AxisStyle "x1"
-    |> Chart.withY_AxisStyle "y1"    
-    Chart.Line(x, y, Name="1,2")
-    |> Chart.withX_AxisStyle "x2"
-    |> Chart.withY_AxisStyle "y2"
-    Chart.Spline(x, y, Name="2,1")
-    |> Chart.withX_AxisStyle "x3"
-    |> Chart.withY_AxisStyle "y3"    
-    Chart.Point(x, y, Name="2,2")
-    |> Chart.withX_AxisStyle "x4"
-    |> Chart.withY_AxisStyle "y4"
-]
-|> Chart.Grid(2, 2) |> Chart.Show
+let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
+let y' = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+let s1 = Shape.init (StyleParam.ShapeType.Rectangle,2.,4.,3.,4.,Opacity=0.3,Fillcolor="#d3d3d3")
+let s2 = Shape.init (StyleParam.ShapeType.Rectangle,5.,7.,3.,4.,Opacity=0.3,Fillcolor="#d3d3d3")
+Chart.Line(x,y',Name="line")    
+|> Chart.withShapes([s1;s2])
+|> Chart.Show
