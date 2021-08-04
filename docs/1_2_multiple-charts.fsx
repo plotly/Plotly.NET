@@ -69,7 +69,7 @@ combinedChart |> GenericChart.toChartHTML
 
 `Chart.Grid` creates a subplot grid. There are two overloads:
 
-1. use Chart.Grid with a 1 dimensional sequence of Charts and specify the amount of rows and columns:
+You can either use Chart.Grid with a 1 dimensional sequence of Charts and specify the amount of rows and columns:
 
 *)
 
@@ -101,7 +101,7 @@ grid |> GenericChart.toChartHTML
 (***include-it-raw***)
 
 (**
-Or provide a 2-dimensional Chart sequence as input, the dimensions of the input will then be used to set the dimensions of the grid:
+or provide a 2-dimensional Chart sequence as input, the dimensions of the input will then be used to set the dimensions of the grid:
 *)
 
 //simple 2x2 subplot grid using a 2x2 2D chart sequence as input
