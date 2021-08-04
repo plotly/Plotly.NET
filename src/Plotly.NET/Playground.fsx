@@ -64,6 +64,23 @@ open Deedle
 open FSharpAux
 
 [
+    Chart.Point([1,2;1,3]) 
+    |> Chart.withY_AxisStyle("This title must")
+
+    Chart.Line([1,2;1,3]) 
+    |> Chart.withY_AxisStyle("be set on the",Zeroline=false)
+    
+    Chart.Spline([1,2;1,3]) 
+    |> Chart.withY_AxisStyle("respective subplots",Zeroline=false)
+]
+|> Chart.SingleStack(Pattern= StyleParam.LayoutGridPattern.Coupled)
+//move xAxis to bottom and increase spacing between plots by using the withLayoutGridStyle function
+|> Chart.withLayoutGridStyle(YGap= 0.1)
+|> Chart.withTitle("Hi i am the new SingleStackChart")
+|> Chart.withX_AxisStyle("im the shared xAxis")
+|> Chart.Show
+
+[
     [
         Chart.Point([1,2],Name="1,1")
         |> Chart.withX_AxisStyle "x1"
@@ -143,8 +160,13 @@ open FSharpAux
         t?legendgroup <- "1"
         t
     )
+    Chart.Point([(1.,2.)])
+    |> GenericChart.mapTrace (fun t ->
+        t?legendgroup <- "1"
+        t
+    )
 ]
-|> Chart.SingleStack()
+|> Chart.SingleStack(Pattern=StyleParam.LayoutGridPattern.Coupled)
 |> Chart.withLegend(
     Legend.init(
         TraceOrder = StyleParam.TraceOrder.Grouped,

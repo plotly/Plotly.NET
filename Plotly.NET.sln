@@ -93,6 +93,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{60FB
 		docs\_template.html = docs\_template.html
 		docs\_template.ipynb = docs\_template.ipynb
 		docs\Dockerfile = docs\Dockerfile
+		docs\content\fsdocs-custom.css = docs\content\fsdocs-custom.css
 		docs\index.fsx = docs\index.fsx
 		docs\NuGet.config = docs\NuGet.config
 	EndProjectSection

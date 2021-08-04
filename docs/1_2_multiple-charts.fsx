@@ -67,20 +67,29 @@ combinedChart |> GenericChart.toChartHTML
 
 ### Chart.Grid
 
-`Chart.Grid` takes a 2D input sequence of charts and creates a subplot grid 
-with the dimensions (outerlength,(max (innerLengths))
+`Chart.Grid` creates a subplot grid. There are two overloads:
+
+1. use Chart.Grid with a 1 dimensional sequence of Charts and specify the amount of rows and columns:
 
 *)
 
-//simple 3x3 subplot grid
+//simple 2x2 subplot grid
 let grid = 
-    Chart.Grid(
-        [
-            [Chart.Line(x,y); Chart.Line(x,y); Chart.Line(x,y)]
-            [Chart.Point(x,y); Chart.Point(x,y); Chart.Point(x,y)]
-            [Chart.Spline(x,y); Chart.Spline(x,y); Chart.Spline(x,y)]
-        ]
-    )
+    [
+        Chart.Point(x,y,Name="1,1")
+        |> Chart.withX_AxisStyle "x1"
+        |> Chart.withY_AxisStyle "y1"    
+        Chart.Line(x,y,Name="1,2")
+        |> Chart.withX_AxisStyle "x2"
+        |> Chart.withY_AxisStyle "y2"
+        Chart.Spline(x,y,Name="2,1")
+        |> Chart.withX_AxisStyle "x3"
+        |> Chart.withY_AxisStyle "y3"    
+        Chart.Point(x,y,Name="2,2")
+        |> Chart.withX_AxisStyle "x4"
+        |> Chart.withY_AxisStyle "y4"
+    ]
+    |> Chart.Grid(2,2)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -91,24 +100,32 @@ grid
 grid |> GenericChart.toChartHTML
 (***include-it-raw***)
 
-
 (**
-use `sharedAxis=true` to use one shared x axis per column and one shared y axis per row. 
-(Try zooming in the single subplots below)
+Or provide a 2-dimensional Chart sequence as input, the dimensions of the input will then be used to set the dimensions of the grid:
 *)
 
-let grid2 =
-    Chart.Grid(
+//simple 2x2 subplot grid using a 2x2 2D chart sequence as input
+let grid2 = 
+    [
         [
-            [Chart.Line(x,y); Chart.Line(x,y); Chart.Line(x,y)]
-            [Chart.Point(x,y); Chart.Point(x,y); Chart.Point(x,y)]
-            [Chart.Spline(x,y); Chart.Spline(x,y); Chart.Spline(x,y)]
-        ],
-        sharedAxes=true
-    )
-    |> Chart.withLayoutGridStyle(
-        XSide = StyleParam.LayoutGridXSide.Bottom
-    )
+            Chart.Point(x,y,Name="1,1")
+            |> Chart.withX_AxisStyle "x1"
+            |> Chart.withY_AxisStyle "y1"    
+            Chart.Line(x,y,Name="1,2")
+            |> Chart.withX_AxisStyle "x2"
+            |> Chart.withY_AxisStyle "y2"
+        ]
+        [
+            Chart.Spline(x,y,Name="2,1")
+            |> Chart.withX_AxisStyle "x3"
+            |> Chart.withY_AxisStyle "y3"    
+            Chart.Point(x,y,Name="2,2")
+            |> Chart.withX_AxisStyle "x4"
+            |> Chart.withY_AxisStyle "y4"
+        
+        ]
+    ]
+    |> Chart.Grid()
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -119,12 +136,78 @@ grid2
 grid2 |> GenericChart.toChartHTML
 (***include-it-raw***)
 
+(**
+To leave cells of the grid empty, you have to fill it with dummy charts via `Chart.Invisible()`.
+Pleas enote that when using a 2D sequence with unequal amounts of charts in the rows, the column amount will be set
+to the row with the highest amount of charts, and the other rows will be filled by invisible charts to the right.
+*)
+
+//simple 2x2 subplot grid with an empty cell at position 1,2
+let grid3 = 
+    [
+        Chart.Point(x,y,Name="1,1")
+        |> Chart.withX_AxisStyle "x1"
+        |> Chart.withY_AxisStyle "y1"    
+
+        Chart.Invisible()
+
+        Chart.Spline(x,y,Name="2,1")
+        |> Chart.withX_AxisStyle "x3"
+        |> Chart.withY_AxisStyle "y3"    
+
+        Chart.Point(x,y,Name="2,2")
+        |> Chart.withX_AxisStyle "x4"
+        |> Chart.withY_AxisStyle "y4"
+    ]
+    |> Chart.Grid(2,2)
+
+(*** condition: ipynb ***)
+#if IPYNB
+grid3
+#endif // IPYNB
+
+(***hide***)
+grid3 |> GenericChart.toChartHTML
+(***include-it-raw***)
+
+(**
+use `Pattern=StyleParam.LayoutGridPatter.Coupled` to use one shared x axis per column and one shared y axis per row. 
+(Try zooming in the single subplots below)
+*)
+
+let grid4 =
+    [
+        Chart.Point(x,y,Name="1,1")
+        |> Chart.withX_AxisStyle "x1"
+        |> Chart.withY_AxisStyle "y1"    
+        Chart.Line(x,y,Name="1,2")
+        |> Chart.withX_AxisStyle "x2"
+        |> Chart.withY_AxisStyle "y2"
+        Chart.Spline(x,y,Name="2,1")
+        |> Chart.withX_AxisStyle "x3"
+        |> Chart.withY_AxisStyle "y3"    
+        Chart.Point(x,y,Name="2,2")
+        |> Chart.withX_AxisStyle "x4"
+        |> Chart.withY_AxisStyle "y4"
+    ]
+    |> Chart.Grid(2,2,Pattern=StyleParam.LayoutGridPattern.Coupled)
+
+(*** condition: ipynb ***)
+#if IPYNB
+grid4
+#endif // IPYNB
+
+(***hide***)
+grid4 |> GenericChart.toChartHTML
+(***include-it-raw***)
 
 (** 
 ### Chart.SingleStack
 
 The `Chart.SingleStack` function is a special version of Chart.Grid that creates only one column from a 1D input chart sequence.
-It uses a shared x axis per default. You can also use the Chart.withLayoutGridStyle to further style subplot grids:
+It uses a shared x axis per default.
+
+As with all grid charts, you can also use the Chart.withLayoutGridStyle to style subplot grids:
 
 *)
 
@@ -134,14 +217,14 @@ let singleStack =
         |> Chart.withY_AxisStyle("This title must")
 
         Chart.Line(x,y) 
-        |> Chart.withY_AxisStyle("be set on the",Zeroline=false)
+        |> Chart.withY_AxisStyle("be set on the")
         
         Chart.Spline(x,y) 
-        |> Chart.withY_AxisStyle("respective subplots",Zeroline=false)
+        |> Chart.withY_AxisStyle("respective subplots")
     ]
-    |> Chart.SingleStack
-    //move xAxis to bottom and increase spacing between plots by using the withLayoutGridStyle function
-    |> Chart.withLayoutGridStyle(XSide=StyleParam.LayoutGridXSide.Bottom,YGap= 0.1)
+    |> Chart.SingleStack(Pattern= StyleParam.LayoutGridPattern.Coupled)
+    //increase spacing between plots by using the withLayoutGridStyle function
+    |> Chart.withLayoutGridStyle(YGap= 0.1)
     |> Chart.withTitle("Hi i am the new SingleStackChart")
     |> Chart.withX_AxisStyle("im the shared xAxis")
 
