@@ -3,6 +3,7 @@
 open Expecto
 open Plotly.NET
 open TestUtils
+open Plotly.NET.GenericChart
 
 let axisStylingChart =
     let x = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
@@ -15,7 +16,7 @@ let axisStylingChart =
 
 
 [<Tests>]
-let ``Axis styling tests`` =
+let ``Axis styling`` =
     testList "Axis styling tests" [
         testCase "X With axis has title" ( fun c ->
             "\"title\":\"X axis title quack quack\""
@@ -65,7 +66,7 @@ let multipleAxesChart =
     twoXAxes1
 
 [<Tests>]
-let ``Multiple Axes styling tests`` =
+let ``Multiple Axes styling`` =
     testList "Multiple Axes styling tests" [
         testCase "Layout" ( fun () ->
             "var layout = {\"yaxis\":{\"title\":\"axis 1\",\"side\":\"left\"},\"yaxis2\":{\"title\":\"axis2\",\"side\":\"right\",\"overlaying\":\"y\"}};"
@@ -89,7 +90,7 @@ let errorBarsChart =
 
 
 [<Tests>]
-let ``Error bars tests`` =
+let ``Error bars`` =
     testList "Error bars tests" [
         testCase "Full data test" ( fun () ->
             "var data = [{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"markers\",\"name\":\"points with errors\",\"marker\":{},\"error_x\":{\"symmetric\":true,\"array\":[0.2,0.3,0.2,0.1,0.2,0.4,0.2,0.08,0.2,0.1]},\"error_y\":{\"array\":[0.3,0.2,0.1,0.4,0.2,0.4,0.1,0.18,0.02,0.2],\"arrayminus\":[0.2,0.3,0.2,0.1,0.2,0.4,0.2,0.08,0.2,0.1]}}];"
@@ -206,4 +207,90 @@ let ``Shapes`` =
             "var layout = {\"shapes\":[{\"type\":\"rect\",\"x0\":2.0,\"x1\":4.0,\"y0\":3.0,\"y1\":4.0,\"opacity\":0.3,\"fillcolor\":\"#d3d3d3\"},{\"type\":\"rect\",\"x0\":5.0,\"x1\":7.0,\"y0\":3.0,\"y1\":4.0,\"opacity\":0.3,\"fillcolor\":\"#d3d3d3\"}]};"
             |> chartGeneratedContains shapesChart
         );
+    ]
+
+let displayOptionsChartDescriptionChart =
+    let x = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
+    let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+    let description1 = ChartDescription.create "Hello" "F#"
+    Chart.Point(x,y,Name="desc1")    
+    |> Chart.WithDescription(description1)
+
+let additionalHeadTagsChart =
+    let x = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
+    let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+    let bulmaHero = """<section class="hero is-primary is-bold">
+    <div class="hero-body">
+      <p class="title">
+        Hero title
+      </p>
+      <p class="subtitle">
+        Hero subtitle
+      </p>
+    </div>
+    </section>
+    """
+    
+    // chart description containing bulma classes
+    let description3 =
+      ChartDescription.create 
+          """<h1 class="title">I am heading</h1>""" 
+         bulmaHero
+    Chart.Point(x,y,Name="desc3")    
+    |> Chart.WithDescription description3
+    // Add reference to the bulma css framework
+    |> Chart.WithAdditionalHeadTags ["""<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">"""]
+
+let mathtexChart =
+    [
+        Chart.Point([(1.,2.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$")
+        Chart.Point([(2.,4.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$")
+    ]
+    |> Chart.Combine
+    |> Chart.withTitle @"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$"
+    // include mathtex tags in <head>. pass true to append these scripts, false to ONLY include MathTeX.
+    |> Chart.WithMathTex(true)
+
+[<Tests>]
+let ``Display options`` =
+    testList "Display options" [
+        testCase "Chart description data" ( fun () ->
+            "var data = [{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"markers\",\"name\":\"desc1\",\"marker\":{}}];"
+            |> chartGeneratedContains displayOptionsChartDescriptionChart
+        );
+        testCase "Chart description layout" ( fun () ->
+            "var layout = {};"
+            |> chartGeneratedContains displayOptionsChartDescriptionChart
+        );
+        testCase "Chart description header" ( fun () ->
+            "<h3>Hello</h3>"
+            |> substringIsInChart displayOptionsChartDescriptionChart toEmbeddedHTML
+        );
+        testCase "Chart description paragraph" ( fun () ->
+            "<p>F#</p>"
+            |> substringIsInChart displayOptionsChartDescriptionChart toEmbeddedHTML
+        );
+        testCase "Additional head tags" ( fun () ->
+            [ "<h3><h1 class=\"title\">I am heading</h1></h3>"
+              "<p><section class=\"hero is-primary is-bold\">"
+              "<div class=\"hero-body\">"
+              "<p class=\"title\">"
+              "Hero title"
+              "<p class=\"subtitle\">"
+              "Hero subtitle"
+            ]
+            |> substringListIsInChart additionalHeadTagsChart toEmbeddedHTML
+        );
+        testCase "MathTex data" ( fun () ->
+            "var data = [{\"type\":\"scatter\",\"x\":[1.0],\"y\":[2.0],\"mode\":\"markers\",\"name\":\"$\\\\beta_{1c} = 25 \\\\pm 11 \\\\text{ km s}^{-1}$\",\"marker\":{}},{\"type\":\"scatter\",\"x\":[2.0],\"y\":[4.0],\"mode\":\"markers\",\"name\":\"$\\\\beta_{1c} = 25 \\\\pm 11 \\\\text{ km s}^{-1}$\",\"marker\":{}}];"
+            |> chartGeneratedContains mathtexChart
+        );
+        testCase "MathTex layout" ( fun () ->
+            "var layout = {\"title\":\"$\\\\beta_{1c} = 25 \\\\pm 11 \\\\text{ km s}^{-1}$\"};"
+            |> chartGeneratedContains mathtexChart
+        );
+        testCase "MathTex include mathjax" ( fun () ->
+            "https://cdnjs.cloudflare.com/ajax/libs/mathjax/"
+            |> substringIsInChart mathtexChart toEmbeddedHTML
+        )
     ]
