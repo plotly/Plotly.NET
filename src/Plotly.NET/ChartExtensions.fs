@@ -572,9 +572,21 @@ module ChartExtensions =
                 ch |> Chart.withMap(map,id)
             )
 
-        // Set the LayoutGrid options of a Chart
+        /// <summary>Set the LayoutGrid options of a Chart</summary>
+        /// <param name ="Rows">The number of rows in the grid. If you provide a 2D `subplots` array or a `yaxes` array, its length is used as the default. But it's also possible to have a different length, if you want to leave a row at the end for non-cartesian subplots.</param>
+        /// <param name ="Columns">The number of columns in the grid. If you provide a 2D `subplots` array, the length of its longest row is used as the default. If you give an `xaxes` array, its length is used as the default. But it's also possible to have a different length, if you want to leave a row at the end for non-cartesian subplots.</param>
+        /// <param name ="SubPlots">Used for freeform grids, where some axes may be shared across subplots but others are not. Each entry should be a cartesian subplot id, like "xy" or "x3y2", or "" to leave that cell empty. You may reuse x axes within the same column, and y axes within the same row. Non-cartesian subplots and traces that support `domain` can place themselves in this grid separately using the `gridcell` attribute.</param>
+        /// <param name ="XAxes">Used with `yaxes` when the x and y axes are shared across columns and rows. Each entry should be an y axis id like "y", "y2", etc., or "" to not put a y axis in that row. Entries other than "" must be unique. Ignored if `subplots` is present. If missing but `xaxes` is present, will generate consecutive IDs.</param>
+        /// <param name ="YAxes">Used with `yaxes` when the x and y axes are shared across columns and rows. Each entry should be an x axis id like "x", "x2", etc., or "" to not put an x axis in that column. Entries other than "" must be unique. Ignored if `subplots` is present. If missing but `yaxes` is present, will generate consecutive IDs.</param>
+        /// <param name ="RowOrder">Is the first row the top or the bottom? Note that columns are always enumerated from left to right.</param>
+        /// <param name ="Pattern">If no `subplots`, `xaxes`, or `yaxes` are given but we do have `rows` and `columns`, we can generate defaults using consecutive axis IDs, in two ways: "coupled" gives one x axis per column and one y axis per row. "independent" uses a new xy pair for each cell, left-to-right across each row then iterating rows according to `roworder`.</param>
+        /// <param name ="XGap">Horizontal space between grid cells, expressed as a fraction of the total width available to one cell. Defaults to 0.1 for coupled-axes grids and 0.2 for independent grids.</param>
+        /// <param name ="YGap">Vertical space between grid cells, expressed as a fraction of the total height available to one cell. Defaults to 0.1 for coupled-axes grids and 0.3 for independent grids.</param>
+        /// <param name ="Domain">Sets the domains of this grid subplot (in plot fraction). The first and last cells end exactly at the domain edges, with no grout around the edges.</param>
+        /// <param name ="XSide">Sets where the x axis labels and titles go. "bottom" means the very bottom of the grid. "bottom plot" is the lowest plot that each x axis is used in. "top" and "top plot" are similar.</param>
+        /// <param name ="YSide">Sets where the y axis labels and titles go. "left" means the very left edge of the grid. "left plot" is the leftmost plot that each y axis is used in. "right" and "right plot" are similar.</param>
         [<CompiledName("WithLayoutGridStyle")>]
-        static member withLayoutGridStyle([<Optional;DefaultParameterValue(null)>]?SubPlots   : StyleParam.AxisId [] [],
+        static member withLayoutGridStyle([<Optional;DefaultParameterValue(null)>]?SubPlots   : (StyleParam.AxisId * StyleParam.AxisId) [] [],
             [<Optional;DefaultParameterValue(null)>]?XAxes      : StyleParam.AxisId [],
             [<Optional;DefaultParameterValue(null)>]?YAxes      : StyleParam.AxisId [],
             [<Optional;DefaultParameterValue(null)>]?Rows       : int,
@@ -719,136 +731,239 @@ module ChartExtensions =
         static member Combine(gCharts:seq<GenericChart>) =
             GenericChart.combine gCharts
 
-        ///Creates a Grid containing the given plots as subplots with the dimensions of the input (amount of columns equal to the largest inner sequence).
-        ///
-        ///Parameters:
-        ///
-        ///sharedAxes   : Wether the subplots share one xAxis per column and one yAxis per row or not. (default:TopToBottom)
-        ///
-        ///rowOrder     : the order in which the rows of the grid will be rendered (default:false)
-        /// 
-        ///xGap         : The space between columns of the grid relative to the x dimension of the grid
-        ///
-        ///yGap         : The space between rows of the grid relative to the y dimension of the grid
-        ///
-        ///Use Chart.withLayoutGridStyle to further style the grid object contained in the returned chart.
+        /// <summary>
+        /// Creates a subplot grid with the given dimensions (nRows x nCols) for the input charts.
+        /// </summary>
+        /// <param name ="nRows">The number of rows in the grid. If you provide a 2D `subplots` array or a `yaxes` array, its length is used as the default. But it's also possible to have a different length, if you want to leave a row at the end for non-cartesian subplots.</param>
+        /// <param name ="nCols">The number of columns in the grid. If you provide a 2D `subplots` array, the length of its longest row is used as the default. If you give an `xaxes` array, its length is used as the default. But it's also possible to have a different length, if you want to leave a row at the end for non-cartesian subplots.</param>
+        /// <param name ="SubPlots">Used for freeform grids, where some axes may be shared across subplots but others are not. Each entry should be a cartesian subplot id, like "xy" or "x3y2", or "" to leave that cell empty. You may reuse x axes within the same column, and y axes within the same row. Non-cartesian subplots and traces that support `domain` can place themselves in this grid separately using the `gridcell` attribute.</param>
+        /// <param name ="XAxes">Used with `yaxes` when the x and y axes are shared across columns and rows. Each entry should be an y axis id like "y", "y2", etc., or "" to not put a y axis in that row. Entries other than "" must be unique. Ignored if `subplots` is present. If missing but `xaxes` is present, will generate consecutive IDs.</param>
+        /// <param name ="YAxes">Used with `yaxes` when the x and y axes are shared across columns and rows. Each entry should be an x axis id like "x", "x2", etc., or "" to not put an x axis in that column. Entries other than "" must be unique. Ignored if `subplots` is present. If missing but `yaxes` is present, will generate consecutive IDs.</param>
+        /// <param name ="RowOrder">Is the first row the top or the bottom? Note that columns are always enumerated from left to right.</param>
+        /// <param name ="Pattern">If no `subplots`, `xaxes`, or `yaxes` are given but we do have `rows` and `columns`, we can generate defaults using consecutive axis IDs, in two ways: "coupled" gives one x axis per column and one y axis per row. "independent" uses a new xy pair for each cell, left-to-right across each row then iterating rows according to `roworder`.</param>
+        /// <param name ="XGap">Horizontal space between grid cells, expressed as a fraction of the total width available to one cell. Defaults to 0.1 for coupled-axes grids and 0.2 for independent grids.</param>
+        /// <param name ="YGap">Vertical space between grid cells, expressed as a fraction of the total height available to one cell. Defaults to 0.1 for coupled-axes grids and 0.3 for independent grids.</param>
+        /// <param name ="Domain">Sets the domains of this grid subplot (in plot fraction). The first and last cells end exactly at the domain edges, with no grout around the edges.</param>
+        /// <param name ="XSide">Sets where the x axis labels and titles go. "bottom" means the very bottom of the grid. "bottom plot" is the lowest plot that each x axis is used in. "top" and "top plot" are similar.</param>
+        /// <param name ="YSide">Sets where the y axis labels and titles go. "left" means the very left edge of the grid. "left plot" is the leftmost plot that each y axis is used in. "right" and "right plot" are similar.</param>
         [<CompiledName("Grid")>]
-        static member Grid ((gCharts:seq<#seq<GenericChart>>),
-            [<Optional;DefaultParameterValue(false)>]?sharedAxes:bool,
-            [<Optional;DefaultParameterValue(null)>]?rowOrder:StyleParam.LayoutGridRowOrder,
-            [<Optional;DefaultParameterValue(0.05)>] ?xGap,
-            [<Optional;DefaultParameterValue(0.05)>] ?yGap
+        static member Grid (nRows: int, nCols: int,
+            [<Optional;DefaultParameterValue(null)>]?SubPlots   : (StyleParam.AxisId*StyleParam.AxisId) [] [],
+            [<Optional;DefaultParameterValue(null)>]?XAxes      : StyleParam.AxisId [],
+            [<Optional;DefaultParameterValue(null)>]?YAxes      : StyleParam.AxisId [],
+            [<Optional;DefaultParameterValue(null)>]?RowOrder   : StyleParam.LayoutGridRowOrder,
+            [<Optional;DefaultParameterValue(null)>]?Pattern    : StyleParam.LayoutGridPattern,
+            [<Optional;DefaultParameterValue(null)>]?XGap       : float,
+            [<Optional;DefaultParameterValue(null)>]?YGap       : float,
+            [<Optional;DefaultParameterValue(null)>]?Domain     : Domain,
+            [<Optional;DefaultParameterValue(null)>]?XSide      : StyleParam.LayoutGridXSide,
+            [<Optional;DefaultParameterValue(null)>]?YSide      : StyleParam.LayoutGridYSide
             ) =
+                fun (gCharts:#seq<GenericChart>) ->
+                    
+                    let pattern = defaultArg Pattern StyleParam.LayoutGridPattern.Independent
 
-            let sharedAxes = defaultArg sharedAxes false
-            let rowOrder = defaultArg rowOrder StyleParam.LayoutGridRowOrder.TopToBottom
-            let xGap = defaultArg xGap 0.05
-            let yGap = defaultArg yGap 0.05
+                    let hasSharedAxes = pattern = StyleParam.LayoutGridPattern.Coupled
 
-            let nRows = Seq.length gCharts
-            let nCols = gCharts |> Seq.maxBy Seq.length |> Seq.length
-            let pattern = if sharedAxes then StyleParam.LayoutGridPattern.Coupled else StyleParam.LayoutGridPattern.Independent
+                    // rows x cols coordinate grid
+                    let gridCoordinates = 
+                        Array.init nRows (fun i ->
+                            Array.init nCols (fun j ->
+                                i+1,j+1
+                            )
+                        )
+                        |> Array.concat
 
-            let generateDomainRanges (count:int) (gap:float) =
-                [|0. .. (1. / (float count)) .. 1.|]
-                |> fun doms -> 
-                    doms
-                    |> Array.windowed 2
-                    |> Array.mapi (fun i x -> 
-                        if i = 0 then
-                            x.[0], (x.[1] - (gap / 2.))
-                        elif i = (doms.Length - 1) then
-                           (x.[0] + (gap / 2.)),x.[1]
-                        else
-                           (x.[0] + (gap / 2.)) , (x.[1] - (gap / 2.))
+                    // extract all axes from the plots to later add them with an updated axis anchor
+                    // TODO: currently only gets the default (first) x and y axis. There might be charts with multiple axes which might cause havoc downstream.
+                    // those should either be removed or accounted for
+                    let axes =
+                        gCharts
+                        |> Seq.map (fun gChart ->
+                            gChart 
+                            |> GenericChart.getLayout
+                            |> fun l -> 
+                                let xAxis = l.TryGetTypedValue<Axis.LinearAxis> "xaxis" |> Option.defaultValue (Axis.LinearAxis.init())
+                                let yAxis = l.TryGetTypedValue<Axis.LinearAxis> "yaxis" |> Option.defaultValue (Axis.LinearAxis.init())
+                                xAxis,yAxis
+                        )
+
+                    gCharts
+                    |> Seq.zip gridCoordinates
+                    |> Seq.zip axes
+                    |> Seq.mapi (fun i ((xAxis,yAxis), ((y,x), gChart)) ->
+
+                        let xAnchor, yAnchor = 
+                            if hasSharedAxes then 
+                                x, y //set axis anchors according to grid coordinates
+                            else
+                                i+1, i+1 //set individual axis anchors for each subplot
+
+                        gChart
+                        |> Chart.withAxisAnchor(xAnchor,yAnchor) // set adapted axis anchors
+                        |> Chart.withX_Axis(xAxis,i+1) // set previous axis with adapted id (one individual axis for each subplot, wether or not they will be used later)
+                        |> Chart.withY_Axis(yAxis,i+1) // set previous axis with adapted id (one individual axis for each subplot, wether or not they will be used later)
+                        |> GenericChart.mapLayout (fun l ->
+                            if i > 0 then 
+                                // remove default axes from consecutive charts, otherwise they will override the first one
+                                l.Remove("xaxis") |> ignore
+                                l.Remove("yaxis") |> ignore
+                            l
+                        )
+                    )
+                    |> Chart.Combine
+                    |> Chart.withLayoutGrid (
+                        LayoutGrid.init(
+                            Rows      = nRows,
+                            Columns   = nCols,
+                            Pattern   = pattern,
+                            ?SubPlots = SubPlots,
+                            ?XAxes    = XAxes,
+                            ?YAxes    = YAxes,
+                            ?RowOrder = RowOrder,
+                            ?XGap     = XGap,
+                            ?YGap     = YGap,
+                            ?Domain   = Domain,
+                            ?XSide    = XSide,
+                            ?YSide    = YSide   
+                        )
                     )
 
-            let yDomains = generateDomainRanges nRows yGap
-            let xDomains = generateDomainRanges nCols xGap
-
-            gCharts
-            |> Seq.mapi (fun rowIndex row ->
-                row |> Seq.mapi (fun colIndex gChart ->
-                    let xdomain = xDomains.[colIndex]
-                    let ydomain = yDomains.[rowIndex]
-
-                    let newXIndex, newYIndex =
-                        (if sharedAxes then colIndex + 1 else ((nRows * rowIndex) + (colIndex + 1))),
-                        (if sharedAxes then rowIndex + 1 else ((nRows * rowIndex) + (colIndex + 1)))
-
-
-                    let xaxis,yaxis,layout = 
-                        let layout = GenericChart.getLayout gChart
-                        let xAxisName, yAxisName = StyleParam.AxisId.X 1 |> StyleParam.AxisId.toString, StyleParam.AxisId.Y 1 |> StyleParam.AxisId.toString
-                
-                        let updateXAxis index domain axis = 
-                            axis |> Axis.LinearAxis.style(Anchor=StyleParam.AxisAnchorId.X index,Domain=StyleParam.Range.MinMax domain)
-                
-                        let updateYAxis index domain axis = 
-                            axis |> Axis.LinearAxis.style(Anchor=StyleParam.AxisAnchorId.Y index,Domain=StyleParam.Range.MinMax domain)
-                        match (layout.TryGetTypedValue<Axis.LinearAxis> xAxisName),(layout.TryGetTypedValue<Axis.LinearAxis> yAxisName) with
-                        | Some x, Some y ->
-                            // remove axis
-                            DynObj.remove layout xAxisName
-                            DynObj.remove layout yAxisName
-
-                            x |> updateXAxis newXIndex xdomain,
-                            y |> updateYAxis newYIndex ydomain,
-                            layout
-
-                        | Some x, None -> 
-                            // remove x - axis
-                            DynObj.remove layout xAxisName
-
-                            x |> updateXAxis newXIndex xdomain,
-                            Axis.LinearAxis.init(Anchor=StyleParam.AxisAnchorId.Y newYIndex ,Domain=StyleParam.Range.MinMax ydomain),
-                            layout
-
-                        | None, Some y -> 
-                            // remove y - axis
-                            DynObj.remove layout yAxisName
-
-                            Axis.LinearAxis.init(Anchor=StyleParam.AxisAnchorId.X newXIndex,Domain=StyleParam.Range.MinMax xdomain),
-                            y |> updateYAxis newYIndex ydomain,
-                            layout
-                        | None, None ->
-                            Axis.LinearAxis.init(Anchor=StyleParam.AxisAnchorId.X newXIndex,Domain=StyleParam.Range.MinMax xdomain),
-                            Axis.LinearAxis.init(Anchor=StyleParam.AxisAnchorId.Y newYIndex,Domain=StyleParam.Range.MinMax ydomain),
-                            layout
-
-                    gChart
-                    |> GenericChart.setLayout layout
-                    |> Chart.withAxisAnchor(X=newXIndex,Y=newYIndex) 
-                    |> Chart.withX_Axis(xaxis,newXIndex)
-                    |> Chart.withY_Axis(yaxis,newYIndex)
-                )
-            )
-            |> Seq.map Chart.Combine
-            |> Chart.Combine
-            |> Chart.withLayoutGrid(
-                LayoutGrid.init(
-                    Rows=nRows,Columns=nCols,XGap= xGap,YGap= yGap,Pattern=pattern,RowOrder=rowOrder
-                )
-            )
-        
-        ///Creates a chart stack from the input charts by stacking them on top of each other starting from the first chart.
+        /// <summary>
+        /// Creates a subplot grid with the the dimensions of the input 2D sequence containing the charts to render in the respective cells.
         ///
-        ///Parameters:
+        /// ATTENTION: when the individual rows do not have the same amount of charts, they will be filled with dummy charts TO THE RIGHT.
         ///
-        ///sharedAxis   : wether the stack has a shared x axis (default:true)
-        [<CompiledName("SingleStack")>]
-        static member SingleStack (charts:#seq<GenericChart>,
-            [<Optional;DefaultParameterValue(true)>] ?sharedXAxis:bool) =
+        /// prevent this behaviour by using Chart.Invisible at the cells that should be empty.
+        /// </summary>
+        /// <param name ="SubPlots">Used for freeform grids, where some axes may be shared across subplots but others are not. Each entry should be a cartesian subplot id, like "xy" or "x3y2", or "" to leave that cell empty. You may reuse x axes within the same column, and y axes within the same row. Non-cartesian subplots and traces that support `domain` can place themselves in this grid separately using the `gridcell` attribute.</param>
+        /// <param name ="XAxes">Used with `yaxes` when the x and y axes are shared across columns and rows. Each entry should be an y axis id like "y", "y2", etc., or "" to not put a y axis in that row. Entries other than "" must be unique. Ignored if `subplots` is present. If missing but `xaxes` is present, will generate consecutive IDs.</param>
+        /// <param name ="YAxes">Used with `yaxes` when the x and y axes are shared across columns and rows. Each entry should be an x axis id like "x", "x2", etc., or "" to not put an x axis in that column. Entries other than "" must be unique. Ignored if `subplots` is present. If missing but `yaxes` is present, will generate consecutive IDs.</param>
+        /// <param name ="RowOrder">Is the first row the top or the bottom? Note that columns are always enumerated from left to right.</param>
+        /// <param name ="Pattern">If no `subplots`, `xaxes`, or `yaxes` are given but we do have `rows` and `columns`, we can generate defaults using consecutive axis IDs, in two ways: "coupled" gives one x axis per column and one y axis per row. "independent" uses a new xy pair for each cell, left-to-right across each row then iterating rows according to `roworder`.</param>
+        /// <param name ="XGap">Horizontal space between grid cells, expressed as a fraction of the total width available to one cell. Defaults to 0.1 for coupled-axes grids and 0.2 for independent grids.</param>
+        /// <param name ="YGap">Vertical space between grid cells, expressed as a fraction of the total height available to one cell. Defaults to 0.1 for coupled-axes grids and 0.3 for independent grids.</param>
+        /// <param name ="Domain">Sets the domains of this grid subplot (in plot fraction). The first and last cells end exactly at the domain edges, with no grout around the edges.</param>
+        /// <param name ="XSide">Sets where the x axis labels and titles go. "bottom" means the very bottom of the grid. "bottom plot" is the lowest plot that each x axis is used in. "top" and "top plot" are similar.</param>
+        /// <param name ="YSide">Sets where the y axis labels and titles go. "left" means the very left edge of the grid. "left plot" is the leftmost plot that each y axis is used in. "right" and "right plot" are similar.</param>
+        [<CompiledName("Grid")>]
+        static member Grid 
+            (
+                [<Optional;DefaultParameterValue(null)>]?SubPlots   : (StyleParam.AxisId*StyleParam.AxisId) [] [],
+                [<Optional;DefaultParameterValue(null)>]?XAxes      : StyleParam.AxisId [],
+                [<Optional;DefaultParameterValue(null)>]?YAxes      : StyleParam.AxisId [],
+                [<Optional;DefaultParameterValue(null)>]?RowOrder   : StyleParam.LayoutGridRowOrder,
+                [<Optional;DefaultParameterValue(null)>]?Pattern    : StyleParam.LayoutGridPattern,
+                [<Optional;DefaultParameterValue(null)>]?XGap       : float,
+                [<Optional;DefaultParameterValue(null)>]?YGap       : float,
+                [<Optional;DefaultParameterValue(null)>]?Domain     : Domain,
+                [<Optional;DefaultParameterValue(null)>]?XSide      : StyleParam.LayoutGridXSide,
+                [<Optional;DefaultParameterValue(null)>]?YSide      : StyleParam.LayoutGridYSide
+            ) =
+                fun (gCharts:#seq<#seq<GenericChart>>) ->
             
-            let sharedAxis = defaultArg sharedXAxis true
-            let singleCol = seq {
-                    for i = 0 to ((Seq.length charts) - 1) do
-                        yield seq {Seq.item i charts}
-                }
-            Chart.Grid(gCharts = singleCol, sharedAxes = sharedAxis, rowOrder = StyleParam.LayoutGridRowOrder.BottomToTop)
+                    let nRows = Seq.length gCharts
+                    let nCols = Seq.maxBy Seq.length gCharts |> Seq.length
+
+                    if Seq.exists (fun s -> (s |> Seq.length) <> nCols) gCharts then
+                        printfn "WARNING: not all rows contain the same amount of charts."
+                        printfn "The rows will be filled TO THE RIGHT with invisible dummy charts."
+                        printfn "To have more positional control, use Chart.Empty() in your Grid where you want to have empty cells."
+
+                        let copy = 
+                            gCharts 
+                            |> Seq.map Seq.cast<GenericChart.GenericChart> // this is ugly but i did not find another way for the inner seq to be be a flexible type (so you can use list, array, and seq).
+
+                        let newGrid =
+                            copy
+                            |> Seq.map (fun (row) ->
+                                let nCharts = Seq.length row
+                                if nCharts <> nCols then
+                                    seq {yield! row; for i in nCharts .. nCols-1 do yield Chart.Invisible()}
+                                else
+                                    row
+                            )
+                            |> Seq.concat
+
+                        newGrid
+                        |> Chart.Grid(
+                            nRows,nCols,
+                            ?SubPlots = SubPlots,
+                            ?XAxes    = XAxes,
+                            ?YAxes    = YAxes,
+                            ?RowOrder = RowOrder,
+                            ?Pattern  = Pattern,
+                            ?XGap     = XGap,
+                            ?YGap     = YGap,
+                            ?Domain   = Domain,
+                            ?XSide    = XSide,
+                            ?YSide    = YSide   
+                        )
+
+                    else
+                        gCharts
+                        |> Seq.concat
+                        |> Chart.Grid(
+                            nRows,nCols,
+                            ?SubPlots = SubPlots,
+                            ?XAxes    = XAxes,
+                            ?YAxes    = YAxes,
+                            ?RowOrder = RowOrder,
+                            ?Pattern  = Pattern,
+                            ?XGap     = XGap,
+                            ?YGap     = YGap,
+                            ?Domain   = Domain,
+                            ?XSide    = XSide,
+                            ?YSide    = YSide   
+                        )
+
+        /// Creates a chart stack (a subplot grid with one column) from the input charts.
+        /// </summary>
+        /// <param name ="SubPlots">Used for freeform grids, where some axes may be shared across subplots but others are not. Each entry should be a cartesian subplot id, like "xy" or "x3y2", or "" to leave that cell empty. You may reuse x axes within the same column, and y axes within the same row. Non-cartesian subplots and traces that support `domain` can place themselves in this grid separately using the `gridcell` attribute.</param>
+        /// <param name ="XAxes">Used with `yaxes` when the x and y axes are shared across columns and rows. Each entry should be an y axis id like "y", "y2", etc., or "" to not put a y axis in that row. Entries other than "" must be unique. Ignored if `subplots` is present. If missing but `xaxes` is present, will generate consecutive IDs.</param>
+        /// <param name ="YAxes">Used with `yaxes` when the x and y axes are shared across columns and rows. Each entry should be an x axis id like "x", "x2", etc., or "" to not put an x axis in that column. Entries other than "" must be unique. Ignored if `subplots` is present. If missing but `yaxes` is present, will generate consecutive IDs.</param>
+        /// <param name ="RowOrder">Is the first row the top or the bottom? Note that columns are always enumerated from left to right.</param>
+        /// <param name ="Pattern">If no `subplots`, `xaxes`, or `yaxes` are given but we do have `rows` and `columns`, we can generate defaults using consecutive axis IDs, in two ways: "coupled" gives one x axis per column and one y axis per row. "independent" uses a new xy pair for each cell, left-to-right across each row then iterating rows according to `roworder`.</param>
+        /// <param name ="XGap">Horizontal space between grid cells, expressed as a fraction of the total width available to one cell. Defaults to 0.1 for coupled-axes grids and 0.2 for independent grids.</param>
+        /// <param name ="YGap">Vertical space between grid cells, expressed as a fraction of the total height available to one cell. Defaults to 0.1 for coupled-axes grids and 0.3 for independent grids.</param>
+        /// <param name ="Domain">Sets the domains of this grid subplot (in plot fraction). The first and last cells end exactly at the domain edges, with no grout around the edges.</param>
+        /// <param name ="XSide">Sets where the x axis labels and titles go. "bottom" means the very bottom of the grid. "bottom plot" is the lowest plot that each x axis is used in. "top" and "top plot" are similar.</param>
+        /// <param name ="YSide">Sets where the y axis labels and titles go. "left" means the very left edge of the grid. "left plot" is the leftmost plot that each y axis is used in. "right" and "right plot" are similar.</param>
+        [<CompiledName("SingleStack")>]
+        static member SingleStack 
+            (
+                [<Optional;DefaultParameterValue(null)>]?SubPlots   : (StyleParam.AxisId*StyleParam.AxisId) [] [],
+                [<Optional;DefaultParameterValue(null)>]?XAxes      : StyleParam.AxisId [],
+                [<Optional;DefaultParameterValue(null)>]?YAxes      : StyleParam.AxisId [],
+                [<Optional;DefaultParameterValue(null)>]?RowOrder   : StyleParam.LayoutGridRowOrder,
+                [<Optional;DefaultParameterValue(null)>]?Pattern    : StyleParam.LayoutGridPattern,
+                [<Optional;DefaultParameterValue(null)>]?XGap       : float,
+                [<Optional;DefaultParameterValue(null)>]?YGap       : float,
+                [<Optional;DefaultParameterValue(null)>]?Domain     : Domain,
+                [<Optional;DefaultParameterValue(null)>]?XSide      : StyleParam.LayoutGridXSide,
+                [<Optional;DefaultParameterValue(null)>]?YSide      : StyleParam.LayoutGridYSide
+            ) = 
+            
+                fun (gCharts: #seq<GenericChart.GenericChart>) ->
+                
+                    gCharts
+                    |> Chart.Grid(
+                        nRows = Seq.length gCharts,
+                        nCols = 1,
+                        ?SubPlots = SubPlots,
+                        ?XAxes    = XAxes,
+                        ?YAxes    = YAxes,
+                        ?RowOrder = RowOrder,
+                        ?Pattern  = Pattern,
+                        ?XGap     = XGap,
+                        ?YGap     = YGap,
+                        ?Domain   = Domain,
+                        ?XSide    = XSide,
+                        ?YSide    = YSide   
+                    )
 
         /// Create a combined chart with the given charts merged
-        [<Obsolete("Use Chart.Grid for multi column grid charts or singleStack for one-column stacked charts.")>]
+        [<Obsolete("Use Chart.Grid for multi column grid charts or SingleStack for one-column stacked charts.")>]
         [<CompiledName("Stack")>]
         static member Stack ( [<Optional;DefaultParameterValue(null)>] ?Columns:int, 
                 [<Optional;DefaultParameterValue(null)>] ?Space) = 

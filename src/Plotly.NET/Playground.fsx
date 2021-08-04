@@ -63,6 +63,101 @@ open System.IO
 open Deedle
 open FSharpAux
 
+[
+    [
+        Chart.Point([1,2],Name="1,1")
+        |> Chart.withX_AxisStyle "x1"
+        |> Chart.withY_AxisStyle "y1"    
+        Chart.Point([1,2],Name="1,2")
+        |> Chart.withX_AxisStyle "x2"
+        |> Chart.withY_AxisStyle "y2"
+    ]
+    [
+        Chart.Point([1,2],Name="2,1")
+        |> Chart.withX_AxisStyle "x3"
+        |> Chart.withY_AxisStyle "y3"    
+    ]
+    [
+        Chart.Point([1,2],Name="3,1")
+        |> Chart.withX_AxisStyle "x4"
+        |> Chart.withY_AxisStyle "y4"    
+        Chart.Point([1,2],Name="3,2")
+        |> Chart.withX_AxisStyle "x5"
+        |> Chart.withY_AxisStyle "y5"
+    ]
+]
+|> Chart.Grid()
+|> Chart.Show
+
+[
+    Chart.Point([1,2],Name="1,1")
+    |> Chart.withX_AxisStyle "x1"
+    |> Chart.withY_AxisStyle "y1"    
+    Chart.Point([1,2],Name="1,2")
+    |> Chart.withX_AxisStyle "x2"
+    |> Chart.withY_AxisStyle "y2"
+    Chart.Point([1,2],Name="2,2")
+    |> Chart.withX_AxisStyle "x3"
+    |> Chart.withY_AxisStyle "y3"    
+    Chart.Point([1,2],Name="3,2")
+    |> Chart.withX_AxisStyle "x4"
+    |> Chart.withY_AxisStyle "y4"    
+    Chart.Point([1,2],Name="1,1")
+    |> Chart.withX_AxisStyle "x5"
+    |> Chart.withY_AxisStyle "y5"    
+    Chart.Point([1,2],Name="1,2")
+    |> Chart.withX_AxisStyle "x6"
+    |> Chart.withY_AxisStyle "y6"
+    Chart.Point([1,2],Name="2,2")
+    |> Chart.withX_AxisStyle "x7"
+    |> Chart.withY_AxisStyle "y7"    
+    Chart.Point([1,2],Name="3,2")
+    |> Chart.withX_AxisStyle "x8"
+    |> Chart.withY_AxisStyle "y8"    
+    Chart.Point([1,2],Name="1,1")
+    |> Chart.withX_AxisStyle "x9"
+    |> Chart.withY_AxisStyle "y9"    
+    Chart.Point([1,2],Name="1,2")
+    |> Chart.withX_AxisStyle "x10"
+    |> Chart.withY_AxisStyle "y10"
+    Chart.Point([1,2],Name="2,2")
+    |> Chart.withX_AxisStyle "x11"
+    |> Chart.withY_AxisStyle "y11"    
+    Chart.Point([1,2],Name="3,2")
+    |> Chart.withX_AxisStyle "x12"
+    |> Chart.withY_AxisStyle "y12"
+]
+|> Chart.Grid(6,2,Pattern=StyleParam.LayoutGridPattern.Coupled)
+|> Chart.withSize (1000., 2000.)
+|> Chart.Show
+
+ 
+[
+    Chart.Point([(1.,2.)])
+    |> GenericChart.mapTrace (fun t ->
+        t?legendgroup <- "2"
+        t
+    )
+    Chart.Point([(1.,2.)])
+    |> GenericChart.mapTrace (fun t ->
+        t?legendgroup <- "1"
+        t
+    )
+]
+|> Chart.SingleStack()
+|> Chart.withLegend(
+    Legend.init(
+        TraceOrder = StyleParam.TraceOrder.Grouped,
+        TraceGroupGap = 300.
+    )
+)
+|> Chart.withAnnotations [
+    Annotation.init(1,2,Text= "soos1",YRef="y")
+    Annotation.init(1,2,Text= "soos2",YRef="y2")
+]
+|> Chart.Show
+
+
 let dataDensityMapbox = 
     Http.RequestString "https://raw.githubusercontent.com/plotly/datasets/master/earthquakes-23k.csv"
     |> fun d -> Frame.ReadCsvString(d,true,separators=",")
@@ -570,104 +665,6 @@ Chart.Sunburst(
 |> Chart.withTitle "Sunburst test"
 |> Chart.Show
 
-
-
-
-let grid ((gCharts:seq<#seq<GenericChart>>),sharedAxes:bool,xGap,yGap) =
-
-    let nRows = Seq.length gCharts
-    let nCols = gCharts |> Seq.maxBy Seq.length |> Seq.length
-    let pattern = if sharedAxes then StyleParam.LayoutGridPattern.Coupled else StyleParam.LayoutGridPattern.Independent
-
-    let grid = 
-        LayoutGrid.init(
-            Rows=nRows,Columns=nCols,XGap= xGap,YGap= yGap,Pattern=pattern
-        )
-
-    let generateDomainRanges (count:int) (gap:float) =
-        [|0. .. (1. / (float count)) .. 1.|]
-        |> fun doms -> 
-            doms
-            |> Array.windowed 2
-            |> Array.mapi (fun i x -> 
-                if i = 0 then
-                    x.[0], (x.[1] - (gap / 2.))
-                elif i = (doms.Length - 1) then
-                   (x.[0] + (gap / 2.)),x.[1]
-                else
-                   (x.[0] + (gap / 2.)) , (x.[1] - (gap / 2.))
-            )
-
-    let yDomains = generateDomainRanges nRows yGap
-    let xDomains = generateDomainRanges nCols xGap
-
-    gCharts
-    |> Seq.mapi (fun rowIndex row ->
-        row |> Seq.mapi (fun colIndex gChart ->
-            let xdomain = xDomains.[colIndex]
-            let ydomain = yDomains.[rowIndex]
-
-            let newXIndex, newYIndex =
-                (if sharedAxes then colIndex + 1 else ((nRows * rowIndex) + (colIndex + 1))),
-                (if sharedAxes then rowIndex + 1 else ((nRows * rowIndex) + (colIndex + 1)))
-
-
-            let xaxis,yaxis,layout = 
-                let layout = GenericChart.getLayout gChart
-                let xAxisName, yAxisName = StyleParam.AxisId.X 1 |> StyleParam.AxisId.toString, StyleParam.AxisId.Y 1 |> StyleParam.AxisId.toString
-                
-                let updateXAxis index domain axis = 
-                    axis |> Axis.LinearAxis.style(Anchor=StyleParam.AxisAnchorId.X index,Domain=StyleParam.Range.MinMax domain)
-                
-                let updateYAxis index domain axis = 
-                    axis |> Axis.LinearAxis.style(Anchor=StyleParam.AxisAnchorId.Y index,Domain=StyleParam.Range.MinMax domain)
-                match (layout.TryGetTypedValue<Axis.LinearAxis> xAxisName),(layout.TryGetTypedValue<Axis.LinearAxis> yAxisName) with
-                | Some x, Some y ->
-                    // remove axis
-                    DynObj.remove layout xAxisName
-                    DynObj.remove layout yAxisName
-
-                    x |> updateXAxis newXIndex xdomain,
-                    y |> updateYAxis newYIndex ydomain,
-                    layout
-
-                | Some x, None -> 
-                    // remove x - axis
-                    DynObj.remove layout xAxisName
-
-                    x |> updateXAxis newXIndex xdomain,
-                    Axis.LinearAxis.init(Anchor=StyleParam.AxisAnchorId.Y newYIndex ,Domain=StyleParam.Range.MinMax ydomain),
-                    layout
-
-                | None, Some y -> 
-                    // remove y - axis
-                    DynObj.remove layout yAxisName
-
-                    Axis.LinearAxis.init(Anchor=StyleParam.AxisAnchorId.X newXIndex,Domain=StyleParam.Range.MinMax xdomain),
-                    y |> updateYAxis newYIndex ydomain,
-                    layout
-                | None, None ->
-                    Axis.LinearAxis.init(Anchor=StyleParam.AxisAnchorId.X newXIndex,Domain=StyleParam.Range.MinMax xdomain),
-                    Axis.LinearAxis.init(Anchor=StyleParam.AxisAnchorId.Y newYIndex,Domain=StyleParam.Range.MinMax ydomain),
-                    layout
-
-            gChart
-            |> GenericChart.setLayout layout
-            |> Chart.withAxisAnchor(X=newXIndex,Y=newYIndex) 
-            |> Chart.withX_Axis(xaxis,newXIndex)
-            |> Chart.withY_Axis(yaxis,newYIndex)
-        )
-    )
-    |> Seq.map Chart.Combine
-    |> Chart.Combine
-    |> Chart.withLayoutGrid grid
-
-grid ([
-    [Chart.Point([(0,1)]);Chart.Point([(0,1)]);Chart.Point([(0,1)]);]
-    [Chart.Point([(0,1)]);Chart.Point([(0,1)]);Chart.Point([(0,1)]);]
-    [Chart.Point([(0,1)]);Chart.Point([(0,1)]);Chart.Point([(0,1)]);]
-],true, 0.05,0.05)
-|> Chart.Show
 
 let stack ( columns:int, space) = 
     (fun (charts:#seq<GenericChart>) ->  

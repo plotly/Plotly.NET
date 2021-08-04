@@ -1284,7 +1284,7 @@ module StyleParam =
             | Normal            -> "normal"
             | Reversed          -> "reversed"
             | Grouped           -> "grouped"
-            | ReversedGrouped   -> "reversed+grouped"
+            | ReversedGrouped   -> "grouped+reversed"
     
         static member convert = TraceOrder.toString >> box
 
