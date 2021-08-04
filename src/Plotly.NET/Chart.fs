@@ -41,6 +41,27 @@ type Chart =
             Trace.initScatter style
             |> GenericChart.ofTraceObject
 
+    /// <summary>Creates a chart that is completely invisible when rendered. The Chart object however is NOT empty! Combining this chart with other charts will have unforseen consequences (it has for example invisible axes that can override other axes if used in Chart.Combine)</summary>
+    static member Invisible () =
+        let hiddenAxis() = 
+            Axis.LinearAxis.init(
+                Showgrid        = false,
+                Showline        = false,
+                Showbackground  = false,
+                Showticklabels  = false,
+                Zeroline        = false
+            )
+        
+        let trace = Trace("scatter")
+        trace.Remove("type") |> ignore
+        GenericChart.ofTraceObject trace
+        |> GenericChart.mapLayout ( fun l ->
+            l
+            |> Layout.AddLinearAxis(AxisId.X 1,hiddenAxis())
+            |> Layout.AddLinearAxis(AxisId.Y 1,hiddenAxis())
+        )
+
+
     /// <summary>Creates a Scatter chart. Scatter charts are the basis of Point, Line, and Bubble Charts in Plotly, and can be customized as such. We also provide abstractions for those: Chart.Line, Chart.Point, Chart.Bubble</summary>
     /// <param name="x">Sets the x coordinates of the plotted data.</param>
     /// <param name="y">Sets the y coordinates of the plotted data.</param>

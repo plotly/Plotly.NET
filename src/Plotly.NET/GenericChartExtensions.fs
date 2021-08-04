@@ -507,7 +507,7 @@ module GenericChartExtensions =
         // Set the LayoutGrid options of a Chart
         [<CompiledName("WithLayoutGridStyle")>]
         [<Extension>]
-        member this.WithLayoutGridStyle([<Optional;DefaultParameterValue(null)>]?SubPlots   : StyleParam.AxisId [] [],
+        member this.WithLayoutGridStyle([<Optional;DefaultParameterValue(null)>]?SubPlots   : (StyleParam.AxisId * StyleParam.AxisId)[] [],
             [<Optional;DefaultParameterValue(null)>]?XAxes      : StyleParam.AxisId [],
             [<Optional;DefaultParameterValue(null)>]?YAxes      : StyleParam.AxisId [],
             [<Optional;DefaultParameterValue(null)>]?Rows       : int,
