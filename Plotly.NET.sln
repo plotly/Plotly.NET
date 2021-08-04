@@ -108,6 +108,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0E87E47E-9EDC-4525-AF72-F0E139D54236}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{EAE25A1F-86FC-426B-803F-1006D1AD06A8}"
+	ProjectSection(SolutionItems) = preProject
+		src\Plotly.NET\Playground.fsx = src\Plotly.NET\Playground.fsx
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

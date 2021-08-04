@@ -18,11 +18,11 @@ let axisStylingChart =
 let ``Axis styling tests`` =
     testList "Axis styling tests" [
         testCase "X With axis has title" ( fun c ->
-            "X axis title quack quack"
+            "\"title\":\"X axis title quack quack\""
             |> chartGeneratedContains axisStylingChart
         );
         testCase "Y With axis has title" ( fun c ->
-            "Y axis title boo foo"
+            "\"title\":\"Y axis title boo foo\""
             |> chartGeneratedContains axisStylingChart
         );
         testCase "Should have range" ( fun c ->
@@ -67,12 +67,33 @@ let multipleAxesChart =
 [<Tests>]
 let ``Multiple Axes styling tests`` =
     testList "Multiple Axes styling tests" [
-        testCase "Layout" ( fun c ->
+        testCase "Layout" ( fun () ->
             "var layout = {\"yaxis\":{\"title\":\"axis 1\",\"side\":\"left\"},\"yaxis2\":{\"title\":\"axis2\",\"side\":\"right\",\"overlaying\":\"y\"}};"
             |> chartGeneratedContains multipleAxesChart
         );
-        testCase "Passing args to the function" ( fun c ->
+        testCase "Passing args to the function" ( fun () ->
             "data, layout, config);"
             |> chartGeneratedContains multipleAxesChart
         )
+    ]
+
+[<Tests>]
+let ``Error bars tests`` =
+    testList "Error bars tests" [
+        testCase "Full data test" ( fun () ->
+            "var data = [{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"markers\",\"name\":\"points with errors\",\"marker\":{},\"error_x\":{\"symmetric\":true,\"array\":[0.2,0.3,0.2,0.1,0.2,0.4,0.2,0.08,0.2,0.1]},\"error_y\":{\"array\":[0.3,0.2,0.1,0.4,0.2,0.4,0.1,0.18,0.02,0.2],\"arrayminus\":[0.2,0.3,0.2,0.1,0.2,0.4,0.2,0.08,0.2,0.1]}}];"
+            |> chartGeneratedContains multipleAxesChart
+        );
+        testCase "Expecting name" ( fun () ->
+            "\"name\":\"points with errors\""
+            |> chartGeneratedContains multipleAxesChart
+        );
+        testCase "Expecting error X data" ( fun () ->
+            "\"error_x\":{\"symmetric\":true,\"array\":[0.2,0.3,0.2,0.1,0.2,0.4,0.2,0.08,0.2,0.1]}"
+            |> chartGeneratedContains multipleAxesChart
+        );
+        testCase "Expecting error Y data" ( fun () ->
+            "\"error_y\":{\"array\":[0.3,0.2,0.1,0.4,0.2,0.4,0.1,0.18,0.02,0.2],\"arrayminus\":[0.2,0.3,0.2,0.1,0.2,0.4,0.2,0.08,0.2,0.1]}"
+            |> chartGeneratedContains multipleAxesChart
+        );
     ]

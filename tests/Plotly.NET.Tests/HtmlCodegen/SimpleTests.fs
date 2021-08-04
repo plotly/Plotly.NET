@@ -24,5 +24,21 @@ let ``Simple tests`` =
         testCase "Expecting data" ( fun () ->
             "var data = [{\"type\":\"scatter\",\"x\":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"mode\":\"markers\",\"marker\":{}}];"
             |> chartGeneratedContains simpleChart
-        )
+        );
+        testCase "Expecting layout info" (fun () ->
+            "var layout = {\"title\":\"Hello world!\",\"xaxis\":{\"title\":\"xAxis\",\"showgrid\":false},\"yaxis\":{\"title\":\"yAxis\",\"showgrid\":false}};"
+            |> chartGeneratedContains simpleChart
+        );
+        testCase "Expecting cloudflare link" (fun () ->
+            "\"https://cdnjs.cloudflare.com/ajax/libs/require.js"
+            |> chartGeneratedContains simpleChart
+        );
+        testCase "Expecting config" (fun () ->
+            "var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;"
+            |> chartGeneratedContains simpleChart
+        );
+        testCase "Expecting html tags" (fun () ->
+            ["<html>"; "</html>"; "<head>"; "</head>"; "<body>"; "</body>"; "<script type=\"text/javascript\">"; "</script>"]
+            |> chartGeneratedContainsList simpleChart
+        );
     ]

@@ -788,37 +788,10 @@ let doughnut1 =
     )
     |> Chart.Show
 
-
-
-open Plotly.NET
-open Plotly.NET.GenericChart
-let x = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
-let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
-let y' = y |> List.map (fun y -> y * 2.) |> List.rev
-
-let anchoredAt1 =
-    Chart.Line (x,y,Name="anchor 1")
-        |> Chart.withAxisAnchor(Y=1)
-
-let anchoredAt2 =
-     Chart.Line (x,y',Name="anchor 2")
-        |> Chart.withAxisAnchor(Y=2)
-
-let twoXAxes1 = 
-    [
-       anchoredAt1
-       anchoredAt2
-    ]
-    |> Chart.Combine
-    |> Chart.withY_AxisStyle(
-        "axis 1",
-        Side=StyleParam.Side.Left,
-        Id=1
-    )
-    |> Chart.withY_AxisStyle(
-        "axis2",
-        Side=StyleParam.Side.Right,
-        Id=2,
-        Overlaying=StyleParam.AxisAnchorId.Y 1
-    )
-twoXAxes1 |> Chart.Show
+let xData = [0. .. 10.]
+let yData = [0. .. 10.]
+Chart.Point(xData, yData)
+|> Chart.withTitle "Hello world!"
+|> Chart.withX_AxisStyle ("xAxis", Showgrid=false)
+|> Chart.withY_AxisStyle ("yAxis", Showgrid=false)
+|> Chart.Show

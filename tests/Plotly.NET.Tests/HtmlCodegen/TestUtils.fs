@@ -13,3 +13,9 @@ let chartGeneratedContains chart substring =
 
     substringIsInChart toChartHTML
     substringIsInChart toEmbeddedHTML
+
+
+let chartGeneratedContainsList chart substringList =
+    for substring in substringList do
+        chartGeneratedContains chart substring
+
