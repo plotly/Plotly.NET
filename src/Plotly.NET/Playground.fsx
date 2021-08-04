@@ -788,10 +788,21 @@ let doughnut1 =
     )
     |> Chart.Show
 
-let xData = [0. .. 10.]
-let yData = [0. .. 10.]
-Chart.Point(xData, yData)
-|> Chart.withTitle "Hello world!"
-|> Chart.withX_AxisStyle ("xAxis", Showgrid=false)
-|> Chart.withY_AxisStyle ("yAxis", Showgrid=false)
-|> Chart.Show
+
+let x = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
+let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+[
+    Chart.Point(x,y) 
+    |> Chart.withY_AxisStyle("This title must")
+
+    Chart.Line(x,y) 
+    |> Chart.withY_AxisStyle("be set on the",Zeroline=false)
+    
+    Chart.Spline(x,y) 
+    |> Chart.withY_AxisStyle("respective subplots",Zeroline=false)
+]
+|> Chart.SingleStack
+//move xAxis to bottom and increase spacing between plots by using the withLayoutGridStyle function
+|> Chart.withLayoutGridStyle(XSide=StyleParam.LayoutGridXSide.Bottom,YGap= 0.1)
+|> Chart.withTitle("Hi i am the new SingleStackChart")
+|> Chart.withX_AxisStyle("im the shared xAxis") |> Chart.Show

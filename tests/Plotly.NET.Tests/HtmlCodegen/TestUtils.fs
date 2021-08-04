@@ -1,18 +1,23 @@
 ﻿module TestUtils
 
 open Expecto
-open Plotly.NET
 open Plotly.NET.GenericChart
 
-let chartGeneratedContains chart substring =
-    let substringIsInChart htmlizer =
-        chart
-        |> htmlizer
-        |> Expect.stringContains
-        |> (fun expecting -> expecting substring $"Should've contained {substring}")
+let substringIsInChart chart htmlizer substring =
+    chart
+    |> htmlizer
+    |> Expect.stringContains
+    |> (fun expecting -> expecting substring $"Should've contained {substring}")
 
-    substringIsInChart toChartHTML
-    substringIsInChart toEmbeddedHTML
+
+let substringListIsInChart chart htmlizer substringList =
+    for substring in substringList do
+        substringIsInChart chart htmlizer substring
+
+
+let chartGeneratedContains chart substring =
+    substringIsInChart chart toChartHTML substring
+    substringIsInChart chart toEmbeddedHTML substring
 
 
 let chartGeneratedContainsList chart substringList =

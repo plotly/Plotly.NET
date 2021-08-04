@@ -3,6 +3,7 @@ module Tests.SimpleTests
 open Expecto
 open Plotly.NET
 open TestUtils
+open Plotly.NET.GenericChart
 
 
 let simpleChart =
@@ -37,8 +38,12 @@ let ``Simple tests`` =
             "var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;"
             |> chartGeneratedContains simpleChart
         );
-        testCase "Expecting html tags" (fun () ->
+        testCase "Expecting html tags in embedded page only" (fun () ->
             ["<html>"; "</html>"; "<head>"; "</head>"; "<body>"; "</body>"; "<script type=\"text/javascript\">"; "</script>"]
+            |> substringListIsInChart simpleChart toEmbeddedHTML
+        );
+        testCase "Expecting some html tags in both embedded and not embedded" (fun () ->
+            ["<script type=\"text/javascript\">"; "</script>"]
             |> chartGeneratedContainsList simpleChart
         );
     ]
