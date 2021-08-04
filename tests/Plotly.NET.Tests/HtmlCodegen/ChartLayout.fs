@@ -119,45 +119,68 @@ let combinedChart =
     ]
     |> Chart.Combine
 
+
+let subPlotChart =
+    let x = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
+    let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+    [
+        Chart.Point(x, y, Name="1,1")
+        |> Chart.withX_AxisStyle "x1"
+        |> Chart.withY_AxisStyle "y1"    
+        Chart.Line(x, y, Name="1,2")
+        |> Chart.withX_AxisStyle "x2"
+        |> Chart.withY_AxisStyle "y2"
+        Chart.Spline(x, y, Name="2,1")
+        |> Chart.withX_AxisStyle "x3"
+        |> Chart.withY_AxisStyle "y3"    
+        Chart.Point(x, y, Name="2,2")
+        |> Chart.withX_AxisStyle "x4"
+        |> Chart.withY_AxisStyle "y4"
+    ]
+    |> Chart.Grid(2, 2)
+
+
+let singleStackChart =
+    let x = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
+    let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+    [
+        Chart.Point(x,y) 
+        |> Chart.withY_AxisStyle("This title must")
+    
+        Chart.Line(x,y) 
+        |> Chart.withY_AxisStyle("be set on the",Zeroline=false)
+        
+        Chart.Spline(x,y) 
+        |> Chart.withY_AxisStyle("respective subplots",Zeroline=false)
+    ]
+    |> Chart.SingleStack(Pattern = StyleParam.LayoutGridPattern.Coupled)
+    //move xAxis to bottom and increase spacing between plots by using the withLayoutGridStyle function
+    |> Chart.withLayoutGridStyle(XSide=StyleParam.LayoutGridXSide.Bottom,YGap= 0.1)
+    |> Chart.withTitle("Hi i am the new SingleStackChart")
+    |> Chart.withX_AxisStyle("im the shared xAxis")
+
     
 [<Tests>]
 let ``Multicharts and subplots`` =
     testList "Multicharts and subplots" [
         testCase "Combining" ( fun () ->
             "var data = [{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"lines\",\"line\":{},\"name\":\"first\",\"marker\":{}},{\"type\":\"scatter\",\"x\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"y\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"mode\":\"lines\",\"line\":{},\"name\":\"second\",\"marker\":{}}];"
-            |> chartGeneratedContains multipleAxesChart
+            |> chartGeneratedContains combinedChart
         );
         testCase "Subplot grids data" ( fun () ->
-            [ "var data = [{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0]"
-              ",\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"lines\",\"line\":{},\"marker\":{}"
-              ",\"xaxis\":\"x\",\"yaxis\":\"y\"},{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0]"
-              ",\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"lines\",\"line\":{},\"marker\":{},\"xaxis\":\"x2\","
-              "\"yaxis\":\"y2\"},{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0]"
-              ",\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"lines\",\"line\":{},\"marker\":{},"
-              "\"xaxis\":\"x3\",\"yaxis\":\"y3\"},{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0]"
-              ",\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"markers\",\"marker\":{},\"xaxis\":\"x4\",\"yaxis\":\"y4\"},"
-              "{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"
-              "\"mode\":\"markers\",\"marker\":{},\"xaxis\":\"x5\",\"yaxis\":\"y5\"},{\"type\":\"scatter\",\"x\":"
-              "[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0]"
-              ",\"mode\":\"markers\",\"marker\":{},\"xaxis\":\"x6\",\"yaxis\":\"y6\"},{\"type\":\"scatter\",\"x\":"
-              "[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"lines\",\"line\":"
-              "{\"shape\":\"spline\"},\"marker\":{},\"xaxis\":\"x7\",\"yaxis\":\"y7\"},{\"type\":\"scatter\",\"x\":"
-              "[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"
-              "\"mode\":\"lines\",\"line\":{\"shape\":\"spline\"},\"marker\":{},\"xaxis\":\"x8\",\"yaxis\":\"y8\"},"
-              "{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"
-              "\"mode\":\"lines\",\"line\":{\"shape\":\"spline\"},\"marker\":{},\"xaxis\":\"x9\",\"yaxis\":\"y9\"}];"
-            ] |> chartGeneratedContainsList multipleAxesChart
+            "var data = [{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"markers\",\"name\":\"1,1\",\"marker\":{},\"xaxis\":\"x\",\"yaxis\":\"y\"},{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"lines\",\"line\":{},\"name\":\"1,2\",\"marker\":{},\"xaxis\":\"x2\",\"yaxis\":\"y2\"},{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"lines\",\"name\":\"2,1\",\"line\":{\"shape\":\"spline\"},\"marker\":{},\"xaxis\":\"x3\",\"yaxis\":\"y3\"},{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"markers\",\"name\":\"2,2\",\"marker\":{},\"xaxis\":\"x4\",\"yaxis\":\"y4\"}];"
+            |> chartGeneratedContains subPlotChart
         );
         testCase "Subplot grids layout" ( fun () ->
-            "var layout = {\"xaxis\":{\"anchor\":\"x\",\"domain\":[0.0,0.3083333333333333]},\"yaxis\":{\"anchor\":\"y\",\"domain\":[0.0,0.3083333333333333]},\"xaxis2\":{\"anchor\":\"x2\",\"domain\":[0.35833333333333334,0.6416666666666666]},\"yaxis2\":{\"anchor\":\"y2\",\"domain\":[0.0,0.3083333333333333]},\"xaxis3\":{\"anchor\":\"x3\",\"domain\":[0.6916666666666667,0.975]},\"yaxis3\":{\"anchor\":\"y3\",\"domain\":[0.0,0.3083333333333333]},\"xaxis4\":{\"anchor\":\"x4\",\"domain\":[0.0,0.3083333333333333]},\"yaxis4\":{\"anchor\":\"y4\",\"domain\":[0.35833333333333334,0.6416666666666666]},\"xaxis5\":{\"anchor\":\"x5\",\"domain\":[0.35833333333333334,0.6416666666666666]},\"yaxis5\":{\"anchor\":\"y5\",\"domain\":[0.35833333333333334,0.6416666666666666]},\"xaxis6\":{\"anchor\":\"x6\",\"domain\":[0.6916666666666667,0.975]},\"yaxis6\":{\"anchor\":\"y6\",\"domain\":[0.35833333333333334,0.6416666666666666]},\"xaxis7\":{\"anchor\":\"x7\",\"domain\":[0.0,0.3083333333333333]},\"yaxis7\":{\"anchor\":\"y7\",\"domain\":[0.6916666666666667,0.975]},\"xaxis8\":{\"anchor\":\"x8\",\"domain\":[0.35833333333333334,0.6416666666666666]},\"yaxis8\":{\"anchor\":\"y8\",\"domain\":[0.6916666666666667,0.975]},\"xaxis9\":{\"anchor\":\"x9\",\"domain\":[0.6916666666666667,0.975]},\"yaxis9\":{\"anchor\":\"y9\",\"domain\":[0.6916666666666667,0.975]},\"grid\":{\"rows\":3,\"columns\":3,\"roworder\":\"top to bottom\",\"pattern\":\"independent\",\"xgap\":0.05,\"ygap\":0.05}};"
-            |> chartGeneratedContains multipleAxesChart
+            "var layout = {\"xaxis\":{\"title\":\"x1\"},\"yaxis\":{\"title\":\"y1\"},\"xaxis2\":{\"title\":\"x2\"},\"yaxis2\":{\"title\":\"y2\"},\"xaxis3\":{\"title\":\"x3\"},\"yaxis3\":{\"title\":\"y3\"},\"xaxis4\":{\"title\":\"x4\"},\"yaxis4\":{\"title\":\"y4\"},\"grid\":{\"rows\":2,\"columns\":2,\"pattern\":\"independent\"}};"
+            |> chartGeneratedContains subPlotChart
         );
         testCase "Single Stack data" ( fun () -> 
             "var data = [{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"markers\",\"marker\":{},\"xaxis\":\"x\",\"yaxis\":\"y\"},{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"lines\",\"line\":{},\"marker\":{},\"xaxis\":\"x\",\"yaxis\":\"y2\"},{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"lines\",\"line\":{\"shape\":\"spline\"},\"marker\":{},\"xaxis\":\"x\",\"yaxis\":\"y3\"}];"
-            |> chartGeneratedContains multipleAxesChart
+            |> chartGeneratedContains singleStackChart
         );
         testCase "Single Stack layout" ( fun () -> 
-            "var layout = {\"xaxis\":{\"anchor\":\"x\",\"domain\":[0.0,0.975],\"title\":\"im the shared xAxis\"},\"yaxis\":{\"title\":\"This title must\",\"anchor\":\"y\",\"domain\":[0.0,0.3083333333333333]},\"yaxis2\":{\"title\":\"be set on the\",\"zeroline\":false,\"anchor\":\"y2\",\"domain\":[0.35833333333333334,0.6416666666666666]},\"yaxis3\":{\"title\":\"respective subplots\",\"zeroline\":false,\"anchor\":\"y3\",\"domain\":[0.6916666666666667,0.975]},\"grid\":{\"rows\":3,\"columns\":1,\"roworder\":\"bottom to top\",\"pattern\":\"coupled\",\"xgap\":0.05,\"ygap\":0.1,\"xside\":\"bottom\"},\"title\":\"Hi i am the new SingleStackChart\"};"
-            |> chartGeneratedContains multipleAxesChart
+            "var layout = {\"yaxis\":{\"title\":\"This title must\"},\"xaxis\":{\"title\":\"im the shared xAxis\"},\"xaxis2\":{},\"yaxis2\":{\"title\":\"be set on the\",\"zeroline\":false},\"xaxis3\":{},\"yaxis3\":{\"title\":\"respective subplots\",\"zeroline\":false},\"grid\":{\"rows\":3,\"columns\":1,\"pattern\":\"coupled\",\"ygap\":0.1,\"xside\":\"bottom\"},\"title\":\"Hi i am the new SingleStackChart\"};"
+            |> chartGeneratedContains singleStackChart
         );
     ]
