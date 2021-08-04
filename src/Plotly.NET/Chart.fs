@@ -1,5 +1,15 @@
 namespace Plotly.NET
 
+// This disables FS0044, which is about using
+// obsolete API (marked with Obsolete attribute).
+//
+// It is needed because there are warnings coming
+// from the obsolete functions using obsolete API.
+//
+// However, it will hide using actually obsolete
+// API not used in obsolete API.
+#nowarn "44"
+
 open System
 open System.IO
 //open FSharp.Care.Collections

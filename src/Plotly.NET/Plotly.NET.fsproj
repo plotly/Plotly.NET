@@ -18,6 +18,12 @@
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     <Configurations>Debug;Release;Dotnet</Configurations>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
+  
   <PropertyGroup>
     <Authors>Timo Mühlhaus, Kevin Schneider, F# open source contributors</Authors>
     <Description>plotly.js charts in .NET programming languages 📈🚀. </Description>
@@ -31,6 +37,7 @@
     <FsDocsLicenseLink>https://github.com/plotly/Plotly.NET/blob/dev/LICENSE</FsDocsLicenseLink>
     <FsDocsReleaseNotesLink>https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md</FsDocsReleaseNotesLink>
   </PropertyGroup>
+  
   <ItemGroup>
     <None Include="..\..\docs\img\logo.png" Pack="true" PackagePath="\" />
     <Compile Include="AssemblyInfo.fs" />
