@@ -9,6 +9,11 @@
 //
 // However, it will hide using actually obsolete
 // API not used in obsolete API.
+//
+// TODO: remove when 
+// https://github.com/fsharp/fslang-suggestions/issues/278 
+// or https://github.com/fsharp/fslang-suggestions/issues/1055
+// is implemented
 #nowarn "44"
 
 open Trace
