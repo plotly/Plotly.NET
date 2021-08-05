@@ -12,6 +12,7 @@
     <Compile Include="HtmlCodegen\ChartLayout.fs" />
     <Compile Include="HtmlCodegen\SimpleCharts.fs" />
     <Compile Include="HtmlCodegen\Charts3D.fs" />
+    <Compile Include="HtmlCodegen\DistributionCharts.fs" />
     <Compile Include="ImageExport.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>

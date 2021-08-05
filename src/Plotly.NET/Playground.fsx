@@ -850,14 +850,9 @@ let a = Array.init 50 (fun _ -> rnd.NextDouble())
 let b = Array.init 50 (fun _ -> rnd.NextDouble())
 let c = Array.init 50 (fun _ -> rnd.NextDouble())
 
-Trace3d.initMesh3d 
-    (fun mesh3d ->
-        mesh3d?x <- a
-        mesh3d?y <- b
-        mesh3d?z <- c
-        mesh3d?flatshading <- true
-        mesh3d?contour <- Contours.initXyz(Show=true)
-        mesh3d
-        )
-|> GenericChart.ofTraceObject
+let rnd = System.Random(5)
+let x = [for i=0 to 500 do yield rnd.NextDouble() ]
+x
+|> Chart.Histogram
+|> Chart.withSize(500., 500.)
 |> Chart.Show
