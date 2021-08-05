@@ -223,3 +223,54 @@ let ``Bubble charts`` =
             emptyLayout bubbleCharts
         );
     ]
+
+let pieChart =
+    let values = [19; 26; 55;]
+    let labels = ["Residential"; "Non-Residential"; "Utility"]
+    Chart.Pie(values, labels)
+
+let doughnutChart =
+    let values = [19; 26; 55;]
+    let labels = ["Residential"; "Non-Residential"; "Utility"]
+    Chart.Doughnut(
+        values,
+        labels,
+        Hole=0.3,
+        Textinfo=labels
+    )
+
+let sunburstChart =
+    let values = [19; 26; 55;]
+    let labels = ["Residential"; "Non-Residential"; "Utility"]
+    Chart.Sunburst(
+        ["A";"B";"C";"D";"E"],
+        ["";"";"B";"B";""],
+        Values=[5.;0.;3.;2.;3.],
+        Text=["At";"Bt";"Ct";"Dt";"Et"]
+    )
+
+[<Tests>]
+let ``Pie and doughnut Charts`` =
+    testList "Pie and doughnut Charts" [
+        testCase "Pie data" ( fun () ->
+            "var data = [{\"type\":\"pie\",\"values\":[19,26,55],\"labels\":[\"Residential\",\"Non-Residential\",\"Utility\"],\"marker\":{},\"text\":[\"Residential\",\"Non-Residential\",\"Utility\"]}];"
+            |> chartGeneratedContains pieChart
+        );
+        testCase "Pie layout" ( fun () ->
+            emptyLayout pieChart
+        );
+        testCase "Doughnut data" ( fun () ->
+            "var data = [{\"type\":\"pie\",\"values\":[19,26,55],\"labels\":[\"Residential\",\"Non-Residential\",\"Utility\"],\"textinfo\":[\"Residential\",\"Non-Residential\",\"Utility\"],\"hole\":0.3,\"marker\":{},\"text\":[\"Residential\",\"Non-Residential\",\"Utility\"]}];"
+            |> chartGeneratedContains doughnutChart
+        );
+        testCase "Doughnut layout" ( fun () ->
+            emptyLayout doughnutChart
+        );
+        testCase "Sunburst data" ( fun () ->
+            "var data = [{\"type\":\"sunburst\",\"labels\":[\"A\",\"B\",\"C\",\"D\",\"E\"],\"parents\":[\"\",\"\",\"B\",\"B\",\"\"],\"values\":[5.0,0.0,3.0,2.0,3.0],\"text\":[\"At\",\"Bt\",\"Ct\",\"Dt\",\"Et\"],\"marker\":{}}];"
+            |> chartGeneratedContains sunburstChart
+        );
+        testCase "Sunburst layout" ( fun () ->
+            emptyLayout sunburstChart
+        );
+    ]

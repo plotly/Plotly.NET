@@ -815,23 +815,29 @@ Chart.Bubble(x, y, size)
 |> Chart.Show
 
 
-let simpleAreaChart =
-    let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
-    let y  = [5.; 2.5; 5.; 7.5; 5.; 2.5; 7.5; 4.5; 5.5; 5.]
-    Chart.Area(x,y)
+let pieChart =
+    let values = [19; 26; 55;]
+    let labels = ["Residential"; "Non-Residential"; "Utility"]
+    Chart.Pie(values, labels)
 
-let withSplineChart =
-    let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
-    let y  = [5.; 2.5; 5.; 7.5; 5.; 2.5; 7.5; 4.5; 5.5; 5.]
-    Chart.SplineArea(x,y)
+let doughnutChart =
+    let values = [19; 26; 55;]
+    let labels = ["Residential"; "Non-Residential"; "Utility"]
+    Chart.Doughnut(
+        values,
+        labels,
+        Hole=0.3,
+        Textinfo=labels
+    )
 
-let stackedAreaChart =
-    let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
-    let y  = [5.; 2.5; 5.; 7.5; 5.; 2.5; 7.5; 4.5; 5.5; 5.]
-    [
-        Chart.StackedArea(x,y)
-        Chart.StackedArea(x,y |> Seq.rev)
-    ]
-    |> Chart.Combine
+let sunburstChart =
+    let values = [19; 26; 55;]
+    let labels = ["Residential"; "Non-Residential"; "Utility"]
+    Chart.Sunburst(
+        ["A";"B";"C";"D";"E"],
+        ["";"";"B";"B";""],
+        Values=[5.;0.;3.;2.;3.],
+        Text=["At";"Bt";"Ct";"Dt";"Et"]
+    )
     
-stackedAreaChart |> Chart.Show
+sunburstChart |> Chart.Show
