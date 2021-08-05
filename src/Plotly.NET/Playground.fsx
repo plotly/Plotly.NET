@@ -808,32 +808,23 @@ let doughnut1 =
     |> Chart.Show
 
 
-let columnChart =
-    let values = [20; 14; 23;]
-    let keys   = ["Product A"; "Product B"; "Product C";]
-    Chart.Column(keys, values)
+let simpleAreaChart =
+    let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
+    let y  = [5.; 2.5; 5.; 7.5; 5.; 2.5; 7.5; 4.5; 5.5; 5.]
+    Chart.Area(x,y)
 
-let barChart =
-    let values = [20; 14; 23;]
-    let keys   = ["Product A"; "Product B"; "Product C";]
-    Chart.Bar(keys, values)
+let withSplineChart =
+    let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
+    let y  = [5.; 2.5; 5.; 7.5; 5.; 2.5; 7.5; 4.5; 5.5; 5.]
+    Chart.SplineArea(x,y)
 
-let stackedBarChart =
-    let values = [20; 14; 23;]
-    let keys   = ["Product A"; "Product B"; "Product C";]
+let stackedAreaChart =
+    let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
+    let y  = [5.; 2.5; 5.; 7.5; 5.; 2.5; 7.5; 4.5; 5.5; 5.]
     [
-        Chart.StackedBar(keys,values,Name="old");
-        Chart.StackedBar(keys,[8; 21; 13;],Name="new")
-    ]
-    |> Chart.Combine
-
-let stackedColumnChart =
-    let values = [20; 14; 23;]
-    let keys   = ["Product A"; "Product B"; "Product C";]
-    [
-        Chart.StackedColumn(keys,values,Name="old");
-        Chart.StackedColumn(keys,[8; 21; 13;],Name="new")
+        Chart.StackedArea(x,y)
+        Chart.StackedArea(x,y |> Seq.rev)
     ]
     |> Chart.Combine
     
-stackedColumnChart |> Chart.Show
+stackedAreaChart |> Chart.Show

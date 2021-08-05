@@ -131,3 +131,49 @@ let ``Bar and column charts`` =
             |> chartGeneratedContains stackedColumnChart
         );
     ]
+
+
+let simpleAreaChart =
+    let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
+    let y  = [5.; 2.5; 5.; 7.5; 5.; 2.5; 7.5; 4.5; 5.5; 5.]
+    Chart.Area(x,y)
+
+let withSplineChart =
+    let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
+    let y  = [5.; 2.5; 5.; 7.5; 5.; 2.5; 7.5; 4.5; 5.5; 5.]
+    Chart.SplineArea(x,y)
+
+let stackedAreaChart =
+    let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
+    let y  = [5.; 2.5; 5.; 7.5; 5.; 2.5; 7.5; 4.5; 5.5; 5.]
+    [
+        Chart.StackedArea(x,y)
+        Chart.StackedArea(x,y |> Seq.rev)
+    ]
+    |> Chart.Combine
+
+[<Tests>]
+let ``Area charts`` =
+    testList "Area charts" [
+        testCase "Simple area data" ( fun () ->
+            "var data = [{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[5.0,2.5,5.0,7.5,5.0,2.5,7.5,4.5,5.5,5.0],\"mode\":\"lines\",\"fill\":\"tozeroy\",\"line\":{},\"marker\":{}}];"
+            |> chartGeneratedContains simpleAreaChart
+        );
+        testCase "Simple area layout" ( fun () ->
+            emptyLayout simpleAreaChart
+        );
+        testCase "Spline data" ( fun () ->
+            "var data = [{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[5.0,2.5,5.0,7.5,5.0,2.5,7.5,4.5,5.5,5.0],\"mode\":\"lines\",\"fill\":\"tozeroy\",\"line\":{\"shape\":\"spline\"},\"marker\":{}}];"
+            |> chartGeneratedContains withSplineChart
+        );
+        testCase "Spline layout" ( fun () ->
+            emptyLayout withSplineChart
+        );
+        testCase "Stacked area data" ( fun () ->
+            "var data = [{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[5.0,2.5,5.0,7.5,5.0,2.5,7.5,4.5,5.5,5.0],\"mode\":\"lines\",\"line\":{},\"marker\":{},\"stackgroup\":\"static\"},{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[5.0,5.5,4.5,7.5,2.5,5.0,7.5,5.0,2.5,5.0],\"mode\":\"lines\",\"line\":{},\"marker\":{},\"stackgroup\":\"static\"}];"
+            |> chartGeneratedContains stackedAreaChart
+        );
+        testCase "Stacked area layout" ( fun () ->
+            emptyLayout stackedAreaChart
+        );
+    ]
