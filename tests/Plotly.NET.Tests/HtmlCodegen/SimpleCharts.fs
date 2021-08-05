@@ -440,3 +440,71 @@ let ``Table charts`` =
             |> chartGeneratedContains sequencePresentationTableChart
         );
     ]
+
+
+let heatmap1Chart =
+    let matrix =
+        [[1.;1.5;0.7;2.7];
+        [2.;0.5;1.2;1.4];
+        [0.1;2.6;2.4;3.0];]
+    
+    let rownames = ["p3";"p2";"p1"]
+    let colnames = ["Tp0";"Tp30";"Tp60";"Tp160"]
+    
+    let colorscaleValue = 
+        StyleParam.Colorscale.Custom [(0.0,"#3D9970");(1.0,"#001f3f")]
+    
+    Chart.Heatmap(
+        matrix,colnames,rownames,
+        Colorscale=colorscaleValue,
+        Showscale=true
+    )
+    |> Chart.withSize(700.,500.)
+    |> Chart.withMarginSize(Left=200.)
+
+let heatmapStyledChart =
+    let matrix =
+        [[1.;1.5;0.7;2.7];
+        [2.;0.5;1.2;1.4];
+        [0.1;2.6;2.4;3.0];]
+    
+    let rownames = ["p3";"p2";"p1"]
+    let colnames = ["Tp0";"Tp30";"Tp60";"Tp160"]
+    
+    let colorscaleValue = 
+        StyleParam.Colorscale.Custom [(0.0,"#3D9970");(1.0,"#001f3f")]
+    
+    Chart.Heatmap(
+        matrix,colnames,rownames,
+        Colorscale=colorscaleValue,
+        Showscale=true
+    )
+    |> Chart.withSize(700.,500.)
+    |> Chart.withMarginSize(Left=200.)
+    |> Chart.withColorBarStyle(
+        "Im the Colorbar",
+        TitleSide = StyleParam.Side.Right,
+        TitleFont = Font.init(Size=20.)
+    )
+
+
+[<Tests>]
+let ``Heatmap charts`` =
+    testList "Heatmap charts" [
+        testCase "Heatmap data" ( fun () ->
+            "var data = [{\"type\":\"heatmap\",\"z\":[[1.0,1.5,0.7,2.7],[2.0,0.5,1.2,1.4],[0.1,2.6,2.4,3.0]],\"x\":[\"Tp0\",\"Tp30\",\"Tp60\",\"Tp160\"],\"y\":[\"p3\",\"p2\",\"p1\"],\"colorscale\":[[0.0,\"#3D9970\"],[1.0,\"#001f3f\"]],\"showscale\":true}];"
+            |> chartGeneratedContains heatmap1Chart
+        );
+        testCase "Heatmap layout" ( fun () ->
+            "var layout = {\"width\":700.0,\"height\":500.0,\"margin\":{\"l\":200.0}};"
+            |> chartGeneratedContains heatmap1Chart
+        );
+        testCase "Heatmap styled data" ( fun () ->
+            "var data = [{\"type\":\"heatmap\",\"z\":[[1.0,1.5,0.7,2.7],[2.0,0.5,1.2,1.4],[0.1,2.6,2.4,3.0]],\"x\":[\"Tp0\",\"Tp30\",\"Tp60\",\"Tp160\"],\"y\":[\"p3\",\"p2\",\"p1\"],\"colorscale\":[[0.0,\"#3D9970\"],[1.0,\"#001f3f\"]],\"showscale\":true,\"colorbar\":{\"title\":\"Im the Colorbar\",\"titlefont\":{\"size\":20.0},\"titleside\":\"right\"}}];"
+            |> chartGeneratedContains heatmapStyledChart
+        );
+        testCase "Heatmap styled layout" ( fun () ->
+            "var layout = {\"width\":700.0,\"height\":500.0,\"margin\":{\"l\":200.0}};"
+            |> chartGeneratedContains heatmapStyledChart
+        );
+    ]
