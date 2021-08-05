@@ -825,44 +825,39 @@ let heatmap1Chart =
     |> Chart.withSize(700.,500.)
     |> Chart.withMarginSize(Left=200.)
 
-let heatmapStyledChart =
-    let matrix =
-        [[1.;1.5;0.7;2.7];
-        [2.;0.5;1.2;1.4];
-        [0.1;2.6;2.4;3.0];]
-    
-    let rownames = ["p3";"p2";"p1"]
-    let colnames = ["Tp0";"Tp30";"Tp60";"Tp160"]
-    
-    let colorscaleValue = 
-        StyleParam.Colorscale.Custom [(0.0,"#3D9970");(1.0,"#001f3f")]
-    
-    Chart.Heatmap(
-        matrix,colnames,rownames,
-        Colorscale=colorscaleValue,
-        Showscale=true
-    )
-    |> Chart.withSize(700.,500.)
-    |> Chart.withMarginSize(Left=200.)
-    |> Chart.withColorBarStyle(
-        "Im the Colorbar",
-        TitleSide = StyleParam.Side.Right,
-        TitleFont = Font.init(Size=20.)
-    )
-
-//---------------------- Generate linearly spaced vector ----------------------
 let linspace (min,max,n) = 
     if n <= 2 then failwithf "n needs to be larger then 2"
     let bw = float (max - min) / (float n - 1.)
     Array.init n (fun i -> min + (bw * float i))
+    //[|min ..bw ..max|]
 
 //---------------------- Create example data ----------------------
-let x' = [0.;2.5]
-let y' = [0.;2.5]
-let z' = [
-    [1.;1.;]; // row wise (length x)
-    [1.;2.;];
-    ] // column (length y)
+let size = 100
+let x = linspace(-2. * Math.PI, 2. * Math.PI, size)
+let y = linspace(-2. * Math.PI, 2. * Math.PI, size)
 
-Chart.Surface(z', x', y', Opacity=0.5, Contours=Contours.initXyz(Show=true))
+let f x y = - (5. * x / (x**2. + y**2. + 1.) )
+
+let z = 
+    Array.init size (fun i -> 
+        Array.init size (fun j -> 
+            f x.[j] y.[i] 
+        )
+    )
+
+let rnd = System.Random(5)
+let a = Array.init 50 (fun _ -> rnd.NextDouble())
+let b = Array.init 50 (fun _ -> rnd.NextDouble())
+let c = Array.init 50 (fun _ -> rnd.NextDouble())
+
+Trace3d.initMesh3d 
+    (fun mesh3d ->
+        mesh3d?x <- a
+        mesh3d?y <- b
+        mesh3d?z <- c
+        mesh3d?flatshading <- true
+        mesh3d?contour <- Contours.initXyz(Show=true)
+        mesh3d
+        )
+|> GenericChart.ofTraceObject
 |> Chart.Show
