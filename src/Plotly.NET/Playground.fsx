@@ -1,4 +1,7 @@
-﻿#r "nuget: FSharp.Data"
+﻿open Plotly.NET.StyleParam
+
+
+#r "nuget: FSharp.Data"
 #r "nuget: Deedle"
 #r "nuget: FSharpAux"
 
@@ -778,6 +781,8 @@ let rownames = ["p3";"p2";"p1"]
 let colnames = ["Tp0";"Tp30";"Tp60";"Tp160"]
 let colorscaleValue = StyleParam.Colorscale.Custom [(0.0,"#3D9970");(1.0,"#001f3f")]
 
+
+
 let heat1 =
     Chart.Heatmap(
         matrix,colnames,rownames,
@@ -798,24 +803,51 @@ let values,labels =
 
 let cols =[|"black";"blue"|]
 
-let doughnut1 =
-    Chart.Pie(
-        values,
-        labels,
-        Colors=cols,
-        Textinfo=labels
+open Plotly.NET.StyleParam
+
+let heatmap1Chart =
+    let matrix =
+        [[1.;1.5;0.7;2.7];
+        [2.;0.5;1.2;1.4];
+        [0.1;2.6;2.4;3.0];]
+    
+    let rownames = ["p3";"p2";"p1"]
+    let colnames = ["Tp0";"Tp30";"Tp60";"Tp160"]
+    
+    let colorscaleValue = 
+        StyleParam.Colorscale.Custom [(0.0,"#3D9970");(1.0,"#001f3f")]
+    
+    Chart.Heatmap(
+        matrix,colnames,rownames,
+        Colorscale=colorscaleValue,
+        Showscale=true
     )
-    |> Chart.Show
+    |> Chart.withSize(700.,500.)
+    |> Chart.withMarginSize(Left=200.)
 
+let heatmapStyledChart =
+    let matrix =
+        [[1.;1.5;0.7;2.7];
+        [2.;0.5;1.2;1.4];
+        [0.1;2.6;2.4;3.0];]
+    
+    let rownames = ["p3";"p2";"p1"]
+    let colnames = ["Tp0";"Tp30";"Tp60";"Tp160"]
+    
+    let colorscaleValue = 
+        StyleParam.Colorscale.Custom [(0.0,"#3D9970");(1.0,"#001f3f")]
+    
+    Chart.Heatmap(
+        matrix,colnames,rownames,
+        Colorscale=colorscaleValue,
+        Showscale=true
+    )
+    |> Chart.withSize(700.,500.)
+    |> Chart.withMarginSize(Left=200.)
+    |> Chart.withColorBarStyle(
+        "Im the Colorbar",
+        TitleSide = StyleParam.Side.Right,
+        TitleFont = Font.init(Size=20.)
+    )
 
-let x = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
-let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
-[
-    Chart.Point([(1.,2.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$")
-    Chart.Point([(2.,4.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$")
-]
-|> Chart.Combine
-|> Chart.withTitle @"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$"
-// include mathtex tags in <head>. pass true to append these scripts, false to ONLY include MathTeX.
-|> Chart.WithMathTex(true)
-|> Chart.Show
+heatmapStyledChart |> Chart.Show

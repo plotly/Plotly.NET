@@ -10,6 +10,7 @@
     <Compile Include="HtmlCodegen\TestUtils.fs" />
     <Compile Include="HtmlCodegen\SimpleTests.fs" />
     <Compile Include="HtmlCodegen\ChartLayout.fs" />
+    <Compile Include="HtmlCodegen\SimpleCharts.fs" />
     <Compile Include="ImageExport.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>
