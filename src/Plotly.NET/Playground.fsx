@@ -805,54 +805,24 @@ let cols =[|"black";"blue"|]
 
 open Plotly.NET.StyleParam
 
-let heatmap1Chart =
-    let matrix =
-        [[1.;1.5;0.7;2.7];
-        [2.;0.5;1.2;1.4];
-        [0.1;2.6;2.4;3.0];]
-    
-    let rownames = ["p3";"p2";"p1"]
-    let colnames = ["Tp0";"Tp30";"Tp60";"Tp160"]
-    
-    let colorscaleValue = 
-        StyleParam.Colorscale.Custom [(0.0,"#3D9970");(1.0,"#001f3f")]
-    
-    Chart.Heatmap(
-        matrix,colnames,rownames,
-        Colorscale=colorscaleValue,
-        Showscale=true
-    )
-    |> Chart.withSize(700.,500.)
-    |> Chart.withMarginSize(Left=200.)
+let box1Chart =
+    let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+    let x = ["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"bin1"]
+    Chart.BoxPlot(x,y,Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All)
 
-let linspace (min,max,n) = 
-    if n <= 2 then failwithf "n needs to be larger then 2"
-    let bw = float (max - min) / (float n - 1.)
-    Array.init n (fun i -> min + (bw * float i))
-    //[|min ..bw ..max|]
+let box2Chart =
+    let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+    let x = ["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"bin1"]
+    Chart.BoxPlot(y,x,Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All,Orientation=StyleParam.Orientation.Horizontal)
 
-//---------------------- Create example data ----------------------
-let size = 100
-let x = linspace(-2. * Math.PI, 2. * Math.PI, size)
-let y = linspace(-2. * Math.PI, 2. * Math.PI, size)
+let box3Chart =
+    let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+    let y' =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+    [
+        Chart.BoxPlot("y" ,y,Name="bin1",Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All);
+        Chart.BoxPlot("y'",y',Name="bin2",Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All);
+    ]
+    |> Chart.Combine
 
-let f x y = - (5. * x / (x**2. + y**2. + 1.) )
-
-let z = 
-    Array.init size (fun i -> 
-        Array.init size (fun j -> 
-            f x.[j] y.[i] 
-        )
-    )
-
-let rnd = System.Random(5)
-let a = Array.init 50 (fun _ -> rnd.NextDouble())
-let b = Array.init 50 (fun _ -> rnd.NextDouble())
-let c = Array.init 50 (fun _ -> rnd.NextDouble())
-
-let rnd = System.Random(5)
-let x = [for i=0 to 500 do yield rnd.NextDouble() ]
-x
-|> Chart.Histogram
-|> Chart.withSize(500., 500.)
+box3Chart
 |> Chart.Show
