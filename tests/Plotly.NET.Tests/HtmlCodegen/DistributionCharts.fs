@@ -129,3 +129,41 @@ let ``Violin charts`` =
             emptyLayout violin3Chart
         );
     ]
+
+let contourChart =
+    // Generate linearly spaced vector
+    let linspace (min,max,n) = 
+        if n <= 2 then failwithf "n needs to be larger then 2"
+        let bw = float (max - min) / (float n - 1.)
+        [|min ..bw ..max|]
+    
+    // Create example data
+    let size = 100
+    let x = linspace(-2. * Math.PI, 2. * Math.PI, size)
+    let y = linspace(-2. * Math.PI, 2. * Math.PI, size)
+    
+    let f x y = - (5. * x / (x**2. + y**2. + 1.) )
+    
+    let z = 
+        Array.init size (fun i -> 
+            Array.init size (fun j -> 
+                f x.[j] y.[i] 
+            )
+        )
+
+    z
+    |> Chart.Contour
+    |> Chart.withSize(600.,600.)
+
+[<Tests>]
+let ``Contour charts`` =
+    testList "DistributionCharts.Contour charts" [
+        testCase "Contour data" ( fun () ->
+            "var data = [{\"type\":\"contour\",\"z\":[[0.3929110807586562,0.39272903726671055,0.3923748718856843,0.3918384347714509,0.39110921172503726,0.39017633288191317,0.38902858492457726"
+            |> chartGeneratedContains contourChart
+        );
+        testCase "Contour layout" ( fun () ->
+            "var layout = {\"width\":600.0,\"height\":600.0};"
+            |> chartGeneratedContains contourChart
+        );
+    ]

@@ -805,33 +805,27 @@ let cols =[|"black";"blue"|]
 
 open Plotly.NET.StyleParam
 
-let violin1Chart =
-    let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
-    let x = ["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"bin1"]
-    Chart.Violin (
-        x,y,
-        Points=StyleParam.Jitterpoints.All
+// Generate linearly spaced vector
+let linspace (min,max,n) = 
+    if n <= 2 then failwithf "n needs to be larger then 2"
+    let bw = float (max - min) / (float n - 1.)
+    [|min ..bw ..max|]
+
+// Create example data
+let size = 100
+let x = linspace(-2. * Math.PI, 2. * Math.PI, size)
+let y = linspace(-2. * Math.PI, 2. * Math.PI, size)
+
+let f x y = - (5. * x / (x**2. + y**2. + 1.) )
+
+let z = 
+    Array.init size (fun i -> 
+        Array.init size (fun j -> 
+            f x.[j] y.[i] 
+        )
     )
 
-let violin2Chart =
-    let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
-    let x = ["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"bin1"]
-    Chart.Violin(
-        y,x,
-        Jitter=0.1,
-        Points=StyleParam.Jitterpoints.All,
-        Orientation=StyleParam.Orientation.Horizontal,
-        Meanline=Meanline.init(Visible=true)
-    )
-
-let violin3Chart =
-    let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
-    let y' =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
-    [
-        Chart.Violin ("y" ,y,Name="bin1",Jitter=0.1,Points=StyleParam.Jitterpoints.All);
-        Chart.Violin ("y'",y',Name="bin2",Jitter=0.1,Points=StyleParam.Jitterpoints.All);
-    ]
-    |> Chart.Combine
-
-violin3Chart
+z
+|> Chart.Contour
+|> Chart.withSize(600.,600.)
 |> Chart.Show
