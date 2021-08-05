@@ -177,3 +177,31 @@ let ``Area charts`` =
             emptyLayout stackedAreaChart
         );
     ]
+
+
+let rangePlotsChart =
+    let rnd = System.Random(5)
+    
+    let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
+    let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+    
+    let yUpper = y |> List.map (fun v -> v + rnd.NextDouble())
+    let yLower = y |> List.map (fun v -> v - rnd.NextDouble())
+    Chart.Range(
+        x,y,yUpper,yLower,
+        StyleParam.Mode.Lines_Markers,
+        Color="grey",
+        RangeColor="lightblue")
+
+
+[<Tests>]
+let ``Range plot`` =
+    testList "Range plot" [
+        testCase "Range plot data" ( fun () ->
+            "var data = [{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[1.0244410755226578,1.1291130737537114,4.930085632917511,1.4292117752736488,2.5179894182449156,2.3470285278032668,1.5358344954605374,1.4046562835130172,2.6874669190437843,0.7493837949584163],\"mode\":\"lines\",\"fillcolor\":\"lightblue\",\"name\":\"lower\",\"showlegend\":false,\"line\":{\"width\":0.0},\"marker\":{\"color\":\"lightblue\"}},{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.338369840913624,1.7844184475412679,5.2629626417825754,2.125375844363764,3.4634618528482792,3.4283738280312965,2.6463105539541276,2.4505998873853123,4.096133255211699,1.1174599459010455],\"mode\":\"lines\",\"fill\":\"tonexty\",\"fillcolor\":\"lightblue\",\"name\":\"upper\",\"showlegend\":false,\"line\":{\"width\":0.0},\"marker\":{\"color\":\"lightblue\"}},{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"lines+markers\",\"fillcolor\":\"grey\",\"line\":{\"color\":\"grey\"},\"marker\":{\"color\":\"grey\"}}];"
+            |> chartGeneratedContains rangePlotsChart
+        );
+        testCase "Range plot layout" ( fun () ->
+            emptyLayout rangePlotsChart
+        );
+    ]

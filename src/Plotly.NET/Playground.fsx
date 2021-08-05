@@ -808,6 +808,21 @@ let doughnut1 =
     |> Chart.Show
 
 
+let rnd = System.Random(5)
+
+let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
+let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+
+let yUpper = y |> List.map (fun v -> v + rnd.NextDouble())
+let yLower = y |> List.map (fun v -> v - rnd.NextDouble())
+Chart.Range(
+    x,y,yUpper,yLower,
+    StyleParam.Mode.Lines_Markers,
+    Color="grey",
+    RangeColor="lightblue")
+|> Chart.Show
+
+
 let simpleAreaChart =
     let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
     let y  = [5.; 2.5; 5.; 7.5; 5.; 2.5; 7.5; 4.5; 5.5; 5.]
