@@ -808,12 +808,32 @@ let doughnut1 =
     |> Chart.Show
 
 
-let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
-let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
-let labels  = ["a";"b";"c";"d";"e";"f";"g";"h";"i";"j";]
-Chart.Point(
-    x,y,
-    Name="points",
-    Labels=labels,
-    TextPosition=StyleParam.TextPosition.TopRight
-) |> Chart.Show
+let columnChart =
+    let values = [20; 14; 23;]
+    let keys   = ["Product A"; "Product B"; "Product C";]
+    Chart.Column(keys, values)
+
+let barChart =
+    let values = [20; 14; 23;]
+    let keys   = ["Product A"; "Product B"; "Product C";]
+    Chart.Bar(keys, values)
+
+let stackedBarChart =
+    let values = [20; 14; 23;]
+    let keys   = ["Product A"; "Product B"; "Product C";]
+    [
+        Chart.StackedBar(keys,values,Name="old");
+        Chart.StackedBar(keys,[8; 21; 13;],Name="new")
+    ]
+    |> Chart.Combine
+
+let stackedColumnChart =
+    let values = [20; 14; 23;]
+    let keys   = ["Product A"; "Product B"; "Product C";]
+    [
+        Chart.StackedColumn(keys,values,Name="old");
+        Chart.StackedColumn(keys,[8; 21; 13;],Name="new")
+    ]
+    |> Chart.Combine
+    
+stackedColumnChart |> Chart.Show
