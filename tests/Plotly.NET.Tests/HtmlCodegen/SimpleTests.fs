@@ -46,4 +46,8 @@ let ``Html layout tests`` =
             ["<script type=\"text/javascript\">"; "</script>"]
             |> chartGeneratedContainsList simpleChart
         );
+        testCase "Passing args to the function" ( fun () ->
+            "data, layout, config);"
+            |> chartGeneratedContains simpleChart
+        )
     ]

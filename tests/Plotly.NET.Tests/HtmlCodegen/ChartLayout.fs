@@ -72,10 +72,6 @@ let ``Multiple Axes styling`` =
             "var layout = {\"yaxis\":{\"title\":\"axis 1\",\"side\":\"left\"},\"yaxis2\":{\"title\":\"axis2\",\"side\":\"right\",\"overlaying\":\"y\"}};"
             |> chartGeneratedContains multipleAxesChart
         );
-        testCase "Passing args to the function" ( fun () ->
-            "data, layout, config);"
-            |> chartGeneratedContains multipleAxesChart
-        )
     ]
 
 
