@@ -850,4 +850,13 @@ let heatmapStyledChart =
         TitleFont = Font.init(Size=20.)
     )
 
-heatmapStyledChart |> Chart.Show
+let x = [19; 26; 55;]
+let y = [19; 26; 55;]
+let z = [19; 26; 55;]
+
+Chart.Scatter3d(x,y,z,StyleParam.Mode.Markers)
+|> Chart.withX_AxisStyle("my x-axis")
+|> Chart.withY_AxisStyle("my y-axis")
+|> Chart.withZ_AxisStyle("my z-axis")
+|> Chart.withSize(800.,800.)
+|> Chart.Show
