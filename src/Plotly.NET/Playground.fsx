@@ -805,27 +805,56 @@ let cols =[|"black";"blue"|]
 
 open Plotly.NET.StyleParam
 
-// Generate linearly spaced vector
-let linspace (min,max,n) = 
-    if n <= 2 then failwithf "n needs to be larger then 2"
-    let bw = float (max - min) / (float n - 1.)
-    [|min ..bw ..max|]
+let histogramContourChart =
+    let normal (rnd:System.Random) mu tau =
+        let mutable v1 = 2.0 * rnd.NextDouble() - 1.0
+        let mutable v2 = 2.0 * rnd.NextDouble() - 1.0
+        let mutable r = v1 * v1 + v2 * v2
+        while (r >= 1.0 || r = 0.0) do
+            v1 <- 2.0 * rnd.NextDouble() - 1.0
+            v2 <- 2.0 * rnd.NextDouble() - 1.0
+            r <- v1 * v1 + v2 * v2
+        let fac = sqrt(-2.0*(log r)/r)
+        (tau * v1 * fac + mu)
+    
+    let rnd = System.Random(5)
+    let n = 2000
+    let a = -1.
+    let b = 1.2
+    let step i = a +  ((b - a) / float (n - 1)) * float i
+    
+    //---------------------- generate data distributed in x and y direction ---------------------- 
+    let x = Array.init n (fun i -> ((step i)**3.) + (0.3 * (normal (rnd) 0. 2.) ))
+    let y = Array.init n (fun i -> ((step i)**6.) + (0.3 * (normal (rnd) 0. 2.) ))
+    [
+        Chart.Histogram2dContour (x,y,Line=Line.init(Width=0.))
+        Chart.Point(x,y,Opacity=0.3)
+    ]
+    |> Chart.Combine
 
-// Create example data
-let size = 100
-let x = linspace(-2. * Math.PI, 2. * Math.PI, size)
-let y = linspace(-2. * Math.PI, 2. * Math.PI, size)
 
-let f x y = - (5. * x / (x**2. + y**2. + 1.) )
+let histogram2dChart =
+    let normal (rnd:System.Random) mu tau =
+        let mutable v1 = 2.0 * rnd.NextDouble() - 1.0
+        let mutable v2 = 2.0 * rnd.NextDouble() - 1.0
+        let mutable r = v1 * v1 + v2 * v2
+        while (r >= 1.0 || r = 0.0) do
+            v1 <- 2.0 * rnd.NextDouble() - 1.0
+            v2 <- 2.0 * rnd.NextDouble() - 1.0
+            r <- v1 * v1 + v2 * v2
+        let fac = sqrt(-2.0*(log r)/r)
+        (tau * v1 * fac + mu)
+    
+    let rnd = System.Random(5)
+    let n = 2000
+    let a = -1.
+    let b = 1.2
+    let step i = a +  ((b - a) / float (n - 1)) * float i
+    
+    //---------------------- generate data distributed in x and y direction ---------------------- 
+    let x = Array.init n (fun i -> ((step i)**3.) + (0.3 * (normal (rnd) 0. 2.) ))
+    let y = Array.init n (fun i -> ((step i)**6.) + (0.3 * (normal (rnd) 0. 2.) ))
+    Chart.Histogram2d (x,y)
 
-let z = 
-    Array.init size (fun i -> 
-        Array.init size (fun j -> 
-            f x.[j] y.[i] 
-        )
-    )
-
-z
-|> Chart.Contour
-|> Chart.withSize(600.,600.)
+histogram2dChart
 |> Chart.Show
