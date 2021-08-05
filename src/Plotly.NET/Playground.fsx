@@ -1,4 +1,7 @@
-﻿#r "nuget: FSharp.Data"
+﻿open Plotly.NET.StyleParam
+
+
+#r "nuget: FSharp.Data"
 #r "nuget: Deedle"
 #r "nuget: FSharpAux"
 
@@ -778,6 +781,8 @@ let rownames = ["p3";"p2";"p1"]
 let colnames = ["Tp0";"Tp30";"Tp60";"Tp160"]
 let colorscaleValue = StyleParam.Colorscale.Custom [(0.0,"#3D9970");(1.0,"#001f3f")]
 
+
+
 let heat1 =
     Chart.Heatmap(
         matrix,colnames,rownames,
@@ -798,46 +803,135 @@ let values,labels =
 
 let cols =[|"black";"blue"|]
 
-let doughnut1 =
-    Chart.Pie(
-        values,
-        labels,
-        Colors=cols,
-        Textinfo=labels
+open Plotly.NET.StyleParam
+
+let table1Chart =
+    let header = ["<b>RowIndex</b>";"A";"simple";"table"]
+    let rows = 
+        [
+         ["0";"I"     ;"am"     ;"a"]        
+         ["1";"little";"example";"!"]       
+        ]
+    Chart.Table(header, rows)
+
+let tableStyledChart =
+    let header = ["<b>RowIndex</b>";"A";"simple";"table"]
+    let rows = 
+          [
+           ["0";"I"     ;"am"     ;"a"]        
+           ["1";"little";"example";"!"]       
+          ]
+    Chart.Table(
+        header,
+        rows,
+        AlignHeader = [HorizontalAlign.Center],
+        AlignCells  = [HorizontalAlign.Left; HorizontalAlign.Center; HorizontalAlign.Right],
+        ColorHeader = "#45546a",    
+        ColorCells  = ["#deebf7"; "lightgrey"; "#deebf7"; "lightgrey"],
+        FontHeader  = Font.init(FontFamily.Courier_New, Size=12., Color="white"),      
+        HeightHeader= 30.,
+        LineHeader  = Line.init(2., "black"),                     
+        ColumnWidth = [70; 50; 100; 70],      
+        ColumnOrder = [1; 2; 3; 4]                                  
     )
-    |> Chart.Show
 
-
-let x = [2; 4; 6;]
-let y = [4; 1; 6;]
-let size = [19; 26; 55;]
-Chart.Bubble(x, y, size)
-|> Chart.Show
-
-
-let pieChart =
-    let values = [19; 26; 55;]
-    let labels = ["Residential"; "Non-Residential"; "Utility"]
-    Chart.Pie(values, labels)
-
-let doughnutChart =
-    let values = [19; 26; 55;]
-    let labels = ["Residential"; "Non-Residential"; "Utility"]
-    Chart.Doughnut(
-        values,
-        labels,
-        Hole=0.3,
-        Textinfo=labels
-    )
-
-let sunburstChart =
-    let values = [19; 26; 55;]
-    let labels = ["Residential"; "Non-Residential"; "Utility"]
-    Chart.Sunburst(
-        ["A";"B";"C";"D";"E"],
-        ["";"";"B";"B";""],
-        Values=[5.;0.;3.;2.;3.],
-        Text=["At";"Bt";"Ct";"Dt";"Et"]
-    )
+let tableColorDependentChart =
+    let header2 = ["Identifier";"T0";"T1";"T2";"T3"]
+    let rowvalues = 
+        [
+         [10001.;0.2;2.0;4.0;5.0]
+         [10002.;2.1;2.0;1.8;2.1]
+         [10003.;4.5;3.0;2.0;2.5]
+         [10004.;0.0;0.1;0.3;0.2]
+         [10005.;1.0;1.6;1.8;2.2]
+         [10006.;1.0;0.8;1.5;0.7]
+         [10007.;2.0;2.0;2.1;1.9]
+        ]
+        |> Seq.sortBy (fun x -> x.[1])
     
-sunburstChart |> Chart.Show
+    //map color from value to hex representation
+    let mapColor min max value = 
+        let proportion = 
+            (255. * (value - min) / (max - min))
+            |> int
+        Colors.fromRgb 255 (255 - proportion) proportion
+        |> Colors.toWebColor
+        
+    //Assign a color to every cell seperately. Matrix must be transposed for correct orientation.
+    let cellcolor = 
+         rowvalues
+         |> Seq.map (fun row ->
+            row 
+            |> Seq.mapi (fun index value -> 
+                if index = 0 then "white"
+                else mapColor 0. 5. value
+                )
+            )
+        |> Seq.transpose
+
+    Chart.Table(header2,rowvalues,ColorCells=cellcolor)
+
+let sequencePresentationTableChart =
+    let sequence =
+        [
+        "ATGAGACGTCGAGACTGATAGACGTCGATAGACGTCGATAGACCG"
+        "ATAGACTCGTGATAGACGTCGATAGACGTCGATAGAGTATAGACC"
+        "GTGATAGACGTCGAGAAGACGTCGATAGACGTCGATAGACGTCGA"
+        "TAGAGATAGACGTCGATAGACCGTATAGAAGACGTCGATAGATAG"
+        "ACGTCGATAGACCGTAGACGTCGATAGACGTCGATAGACCGT"
+        ]
+        |> String.concat ""
+
+    let elementsPerRow = 60
+
+    let headers = 
+        [0..elementsPerRow] 
+        |> Seq.map (fun x -> 
+            if x%10=0 && x <> 0 then "|" 
+            else ""
+            )
+
+    let cells = 
+        sequence
+        |> Seq.chunkBySize elementsPerRow
+        |> Seq.mapi (fun i x -> Seq.append [string (i * elementsPerRow)] (Seq.map string x))
+
+    let cellcolors =
+        cells
+        |> Seq.map (fun row -> 
+            row 
+            |> Seq.map (fun element -> 
+                match element with
+                //colors taken from DRuMS 
+                //(http://biomodel.uah.es/en/model4/dna/atgc.htm)
+                | "A" -> "#5050FF" 
+                | "T" -> "#E6E600"
+                | "G" -> "#00C000"
+                | "C" -> "#E00000"
+                | "U" -> "#B48100"
+                | _   -> "white"
+                )
+            )
+        |> Seq.transpose
+        |> Seq.map (fun x -> Seq.append x (seq ["white"]))
+
+    let font = Font.init(FontFamily.Consolas,Size=14.)
+    let line = Line.init(0.,"white")
+    let chartwidth = 50. + 10. * float elementsPerRow
+
+    Chart.Table(
+        headers,
+        cells,
+        LineCells   = line,
+        LineHeader  = line,
+        HeightCells = 20.,
+        FontHeader  = font,
+        FontCells   = font,
+        ColumnWidth = [50;10],
+        AlignCells  = [HorizontalAlign.Right;HorizontalAlign.Center],
+        ColorCells  = cellcolors
+        )
+    |> Chart.withSize(chartwidth,nan)
+    |> Chart.withTitle "Sequence A"
+
+sequencePresentationTableChart |> Chart.Show
