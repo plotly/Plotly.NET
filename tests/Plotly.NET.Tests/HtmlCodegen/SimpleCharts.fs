@@ -38,7 +38,7 @@ let textLabelChart =
 
 [<Tests>]
 let ``Line and scatter plots`` =
-    testList "Line and scatter plots" [
+    testList "SimpleCharts.Line and scatter plots" [
         testCase "With LineStyle data" ( fun () ->
             "var data = [{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"lines+markers\",\"line\":{\"width\":2.0,\"dash\":\"dot\"},\"name\":\"line\",\"marker\":{\"symbol\":1}}];"
             |> chartGeneratedContains withLineStyleChart
@@ -100,7 +100,7 @@ let stackedColumnChart =
 
 [<Tests>]
 let ``Bar and column charts`` =
-    testList "Bar and column charts" [
+    testList "SimpleCharts.Bar and column charts" [
         testCase "Column chart data" ( fun () ->
             "var data = [{\"type\":\"bar\",\"x\":[\"Product A\",\"Product B\",\"Product C\"],\"y\":[20,14,23],\"marker\":{}}];"
             |> chartGeneratedContains columnChart
@@ -155,7 +155,7 @@ let stackedAreaChart =
 
 [<Tests>]
 let ``Area charts`` =
-    testList "Area charts" [
+    testList "SimpleCharts.Area charts" [
         testCase "Simple area data" ( fun () ->
             "var data = [{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[5.0,2.5,5.0,7.5,5.0,2.5,7.5,4.5,5.5,5.0],\"mode\":\"lines\",\"fill\":\"tozeroy\",\"line\":{},\"marker\":{}}];"
             |> chartGeneratedContains simpleAreaChart
@@ -197,7 +197,7 @@ let rangePlotsChart =
 
 [<Tests>]
 let ``Range plot`` =
-    testList "Range plot" [
+    testList "SimpleCharts.Range plot" [
         testCase "Range plot data" ( fun () ->
             "var data = [{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[1.0244410755226578,1.1291130737537114,4.930085632917511,1.4292117752736488,2.5179894182449156,2.3470285278032668,1.5358344954605374,1.4046562835130172,2.6874669190437843,0.7493837949584163],\"mode\":\"lines\",\"fillcolor\":\"lightblue\",\"name\":\"lower\",\"showlegend\":false,\"line\":{\"width\":0.0},\"marker\":{\"color\":\"lightblue\"}},{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.338369840913624,1.7844184475412679,5.2629626417825754,2.125375844363764,3.4634618528482792,3.4283738280312965,2.6463105539541276,2.4505998873853123,4.096133255211699,1.1174599459010455],\"mode\":\"lines\",\"fill\":\"tonexty\",\"fillcolor\":\"lightblue\",\"name\":\"upper\",\"showlegend\":false,\"line\":{\"width\":0.0},\"marker\":{\"color\":\"lightblue\"}},{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"lines+markers\",\"fillcolor\":\"grey\",\"line\":{\"color\":\"grey\"},\"marker\":{\"color\":\"grey\"}}];"
             |> chartGeneratedContains rangePlotsChart
@@ -215,7 +215,7 @@ let bubbleCharts =
 
 [<Tests>]
 let ``Bubble charts`` =
-    testList "Bubble charts" [
+    testList "SimpleCharts.Bubble charts" [
         testCase "Bubble data" ( fun () ->
             "var data = [{\"type\":\"scatter\",\"x\":[2,4,6],\"y\":[4,1,6],\"mode\":\"markers\",\"marker\":{\"size\":[19,26,55]}}];"
             |> chartGeneratedContains bubbleCharts
@@ -252,7 +252,7 @@ let sunburstChart =
 
 [<Tests>]
 let ``Pie and doughnut Charts`` =
-    testList "Pie and doughnut Charts" [
+    testList "SimpleCharts.Pie and doughnut Charts" [
         testCase "Pie data" ( fun () ->
             "var data = [{\"type\":\"pie\",\"values\":[19,26,55],\"labels\":[\"Residential\",\"Non-Residential\",\"Utility\"],\"marker\":{},\"text\":[\"Residential\",\"Non-Residential\",\"Utility\"]}];"
             |> chartGeneratedContains pieChart
@@ -409,7 +409,7 @@ let sequencePresentationTableChart =
 
 [<Tests>]
 let ``Table charts`` =
-    testList "Table charts" [
+    testList "SimpleCharts.Table charts" [
         testCase "First table data" ( fun () ->
             "var data = [{\"type\":\"table\",\"header\":{\"values\":[\"<b>RowIndex</b>\",\"A\",\"simple\",\"table\"]},\"cells\":{\"values\":[[\"0\",\"1\"],[\"I\",\"little\"],[\"am\",\"example\"],[\"a\",\"!\"]]}}];"
             |> chartGeneratedContains table1Chart
@@ -490,7 +490,7 @@ let heatmapStyledChart =
 
 [<Tests>]
 let ``Heatmap charts`` =
-    testList "Heatmap charts" [
+    testList "SimpleCharts.Heatmap charts" [
         testCase "Heatmap data" ( fun () ->
             "var data = [{\"type\":\"heatmap\",\"z\":[[1.0,1.5,0.7,2.7],[2.0,0.5,1.2,1.4],[0.1,2.6,2.4,3.0]],\"x\":[\"Tp0\",\"Tp30\",\"Tp60\",\"Tp160\"],\"y\":[\"p3\",\"p2\",\"p1\"],\"colorscale\":[[0.0,\"#3D9970\"],[1.0,\"#001f3f\"]],\"showscale\":true}];"
             |> chartGeneratedContains heatmap1Chart

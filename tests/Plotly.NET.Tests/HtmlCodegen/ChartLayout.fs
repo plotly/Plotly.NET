@@ -17,7 +17,7 @@ let axisStylingChart =
 
 [<Tests>]
 let ``Axis styling`` =
-    testList "Axis styling tests" [
+    testList "ChartLayout.Axis styling tests" [
         testCase "X With axis has title" ( fun c ->
             "\"title\":\"X axis title quack quack\""
             |> chartGeneratedContains axisStylingChart
@@ -67,7 +67,7 @@ let multipleAxesChart =
 
 [<Tests>]
 let ``Multiple Axes styling`` =
-    testList "Multiple Axes styling tests" [
+    testList "ChartLayout.Multiple Axes styling tests" [
         testCase "Layout" ( fun () ->
             "var layout = {\"yaxis\":{\"title\":\"axis 1\",\"side\":\"left\"},\"yaxis2\":{\"title\":\"axis2\",\"side\":\"right\",\"overlaying\":\"y\"}};"
             |> chartGeneratedContains multipleAxesChart
@@ -87,7 +87,7 @@ let errorBarsChart =
 
 [<Tests>]
 let ``Error bars`` =
-    testList "Error bars tests" [
+    testList "ChartLayout.Error bars tests" [
         testCase "Full data test" ( fun () ->
             "var data = [{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"markers\",\"name\":\"points with errors\",\"marker\":{},\"error_x\":{\"symmetric\":true,\"array\":[0.2,0.3,0.2,0.1,0.2,0.4,0.2,0.08,0.2,0.1]},\"error_y\":{\"array\":[0.3,0.2,0.1,0.4,0.2,0.4,0.1,0.18,0.02,0.2],\"arrayminus\":[0.2,0.3,0.2,0.1,0.2,0.4,0.2,0.08,0.2,0.1]}}];"
             |> chartGeneratedContains errorBarsChart
@@ -159,7 +159,7 @@ let singleStackChart =
     
 [<Tests>]
 let ``Multicharts and subplots`` =
-    testList "Multicharts and subplots" [
+    testList "ChartLayout.Multicharts and subplots" [
         testCase "Combining" ( fun () ->
             "var data = [{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"lines\",\"line\":{},\"name\":\"first\",\"marker\":{}},{\"type\":\"scatter\",\"x\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"y\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"mode\":\"lines\",\"line\":{},\"name\":\"second\",\"marker\":{}}];"
             |> chartGeneratedContains combinedChart
@@ -194,7 +194,7 @@ let shapesChart =
 
 [<Tests>]
 let ``Shapes`` =
-    testList "Shapes" [
+    testList "ChartLayout.Shapes" [
         testCase "Data" ( fun () ->
             "var data = [{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"lines\",\"line\":{},\"name\":\"line\",\"marker\":{}}];"
             |> chartGeneratedContains shapesChart
@@ -249,7 +249,7 @@ let mathtexChart =
 
 [<Tests>]
 let ``Display options`` =
-    testList "Display options" [
+    testList "ChartLayout.Display options" [
         testCase "Chart description data" ( fun () ->
             "var data = [{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"markers\",\"name\":\"desc1\",\"marker\":{}}];"
             |> chartGeneratedContains displayOptionsChartDescriptionChart
