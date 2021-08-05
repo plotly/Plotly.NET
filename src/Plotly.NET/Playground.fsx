@@ -850,21 +850,19 @@ let heatmapStyledChart =
         TitleFont = Font.init(Size=20.)
     )
 
-open System
-let c = [0. .. 0.5 .. 15.]
+//---------------------- Generate linearly spaced vector ----------------------
+let linspace (min,max,n) = 
+    if n <= 2 then failwithf "n needs to be larger then 2"
+    let bw = float (max - min) / (float n - 1.)
+    Array.init n (fun i -> min + (bw * float i))
 
-let x, y, z =  
-    c
-    |> List.map (fun i ->
-        let i' = float i 
-        let r = 10. * Math.Cos (i' / 10.)
-        (r * Math.Cos i', r * Math.Sin i', i')
-    )
-    |> List.unzip3
+//---------------------- Create example data ----------------------
+let x' = [0.;2.5]
+let y' = [0.;2.5]
+let z' = [
+    [1.;1.;]; // row wise (length x)
+    [1.;2.;];
+    ] // column (length y)
 
-Chart.Scatter3d(x, y, z, StyleParam.Mode.Lines_Markers)
-|> Chart.withX_AxisStyle("x-axis")
-|> Chart.withY_AxisStyle("y-axis")
-|> Chart.withZ_AxisStyle("z-axis")
-|> Chart.withSize(800., 800.)
+Chart.Surface(z', x', y', Opacity=0.5, Contours=Contours.initXyz(Show=true))
 |> Chart.Show
