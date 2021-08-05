@@ -808,18 +808,10 @@ let doughnut1 =
     |> Chart.Show
 
 
-let rnd = System.Random(5)
-
-let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
-let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
-
-let yUpper = y |> List.map (fun v -> v + rnd.NextDouble())
-let yLower = y |> List.map (fun v -> v - rnd.NextDouble())
-Chart.Range(
-    x,y,yUpper,yLower,
-    StyleParam.Mode.Lines_Markers,
-    Color="grey",
-    RangeColor="lightblue")
+let x = [2; 4; 6;]
+let y = [4; 1; 6;]
+let size = [19; 26; 55;]
+Chart.Bubble(x, y, size)
 |> Chart.Show
 
 

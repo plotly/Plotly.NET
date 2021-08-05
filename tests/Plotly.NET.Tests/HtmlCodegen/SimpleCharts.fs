@@ -205,3 +205,21 @@ let ``Range plot`` =
             emptyLayout rangePlotsChart
         );
     ]
+
+let bubbleCharts =
+    let x = [2; 4; 6;]
+    let y = [4; 1; 6;]
+    let size = [19; 26; 55;]
+    Chart.Bubble(x, y, size)
+
+[<Tests>]
+let ``Bubble charts`` =
+    testList "Bubble charts" [
+        testCase "Bubble data" ( fun () ->
+            "var data = [{\"type\":\"scatter\",\"x\":[2,4,6],\"y\":[4,1,6],\"mode\":\"markers\",\"marker\":{\"size\":[19,26,55]}}];"
+            |> chartGeneratedContains bubbleCharts
+        );
+        testCase "Bubble layout" ( fun () ->
+            emptyLayout bubbleCharts
+        );
+    ]
