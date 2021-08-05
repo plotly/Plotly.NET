@@ -237,3 +237,26 @@ let ``Histogram 2D charts`` =
             emptyLayout histogram2dChart
         );
     ]
+
+
+let scatterplotMatrixChart =
+    let data = 
+        [
+            "A",[|1.;4.;3.4;0.7;|]
+            "B",[|3.;1.5;1.7;2.3;|]
+            "C",[|2.;4.;3.1;5.|]
+            "D",[|4.;2.;2.;4.;|]
+        ]
+    Chart.Splom(data, Color="blue")
+
+[<Tests>]
+let ``Scatterplot matrix charts`` =
+    testList "DistributionCharts.Scatterplot matrix charts" [
+        testCase "Scatterplot data" ( fun () ->
+            "var data = [{\"type\":\"splom\",\"dimensions\":[{\"values\":[1.0,4.0,3.4,0.7],\"label\":\"A\"},{\"values\":[3.0,1.5,1.7,2.3],\"label\":\"B\"},{\"values\":[2.0,4.0,3.1,5.0],\"label\":\"C\"},{\"values\":[4.0,2.0,2.0,4.0],\"label\":\"D\"}],\"line\":{\"color\":\"blue\"}}];"
+            |> chartGeneratedContains scatterplotMatrixChart
+        );
+        testCase "Scatterplot layout" ( fun () ->
+            emptyLayout scatterplotMatrixChart
+        );
+    ]

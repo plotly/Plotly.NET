@@ -856,5 +856,12 @@ let histogram2dChart =
     let y = Array.init n (fun i -> ((step i)**6.) + (0.3 * (normal (rnd) 0. 2.) ))
     Chart.Histogram2d (x,y)
 
-histogram2dChart
+let data = 
+    [
+        "A",[|1.;4.;3.4;0.7;|]
+        "B",[|3.;1.5;1.7;2.3;|]
+        "C",[|2.;4.;3.1;5.|]
+        "D",[|4.;2.;2.;4.;|]
+    ]
+Chart.Splom(data, Color="blue")
 |> Chart.Show
