@@ -24,3 +24,5 @@ let chartGeneratedContainsList chart substringList =
     for substring in substringList do
         chartGeneratedContains chart substring
 
+let emptyLayout chart =
+    "var layout = {};" |> chartGeneratedContains chart
