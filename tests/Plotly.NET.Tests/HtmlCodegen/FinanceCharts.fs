@@ -48,3 +48,31 @@ let ``Candlestick charts`` =
             |> chartGeneratedContains candles2Chart
         );
     ]
+
+
+let funnelChart =
+    let y = [|"Sales person A"; "Sales person B"; "Sales person C"; "Sales person D"; "Sales person E"|]
+    let x = [|1200.; 909.4; 600.6; 300.; 80.|]
+
+    // Customize the connector lines used to connect the funnel bars
+    let connectorLine = Line.init (Color="royalblue", Dash=StyleParam.DrawingStyle.Dot, Width=3.)
+    let connector = FunnelConnector.init(Line=connectorLine)
+    
+    // Customize the outline of the funnel bars
+    let line = Line.init(Width=2.,Color="3E4E88")
+    
+    Chart.Funnel (x,y,Color="59D4E8", Line=line, Connector=connector)
+    |> Chart.withMarginSize(Left=100)
+
+[<Tests>]
+let ``Funnel charts`` =
+    testList "FinanceCharts.Funnel charts" [
+        testCase "Funnel data" ( fun () ->
+            "var data = [{\"type\":\"funnel\",\"x\":[1200.0,909.4,600.6,300.0,80.0],\"y\":[\"Sales person A\",\"Sales person B\",\"Sales person C\",\"Sales person D\",\"Sales person E\"],\"connector\":{\"line\":{\"color\":\"royalblue\",\"width\":3.0,\"dash\":\"dot\"}},\"marker\":{\"color\":\"59D4E8\",\"line\":{\"color\":\"3E4E88\",\"width\":2.0}}}];"
+            |> chartGeneratedContains funnelChart
+        );
+        testCase "Funnel layout" ( fun () ->
+            "var layout = {\"margin\":{\"l\":100}};"
+            |> chartGeneratedContains funnelChart
+        );
+    ]
