@@ -1,9 +1,9 @@
 (**
 ---
 title: Display Options
-category: Chart Layout
-categoryindex: 2
-index: 5
+category: General
+categoryindex: 1
+index: 3
 ---
 *)
 
@@ -137,5 +137,3 @@ By popular request, `Chart.WithMathTex` is a prebuilt function to enable MathTeX
 (**
 
 ![]({{root}}img/desc4.png)
-
-*)
