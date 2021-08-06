@@ -805,49 +805,63 @@ let cols =[|"black";"blue"|]
 
 open Plotly.NET.StyleParam
 
-let heatmap1Chart =
-    let matrix =
-        [[1.;1.5;0.7;2.7];
-        [2.;0.5;1.2;1.4];
-        [0.1;2.6;2.4;3.0];]
+let histogramContourChart =
+    let normal (rnd:System.Random) mu tau =
+        let mutable v1 = 2.0 * rnd.NextDouble() - 1.0
+        let mutable v2 = 2.0 * rnd.NextDouble() - 1.0
+        let mutable r = v1 * v1 + v2 * v2
+        while (r >= 1.0 || r = 0.0) do
+            v1 <- 2.0 * rnd.NextDouble() - 1.0
+            v2 <- 2.0 * rnd.NextDouble() - 1.0
+            r <- v1 * v1 + v2 * v2
+        let fac = sqrt(-2.0*(log r)/r)
+        (tau * v1 * fac + mu)
     
-    let rownames = ["p3";"p2";"p1"]
-    let colnames = ["Tp0";"Tp30";"Tp60";"Tp160"]
+    let rnd = System.Random(5)
+    let n = 2000
+    let a = -1.
+    let b = 1.2
+    let step i = a +  ((b - a) / float (n - 1)) * float i
     
-    let colorscaleValue = 
-        StyleParam.Colorscale.Custom [(0.0,"#3D9970");(1.0,"#001f3f")]
-    
-    Chart.Heatmap(
-        matrix,colnames,rownames,
-        Colorscale=colorscaleValue,
-        Showscale=true
-    )
-    |> Chart.withSize(700.,500.)
-    |> Chart.withMarginSize(Left=200.)
+    //---------------------- generate data distributed in x and y direction ---------------------- 
+    let x = Array.init n (fun i -> ((step i)**3.) + (0.3 * (normal (rnd) 0. 2.) ))
+    let y = Array.init n (fun i -> ((step i)**6.) + (0.3 * (normal (rnd) 0. 2.) ))
+    [
+        Chart.Histogram2dContour (x,y,Line=Line.init(Width=0.))
+        Chart.Point(x,y,Opacity=0.3)
+    ]
+    |> Chart.Combine
 
-let heatmapStyledChart =
-    let matrix =
-        [[1.;1.5;0.7;2.7];
-        [2.;0.5;1.2;1.4];
-        [0.1;2.6;2.4;3.0];]
-    
-    let rownames = ["p3";"p2";"p1"]
-    let colnames = ["Tp0";"Tp30";"Tp60";"Tp160"]
-    
-    let colorscaleValue = 
-        StyleParam.Colorscale.Custom [(0.0,"#3D9970");(1.0,"#001f3f")]
-    
-    Chart.Heatmap(
-        matrix,colnames,rownames,
-        Colorscale=colorscaleValue,
-        Showscale=true
-    )
-    |> Chart.withSize(700.,500.)
-    |> Chart.withMarginSize(Left=200.)
-    |> Chart.withColorBarStyle(
-        "Im the Colorbar",
-        TitleSide = StyleParam.Side.Right,
-        TitleFont = Font.init(Size=20.)
-    )
 
-heatmapStyledChart |> Chart.Show
+let histogram2dChart =
+    let normal (rnd:System.Random) mu tau =
+        let mutable v1 = 2.0 * rnd.NextDouble() - 1.0
+        let mutable v2 = 2.0 * rnd.NextDouble() - 1.0
+        let mutable r = v1 * v1 + v2 * v2
+        while (r >= 1.0 || r = 0.0) do
+            v1 <- 2.0 * rnd.NextDouble() - 1.0
+            v2 <- 2.0 * rnd.NextDouble() - 1.0
+            r <- v1 * v1 + v2 * v2
+        let fac = sqrt(-2.0*(log r)/r)
+        (tau * v1 * fac + mu)
+    
+    let rnd = System.Random(5)
+    let n = 2000
+    let a = -1.
+    let b = 1.2
+    let step i = a +  ((b - a) / float (n - 1)) * float i
+    
+    //---------------------- generate data distributed in x and y direction ---------------------- 
+    let x = Array.init n (fun i -> ((step i)**3.) + (0.3 * (normal (rnd) 0. 2.) ))
+    let y = Array.init n (fun i -> ((step i)**6.) + (0.3 * (normal (rnd) 0. 2.) ))
+    Chart.Histogram2d (x,y)
+
+let data = 
+    [
+        "A",[|1.;4.;3.4;0.7;|]
+        "B",[|3.;1.5;1.7;2.3;|]
+        "C",[|2.;4.;3.1;5.|]
+        "D",[|4.;2.;2.;4.;|]
+    ]
+Chart.Splom(data, Color="blue")
+|> Chart.Show

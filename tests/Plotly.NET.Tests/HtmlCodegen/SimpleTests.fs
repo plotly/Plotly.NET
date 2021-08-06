@@ -17,7 +17,7 @@ let simpleChart =
 
 [<Tests>]
 let ``Html layout tests`` =
-    testList "Simple tests" [
+    testList "SimpleTests.Simple tests" [
         testCase "Expecting plotly js" ( fun () ->
             "https://cdn.plot.ly/plotly-latest.min"
             |> chartGeneratedContains simpleChart
