@@ -76,3 +76,23 @@ let ``Funnel charts`` =
             |> chartGeneratedContains funnelChart
         );
     ]
+
+
+
+let funnelArea = 
+    let values = [|5; 4; 3; 2; 1|]
+    let text = [|"The 1st"; "The 2nd"; "The 3rd"; "The 4th"; "The 5th"|]
+    let line = Line.init (Color="purple", Width=3.)
+    Chart.FunnelArea(Values=values, Text=text, Line=line)
+
+[<Tests>]
+let ``Funnel area charts`` =
+    testList "FinanceCharts.Funnel area charts" [
+        testCase "Funnel area data" ( fun () ->
+            "var data = [{\"type\":\"funnelarea\",\"values\":[5,4,3,2,1],\"marker\":{\"line\":{\"color\":\"purple\",\"width\":3.0}},\"domain\":{},\"text\":[\"The 1st\",\"The 2nd\",\"The 3rd\",\"The 4th\",\"The 5th\"]}];"
+            |> chartGeneratedContains funnelArea
+        );
+        testCase "Funnel area layout" ( fun () ->
+            emptyLayout funnelArea
+        );
+    ]
