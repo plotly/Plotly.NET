@@ -42,8 +42,8 @@ let cultureMapChart =
     |> Chart.withMarginSize(0, 0, 0, 0)
 
 [<Tests>]
-let ``Geo vs mapbox charts`` =
-    testList "GeoMapCharts.Geo vs mapbox charts" [
+let ``Geo charts`` =
+    testList "GeoMapCharts.Geo charts" [
         testCase "Basemap data" ( fun () ->
             "var data = [{\"type\":\"scattergeo\",\"mode\":\"markers\",\"lon\":[],\"lat\":[],\"marker\":{}}];"
             |> chartGeneratedContains basemapChart

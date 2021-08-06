@@ -15,8 +15,8 @@ let baseLayerOnlyChart =
     |> Chart.withMapbox mb // add the mapBox
 
 [<Tests>]
-let `` charts`` =
-    testList "MapboxMapCharts. charts" [
+let ``Mapbox charts`` =
+    testList "MapboxMapCharts.Mapbox charts" [
         testCase "Base layour only data" ( fun () ->
             "var data = [{\"type\":\"scattermapbox\",\"mode\":\"markers\",\"lon\":[],\"lat\":[],\"line\":{},\"marker\":{}}];"
             |> chartGeneratedContains baseLayerOnlyChart
