@@ -803,10 +803,75 @@ let values,labels =
 
 let cols =[|"black";"blue"|]
 
-let mb =
-    Mapbox.init(
-        Style = StyleParam.MapboxStyle.OpenStreetMap
+let pointMapboxChart = 
+    let cityNames = [
+        "Montreal"; "Toronto"; "Vancouver"; "Calgary"; "Edmonton";
+        "Ottawa"; "Halifax"; "Victoria"; "Winnepeg"; "Regina"
+    ]
+    
+    let lon = [
+        -73.57; -79.24; -123.06; -114.1; -113.28;
+        -75.43; -63.57; -123.21; -97.13; -104.6
+    ]
+    let lat = [
+        45.5; 43.4; 49.13; 51.1; 53.34; 45.24;
+        44.64; 48.25; 49.89; 50.45
+    ]
+    Chart.PointMapbox(
+        lon,lat,
+        Labels = cityNames,
+        TextPosition = StyleParam.TextPosition.TopCenter
     )
-Chart.PointMapbox([],[]) // deliberately empty chart to show the base map only
-|> Chart.withMapbox mb // add the mapBox
-|> Chart.Show
+    |> Chart.withMapbox(
+        Mapbox.init(
+            Style=StyleParam.MapboxStyle.OpenStreetMap,
+            Center=(-104.6,50.45)
+        )
+    )
+
+
+open Deedle
+open FSharp.Data
+open System.IO
+open System.Text
+
+
+let flightsChart =
+    let data = 
+        "start_lat,start_lon,end_lat,end_lon,airline,airport1,airport2,cnt
+32.89595056,-97.0372,35.04022222,-106.6091944,AA,DFW,ABQ,444
+41.979595,-87.90446417,30.19453278,-97.66987194,AA,ORD,AUS,166
+32.89595056,-97.0372,41.93887417,-72.68322833,AA,DFW,BDL,162
+18.43941667,-66.00183333,41.93887417,-72.68322833,AA,SJU,BDL,56
+32.89595056,-97.0372,33.56294306,-86.75354972,AA,DFW,BHM,168
+25.79325,-80.29055556,36.12447667,-86.67818222,AA,MIA,BNA,56
+32.89595056,-97.0372,42.3643475,-71.00517917,AA,DFW,BOS,422
+25.79325,-80.29055556,42.3643475,-71.00517917,AA,MIA,BOS,392"
+        |> fun csv -> Frame.ReadCsvString(csv,true,separators=",")
+    
+    let opacityVals : float [] = data.["cnt"] |> Series.values |> fun s -> s |> Seq.map (fun v -> v/(Seq.max s)) |> Array.ofSeq
+    let startCoords = Series.zipInner data.["start_lon"] data.["start_lat"]
+    let endCoords = Series.zipInner data.["end_lon"] data.["end_lat"]
+    let coords = Series.zipInner startCoords endCoords |> Series.values
+
+    coords 
+    |> Seq.mapi (fun i (startCoords,endCoords) ->
+        Chart.LineMapbox(
+            [startCoords; endCoords],
+            Opacity = opacityVals.[i],
+            Color = "red"
+        )
+    )
+    |> Chart.Combine
+    |> Chart.withLegend(false)
+    |> Chart.withMapbox(
+        Mapbox.init(
+            Style=StyleParam.MapboxStyle.OpenStreetMap,
+            Center=(-97.0372,32.8959)
+        )
+    )
+    |> Chart.withMarginSize(0,0,50,0)
+    |> Chart.withTitle "Feb. 2011 American Airline flights"
+
+
+flightsChart |> Chart.Show
