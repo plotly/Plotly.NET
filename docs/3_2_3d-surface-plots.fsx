@@ -51,11 +51,6 @@ let z =
         Array.init size (fun j -> f x.[j] y.[i] )
                     )
 
-let rnd = System.Random()
-let a = Array.init 50 (fun _ -> rnd.NextDouble())
-let b = Array.init 50 (fun _ -> rnd.NextDouble())
-let c = Array.init 50 (fun _ -> rnd.NextDouble())
-
 let surface = 
     z
     |> Chart.Surface
