@@ -71,3 +71,77 @@ svgButtonChart
 svgButtonChart |> GenericChart.toChartHTML
 (***include-it-raw***)
 
+(** 
+## Static plots
+
+To create a static plot that has no hoverable elements, use `StaticPlot=true` on the Config:
+
+*)
+
+let staticConfig = Config.init(StaticPlot=true)
+
+let staticPlot =
+    Chart.Point([(1.,2.)])
+    |> Chart.withConfig staticConfig
+
+(*** condition: ipynb ***)
+#if IPYNB
+staticPlot
+#endif // IPYNB
+
+(***hide***)
+staticPlot |> GenericChart.toChartHTML
+(***include-it-raw***)
+
+(** 
+## Editable charts
+
+You can define fields that can be edited on the chart by setting `Editable = true` on the config, optionally explicitly setting the editable parts via `EditableAnnotations`
+
+*)
+
+let editableConfig = 
+    Config.init(
+        Editable = true,
+        EditableAnnotations = [
+            StyleParam.AnnotationEditOptions.LegendPosition
+            StyleParam.AnnotationEditOptions.AxisTitleText
+            StyleParam.AnnotationEditOptions.LegendText
+        ]
+    )
+
+let editablePlot =
+    Chart.Point([(1.,2.)])
+    |> Chart.withConfig editableConfig
+
+(*** condition: ipynb ***)
+#if IPYNB
+editablePlot
+#endif // IPYNB
+
+(***hide***)
+editablePlot |> GenericChart.toChartHTML
+(***include-it-raw***)
+
+(** 
+## Responsive charts
+
+To create a chart that is reponsive to its container size, use `Responsive=true` on the Config:
+
+(try resizing the window)
+*)
+
+let responsiveConfig = Config.init(Responsive=true)
+
+let responsivePlot =
+    Chart.Point([(1.,2.)])
+    |> Chart.withConfig responsiveConfig
+
+(*** condition: ipynb ***)
+#if IPYNB
+responsivePlot
+#endif // IPYNB
+
+(***hide***)
+responsivePlot |> GenericChart.toChartHTML
+(***include-it-raw***)
