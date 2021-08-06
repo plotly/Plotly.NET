@@ -2,7 +2,7 @@
 
 **Fsharp.Plotly joined the Plotly family and will from now on be released under `Plotly.NET`**
 
-**Breaking changes compared to 1.x.x / previous 2.0.0 beta versions:**
+**Breaking changes compared to 1.x.x / previous 2.0.0 alpha/beta/preview versions:**
 
  * [**Breaking:** Fix keys values order for bar charts](https://github.com/plotly/Plotly.NET/commit/ccb6af7df8bc071f2a0baf020805fc25d2df70b4)
  * [**Breaking: fix color assignment of pie and doughnut charts**](https://github.com/plotly/Plotly.NET/commit/2bbb35ad5d44c6de1bf79b23b7b0a64effa8bdf9)
@@ -19,7 +19,7 @@
 
 **New Charts:**
 
- * [Refactor Chart.Stack into]():
+ * Refactor Chart.Stack into:
      * Chart.Grid: Uses the grid object of plotly.js to generate various types of subplot grids
      * Chart.SingleStack: Basically Chart.Grid with one Column
  * [Add Sunburst Chart](https://github.com/plotly/Plotly.NET/commit/3c6cd67219c6cd81f294f0453c62fd8b70c1e689)
@@ -53,6 +53,13 @@
  * [Add name option with defaults for the upper and lower bound traces in range charts](https://github.com/plotly/Plotly.NET/commit/3cbb5f116b8b3b0467e8a88707858252780a39f0)
  * [Add functionality and docs for using GeoJSON with geo charts](https://github.com/plotly/Plotly.NET/commit/a68db7de0109e6714aeb044b806be2796f2bd400) [#86](https://github.com/plotly/Plotly.NET/issues/86)
  * [Add functionality to customize Lower and upper labels of range charts](https://github.com/plotly/Plotly.NET/commit/86357cf05e9cfe2f264369255dcf90e31861275a) [#83](https://github.com/plotly/Plotly.NET/issues/86)
+ * [Allow custom font family](https://github.com/plotly/Plotly.NET/commit/b99e34c1890989d8b07dbc6b388618572372617e), thanks [@pirrmann](https://github.com/pirrmann)]
+
+**Other notable changes**
+
+These changes do not necessarily reflect changes on the usage layer, but should be attributed/noted nonetheless:
+
+ * huge amounts of tests have been added by [@WhiteBlackGoose](https://github.com/WhiteBlackGoose), thanks!
 
 ### 1.2.2 - Apr 9 2020
  * [Opening Charts is now more or less OS agnostic](https://github.com/plotly/Plotly.NET/commit/f6e3dceade085e43e7e56b478b9cf7b533a4fe55)
