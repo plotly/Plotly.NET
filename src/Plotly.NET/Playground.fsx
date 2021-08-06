@@ -803,15 +803,17 @@ let values,labels =
 
 let cols =[|"black";"blue"|]
 
-let r  = [ 1; 2; 3; 4; 5; 6; 7;]
-let r2 = [ 5; 6; 7; 1; 2; 3; 4;]
-let r3 = [ 3; 1; 5; 2; 8; 7; 5;]
+let r    = [77.5; 72.5; 70.0; 45.0; 22.5; 42.5; 40.0; 62.5]
+let r'   = [57.5; 50.0; 45.0; 35.0; 20.0; 22.5; 37.5; 55.0]
+let r''  = [40.0; 30.0; 30.0; 35.0; 7.5; 7.5; 32.5; 40.0]
+let r''' = [20.0; 7.5; 15.0; 22.5; 2.5; 2.5; 12.5; 22.5]
 
-let t  = [0; 45; 90; 135; 200; 320; 184;]
+let t = ["North"; "N-E"; "East"; "S-E"; "South"; "S-W"; "West"; "N-W"]
 [
-    Chart.Polar(r,t,StyleParam.Mode.Markers,Name="1")
-    Chart.Polar(r2,t,StyleParam.Mode.Markers,Name="2")
-    Chart.Polar(r3,t,StyleParam.Mode.Markers,Name="3")
+    Chart.WindRose (r   ,t,Name="11-14 m/s")
+    Chart.WindRose (r'  ,t,Name="8-11 m/s")
+    Chart.WindRose (r'' ,t,Name="5-8 m/s")
+    Chart.WindRose (r''',t,Name="< 5 m/s")
 ]
 |> Chart.Combine
 |> Chart.Show
