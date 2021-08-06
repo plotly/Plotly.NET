@@ -58,7 +58,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{60FB
 		docs\1_1_errorbars.fsx = docs\1_1_errorbars.fsx
 		docs\1_2_multiple-charts.fsx = docs\1_2_multiple-charts.fsx
 		docs\1_3_shapes.fsx = docs\1_3_shapes.fsx
-		docs\1_4_display-options.fsx = docs\1_4_display-options.fsx
 		docs\2_0_line-scatter-plots.fsx = docs\2_0_line-scatter-plots.fsx
 		docs\2_1_bar-and-column-charts.fsx = docs\2_1_bar-and-column-charts.fsx
 		docs\2_2_area-plots.fsx = docs\2_2_area-plots.fsx
