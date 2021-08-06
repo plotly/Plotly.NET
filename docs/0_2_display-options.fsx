@@ -137,3 +137,5 @@ By popular request, `Chart.WithMathTex` is a prebuilt function to enable MathTeX
 (**
 
 ![]({{root}}img/desc4.png)
+
+*)
