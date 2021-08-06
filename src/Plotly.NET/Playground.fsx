@@ -803,42 +803,80 @@ let values,labels =
 
 let cols =[|"black";"blue"|]
 
-open Plotly.NET.StyleParam
-
-let basemapChart =
-    Chart.PointGeo([]) // deliberately empty chart to show the base map only
+let pointGeoChart =
+    let cityNames = [
+        "Montreal"; "Toronto"; "Vancouver"; "Calgary"; "Edmonton";
+        "Ottawa"; "Halifax"; "Victoria"; "Winnepeg"; "Regina"
+    ]
+    
+    let lon = [
+        -73.57; -79.24; -123.06; -114.1; -113.28;
+        -75.43; -63.57; -123.21; -97.13; -104.6
+    ]
+    let lat = [
+        45.5; 43.4; 49.13; 51.1; 53.34; 45.24;
+        44.64; 48.25; 49.89; 50.45
+    ]
+    Chart.PointGeo(
+        lon,
+        lat,
+        Labels=cityNames,
+        TextPosition=StyleParam.TextPosition.TopCenter
+    )
+    |> Chart.withMapStyle(
+        Scope=StyleParam.GeoScope.NorthAmerica, 
+        Projection=GeoProjection.init(StyleParam.GeoProjectionType.AzimuthalEqualArea),
+        CountryColor = "lightgrey"
+    )
     |> Chart.withMarginSize(0, 0, 0, 0)
 
-let moreFeaturesBasemapChart =
-    let myGeo =
-        Geo.init(
-            Resolution=StyleParam.GeoResolution.R50,
-            ShowCoastLines=true, 
-            CoastLineColor="RebeccaPurple",
-            ShowLand=true, 
-            LandColor="LightGreen",
-            ShowOcean=true, 
-            OceanColor="LightBlue",
-            ShowLakes=true, 
-            LakeColor="Blue",
-            ShowRivers=true, 
-            RiverColor="Blue"
+#r "nuget: Deedle"
+#r "nuget: FSharp.Data"
+open Deedle
+open FSharp.Data
+open System.IO
+open System.Text
+
+let flightsMapChart =
+    // this is not the original string, but its few first entries
+    let data = 
+        "start_lat,start_lon,end_lat,end_lon,airline,airport1,airport2,cnt
+32.89595056,-97.0372,35.04022222,-106.6091944,AA,DFW,ABQ,444
+41.979595,-87.90446417,30.19453278,-97.66987194,AA,ORD,AUS,166
+32.89595056,-97.0372,41.93887417,-72.68322833,AA,DFW,BDL,162
+18.43941667,-66.00183333,41.93887417,-72.68322833,AA,SJU,BDL,56
+32.89595056,-97.0372,33.56294306,-86.75354972,AA,DFW,BHM,168
+25.79325,-80.29055556,36.12447667,-86.67818222,AA,MIA,BNA,56
+32.89595056,-97.0372,42.3643475,-71.00517917,AA,DFW,BOS,422
+25.79325,-80.29055556,42.3643475,-71.00517917,AA,MIA,BOS,392
+41.979595,-87.90446417,42.3643475,-71.00517917,AA,ORD,BOS,430
+18.43941667,-66.00183333,42.3643475,-71.00517917,AA,SJU,BOS,56
+18.33730556,-64.97336111,42.3643475,-71.00517917,AA,STT,BOS,44
+25.79325,-80.29055556,39.17540167,-76.66819833,AA,MIA,BWI,112"
+        |> fun csv -> Frame.ReadCsvString(csv,true,separators=",")
+
+    let opacityVals : float [] = data.["cnt"] |> Series.values |> fun s -> s |> Seq.map (fun v -> v/(Seq.max s)) |> Array.ofSeq
+    let startCoords = Series.zipInner data.["start_lon"] data.["start_lat"]
+    let endCoords = Series.zipInner data.["end_lon"] data.["end_lat"]
+    let coords = Series.zipInner startCoords endCoords |> Series.values
+
+    coords 
+    |> Seq.mapi (fun i (startCoords,endCoords) ->
+        Chart.LineGeo(
+            [startCoords; endCoords],
+            Opacity = opacityVals.[i],
+            Color = "red"
         )
-    Chart.PointGeo([])
-    |> Chart.withMap myGeo
-    |> Chart.withMarginSize(0, 0, 0, 0)
+    )
+    |> Chart.Combine
+    |> Chart.withLegend(false)
+    |> Chart.withMapStyle(
+        Scope=StyleParam.GeoScope.NorthAmerica, 
+        Projection=GeoProjection.init(StyleParam.GeoProjectionType.AzimuthalEqualArea),
+        ShowLand=true,
+        LandColor = "lightgrey"
+    )
+    |> Chart.withMarginSize(0,0,50,0)
+    |> Chart.withTitle "Feb. 2011 American Airline flights"
 
-let cultureMapChart =
-    let countryGeo =
-        Geo.init(
-            Visible=false, 
-            Resolution=StyleParam.GeoResolution.R50,
-            ShowCountries=true, 
-            CountryColor="RebeccaPurple"
-        )
-    Chart.PointGeo([])
-    |> Chart.withMap countryGeo
-    |> Chart.withMarginSize(0, 0, 0, 0)
-
-cultureMapChart
-|> Chart.Show
+flightsMapChart |> Chart.Show
