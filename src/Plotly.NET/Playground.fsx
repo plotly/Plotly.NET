@@ -803,65 +803,153 @@ let values,labels =
 
 let cols =[|"black";"blue"|]
 
-open Plotly.NET.StyleParam
-
-let histogramContourChart =
-    let normal (rnd:System.Random) mu tau =
-        let mutable v1 = 2.0 * rnd.NextDouble() - 1.0
-        let mutable v2 = 2.0 * rnd.NextDouble() - 1.0
-        let mutable r = v1 * v1 + v2 * v2
-        while (r >= 1.0 || r = 0.0) do
-            v1 <- 2.0 * rnd.NextDouble() - 1.0
-            v2 <- 2.0 * rnd.NextDouble() - 1.0
-            r <- v1 * v1 + v2 * v2
-        let fac = sqrt(-2.0*(log r)/r)
-        (tau * v1 * fac + mu)
-    
-    let rnd = System.Random(5)
-    let n = 2000
-    let a = -1.
-    let b = 1.2
-    let step i = a +  ((b - a) / float (n - 1)) * float i
-    
-    //---------------------- generate data distributed in x and y direction ---------------------- 
-    let x = Array.init n (fun i -> ((step i)**3.) + (0.3 * (normal (rnd) 0. 2.) ))
-    let y = Array.init n (fun i -> ((step i)**6.) + (0.3 * (normal (rnd) 0. 2.) ))
-    [
-        Chart.Histogram2dContour (x,y,Line=Line.init(Width=0.))
-        Chart.Point(x,y,Opacity=0.3)
+let pointMapboxChart = 
+    let cityNames = [
+        "Montreal"; "Toronto"; "Vancouver"; "Calgary"; "Edmonton";
+        "Ottawa"; "Halifax"; "Victoria"; "Winnepeg"; "Regina"
     ]
+    
+    let lon = [
+        -73.57; -79.24; -123.06; -114.1; -113.28;
+        -75.43; -63.57; -123.21; -97.13; -104.6
+    ]
+    let lat = [
+        45.5; 43.4; 49.13; 51.1; 53.34; 45.24;
+        44.64; 48.25; 49.89; 50.45
+    ]
+    Chart.PointMapbox(
+        lon,lat,
+        Labels = cityNames,
+        TextPosition = StyleParam.TextPosition.TopCenter
+    )
+    |> Chart.withMapbox(
+        Mapbox.init(
+            Style=StyleParam.MapboxStyle.OpenStreetMap,
+            Center=(-104.6,50.45)
+        )
+    )
+
+
+open Deedle
+open FSharp.Data
+open System.IO
+open System.Text
+
+
+let flightsChart =
+    let data = 
+        "start_lat,start_lon,end_lat,end_lon,airline,airport1,airport2,cnt
+32.89595056,-97.0372,35.04022222,-106.6091944,AA,DFW,ABQ,444
+41.979595,-87.90446417,30.19453278,-97.66987194,AA,ORD,AUS,166
+32.89595056,-97.0372,41.93887417,-72.68322833,AA,DFW,BDL,162
+18.43941667,-66.00183333,41.93887417,-72.68322833,AA,SJU,BDL,56
+32.89595056,-97.0372,33.56294306,-86.75354972,AA,DFW,BHM,168
+25.79325,-80.29055556,36.12447667,-86.67818222,AA,MIA,BNA,56
+32.89595056,-97.0372,42.3643475,-71.00517917,AA,DFW,BOS,422
+25.79325,-80.29055556,42.3643475,-71.00517917,AA,MIA,BOS,392"
+        |> fun csv -> Frame.ReadCsvString(csv,true,separators=",")
+    
+    let opacityVals : float [] = data.["cnt"] |> Series.values |> fun s -> s |> Seq.map (fun v -> v/(Seq.max s)) |> Array.ofSeq
+    let startCoords = Series.zipInner data.["start_lon"] data.["start_lat"]
+    let endCoords = Series.zipInner data.["end_lon"] data.["end_lat"]
+    let coords = Series.zipInner startCoords endCoords |> Series.values
+
+    coords 
+    |> Seq.mapi (fun i (startCoords,endCoords) ->
+        Chart.LineMapbox(
+            [startCoords; endCoords],
+            Opacity = opacityVals.[i],
+            Color = "red"
+        )
+    )
     |> Chart.Combine
+    |> Chart.withLegend(false)
+    |> Chart.withMapbox(
+        Mapbox.init(
+            Style=StyleParam.MapboxStyle.OpenStreetMap,
+            Center=(-97.0372,32.8959)
+        )
+    )
+    |> Chart.withMarginSize(0,0,50,0)
+    |> Chart.withTitle "Feb. 2011 American Airline flights"
 
 
-let histogram2dChart =
-    let normal (rnd:System.Random) mu tau =
-        let mutable v1 = 2.0 * rnd.NextDouble() - 1.0
-        let mutable v2 = 2.0 * rnd.NextDouble() - 1.0
-        let mutable r = v1 * v1 + v2 * v2
-        while (r >= 1.0 || r = 0.0) do
-            v1 <- 2.0 * rnd.NextDouble() - 1.0
-            v2 <- 2.0 * rnd.NextDouble() - 1.0
-            r <- v1 * v1 + v2 * v2
-        let fac = sqrt(-2.0*(log r)/r)
-        (tau * v1 * fac + mu)
-    
-    let rnd = System.Random(5)
-    let n = 2000
-    let a = -1.
-    let b = 1.2
-    let step i = a +  ((b - a) / float (n - 1)) * float i
-    
-    //---------------------- generate data distributed in x and y direction ---------------------- 
-    let x = Array.init n (fun i -> ((step i)**3.) + (0.3 * (normal (rnd) 0. 2.) ))
-    let y = Array.init n (fun i -> ((step i)**6.) + (0.3 * (normal (rnd) 0. 2.) ))
-    Chart.Histogram2d (x,y)
+let dataDensityMapbox = 
+    "Date,Latitude,Longitude,Magnitude
+01/02/1965,19.246,145.616,6.0
+01/04/1965,1.8630000000000002,127.352,5.8
+01/05/1965,-20.579,-173.972,6.2
+01/08/1965,-59.076,-23.557,5.8
+01/09/1965,11.937999999999999,126.427,5.8
+01/10/1965,-13.405,166.62900000000002,6.7
+01/12/1965,27.357,87.867,5.9
+01/15/1965,-13.309000000000001,166.21200000000002,6.0
+01/16/1965,-56.452,-27.043000000000003,6.0
+01/17/1965,-24.563000000000002,178.487,5.8
+01/17/1965,-6.807,108.988,5.9
+01/24/1965,-2.608,125.95200000000001,8.2
+01/29/1965,54.636,161.703,5.5
+02/01/1965,-18.697,-177.864,5.6
+02/02/1965,37.523,73.251,6.0
+02/04/1965,-51.84,139.741,6.1
+02/04/1965,51.251000000000005,178.715,8.7
+02/04/1965,51.638999999999996,175.055,6.0
+02/04/1965,52.528,172.007,5.7
+02/04/1965,51.626000000000005,175.74599999999998,5.8
+02/04/1965,51.037,177.84799999999998,5.9
+02/04/1965,51.73,173.975,5.9
+02/04/1965,51.775,173.058,5.7
+02/04/1965,52.611000000000004,172.588,5.7
+02/04/1965,51.831,174.368,5.7
+02/04/1965,51.948,173.96900000000002,5.6
+02/04/1965,51.443000000000005,179.605,7.3
+02/04/1965,52.773,171.97400000000002,6.5
+02/04/1965,51.772,174.696,5.6
+02/04/1965,52.975,171.09099999999998,6.4
+02/04/1965,52.99,170.87400000000002,5.8
+02/04/1965,51.536,175.045,5.8
+02/04/1965,13.245,-44.922,5.8
+02/04/1965,51.812,174.206,5.7
+02/05/1965,51.762,174.84099999999998,5.7
+02/05/1965,52.438,174.321,6.3
+02/05/1965,51.946000000000005,173.84,5.7
+02/05/1965,51.738,174.56599999999997,6.0
+02/05/1965,51.486999999999995,176.558,5.6
+02/06/1965,53.008,-162.00799999999998,6.4
+02/06/1965,52.184,175.505,6.2
+02/06/1965,52.076,172.918,5.6
+02/06/1965,51.744,175.213,5.7
+02/06/1965,52.056999999999995,174.11599999999999,5.7
+02/06/1965,53.191,-161.859,6.3
+02/06/1965,51.446999999999996,176.46900000000002,5.8
+02/07/1965,51.258,173.393,5.7
+02/07/1965,52.031000000000006,175.41099999999997,5.7
+02/07/1965,51.294,179.092,5.8
+02/08/1965,55.223,165.426,5.9
+02/09/1965,-18.718,169.386,5.6
+02/09/1965,52.815,171.90400000000002,6.0
+02/12/1965,52.188,172.752,5.8
+02/15/1965,51.00899999999999,179.325,5.8
+02/15/1965,3.0260000000000002,125.95100000000001,5.9
+02/16/1965,38.908,142.095,5.7
+02/17/1965,51.693999999999996,176.446,5.7
+02/17/1965,21.526999999999997,143.08100000000002,5.6
+02/18/1965,25.011,94.186,5.6"
+    |> fun d -> Frame.ReadCsvString(d,true,separators=",")
 
-let data = 
-    [
-        "A",[|1.;4.;3.4;0.7;|]
-        "B",[|3.;1.5;1.7;2.3;|]
-        "C",[|2.;4.;3.1;5.|]
-        "D",[|4.;2.;2.;4.;|]
-    ]
-Chart.Splom(data, Color="blue")
-|> Chart.Show
+let lon = dataDensityMapbox.["Longitude"] |> Series.values
+let lat= dataDensityMapbox.["Latitude"] |> Series.values
+let magnitudes = dataDensityMapbox.["Magnitude"] |> Series.values
+Chart.DensityMapbox(
+    lon,
+    lat,
+    Z = magnitudes,
+    Radius=8.,
+    Colorscale=StyleParam.Colorscale.Viridis
+)
+|> Chart.withMapbox(
+    Mapbox.init(
+        Style = StyleParam.MapboxStyle.StamenTerrain,
+        Center = (60.,30.)
+    )
+) |> Chart.Show
