@@ -805,63 +805,40 @@ let cols =[|"black";"blue"|]
 
 open Plotly.NET.StyleParam
 
-let histogramContourChart =
-    let normal (rnd:System.Random) mu tau =
-        let mutable v1 = 2.0 * rnd.NextDouble() - 1.0
-        let mutable v2 = 2.0 * rnd.NextDouble() - 1.0
-        let mutable r = v1 * v1 + v2 * v2
-        while (r >= 1.0 || r = 0.0) do
-            v1 <- 2.0 * rnd.NextDouble() - 1.0
-            v2 <- 2.0 * rnd.NextDouble() - 1.0
-            r <- v1 * v1 + v2 * v2
-        let fac = sqrt(-2.0*(log r)/r)
-        (tau * v1 * fac + mu)
-    
-    let rnd = System.Random(5)
-    let n = 2000
-    let a = -1.
-    let b = 1.2
-    let step i = a +  ((b - a) / float (n - 1)) * float i
-    
-    //---------------------- generate data distributed in x and y direction ---------------------- 
-    let x = Array.init n (fun i -> ((step i)**3.) + (0.3 * (normal (rnd) 0. 2.) ))
-    let y = Array.init n (fun i -> ((step i)**6.) + (0.3 * (normal (rnd) 0. 2.) ))
-    [
-        Chart.Histogram2dContour (x,y,Line=Line.init(Width=0.))
-        Chart.Point(x,y,Opacity=0.3)
-    ]
-    |> Chart.Combine
+let basemapChart =
+    Chart.PointGeo([]) // deliberately empty chart to show the base map only
+    |> Chart.withMarginSize(0, 0, 0, 0)
 
+let moreFeaturesBasemapChart =
+    let myGeo =
+        Geo.init(
+            Resolution=StyleParam.GeoResolution.R50,
+            ShowCoastLines=true, 
+            CoastLineColor="RebeccaPurple",
+            ShowLand=true, 
+            LandColor="LightGreen",
+            ShowOcean=true, 
+            OceanColor="LightBlue",
+            ShowLakes=true, 
+            LakeColor="Blue",
+            ShowRivers=true, 
+            RiverColor="Blue"
+        )
+    Chart.PointGeo([])
+    |> Chart.withMap myGeo
+    |> Chart.withMarginSize(0, 0, 0, 0)
 
-let histogram2dChart =
-    let normal (rnd:System.Random) mu tau =
-        let mutable v1 = 2.0 * rnd.NextDouble() - 1.0
-        let mutable v2 = 2.0 * rnd.NextDouble() - 1.0
-        let mutable r = v1 * v1 + v2 * v2
-        while (r >= 1.0 || r = 0.0) do
-            v1 <- 2.0 * rnd.NextDouble() - 1.0
-            v2 <- 2.0 * rnd.NextDouble() - 1.0
-            r <- v1 * v1 + v2 * v2
-        let fac = sqrt(-2.0*(log r)/r)
-        (tau * v1 * fac + mu)
-    
-    let rnd = System.Random(5)
-    let n = 2000
-    let a = -1.
-    let b = 1.2
-    let step i = a +  ((b - a) / float (n - 1)) * float i
-    
-    //---------------------- generate data distributed in x and y direction ---------------------- 
-    let x = Array.init n (fun i -> ((step i)**3.) + (0.3 * (normal (rnd) 0. 2.) ))
-    let y = Array.init n (fun i -> ((step i)**6.) + (0.3 * (normal (rnd) 0. 2.) ))
-    Chart.Histogram2d (x,y)
+let cultureMapChart =
+    let countryGeo =
+        Geo.init(
+            Visible=false, 
+            Resolution=StyleParam.GeoResolution.R50,
+            ShowCountries=true, 
+            CountryColor="RebeccaPurple"
+        )
+    Chart.PointGeo([])
+    |> Chart.withMap countryGeo
+    |> Chart.withMarginSize(0, 0, 0, 0)
 
-let data = 
-    [
-        "A",[|1.;4.;3.4;0.7;|]
-        "B",[|3.;1.5;1.7;2.3;|]
-        "C",[|2.;4.;3.1;5.|]
-        "D",[|4.;2.;2.;4.;|]
-    ]
-Chart.Splom(data, Color="blue")
+cultureMapChart
 |> Chart.Show
