@@ -15,6 +15,7 @@
     <Compile Include="HtmlCodegen\DistributionCharts.fs" />
     <Compile Include="HtmlCodegen\GeoMapCharts.fs" />
     <Compile Include="HtmlCodegen\MapboxMapCharts.fs" />
+    <Compile Include="HtmlCodegen\FinanceCharts.fs" />
     <Compile Include="ImageExport.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>
