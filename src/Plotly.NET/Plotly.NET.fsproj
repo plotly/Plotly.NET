@@ -36,8 +36,9 @@
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="StyleParams.fs" />
     <Compile Include="DynamicObj.fs" />
-    <Compile Include="Frame.fs" />
     <Compile Include="Colors.fs" />
+    <Compile Include="Selection.fs" />
+    <Compile Include="Frame.fs" />
     <Compile Include="StockData.fs" />
     <Compile Include="Font.fs" />
     <Compile Include="Pathbar.fs" />
