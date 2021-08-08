@@ -5,25 +5,29 @@ type Title() =
 
     static member init
         (    
-            ?Text:  string,
-            ?Font:  Font
+            ?Text       :  string,
+            ?Font       :  Font,
+            ?Standoff   : int
         ) =    
             Title()
             |> Title.style
                 (
-                    ?Text   = Text,
-                    ?Font   = Font
+                    ?Text       = Text,
+                    ?Font       = Font,
+                    ?Standoff   = Standoff
                 )
 
     static member style
         (    
-            ?Text:  string,
-            ?Font:  Font
+            ?Text       :  string,
+            ?Font       :  Font,
+            ?Standoff   : int
         ) =
             (fun (title:Title) -> 
 
                 Text    |> DynObj.setValueOpt title "text"
                 Font    |> DynObj.setValueOpt title "font"
+                Standoff|> DynObj.setValueOpt title "standoff"
 
                 title
             )

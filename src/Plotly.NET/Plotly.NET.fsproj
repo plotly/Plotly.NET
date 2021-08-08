@@ -37,6 +37,7 @@
     <Compile Include="StyleParams.fs" />
     <Compile Include="DynamicObj.fs" />
     <Compile Include="Colors.fs" />
+    <Compile Include="Rangebreak.fs" />
     <Compile Include="TickFormatStop.fs" />
     <Compile Include="Selection.fs" />
     <Compile Include="Frame.fs" />
@@ -47,6 +48,8 @@
     <Compile Include="TreemapTiling.fs" />
     <Compile Include="Colorbar.fs" />
     <Compile Include="RangeSlider.fs" />
+    <Compile Include="Button.fs" />
+    <Compile Include="RangeSelector.fs" />
     <Compile Include="Light.fs" />
     <Compile Include="Legend.fs" />
     <Compile Include="Contours.fs" />
@@ -60,6 +63,7 @@
     <Compile Include="Marker.fs" />
     <Compile Include="Hoverlabel.fs" />
     <Compile Include="Axis.fs" />
+    <Compile Include="Polar.fs" />
     <Compile Include="Bins.fs" />
     <Compile Include="Cumulative.fs" />
     <Compile Include="Scene.fs" />
