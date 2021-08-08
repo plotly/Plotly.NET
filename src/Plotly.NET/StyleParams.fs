@@ -127,6 +127,16 @@ module StyleParam =
 
         static member convert = AnnotationEditOptions.toString >> box 
 
+    [<RequireQualifiedAccess>]
+    type AutoTypeNumbers =
+    | ConvertTypes | Strict
+        
+        static member toString = function
+            | ConvertTypes  -> "convert types" 
+            | Strict        -> "strict"
+
+        static member convert = AutoTypeNumbers.toString >> box 
+
 //--------------------------
 // #B#
 //--------------------------
@@ -986,6 +996,17 @@ module StyleParam =
 // #P#
 //--------------------------
 
+    /// Sets the method used to compute the sample's Q1 and Q3 quartiles
+    [<RequireQualifiedAccess>]
+    type PolarGridShape =
+        | Circular | Linear
+        
+        static member toString = function
+            | Circular  -> "circular"            
+            | Linear    -> "linear"            
+
+        static member convert = PolarGridShape.toString >> box
+
 //--------------------------
 // #Q#
 //--------------------------
@@ -1030,6 +1051,15 @@ module StyleParam =
             | MinMax (min,max)   -> box [|min;max|]
             | Values  arr   -> box arr
 
+    [<RequireQualifiedAccess>]
+    type RadialSide =
+        | Clockwise | CounterClockwise
+    
+        static member toString = function
+            | Clockwise         -> "clockwise" 
+            | CounterClockwise  -> "counterclockwise"
+
+        static member convert = RadialSide.toString >> box
 
 
 //--------------------------
@@ -1348,6 +1378,19 @@ module StyleParam =
             | False             -> "False"
 
         static member convert = TraceItemClickOptions.toString >> box
+
+    [<RequireQualifiedAccess>]
+    type AngularUnit =
+        | Radians
+        | Degrees
+        | Gradians
+
+        static member toString = function
+            | Radians   -> "radians"
+            | Degrees   -> "degrees"
+            | Gradians  -> "gradians"
+
+        static member convert = AngularUnit.toString >> box
 
 
 //--------------------------

@@ -366,8 +366,201 @@ module Axis =
         inherit DynamicObj ()
 
         /// Init Radialaxis type
-        static member init (applyStyle:RadialAxis->RadialAxis) =
-            RadialAxis() |> applyStyle
+        static member init 
+            (
+                ?Visible            : bool,
+                ?AxisType           : StyleParam.AxisType,
+                ?AutoTypeNumbers    : StyleParam.AutoTypeNumbers,
+                ?AutoRange          : StyleParam.AutoRange,
+                ?RangeMode          : StyleParam.RangeMode,
+                ?Range              : StyleParam.Range,
+                ?CategoryOrder      : StyleParam.CategoryOrder,
+                ?CategoryArray      : seq<#IConvertible>,
+                ?Angle              : float,
+                ?Side               : StyleParam.RadialSide,
+                ?Title              : Title,
+                ?HoverFormat        : string,
+                ?UIRevision         : string,
+                ?Color              : string,
+                ?ShowLine           : bool,
+                ?LineColor          : string,
+                ?LineWidth          : int,
+                ?ShowGrid           : bool,
+                ?GridColor          : string,
+                ?GridWidth          : int,
+                ?TickMode           : StyleParam.TickMode,
+                ?NTicks             : int,
+                ?Tick0              : #IConvertible,
+                ?DTick              : #IConvertible,
+                ?TickVals           : seq<#IConvertible>,
+                ?TickText           : seq<#IConvertible>,
+                ?Ticks              : StyleParam.TickOptions,
+                ?TickLen            : int,
+                ?TickWidth          : int,
+                ?TickColor          : string,
+                ?ShowTickLabels     : bool,
+                ?ShowTickPrefix     : StyleParam.ShowTickOption,
+                ?TickPrefix         : string,
+                ?ShowTickSuffix     : StyleParam.ShowTickOption,
+                ?TickSuffix         : string,
+                ?ShowExponent       : StyleParam.ShowExponent,
+                ?ExponentFormat     : StyleParam.ExponentFormat,
+                ?MinExponent        : float,
+                ?SeparateThousands  : bool,
+                ?TickFont           : Font,
+                ?TickAngle          : int,
+                ?TickFormat         : string,
+                ?TickFormatStops    : seq<TickFormatStop>,
+                ?Layer              : StyleParam.Layer,
+                ?Calendar           : StyleParam.Calendar
+            ) =
+                RadialAxis() 
+                |> RadialAxis.style 
+                    (
+                        ?Visible            = Visible            ,
+                        ?AxisType           = AxisType           ,
+                        ?AutoTypeNumbers    = AutoTypeNumbers    ,
+                        ?AutoRange          = AutoRange          ,
+                        ?RangeMode          = RangeMode          ,
+                        ?Range              = Range              ,
+                        ?CategoryOrder      = CategoryOrder      ,
+                        ?CategoryArray      = CategoryArray      ,
+                        ?Angle              = Angle              ,
+                        ?Side               = Side               ,
+                        ?Title              = Title              ,
+                        ?HoverFormat        = HoverFormat        ,
+                        ?UIRevision         = UIRevision         ,
+                        ?Color              = Color              ,
+                        ?ShowLine           = ShowLine           ,
+                        ?LineColor          = LineColor          ,
+                        ?LineWidth          = LineWidth          ,
+                        ?ShowGrid           = ShowGrid           ,
+                        ?GridColor          = GridColor          ,
+                        ?GridWidth          = GridWidth          ,
+                        ?TickMode           = TickMode           ,
+                        ?NTicks             = NTicks             ,
+                        ?Tick0              = Tick0              ,
+                        ?DTick              = DTick              ,
+                        ?TickVals           = TickVals           ,
+                        ?TickText           = TickText           ,
+                        ?Ticks              = Ticks              ,
+                        ?TickLen            = TickLen            ,
+                        ?TickWidth          = TickWidth          ,
+                        ?TickColor          = TickColor          ,
+                        ?ShowTickLabels     = ShowTickLabels     ,
+                        ?ShowTickPrefix     = ShowTickPrefix     ,
+                        ?TickPrefix         = TickPrefix         ,
+                        ?ShowTickSuffix     = ShowTickSuffix     ,
+                        ?TickSuffix         = TickSuffix         ,
+                        ?ShowExponent       = ShowExponent       ,
+                        ?ExponentFormat     = ExponentFormat     ,
+                        ?MinExponent        = MinExponent        ,
+                        ?SeparateThousands  = SeparateThousands  ,
+                        ?TickFont           = TickFont           ,
+                        ?TickAngle          = TickAngle          ,
+                        ?TickFormat         = TickFormat         ,
+                        ?TickFormatStops    = TickFormatStops    ,
+                        ?Layer              = Layer              ,
+                        ?Calendar           = Calendar           
+                    )
+
+        static member style 
+            (
+                ?Visible            : bool,
+                ?AxisType           : StyleParam.AxisType,
+                ?AutoTypeNumbers    : StyleParam.AutoTypeNumbers,
+                ?AutoRange          : StyleParam.AutoRange,
+                ?RangeMode          : StyleParam.RangeMode,
+                ?Range              : StyleParam.Range,
+                ?CategoryOrder      : StyleParam.CategoryOrder,
+                ?CategoryArray      : seq<#IConvertible>,
+                ?Angle              : float,
+                ?Side               : StyleParam.RadialSide,
+                ?Title              : Title,
+                ?HoverFormat        : string,
+                ?UIRevision         : string,
+                ?Color              : string,
+                ?ShowLine           : bool,
+                ?LineColor          : string,
+                ?LineWidth          : int,
+                ?ShowGrid           : bool,
+                ?GridColor          : string,
+                ?GridWidth          : int,
+                ?TickMode           : StyleParam.TickMode,
+                ?NTicks             : int,
+                ?Tick0              : #IConvertible,
+                ?DTick              : #IConvertible,
+                ?TickVals           : seq<#IConvertible>,
+                ?TickText           : seq<#IConvertible>,
+                ?Ticks              : StyleParam.TickOptions,
+                ?TickLen            : int,
+                ?TickWidth          : int,
+                ?TickColor          : string,
+                ?ShowTickLabels     : bool,
+                ?ShowTickPrefix     : StyleParam.ShowTickOption,
+                ?TickPrefix         : string,
+                ?ShowTickSuffix     : StyleParam.ShowTickOption,
+                ?TickSuffix         : string,
+                ?ShowExponent       : StyleParam.ShowExponent,
+                ?ExponentFormat     : StyleParam.ExponentFormat,
+                ?MinExponent        : float,
+                ?SeparateThousands  : bool,
+                ?TickFont           : Font,
+                ?TickAngle          : int,
+                ?TickFormat         : string,
+                ?TickFormatStops    : seq<TickFormatStop>,
+                ?Layer              : StyleParam.Layer,
+                ?Calendar           : StyleParam.Calendar
+            ) =
+                fun (radialAxis:RadialAxis) ->
+
+                    Visible            |> DynObj.setValueOpt radialAxis "visible"
+                    AxisType           |> DynObj.setValueOptBy radialAxis "type" StyleParam.AxisType.convert
+                    AutoTypeNumbers    |> DynObj.setValueOptBy radialAxis "autotypenumbers" StyleParam.AutoTypeNumbers.convert
+                    AutoRange          |> DynObj.setValueOptBy radialAxis "autorange" StyleParam.AutoRange.convert
+                    RangeMode          |> DynObj.setValueOptBy radialAxis "rangemode" StyleParam.RangeMode.convert
+                    Range              |> DynObj.setValueOptBy radialAxis "range" StyleParam.Range.convert
+                    CategoryOrder      |> DynObj.setValueOptBy radialAxis "categoryorder" StyleParam.CategoryOrder.convert
+                    CategoryArray      |> DynObj.setValueOpt radialAxis "categoryarray"
+                    Angle              |> DynObj.setValueOpt radialAxis "angle"
+                    Side               |> DynObj.setValueOptBy radialAxis "side" StyleParam.RadialSide.convert
+                    Title              |> DynObj.setValueOpt radialAxis "title"
+                    HoverFormat        |> DynObj.setValueOpt radialAxis "hoverformat"
+                    UIRevision         |> DynObj.setValueOpt radialAxis "uirevision"
+                    Color              |> DynObj.setValueOpt radialAxis "color"
+                    ShowLine           |> DynObj.setValueOpt radialAxis "showline"
+                    LineColor          |> DynObj.setValueOpt radialAxis "linecolor"
+                    LineWidth          |> DynObj.setValueOpt radialAxis "linewidth"
+                    ShowGrid           |> DynObj.setValueOpt radialAxis "showgrid"
+                    GridColor          |> DynObj.setValueOpt radialAxis "gridcolor"
+                    GridWidth          |> DynObj.setValueOpt radialAxis "gridwidth"
+                    TickMode           |> DynObj.setValueOptBy radialAxis "tickmode" StyleParam.TickMode.convert
+                    NTicks             |> DynObj.setValueOpt radialAxis "nticks"
+                    Tick0              |> DynObj.setValueOpt radialAxis "tick0"
+                    DTick              |> DynObj.setValueOpt radialAxis "dtick"
+                    TickVals           |> DynObj.setValueOpt radialAxis "tickvals"
+                    TickText           |> DynObj.setValueOpt radialAxis "ticktext"
+                    Ticks              |> DynObj.setValueOptBy radialAxis "ticks" StyleParam.TickOptions.convert
+                    TickLen            |> DynObj.setValueOpt radialAxis "ticklen"
+                    TickWidth          |> DynObj.setValueOpt radialAxis "tickwidth"
+                    TickColor          |> DynObj.setValueOpt radialAxis "tickcolor"
+                    ShowTickLabels     |> DynObj.setValueOpt radialAxis "showticklabels"
+                    ShowTickPrefix     |> DynObj.setValueOptBy radialAxis "showtickprefix" StyleParam.ShowTickOption.convert
+                    TickPrefix         |> DynObj.setValueOpt radialAxis "tickprefix"
+                    ShowTickSuffix     |> DynObj.setValueOptBy radialAxis "showticksuffix" StyleParam.ShowTickOption.convert
+                    TickSuffix         |> DynObj.setValueOpt radialAxis "ticksuffix"
+                    ShowExponent       |> DynObj.setValueOptBy radialAxis "showexponent" StyleParam.ShowExponent.convert
+                    ExponentFormat     |> DynObj.setValueOptBy radialAxis "exponentformat" StyleParam.ExponentFormat.convert
+                    MinExponent        |> DynObj.setValueOpt radialAxis "minexponent"
+                    SeparateThousands  |> DynObj.setValueOpt radialAxis "separatethousands"
+                    TickFont           |> DynObj.setValueOpt radialAxis "tickfont"
+                    TickAngle          |> DynObj.setValueOpt radialAxis "tickangle"
+                    TickFormat         |> DynObj.setValueOpt radialAxis "tickformat"
+                    TickFormatStops    |> DynObj.setValueOpt radialAxis "tickformatstops"
+                    Layer              |> DynObj.setValueOptBy radialAxis "layer" StyleParam.Layer.convert
+                    Calendar           |> DynObj.setValueOptBy radialAxis "calendar" StyleParam.Calendar.convert
+
+                    radialAxis
 
     /// Angularaxis type inherits from dynamic object
     type AngularAxis () =
