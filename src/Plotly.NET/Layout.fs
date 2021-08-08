@@ -56,8 +56,7 @@ type Layout() =
     /// Init Layout type
     static member init
         (   
-            ?Title      : string   ,
-            ?Titlefont  : Font     ,
+            ?Title      : Title,
             ?Font       : Font     ,
             ?Showlegend : bool     ,
             ?Autosize      ,
@@ -93,7 +92,6 @@ type Layout() =
             |> Layout.style
                 (
                     ?Title         = Title         ,
-                    ?Titlefont     = Titlefont     ,
                     ?Font          = Font          ,
                     ?Showlegend    = Showlegend    ,
                     ?Autosize      = Autosize      ,
@@ -128,8 +126,7 @@ type Layout() =
     // Applies the styles to Layout()
     static member style
         (   
-            ?Title,
-            ?Titlefont:Font,
+            ?Title: Title,
             ?Font:Font,
             ?Showlegend:bool,
             ?Autosize:bool,
@@ -192,7 +189,6 @@ type Layout() =
 
                 // Update
                 Font        |> DynObj.setValueOpt layout "font"
-                Titlefont   |> DynObj.setValueOpt layout "titlefont"
                 Margin      |> DynObj.setValueOpt layout "margin"
                 //xAxis       |> DynObj.setValueOpt layout "xaxis"
                 //xAxis2      |> DynObj.setValueOpt layout "xaxis2"

@@ -45,11 +45,10 @@ type Chart =
     static member Invisible () =
         let hiddenAxis() = 
             Axis.LinearAxis.init(
-                Showgrid        = false,
-                Showline        = false,
-                Showbackground  = false,
-                Showticklabels  = false,
-                Zeroline        = false
+                ShowGrid        = false,
+                ShowLine        = false,
+                ShowTickLabels  = false,
+                ZeroLine        = false
             )
         
         let trace = Trace("scatter")
@@ -1234,7 +1233,7 @@ type Chart =
 
 
     /// Uses points, line or both depending on the mode to represent data points in a polar chart
-    static member Polar(r, t,mode,
+    static member ScatterPolar(r, theta, mode,
             [<Optional;DefaultParameterValue(null)>]  ?Name,
             [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
             [<Optional;DefaultParameterValue(null)>]  ?MarkerSymbol,
@@ -1245,8 +1244,14 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>]  ?TextFont,
             [<Optional;DefaultParameterValue(null)>]  ?Dash,
             [<Optional;DefaultParameterValue(null)>]  ?Width) = 
-        Trace.initScatter (
-                TraceStyle.Scatter(R = r,T = t, Mode=mode) )               
+
+        Trace.initScatterPolar (
+            TraceStyle.ScatterPolar(
+                R       = r,
+                Theta   = theta, 
+                Mode    = mode
+            ) 
+        )
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
         |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
         |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
@@ -1254,8 +1259,9 @@ type Chart =
         |> GenericChart.ofTraceObject 
 
 
+
      /// Uses points, line or both depending on the mode to represent data points in a polar chart
-    static member Polar(rt,mode,
+    static member ScatterPolar(rt, mode,
             [<Optional;DefaultParameterValue(null)>] ?Name,
             [<Optional;DefaultParameterValue(null)>] ?Showlegend,
             [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
@@ -1266,28 +1272,41 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?TextFont,
             [<Optional;DefaultParameterValue(null)>] ?Dash,
             [<Optional;DefaultParameterValue(null)>] ?Width) = 
+
         let r,t = Seq.unzip rt 
-        Chart.Polar(r, t, mode,?Name=Name,?Showlegend=Showlegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width)
+
+        Chart.ScatterPolar(r, t, mode,
+            ?Name=Name,
+            ?Showlegend=Showlegend,
+            ?MarkerSymbol=MarkerSymbol,
+            ?Color=Color,
+            ?Opacity=Opacity,
+            ?Labels=Labels,
+            ?TextPosition=TextPosition,
+            ?TextFont=TextFont,
+            ?Dash=Dash,
+            ?Width=Width
+            )
 
 
 
-    static member WindRose(r, t,
-            [<Optional;DefaultParameterValue(null)>] ?Name,
-            [<Optional;DefaultParameterValue(null)>] ?Showlegend,
-            [<Optional;DefaultParameterValue(null)>] ?Color,
-            [<Optional;DefaultParameterValue(null)>] ?Opacity,
-            [<Optional;DefaultParameterValue(null)>] ?Labels,
-            [<Optional;DefaultParameterValue(null)>] ?TextPosition,
-            [<Optional;DefaultParameterValue(null)>] ?TextFont,
-            [<Optional;DefaultParameterValue(null)>] ?Dash,
-            [<Optional;DefaultParameterValue(null)>] ?Width) = 
-        Trace.initWindRose (
-                TraceStyle.Scatter(R = r,T = t) )               
-        |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
-        |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
-        |> TraceStyle.Marker(?Color=Color)
-        |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-        |> GenericChart.ofTraceObject 
+    //static member WindRose(r, t,
+    //        [<Optional;DefaultParameterValue(null)>] ?Name,
+    //        [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+    //        [<Optional;DefaultParameterValue(null)>] ?Color,
+    //        [<Optional;DefaultParameterValue(null)>] ?Opacity,
+    //        [<Optional;DefaultParameterValue(null)>] ?Labels,
+    //        [<Optional;DefaultParameterValue(null)>] ?TextPosition,
+    //        [<Optional;DefaultParameterValue(null)>] ?TextFont,
+    //        [<Optional;DefaultParameterValue(null)>] ?Dash,
+    //        [<Optional;DefaultParameterValue(null)>] ?Width) = 
+    //    Trace.initWindRose (
+    //            TraceStyle.Scatter(R = r,T = t) )               
+    //    |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+    //    |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
+    //    |> TraceStyle.Marker(?Color=Color)
+    //    |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+    //    |> GenericChart.ofTraceObject 
 
      /// Computes a histogram with auto-determined the bin size.
     static member Histogram(data,

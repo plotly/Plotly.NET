@@ -84,8 +84,8 @@ module ChartTemplates =
     let light = 
         let initLightAxisTemplate() =
             Axis.LinearAxis.init(
-                Showline =      true,
-                Zeroline =      true
+                ShowLine =      true,
+                ZeroLine =      true
             )
 
         let defaultLayout = 
@@ -101,8 +101,8 @@ module ChartTemplates =
     let lightMirrored = 
         let initLightAxisTemplate() =
             Axis.LinearAxis.init(
-                Showline =      true,
-                Zeroline =      true,
+                ShowLine =      true,
+                ZeroLine =      true,
                 Mirror   =      StyleParam.Mirror.All,
                 Ticks    =      StyleParam.TickOptions.Inside
                 //Showgrid =      false
@@ -122,13 +122,13 @@ module ChartTemplates =
 
         let initDarkAxisTemplate() =
             Axis.LinearAxis.init(
-                Linecolor = "rgb(204, 204, 204)", 
-                Zerolinecolor = "rgb(204, 204, 204)",
-                Gridcolor = "rgba(204, 204, 204, 0.3)",
-                Tickcolor = "rgba(204, 204, 204, 0.5)",
+                LineColor = "rgb(204, 204, 204)", 
+                ZeroLineColor = "rgb(204, 204, 204)",
+                GridColor = "rgba(204, 204, 204, 0.3)",
+                TickColor = "rgba(204, 204, 204, 0.5)",
                 Ticks     = StyleParam.TickOptions.Inside,
-                Showline  = true,
-                Zeroline  = true
+                ShowLine  = true,
+                ZeroLine  = true
             )
 
         let darkLayoutTemplate =
@@ -160,13 +160,13 @@ module ChartTemplates =
 
         let initFslabAxisTemplate() =
             Axis.LinearAxis.init(
-                Linecolor = "white", 
-                Zerolinecolor = "rgba(67, 138, 254, 0.5)",
-                Gridcolor = "rgba(67, 138, 254, 0.5)",
-                Tickcolor = "rgba(67, 138, 254, 0.5)",
+                LineColor = "white", 
+                ZeroLineColor = "rgba(67, 138, 254, 0.5)",
+                GridColor = "rgba(67, 138, 254, 0.5)",
+                TickColor = "rgba(67, 138, 254, 0.5)",
                 Ticks     = StyleParam.TickOptions.Inside,
-                Showline  = true,
-                Zeroline  = true
+                ShowLine  = true,
+                ZeroLine  = true
             )
 
         let fslabLayoutTemplate =
@@ -185,8 +185,8 @@ module ChartTemplates =
     let transparent = 
         let initTransparentAxisTemplate() =
             Axis.LinearAxis.init(
-                Showline =      true,
-                Zeroline =      true
+                ShowLine =      true,
+                ZeroLine =      true
             )
 
         let defaultLayout = 
@@ -202,8 +202,8 @@ module ChartTemplates =
     let transparentMirrored = 
         let initTransparentAxisTemplate() =
             Axis.LinearAxis.init(
-                Showline =      true,
-                Zeroline =      true,
+                ShowLine =      true,
+                ZeroLine =      true,
                 Mirror   =      StyleParam.Mirror.All,
                 Ticks    =      StyleParam.TickOptions.Inside
             )

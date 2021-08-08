@@ -187,19 +187,19 @@ module GenericChartExtensions =
         [<Extension>]
         member this.WithX_AxisStyle(title,
                 [<Optional;DefaultParameterValue(null)>] ?MinMax,
-                [<Optional;DefaultParameterValue(null)>] ?Showgrid,
-                [<Optional;DefaultParameterValue(null)>] ?Showline,
+                [<Optional;DefaultParameterValue(null)>] ?ShowGrid,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLine,
                 [<Optional;DefaultParameterValue(null)>] ?Side,
                 [<Optional;DefaultParameterValue(null)>] ?Overlaying,
                 [<Optional;DefaultParameterValue(null)>] ?Id,
                 [<Optional;DefaultParameterValue(null)>] ?Domain,
                 [<Optional;DefaultParameterValue(null)>] ?Position,
-                [<Optional;DefaultParameterValue(null)>] ?Zeroline,
+                [<Optional;DefaultParameterValue(null)>] ?ZeroLine,
                 [<Optional;DefaultParameterValue(null)>] ?Anchor) =
             let range  = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
             let domain = if Domain.IsSome then Some (StyleParam.Range.MinMax (Domain.Value)) else None
-            let xaxis  = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,?Showline=Showline,
-                                    ?Anchor=Anchor,?Side=Side,?Domain=domain,?Overlaying=Overlaying,?Position=Position,?Zeroline=Zeroline)
+            let xaxis  = Axis.LinearAxis.init(Title=title,?Range=range,?ShowGrid=ShowGrid,?ShowLine=ShowLine,
+                                    ?Anchor=Anchor,?Side=Side,?Domain=domain,?Overlaying=Overlaying,?Position=Position,?ZeroLine=ZeroLine)
             this |> Chart.withX_Axis(xaxis,?Id=Id)
 
         /// Sets the range slider for the xAxis
@@ -240,19 +240,19 @@ module GenericChartExtensions =
         [<Extension>]
         member this.WithY_AxisStyle(title,
                 [<Optional;DefaultParameterValue(null)>] ?MinMax,
-                [<Optional;DefaultParameterValue(null)>] ?Showgrid,
-                [<Optional;DefaultParameterValue(null)>] ?Showline,
+                [<Optional;DefaultParameterValue(null)>] ?ShowGrid,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLine,
                 [<Optional;DefaultParameterValue(null)>] ?Side,
                 [<Optional;DefaultParameterValue(null)>] ?Overlaying,
                 [<Optional;DefaultParameterValue(null)>] ?Id,
                 [<Optional;DefaultParameterValue(null)>] ?Domain,
                 [<Optional;DefaultParameterValue(null)>] ?Position,
-                [<Optional;DefaultParameterValue(null)>] ?Zeroline,
+                [<Optional;DefaultParameterValue(null)>] ?ZeroLine,
                 [<Optional;DefaultParameterValue(null)>] ?Anchor) =
             let range  = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
             let domain = if Domain.IsSome then Some (StyleParam.Range.MinMax (Domain.Value)) else None
-            let yaxis  = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,
-                                    ?Showline=Showline,?Anchor=Anchor,?Side=Side,?Domain=domain,?Overlaying=Overlaying,?Position=Position,?Zeroline=Zeroline)
+            let yaxis  = Axis.LinearAxis.init(Title=title,?Range=range,?ShowGrid=ShowGrid,
+                                    ?ShowLine=ShowLine,?Anchor=Anchor,?Side=Side,?Domain=domain,?Overlaying=Overlaying,?Position=Position,?ZeroLine=ZeroLine)
             this |> Chart.withY_Axis(yaxis,?Id=Id)                
 
 
@@ -272,13 +272,13 @@ module GenericChartExtensions =
         [<Extension>]
         member this.WithZ_AxisStyle(title,
                 [<Optional;DefaultParameterValue(null)>] ?MinMax,
-                [<Optional;DefaultParameterValue(null)>] ?Showgrid,
-                [<Optional;DefaultParameterValue(null)>] ?Showline,
+                [<Optional;DefaultParameterValue(null)>] ?ShowGrid,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLine,
                 [<Optional;DefaultParameterValue(null)>] ?Domain,
                 [<Optional;DefaultParameterValue(null)>] ?Anchor) =
             let range  = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
             let domain = if Domain.IsSome then Some (StyleParam.Range.MinMax (Domain.Value)) else None
-            let zaxis  = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,?Showline=Showline,?Anchor=Anchor,?Domain=domain)
+            let zaxis  = Axis.LinearAxis.init(Title=title,?Range=range,?ShowGrid=ShowGrid,?ShowLine=ShowLine,?Anchor=Anchor,?Domain=domain)
             this |> Chart.withZ_Axis(zaxis)
 
         [<CompiledName("WithColorBar")>]
@@ -560,10 +560,16 @@ module GenericChartExtensions =
         // Set the title of a Chart
         [<CompiledName("WithTitle")>]
         [<Extension>]
-        member this.WithTitle(title,[<Optional;DefaultParameterValue(null)>] ?Titlefont) =
+        member this.WithTitle(title,[<Optional;DefaultParameterValue(null)>] ?TitleFont) =
             let layout =
                 Layout() 
-                |> Layout.style(Title=title,?Titlefont=Titlefont)
+                |> Layout.style(
+                    Title=
+                        Title.init(
+                            Text = title,
+                            ?Font = TitleFont
+                        )
+                )
             GenericChart.addLayout layout this
 
         // Set showLegend of a Chart

@@ -1,20 +1,23 @@
-﻿open Plotly.NET.StyleParam
-
-
-#r "nuget: FSharp.Data"
+﻿#r "nuget: FSharp.Data"
 #r "nuget: Deedle"
 #r "nuget: FSharpAux"
 
 #load "StyleParams.fs"
 #load "DynamicObj.fs"
-#load "Frame.fs"
 #load "Colors.fs"
+#load "Rangebreak.fs"
+#load "TickFormatStop.fs"
+#load "Selection.fs"
+#load "Frame.fs"
 #load "StockData.fs"
 #load "Font.fs"
+#load "Title.fs"
 #load "Pathbar.fs"
 #load "TreemapTiling.fs"
 #load "Colorbar.fs"
 #load "RangeSlider.fs"
+#load "Button.fs"
+#load "RangeSelector.fs"
 #load "Light.fs"
 #load "Legend.fs"
 #load "Contours.fs"
@@ -28,6 +31,7 @@
 #load "Marker.fs"
 #load "Hoverlabel.fs"
 #load "Axis.fs"
+#load "Polar.fs"
 #load "Bins.fs"
 #load "Cumulative.fs"
 #load "Scene.fs"
@@ -66,15 +70,23 @@ open System.IO
 open Deedle
 open FSharpAux
 
+let simpleChart =
+    let xData = [0. .. 10.]
+    let yData = [0. .. 10.]
+    Chart.Point(xData, yData)
+    |> Chart.withTitle "Hello world!"
+    |> Chart.withX_AxisStyle ("xAxis", ShowGrid=false)
+    |> Chart.withY_AxisStyle ("yAxis", ShowGrid=false)
+    |> Chart.Show
 [
     Chart.Point([1,2;1,3]) 
     |> Chart.withY_AxisStyle("This title must")
 
     Chart.Line([1,2;1,3]) 
-    |> Chart.withY_AxisStyle("be set on the",Zeroline=false)
+    |> Chart.withY_AxisStyle("be set on the",ZeroLine=false)
     
     Chart.Spline([1,2;1,3]) 
-    |> Chart.withY_AxisStyle("respective subplots",Zeroline=false)
+    |> Chart.withY_AxisStyle("respective subplots",ZeroLine=false)
 ]
 |> Chart.SingleStack(Pattern= StyleParam.LayoutGridPattern.Coupled)
 //move xAxis to bottom and increase spacing between plots by using the withLayoutGridStyle function
@@ -359,8 +371,8 @@ let funnelArea2 =
 
 let yAxis =
     Axis.LinearAxis.init(
-        Title = "Y",
-        Showline = true,
+        Title = Title.init(Text="Y"),
+        ShowLine = true,
         Range = StyleParam.Range.MinMax (0.0, 2.0),
         Tickvals = [0.0 .. 2.0],
         Ticktext = [ "zero"; "one"; "two" ]
@@ -749,11 +761,11 @@ generateDomainRanges 8 1
 [
     Chart.Point([(0,1)]) |> Chart.withY_AxisStyle("This title")
     Chart.Point([(0,1)]) 
-    |> Chart.withY_AxisStyle("Must be set",Zeroline=false)
+    |> Chart.withY_AxisStyle("Must be set",ZeroLine=false)
     Chart.Point([(0,1)]) 
-    |> Chart.withY_AxisStyle("on the respective charts",Zeroline=false)
+    |> Chart.withY_AxisStyle("on the respective charts",ZeroLine=false)
 ]
-|> Chart.SingleStack
+|> Chart.SingleStack()
 |> Chart.withLayoutGridStyle(XSide=StyleParam.LayoutGridXSide.Bottom)
 |> Chart.withTitle("Hi i am the new SingleStackChart")
 |> Chart.withX_AxisStyle("im the shared xAxis")

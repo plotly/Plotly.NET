@@ -468,8 +468,6 @@ module Trace =
         /// <param name="StackGroup">Set several scatter traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
-        /// <param name="R">[Legacy] used for polar charts. Will be removed when adding the new polar charts.</param>
-        /// <param name="T">[Legacy] used for polar charts. Will be removed when adding the new polar charts.</param>
         /// <param name="Error_y">Sets vertical error bars for this this scatter trace.</param>
         /// <param name="Error_x">Sets horizontal error bars for this this scatter trace.</param>
         static member Scatter
@@ -483,8 +481,6 @@ module Trace =
                 ?StackGroup : string,
                 ?Orientation: StyleParam.Orientation,
                 ?GroupNorm  : StyleParam.GroupNorm, 
-                ?R          : seq<#IConvertible>,
-                ?T          : seq<#IConvertible>,
                 ?Error_y    : Error,
                 ?Error_x    : Error
             ) =
@@ -499,8 +495,6 @@ module Trace =
                     GroupNorm   |> DynObj.setValueOptBy trace "groupnorm"   StyleParam.GroupNorm.convert
                     Fill        |> DynObj.setValueOptBy trace "fill"        StyleParam.Fill.toString
                     Fillcolor   |> DynObj.setValueOpt   trace "fillcolor"                    
-                    R           |> DynObj.setValueOpt   trace "r"
-                    T           |> DynObj.setValueOpt   trace "t"
                     Error_x     |> DynObj.setValueOpt   trace "error_x"
                     Error_y     |> DynObj.setValueOpt   trace "error_y"
 
@@ -1669,6 +1663,91 @@ module Trace =
                     ZMin        |> DynObj.setValueOpt   trace "zmin"
                     ZMid        |> DynObj.setValueOpt   trace "zmid"
                     ZMax        |> DynObj.setValueOpt   trace "zmax"
+
+                    trace
+                )
+
+        static member ScatterPolar
+            (
+                ?Name               : string,
+                ?Visible            : StyleParam.Visible,
+                ?ShowLegend         : bool,
+                ?LegendRank         : int,
+                ?LegendGroup        : string,
+                ?LegendGroupTitle   : obj,
+                ?Opacity            : float,
+                ?Mode               : StyleParam.Mode,
+                ?Ids                : seq<#IConvertible>,
+                ?R                  : seq<#IConvertible>,
+                ?R0                 : IConvertible,
+                ?DR                 : IConvertible,
+                ?Theta              : seq<#IConvertible>,
+                ?Theta0             : #IConvertible,
+                ?DTheta             : #IConvertible,
+                ?ThetaUnit          : StyleParam.AngularUnit,
+                ?Text               : seq<#IConvertible>,
+                ?TextPosition       : StyleParam.TextInfoPosition,
+                ?TextTemplate       : seq<#IConvertible>,
+                ?HoverText          : seq<#IConvertible>,
+                ?HoverInfo          : string,
+                ?HoverTemplate      : seq<#IConvertible>,
+                ?Meta               : seq<#IConvertible>,
+                ?CustomData         : seq<#IConvertible>,
+                ?Subplot            : string,
+                ?Marker             : Marker,
+                ?Line               : Line,
+                ?TextFont           : Font,
+                ?SelectedPoints     : seq<#IConvertible>,
+                ?Selected           : Selection,
+                ?Unselected         : Selection,
+                ?ClipOnAxis         : bool,
+                ?ConnectGaps        : bool,
+                ?Fill               : StyleParam.Fill,
+                ?FillColor          : string,
+                ?HoverLabel         : Hoverlabel,
+                ?HoverOn            : string,
+                ?UIRevision         : seq<#IConvertible>
+            ) =
+                (fun (trace:('T :> Trace)) -> 
+
+                    Name               |> DynObj.setValueOpt trace "name"
+                    Visible            |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+                    ShowLegend         |> DynObj.setValueOpt trace "showlegend"
+                    LegendRank         |> DynObj.setValueOpt trace "legendrank"
+                    LegendGroup        |> DynObj.setValueOpt trace "legendgroup"
+                    LegendGroupTitle   |> DynObj.setValueOpt trace "legendgrouptitle"
+                    Opacity            |> DynObj.setValueOpt trace "opacity"
+                    Mode               |> DynObj.setValueOptBy trace "mode" StyleParam.Mode.convert
+                    Ids                |> DynObj.setValueOpt trace "ids"
+                    R                  |> DynObj.setValueOpt trace "r"
+                    R0                 |> DynObj.setValueOpt trace "r0"
+                    DR                 |> DynObj.setValueOpt trace "dr"
+                    Theta              |> DynObj.setValueOpt trace "theta"
+                    Theta0             |> DynObj.setValueOpt trace "theta0"
+                    DTheta             |> DynObj.setValueOpt trace "dtheta"
+                    ThetaUnit          |> DynObj.setValueOptBy trace "thetaunit" StyleParam.AngularUnit.convert
+                    Text               |> DynObj.setValueOpt trace "text"
+                    TextPosition       |> DynObj.setValueOptBy trace "textposition" StyleParam.TextInfoPosition.convert
+                    TextTemplate       |> DynObj.setValueOpt trace "texttemplate"
+                    HoverText          |> DynObj.setValueOpt trace "hovertext"
+                    HoverInfo          |> DynObj.setValueOpt trace "hoverinfo"
+                    HoverTemplate      |> DynObj.setValueOpt trace "hovertemplate"
+                    Meta               |> DynObj.setValueOpt trace "meta"
+                    CustomData         |> DynObj.setValueOpt trace "customdata"
+                    Subplot            |> DynObj.setValueOpt trace "subplot"
+                    Marker             |> DynObj.setValueOpt trace "marker"
+                    Line               |> DynObj.setValueOpt trace "line"
+                    TextFont           |> DynObj.setValueOpt trace "textfont"
+                    SelectedPoints     |> DynObj.setValueOpt trace "selectedpoints"
+                    Selected           |> DynObj.setValueOpt trace "selected"
+                    Unselected         |> DynObj.setValueOpt trace "unselected"
+                    ClipOnAxis         |> DynObj.setValueOpt trace "cliponaxis"
+                    ConnectGaps        |> DynObj.setValueOpt trace "connectgaps"
+                    Fill               |> DynObj.setValueOptBy trace "fill" StyleParam.Fill.convert
+                    FillColor          |> DynObj.setValueOpt trace "fillcolor"
+                    HoverLabel         |> DynObj.setValueOpt trace "hoverlabel"
+                    HoverOn            |> DynObj.setValueOpt trace "hoveron"
+                    UIRevision         |> DynObj.setValueOpt trace "uirevision"
 
                     trace
                 )

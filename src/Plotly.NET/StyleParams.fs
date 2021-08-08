@@ -137,6 +137,19 @@ module StyleParam =
 
         static member convert = AutoTypeNumbers.toString >> box 
 
+    [<RequireQualifiedAccess>]
+    type AngularUnit =
+        | Radians
+        | Degrees
+        | Gradians
+
+        static member toString = function
+            | Radians   -> "radians"
+            | Degrees   -> "degrees"
+            | Gradians  -> "gradians"
+
+        static member convert = AngularUnit.toString >> box
+
 //--------------------------
 // #B#
 //--------------------------
@@ -331,6 +344,42 @@ module StyleParam =
 
         static member convert = ConnectorMode.toString >> box
 
+    /// If the axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or those of the other axis), determines how that happens: by increasing the "range", or by decreasing the "domain". Default is "domain" for axes containing image traces, "range" otherwise.
+    [<RequireQualifiedAccess>]
+    type AxisConstraint =
+        | Range | Domain  
+    
+        static member toString = function
+            | Range     -> "range"
+            | Domain    -> "domain"
+
+        static member convert = AxisConstraint.toString >> box
+
+    [<RequireQualifiedAccess>]
+    type AxisConstraintDirection =
+        | Left | Center | Right | Top | Middle | Bottom
+    
+        static member toString = function
+            | Left      -> "left" 
+            | Center    -> "center" 
+            | Right     -> "right" 
+            | Top       -> "top" 
+            | Middle    -> "middle" 
+            | Bottom    -> "bottom"
+
+        static member convert = AxisConstraintDirection.toString >> box
+
+    [<RequireQualifiedAccess>]
+    type CategoryTickAnchor =
+        | Labels | Boundaries  
+    
+        static member toString = function
+            | Labels    -> "labels"
+            | Boundaries-> "boundaries"
+
+        static member convert = CategoryTickAnchor.toString >> box
+
+        
 //--------------------------
 // #D#
 //--------------------------
@@ -681,11 +730,16 @@ module StyleParam =
     /// Specifies whether shapes are drawn below or above traces. Default is Above
     [<RequireQualifiedAccess>]
     type Layer =
-        | Below | Above
+        | Below 
+        | Above 
+        | AboveTraces 
+        | BelowTraces
     
         static member toString = function
-            | Below   -> "below"
-            | Above   -> "above"
+            | Below         -> "below"
+            | Above         -> "above"
+            | AboveTraces   -> "above traces"
+            | BelowTraces   -> "below traces"
 
         static member convert = Layer.toString >> box
 
@@ -768,7 +822,7 @@ module StyleParam =
         static member convert = LayoutGridYSide.toString >> box
 
     [<RequireQualifiedAccess>]
-    type LegendXAnchorPosition =
+    type XAnchorPosition =
         | Auto
         | Left
         | Center
@@ -780,10 +834,10 @@ module StyleParam =
             | Center    -> "center"
             | Right     -> "right"
 
-        static member convert = LegendXAnchorPosition.toString >> box
+        static member convert = XAnchorPosition.toString >> box
 
     [<RequireQualifiedAccess>]
-    type LegendYAnchorPosition =
+    type YAnchorPosition =
         | Auto
         | Top
         | Middle
@@ -795,7 +849,7 @@ module StyleParam =
             | Middle    -> "middle"
             | Bottom    -> "bottom"
 
-        static member convert = LegendYAnchorPosition.toString >> box
+        static member convert = YAnchorPosition.toString >> box
 
 //--------------------------
 // #M#
@@ -1051,16 +1105,20 @@ module StyleParam =
             | MinMax (min,max)   -> box [|min;max|]
             | Values  arr   -> box arr
 
+    /// Determines a pattern on the time line that generates breaks.
     [<RequireQualifiedAccess>]
-    type RadialSide =
-        | Clockwise | CounterClockwise
+    type RangebreakPattern =
+        | DayOfWeek
+        | Hour
+        | NoPattern
     
         static member toString = function
-            | Clockwise         -> "clockwise" 
-            | CounterClockwise  -> "counterclockwise"
+            | DayOfWeek -> "day of week"
+            | Hour      -> "hour"
+            | NoPattern -> ""
 
-        static member convert = RadialSide.toString >> box
-
+        static member convert = RangebreakPattern.toString >> box
+    
 
 //--------------------------
 // #S#
@@ -1210,8 +1268,8 @@ module StyleParam =
             | Diameter  -> "diameter"
             | Area      -> "area"
       
+        static member convert = SizeMode.toString >> box
    
-        static member convert = Side.toString >> box
 
     /// Choose between algorithms ('best' or 'fast') to smooth data linked to 'z'. The default value is false corresponding to no smoothing.
     [<RequireQualifiedAccess>]
@@ -1222,6 +1280,51 @@ module StyleParam =
             | False -> box false
             | Best  -> box "best"
             | Fast  -> box "fast"
+
+    /// Determines the drawing mode for the spike line
+    [<RequireQualifiedAccess>]
+    type SpikeMode =
+        | Axis 
+        | Across
+        | AxisAcross
+        | Marker
+        | AxisMarker
+        | AxisAcrossMarker
+
+        static member toString = function
+            | Axis              -> "toaxis" 
+            | Across            -> "across"
+            | AxisAcross        -> "toaxis+across"
+            | Marker            -> "marker"
+            | AxisMarker        -> "toaxis+marker"
+            | AxisAcrossMarker  -> "toaxis+across+marker"
+      
+        static member convert = SpikeMode.toString >> box
+        
+    /// Determines whether spikelines are stuck to the cursor or to the closest datapoints.
+    [<RequireQualifiedAccess>]
+    type SpikeSnap =
+        | Data       
+        | Cursor     
+        | HoveredData
+
+        static member toString = function
+            | Data          -> "data" 
+            | Cursor        -> "cursor" 
+            | HoveredData   -> "hovered data"
+      
+        static member convert = SpikeSnap.toString >> box        
+
+    /// Determines whether spikelines are stuck to the cursor or to the closest datapoints.
+    [<RequireQualifiedAccess>]
+    type TimeStepMode =
+        | Backward | ToDate
+
+        static member toString = function
+            | Backward  -> "backward" 
+            | ToDate    -> "todate"
+      
+        static member convert = TimeStepMode.toString >> box
 
 //--------------------------
 // #T#
@@ -1380,17 +1483,78 @@ module StyleParam =
         static member convert = TraceItemClickOptions.toString >> box
 
     [<RequireQualifiedAccess>]
-    type AngularUnit =
-        | Radians
-        | Degrees
-        | Gradians
+    type TickLabelMode =
+        | Instant
+        | Period
 
         static member toString = function
-            | Radians   -> "radians"
-            | Degrees   -> "degrees"
-            | Gradians  -> "gradians"
+            | Instant   -> "instant"
+            | Period    -> "period"
 
-        static member convert = AngularUnit.toString >> box
+        static member convert = TickLabelMode.toString >> box
+
+    [<RequireQualifiedAccess>]
+    type TickLabelPosition =
+        | Outside
+        | Inside
+        | OutsideTop
+        | InsideTop
+        | OutsideLeft
+        | InsideLeft
+        | OutsideRight
+        | InsideRight
+        | OutsideBottom
+        | InsideBottom
+
+        static member toString = function
+            | Outside       -> "outside" 
+            | Inside        -> "inside" 
+            | OutsideTop    -> "outside top" 
+            | InsideTop     -> "inside top" 
+            | OutsideLeft   -> "outside left" 
+            | InsideLeft    -> "inside left" 
+            | OutsideRight  -> "outside right" 
+            | InsideRight   -> "inside right" 
+            | OutsideBottom -> "outside bottom" 
+            | InsideBottom  -> "inside bottom"
+
+        static member convert = TickLabelPosition.toString >> box
+
+    [<RequireQualifiedAccess>]
+    type TickLabelOverflow =
+        | Allow         
+        | HidePastDiv   
+        | HidePastDomain
+
+        static member toString = function
+            | Allow         -> "allow" 
+            | HidePastDiv   -> "hide past div" 
+            | HidePastDomain-> "hide past domain" 
+
+
+        static member convert = TickLabelOverflow.toString >> box
+
+    [<RequireQualifiedAccess>]
+    type TimeStep =
+        | Month 
+        | Year  
+        | Day   
+        | Hour  
+        | Minute
+        | Second
+        | All   
+
+        static member toString = function
+            | Month   -> "month" 
+            | Year    -> "year"  
+            | Day     -> "day"   
+            | Hour    -> "hour"  
+            | Minute  -> "minute"
+            | Second  -> "second"
+            | All     -> "all"   
+
+
+        static member convert = TimeStep.toString >> box
 
 
 //--------------------------
