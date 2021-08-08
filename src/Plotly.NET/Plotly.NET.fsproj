@@ -41,6 +41,7 @@
     <Compile Include="Frame.fs" />
     <Compile Include="StockData.fs" />
     <Compile Include="Font.fs" />
+    <Compile Include="Title.fs" />
     <Compile Include="Pathbar.fs" />
     <Compile Include="TreemapTiling.fs" />
     <Compile Include="Colorbar.fs" />
