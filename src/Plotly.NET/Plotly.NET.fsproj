@@ -37,6 +37,7 @@
     <Compile Include="StyleParams.fs" />
     <Compile Include="DynamicObj.fs" />
     <Compile Include="Colors.fs" />
+    <Compile Include="TickFormatStop.fs" />
     <Compile Include="Selection.fs" />
     <Compile Include="Frame.fs" />
     <Compile Include="StockData.fs" />
