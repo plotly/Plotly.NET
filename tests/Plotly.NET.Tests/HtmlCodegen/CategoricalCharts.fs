@@ -111,7 +111,7 @@ let ``Sankey charts`` =
             |> chartGeneratedContains sankey1
         );
         testCase "Sankey layout" ( fun () ->
-            "var layout = {\"title\":\"Sankey Sample\"};"
+            "var layout = {\"title\":{\"text\":\"Sankey Sample\"}};"
             |> chartGeneratedContains sankey1
         );
     ]

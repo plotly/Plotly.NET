@@ -25,7 +25,7 @@ let ``3D Scatter charts`` =
             |> chartGeneratedContains scatterChart
         );
         testCase "3D Scatter charts layout" ( fun () ->
-            "var layout = {\"scene\":{\"xaxis\":{\"title\":\"my x-axis\"},\"yaxis\":{\"title\":\"my y-axis\"},\"zaxis\":{\"title\":\"my z-axis\"}},\"width\":800.0,\"height\":800.0};"
+            "var layout = {\"scene\":{\"xaxis\":{\"title\":{\"text\":\"my x-axis\"}},\"yaxis\":{\"title\":{\"text\":\"my y-axis\"}},\"zaxis\":{\"title\":{\"text\":\"my z-axis\"}}},\"width\":800.0,\"height\":800.0};"
             |> chartGeneratedContains scatterChart
         );
     ]
@@ -60,7 +60,7 @@ let ``Line charts`` =
             |> chartGeneratedContainsList lineChart
         );
         testCase "Line layout" ( fun () ->
-            "var layout = {\"scene\":{\"xaxis\":{\"title\":\"x-axis\"},\"yaxis\":{\"title\":\"y-axis\"},\"zaxis\":{\"title\":\"z-axis\"}},\"width\":800.0,\"height\":800.0};"
+            "var layout = {\"scene\":{\"xaxis\":{\"title\"{\"text\":\"x-axis\"}},\"yaxis\":{\"title\":{\"text\":\"y-axis\"}},\"zaxis\":{\"title\":{\"text\":\"z-axis\"}}},\"width\":800.0,\"height\":800.0};"
             |> chartGeneratedContains lineChart
         );
     ]
