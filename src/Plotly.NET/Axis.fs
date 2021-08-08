@@ -360,7 +360,6 @@ module Axis =
                     axis
                 )
 
-
     /// Radialaxis type inherits from dynamic object
     type RadialAxis () =
         inherit DynamicObj ()
@@ -377,7 +376,7 @@ module Axis =
                 ?CategoryOrder      : StyleParam.CategoryOrder,
                 ?CategoryArray      : seq<#IConvertible>,
                 ?Angle              : float,
-                ?Side               : StyleParam.RadialSide,
+                ?Side               : StyleParam.Direction,
                 ?Title              : Title,
                 ?HoverFormat        : string,
                 ?UIRevision         : string,
@@ -475,7 +474,7 @@ module Axis =
                 ?CategoryOrder      : StyleParam.CategoryOrder,
                 ?CategoryArray      : seq<#IConvertible>,
                 ?Angle              : float,
-                ?Side               : StyleParam.RadialSide,
+                ?Side               : StyleParam.Direction,
                 ?Title              : Title,
                 ?HoverFormat        : string,
                 ?UIRevision         : string,
@@ -523,7 +522,7 @@ module Axis =
                     CategoryOrder      |> DynObj.setValueOptBy radialAxis "categoryorder" StyleParam.CategoryOrder.convert
                     CategoryArray      |> DynObj.setValueOpt radialAxis "categoryarray"
                     Angle              |> DynObj.setValueOpt radialAxis "angle"
-                    Side               |> DynObj.setValueOptBy radialAxis "side" StyleParam.RadialSide.convert
+                    Side               |> DynObj.setValueOptBy radialAxis "side" StyleParam.Direction.convert
                     Title              |> DynObj.setValueOpt radialAxis "title"
                     HoverFormat        |> DynObj.setValueOpt radialAxis "hoverformat"
                     UIRevision         |> DynObj.setValueOpt radialAxis "uirevision"
@@ -567,8 +566,190 @@ module Axis =
         inherit DynamicObj ()
 
         /// Init Angularaxis type
-        static member init (applyStyle:AngularAxis->AngularAxis) =
-            AngularAxis() |> applyStyle
+        static member init 
+            (
+                ?Visible            : bool,
+                ?AxisType           : StyleParam.AxisType,
+                ?AutoTypeNumbers    : StyleParam.AutoTypeNumbers,
+                ?CategoryOrder      : StyleParam.CategoryOrder,
+                ?CategoryArray      : seq<#IConvertible>,
+                ?ThetaUnit          : StyleParam.AngularUnit,
+                ?Period             : float,
+                ?Direction          : StyleParam.Direction,
+                ?Rotation           : int,
+                ?HoverFormat        : string,
+                ?UIRevision         : string,
+                ?Color              : string,
+                ?ShowLine           : bool,
+                ?LineColor          : string,
+                ?LineWidth          : int,
+                ?ShowGrid           : bool,
+                ?GridColor          : string,
+                ?GridWidth          : int,
+                ?TickMode           : StyleParam.TickMode,
+                ?NTicks             : int,
+                ?Tick0              : #IConvertible,
+                ?DTick              : #IConvertible,
+                ?TickVals           : seq<#IConvertible>,
+                ?TickText           : seq<#IConvertible>,
+                ?Ticks              : StyleParam.TickOptions,
+                ?TickLen            : int,
+                ?TickWidth          : int,
+                ?TickColor          : string,
+                ?ShowTickLabels     : bool,
+                ?ShowTickPrefix     : StyleParam.ShowTickOption,
+                ?TickPrefix         : string,
+                ?ShowTickSuffix     : StyleParam.ShowTickOption,
+                ?TickSuffix         : string,
+                ?ShowExponent       : StyleParam.ShowExponent,
+                ?ExponentFormat     : StyleParam.ExponentFormat,
+                ?MinExponent        : float,
+                ?SeparateThousands  : bool,
+                ?TickFont           : Font,
+                ?TickAngle          : int,
+                ?TickFormat         : string,
+                ?TickFormatStops    : seq<TickFormatStop>,
+                ?Layer              : StyleParam.Layer
+            ) =
+                AngularAxis() 
+                |> AngularAxis.style 
+                    (
+                        ?Visible            = Visible          ,
+                        ?AxisType           = AxisType         ,
+                        ?AutoTypeNumbers    = AutoTypeNumbers  ,
+                        ?CategoryOrder      = CategoryOrder    ,
+                        ?CategoryArray      = CategoryArray    ,
+                        ?ThetaUnit          = ThetaUnit        ,
+                        ?Period             = Period           ,
+                        ?Direction          = Direction        ,
+                        ?Rotation           = Rotation         ,
+                        ?HoverFormat        = HoverFormat      ,
+                        ?UIRevision         = UIRevision       ,
+                        ?Color              = Color            ,
+                        ?ShowLine           = ShowLine         ,
+                        ?LineColor          = LineColor        ,
+                        ?LineWidth          = LineWidth        ,
+                        ?ShowGrid           = ShowGrid         ,
+                        ?GridColor          = GridColor        ,
+                        ?GridWidth          = GridWidth        ,
+                        ?TickMode           = TickMode         ,
+                        ?NTicks             = NTicks           ,
+                        ?Tick0              = Tick0            ,
+                        ?DTick              = DTick            ,
+                        ?TickVals           = TickVals         ,
+                        ?TickText           = TickText         ,
+                        ?Ticks              = Ticks            ,
+                        ?TickLen            = TickLen          ,
+                        ?TickWidth          = TickWidth        ,
+                        ?TickColor          = TickColor        ,
+                        ?ShowTickLabels     = ShowTickLabels   ,
+                        ?ShowTickPrefix     = ShowTickPrefix   ,
+                        ?TickPrefix         = TickPrefix       ,
+                        ?ShowTickSuffix     = ShowTickSuffix   ,
+                        ?TickSuffix         = TickSuffix       ,
+                        ?ShowExponent       = ShowExponent     ,
+                        ?ExponentFormat     = ExponentFormat   ,
+                        ?MinExponent        = MinExponent      ,
+                        ?SeparateThousands  = SeparateThousands,
+                        ?TickFont           = TickFont         ,
+                        ?TickAngle          = TickAngle        ,
+                        ?TickFormat         = TickFormat       ,
+                        ?TickFormatStops    = TickFormatStops  ,
+                        ?Layer              = Layer            
+                    )
+
+        static member style 
+            (
+                ?Visible            : bool,
+                ?AxisType           : StyleParam.AxisType,
+                ?AutoTypeNumbers    : StyleParam.AutoTypeNumbers,
+                ?CategoryOrder      : StyleParam.CategoryOrder,
+                ?CategoryArray      : seq<#IConvertible>,
+                ?ThetaUnit          : StyleParam.AngularUnit,
+                ?Period             : float,
+                ?Direction          : StyleParam.Direction,
+                ?Rotation           : int,
+                ?HoverFormat        : string,
+                ?UIRevision         : string,
+                ?Color              : string,
+                ?ShowLine           : bool,
+                ?LineColor          : string,
+                ?LineWidth          : int,
+                ?ShowGrid           : bool,
+                ?GridColor          : string,
+                ?GridWidth          : int,
+                ?TickMode           : StyleParam.TickMode,
+                ?NTicks             : int,
+                ?Tick0              : #IConvertible,
+                ?DTick              : #IConvertible,
+                ?TickVals           : seq<#IConvertible>,
+                ?TickText           : seq<#IConvertible>,
+                ?Ticks              : StyleParam.TickOptions,
+                ?TickLen            : int,
+                ?TickWidth          : int,
+                ?TickColor          : string,
+                ?ShowTickLabels     : bool,
+                ?ShowTickPrefix     : StyleParam.ShowTickOption,
+                ?TickPrefix         : string,
+                ?ShowTickSuffix     : StyleParam.ShowTickOption,
+                ?TickSuffix         : string,
+                ?ShowExponent       : StyleParam.ShowExponent,
+                ?ExponentFormat     : StyleParam.ExponentFormat,
+                ?MinExponent        : float,
+                ?SeparateThousands  : bool,
+                ?TickFont           : Font,
+                ?TickAngle          : int,
+                ?TickFormat         : string,
+                ?TickFormatStops    : seq<TickFormatStop>,
+                ?Layer              : StyleParam.Layer
+            ) =
+                fun (angularAxis: AngularAxis) ->
+                    
+                    Visible             |> DynObj.setValueOpt angularAxis "visible"
+                    AxisType            |> DynObj.setValueOptBy angularAxis "type" StyleParam.AxisType.convert
+                    AutoTypeNumbers     |> DynObj.setValueOptBy angularAxis "autotypenumbers" StyleParam.AutoTypeNumbers.convert
+                    CategoryOrder       |> DynObj.setValueOptBy angularAxis "categoryorder" StyleParam.CategoryOrder.convert
+                    CategoryArray       |> DynObj.setValueOpt angularAxis "categoryarray"
+                    ThetaUnit           |> DynObj.setValueOpt angularAxis "thetaunit"
+                    Period              |> DynObj.setValueOpt angularAxis "Period"
+                    Direction           |> DynObj.setValueOpt angularAxis "Direction"
+                    Rotation            |> DynObj.setValueOpt angularAxis "Rotation"
+                    HoverFormat         |> DynObj.setValueOpt angularAxis "hoverformat"
+                    UIRevision          |> DynObj.setValueOpt angularAxis "uirevision"
+                    Color               |> DynObj.setValueOpt angularAxis "color"
+                    ShowLine            |> DynObj.setValueOpt angularAxis "showline"
+                    LineColor           |> DynObj.setValueOpt angularAxis "linecolor"
+                    LineWidth           |> DynObj.setValueOpt angularAxis "linewidth"
+                    ShowGrid            |> DynObj.setValueOpt angularAxis "showgrid"
+                    GridColor           |> DynObj.setValueOpt angularAxis "gridcolor"
+                    GridWidth           |> DynObj.setValueOpt angularAxis "gridwidth"
+                    TickMode            |> DynObj.setValueOptBy angularAxis "tickmode" StyleParam.TickMode.convert
+                    NTicks              |> DynObj.setValueOpt angularAxis "nticks"
+                    Tick0               |> DynObj.setValueOpt angularAxis "tick0"
+                    DTick               |> DynObj.setValueOpt angularAxis "dtick"
+                    TickVals            |> DynObj.setValueOpt angularAxis "tickvals"
+                    TickText            |> DynObj.setValueOpt angularAxis "ticktext"
+                    Ticks               |> DynObj.setValueOptBy angularAxis "ticks" StyleParam.TickOptions.convert
+                    TickLen             |> DynObj.setValueOpt angularAxis "ticklen"
+                    TickWidth           |> DynObj.setValueOpt angularAxis "tickwidth"
+                    TickColor           |> DynObj.setValueOpt angularAxis "tickcolor"
+                    ShowTickLabels      |> DynObj.setValueOpt angularAxis "showticklabels"
+                    ShowTickPrefix      |> DynObj.setValueOptBy angularAxis "showtickprefix" StyleParam.ShowTickOption.convert
+                    TickPrefix          |> DynObj.setValueOpt angularAxis "tickprefix"
+                    ShowTickSuffix      |> DynObj.setValueOptBy angularAxis "showticksuffix" StyleParam.ShowTickOption.convert
+                    TickSuffix          |> DynObj.setValueOpt angularAxis "ticksuffix"
+                    ShowExponent        |> DynObj.setValueOptBy angularAxis "showexponent" StyleParam.ShowExponent.convert
+                    ExponentFormat      |> DynObj.setValueOptBy angularAxis "exponentformat" StyleParam.ExponentFormat.convert
+                    MinExponent         |> DynObj.setValueOpt angularAxis "minexponent"
+                    SeparateThousands   |> DynObj.setValueOpt angularAxis "separatethousands"
+                    TickFont            |> DynObj.setValueOpt angularAxis "tickfont"
+                    TickAngle           |> DynObj.setValueOpt angularAxis "tickangle"
+                    TickFormat          |> DynObj.setValueOpt angularAxis "tickformat"
+                    TickFormatStops     |> DynObj.setValueOpt angularAxis "tickformatstops"
+                    Layer               |> DynObj.setValueOptBy angularAxis "layer" StyleParam.Layer.convert
+
+                    angularAxis
+
 
 
 
