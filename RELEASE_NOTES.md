@@ -59,7 +59,7 @@
 
 These changes do not necessarily reflect changes on the usage layer, but should be attributed/noted nonetheless:
 
- * huge amounts of tests have been added by [@WhiteBlackGoose](https://github.com/WhiteBlackGoose), thanks!
+ * 149 tests for html output generation have been added by [@WhiteBlackGoose](https://github.com/WhiteBlackGoose) via [#104](https://github.com/plotly/Plotly.NET/issues/104), thanks!
 
 ### 1.2.2 - Apr 9 2020
  * [Opening Charts is now more or less OS agnostic](https://github.com/plotly/Plotly.NET/commit/f6e3dceade085e43e7e56b478b9cf7b533a4fe55)
