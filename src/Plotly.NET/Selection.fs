@@ -24,9 +24,12 @@ type MarkerSelectionStyle() =
             ?Size:      float
         ) =
             (fun (markerSelectionStyle:MarkerSelectionStyle) -> 
+
                 Opacity    |> DynObj.setValueOpt markerSelectionStyle "opacity"
                 Color      |> DynObj.setValueOpt markerSelectionStyle "color"
                 Size       |> DynObj.setValueOpt markerSelectionStyle "size"
+
+                markerSelectionStyle
             )
 
 type FontSelectionStyle() =
@@ -76,4 +79,5 @@ type Selection () =
             (fun (selection:Selection) -> 
                 MarkerSelectionStyle |> DynObj.setValueOpt selection "marker"
                 FontSelectionStyle   |> DynObj.setValueOpt selection "textfont"
+                selection
             )
