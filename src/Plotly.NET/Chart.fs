@@ -1261,7 +1261,9 @@ type Chart =
 
 
      /// Uses points, line or both depending on the mode to represent data points in a polar chart
-    static member ScatterPolar(rt, mode,
+    static member ScatterPolar
+        (
+            rtheta, mode,
             [<Optional;DefaultParameterValue(null)>] ?Name,
             [<Optional;DefaultParameterValue(null)>] ?Showlegend,
             [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
@@ -1271,23 +1273,222 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?TextPosition,
             [<Optional;DefaultParameterValue(null)>] ?TextFont,
             [<Optional;DefaultParameterValue(null)>] ?Dash,
-            [<Optional;DefaultParameterValue(null)>] ?Width) = 
+            [<Optional;DefaultParameterValue(null)>] ?Width
+        ) = 
 
-        let r,t = Seq.unzip rt 
+            let r,t = Seq.unzip rtheta
 
-        Chart.ScatterPolar(r, t, mode,
-            ?Name=Name,
-            ?Showlegend=Showlegend,
-            ?MarkerSymbol=MarkerSymbol,
-            ?Color=Color,
-            ?Opacity=Opacity,
-            ?Labels=Labels,
-            ?TextPosition=TextPosition,
-            ?TextFont=TextFont,
-            ?Dash=Dash,
-            ?Width=Width
+            Chart.ScatterPolar(
+                r, t, mode,
+                ?Name=Name,
+                ?Showlegend=Showlegend,
+                ?MarkerSymbol=MarkerSymbol,
+                ?Color=Color,
+                ?Opacity=Opacity,
+                ?Labels=Labels,
+                ?TextPosition=TextPosition,
+                ?TextFont=TextFont,
+                ?Dash=Dash,
+                ?Width=Width
             )
 
+    /// 
+    static member PointPolar
+        (
+            r, theta,
+            [<Optional;DefaultParameterValue(null)>]  ?Name,
+            [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
+            [<Optional;DefaultParameterValue(null)>]  ?MarkerSymbol,
+            [<Optional;DefaultParameterValue(null)>]  ?Color,
+            [<Optional;DefaultParameterValue(null)>]  ?Opacity,
+            [<Optional;DefaultParameterValue(null)>]  ?Labels,
+            [<Optional;DefaultParameterValue(null)>]  ?TextPosition,
+            [<Optional;DefaultParameterValue(null)>]  ?TextFont
+        ) = 
+
+            let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
+            
+            Trace.initScatterPolar (
+                TraceStyle.ScatterPolar(
+                    R       = r,
+                    Theta   = theta, 
+                    Mode    = changeMode StyleParam.Mode.Markers
+                ) 
+            )
+            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
+            |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+            |> GenericChart.ofTraceObject 
+
+    /// 
+    static member PointPolar
+        (
+            rtheta,
+            [<Optional;DefaultParameterValue(null)>]  ?Name,
+            [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
+            [<Optional;DefaultParameterValue(null)>]  ?MarkerSymbol,
+            [<Optional;DefaultParameterValue(null)>]  ?Color,
+            [<Optional;DefaultParameterValue(null)>]  ?Opacity,
+            [<Optional;DefaultParameterValue(null)>]  ?Labels,
+            [<Optional;DefaultParameterValue(null)>]  ?TextPosition,
+            [<Optional;DefaultParameterValue(null)>]  ?TextFont
+        ) = 
+            let r,t = Seq.unzip rtheta
+
+            Chart.PointPolar(
+                r, t,
+                ?Name           = Name,
+                ?Showlegend     = Showlegend,
+                ?MarkerSymbol   = MarkerSymbol,
+                ?Color          = Color,
+                ?Opacity        = Opacity,
+                ?Labels         = Labels,
+                ?TextPosition   = TextPosition,
+                ?TextFont       = TextFont
+            )
+            
+    ///
+    static member LinePolar 
+        (
+            r, theta,
+            [<Optional;DefaultParameterValue(null)>]  ?Name,
+            [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
+            [<Optional;DefaultParameterValue(null)>]  ?ShowMarkers,
+            [<Optional;DefaultParameterValue(null)>]  ?MarkerSymbol,
+            [<Optional;DefaultParameterValue(null)>]  ?Color,
+            [<Optional;DefaultParameterValue(null)>]  ?Opacity,
+            [<Optional;DefaultParameterValue(null)>]  ?Labels,
+            [<Optional;DefaultParameterValue(null)>]  ?TextPosition,
+            [<Optional;DefaultParameterValue(null)>]  ?TextFont,
+            [<Optional;DefaultParameterValue(null)>]  ?Dash,
+            [<Optional;DefaultParameterValue(null)>]  ?Width
+        ) =
+            let changeMode = 
+                let isShowMarker =
+                    match ShowMarkers with
+                    | Some isShow -> isShow
+                    | Option.None        -> false
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
+                >> StyleParam.ModeUtils.showMarker (isShowMarker)
+
+            Trace.initScatterPolar (
+                TraceStyle.ScatterPolar(
+                    R       = r,
+                    Theta   = theta, 
+                    Mode    = changeMode StyleParam.Mode.Lines
+                ) 
+            )
+            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
+            |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
+            |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+            |> GenericChart.ofTraceObject 
+
+    ///
+    static member LinePolar 
+        (
+            rtheta,
+            [<Optional;DefaultParameterValue(null)>]  ?Name,
+            [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
+            [<Optional;DefaultParameterValue(null)>]  ?ShowMarkers,
+            [<Optional;DefaultParameterValue(null)>]  ?MarkerSymbol,
+            [<Optional;DefaultParameterValue(null)>]  ?Color,
+            [<Optional;DefaultParameterValue(null)>]  ?Opacity,
+            [<Optional;DefaultParameterValue(null)>]  ?Labels,
+            [<Optional;DefaultParameterValue(null)>]  ?TextPosition,
+            [<Optional;DefaultParameterValue(null)>]  ?TextFont,
+            [<Optional;DefaultParameterValue(null)>]  ?Dash,
+            [<Optional;DefaultParameterValue(null)>]  ?Width
+        ) =
+             let r,t = Seq.unzip rtheta
+
+             Chart.LinePolar(
+                r, t,
+                ?Name           = Name,
+                ?Showlegend     = Showlegend,
+                ?ShowMarkers    = ShowMarkers,
+                ?MarkerSymbol   = MarkerSymbol,
+                ?Color          = Color,
+                ?Opacity        = Opacity,
+                ?Labels         = Labels,
+                ?TextPosition   = TextPosition,
+                ?TextFont       = TextFont,
+                ?Dash           = Dash,
+                ?Width          = Width
+             )
+
+    ///
+    static member SplinePolar 
+        (
+            r, theta,
+            [<Optional;DefaultParameterValue(null)>]  ?Name,
+            [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
+            [<Optional;DefaultParameterValue(null)>]  ?ShowMarkers,
+            [<Optional;DefaultParameterValue(null)>]  ?MarkerSymbol,
+            [<Optional;DefaultParameterValue(null)>]  ?Color,
+            [<Optional;DefaultParameterValue(null)>]  ?Opacity,
+            [<Optional;DefaultParameterValue(null)>]  ?Labels,
+            [<Optional;DefaultParameterValue(null)>]  ?TextPosition,
+            [<Optional;DefaultParameterValue(null)>]  ?TextFont,
+            [<Optional;DefaultParameterValue(null)>]  ?Smoothing,
+            [<Optional;DefaultParameterValue(null)>]  ?Dash,
+            [<Optional;DefaultParameterValue(null)>]  ?Width
+        ) =
+            let changeMode = 
+                let isShowMarker =
+                    match ShowMarkers with
+                    | Some isShow -> isShow
+                    | Option.None        -> false
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
+                >> StyleParam.ModeUtils.showMarker (isShowMarker)
+
+            Trace.initScatterPolar (
+                TraceStyle.ScatterPolar(
+                    R       = r,
+                    Theta   = theta, 
+                    Mode    = changeMode StyleParam.Mode.Lines
+                ) 
+            )
+            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width, Shape=StyleParam.Shape.Spline, ?Smoothing=Smoothing)
+            |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
+            |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+            |> GenericChart.ofTraceObject 
+
+    ///
+    static member SplinePolar 
+        (
+            rtheta,
+            [<Optional;DefaultParameterValue(null)>]  ?Name,
+            [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
+            [<Optional;DefaultParameterValue(null)>]  ?ShowMarkers,
+            [<Optional;DefaultParameterValue(null)>]  ?MarkerSymbol,
+            [<Optional;DefaultParameterValue(null)>]  ?Color,
+            [<Optional;DefaultParameterValue(null)>]  ?Opacity,
+            [<Optional;DefaultParameterValue(null)>]  ?Labels,
+            [<Optional;DefaultParameterValue(null)>]  ?TextPosition,
+            [<Optional;DefaultParameterValue(null)>]  ?TextFont,
+            [<Optional;DefaultParameterValue(null)>]  ?Smoothing,
+            [<Optional;DefaultParameterValue(null)>]  ?Dash,
+            [<Optional;DefaultParameterValue(null)>]  ?Width
+        ) =
+             let r,t = Seq.unzip rtheta
+
+             Chart.SplinePolar(
+                r, t,
+                ?Name           = Name,
+                ?Showlegend     = Showlegend,
+                ?ShowMarkers    = ShowMarkers,
+                ?MarkerSymbol   = MarkerSymbol,
+                ?Color          = Color,
+                ?Opacity        = Opacity,
+                ?Labels         = Labels,
+                ?TextPosition   = TextPosition,
+                ?TextFont       = TextFont,
+                ?Smoothing      = Smoothing,
+                ?Dash           = Dash,
+                ?Width          = Width
+             )
 
 
     //static member WindRose(r, t,

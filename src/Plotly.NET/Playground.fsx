@@ -70,31 +70,46 @@ open System.IO
 open Deedle
 open FSharpAux
 
-let simpleChart =
-    let xData = [0. .. 10.]
-    let yData = [0. .. 10.]
-    Chart.Point(xData, yData)
-    |> Chart.withTitle "Hello world!"
-    |> Chart.withX_AxisStyle ("xAxis", ShowGrid=false)
-    |> Chart.withY_AxisStyle ("yAxis", ShowGrid=false)
+open System
+
+let r  = [ 1; 2; 3; 4; 5; 6; 7;] |> List.map ((*) 10000)
+let r2 = [ 5; 6; 7; 1; 2; 3; 4;] |> List.map ((*) 10000)
+let r3 = [ 3; 1; 5; 2; 8; 7; 5;] |> List.map ((*) 10000)
+
+let t  = [0; 45; 90; 135; 200; 320; 184;]
+
+(**
+A polar chart is a graphical method of displaying multivariate data in the form of a two-dimensional chart 
+of three or more quantitative variables represented on axes starting from the same point.
+The relative position and angle of the axes is typically uninformative.
+*)
+
+let polar1 =
+    [
+        Chart.PointPolar(r,t,Name="PointPolar")
+        Chart.LinePolar(r2,t,Name="LinePolar", ShowMarkers = true)
+        Chart.SplinePolar(r3,t,Name="SplinePolar", ShowMarkers = true)
+    ]
+    |> Chart.Combine
+    |> Chart.withPolar(
+        Polar.init(
+            Sector= (0., 270.),
+            Hole=0.1
+        )
+    )
+    |> Chart.withAngularAxis(
+        Axis.AngularAxis.init(
+            Color="darkblue"
+        )
+    )
+    |> Chart.withRadialAxis(
+        Axis.RadialAxis.init(
+            Title = Title.init("Hi, i am the radial axis"),
+            Color="darkblue",
+            SeparateThousands = true
+        )
+    )
     |> Chart.Show
-[
-    Chart.Point([1,2;1,3]) 
-    |> Chart.withY_AxisStyle("This title must")
-
-    Chart.Line([1,2;1,3]) 
-    |> Chart.withY_AxisStyle("be set on the",ZeroLine=false)
-    
-    Chart.Spline([1,2;1,3]) 
-    |> Chart.withY_AxisStyle("respective subplots",ZeroLine=false)
-]
-|> Chart.SingleStack(Pattern= StyleParam.LayoutGridPattern.Coupled)
-//move xAxis to bottom and increase spacing between plots by using the withLayoutGridStyle function
-|> Chart.withLayoutGridStyle(YGap= 0.1)
-|> Chart.withTitle("Hi i am the new SingleStackChart")
-|> Chart.withX_AxisStyle("im the shared xAxis")
-|> Chart.Show
-
 [
     [
         Chart.Point([1,2],Name="1,1")
@@ -374,8 +389,8 @@ let yAxis =
         Title = Title.init(Text="Y"),
         ShowLine = true,
         Range = StyleParam.Range.MinMax (0.0, 2.0),
-        Tickvals = [0.0 .. 2.0],
-        Ticktext = [ "zero"; "one"; "two" ]
+        TickVals = [0.0 .. 2.0],
+        TickText = [ "zero"; "one"; "two" ]
     )
 
 Chart.Range(
