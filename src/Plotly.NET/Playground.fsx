@@ -1,4 +1,5 @@
 ﻿open Plotly.NET.StyleParam
+open FSharp.Compiler.Diagnostics
 
 
 #r "nuget: FSharp.Data"
@@ -745,20 +746,6 @@ generateDomainRanges 8 1
 
 
 
-
-[
-    Chart.Point([(0,1)]) |> Chart.withYAxisStyle("This title")
-    Chart.Point([(0,1)]) 
-    |> Chart.withYAxisStyle("Must be set",Zeroline=false)
-    Chart.Point([(0,1)]) 
-    |> Chart.withYAxisStyle("on the respective charts",Zeroline=false)
-]
-|> Chart.SingleStack
-|> Chart.withLayoutGridStyle(XSide=StyleParam.LayoutGridXSide.Bottom)
-|> Chart.withTitle("Hi i am the new SingleStackChart")
-|> Chart.withXAxisStyle("im the shared xAxis")
-|> Chart.show
-
 [
     [1;2]
     [3;4]
@@ -802,3 +789,27 @@ let values,labels =
     |> Seq.unzip
 
 let cols =[|"black";"blue"|]
+
+
+#r "FSharp.Compiler.Service.dll"
+open System.IO
+open FSharp.Compiler.CodeAnalysis
+
+let checker = FSharp.Compiler.CodeAnalysis.FSharpChecker.Create ()
+
+checker.Compile ( [| "fsc.exe"; "-o"; @"aaaaaaaaaaa.exe"; "-a"; "Playground.fsx" |] )
+// checker.Compile ( [| "fsc.exe"; "-o"; @"D:/main/vs_prj/plotly.NETFork/Plotly.NET/docs/aaaaaaaaaaa.exe"; "-a"; "Playground.fsx" |] )
+|> Async.RunSynchronously
+|> (fun (diags, _) ->
+    diags
+    |> Seq.tryPick (fun d ->
+        match d.Severity with
+        | FSharpDiagnosticSeverity.Error -> Some(d)
+        | _ -> None
+    )
+)
+|> (fun c -> 
+    match c with
+    | Some d -> d.ToString()
+    | None -> "Ok"
+)

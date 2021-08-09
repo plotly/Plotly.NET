@@ -221,7 +221,7 @@ module ChartExtensions =
 
         [<Obsolete("Use withXAxisStyle instead")>]
         [<CompiledName("WithX_AxisStyle")>]
-        static member WithX_AxisStyle(title,
+        static member withX_AxisStyle(title,
                 [<Optional;DefaultParameterValue(null)>] ?MinMax,
                 [<Optional;DefaultParameterValue(null)>] ?Showgrid,
                 [<Optional;DefaultParameterValue(null)>] ?Showline,
@@ -311,7 +311,7 @@ module ChartExtensions =
 
         [<Obsolete("Use withYAxisStyle instead")>]
         [<CompiledName("WithY_AxisStyle")>]
-        static member WithY_AxisStyle(title,
+        static member withY_AxisStyle(title,
                 [<Optional;DefaultParameterValue(null)>] ?MinMax,
                 [<Optional;DefaultParameterValue(null)>] ?Showgrid,
                 [<Optional;DefaultParameterValue(null)>] ?Showline,
@@ -373,7 +373,7 @@ module ChartExtensions =
         
         [<Obsolete("Use withZAxisStyle instead")>]
         [<CompiledName("WithZ_AxisStyle")>]
-        static member WithZ_AxisStyle(title,
+        static member withZ_AxisStyle(title,
                    [<Optional;DefaultParameterValue(null)>] ?MinMax,
                    [<Optional;DefaultParameterValue(null)>] ?Showgrid,
                    [<Optional;DefaultParameterValue(null)>] ?Showline,

@@ -75,7 +75,7 @@ myTrace?x <- [0;1;2] // set the x property (the x dimension of the data)
 myTrace?y <- [0;1;2] // set the y property (the y dimension of the data)
 
 GenericChart.ofTraceObject myTrace // create a generic chart (layout and config are empty objects)
-|> Chart.Show
+|> Chart.show
 
 (**
 lets have a look at the trace object that will be created. The relevant section of the html generated with Chart.Show is the following:

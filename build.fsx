@@ -15,6 +15,8 @@ nuget Fake.Api.Github
 nuget Fake.DotNet.Testing.Expecto 
 nuget Fake.Tools.Git //"
 
+#r "FSharp.Compiler.Service.dll"
+
 #if !FAKE
 #load "./.fake/build.fsx/intellisense.fsx"
 #r "netstandard" // Temp fix for https://github.com/dotnet/fsharp/issues/5216
@@ -166,6 +168,26 @@ module TestTasks =
                     Logger = Some "console;verbosity=detailed"
             }
         ) testProject
+    }
+
+
+module VerificationTasks =
+    open FSharp.Compiler.Diagnostics
+    
+    let verifyDocs = BuildTask.create "VerifyDocs" [] {
+        let targets = !! "docs/**.fsx" |> Seq.map (fun f -> f.ToString())
+
+        for target in targets do
+            let checker = FSharp.Compiler.CodeAnalysis.FSharpChecker.Create ()
+
+            checker.Compile ( [| "fsc.exe"; "-o"; @"aaaaaaaaaaa.exe"; "-a"; target |] )
+            |> Async.RunSynchronously
+            |> (fun (diags, _) ->
+                for diag in diags do
+                    match diag.Severity with
+                    | FSharpDiagnosticSeverity.Error -> raise (System.Exception(diag.ToString()))
+                    | _ -> ()
+        )
     }
 
 /// Package creation
