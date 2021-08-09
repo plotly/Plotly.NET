@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../0_0_basics.fsx" />
+    <None Include="../0_1_image-export.fsx" />
+    <None Include="../0_2_display-options.fsx" />
+    <None Include="../0_3_chart-config.fsx" />
+    <None Include="../1_0_axis-styling.fsx" />
+    <None Include="../1_1_errorbars.fsx" />
+    <None Include="../1_2_multiple-charts.fsx" />
+    <None Include="../1_3_shapes.fsx" />
+    <None Include="../1_4_annotations.fsx" />
+    <None Include="../2_0_line-scatter-plots.fsx" />
+    <None Include="../2_1_bar-and-column-charts.fsx" />
+    <None Include="../2_2_area-plots.fsx" />
+    <None Include="../2_3_range-plots.fsx" />
+    <None Include="../2_4_bubble-charts.fsx" />
+    <None Include="../2_5_pie-doughnut-charts.fsx" />
+    <None Include="../2_6_table.fsx" />
+    <None Include="../2_7_heatmaps.fsx" />
+    <None Include="../3_0_3d-scatter-plots.fsx" />
+    <None Include="../3_1_3d-line-plots.fsx" />
+    <None Include="../3_2_3d-surface-plots.fsx" />
+    <None Include="../3_3_3d-mesh-plots.fsx" />
+    <None Include="../4_0_histograms.fsx" />
+    <None Include="../4_1_box-plots.fsx" />
+    <None Include="../4_2_violin-plots.fsx" />
+    <None Include="../4_3_contour-plots.fsx" />
+    <None Include="../4_4_2d-histograms.fsx" />
+    <None Include="../4_5_splom.fsx" />
+    <None Include="../5_0_geo-vs-mapbox.fsx" />
+    <None Include="../5_1_geo-plots.fsx" />
+    <None Include="../5_2_choropleth-map.fsx" />
+    <None Include="../6_0_geo-vs-mapbox.fsx" />
+    <None Include="../6_1_mapbox-plots.fsx" />
+    <None Include="../6_2_choropleth-mapbox.fsx" />
+    <None Include="../6_3_density-mapbox.fsx" />
+    <None Include="../7_0_candlestick.fsx" />
+    <None Include="../7_1_funnel.fsx" />
+    <None Include="../7_2_funnel_area.fsx" />
+    <None Include="../8_0_polar-charts.fsx" />
+    <None Include="../8_1_windrose-charts.fsx" />
+    <None Include="../9_0_parallel-categories.fsx" />
+    <None Include="../9_1_parallel-coords.fsx" />
+    <None Include="../9_2_sankey.fsx" />
+    <None Include="../index.fsx" />
+    <None Include="../_template.fsx" />
+    <Compile Include="Library.fs" />
+  </ItemGroup>
+
+  <ItemGroup />
+
+</Project>
