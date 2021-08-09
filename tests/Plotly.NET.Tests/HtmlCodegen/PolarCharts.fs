@@ -23,7 +23,7 @@ let polar1Chart =
 let ``Polar charts`` =
     testList "PolarCharts.Polar charts" [
         testCase " data" ( fun () ->
-            "var data = [{\"type\":\"scatterpolar\",\"mode\":\"markers\",\"r\":[1,2,3,4,5,6,7],\"t\":[0,45,90,135,200,320,184],\"name\":\"1\",\"line\":{},\"marker\":{}},{\"type\":\"scatterpolar\",\"mode\":\"markers\",\"r\":[5,6,7,1,2,3,4],\"t\":[0,45,90,135,200,320,184],\"name\":\"2\",\"line\":{},\"marker\":{}},{\"type\":\"scatterpolar\",\"mode\":\"markers\",\"r\":[3,1,5,2,8,7,5],\"t\":[0,45,90,135,200,320,184],\"name\":\"3\",\"line\":{},\"marker\":{}}];"
+            "var data = [{\"type\":\"scatterpolar\",\"mode\":\"markers\",\"r\":[1,2,3,4,5,6,7],\"theta\":[0,45,90,135,200,320,184],\"name\":\"1\",\"line\":{},\"marker\":{}},{\"type\":\"scatterpolar\",\"mode\":\"markers\",\"r\":[5,6,7,1,2,3,4],\"theta\":[0,45,90,135,200,320,184],\"name\":\"2\",\"line\":{},\"marker\":{}},{\"type\":\"scatterpolar\",\"mode\":\"markers\",\"r\":[3,1,5,2,8,7,5],\"theta\":[0,45,90,135,200,320,184],\"name\":\"3\",\"line\":{},\"marker\":{}}];"
             |> chartGeneratedContains polar1Chart
         );
         testCase " layout" ( fun () ->

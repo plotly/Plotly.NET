@@ -60,7 +60,7 @@ let ``Line charts`` =
             |> chartGeneratedContainsList lineChart
         );
         testCase "Line layout" ( fun () ->
-            "var layout = {\"scene\":{\"xaxis\":{\"title\"{\"text\":\"x-axis\"}},\"yaxis\":{\"title\":{\"text\":\"y-axis\"}},\"zaxis\":{\"title\":{\"text\":\"z-axis\"}}},\"width\":800.0,\"height\":800.0};"
+            "var layout = {\"scene\":{\"xaxis\":{\"title\":{\"text\":\"x-axis\"}},\"yaxis\":{\"title\":{\"text\":\"y-axis\"}},\"zaxis\":{\"title\":{\"text\":\"z-axis\"}}},\"width\":800.0,\"height\":800.0};"
             |> chartGeneratedContains lineChart
         );
     ]
