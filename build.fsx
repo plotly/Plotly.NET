@@ -15,6 +15,9 @@ nuget Fake.Api.Github
 nuget Fake.DotNet.Testing.Expecto 
 nuget Fake.Tools.Git //"
 
+#r "System.Runtime.Remoting.dll"
+#r "FSharp.Compiler.Service.dll"
+
 #if !FAKE
 #load "./.fake/build.fsx/intellisense.fsx"
 #r "netstandard" // Temp fix for https://github.com/dotnet/fsharp/issues/5216
