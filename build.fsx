@@ -171,10 +171,10 @@ module TestTasks =
 
 
 module VerificationTasks =
-    // open FSharp.Compiler.Diagnostics
+    open FSharp.Compiler.Diagnostics
     
     let verifyDocs = BuildTask.create "VerifyDocs" [] {
-        (*
+        
         let targets = !! "docs/**.fsx" |> Seq.map (fun f -> f.ToString())
 
         for target in targets do
@@ -187,7 +187,7 @@ module VerificationTasks =
                     match diag.Severity with
                     | FSharpDiagnosticSeverity.Error -> raise (System.Exception(diag.ToString()))
                     | _ -> ()
-        )*)
+        )
         ()
     }
 
