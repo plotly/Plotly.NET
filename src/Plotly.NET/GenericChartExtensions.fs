@@ -15,7 +15,7 @@ module GenericChartExtensions =
         
         [<CompiledName("WithTraceName")>]
         [<Extension>]
-        member this.withTraceName
+        member this.WithTraceName
             (
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend,
@@ -27,7 +27,7 @@ module GenericChartExtensions =
         /// Set the axis anchor id the trace is belonging to
         [<CompiledName("WithAxisAnchor")>]
         [<Extension>]
-        member this.withAxisAnchor
+        member this.WithAxisAnchor
             (
                 [<Optional;DefaultParameterValue(null)>] ?X,
                 [<Optional;DefaultParameterValue(null)>] ?Y,
@@ -46,13 +46,13 @@ module GenericChartExtensions =
         /// Apply styling to the Marker(s) of the chart as Object.
         [<CompiledName("WithMarker")>]
         [<Extension>]
-        member this.withMarker(marker:Marker) =
+        member this.WithMarker(marker:Marker) =
             this |> mapTrace (Trace.TraceStyle.SetMarker(marker))
 
         /// Apply styling to the Marker(s) of the chart.
         [<CompiledName("WithMarkerStyle")>]
         [<Extension>]
-        member this.withMarkerStyle
+        member this.WithMarkerStyle
             (
                 [<Optional;DefaultParameterValue(null)>] ?Size,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
@@ -68,13 +68,13 @@ module GenericChartExtensions =
         /// Apply styling to the Line(s) of the chart as Object.
         [<CompiledName("WithLine")>]
         [<Extension>]
-        member this.withLine(line:Line) =
+        member this.WithLine(line:Line) =
              this |> mapTrace (Trace.TraceStyle.SetLine(line))
 
         /// Apply styling to the Line(s) of the chart.
         [<CompiledName("WithLineStyle")>]
         [<Extension>]
-        member this.withLineStyle
+        member this.WithLineStyle
             (
                 [<Optional;DefaultParameterValue(null)>] ?Width,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
@@ -92,13 +92,13 @@ module GenericChartExtensions =
         /// Apply styling to the xError(s) of the chart as Object
         [<CompiledName("WithXError")>]
         [<Extension>]
-        member this.withXError(xError:Error) =
+        member this.WithXError(xError:Error) =
             this |> mapTrace (Trace.TraceStyle.SetErrorX(xError))
             
         /// Apply styling to the xError(s) of the chart as Object
         [<CompiledName("WithXErrorStyle")>]
         [<Extension>]
-        member this.withXErrorStyle
+        member this.WithXErrorStyle
             (
                 [<Optional;DefaultParameterValue(null)>] ?Array,
                 [<Optional;DefaultParameterValue(null)>] ?Arrayminus,
@@ -113,13 +113,13 @@ module GenericChartExtensions =
         /// Apply styling to the yError(s) of the chart as Object
         [<CompiledName("WithYError")>]
         [<Extension>]
-        member this.withYError(yError:Error) =
+        member this.WithYError(yError:Error) =
             this |> mapTrace (Trace.TraceStyle.SetErrorY(yError))
             
         /// Apply styling to the yError(s) of the chart as Object
         [<CompiledName("WithYErrorStyle")>]
         [<Extension>]
-        member this.withYErrorStyle
+        member this.WithYErrorStyle
             (
                 [<Optional;DefaultParameterValue(null)>] ?Array,
                 [<Optional;DefaultParameterValue(null)>] ?Arrayminus,
@@ -134,14 +134,14 @@ module GenericChartExtensions =
         /// Apply styling to the zError(s) of the chart as Object
         [<CompiledName("WithZError")>]
         [<Extension>]
-        member this.withZError(zError:Error) =
+        member this.WithZError(zError:Error) =
             this |> mapTrace (Trace.TraceStyle.SetErrorZ(zError))
             
 
         /// Apply styling to the zError(s) of the chart as Object
         [<CompiledName("WithZErrorStyle")>]
         [<Extension>]
-        member this.withZErrorStyle
+        member this.WithZErrorStyle
             (
                 [<Optional;DefaultParameterValue(null)>] ?Array,
                 [<Optional;DefaultParameterValue(null)>] ?Arrayminus,
@@ -157,16 +157,10 @@ module GenericChartExtensions =
         // ############################################################
         // ####################### Apply to layout
 
-        [<Obsolete("Use withXAxis instead")>]
+        // Sets x-Axis of 2d and 3d- Charts
         [<CompiledName("WithX_Axis")>]
         [<Extension>]
-        member this.WithX_Axis(xAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id : int) =
-            this.withXAxis(xAxis, ?Id = Id)
-
-        // Sets x-Axis of 2d and 3d- Charts
-        [<CompiledName("WithXAxis")>]
-        [<Extension>]
-        member this.withXAxis(xAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id : int) =
+        member this.WithX_Axis(xAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id) =
 
             let contains3d =
                 this 
@@ -188,37 +182,10 @@ module GenericChartExtensions =
                     |> Layout.style (Scene=Scene.init( xAxis=xAxis) )
                 GenericChart.addLayout layout this
 
-
-         [<Obsolete("Use withXAxisStyle instead")>]
-         [<CompiledName("WithX_AxisStyle")>]
-         [<Extension>]
-         member this.WithX_AxisStyle(title,
-                [<Optional;DefaultParameterValue(null)>] ?MinMax,
-                [<Optional;DefaultParameterValue(null)>] ?Showgrid,
-                [<Optional;DefaultParameterValue(null)>] ?Showline,
-                [<Optional;DefaultParameterValue(null)>] ?Side,
-                [<Optional;DefaultParameterValue(null)>] ?Overlaying,
-                [<Optional;DefaultParameterValue(null)>] ?Id,
-                [<Optional;DefaultParameterValue(null)>] ?Domain,
-                [<Optional;DefaultParameterValue(null)>] ?Position,
-                [<Optional;DefaultParameterValue(null)>] ?Zeroline,
-                [<Optional;DefaultParameterValue(null)>] ?Anchor) =
-                this.withXAxisStyle(title, 
-                    ?MinMax = MinMax, 
-                    ?Showgrid = Showgrid,
-                    ?Showline = Showline,
-                    ?Side = Side,
-                    ?Overlaying = Overlaying,
-                    ?Id = Id,
-                    ?Domain = Domain,
-                    ?Position = Position,
-                    ?Zeroline = Zeroline,
-                    ?Anchor = Anchor)
-
         // Sets x-Axis of 2d and 3d- Charts
-        [<CompiledName("WithXAxisStyle")>]
+        [<CompiledName("WithX_AxisStyle")>]
         [<Extension>]
-        member this.withXAxisStyle(title,
+        member this.WithX_AxisStyle(title,
                 [<Optional;DefaultParameterValue(null)>] ?MinMax,
                 [<Optional;DefaultParameterValue(null)>] ?Showgrid,
                 [<Optional;DefaultParameterValue(null)>] ?Showline,
@@ -235,31 +202,18 @@ module GenericChartExtensions =
                                     ?Anchor=Anchor,?Side=Side,?Domain=domain,?Overlaying=Overlaying,?Position=Position,?Zeroline=Zeroline)
             this |> Chart.withX_Axis(xaxis,?Id=Id)
 
-        [<Obsolete("Use withXAxisRangeSlider instead")>]
+        /// Sets the range slider for the xAxis
         [<CompiledName("WithX_AxisRangeSlider")>]
         [<Extension>]
         member this.WithX_AxisRangeSlider(rangeSlider:RangeSlider,
                 [<Optional;DefaultParameterValue(null)>] ?Id) =
-            this.withXAxisRangeSlider(rangeSlider, ?Id = Id)
-
-        /// Sets the range slider for the xAxis
-        [<CompiledName("WithXAxisRangeSlider")>]
-        [<Extension>]
-        member this.withXAxisRangeSlider(rangeSlider:RangeSlider,
-                [<Optional;DefaultParameterValue(null)>] ?Id) =
             let xaxis  = Axis.LinearAxis.init(RangeSlider = rangeSlider)
             this |> Chart.withX_Axis(xaxis,?Id=Id)
 
-        [<Obsolete("Use withYAxis instead")>]
+        // Sets y-Axis of 2d and 3d- Charts
         [<CompiledName("WithY_Axis")>]
         [<Extension>]
-        member this.WithY_Axis(yAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id : int) =
-            this.withYAxis(yAxis, ?Id = Id)
-
-        // Sets y-Axis of 2d and 3d- Charts
-        [<CompiledName("WithYAxis")>]
-        [<Extension>]
-        member this.withYAxis(yAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id) =
+        member this.WithY_Axis(yAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id) =
             
             let contains3d =
                 this 
@@ -281,36 +235,10 @@ module GenericChartExtensions =
                     |> Layout.style(Scene=Scene.init(yAxis=yAxis) )
                 GenericChart.addLayout layout this
 
-        [<Obsolete("Use withYAxisStyle instead")>]
+         // Sets y-Axis of 3d- Charts
         [<CompiledName("WithY_AxisStyle")>]
         [<Extension>]
         member this.WithY_AxisStyle(title,
-                [<Optional;DefaultParameterValue(null)>] ?MinMax,
-                [<Optional;DefaultParameterValue(null)>] ?Showgrid,
-                [<Optional;DefaultParameterValue(null)>] ?Showline,
-                [<Optional;DefaultParameterValue(null)>] ?Side,
-                [<Optional;DefaultParameterValue(null)>] ?Overlaying,
-                [<Optional;DefaultParameterValue(null)>] ?Id,
-                [<Optional;DefaultParameterValue(null)>] ?Domain,
-                [<Optional;DefaultParameterValue(null)>] ?Position,
-                [<Optional;DefaultParameterValue(null)>] ?Zeroline,
-                [<Optional;DefaultParameterValue(null)>] ?Anchor) =
-                    this.withYAxisStyle(title, 
-                        ?MinMax = MinMax, 
-                        ?Showgrid = Showgrid,
-                        ?Showline = Showline,
-                        ?Side = Side,
-                        ?Overlaying = Overlaying,
-                        ?Id = Id,
-                        ?Domain = Domain,
-                        ?Position = Position,
-                        ?Zeroline = Zeroline,
-                        ?Anchor = Anchor)
-
-         // Sets y-Axis of 3d- Charts
-        [<CompiledName("WithYAxisStyle")>]
-        [<Extension>]
-        member this.withYAxisStyle(title,
                 [<Optional;DefaultParameterValue(null)>] ?MinMax,
                 [<Optional;DefaultParameterValue(null)>] ?Showgrid,
                 [<Optional;DefaultParameterValue(null)>] ?Showline,
@@ -327,41 +255,22 @@ module GenericChartExtensions =
                                     ?Showline=Showline,?Anchor=Anchor,?Side=Side,?Domain=domain,?Overlaying=Overlaying,?Position=Position,?Zeroline=Zeroline)
             this |> Chart.withY_Axis(yaxis,?Id=Id)                
 
-        [<Obsolete("Use withZAxis instead")>]
+
+        // Sets z-Axis of 3d- Charts
         [<CompiledName("WithZ_Axis")>]
         [<Extension>]
         member this.WithZ_Axis(zAxis:Axis.LinearAxis) =
-            this.withZAxis(zAxis)
-
-        // Sets z-Axis of 3d- Charts
-        [<CompiledName("WithZAxis")>]
-        [<Extension>]
-        member this.withZAxis(zAxis:Axis.LinearAxis) =
             let layout =
                 Layout() 
                 |> Layout.style(Scene=Scene.init(zAxis=zAxis))
             GenericChart.addLayout layout this
              
-        [<Obsolete("Use withZAxisStyle instead")>]
+
+
+        // Sets z-Axis style with ...
         [<CompiledName("WithZ_AxisStyle")>]
         [<Extension>]
         member this.WithZ_AxisStyle(title,
-                [<Optional;DefaultParameterValue(null)>] ?MinMax,
-                [<Optional;DefaultParameterValue(null)>] ?Showgrid,
-                [<Optional;DefaultParameterValue(null)>] ?Showline,
-                [<Optional;DefaultParameterValue(null)>] ?Domain,
-                [<Optional;DefaultParameterValue(null)>] ?Anchor) =
-                    this.withZAxisStyle(title, 
-                        ?MinMax = MinMax, 
-                        ?Showgrid = Showgrid,
-                        ?Showline = Showline,
-                        ?Domain = Domain,
-                        ?Anchor = Anchor)
-
-        // Sets z-Axis style with ...
-        [<CompiledName("WithZAxisStyle")>]
-        [<Extension>]
-        member this.withZAxisStyle(title,
                 [<Optional;DefaultParameterValue(null)>] ?MinMax,
                 [<Optional;DefaultParameterValue(null)>] ?Showgrid,
                 [<Optional;DefaultParameterValue(null)>] ?Showline,
