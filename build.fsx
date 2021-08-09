@@ -15,7 +15,7 @@ nuget Fake.Api.Github
 nuget Fake.DotNet.Testing.Expecto 
 nuget Fake.Tools.Git //"
 
-#r "FSharp.Compiler.Service.dll"
+#r "nuget:FSharp.Compiler.Service"
 
 #if !FAKE
 #load "./.fake/build.fsx/intellisense.fsx"
