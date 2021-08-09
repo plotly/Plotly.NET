@@ -115,8 +115,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{EAE25A1F
 		src\Plotly.NET\Playground.fsx = src\Plotly.NET\Playground.fsx
 	EndProjectSection
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "DocsLibrary", "docs\DocsLibrary\DocsLibrary.fsproj", "{124331A4-DD56-40FA-94E6-79980ABE86EE}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -148,12 +146,6 @@ Global
 		{6CFC629E-1A0C-4EF3-8495-BA00A356A381}.Dotnet|Any CPU.Build.0 = Debug|Any CPU
 		{6CFC629E-1A0C-4EF3-8495-BA00A356A381}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CFC629E-1A0C-4EF3-8495-BA00A356A381}.Release|Any CPU.Build.0 = Release|Any CPU
-		{124331A4-DD56-40FA-94E6-79980ABE86EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{124331A4-DD56-40FA-94E6-79980ABE86EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{124331A4-DD56-40FA-94E6-79980ABE86EE}.Dotnet|Any CPU.ActiveCfg = Debug|Any CPU
-		{124331A4-DD56-40FA-94E6-79980ABE86EE}.Dotnet|Any CPU.Build.0 = Debug|Any CPU
-		{124331A4-DD56-40FA-94E6-79980ABE86EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{124331A4-DD56-40FA-94E6-79980ABE86EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -166,7 +158,6 @@ Global
 		{60FB82C0-F472-494E-BCF7-7B3C54212406} = {7B09CC0A-F1E1-4094-9DE4-B047581E01F0}
 		{CDB973F2-0F60-4ADB-84A8-924AFA8B6D49} = {7B09CC0A-F1E1-4094-9DE4-B047581E01F0}
 		{6CFC629E-1A0C-4EF3-8495-BA00A356A381} = {0E87E47E-9EDC-4525-AF72-F0E139D54236}
-		{124331A4-DD56-40FA-94E6-79980ABE86EE} = {7B09CC0A-F1E1-4094-9DE4-B047581E01F0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7177F1E1-341C-48AB-9864-6B525FFF7633}
