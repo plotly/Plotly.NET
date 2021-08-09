@@ -85,7 +85,8 @@ type Layout() =
                            
             ?Hidesources   ,
             ?Smith         ,
-            ?Geo           : Geo
+            ?Geo            : Geo,
+            ?Polar          : Polar
 
         ) =
             Layout()
@@ -120,7 +121,8 @@ type Layout() =
                                       
                     ?Hidesources   = Hidesources   ,
                     ?Smith         = Smith         ,
-                    ?Geo           = Geo                
+                    ?Geo           = Geo           ,
+                    ?Polar         = Polar
                 )
 
     // Applies the styles to Layout()
@@ -158,7 +160,8 @@ type Layout() =
                 
             ?Hidesources,
             ?Smith,
-            ?Geo:Geo
+            ?Geo:Geo,
+            ?Polar          : Polar
 
         ) =
             (fun (layout:Layout) -> 
@@ -177,6 +180,7 @@ type Layout() =
                 Dragmode        |> DynObj.setValueOptBy layout "dragmode" StyleParam.Dragmode.toString
                 
                 Geo             |> DynObj.setValueOpt layout "geo"
+                Polar           |> DynObj.setValueOpt layout "polar"
                 
                 Annotations     |> DynObj.setValueOpt layout "annotations"
                 
