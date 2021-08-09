@@ -46,22 +46,22 @@ A wind rose is a graphic tool used by meteorologists to give a succinct view
 of how wind speed and direction are typically distributed at a particular location.
 *)
   
-let windrose1 =
-    [
-        Chart.WindRose (r   ,t,Name="11-14 m/s")
-        Chart.WindRose (r'  ,t,Name="8-11 m/s")
-        Chart.WindRose (r'' ,t,Name="5-8 m/s")
-        Chart.WindRose (r''',t,Name="< 5 m/s")
-    ]
-    |> Chart.Combine
+//let windrose1 =
+//    [
+//        Chart.WindRose (r   ,t,Name="11-14 m/s")
+//        Chart.WindRose (r'  ,t,Name="8-11 m/s")
+//        Chart.WindRose (r'' ,t,Name="5-8 m/s")
+//        Chart.WindRose (r''',t,Name="< 5 m/s")
+//    ]
+//    |> Chart.Combine
 
 (*** condition: ipynb ***)
 #if IPYNB
-windrose1
+//windrose1
 #endif // IPYNB
 
 (***hide***)
-windrose1 |> GenericChart.toChartHTML
+//windrose1 |> GenericChart.toChartHTML
 (***include-it-raw***)
 
 

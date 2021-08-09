@@ -48,9 +48,9 @@ The relative position and angle of the axes is typically uninformative.
 
 let polar1 =
         [
-            Chart.Polar(r,t,StyleParam.Mode.Markers,Name="1")
-            Chart.Polar(r2,t,StyleParam.Mode.Markers,Name="2")
-            Chart.Polar(r3,t,StyleParam.Mode.Markers,Name="3")
+            Chart.ScatterPolar(r,t,StyleParam.Mode.Markers,Name="1")
+            Chart.ScatterPolar(r2,t,StyleParam.Mode.Markers,Name="2")
+            Chart.ScatterPolar(r3,t,StyleParam.Mode.Markers,Name="3")
         ]
         |> Chart.Combine
 
