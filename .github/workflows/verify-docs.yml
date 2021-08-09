@@ -7,9 +7,9 @@ on:
     branches: [ dev ]
 
 jobs:
-  build-and-test-linux:
+  verify-docs:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     
     steps:
     - uses: actions/checkout@v2
