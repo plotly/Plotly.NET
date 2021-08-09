@@ -1,4 +1,5 @@
 #r "paket:
+nuget FSharp.Compiler.Service
 nuget BlackFox.Fake.BuildTask
 nuget Fake.Core.Target
 nuget Fake.Core.Process
@@ -14,8 +15,6 @@ nuget Fake.DotNet.NuGet
 nuget Fake.Api.Github
 nuget Fake.DotNet.Testing.Expecto 
 nuget Fake.Tools.Git //"
-
-#r "nuget:FSharp.Compiler.Service"
 
 #if !FAKE
 #load "./.fake/build.fsx/intellisense.fsx"
