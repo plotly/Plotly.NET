@@ -15,7 +15,6 @@ nuget Fake.Api.Github
 nuget Fake.DotNet.Testing.Expecto 
 nuget Fake.Tools.Git //"
 
-#r "System.Runtime.Remoting.dll"
 #r "FSharp.Compiler.Service.dll"
 
 #if !FAKE
