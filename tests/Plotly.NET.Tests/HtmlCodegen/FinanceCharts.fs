@@ -27,7 +27,7 @@ let candles1Chart = Chart.Candlestick candles
 let candles2Chart = 
     let rangeslider = RangeSlider.init(Visible=false)
     Chart.Candlestick candles
-    |> Chart.withX_AxisRangeSlider rangeslider
+    |> Chart.withXAxisRangeSlider rangeslider
 
 [<Tests>]
 let ``Candlestick charts`` =

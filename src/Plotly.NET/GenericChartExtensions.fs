@@ -200,7 +200,7 @@ module GenericChartExtensions =
             let domain = if Domain.IsSome then Some (StyleParam.Range.MinMax (Domain.Value)) else None
             let xaxis  = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,?Showline=Showline,
                                     ?Anchor=Anchor,?Side=Side,?Domain=domain,?Overlaying=Overlaying,?Position=Position,?Zeroline=Zeroline)
-            this |> Chart.withX_Axis(xaxis,?Id=Id)
+            this |> Chart.withXAxis(xaxis,?Id=Id)
 
         /// Sets the range slider for the xAxis
         [<CompiledName("WithX_AxisRangeSlider")>]
@@ -208,7 +208,7 @@ module GenericChartExtensions =
         member this.WithX_AxisRangeSlider(rangeSlider:RangeSlider,
                 [<Optional;DefaultParameterValue(null)>] ?Id) =
             let xaxis  = Axis.LinearAxis.init(RangeSlider = rangeSlider)
-            this |> Chart.withX_Axis(xaxis,?Id=Id)
+            this |> Chart.withXAxis(xaxis,?Id=Id)
 
         // Sets y-Axis of 2d and 3d- Charts
         [<CompiledName("WithY_Axis")>]
@@ -253,7 +253,7 @@ module GenericChartExtensions =
             let domain = if Domain.IsSome then Some (StyleParam.Range.MinMax (Domain.Value)) else None
             let yaxis  = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,
                                     ?Showline=Showline,?Anchor=Anchor,?Side=Side,?Domain=domain,?Overlaying=Overlaying,?Position=Position,?Zeroline=Zeroline)
-            this |> Chart.withY_Axis(yaxis,?Id=Id)                
+            this |> Chart.withYAxis(yaxis,?Id=Id)                
 
 
         // Sets z-Axis of 3d- Charts
@@ -279,7 +279,7 @@ module GenericChartExtensions =
             let range  = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
             let domain = if Domain.IsSome then Some (StyleParam.Range.MinMax (Domain.Value)) else None
             let zaxis  = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,?Showline=Showline,?Anchor=Anchor,?Domain=domain)
-            this |> Chart.withZ_Axis(zaxis)
+            this |> Chart.withZAxis(zaxis)
 
         [<CompiledName("WithColorBar")>]
         [<Extension>]

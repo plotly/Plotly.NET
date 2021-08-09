@@ -68,42 +68,42 @@ open FSharpAux
 
 [
     Chart.Point([1,2;1,3]) 
-    |> Chart.withY_AxisStyle("This title must")
+    |> Chart.withYAxisStyle("This title must")
 
     Chart.Line([1,2;1,3]) 
-    |> Chart.withY_AxisStyle("be set on the",Zeroline=false)
+    |> Chart.withYAxisStyle("be set on the",Zeroline=false)
     
     Chart.Spline([1,2;1,3]) 
-    |> Chart.withY_AxisStyle("respective subplots",Zeroline=false)
+    |> Chart.withYAxisStyle("respective subplots",Zeroline=false)
 ]
 |> Chart.SingleStack(Pattern= StyleParam.LayoutGridPattern.Coupled)
 //move xAxis to bottom and increase spacing between plots by using the withLayoutGridStyle function
 |> Chart.withLayoutGridStyle(YGap= 0.1)
 |> Chart.withTitle("Hi i am the new SingleStackChart")
-|> Chart.withX_AxisStyle("im the shared xAxis")
+|> Chart.withXAxisStyle("im the shared xAxis")
 |> Chart.show
 
 [
     [
         Chart.Point([1,2],Name="1,1")
-        |> Chart.withX_AxisStyle "x1"
-        |> Chart.withY_AxisStyle "y1"    
+        |> Chart.withXAxisStyle "x1"
+        |> Chart.withYAxisStyle "y1"    
         Chart.Point([1,2],Name="1,2")
-        |> Chart.withX_AxisStyle "x2"
-        |> Chart.withY_AxisStyle "y2"
+        |> Chart.withXAxisStyle "x2"
+        |> Chart.withYAxisStyle "y2"
     ]
     [
         Chart.Point([1,2],Name="2,1")
-        |> Chart.withX_AxisStyle "x3"
-        |> Chart.withY_AxisStyle "y3"    
+        |> Chart.withXAxisStyle "x3"
+        |> Chart.withYAxisStyle "y3"    
     ]
     [
         Chart.Point([1,2],Name="3,1")
-        |> Chart.withX_AxisStyle "x4"
-        |> Chart.withY_AxisStyle "y4"    
+        |> Chart.withXAxisStyle "x4"
+        |> Chart.withYAxisStyle "y4"    
         Chart.Point([1,2],Name="3,2")
-        |> Chart.withX_AxisStyle "x5"
-        |> Chart.withY_AxisStyle "y5"
+        |> Chart.withXAxisStyle "x5"
+        |> Chart.withYAxisStyle "y5"
     ]
 ]
 |> Chart.Grid()
@@ -111,41 +111,41 @@ open FSharpAux
 
 [
     Chart.Point([1,2],Name="1,1")
-    |> Chart.withX_AxisStyle "x1"
-    |> Chart.withY_AxisStyle "y1"    
+    |> Chart.withXAxisStyle "x1"
+    |> Chart.withYAxisStyle "y1"    
     Chart.Point([1,2],Name="1,2")
-    |> Chart.withX_AxisStyle "x2"
-    |> Chart.withY_AxisStyle "y2"
+    |> Chart.withXAxisStyle "x2"
+    |> Chart.withYAxisStyle "y2"
     Chart.Point([1,2],Name="2,2")
-    |> Chart.withX_AxisStyle "x3"
-    |> Chart.withY_AxisStyle "y3"    
+    |> Chart.withXAxisStyle "x3"
+    |> Chart.withYAxisStyle "y3"    
     Chart.Point([1,2],Name="3,2")
-    |> Chart.withX_AxisStyle "x4"
-    |> Chart.withY_AxisStyle "y4"    
+    |> Chart.withXAxisStyle "x4"
+    |> Chart.withYAxisStyle "y4"    
     Chart.Point([1,2],Name="1,1")
-    |> Chart.withX_AxisStyle "x5"
-    |> Chart.withY_AxisStyle "y5"    
+    |> Chart.withXAxisStyle "x5"
+    |> Chart.withYAxisStyle "y5"    
     Chart.Point([1,2],Name="1,2")
-    |> Chart.withX_AxisStyle "x6"
-    |> Chart.withY_AxisStyle "y6"
+    |> Chart.withXAxisStyle "x6"
+    |> Chart.withYAxisStyle "y6"
     Chart.Point([1,2],Name="2,2")
-    |> Chart.withX_AxisStyle "x7"
-    |> Chart.withY_AxisStyle "y7"    
+    |> Chart.withXAxisStyle "x7"
+    |> Chart.withYAxisStyle "y7"    
     Chart.Point([1,2],Name="3,2")
-    |> Chart.withX_AxisStyle "x8"
-    |> Chart.withY_AxisStyle "y8"    
+    |> Chart.withXAxisStyle "x8"
+    |> Chart.withYAxisStyle "y8"    
     Chart.Point([1,2],Name="1,1")
-    |> Chart.withX_AxisStyle "x9"
-    |> Chart.withY_AxisStyle "y9"    
+    |> Chart.withXAxisStyle "x9"
+    |> Chart.withYAxisStyle "y9"    
     Chart.Point([1,2],Name="1,2")
-    |> Chart.withX_AxisStyle "x10"
-    |> Chart.withY_AxisStyle "y10"
+    |> Chart.withXAxisStyle "x10"
+    |> Chart.withYAxisStyle "y10"
     Chart.Point([1,2],Name="2,2")
-    |> Chart.withX_AxisStyle "x11"
-    |> Chart.withY_AxisStyle "y11"    
+    |> Chart.withXAxisStyle "x11"
+    |> Chart.withYAxisStyle "y11"    
     Chart.Point([1,2],Name="3,2")
-    |> Chart.withX_AxisStyle "x12"
-    |> Chart.withY_AxisStyle "y12"
+    |> Chart.withXAxisStyle "x12"
+    |> Chart.withYAxisStyle "y12"
 ]
 |> Chart.Grid(6,2,Pattern=StyleParam.LayoutGridPattern.Coupled)
 |> Chart.withSize (1000., 2000.)
@@ -252,7 +252,7 @@ Chart.Column(
         "third", 1
     ]
 )
-|> Chart.withX_Axis(
+|> Chart.withXAxis(
     Axis.LinearAxis.initCategorical(
         StyleParam.CategoryOrder.Array,
         CategoryArray = ["first"; "second"; "third"]
@@ -376,7 +376,7 @@ Chart.Range(
     LowerName = "Lower",
     UpperName = "Upper",
     Labels = [])
-|> Chart.withY_Axis (yAxis)
+|> Chart.withYAxis (yAxis)
 |> GenericChart.mapiTrace (fun i t ->
     match i with
     | 0 -> t |> Trace.TraceStyle.TextLabel ["upperOne";"upperTwo"]
@@ -747,16 +747,16 @@ generateDomainRanges 8 1
 
 
 [
-    Chart.Point([(0,1)]) |> Chart.withY_AxisStyle("This title")
+    Chart.Point([(0,1)]) |> Chart.withYAxisStyle("This title")
     Chart.Point([(0,1)]) 
-    |> Chart.withY_AxisStyle("Must be set",Zeroline=false)
+    |> Chart.withYAxisStyle("Must be set",Zeroline=false)
     Chart.Point([(0,1)]) 
-    |> Chart.withY_AxisStyle("on the respective charts",Zeroline=false)
+    |> Chart.withYAxisStyle("on the respective charts",Zeroline=false)
 ]
 |> Chart.SingleStack
 |> Chart.withLayoutGridStyle(XSide=StyleParam.LayoutGridXSide.Bottom)
 |> Chart.withTitle("Hi i am the new SingleStackChart")
-|> Chart.withX_AxisStyle("im the shared xAxis")
+|> Chart.withXAxisStyle("im the shared xAxis")
 |> Chart.show
 
 [

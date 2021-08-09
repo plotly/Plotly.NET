@@ -188,9 +188,14 @@ module ChartExtensions =
 // ############################################################
 // ####################### Apply to layout
         
-        // Sets x-Axis of 2d and 3d- Charts
+        [<Obsolete("Use withXAxis instead")>]
         [<CompiledName("WithX_Axis")>]
-        static member withX_Axis(xAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id) =
+        static member withX_Axis(xAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id : int) =
+            Chart.withXAxis(xAxis, ?Id = Id)
+
+        // Sets x-Axis of 2d and 3d- Charts
+        [<CompiledName("WithXAxis")>]
+        static member withXAxis(xAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id) =
             (fun (ch:GenericChart) ->
                 let contains3d =
                     ch 
@@ -214,9 +219,35 @@ module ChartExtensions =
             )
 
 
-        // Sets x-Axis of 2d and 3d- Charts
+        [<Obsolete("Use withXAxisStyle instead")>]
         [<CompiledName("WithX_AxisStyle")>]
-        static member withX_AxisStyle(title,
+        static member WithX_AxisStyle(title,
+                [<Optional;DefaultParameterValue(null)>] ?MinMax,
+                [<Optional;DefaultParameterValue(null)>] ?Showgrid,
+                [<Optional;DefaultParameterValue(null)>] ?Showline,
+                [<Optional;DefaultParameterValue(null)>] ?Side,
+                [<Optional;DefaultParameterValue(null)>] ?Overlaying,
+                [<Optional;DefaultParameterValue(null)>] ?Id,
+                [<Optional;DefaultParameterValue(null)>] ?Domain,
+                [<Optional;DefaultParameterValue(null)>] ?Position,
+                [<Optional;DefaultParameterValue(null)>] ?Zeroline,
+                [<Optional;DefaultParameterValue(null)>] ?Anchor) =
+                Chart.withXAxisStyle(title, 
+                    ?MinMax = MinMax, 
+                    ?Showgrid = Showgrid,
+                    ?Showline = Showline,
+                    ?Side = Side,
+                    ?Overlaying = Overlaying,
+                    ?Id = Id,
+                    ?Domain = Domain,
+                    ?Position = Position,
+                    ?Zeroline = Zeroline,
+                    ?Anchor = Anchor)
+
+
+        // Sets x-Axis of 2d and 3d- Charts
+        [<CompiledName("WithXAxisStyle")>]
+        static member withXAxisStyle(title,
                 [<Optional;DefaultParameterValue(null)>] ?MinMax,
                 [<Optional;DefaultParameterValue(null)>] ?Showgrid,
                 [<Optional;DefaultParameterValue(null)>] ?Showline,
@@ -231,18 +262,30 @@ module ChartExtensions =
             let domain = if Domain.IsSome then Some (StyleParam.Range.MinMax (Domain.Value)) else None
             let xaxis  = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,?Showline=Showline,
                                     ?Anchor=Anchor,?Side=Side,?Domain=domain,?Overlaying=Overlaying,?Position=Position,?Zeroline=Zeroline)
-            Chart.withX_Axis(xaxis,?Id=Id)
+            Chart.withXAxis(xaxis,?Id=Id)
 
-        /// Sets the range slider for the xAxis
+
+        [<Obsolete("Use withXAxisRangeSlider instead")>]
         [<CompiledName("WithX_AxisRangeSlider")>]
         static member withX_AxisRangeSlider(rangeSlider:RangeSlider,
                 [<Optional;DefaultParameterValue(null)>] ?Id) =
+            Chart.withXAxisRangeSlider(rangeSlider, ?Id = Id)
+
+        /// Sets the range slider for the xAxis
+        [<CompiledName("WithXAxisRangeSlider")>]
+        static member withXAxisRangeSlider(rangeSlider:RangeSlider,
+                [<Optional;DefaultParameterValue(null)>] ?Id) =
             let xaxis  = Axis.LinearAxis.init(RangeSlider = rangeSlider)
-            Chart.withX_Axis(xaxis,?Id=Id)
+            Chart.withXAxis(xaxis,?Id=Id)
+
+        [<Obsolete("Use withYAxis instead")>]
+        [<CompiledName("WithY_Axis")>]
+        static member withY_Axis(yAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id : int) =
+            Chart.withYAxis(yAxis, ?Id = Id)
 
         // Sets y-Axis of 2d and 3d- Charts
-        [<CompiledName("WithY_Axis")>]
-        static member withY_Axis(yAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id) =
+        [<CompiledName("WithYAxis")>]
+        static member withYAxis(yAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id) =
             (fun (ch:GenericChart) ->
                 let contains3d =
                     ch 
@@ -266,9 +309,34 @@ module ChartExtensions =
             )
 
 
-         // Sets y-Axis of 3d- Charts
+        [<Obsolete("Use withYAxisStyle instead")>]
         [<CompiledName("WithY_AxisStyle")>]
-        static member withY_AxisStyle(title,
+        static member WithY_AxisStyle(title,
+                [<Optional;DefaultParameterValue(null)>] ?MinMax,
+                [<Optional;DefaultParameterValue(null)>] ?Showgrid,
+                [<Optional;DefaultParameterValue(null)>] ?Showline,
+                [<Optional;DefaultParameterValue(null)>] ?Side,
+                [<Optional;DefaultParameterValue(null)>] ?Overlaying,
+                [<Optional;DefaultParameterValue(null)>] ?Id,
+                [<Optional;DefaultParameterValue(null)>] ?Domain,
+                [<Optional;DefaultParameterValue(null)>] ?Position,
+                [<Optional;DefaultParameterValue(null)>] ?Zeroline,
+                [<Optional;DefaultParameterValue(null)>] ?Anchor) =
+                Chart.withYAxisStyle(title, 
+                    ?MinMax = MinMax, 
+                    ?Showgrid = Showgrid,
+                    ?Showline = Showline,
+                    ?Side = Side,
+                    ?Overlaying = Overlaying,
+                    ?Id = Id,
+                    ?Domain = Domain,
+                    ?Position = Position,
+                    ?Zeroline = Zeroline,
+                    ?Anchor = Anchor)
+
+         // Sets y-Axis of 3d- Charts
+        [<CompiledName("WithYAxisStyle")>]
+        static member withYAxisStyle(title,
                 [<Optional;DefaultParameterValue(null)>] ?MinMax,
                 [<Optional;DefaultParameterValue(null)>] ?Showgrid,
                 [<Optional;DefaultParameterValue(null)>] ?Showline,
@@ -283,12 +351,17 @@ module ChartExtensions =
             let domain = if Domain.IsSome then Some (StyleParam.Range.MinMax (Domain.Value)) else None
             let yaxis  = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,
                                     ?Showline=Showline,?Anchor=Anchor,?Side=Side,?Domain=domain,?Overlaying=Overlaying,?Position=Position,?Zeroline=Zeroline)
-            Chart.withY_Axis(yaxis,?Id=Id)                
+            Chart.withYAxis(yaxis,?Id=Id)
 
+
+        [<Obsolete("Use withZAxis instead")>]
+        [<CompiledName("WithZ_Axis")>]
+        static member withZ_Axis(xAxis:Axis.LinearAxis) =
+            Chart.withZAxis xAxis
 
         // Sets z-Axis of 3d- Charts
-        [<CompiledName("WithZ_Axis")>]
-        static member withZ_Axis(zAxis:Axis.LinearAxis) =
+        [<CompiledName("WithZAxis")>]
+        static member withZAxis(zAxis:Axis.LinearAxis) =
             (fun (ch:GenericChart) ->
                 let layout =
                     Layout() 
@@ -297,9 +370,26 @@ module ChartExtensions =
              )
 
 
-        // Sets z-Axis style with ...
+        
+        [<Obsolete("Use withZAxisStyle instead")>]
         [<CompiledName("WithZ_AxisStyle")>]
-        static member withZ_AxisStyle(title,
+        static member WithZ_AxisStyle(title,
+                   [<Optional;DefaultParameterValue(null)>] ?MinMax,
+                   [<Optional;DefaultParameterValue(null)>] ?Showgrid,
+                   [<Optional;DefaultParameterValue(null)>] ?Showline,
+                   [<Optional;DefaultParameterValue(null)>] ?Domain,
+                   [<Optional;DefaultParameterValue(null)>] ?Anchor) =
+                   Chart.withZAxisStyle(title, 
+                       ?MinMax = MinMax, 
+                       ?Showgrid = Showgrid,
+                       ?Showline = Showline,
+                       ?Domain = Domain,
+                       ?Anchor = Anchor)
+
+
+        // Sets z-Axis style with ...
+        [<CompiledName("WithZAxisStyle")>]
+        static member withZAxisStyle(title,
                 [<Optional;DefaultParameterValue(null)>] ?MinMax,
                 [<Optional;DefaultParameterValue(null)>] ?Showgrid,
                 [<Optional;DefaultParameterValue(null)>] ?Showline,
@@ -308,7 +398,7 @@ module ChartExtensions =
             let range  = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
             let domain = if Domain.IsSome then Some (StyleParam.Range.MinMax (Domain.Value)) else None
             let zaxis  = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,?Showline=Showline,?Anchor=Anchor,?Domain=domain)
-            Chart.withZ_Axis(zaxis)
+            Chart.withZAxis(zaxis)
 
         [<CompiledName("WithColorBar")>]
         static member withColorBar(colorbar:Colorbar) =
@@ -801,7 +891,7 @@ module ChartExtensions =
 
                         gChart
                         |> Chart.withAxisAnchor(xAnchor,yAnchor) // set adapted axis anchors
-                        |> Chart.withX_Axis(xAxis,i+1) // set previous axis with adapted id (one individual axis for each subplot, wether or not they will be used later)
+                        |> Chart.withXAxis(xAxis,i+1) // set previous axis with adapted id (one individual axis for each subplot, wether or not they will be used later)
                         |> Chart.withY_Axis(yAxis,i+1) // set previous axis with adapted id (one individual axis for each subplot, wether or not they will be used later)
                         |> GenericChart.mapLayout (fun l ->
                             if i > 0 then 
@@ -1052,7 +1142,7 @@ module ChartExtensions =
                         ch
                         |> GenericChart.setLayout layout
                         |> Chart.withAxisAnchor(X=index,Y=index) 
-                        |> Chart.withX_Axis(xaxis,index)
+                        |> Chart.withXAxis(xaxis,index)
                         |> Chart.withY_Axis(yaxis,index)
                     )
 

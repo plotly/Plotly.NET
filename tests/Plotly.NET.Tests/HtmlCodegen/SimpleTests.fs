@@ -11,8 +11,8 @@ let simpleChart =
     let yData = [0. .. 10.]
     Chart.Point(xData, yData)
     |> Chart.withTitle "Hello world!"
-    |> Chart.withX_AxisStyle ("xAxis", Showgrid=false)
-    |> Chart.withY_AxisStyle ("yAxis", Showgrid=false)
+    |> Chart.withXAxisStyle ("xAxis", Showgrid=false)
+    |> Chart.withYAxisStyle ("yAxis", Showgrid=false)
 
 
 [<Tests>]

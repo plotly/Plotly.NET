@@ -10,8 +10,8 @@ let axisStylingChart =
     let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     let plot1 =
         Chart.Point(x,y)
-        |> Chart.withX_AxisStyle ("X axis title quack quack", MinMax = (-1.,10.))
-        |> Chart.withY_AxisStyle ("Y axis title boo foo", MinMax = (-1.,10.))
+        |> Chart.withXAxisStyle ("X axis title quack quack", MinMax = (-1.,10.))
+        |> Chart.withYAxisStyle ("Y axis title boo foo", MinMax = (-1.,10.))
     plot1
 
 
@@ -52,12 +52,12 @@ let multipleAxesChart =
            anchoredAt2
         ]
         |> Chart.Combine
-        |> Chart.withY_AxisStyle(
+        |> Chart.withYAxisStyle(
             "axis 1",
             Side=StyleParam.Side.Left,
             Id=1
         )
-        |> Chart.withY_AxisStyle(
+        |> Chart.withYAxisStyle(
             "axis2",
             Side=StyleParam.Side.Right,
             Id=2,
@@ -122,17 +122,17 @@ let subPlotChart =
     let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     [
         Chart.Point(x, y, Name="1,1")
-        |> Chart.withX_AxisStyle "x1"
-        |> Chart.withY_AxisStyle "y1"    
+        |> Chart.withXAxisStyle "x1"
+        |> Chart.withYAxisStyle "y1"    
         Chart.Line(x, y, Name="1,2")
-        |> Chart.withX_AxisStyle "x2"
-        |> Chart.withY_AxisStyle "y2"
+        |> Chart.withXAxisStyle "x2"
+        |> Chart.withYAxisStyle "y2"
         Chart.Spline(x, y, Name="2,1")
-        |> Chart.withX_AxisStyle "x3"
-        |> Chart.withY_AxisStyle "y3"    
+        |> Chart.withXAxisStyle "x3"
+        |> Chart.withYAxisStyle "y3"    
         Chart.Point(x, y, Name="2,2")
-        |> Chart.withX_AxisStyle "x4"
-        |> Chart.withY_AxisStyle "y4"
+        |> Chart.withXAxisStyle "x4"
+        |> Chart.withYAxisStyle "y4"
     ]
     |> Chart.Grid(2, 2)
 
@@ -142,19 +142,19 @@ let singleStackChart =
     let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     [
         Chart.Point(x,y) 
-        |> Chart.withY_AxisStyle("This title must")
+        |> Chart.withYAxisStyle("This title must")
     
         Chart.Line(x,y) 
-        |> Chart.withY_AxisStyle("be set on the",Zeroline=false)
+        |> Chart.withYAxisStyle("be set on the",Zeroline=false)
         
         Chart.Spline(x,y) 
-        |> Chart.withY_AxisStyle("respective subplots",Zeroline=false)
+        |> Chart.withYAxisStyle("respective subplots",Zeroline=false)
     ]
     |> Chart.SingleStack(Pattern = StyleParam.LayoutGridPattern.Coupled)
     //move xAxis to bottom and increase spacing between plots by using the withLayoutGridStyle function
     |> Chart.withLayoutGridStyle(XSide=StyleParam.LayoutGridXSide.Bottom,YGap= 0.1)
     |> Chart.withTitle("Hi i am the new SingleStackChart")
-    |> Chart.withX_AxisStyle("im the shared xAxis")
+    |> Chart.withXAxisStyle("im the shared xAxis")
 
     
 [<Tests>]
