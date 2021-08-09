@@ -1145,3 +1145,58 @@ module ChartExtensions =
             let path = Path.Combine(tempPath, file)
             File.WriteAllText(path, html)
             path |> openOsSpecificFile
+
+        /// Sets the polar object with the given id on the chart layout
+        [<CompiledName("WithPolar")>]
+        static member withPolar(polar:Polar, [<Optional;DefaultParameterValue(null)>] ?Id) =
+            (fun (ch:GenericChart) ->
+                let layout =
+                    let id = defaultArg Id 1
+                    GenericChart.getLayout ch 
+                    |> Layout.updatePolarById(id,polar)
+                GenericChart.setLayout layout ch
+            )
+
+        
+        /// Sets the angular axis of the polar object with the given id on the chart layout
+        [<CompiledName("WithAngularAxis")>]
+        static member withAngularAxis(angularAxis:Axis.AngularAxis, [<Optional;DefaultParameterValue(null)>] ?Id) =
+            (fun (ch:GenericChart) ->
+                
+                let id = defaultArg Id 1
+                let layout = GenericChart.getLayout ch 
+
+                let updatedPolar = 
+                    layout
+                    |> Layout.tryGetPolarById(id)
+                    |> Option.defaultValue (Polar.init())
+                    |> Polar.style(AngularAxis = angularAxis)
+
+                let updatedLayout =
+                    layout
+                    |> Layout.updatePolarById(id,updatedPolar)
+
+                GenericChart.setLayout updatedLayout ch
+            )
+            
+        /// Sets the radial axis of the polar object with the given id on the chart layout
+        [<CompiledName("WithRadialAxis")>]
+        static member withRadialAxis(radialAxis:Axis.RadialAxis, [<Optional;DefaultParameterValue(null)>] ?Id) =
+            (fun (ch:GenericChart) ->
+                let id = defaultArg Id 1
+                let layout = GenericChart.getLayout ch 
+
+                let updatedPolar = 
+                    layout
+                    |> Layout.tryGetPolarById(id)
+                    |> Option.defaultValue (Polar.init())
+                    |> Polar.style(RadialAxis = radialAxis)
+
+                let updatedLayout =
+                    layout
+                    |> Layout.updatePolarById(id,updatedPolar)
+
+                GenericChart.setLayout updatedLayout ch
+            )
+
+

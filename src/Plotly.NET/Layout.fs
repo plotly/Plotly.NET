@@ -336,6 +336,34 @@ type Layout() =
                 layout
             )
 
+    static member tryGetPolarById (id:int) =
+        (fun (layout:Layout) -> 
+            let key = if id < 2 then "polar" else sprintf "polar%i" id
+            layout.TryGetTypedValue<Polar>(key)
+        )
+
+    /// Updates the style of current polar object with given Id. 
+    /// If there does not exist a polar object with the given id, sets it with the given polar object
+    static member updatePolarById
+        (   
+           id       : int,
+           polar    : Polar
+        ) =
+            (fun (layout:Layout) -> 
+
+                let key = if id < 2 then "polar" else sprintf "polar%i" id
+
+                let polar' = 
+                    match layout |> Layout.tryGetPolarById(id) with
+                    | Some a  -> DynObj.combine (unbox a) polar
+                    | None    -> polar :> DynamicObj
+                
+                polar' |> DynObj.setValue layout key
+
+                layout
+            )
+
+
     static member setLegend(legend:Legend) =
         (fun (layout:Layout) -> 
             legend |> DynObj.setValue layout "legend"

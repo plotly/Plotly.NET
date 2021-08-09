@@ -63,12 +63,12 @@ type Polar () =
             (fun (polar:Polar) -> 
 
                 Domain      |> DynObj.setValueOpt polar "domain"
-                Sector      |> DynObj.setValueOpt polar "sector"
+                Sector      |> DynObj.setValueOptBy polar "sector" (fun (a,b) -> [|a;b|])
                 Hole        |> DynObj.setValueOpt polar "hole"
                 BGColor     |> DynObj.setValueOpt polar "bgcolor"
                 RadialAxis  |> DynObj.setValueOpt polar "radialaxis"
                 AngularAxis |> DynObj.setValueOpt polar "angularaxis"
-                GridShape   |> DynObj.setValueOpt polar "gridshape"
+                GridShape   |> DynObj.setValueOptBy polar "gridshape" StyleParam.PolarGridShape.convert
                 UIRevision  |> DynObj.setValueOpt polar "uirevision"
 
                 polar
