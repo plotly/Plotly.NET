@@ -47,7 +47,7 @@ let box3Chart =
         Chart.BoxPlot("y" ,y,Name="bin1",Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All);
         Chart.BoxPlot("y'",y',Name="bin2",Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All);
     ]
-    |> Chart.Combine
+    |> Chart.combine
 
 [<Tests>]
 let ``Box charts`` =
@@ -102,7 +102,7 @@ let violin3Chart =
         Chart.Violin ("y" ,y,Name="bin1",Jitter=0.1,Points=StyleParam.Jitterpoints.All);
         Chart.Violin ("y'",y',Name="bin2",Jitter=0.1,Points=StyleParam.Jitterpoints.All);
     ]
-    |> Chart.Combine
+    |> Chart.combine
 
 [<Tests>]
 let ``Violin charts`` =
@@ -193,7 +193,7 @@ let histogramContourChart =
         Chart.Histogram2dContour (x,y,Line=Line.init(Width=0.))
         Chart.Point(x,y,Opacity=0.3)
     ]
-    |> Chart.Combine
+    |> Chart.combine
 
 
 let histogram2dChart =

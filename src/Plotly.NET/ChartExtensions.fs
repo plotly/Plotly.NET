@@ -818,7 +818,7 @@ module ChartExtensions =
         // ####################### 
         /// Create a combined chart with the given charts merged
         [<CompiledName("Combine")>]
-        static member Combine(gCharts:seq<GenericChart>) =
+        static member combine(gCharts:seq<GenericChart>) =
             GenericChart.combine gCharts
 
         /// <summary>
@@ -901,7 +901,7 @@ module ChartExtensions =
                             l
                         )
                     )
-                    |> Chart.Combine
+                    |> Chart.combine
                     |> Chart.withLayoutGrid (
                         LayoutGrid.init(
                             Rows      = nRows,
@@ -1146,7 +1146,7 @@ module ChartExtensions =
                         |> Chart.withY_Axis(yaxis,index)
                     )
 
-                |> Chart.Combine
+                |> Chart.combine
                 )
         
 // ############################################################

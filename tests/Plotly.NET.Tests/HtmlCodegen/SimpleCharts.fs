@@ -87,7 +87,7 @@ let stackedBarChart =
         Chart.StackedBar(keys,values,Name="old");
         Chart.StackedBar(keys,[8; 21; 13;],Name="new")
     ]
-    |> Chart.Combine
+    |> Chart.combine
 
 let stackedColumnChart =
     let values = [20; 14; 23;]
@@ -96,7 +96,7 @@ let stackedColumnChart =
         Chart.StackedColumn(keys,values,Name="old");
         Chart.StackedColumn(keys,[8; 21; 13;],Name="new")
     ]
-    |> Chart.Combine
+    |> Chart.combine
 
 [<Tests>]
 let ``Bar and column charts`` =
@@ -151,7 +151,7 @@ let stackedAreaChart =
         Chart.StackedArea(x,y)
         Chart.StackedArea(x,y |> Seq.rev)
     ]
-    |> Chart.Combine
+    |> Chart.combine
 
 [<Tests>]
 let ``Area charts`` =

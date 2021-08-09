@@ -415,7 +415,7 @@ Chart.Point([1.,2.])
     Chart.Line([(1.,2.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$")
     Chart.Line([(1.,2.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$")
 ]
-|> Chart.Combine
+|> Chart.combine
 |> Chart.withTitle @"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$"
 |> Chart.withMathTex(true)
 |> Chart.show
@@ -446,7 +446,7 @@ let myLegend =
 
 ]
 |> List.map Chart.Line
-|> Chart.Combine
+|> Chart.combine
 |> Chart.withLegend(myLegend)
 |> Chart.show
 
@@ -618,7 +618,7 @@ let manyLines =
     Chart.Scatter(x = [1;2;3], y = [2;3;4],mode=StyleParam.Mode.Markers, StackGroup = "meem", Orientation= StyleParam.Orientation.Vertical, GroupNorm = StyleParam.GroupNorm.Percent )
     Chart.Scatter(x = [1;2;3], y = [4;3;4],mode=StyleParam.Mode.Markers, StackGroup = "meem", Orientation= StyleParam.Orientation.Vertical, GroupNorm = StyleParam.GroupNorm.Percent )
 ]
-|> Chart.Combine
+|> Chart.combine
 |> Chart.show
 
 //Just try this, its amazing how much faster WebGL loads and zooms
@@ -630,7 +630,7 @@ Chart.Point(manyPoints)
 
 manyLines
 |> List.map (fun l -> Chart.Line(l,UseWebGL=true))
-|> Chart.Combine
+|> Chart.combine
 |> Chart.show
 
 Chart.Line(manyPoints,UseWebGL=true)

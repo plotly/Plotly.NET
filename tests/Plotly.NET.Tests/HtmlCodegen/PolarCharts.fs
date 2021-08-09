@@ -17,7 +17,7 @@ let polar1Chart =
         Chart.Polar(r2,t,StyleParam.Mode.Markers,Name="2")
         Chart.Polar(r3,t,StyleParam.Mode.Markers,Name="3")
     ]
-    |> Chart.Combine
+    |> Chart.combine
 
 [<Tests>]
 let ``Polar charts`` =
@@ -45,7 +45,7 @@ let windrose1Chart =
         Chart.WindRose (r'' ,t,Name="5-8 m/s")
         Chart.WindRose (r''',t,Name="< 5 m/s")
     ]
-    |> Chart.Combine
+    |> Chart.combine
 
 [<Tests>]
 let ``Windrose charts`` =
