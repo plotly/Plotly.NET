@@ -1064,14 +1064,14 @@ module ChartExtensions =
 
         /// Show chart in browser
         [<CompiledName("WithDescription")>]
-        static member WithDescription (description:ChartDescription) (ch:GenericChart) = 
+        static member withDescription (description:ChartDescription) (ch:GenericChart) = 
             ch 
             |> mapDisplayOptions (DisplayOptions.style(Description=description))
 
 
         /// Adds the given additional html tags on the chart's DisplayOptions. They will be included in the document's <head>
         [<CompiledName("WithAdditionalHeadTags")>]
-        static member WithAdditionalHeadTags (additionalHeadTags:seq<string>) (ch:GenericChart) = 
+        static member withAdditionalHeadTags (additionalHeadTags:seq<string>) (ch:GenericChart) = 
             ch 
             |> mapDisplayOptions ( fun d ->
                 let tags = d.TryGetTypedValue<seq<string>>("AdditionalHeadTags")
@@ -1084,14 +1084,14 @@ module ChartExtensions =
 
         /// Sets the given additional head tags on the chart's DisplayOptions. They will be included in the document's <head>
         [<CompiledName("WithHeadTags")>]
-        static member WithHeadTags (headTags:seq<string>) (ch:GenericChart) = 
+        static member withHeadTags (headTags:seq<string>) (ch:GenericChart) = 
             ch 
             |> mapDisplayOptions (DisplayOptions.style(AdditionalHeadTags=headTags))
 
         
         /// Adds the necessary script tags to render tex strings to the chart's DisplayOptions
         [<CompiledName("WithMathTex")>]
-        static member WithMathTex ([<Optional;DefaultParameterValue(true)>]?AppendTags:bool) = 
+        static member withMathTex ([<Optional;DefaultParameterValue(true)>]?AppendTags:bool) = 
             let tags = [
                 """<script type="text/x-mathjax-config;executed=true">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']], processEscapes: true}});</script>"""
                 """<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML%2CSafe.js&ver=4.1"></script>"""
@@ -1099,14 +1099,14 @@ module ChartExtensions =
             (fun (ch:GenericChart) ->
             
                 if (AppendTags |> Option.defaultValue true) then
-                    ch |> Chart.WithAdditionalHeadTags tags
+                    ch |> Chart.withAdditionalHeadTags tags
                 else
-                    ch |> Chart.WithHeadTags tags
+                    ch |> Chart.withHeadTags tags
             )
 
         /// Save chart as html single page
         [<CompiledName("SaveHtmlAs")>]
-        static member SaveHtmlAs pathName (ch:GenericChart,[<Optional;DefaultParameterValue(null)>] ?Verbose) =
+        static member saveHtmlAs pathName (ch:GenericChart,[<Optional;DefaultParameterValue(null)>] ?Verbose) =
             let html = GenericChart.toEmbeddedHTML ch
             let file = sprintf "%s.html" pathName // remove file extension
             File.WriteAllText(file, html)
@@ -1117,7 +1117,7 @@ module ChartExtensions =
 
         /// Show chart in browser
         [<CompiledName("Show")>]
-        static member Show (ch:GenericChart) = 
+        static member show (ch:GenericChart) = 
             let guid = Guid.NewGuid().ToString()
             let html = GenericChart.toEmbeddedHTML ch
             let tempPath = Path.GetTempPath()
@@ -1128,7 +1128,7 @@ module ChartExtensions =
 
         /// Show chart in browser
         [<CompiledName("ShowAsImage")>]
-        static member ShowAsImage (format:StyleParam.ImageFormat) (ch:GenericChart) = 
+        static member showAsImage (format:StyleParam.ImageFormat) (ch:GenericChart) = 
             let guid = Guid.NewGuid().ToString()
             let html = GenericChart.toEmbeddedImage format ch
             let tempPath = Path.GetTempPath()

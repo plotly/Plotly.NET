@@ -210,7 +210,7 @@ let displayOptionsChartDescriptionChart =
     let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     let description1 = ChartDescription.create "Hello" "F#"
     Chart.Point(x,y,Name="desc1")    
-    |> Chart.WithDescription(description1)
+    |> Chart.withDescription(description1)
 
 let additionalHeadTagsChart =
     let x = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
@@ -233,9 +233,9 @@ let additionalHeadTagsChart =
           """<h1 class="title">I am heading</h1>""" 
          bulmaHero
     Chart.Point(x,y,Name="desc3")    
-    |> Chart.WithDescription description3
+    |> Chart.withDescription description3
     // Add reference to the bulma css framework
-    |> Chart.WithAdditionalHeadTags ["""<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">"""]
+    |> Chart.withAdditionalHeadTags ["""<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">"""]
 
 let mathtexChart =
     [
@@ -245,7 +245,7 @@ let mathtexChart =
     |> Chart.Combine
     |> Chart.withTitle @"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$"
     // include mathtex tags in <head>. pass true to append these scripts, false to ONLY include MathTeX.
-    |> Chart.WithMathTex(true)
+    |> Chart.withMathTex(true)
 
 [<Tests>]
 let ``Display options`` =
