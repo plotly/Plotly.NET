@@ -1,4 +1,5 @@
 #r "paket:
+nuget System.Runtime
 nuget FSharp.Compiler.Service
 nuget BlackFox.Fake.BuildTask
 nuget Fake.Core.Target
