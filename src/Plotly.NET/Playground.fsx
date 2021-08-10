@@ -1,5 +1,4 @@
 ﻿open Plotly.NET.StyleParam
-open FSharp.Compiler.Diagnostics
 
 
 #r "nuget: FSharp.Data"
@@ -794,22 +793,25 @@ let cols =[|"black";"blue"|]
 #r "FSharp.Compiler.Service.dll"
 open System.IO
 open FSharp.Compiler.CodeAnalysis
+open FSharp.Compiler.Diagnostics
 
 let checker = FSharp.Compiler.CodeAnalysis.FSharpChecker.Create ()
 
-checker.Compile ( [| "fsc.exe"; "-o"; @"aaaaaaaaaaa.exe"; "-a"; "Playground.fsx" |] )
-// checker.Compile ( [| "fsc.exe"; "-o"; @"D:/main/vs_prj/plotly.NETFork/Plotly.NET/docs/aaaaaaaaaaa.exe"; "-a"; "Playground.fsx" |] )
-|> Async.RunSynchronously
-|> (fun (diags, _) ->
-    diags
-    |> Seq.tryPick (fun d ->
-        match d.Severity with
-        | FSharpDiagnosticSeverity.Error -> Some(d)
-        | _ -> None
+let targets = [ @"D:\main\vs_prj\plotly.NETFork\Plotly.NET\docs\1_0_axis-styling.fsx" ]
+
+targets
+|> Seq.map (
+    fun target -> 
+    checker.Compile ( [| "fsc.exe"; "-o"; @"aaaaaaaaaaa.exe"; "-a"; target |] )
+    |> Async.RunSynchronously
+    |> fst
+    |> Seq.filter (fun diag -> match diag.Severity with FSharpDiagnosticSeverity.Error -> true | _ -> false)
+    |> Seq.map (fun diag -> diag.ToString())
+)
+|> Seq.collect id
+|> String.concat "\n"
+|> (fun errorText ->
+    match errorText with
+    | "" -> ()
+    | text -> raise (System.Exception $"Errors:\n{errorText}" )
     )
-)
-|> (fun c -> 
-    match c with
-    | Some d -> d.ToString()
-    | None -> "Ok"
-)
