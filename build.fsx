@@ -428,4 +428,4 @@ let _preReleaseNoDocs =
         [setPrereleaseTag; clean; build; copyBinaries; runTests; packPrerelease; createPrereleaseTag; publishNugetPrerelease]
 
 // run copyBinaries by default
-// BuildTask.runOrDefault copyBinaries
+BuildTask.runOrDefault copyBinaries
