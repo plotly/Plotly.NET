@@ -52,7 +52,7 @@ let combinedChart =
         Chart.Line(x,y,Name="first")
         Chart.Line(y,x,Name="second")
     ]
-    |> Chart.Combine
+    |> Chart.combine
 
 #if IPYNB
 combinedChart
@@ -77,17 +77,17 @@ You can either use Chart.Grid with a 1 dimensional sequence of Charts and specif
 let grid = 
     [
         Chart.Point(x,y,Name="1,1")
-        |> Chart.withX_AxisStyle "x1"
-        |> Chart.withY_AxisStyle "y1"    
+        |> Chart.withXAxisStyle "x1"
+        |> Chart.withYAxisStyle "y1"    
         Chart.Line(x,y,Name="1,2")
-        |> Chart.withX_AxisStyle "x2"
-        |> Chart.withY_AxisStyle "y2"
+        |> Chart.withXAxisStyle "x2"
+        |> Chart.withYAxisStyle "y2"
         Chart.Spline(x,y,Name="2,1")
-        |> Chart.withX_AxisStyle "x3"
-        |> Chart.withY_AxisStyle "y3"    
+        |> Chart.withXAxisStyle "x3"
+        |> Chart.withYAxisStyle "y3"    
         Chart.Point(x,y,Name="2,2")
-        |> Chart.withX_AxisStyle "x4"
-        |> Chart.withY_AxisStyle "y4"
+        |> Chart.withXAxisStyle "x4"
+        |> Chart.withYAxisStyle "y4"
     ]
     |> Chart.Grid(2,2)
 
@@ -109,19 +109,19 @@ let grid2 =
     [
         [
             Chart.Point(x,y,Name="1,1")
-            |> Chart.withX_AxisStyle "x1"
-            |> Chart.withY_AxisStyle "y1"    
+            |> Chart.withXAxisStyle "x1"
+            |> Chart.withYAxisStyle "y1"    
             Chart.Line(x,y,Name="1,2")
-            |> Chart.withX_AxisStyle "x2"
-            |> Chart.withY_AxisStyle "y2"
+            |> Chart.withXAxisStyle "x2"
+            |> Chart.withYAxisStyle "y2"
         ]
         [
             Chart.Spline(x,y,Name="2,1")
-            |> Chart.withX_AxisStyle "x3"
-            |> Chart.withY_AxisStyle "y3"    
+            |> Chart.withXAxisStyle "x3"
+            |> Chart.withYAxisStyle "y3"    
             Chart.Point(x,y,Name="2,2")
-            |> Chart.withX_AxisStyle "x4"
-            |> Chart.withY_AxisStyle "y4"
+            |> Chart.withXAxisStyle "x4"
+            |> Chart.withYAxisStyle "y4"
         
         ]
     ]
@@ -146,18 +146,18 @@ to the row with the highest amount of charts, and the other rows will be filled 
 let grid3 = 
     [
         Chart.Point(x,y,Name="1,1")
-        |> Chart.withX_AxisStyle "x1"
-        |> Chart.withY_AxisStyle "y1"    
+        |> Chart.withXAxisStyle "x1"
+        |> Chart.withYAxisStyle "y1"    
 
         Chart.Invisible()
 
         Chart.Spline(x,y,Name="2,1")
-        |> Chart.withX_AxisStyle "x3"
-        |> Chart.withY_AxisStyle "y3"    
+        |> Chart.withXAxisStyle "x3"
+        |> Chart.withYAxisStyle "y3"    
 
         Chart.Point(x,y,Name="2,2")
-        |> Chart.withX_AxisStyle "x4"
-        |> Chart.withY_AxisStyle "y4"
+        |> Chart.withXAxisStyle "x4"
+        |> Chart.withYAxisStyle "y4"
     ]
     |> Chart.Grid(2,2)
 
@@ -178,17 +178,17 @@ use `Pattern=StyleParam.LayoutGridPatter.Coupled` to use one shared x axis per c
 let grid4 =
     [
         Chart.Point(x,y,Name="1,1")
-        |> Chart.withX_AxisStyle "x1"
-        |> Chart.withY_AxisStyle "y1"    
+        |> Chart.withXAxisStyle "x1"
+        |> Chart.withYAxisStyle "y1"    
         Chart.Line(x,y,Name="1,2")
-        |> Chart.withX_AxisStyle "x2"
-        |> Chart.withY_AxisStyle "y2"
+        |> Chart.withXAxisStyle "x2"
+        |> Chart.withYAxisStyle "y2"
         Chart.Spline(x,y,Name="2,1")
-        |> Chart.withX_AxisStyle "x3"
-        |> Chart.withY_AxisStyle "y3"    
+        |> Chart.withXAxisStyle "x3"
+        |> Chart.withYAxisStyle "y3"    
         Chart.Point(x,y,Name="2,2")
-        |> Chart.withX_AxisStyle "x4"
-        |> Chart.withY_AxisStyle "y4"
+        |> Chart.withXAxisStyle "x4"
+        |> Chart.withYAxisStyle "y4"
     ]
     |> Chart.Grid(2,2,Pattern=StyleParam.LayoutGridPattern.Coupled)
 
@@ -214,19 +214,19 @@ As with all grid charts, you can also use the Chart.withLayoutGridStyle to style
 let singleStack =
     [
         Chart.Point(x,y) 
-        |> Chart.withY_AxisStyle("This title must")
+        |> Chart.withYAxisStyle("This title must")
 
         Chart.Line(x,y) 
-        |> Chart.withY_AxisStyle("be set on the")
+        |> Chart.withYAxisStyle("be set on the")
         
         Chart.Spline(x,y) 
-        |> Chart.withY_AxisStyle("respective subplots")
+        |> Chart.withYAxisStyle("respective subplots")
     ]
     |> Chart.SingleStack(Pattern= StyleParam.LayoutGridPattern.Coupled)
     //increase spacing between plots by using the withLayoutGridStyle function
     |> Chart.withLayoutGridStyle(YGap= 0.1)
     |> Chart.withTitle("Hi i am the new SingleStackChart")
-    |> Chart.withX_AxisStyle("im the shared xAxis")
+    |> Chart.withXAxisStyle("im the shared xAxis")
 
 (*** condition: ipynb ***)
 #if IPYNB

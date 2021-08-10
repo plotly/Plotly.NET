@@ -65,13 +65,13 @@ candles1 |> GenericChart.toChartHTML
 (***include-it-raw***)
 
 (**
-If you want to hide the rangeslider, use `withX_AxisRangeSlider` and hide it:
+If you want to hide the rangeslider, use `withXAxisRangeSlider` and hide it:
 *)
 let rangeslider = RangeSlider.init(Visible=false)
 
 let candles2 = 
     Chart.Candlestick candles
-    |> Chart.withX_AxisRangeSlider rangeslider
+    |> Chart.withXAxisRangeSlider rangeslider
 
 (*** condition: ipynb ***)
 #if IPYNB

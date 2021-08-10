@@ -40,9 +40,9 @@ let z = [19; 26; 55;]
 
 let scatter3d = 
     Chart.Scatter3d(x,y,z,StyleParam.Mode.Markers)
-    |> Chart.withX_AxisStyle("my x-axis")
-    |> Chart.withY_AxisStyle("my y-axis")
-    |> Chart.withZ_AxisStyle("my z-axis")
+    |> Chart.withXAxisStyle("my x-axis")
+    |> Chart.withYAxisStyle("my y-axis")
+    |> Chart.withZAxisStyle("my z-axis")
     |> Chart.withSize(800.,800.)
 
 (*** condition: ipynb ***)
