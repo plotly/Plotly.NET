@@ -805,10 +805,11 @@ targets
     checker.Compile ( [| "fsc.exe"; "-o"; @"aaaaaaaaaaa.exe"; "-a"; target |] )
     |> Async.RunSynchronously
     |> fst
-    |> Seq.where (fun diag -> match diag.Severity with FSharpDiagnosticSeverity.Error -> true | _ -> false)
-    |> Seq.map (fun diag -> diag.ToString())
+    |> Seq.where (fun diag -> match diag.Severity with FSharpDiagnosticSeverity.Error | FSharpDiagnosticSeverity.Warning -> true | _ -> false)
 )
 |> Seq.collect id
+|> Seq.sortBy (fun diag -> (match diag.Severity with FSharpDiagnosticSeverity.Error -> 0 | _ -> 1), diag.FileName)
+|> Seq.map (fun diag -> diag.ToString())
 |> String.concat "\n"
 |> (fun errorText ->
     match errorText with
