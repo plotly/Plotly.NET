@@ -185,7 +185,7 @@ module GenericChartExtensions =
         // Sets x-Axis of 2d and 3d- Charts
         [<CompiledName("WithXAxisStyle")>]
         [<Extension>]
-        member this.WithX_AxisStyle(title,
+        member this.WithXAxisStyle(title,
                 [<Optional;DefaultParameterValue(null)>] ?MinMax,
                 [<Optional;DefaultParameterValue(null)>] ?Showgrid,
                 [<Optional;DefaultParameterValue(null)>] ?Showline,
@@ -205,7 +205,7 @@ module GenericChartExtensions =
         /// Sets the range slider for the xAxis
         [<CompiledName("WithXAxisRangeSlider")>]
         [<Extension>]
-        member this.WithX_AxisRangeSlider(rangeSlider:RangeSlider,
+        member this.WithXAxisRangeSlider(rangeSlider:RangeSlider,
                 [<Optional;DefaultParameterValue(null)>] ?Id) =
             let xaxis  = Axis.LinearAxis.init(RangeSlider = rangeSlider)
             this |> Chart.withXAxis(xaxis,?Id=Id)
@@ -213,7 +213,7 @@ module GenericChartExtensions =
         // Sets y-Axis of 2d and 3d- Charts
         [<CompiledName("WithYAxis")>]
         [<Extension>]
-        member this.WithY_Axis(yAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id) =
+        member this.WithYAxis(yAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id) =
             
             let contains3d =
                 this 
@@ -238,7 +238,7 @@ module GenericChartExtensions =
          // Sets y-Axis of 3d- Charts
         [<CompiledName("WithYAxisStyle")>]
         [<Extension>]
-        member this.WithY_AxisStyle(title,
+        member this.WithYAxisStyle(title,
                 [<Optional;DefaultParameterValue(null)>] ?MinMax,
                 [<Optional;DefaultParameterValue(null)>] ?Showgrid,
                 [<Optional;DefaultParameterValue(null)>] ?Showline,
@@ -259,7 +259,7 @@ module GenericChartExtensions =
         // Sets z-Axis of 3d- Charts
         [<CompiledName("WithZAxis")>]
         [<Extension>]
-        member this.WithZ_Axis(zAxis:Axis.LinearAxis) =
+        member this.WithZAxis(zAxis:Axis.LinearAxis) =
             let layout =
                 Layout() 
                 |> Layout.style(Scene=Scene.init(zAxis=zAxis))
@@ -270,7 +270,7 @@ module GenericChartExtensions =
         // Sets z-Axis style with ...
         [<CompiledName("WithZAxisStyle")>]
         [<Extension>]
-        member this.WithZ_AxisStyle(title,
+        member this.WithZAxisStyle(title,
                 [<Optional;DefaultParameterValue(null)>] ?MinMax,
                 [<Optional;DefaultParameterValue(null)>] ?Showgrid,
                 [<Optional;DefaultParameterValue(null)>] ?Showline,
