@@ -186,7 +186,7 @@ module VerificationTasks =
             checker.Compile ( [| "fsc.exe"; "-o"; @"aaaaaaaaaaa.exe"; "-a"; target |] )
             |> Async.RunSynchronously
             |> fst
-            |> Seq.filter (fun diag -> match diag.Severity with FSharpDiagnosticSeverity.Error -> true | _ -> false)
+            |> Seq.filter (fun diag -> match diag.Severity with FSharpDiagnosticSeverity.Error | FSharpDiagnosticSeverity.Warning -> true | _ -> false)
             |> Seq.map (fun diag -> diag.ToString())
         )
         |> Seq.collect id
