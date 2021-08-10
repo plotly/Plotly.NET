@@ -178,15 +178,16 @@ module VerificationTasks =
     let verifyDocs = BuildTask.create "VerifyDocs" [clean; build; copyBinaries] {
         let targets = !! "docs/**.fsx" |> Seq.map (fun f -> f.ToString())
 
+        let checker = FSharp.Compiler.CodeAnalysis.FSharpChecker.Create ()
+
         targets
         |> Seq.map (
             fun target -> 
-            let checker = FSharp.Compiler.CodeAnalysis.FSharpChecker.Create ()
-            checker.Compile ( [| "fsc.exe"; "-o"; @"aaaaaaaaaaa.exe"; "-a"; target |] )
-            |> Async.RunSynchronously
-            |> fst
-            |> Seq.where (fun diag -> match diag.Severity with FSharpDiagnosticSeverity.Error -> true | _ -> false)
-            |> Seq.map (fun diag -> diag.ToString())
+                checker.Compile ( [| "fsc.exe"; "-o"; @"aaaaaaaaaaa.exe"; "-a"; target |] )
+                |> Async.RunSynchronously
+                |> fst
+                |> Seq.where (fun diag -> match diag.Severity with FSharpDiagnosticSeverity.Error -> true | _ -> false)
+                |> Seq.map (fun diag -> diag.ToString())
         )
         |> Seq.collect id
         |> String.concat "\n"
