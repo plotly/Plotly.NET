@@ -892,7 +892,7 @@ module ChartExtensions =
                         gChart
                         |> Chart.withAxisAnchor(xAnchor,yAnchor) // set adapted axis anchors
                         |> Chart.withXAxis(xAxis,i+1) // set previous axis with adapted id (one individual axis for each subplot, wether or not they will be used later)
-                        |> Chart.withY_Axis(yAxis,i+1) // set previous axis with adapted id (one individual axis for each subplot, wether or not they will be used later)
+                        |> Chart.withYAxis(yAxis,i+1) // set previous axis with adapted id (one individual axis for each subplot, wether or not they will be used later)
                         |> GenericChart.mapLayout (fun l ->
                             if i > 0 then 
                                 // remove default axes from consecutive charts, otherwise they will override the first one
@@ -1143,7 +1143,7 @@ module ChartExtensions =
                         |> GenericChart.setLayout layout
                         |> Chart.withAxisAnchor(X=index,Y=index) 
                         |> Chart.withXAxis(xaxis,index)
-                        |> Chart.withY_Axis(yaxis,index)
+                        |> Chart.withYAxis(yaxis,index)
                     )
 
                 |> Chart.combine
