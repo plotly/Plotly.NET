@@ -175,6 +175,7 @@ module VerificationTasks =
     open FSharp.Compiler.Diagnostics
     
     let verifyDocs = BuildTask.create "VerifyDocs" [] {
+        BuildTask.runOrDefault copyBinaries
         
         let targets = !! "docs/**.fsx" |> Seq.map (fun f -> f.ToString())
 
