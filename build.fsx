@@ -173,6 +173,7 @@ module TestTasks =
 
 module VerificationTasks =
     open FSharp.Compiler.Diagnostics
+    open BasicTasks
     
     let verifyDocs = BuildTask.create "VerifyDocs" [] {
         BuildTask.runOrDefault copyBinaries
