@@ -805,7 +805,7 @@ targets
     checker.Compile ( [| "fsc.exe"; "-o"; @"aaaaaaaaaaa.exe"; "-a"; target |] )
     |> Async.RunSynchronously
     |> fst
-    |> Seq.filter (fun diag -> match diag.Severity with FSharpDiagnosticSeverity.Error -> true | _ -> false)
+    |> Seq.where (fun diag -> match diag.Severity with FSharpDiagnosticSeverity.Error -> true | _ -> false)
     |> Seq.map (fun diag -> diag.ToString())
 )
 |> Seq.collect id
@@ -813,5 +813,5 @@ targets
 |> (fun errorText ->
     match errorText with
     | "" -> ()
-    | text -> raise (System.Exception $"Errors:\n{errorText}" )
+    | text -> raise (System.Exception $"Errors:\n{text}" )
     )
