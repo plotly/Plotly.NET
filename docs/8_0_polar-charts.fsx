@@ -52,7 +52,7 @@ let polar1 =
             Chart.Polar(r2,t,StyleParam.Mode.Markers,Name="2")
             Chart.Polar(r3,t,StyleParam.Mode.Markers,Name="3")
         ]
-        |> Chart.Combine
+        |> Chart.combine
 
 (*** condition: ipynb ***)
 #if IPYNB

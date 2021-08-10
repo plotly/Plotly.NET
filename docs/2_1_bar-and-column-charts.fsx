@@ -84,7 +84,7 @@ let stackedBar =
         Chart.StackedBar(keys,values,Name="old");
         Chart.StackedBar(keys,[8; 21; 13;],Name="new")
     ]
-    |> Chart.Combine
+    |> Chart.combine
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -104,7 +104,7 @@ let stackedColumn =
         Chart.StackedColumn(keys,values,Name="old");
         Chart.StackedColumn(keys,[8; 21; 13;],Name="new")
     ]
-    |> Chart.Combine
+    |> Chart.combine
 
 (*** condition: ipynb ***)
 #if IPYNB

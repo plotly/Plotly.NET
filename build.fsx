@@ -180,6 +180,10 @@ module VerificationTasks =
 
         let checker = FSharp.Compiler.CodeAnalysis.FSharpChecker.Create ()
 
+        let ignoredDiagnostics = Set.ofList [ 
+            1182; // unused variable
+            ]
+        
         targets
         |> Seq.map (
             fun target -> 
@@ -189,6 +193,7 @@ module VerificationTasks =
             |> Seq.where (fun diag -> match diag.Severity with FSharpDiagnosticSeverity.Error | FSharpDiagnosticSeverity.Warning -> true | _ -> false)
         )
         |> Seq.collect id
+        |> Seq.where (fun c -> not (ignoredDiagnostics.Contains c.ErrorNumber))
         |> Seq.sortBy (fun diag -> (match diag.Severity with FSharpDiagnosticSeverity.Error -> 0 | _ -> 1), diag.FileName.[..6] (* to only count the numeric part *) )
         |> Seq.map (fun diag -> 
             (match diag.Severity with

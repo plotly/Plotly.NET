@@ -47,6 +47,7 @@ The central type that gets created by all Chart constructors is `GenericChart`, 
 *)
 
 (***do-not-eval***)
+[<NoComparison>]
 type GenericChart =
     | Chart of Trace * Layout * Config * DisplayOptions
     | MultiChart of Trace list * Layout * Config * DisplayOptions

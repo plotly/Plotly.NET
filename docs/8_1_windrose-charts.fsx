@@ -53,7 +53,7 @@ let windrose1 =
         Chart.WindRose (r'' ,t,Name="5-8 m/s")
         Chart.WindRose (r''',t,Name="< 5 m/s")
     ]
-    |> Chart.Combine
+    |> Chart.combine
 
 (*** condition: ipynb ***)
 #if IPYNB

@@ -162,7 +162,7 @@ The `Chart.Show` function will open a browser window and render the input chart 
 
 (***do-not-eval***)
 myFirstChart
-|> Chart.Show
+|> Chart.show
 
 (**Should render this chart in your brower:*)
 
@@ -172,7 +172,7 @@ myFirstChart |> GenericChart.toChartHTML
 
 (***do-not-eval***)
 myFirstStyledChart
-|> Chart.Show
+|> Chart.show
 
 (**And here is what happened after applying the styles from above:*)
 
