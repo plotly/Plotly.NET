@@ -86,10 +86,10 @@ The relative position and angle of the axes is typically uninformative.
 
 // webGL Comparison
 
-let largeRT = [for i in 0. .. 0.01 .. 360. do yield i,i ]
+let largeRTSizes = [for i in 0. .. 0.01 .. 360. do yield i,i, 0.1 * i ]
 
-let noGL = Chart.PointPolar(largeRT) |> Chart.Show
-let yesGL = Chart.PointPolar(largeRT,UseWebGL=true) |> Chart.Show // it is so much faster, damn
+let noGL = Chart.BubblePolar(largeRTSizes) |> Chart.Show
+let yesGL = Chart.BubblePolar(largeRTSizes,UseWebGL=true) |> Chart.Show // it is so much faster, damn
 
 let polar1 =
     [

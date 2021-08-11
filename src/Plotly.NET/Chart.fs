@@ -1340,7 +1340,7 @@ type Chart =
     /// 
     static member PointPolar
         (
-            rtheta,
+            rTheta,
             [<Optional;DefaultParameterValue(null)>] ?Name,
             [<Optional;DefaultParameterValue(null)>] ?Showlegend,
             [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
@@ -1351,7 +1351,7 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?TextFont,
             [<Optional;DefaultParameterValue(null)>] ?UseWebGL
         ) = 
-            let r,t = Seq.unzip rtheta
+            let r,t = Seq.unzip rTheta
 
             Chart.PointPolar(
                 r, t,
@@ -1409,7 +1409,7 @@ type Chart =
     ///
     static member LinePolar 
         (
-            rtheta,
+            rTheta,
             [<Optional;DefaultParameterValue(null)>] ?Name,
             [<Optional;DefaultParameterValue(null)>] ?Showlegend,
             [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
@@ -1423,7 +1423,7 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?Width,
             [<Optional;DefaultParameterValue(null)>] ?UseWebGL
         ) =
-             let r,t = Seq.unzip rtheta
+             let r,t = Seq.unzip rTheta
 
              Chart.LinePolar(
                 r, t,
@@ -1484,7 +1484,7 @@ type Chart =
     ///
     static member SplinePolar 
         (
-            rtheta,
+            rTheta,
             [<Optional;DefaultParameterValue(null)>] ?Name,
             [<Optional;DefaultParameterValue(null)>] ?Showlegend,
             [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
@@ -1499,7 +1499,7 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?Width,
             [<Optional;DefaultParameterValue(null)>] ?UseWebGL
         ) =
-             let r,t = Seq.unzip rtheta
+             let r,t = Seq.unzip rTheta
 
              Chart.SplinePolar(
                 r, t,
@@ -1518,6 +1518,65 @@ type Chart =
                 ?UseWebGL       = UseWebGL
              )
 
+    /// 
+    static member BubblePolar
+        (
+            r, theta, sizes:seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
+            [<Optional;DefaultParameterValue(null)>] ?Color,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?Labels,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont,
+            [<Optional;DefaultParameterValue(null)>] ?UseWebGL
+        ) = 
+
+            let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
+            
+            let style = 
+                TraceStyle.ScatterPolar(
+                    R       = r,
+                    Theta   = theta, 
+                    Mode    = changeMode StyleParam.Mode.Markers
+                ) 
+                >> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+                >> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol,MultiSizes=sizes)
+                >> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+
+            let useWebGL = defaultArg UseWebGL false
+            
+            Chart.renderScatterPolarTrace useWebGL style
+
+    /// 
+    static member BubblePolar
+        (
+            rThetaSizes:seq<#IConvertible*#IConvertible*#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
+            [<Optional;DefaultParameterValue(null)>] ?Color,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?Labels,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont,
+            [<Optional;DefaultParameterValue(null)>] ?UseWebGL
+        ) = 
+            let r,t,sizes = Seq.unzip3 rThetaSizes
+
+            Chart.BubblePolar(
+                r, t, sizes,
+                ?Name           = Name,
+                ?Showlegend     = Showlegend,
+                ?MarkerSymbol   = MarkerSymbol,
+                ?Color          = Color,
+                ?Opacity        = Opacity,
+                ?Labels         = Labels,
+                ?TextPosition   = TextPosition,
+                ?TextFont       = TextFont,
+                ?UseWebGL       = UseWebGL
+            )
 
     //static member WindRose(r, t,
     //        [<Optional;DefaultParameterValue(null)>] ?Name,
