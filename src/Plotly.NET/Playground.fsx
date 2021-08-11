@@ -84,6 +84,13 @@ of three or more quantitative variables represented on axes starting from the sa
 The relative position and angle of the axes is typically uninformative.
 *)
 
+// webGL Comparison
+
+let largeRT = [for i in 0. .. 0.01 .. 360. do yield i,i ]
+
+let noGL = Chart.PointPolar(largeRT) |> Chart.Show
+let yesGL = Chart.PointPolar(largeRT,UseWebGL=true) |> Chart.Show // it is so much faster, damn
+
 let polar1 =
     [
         Chart.PointPolar(r,t,Name="PointPolar")

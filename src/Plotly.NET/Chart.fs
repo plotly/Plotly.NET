@@ -41,6 +41,14 @@ type Chart =
             Trace.initScatter style
             |> GenericChart.ofTraceObject
 
+    static member private renderScatterPolarTrace (useWebGL:bool) (style: Trace -> Trace) =
+        if useWebGL then
+            Trace.initScatterPolarGL style
+            |> GenericChart.ofTraceObject
+        else
+            Trace.initScatterPolar style
+            |> GenericChart.ofTraceObject
+
     /// <summary>Creates a chart that is completely invisible when rendered. The Chart object however is NOT empty! Combining this chart with other charts will have unforseen consequences (it has for example invisible axes that can override other axes if used in Chart.Combine)</summary>
     static member Invisible () =
         let hiddenAxis() = 
@@ -1233,7 +1241,9 @@ type Chart =
 
 
     /// Uses points, line or both depending on the mode to represent data points in a polar chart
-    static member ScatterPolar(r, theta, mode,
+    static member ScatterPolar
+        (
+            r, theta, mode,
             [<Optional;DefaultParameterValue(null)>]  ?Name,
             [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
             [<Optional;DefaultParameterValue(null)>]  ?MarkerSymbol,
@@ -1243,22 +1253,24 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>]  ?TextPosition,
             [<Optional;DefaultParameterValue(null)>]  ?TextFont,
             [<Optional;DefaultParameterValue(null)>]  ?Dash,
-            [<Optional;DefaultParameterValue(null)>]  ?Width) = 
+            [<Optional;DefaultParameterValue(null)>]  ?Width,
+            [<Optional;DefaultParameterValue(null)>]  ?UseWebGL
+        ) = 
 
-        Trace.initScatterPolar (
-            TraceStyle.ScatterPolar(
-                R       = r,
-                Theta   = theta, 
-                Mode    = mode
-            ) 
-        )
-        |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
-        |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
-        |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
-        |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-        |> GenericChart.ofTraceObject 
+            let style = 
+                TraceStyle.ScatterPolar(
+                    R       = r,
+                    Theta   = theta, 
+                    Mode    = mode
+                ) 
+                >> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+                >> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
+                >> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
+                >> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+        
+            let useWebGL = defaultArg UseWebGL false
 
-
+            Chart.renderScatterPolarTrace useWebGL style
 
      /// Uses points, line or both depending on the mode to represent data points in a polar chart
     static member ScatterPolar
@@ -1273,7 +1285,8 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?TextPosition,
             [<Optional;DefaultParameterValue(null)>] ?TextFont,
             [<Optional;DefaultParameterValue(null)>] ?Dash,
-            [<Optional;DefaultParameterValue(null)>] ?Width
+            [<Optional;DefaultParameterValue(null)>] ?Width,
+            [<Optional;DefaultParameterValue(null)>] ?UseWebGL
         ) = 
 
             let r,t = Seq.unzip rtheta
@@ -1289,49 +1302,54 @@ type Chart =
                 ?TextPosition=TextPosition,
                 ?TextFont=TextFont,
                 ?Dash=Dash,
-                ?Width=Width
+                ?Width=Width,
+                ?UseWebGL = UseWebGL
             )
 
     /// 
     static member PointPolar
         (
             r, theta,
-            [<Optional;DefaultParameterValue(null)>]  ?Name,
-            [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
-            [<Optional;DefaultParameterValue(null)>]  ?MarkerSymbol,
-            [<Optional;DefaultParameterValue(null)>]  ?Color,
-            [<Optional;DefaultParameterValue(null)>]  ?Opacity,
-            [<Optional;DefaultParameterValue(null)>]  ?Labels,
-            [<Optional;DefaultParameterValue(null)>]  ?TextPosition,
-            [<Optional;DefaultParameterValue(null)>]  ?TextFont
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
+            [<Optional;DefaultParameterValue(null)>] ?Color,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?Labels,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont,
+            [<Optional;DefaultParameterValue(null)>] ?UseWebGL
         ) = 
 
             let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
             
-            Trace.initScatterPolar (
+            let style = 
                 TraceStyle.ScatterPolar(
                     R       = r,
                     Theta   = theta, 
                     Mode    = changeMode StyleParam.Mode.Markers
                 ) 
-            )
-            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
-            |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
-            |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-            |> GenericChart.ofTraceObject 
+                >> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+                >> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
+                >> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+
+            let useWebGL = defaultArg UseWebGL false
+            
+            Chart.renderScatterPolarTrace useWebGL style
 
     /// 
     static member PointPolar
         (
             rtheta,
-            [<Optional;DefaultParameterValue(null)>]  ?Name,
-            [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
-            [<Optional;DefaultParameterValue(null)>]  ?MarkerSymbol,
-            [<Optional;DefaultParameterValue(null)>]  ?Color,
-            [<Optional;DefaultParameterValue(null)>]  ?Opacity,
-            [<Optional;DefaultParameterValue(null)>]  ?Labels,
-            [<Optional;DefaultParameterValue(null)>]  ?TextPosition,
-            [<Optional;DefaultParameterValue(null)>]  ?TextFont
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
+            [<Optional;DefaultParameterValue(null)>] ?Color,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?Labels,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont,
+            [<Optional;DefaultParameterValue(null)>] ?UseWebGL
         ) = 
             let r,t = Seq.unzip rtheta
 
@@ -1344,24 +1362,26 @@ type Chart =
                 ?Opacity        = Opacity,
                 ?Labels         = Labels,
                 ?TextPosition   = TextPosition,
-                ?TextFont       = TextFont
+                ?TextFont       = TextFont,
+                ?UseWebGL       = UseWebGL
             )
             
     ///
     static member LinePolar 
         (
             r, theta,
-            [<Optional;DefaultParameterValue(null)>]  ?Name,
-            [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
-            [<Optional;DefaultParameterValue(null)>]  ?ShowMarkers,
-            [<Optional;DefaultParameterValue(null)>]  ?MarkerSymbol,
-            [<Optional;DefaultParameterValue(null)>]  ?Color,
-            [<Optional;DefaultParameterValue(null)>]  ?Opacity,
-            [<Optional;DefaultParameterValue(null)>]  ?Labels,
-            [<Optional;DefaultParameterValue(null)>]  ?TextPosition,
-            [<Optional;DefaultParameterValue(null)>]  ?TextFont,
-            [<Optional;DefaultParameterValue(null)>]  ?Dash,
-            [<Optional;DefaultParameterValue(null)>]  ?Width
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+            [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
+            [<Optional;DefaultParameterValue(null)>] ?Color,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?Labels,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont,
+            [<Optional;DefaultParameterValue(null)>] ?Dash,
+            [<Optional;DefaultParameterValue(null)>] ?Width,
+            [<Optional;DefaultParameterValue(null)>] ?UseWebGL
         ) =
             let changeMode = 
                 let isShowMarker =
@@ -1371,34 +1391,37 @@ type Chart =
                 StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
                 >> StyleParam.ModeUtils.showMarker (isShowMarker)
 
-            Trace.initScatterPolar (
+            let style =
                 TraceStyle.ScatterPolar(
                     R       = r,
                     Theta   = theta, 
                     Mode    = changeMode StyleParam.Mode.Lines
                 ) 
-            )
-            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
-            |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
-            |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
-            |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-            |> GenericChart.ofTraceObject 
+                >> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+                >> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
+                >> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
+                >> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+
+            let useWebGL = defaultArg UseWebGL false
+            
+            Chart.renderScatterPolarTrace useWebGL style
 
     ///
     static member LinePolar 
         (
             rtheta,
-            [<Optional;DefaultParameterValue(null)>]  ?Name,
-            [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
-            [<Optional;DefaultParameterValue(null)>]  ?ShowMarkers,
-            [<Optional;DefaultParameterValue(null)>]  ?MarkerSymbol,
-            [<Optional;DefaultParameterValue(null)>]  ?Color,
-            [<Optional;DefaultParameterValue(null)>]  ?Opacity,
-            [<Optional;DefaultParameterValue(null)>]  ?Labels,
-            [<Optional;DefaultParameterValue(null)>]  ?TextPosition,
-            [<Optional;DefaultParameterValue(null)>]  ?TextFont,
-            [<Optional;DefaultParameterValue(null)>]  ?Dash,
-            [<Optional;DefaultParameterValue(null)>]  ?Width
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+            [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
+            [<Optional;DefaultParameterValue(null)>] ?Color,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?Labels,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont,
+            [<Optional;DefaultParameterValue(null)>] ?Dash,
+            [<Optional;DefaultParameterValue(null)>] ?Width,
+            [<Optional;DefaultParameterValue(null)>] ?UseWebGL
         ) =
              let r,t = Seq.unzip rtheta
 
@@ -1414,25 +1437,27 @@ type Chart =
                 ?TextPosition   = TextPosition,
                 ?TextFont       = TextFont,
                 ?Dash           = Dash,
-                ?Width          = Width
+                ?Width          = Width,
+                ?UseWebGL       = UseWebGL
              )
 
     ///
     static member SplinePolar 
         (
             r, theta,
-            [<Optional;DefaultParameterValue(null)>]  ?Name,
-            [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
-            [<Optional;DefaultParameterValue(null)>]  ?ShowMarkers,
-            [<Optional;DefaultParameterValue(null)>]  ?MarkerSymbol,
-            [<Optional;DefaultParameterValue(null)>]  ?Color,
-            [<Optional;DefaultParameterValue(null)>]  ?Opacity,
-            [<Optional;DefaultParameterValue(null)>]  ?Labels,
-            [<Optional;DefaultParameterValue(null)>]  ?TextPosition,
-            [<Optional;DefaultParameterValue(null)>]  ?TextFont,
-            [<Optional;DefaultParameterValue(null)>]  ?Smoothing,
-            [<Optional;DefaultParameterValue(null)>]  ?Dash,
-            [<Optional;DefaultParameterValue(null)>]  ?Width
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+            [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
+            [<Optional;DefaultParameterValue(null)>] ?Color,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?Labels,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont,
+            [<Optional;DefaultParameterValue(null)>] ?Smoothing,
+            [<Optional;DefaultParameterValue(null)>] ?Dash,
+            [<Optional;DefaultParameterValue(null)>] ?Width,
+            [<Optional;DefaultParameterValue(null)>] ?UseWebGL
         ) =
             let changeMode = 
                 let isShowMarker =
@@ -1442,35 +1467,37 @@ type Chart =
                 StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
                 >> StyleParam.ModeUtils.showMarker (isShowMarker)
 
-            Trace.initScatterPolar (
+            let style =
                 TraceStyle.ScatterPolar(
                     R       = r,
                     Theta   = theta, 
                     Mode    = changeMode StyleParam.Mode.Lines
                 ) 
-            )
-            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
-            |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width, Shape=StyleParam.Shape.Spline, ?Smoothing=Smoothing)
-            |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
-            |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-            |> GenericChart.ofTraceObject 
+                >> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+                >> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width, Shape=StyleParam.Shape.Spline, ?Smoothing=Smoothing)
+                >> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
+                >> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
 
+            let useWebGL = defaultArg UseWebGL false
+            
+            Chart.renderScatterPolarTrace useWebGL style
     ///
     static member SplinePolar 
         (
             rtheta,
-            [<Optional;DefaultParameterValue(null)>]  ?Name,
-            [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
-            [<Optional;DefaultParameterValue(null)>]  ?ShowMarkers,
-            [<Optional;DefaultParameterValue(null)>]  ?MarkerSymbol,
-            [<Optional;DefaultParameterValue(null)>]  ?Color,
-            [<Optional;DefaultParameterValue(null)>]  ?Opacity,
-            [<Optional;DefaultParameterValue(null)>]  ?Labels,
-            [<Optional;DefaultParameterValue(null)>]  ?TextPosition,
-            [<Optional;DefaultParameterValue(null)>]  ?TextFont,
-            [<Optional;DefaultParameterValue(null)>]  ?Smoothing,
-            [<Optional;DefaultParameterValue(null)>]  ?Dash,
-            [<Optional;DefaultParameterValue(null)>]  ?Width
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+            [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
+            [<Optional;DefaultParameterValue(null)>] ?Color,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?Labels,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont,
+            [<Optional;DefaultParameterValue(null)>] ?Smoothing,
+            [<Optional;DefaultParameterValue(null)>] ?Dash,
+            [<Optional;DefaultParameterValue(null)>] ?Width,
+            [<Optional;DefaultParameterValue(null)>] ?UseWebGL
         ) =
              let r,t = Seq.unzip rtheta
 
@@ -1487,7 +1514,8 @@ type Chart =
                 ?TextFont       = TextFont,
                 ?Smoothing      = Smoothing,
                 ?Dash           = Dash,
-                ?Width          = Width
+                ?Width          = Width,
+                ?UseWebGL       = UseWebGL
              )
 
 
