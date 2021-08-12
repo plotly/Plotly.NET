@@ -1578,23 +1578,30 @@ type Chart =
                 ?UseWebGL       = UseWebGL
             )
 
-    //static member WindRose(r, t,
-    //        [<Optional;DefaultParameterValue(null)>] ?Name,
-    //        [<Optional;DefaultParameterValue(null)>] ?Showlegend,
-    //        [<Optional;DefaultParameterValue(null)>] ?Color,
-    //        [<Optional;DefaultParameterValue(null)>] ?Opacity,
-    //        [<Optional;DefaultParameterValue(null)>] ?Labels,
-    //        [<Optional;DefaultParameterValue(null)>] ?TextPosition,
-    //        [<Optional;DefaultParameterValue(null)>] ?TextFont,
-    //        [<Optional;DefaultParameterValue(null)>] ?Dash,
-    //        [<Optional;DefaultParameterValue(null)>] ?Width) = 
-    //    Trace.initWindRose (
-    //            TraceStyle.Scatter(R = r,T = t) )               
-    //    |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
-    //    |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
-    //    |> TraceStyle.Marker(?Color=Color)
-    //    |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-    //    |> GenericChart.ofTraceObject 
+    /// 
+    static member BarPolar
+        (
+            r, theta,
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+            [<Optional;DefaultParameterValue(null)>] ?Color,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?Labels,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont,
+            [<Optional;DefaultParameterValue(null)>] ?Dash,
+            [<Optional;DefaultParameterValue(null)>] ?LineWidth
+        ) = 
+            Trace.initBarPolar(
+                TraceStyle.BarPolar(
+                    R = r, Theta = theta
+                )
+            )
+            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=LineWidth)
+            |> TraceStyle.Marker(?Color=Color)
+            |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+            |> GenericChart.ofTraceObject 
 
      /// Computes a histogram with auto-determined the bin size.
     static member Histogram(data,

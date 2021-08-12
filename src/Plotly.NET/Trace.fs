@@ -1674,7 +1674,7 @@ module Trace =
                 ?ShowLegend         : bool,
                 ?LegendRank         : int,
                 ?LegendGroup        : string,
-                ?LegendGroupTitle   : obj,
+                ?LegendGroupTitle   : Title,
                 ?Opacity            : float,
                 ?Mode               : StyleParam.Mode,
                 ?Ids                : seq<#IConvertible>,
@@ -1751,3 +1751,77 @@ module Trace =
 
                     trace
                 )
+
+
+        static member BarPolar
+            (
+                ?Name               : string,
+                ?Visible            : StyleParam.Visible,
+                ?ShowLegend         : bool,
+                ?LegendRank         : int,
+                ?LegendGroup        : string,
+                ?LegendGroupTitle   : Title,
+                ?Opacity            : float,
+                ?Ids                : seq<#IConvertible>,
+                ?Base               : #IConvertible,
+                ?R                  : seq<#IConvertible>,
+                ?R0                 : IConvertible,
+                ?DR                 : IConvertible,
+                ?Theta              : seq<#IConvertible>,
+                ?Theta0             : #IConvertible,
+                ?DTheta             : #IConvertible,
+                ?ThetaUnit          : StyleParam.AngularUnit,
+                ?Width              : #IConvertible,
+                ?Offset             : #IConvertible,
+                ?Text               : seq<#IConvertible>,
+                ?HoverText          : seq<#IConvertible>,
+                ?HoverInfo          : string,
+                ?HoverTemplate      : seq<#IConvertible>,
+                ?Meta               : seq<#IConvertible>,
+                ?CustomData         : seq<#IConvertible>,
+                ?Subplot            : string,
+                ?Marker             : Marker,
+                ?SelectedPoints     : seq<#IConvertible>,
+                ?Selected           : Selection,
+                ?Unselected         : Selection,
+                ?HoverLabel         : Hoverlabel,
+                ?UIRevision         : seq<#IConvertible>
+            ) =
+                (fun (trace:('T :> Trace)) -> 
+
+                    Name                |> DynObj.setValueOpt trace "name"
+                    Visible             |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+                    ShowLegend          |> DynObj.setValueOpt trace "showlegend"
+                    LegendRank          |> DynObj.setValueOpt trace "legendrank"
+                    LegendGroup         |> DynObj.setValueOpt trace "legendgroup"
+                    LegendGroupTitle    |> DynObj.setValueOpt trace "legendgrouptitle"
+                    Opacity             |> DynObj.setValueOpt trace "opacity"
+                    Ids                 |> DynObj.setValueOpt trace "ids"
+                    Base                |> DynObj.setValueOpt trace "base"
+                    R                   |> DynObj.setValueOpt trace "r"
+                    R0                  |> DynObj.setValueOpt trace "r0"
+                    DR                  |> DynObj.setValueOpt trace "dr"
+                    Theta               |> DynObj.setValueOpt trace "theta"
+                    Theta0              |> DynObj.setValueOpt trace "theta0"
+                    DTheta              |> DynObj.setValueOpt trace "dtheta"
+                    ThetaUnit           |> DynObj.setValueOptBy trace "thetaunit" StyleParam.AngularUnit.convert
+                    Width               |> DynObj.setValueOpt trace "width"
+                    Offset              |> DynObj.setValueOpt trace "offset"
+                    Text                |> DynObj.setValueOpt trace "text"
+                    HoverText           |> DynObj.setValueOpt trace "hovertext"
+                    HoverInfo           |> DynObj.setValueOpt trace "hoverinfo"
+                    HoverTemplate       |> DynObj.setValueOpt trace "hovertemplate"
+                    Meta                |> DynObj.setValueOpt trace "meta"
+                    CustomData          |> DynObj.setValueOpt trace "customdata"
+                    Subplot             |> DynObj.setValueOpt trace "subplot"
+                    Marker              |> DynObj.setValueOpt trace "marker"
+                    SelectedPoints      |> DynObj.setValueOpt trace "selectedpoints"
+                    Selected            |> DynObj.setValueOpt trace "selected"
+                    Unselected          |> DynObj.setValueOpt trace "unselected"
+                    HoverLabel          |> DynObj.setValueOpt trace "hoverlabel"
+                    UIRevision          |> DynObj.setValueOpt trace "uirevision"
+                    
+                    trace
+                )
+
+
