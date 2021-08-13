@@ -146,8 +146,8 @@ Styling functions are generally the `Chart.with*` naming convention. The followi
 let myFirstStyledChart =
     Chart.Point(xData,yData)
     |> Chart.withTitle "Hello world!"
-    |> Chart.withXAxisStyle ("xAxis", Showgrid=false)
-    |> Chart.withYAxisStyle ("yAxis", Showgrid=false)
+    |> Chart.withXAxisStyle ("xAxis", ShowGrid=false)
+    |> Chart.withYAxisStyle ("yAxis", ShowGrid=false)
 
 (**
 **Attention:** Styling functions mutate 😈 the input chart, therefore possibly affecting bindings to intermediary results. 
@@ -196,8 +196,8 @@ Chart.Point(xData',yData')
 
 Chart.Point(xData,yData)
 |> Chart.withTitle "Hello world!"
-|> Chart.withXAxisStyle ("xAxis", Showgrid=false)
-|> Chart.withYAxisStyle ("yAxis", Showgrid=false)
+|> Chart.withXAxisStyle ("xAxis", ShowGrid=false)
+|> Chart.withYAxisStyle ("yAxis", ShowGrid=false)
 
 
 (**
@@ -210,9 +210,9 @@ One of the main design points of Plotly.NET it is to provide support for multipl
 
 [(1,5);(2,10)]
 |> Chart.Point
-|> Chart.withTraceName("Hello from F#",Showlegend=true)
-|> Chart.withYAxisStyle("xAxis",Showgrid= false, Showline=true)
-|> Chart.withXAxisStyle("yAxis",Showgrid= false, Showline=true)
+|> Chart.withTraceName("Hello from F#",ShowLegend=true)
+|> Chart.withYAxisStyle("xAxis",ShowGrid= false, ShowLine=true)
+|> Chart.withXAxisStyle("yAxis",ShowGrid= false, ShowLine=true)
 
 (**
 ### Fluent interface style in C#:

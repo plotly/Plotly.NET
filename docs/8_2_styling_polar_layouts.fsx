@@ -48,7 +48,8 @@ let combinedPolar =
         Chart.LinePolar(r2,t,Name="LinePolar", ShowMarkers = true)
         Chart.SplinePolar(r3,t,Name="SplinePolar", ShowMarkers = true)
     ]
-    |> Chart.Combine
+    
+    |> Chart.combine
 
 (*** condition: ipynb ***)
 #if IPYNB
