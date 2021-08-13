@@ -56,8 +56,7 @@ type Layout() =
     /// Init Layout type
     static member init
         (   
-            ?Title      : string   ,
-            ?Titlefont  : Font     ,
+            ?Title      : Title,
             ?Font       : Font     ,
             ?Showlegend : bool     ,
             ?Autosize      ,
@@ -86,14 +85,14 @@ type Layout() =
                            
             ?Hidesources   ,
             ?Smith         ,
-            ?Geo           : Geo
+            ?Geo            : Geo,
+            ?Polar          : Polar
 
         ) =
             Layout()
             |> Layout.style
                 (
                     ?Title         = Title         ,
-                    ?Titlefont     = Titlefont     ,
                     ?Font          = Font          ,
                     ?Showlegend    = Showlegend    ,
                     ?Autosize      = Autosize      ,
@@ -122,14 +121,14 @@ type Layout() =
                                       
                     ?Hidesources   = Hidesources   ,
                     ?Smith         = Smith         ,
-                    ?Geo           = Geo                
+                    ?Geo           = Geo           ,
+                    ?Polar         = Polar
                 )
 
     // Applies the styles to Layout()
     static member style
         (   
-            ?Title,
-            ?Titlefont:Font,
+            ?Title: Title,
             ?Font:Font,
             ?Showlegend:bool,
             ?Autosize:bool,
@@ -161,7 +160,8 @@ type Layout() =
                 
             ?Hidesources,
             ?Smith,
-            ?Geo:Geo
+            ?Geo:Geo,
+            ?Polar          : Polar
 
         ) =
             (fun (layout:Layout) -> 
@@ -180,6 +180,7 @@ type Layout() =
                 Dragmode        |> DynObj.setValueOptBy layout "dragmode" StyleParam.Dragmode.toString
                 
                 Geo             |> DynObj.setValueOpt layout "geo"
+                Polar           |> DynObj.setValueOpt layout "polar"
                 
                 Annotations     |> DynObj.setValueOpt layout "annotations"
                 
@@ -192,7 +193,6 @@ type Layout() =
 
                 // Update
                 Font        |> DynObj.setValueOpt layout "font"
-                Titlefont   |> DynObj.setValueOpt layout "titlefont"
                 Margin      |> DynObj.setValueOpt layout "margin"
                 //xAxis       |> DynObj.setValueOpt layout "xaxis"
                 //xAxis2      |> DynObj.setValueOpt layout "xaxis2"
@@ -335,6 +335,34 @@ type Layout() =
 
                 layout
             )
+
+    static member tryGetPolarById (id:int) =
+        (fun (layout:Layout) -> 
+            let key = if id < 2 then "polar" else sprintf "polar%i" id
+            layout.TryGetTypedValue<Polar>(key)
+        )
+
+    /// Updates the style of current polar object with given Id. 
+    /// If there does not exist a polar object with the given id, sets it with the given polar object
+    static member updatePolarById
+        (   
+           id       : int,
+           polar    : Polar
+        ) =
+            (fun (layout:Layout) -> 
+
+                let key = if id < 2 then "polar" else sprintf "polar%i" id
+
+                let polar' = 
+                    match layout |> Layout.tryGetPolarById(id) with
+                    | Some a  -> DynObj.combine (unbox a) polar
+                    | None    -> polar :> DynamicObj
+                
+                polar' |> DynObj.setValue layout key
+
+                layout
+            )
+
 
     static member setLegend(legend:Legend) =
         (fun (layout:Layout) -> 

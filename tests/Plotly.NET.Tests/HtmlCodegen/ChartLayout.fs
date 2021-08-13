@@ -19,11 +19,11 @@ let axisStylingChart =
 let ``Axis styling`` =
     testList "ChartLayout.Axis styling tests" [
         testCase "X With axis has title" ( fun c ->
-            "\"title\":\"X axis title quack quack\""
+            "\"title\":{\"text\":\"X axis title quack quack\"}"
             |> chartGeneratedContains axisStylingChart
         );
         testCase "Y With axis has title" ( fun c ->
-            "\"title\":\"Y axis title boo foo\""
+            "\"title\":{\"text\":\"Y axis title boo foo\"}"
             |> chartGeneratedContains axisStylingChart
         );
         testCase "Should have range" ( fun c ->
@@ -69,7 +69,7 @@ let multipleAxesChart =
 let ``Multiple Axes styling`` =
     testList "ChartLayout.Multiple Axes styling tests" [
         testCase "Layout" ( fun () ->
-            "var layout = {\"yaxis\":{\"title\":\"axis 1\",\"side\":\"left\"},\"yaxis2\":{\"title\":\"axis2\",\"side\":\"right\",\"overlaying\":\"y\"}};"
+            "var layout = {\"yaxis\":{\"title\":{\"text\":\"axis 1\"},\"side\":\"left\"},\"yaxis2\":{\"title\":{\"text\":\"axis2\"},\"side\":\"right\",\"overlaying\":\"y\"}};"
             |> chartGeneratedContains multipleAxesChart
         );
     ]
@@ -145,10 +145,10 @@ let singleStackChart =
         |> Chart.withY_AxisStyle("This title must")
     
         Chart.Line(x,y) 
-        |> Chart.withY_AxisStyle("be set on the",Zeroline=false)
+        |> Chart.withY_AxisStyle("be set on the",ZeroLine=false)
         
         Chart.Spline(x,y) 
-        |> Chart.withY_AxisStyle("respective subplots",Zeroline=false)
+        |> Chart.withY_AxisStyle("respective subplots",ZeroLine=false)
     ]
     |> Chart.SingleStack(Pattern = StyleParam.LayoutGridPattern.Coupled)
     //move xAxis to bottom and increase spacing between plots by using the withLayoutGridStyle function
@@ -169,7 +169,7 @@ let ``Multicharts and subplots`` =
             |> chartGeneratedContains subPlotChart
         );
         testCase "Subplot grids layout" ( fun () ->
-            "var layout = {\"xaxis\":{\"title\":\"x1\"},\"yaxis\":{\"title\":\"y1\"},\"xaxis2\":{\"title\":\"x2\"},\"yaxis2\":{\"title\":\"y2\"},\"xaxis3\":{\"title\":\"x3\"},\"yaxis3\":{\"title\":\"y3\"},\"xaxis4\":{\"title\":\"x4\"},\"yaxis4\":{\"title\":\"y4\"},\"grid\":{\"rows\":2,\"columns\":2,\"pattern\":\"independent\"}};"
+            "var layout = {\"xaxis\":{\"title\":{\"text\":\"x1\"}},\"yaxis\":{\"title\":{\"text\":\"y1\"}},\"xaxis2\":{\"title\":{\"text\":\"x2\"}},\"yaxis2\":{\"title\":{\"text\":\"y2\"}},\"xaxis3\":{\"title\":{\"text\":\"x3\"}},\"yaxis3\":{\"title\":{\"text\":\"y3\"}},\"xaxis4\":{\"title\":{\"text\":\"x4\"}},\"yaxis4\":{\"title\":{\"text\":\"y4\"}},\"grid\":{\"rows\":2,\"columns\":2,\"pattern\":\"independent\"}};"
             |> chartGeneratedContains subPlotChart
         );
         testCase "Single Stack data" ( fun () -> 
@@ -177,7 +177,7 @@ let ``Multicharts and subplots`` =
             |> chartGeneratedContains singleStackChart
         );
         testCase "Single Stack layout" ( fun () -> 
-            "var layout = {\"yaxis\":{\"title\":\"This title must\"},\"xaxis\":{\"title\":\"im the shared xAxis\"},\"xaxis2\":{},\"yaxis2\":{\"title\":\"be set on the\",\"zeroline\":false},\"xaxis3\":{},\"yaxis3\":{\"title\":\"respective subplots\",\"zeroline\":false},\"grid\":{\"rows\":3,\"columns\":1,\"pattern\":\"coupled\",\"ygap\":0.1,\"xside\":\"bottom\"},\"title\":\"Hi i am the new SingleStackChart\"};"
+            "var layout = {\"yaxis\":{\"title\":{\"text\":\"This title must\"}},\"xaxis\":{\"title\":{\"text\":\"im the shared xAxis\"}},\"xaxis2\":{},\"yaxis2\":{\"title\":{\"text\":\"be set on the\"},\"zeroline\":false},\"xaxis3\":{},\"yaxis3\":{\"title\":{\"text\":\"respective subplots\"},\"zeroline\":false},\"grid\":{\"rows\":3,\"columns\":1,\"pattern\":\"coupled\",\"ygap\":0.1,\"xside\":\"bottom\"},\"title\":{\"text\":\"Hi i am the new SingleStackChart\"}};"
             |> chartGeneratedContains singleStackChart
         );
     ]
@@ -282,7 +282,7 @@ let ``Display options`` =
             |> chartGeneratedContains mathtexChart
         );
         testCase "MathTex layout" ( fun () ->
-            "var layout = {\"title\":\"$\\\\beta_{1c} = 25 \\\\pm 11 \\\\text{ km s}^{-1}$\"};"
+            "var layout = {\"title\":{\"text\":\"$\\\\beta_{1c} = 25 \\\\pm 11 \\\\text{ km s}^{-1}$\"}};"
             |> chartGeneratedContains mathtexChart
         );
         testCase "MathTex include mathjax" ( fun () ->

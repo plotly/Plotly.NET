@@ -162,7 +162,7 @@ let ``Scatter and line plots on Geo maps charts`` =
             |> chartGeneratedContains flightsMapChart
         );
         testCase "Flight map layout" ( fun () ->
-            "var layout = {\"showlegend\":false,\"geo\":{\"scope\":\"north america\",\"projection\":{\"type\":\"azimuthal equal area\"},\"showland\":true,\"landcolor\":\"lightgrey\"},\"margin\":{\"l\":0,\"r\":0,\"t\":50,\"b\":0},\"title\":\"Feb. 2011 American Airline flights\"};"
+            "var layout = {\"showlegend\":false,\"geo\":{\"scope\":\"north america\",\"projection\":{\"type\":\"azimuthal equal area\"},\"showland\":true,\"landcolor\":\"lightgrey\"},\"margin\":{\"l\":0,\"r\":0,\"t\":50,\"b\":0},\"title\":{\"text\":\"Feb. 2011 American Airline flights\"}};"
             |> chartGeneratedContains flightsMapChart
         );
     ]

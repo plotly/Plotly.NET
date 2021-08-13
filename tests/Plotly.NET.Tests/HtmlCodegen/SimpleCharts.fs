@@ -436,7 +436,7 @@ let ``Table charts`` =
             |> chartGeneratedContains sequencePresentationTableChart
         );
         testCase "Sequence presentation table  layout" ( fun () ->
-            "var layout = {\"width\":650.0,\"height\":\"NaN\",\"title\":\"Sequence A\"};"
+            "var layout = {\"width\":650.0,\"height\":\"NaN\",\"title\":{\"text\":\"Sequence A\"}};"
             |> chartGeneratedContains sequencePresentationTableChart
         );
     ]

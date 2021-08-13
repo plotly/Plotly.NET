@@ -114,7 +114,7 @@ let ``Scatter and line plots on Mapbox maps charts`` =
             |> chartGeneratedContains flightsChart
         );
         testCase "Flights mapbox layout" ( fun () ->
-            "var layout = {\"showlegend\":false,\"mapbox\":{\"style\":\"open-street-map\",\"center\":{\"lon\":-97.0372,\"lat\":32.8959}},\"margin\":{\"l\":0,\"r\":0,\"t\":50,\"b\":0},\"title\":\"Feb. 2011 American Airline flights\"};"
+            "var layout = {\"showlegend\":false,\"mapbox\":{\"style\":\"open-street-map\",\"center\":{\"lon\":-97.0372,\"lat\":32.8959}},\"margin\":{\"l\":0,\"r\":0,\"t\":50,\"b\":0},\"title\":{\"text\":\"Feb. 2011 American Airline flights\"}};"
             |> chartGeneratedContains flightsChart
         );
     ]

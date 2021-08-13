@@ -1,20 +1,23 @@
-﻿open Plotly.NET.StyleParam
-
-
-#r "nuget: FSharp.Data"
+﻿#r "nuget: FSharp.Data"
 #r "nuget: Deedle"
 #r "nuget: FSharpAux"
 
 #load "StyleParams.fs"
 #load "DynamicObj.fs"
-#load "Frame.fs"
 #load "Colors.fs"
+#load "Rangebreak.fs"
+#load "TickFormatStop.fs"
+#load "Selection.fs"
+#load "Frame.fs"
 #load "StockData.fs"
 #load "Font.fs"
+#load "Title.fs"
 #load "Pathbar.fs"
 #load "TreemapTiling.fs"
 #load "Colorbar.fs"
 #load "RangeSlider.fs"
+#load "Button.fs"
+#load "RangeSelector.fs"
 #load "Light.fs"
 #load "Legend.fs"
 #load "Contours.fs"
@@ -28,6 +31,7 @@
 #load "Marker.fs"
 #load "Hoverlabel.fs"
 #load "Axis.fs"
+#load "Polar.fs"
 #load "Bins.fs"
 #load "Cumulative.fs"
 #load "Scene.fs"
@@ -66,23 +70,53 @@ open System.IO
 open Deedle
 open FSharpAux
 
-[
-    Chart.Point([1,2;1,3]) 
-    |> Chart.withY_AxisStyle("This title must")
+open System
 
-    Chart.Line([1,2;1,3]) 
-    |> Chart.withY_AxisStyle("be set on the",Zeroline=false)
-    
-    Chart.Spline([1,2;1,3]) 
-    |> Chart.withY_AxisStyle("respective subplots",Zeroline=false)
-]
-|> Chart.SingleStack(Pattern= StyleParam.LayoutGridPattern.Coupled)
-//move xAxis to bottom and increase spacing between plots by using the withLayoutGridStyle function
-|> Chart.withLayoutGridStyle(YGap= 0.1)
-|> Chart.withTitle("Hi i am the new SingleStackChart")
-|> Chart.withX_AxisStyle("im the shared xAxis")
-|> Chart.Show
+let r  = [ 1; 2; 3; 4; 5; 6; 7;] |> List.map ((*) 10000)
+let r2 = [ 5; 6; 7; 1; 2; 3; 4;] |> List.map ((*) 10000)
+let r3 = [ 3; 1; 5; 2; 8; 7; 5;] |> List.map ((*) 10000)
 
+let t  = [0; 45; 90; 135; 200; 320; 184;]
+
+(**
+A polar chart is a graphical method of displaying multivariate data in the form of a two-dimensional chart 
+of three or more quantitative variables represented on axes starting from the same point.
+The relative position and angle of the axes is typically uninformative.
+*)
+
+// webGL Comparison
+
+let largeRTSizes = [for i in 0. .. 0.01 .. 360. do yield i,i, 0.1 * i ]
+
+let noGL = Chart.BubblePolar(largeRTSizes) |> Chart.Show
+let yesGL = Chart.BubblePolar(largeRTSizes,UseWebGL=true) |> Chart.Show // it is so much faster, damn
+
+let polar1 =
+    [
+        Chart.PointPolar(r,t,Name="PointPolar")
+        Chart.LinePolar(r2,t,Name="LinePolar", ShowMarkers = true)
+        Chart.SplinePolar(r3,t,Name="SplinePolar", ShowMarkers = true)
+    ]
+    |> Chart.Combine
+    |> Chart.withPolar(
+        Polar.init(
+            Sector= (0., 270.),
+            Hole=0.1
+        )
+    )
+    |> Chart.withAngularAxis(
+        Axis.AngularAxis.init(
+            Color="darkblue"
+        )
+    )
+    |> Chart.withRadialAxis(
+        Axis.RadialAxis.init(
+            Title = Title.init("Hi, i am the radial axis"),
+            Color="darkblue",
+            SeparateThousands = true
+        )
+    )
+    |> Chart.Show
 [
     [
         Chart.Point([1,2],Name="1,1")
@@ -359,11 +393,11 @@ let funnelArea2 =
 
 let yAxis =
     Axis.LinearAxis.init(
-        Title = "Y",
-        Showline = true,
+        Title = Title.init(Text="Y"),
+        ShowLine = true,
         Range = StyleParam.Range.MinMax (0.0, 2.0),
-        Tickvals = [0.0 .. 2.0],
-        Ticktext = [ "zero"; "one"; "two" ]
+        TickVals = [0.0 .. 2.0],
+        TickText = [ "zero"; "one"; "two" ]
     )
 
 Chart.Range(
@@ -749,11 +783,11 @@ generateDomainRanges 8 1
 [
     Chart.Point([(0,1)]) |> Chart.withY_AxisStyle("This title")
     Chart.Point([(0,1)]) 
-    |> Chart.withY_AxisStyle("Must be set",Zeroline=false)
+    |> Chart.withY_AxisStyle("Must be set",ZeroLine=false)
     Chart.Point([(0,1)]) 
-    |> Chart.withY_AxisStyle("on the respective charts",Zeroline=false)
+    |> Chart.withY_AxisStyle("on the respective charts",ZeroLine=false)
 ]
-|> Chart.SingleStack
+|> Chart.SingleStack()
 |> Chart.withLayoutGridStyle(XSide=StyleParam.LayoutGridXSide.Bottom)
 |> Chart.withTitle("Hi i am the new SingleStackChart")
 |> Chart.withX_AxisStyle("im the shared xAxis")
