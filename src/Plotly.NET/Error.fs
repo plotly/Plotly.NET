@@ -1,4 +1,6 @@
 namespace Plotly.NET
+
+open DynamicObj
 open System
 
 /// Error type inherits from dynamic object

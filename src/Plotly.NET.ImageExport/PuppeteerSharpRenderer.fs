@@ -7,6 +7,7 @@ open System
 open System.IO
 open System.Text
 open System.Text.RegularExpressions
+open DynamicObj
 
 type PuppeteerSharpRenderer() =
 

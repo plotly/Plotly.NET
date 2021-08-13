@@ -2,17 +2,23 @@
 #r "nuget: Deedle"
 #r "nuget: FSharpAux"
 #r "nuget: Newtonsoft.Json, 12.0.3"
+#r "nuget: DynamicObj"
 
 #load "../Plotly.NET/StyleParams.fs"
-#load "../Plotly.NET/DynamicObj.fs"
-#load "../Plotly.NET/Frame.fs"
 #load "../Plotly.NET/Colors.fs"
+#load "../Plotly.NET/Rangebreak.fs"
+#load "../Plotly.NET/TickFormatStop.fs"
+#load "../Plotly.NET/Selection.fs"
+#load "../Plotly.NET/Frame.fs"
 #load "../Plotly.NET/StockData.fs"
 #load "../Plotly.NET/Font.fs"
+#load "../Plotly.NET/Title.fs"
 #load "../Plotly.NET/Pathbar.fs"
 #load "../Plotly.NET/TreemapTiling.fs"
 #load "../Plotly.NET/Colorbar.fs"
 #load "../Plotly.NET/RangeSlider.fs"
+#load "../Plotly.NET/Button.fs"
+#load "../Plotly.NET/RangeSelector.fs"
 #load "../Plotly.NET/Light.fs"
 #load "../Plotly.NET/Legend.fs"
 #load "../Plotly.NET/Contours.fs"
@@ -26,6 +32,7 @@
 #load "../Plotly.NET/Marker.fs"
 #load "../Plotly.NET/Hoverlabel.fs"
 #load "../Plotly.NET/Axis.fs"
+#load "../Plotly.NET/Polar.fs"
 #load "../Plotly.NET/Bins.fs"
 #load "../Plotly.NET/Cumulative.fs"
 #load "../Plotly.NET/Scene.fs"
@@ -52,6 +59,7 @@
 #load "../Plotly.NET/GenericChartExtensions.fs"
 #load "../Plotly.NET/CandelstickExtension.fs"
 #load "../Plotly.NET/SankeyExtension.fs"
+
 
 open Plotly.NET
 open GenericChart

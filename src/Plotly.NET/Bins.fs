@@ -1,5 +1,6 @@
 namespace Plotly.NET
 
+open DynamicObj
 
 /// Bin type inherits from dynamic object
 type Bins () =

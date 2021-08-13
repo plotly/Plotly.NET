@@ -1,5 +1,7 @@
 namespace Plotly.NET
 
+open DynamicObj
+
 /// Font type inherits from dynamic object
 type Font () =
     inherit DynamicObj ()

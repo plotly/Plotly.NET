@@ -1,5 +1,7 @@
 ﻿namespace Plotly.NET
 
+open DynamicObj
+
 /// Styles for connector lines in Funnel Charts.
 ///
 /// Parameters:

@@ -1,6 +1,6 @@
 namespace Plotly.NET
 
-
+open DynamicObj
 
 /// Contour object inherits from dynamic object
 type Contour () =

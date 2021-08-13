@@ -1,5 +1,7 @@
 namespace Plotly.NET
 
+open DynamicObj
+
 /// Module containing plotly light modulation for 3d 
 module Ligth =
      

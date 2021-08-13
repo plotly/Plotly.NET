@@ -1,5 +1,7 @@
 ﻿namespace Plotly.NET
 
+open DynamicObj
+
 /// <summary>Determines the style of the map shown in geo traces</summary>
 type Geo() = 
 

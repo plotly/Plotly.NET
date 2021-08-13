@@ -1,5 +1,7 @@
 ﻿namespace Plotly.NET
 
+open DynamicObj
+
 type StockData = 
     {
         Open           : float

@@ -1,5 +1,6 @@
 ﻿namespace Plotly.NET
 
+open DynamicObj
 open Trace
 open System
 open System.Runtime.InteropServices

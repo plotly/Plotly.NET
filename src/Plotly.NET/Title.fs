@@ -1,5 +1,7 @@
 ﻿namespace Plotly.NET
 
+open DynamicObj
+
 type Title() =
     inherit DynamicObj ()
 

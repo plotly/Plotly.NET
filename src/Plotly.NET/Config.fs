@@ -1,4 +1,7 @@
 namespace Plotly.NET
+
+open DynamicObj
+
 // missing config props:
 
 //    fillFrame: {

@@ -1,7 +1,7 @@
 namespace Plotly.NET
 
+open DynamicObj
 open System
-
 
 /// Trace type inherits from dynamic object
 type Trace3d (traceTypeName) =

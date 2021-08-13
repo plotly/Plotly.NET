@@ -1,7 +1,7 @@
 namespace Plotly.NET
 
+open DynamicObj
 open System
-
 
 /// Selected type inherits from dynamic object
 type Selected () =

@@ -1,5 +1,7 @@
 ﻿namespace Plotly.NET
 
+open DynamicObj
+
 /// <summary>Determines the style of the map shown in mapbox traces</summary>
 type Mapbox() = 
 

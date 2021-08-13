@@ -1,5 +1,7 @@
 ﻿namespace Plotly.NET
 
+open DynamicObj
+
 /// Text annotations inside a plot 
 type Annotation() = 
     inherit DynamicObj ()

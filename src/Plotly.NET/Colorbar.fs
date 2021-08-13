@@ -1,5 +1,6 @@
 namespace Plotly.NET
 
+open DynamicObj
 open System
 
 /// Colorbar type inherits from dynamic object

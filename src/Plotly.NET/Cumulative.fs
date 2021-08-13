@@ -1,6 +1,6 @@
 namespace Plotly.NET
 
-
+open DynamicObj
 
 //enabled (boolean) 
 //If true, display the cumulative distribution by summing the binned values. Use the `direction` and `centralbin` attributes to tune the accumulation method. Note: in this mode, the "density" `histnorm` settings behave the same as their equivalents without "density": "" and "density" both rise to the number of data points, and "probability" and "probability density" both rise to the number of sample points.

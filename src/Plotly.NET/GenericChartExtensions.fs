@@ -3,6 +3,7 @@
 open System
 open System.IO
 
+open DynamicObj
 open GenericChart
 open System.Runtime.InteropServices
 open System.Runtime.CompilerServices

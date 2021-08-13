@@ -1,5 +1,6 @@
 ﻿namespace Plotly.NET
 
+open DynamicObj
 open System
 
 type TreemapTiling () =

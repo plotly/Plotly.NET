@@ -1,5 +1,6 @@
 ﻿namespace Plotly.NET
 
+open DynamicObj
 
 /// <summary>Determines Map rotation in GeoProjections</summary>
 type GeoProjectionRotation () = 

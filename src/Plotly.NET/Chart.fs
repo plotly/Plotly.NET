@@ -1,5 +1,6 @@
 namespace Plotly.NET
 
+open DynamicObj
 open System
 open System.IO
 //open FSharp.Care.Collections

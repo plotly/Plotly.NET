@@ -1,7 +1,7 @@
 namespace Plotly.NET
 
+open DynamicObj
 open System
-
 
 /// Meanline type inherits from dynamic object (parent violin)
 type Meanline () =

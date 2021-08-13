@@ -1,5 +1,7 @@
 ﻿namespace Plotly.NET
 
+open DynamicObj
+
 /// Margin 
 type Template() = 
     inherit DynamicObj ()

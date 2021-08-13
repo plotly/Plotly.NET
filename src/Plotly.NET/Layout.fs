@@ -1,5 +1,6 @@
 namespace Plotly.NET
 
+open DynamicObj
 
 /// Margin 
 type Margin() = 

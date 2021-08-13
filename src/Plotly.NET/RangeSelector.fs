@@ -1,5 +1,7 @@
 ﻿namespace Plotly.NET
 
+open DynamicObj
+
 /// Dimensions type inherits from dynamic object
 type RangeSelector () =
     inherit DynamicObj ()

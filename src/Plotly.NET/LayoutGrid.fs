@@ -1,5 +1,6 @@
 ﻿namespace Plotly.NET
 
+open DynamicObj
 open System
 
 /// A plot grid that can contain subplots with shared axes.

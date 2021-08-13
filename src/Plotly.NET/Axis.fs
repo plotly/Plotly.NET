@@ -1,5 +1,6 @@
 namespace Plotly.NET
 
+open DynamicObj
 open System
 
 /// <summary>Various axes that can be used to add scales to your plots.</summary>

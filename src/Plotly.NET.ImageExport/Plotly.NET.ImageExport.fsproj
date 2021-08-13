@@ -37,6 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="DynamicObj" Version="0.0.3" />
     <PackageReference Include="PuppeteerSharp" Version="4.0.0" />
   </ItemGroup>
 

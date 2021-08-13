@@ -1,5 +1,7 @@
 ﻿namespace Plotly.NET
 
+open DynamicObj
+
 /// Legend 
 type Legend() = 
     inherit DynamicObj ()

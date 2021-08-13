@@ -1,7 +1,7 @@
 namespace Plotly.NET
 
+open DynamicObj
 open System
-
 
 /// Dimensions type inherits from dynamic object
 type Domain () =

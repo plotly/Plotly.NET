@@ -1,7 +1,7 @@
 namespace Plotly.NET
 
+open DynamicObj
 open System
-
 
 /// Hoverlabel type inherits from dynamic object
 type Hoverlabel () =

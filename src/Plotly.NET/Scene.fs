@@ -1,7 +1,7 @@
 namespace Plotly.NET
-open Plotly.NET.StyleParam
 
-    
+open DynamicObj
+
 /// Scene 
 type Scene() = 
     inherit DynamicObj ()
