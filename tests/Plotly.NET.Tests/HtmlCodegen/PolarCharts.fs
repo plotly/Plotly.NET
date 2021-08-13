@@ -6,28 +6,50 @@ open TestUtils
 open Plotly.NET.GenericChart
 open System
 
-let polar1Chart =
-    let r  = [ 1; 2; 3; 4; 5; 6; 7;]
-    let r2 = [ 5; 6; 7; 1; 2; 3; 4;]
-    let r3 = [ 3; 1; 5; 2; 8; 7; 5;]
-    
-    let t  = [0; 45; 90; 135; 200; 320; 184;]
-    [
-        Chart.ScatterPolar(r,t,StyleParam.Mode.Markers,Name="1")
-        Chart.ScatterPolar(r2,t,StyleParam.Mode.Markers,Name="2")
-        Chart.ScatterPolar(r3,t,StyleParam.Mode.Markers,Name="3")
-    ]
-    |> Chart.Combine
+//radial coordinates
+let radial  = [ 1; 2; 3; 4; 5; 6; 7;]
+// angular coordinates
+let theta  = [0; 45; 90; 135; 200; 320; 184;]
+
+
+let pointPolar = Chart.PointPolar(radial,theta)
+
+let linePolar = 
+    Chart.LinePolar(radial,theta)
+    |> Chart.withLineStyle(Color="purple",Dash=StyleParam.DrawingStyle.DashDot)
+
+let splinePolar = 
+    Chart.SplinePolar(
+        radial,
+        theta,
+        Labels=["one";"two";"three";"four";"five";"six";"seven"],
+        TextPosition=StyleParam.TextPosition.TopCenter,
+        ShowMarkers=true
+    )
 
 [<Tests>]
 let ``Polar charts`` =
     testList "PolarCharts.Polar charts" [
-        testCase " data" ( fun () ->
-            "var data = [{\"type\":\"scatterpolar\",\"mode\":\"markers\",\"r\":[1,2,3,4,5,6,7],\"theta\":[0,45,90,135,200,320,184],\"name\":\"1\",\"line\":{},\"marker\":{}},{\"type\":\"scatterpolar\",\"mode\":\"markers\",\"r\":[5,6,7,1,2,3,4],\"theta\":[0,45,90,135,200,320,184],\"name\":\"2\",\"line\":{},\"marker\":{}},{\"type\":\"scatterpolar\",\"mode\":\"markers\",\"r\":[3,1,5,2,8,7,5],\"theta\":[0,45,90,135,200,320,184],\"name\":\"3\",\"line\":{},\"marker\":{}}];"
-            |> chartGeneratedContains polar1Chart
+        testCase "Polar Point data" ( fun () ->
+            """var data = [{"type":"scatterpolar","mode":"markers","r":[1,2,3,4,5,6,7],"theta":[0,45,90,135,200,320,184],"marker":{}}];"""
+            |> chartGeneratedContains pointPolar
         );
-        testCase " layout" ( fun () ->
-            emptyLayout polar1Chart
+        testCase "Polar Point layout" ( fun () ->
+            emptyLayout pointPolar
+        );        
+        testCase "Polar Line data" ( fun () ->
+            """var data = [{"type":"scatterpolar","mode":"lines","r":[1,2,3,4,5,6,7],"theta":[0,45,90,135,200,320,184],"line":{"color":"purple","dash":"dashdot"},"marker":{}}];"""
+            |> chartGeneratedContains linePolar
+        );
+        testCase "Polar Line layout" ( fun () ->
+            emptyLayout linePolar
+        );        
+        testCase "Polar Spline data" ( fun () ->
+            """var data = [{"type":"scatterpolar","mode":"lines+markers+text","r":[1,2,3,4,5,6,7],"theta":[0,45,90,135,200,320,184],"line":{"shape":"spline"},"marker":{},"text":["one","two","three","four","five","six","seven"],"textposition":"top center"}];"""
+            |> chartGeneratedContains splinePolar
+        );
+        testCase "Polar Spline layout" ( fun () ->
+            emptyLayout splinePolar
         );
     ]
 
