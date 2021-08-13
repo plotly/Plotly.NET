@@ -64,20 +64,20 @@ The following example creates two mirrored axes with inside ticks, one of them w
 
 let mirroredXAxis =
     Axis.LinearAxis.init(
-        Title ="Log axis",
-        Showline = true,
+        Title = Title.init(Text="Mirrored axis"),
+        ShowLine = true,
         Mirror = StyleParam.Mirror.AllTicks,
-        Showgrid = false,
+        ShowGrid = false,
         Ticks = StyleParam.TickOptions.Inside
     )
 
 let mirroredLogYAxis = 
     Axis.LinearAxis.init(
-        Title ="Log axis",
+        Title = Title.init(Text="Log axis"),
         AxisType = StyleParam.AxisType.Log,
-        Showline = true,
+        ShowLine = true,
         Mirror = StyleParam.Mirror.AllTicks,
-        Showgrid = false,
+        ShowGrid = false,
         Ticks = StyleParam.TickOptions.Inside
     )
 
@@ -159,7 +159,7 @@ let twoXAxes2 =
     |> Chart.combine
     |> Chart.withYAxisStyle(
             "first y-axis",
-            Showline=true
+            ShowLine=true
             )
     |> Chart.withXAxisStyle(
         "x-axis",
@@ -172,7 +172,7 @@ let twoXAxes2 =
         Overlaying=StyleParam.AxisAnchorId.Y 1,
         Position=0.10, // position the axis beteen the leftmost edge and the firt axis at 0.3
         Anchor=StyleParam.AxisAnchorId.Free,
-        Showline=true
+        ShowLine=true
     )
 
 (*** condition: ipynb ***)

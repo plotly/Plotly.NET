@@ -222,9 +222,10 @@ module ChartExtensions =
         [<Obsolete("Use withXAxisStyle instead")>]
         [<CompiledName("WithX_AxisStyle")>]
         static member withX_AxisStyle(title,
+                [<Optional;DefaultParameterValue(null)>] ?TitleFont,
                 [<Optional;DefaultParameterValue(null)>] ?MinMax,
-                [<Optional;DefaultParameterValue(null)>] ?Showgrid,
-                [<Optional;DefaultParameterValue(null)>] ?Showline,
+                [<Optional;DefaultParameterValue(null)>] ?ShowGrid,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLine,
                 [<Optional;DefaultParameterValue(null)>] ?Side,
                 [<Optional;DefaultParameterValue(null)>] ?Overlaying,
                 [<Optional;DefaultParameterValue(null)>] ?Id,
@@ -233,9 +234,10 @@ module ChartExtensions =
                 [<Optional;DefaultParameterValue(null)>] ?Zeroline,
                 [<Optional;DefaultParameterValue(null)>] ?Anchor) =
                 Chart.withXAxisStyle(title, 
+                    ?TitleFont = TitleFont,
                     ?MinMax = MinMax, 
-                    ?Showgrid = Showgrid,
-                    ?Showline = Showline,
+                    ?ShowGrid = ShowGrid,
+                    ?ShowLine = ShowLine,
                     ?Side = Side,
                     ?Overlaying = Overlaying,
                     ?Id = Id,
@@ -249,8 +251,8 @@ module ChartExtensions =
         [<CompiledName("WithXAxisStyle")>]
         static member withXAxisStyle(title,
                 [<Optional;DefaultParameterValue(null)>] ?MinMax,
-                [<Optional;DefaultParameterValue(null)>] ?Showgrid,
-                [<Optional;DefaultParameterValue(null)>] ?Showline,
+                [<Optional;DefaultParameterValue(null)>] ?ShowGrid,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLine,
                 [<Optional;DefaultParameterValue(null)>] ?Side,
                 [<Optional;DefaultParameterValue(null)>] ?Overlaying,
                 [<Optional;DefaultParameterValue(null)>] ?Id,
@@ -260,10 +262,9 @@ module ChartExtensions =
                 [<Optional;DefaultParameterValue(null)>] ?Anchor) =
             let range  = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
             let domain = if Domain.IsSome then Some (StyleParam.Range.MinMax (Domain.Value)) else None
-            let xaxis  = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,?Showline=Showline,
-                                    ?Anchor=Anchor,?Side=Side,?Domain=domain,?Overlaying=Overlaying,?Position=Position,?Zeroline=Zeroline)
+            let xaxis  = Axis.LinearAxis.init(Title=Title.init(Text=title, ?Font=TitleFont),?Range=range,?ShowGrid=ShowGrid,?ShowLine=ShowLine,
+                                    ?Anchor=Anchor,?Side=Side,?Domain=domain,?Overlaying=Overlaying,?Position=Position,?ZeroLine=Zeroline)
             Chart.withXAxis(xaxis,?Id=Id)
-
 
         [<Obsolete("Use withXAxisRangeSlider instead")>]
         [<CompiledName("WithX_AxisRangeSlider")>]
@@ -312,15 +313,16 @@ module ChartExtensions =
         [<Obsolete("Use withYAxisStyle instead")>]
         [<CompiledName("WithY_AxisStyle")>]
         static member withY_AxisStyle(title,
+                [<Optional;DefaultParameterValue(null)>] ?TitleFont,
                 [<Optional;DefaultParameterValue(null)>] ?MinMax,
-                [<Optional;DefaultParameterValue(null)>] ?Showgrid,
-                [<Optional;DefaultParameterValue(null)>] ?Showline,
+                [<Optional;DefaultParameterValue(null)>] ?ShowGrid,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLine,
                 [<Optional;DefaultParameterValue(null)>] ?Side,
                 [<Optional;DefaultParameterValue(null)>] ?Overlaying,
                 [<Optional;DefaultParameterValue(null)>] ?Id,
                 [<Optional;DefaultParameterValue(null)>] ?Domain,
                 [<Optional;DefaultParameterValue(null)>] ?Position,
-                [<Optional;DefaultParameterValue(null)>] ?Zeroline,
+                [<Optional;DefaultParameterValue(null)>] ?ZeroLine,
                 [<Optional;DefaultParameterValue(null)>] ?Anchor) =
                 Chart.withYAxisStyle(title, 
                     ?MinMax = MinMax, 
@@ -349,9 +351,9 @@ module ChartExtensions =
                 [<Optional;DefaultParameterValue(null)>] ?Anchor) =
             let range  = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
             let domain = if Domain.IsSome then Some (StyleParam.Range.MinMax (Domain.Value)) else None
-            let yaxis  = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,
-                                    ?Showline=Showline,?Anchor=Anchor,?Side=Side,?Domain=domain,?Overlaying=Overlaying,?Position=Position,?Zeroline=Zeroline)
-            Chart.withYAxis(yaxis,?Id=Id)
+            let yaxis  = Axis.LinearAxis.init(Title=Title.init(Text=title, ?Font=TitleFont),?Range=range,?ShowGrid=ShowGrid,
+                                    ?ShowLine=ShowLine,?Anchor=Anchor,?Side=Side,?Domain=domain,?Overlaying=Overlaying,?Position=Position,?ZeroLine=ZeroLine)
+            Chart.withYAxis(yaxis,?Id=Id)                
 
 
         [<Obsolete("Use withZAxis instead")>]
@@ -374,15 +376,16 @@ module ChartExtensions =
         [<Obsolete("Use withZAxisStyle instead")>]
         [<CompiledName("WithZ_AxisStyle")>]
         static member withZ_AxisStyle(title,
+                   [<Optional;DefaultParameterValue(null)>] ?TitleFont,
                    [<Optional;DefaultParameterValue(null)>] ?MinMax,
-                   [<Optional;DefaultParameterValue(null)>] ?Showgrid,
-                   [<Optional;DefaultParameterValue(null)>] ?Showline,
+                   [<Optional;DefaultParameterValue(null)>] ?ShowGrid,
+                   [<Optional;DefaultParameterValue(null)>] ?ShowLine,
                    [<Optional;DefaultParameterValue(null)>] ?Domain,
                    [<Optional;DefaultParameterValue(null)>] ?Anchor) =
                    Chart.withZAxisStyle(title, 
                        ?MinMax = MinMax, 
-                       ?Showgrid = Showgrid,
-                       ?Showline = Showline,
+                       ?ShowGrid = ShowGrid,
+                       ?ShowLine = ShowLine,
                        ?Domain = Domain,
                        ?Anchor = Anchor)
 
@@ -390,15 +393,16 @@ module ChartExtensions =
         // Sets z-Axis style with ...
         [<CompiledName("WithZAxisStyle")>]
         static member withZAxisStyle(title,
+                [<Optional;DefaultParameterValue(null)>] ?TitleFont,
                 [<Optional;DefaultParameterValue(null)>] ?MinMax,
-                [<Optional;DefaultParameterValue(null)>] ?Showgrid,
-                [<Optional;DefaultParameterValue(null)>] ?Showline,
+                [<Optional;DefaultParameterValue(null)>] ?ShowGrid,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLine,
                 [<Optional;DefaultParameterValue(null)>] ?Domain,
                 [<Optional;DefaultParameterValue(null)>] ?Anchor) =
             let range  = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
             let domain = if Domain.IsSome then Some (StyleParam.Range.MinMax (Domain.Value)) else None
-            let zaxis  = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,?Showline=Showline,?Anchor=Anchor,?Domain=domain)
-            Chart.withZAxis(zaxis)
+            let zaxis  = Axis.LinearAxis.init(Title=Title.init(Text=title, ?Font=TitleFont),?Range=range,?ShowGrid=ShowGrid,?ShowLine=ShowLine,?Anchor=Anchor,?Domain=domain)
+            Chart.withZ_Axis(zaxis)
 
         [<CompiledName("WithColorBar")>]
         static member withColorBar(colorbar:Colorbar) =
@@ -728,11 +732,17 @@ module ChartExtensions =
 
         // Set the title of a Chart
         [<CompiledName("WithTitle")>]
-        static member withTitle(title,[<Optional;DefaultParameterValue(null)>] ?Titlefont) =
+        static member withTitle(title,[<Optional;DefaultParameterValue(null)>] ?TitleFont) =
             (fun (ch:GenericChart) ->
                 let layout =
                     Layout() 
-                    |> Layout.style(Title=title,?Titlefont=Titlefont)
+                    |> Layout.style(
+                        Title=
+                            Title.init(
+                                Text = title,
+                                ?Font = TitleFont
+                            )
+                    )
                 GenericChart.addLayout layout ch
              )  
 
@@ -1226,3 +1236,58 @@ module ChartExtensions =
             let path = Path.Combine(tempPath, file)
             File.WriteAllText(path, html)
             path |> openOsSpecificFile
+
+        /// Sets the polar object with the given id on the chart layout
+        [<CompiledName("WithPolar")>]
+        static member withPolar(polar:Polar, [<Optional;DefaultParameterValue(null)>] ?Id) =
+            (fun (ch:GenericChart) ->
+                let layout =
+                    let id = defaultArg Id 1
+                    GenericChart.getLayout ch 
+                    |> Layout.updatePolarById(id,polar)
+                GenericChart.setLayout layout ch
+            )
+
+        
+        /// Sets the angular axis of the polar object with the given id on the chart layout
+        [<CompiledName("WithAngularAxis")>]
+        static member withAngularAxis(angularAxis:Axis.AngularAxis, [<Optional;DefaultParameterValue(null)>] ?Id) =
+            (fun (ch:GenericChart) ->
+                
+                let id = defaultArg Id 1
+                let layout = GenericChart.getLayout ch 
+
+                let updatedPolar = 
+                    layout
+                    |> Layout.tryGetPolarById(id)
+                    |> Option.defaultValue (Polar.init())
+                    |> Polar.style(AngularAxis = angularAxis)
+
+                let updatedLayout =
+                    layout
+                    |> Layout.updatePolarById(id,updatedPolar)
+
+                GenericChart.setLayout updatedLayout ch
+            )
+            
+        /// Sets the radial axis of the polar object with the given id on the chart layout
+        [<CompiledName("WithRadialAxis")>]
+        static member withRadialAxis(radialAxis:Axis.RadialAxis, [<Optional;DefaultParameterValue(null)>] ?Id) =
+            (fun (ch:GenericChart) ->
+                let id = defaultArg Id 1
+                let layout = GenericChart.getLayout ch 
+
+                let updatedPolar = 
+                    layout
+                    |> Layout.tryGetPolarById(id)
+                    |> Option.defaultValue (Polar.init())
+                    |> Polar.style(RadialAxis = radialAxis)
+
+                let updatedLayout =
+                    layout
+                    |> Layout.updatePolarById(id,updatedPolar)
+
+                GenericChart.setLayout updatedLayout ch
+            )
+
+

@@ -11,8 +11,8 @@ let simpleChart =
     let yData = [0. .. 10.]
     Chart.Point(xData, yData)
     |> Chart.withTitle "Hello world!"
-    |> Chart.withXAxisStyle ("xAxis", Showgrid=false)
-    |> Chart.withYAxisStyle ("yAxis", Showgrid=false)
+    |> Chart.withXAxisStyle ("xAxis", ShowGrid=false)
+    |> Chart.withYAxisStyle ("yAxis", ShowGrid=false)
 
 
 [<Tests>]
@@ -27,7 +27,7 @@ let ``Html layout tests`` =
             |> chartGeneratedContains simpleChart
         );
         testCase "Expecting layout info" (fun () ->
-            "var layout = {\"title\":\"Hello world!\",\"xaxis\":{\"title\":\"xAxis\",\"showgrid\":false},\"yaxis\":{\"title\":\"yAxis\",\"showgrid\":false}};"
+            "var layout = {\"title\":{\"text\":\"Hello world!\"},\"xaxis\":{\"title\":{\"text\":\"xAxis\"},\"showgrid\":false},\"yaxis\":{\"title\":{\"text\":\"yAxis\"},\"showgrid\":false}};"
             |> chartGeneratedContains simpleChart
         );
         testCase "Expecting cloudflare link" (fun () ->

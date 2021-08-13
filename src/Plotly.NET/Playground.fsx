@@ -1,20 +1,23 @@
-﻿open Plotly.NET.StyleParam
-
-
-#r "nuget: FSharp.Data"
+﻿#r "nuget: FSharp.Data"
 #r "nuget: Deedle"
 #r "nuget: FSharpAux"
 
 #load "StyleParams.fs"
 #load "DynamicObj.fs"
-#load "Frame.fs"
 #load "Colors.fs"
+#load "Rangebreak.fs"
+#load "TickFormatStop.fs"
+#load "Selection.fs"
+#load "Frame.fs"
 #load "StockData.fs"
 #load "Font.fs"
+#load "Title.fs"
 #load "Pathbar.fs"
 #load "TreemapTiling.fs"
 #load "Colorbar.fs"
 #load "RangeSlider.fs"
+#load "Button.fs"
+#load "RangeSelector.fs"
 #load "Light.fs"
 #load "Legend.fs"
 #load "Contours.fs"
@@ -28,6 +31,7 @@
 #load "Marker.fs"
 #load "Hoverlabel.fs"
 #load "Axis.fs"
+#load "Polar.fs"
 #load "Bins.fs"
 #load "Cumulative.fs"
 #load "Scene.fs"
@@ -66,90 +70,120 @@ open System.IO
 open Deedle
 open FSharpAux
 
-[
-    Chart.Point([1,2;1,3]) 
-    |> Chart.withYAxisStyle("This title must")
+open System
 
-    Chart.Line([1,2;1,3]) 
-    |> Chart.withYAxisStyle("be set on the",Zeroline=false)
-    
-    Chart.Spline([1,2;1,3]) 
-    |> Chart.withYAxisStyle("respective subplots",Zeroline=false)
-]
-|> Chart.SingleStack(Pattern= StyleParam.LayoutGridPattern.Coupled)
-//move xAxis to bottom and increase spacing between plots by using the withLayoutGridStyle function
-|> Chart.withLayoutGridStyle(YGap= 0.1)
-|> Chart.withTitle("Hi i am the new SingleStackChart")
-|> Chart.withXAxisStyle("im the shared xAxis")
-|> Chart.show
+let r  = [ 1; 2; 3; 4; 5; 6; 7;] |> List.map ((*) 10000)
+let r2 = [ 5; 6; 7; 1; 2; 3; 4;] |> List.map ((*) 10000)
+let r3 = [ 3; 1; 5; 2; 8; 7; 5;] |> List.map ((*) 10000)
 
+let t  = [0; 45; 90; 135; 200; 320; 184;]
+
+(**
+A polar chart is a graphical method of displaying multivariate data in the form of a two-dimensional chart 
+of three or more quantitative variables represented on axes starting from the same point.
+The relative position and angle of the axes is typically uninformative.
+*)
+
+// webGL Comparison
+
+let largeRTSizes = [for i in 0. .. 0.01 .. 360. do yield i,i, 0.1 * i ]
+
+let noGL = Chart.BubblePolar(largeRTSizes) |> Chart.Show
+let yesGL = Chart.BubblePolar(largeRTSizes,UseWebGL=true) |> Chart.Show // it is so much faster, damn
+
+let polar1 =
+    [
+        Chart.PointPolar(r,t,Name="PointPolar")
+        Chart.LinePolar(r2,t,Name="LinePolar", ShowMarkers = true)
+        Chart.SplinePolar(r3,t,Name="SplinePolar", ShowMarkers = true)
+    ]
+    |> Chart.Combine
+    |> Chart.withPolar(
+        Polar.init(
+            Sector= (0., 270.),
+            Hole=0.1
+        )
+    )
+    |> Chart.withAngularAxis(
+        Axis.AngularAxis.init(
+            Color="darkblue"
+        )
+    )
+    |> Chart.withRadialAxis(
+        Axis.RadialAxis.init(
+            Title = Title.init("Hi, i am the radial axis"),
+            Color="darkblue",
+            SeparateThousands = true
+        )
+    )
+    |> Chart.Show
 [
     [
         Chart.Point([1,2],Name="1,1")
-        |> Chart.withXAxisStyle "x1"
-        |> Chart.withYAxisStyle "y1"    
+        |> Chart.withX_AxisStyle "x1"
+        |> Chart.withY_AxisStyle "y1"    
         Chart.Point([1,2],Name="1,2")
-        |> Chart.withXAxisStyle "x2"
-        |> Chart.withYAxisStyle "y2"
+        |> Chart.withX_AxisStyle "x2"
+        |> Chart.withY_AxisStyle "y2"
     ]
     [
         Chart.Point([1,2],Name="2,1")
-        |> Chart.withXAxisStyle "x3"
-        |> Chart.withYAxisStyle "y3"    
+        |> Chart.withX_AxisStyle "x3"
+        |> Chart.withY_AxisStyle "y3"    
     ]
     [
         Chart.Point([1,2],Name="3,1")
-        |> Chart.withXAxisStyle "x4"
-        |> Chart.withYAxisStyle "y4"    
+        |> Chart.withX_AxisStyle "x4"
+        |> Chart.withY_AxisStyle "y4"    
         Chart.Point([1,2],Name="3,2")
-        |> Chart.withXAxisStyle "x5"
-        |> Chart.withYAxisStyle "y5"
+        |> Chart.withX_AxisStyle "x5"
+        |> Chart.withY_AxisStyle "y5"
     ]
 ]
 |> Chart.Grid()
-|> Chart.show
+|> Chart.Show
 
 [
     Chart.Point([1,2],Name="1,1")
-    |> Chart.withXAxisStyle "x1"
-    |> Chart.withYAxisStyle "y1"    
+    |> Chart.withX_AxisStyle "x1"
+    |> Chart.withY_AxisStyle "y1"    
     Chart.Point([1,2],Name="1,2")
-    |> Chart.withXAxisStyle "x2"
-    |> Chart.withYAxisStyle "y2"
+    |> Chart.withX_AxisStyle "x2"
+    |> Chart.withY_AxisStyle "y2"
     Chart.Point([1,2],Name="2,2")
-    |> Chart.withXAxisStyle "x3"
-    |> Chart.withYAxisStyle "y3"    
+    |> Chart.withX_AxisStyle "x3"
+    |> Chart.withY_AxisStyle "y3"    
     Chart.Point([1,2],Name="3,2")
-    |> Chart.withXAxisStyle "x4"
-    |> Chart.withYAxisStyle "y4"    
+    |> Chart.withX_AxisStyle "x4"
+    |> Chart.withY_AxisStyle "y4"    
     Chart.Point([1,2],Name="1,1")
-    |> Chart.withXAxisStyle "x5"
-    |> Chart.withYAxisStyle "y5"    
+    |> Chart.withX_AxisStyle "x5"
+    |> Chart.withY_AxisStyle "y5"    
     Chart.Point([1,2],Name="1,2")
-    |> Chart.withXAxisStyle "x6"
-    |> Chart.withYAxisStyle "y6"
+    |> Chart.withX_AxisStyle "x6"
+    |> Chart.withY_AxisStyle "y6"
     Chart.Point([1,2],Name="2,2")
-    |> Chart.withXAxisStyle "x7"
-    |> Chart.withYAxisStyle "y7"    
+    |> Chart.withX_AxisStyle "x7"
+    |> Chart.withY_AxisStyle "y7"    
     Chart.Point([1,2],Name="3,2")
-    |> Chart.withXAxisStyle "x8"
-    |> Chart.withYAxisStyle "y8"    
+    |> Chart.withX_AxisStyle "x8"
+    |> Chart.withY_AxisStyle "y8"    
     Chart.Point([1,2],Name="1,1")
-    |> Chart.withXAxisStyle "x9"
-    |> Chart.withYAxisStyle "y9"    
+    |> Chart.withX_AxisStyle "x9"
+    |> Chart.withY_AxisStyle "y9"    
     Chart.Point([1,2],Name="1,2")
-    |> Chart.withXAxisStyle "x10"
-    |> Chart.withYAxisStyle "y10"
+    |> Chart.withX_AxisStyle "x10"
+    |> Chart.withY_AxisStyle "y10"
     Chart.Point([1,2],Name="2,2")
-    |> Chart.withXAxisStyle "x11"
-    |> Chart.withYAxisStyle "y11"    
+    |> Chart.withX_AxisStyle "x11"
+    |> Chart.withY_AxisStyle "y11"    
     Chart.Point([1,2],Name="3,2")
-    |> Chart.withXAxisStyle "x12"
-    |> Chart.withYAxisStyle "y12"
+    |> Chart.withX_AxisStyle "x12"
+    |> Chart.withY_AxisStyle "y12"
 ]
 |> Chart.Grid(6,2,Pattern=StyleParam.LayoutGridPattern.Coupled)
 |> Chart.withSize (1000., 2000.)
-|> Chart.show
+|> Chart.Show
 
  
 [
@@ -180,7 +214,7 @@ open FSharpAux
     Annotation.init(1,2,Text= "soos1",YRef="y")
     Annotation.init(1,2,Text= "soos2",YRef="y2")
 ]
-|> Chart.show
+|> Chart.Show
 
 
 let dataDensityMapbox = 
@@ -206,7 +240,7 @@ Chart.DensityMapbox(
         Center = (60.,30.)
     )
 )
-|> Chart.show
+|> Chart.Show
 
 
 let dataMapbox = 
@@ -243,7 +277,7 @@ Chart.LineMapbox(
 )
 |> Chart.withSize(1000.,1000.)
 |> Chart.withTitle "lol?"
-|> Chart.show
+|> Chart.Show
 
 Chart.Column(
     keysvalues= [
@@ -252,13 +286,13 @@ Chart.Column(
         "third", 1
     ]
 )
-|> Chart.withXAxis(
+|> Chart.withX_Axis(
     Axis.LinearAxis.initCategorical(
         StyleParam.CategoryOrder.Array,
         CategoryArray = ["first"; "second"; "third"]
     )
 )
-|> Chart.show
+|> Chart.Show
 
 Chart.Range(
     x = [1;2],
@@ -269,7 +303,7 @@ Chart.Range(
     UpperLabels=["upper1";"upper2"],
     LowerLabels=["lower1";"lower2"]
 )
-|> Chart.show
+|> Chart.Show
 
 let geoJson = 
     Http.RequestString "https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json"
@@ -300,7 +334,7 @@ Chart.ChoroplethMapbox(
 |> Chart.withMapbox(
     Mapbox.init(Style=StyleParam.MapboxStyle.OpenStreetMap)
 )
-|> Chart.show
+|> Chart.Show
 
 Chart.ChoroplethMap(
     locations = locations,
@@ -314,7 +348,7 @@ Chart.ChoroplethMap(
         Scope=StyleParam.GeoScope.Usa
     )
 )
-|> Chart.show
+|> Chart.Show
 
 Trace.initChoroplethMap(id)
 |> fun t ->
@@ -330,7 +364,7 @@ Trace.initChoroplethMap(id)
         Scope=StyleParam.GeoScope.Usa
     )
 )
-|> Chart.show
+|> Chart.Show
 
 System.Random().Next(1,40)
 
@@ -343,27 +377,27 @@ let funnel =
     let connector = FunnelConnector.init(Line=connectorLine)
     Chart.Funnel (x,y,Color="59D4E8", Line=line, Connector=connector)
     |> Chart.withMarginSize(Left=100)
-    |> Chart.show
+    |> Chart.Show
 
 let funnelArea =
     let values = [|5; 4; 3; 2; 1|]
     let text = [|"The 1st"; "The 2nd"; "The 3rd"; "The 4th"; "The 5th"|]
     let line = Line.init (Color="purple", Width=3.)
     Chart.FunnelArea(Values=values, Text=text, Line=line)
-    |> Chart.show
+    |> Chart.Show
 
 let funnelArea2 =
     let labels = [|1;2;2;3;3;3|]
     Chart.FunnelArea(Labels=labels)
-    |> Chart.show
+    |> Chart.Show
 
 let yAxis =
     Axis.LinearAxis.init(
-        Title = "Y",
-        Showline = true,
+        Title = Title.init(Text="Y"),
+        ShowLine = true,
         Range = StyleParam.Range.MinMax (0.0, 2.0),
-        Tickvals = [0.0 .. 2.0],
-        Ticktext = [ "zero"; "one"; "two" ]
+        TickVals = [0.0 .. 2.0],
+        TickText = [ "zero"; "one"; "two" ]
     )
 
 Chart.Range(
@@ -376,21 +410,21 @@ Chart.Range(
     LowerName = "Lower",
     UpperName = "Upper",
     Labels = [])
-|> Chart.withYAxis (yAxis)
+|> Chart.withY_Axis (yAxis)
 |> GenericChart.mapiTrace (fun i t ->
     match i with
     | 0 -> t |> Trace.TraceStyle.TextLabel ["upperOne";"upperTwo"]
     | 1 -> t |> Trace.TraceStyle.TextLabel ["lowerOne";"lowerTwo"]
     | 2 -> t
 )
-|> Chart.show
+|> Chart.Show
 
 let testAnnotation =
     Annotation.init(X=System.DateTime.Now, Y=0,Text="test")
 
 Chart.Line([System.DateTime.Now, 5])
 |> Chart.withAnnotations [testAnnotation]
-|> Chart.show
+|> Chart.Show
 
 
 let descritptionTable ="""<table>
@@ -408,17 +442,17 @@ let descritptionTable ="""<table>
 """
 
 Chart.Point([1.,2.])
-|> Chart.withDescription (ChartDescription.create "Some Table" descritptionTable)
-|> Chart.show
+|> Chart.WithDescription (ChartDescription.create "Some Table" descritptionTable)
+|> Chart.Show
 
 [
     Chart.Line([(1.,2.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$")
     Chart.Line([(1.,2.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$")
 ]
-|> Chart.combine
+|> Chart.Combine
 |> Chart.withTitle @"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$"
-|> Chart.withMathTex(true)
-|> Chart.show
+|> Chart.WithMathTex(true)
+|> Chart.Show
 
 
 let myTemplate = 
@@ -446,9 +480,9 @@ let myLegend =
 
 ]
 |> List.map Chart.Line
-|> Chart.combine
+|> Chart.Combine
 |> Chart.withLegend(myLegend)
-|> Chart.show
+|> Chart.Show
 
 
 // Dynamic object style, which is more or less equivalent to how you would create figure objects in plotly.js.
@@ -486,7 +520,7 @@ let trace =
 trace
 |> GenericChart.ofTraceObject
 |> GenericChart.setLayout layout
-|> Chart.show
+|> Chart.Show
 
 
 Chart.LineGeo(
@@ -499,7 +533,7 @@ Chart.LineGeo(
         44.64; 48.25; 49.89; 50.45
     ],ShowMarkers = true,MarkerSymbol = StyleParam.Symbol.Cross
 )
-|> Chart.show
+|> Chart.Show
 
 Chart.ScatterGeo(
     [
@@ -518,7 +552,7 @@ Chart.ScatterGeo(
     ShowOcean=true,
     OceanColor="lightblue",
     ShowRivers=true)
-|> Chart.show
+|> Chart.Show
 //test new withMapStyle function
 
 let locations2,z2 = 
@@ -582,7 +616,7 @@ Chart.ChoroplethMap(locations2,z2,Locationmode=StyleParam.LocationFormat.Country
     ShowRivers=true)
 |> Chart.withColorBarStyle ("Alcohol consumption[l/y]",Length=0.5)
 |> Chart.withSize(1000.,1000.)
-|> Chart.show
+|> Chart.Show
 
 let waterfallData = [
     "Sales"              , 60   ,  StyleParam.WaterfallMeasure.Relative
@@ -594,7 +628,7 @@ let waterfallData = [
 ]
 
 Chart.Waterfall(waterfallData)
-|> Chart.show
+|> Chart.Show
 
 
 let manyPoints = 
@@ -618,38 +652,38 @@ let manyLines =
     Chart.Scatter(x = [1;2;3], y = [2;3;4],mode=StyleParam.Mode.Markers, StackGroup = "meem", Orientation= StyleParam.Orientation.Vertical, GroupNorm = StyleParam.GroupNorm.Percent )
     Chart.Scatter(x = [1;2;3], y = [4;3;4],mode=StyleParam.Mode.Markers, StackGroup = "meem", Orientation= StyleParam.Orientation.Vertical, GroupNorm = StyleParam.GroupNorm.Percent )
 ]
-|> Chart.combine
-|> Chart.show
+|> Chart.Combine
+|> Chart.Show
 
 //Just try this, its amazing how much faster WebGL loads and zooms
 Chart.Point(manyPoints,UseWebGL=true)
-|> Chart.show
+|> Chart.Show
 
 Chart.Point(manyPoints)
-|> Chart.show
+|> Chart.Show
 
 manyLines
 |> List.map (fun l -> Chart.Line(l,UseWebGL=true))
-|> Chart.combine
-|> Chart.show
+|> Chart.Combine
+|> Chart.Show
 
 Chart.Line(manyPoints,UseWebGL=true)
-|> Chart.show
+|> Chart.Show
 
 Chart.Line(manyPoints,UseWebGL=false)
-|> Chart.show
+|> Chart.Show
 
 Chart.Spline(manyPoints,UseWebGL=true)
-|> Chart.show
+|> Chart.Show
 
 Chart.Spline(manyPoints,UseWebGL=false)
-|> Chart.show
+|> Chart.Show
 
 Chart.Bubble(manyBubbles,UseWebGL=true)
-|> Chart.show
+|> Chart.Show
 
 Chart.Bubble(manyBubbles,UseWebGL=false)
-|> Chart.show
+|> Chart.Show
 
 let stockData =
     [|("2020-01-17T13:40:00", 0.68888, 0.68888, 0.68879, 0.6888);
@@ -667,10 +701,10 @@ let stockData =
     |> Array.map (fun (d,o,h,l,c)->System.DateTime.Parse d, StockData.Create(o,h,l,c))
 
 Chart.Candlestick stockData
-|> Chart.show
+|> Chart.Show
 
 Chart.OHLC stockData
-|> Chart.show
+|> Chart.Show
 
 Chart.Treemap(
     ["Eve"; "Cain"; "Seth"; "Enos"; "Noam"; "Abel"; "Awan"; "Enoch"; "Azura"],
@@ -678,7 +712,7 @@ Chart.Treemap(
     Values = [10.; 14.; 12.; 10.; 2.; 6.; 6.; 4.; 4.]
 )
 |> Chart.withTitle "Treemap test"
-|> Chart.show
+|> Chart.Show
 
 
 //Sunbursst example from plotly docs: https://plotly.com/javascript/sunburst-charts
@@ -688,7 +722,7 @@ Chart.Sunburst(
     Values = [10.; 14.; 12.; 10.; 2.; 6.; 6.; 4.; 4.]
 )
 |> Chart.withTitle "Sunburst test"
-|> Chart.show
+|> Chart.Show
 
 
 let stack ( columns:int, space) = 
@@ -745,6 +779,20 @@ generateDomainRanges 8 1
 
 
 
+
+[
+    Chart.Point([(0,1)]) |> Chart.withY_AxisStyle("This title")
+    Chart.Point([(0,1)]) 
+    |> Chart.withY_AxisStyle("Must be set",ZeroLine=false)
+    Chart.Point([(0,1)]) 
+    |> Chart.withY_AxisStyle("on the respective charts",ZeroLine=false)
+]
+|> Chart.SingleStack()
+|> Chart.withLayoutGridStyle(XSide=StyleParam.LayoutGridXSide.Bottom)
+|> Chart.withTitle("Hi i am the new SingleStackChart")
+|> Chart.withX_AxisStyle("im the shared xAxis")
+|> Chart.Show
+
 [
     [1;2]
     [3;4]
@@ -755,7 +803,7 @@ generateDomainRanges 8 1
     TitleSide=StyleParam.Side.Right,
     TitleFont=Font.init(Size=20.)
 )
-|> Chart.show
+|> Chart.Show
 
 // Heatmap example from Plotly docs: https://plotly.net/2_7_heatmaps.html
 let matrix =
@@ -778,7 +826,7 @@ let heat1 =
     )
     |> Chart.withSize(700.,500.)
     |> Chart.withMarginSize(Left=200.)
-    |> Chart.show
+    |> Chart.Show
 
 let values,labels = 
     [

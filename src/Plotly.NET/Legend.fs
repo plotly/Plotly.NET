@@ -18,9 +18,9 @@ type Legend() =
             ?ItemClick: StyleParam.TraceItemClickOptions,
             ?ItemDoubleClick: StyleParam.TraceItemClickOptions,
             ?X: float,
-            ?XAnchor: StyleParam.LegendXAnchorPosition,
+            ?XAnchor: StyleParam.XAnchorPosition,
             ?Y: float,
-            ?YAnchor: StyleParam.LegendYAnchorPosition,
+            ?YAnchor: StyleParam.YAnchorPosition,
             ?VerticalAlign  : StyleParam.VerticalAlign,
             ?Title: string
         ) =
@@ -57,9 +57,9 @@ type Legend() =
             ?ItemClick: StyleParam.TraceItemClickOptions,
             ?ItemDoubleClick: StyleParam.TraceItemClickOptions,
             ?X: float,
-            ?XAnchor: StyleParam.LegendXAnchorPosition,
+            ?XAnchor: StyleParam.XAnchorPosition,
             ?Y: float,
-            ?YAnchor: StyleParam.LegendYAnchorPosition,
+            ?YAnchor: StyleParam.YAnchorPosition,
             ?VerticalAlign  : StyleParam.VerticalAlign,
             ?Title: string
         ) =
@@ -78,8 +78,8 @@ type Legend() =
                 ItemSizing      |> DynObj.setValueOptBy legend "itemsizing"         StyleParam.TraceItemSizing.convert
                 ItemClick       |> DynObj.setValueOptBy legend "itemclick"          StyleParam.TraceItemClickOptions.convert
                 ItemDoubleClick |> DynObj.setValueOptBy legend "itemdoubleclick"    StyleParam.TraceItemClickOptions.convert
-                XAnchor         |> DynObj.setValueOptBy legend "yanchor"            StyleParam.LegendXAnchorPosition.convert
-                YAnchor         |> DynObj.setValueOptBy legend "yanchor"            StyleParam.LegendYAnchorPosition.convert
+                XAnchor         |> DynObj.setValueOptBy legend "yanchor"            StyleParam.XAnchorPosition.convert
+                YAnchor         |> DynObj.setValueOptBy legend "yanchor"            StyleParam.YAnchorPosition.convert
                 VerticalAlign   |> DynObj.setValueOptBy legend "valign"             StyleParam.VerticalAlign.convert
 
                 legend
