@@ -250,6 +250,7 @@ module ChartExtensions =
         // Sets x-Axis of 2d and 3d- Charts
         [<CompiledName("WithXAxisStyle")>]
         static member withXAxisStyle(title,
+                [<Optional;DefaultParameterValue(null)>] ?TitleFont,
                 [<Optional;DefaultParameterValue(null)>] ?MinMax,
                 [<Optional;DefaultParameterValue(null)>] ?ShowGrid,
                 [<Optional;DefaultParameterValue(null)>] ?ShowLine,
@@ -326,28 +327,29 @@ module ChartExtensions =
                 [<Optional;DefaultParameterValue(null)>] ?Anchor) =
                 Chart.withYAxisStyle(title, 
                     ?MinMax = MinMax, 
-                    ?Showgrid = Showgrid,
-                    ?Showline = Showline,
+                    ?ShowGrid = ShowGrid,
+                    ?ShowLine = ShowLine,
                     ?Side = Side,
                     ?Overlaying = Overlaying,
                     ?Id = Id,
                     ?Domain = Domain,
                     ?Position = Position,
-                    ?Zeroline = Zeroline,
+                    ?ZeroLine = ZeroLine,
                     ?Anchor = Anchor)
 
          // Sets y-Axis of 3d- Charts
         [<CompiledName("WithYAxisStyle")>]
         static member withYAxisStyle(title,
+                [<Optional;DefaultParameterValue(null)>] ?TitleFont,
                 [<Optional;DefaultParameterValue(null)>] ?MinMax,
-                [<Optional;DefaultParameterValue(null)>] ?Showgrid,
-                [<Optional;DefaultParameterValue(null)>] ?Showline,
+                [<Optional;DefaultParameterValue(null)>] ?ShowGrid,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLine,
                 [<Optional;DefaultParameterValue(null)>] ?Side,
                 [<Optional;DefaultParameterValue(null)>] ?Overlaying,
                 [<Optional;DefaultParameterValue(null)>] ?Id,
                 [<Optional;DefaultParameterValue(null)>] ?Domain,
                 [<Optional;DefaultParameterValue(null)>] ?Position,
-                [<Optional;DefaultParameterValue(null)>] ?Zeroline,
+                [<Optional;DefaultParameterValue(null)>] ?ZeroLine,
                 [<Optional;DefaultParameterValue(null)>] ?Anchor) =
             let range  = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
             let domain = if Domain.IsSome then Some (StyleParam.Range.MinMax (Domain.Value)) else None
