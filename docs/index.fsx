@@ -2,6 +2,7 @@
 
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 12.0.3"
+#r "nuget: DynamicObj"
 #r "../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
 
 (*** condition: ipynb ***)
