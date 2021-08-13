@@ -15,6 +15,8 @@ nuget Fake.Api.Github
 nuget Fake.DotNet.Testing.Expecto 
 nuget Fake.Tools.Git //"
 
+#r "FSharp.Compiler.Service.dll"
+
 #if !FAKE
 #load "./.fake/build.fsx/intellisense.fsx"
 #r "netstandard" // Temp fix for https://github.com/dotnet/fsharp/issues/5216
@@ -166,6 +168,44 @@ module TestTasks =
                     Logger = Some "console;verbosity=detailed"
             }
         ) testProject
+    }
+
+
+module VerificationTasks =
+    open FSharp.Compiler.Diagnostics
+    open BasicTasks
+    
+    let verifyDocs = BuildTask.create "VerifyDocs" [clean; build; copyBinaries] {
+        let targets = !! "docs/**.fsx" |> Seq.map (fun f -> f.ToString())
+
+        let checker = FSharp.Compiler.CodeAnalysis.FSharpChecker.Create ()
+
+        let ignoredDiagnostics = Set.ofList [ 
+            1182; // unused variable
+            ]
+        
+        targets
+        |> Seq.map (
+            fun target -> 
+            checker.Compile ( [| "fsc.exe"; "-o"; @"aaaaaaaaaaa.exe"; "-a"; target |] )
+            |> Async.RunSynchronously
+            |> fst
+            |> Seq.where (fun diag -> match diag.Severity with FSharpDiagnosticSeverity.Error | FSharpDiagnosticSeverity.Warning -> true | _ -> false)
+        )
+        |> Seq.collect id
+        |> Seq.where (fun c -> not (ignoredDiagnostics.Contains c.ErrorNumber))
+        |> Seq.sortBy (fun diag -> (match diag.Severity with FSharpDiagnosticSeverity.Error -> 0 | _ -> 1), diag.FileName.[..6] (* to only count the numeric part *) )
+        |> Seq.map (fun diag -> 
+            (match diag.Severity with
+            | FSharpDiagnosticSeverity.Error -> "--- Error: "
+            | _ -> "--- Warning: ")
+            + diag.ToString())
+        |> String.concat "\n"
+        |> (fun errorText ->
+            match errorText with
+            | "" -> ()
+            | text -> raise (System.Exception $"Errors:\n{text}" )
+            )
     }
 
 /// Package creation

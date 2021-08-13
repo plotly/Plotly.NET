@@ -45,8 +45,8 @@ To style a specific axis of a plot, use the respective `Chart.with*_AxisStyle` f
 
 let plot1 =
     Chart.Point(x,y)
-    |> Chart.withX_AxisStyle ("X axis title", MinMax = (-1.,10.))
-    |> Chart.withY_AxisStyle ("Y axis title", MinMax = (-1.,10.))
+    |> Chart.withXAxisStyle ("X axis title", MinMax = (-1.,10.))
+    |> Chart.withYAxisStyle ("Y axis title", MinMax = (-1.,10.))
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -83,8 +83,8 @@ let mirroredLogYAxis =
 
 let plot2 =
     Chart.Point(x,y)
-    |> Chart.withX_Axis mirroredXAxis
-    |> Chart.withY_Axis mirroredLogYAxis
+    |> Chart.withXAxis mirroredXAxis
+    |> Chart.withYAxis mirroredLogYAxis
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -122,13 +122,13 @@ let twoXAxes1 =
        anchoredAt1
        anchoredAt2
     ]
-    |> Chart.Combine
-    |> Chart.withY_AxisStyle(
+    |> Chart.combine
+    |> Chart.withYAxisStyle(
         "axis 1",
         Side=StyleParam.Side.Left,
         Id=1
     )
-    |> Chart.withY_AxisStyle(
+    |> Chart.withYAxisStyle(
         "axis2",
         Side=StyleParam.Side.Right,
         Id=2,
@@ -156,16 +156,16 @@ let twoXAxes2 =
         anchoredAt1
         anchoredAt2
     ]
-    |> Chart.Combine
-    |> Chart.withY_AxisStyle(
+    |> Chart.combine
+    |> Chart.withYAxisStyle(
             "first y-axis",
             ShowLine=true
             )
-    |> Chart.withX_AxisStyle(
+    |> Chart.withXAxisStyle(
         "x-axis",
         Domain=(0.3, 1.0) // moves the first axis and the whole plot to the right
     ) 
-    |> Chart.withY_AxisStyle(
+    |> Chart.withYAxisStyle(
         "second y-axis",
         Side=StyleParam.Side.Left,
         Id=2,

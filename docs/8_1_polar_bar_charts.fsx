@@ -57,7 +57,7 @@ let windrose1 =
         Chart.BarPolar (r3, t, Name="5-8 m/s")
         Chart.BarPolar (r4, t, Name="< 5 m/s")
     ]
-    |> Chart.Combine
+    |> Chart.combine
     |> Chart.withAngularAxis(
         Axis.AngularAxis.init(
             CategoryOrder = StyleParam.CategoryOrder.Array,

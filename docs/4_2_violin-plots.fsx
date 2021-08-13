@@ -90,7 +90,7 @@ let violin3 =
         Chart.Violin ("y" ,y,Name="bin1",Jitter=0.1,Points=StyleParam.Jitterpoints.All);
         Chart.Violin ("y'",y',Name="bin2",Jitter=0.1,Points=StyleParam.Jitterpoints.All);
     ]
-    |> Chart.Combine
+    |> Chart.combine
 
 (*** condition: ipynb ***)
 #if IPYNB

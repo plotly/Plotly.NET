@@ -138,16 +138,16 @@ let myFirstChart = Chart.Point(xData,yData)
 Styling functions are generally the `Chart.with*` naming convention. The following styling example does:
 
  - set the chart title via `Chart.withTitle`
- - set the x axis title and removes the gridline from the axis via `Chart.withX_AxisStyle`
- - set the y axis title and removes the gridline from the axis via `Chart.withY_AxisStyle`
+ - set the x axis title and removes the gridline from the axis via `Chart.withXAxisStyle`
+ - set the y axis title and removes the gridline from the axis via `Chart.withYAxisStyle`
 
 *)
 
 let myFirstStyledChart =
     Chart.Point(xData,yData)
     |> Chart.withTitle "Hello world!"
-    |> Chart.withX_AxisStyle ("xAxis", Showgrid=false)
-    |> Chart.withY_AxisStyle ("yAxis", Showgrid=false)
+    |> Chart.withXAxisStyle ("xAxis", ShowGrid=false)
+    |> Chart.withYAxisStyle ("yAxis", ShowGrid=false)
 
 (**
 **Attention:** Styling functions mutate 😈 the input chart, therefore possibly affecting bindings to intermediary results. 
@@ -162,7 +162,7 @@ The `Chart.Show` function will open a browser window and render the input chart 
 
 (***do-not-eval***)
 myFirstChart
-|> Chart.Show
+|> Chart.show
 
 (**Should render this chart in your brower:*)
 
@@ -172,7 +172,7 @@ myFirstChart |> GenericChart.toChartHTML
 
 (***do-not-eval***)
 myFirstStyledChart
-|> Chart.Show
+|> Chart.show
 
 (**And here is what happened after applying the styles from above:*)
 
@@ -196,8 +196,8 @@ Chart.Point(xData',yData')
 
 Chart.Point(xData,yData)
 |> Chart.withTitle "Hello world!"
-|> Chart.withX_AxisStyle ("xAxis", Showgrid=false)
-|> Chart.withY_AxisStyle ("yAxis", Showgrid=false)
+|> Chart.withXAxisStyle ("xAxis", ShowGrid=false)
+|> Chart.withYAxisStyle ("yAxis", ShowGrid=false)
 
 
 (**
@@ -211,8 +211,8 @@ One of the main design points of Plotly.NET it is to provide support for multipl
 [(1,5);(2,10)]
 |> Chart.Point
 |> Chart.withTraceName("Hello from F#",Showlegend=true)
-|> Chart.withY_AxisStyle("xAxis",Showgrid= false, Showline=true)
-|> Chart.withX_AxisStyle("yAxis",Showgrid= false, Showline=true)
+|> Chart.withYAxisStyle("xAxis",ShowGrid= false, ShowLine=true)
+|> Chart.withXAxisStyle("yAxis",ShowGrid= false, ShowLine=true)
 
 (**
 ### Fluent interface style in C#:
@@ -225,8 +225,8 @@ static void Main(string[] args)
     GenericChart.GenericChart chart = Chart.Point(x: x, y: y);
     chart
         .WithTraceName("Hello from C#", true)
-        .WithX_AxisStyle(title: "xAxis", Showgrid: false, Showline: true)
-        .WithY_AxisStyle(title: "yAxis", Showgrid: false, Showline: true)
+        .withXAxisStyle(title: "xAxis", Showgrid: false, Showline: true)
+        .withYAxisStyle(title: "yAxis", Showgrid: false, Showline: true)
         .Show();
 }
 ```

@@ -64,7 +64,7 @@ let histogramContour =
         Chart.Histogram2dContour (x,y,Line=Line.init(Width=0.))
         Chart.Point(x,y,Opacity=0.3)
     ]
-    |> Chart.Combine
+    |> Chart.combine
 
 (*** condition: ipynb ***)
 #if IPYNB

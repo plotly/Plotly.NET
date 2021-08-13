@@ -55,8 +55,8 @@ let description1 =
 (***do-not-eval***)
 let desc1 =
     Chart.Point(x,y,Name="desc1")    
-    |> Chart.WithDescription(description1)
-    |> Chart.Show
+    |> Chart.withDescription(description1)
+    |> Chart.show
 
 (**
 
@@ -71,8 +71,8 @@ let description2 =
 (***do-not-eval***)
 let desc2 =
     Chart.Point(x,y,Name="desc1")    
-    |> Chart.WithDescription(description2)
-    |> Chart.Show
+    |> Chart.withDescription(description2)
+    |> Chart.show
 
 (**
 
@@ -108,10 +108,10 @@ let description3 =
 (***do-not-eval***)
 let desc3 =
     Chart.Point(x,y,Name="desc3")    
-    |> Chart.WithDescription description3
+    |> Chart.withDescription description3
     // Add reference to the bulma css framework
-    |> Chart.WithAdditionalHeadTags ["""<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">"""]
-    |> Chart.Show
+    |> Chart.withAdditionalHeadTags ["""<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">"""]
+    |> Chart.show
 
 (**
 
@@ -128,11 +128,11 @@ By popular request, `Chart.WithMathTex` is a prebuilt function to enable MathTeX
     Chart.Point([(1.,2.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$")
     Chart.Point([(2.,4.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$")
 ]
-|> Chart.Combine
+|> Chart.combine
 |> Chart.withTitle @"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$"
 // include mathtex tags in <head>. pass true to append these scripts, false to ONLY include MathTeX.
-|> Chart.WithMathTex(true)
-|> Chart.Show
+|> Chart.withMathTex(true)
+|> Chart.show
 
 (**
 

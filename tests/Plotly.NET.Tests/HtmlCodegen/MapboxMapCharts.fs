@@ -87,7 +87,7 @@ let flightsChart =
             Color = "red"
         )
     )
-    |> Chart.Combine
+    |> Chart.combine
     |> Chart.withLegend(false)
     |> Chart.withMapbox(
         Mapbox.init(

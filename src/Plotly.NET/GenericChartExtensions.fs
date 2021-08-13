@@ -158,9 +158,9 @@ module GenericChartExtensions =
         // ####################### Apply to layout
 
         // Sets x-Axis of 2d and 3d- Charts
-        [<CompiledName("WithX_Axis")>]
+        [<CompiledName("WithXAxis")>]
         [<Extension>]
-        member this.WithX_Axis(xAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id) =
+        member this.WithXAxis(xAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id) =
 
             let contains3d =
                 this 
@@ -183,9 +183,9 @@ module GenericChartExtensions =
                 GenericChart.addLayout layout this
 
         // Sets x-Axis of 2d and 3d- Charts
-        [<CompiledName("WithX_AxisStyle")>]
+        [<CompiledName("WithXAxisStyle")>]
         [<Extension>]
-        member this.WithX_AxisStyle(title,
+        member this.WithXAxisStyle(title,
                 [<Optional;DefaultParameterValue(null)>] ?MinMax,
                 [<Optional;DefaultParameterValue(null)>] ?ShowGrid,
                 [<Optional;DefaultParameterValue(null)>] ?ShowLine,
@@ -200,20 +200,20 @@ module GenericChartExtensions =
             let domain = if Domain.IsSome then Some (StyleParam.Range.MinMax (Domain.Value)) else None
             let xaxis  = Axis.LinearAxis.init(Title=title,?Range=range,?ShowGrid=ShowGrid,?ShowLine=ShowLine,
                                     ?Anchor=Anchor,?Side=Side,?Domain=domain,?Overlaying=Overlaying,?Position=Position,?ZeroLine=ZeroLine)
-            this |> Chart.withX_Axis(xaxis,?Id=Id)
+            this |> Chart.withXAxis(xaxis,?Id=Id)
 
         /// Sets the range slider for the xAxis
-        [<CompiledName("WithX_AxisRangeSlider")>]
+        [<CompiledName("WithXAxisRangeSlider")>]
         [<Extension>]
-        member this.WithX_AxisRangeSlider(rangeSlider:RangeSlider,
+        member this.WithXAxisRangeSlider(rangeSlider:RangeSlider,
                 [<Optional;DefaultParameterValue(null)>] ?Id) =
             let xaxis  = Axis.LinearAxis.init(RangeSlider = rangeSlider)
-            this |> Chart.withX_Axis(xaxis,?Id=Id)
+            this |> Chart.withXAxis(xaxis,?Id=Id)
 
         // Sets y-Axis of 2d and 3d- Charts
-        [<CompiledName("WithY_Axis")>]
+        [<CompiledName("WithYAxis")>]
         [<Extension>]
-        member this.WithY_Axis(yAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id) =
+        member this.WithYAxis(yAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id) =
             
             let contains3d =
                 this 
@@ -236,9 +236,9 @@ module GenericChartExtensions =
                 GenericChart.addLayout layout this
 
          // Sets y-Axis of 3d- Charts
-        [<CompiledName("WithY_AxisStyle")>]
+        [<CompiledName("WithYAxisStyle")>]
         [<Extension>]
-        member this.WithY_AxisStyle(title,
+        member this.WithYAxisStyle(title,
                 [<Optional;DefaultParameterValue(null)>] ?MinMax,
                 [<Optional;DefaultParameterValue(null)>] ?ShowGrid,
                 [<Optional;DefaultParameterValue(null)>] ?ShowLine,
@@ -253,13 +253,13 @@ module GenericChartExtensions =
             let domain = if Domain.IsSome then Some (StyleParam.Range.MinMax (Domain.Value)) else None
             let yaxis  = Axis.LinearAxis.init(Title=title,?Range=range,?ShowGrid=ShowGrid,
                                     ?ShowLine=ShowLine,?Anchor=Anchor,?Side=Side,?Domain=domain,?Overlaying=Overlaying,?Position=Position,?ZeroLine=ZeroLine)
-            this |> Chart.withY_Axis(yaxis,?Id=Id)                
+            this |> Chart.withYAxis(yaxis,?Id=Id)                
 
 
         // Sets z-Axis of 3d- Charts
-        [<CompiledName("WithZ_Axis")>]
+        [<CompiledName("WithZAxis")>]
         [<Extension>]
-        member this.WithZ_Axis(zAxis:Axis.LinearAxis) =
+        member this.WithZAxis(zAxis:Axis.LinearAxis) =
             let layout =
                 Layout() 
                 |> Layout.style(Scene=Scene.init(zAxis=zAxis))
@@ -268,9 +268,9 @@ module GenericChartExtensions =
 
 
         // Sets z-Axis style with ...
-        [<CompiledName("WithZ_AxisStyle")>]
+        [<CompiledName("WithZAxisStyle")>]
         [<Extension>]
-        member this.WithZ_AxisStyle(title,
+        member this.WithZAxisStyle(title,
                 [<Optional;DefaultParameterValue(null)>] ?MinMax,
                 [<Optional;DefaultParameterValue(null)>] ?ShowGrid,
                 [<Optional;DefaultParameterValue(null)>] ?ShowLine,
@@ -279,7 +279,7 @@ module GenericChartExtensions =
             let range  = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
             let domain = if Domain.IsSome then Some (StyleParam.Range.MinMax (Domain.Value)) else None
             let zaxis  = Axis.LinearAxis.init(Title=title,?Range=range,?ShowGrid=ShowGrid,?ShowLine=ShowLine,?Anchor=Anchor,?Domain=domain)
-            this |> Chart.withZ_Axis(zaxis)
+            this |> Chart.withZAxis(zaxis)
 
         [<CompiledName("WithColorBar")>]
         [<Extension>]
@@ -652,43 +652,43 @@ module GenericChartExtensions =
         [<CompiledName("WithDescription")>]
         [<Extension>]
         member this.WithDescription (description:ChartDescription) = 
-            this |> Chart.WithDescription description
+            this |> Chart.withDescription description
 
         /// Adds the given additional script tags on the chart's DisplayOptions. They will be included in the document's <head>
         [<CompiledName("WithAdditionalHeadTags")>]
         [<Extension>]
         member this.WithAdditionalHeadTags (additionalHeadTags:seq<string>) = 
-            this |> Chart.WithAdditionalHeadTags additionalHeadTags
+            this |> Chart.withAdditionalHeadTags additionalHeadTags
 
         /// Sets the given additional script tags on the chart's DisplayOptions. They will be included in the document's <head>
         [<CompiledName("WithHeadTags")>]
         [<Extension>]
         member this.WithHeadTags (headTags:seq<string>) = 
-            this |> Chart.WithHeadTags headTags
+            this |> Chart.withHeadTags headTags
         
         /// Adds the necessary script tags to render tex strings to the chart's DisplayOptions
         [<CompiledName("WithMathTex")>]
         [<Extension>]
         member this.WithMathTex([<Optional;DefaultParameterValue(true)>]?AppendTags:bool) =
             let append = Option.defaultValue true AppendTags
-            this |> Chart.WithMathTex(append)
+            this |> Chart.withMathTex(append)
 
 
         /// Save chart as html single page
         [<CompiledName("SaveHtmlAs")>]
         [<Extension>]
         member this.SaveHtmlAs (pathName:string, [<Optional;DefaultParameterValue(null)>] ?Verbose) =
-            Chart.SaveHtmlAs pathName this
+            Chart.saveHtmlAs pathName this
 
         /// Show chart in browser
         [<CompiledName("Show")>]
         [<Extension>]
-        member this.Show() = this |> Chart.Show
+        member this.Show() = this |> Chart.show
 
         /// Show chart in browser
         [<CompiledName("ShowAsImage")>]
         [<Extension>]
         member this.ShowAsImage (format:StyleParam.ImageFormat) = 
-            this |> Chart.ShowAsImage format
+            this |> Chart.showAsImage format
 
     

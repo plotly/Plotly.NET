@@ -10,8 +10,8 @@ let axisStylingChart =
     let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     let plot1 =
         Chart.Point(x,y)
-        |> Chart.withX_AxisStyle ("X axis title quack quack", MinMax = (-1.,10.))
-        |> Chart.withY_AxisStyle ("Y axis title boo foo", MinMax = (-1.,10.))
+        |> Chart.withXAxisStyle ("X axis title quack quack", MinMax = (-1.,10.))
+        |> Chart.withYAxisStyle ("Y axis title boo foo", MinMax = (-1.,10.))
     plot1
 
 
@@ -51,13 +51,13 @@ let multipleAxesChart =
            anchoredAt1
            anchoredAt2
         ]
-        |> Chart.Combine
-        |> Chart.withY_AxisStyle(
+        |> Chart.combine
+        |> Chart.withYAxisStyle(
             "axis 1",
             Side=StyleParam.Side.Left,
             Id=1
         )
-        |> Chart.withY_AxisStyle(
+        |> Chart.withYAxisStyle(
             "axis2",
             Side=StyleParam.Side.Right,
             Id=2,
@@ -114,7 +114,7 @@ let combinedChart =
         Chart.Line(x, y, Name="first")
         Chart.Line(y, x, Name="second")
     ]
-    |> Chart.Combine
+    |> Chart.combine
 
 
 let subPlotChart =
@@ -122,17 +122,17 @@ let subPlotChart =
     let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     [
         Chart.Point(x, y, Name="1,1")
-        |> Chart.withX_AxisStyle "x1"
-        |> Chart.withY_AxisStyle "y1"    
+        |> Chart.withXAxisStyle "x1"
+        |> Chart.withYAxisStyle "y1"    
         Chart.Line(x, y, Name="1,2")
-        |> Chart.withX_AxisStyle "x2"
-        |> Chart.withY_AxisStyle "y2"
+        |> Chart.withXAxisStyle "x2"
+        |> Chart.withYAxisStyle "y2"
         Chart.Spline(x, y, Name="2,1")
-        |> Chart.withX_AxisStyle "x3"
-        |> Chart.withY_AxisStyle "y3"    
+        |> Chart.withXAxisStyle "x3"
+        |> Chart.withYAxisStyle "y3"    
         Chart.Point(x, y, Name="2,2")
-        |> Chart.withX_AxisStyle "x4"
-        |> Chart.withY_AxisStyle "y4"
+        |> Chart.withXAxisStyle "x4"
+        |> Chart.withYAxisStyle "y4"
     ]
     |> Chart.Grid(2, 2)
 
@@ -142,19 +142,19 @@ let singleStackChart =
     let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     [
         Chart.Point(x,y) 
-        |> Chart.withY_AxisStyle("This title must")
+        |> Chart.withYAxisStyle("This title must")
     
         Chart.Line(x,y) 
-        |> Chart.withY_AxisStyle("be set on the",ZeroLine=false)
+        |> Chart.withYAxisStyle("be set on the",ZeroLine=false)
         
         Chart.Spline(x,y) 
-        |> Chart.withY_AxisStyle("respective subplots",ZeroLine=false)
+        |> Chart.withYAxisStyle("respective subplots",ZeroLine=false)
     ]
     |> Chart.SingleStack(Pattern = StyleParam.LayoutGridPattern.Coupled)
     //move xAxis to bottom and increase spacing between plots by using the withLayoutGridStyle function
     |> Chart.withLayoutGridStyle(XSide=StyleParam.LayoutGridXSide.Bottom,YGap= 0.1)
     |> Chart.withTitle("Hi i am the new SingleStackChart")
-    |> Chart.withX_AxisStyle("im the shared xAxis")
+    |> Chart.withXAxisStyle("im the shared xAxis")
 
     
 [<Tests>]
@@ -210,7 +210,7 @@ let displayOptionsChartDescriptionChart =
     let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     let description1 = ChartDescription.create "Hello" "F#"
     Chart.Point(x,y,Name="desc1")    
-    |> Chart.WithDescription(description1)
+    |> Chart.withDescription(description1)
 
 let additionalHeadTagsChart =
     let x = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
@@ -233,19 +233,19 @@ let additionalHeadTagsChart =
           """<h1 class="title">I am heading</h1>""" 
          bulmaHero
     Chart.Point(x,y,Name="desc3")    
-    |> Chart.WithDescription description3
+    |> Chart.withDescription description3
     // Add reference to the bulma css framework
-    |> Chart.WithAdditionalHeadTags ["""<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">"""]
+    |> Chart.withAdditionalHeadTags ["""<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">"""]
 
 let mathtexChart =
     [
         Chart.Point([(1.,2.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$")
         Chart.Point([(2.,4.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$")
     ]
-    |> Chart.Combine
+    |> Chart.combine
     |> Chart.withTitle @"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$"
     // include mathtex tags in <head>. pass true to append these scripts, false to ONLY include MathTeX.
-    |> Chart.WithMathTex(true)
+    |> Chart.withMathTex(true)
 
 [<Tests>]
 let ``Display options`` =

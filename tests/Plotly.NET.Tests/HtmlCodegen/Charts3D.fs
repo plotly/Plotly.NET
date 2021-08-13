@@ -12,9 +12,9 @@ let scatterChart =
     let z = [19; 26; 55;]
 
     Chart.Scatter3d(x,y,z,StyleParam.Mode.Markers)
-    |> Chart.withX_AxisStyle("my x-axis")
-    |> Chart.withY_AxisStyle("my y-axis")
-    |> Chart.withZ_AxisStyle("my z-axis")
+    |> Chart.withXAxisStyle("my x-axis")
+    |> Chart.withYAxisStyle("my y-axis")
+    |> Chart.withZAxisStyle("my z-axis")
     |> Chart.withSize(800.,800.)
 
 [<Tests>]
@@ -43,9 +43,9 @@ let lineChart =
         |> List.unzip3
 
     Chart.Scatter3d(x, y, z, StyleParam.Mode.Lines_Markers)
-    |> Chart.withX_AxisStyle("x-axis")
-    |> Chart.withY_AxisStyle("y-axis")
-    |> Chart.withZ_AxisStyle("z-axis")
+    |> Chart.withXAxisStyle("x-axis")
+    |> Chart.withYAxisStyle("y-axis")
+    |> Chart.withZAxisStyle("z-axis")
     |> Chart.withSize(800., 800.)
 
 

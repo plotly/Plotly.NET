@@ -52,9 +52,9 @@ When using `Lines_Markers` as the mode of the chart, you additionally render a l
 
 let scatter3dLine = 
     Chart.Scatter3d(x,y,z,StyleParam.Mode.Lines_Markers)
-    |> Chart.withX_AxisStyle("x-axis")
-    |> Chart.withY_AxisStyle("y-axis")
-    |> Chart.withZ_AxisStyle("z-axis")
+    |> Chart.withXAxisStyle("x-axis")
+    |> Chart.withYAxisStyle("y-axis")
+    |> Chart.withZAxisStyle("z-axis")
     |> Chart.withSize(800.,800.)
 
 (*** condition: ipynb ***)

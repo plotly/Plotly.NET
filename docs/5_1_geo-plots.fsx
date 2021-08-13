@@ -106,7 +106,7 @@ let flights =
             Color = "red"
         )
     )
-    |> Chart.Combine
+    |> Chart.combine
     |> Chart.withLegend(false)
     |> Chart.withMapStyle(
         Scope=StyleParam.GeoScope.NorthAmerica, 

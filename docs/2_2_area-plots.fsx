@@ -80,7 +80,7 @@ let stackedArea =
         Chart.StackedArea(x,y)
         Chart.StackedArea(x,y |> Seq.rev)
     ]
-    |> Chart.Combine
+    |> Chart.combine
 
 (*** condition: ipynb ***)
 #if IPYNB

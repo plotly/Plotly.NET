@@ -67,7 +67,7 @@ let ``Polar charts`` =
 //        Chart.WindRose (r'' ,t,Name="5-8 m/s")
 //        Chart.WindRose (r''',t,Name="< 5 m/s")
 //    ]
-//    |> Chart.Combine
+//    |> Chart.combine
 
 //[<Tests>]
 //let ``Windrose charts`` =
