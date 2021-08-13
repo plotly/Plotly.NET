@@ -210,7 +210,7 @@ One of the main design points of Plotly.NET it is to provide support for multipl
 
 [(1,5);(2,10)]
 |> Chart.Point
-|> Chart.withTraceName("Hello from F#",ShowLegend=true)
+|> Chart.withTraceName("Hello from F#",Showlegend=true)
 |> Chart.withYAxisStyle("xAxis",ShowGrid= false, ShowLine=true)
 |> Chart.withXAxisStyle("yAxis",ShowGrid= false, ShowLine=true)
 
