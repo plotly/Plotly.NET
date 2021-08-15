@@ -41,8 +41,8 @@ let z = [19; 26; 55;]
 
 let scatter3d = 
     Chart.Scatter3d(x,y,z,StyleParam.Mode.Markers)
-    |> Chart.withXAxisStyle("my x-axis")
-    |> Chart.withYAxisStyle("my y-axis")
+    |> Chart.withXAxisStyle("my x-axis", Id=StyleParam.SubPlotId.Scene 1) // in contrast to 2D plots, x and y axes of 3D charts have to be set via the scene object
+    |> Chart.withYAxisStyle("my y-axis", Id=StyleParam.SubPlotId.Scene 1) // in contrast to 2D plots, x and y axes of 3D charts have to be set via the scene object
     |> Chart.withZAxisStyle("my z-axis")
     |> Chart.withSize(800.,800.)
 

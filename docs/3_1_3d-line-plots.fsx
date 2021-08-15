@@ -53,8 +53,8 @@ When using `Lines_Markers` as the mode of the chart, you additionally render a l
 
 let scatter3dLine = 
     Chart.Scatter3d(x,y,z,StyleParam.Mode.Lines_Markers)
-    |> Chart.withXAxisStyle("x-axis")
-    |> Chart.withYAxisStyle("y-axis")
+    |> Chart.withXAxisStyle("x-axis", Id=StyleParam.SubPlotId.Scene 1) // in contrast to 2D plots, x and y axes of 3D charts have to be set via the scene object
+    |> Chart.withYAxisStyle("y-axis", Id=StyleParam.SubPlotId.Scene 1) // in contrast to 2D plots, x and y axes of 3D charts have to be set via the scene object
     |> Chart.withZAxisStyle("z-axis")
     |> Chart.withSize(800.,800.)
 
