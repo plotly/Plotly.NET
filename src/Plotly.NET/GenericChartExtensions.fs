@@ -690,4 +690,22 @@ module GenericChartExtensions =
         member this.ShowAsImage (format:StyleParam.ImageFormat) = 
             this |> Chart.showAsImage format
 
-    
+        /// Sets the polar object with the given id on the chart layout
+        [<CompiledName("WithPolar")>]
+        member this.WithPolar(polar:Polar, [<Optional;DefaultParameterValue(null)>] ?Id) =
+            this |> Chart.withPolar(polar,?Id=Id)
+
+        /// Sets the angular axis of the polar object with the given id on the chart layout
+        [<CompiledName("WithAngularAxis")>]
+        member this.WithAngularAxis(angularAxis:Axis.AngularAxis, [<Optional;DefaultParameterValue(null)>] ?Id) =
+            this |> Chart.withAngularAxis(angularAxis,?Id=Id)
+            
+        /// Sets the radial axis of the polar object with the given id on the chart layout
+        [<CompiledName("WithRadialAxis")>]
+        member this.WithRadialAxis(radialAxis:Axis.RadialAxis, [<Optional;DefaultParameterValue(null)>] ?Id) =
+            this |> Chart.withRadialAxis(radialAxis,?Id=Id)
+
+        /// Sets the color axis of the color axis with the given id on the chart layout
+        [<CompiledName("WithColorAxis")>]
+        member this.WithColorAxis(colorAxis:Axis.ColorAxis, [<Optional;DefaultParameterValue(null)>] ?Id) =
+            this |> Chart.withColorAxis(colorAxis,?Id=Id)

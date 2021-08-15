@@ -364,6 +364,33 @@ type Layout() =
                 layout
             )
 
+    static member tryGetColorAxisById (id:int) =
+        (fun (layout:Layout) -> 
+            let key = if id < 2 then "coloraxis" else sprintf "coloraxis%i" id
+            layout.TryGetTypedValue<Axis.ColorAxis>(key)
+        )
+
+    /// Updates the style of current ColorAxis object with given Id. 
+    /// If there does not exist a ColorAxis object with the given id, sets it with the given ColorAxis object
+    static member updateColorAxisById
+        (   
+           id       : int,
+           colorAxis: Axis.ColorAxis
+        ) =
+            (fun (layout:Layout) -> 
+
+                let key = if id < 2 then "coloraxis" else sprintf "coloraxis%i" id
+
+                let colorAxis' = 
+                    match layout |> Layout.tryGetColorAxisById(id) with
+                    | Some a  -> DynObj.combine (unbox a) colorAxis
+                    | None    -> colorAxis :> DynamicObj
+                
+                colorAxis |> DynObj.setValue layout key
+
+                layout
+            )
+
 
     static member setLegend(legend:Legend) =
         (fun (layout:Layout) -> 

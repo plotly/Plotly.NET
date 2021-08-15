@@ -1291,4 +1291,15 @@ module ChartExtensions =
                 GenericChart.setLayout updatedLayout ch
             )
 
+        /// Sets the color axis of the color axis with the given id on the chart layout
+        [<CompiledName("WithColorAxis")>]
+        static member withColorAxis(colorAxis:Axis.ColorAxis, [<Optional;DefaultParameterValue(null)>] ?Id) =
+            (fun (ch:GenericChart) ->
+                let layout =
+                    let id = defaultArg Id 1
+                    GenericChart.getLayout ch 
+                    |> Layout.updateColorAxisById(id,colorAxis)
+                GenericChart.setLayout layout ch
+            )
+
 
