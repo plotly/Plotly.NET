@@ -50,7 +50,6 @@
     <Compile Include="RangeSlider.fs" />
     <Compile Include="Button.fs" />
     <Compile Include="RangeSelector.fs" />
-    <Compile Include="Light.fs" />
     <Compile Include="Legend.fs" />
     <Compile Include="Contours.fs" />
     <Compile Include="Dimensions.fs" />
@@ -67,7 +66,6 @@
     <Compile Include="Bins.fs" />
     <Compile Include="Cumulative.fs" />
     <Compile Include="Scene.fs" />
-    <Compile Include="Selected.fs" />
     <Compile Include="Shape.fs" />
     <Compile Include="Error.fs" />
     <Compile Include="Table.fs" />

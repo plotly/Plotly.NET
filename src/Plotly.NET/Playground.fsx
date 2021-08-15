@@ -6,6 +6,7 @@
 
 #load "StyleParams.fs"
 #load "Colors.fs"
+#load "Lighting.fs"
 #load "Rangebreak.fs"
 #load "TickFormatStop.fs"
 #load "Selection.fs"
@@ -19,7 +20,6 @@
 #load "RangeSlider.fs"
 #load "Button.fs"
 #load "RangeSelector.fs"
-#load "Light.fs"
 #load "Legend.fs"
 #load "Contours.fs"
 #load "Dimensions.fs"
@@ -36,7 +36,6 @@
 #load "Bins.fs"
 #load "Cumulative.fs"
 #load "Scene.fs"
-#load "Selected.fs"
 #load "Shape.fs"
 #load "Error.fs"
 #load "Table.fs"
@@ -71,6 +70,17 @@ open Deedle
 open FSharpAux
 
 open System
+
+Chart.Cone(
+    x = [1; 1; 1],
+    y = [1; 2; 3],
+    z = [1; 1; 1],
+    u = [1; 2; 3],
+    v = [1; 1; 2],
+    w = [4; 4; 1]
+)
+|> Chart.show
+
 
 let r  = [ 1; 2; 3; 4; 5; 6; 7;] |> List.map ((*) 10000)
 let r2 = [ 5; 6; 7; 1; 2; 3; 4;] |> List.map ((*) 10000)

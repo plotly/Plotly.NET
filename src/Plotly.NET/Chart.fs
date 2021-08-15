@@ -1910,20 +1910,73 @@ type Chart =
 
     /// Uses points, line or both depending on the mode to represent 3d-data points
     static member Mesh3d(x, y, z, mode,
-            ?Name,
-            ?Showlegend,
-            ?MarkerSymbol,
-            ?Color,
-            ?Opacity,
-            ?Labels,
-            ?TextPosition,
-            ?TextFont,
-            ?Dash,
-            ?Width) = 
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
+            [<Optional;DefaultParameterValue(null)>] ?Color,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?Labels,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont,
+            [<Optional;DefaultParameterValue(null)>] ?Dash,
+            [<Optional;DefaultParameterValue(null)>] ?Width) = 
         Trace3d.initMesh3d (Trace3dStyle.Mesh3d(X = x,Y = y,Z=z) )              
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
         |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
         |> GenericChart.ofTraceObject 
+
+    static member Cone 
+        (
+            x, y, z, u, v, w,
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?ColorScale,
+            [<Optional;DefaultParameterValue(null)>] ?ShowScale,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar
+        ) =
+
+            Trace3d.initCone(
+                Trace3dStyle.Cone(
+                    X = x,
+                    Y = y,
+                    Z = z,
+                    U = u,
+                    V = v,
+                    W = w,
+                    ?Name       = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity    = Opacity,
+                    ?ColorScale = ColorScale,
+                    ?ShowScale  = ShowScale,
+                    ?ColorBar   = ColorBar
+                )
+            )
+            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=ShowLegend,?Opacity=Opacity)
+            |> GenericChart.ofTraceObject 
+
+    static member Cone 
+        (
+            coneXYZ, coneUVW,
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?ColorScale,
+            [<Optional;DefaultParameterValue(null)>] ?ShowScale,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar
+        ) =
+            let x, y, z = Seq.unzip3 coneXYZ
+            let u, v, w = Seq.unzip3 coneUVW
+
+            Chart.Cone(
+                x, y, z, u, v, w,
+                ?Name       = Name          ,
+                ?ShowLegend = ShowLegend    ,
+                ?Opacity    = Opacity       ,
+                ?ColorScale = ColorScale    ,
+                ?ShowScale  = ShowScale     ,
+                ?ColorBar   = ColorBar
+            )
 
     /// creates table out of header sequence and row sequences
     static member Table(headerValues, cellValues, 

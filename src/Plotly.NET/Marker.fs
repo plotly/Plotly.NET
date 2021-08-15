@@ -24,7 +24,7 @@ type Marker () =
             ?Maxdisplayed: int,
             ?Sizeref: float,
             ?Sizemin: float,
-            ?Sizemode: StyleParam.SizeMode,
+            ?Sizemode: StyleParam.MarkerSizeMode,
             ?Cauto: bool,
             ?Cmax: float,
             ?Cmin: float,
@@ -78,7 +78,7 @@ type Marker () =
             ?Maxdisplayed: int,
             ?Sizeref: float,
             ?Sizemin: float,
-            ?Sizemode: StyleParam.SizeMode,
+            ?Sizemode: StyleParam.MarkerSizeMode,
             ?Cauto: bool,
             ?Cmax: float,
             ?Cmin: float,
@@ -102,7 +102,7 @@ type Marker () =
                 Maxdisplayed   |> DynObj.setValueOpt marker "maxdisplayed"   
                 Sizeref        |> DynObj.setValueOpt marker "sizeref"        
                 Sizemin        |> DynObj.setValueOpt marker "sizemin"        
-                Sizemode       |> DynObj.setValueOpt marker "sizemode"            
+                Sizemode       |> DynObj.setValueOptBy marker "sizemode" StyleParam.MarkerSizeMode.convert
                 Cauto          |> DynObj.setValueOpt marker "cauto"          
                 Cmax           |> DynObj.setValueOpt marker "cmax"           
                 Cmin           |> DynObj.setValueOpt marker "cmin"           

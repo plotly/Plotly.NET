@@ -345,7 +345,7 @@ module Trace =
                 ?Maxdisplayed: int,
                 ?Sizeref: float,
                 ?Sizemin: float,
-                ?Sizemode: StyleParam.SizeMode,
+                ?Sizemode: StyleParam.MarkerSizeMode,
                 ?Cauto: bool,
                 ?Cmax: float,
                 ?Cmin: float,

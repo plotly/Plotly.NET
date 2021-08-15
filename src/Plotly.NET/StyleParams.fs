@@ -69,12 +69,17 @@ module StyleParam =
     /// 
     [<RequireQualifiedAccess>]
     type AxisAnchorId = 
-        | X of int | Y of int | Z of int | Free
+        | X of int 
+        | Y of int 
+        | Z of int 
+        | Color of int
+        | Free
     
         static member toString = function
             | X id  -> if id < 2 then "x" else sprintf "x%i" id
             | Y id  -> if id < 2 then "y" else sprintf "y%i" id
             | Z id  -> if id < 2 then "z" else sprintf "z%i" id
+            | Color id  -> if id < 2 then "coloraxis" else sprintf "coloraxis%i" id
             | Free -> "free"
 
         static member convert = AxisAnchorId.toString >> box 
@@ -378,7 +383,37 @@ module StyleParam =
             | Boundaries-> "boundaries"
 
         static member convert = CategoryTickAnchor.toString >> box
+        
+    /// Sets the cones' anchor with respect to their x/y/z positions. Note that "cm" denote the cone's center of mass which corresponds to 1/4 from the tail to tip.
+    [<RequireQualifiedAccess>]
+    type ConeAnchor =
+        | Tip         
+        | Tail        
+        | CenterOfMass
+        | Center      
+    
+        static member toString = function
+            | Tip           -> "tip" 
+            | Tail          -> "tail" 
+            | CenterOfMass  -> "cm" 
+            | Center        -> "center"
 
+        static member convert = ConeAnchor.toString >> box
+
+           
+    /// Sets the cones' anchor with respect to their x/y/z positions. Note that "cm" denote the cone's center of mass which corresponds to 1/4 from the tail to tip.
+    [<RequireQualifiedAccess>]
+    type ConeSizeMode =
+        | Scaled  
+        | Absolute
+ 
+        static member toString = function
+            | Scaled   -> "scaled"
+            | Absolute -> "absolute"
+
+        static member convert = ConeSizeMode.toString >> box
+
+    
         
 //--------------------------
 // #D#
@@ -442,6 +477,8 @@ module StyleParam =
             | User px -> px.ToString()           
 
         static member convert = DrawingStyle.toString >> box
+
+    
 
 //--------------------------
 // #E#
@@ -1024,6 +1061,16 @@ module StyleParam =
 
         static member convert = MapboxLayerSymbolPlacement.toString >> box
 
+    
+    [<RequireQualifiedAccess>]
+    type MarkerSizeMode =
+        | Diameter | Area
+    
+        static member toString = function
+            | Diameter  -> "diameter"
+            | Area      -> "area"
+      
+        static member convert = MarkerSizeMode.toString >> box
 
 //--------------------------
 // #N#
@@ -1259,17 +1306,6 @@ module StyleParam =
             | Right  -> "right"            
    
         static member convert = Side.toString >> box
-
-    [<RequireQualifiedAccess>]
-    type SizeMode =
-        | Diameter | Area
-    
-        static member toString = function
-            | Diameter  -> "diameter"
-            | Area      -> "area"
-      
-        static member convert = SizeMode.toString >> box
-   
 
     /// Choose between algorithms ('best' or 'fast') to smooth data linked to 'z'. The default value is false corresponding to no smoothing.
     [<RequireQualifiedAccess>]
