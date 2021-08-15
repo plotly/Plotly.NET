@@ -80,9 +80,7 @@ Here is an example that adds a title to the colorbar:
 let heat2 =
     heat1
     |> Chart.withColorBarStyle(
-        "Im the ColorBar",
-        TitleSide = StyleParam.Side.Right,
-        TitleFont = Font.init(Size=20.)
+        Title.init("Im the ColorBar")
     )
 
 (*** condition: ipynb ***)
