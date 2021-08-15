@@ -65,6 +65,7 @@
     <Compile Include="Polar.fs" />
     <Compile Include="Bins.fs" />
     <Compile Include="Cumulative.fs" />
+    <Compile Include="Annotation.fs" />
     <Compile Include="Scene.fs" />
     <Compile Include="Shape.fs" />
     <Compile Include="Error.fs" />
@@ -77,7 +78,6 @@
     <Compile Include="Trace.fs" />
     <Compile Include="Trace3d.fs" />
     <Compile Include="LayoutGrid.fs" />
-    <Compile Include="Annotation.fs" />
     <Compile Include="Layout.fs" />
     <Compile Include="Template.fs" />
     <Compile Include="Config.fs" />

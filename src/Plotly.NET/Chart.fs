@@ -65,8 +65,8 @@ type Chart =
         GenericChart.ofTraceObject trace
         |> GenericChart.mapLayout ( fun l ->
             l
-            |> Layout.AddLinearAxis(AxisId.X 1,hiddenAxis())
-            |> Layout.AddLinearAxis(AxisId.Y 1,hiddenAxis())
+            |> Layout.AddLinearAxis(StyleParam.SubPlotId.XAxis 1,hiddenAxis())
+            |> Layout.AddLinearAxis(StyleParam.SubPlotId.YAxis 1,hiddenAxis())
         )
 
 

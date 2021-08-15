@@ -231,15 +231,13 @@ module Trace =
         /// Sets the given axis anchor id(s) on a Trace object.
         static member SetAxisAnchor
             (
-                ?X:StyleParam.AxisAnchorId,
-                ?Y:StyleParam.AxisAnchorId,
-                ?Z:StyleParam.AxisAnchorId
+                ?X:StyleParam.LinearAxisId,
+                ?Y:StyleParam.LinearAxisId
             ) =  
                 (fun (trace:('T :> Trace)) ->
 
-                    X     |> DynObj.setValueOptBy trace "xaxis" StyleParam.AxisAnchorId.toString
-                    Y     |> DynObj.setValueOptBy trace "yaxis" StyleParam.AxisAnchorId.toString
-                    Z     |> DynObj.setValueOptBy trace "zaxis" StyleParam.AxisAnchorId.toString
+                    X     |> DynObj.setValueOptBy trace "xaxis" StyleParam.LinearAxisId.toString
+                    Y     |> DynObj.setValueOptBy trace "yaxis" StyleParam.LinearAxisId.toString
                     
                     trace
                 )

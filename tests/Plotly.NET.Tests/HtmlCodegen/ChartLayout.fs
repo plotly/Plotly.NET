@@ -46,7 +46,7 @@ let multipleAxesChart =
          Chart.Line (x,y',Name="anchor 2")
             |> Chart.withAxisAnchor(Y=2)
     
-    let twoXAxes1 = 
+    let twoYAxes1 = 
         [
            anchoredAt1
            anchoredAt2
@@ -55,15 +55,15 @@ let multipleAxesChart =
         |> Chart.withYAxisStyle(
             "axis 1",
             Side=StyleParam.Side.Left,
-            Id=1
+            Id= StyleParam.SubPlotId.YAxis 1
         )
         |> Chart.withYAxisStyle(
             "axis2",
             Side=StyleParam.Side.Right,
-            Id=2,
-            Overlaying=StyleParam.AxisAnchorId.Y 1
+            Id=StyleParam.SubPlotId.YAxis 2,
+            Overlaying=StyleParam.LinearAxisId.Y 1
         )
-    twoXAxes1
+    twoYAxes1
 
 [<Tests>]
 let ``Multiple Axes styling`` =

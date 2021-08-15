@@ -12,6 +12,20 @@ module StyleParam =
 //--------------------------
 // #A#
 //--------------------------
+    
+    [<RequireQualifiedAccess>]
+    type AspectMode =
+        | Auto | Cube | Data | Manual
+
+        static member toString = function
+            | Auto  -> "auto" 
+            | Cube  -> "cube" 
+            | Data  -> "data" 
+            | Manual-> "manual"
+
+
+        static member convert = AspectMode.toString >> box
+    
     /// Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines
     [<RequireQualifiedAccess>]
     type Align =
@@ -66,34 +80,38 @@ module StyleParam =
             |LineOnly      -> 8
         static member convert = ArrowHead.toEnum >> box
 
-    /// 
     [<RequireQualifiedAccess>]
-    type AxisAnchorId = 
-        | X of int 
-        | Y of int 
-        | Z of int 
-        | Color of int
-        | Free
+    type LinearAxisId = 
+        | X of int | Y of int
     
         static member toString = function
             | X id  -> if id < 2 then "x" else sprintf "x%i" id
             | Y id  -> if id < 2 then "y" else sprintf "y%i" id
-            | Z id  -> if id < 2 then "z" else sprintf "z%i" id
-            | Color id  -> if id < 2 then "coloraxis" else sprintf "coloraxis%i" id
-            | Free -> "free"
+        static member convert = LinearAxisId.toString >> box 
 
-        static member convert = AxisAnchorId.toString >> box 
-
+    // to-do merge with axis anchor id
     [<RequireQualifiedAccess>]
-    type AxisId = 
-        | X of int | Y of int | Z of int
+    type SubPlotId = 
+        | XAxis     of int 
+        | YAxis     of int 
+        | ColorAxis of int
+        | Geo       of int
+        | MapBox    of int
+        | Polar     of int
+        | Ternary   of int
+        | Scene     of int
     
         static member toString = function
-            | X id  -> if id < 2 then "xaxis" else sprintf "xaxis%i" id
-            | Y id  -> if id < 2 then "yaxis" else sprintf "yaxis%i" id
-            | Z id  -> if id < 2 then "zaxis" else sprintf "zaxis%i" id
-    
-        static member convert = AxisId.toString >> box 
+            | XAxis     id  -> if id < 2 then "xaxis" else sprintf "xaxis%i" id
+            | YAxis     id  -> if id < 2 then "yaxis" else sprintf "yaxis%i" id
+            | ColorAxis id  -> if id < 2 then "coloraxis" else sprintf "coloraxis%i" id
+            | Geo       id  -> if id < 2 then "geo" else sprintf "geo%i" id
+            | MapBox    id  -> if id < 2 then "mapbox" else sprintf "mapbox%i" id
+            | Polar     id  -> if id < 2 then "polar" else sprintf "polar%i" id
+            | Ternary   id  -> if id < 2 then "ternary" else sprintf "ternary%i" id
+            | Scene     id  -> if id < 2 then "scene" else sprintf "scene%i" id
+
+        static member convert = SubPlotId.toString >> box 
 
     [<RequireQualifiedAccess>]
     /// Editable parts of a chart that can be set via Chart config.
@@ -424,7 +442,7 @@ module StyleParam =
     /// dragging motions. A user can always depress the 'shift' key to access the whatever functionality has not been set as the default. In 3D plots, the 
     /// default drag mode is 'rotate' which rotates the scene.
     [<RequireQualifiedAccess>]
-    type Dragmode =
+    type DragMode =
         | Zoom | Pan | Rotate 
     
         static member toString = function
@@ -433,7 +451,7 @@ module StyleParam =
             | Rotate -> "rotate"
 
 
-        static member convert = Dragmode.toString >> box
+        static member convert = DragMode.toString >> box
 
     /// Sets the Delaunay axis, which is the axis that is perpendicular to the surface of the Delaunay triangulation.
     /// It has an effect if `i`, `j`, `k` are not provided and `alphahull` is set to indicate Delaunay triangulation. 
@@ -714,16 +732,16 @@ module StyleParam =
     /// with corresponding trace labels. When set to 'y' all data sharing the same 'y' coordinates will be shown on the screen with corresponding
     /// trace labels. When set to 'closest', information about the data point closest to where the viewer is hovering will appear.
     [<RequireQualifiedAccess>]
-    type Hovermode =
-        | Closest | X | Y 
+    type HoverMode =
+        | Closest | X | Y | False
 
         static member toString = function
             | Closest -> "closest"
             | X       -> "x"
             | Y       -> "y"
+            | False   -> "false"
 
-
-        static member convert = Hovermode.toString >> box
+        static member convert = HoverMode.toString >> box
 
     [<RequireQualifiedAccess>]
     type HorizontalAlign = 

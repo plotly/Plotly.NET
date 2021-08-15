@@ -84,7 +84,7 @@ let myGeo =
 
 let moreFeaturesBaseMap =
     Chart.PointGeo([])
-    |> Chart.withMap myGeo
+    |> Chart.withGeo myGeo
     |> Chart.withMarginSize(0,0,0,0)
 
 (*** condition: ipynb ***)
@@ -119,7 +119,7 @@ let countryGeo =
 
 let countryBaseMap =
     Chart.PointGeo([])
-    |> Chart.withMap countryGeo
+    |> Chart.withGeo countryGeo
     |> Chart.withMarginSize(0,0,0,0)
 
 (*** condition: ipynb ***)

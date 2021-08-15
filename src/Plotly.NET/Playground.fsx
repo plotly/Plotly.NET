@@ -35,6 +35,7 @@
 #load "Polar.fs"
 #load "Bins.fs"
 #load "Cumulative.fs"
+#load "Annotation.fs"
 #load "Scene.fs"
 #load "Shape.fs"
 #load "Error.fs"
@@ -47,7 +48,6 @@
 #load "MapboxLayer.fs"
 #load "Mapbox.fs"
 #load "LayoutGrid.fs"
-#load "Annotation.fs"
 #load "Layout.fs"
 #load "Template.fs"
 #load "Config.fs"
@@ -71,6 +71,28 @@ open FSharpAux
 
 open System
 
+
+let singleStackChart =
+    let x = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
+    let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+    [
+        Chart.Point(x,y) 
+        |> Chart.withYAxisStyle("This title must")
+    
+        Chart.Line(x,y) 
+        |> Chart.withYAxisStyle("be set on the",ZeroLine=false)
+        
+        Chart.Spline(x,y) 
+        |> Chart.withYAxisStyle("respective subplots",ZeroLine=false)
+    ]
+    |> Chart.SingleStack(Pattern = StyleParam.LayoutGridPattern.Coupled)
+    //move xAxis to bottom and increase spacing between plots by using the withLayoutGridStyle function
+    |> Chart.withLayoutGridStyle(XSide=StyleParam.LayoutGridXSide.Bottom,YGap= 0.1)
+    |> Chart.withTitle("Hi i am the new SingleStackChart")
+    |> Chart.withXAxisStyle("im the shared xAxis")
+
+singleStackChart |> Chart.show
+
 Chart.Cone(
     x = [1; 1; 1],
     y = [1; 2; 3],
@@ -81,6 +103,10 @@ Chart.Cone(
 )
 |> Chart.show
 
+Chart.Point([1,2])
+|> Chart.withXAxisStyle ("X axis title quack quack", MinMax = (-1.,10.))
+|> Chart.withYAxisStyle ("Y axis title boo foo", MinMax = (-1.,10.))
+|> Chart.show
 
 let r  = [ 1; 2; 3; 4; 5; 6; 7;] |> List.map ((*) 10000)
 let r2 = [ 5; 6; 7; 1; 2; 3; 4;] |> List.map ((*) 10000)
@@ -354,7 +380,7 @@ Chart.ChoroplethMap(
     GeoJson = geoJson,
     FeatureIdKey="id"
 )
-|> Chart.withMap(
+|> Chart.withGeo(
     Geo.init(
         Scope=StyleParam.GeoScope.Usa
     )
@@ -370,7 +396,7 @@ Trace.initChoroplethMap(id)
     t?locationmode <- "geojson-id"
     t
 |> GenericChart.ofTraceObject
-|> Chart.withMap(
+|> Chart.withGeo(
     Geo.init(
         Scope=StyleParam.GeoScope.Usa
     )
@@ -557,14 +583,14 @@ Chart.ScatterGeo(
     ],
     StyleParam.Mode.Lines
 )
-|> Chart.withMapStyle(
+|> Chart.withGeoStyle(
     Projection=GeoProjection.init(projectionType=StyleParam.GeoProjectionType.AzimuthalEqualArea),
     ShowLakes=true,
     ShowOcean=true,
     OceanColor="lightblue",
     ShowRivers=true)
 |> Chart.show
-//test new withMapStyle function
+//test new withGeoStyle function
 
 let locations2,z2 = 
    [("Belarus",17.5); ("Moldova",16.8);("Lithuania",15.4);("Russia",15.1);
@@ -619,13 +645,13 @@ let locations2,z2 =
 
 // Pure alcohol consumption among adults (age 15+) in 2010
 Chart.ChoroplethMap(locations2,z2,Locationmode=StyleParam.LocationFormat.CountryNames,Colorscale=StyleParam.Colorscale.Electric)
-|> Chart.withMapStyle(
+|> Chart.withGeoStyle(
     Projection=GeoProjection.init(projectionType=StyleParam.GeoProjectionType.Mollweide),
     ShowLakes=true,
     ShowOcean=true,
     OceanColor="lightblue",
     ShowRivers=true)
-|> Chart.withColorBarStyle ("Alcohol consumption[l/y]",Length=0.5)
+|> Chart.withColorBarStyle (Title.init("Alcohol consumption[l/y]"),Length=0.5)
 |> Chart.withSize(1000.,1000.)
 |> Chart.show
 
@@ -810,9 +836,7 @@ generateDomainRanges 8 1
 ]
 |> Chart.Heatmap
 |> Chart.withColorBarStyle(
-    "Hallo?",
-    TitleSide=StyleParam.Side.Right,
-    TitleFont=Font.init(Size=20.)
+    Title.init("Hallo?",Side=StyleParam.Side.Right)
 )
 |> Chart.show
 

@@ -319,8 +319,8 @@ module Trace3d =
                 ?WHoverFormat       : string,
                 ?Meta               : seq<#IConvertible>,
                 ?CustomData         : seq<#IConvertible>,
-                ?Scene              : Scene,
-                ?ColorAxis          : StyleParam.AxisAnchorId,
+                ?Scene              : StyleParam.SubPlotId,
+                ?ColorAxis          : StyleParam.SubPlotId,
                 ?ColorBar           : ColorBar,
                 ?AutoColorScale     : bool,
                 ?ColorScale         : StyleParam.Colorscale,
@@ -366,8 +366,8 @@ module Trace3d =
                     WHoverFormat        |> DynObj.setValueOpt cone "whoverformat"
                     Meta                |> DynObj.setValueOpt cone "meta"
                     CustomData          |> DynObj.setValueOpt cone "customdata"
-                    Scene               |> DynObj.setValueOpt cone "scene"
-                    ColorAxis           |> DynObj.setValueOptBy cone "scene" StyleParam.AxisAnchorId.convert
+                    Scene               |> DynObj.setValueOptBy cone "scene" StyleParam.SubPlotId.convert
+                    ColorAxis           |> DynObj.setValueOptBy cone "scene" StyleParam.SubPlotId.convert
                     ColorBar            |> DynObj.setValueOpt cone "colorbar"
                     AutoColorScale      |> DynObj.setValueOpt cone "autocolorscale"
                     ColorScale          |> DynObj.setValueOptBy cone "colorscale" StyleParam.Colorscale.convert

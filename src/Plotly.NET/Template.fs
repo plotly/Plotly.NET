@@ -95,8 +95,8 @@ module ChartTemplates =
                 Paper_bgcolor = "white",
                 Plot_bgcolor =  "white"
             )
-            |> Layout.AddLinearAxis((StyleParam.AxisId.X 1),(initLightAxisTemplate()))
-            |> Layout.AddLinearAxis((StyleParam.AxisId.Y 1),(initLightAxisTemplate()))
+            |> Layout.AddLinearAxis((StyleParam.SubPlotId.XAxis 1),(initLightAxisTemplate()))
+            |> Layout.AddLinearAxis((StyleParam.SubPlotId.YAxis 1),(initLightAxisTemplate()))
 
         Template.init(defaultLayout)
 
@@ -115,8 +115,8 @@ module ChartTemplates =
                 Paper_bgcolor = "white",
                 Plot_bgcolor =  "white"
             )
-            |> Layout.AddLinearAxis((StyleParam.AxisId.X 1),(initLightAxisTemplate()))
-            |> Layout.AddLinearAxis((StyleParam.AxisId.Y 1),(initLightAxisTemplate()))
+            |> Layout.AddLinearAxis((StyleParam.SubPlotId.XAxis 1),(initLightAxisTemplate()))
+            |> Layout.AddLinearAxis((StyleParam.SubPlotId.YAxis 1),(initLightAxisTemplate()))
 
         Template.init(defaultLayout)
 
@@ -139,8 +139,8 @@ module ChartTemplates =
                 Plot_bgcolor= "rgb(55, 55, 61)",
                 Font = Font.init(Color = "rgb(204, 204, 204)")
             )
-            |> Layout.AddLinearAxis((StyleParam.AxisId.X 1),(initDarkAxisTemplate()))
-            |> Layout.AddLinearAxis((StyleParam.AxisId.Y 1),(initDarkAxisTemplate()))
+            |> Layout.AddLinearAxis((StyleParam.SubPlotId.XAxis 1),(initDarkAxisTemplate()))
+            |> Layout.AddLinearAxis((StyleParam.SubPlotId.YAxis 1),(initDarkAxisTemplate()))
 
         Template.init(darkLayoutTemplate)
 
@@ -177,8 +177,8 @@ module ChartTemplates =
                 Plot_bgcolor= "#200117",
                 Font = Font.init(Color = "white")
             )
-            |> Layout.AddLinearAxis((StyleParam.AxisId.X 1),(initFslabAxisTemplate()))
-            |> Layout.AddLinearAxis((StyleParam.AxisId.Y 1),(initFslabAxisTemplate()))
+            |> Layout.AddLinearAxis((StyleParam.SubPlotId.XAxis 1),(initFslabAxisTemplate()))
+            |> Layout.AddLinearAxis((StyleParam.SubPlotId.YAxis 1),(initFslabAxisTemplate()))
 
         Template.init(fslabLayoutTemplate)
         |> Template.withColorWay ColorWays.fslab
@@ -196,8 +196,8 @@ module ChartTemplates =
                 Paper_bgcolor = "rgba(255, 255, 255, 0)",
                 Plot_bgcolor =  "rgba(255, 255, 255, 0)"
             )
-            |> Layout.AddLinearAxis((StyleParam.AxisId.X 1),(initTransparentAxisTemplate()))
-            |> Layout.AddLinearAxis((StyleParam.AxisId.Y 1),(initTransparentAxisTemplate()))
+            |> Layout.AddLinearAxis((StyleParam.SubPlotId.XAxis 1),(initTransparentAxisTemplate()))
+            |> Layout.AddLinearAxis((StyleParam.SubPlotId.YAxis 1),(initTransparentAxisTemplate()))
 
         Template.init(defaultLayout)
 
@@ -215,7 +215,7 @@ module ChartTemplates =
                 Paper_bgcolor = "rgba(255, 255, 255, 0)",
                 Plot_bgcolor =  "rgba(255, 255, 255, 0)"
             )
-            |> Layout.AddLinearAxis((StyleParam.AxisId.X 1),(initTransparentAxisTemplate()))
-            |> Layout.AddLinearAxis((StyleParam.AxisId.Y 1),(initTransparentAxisTemplate()))
+            |> Layout.AddLinearAxis((StyleParam.SubPlotId.XAxis 1),(initTransparentAxisTemplate()))
+            |> Layout.AddLinearAxis((StyleParam.SubPlotId.YAxis 1),(initTransparentAxisTemplate()))
 
         Template.init(defaultLayout)

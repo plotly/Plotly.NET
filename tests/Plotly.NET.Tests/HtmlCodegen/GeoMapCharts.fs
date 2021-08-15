@@ -26,7 +26,7 @@ let moreFeaturesBasemapChart =
             RiverColor="Blue"
         )
     Chart.PointGeo([])
-    |> Chart.withMap myGeo
+    |> Chart.withGeo myGeo
     |> Chart.withMarginSize(0, 0, 0, 0)
 
 let cultureMapChart =
@@ -38,7 +38,7 @@ let cultureMapChart =
             CountryColor="RebeccaPurple"
         )
     Chart.PointGeo([])
-    |> Chart.withMap countryGeo
+    |> Chart.withGeo countryGeo
     |> Chart.withMarginSize(0, 0, 0, 0)
 
 [<Tests>]
@@ -91,7 +91,7 @@ let pointGeoChart =
         Labels=cityNames,
         TextPosition=StyleParam.TextPosition.TopCenter
     )
-    |> Chart.withMapStyle(
+    |> Chart.withGeoStyle(
         Scope=StyleParam.GeoScope.NorthAmerica, 
         Projection=GeoProjection.init(StyleParam.GeoProjectionType.AzimuthalEqualArea),
         CountryColor = "lightgrey"
@@ -136,7 +136,7 @@ let flightsMapChart =
     )
     |> Chart.combine
     |> Chart.withLegend(false)
-    |> Chart.withMapStyle(
+    |> Chart.withGeoStyle(
         Scope=StyleParam.GeoScope.NorthAmerica, 
         Projection=GeoProjection.init(StyleParam.GeoProjectionType.AzimuthalEqualArea),
         ShowLand=true,
@@ -230,7 +230,7 @@ let choroplethMap2Chart =
         locations,z,
         Locationmode=StyleParam.LocationFormat.CountryNames
     )
-    |> Chart.withMapStyle(
+    |> Chart.withGeoStyle(
         Projection=GeoProjection.init(projectionType=StyleParam.GeoProjectionType.Mollweide),
         ShowLakes=true,
         ShowOcean=true,

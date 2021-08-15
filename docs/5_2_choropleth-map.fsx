@@ -110,14 +110,14 @@ choroplethMap1 |> GenericChart.toChartHTML
 (**
 ## Map styling
 
-you can access various map styles via `Chart.withMapStyle`, such as the projection type, lake/ocean color, and so on.
+you can access various map styles via `Chart.withGeoStyle`, such as the projection type, lake/ocean color, and so on.
 *)
 let choroplethMap2 =
     Chart.ChoroplethMap(
         locations,z,
         Locationmode=StyleParam.LocationFormat.CountryNames
     )
-    |> Chart.withMapStyle(
+    |> Chart.withGeoStyle(
         Projection=GeoProjection.init(projectionType=StyleParam.GeoProjectionType.Mollweide),
         ShowLakes=true,
         ShowOcean=true,
@@ -236,7 +236,7 @@ let choroplethGeoJSON =
         GeoJson = geoJson,
         FeatureIdKey="id"
     )
-    |> Chart.withMap(
+    |> Chart.withGeo(
         Geo.init(
             Scope=StyleParam.GeoScope.NorthAmerica, 
             Projection=GeoProjection.init(StyleParam.GeoProjectionType.AzimuthalEqualArea),

@@ -99,11 +99,11 @@ module Axis =
                 ?RangeMode          : StyleParam.RangeMode,        
                 ?Range              : StyleParam.Range,            
                 ?FixedRange         : bool,       
-                ?ScaleAnchor        : StyleParam.AxisAnchorId,
+                ?ScaleAnchor        : StyleParam.LinearAxisId,
                 ?ScaleRatio         : float,
                 ?Constrain          : StyleParam.AxisConstraint,
                 ?ConstrainToward    : StyleParam.AxisConstraintDirection,
-                ?Matches            : StyleParam.AxisAnchorId,
+                ?Matches            : StyleParam.LinearAxisId,
                 ?Rangebreaks        : seq<Rangebreak>,
                 ?TickMode           : StyleParam.TickMode,         
                 ?NTicks             : int,           
@@ -153,9 +153,9 @@ module Axis =
                 ?ShowDividers       : bool,
                 ?DividerColor       : string,
                 ?DividerWidth       : int,
-                ?Anchor             : StyleParam.AxisAnchorId,
+                ?Anchor             : StyleParam.LinearAxisId,
                 ?Side               : StyleParam.Side,
-                ?Overlaying         : StyleParam.AxisAnchorId,
+                ?Overlaying         : StyleParam.LinearAxisId,
                 ?Layer              : StyleParam.Layer,
                 ?Domain             : StyleParam.Range,
                 ?Position           : float,         
@@ -335,11 +335,11 @@ module Axis =
                 ?RangeMode          : StyleParam.RangeMode,        
                 ?Range              : StyleParam.Range,            
                 ?FixedRange         : bool,       
-                ?ScaleAnchor        : StyleParam.AxisAnchorId,
+                ?ScaleAnchor        : StyleParam.LinearAxisId,
                 ?ScaleRatio         : float,
                 ?Constrain          : StyleParam.AxisConstraint,
                 ?ConstrainToward    : StyleParam.AxisConstraintDirection,
-                ?Matches            : StyleParam.AxisAnchorId,
+                ?Matches            : StyleParam.LinearAxisId,
                 ?Rangebreaks        : seq<Rangebreak>,
                 ?TickMode           : StyleParam.TickMode,         
                 ?NTicks             : int,           
@@ -389,9 +389,9 @@ module Axis =
                 ?ShowDividers       : bool,
                 ?DividerColor       : string,
                 ?DividerWidth       : int,
-                ?Anchor             : StyleParam.AxisAnchorId,
+                ?Anchor             : StyleParam.LinearAxisId,
                 ?Side               : StyleParam.Side,
-                ?Overlaying         : StyleParam.AxisAnchorId,
+                ?Overlaying         : StyleParam.LinearAxisId,
                 ?Layer              : StyleParam.Layer,
                 ?Domain             : StyleParam.Range,
                 ?Position           : float,         
@@ -570,11 +570,11 @@ module Axis =
                 ?RangeMode          : StyleParam.RangeMode,        
                 ?Range              : StyleParam.Range,            
                 ?FixedRange         : bool,       
-                ?ScaleAnchor        : StyleParam.AxisAnchorId,
+                ?ScaleAnchor        : StyleParam.LinearAxisId,
                 ?ScaleRatio         : float,
                 ?Constrain          : StyleParam.AxisConstraint,
                 ?ConstrainToward    : StyleParam.AxisConstraintDirection,
-                ?Matches            : StyleParam.AxisAnchorId,
+                ?Matches            : StyleParam.LinearAxisId,
                 ?Rangebreaks        : seq<Rangebreak>,
                 ?TickMode           : StyleParam.TickMode,         
                 ?NTicks             : int,           
@@ -624,9 +624,9 @@ module Axis =
                 ?ShowDividers       : bool,
                 ?DividerColor       : string,
                 ?DividerWidth       : int,
-                ?Anchor             : StyleParam.AxisAnchorId,
+                ?Anchor             : StyleParam.LinearAxisId,
                 ?Side               : StyleParam.Side,
-                ?Overlaying         : StyleParam.AxisAnchorId,
+                ?Overlaying         : StyleParam.LinearAxisId,
                 ?Layer              : StyleParam.Layer,
                 ?Domain             : StyleParam.Range,
                 ?Position           : float,         
@@ -648,11 +648,11 @@ module Axis =
                     RangeMode          |> DynObj.setValueOptBy axis "rangemode" StyleParam.RangeMode.convert
                     Range              |> DynObj.setValueOptBy axis "range" StyleParam.Range.convert
                     FixedRange         |> DynObj.setValueOpt axis   "fixedrange" 
-                    ScaleAnchor        |> DynObj.setValueOptBy axis "scaleanchor" StyleParam.AxisAnchorId.convert
+                    ScaleAnchor        |> DynObj.setValueOptBy axis "scaleanchor" StyleParam.LinearAxisId.convert
                     ScaleRatio         |> DynObj.setValueOpt axis   "scaleratio" 
                     Constrain          |> DynObj.setValueOptBy axis "constrain" StyleParam.AxisConstraint.convert
                     ConstrainToward    |> DynObj.setValueOptBy axis "constraitoward" StyleParam.AxisConstraintDirection.convert
-                    Matches            |> DynObj.setValueOptBy axis "matches" StyleParam.AxisAnchorId.convert
+                    Matches            |> DynObj.setValueOptBy axis "matches" StyleParam.LinearAxisId.convert
                     Rangebreaks        |> DynObj.setValueOpt axis   "rangebreaks" 
                     TickMode           |> DynObj.setValueOptBy axis "tickmode" StyleParam.TickMode.convert
                     NTicks             |> DynObj.setValueOpt axis   "nticks" 
@@ -702,9 +702,9 @@ module Axis =
                     ShowDividers       |> DynObj.setValueOpt axis   "showdividers" 
                     DividerColor       |> DynObj.setValueOpt axis   "dividercolor" 
                     DividerWidth       |> DynObj.setValueOpt axis   "dividerwidth" 
-                    Anchor             |> DynObj.setValueOptBy axis "anchor" StyleParam.AxisAnchorId.convert
+                    Anchor             |> DynObj.setValueOptBy axis "anchor" StyleParam.LinearAxisId.convert
                     Side               |> DynObj.setValueOptBy axis "side" StyleParam.Side.convert
-                    Overlaying         |> DynObj.setValueOptBy axis "overlaying" StyleParam.AxisAnchorId.convert
+                    Overlaying         |> DynObj.setValueOptBy axis "overlaying" StyleParam.LinearAxisId.convert
                     Layer              |> DynObj.setValueOptBy axis "layer" StyleParam.Layer.convert
                     Domain             |> DynObj.setValueOptBy axis "domain" StyleParam.Range.convert
                     Position           |> DynObj.setValueOpt axis   "position" 

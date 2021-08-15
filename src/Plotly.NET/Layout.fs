@@ -144,8 +144,8 @@ type Layout() =
                 
             ?Paper_bgcolor,
             ?Plot_bgcolor,
-            ?Hovermode:StyleParam.Hovermode,
-            ?Dragmode:StyleParam.Dragmode,
+            ?Hovermode:StyleParam.HoverMode,
+            ?Dragmode:StyleParam.DragMode,
                 
             ?Separators,
             ?Barmode:StyleParam.Barmode,
@@ -177,8 +177,8 @@ type Layout() =
                 Hidesources     |> DynObj.setValueOpt layout "hidesources"
                 Smith           |> DynObj.setValueOpt layout "smith"
                 Showlegend      |> DynObj.setValueOpt layout "showlegend"
-                Hovermode       |> DynObj.setValueOptBy layout "hovermode" StyleParam.Hovermode.toString
-                Dragmode        |> DynObj.setValueOptBy layout "dragmode" StyleParam.Dragmode.toString
+                Hovermode       |> DynObj.setValueOptBy layout "hovermode" StyleParam.HoverMode.toString
+                Dragmode        |> DynObj.setValueOptBy layout "dragmode" StyleParam.DragMode.toString
                 
                 Geo             |> DynObj.setValueOpt layout "geo"
                 Polar           |> DynObj.setValueOpt layout "polar"
@@ -230,91 +230,107 @@ type Layout() =
 
     static member AddLinearAxis
         (   
-            id   : StyleParam.AxisId,
+            id   : StyleParam.SubPlotId,
             axis : Axis.LinearAxis
         ) =
             (fun (layout:Layout) -> 
 
-                axis           |> DynObj.setValue layout (StyleParam.AxisId.toString id)
+                match id with
+                | StyleParam.SubPlotId.XAxis _ | StyleParam.SubPlotId.YAxis _ ->
+                    axis |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+                    layout
 
-                layout
+                | _ -> failwith $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting a linear axis on layout"
             )
 
     // Updates the style of current axis with given AxisId
     static member UpdateLinearAxisById
         (   
-            id   : StyleParam.AxisId,
+            id   : StyleParam.SubPlotId,
             axis : Axis.LinearAxis
         ) =
             (fun (layout:Layout) -> 
 
-                let axis' = 
-                  match layout.TryGetValue (StyleParam.AxisId.toString id) with
-                  | Some a -> DynObj.combine (unbox a) axis
-                  | None  -> axis :>  DynamicObj
-                
-                axis'           |> DynObj.setValue layout (StyleParam.AxisId.toString id)
+                match id with
+                | StyleParam.SubPlotId.XAxis _ | StyleParam.SubPlotId.YAxis _ ->
 
-                layout
+                    let axis' = 
+                        match layout.TryGetValue (StyleParam.SubPlotId.toString id) with
+                        | Some a -> DynObj.combine (unbox a) axis
+                        | None  -> axis :>  DynamicObj
+                
+                    axis'           |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+
+                    layout
+                | _ -> failwith $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting a linear axis on layout"
             )
 
-    static member AddScene 
+    static member addScene 
         (
-            name: string,
-            scene:Scene
+            id      : StyleParam.SubPlotId,
+            scene   : Scene
         ) =
             (fun (layout:Layout) -> 
-                scene |> DynObj.setValue layout name
+                scene |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
                 layout
             )
 
-    static member SetLayoutGrid 
+    static member updateSceneById
         (
-            grid: LayoutGrid
+            id      : StyleParam.SubPlotId,
+            scene   : Scene
         ) =
-            (fun (layout:Layout) ->
-                grid |> DynObj.setValue layout "grid"
+            (fun (layout:Layout) -> 
+                let scene' = 
+                    match layout.TryGetValue (StyleParam.SubPlotId.toString id) with
+                    | Some a -> DynObj.combine (unbox a) scene
+                    | None  -> scene :> DynamicObj
+
+                scene' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
                 layout
             )
 
+    static member tryGetSceneById (id:StyleParam.SubPlotId) =
+        (fun (layout:Layout) -> 
+            layout.TryGetTypedValue<Scene>(StyleParam.SubPlotId.toString id)
+        )
     
-    static member GetLayoutGrid 
-        (
-            grid: LayoutGrid
-        ) =
-            (fun (layout:Layout) ->
-                grid |> DynObj.setValue layout "grid"
-                layout
-            )
-
-    
-    static member AddMap
+    static member AddGeo
         (   
-            id   : int,
-            map  : Geo
+            id   : StyleParam.SubPlotId,
+            geo  : Geo
         ) =
             (fun (layout:Layout) -> 
                 
-                let key = if id < 2 then "geo" else sprintf "geo%i" id
-                map |> DynObj.setValue layout key
+                geo |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
 
                 layout
             )
 
     // Updates the style of current geo map with given Id
-    static member UpdateMapById
+    static member UpdateGeoById
         (   
-           id   : int,
-           map  : Geo
+           id   : StyleParam.SubPlotId,
+           geo  : Geo
         ) =
             (fun (layout:Layout) -> 
-                let key = if id < 2 then "geo" else sprintf "geo%i" id
                 let geo' = 
-                    match layout.TryGetTypedValue<Geo>(key) with
-                    | Some a  -> DynObj.combine (unbox a) map
-                    | None    -> map :> DynamicObj
-                
-                geo'|> DynObj.setValue layout key
+                    match layout.TryGetValue (StyleParam.SubPlotId.toString id) with
+                    | Some a -> DynObj.combine (unbox a) geo
+                    | None  -> geo :> DynamicObj
+
+                geo' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+                layout
+            )
+
+    static member AddMapbox
+        (   
+            id      : StyleParam.SubPlotId,
+            mapbox  : Mapbox
+        ) =
+            (fun (layout:Layout) -> 
+            
+                mapbox |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
 
                 layout
             )
@@ -322,18 +338,16 @@ type Layout() =
     // Updates the style of current geo map with given Id
     static member UpdateMapboxById
         (   
-           id       : int,
+           id       : StyleParam.SubPlotId,
            mapbox   : Mapbox
         ) =
             (fun (layout:Layout) -> 
-                let key = if id < 2 then "mapbox" else sprintf "mapbox%i" id
                 let mapbox' = 
-                    match layout.TryGetTypedValue<Mapbox>(key) with
-                    | Some a  -> DynObj.combine (unbox a) mapbox
-                    | None    -> mapbox :> DynamicObj
-                
-                mapbox' |> DynObj.setValue layout key
+                    match layout.TryGetValue (StyleParam.SubPlotId.toString id) with
+                    | Some a -> DynObj.combine (unbox a) mapbox
+                    | None  -> mapbox :> DynamicObj
 
+                mapbox' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
                 layout
             )
 
@@ -391,6 +405,23 @@ type Layout() =
                 layout
             )
 
+    static member SetLayoutGrid 
+        (
+            grid: LayoutGrid
+        ) =
+            (fun (layout:Layout) ->
+                grid |> DynObj.setValue layout "grid"
+                layout
+            )
+
+    static member GetLayoutGrid 
+        (
+            grid: LayoutGrid
+        ) =
+            (fun (layout:Layout) ->
+                grid |> DynObj.setValue layout "grid"
+                layout
+            )
 
     static member setLegend(legend:Legend) =
         (fun (layout:Layout) -> 
