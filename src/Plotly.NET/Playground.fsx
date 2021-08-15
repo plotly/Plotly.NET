@@ -6,6 +6,7 @@
 
 #load "StyleParams.fs"
 #load "Colors.fs"
+#load "StreamTubeStarts.fs"
 #load "Lighting.fs"
 #load "Rangebreak.fs"
 #load "TickFormatStop.fs"
@@ -71,27 +72,29 @@ open FSharpAux
 
 open System
 
+let tubeData =
+    Http.RequestString @"https://raw.githubusercontent.com/plotly/datasets/master/streamtube-wind.csv"
+    |> Frame.ReadCsvString
 
-let singleStackChart =
-    let x = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
-    let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
-    [
-        Chart.Point(x,y) 
-        |> Chart.withYAxisStyle("This title must")
-    
-        Chart.Line(x,y) 
-        |> Chart.withYAxisStyle("be set on the",ZeroLine=false)
-        
-        Chart.Spline(x,y) 
-        |> Chart.withYAxisStyle("respective subplots",ZeroLine=false)
-    ]
-    |> Chart.SingleStack(Pattern = StyleParam.LayoutGridPattern.Coupled)
-    //move xAxis to bottom and increase spacing between plots by using the withLayoutGridStyle function
-    |> Chart.withLayoutGridStyle(XSide=StyleParam.LayoutGridXSide.Bottom,YGap= 0.1)
-    |> Chart.withTitle("Hi i am the new SingleStackChart")
-    |> Chart.withXAxisStyle("im the shared xAxis")
+tubeData.Print()
 
-singleStackChart |> Chart.show
+Chart.StreamTube(
+    x = (tubeData.["x"] |> Series.values),
+    y = (tubeData.["y"] |> Series.values),
+    z = (tubeData.["z"] |> Series.values),
+    u = (tubeData.["u"] |> Series.values),
+    v = (tubeData.["v"] |> Series.values),
+    w = (tubeData.["w"] |> Series.values),
+    Starts = 
+        StreamTubeStarts.init(
+            X = Array.init 16 (fun _ -> 80),
+            Y = [20;30;40;50;20;30;40;50;20;30;40;50;20;30;40;50],
+            Z = [0;0;0;0;5;5;5;5;10;10;10;10;15;15;15;15]
+        ),
+    ColorScale = StyleParam.Colorscale.Viridis
+)
+
+|> Chart.show
 
 Chart.Cone(
     x = [1; 1; 1],

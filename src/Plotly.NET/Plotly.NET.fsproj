@@ -36,6 +36,7 @@
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="StyleParams.fs" />
     <Compile Include="Colors.fs" />
+    <Compile Include="StreamTubeStarts.fs" />
     <Compile Include="Lighting.fs" />
     <Compile Include="Rangebreak.fs" />
     <Compile Include="TickFormatStop.fs" />

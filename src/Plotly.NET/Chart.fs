@@ -1978,6 +1978,69 @@ type Chart =
                 ?ColorBar   = ColorBar
             )
 
+
+    static member StreamTube 
+        (
+            x, y, z, u, v, w,
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?ColorScale,
+            [<Optional;DefaultParameterValue(null)>] ?ShowScale,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar,
+            [<Optional;DefaultParameterValue(null)>] ?MaxDisplayed: int,
+            [<Optional;DefaultParameterValue(null)>] ?Starts: StreamTubeStarts
+
+        ) =
+
+            Trace3d.initStreamTube(
+                Trace3dStyle.StreamTube(
+                    X = x,
+                    Y = y,
+                    Z = z,
+                    U = u,
+                    V = v,
+                    W = w,
+                    ?Name           = Name,
+                    ?ShowLegend     = ShowLegend,
+                    ?Opacity        = Opacity,
+                    ?ColorScale     = ColorScale,
+                    ?ShowScale      = ShowScale,
+                    ?ColorBar       = ColorBar,
+                    ?MaxDisplayed   = MaxDisplayed,
+                    ?Starts         = Starts
+                )
+            )
+            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=ShowLegend,?Opacity=Opacity)
+            |> GenericChart.ofTraceObject 
+
+    static member StreamTube 
+        (
+            streamTubeXYZ, streamTubeUVW,
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?ColorScale,
+            [<Optional;DefaultParameterValue(null)>] ?ShowScale,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar,
+            [<Optional;DefaultParameterValue(null)>] ?MaxDisplayed: int,
+            [<Optional;DefaultParameterValue(null)>] ?Starts: StreamTubeStarts
+        ) =
+            let x, y, z = Seq.unzip3 streamTubeXYZ
+            let u, v, w = Seq.unzip3 streamTubeUVW
+
+            Chart.StreamTube(
+                x, y, z, u, v, w,
+                ?Name           = Name          ,
+                ?ShowLegend     = ShowLegend    ,
+                ?Opacity        = Opacity       ,
+                ?ColorScale     = ColorScale    ,
+                ?ShowScale      = ShowScale     ,
+                ?ColorBar       = ColorBar      ,
+                ?MaxDisplayed   = MaxDisplayed  ,
+                ?Starts         = Starts
+            )
+
     /// creates table out of header sequence and row sequences
     static member Table(headerValues, cellValues, 
             [<Optional;DefaultParameterValue(null)>] ?AlignHeader, 
