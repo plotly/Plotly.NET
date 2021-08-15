@@ -48,8 +48,15 @@ module Trace3d =
     type Trace3dStyle() =
 
         // ######################## 3d-Charts
-    
-    
+        
+        static member setScene 
+            (
+                ?SceneName:string
+            ) =
+                fun (trace:Trace3d) ->
+                    SceneName |> DynObj.setValueOpt trace "scene"
+                    trace
+
         // Applies the styles to Scatter3d()
         static member Scatter3d
             (   
@@ -108,7 +115,7 @@ module Trace3d =
                 ?Autocolorscale : bool,
                 ?Reversescale   : bool,
                 ?Showscale      : bool,
-                ?Colorbar       ,
+                ?ColorBar       ,
                 ?Contours       ,
                 ?Hidesurface    ,
                 ?Lightposition  ,
@@ -136,7 +143,7 @@ module Trace3d =
                     Autocolorscale |> DynObj.setValueOpt surface "autocolorscale"
                     Reversescale   |> DynObj.setValueOpt surface "reversescale"  
                     Showscale      |> DynObj.setValueOpt surface "showscale"
-                    Colorbar       |> DynObj.setValueOpt surface "colorbar"    
+                    ColorBar       |> DynObj.setValueOpt surface "colorbar"    
                     Contours       |> DynObj.setValueOpt surface "contours"  
                     Hidesurface    |> DynObj.setValueOpt surface "Hidesurface"
                     Lightposition  |> DynObj.setValueOpt surface "Lightposition"
@@ -174,7 +181,7 @@ module Trace3d =
                 ?Autocolorscale ,
                 ?Reversescale   ,
                 ?Showscale      ,
-                ?Colorbar       ,
+                ?ColorBar       ,
                 ?Lightposition  : Ligth.Lightposition, // Obj
                 ?Lighting       : Ligth.Lighting, // Obj
                 ?Scene          ,
@@ -213,7 +220,7 @@ module Trace3d =
                     Autocolorscale |> DynObj.setValueOpt mesh3d "autocolorscale"
                     Reversescale   |> DynObj.setValueOpt mesh3d "reversescale"
                     Showscale      |> DynObj.setValueOpt mesh3d "showscale"
-                    Colorbar       |> DynObj.setValueOpt mesh3d "colorbar"
+                    ColorBar       |> DynObj.setValueOpt mesh3d "colorbar"
                     Lightposition  |> DynObj.setValueOpt mesh3d "lightposition"
                     Lighting       |> DynObj.setValueOpt mesh3d "lighting"
                     Scene          |> DynObj.setValueOpt mesh3d "scene"
@@ -236,16 +243,3 @@ module Trace3d =
                     // out ->
                     mesh3d
                 ) 
-
-        static member setScene 
-            (
-                ?SceneName:string
-            ) =
-                fun (trace:Trace3d) ->
-                    SceneName |> DynObj.setValueOpt trace "scene"
-                    trace
-                
-                
-
-
-

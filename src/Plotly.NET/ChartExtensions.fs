@@ -408,7 +408,7 @@ module ChartExtensions =
             Chart.withZ_Axis(zaxis)
 
         [<CompiledName("WithColorBar")>]
-        static member withColorBar(colorbar:Colorbar) =
+        static member withColorBar(colorbar:ColorBar) =
             (fun (ch:GenericChart) ->
                 ch
                 |> GenericChart.mapTrace(fun t ->
@@ -420,13 +420,11 @@ module ChartExtensions =
         
         [<CompiledName("withColorbar")>]
         static member withColorBarStyle(title,
-                [<Optional;DefaultParameterValue(null)>] ?TitleSide: StyleParam.Side,
-                [<Optional;DefaultParameterValue(null)>] ?TitleFont: Font,
                 [<Optional;DefaultParameterValue(null)>] ?Length,
                 [<Optional;DefaultParameterValue(null)>] ?OutlineColor,
                 [<Optional;DefaultParameterValue(null)>] ?BorderColor,
                 [<Optional;DefaultParameterValue(null)>] ?BGColor) =
-            let colorbar = Colorbar.init(Title=title,?Titleside=TitleSide,?Titlefont=TitleFont,?Len = Length,?Outlinecolor=OutlineColor,?Bgcolor=BGColor,?Bordercolor=BorderColor)
+            let colorbar = ColorBar.init(Title=title,?Len = Length,?OutlineColor=OutlineColor,?BGColor=BGColor,?BorderColor=BorderColor)
             Chart.withColorBar(colorbar)
         //// Sets second x-Axis of 2d- Charts
         //static member withX_Axis2(xAxis2:Axis.LinearAxis) =

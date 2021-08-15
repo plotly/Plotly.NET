@@ -236,7 +236,10 @@ let choroplethMap2Chart =
         ShowOcean=true,
         OceanColor="lightblue",
         ShowRivers=true)
-    |> Chart.withColorBarStyle ("Alcohol consumption[l/y]",Length=0.5)
+    |> Chart.withColorBarStyle (
+        Title.init(Text="Alcohol consumption[l/y]")
+        ,Length=0.5
+    )
 
 [<Tests>]
 let ``Choropleth maps charts`` =

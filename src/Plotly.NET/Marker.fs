@@ -16,7 +16,7 @@ type Marker () =
             ?Symbol: StyleParam.Symbol,
             ?MultiSizes: seq<#IConvertible>,
             ?Line: Line,
-            ?Colorbar: Colorbar,
+            ?ColorBar: ColorBar,
             ?Colorscale : StyleParam.Colorscale,
             ?Colors: seq<string>,
             ?OutlierColor:string,
@@ -43,7 +43,7 @@ type Marker () =
                 ?Opacity       = Opacity        ,
                 ?MultiSizes    = MultiSizes     ,
                 ?Line          = Line           ,
-                ?Colorbar      = Colorbar       ,
+                ?ColorBar      = ColorBar       ,
                 ?Colorscale    = Colorscale     ,
                 ?Colors        = Colors         ,
                 ?OutlierColor  = OutlierColor   ,
@@ -70,7 +70,7 @@ type Marker () =
             ?Symbol: StyleParam.Symbol,
             ?MultiSizes: seq<#IConvertible>,
             ?Line: Line,
-            ?Colorbar: Colorbar,
+            ?ColorBar: ColorBar,
             ?Colorscale : StyleParam.Colorscale,
             ?Colors: seq<string>,
             ?OutlierColor:string,
@@ -94,7 +94,7 @@ type Marker () =
                 Opacity        |> DynObj.setValueOpt marker "opacity"
                 MultiSizes     |> DynObj.setValueOpt marker "size"
                 Line           |> DynObj.setValueOpt marker "line"        
-                Colorbar       |> DynObj.setValueOpt marker "colorbar"       
+                ColorBar       |> DynObj.setValueOpt marker "colorbar"       
                 Colorscale     |> DynObj.setValueOptBy marker "colorscale" StyleParam.Colorscale.convert
                 Colors         |> DynObj.setValueOpt marker "colors"     
                 OutlierColor   |> DynObj.setValueOpt marker "outliercolor"     

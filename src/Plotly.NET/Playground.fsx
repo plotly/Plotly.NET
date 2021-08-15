@@ -15,7 +15,7 @@
 #load "Title.fs"
 #load "Pathbar.fs"
 #load "TreemapTiling.fs"
-#load "Colorbar.fs"
+#load "ColorBar.fs"
 #load "RangeSlider.fs"
 #load "Button.fs"
 #load "RangeSelector.fs"

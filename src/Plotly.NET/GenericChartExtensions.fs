@@ -284,7 +284,7 @@ module GenericChartExtensions =
 
         [<CompiledName("WithColorBar")>]
         [<Extension>]
-        member this.withColorBar(colorbar:Colorbar) =
+        member this.withColorBar(colorbar:ColorBar) =
             this
             |> GenericChart.mapTrace(fun t ->
                 colorbar |> DynObj.setValue t "colorbar" 
@@ -294,13 +294,11 @@ module GenericChartExtensions =
         [<CompiledName("WithColorbar")>]
         [<Extension>]
         member this.WithColorBarStyle(title,
-                [<Optional;DefaultParameterValue(null)>] ?TitleSide: StyleParam.Side,
-                [<Optional;DefaultParameterValue(null)>] ?TitleFont: Font,
                 [<Optional;DefaultParameterValue(null)>] ?Length,
                 [<Optional;DefaultParameterValue(null)>] ?OutlineColor,
                 [<Optional;DefaultParameterValue(null)>] ?BorderColor,
                 [<Optional;DefaultParameterValue(null)>] ?BGColor) =
-            let colorbar = Colorbar.init(Title=title,?Titleside=TitleSide,?Titlefont=TitleFont,?Len = Length,?Outlinecolor=OutlineColor,?Bgcolor=BGColor,?Bordercolor=BorderColor)
+            let colorbar = ColorBar.init(Title=title,?Len = Length,?OutlineColor=OutlineColor,?BGColor=BGColor,?BorderColor=BorderColor)
             this |> Chart.withColorBar(colorbar)
         
         // Set the Layout options of a Chart

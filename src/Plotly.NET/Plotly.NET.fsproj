@@ -46,7 +46,7 @@
     <Compile Include="Title.fs" />
     <Compile Include="Pathbar.fs" />
     <Compile Include="TreemapTiling.fs" />
-    <Compile Include="Colorbar.fs" />
+    <Compile Include="ColorBar.fs" />
     <Compile Include="RangeSlider.fs" />
     <Compile Include="Button.fs" />
     <Compile Include="RangeSelector.fs" />

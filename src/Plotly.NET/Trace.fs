@@ -338,7 +338,7 @@ module Trace =
                 ?Symbol: StyleParam.Symbol,
                 ?MultiSizes: seq<#IConvertible>,
                 ?Line: Line,
-                ?Colorbar: Colorbar,
+                ?ColorBar: ColorBar,
                 ?Colorscale : StyleParam.Colorscale,
                 ?Colors: seq<string>,
                 ?OutlierColor:string,
@@ -364,7 +364,7 @@ module Trace =
                     
                         |> Marker.style(?Size=Size,?Color=Color,?Symbol=Symbol,
                             ?Opacity=Opacity,?MultiSizes=MultiSizes,?Line=Line,
-                            ?Colorbar=Colorbar,?Colorscale=Colorscale,?Colors=Colors,?OutlierColor=OutlierColor,
+                            ?ColorBar=ColorBar,?Colorscale=Colorscale,?Colors=Colors,?OutlierColor=OutlierColor,
                             ?Maxdisplayed=Maxdisplayed,?Sizeref=Sizeref,?Sizemin=Sizemin,
                             ?Sizemode=Sizemode,?Cauto=Cauto,?Cmax=Cmax,?Cmin=Cmin,?Cmid=Cmid,
                             ?Autocolorscale=Autocolorscale,?Reversescale=Reversescale,?Showscale=Showscale
@@ -755,7 +755,7 @@ module Trace =
                 ?Reversescale   ,
                 ?Showscale      ,
                 ?zSmooth        ,
-                ?Colorbar
+                ?ColorBar
             ) =
                 (fun (heatmap:('T :> Trace)) -> 
                 
@@ -785,7 +785,7 @@ module Trace =
                     Reversescale   |> DynObj.setValueOpt heatmap "reversescale"  
                     Showscale      |> DynObj.setValueOpt heatmap "showscale"     
                     zSmooth        |> DynObj.setValueOptBy heatmap "zsmooth" StyleParam.SmoothAlg.convert   
-                    Colorbar       |> DynObj.setValueOpt heatmap "colorbar"    
+                    ColorBar       |> DynObj.setValueOpt heatmap "colorbar"    
 
                     // out ->
                     heatmap 
@@ -819,7 +819,7 @@ module Trace =
                 ?Reversescale   ,
                 ?Showscale      ,
                 ?zSmooth        ,
-                ?Colorbar
+                ?ColorBar
             ) =
                 (fun (contour:('T :> Trace)) -> 
                 
@@ -849,7 +849,7 @@ module Trace =
                     Reversescale   |> DynObj.setValueOpt contour   "reversescale"  
                     Showscale      |> DynObj.setValueOpt contour   "showscale"     
                     zSmooth        |> DynObj.setValueOptBy contour "zsmooth" StyleParam.SmoothAlg.convert   
-                    Colorbar       |> DynObj.setValueOpt contour   "colorbar"    
+                    ColorBar       |> DynObj.setValueOpt contour   "colorbar"    
 
                     // out ->
                     contour 
@@ -960,7 +960,7 @@ module Trace =
                 ?Reversescale   ,
                 ?Showscale      ,
                 ?zSmooth        ,
-                ?Colorbar      
+                ?ColorBar      
 
             ) =
                 (fun (histogram2d:('T :> Trace)) ->
@@ -1002,7 +1002,7 @@ module Trace =
                     Reversescale   |> DynObj.setValueOpt histogram2d   "reversescale"  
                     Showscale      |> DynObj.setValueOpt histogram2d   "showscale"     
                     zSmooth        |> DynObj.setValueOptBy histogram2d "zsmooth" StyleParam.SmoothAlg.convert   
-                    Colorbar       |> DynObj.setValueOpt histogram2d   "colorbar"    
+                    ColorBar       |> DynObj.setValueOpt histogram2d   "colorbar"    
 
                     // Update                
                     Marker       |> DynObj.setValueOpt histogram2d "marker"  
@@ -1057,7 +1057,7 @@ module Trace =
                 ?Reversescale   ,
                 ?Showscale      ,
                 ?zSmooth        ,
-                ?Colorbar      
+                ?ColorBar      
 
             ) =
                 (fun (histogram2dContour:('T :> Trace)) ->
@@ -1102,7 +1102,7 @@ module Trace =
                     Reversescale   |> DynObj.setValueOpt histogram2dContour   "reversescale"  
                     Showscale      |> DynObj.setValueOpt histogram2dContour   "showscale"     
                     zSmooth        |> DynObj.setValueOptBy histogram2dContour "zsmooth" StyleParam.SmoothAlg.convert   
-                    Colorbar       |> DynObj.setValueOpt histogram2dContour   "colorbar"    
+                    ColorBar       |> DynObj.setValueOpt histogram2dContour   "colorbar"    
 
                     // Update                
                     Marker       |> DynObj.setValueOpt histogram2dContour "marker"  
@@ -1168,7 +1168,7 @@ module Trace =
                 ?Locationmode   : StyleParam.LocationFormat,
                 ?Autocolorscale : bool,
                 ?Colorscale     : StyleParam.Colorscale,
-                ?Colorbar       : Colorbar,
+                ?ColorBar       : ColorBar,
                 ?Marker         : Marker,
                 ?GeoJson,
                 ?FeatureIdKey   : string,
@@ -1187,7 +1187,7 @@ module Trace =
                     Autocolorscale     |> DynObj.setValueOpt   choropleth "autocolorscale"    
                     
                     Colorscale         |> DynObj.setValueOptBy choropleth "colorscale" StyleParam.Colorscale.convert
-                    Colorbar           |> DynObj.setValueOpt   choropleth "colorbar"
+                    ColorBar           |> DynObj.setValueOpt   choropleth "colorbar"
                     Marker             |> DynObj.setValueOpt   choropleth "marker"  
                     GeoJson            |> DynObj.setValueOpt   choropleth "geojson" 
                     FeatureIdKey       |> DynObj.setValueOpt   choropleth "featureidkey"
@@ -1604,7 +1604,7 @@ module Trace =
                 ?Text           : seq<#IConvertible>,
                 ?Below          : string,
                 ?Colorscale     : StyleParam.Colorscale,
-                ?Colorbar       : Colorbar,
+                ?ColorBar       : ColorBar,
                 ?Showscale      : bool,
                 ?ZAuto          : bool,
                 ?ZMin           : float,
@@ -1620,7 +1620,7 @@ module Trace =
                     Text        |> DynObj.setValueOpt   trace "text"
                     Below       |> DynObj.setValueOpt   trace "below"
                     Colorscale  |> DynObj.setValueOptBy trace "colorscale" StyleParam.Colorscale.convert
-                    Colorbar    |> DynObj.setValueOpt   trace "colorbar"
+                    ColorBar    |> DynObj.setValueOpt   trace "colorbar"
                     Showscale   |> DynObj.setValueOpt   trace "showscale"
                     ZAuto       |> DynObj.setValueOpt   trace "zauto"
                     ZMin        |> DynObj.setValueOpt   trace "zmin"
@@ -1640,7 +1640,7 @@ module Trace =
                 ?Text           : seq<#IConvertible>,
                 ?Below          : string,
                 ?Colorscale     : StyleParam.Colorscale,
-                ?Colorbar       : Colorbar,
+                ?ColorBar       : ColorBar,
                 ?Showscale      : bool,
                 ?ZAuto          : bool,
                 ?ZMin           : float,
@@ -1658,7 +1658,7 @@ module Trace =
                     Text        |> DynObj.setValueOpt   trace "text"
                     Below       |> DynObj.setValueOpt   trace "below"
                     Colorscale  |> DynObj.setValueOptBy trace "colorscale" StyleParam.Colorscale.convert
-                    Colorbar    |> DynObj.setValueOpt   trace "colorbar"
+                    ColorBar    |> DynObj.setValueOpt   trace "colorbar"
                     Showscale   |> DynObj.setValueOpt   trace "showscale"
                     ZAuto       |> DynObj.setValueOpt   trace "zauto"
                     ZMin        |> DynObj.setValueOpt   trace "zmin"
