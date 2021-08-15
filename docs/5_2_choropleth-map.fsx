@@ -123,7 +123,7 @@ let choroplethMap2 =
         ShowOcean=true,
         OceanColor="lightblue",
         ShowRivers=true)
-    |> Chart.withColorBarStyle ("Alcohol consumption[l/y]",Length=0.5)
+    |> Chart.withColorBarStyle (Title.init("Alcohol consumption[l/y]"),Length=0.5)
 
 (*** condition: ipynb ***)
 #if IPYNB
