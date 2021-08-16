@@ -1380,6 +1380,50 @@ module StyleParam =
       
         static member convert = TimeStepMode.toString >> box
 
+    /// Sets the surface pattern of the iso-surface 3-D sections. The default pattern of the surface is `all` meaning that the rest of surface elements would be shaded. The check options (either 1 or 2) could be used to draw half of the squares on the surface. Using various combinations of capital `A`, `B`, `C`, `D` and `E` may also be used to reduce the number of triangles on the iso-surfaces and creating other patterns of interest.
+    [<RequireQualifiedAccess>]
+    type SurfacePattern =
+        | A | B | C | D | E 
+        | AB | AC | AD | AE
+        | BC | BD | BE
+        | CD | CE
+        | ABC | ABD | ABE
+        | BCD | BDE 
+        | ABCD | BCDE
+        | Odd
+        | Even
+        | All
+
+        static member toString = function
+            | A     -> "A"
+            | B     -> "B"
+            | C     -> "C"
+            | D     -> "D"
+            | E     -> "E"
+            | AB    -> "A+B"
+            | AC    -> "A+C"
+            | AD    -> "A+D"
+            | AE    -> "A+E"
+            | BC    -> "B+C"
+            | BD    -> "B+D"
+            | BE    -> "B+E"
+            | CD    -> "C+D"
+            | CE    -> "C+E"
+            | ABC   -> "A+B+C"
+            | ABD   -> "A+B+D"
+            | ABE   -> "A+B+E"
+            | BCD   -> "B+C+D"
+            | BDE   -> "B+D+E"
+            | ABCD  -> "A+B+C+D"
+            | BCDE  -> "B+C+D+E"
+            | Odd   -> "odd"
+            | Even  -> "even"
+            | All   -> "all"
+
+        static member convert = SurfacePattern.toString >> box
+
+
+
 //--------------------------
 // #T#
 //--------------------------

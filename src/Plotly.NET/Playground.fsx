@@ -6,6 +6,10 @@
 
 #load "StyleParams.fs"
 #load "Colors.fs"
+#load "Surface.fs"
+#load "SpaceFrame.fs"
+#load "Slices.fs"
+#load "Caps.fs"
 #load "StreamTubeStarts.fs"
 #load "Lighting.fs"
 #load "Rangebreak.fs"
@@ -72,6 +76,45 @@ open FSharpAux
 
 open System
 
+let linspace (min,max,n) = 
+    if n <= 2 then failwithf "n needs to be larger then 2"
+    let bw = float (max - min) / (float n - 1.)
+    Array.init n (fun i -> min + (bw * float i))
+
+let mgrid (min,max,n) = 
+
+    let data = linspace(min,max,n)
+
+    let z = [|for i in 1 .. n do [|for i in 1 .. n do yield data|]|]
+    let x = [|for i in 1 .. n do [|for j in 1 .. n do yield [|for k in 1 .. n do yield data.[i-1]|]|]|]
+    let y = [|for i in 1 .. n do [|for j in 1 .. n do yield [|for k in 1 .. n do yield data.[j-1]|]|]|]
+
+    x,y,z
+
+let x,y,z = 
+    mgrid(-8.,8.,40)
+    |> fun (x,y,z) ->
+        (x |> Array.concat |> Array.concat),
+        (y |> Array.concat |> Array.concat),
+        (z |> Array.concat |> Array.concat)
+
+let values = 
+    Array.map3 (fun x y z ->
+        sin(x*y*z) / (x*y*z)
+    ) x y z
+        
+
+Chart.Volume(
+   x, y, z, values,
+   Opacity=0.1,
+   Surface=(Surface.init(Count=17)),
+   IsoMin=0.1,
+   IsoMax=0.8,
+   ColorScale = StyleParam.Colorscale.Viridis
+
+)
+|> Chart.show
+
 let tubeData =
     Http.RequestString @"https://raw.githubusercontent.com/plotly/datasets/master/streamtube-wind.csv"
     |> Frame.ReadCsvString
@@ -93,7 +136,6 @@ Chart.StreamTube(
         ),
     ColorScale = StyleParam.Colorscale.Viridis
 )
-
 |> Chart.show
 
 Chart.Cone(

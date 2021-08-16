@@ -2040,6 +2040,44 @@ type Chart =
                 ?MaxDisplayed   = MaxDisplayed  ,
                 ?Starts         = Starts
             )
+            
+    static member Volume 
+        (
+            x,y,z,value,
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?ColorScale,
+            [<Optional;DefaultParameterValue(null)>] ?ShowScale,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar,
+            [<Optional;DefaultParameterValue(null)>] ?IsoMin,
+            [<Optional;DefaultParameterValue(null)>] ?IsoMax,
+            [<Optional;DefaultParameterValue(null)>] ?Caps : Caps,
+            [<Optional;DefaultParameterValue(null)>] ?Slices : Slices,
+            [<Optional;DefaultParameterValue(null)>] ?Surface : Surface
+        ) =
+            Trace3d.initVolume(
+                Trace3dStyle.Volume(
+                    X = x,
+                    Y = y,
+                    Z = z,
+                    Value = value,
+                    ?Name           = Name,
+                    ?ShowLegend     = ShowLegend,
+                    ?Opacity        = Opacity,
+                    ?ColorScale     = ColorScale,
+                    ?ShowScale      = ShowScale,
+                    ?ColorBar       = ColorBar,
+                    ?IsoMin         = IsoMin,
+                    ?IsoMax         = IsoMax,
+                    ?Caps           = Caps,
+                    ?Slices         = Slices,
+                    ?Surface        = Surface   
+                )
+            )
+            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=ShowLegend,?Opacity=Opacity)
+            |> GenericChart.ofTraceObject 
+
 
     /// creates table out of header sequence and row sequences
     static member Table(headerValues, cellValues, 

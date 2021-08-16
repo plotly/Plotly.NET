@@ -36,6 +36,10 @@
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="StyleParams.fs" />
     <Compile Include="Colors.fs" />
+    <Compile Include="Surface.fs" />
+    <Compile Include="SpaceFrame.fs" />
+    <Compile Include="Slices.fs" />
+    <Compile Include="Caps.fs" />
     <Compile Include="StreamTubeStarts.fs" />
     <Compile Include="Lighting.fs" />
     <Compile Include="Rangebreak.fs" />
