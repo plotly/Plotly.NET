@@ -29,6 +29,8 @@ type CapFill () =
                 Fill |> DynObj.setValueOpt capFill "fill"
                 Show |> DynObj.setValueOpt capFill "show"
 
+                capFill
+
 
 type Caps() =
     inherit DynamicObj ()

@@ -33,6 +33,8 @@ type SlicesFill () =
                 Locations   |> DynObj.setValueOpt slicesFill "locations"
                 Show        |> DynObj.setValueOpt slicesFill "show"
 
+                slicesFill
+
 
 type Slices() =
     inherit DynamicObj ()

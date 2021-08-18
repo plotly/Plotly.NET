@@ -91,6 +91,33 @@ let mgrid (min,max,n) =
 
     x,y,z
 
+
+let xIso,yIso,zIso = 
+    mgrid(-5.,5.,40)
+    |> fun (x,y,z) ->
+        (x |> Array.concat |> Array.concat),
+        (y |> Array.concat |> Array.concat),
+        (z |> Array.concat |> Array.concat)
+
+let valueIso =
+    Array.map3 (fun x y z ->
+        x * x * 0.5 + y * y + z * z * 2.
+    ) xIso yIso zIso
+        
+
+Chart.IsoSurface(
+    xIso,yIso,zIso,valueIso,
+    IsoMin = 10.,
+    IsoMax = 40.,
+    Caps = Caps.init(
+        X = (CapFill.init(Show=false)),
+        Y = (CapFill.init(Show=false))
+    ),
+    Surface = Surface.init(Count=5),
+    ColorScale = StyleParam.Colorscale.Viridis
+)
+|> Chart.show
+
 let x,y,z = 
     mgrid(-8.,8.,40)
     |> fun (x,y,z) ->

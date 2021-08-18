@@ -28,3 +28,5 @@ type Spaceframe () =
                 
                 Fill        |> DynObj.setValueOpt spaceframe "fill"
                 Show        |> DynObj.setValueOpt spaceframe "show"
+
+                spaceframe
