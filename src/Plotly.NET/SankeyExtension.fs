@@ -59,7 +59,7 @@ module SankeyExtension =
                 nodes:Node seq, 
                 links:Link seq, 
                 ?nodePadding:float,
-                ?nodeThicknes:float,
+                ?nodeThickness:float,
                 ?nodeColor:obj,
                 ?nodeLineColor:obj,
                 ?nodeLineWidth:float,
@@ -166,7 +166,7 @@ module SankeyExtension =
                     DynObj.setValue    n "label" (nodes |> Seq.map (fun  x->x.Label)) 
                     DynObj.setValueOpt n "groups" groups
                     DynObj.setValueOpt n "pad" nodePadding
-                    DynObj.setValueOpt n "thickness" nodeThicknes
+                    DynObj.setValueOpt n "thickness" nodeThickness
                     DynObj.setValueOpt n "x" xRanks
                     DynObj.setValueOpt n "y" yRanks
                     DynObj.setValueOpt n "color" nodeClrs
@@ -186,7 +186,7 @@ module SankeyExtension =
                 nodes:Node seq, 
                 links:Link seq, 
                 [<Optional;DefaultParameterValue(null)>] ?nodePadding:float,
-                [<Optional;DefaultParameterValue(null)>] ?nodeThicknes:float,
+                [<Optional;DefaultParameterValue(null)>] ?nodeThickness:float,
                 [<Optional;DefaultParameterValue(null)>] ?nodeColor:obj,
                 [<Optional;DefaultParameterValue(null)>] ?nodeLineColor:obj,
                 [<Optional;DefaultParameterValue(null)>] ?nodeLineWidth:float,
@@ -199,7 +199,7 @@ module SankeyExtension =
                     nodes, 
                     links, 
                     ?nodePadding=nodePadding,
-                    ?nodeThicknes=nodeThicknes,
+                    ?nodeThickness=nodeThickness,
                     ?nodeColor=nodeColor,
                     ?nodeLineColor=nodeLineColor,
                     ?nodeLineWidth=nodeLineWidth,
