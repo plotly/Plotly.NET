@@ -2,10 +2,11 @@
 #r "nuget: Deedle"
 #r "nuget: FSharpAux"
 #r "nuget: DynamicObj"
-#r "nuget: Newtonsoft.Json, 12.0.3"
+#r "nuget: Newtonsoft.Json, 13.0.1"
 
 #load "StyleParams.fs"
 #load "Colors.fs"
+#load "Projection.fs"
 #load "Surface.fs"
 #load "SpaceFrame.fs"
 #load "Slices.fs"
@@ -64,6 +65,8 @@
 #load "CandelstickExtension.fs"
 #load "SankeyExtension.fs"
 
+open DynamicObj
+
 open Plotly.NET
 open GenericChart
 
@@ -75,6 +78,26 @@ open Deedle
 open FSharpAux
 
 open System
+let lineChart =
+    let c = [0. .. 0.5 .. 15.]
+    
+    let x, y, z =  
+        c
+        |> List.map (fun i ->
+            let i' = float i 
+            let r = 10. * Math.Cos (i' / 10.)
+            (r * Math.Cos i', r * Math.Sin i', i')
+        )
+        |> List.unzip3
+
+    Chart.Scatter3d(x, y, z, StyleParam.Mode.Lines_Markers)
+    |> Chart.withXAxisStyle("x-axis", Id=StyleParam.SubPlotId.Scene 1)
+    |> Chart.withYAxisStyle("y-axis", Id=StyleParam.SubPlotId.Scene 1)
+    |> Chart.withZAxisStyle("z-axis")
+    |> Chart.withSize(800., 800.)
+
+lineChart
+|> Chart.show
 
 let linspace (min,max,n) = 
     if n <= 2 then failwithf "n needs to be larger then 2"
@@ -104,19 +127,33 @@ let valueIso =
         x * x * 0.5 + y * y + z * z * 2.
     ) xIso yIso zIso
         
+let contains3d ch=
+    ch 
+    |> existsTrace (fun t ->
+        match t with
+        | :? Trace3d -> true
+        | _ -> false)
 
-Chart.IsoSurface(
-    xIso,yIso,zIso,valueIso,
-    IsoMin = 10.,
-    IsoMax = 40.,
-    Caps = Caps.init(
-        X = (CapFill.init(Show=false)),
-        Y = (CapFill.init(Show=false))
-    ),
-    Surface = Surface.init(Count=5),
-    ColorScale = StyleParam.Colorscale.Viridis
-)
-|> Chart.show
+let iso = 
+    Chart.IsoSurface(
+        xIso,yIso,zIso,valueIso,
+        IsoMin = 10.,
+        IsoMax = 40.,
+        Caps = Caps.init(
+            X = (CapFill.init(Show=false)),
+            Y = (CapFill.init(Show=false))
+        ),
+        Surface = Surface.init(Count=5),
+        ColorScale = StyleParam.Colorscale.Viridis
+    )
+    |> GenericChart.mapTrace(fun t ->
+        t
+        |> Trace3d.Trace3dStyle.Cone(Name="soos")
+    )
+
+contains3d iso
+
+iso |> Chart.show
 
 let x,y,z = 
     mgrid(-8.,8.,40)

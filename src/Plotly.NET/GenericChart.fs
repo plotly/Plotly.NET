@@ -119,6 +119,10 @@ module HTML =
 [<Extension>]
 module GenericChart =
 
+    
+    let internal jsonConfig = JsonSerializerSettings()
+    jsonConfig.ReferenceLoopHandling <- ReferenceLoopHandling.Serialize
+
     open Trace
 
     type Figure =
@@ -252,14 +256,14 @@ module GenericChart =
     let toChartHTML gChart =
         let guid = Guid.NewGuid().ToString()
         let tracesJson =
-            getTraces gChart
-            |> JsonConvert.SerializeObject
+            let traces = getTraces gChart
+            JsonConvert.SerializeObject(traces, jsonConfig)
         let layoutJson =
-            getLayout gChart
-            |> JsonConvert.SerializeObject
+            let layout = getLayout gChart
+            JsonConvert.SerializeObject(layout, jsonConfig)
         let configJson =
-            getConfig gChart
-            |> JsonConvert.SerializeObject
+            let config = getConfig gChart
+            JsonConvert.SerializeObject(config, jsonConfig)
 
         let displayOpts = getDisplayOptions gChart
 
@@ -291,14 +295,14 @@ module GenericChart =
     let toChartHtmlWithSize (width:int) (height:int) (gChart:GenericChart) =
         let guid = Guid.NewGuid().ToString()
         let tracesJson =
-            getTraces gChart
-            |> JsonConvert.SerializeObject
+            let traces = getTraces gChart
+            JsonConvert.SerializeObject(traces, jsonConfig)
         let layoutJson =
-            getLayout gChart
-            |> JsonConvert.SerializeObject
+            let layout = getLayout gChart
+            JsonConvert.SerializeObject(layout, jsonConfig)
         let configJson =
-            getConfig gChart
-            |> JsonConvert.SerializeObject
+            let config = getConfig gChart
+            JsonConvert.SerializeObject(config, jsonConfig)
 
         let displayOpts = getDisplayOptions gChart
 
@@ -327,11 +331,11 @@ module GenericChart =
     let toChartImage (format:StyleParam.ImageFormat) gChart =
         let guid = Guid.NewGuid().ToString()
         let tracesJson =
-            getTraces gChart
-            |> JsonConvert.SerializeObject
+            let traces = getTraces gChart
+            JsonConvert.SerializeObject(traces, jsonConfig)
         let layoutJson =
-            getLayout gChart
-            |> JsonConvert.SerializeObject
+            let layout = getLayout gChart
+            JsonConvert.SerializeObject(layout, jsonConfig)
 
         let html =
             HTML.staticChart

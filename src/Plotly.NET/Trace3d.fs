@@ -57,46 +57,133 @@ module Trace3d =
                     SceneName |> DynObj.setValueOpt trace "scene"
                     trace
 
-        // Applies the styles to Scatter3d()
+        /// <summary>
+        /// Applies the style parameters of the Scatter3d chart to the given trace
+        /// </summary>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="Visible">Determines whether or not this trace is visible. If "legendonly", the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="LegendRank">Sets the legend rank for this trace. Items and groups with smaller ranks are presented on top/left side while with `"reversed" `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items.</param>
+        /// <param name="LegendGroup">Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.</param>
+        /// <param name="LegendGroupTitle">Sets the legend group title</param>
+        /// <param name="Opacity">Sets the opacity of the trace.</param>
+        /// <param name="Mode">Determines the drawing mode for this scatter trace. If the provided `mode` includes "text" then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace is not stacked then the default is "lines+markers". Otherwise, "lines".</param>
+        /// <param name="Ids">Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.</param>
+        /// <param name="X">Sets the x coordinates.</param>
+        /// <param name="Y">Sets the y coordinates.</param>
+        /// <param name="Z">Sets the z coordinates.</param>
+        /// <param name="SurfaceColor">Sets the surface fill color.</param>
+        /// <param name="Text">Sets text elements associated with each (x,y,z) triplet. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y,z) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+        /// <param name="TextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
+        /// <param name="TextTemplate">Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.</param>
+        /// <param name="HoverText">Sets text elements associated with each (x,y,z) triplet. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y,z) coordinates. To be seen, trace `hoverinfo` must contain a "text" flag.</param>
+        /// <param name="HoverInfo">Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.</param>
+        /// <param name="HoverTemplate">Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, "xother" will be added to those with different x positions from the first point. An underscore before or after "(x|y)other" will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `&lt;extra&gt;` is displayed in the secondary box, for example "&lt;extra&gt;{fullData.name}&lt;/extra&gt;". To hide the secondary box completely, use an empty tag `&lt;extra&gt;&lt;/extra&gt;`.</param>
+        /// <param name="XHoverFormat">Sets the hover text formatting rulefor `x` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"By default the values are formatted using `xaxis.hoverformat`.</param>
+        /// <param name="YHoverFormat">Sets the hover text formatting rulefor `y` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"By default the values are formatted using `yaxis.hoverformat`.</param>
+        /// <param name="ZHoverFormat">Sets the hover text formatting rulefor `z` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"By default the values are formatted using `zaxis.hoverformat`.</param>
+        /// <param name="Meta">Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.</param>
+        /// <param name="CustomData">Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, "scatter" traces also appends customdata items in the markers DOM elements</param>
+        /// <param name="Scene">Sets a reference between this trace's 3D coordinate system and a 3D scene. If "scene" (the default value), the (x,y,z) coordinates refer to `layout.scene`. If "scene2", the (x,y,z) coordinates refer to `layout.scene2`, and so on.</param>
+        /// <param name="Marker">Sets the marker of this trace.</param>
+        /// <param name="Line">Sets the line of this trace.</param>
+        /// <param name="TextFont">Sets the text font of this trace.</param>
+        /// <param name="ErrorX">Sets the x Error of this trace.</param>
+        /// <param name="ErrorY">Sets the y Error of this trace.</param>
+        /// <param name="ErrorZ">Sets the z Error of this trace.</param>
+        /// <param name="ConnectGaps">Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.</param>
+        /// <param name="Hoverlabel">Sets the hoverlabel of this trace.</param>
+        /// <param name="Projection">Sets the projection of this trace.</param>
+        /// <param name="Surfaceaxis">If "-1", the scatter points are not fill with a surface If "0", "1", "2", the scatter points are filled with a Delaunay surface about the x, y, z respectively.</param>
+        /// <param name="XCalendar">Sets the calendar system to use with `x` date data.</param>
+        /// <param name="YCalendar">Sets the calendar system to use with `y` date data.</param>
+        /// <param name="ZCalendar">Sets the calendar system to use with `z` date data.</param>
+        /// <param name="UIRevision">Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.</param>
         static member Scatter3d
             (   
-                ?X      : seq<#IConvertible>,
-                ?Y      : seq<#IConvertible>,
-                ?Z      : seq<#IConvertible>,
-                ?Mode   : StyleParam.Mode,             
-                ?Surfaceaxis,
-                ?Surfacecolor,
-                //?Projection : Projection,
-                ?Scene  : string,          
-                ?Error_y: Error,
-                ?Error_x: Error,
-                ?Error_z: Error,
-                ?Xsrc   : string,
-                ?Ysrc   : string,
-                ?Zsrc   : string
+                ?Name               : string,
+                ?Visible            : StyleParam.Visible,
+                ?ShowLegend         : bool,
+                ?LegendRank         : int,
+                ?LegendGroup        : string,
+                ?LegendGroupTitle   : Title,
+                ?Mode               : StyleParam.Mode,
+                ?Opacity            : float,
+                ?Ids                : seq<#IConvertible>,
+                ?X                  : seq<#IConvertible>,
+                ?Y                  : seq<#IConvertible>,
+                ?Z                  : seq<#IConvertible>,
+                ?SurfaceColor       : string,
+                ?Text               : seq<#IConvertible>,
+                ?TextPosition       : StyleParam.TextPosition,
+                ?TextTemplate       : string,
+                ?HoverText          : seq<#IConvertible>,
+                ?HoverInfo          : string,
+                ?HoverTemplate      : string,
+                ?XHoverFormat       : string,
+                ?YHoverFormat       : string,
+                ?ZHoverFormat       : string,
+                ?Meta               : string,
+                ?CustomData         : seq<#IConvertible>,
+                ?Scene              : StyleParam.SubPlotId,
+                ?Marker             : Marker,
+                ?Line               : Line,
+                ?TextFont           : Font,
+                ?ErrorX             : Error,
+                ?ErrorY             : Error,
+                ?ErrorZ             : Error,
+                ?ConnectGaps        : bool,
+                ?Hoverlabel         : Hoverlabel,
+                ?Projection         : Projection,
+                ?Surfaceaxis        : StyleParam.SurfaceAxis,
+                ?XCalendar          : StyleParam.Calendar,
+                ?YCalendar          : StyleParam.Calendar,
+                ?ZCalendar          : StyleParam.Calendar,
+                ?UIRevision         : string
             ) =
-                //(fun (scatter:('T :> Trace3d)) ->
-                (fun (scatter: Trace3d) ->
-                //scatter.set_type plotType                     
-                    X            |> DynObj.setValueOpt scatter "x"
-                    Y            |> DynObj.setValueOpt scatter "y"
-                    Z            |> DynObj.setValueOpt scatter "z"
-                    Mode         |> DynObj.setValueOptBy scatter "mode" StyleParam.Mode.toString
-                    
-                    Surfaceaxis  |> DynObj.setValueOpt scatter "xsrc"
-                    Surfacecolor |> DynObj.setValueOpt scatter "xsrc"                
-                    Scene        |> DynObj.setValueOpt scatter "xsrc"
-                    Xsrc         |> DynObj.setValueOpt scatter "xsrc"
-                    Ysrc         |> DynObj.setValueOpt scatter "ysrc"
-                    Zsrc         |> DynObj.setValueOpt scatter "zsrc"
-                    
-                    // Update
-                    Error_x      |> DynObj.setValueOpt scatter "error_x"
-                    Error_y      |> DynObj.setValueOpt scatter "error_y"
-                    Error_z      |> DynObj.setValueOpt scatter "error_z"
-                    //Projection   |> DynObj.setValueOpt scatter "projecton"
 
-                    // out ->
+                (fun (scatter: #Trace) ->
+                
+                    Name                |> DynObj.setValueOpt scatter "name"
+                    Visible             |> DynObj.setValueOptBy scatter "visible" StyleParam.Visible.convert
+                    ShowLegend          |> DynObj.setValueOpt scatter "showlegend"
+                    LegendRank          |> DynObj.setValueOpt scatter "legendrank"
+                    LegendGroup         |> DynObj.setValueOpt scatter "legendgroup"
+                    LegendGroupTitle    |> DynObj.setValueOpt scatter "legendgrouptitle"
+                    Mode                |> DynObj.setValueOptBy scatter "mode" StyleParam.Mode.convert
+                    Opacity             |> DynObj.setValueOpt scatter "opacity"
+                    Ids                 |> DynObj.setValueOpt scatter "ids"
+                    X                   |> DynObj.setValueOpt scatter "x"
+                    Y                   |> DynObj.setValueOpt scatter "y"
+                    Z                   |> DynObj.setValueOpt scatter "z"
+                    SurfaceColor        |> DynObj.setValueOpt scatter "surfacecolor"
+                    Text                |> DynObj.setValueOpt scatter "text"
+                    TextPosition        |> DynObj.setValueOptBy scatter "textposition" StyleParam.TextPosition.convert
+                    TextTemplate        |> DynObj.setValueOpt scatter "texttemplate"
+                    HoverText           |> DynObj.setValueOpt scatter "hovertext"
+                    HoverInfo           |> DynObj.setValueOpt scatter "hoverinfo"
+                    HoverTemplate       |> DynObj.setValueOpt scatter "hovertemplate"
+                    XHoverFormat        |> DynObj.setValueOpt scatter "xhoverformat"
+                    YHoverFormat        |> DynObj.setValueOpt scatter "yhoverformat"
+                    ZHoverFormat        |> DynObj.setValueOpt scatter "zhoverformat"
+                    Meta                |> DynObj.setValueOpt scatter "meta"
+                    CustomData          |> DynObj.setValueOpt scatter "customdata"
+                    Scene               |> DynObj.setValueOptBy scatter "scene" StyleParam.SubPlotId.convert
+                    Marker              |> DynObj.setValueOpt scatter "marker"
+                    Line                |> DynObj.setValueOpt scatter "line"
+                    TextFont            |> DynObj.setValueOpt scatter "textfont"
+                    ErrorX              |> DynObj.setValueOpt scatter "errorx"
+                    ErrorY              |> DynObj.setValueOpt scatter "errory"
+                    ErrorZ              |> DynObj.setValueOpt scatter "errorz"
+                    ConnectGaps         |> DynObj.setValueOpt scatter "connectgaps"
+                    Hoverlabel          |> DynObj.setValueOpt scatter "hoverlabel"
+                    Projection          |> DynObj.setValueOpt scatter "projection"
+                    Surfaceaxis         |> DynObj.setValueOptBy scatter "surfaceaxis" StyleParam.SurfaceAxis.convert
+                    XCalendar           |> DynObj.setValueOptBy scatter "xcalendar" StyleParam.Calendar.convert
+                    YCalendar           |> DynObj.setValueOptBy scatter "ycalendar" StyleParam.Calendar.convert
+                    ZCalendar           |> DynObj.setValueOptBy scatter "zcalendar" StyleParam.Calendar.convert
+                    UIRevision          |> DynObj.setValueOpt scatter "uirevision"
+
                     scatter
                 )
 
@@ -130,7 +217,7 @@ module Trace3d =
                 ?Surfacecolorsrc
 
             ) =
-                (fun (surface:('T :> Trace)) -> 
+                (fun (surface: #Trace) -> 
                 
                     Z              |> DynObj.setValueOpt surface "z"         
                     X              |> DynObj.setValueOpt surface "x"               
@@ -200,9 +287,9 @@ module Trace3d =
                 
 
             ) =
-                 //(fun (scatter:('T :> Trace3d)) ->
-                 (fun (mesh3d: Trace3d) ->
-                    //scatter.set_type plotType                     
+
+                 (fun (mesh3d: #Trace) ->
+
                     X              |> DynObj.setValueOpt mesh3d "x"
                     Y              |> DynObj.setValueOpt mesh3d "y"
                     Z              |> DynObj.setValueOpt mesh3d "z"
@@ -339,7 +426,7 @@ module Trace3d =
                 ?UIRevision         : seq<#IConvertible>
 
             ) =
-                (fun (cone: Trace3d) -> 
+                (fun (cone: #Trace) -> 
                     Name                |> DynObj.setValueOpt cone "name"
                     Visible             |> DynObj.setValueOptBy cone "visible" StyleParam.Visible.convert
                     ShowLegend          |> DynObj.setValueOpt cone "showlegend"

@@ -1422,6 +1422,20 @@ module StyleParam =
 
         static member convert = SurfacePattern.toString >> box
 
+    [<RequireQualifiedAccess>]
+    type SurfaceAxis =
+        | NoSurfaceAxis 
+        | X 
+        | Y 
+        | Z
+
+        static member toString = function
+            | NoSurfaceAxis -> "-1" 
+            | X             -> "0" 
+            | Y             -> "1" 
+            | Z             -> "2" 
+      
+        static member convert = SurfaceAxis.toString >> box        
 
 
 //--------------------------

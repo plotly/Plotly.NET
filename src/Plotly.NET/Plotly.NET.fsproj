@@ -36,6 +36,7 @@
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="StyleParams.fs" />
     <Compile Include="Colors.fs" />
+    <Compile Include="Projection.fs" />
     <Compile Include="Surface.fs" />
     <Compile Include="SpaceFrame.fs" />
     <Compile Include="Slices.fs" />
