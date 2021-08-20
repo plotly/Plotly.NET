@@ -78,26 +78,30 @@ open Deedle
 open FSharpAux
 
 open System
-let lineChart =
-    let c = [0. .. 0.5 .. 15.]
-    
-    let x, y, z =  
-        c
-        |> List.map (fun i ->
-            let i' = float i 
-            let r = 10. * Math.Cos (i' / 10.)
-            (r * Math.Cos i', r * Math.Sin i', i')
-        )
-        |> List.unzip3
 
-    Chart.Scatter3d(x, y, z, StyleParam.Mode.Lines_Markers)
-    |> Chart.withXAxisStyle("x-axis", Id=StyleParam.SubPlotId.Scene 1)
-    |> Chart.withYAxisStyle("y-axis", Id=StyleParam.SubPlotId.Scene 1)
-    |> Chart.withZAxisStyle("z-axis")
-    |> Chart.withSize(800., 800.)
-
-lineChart
+Chart.Point3d(
+    [1,2,3; 4,5,6; 7,8,9],
+    Labels = ["A"; "B"; "C"],
+    TextPosition = StyleParam.TextPosition.BottomCenter 
+)
 |> Chart.show
+
+Chart.Line3d(
+    [1,3,2; 6,5,4; 7,9,8],
+    Labels = ["A"; "B"; "C"],
+    TextPosition = StyleParam.TextPosition.BottomCenter,
+    ShowMarkers = true
+)
+|> Chart.show
+
+Chart.Bubble3d(
+    [1,3,2; 6,5,4; 7,9,8],
+    [20; 40; 30],
+    Labels = ["A"; "B"; "C"],
+    TextPosition = StyleParam.TextPosition.TopLeft 
+)
+|> Chart.show
+
 
 let linspace (min,max,n) = 
     if n <= 2 then failwithf "n needs to be larger then 2"

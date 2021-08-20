@@ -1889,6 +1889,195 @@ type Chart =
         let x,y,z = Seq.unzip3 xyz
         Chart.Scatter3d(x, y, z, mode, ?Name=Name,?Showlegend=Showlegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width) 
 
+    ///
+    static member Point3d 
+        (
+            x, y, z,
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
+            [<Optional;DefaultParameterValue(null)>] ?Color,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?Labels,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont
+        ) =
+            // if text position or font is set, then show labels (not only when hovering)
+            let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
+
+            Chart.Scatter3d(
+                x = x, 
+                y = y, 
+                z = z,
+                mode            = changeMode StyleParam.Mode.Markers,
+                ?Name           = Name,
+                ?Showlegend     = Showlegend,
+                ?MarkerSymbol   = MarkerSymbol,
+                ?Color          = Color,
+                ?Opacity        = Opacity,
+                ?Labels         = Labels,
+                ?TextPosition   = TextPosition,
+                ?TextFont       = TextFont
+            )
+            
+    ///
+    static member Point3d 
+        (
+            xyz,
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
+            [<Optional;DefaultParameterValue(null)>] ?Color,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?Labels,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont
+        ) =
+            let x, y, z = Seq.unzip3 xyz
+
+            Chart.Point3d(
+                x, y, z,
+                ?Name           = Name,
+                ?Showlegend     = Showlegend,
+                ?MarkerSymbol   = MarkerSymbol,
+                ?Color          = Color,
+                ?Opacity        = Opacity,
+                ?Labels         = Labels,
+                ?TextPosition   = TextPosition,
+                ?TextFont       = TextFont
+            )
+
+
+    /// Uses points, line or both depending on the mode to represent 3d-data points
+    static member Line3d
+        (
+            x, y, z,
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
+            [<Optional;DefaultParameterValue(null)>] ?Color,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?Labels,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont,
+            [<Optional;DefaultParameterValue(null)>] ?Dash,
+            [<Optional;DefaultParameterValue(null)>] ?Width
+        ) = 
+            let changeMode = 
+                let isShowMarker =
+                    match ShowMarkers with
+                    | Some isShow -> isShow
+                    | Option.None        -> false
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
+                >> StyleParam.ModeUtils.showMarker (isShowMarker)
+
+            Chart.Scatter3d(
+                x = x,
+                y = y,
+                z = z,
+                mode = changeMode StyleParam.Mode.Lines,
+                ?Name           = Name        ,
+                ?Showlegend     = Showlegend  ,
+                ?MarkerSymbol   = MarkerSymbol,
+                ?Color          = Color       ,
+                ?Opacity        = Opacity     ,
+                ?Labels         = Labels      ,
+                ?TextPosition   = TextPosition,
+                ?TextFont       = TextFont    ,
+                ?Dash           = Dash        ,
+                ?Width          = Width       
+            )
+            
+    /// Uses points, line or both depending on the mode to represent 3d-data points
+    static member Line3d
+        (
+            xyz,
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
+            [<Optional;DefaultParameterValue(null)>] ?Color,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?Labels,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont,
+            [<Optional;DefaultParameterValue(null)>] ?Dash,
+            [<Optional;DefaultParameterValue(null)>] ?Width
+        ) = 
+            let x, y, z = Seq.unzip3 xyz
+
+            Chart.Line3d(
+                x, y, z,
+                ?Name           = Name        ,
+                ?ShowMarkers    = ShowMarkers ,
+                ?Showlegend     = Showlegend  ,
+                ?MarkerSymbol   = MarkerSymbol,
+                ?Color          = Color       ,
+                ?Opacity        = Opacity     ,
+                ?Labels         = Labels      ,
+                ?TextPosition   = TextPosition,
+                ?TextFont       = TextFont    ,
+                ?Dash           = Dash        ,
+                ?Width          = Width       
+            )
+
+    ///
+    static member Bubble3d 
+        (
+            x, y, z, sizes,
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
+            [<Optional;DefaultParameterValue(null)>] ?Color,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?Labels,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont
+        ) =
+            let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
+            
+            Trace3d.initScatter3d (
+                Trace3dStyle.Scatter3d(
+                    X = x,
+                    Y = y, 
+                    Z = z,
+                    Mode=changeMode StyleParam.Mode.Markers
+                )
+            )
+            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol, MultiSizes=sizes)
+            |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+            |> GenericChart.ofTraceObject
+        
+    ///
+    static member Bubble3d 
+        (
+            xyz, sizes,
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
+            [<Optional;DefaultParameterValue(null)>] ?Color,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?Labels,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont
+        ) =
+            let x, y, z = Seq.unzip3 xyz
+
+            Chart.Bubble3d(
+                x, y, z, sizes,
+                ?Name           = Name,
+                ?Showlegend     = Showlegend,
+                ?MarkerSymbol   = MarkerSymbol,
+                ?Color          = Color,
+                ?Opacity        = Opacity,
+                ?Labels         = Labels,
+                ?TextPosition   = TextPosition,
+                ?TextFont       = TextFont
+            )
+
+
     /// Uses points, line or both depending on the mode to represent 3d-data points
     static member Surface(data:seq<#seq<#IConvertible>>,
             [<Optional;DefaultParameterValue(null)>] ?X,
