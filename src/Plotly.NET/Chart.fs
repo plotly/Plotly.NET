@@ -2079,7 +2079,9 @@ type Chart =
 
 
     /// Uses points, line or both depending on the mode to represent 3d-data points
-    static member Surface(data:seq<#seq<#IConvertible>>,
+    static member Surface
+        (
+            zData,
             [<Optional;DefaultParameterValue(null)>] ?X,
             [<Optional;DefaultParameterValue(null)>] ?Y,
             [<Optional;DefaultParameterValue(null)>] ?Name,
@@ -2088,30 +2090,49 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?Contours,
             [<Optional;DefaultParameterValue(null)>] ?ColorScale,
             [<Optional;DefaultParameterValue(null)>] ?ShowScale,
-            [<Optional;DefaultParameterValue(null)>] ?ColorBar) = 
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar
+        ) = 
         Trace3d.initSurface (
-            Trace3dStyle.Surface (Z=data,?X=X, ?Y=Y,?Contours=Contours,
-                                ?ColorScale=ColorScale,?ShowScale=ShowScale,?ColorBar=ColorBar ) )              
+            Trace3dStyle.Surface(
+                ?X=X, 
+                ?Y=Y,
+                Z=zData,
+                ?Contours=Contours,
+                ?ColorScale=ColorScale,
+                ?ShowScale=ShowScale,
+                ?ColorBar=ColorBar 
+            )
+        )              
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
-        //|> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
         |> GenericChart.ofTraceObject 
 
 
     /// Uses points, line or both depending on the mode to represent 3d-data points
-    static member Mesh3d(x, y, z, mode,
+    static member Mesh3d
+        (
+            x, y, z, 
+            [<Optional;DefaultParameterValue(null)>] ?I,
+            [<Optional;DefaultParameterValue(null)>] ?J,
+            [<Optional;DefaultParameterValue(null)>] ?K,
             [<Optional;DefaultParameterValue(null)>] ?Name,
             [<Optional;DefaultParameterValue(null)>] ?Showlegend,
-            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
-            [<Optional;DefaultParameterValue(null)>] ?Color,
             [<Optional;DefaultParameterValue(null)>] ?Opacity,
-            [<Optional;DefaultParameterValue(null)>] ?Labels,
-            [<Optional;DefaultParameterValue(null)>] ?TextPosition,
-            [<Optional;DefaultParameterValue(null)>] ?TextFont,
-            [<Optional;DefaultParameterValue(null)>] ?Dash,
-            [<Optional;DefaultParameterValue(null)>] ?Width) = 
-        Trace3d.initMesh3d (Trace3dStyle.Mesh3d(X = x,Y = y,Z=z) )              
+            [<Optional;DefaultParameterValue(null)>] ?Contours,
+            [<Optional;DefaultParameterValue(null)>] ?ColorScale,
+            [<Optional;DefaultParameterValue(null)>] ?ShowScale,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar
+        ) = 
+        Trace3d.initMesh3d (
+            Trace3dStyle.Mesh3d(
+                X   = x,
+                Y   = y,
+                Z   = z,
+                ?I  = I,
+                ?J  = J,
+                ?K  = K
+            ) 
+        )              
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
-        |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
         |> GenericChart.ofTraceObject 
 
     static member Cone 

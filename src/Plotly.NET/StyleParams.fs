@@ -766,6 +766,17 @@ module StyleParam =
             | JPEG -> "jpeg"    
 
         static member convert = ImageFormat.toString >> box
+        
+    [<RequireQualifiedAccess>]
+    type IntensityMode =
+        | Vertex  | Cell 
+        static member toString = function
+            | Vertex  -> "vertex"             
+            | Cell  -> "cell"            
+
+
+        static member convert = IntensityMode.toString >> box
+
 
 //--------------------------
 // #J#
