@@ -2086,12 +2086,12 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?Showlegend,
             [<Optional;DefaultParameterValue(null)>] ?Opacity,
             [<Optional;DefaultParameterValue(null)>] ?Contours,
-            [<Optional;DefaultParameterValue(null)>] ?Colorscale,
-            [<Optional;DefaultParameterValue(null)>] ?Showscale,
+            [<Optional;DefaultParameterValue(null)>] ?ColorScale,
+            [<Optional;DefaultParameterValue(null)>] ?ShowScale,
             [<Optional;DefaultParameterValue(null)>] ?ColorBar) = 
         Trace3d.initSurface (
             Trace3dStyle.Surface (Z=data,?X=X, ?Y=Y,?Contours=Contours,
-                                ?Colorscale=Colorscale,?Showscale=Showscale,?ColorBar=ColorBar ) )              
+                                ?ColorScale=ColorScale,?ShowScale=ShowScale,?ColorBar=ColorBar ) )              
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
         //|> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
         |> GenericChart.ofTraceObject 

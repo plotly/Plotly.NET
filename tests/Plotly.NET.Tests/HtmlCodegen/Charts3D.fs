@@ -117,7 +117,7 @@ let ``Surface charts`` =
             emptyLayout firstSurfaceChart
         );
         testCase "Second surface data" ( fun () ->
-            "var data = [{\"type\":\"surface\",\"z\":[[1.0,1.0],[1.0,2.0]],\"x\":[0.0,2.5],\"y\":[0.0,2.5],\"contours\":{\"x\":{\"show\":true},\"y\":{\"show\":true},\"z\":{\"show\":true}},\"opacity\":0.5}];"
+            """var data = [{"type":"surface","x":[0.0,2.5],"y":[0.0,2.5],"z":[[1.0,1.0],[1.0,2.0]],"contours":{"x":{"show":true},"y":{"show":true},"z":{"show":true}},"opacity":0.5}];"""
             |> chartGeneratedContains secondSurfaceChart
         );
         testCase "Second surface layout" ( fun () ->
