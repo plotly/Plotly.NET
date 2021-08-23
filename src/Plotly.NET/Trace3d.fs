@@ -730,7 +730,7 @@ module Trace3d =
                 ?UIRevision         : seq<#IConvertible>
 
             ) =
-                (fun (streamTube: Trace3d) -> 
+                (fun (streamTube: #Trace) -> 
                     Name                |> DynObj.setValueOpt streamTube "name"
                     Visible             |> DynObj.setValueOptBy streamTube "visible" StyleParam.Visible.convert
                     ShowLegend          |> DynObj.setValueOpt streamTube "showlegend"
@@ -877,7 +877,7 @@ module Trace3d =
                 ?Surface            : Surface,
                 ?UIRevision         : seq<#IConvertible>
             ) =
-                fun (volume: Trace3d) -> 
+                fun (volume: #Trace) -> 
 
                     Name                |> DynObj.setValueOpt volume "name"
                     Visible             |> DynObj.setValueOptBy volume "visible" StyleParam.Visible.convert
@@ -1026,7 +1026,7 @@ module Trace3d =
                 ?Surface            : Surface,
                 ?UIRevision         : seq<#IConvertible>
             ) =
-                fun (volume: Trace3d) -> 
+                fun (volume: #Trace) -> 
 
                     Name                |> DynObj.setValueOpt volume "name"
                     Visible             |> DynObj.setValueOptBy volume "visible" StyleParam.Visible.convert
