@@ -351,56 +351,50 @@ type Layout() =
                 layout
             )
 
-    static member tryGetPolarById (id:int) =
+    static member tryGetPolarById (id:StyleParam.SubPlotId) =
         (fun (layout:Layout) -> 
-            let key = if id < 2 then "polar" else sprintf "polar%i" id
-            layout.TryGetTypedValue<Polar>(key)
+            layout.TryGetTypedValue<Polar>(StyleParam.SubPlotId.toString id)
         )
 
     /// Updates the style of current polar object with given Id. 
     /// If there does not exist a polar object with the given id, sets it with the given polar object
     static member updatePolarById
         (   
-           id       : int,
+           id       : StyleParam.SubPlotId,
            polar    : Polar
         ) =
             (fun (layout:Layout) -> 
-
-                let key = if id < 2 then "polar" else sprintf "polar%i" id
 
                 let polar' = 
                     match layout |> Layout.tryGetPolarById(id) with
                     | Some a  -> DynObj.combine (unbox a) polar
                     | None    -> polar :> DynamicObj
                 
-                polar' |> DynObj.setValue layout key
+                polar' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
 
                 layout
             )
 
-    static member tryGetColorAxisById (id:int) =
+    static member tryGetColorAxisById (id:StyleParam.SubPlotId) =
         (fun (layout:Layout) -> 
-            let key = if id < 2 then "coloraxis" else sprintf "coloraxis%i" id
-            layout.TryGetTypedValue<Axis.ColorAxis>(key)
+            layout.TryGetTypedValue<Axis.ColorAxis>(StyleParam.SubPlotId.toString id)
         )
 
     /// Updates the style of current ColorAxis object with given Id. 
     /// If there does not exist a ColorAxis object with the given id, sets it with the given ColorAxis object
     static member updateColorAxisById
         (   
-           id       : int,
+           id       : StyleParam.SubPlotId,
            colorAxis: Axis.ColorAxis
         ) =
             (fun (layout:Layout) -> 
-
-                let key = if id < 2 then "coloraxis" else sprintf "coloraxis%i" id
 
                 let colorAxis' = 
                     match layout |> Layout.tryGetColorAxisById(id) with
                     | Some a  -> DynObj.combine (unbox a) colorAxis
                     | None    -> colorAxis :> DynamicObj
                 
-                colorAxis |> DynObj.setValue layout key
+                colorAxis' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
 
                 layout
             )

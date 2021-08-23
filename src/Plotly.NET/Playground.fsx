@@ -79,11 +79,54 @@ open FSharpAux
 
 open System
 
-Chart.Point3d(
-    [1,2,3; 4,5,6; 7,8,9],
-    Labels = ["A"; "B"; "C"],
-    TextPosition = StyleParam.TextPosition.BottomCenter 
+let scene1 = 
+    Scene.init(
+        Domain = Domain.init(
+            Row = 0,
+            Column = 1
+        )
+    )
+
+let scene2 = 
+    Scene.init(
+        Domain = Domain.init(
+            Row = 0,
+            Column = 3
+        )
+    )
+
+let p1 = 
+    Chart.Point3d(
+        [1,2,3; 4,5,6; 7,8,9],
+        Labels = ["A"; "B"; "C"],
+        TextPosition = StyleParam.TextPosition.BottomCenter 
+    )
+    |> GenericChart.mapTrace(
+        Trace3d.Trace3dStyle.Scatter3d(
+            Scene = StyleParam.SubPlotId.Scene 1
+        )
+    )
+
+let p2 = 
+    Chart.Point3d(
+        [1,2,3; 4,5,6; 7,8,9],
+        Labels = ["A2"; "B2"; "C2"],
+        TextPosition = StyleParam.TextPosition.BottomCenter 
+    )
+    |> GenericChart.mapTrace(
+        Trace3d.Trace3dStyle.Scatter3d(
+            Scene = StyleParam.SubPlotId.Scene 2
+        )
 )
+
+let c1 = Chart.Line([1,2; 3,4])
+let c2 = Chart.Line([1,2; 3,4])
+
+[c1;p1;c2;p2]
+|> Chart.Grid(1,4,Pattern=StyleParam.LayoutGridPattern.Coupled)
+|> Chart.withScene(scene1, StyleParam.SubPlotId.Scene 1)
+|> Chart.withScene(scene2, StyleParam.SubPlotId.Scene 2)
+|> Chart.withSize(1000.,500.)
 |> Chart.show
 
 Chart.Line3d(

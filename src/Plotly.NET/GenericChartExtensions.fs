@@ -645,3 +645,9 @@ module GenericChartExtensions =
         [<CompiledName("WithColorAxis")>]
         member this.WithColorAxis(colorAxis:Axis.ColorAxis, [<Optional;DefaultParameterValue(null)>] ?Id) =
             this |> Chart.withColorAxis(colorAxis,?Id=Id)
+
+        /// Sets the scene object with the given id on the chart layout
+        [<CompiledName("WithScene")>]
+        member this.WithScene(scene:Scene, [<Optional;DefaultParameterValue(null)>] ?Id) =
+            this |> Chart.withScene(scene,?Id=Id)
+

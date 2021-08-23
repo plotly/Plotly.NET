@@ -1271,7 +1271,7 @@ module ChartExtensions =
         static member withPolar(polar:Polar, [<Optional;DefaultParameterValue(null)>] ?Id) =
             (fun (ch:GenericChart) ->
                 let layout =
-                    let id = defaultArg Id 1
+                    let id = defaultArg Id (StyleParam.SubPlotId.Polar 1)
                     GenericChart.getLayout ch 
                     |> Layout.updatePolarById(id,polar)
                 GenericChart.setLayout layout ch
@@ -1283,7 +1283,7 @@ module ChartExtensions =
         static member withAngularAxis(angularAxis:Axis.AngularAxis, [<Optional;DefaultParameterValue(null)>] ?Id) =
             (fun (ch:GenericChart) ->
                 
-                let id = defaultArg Id 1
+                let id = defaultArg Id (StyleParam.SubPlotId.Polar 1)
                 let layout = GenericChart.getLayout ch 
 
                 let updatedPolar = 
@@ -1303,7 +1303,7 @@ module ChartExtensions =
         [<CompiledName("WithRadialAxis")>]
         static member withRadialAxis(radialAxis:Axis.RadialAxis, [<Optional;DefaultParameterValue(null)>] ?Id) =
             (fun (ch:GenericChart) ->
-                let id = defaultArg Id 1
+                let id = defaultArg Id (StyleParam.SubPlotId.Polar 1)
                 let layout = GenericChart.getLayout ch 
 
                 let updatedPolar = 
@@ -1319,15 +1319,24 @@ module ChartExtensions =
                 GenericChart.setLayout updatedLayout ch
             )
 
-        /// Sets the color axis of the color axis with the given id on the chart layout
+        /// Sets the color axis with the given id on the chart layout
         [<CompiledName("WithColorAxis")>]
         static member withColorAxis(colorAxis:Axis.ColorAxis, [<Optional;DefaultParameterValue(null)>] ?Id) =
             (fun (ch:GenericChart) ->
                 let layout =
-                    let id = defaultArg Id 1
+                    let id = defaultArg Id (StyleParam.SubPlotId.ColorAxis 1)
                     GenericChart.getLayout ch 
                     |> Layout.updateColorAxisById(id,colorAxis)
-                GenericChart.setLayout layout ch
+                GenericChart.setLayout layout ch 
             )
 
-
+        /// Sets the scene with the given id on the chart layout
+        [<CompiledName("WithScene")>]
+        static member withScene(scene:Scene, [<Optional;DefaultParameterValue(null)>] ?Id) =
+            (fun (ch:GenericChart) ->
+                let layout =
+                    let id = defaultArg Id (StyleParam.SubPlotId.Scene 1)
+                    GenericChart.getLayout ch 
+                    |> Layout.updateSceneById(id,scene)
+                GenericChart.setLayout layout ch
+            )
