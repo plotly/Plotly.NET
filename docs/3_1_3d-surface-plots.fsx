@@ -3,7 +3,7 @@
 title: 3D surface plots
 category: 3D Charts
 categoryindex: 4
-index: 3
+index: 2
 ---
 *)
 

@@ -1,9 +1,9 @@
 (**
 ---
-title: 3D Mesh plots
+title: 3D Volume plots
 category: 3D Charts
 categoryindex: 4
-index: 4
+index: 6
 ---
 *)
 
@@ -21,13 +21,13 @@ index: 4
 #endif // IPYNB
 
 (** 
-# 3D Mesh plots
+# 3D Volume plots
 
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
 [![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
 [![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
-*Summary:* This example shows how to create 3D-Mesh charts in F#.
+*Summary:* This example shows how to create 3D-Volume charts in F#.
 
 let's first create some data for the purpose of creating example charts:
 *)
@@ -35,51 +35,48 @@ let's first create some data for the purpose of creating example charts:
 open System
 open Plotly.NET 
 
-
-//---------------------- Generate linearly spaced vector ----------------------
 let linspace (min,max,n) = 
     if n <= 2 then failwithf "n needs to be larger then 2"
     let bw = float (max - min) / (float n - 1.)
     Array.init n (fun i -> min + (bw * float i))
-    //[|min ..bw ..max|]
 
-//---------------------- Create example data ----------------------
-let size = 100
-let x = linspace(-2. * Math.PI, 2. * Math.PI, size)
-let y = linspace(-2. * Math.PI, 2. * Math.PI, size)
+let mgrid (min,max,n) = 
 
-let f x y = - (5. * x / (x**2. + y**2. + 1.) )
+    let data = linspace(min,max,n)
 
-let z = 
-    Array.init size (fun i -> 
-        Array.init size (fun j -> 
-            f x.[j] y.[i] 
-        )
+    let z = [|for i in 1 .. n do [|for i in 1 .. n do yield data|]|]
+    let x = [|for i in 1 .. n do [|for j in 1 .. n do yield [|for k in 1 .. n do yield data.[i-1]|]|]|]
+    let y = [|for i in 1 .. n do [|for j in 1 .. n do yield [|for k in 1 .. n do yield data.[j-1]|]|]|]
+
+    x,y,z
+
+let x,y,z = 
+    mgrid(-8.,8.,40)
+    |> fun (x,y,z) ->
+        (x |> Array.concat |> Array.concat),
+        (y |> Array.concat |> Array.concat),
+        (z |> Array.concat |> Array.concat)
+
+let values = 
+    Array.map3 (fun x y z ->
+        sin(x*y*z) / (x*y*z)
+    ) x y z
+
+let volume =
+    Chart.Volume(
+       x, y, z, values,
+       Opacity=0.1,
+       Surface=(Surface.init(Count=17)),
+       IsoMin=0.1,
+       IsoMax=0.8,
+       ColorScale = StyleParam.Colorscale.Viridis
     )
-
-let rnd = System.Random()
-let a = Array.init 50 (fun _ -> rnd.NextDouble())
-let b = Array.init 50 (fun _ -> rnd.NextDouble())
-let c = Array.init 50 (fun _ -> rnd.NextDouble())
-
-
-let mesh3d =
-    Trace3d.initMesh3d 
-        (fun mesh3d ->
-            mesh3d?x <- a
-            mesh3d?y <- b
-            mesh3d?z <- c
-            mesh3d?flatshading <- true
-            mesh3d?contour <- Contours.initXyz(Show=true)
-            mesh3d
-            )
-    |> GenericChart.ofTraceObject 
     
 (*** condition: ipynb ***)
 #if IPYNB
-mesh3d
+volume
 #endif // IPYNB
 
 (***hide***)
-mesh3d |> GenericChart.toChartHTML
+volume |> GenericChart.toChartHTML
 (*** include-it-raw ***)

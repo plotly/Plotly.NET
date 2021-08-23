@@ -1,6 +1,6 @@
 (**
 ---
-title: 3D Scatter charts
+title: 3D point and line charts
 category: 3D Charts
 categoryindex: 4
 index: 1
@@ -22,25 +22,25 @@ index: 1
 #endif // IPYNB
 
 (** 
-# 3D Scatter charts
+# 3D point plots
 
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
 [![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
 [![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
-*Summary:* This example shows how to create three-dimensional scatter charts in F#.
+*Summary:* This example shows how to create three-dimensional point and line charts in F#.
 
 A Scatter3d chart report shows a three-dimensional spinnable view of your data
 *)
 
 open Plotly.NET 
   
-let x = [19; 26; 55;]
-let y = [19; 26; 55;]
-let z = [19; 26; 55;]
-
-let scatter3d = 
-    Chart.Scatter3d(x,y,z,StyleParam.Mode.Markers)
+let point3d = 
+    Chart.Point3d(
+        [1,3,2; 6,5,4; 7,9,8],
+        Labels = ["A"; "B"; "C"],
+        TextPosition = StyleParam.TextPosition.BottomCenter
+    )
     |> Chart.withXAxisStyle("my x-axis", Id=StyleParam.SubPlotId.Scene 1) // in contrast to 2D plots, x and y axes of 3D charts have to be set via the scene object
     |> Chart.withYAxisStyle("my y-axis", Id=StyleParam.SubPlotId.Scene 1) // in contrast to 2D plots, x and y axes of 3D charts have to be set via the scene object
     |> Chart.withZAxisStyle("my z-axis")
@@ -48,12 +48,53 @@ let scatter3d =
 
 (*** condition: ipynb ***)
 #if IPYNB
-scatter3d
+point3d
 #endif // IPYNB
 
 (***hide***)
-scatter3d |> GenericChart.toChartHTML
+point3d |> GenericChart.toChartHTML
 (*** include-it-raw ***)
 
 
 
+(**
+# 3D Line plots
+*)
+
+let line3d = 
+    Chart.Line3d(
+        [1,3,2; 6,5,4; 7,9,8],
+        Labels = ["A"; "B"; "C"],
+        TextPosition = StyleParam.TextPosition.BottomCenter,
+        ShowMarkers = true
+    )
+
+(*** condition: ipynb ***)
+#if IPYNB
+line3d
+#endif // IPYNB
+
+(***hide***)
+line3d |> GenericChart.toChartHTML
+(*** include-it-raw ***)
+
+(**
+# 3D Bubble plots
+*)
+
+let bubble3d =
+    Chart.Bubble3d(
+        [1,3,2; 6,5,4; 7,9,8],
+        [10;20;30],
+        Labels = ["A"; "B"; "C"],
+        TextPosition = StyleParam.TextPosition.BottomCenter
+    )
+
+(*** condition: ipynb ***)
+#if IPYNB
+bubble3d
+#endif // IPYNB
+
+(***hide***)
+bubble3d |> GenericChart.toChartHTML
+(*** include-it-raw ***)
