@@ -36,6 +36,13 @@
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="StyleParams.fs" />
     <Compile Include="Colors.fs" />
+    <Compile Include="Projection.fs" />
+    <Compile Include="Surface.fs" />
+    <Compile Include="SpaceFrame.fs" />
+    <Compile Include="Slices.fs" />
+    <Compile Include="Caps.fs" />
+    <Compile Include="StreamTubeStarts.fs" />
+    <Compile Include="Lighting.fs" />
     <Compile Include="Rangebreak.fs" />
     <Compile Include="TickFormatStop.fs" />
     <Compile Include="Selection.fs" />
@@ -45,11 +52,10 @@
     <Compile Include="Title.fs" />
     <Compile Include="Pathbar.fs" />
     <Compile Include="TreemapTiling.fs" />
-    <Compile Include="Colorbar.fs" />
+    <Compile Include="ColorBar.fs" />
     <Compile Include="RangeSlider.fs" />
     <Compile Include="Button.fs" />
     <Compile Include="RangeSelector.fs" />
-    <Compile Include="Light.fs" />
     <Compile Include="Legend.fs" />
     <Compile Include="Contours.fs" />
     <Compile Include="Dimensions.fs" />
@@ -65,8 +71,8 @@
     <Compile Include="Polar.fs" />
     <Compile Include="Bins.fs" />
     <Compile Include="Cumulative.fs" />
+    <Compile Include="Annotation.fs" />
     <Compile Include="Scene.fs" />
-    <Compile Include="Selected.fs" />
     <Compile Include="Shape.fs" />
     <Compile Include="Error.fs" />
     <Compile Include="Table.fs" />
@@ -78,7 +84,6 @@
     <Compile Include="Trace.fs" />
     <Compile Include="Trace3d.fs" />
     <Compile Include="LayoutGrid.fs" />
-    <Compile Include="Annotation.fs" />
     <Compile Include="Layout.fs" />
     <Compile Include="Template.fs" />
     <Compile Include="Config.fs" />

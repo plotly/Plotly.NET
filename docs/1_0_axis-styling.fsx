@@ -127,13 +127,13 @@ let twoXAxes1 =
     |> Chart.withYAxisStyle(
         "axis 1",
         Side=StyleParam.Side.Left,
-        Id=1
+        Id=StyleParam.SubPlotId.YAxis 1
     )
     |> Chart.withYAxisStyle(
         "axis2",
         Side=StyleParam.Side.Right,
-        Id=2,
-        Overlaying=StyleParam.AxisAnchorId.Y 1
+        Id=StyleParam.SubPlotId.YAxis 2,
+        Overlaying=StyleParam.LinearAxisId.Y 1
     )
         
 (*** condition: ipynb ***)
@@ -169,10 +169,10 @@ let twoXAxes2 =
     |> Chart.withYAxisStyle(
         "second y-axis",
         Side=StyleParam.Side.Left,
-        Id=2,
-        Overlaying=StyleParam.AxisAnchorId.Y 1,
+        Id=StyleParam.SubPlotId.YAxis 2,
+        Overlaying=StyleParam.LinearAxisId.Y 1,
         Position=0.10, // position the axis beteen the leftmost edge and the firt axis at 0.3
-        Anchor=StyleParam.AxisAnchorId.Free,
+        //Anchor=StyleParam.AxisAnchorId.Free,
         ShowLine=true
     )
 

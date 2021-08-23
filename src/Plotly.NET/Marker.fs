@@ -16,7 +16,7 @@ type Marker () =
             ?Symbol: StyleParam.Symbol,
             ?MultiSizes: seq<#IConvertible>,
             ?Line: Line,
-            ?Colorbar: Colorbar,
+            ?ColorBar: ColorBar,
             ?Colorscale : StyleParam.Colorscale,
             ?Colors: seq<string>,
             ?OutlierColor:string,
@@ -24,7 +24,7 @@ type Marker () =
             ?Maxdisplayed: int,
             ?Sizeref: float,
             ?Sizemin: float,
-            ?Sizemode: StyleParam.SizeMode,
+            ?Sizemode: StyleParam.MarkerSizeMode,
             ?Cauto: bool,
             ?Cmax: float,
             ?Cmin: float,
@@ -43,7 +43,7 @@ type Marker () =
                 ?Opacity       = Opacity        ,
                 ?MultiSizes    = MultiSizes     ,
                 ?Line          = Line           ,
-                ?Colorbar      = Colorbar       ,
+                ?ColorBar      = ColorBar       ,
                 ?Colorscale    = Colorscale     ,
                 ?Colors        = Colors         ,
                 ?OutlierColor  = OutlierColor   ,
@@ -70,7 +70,7 @@ type Marker () =
             ?Symbol: StyleParam.Symbol,
             ?MultiSizes: seq<#IConvertible>,
             ?Line: Line,
-            ?Colorbar: Colorbar,
+            ?ColorBar: ColorBar,
             ?Colorscale : StyleParam.Colorscale,
             ?Colors: seq<string>,
             ?OutlierColor:string,
@@ -78,7 +78,7 @@ type Marker () =
             ?Maxdisplayed: int,
             ?Sizeref: float,
             ?Sizemin: float,
-            ?Sizemode: StyleParam.SizeMode,
+            ?Sizemode: StyleParam.MarkerSizeMode,
             ?Cauto: bool,
             ?Cmax: float,
             ?Cmin: float,
@@ -94,7 +94,7 @@ type Marker () =
                 Opacity        |> DynObj.setValueOpt marker "opacity"
                 MultiSizes     |> DynObj.setValueOpt marker "size"
                 Line           |> DynObj.setValueOpt marker "line"        
-                Colorbar       |> DynObj.setValueOpt marker "colorbar"       
+                ColorBar       |> DynObj.setValueOpt marker "colorbar"       
                 Colorscale     |> DynObj.setValueOptBy marker "colorscale" StyleParam.Colorscale.convert
                 Colors         |> DynObj.setValueOpt marker "colors"     
                 OutlierColor   |> DynObj.setValueOpt marker "outliercolor"     
@@ -102,7 +102,7 @@ type Marker () =
                 Maxdisplayed   |> DynObj.setValueOpt marker "maxdisplayed"   
                 Sizeref        |> DynObj.setValueOpt marker "sizeref"        
                 Sizemin        |> DynObj.setValueOpt marker "sizemin"        
-                Sizemode       |> DynObj.setValueOpt marker "sizemode"            
+                Sizemode       |> DynObj.setValueOptBy marker "sizemode" StyleParam.MarkerSizeMode.convert
                 Cauto          |> DynObj.setValueOpt marker "cauto"          
                 Cmax           |> DynObj.setValueOpt marker "cmax"           
                 Cmin           |> DynObj.setValueOpt marker "cmin"           

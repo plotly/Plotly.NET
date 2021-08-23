@@ -12,6 +12,20 @@ module StyleParam =
 //--------------------------
 // #A#
 //--------------------------
+    
+    [<RequireQualifiedAccess>]
+    type AspectMode =
+        | Auto | Cube | Data | Manual
+
+        static member toString = function
+            | Auto  -> "auto" 
+            | Cube  -> "cube" 
+            | Data  -> "data" 
+            | Manual-> "manual"
+
+
+        static member convert = AspectMode.toString >> box
+    
     /// Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines
     [<RequireQualifiedAccess>]
     type Align =
@@ -66,29 +80,38 @@ module StyleParam =
             |LineOnly      -> 8
         static member convert = ArrowHead.toEnum >> box
 
-    /// 
     [<RequireQualifiedAccess>]
-    type AxisAnchorId = 
-        | X of int | Y of int | Z of int | Free
+    type LinearAxisId = 
+        | X of int | Y of int
     
         static member toString = function
             | X id  -> if id < 2 then "x" else sprintf "x%i" id
             | Y id  -> if id < 2 then "y" else sprintf "y%i" id
-            | Z id  -> if id < 2 then "z" else sprintf "z%i" id
-            | Free -> "free"
+        static member convert = LinearAxisId.toString >> box 
 
-        static member convert = AxisAnchorId.toString >> box 
-
+    // to-do merge with axis anchor id
     [<RequireQualifiedAccess>]
-    type AxisId = 
-        | X of int | Y of int | Z of int
+    type SubPlotId = 
+        | XAxis     of int 
+        | YAxis     of int 
+        | ColorAxis of int
+        | Geo       of int
+        | MapBox    of int
+        | Polar     of int
+        | Ternary   of int
+        | Scene     of int
     
         static member toString = function
-            | X id  -> if id < 2 then "xaxis" else sprintf "xaxis%i" id
-            | Y id  -> if id < 2 then "yaxis" else sprintf "yaxis%i" id
-            | Z id  -> if id < 2 then "zaxis" else sprintf "zaxis%i" id
-    
-        static member convert = AxisId.toString >> box 
+            | XAxis     id  -> if id < 2 then "xaxis" else sprintf "xaxis%i" id
+            | YAxis     id  -> if id < 2 then "yaxis" else sprintf "yaxis%i" id
+            | ColorAxis id  -> if id < 2 then "coloraxis" else sprintf "coloraxis%i" id
+            | Geo       id  -> if id < 2 then "geo" else sprintf "geo%i" id
+            | MapBox    id  -> if id < 2 then "mapbox" else sprintf "mapbox%i" id
+            | Polar     id  -> if id < 2 then "polar" else sprintf "polar%i" id
+            | Ternary   id  -> if id < 2 then "ternary" else sprintf "ternary%i" id
+            | Scene     id  -> if id < 2 then "scene" else sprintf "scene%i" id
+
+        static member convert = SubPlotId.toString >> box 
 
     [<RequireQualifiedAccess>]
     /// Editable parts of a chart that can be set via Chart config.
@@ -378,7 +401,37 @@ module StyleParam =
             | Boundaries-> "boundaries"
 
         static member convert = CategoryTickAnchor.toString >> box
+        
+    /// Sets the cones' anchor with respect to their x/y/z positions. Note that "cm" denote the cone's center of mass which corresponds to 1/4 from the tail to tip.
+    [<RequireQualifiedAccess>]
+    type ConeAnchor =
+        | Tip         
+        | Tail        
+        | CenterOfMass
+        | Center      
+    
+        static member toString = function
+            | Tip           -> "tip" 
+            | Tail          -> "tail" 
+            | CenterOfMass  -> "cm" 
+            | Center        -> "center"
 
+        static member convert = ConeAnchor.toString >> box
+
+           
+    /// Sets the cones' anchor with respect to their x/y/z positions. Note that "cm" denote the cone's center of mass which corresponds to 1/4 from the tail to tip.
+    [<RequireQualifiedAccess>]
+    type ConeSizeMode =
+        | Scaled  
+        | Absolute
+ 
+        static member toString = function
+            | Scaled   -> "scaled"
+            | Absolute -> "absolute"
+
+        static member convert = ConeSizeMode.toString >> box
+
+    
         
 //--------------------------
 // #D#
@@ -389,7 +442,7 @@ module StyleParam =
     /// dragging motions. A user can always depress the 'shift' key to access the whatever functionality has not been set as the default. In 3D plots, the 
     /// default drag mode is 'rotate' which rotates the scene.
     [<RequireQualifiedAccess>]
-    type Dragmode =
+    type DragMode =
         | Zoom | Pan | Rotate 
     
         static member toString = function
@@ -398,7 +451,7 @@ module StyleParam =
             | Rotate -> "rotate"
 
 
-        static member convert = Dragmode.toString >> box
+        static member convert = DragMode.toString >> box
 
     /// Sets the Delaunay axis, which is the axis that is perpendicular to the surface of the Delaunay triangulation.
     /// It has an effect if `i`, `j`, `k` are not provided and `alphahull` is set to indicate Delaunay triangulation. 
@@ -442,6 +495,8 @@ module StyleParam =
             | User px -> px.ToString()           
 
         static member convert = DrawingStyle.toString >> box
+
+    
 
 //--------------------------
 // #E#
@@ -677,16 +732,16 @@ module StyleParam =
     /// with corresponding trace labels. When set to 'y' all data sharing the same 'y' coordinates will be shown on the screen with corresponding
     /// trace labels. When set to 'closest', information about the data point closest to where the viewer is hovering will appear.
     [<RequireQualifiedAccess>]
-    type Hovermode =
-        | Closest | X | Y 
+    type HoverMode =
+        | Closest | X | Y | False
 
         static member toString = function
             | Closest -> "closest"
             | X       -> "x"
             | Y       -> "y"
+            | False   -> "false"
 
-
-        static member convert = Hovermode.toString >> box
+        static member convert = HoverMode.toString >> box
 
     [<RequireQualifiedAccess>]
     type HorizontalAlign = 
@@ -711,6 +766,17 @@ module StyleParam =
             | JPEG -> "jpeg"    
 
         static member convert = ImageFormat.toString >> box
+        
+    [<RequireQualifiedAccess>]
+    type IntensityMode =
+        | Vertex  | Cell 
+        static member toString = function
+            | Vertex  -> "vertex"             
+            | Cell  -> "cell"            
+
+
+        static member convert = IntensityMode.toString >> box
+
 
 //--------------------------
 // #J#
@@ -1024,6 +1090,16 @@ module StyleParam =
 
         static member convert = MapboxLayerSymbolPlacement.toString >> box
 
+    
+    [<RequireQualifiedAccess>]
+    type MarkerSizeMode =
+        | Diameter | Area
+    
+        static member toString = function
+            | Diameter  -> "diameter"
+            | Area      -> "area"
+      
+        static member convert = MarkerSizeMode.toString >> box
 
 //--------------------------
 // #N#
@@ -1260,17 +1336,6 @@ module StyleParam =
    
         static member convert = Side.toString >> box
 
-    [<RequireQualifiedAccess>]
-    type SizeMode =
-        | Diameter | Area
-    
-        static member toString = function
-            | Diameter  -> "diameter"
-            | Area      -> "area"
-      
-        static member convert = SizeMode.toString >> box
-   
-
     /// Choose between algorithms ('best' or 'fast') to smooth data linked to 'z'. The default value is false corresponding to no smoothing.
     [<RequireQualifiedAccess>]
     type SmoothAlg =
@@ -1325,6 +1390,64 @@ module StyleParam =
             | ToDate    -> "todate"
       
         static member convert = TimeStepMode.toString >> box
+
+    /// Sets the surface pattern of the iso-surface 3-D sections. The default pattern of the surface is `all` meaning that the rest of surface elements would be shaded. The check options (either 1 or 2) could be used to draw half of the squares on the surface. Using various combinations of capital `A`, `B`, `C`, `D` and `E` may also be used to reduce the number of triangles on the iso-surfaces and creating other patterns of interest.
+    [<RequireQualifiedAccess>]
+    type SurfacePattern =
+        | A | B | C | D | E 
+        | AB | AC | AD | AE
+        | BC | BD | BE
+        | CD | CE
+        | ABC | ABD | ABE
+        | BCD | BDE 
+        | ABCD | BCDE
+        | Odd
+        | Even
+        | All
+
+        static member toString = function
+            | A     -> "A"
+            | B     -> "B"
+            | C     -> "C"
+            | D     -> "D"
+            | E     -> "E"
+            | AB    -> "A+B"
+            | AC    -> "A+C"
+            | AD    -> "A+D"
+            | AE    -> "A+E"
+            | BC    -> "B+C"
+            | BD    -> "B+D"
+            | BE    -> "B+E"
+            | CD    -> "C+D"
+            | CE    -> "C+E"
+            | ABC   -> "A+B+C"
+            | ABD   -> "A+B+D"
+            | ABE   -> "A+B+E"
+            | BCD   -> "B+C+D"
+            | BDE   -> "B+D+E"
+            | ABCD  -> "A+B+C+D"
+            | BCDE  -> "B+C+D+E"
+            | Odd   -> "odd"
+            | Even  -> "even"
+            | All   -> "all"
+
+        static member convert = SurfacePattern.toString >> box
+
+    [<RequireQualifiedAccess>]
+    type SurfaceAxis =
+        | NoSurfaceAxis 
+        | X 
+        | Y 
+        | Z
+
+        static member toString = function
+            | NoSurfaceAxis -> "-1" 
+            | X             -> "0" 
+            | Y             -> "1" 
+            | Z             -> "2" 
+      
+        static member convert = SurfaceAxis.toString >> box        
+
 
 //--------------------------
 // #T#

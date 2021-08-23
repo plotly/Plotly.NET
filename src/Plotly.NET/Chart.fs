@@ -65,8 +65,8 @@ type Chart =
         GenericChart.ofTraceObject trace
         |> GenericChart.mapLayout ( fun l ->
             l
-            |> Layout.AddLinearAxis(AxisId.X 1,hiddenAxis())
-            |> Layout.AddLinearAxis(AxisId.Y 1,hiddenAxis())
+            |> Layout.AddLinearAxis(StyleParam.SubPlotId.XAxis 1,hiddenAxis())
+            |> Layout.AddLinearAxis(StyleParam.SubPlotId.YAxis 1,hiddenAxis())
         )
 
 
@@ -1144,12 +1144,12 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?Xgap,
             [<Optional;DefaultParameterValue(null)>] ?Ygap,
             [<Optional;DefaultParameterValue(null)>] ?zSmooth,
-            [<Optional;DefaultParameterValue(null)>] ?Colorbar,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar,
             [<Optional;DefaultParameterValue(false)>]?UseWebGL : bool)
             = 
         let style =
             TraceStyle.Heatmap(Z=data,?X=ColNames, ?Y=RowNames,
-                                    ?Xgap=Xgap,?Ygap=Ygap,?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?Colorbar=Colorbar)
+                                    ?Xgap=Xgap,?Ygap=Ygap,?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?ColorBar=ColorBar)
             >> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
 
         let useWebGL = defaultArg UseWebGL false
@@ -1167,9 +1167,9 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>]  ?Colorscale,
             [<Optional;DefaultParameterValue(null)>]  ?Showscale,
             [<Optional;DefaultParameterValue(null)>]  ?zSmooth,
-            [<Optional;DefaultParameterValue(null)>]  ?Colorbar) = 
+            [<Optional;DefaultParameterValue(null)>]  ?ColorBar) = 
         Trace.initContour (TraceStyle.Contour(Z=data,?X=X, ?Y=Y,
-                                ?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?Colorbar=Colorbar) )
+                                ?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?ColorBar=ColorBar) )
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)   
         |> GenericChart.ofTraceObject
 
@@ -1638,7 +1638,7 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?Colorscale,
             [<Optional;DefaultParameterValue(null)>] ?Showscale,
             [<Optional;DefaultParameterValue(null)>] ?zSmooth,
-            [<Optional;DefaultParameterValue(null)>] ?Colorbar,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar,
             [<Optional;DefaultParameterValue(null)>] ?zAuto,
             [<Optional;DefaultParameterValue(null)>] ?zMin,
             [<Optional;DefaultParameterValue(null)>] ?zMax,
@@ -1656,7 +1656,7 @@ type Chart =
                                 ?Colorscale=Colorscale,
                                 ?Showscale=Showscale,
                                 ?zSmooth=zSmooth,
-                                ?Colorbar=Colorbar,
+                                ?ColorBar=ColorBar,
                                 ?zAuto=zAuto,
                                 ?zMin=zMin,
                                 ?zMax=zMax,
@@ -1672,10 +1672,10 @@ type Chart =
  
 
 // //    /// Computes the bi-dimensional histogram of two data samples and auto-determines the bin size.
-// //    static member Histogram2d(xy,?Name,?HistNorm,?HistFunc,?Colorscale,?Showscale,?zSmooth,?Colorbar,?zAuto,?zMin,?zMax,?nBinsx,?nBinsy,?Xbins,?Ybins) =         
+// //    static member Histogram2d(xy,?Name,?HistNorm,?HistFunc,?Colorscale,?Showscale,?zSmooth,?ColorBar,?zAuto,?zMin,?zMax,?nBinsx,?nBinsy,?Xbins,?Ybins) =         
 // //        let x,y = Seq.unzip xy
 // //        Chart.Histogram2d(x,y,?Name=Name,?HistNorm=HistNorm,?HistFunc=HistFunc,?Colorscale=Colorscale,
-// //            ?Showscale=Showscale,?Colorbar=Colorbar,?zSmooth=zSmooth,?zAuto=zAuto,?zMin=zMin,?zMax=zMax,
+// //            ?Showscale=Showscale,?ColorBar=ColorBar,?zSmooth=zSmooth,?zAuto=zAuto,?zMin=zMin,?zMax=zMax,
 // //            ?nBinsx=nBinsx,?nBinsy=nBinsy,?Xbins=Xbins,?Ybins=Ybins
 // //            )
 
@@ -1687,7 +1687,7 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?Showscale,
             [<Optional;DefaultParameterValue(null)>] ?Line,
             [<Optional;DefaultParameterValue(null)>] ?zSmooth,
-            [<Optional;DefaultParameterValue(null)>] ?Colorbar,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar,
             [<Optional;DefaultParameterValue(null)>] ?zAuto,
             [<Optional;DefaultParameterValue(null)>] ?zMin,
             [<Optional;DefaultParameterValue(null)>] ?zMax,
@@ -1702,7 +1702,7 @@ type Chart =
                     ?Colorscale=Colorscale,
                     ?Showscale=Showscale,
                     ?zSmooth=zSmooth,
-                    ?Colorbar=Colorbar,
+                    ?ColorBar=ColorBar,
                     ?zAuto=zAuto,
                     ?zMin=zMin,
                     ?zMax=zMax,
@@ -1802,7 +1802,7 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?Locationmode,
             [<Optional;DefaultParameterValue(null)>] ?Autocolorscale,
             [<Optional;DefaultParameterValue(null)>] ?Colorscale,
-            [<Optional;DefaultParameterValue(null)>] ?Colorbar,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar,
             [<Optional;DefaultParameterValue(null)>] ?Marker,
             [<Optional;DefaultParameterValue(null)>] ?GeoJson,
             [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey: string,
@@ -1810,7 +1810,7 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?Zmax) =
         Trace.initChoroplethMap (
             TraceStyle.ChoroplethMap (Locations=locations,Z=z,?Text=Text,?Locationmode=Locationmode,?Autocolorscale=Autocolorscale,
-                ?Colorscale=Colorscale,?Colorbar=Colorbar,?Marker=Marker,?Zmin=Zmin,?Zmax=Zmax,?GeoJson=GeoJson,?FeatureIdKey=FeatureIdKey)              
+                ?Colorscale=Colorscale,?ColorBar=ColorBar,?Marker=Marker,?Zmin=Zmin,?Zmax=Zmax,?GeoJson=GeoJson,?FeatureIdKey=FeatureIdKey)              
             )
         |> GenericChart.ofTraceObject        
 
@@ -1889,41 +1889,444 @@ type Chart =
         let x,y,z = Seq.unzip3 xyz
         Chart.Scatter3d(x, y, z, mode, ?Name=Name,?Showlegend=Showlegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width) 
 
+    ///
+    static member Point3d 
+        (
+            x, y, z,
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
+            [<Optional;DefaultParameterValue(null)>] ?Color,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?Labels,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont
+        ) =
+            // if text position or font is set, then show labels (not only when hovering)
+            let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
+
+            Chart.Scatter3d(
+                x = x, 
+                y = y, 
+                z = z,
+                mode            = changeMode StyleParam.Mode.Markers,
+                ?Name           = Name,
+                ?Showlegend     = Showlegend,
+                ?MarkerSymbol   = MarkerSymbol,
+                ?Color          = Color,
+                ?Opacity        = Opacity,
+                ?Labels         = Labels,
+                ?TextPosition   = TextPosition,
+                ?TextFont       = TextFont
+            )
+            
+    ///
+    static member Point3d 
+        (
+            xyz,
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
+            [<Optional;DefaultParameterValue(null)>] ?Color,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?Labels,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont
+        ) =
+            let x, y, z = Seq.unzip3 xyz
+
+            Chart.Point3d(
+                x, y, z,
+                ?Name           = Name,
+                ?Showlegend     = Showlegend,
+                ?MarkerSymbol   = MarkerSymbol,
+                ?Color          = Color,
+                ?Opacity        = Opacity,
+                ?Labels         = Labels,
+                ?TextPosition   = TextPosition,
+                ?TextFont       = TextFont
+            )
+
+
     /// Uses points, line or both depending on the mode to represent 3d-data points
-    static member Surface(data:seq<#seq<#IConvertible>>,
+    static member Line3d
+        (
+            x, y, z,
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
+            [<Optional;DefaultParameterValue(null)>] ?Color,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?Labels,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont,
+            [<Optional;DefaultParameterValue(null)>] ?Dash,
+            [<Optional;DefaultParameterValue(null)>] ?Width
+        ) = 
+            let changeMode = 
+                let isShowMarker =
+                    match ShowMarkers with
+                    | Some isShow -> isShow
+                    | Option.None        -> false
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
+                >> StyleParam.ModeUtils.showMarker (isShowMarker)
+
+            Chart.Scatter3d(
+                x = x,
+                y = y,
+                z = z,
+                mode = changeMode StyleParam.Mode.Lines,
+                ?Name           = Name        ,
+                ?Showlegend     = Showlegend  ,
+                ?MarkerSymbol   = MarkerSymbol,
+                ?Color          = Color       ,
+                ?Opacity        = Opacity     ,
+                ?Labels         = Labels      ,
+                ?TextPosition   = TextPosition,
+                ?TextFont       = TextFont    ,
+                ?Dash           = Dash        ,
+                ?Width          = Width       
+            )
+            
+    /// Uses points, line or both depending on the mode to represent 3d-data points
+    static member Line3d
+        (
+            xyz,
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
+            [<Optional;DefaultParameterValue(null)>] ?Color,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?Labels,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont,
+            [<Optional;DefaultParameterValue(null)>] ?Dash,
+            [<Optional;DefaultParameterValue(null)>] ?Width
+        ) = 
+            let x, y, z = Seq.unzip3 xyz
+
+            Chart.Line3d(
+                x, y, z,
+                ?Name           = Name        ,
+                ?ShowMarkers    = ShowMarkers ,
+                ?Showlegend     = Showlegend  ,
+                ?MarkerSymbol   = MarkerSymbol,
+                ?Color          = Color       ,
+                ?Opacity        = Opacity     ,
+                ?Labels         = Labels      ,
+                ?TextPosition   = TextPosition,
+                ?TextFont       = TextFont    ,
+                ?Dash           = Dash        ,
+                ?Width          = Width       
+            )
+
+    ///
+    static member Bubble3d 
+        (
+            x, y, z, sizes,
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
+            [<Optional;DefaultParameterValue(null)>] ?Color,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?Labels,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont
+        ) =
+            let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
+            
+            Trace3d.initScatter3d (
+                Trace3dStyle.Scatter3d(
+                    X = x,
+                    Y = y, 
+                    Z = z,
+                    Mode=changeMode StyleParam.Mode.Markers
+                )
+            )
+            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol, MultiSizes=sizes)
+            |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+            |> GenericChart.ofTraceObject
+        
+    ///
+    static member Bubble3d 
+        (
+            xyz, sizes,
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
+            [<Optional;DefaultParameterValue(null)>] ?Color,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?Labels,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont
+        ) =
+            let x, y, z = Seq.unzip3 xyz
+
+            Chart.Bubble3d(
+                x, y, z, sizes,
+                ?Name           = Name,
+                ?Showlegend     = Showlegend,
+                ?MarkerSymbol   = MarkerSymbol,
+                ?Color          = Color,
+                ?Opacity        = Opacity,
+                ?Labels         = Labels,
+                ?TextPosition   = TextPosition,
+                ?TextFont       = TextFont
+            )
+
+
+    /// Uses points, line or both depending on the mode to represent 3d-data points
+    static member Surface
+        (
+            zData,
             [<Optional;DefaultParameterValue(null)>] ?X,
             [<Optional;DefaultParameterValue(null)>] ?Y,
             [<Optional;DefaultParameterValue(null)>] ?Name,
             [<Optional;DefaultParameterValue(null)>] ?Showlegend,
             [<Optional;DefaultParameterValue(null)>] ?Opacity,
             [<Optional;DefaultParameterValue(null)>] ?Contours,
-            [<Optional;DefaultParameterValue(null)>] ?Colorscale,
-            [<Optional;DefaultParameterValue(null)>] ?Showscale,
-            [<Optional;DefaultParameterValue(null)>] ?Colorbar) = 
+            [<Optional;DefaultParameterValue(null)>] ?ColorScale,
+            [<Optional;DefaultParameterValue(null)>] ?ShowScale,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar
+        ) = 
         Trace3d.initSurface (
-            Trace3dStyle.Surface (Z=data,?X=X, ?Y=Y,?Contours=Contours,
-                                ?Colorscale=Colorscale,?Showscale=Showscale,?Colorbar=Colorbar ) )              
+            Trace3dStyle.Surface(
+                ?X=X, 
+                ?Y=Y,
+                Z=zData,
+                ?Contours=Contours,
+                ?ColorScale=ColorScale,
+                ?ShowScale=ShowScale,
+                ?ColorBar=ColorBar 
+            )
+        )              
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
-        //|> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
         |> GenericChart.ofTraceObject 
 
 
     /// Uses points, line or both depending on the mode to represent 3d-data points
-    static member Mesh3d(x, y, z, mode,
-            ?Name,
-            ?Showlegend,
-            ?MarkerSymbol,
-            ?Color,
-            ?Opacity,
-            ?Labels,
-            ?TextPosition,
-            ?TextFont,
-            ?Dash,
-            ?Width) = 
-        Trace3d.initMesh3d (Trace3dStyle.Mesh3d(X = x,Y = y,Z=z) )              
+    static member Mesh3d
+        (
+            x, y, z, 
+            [<Optional;DefaultParameterValue(null)>] ?I,
+            [<Optional;DefaultParameterValue(null)>] ?J,
+            [<Optional;DefaultParameterValue(null)>] ?K,
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?Contours,
+            [<Optional;DefaultParameterValue(null)>] ?ColorScale,
+            [<Optional;DefaultParameterValue(null)>] ?ShowScale,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar
+        ) = 
+        Trace3d.initMesh3d (
+            Trace3dStyle.Mesh3d(
+                X   = x,
+                Y   = y,
+                Z   = z,
+                ?I  = I,
+                ?J  = J,
+                ?K  = K
+            ) 
+        )              
         |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
-        |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
         |> GenericChart.ofTraceObject 
+
+    static member Cone 
+        (
+            x, y, z, u, v, w,
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?ColorScale,
+            [<Optional;DefaultParameterValue(null)>] ?ShowScale,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar
+        ) =
+
+            Trace3d.initCone(
+                Trace3dStyle.Cone(
+                    X = x,
+                    Y = y,
+                    Z = z,
+                    U = u,
+                    V = v,
+                    W = w,
+                    ?Name       = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity    = Opacity,
+                    ?ColorScale = ColorScale,
+                    ?ShowScale  = ShowScale,
+                    ?ColorBar   = ColorBar
+                )
+            )
+            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=ShowLegend,?Opacity=Opacity)
+            |> GenericChart.ofTraceObject 
+
+    static member Cone 
+        (
+            coneXYZ, coneUVW,
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?ColorScale,
+            [<Optional;DefaultParameterValue(null)>] ?ShowScale,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar
+        ) =
+            let x, y, z = Seq.unzip3 coneXYZ
+            let u, v, w = Seq.unzip3 coneUVW
+
+            Chart.Cone(
+                x, y, z, u, v, w,
+                ?Name       = Name          ,
+                ?ShowLegend = ShowLegend    ,
+                ?Opacity    = Opacity       ,
+                ?ColorScale = ColorScale    ,
+                ?ShowScale  = ShowScale     ,
+                ?ColorBar   = ColorBar
+            )
+
+
+    static member StreamTube 
+        (
+            x, y, z, u, v, w,
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?ColorScale,
+            [<Optional;DefaultParameterValue(null)>] ?ShowScale,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar,
+            [<Optional;DefaultParameterValue(null)>] ?MaxDisplayed: int,
+            [<Optional;DefaultParameterValue(null)>] ?Starts: StreamTubeStarts
+
+        ) =
+
+            Trace3d.initStreamTube(
+                Trace3dStyle.StreamTube(
+                    X = x,
+                    Y = y,
+                    Z = z,
+                    U = u,
+                    V = v,
+                    W = w,
+                    ?Name           = Name,
+                    ?ShowLegend     = ShowLegend,
+                    ?Opacity        = Opacity,
+                    ?ColorScale     = ColorScale,
+                    ?ShowScale      = ShowScale,
+                    ?ColorBar       = ColorBar,
+                    ?MaxDisplayed   = MaxDisplayed,
+                    ?Starts         = Starts
+                )
+            )
+            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=ShowLegend,?Opacity=Opacity)
+            |> GenericChart.ofTraceObject 
+
+    static member StreamTube 
+        (
+            streamTubeXYZ, streamTubeUVW,
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?ColorScale,
+            [<Optional;DefaultParameterValue(null)>] ?ShowScale,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar,
+            [<Optional;DefaultParameterValue(null)>] ?MaxDisplayed: int,
+            [<Optional;DefaultParameterValue(null)>] ?Starts: StreamTubeStarts
+        ) =
+            let x, y, z = Seq.unzip3 streamTubeXYZ
+            let u, v, w = Seq.unzip3 streamTubeUVW
+
+            Chart.StreamTube(
+                x, y, z, u, v, w,
+                ?Name           = Name          ,
+                ?ShowLegend     = ShowLegend    ,
+                ?Opacity        = Opacity       ,
+                ?ColorScale     = ColorScale    ,
+                ?ShowScale      = ShowScale     ,
+                ?ColorBar       = ColorBar      ,
+                ?MaxDisplayed   = MaxDisplayed  ,
+                ?Starts         = Starts
+            )
+            
+    static member Volume 
+        (
+            x,y,z,value,
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?ColorScale,
+            [<Optional;DefaultParameterValue(null)>] ?ShowScale,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar,
+            [<Optional;DefaultParameterValue(null)>] ?IsoMin,
+            [<Optional;DefaultParameterValue(null)>] ?IsoMax,
+            [<Optional;DefaultParameterValue(null)>] ?Caps : Caps,
+            [<Optional;DefaultParameterValue(null)>] ?Slices : Slices,
+            [<Optional;DefaultParameterValue(null)>] ?Surface : Surface
+        ) =
+            Trace3d.initVolume(
+                Trace3dStyle.Volume(
+                    X = x,
+                    Y = y,
+                    Z = z,
+                    Value = value,
+                    ?Name           = Name,
+                    ?ShowLegend     = ShowLegend,
+                    ?Opacity        = Opacity,
+                    ?ColorScale     = ColorScale,
+                    ?ShowScale      = ShowScale,
+                    ?ColorBar       = ColorBar,
+                    ?IsoMin         = IsoMin,
+                    ?IsoMax         = IsoMax,
+                    ?Caps           = Caps,
+                    ?Slices         = Slices,
+                    ?Surface        = Surface   
+                )
+            )
+            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=ShowLegend,?Opacity=Opacity)
+            |> GenericChart.ofTraceObject 
+
+                       
+    static member IsoSurface 
+        (
+            x,y,z,value,
+            [<Optional;DefaultParameterValue(null)>] ?Name,
+            [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity,
+            [<Optional;DefaultParameterValue(null)>] ?ColorScale,
+            [<Optional;DefaultParameterValue(null)>] ?ShowScale,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar,
+            [<Optional;DefaultParameterValue(null)>] ?IsoMin,
+            [<Optional;DefaultParameterValue(null)>] ?IsoMax,
+            [<Optional;DefaultParameterValue(null)>] ?Caps : Caps,
+            [<Optional;DefaultParameterValue(null)>] ?Slices : Slices,
+            [<Optional;DefaultParameterValue(null)>] ?Surface : Surface
+        ) =
+            Trace3d.initIsoSurface(
+                Trace3dStyle.IsoSurface(
+                    X = x,
+                    Y = y,
+                    Z = z,
+                    Value = value,
+                    ?Name           = Name,
+                    ?ShowLegend     = ShowLegend,
+                    ?Opacity        = Opacity,
+                    ?ColorScale     = ColorScale,
+                    ?ShowScale      = ShowScale,
+                    ?ColorBar       = ColorBar,
+                    ?IsoMin         = IsoMin,
+                    ?IsoMax         = IsoMax,
+                    ?Caps           = Caps,
+                    ?Slices         = Slices,
+                    ?Surface        = Surface   
+                )
+            )
+            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=ShowLegend,?Opacity=Opacity)
+            |> GenericChart.ofTraceObject 
+            
+
 
     /// creates table out of header sequence and row sequences
     static member Table(headerValues, cellValues, 
@@ -1981,7 +2384,7 @@ type Chart =
     ///
     /// Maxdepth: Sets the number of rendered sectors from any given `level`. Set `maxdepth` to "-1" to render all the levels in the hierarchy.
     ///
-    /// Colorbar: Sets the Colorbar for the chart
+    /// ColorBar: Sets the ColorBar for the chart
     ///
     ///Colors: Sets the color of each sector of this trace. If not specified, the default trace color set is used to pick the sector colors.
     static member Sunburst(labels,parents,
@@ -1992,7 +2395,7 @@ type Chart =
         [<Optional;DefaultParameterValue(null)>]?Level              ,
         [<Optional;DefaultParameterValue(null)>]?Maxdepth           ,
         [<Optional;DefaultParameterValue(null)>]?Colors: seq<string>,
-        [<Optional;DefaultParameterValue(null)>]?Colorbar:Colorbar
+        [<Optional;DefaultParameterValue(null)>]?ColorBar:ColorBar
         ) =
         Trace.initSunburst(
             TraceStyle.Sunburst(
@@ -2006,7 +2409,7 @@ type Chart =
                 ?Maxdepth       = Maxdepth
             )
         )
-        |> TraceStyle.Marker(?Colors=Colors,?Colorbar=Colorbar)
+        |> TraceStyle.Marker(?Colors=Colors,?ColorBar=ColorBar)
         |> GenericChart.ofTraceObject
 
 
@@ -2030,7 +2433,7 @@ type Chart =
     ///
     /// Maxdepth: Sets the number of rendered sectors from any given `level`. Set `maxdepth` to "-1" to render all the levels in the hierarchy.
     ///
-    /// Colorbar: Sets the Colorbar for the chart
+    /// ColorBar: Sets the ColorBar for the chart
     ///
     ///Colors: Sets the color of each sector of this trace. If not specified, the default trace color set is used to pick the sector colors.
     static member Treemap(labels,parents,
@@ -2043,7 +2446,7 @@ type Chart =
         [<Optional;DefaultParameterValue(null)>]?Level              ,
         [<Optional;DefaultParameterValue(null)>]?Maxdepth           ,
         [<Optional;DefaultParameterValue(null)>]?Colors: seq<string>,
-        [<Optional;DefaultParameterValue(null)>]?Colorbar:Colorbar
+        [<Optional;DefaultParameterValue(null)>]?ColorBar:ColorBar
         ) =
         Trace.initTreemap(
             TraceStyle.Treemap(
@@ -2059,7 +2462,7 @@ type Chart =
                 ?Maxdepth       = Maxdepth
             )
         )
-        |> TraceStyle.Marker(?Colors=Colors,?Colorbar=Colorbar)
+        |> TraceStyle.Marker(?Colors=Colors,?ColorBar=ColorBar)
         |> GenericChart.ofTraceObject
 
     /// Creates an OHLC (open-high-low-close) chart. OHLC charts are typically used to illustrate movements in the price of a financial instrument over time.
@@ -3530,7 +3933,7 @@ type Chart =
     /// <param name="Text">Sets the text elements associated with each location.</param>
     /// <param name="Below">Determines if the choropleth polygons will be inserted before the layer with the specified ID. By default, choroplethmapbox traces are placed above the water layers. If set to '', the layer will be inserted above every existing layer.</param>
     /// <param name="Colorscale">Sets the colorscale.</param>
-    /// <param name="Colorbar">Sets the Colorbar object asociated with this trace</param>
+    /// <param name="ColorBar">Sets the ColorBar object asociated with this trace</param>
     /// <param name="ZAuto">Determines whether or not the color domain is computed with respect to the input data (here in `z`) or the bounds set in `zmin` and `zmax` Defaults to `false` when `zmin` and `zmax` are set by the user.</param>
     /// <param name="ZMin">Sets the lower bound of the color domain. Value should have the same units as in `z` and if set, `zmax` must be set as well.</param>
     /// <param name="ZMid">Sets the mid-point of the color domain by scaling `zmin` and/or `zmax` to be equidistant to this point. Value should have the same units as in `z`. Has no effect when `zauto` is `false`.</param>
@@ -3540,7 +3943,7 @@ type Chart =
         [<Optional;DefaultParameterValue(null)>] ?Text,
         [<Optional;DefaultParameterValue(null)>] ?Below,
         [<Optional;DefaultParameterValue(null)>] ?Colorscale,
-        [<Optional;DefaultParameterValue(null)>] ?Colorbar,
+        [<Optional;DefaultParameterValue(null)>] ?ColorBar,
         [<Optional;DefaultParameterValue(null)>] ?ZAuto,
         [<Optional;DefaultParameterValue(null)>] ?ZMin,
         [<Optional;DefaultParameterValue(null)>] ?ZMid,
@@ -3556,7 +3959,7 @@ type Chart =
                     ?Text           = Text,
                     ?Below          = Below,
                     ?Colorscale     = Colorscale,
-                    ?Colorbar       = Colorbar,
+                    ?ColorBar       = ColorBar,
                     ?ZAuto          = ZAuto,
                     ?ZMin           = ZMin,
                     ?ZMid           = ZMid,
@@ -3576,7 +3979,7 @@ type Chart =
     /// <param name="Text">Sets text elements associated with each (lon,lat) pair If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (lon,lat) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
     /// <param name="Below">Determines if the densitymapbox trace will be inserted before the layer with the specified ID. By default, densitymapbox traces are placed below the first layer of type symbol If set to '', the layer will be inserted above every existing layer.</param>
     /// <param name="Colorscale">Sets the colorscale.</param>
-    /// <param name="Colorbar">Sets the Colorbar object asociated with this trace</param>
+    /// <param name="ColorBar">Sets the ColorBar object asociated with this trace</param>
     /// <param name="Showscale">Determines whether or not a colorbar is displayed for this trace.</param>
     /// <param name="ZAuto">Determines whether or not the color domain is computed with respect to the input data (here in `z`) or the bounds set in `zmin` and `zmax` Defaults to `false` when `zmin` and `zmax` are set by the user.</param>
     /// <param name="ZMin">Sets the lower bound of the color domain. Value should have the same units as in `z` and if set, `zmax` must be set as well.</param>
@@ -3589,7 +3992,7 @@ type Chart =
         [<Optional;DefaultParameterValue(null)>] ?Text,
         [<Optional;DefaultParameterValue(null)>] ?Below,
         [<Optional;DefaultParameterValue(null)>] ?Colorscale,
-        [<Optional;DefaultParameterValue(null)>] ?Colorbar,
+        [<Optional;DefaultParameterValue(null)>] ?ColorBar,
         [<Optional;DefaultParameterValue(null)>] ?Showscale ,
         [<Optional;DefaultParameterValue(null)>] ?ZAuto,
         [<Optional;DefaultParameterValue(null)>] ?ZMin,
@@ -3606,7 +4009,7 @@ type Chart =
                     ?Text       = Text,
                     ?Below      = Below,
                     ?Colorscale = Colorscale,
-                    ?Colorbar   = Colorbar,
+                    ?ColorBar   = ColorBar,
                     ?Showscale  = Showscale,
                     ?ZAuto      = ZAuto,
                     ?ZMin       = ZMin,
@@ -3626,7 +4029,7 @@ type Chart =
     /// <param name="Text">Sets text elements associated with each (lon,lat) pair If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (lon,lat) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
     /// <param name="Below">Determines if the densitymapbox trace will be inserted before the layer with the specified ID. By default, densitymapbox traces are placed below the first layer of type symbol If set to '', the layer will be inserted above every existing layer.</param>
     /// <param name="Colorscale">Sets the colorscale.</param>
-    /// <param name="Colorbar">Sets the Colorbar object asociated with this trace</param>
+    /// <param name="ColorBar">Sets the ColorBar object asociated with this trace</param>
     /// <param name="Showscale">Determines whether or not a colorbar is displayed for this trace.</param>
     /// <param name="ZAuto">Determines whether or not the color domain is computed with respect to the input data (here in `z`) or the bounds set in `zmin` and `zmax` Defaults to `false` when `zmin` and `zmax` are set by the user.</param>
     /// <param name="ZMin">Sets the lower bound of the color domain. Value should have the same units as in `z` and if set, `zmax` must be set as well.</param>
@@ -3639,7 +4042,7 @@ type Chart =
         [<Optional;DefaultParameterValue(null)>] ?Text,
         [<Optional;DefaultParameterValue(null)>] ?Below,
         [<Optional;DefaultParameterValue(null)>] ?Colorscale,
-        [<Optional;DefaultParameterValue(null)>] ?Colorbar,
+        [<Optional;DefaultParameterValue(null)>] ?ColorBar,
         [<Optional;DefaultParameterValue(null)>] ?Showscale ,
         [<Optional;DefaultParameterValue(null)>] ?ZAuto,
         [<Optional;DefaultParameterValue(null)>] ?ZMin,
@@ -3658,7 +4061,7 @@ type Chart =
                 ?Text       = Text,
                 ?Below      = Below,
                 ?Colorscale = Colorscale,
-                ?Colorbar   = Colorbar, 
+                ?ColorBar   = ColorBar, 
                 ?Showscale  = Showscale,
                 ?ZAuto      = ZAuto,
                 ?ZMin       = ZMin,

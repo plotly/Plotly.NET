@@ -59,7 +59,7 @@ let pointGeo =
         Labels=cityNames,
         TextPosition=StyleParam.TextPosition.TopCenter
     )
-    |> Chart.withMapStyle(
+    |> Chart.withGeoStyle(
         Scope=StyleParam.GeoScope.NorthAmerica, 
         Projection=GeoProjection.init(StyleParam.GeoProjectionType.AzimuthalEqualArea),
         CountryColor = "lightgrey"
@@ -109,7 +109,7 @@ let flights =
     )
     |> Chart.combine
     |> Chart.withLegend(false)
-    |> Chart.withMapStyle(
+    |> Chart.withGeoStyle(
         Scope=StyleParam.GeoScope.NorthAmerica, 
         Projection=GeoProjection.init(StyleParam.GeoProjectionType.AzimuthalEqualArea),
         ShowLand=true,

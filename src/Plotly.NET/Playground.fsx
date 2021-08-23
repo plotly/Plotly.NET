@@ -2,10 +2,17 @@
 #r "nuget: Deedle"
 #r "nuget: FSharpAux"
 #r "nuget: DynamicObj"
-#r "nuget: Newtonsoft.Json, 12.0.3"
+#r "nuget: Newtonsoft.Json, 13.0.1"
 
 #load "StyleParams.fs"
 #load "Colors.fs"
+#load "Projection.fs"
+#load "Surface.fs"
+#load "SpaceFrame.fs"
+#load "Slices.fs"
+#load "Caps.fs"
+#load "StreamTubeStarts.fs"
+#load "Lighting.fs"
 #load "Rangebreak.fs"
 #load "TickFormatStop.fs"
 #load "Selection.fs"
@@ -15,11 +22,10 @@
 #load "Title.fs"
 #load "Pathbar.fs"
 #load "TreemapTiling.fs"
-#load "Colorbar.fs"
+#load "ColorBar.fs"
 #load "RangeSlider.fs"
 #load "Button.fs"
 #load "RangeSelector.fs"
-#load "Light.fs"
 #load "Legend.fs"
 #load "Contours.fs"
 #load "Dimensions.fs"
@@ -35,8 +41,8 @@
 #load "Polar.fs"
 #load "Bins.fs"
 #load "Cumulative.fs"
+#load "Annotation.fs"
 #load "Scene.fs"
-#load "Selected.fs"
 #load "Shape.fs"
 #load "Error.fs"
 #load "Table.fs"
@@ -48,7 +54,6 @@
 #load "MapboxLayer.fs"
 #load "Mapbox.fs"
 #load "LayoutGrid.fs"
-#load "Annotation.fs"
 #load "Layout.fs"
 #load "Template.fs"
 #load "Config.fs"
@@ -59,6 +64,8 @@
 #load "GenericChartExtensions.fs"
 #load "CandelstickExtension.fs"
 #load "SankeyExtension.fs"
+
+open DynamicObj
 
 open Plotly.NET
 open GenericChart
@@ -71,6 +78,191 @@ open Deedle
 open FSharpAux
 
 open System
+
+let scene1 = 
+    Scene.init(
+        Domain = Domain.init(
+            Row = 0,
+            Column = 1
+        )
+    )
+
+let scene2 = 
+    Scene.init(
+        Domain = Domain.init(
+            Row = 0,
+            Column = 3
+        )
+    )
+
+let p1 = 
+    Chart.Point3d(
+        [1,2,3; 4,5,6; 7,8,9],
+        Labels = ["A"; "B"; "C"],
+        TextPosition = StyleParam.TextPosition.BottomCenter 
+    )
+    |> GenericChart.mapTrace(
+        Trace3d.Trace3dStyle.Scatter3d(
+            Scene = StyleParam.SubPlotId.Scene 1
+        )
+    )
+
+let p2 = 
+    Chart.Point3d(
+        [1,2,3; 4,5,6; 7,8,9],
+        Labels = ["A2"; "B2"; "C2"],
+        TextPosition = StyleParam.TextPosition.BottomCenter 
+    )
+    |> GenericChart.mapTrace(
+        Trace3d.Trace3dStyle.Scatter3d(
+            Scene = StyleParam.SubPlotId.Scene 2
+        )
+)
+
+let c1 = Chart.Line([1,2; 3,4])
+let c2 = Chart.Line([1,2; 3,4])
+
+[c1;p1;c2;p2]
+|> Chart.Grid(1,4,Pattern=StyleParam.LayoutGridPattern.Coupled)
+|> Chart.withScene(scene1, StyleParam.SubPlotId.Scene 1)
+|> Chart.withScene(scene2, StyleParam.SubPlotId.Scene 2)
+|> Chart.withSize(1000.,500.)
+|> Chart.show
+
+Chart.Line3d(
+    [1,3,2; 6,5,4; 7,9,8],
+    Labels = ["A"; "B"; "C"],
+    TextPosition = StyleParam.TextPosition.BottomCenter,
+    ShowMarkers = true
+)
+|> Chart.show
+
+Chart.Bubble3d(
+    [1,3,2; 6,5,4; 7,9,8],
+    [20; 40; 30],
+    Labels = ["A"; "B"; "C"],
+    TextPosition = StyleParam.TextPosition.TopLeft 
+)
+|> Chart.show
+
+
+let linspace (min,max,n) = 
+    if n <= 2 then failwithf "n needs to be larger then 2"
+    let bw = float (max - min) / (float n - 1.)
+    Array.init n (fun i -> min + (bw * float i))
+
+let mgrid (min,max,n) = 
+
+    let data = linspace(min,max,n)
+
+    let z = [|for i in 1 .. n do [|for i in 1 .. n do yield data|]|]
+    let x = [|for i in 1 .. n do [|for j in 1 .. n do yield [|for k in 1 .. n do yield data.[i-1]|]|]|]
+    let y = [|for i in 1 .. n do [|for j in 1 .. n do yield [|for k in 1 .. n do yield data.[j-1]|]|]|]
+
+    x,y,z
+
+
+let xIso,yIso,zIso = 
+    mgrid(-5.,5.,40)
+    |> fun (x,y,z) ->
+        (x |> Array.concat |> Array.concat),
+        (y |> Array.concat |> Array.concat),
+        (z |> Array.concat |> Array.concat)
+
+let valueIso =
+    Array.map3 (fun x y z ->
+        x * x * 0.5 + y * y + z * z * 2.
+    ) xIso yIso zIso
+        
+let contains3d ch=
+    ch 
+    |> existsTrace (fun t ->
+        match t with
+        | :? Trace3d -> true
+        | _ -> false)
+
+let iso = 
+    Chart.IsoSurface(
+        xIso,yIso,zIso,valueIso,
+        IsoMin = 10.,
+        IsoMax = 40.,
+        Caps = Caps.init(
+            X = (CapFill.init(Show=false)),
+            Y = (CapFill.init(Show=false))
+        ),
+        Surface = Surface.init(Count=5),
+        ColorScale = StyleParam.Colorscale.Viridis
+    )
+    |> GenericChart.mapTrace(fun t ->
+        t
+        |> Trace3d.Trace3dStyle.Cone(Name="soos")
+    )
+
+contains3d iso
+
+iso |> Chart.show
+
+let x,y,z = 
+    mgrid(-8.,8.,40)
+    |> fun (x,y,z) ->
+        (x |> Array.concat |> Array.concat),
+        (y |> Array.concat |> Array.concat),
+        (z |> Array.concat |> Array.concat)
+
+let values = 
+    Array.map3 (fun x y z ->
+        sin(x*y*z) / (x*y*z)
+    ) x y z
+        
+
+Chart.Volume(
+   x, y, z, values,
+   Opacity=0.1,
+   Surface=(Surface.init(Count=17)),
+   IsoMin=0.1,
+   IsoMax=0.8,
+   ColorScale = StyleParam.Colorscale.Viridis
+
+)
+|> Chart.show
+
+let tubeData =
+    Http.RequestString @"https://raw.githubusercontent.com/plotly/datasets/master/streamtube-wind.csv"
+    |> Frame.ReadCsvString
+
+tubeData.Print()
+
+Chart.StreamTube(
+    x = (tubeData.["x"] |> Series.values),
+    y = (tubeData.["y"] |> Series.values),
+    z = (tubeData.["z"] |> Series.values),
+    u = (tubeData.["u"] |> Series.values),
+    v = (tubeData.["v"] |> Series.values),
+    w = (tubeData.["w"] |> Series.values),
+    Starts = 
+        StreamTubeStarts.init(
+            X = Array.init 16 (fun _ -> 80),
+            Y = [20;30;40;50;20;30;40;50;20;30;40;50;20;30;40;50],
+            Z = [0;0;0;0;5;5;5;5;10;10;10;10;15;15;15;15]
+        ),
+    ColorScale = StyleParam.Colorscale.Viridis
+)
+|> Chart.show
+
+Chart.Cone(
+    x = [1; 1; 1],
+    y = [1; 2; 3],
+    z = [1; 1; 1],
+    u = [1; 2; 3],
+    v = [1; 1; 2],
+    w = [4; 4; 1]
+)
+|> Chart.show
+
+Chart.Point([1,2])
+|> Chart.withXAxisStyle ("X axis title quack quack", MinMax = (-1.,10.))
+|> Chart.withYAxisStyle ("Y axis title boo foo", MinMax = (-1.,10.))
+|> Chart.show
 
 let r  = [ 1; 2; 3; 4; 5; 6; 7;] |> List.map ((*) 10000)
 let r2 = [ 5; 6; 7; 1; 2; 3; 4;] |> List.map ((*) 10000)
@@ -344,7 +536,7 @@ Chart.ChoroplethMap(
     GeoJson = geoJson,
     FeatureIdKey="id"
 )
-|> Chart.withMap(
+|> Chart.withGeo(
     Geo.init(
         Scope=StyleParam.GeoScope.Usa
     )
@@ -360,7 +552,7 @@ Trace.initChoroplethMap(id)
     t?locationmode <- "geojson-id"
     t
 |> GenericChart.ofTraceObject
-|> Chart.withMap(
+|> Chart.withGeo(
     Geo.init(
         Scope=StyleParam.GeoScope.Usa
     )
@@ -547,14 +739,14 @@ Chart.ScatterGeo(
     ],
     StyleParam.Mode.Lines
 )
-|> Chart.withMapStyle(
+|> Chart.withGeoStyle(
     Projection=GeoProjection.init(projectionType=StyleParam.GeoProjectionType.AzimuthalEqualArea),
     ShowLakes=true,
     ShowOcean=true,
     OceanColor="lightblue",
     ShowRivers=true)
 |> Chart.show
-//test new withMapStyle function
+//test new withGeoStyle function
 
 let locations2,z2 = 
    [("Belarus",17.5); ("Moldova",16.8);("Lithuania",15.4);("Russia",15.1);
@@ -609,13 +801,13 @@ let locations2,z2 =
 
 // Pure alcohol consumption among adults (age 15+) in 2010
 Chart.ChoroplethMap(locations2,z2,Locationmode=StyleParam.LocationFormat.CountryNames,Colorscale=StyleParam.Colorscale.Electric)
-|> Chart.withMapStyle(
+|> Chart.withGeoStyle(
     Projection=GeoProjection.init(projectionType=StyleParam.GeoProjectionType.Mollweide),
     ShowLakes=true,
     ShowOcean=true,
     OceanColor="lightblue",
     ShowRivers=true)
-|> Chart.withColorBarStyle ("Alcohol consumption[l/y]",Length=0.5)
+|> Chart.withColorBarStyle (Title.init("Alcohol consumption[l/y]"),Length=0.5)
 |> Chart.withSize(1000.,1000.)
 |> Chart.show
 
@@ -800,9 +992,7 @@ generateDomainRanges 8 1
 ]
 |> Chart.Heatmap
 |> Chart.withColorBarStyle(
-    "Hallo?",
-    TitleSide=StyleParam.Side.Right,
-    TitleFont=Font.init(Size=20.)
+    Title.init("Hallo?",Side=StyleParam.Side.Right)
 )
 |> Chart.show
 

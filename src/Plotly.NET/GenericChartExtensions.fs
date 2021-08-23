@@ -31,18 +31,9 @@ module GenericChartExtensions =
         member this.WithAxisAnchor
             (
                 [<Optional;DefaultParameterValue(null)>] ?X,
-                [<Optional;DefaultParameterValue(null)>] ?Y,
-                [<Optional;DefaultParameterValue(null)>] ?Z
+                [<Optional;DefaultParameterValue(null)>] ?Y
             ) =
-                let idx   = if X.IsSome then Some (StyleParam.AxisAnchorId.X X.Value) else None
-                let idy   = if Y.IsSome then Some (StyleParam.AxisAnchorId.Y Y.Value) else None
-                let idz   = if Z.IsSome then Some (StyleParam.AxisAnchorId.Z Z.Value) else None
-    
-                this 
-                |> mapTrace (fun trace ->
-                    trace 
-                    |> Trace.TraceStyle.SetAxisAnchor(?X=idx,?Y=idy,?Z=idz)
-                )
+                this |> Chart.withAxisAnchor(?X = X,?Y = Y)
 
         /// Apply styling to the Marker(s) of the chart as Object.
         [<CompiledName("WithMarker")>]
@@ -161,27 +152,8 @@ module GenericChartExtensions =
         // Sets x-Axis of 2d and 3d- Charts
         [<CompiledName("WithXAxis")>]
         [<Extension>]
-        member this.WithXAxis(xAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id) =
-
-            let contains3d =
-                this 
-                |> existsTrace (fun t ->
-                    match t with
-                    | :? Trace3d -> true
-                    | _ -> false)
-
-            match contains3d with
-            | false -> 
-                let layout =
-                    let id = if Id.IsSome then StyleParam.AxisId.X Id.Value else StyleParam.AxisId.X 1
-                    GenericChart.getLayout this
-                    |> Layout.UpdateLinearAxisById(id,axis=xAxis)
-                GenericChart.setLayout layout this
-            | true  -> 
-                let layout =
-                    Layout() 
-                    |> Layout.style (Scene=Scene.init( xAxis=xAxis) )
-                GenericChart.addLayout layout this
+        member this.WithXAxis(xAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId) =
+            this |> Chart.withXAxis(xAxis, ?Id = Id)
 
         // Sets x-Axis of 2d and 3d- Charts
         [<CompiledName("WithXAxisStyle")>]
@@ -214,27 +186,8 @@ module GenericChartExtensions =
         // Sets y-Axis of 2d and 3d- Charts
         [<CompiledName("WithYAxis")>]
         [<Extension>]
-        member this.WithYAxis(yAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id) =
-            
-            let contains3d =
-                this 
-                |> existsTrace (fun t -> 
-                    match t with
-                    | :? Trace3d -> true
-                    | _ -> false)
-
-            match contains3d with
-            | false -> 
-                let layout =
-                    let id = if Id.IsSome then StyleParam.AxisId.Y Id.Value else StyleParam.AxisId.Y 1
-                    GenericChart.getLayout this 
-                    |> Layout.UpdateLinearAxisById(id,axis=yAxis)
-                GenericChart.setLayout layout this
-            | true  -> 
-                let layout =
-                    Layout() 
-                    |> Layout.style(Scene=Scene.init(yAxis=yAxis) )
-                GenericChart.addLayout layout this
+        member this.WithYAxis(yAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId) =
+            this |> Chart.withYAxis(yAxis, ?Id = Id)
 
          // Sets y-Axis of 3d- Charts
         [<CompiledName("WithYAxisStyle")>]
@@ -260,11 +213,8 @@ module GenericChartExtensions =
         // Sets z-Axis of 3d- Charts
         [<CompiledName("WithZAxis")>]
         [<Extension>]
-        member this.WithZAxis(zAxis:Axis.LinearAxis) =
-            let layout =
-                Layout() 
-                |> Layout.style(Scene=Scene.init(zAxis=zAxis))
-            GenericChart.addLayout layout this
+        member this.WithZAxis(zAxis:Axis.LinearAxis, [<Optional;DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId) =
+            this |> Chart.withZAxis(zAxis, ?Id=Id)
              
 
 
@@ -284,7 +234,7 @@ module GenericChartExtensions =
 
         [<CompiledName("WithColorBar")>]
         [<Extension>]
-        member this.withColorBar(colorbar:Colorbar) =
+        member this.withColorBar(colorbar:ColorBar) =
             this
             |> GenericChart.mapTrace(fun t ->
                 colorbar |> DynObj.setValue t "colorbar" 
@@ -294,13 +244,11 @@ module GenericChartExtensions =
         [<CompiledName("WithColorbar")>]
         [<Extension>]
         member this.WithColorBarStyle(title,
-                [<Optional;DefaultParameterValue(null)>] ?TitleSide: StyleParam.Side,
-                [<Optional;DefaultParameterValue(null)>] ?TitleFont: Font,
                 [<Optional;DefaultParameterValue(null)>] ?Length,
                 [<Optional;DefaultParameterValue(null)>] ?OutlineColor,
                 [<Optional;DefaultParameterValue(null)>] ?BorderColor,
                 [<Optional;DefaultParameterValue(null)>] ?BGColor) =
-            let colorbar = Colorbar.init(Title=title,?Titleside=TitleSide,?Titlefont=TitleFont,?Len = Length,?Outlinecolor=OutlineColor,?Bgcolor=BGColor,?Bordercolor=BorderColor)
+            let colorbar = ColorBar.init(Title=title,?Len = Length,?OutlineColor=OutlineColor,?BGColor=BGColor,?BorderColor=BorderColor)
             this |> Chart.withColorBar(colorbar)
         
         // Set the Layout options of a Chart
@@ -329,22 +277,14 @@ module GenericChartExtensions =
         /// Sets a map for the given chart (will only work with traces supporting geo, e.g. choropleth, scattergeo)
         [<CompiledName("WithMap")>]
         [<Extension>]
-        member this.WithMap(map:Geo,[<Optional;DefaultParameterValue(null)>] ?Id ) =
-            let layout =
-                let id = defaultArg Id 1
-                GenericChart.getLayout this
-                |> Layout.UpdateMapById(id,map)
-            GenericChart.setLayout layout this
+        member this.WithGeo(geo:Geo,[<Optional;DefaultParameterValue(null)>] ?Id:StyleParam.SubPlotId ) =
+            this |> Chart.withGeo(geo, ?Id = Id)
             
         /// Sets a mapbox for the given chart (will only work with traces supporting mapboxes, e.g. choroplethmapbox, scattermapbox)
         [<CompiledName("WithMapbox")>]
         [<Extension>]
-        member this.withMapbox(mapBox:Mapbox,[<Optional;DefaultParameterValue(null)>] ?Id ) =
-            let layout =
-                let id = defaultArg Id 1
-                GenericChart.getLayout this 
-                |> Layout.UpdateMapboxById(id,mapBox)
-            GenericChart.setLayout layout this
+        member this.withMapbox(mapBox:Mapbox,[<Optional;DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId ) =
+            this |> Chart.withMapbox(mapBox, ?Id = Id)
             
 
         /// Sets the map style for the given chart (will only work with traces supporting geo, e.g. choropleth, scattergeo)
@@ -412,9 +352,9 @@ module GenericChartExtensions =
         /// LatAxis         : Sets the latitudinal axis for this geo trace
         ///
         /// LonAxis         : Sets the longitudinal axis for this geo trace
-        [<CompiledName("WithMapStyle")>]
+        [<CompiledName("WithGeoStyle")>]
         [<Extension>]
-        member this.WithMapStyle([<Optional;DefaultParameterValue(null)>] ?Id,
+        member this.WithGeoStyle([<Optional;DefaultParameterValue(null)>] ?Id : StyleParam.SubPlotId,
             [<Optional;DefaultParameterValue(null)>]?FitBounds       : StyleParam.GeoFitBounds,
             [<Optional;DefaultParameterValue(null)>]?Resolution      : StyleParam.GeoResolution,
             [<Optional;DefaultParameterValue(null)>]?Scope           : StyleParam.GeoScope,
@@ -447,44 +387,42 @@ module GenericChartExtensions =
             [<Optional;DefaultParameterValue(null)>]?LatAxis         : Axis.LinearAxis,
             [<Optional;DefaultParameterValue(null)>]?LonAxis         : Axis.LinearAxis
         ) =
-            let map =
-                Geo.init(
-                    ?FitBounds      = FitBounds     ,
-                    ?Resolution     = Resolution    ,
-                    ?Scope          = Scope         ,
-                    ?Projection     = Projection    ,
-                    ?Center         = Center        ,
-                    ?Visible        = Visible       ,
-                    ?Domain         = Domain        ,
-                    ?ShowCoastLines = ShowCoastLines,
-                    ?CoastLineColor = CoastLineColor,
-                    ?CoastLineWidth = CoastLineWidth,
-                    ?ShowLand       = ShowLand      ,
-                    ?LandColor      = LandColor     ,
-                    ?ShowOcean      = ShowOcean     ,
-                    ?OceanColor     = OceanColor    ,
-                    ?ShowLakes      = ShowLakes     ,
-                    ?LakeColor      = LakeColor     ,
-                    ?ShowRivers     = ShowRivers    ,
-                    ?RiverColor     = RiverColor    ,
-                    ?RiverWidth     = RiverWidth    ,
-                    ?ShowCountries  = ShowCountries ,
-                    ?CountryColor   = CountryColor  ,
-                    ?CountryWidth   = CountryWidth  ,
-                    ?ShowSubunits   = ShowSubunits  ,
-                    ?SubunitColor   = SubunitColor  ,
-                    ?SubunitWidth   = SubunitWidth  ,
-                    ?ShowFrame      = ShowFrame     ,
-                    ?FrameColor     = FrameColor    ,
-                    ?FrameWidth     = FrameWidth    ,
-                    ?BgColor        = BgColor       ,
-                    ?LatAxis        = LatAxis       ,
-                    ?LonAxis        = LonAxis       
-                ) in
-            let id = defaultArg Id 1 in
-            this |> Chart.withMap(map,id)
+            this 
+            |> Chart.withGeoStyle(
+                ?FitBounds      = FitBounds     ,
+                ?Resolution     = Resolution    ,
+                ?Scope          = Scope         ,
+                ?Projection     = Projection    ,
+                ?Center         = Center        ,
+                ?Visible        = Visible       ,
+                ?Domain         = Domain        ,
+                ?ShowCoastLines = ShowCoastLines,
+                ?CoastLineColor = CoastLineColor,
+                ?CoastLineWidth = CoastLineWidth,
+                ?ShowLand       = ShowLand      ,
+                ?LandColor      = LandColor     ,
+                ?ShowOcean      = ShowOcean     ,
+                ?OceanColor     = OceanColor    ,
+                ?ShowLakes      = ShowLakes     ,
+                ?LakeColor      = LakeColor     ,
+                ?ShowRivers     = ShowRivers    ,
+                ?RiverColor     = RiverColor    ,
+                ?RiverWidth     = RiverWidth    ,
+                ?ShowCountries  = ShowCountries ,
+                ?CountryColor   = CountryColor  ,
+                ?CountryWidth   = CountryWidth  ,
+                ?ShowSubunits   = ShowSubunits  ,
+                ?SubunitColor   = SubunitColor  ,
+                ?SubunitWidth   = SubunitWidth  ,
+                ?ShowFrame      = ShowFrame     ,
+                ?FrameColor     = FrameColor    ,
+                ?FrameWidth     = FrameWidth    ,
+                ?BgColor        = BgColor       ,
+                ?LatAxis        = LatAxis       ,
+                ?LonAxis        = LonAxis       
+            )
 
-        [<CompiledName("WithMapProjection")>]
+        [<CompiledName("WithGeoProjection")>]
         [<Extension>]
         member this.WithMapProjection(projectionType : StyleParam.GeoProjectionType,
              [<Optional;DefaultParameterValue(null)>]?Rotation ,
@@ -492,25 +430,21 @@ module GenericChartExtensions =
              [<Optional;DefaultParameterValue(null)>]?Scale    ,
              [<Optional;DefaultParameterValue(null)>]?Id
             ) =
-                let projection = 
-                    GeoProjection.init(
-                        projectionType  = projectionType,
-                        ?Rotation       = Rotation      ,
-                        ?Parallels      = Parallels     ,
-                        ?Scale          = Scale        
-                    )
-
-                let map = Geo.init(Projection     = projection)
-                let id = defaultArg Id 1
-                this |> Chart.withMap(map,id)
+                this 
+                |> Chart.withGeoProjection(
+                    projectionType  = projectionType,
+                    ?Rotation       = Rotation      ,
+                    ?Parallels      = Parallels     ,
+                    ?Scale          = Scale        
+                )
             
 
         // Set the LayoutGrid options of a Chart
         [<CompiledName("WithLayoutGridStyle")>]
         [<Extension>]
-        member this.WithLayoutGridStyle([<Optional;DefaultParameterValue(null)>]?SubPlots   : (StyleParam.AxisId * StyleParam.AxisId)[] [],
-            [<Optional;DefaultParameterValue(null)>]?XAxes      : StyleParam.AxisId [],
-            [<Optional;DefaultParameterValue(null)>]?YAxes      : StyleParam.AxisId [],
+        member this.WithLayoutGridStyle([<Optional;DefaultParameterValue(null)>]?SubPlots   : (StyleParam.LinearAxisId * StyleParam.LinearAxisId)[] [],
+            [<Optional;DefaultParameterValue(null)>]?XAxes      : StyleParam.LinearAxisId [],
+            [<Optional;DefaultParameterValue(null)>]?YAxes      : StyleParam.LinearAxisId [],
             [<Optional;DefaultParameterValue(null)>]?Rows       : int,
             [<Optional;DefaultParameterValue(null)>]?Columns    : int,
             [<Optional;DefaultParameterValue(null)>]?RowOrder   : StyleParam.LayoutGridRowOrder,
@@ -692,4 +626,28 @@ module GenericChartExtensions =
         member this.ShowAsImage (format:StyleParam.ImageFormat) = 
             this |> Chart.showAsImage format
 
-    
+        /// Sets the polar object with the given id on the chart layout
+        [<CompiledName("WithPolar")>]
+        member this.WithPolar(polar:Polar, [<Optional;DefaultParameterValue(null)>] ?Id) =
+            this |> Chart.withPolar(polar,?Id=Id)
+
+        /// Sets the angular axis of the polar object with the given id on the chart layout
+        [<CompiledName("WithAngularAxis")>]
+        member this.WithAngularAxis(angularAxis:Axis.AngularAxis, [<Optional;DefaultParameterValue(null)>] ?Id) =
+            this |> Chart.withAngularAxis(angularAxis,?Id=Id)
+            
+        /// Sets the radial axis of the polar object with the given id on the chart layout
+        [<CompiledName("WithRadialAxis")>]
+        member this.WithRadialAxis(radialAxis:Axis.RadialAxis, [<Optional;DefaultParameterValue(null)>] ?Id) =
+            this |> Chart.withRadialAxis(radialAxis,?Id=Id)
+
+        /// Sets the color axis of the color axis with the given id on the chart layout
+        [<CompiledName("WithColorAxis")>]
+        member this.WithColorAxis(colorAxis:Axis.ColorAxis, [<Optional;DefaultParameterValue(null)>] ?Id) =
+            this |> Chart.withColorAxis(colorAxis,?Id=Id)
+
+        /// Sets the scene object with the given id on the chart layout
+        [<CompiledName("WithScene")>]
+        member this.WithScene(scene:Scene, [<Optional;DefaultParameterValue(null)>] ?Id) =
+            this |> Chart.withScene(scene,?Id=Id)
+

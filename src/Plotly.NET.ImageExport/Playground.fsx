@@ -15,7 +15,7 @@
 #load "../Plotly.NET/Title.fs"
 #load "../Plotly.NET/Pathbar.fs"
 #load "../Plotly.NET/TreemapTiling.fs"
-#load "../Plotly.NET/Colorbar.fs"
+#load "../Plotly.NET/ColorBar.fs"
 #load "../Plotly.NET/RangeSlider.fs"
 #load "../Plotly.NET/Button.fs"
 #load "../Plotly.NET/RangeSelector.fs"

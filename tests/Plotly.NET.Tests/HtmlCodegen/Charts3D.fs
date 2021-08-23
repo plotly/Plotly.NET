@@ -6,14 +6,31 @@ open TestUtils
 open Plotly.NET.GenericChart
 open System
 
+//---------------------- Generate linearly spaced vector ----------------------
+let linspace (min,max,n) = 
+    if n <= 2 then failwithf "n needs to be larger then 2"
+    let bw = float (max - min) / (float n - 1.)
+    Array.init n (fun i -> min + (bw * float i))
+
+//-------------------- Generate linearly spaced mesh grid ---------------------
+let mgrid (min,max,n) = 
+
+    let data = linspace(min,max,n)
+
+    let z = [|for i in 1 .. n do [|for i in 1 .. n do yield data|]|]
+    let x = [|for i in 1 .. n do [|for j in 1 .. n do yield [|for k in 1 .. n do yield data.[i-1]|]|]|]
+    let y = [|for i in 1 .. n do [|for j in 1 .. n do yield [|for k in 1 .. n do yield data.[j-1]|]|]|]
+
+    x,y,z
+
 let scatterChart =
     let x = [19; 26; 55;]
     let y = [19; 26; 55;]
     let z = [19; 26; 55;]
 
     Chart.Scatter3d(x,y,z,StyleParam.Mode.Markers)
-    |> Chart.withXAxisStyle("my x-axis")
-    |> Chart.withYAxisStyle("my y-axis")
+    |> Chart.withXAxisStyle("my x-axis", Id=StyleParam.SubPlotId.Scene 1)
+    |> Chart.withYAxisStyle("my y-axis", Id=StyleParam.SubPlotId.Scene 1)
     |> Chart.withZAxisStyle("my z-axis")
     |> Chart.withSize(800.,800.)
 
@@ -21,12 +38,36 @@ let scatterChart =
 let ``3D Scatter charts`` =
     testList "Charts3D.3D Scatter charts" [
         testCase "3D Scatter charts data" ( fun () ->
-            "var data = [{\"type\":\"scatter3d\",\"x\":[19,26,55],\"y\":[19,26,55],\"z\":[19,26,55],\"mode\":\"markers\",\"line\":{},\"marker\":{}}];"
+            """var data = [{"type":"scatter3d","mode":"markers","x":[19,26,55],"y":[19,26,55],"z":[19,26,55],"line":{},"marker":{}}]"""
             |> chartGeneratedContains scatterChart
         );
         testCase "3D Scatter charts layout" ( fun () ->
-            "var layout = {\"scene\":{\"xaxis\":{\"title\":{\"text\":\"my x-axis\"}},\"yaxis\":{\"title\":{\"text\":\"my y-axis\"}},\"zaxis\":{\"title\":{\"text\":\"my z-axis\"}}},\"width\":800.0,\"height\":800.0};"
+            """var layout = {"scene":{"xaxis":{"title":{"text":"my x-axis"}},"yaxis":{"title":{"text":"my y-axis"}},"zaxis":{"title":{"text":"my z-axis"}}},"width":800.0,"height":800.0};"""
             |> chartGeneratedContains scatterChart
+        );
+    ]
+
+let pointChart =
+    let x = [19; 26; 55;]
+    let y = [19; 26; 55;]
+    let z = [19; 26; 55;]
+
+    Chart.Point3d(x,y,z)
+    |> Chart.withXAxisStyle("my x-axis", Id=StyleParam.SubPlotId.Scene 1)
+    |> Chart.withYAxisStyle("my y-axis", Id=StyleParam.SubPlotId.Scene 1)
+    |> Chart.withZAxisStyle("my z-axis")
+    |> Chart.withSize(800.,800.)
+
+[<Tests>]
+let ``3D Point charts`` =
+    testList "Charts3D.3D Point charts" [
+        testCase "3D Point charts data" ( fun () ->
+            """var data = [{"type":"scatter3d","mode":"markers","x":[19,26,55],"y":[19,26,55],"z":[19,26,55],"line":{},"marker":{}}]"""
+            |> chartGeneratedContains pointChart
+        );
+        testCase "3D Point charts layout" ( fun () ->
+            """var layout = {"scene":{"xaxis":{"title":{"text":"my x-axis"}},"yaxis":{"title":{"text":"my y-axis"}},"zaxis":{"title":{"text":"my z-axis"}}},"width":800.0,"height":800.0};"""
+            |> chartGeneratedContains pointChart
         );
     ]
 
@@ -39,39 +80,59 @@ let lineChart =
             let i' = float i 
             let r = 10. * Math.Cos (i' / 10.)
             (r * Math.Cos i', r * Math.Sin i', i')
+            |> fun (x,y,z) -> 
+                Math.Round(x,3),
+                Math.Round(y,3),
+                Math.Round(z,3)
         )
         |> List.unzip3
 
-    Chart.Scatter3d(x, y, z, StyleParam.Mode.Lines_Markers)
-    |> Chart.withXAxisStyle("x-axis")
-    |> Chart.withYAxisStyle("y-axis")
+    Chart.Line3d(x, y, z, ShowMarkers=true)
+    |> Chart.withXAxisStyle("x-axis", Id=StyleParam.SubPlotId.Scene 1)
+    |> Chart.withYAxisStyle("y-axis", Id=StyleParam.SubPlotId.Scene 1)
     |> Chart.withZAxisStyle("z-axis")
     |> Chart.withSize(800., 800.)
-
 
 [<Tests>]
 let ``Line charts`` =
     testList "Charts3D.Line charts" [
         testCase "Line data" ( fun () ->
-            [
-                "var data = [{\"type\":\"scatter3d\",\"x\":[10.0,8.764858122060915,5.3760304484812105,0.699428991431538,"
-                ",0.4599954209124893],\"z\":[0.0,0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0,8.5,9.0,9.5,10.0,10.5,11.0,11.5,12.0,12.5,13.0,13.5,14.0,14.5,15.0],\"mode\":\"lines+markers\",\"line\":{},\"marker\":{}}];"
-            ]
-            |> chartGeneratedContainsList lineChart
+            """var data = [{"type":"scatter3d","mode":"lines+markers","x":[10.0,8.765,5.376,0.699,-4.079,-7.762,-9.458,-8.797,-6.02,-1.898,2.489,6.042,7.925,7.774,5.766,2.536,-1.014,-3.973,-5.664,-5.8,-4.534,-2.366,0.02,1.974,3.058,3.146,2.427,1.303,0.232,-0.428,-0.537],"y":[0.0,4.788,8.373,9.863,8.912,5.799,1.348,-3.295,-6.971,-8.802,-8.415,-6.015,-2.306,1.713,5.025,6.863,6.893,5.27,2.562,-0.437,-2.939,-4.377,-4.536,-3.576,-1.944,-0.209,1.124,1.76,1.684,1.127,0.46],"z":[0.0,0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0,8.5,9.0,9.5,10.0,10.5,11.0,11.5,12.0,12.5,13.0,13.5,14.0,14.5,15.0],"line":{},"marker":{}}];"""
+            |> chartGeneratedContains lineChart
         );
         testCase "Line layout" ( fun () ->
-            "var layout = {\"scene\":{\"xaxis\":{\"title\":{\"text\":\"x-axis\"}},\"yaxis\":{\"title\":{\"text\":\"y-axis\"}},\"zaxis\":{\"title\":{\"text\":\"z-axis\"}}},\"width\":800.0,\"height\":800.0};"
+            """var layout = {"scene":{"xaxis":{"title":{"text":"x-axis"}},"yaxis":{"title":{"text":"y-axis"}},"zaxis":{"title":{"text":"z-axis"}}},"width":800.0,"height":800.0};"""
             |> chartGeneratedContains lineChart
         );
     ]
 
+let bubbleChart =
+    Chart.Bubble3d(
+        [1,3,2; 6,5,4; 7,9,8],
+        [20; 40; 30],
+        Labels = ["A"; "B"; "C"],
+        TextPosition = StyleParam.TextPosition.TopLeft 
+    )
+    |> Chart.withXAxisStyle("x-axis", Id=StyleParam.SubPlotId.Scene 1)
+    |> Chart.withYAxisStyle("y-axis", Id=StyleParam.SubPlotId.Scene 1)
+    |> Chart.withZAxisStyle("z-axis")
+
+[<Tests>]
+let ``Bubble charts`` =
+    testList "Charts3D.Bubble charts" [
+        testCase "Bubble data" ( fun () ->
+            """var data = [{"type":"scatter3d","mode":"markers+text","x":[1,6,7],"y":[3,5,9],"z":[2,4,8],"marker":{"size":[20,40,30]},"text":["A","B","C"],"textposition":"top left"}];"""
+            |> chartGeneratedContains bubbleChart
+        );
+        testCase "Bubble layout" ( fun () ->
+            """var layout = {"scene":{"xaxis":{"title":{"text":"x-axis"}},"yaxis":{"title":{"text":"y-axis"}},"zaxis":{"title":{"text":"z-axis"}}}};"""
+            |> chartGeneratedContains bubbleChart
+        );
+    ]
+
+
 let firstSurfaceChart =
-    //---------------------- Generate linearly spaced vector ----------------------
-    let linspace (min,max,n) = 
-        if n <= 2 then failwithf "n needs to be larger then 2"
-        let bw = float (max - min) / (float n - 1.)
-        Array.init n (fun i -> min + (bw * float i))
-    
+
     //---------------------- Create example data ----------------------
     let size = 100
     let x = linspace(-2. * Math.PI, 2. * Math.PI, size)
@@ -116,7 +177,7 @@ let ``Surface charts`` =
             emptyLayout firstSurfaceChart
         );
         testCase "Second surface data" ( fun () ->
-            "var data = [{\"type\":\"surface\",\"z\":[[1.0,1.0],[1.0,2.0]],\"x\":[0.0,2.5],\"y\":[0.0,2.5],\"contours\":{\"x\":{\"show\":true},\"y\":{\"show\":true},\"z\":{\"show\":true}},\"opacity\":0.5}];"
+            """var data = [{"type":"surface","x":[0.0,2.5],"y":[0.0,2.5],"z":[[1.0,1.0],[1.0,2.0]],"contours":{"x":{"show":true},"y":{"show":true},"z":{"show":true}},"opacity":0.5}];"""
             |> chartGeneratedContains secondSurfaceChart
         );
         testCase "Second surface layout" ( fun () ->
@@ -126,13 +187,6 @@ let ``Surface charts`` =
 
 
 let meshChart =
-    let linspace (min,max,n) = 
-        if n <= 2 then failwithf "n needs to be larger then 2"
-        let bw = float (max - min) / (float n - 1.)
-        Array.init n (fun i -> min + (bw * float i))
-        //[|min ..bw ..max|]
-    
-    //---------------------- Create example data ----------------------
     let size = 100
     let x = linspace(-2. * Math.PI, 2. * Math.PI, size)
     let y = linspace(-2. * Math.PI, 2. * Math.PI, size)
@@ -171,5 +225,95 @@ let ``Mesh charts`` =
         );
         testCase "Mesh layout" ( fun () ->
             emptyLayout meshChart
+        );
+    ]
+
+let coneChart = 
+    Chart.Cone(
+        x = [1; 1; 1],
+        y = [1; 2; 3],
+        z = [1; 1; 1],
+        u = [1; 2; 3],
+        v = [1; 1; 2],
+        w = [4; 4; 1],
+        ColorScale = StyleParam.Colorscale.Viridis
+    )
+
+[<Tests>]
+let ``Cone charts`` =
+    testList "Charts3D.Cone charts" [
+        testCase "Cone data" ( fun () ->
+            """var data = [{"type":"cone","x":[1,1,1],"y":[1,2,3],"z":[1,1,1],"u":[1,2,3],"v":[1,1,2],"w":[4,4,1],"colorscale":"Viridis"}];"""
+            |> chartGeneratedContains coneChart
+        );
+        testCase "Cone layout" ( fun () ->
+            emptyLayout coneChart
+        );
+    ]
+
+let streamTubeChart = 
+    Chart.StreamTube(
+        x = [0; 0; 0],
+        y = [0; 1; 2],
+        z = [0; 0; 0],
+        u = [0; 0; 0],
+        v = [1; 1; 1],
+        w = [0; 0; 0],
+        ColorScale = StyleParam.Colorscale.Viridis
+    )
+
+[<Tests>]
+let ``StreamTube charts`` =
+    testList "StreamTube.Volume charts" [
+        testCase "Volume data" ( fun () ->
+            """var data = [{"type":"streamtube","x":[0,0,0],"y":[0,1,2],"z":[0,0,0],"u":[0,0,0],"v":[1,1,1],"w":[0,0,0],"colorscale":"Viridis"}];"""
+            |> chartGeneratedContains streamTubeChart
+        );
+        testCase "Volume layout" ( fun () ->
+            emptyLayout streamTubeChart
+        );
+    ]
+
+let volumeChart = 
+    let x,y,z = mgrid(1.,2.,4)
+    Chart.Volume(
+        x |> Array.concat |> Array.concat |> Array.map (fun x -> Math.Round(x,3)),
+        y |> Array.concat |> Array.concat |> Array.map (fun x -> Math.Round(x,3)),
+        z |> Array.concat |> Array.concat |> Array.map (fun x -> Math.Round(x,3)),
+        z |> Array.concat |> Array.concat |> Array.map (fun x -> Math.Round(x,3)),
+        ColorScale = StyleParam.Colorscale.Viridis
+    )
+
+[<Tests>]
+let ``Volume charts`` =
+    testList "Charts3D.Volume charts" [
+        testCase "Volume data" ( fun () ->
+            """var data = [{"type":"volume","x":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.333,1.333,1.333,1.333,1.333,1.333,1.333,1.333,1.333,1.333,1.333,1.333,1.333,1.333,1.333,1.333,1.667,1.667,1.667,1.667,1.667,1.667,1.667,1.667,1.667,1.667,1.667,1.667,1.667,1.667,1.667,1.667,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0],"y":[1.0,1.0,1.0,1.0,1.333,1.333,1.333,1.333,1.667,1.667,1.667,1.667,2.0,2.0,2.0,2.0,1.0,1.0,1.0,1.0,1.333,1.333,1.333,1.333,1.667,1.667,1.667,1.667,2.0,2.0,2.0,2.0,1.0,1.0,1.0,1.0,1.333,1.333,1.333,1.333,1.667,1.667,1.667,1.667,2.0,2.0,2.0,2.0,1.0,1.0,1.0,1.0,1.333,1.333,1.333,1.333,1.667,1.667,1.667,1.667,2.0,2.0,2.0,2.0],"z":[1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0],"value":[1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0],"colorscale":"Viridis"}];"""
+            |> chartGeneratedContains volumeChart
+        );
+        testCase "Volume layout" ( fun () ->
+            emptyLayout volumeChart
+        );
+    ]
+    
+let isoSurfaceChart = 
+    let x,y,z = mgrid(1.,2.,4)
+    Chart.IsoSurface(
+        x |> Array.concat |> Array.concat |> Array.map (fun x -> Math.Round(x,3)),
+        y |> Array.concat |> Array.concat |> Array.map (fun x -> Math.Round(x,3)),
+        z |> Array.concat |> Array.concat |> Array.map (fun x -> Math.Round(x,3)),
+        z |> Array.concat |> Array.concat |> Array.map (fun x -> Math.Round(x,3)),
+        ColorScale = StyleParam.Colorscale.Viridis
+    )
+
+[<Tests>]
+let ``IsoSurface charts`` =
+    testList "Charts3D.IsoSurface charts" [
+        testCase "IsoSurface data" ( fun () ->
+            """var data = [{"type":"isosurface","x":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.333,1.333,1.333,1.333,1.333,1.333,1.333,1.333,1.333,1.333,1.333,1.333,1.333,1.333,1.333,1.333,1.667,1.667,1.667,1.667,1.667,1.667,1.667,1.667,1.667,1.667,1.667,1.667,1.667,1.667,1.667,1.667,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0],"y":[1.0,1.0,1.0,1.0,1.333,1.333,1.333,1.333,1.667,1.667,1.667,1.667,2.0,2.0,2.0,2.0,1.0,1.0,1.0,1.0,1.333,1.333,1.333,1.333,1.667,1.667,1.667,1.667,2.0,2.0,2.0,2.0,1.0,1.0,1.0,1.0,1.333,1.333,1.333,1.333,1.667,1.667,1.667,1.667,2.0,2.0,2.0,2.0,1.0,1.0,1.0,1.0,1.333,1.333,1.333,1.333,1.667,1.667,1.667,1.667,2.0,2.0,2.0,2.0],"z":[1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0],"value":[1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0,1.0,1.333,1.667,2.0],"colorscale":"Viridis"}];"""
+            |> chartGeneratedContains isoSurfaceChart
+        );
+        testCase "IsoSurface layout" ( fun () ->
+            emptyLayout isoSurfaceChart
         );
     ]

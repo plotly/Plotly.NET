@@ -54,27 +54,24 @@ module ChartExtensions =
         static member withAxisAnchor
             (
                 [<Optional;DefaultParameterValue(null)>] ?X,
-                [<Optional;DefaultParameterValue(null)>] ?Y,
-                [<Optional;DefaultParameterValue(null)>] ?Z
+                [<Optional;DefaultParameterValue(null)>] ?Y
             ) =
-                let idx   = if X.IsSome then Some (StyleParam.AxisAnchorId.X X.Value) else None
-                let idy   = if Y.IsSome then Some (StyleParam.AxisAnchorId.Y Y.Value) else None
-                let idz   = if Z.IsSome then Some (StyleParam.AxisAnchorId.Z Z.Value) else None
+                let idx   = X |> Option.map StyleParam.LinearAxisId.X
+                let idy   = Y |> Option.map StyleParam.LinearAxisId.Y
             
                 fun (ch:GenericChart) ->
                     ch |> mapTrace (fun trace ->
                         trace 
-                        |> TraceStyle.SetAxisAnchor(?X=idx,?Y=idy,?Z=idz)
+                        |> TraceStyle.SetAxisAnchor(?X=idx,?Y=idy)
                     )
         [<CompiledName("WithAxisAnchor")>]
         static member withAxisAnchor
             (
                 (ch:GenericChart),
                 [<Optional;DefaultParameterValue(null)>] ?X,
-                [<Optional;DefaultParameterValue(null)>] ?Y,
-                [<Optional;DefaultParameterValue(null)>] ?Z
+                [<Optional;DefaultParameterValue(null)>] ?Y
             ) =
-                ch |> Chart.withAxisAnchor(?X=X,?Y=Y,?Z=Z)
+                ch |> Chart.withAxisAnchor(?X=X,?Y=Y)
   
         /// Apply styling to the Marker(s) of the chart as Object.
         [<CompiledName("WithMarker")>]
@@ -191,33 +188,41 @@ module ChartExtensions =
         
         [<Obsolete("Use withXAxis instead")>]
         [<CompiledName("WithX_Axis")>]
-        static member withX_Axis(xAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id : int) =
+        static member withX_Axis(xAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id : StyleParam.SubPlotId) =
             Chart.withXAxis(xAxis, ?Id = Id)
 
         // Sets x-Axis of 2d and 3d- Charts
         [<CompiledName("WithXAxis")>]
-        static member withXAxis(xAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id) =
-            (fun (ch:GenericChart) ->
-                let contains3d =
-                    ch 
-                    |> existsTrace (fun t ->
-                        match t with
-                        | :? Trace3d -> true
-                        | _ -> false)
+        static member withXAxis(xAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId) =
+            fun (ch:GenericChart) ->
+                
+                let id = defaultArg Id (StyleParam.SubPlotId.XAxis 1)
 
-                match contains3d with
-                | false -> 
+                match id with
+                | StyleParam.SubPlotId.XAxis _ ->
                     let layout =
-                        let id = if Id.IsSome then StyleParam.AxisId.X Id.Value else StyleParam.AxisId.X 1
                         GenericChart.getLayout ch 
                         |> Layout.UpdateLinearAxisById(id,axis=xAxis)
                     GenericChart.setLayout layout ch
-                | true  -> 
-                    let layout =
-                        Layout() 
-                        |> Layout.style (Scene=Scene.init( xAxis=xAxis) )
-                    GenericChart.addLayout layout ch
-            )
+
+                | StyleParam.SubPlotId.Scene _ -> 
+
+                    let layout = GenericChart.getLayout ch 
+
+                    let updatedScene = 
+                        layout
+                        |> Layout.tryGetSceneById(id)
+                        |> Option.defaultValue (Scene.init())
+                        |> Scene.style(XAxis = xAxis)
+
+                    let updatedLayout =
+                        layout
+                        |> Layout.updateSceneById(id,updatedScene)
+
+                    GenericChart.addLayout updatedLayout ch
+
+                | _ -> failwith $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting a xaxis"
+
 
 
         [<Obsolete("Use withXAxisStyle instead")>]
@@ -283,33 +288,40 @@ module ChartExtensions =
 
         [<Obsolete("Use withYAxis instead")>]
         [<CompiledName("WithY_Axis")>]
-        static member withY_Axis(yAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id : int) =
+        static member withY_Axis(yAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId) =
             Chart.withYAxis(yAxis, ?Id = Id)
 
         // Sets y-Axis of 2d and 3d- Charts
         [<CompiledName("WithYAxis")>]
-        static member withYAxis(yAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id) =
-            (fun (ch:GenericChart) ->
-                let contains3d =
-                    ch 
-                    |> existsTrace (fun t -> 
-                        match t with
-                        | :? Trace3d -> true
-                        | _ -> false)
+        static member withYAxis(yAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId) =
+           fun (ch:GenericChart) ->
+               
+               let id = defaultArg Id (StyleParam.SubPlotId.YAxis 1)
 
-                match contains3d with
-                | false -> 
-                    let layout =
-                        let id = if Id.IsSome then StyleParam.AxisId.Y Id.Value else StyleParam.AxisId.Y 1
-                        GenericChart.getLayout ch 
-                        |> Layout.UpdateLinearAxisById(id,axis=yAxis)
-                    GenericChart.setLayout layout ch
-                | true  -> 
-                    let layout =
-                        Layout() 
-                        |> Layout.style(Scene=Scene.init(yAxis=yAxis) )
-                    GenericChart.addLayout layout ch
-            )
+               match id with
+               | StyleParam.SubPlotId.YAxis _ ->
+                   let layout =
+                       GenericChart.getLayout ch 
+                       |> Layout.UpdateLinearAxisById(id,axis=yAxis)
+                   GenericChart.setLayout layout ch
+
+               | StyleParam.SubPlotId.Scene sceneId -> 
+
+                   let layout = GenericChart.getLayout ch 
+
+                   let updatedScene = 
+                       layout
+                       |> Layout.tryGetSceneById(id)
+                       |> Option.defaultValue (Scene.init())
+                       |> Scene.style(YAxis = yAxis)
+
+                   let updatedLayout =
+                       layout
+                       |> Layout.updateSceneById(id,updatedScene)
+
+                   GenericChart.addLayout updatedLayout ch
+
+               | _ -> failwith $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting a xaxis"
 
 
         [<Obsolete("Use withYAxisStyle instead")>]
@@ -366,13 +378,29 @@ module ChartExtensions =
 
         // Sets z-Axis of 3d- Charts
         [<CompiledName("WithZAxis")>]
-        static member withZAxis(zAxis:Axis.LinearAxis) =
-            (fun (ch:GenericChart) ->
-                let layout =
-                    Layout() 
-                    |> Layout.style(Scene=Scene.init(zAxis=zAxis) )
-                GenericChart.addLayout layout ch
-             )
+        static member withZAxis(zAxis:Axis.LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId) =
+            fun (ch:GenericChart) ->
+                
+                let id = defaultArg Id (StyleParam.SubPlotId.Scene 1)
+
+                match id with
+                | StyleParam.SubPlotId.Scene sceneId -> 
+
+                    let layout = GenericChart.getLayout ch 
+
+                    let updatedScene = 
+                        layout
+                        |> Layout.tryGetSceneById(id)
+                        |> Option.defaultValue (Scene.init())
+                        |> Scene.style(ZAxis = zAxis)
+
+                    let updatedLayout =
+                        layout
+                        |> Layout.updateSceneById(id,updatedScene)
+
+                    GenericChart.addLayout updatedLayout ch
+
+                | _ -> failwith $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting a xaxis"
 
 
         
@@ -408,7 +436,7 @@ module ChartExtensions =
             Chart.withZ_Axis(zaxis)
 
         [<CompiledName("WithColorBar")>]
-        static member withColorBar(colorbar:Colorbar) =
+        static member withColorBar(colorbar:ColorBar) =
             (fun (ch:GenericChart) ->
                 ch
                 |> GenericChart.mapTrace(fun t ->
@@ -420,13 +448,11 @@ module ChartExtensions =
         
         [<CompiledName("withColorbar")>]
         static member withColorBarStyle(title,
-                [<Optional;DefaultParameterValue(null)>] ?TitleSide: StyleParam.Side,
-                [<Optional;DefaultParameterValue(null)>] ?TitleFont: Font,
                 [<Optional;DefaultParameterValue(null)>] ?Length,
                 [<Optional;DefaultParameterValue(null)>] ?OutlineColor,
                 [<Optional;DefaultParameterValue(null)>] ?BorderColor,
                 [<Optional;DefaultParameterValue(null)>] ?BGColor) =
-            let colorbar = Colorbar.init(Title=title,?Titleside=TitleSide,?Titlefont=TitleFont,?Len = Length,?Outlinecolor=OutlineColor,?Bgcolor=BGColor,?Bordercolor=BorderColor)
+            let colorbar = ColorBar.init(Title=title,?Len = Length,?OutlineColor=OutlineColor,?BGColor=BGColor,?BorderColor=BorderColor)
             Chart.withColorBar(colorbar)
         //// Sets second x-Axis of 2d- Charts
         //static member withX_Axis2(xAxis2:Axis.LinearAxis) =
@@ -487,22 +513,22 @@ module ChartExtensions =
                 GenericChart.setLayout layout ch) 
 
         /// Sets a map for the given chart (will only work with traces supporting geo, e.g. choropleth, scattergeo)
-        [<CompiledName("WithMap")>]
-        static member withMap(map:Geo,[<Optional;DefaultParameterValue(null)>] ?Id ) =
+        [<CompiledName("WithGeo")>]
+        static member withGeo(map:Geo,[<Optional;DefaultParameterValue(null)>] ?Id:StyleParam.SubPlotId  ) =
             (fun (ch:GenericChart) ->
                 let layout =
-                    let id = defaultArg Id 1
+                    let id = defaultArg Id (StyleParam.SubPlotId.Geo 1)
                     GenericChart.getLayout ch 
-                    |> Layout.UpdateMapById(id,map)
+                    |> Layout.UpdateGeoById(id,map)
                 GenericChart.setLayout layout ch
             )
 
         /// Sets a mapbox for the given chart (will only work with traces supporting mapboxes, e.g. choroplethmapbox, scattermapbox)
         [<CompiledName("WithMapbox")>]
-        static member withMapbox(mapBox:Mapbox,[<Optional;DefaultParameterValue(null)>] ?Id ) =
+        static member withMapbox(mapBox:Mapbox,[<Optional;DefaultParameterValue(null)>] ?Id:StyleParam.SubPlotId ) =
             (fun (ch:GenericChart) ->
                 let layout =
-                    let id = defaultArg Id 1
+                    let id = defaultArg Id (StyleParam.SubPlotId.MapBox 1)
                     GenericChart.getLayout ch 
                     |> Layout.UpdateMapboxById(id,mapBox)
                 GenericChart.setLayout layout ch
@@ -573,8 +599,8 @@ module ChartExtensions =
         /// LatAxis         : Sets the latitudinal axis for this geo trace
         ///
         /// LonAxis         : Sets the longitudinal axis for this geo trace
-        [<CompiledName("WithMapStyle")>]
-        static member withMapStyle([<Optional;DefaultParameterValue(null)>] ?Id,
+        [<CompiledName("WithGeoStyle")>]
+        static member withGeoStyle([<Optional;DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId,
             [<Optional;DefaultParameterValue(null)>]?FitBounds       : StyleParam.GeoFitBounds,
             [<Optional;DefaultParameterValue(null)>]?Resolution      : StyleParam.GeoResolution,
             [<Optional;DefaultParameterValue(null)>]?Scope           : StyleParam.GeoScope,
@@ -643,16 +669,16 @@ module ChartExtensions =
                         ?LatAxis        = LatAxis       ,
                         ?LonAxis        = LonAxis       
                     )
-                let id = defaultArg Id 1
-                ch |> Chart.withMap(map,id)
+                let id = defaultArg Id (StyleParam.SubPlotId.Geo 1)
+                ch |> Chart.withGeo(map,id)
             )
 
-        [<CompiledName("WithMapProjection")>]
-        static member withMapProjection(projectionType : StyleParam.GeoProjectionType,
+        [<CompiledName("WithGeoProjection")>]
+        static member withGeoProjection(projectionType : StyleParam.GeoProjectionType,
              [<Optional;DefaultParameterValue(null)>]?Rotation ,
              [<Optional;DefaultParameterValue(null)>]?Parallels,
              [<Optional;DefaultParameterValue(null)>]?Scale    ,
-             [<Optional;DefaultParameterValue(null)>]?Id
+             [<Optional;DefaultParameterValue(null)>]?Id: StyleParam.SubPlotId
             ) =
             (fun (ch:GenericChart) ->
 
@@ -665,8 +691,8 @@ module ChartExtensions =
                     )
 
                 let map = Geo.init(Projection     = projection)
-                let id = defaultArg Id 1
-                ch |> Chart.withMap(map,id)
+                let id = defaultArg Id (StyleParam.SubPlotId.Geo 1)
+                ch |> Chart.withGeo(map,id)
             )
 
         /// <summary>Set the LayoutGrid options of a Chart</summary>
@@ -683,9 +709,9 @@ module ChartExtensions =
         /// <param name ="XSide">Sets where the x axis labels and titles go. "bottom" means the very bottom of the grid. "bottom plot" is the lowest plot that each x axis is used in. "top" and "top plot" are similar.</param>
         /// <param name ="YSide">Sets where the y axis labels and titles go. "left" means the very left edge of the grid. "left plot" is the leftmost plot that each y axis is used in. "right" and "right plot" are similar.</param>
         [<CompiledName("WithLayoutGridStyle")>]
-        static member withLayoutGridStyle([<Optional;DefaultParameterValue(null)>]?SubPlots   : (StyleParam.AxisId * StyleParam.AxisId) [] [],
-            [<Optional;DefaultParameterValue(null)>]?XAxes      : StyleParam.AxisId [],
-            [<Optional;DefaultParameterValue(null)>]?YAxes      : StyleParam.AxisId [],
+        static member withLayoutGridStyle([<Optional;DefaultParameterValue(null)>]?SubPlots   : (StyleParam.LinearAxisId * StyleParam.LinearAxisId) [] [],
+            [<Optional;DefaultParameterValue(null)>]?XAxes      : StyleParam.LinearAxisId [],
+            [<Optional;DefaultParameterValue(null)>]?YAxes      : StyleParam.LinearAxisId [],
             [<Optional;DefaultParameterValue(null)>]?Rows       : int,
             [<Optional;DefaultParameterValue(null)>]?Columns    : int,
             [<Optional;DefaultParameterValue(null)>]?RowOrder   : StyleParam.LayoutGridRowOrder,
@@ -851,9 +877,9 @@ module ChartExtensions =
         /// <param name ="YSide">Sets where the y axis labels and titles go. "left" means the very left edge of the grid. "left plot" is the leftmost plot that each y axis is used in. "right" and "right plot" are similar.</param>
         [<CompiledName("Grid")>]
         static member Grid (nRows: int, nCols: int,
-            [<Optional;DefaultParameterValue(null)>]?SubPlots   : (StyleParam.AxisId*StyleParam.AxisId) [] [],
-            [<Optional;DefaultParameterValue(null)>]?XAxes      : StyleParam.AxisId [],
-            [<Optional;DefaultParameterValue(null)>]?YAxes      : StyleParam.AxisId [],
+            [<Optional;DefaultParameterValue(null)>]?SubPlots   : (StyleParam.LinearAxisId*StyleParam.LinearAxisId) [] [],
+            [<Optional;DefaultParameterValue(null)>]?XAxes      : StyleParam.LinearAxisId [],
+            [<Optional;DefaultParameterValue(null)>]?YAxes      : StyleParam.LinearAxisId [],
             [<Optional;DefaultParameterValue(null)>]?RowOrder   : StyleParam.LayoutGridRowOrder,
             [<Optional;DefaultParameterValue(null)>]?Pattern    : StyleParam.LayoutGridPattern,
             [<Optional;DefaultParameterValue(null)>]?XGap       : float,
@@ -904,8 +930,8 @@ module ChartExtensions =
 
                         gChart
                         |> Chart.withAxisAnchor(xAnchor,yAnchor) // set adapted axis anchors
-                        |> Chart.withXAxis(xAxis,i+1) // set previous axis with adapted id (one individual axis for each subplot, wether or not they will be used later)
-                        |> Chart.withYAxis(yAxis,i+1) // set previous axis with adapted id (one individual axis for each subplot, wether or not they will be used later)
+                        |> Chart.withXAxis(xAxis,(StyleParam.SubPlotId.XAxis (i+1))) // set previous axis with adapted id (one individual axis for each subplot, wether or not they will be used later)
+                        |> Chart.withYAxis(yAxis,(StyleParam.SubPlotId.YAxis (i+1))) // set previous axis with adapted id (one individual axis for each subplot, wether or not they will be used later)
                         |> GenericChart.mapLayout (fun l ->
                             if i > 0 then 
                                 // remove default axes from consecutive charts, otherwise they will override the first one
@@ -952,9 +978,9 @@ module ChartExtensions =
         [<CompiledName("Grid")>]
         static member Grid 
             (
-                [<Optional;DefaultParameterValue(null)>]?SubPlots   : (StyleParam.AxisId*StyleParam.AxisId) [] [],
-                [<Optional;DefaultParameterValue(null)>]?XAxes      : StyleParam.AxisId [],
-                [<Optional;DefaultParameterValue(null)>]?YAxes      : StyleParam.AxisId [],
+                [<Optional;DefaultParameterValue(null)>]?SubPlots   : (StyleParam.LinearAxisId*StyleParam.LinearAxisId) [] [],
+                [<Optional;DefaultParameterValue(null)>]?XAxes      : StyleParam.LinearAxisId [],
+                [<Optional;DefaultParameterValue(null)>]?YAxes      : StyleParam.LinearAxisId [],
                 [<Optional;DefaultParameterValue(null)>]?RowOrder   : StyleParam.LayoutGridRowOrder,
                 [<Optional;DefaultParameterValue(null)>]?Pattern    : StyleParam.LayoutGridPattern,
                 [<Optional;DefaultParameterValue(null)>]?XGap       : float,
@@ -1035,9 +1061,9 @@ module ChartExtensions =
         [<CompiledName("SingleStack")>]
         static member SingleStack 
             (
-                [<Optional;DefaultParameterValue(null)>]?SubPlots   : (StyleParam.AxisId*StyleParam.AxisId) [] [],
-                [<Optional;DefaultParameterValue(null)>]?XAxes      : StyleParam.AxisId [],
-                [<Optional;DefaultParameterValue(null)>]?YAxes      : StyleParam.AxisId [],
+                [<Optional;DefaultParameterValue(null)>]?SubPlots   : (StyleParam.LinearAxisId*StyleParam.LinearAxisId) [] [],
+                [<Optional;DefaultParameterValue(null)>]?XAxes      : StyleParam.LinearAxisId [],
+                [<Optional;DefaultParameterValue(null)>]?YAxes      : StyleParam.LinearAxisId [],
                 [<Optional;DefaultParameterValue(null)>]?RowOrder   : StyleParam.LayoutGridRowOrder,
                 [<Optional;DefaultParameterValue(null)>]?Pattern    : StyleParam.LayoutGridPattern,
                 [<Optional;DefaultParameterValue(null)>]?XGap       : float,
@@ -1100,7 +1126,7 @@ module ChartExtensions =
                     let ydomain = (1. - ((rowWidth * float rowI) - space ),1. - (rowWidth * float (rowI-1)))
 
                     if contains3d ch then
-                        let sceneName = sprintf "scene%i" (i+1)
+                        let sceneId = StyleParam.SubPlotId.Scene (i+1)
 
                         let scene =
                             Scene.init (
@@ -1109,14 +1135,14 @@ module ChartExtensions =
                             )
                         let layout = 
                             GenericChart.getLayout ch
-                            |> Layout.AddScene (
-                                    sceneName, 
+                            |> Layout.addScene (
+                                    sceneId, 
                                     scene
                                 )
                         ch
                         |> mapTrace 
                             (fun t -> 
-                                t?scene <- sceneName
+                                t?scene <- (StyleParam.SubPlotId.toString sceneId)
                                 t
                             )
                         |> GenericChart.setLayout layout
@@ -1125,38 +1151,38 @@ module ChartExtensions =
 
                         let xaxis,yaxis,layout = 
                             let layout = GenericChart.getLayout ch
-                            let xName, yName = StyleParam.AxisId.X 1 |> StyleParam.AxisId.toString, StyleParam.AxisId.Y 1 |> StyleParam.AxisId.toString
+                            let xName, yName = StyleParam.LinearAxisId.X 1 |> StyleParam.LinearAxisId.toString, StyleParam.LinearAxisId.Y 1 |> StyleParam.LinearAxisId.toString
                             match (layout.TryGetTypedValue<Axis.LinearAxis> xName),(layout.TryGetTypedValue<Axis.LinearAxis> yName) with
                             | Some x, Some y ->
                                 // remove axis
                                 DynObj.remove layout xName
                                 DynObj.remove layout yName
 
-                                x |> Axis.LinearAxis.style(Anchor=StyleParam.AxisAnchorId.Y index,Domain=StyleParam.Range.MinMax xdomain),
-                                y |> Axis.LinearAxis.style(Anchor=StyleParam.AxisAnchorId.X index,Domain=StyleParam.Range.MinMax ydomain),
+                                x |> Axis.LinearAxis.style(Anchor=StyleParam.LinearAxisId.Y index,Domain=StyleParam.Range.MinMax xdomain),
+                                y |> Axis.LinearAxis.style(Anchor=StyleParam.LinearAxisId.X index,Domain=StyleParam.Range.MinMax ydomain),
                                 layout
                             | Some x, None -> 
                                 // remove x - axis
                                 DynObj.remove layout xName
-                                x |> Axis.LinearAxis.style(Anchor=StyleParam.AxisAnchorId.Y index,Domain=StyleParam.Range.MinMax xdomain),
-                                Axis.LinearAxis.init(Anchor=StyleParam.AxisAnchorId.X index,Domain=StyleParam.Range.MinMax ydomain),
+                                x |> Axis.LinearAxis.style(Anchor=StyleParam.LinearAxisId.Y index,Domain=StyleParam.Range.MinMax xdomain),
+                                Axis.LinearAxis.init(Anchor=StyleParam.LinearAxisId.X index,Domain=StyleParam.Range.MinMax ydomain),
                                 layout
                             | None, Some y -> 
                                 // remove y - axis
                                 DynObj.remove layout yName
-                                Axis.LinearAxis.init(Anchor=StyleParam.AxisAnchorId.Y index,Domain=StyleParam.Range.MinMax xdomain),
-                                y |> Axis.LinearAxis.style(Anchor=StyleParam.AxisAnchorId.X index,Domain=StyleParam.Range.MinMax ydomain),
+                                Axis.LinearAxis.init(Anchor=StyleParam.LinearAxisId.Y index,Domain=StyleParam.Range.MinMax xdomain),
+                                y |> Axis.LinearAxis.style(Anchor=StyleParam.LinearAxisId.X index,Domain=StyleParam.Range.MinMax ydomain),
                                 layout
                             | None, None ->
-                                Axis.LinearAxis.init(Anchor=StyleParam.AxisAnchorId.Y index,Domain=StyleParam.Range.MinMax xdomain),
-                                Axis.LinearAxis.init(Anchor=StyleParam.AxisAnchorId.X index,Domain=StyleParam.Range.MinMax ydomain),
+                                Axis.LinearAxis.init(Anchor=StyleParam.LinearAxisId.Y index,Domain=StyleParam.Range.MinMax xdomain),
+                                Axis.LinearAxis.init(Anchor=StyleParam.LinearAxisId.X index,Domain=StyleParam.Range.MinMax ydomain),
                                 layout
 
                         ch
                         |> GenericChart.setLayout layout
                         |> Chart.withAxisAnchor(X=index,Y=index) 
-                        |> Chart.withXAxis(xaxis,index)
-                        |> Chart.withYAxis(yaxis,index)
+                        |> Chart.withXAxis(xaxis,StyleParam.SubPlotId.YAxis index)
+                        |> Chart.withYAxis(yaxis,StyleParam.SubPlotId.XAxis index)
                     )
 
                 |> Chart.combine
@@ -1245,7 +1271,7 @@ module ChartExtensions =
         static member withPolar(polar:Polar, [<Optional;DefaultParameterValue(null)>] ?Id) =
             (fun (ch:GenericChart) ->
                 let layout =
-                    let id = defaultArg Id 1
+                    let id = defaultArg Id (StyleParam.SubPlotId.Polar 1)
                     GenericChart.getLayout ch 
                     |> Layout.updatePolarById(id,polar)
                 GenericChart.setLayout layout ch
@@ -1257,7 +1283,7 @@ module ChartExtensions =
         static member withAngularAxis(angularAxis:Axis.AngularAxis, [<Optional;DefaultParameterValue(null)>] ?Id) =
             (fun (ch:GenericChart) ->
                 
-                let id = defaultArg Id 1
+                let id = defaultArg Id (StyleParam.SubPlotId.Polar 1)
                 let layout = GenericChart.getLayout ch 
 
                 let updatedPolar = 
@@ -1277,7 +1303,7 @@ module ChartExtensions =
         [<CompiledName("WithRadialAxis")>]
         static member withRadialAxis(radialAxis:Axis.RadialAxis, [<Optional;DefaultParameterValue(null)>] ?Id) =
             (fun (ch:GenericChart) ->
-                let id = defaultArg Id 1
+                let id = defaultArg Id (StyleParam.SubPlotId.Polar 1)
                 let layout = GenericChart.getLayout ch 
 
                 let updatedPolar = 
@@ -1293,4 +1319,24 @@ module ChartExtensions =
                 GenericChart.setLayout updatedLayout ch
             )
 
+        /// Sets the color axis with the given id on the chart layout
+        [<CompiledName("WithColorAxis")>]
+        static member withColorAxis(colorAxis:Axis.ColorAxis, [<Optional;DefaultParameterValue(null)>] ?Id) =
+            (fun (ch:GenericChart) ->
+                let layout =
+                    let id = defaultArg Id (StyleParam.SubPlotId.ColorAxis 1)
+                    GenericChart.getLayout ch 
+                    |> Layout.updateColorAxisById(id,colorAxis)
+                GenericChart.setLayout layout ch 
+            )
 
+        /// Sets the scene with the given id on the chart layout
+        [<CompiledName("WithScene")>]
+        static member withScene(scene:Scene, [<Optional;DefaultParameterValue(null)>] ?Id) =
+            (fun (ch:GenericChart) ->
+                let layout =
+                    let id = defaultArg Id (StyleParam.SubPlotId.Scene 1)
+                    GenericChart.getLayout ch 
+                    |> Layout.updateSceneById(id,scene)
+                GenericChart.setLayout layout ch
+            )

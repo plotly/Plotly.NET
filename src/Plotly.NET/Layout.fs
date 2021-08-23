@@ -144,8 +144,8 @@ type Layout() =
                 
             ?Paper_bgcolor,
             ?Plot_bgcolor,
-            ?Hovermode:StyleParam.Hovermode,
-            ?Dragmode:StyleParam.Dragmode,
+            ?Hovermode:StyleParam.HoverMode,
+            ?Dragmode:StyleParam.DragMode,
                 
             ?Separators,
             ?Barmode:StyleParam.Barmode,
@@ -177,8 +177,8 @@ type Layout() =
                 Hidesources     |> DynObj.setValueOpt layout "hidesources"
                 Smith           |> DynObj.setValueOpt layout "smith"
                 Showlegend      |> DynObj.setValueOpt layout "showlegend"
-                Hovermode       |> DynObj.setValueOptBy layout "hovermode" StyleParam.Hovermode.toString
-                Dragmode        |> DynObj.setValueOptBy layout "dragmode" StyleParam.Dragmode.toString
+                Hovermode       |> DynObj.setValueOptBy layout "hovermode" StyleParam.HoverMode.toString
+                Dragmode        |> DynObj.setValueOptBy layout "dragmode" StyleParam.DragMode.toString
                 
                 Geo             |> DynObj.setValueOpt layout "geo"
                 Polar           |> DynObj.setValueOpt layout "polar"
@@ -230,41 +230,172 @@ type Layout() =
 
     static member AddLinearAxis
         (   
-            id   : StyleParam.AxisId,
+            id   : StyleParam.SubPlotId,
             axis : Axis.LinearAxis
         ) =
             (fun (layout:Layout) -> 
 
-                axis           |> DynObj.setValue layout (StyleParam.AxisId.toString id)
+                match id with
+                | StyleParam.SubPlotId.XAxis _ | StyleParam.SubPlotId.YAxis _ ->
+                    axis |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+                    layout
 
-                layout
+                | _ -> failwith $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting a linear axis on layout"
             )
 
     // Updates the style of current axis with given AxisId
     static member UpdateLinearAxisById
         (   
-            id   : StyleParam.AxisId,
+            id   : StyleParam.SubPlotId,
             axis : Axis.LinearAxis
         ) =
             (fun (layout:Layout) -> 
 
-                let axis' = 
-                  match layout.TryGetValue (StyleParam.AxisId.toString id) with
-                  | Some a -> DynObj.combine (unbox a) axis
-                  | None  -> axis :>  DynamicObj
+                match id with
+                | StyleParam.SubPlotId.XAxis _ | StyleParam.SubPlotId.YAxis _ ->
+
+                    let axis' = 
+                        match layout.TryGetValue (StyleParam.SubPlotId.toString id) with
+                        | Some a -> DynObj.combine (unbox a) axis
+                        | None  -> axis :>  DynamicObj
                 
-                axis'           |> DynObj.setValue layout (StyleParam.AxisId.toString id)
+                    axis'           |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+
+                    layout
+                | _ -> failwith $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting a linear axis on layout"
+            )
+
+    static member addScene 
+        (
+            id      : StyleParam.SubPlotId,
+            scene   : Scene
+        ) =
+            (fun (layout:Layout) -> 
+                scene |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+                layout
+            )
+
+    static member updateSceneById
+        (
+            id      : StyleParam.SubPlotId,
+            scene   : Scene
+        ) =
+            (fun (layout:Layout) -> 
+                let scene' = 
+                    match layout.TryGetValue (StyleParam.SubPlotId.toString id) with
+                    | Some a -> DynObj.combine (unbox a) scene
+                    | None  -> scene :> DynamicObj
+
+                scene' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+                layout
+            )
+
+    static member tryGetSceneById (id:StyleParam.SubPlotId) =
+        (fun (layout:Layout) -> 
+            layout.TryGetTypedValue<Scene>(StyleParam.SubPlotId.toString id)
+        )
+    
+    static member AddGeo
+        (   
+            id   : StyleParam.SubPlotId,
+            geo  : Geo
+        ) =
+            (fun (layout:Layout) -> 
+                
+                geo |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
 
                 layout
             )
 
-    static member AddScene 
-        (
-            name: string,
-            scene:Scene
+    // Updates the style of current geo map with given Id
+    static member UpdateGeoById
+        (   
+           id   : StyleParam.SubPlotId,
+           geo  : Geo
         ) =
             (fun (layout:Layout) -> 
-                scene |> DynObj.setValue layout name
+                let geo' = 
+                    match layout.TryGetValue (StyleParam.SubPlotId.toString id) with
+                    | Some a -> DynObj.combine (unbox a) geo
+                    | None  -> geo :> DynamicObj
+
+                geo' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+                layout
+            )
+
+    static member AddMapbox
+        (   
+            id      : StyleParam.SubPlotId,
+            mapbox  : Mapbox
+        ) =
+            (fun (layout:Layout) -> 
+            
+                mapbox |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+
+                layout
+            )
+            
+    // Updates the style of current geo map with given Id
+    static member UpdateMapboxById
+        (   
+           id       : StyleParam.SubPlotId,
+           mapbox   : Mapbox
+        ) =
+            (fun (layout:Layout) -> 
+                let mapbox' = 
+                    match layout.TryGetValue (StyleParam.SubPlotId.toString id) with
+                    | Some a -> DynObj.combine (unbox a) mapbox
+                    | None  -> mapbox :> DynamicObj
+
+                mapbox' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+                layout
+            )
+
+    static member tryGetPolarById (id:StyleParam.SubPlotId) =
+        (fun (layout:Layout) -> 
+            layout.TryGetTypedValue<Polar>(StyleParam.SubPlotId.toString id)
+        )
+
+    /// Updates the style of current polar object with given Id. 
+    /// If there does not exist a polar object with the given id, sets it with the given polar object
+    static member updatePolarById
+        (   
+           id       : StyleParam.SubPlotId,
+           polar    : Polar
+        ) =
+            (fun (layout:Layout) -> 
+
+                let polar' = 
+                    match layout |> Layout.tryGetPolarById(id) with
+                    | Some a  -> DynObj.combine (unbox a) polar
+                    | None    -> polar :> DynamicObj
+                
+                polar' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+
+                layout
+            )
+
+    static member tryGetColorAxisById (id:StyleParam.SubPlotId) =
+        (fun (layout:Layout) -> 
+            layout.TryGetTypedValue<Axis.ColorAxis>(StyleParam.SubPlotId.toString id)
+        )
+
+    /// Updates the style of current ColorAxis object with given Id. 
+    /// If there does not exist a ColorAxis object with the given id, sets it with the given ColorAxis object
+    static member updateColorAxisById
+        (   
+           id       : StyleParam.SubPlotId,
+           colorAxis: Axis.ColorAxis
+        ) =
+            (fun (layout:Layout) -> 
+
+                let colorAxis' = 
+                    match layout |> Layout.tryGetColorAxisById(id) with
+                    | Some a  -> DynObj.combine (unbox a) colorAxis
+                    | None    -> colorAxis :> DynamicObj
+                
+                colorAxis' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+
                 layout
             )
 
@@ -277,7 +408,6 @@ type Layout() =
                 layout
             )
 
-    
     static member GetLayoutGrid 
         (
             grid: LayoutGrid
@@ -286,84 +416,6 @@ type Layout() =
                 grid |> DynObj.setValue layout "grid"
                 layout
             )
-
-    
-    static member AddMap
-        (   
-            id   : int,
-            map  : Geo
-        ) =
-            (fun (layout:Layout) -> 
-                
-                let key = if id < 2 then "geo" else sprintf "geo%i" id
-                map |> DynObj.setValue layout key
-
-                layout
-            )
-
-    // Updates the style of current geo map with given Id
-    static member UpdateMapById
-        (   
-           id   : int,
-           map  : Geo
-        ) =
-            (fun (layout:Layout) -> 
-                let key = if id < 2 then "geo" else sprintf "geo%i" id
-                let geo' = 
-                    match layout.TryGetTypedValue<Geo>(key) with
-                    | Some a  -> DynObj.combine (unbox a) map
-                    | None    -> map :> DynamicObj
-                
-                geo'|> DynObj.setValue layout key
-
-                layout
-            )
-            
-    // Updates the style of current geo map with given Id
-    static member UpdateMapboxById
-        (   
-           id       : int,
-           mapbox   : Mapbox
-        ) =
-            (fun (layout:Layout) -> 
-                let key = if id < 2 then "mapbox" else sprintf "mapbox%i" id
-                let mapbox' = 
-                    match layout.TryGetTypedValue<Mapbox>(key) with
-                    | Some a  -> DynObj.combine (unbox a) mapbox
-                    | None    -> mapbox :> DynamicObj
-                
-                mapbox' |> DynObj.setValue layout key
-
-                layout
-            )
-
-    static member tryGetPolarById (id:int) =
-        (fun (layout:Layout) -> 
-            let key = if id < 2 then "polar" else sprintf "polar%i" id
-            layout.TryGetTypedValue<Polar>(key)
-        )
-
-    /// Updates the style of current polar object with given Id. 
-    /// If there does not exist a polar object with the given id, sets it with the given polar object
-    static member updatePolarById
-        (   
-           id       : int,
-           polar    : Polar
-        ) =
-            (fun (layout:Layout) -> 
-
-                let key = if id < 2 then "polar" else sprintf "polar%i" id
-
-                let polar' = 
-                    match layout |> Layout.tryGetPolarById(id) with
-                    | Some a  -> DynObj.combine (unbox a) polar
-                    | None    -> polar :> DynamicObj
-                
-                polar' |> DynObj.setValue layout key
-
-                layout
-            )
-
 
     static member setLegend(legend:Legend) =
         (fun (layout:Layout) -> 

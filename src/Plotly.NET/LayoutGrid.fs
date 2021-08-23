@@ -25,9 +25,9 @@ type LayoutGrid () =
         (   
             ?Rows       : int,
             ?Columns    : int,
-            ?SubPlots   : (StyleParam.AxisId * StyleParam.AxisId) [] [],
-            ?XAxes      : StyleParam.AxisId [],
-            ?YAxes      : StyleParam.AxisId [],
+            ?SubPlots   : (StyleParam.LinearAxisId * StyleParam.LinearAxisId) [] [],
+            ?XAxes      : StyleParam.LinearAxisId [],
+            ?YAxes      : StyleParam.LinearAxisId [],
             ?RowOrder   : StyleParam.LayoutGridRowOrder,
             ?Pattern    : StyleParam.LayoutGridPattern,
             ?XGap       : float,
@@ -72,9 +72,9 @@ type LayoutGrid () =
         (   
             ?Rows       : int,
             ?Columns    : int,
-            ?SubPlots   : (StyleParam.AxisId * StyleParam.AxisId) [] [],
-            ?XAxes      : StyleParam.AxisId [],
-            ?YAxes      : StyleParam.AxisId [],
+            ?SubPlots   : (StyleParam.LinearAxisId * StyleParam.LinearAxisId) [] [],
+            ?XAxes      : StyleParam.LinearAxisId [],
+            ?YAxes      : StyleParam.LinearAxisId [],
             ?RowOrder   : StyleParam.LayoutGridRowOrder,
             ?Pattern    : StyleParam.LayoutGridPattern,
             ?XGap       : float,
@@ -84,9 +84,9 @@ type LayoutGrid () =
             ?YSide      : StyleParam.LayoutGridYSide
         ) =
             (fun (layoutGrid: LayoutGrid) -> 
-                SubPlots |> DynObj.setValueOptBy layoutGrid "subplots" (Array.map (Array.map ( fun (x,y) -> $"{StyleParam.AxisId.toString x}{StyleParam.AxisId.toString y}")))
-                XAxes    |> DynObj.setValueOptBy layoutGrid "xaxes"    (Array.map StyleParam.AxisId.toString)
-                YAxes    |> DynObj.setValueOptBy layoutGrid "yaxes"    (Array.map StyleParam.AxisId.toString)
+                SubPlots |> DynObj.setValueOptBy layoutGrid "subplots" (Array.map (Array.map ( fun (x,y) -> $"{StyleParam.LinearAxisId.toString x}{StyleParam.LinearAxisId.toString y}")))
+                XAxes    |> DynObj.setValueOptBy layoutGrid "xaxes"    (Array.map StyleParam.LinearAxisId.toString)
+                YAxes    |> DynObj.setValueOptBy layoutGrid "yaxes"    (Array.map StyleParam.LinearAxisId.toString)
                 Rows     |> DynObj.setValueOpt   layoutGrid "rows"    
                 Columns  |> DynObj.setValueOpt   layoutGrid "columns" 
                 RowOrder |> DynObj.setValueOptBy layoutGrid "roworder" StyleParam.LayoutGridRowOrder.toString
