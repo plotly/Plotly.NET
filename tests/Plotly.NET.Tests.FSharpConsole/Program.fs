@@ -2,6 +2,8 @@
 
 open System
 open Plotly.NET
+open Plotly.NET.LayoutObjects
+open Plotly.NET.TraceObjects
 open DynamicObj
 
 // Define a function to construct a message to print
@@ -22,7 +24,7 @@ let main argv =
         |> Chart.withZAxisStyle("my z-axis")
         |> Chart.withMarker(Marker.init(Size=5))
         |> Chart.withLine(Line.init(Color="red"))
-        |> Chart.withSize(800.,800.)
+        |> Chart.withSize(800,800)
     
     let rec printObj (d:DynamicObj) =
     

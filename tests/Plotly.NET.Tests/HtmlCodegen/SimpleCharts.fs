@@ -2,6 +2,8 @@
 
 open Expecto
 open Plotly.NET
+open Plotly.NET.LayoutObjects
+open Plotly.NET.TraceObjects
 open TestUtils
 open Plotly.NET.GenericChart
 open Plotly.NET.StyleParam
@@ -389,7 +391,7 @@ let sequencePresentationTableChart =
 
     let font = Font.init(FontFamily.Consolas,Size=14.)
     let line = Line.init(0.,"white")
-    let chartwidth = 50. + 10. * float elementsPerRow
+    let chartwidth = 50 + 10 * elementsPerRow
 
     Chart.Table(
         headers,
@@ -403,7 +405,7 @@ let sequencePresentationTableChart =
         AlignCells  = [HorizontalAlign.Right;HorizontalAlign.Center],
         ColorCells  = cellcolors
         )
-    |> Chart.withSize(chartwidth,nan)
+    |> Chart.withSize(Width=chartwidth)
     |> Chart.withTitle "Sequence A"
 
 
@@ -436,7 +438,7 @@ let ``Table charts`` =
             |> chartGeneratedContains sequencePresentationTableChart
         );
         testCase "Sequence presentation table  layout" ( fun () ->
-            "var layout = {\"width\":650.0,\"height\":\"NaN\",\"title\":{\"text\":\"Sequence A\"}};"
+            "var layout = {\"width\":650,\"title\":{\"text\":\"Sequence A\"}};"
             |> chartGeneratedContains sequencePresentationTableChart
         );
     ]
@@ -459,7 +461,7 @@ let heatmap1Chart =
         Colorscale=colorscaleValue,
         Showscale=true
     )
-    |> Chart.withSize(700.,500.)
+    |> Chart.withSize(700,500)
     |> Chart.withMarginSize(Left=200.)
 
 let heatmapStyledChart =
@@ -496,7 +498,7 @@ let ``Heatmap charts`` =
             |> chartGeneratedContains heatmap1Chart
         );
         testCase "Heatmap layout" ( fun () ->
-            "var layout = {\"width\":700.0,\"height\":500.0,\"margin\":{\"l\":200.0}};"
+            "var layout = {\"width\":700,\"height\":500,\"margin\":{\"l\":200.0}};"
             |> chartGeneratedContains heatmap1Chart
         );
         testCase "Heatmap styled data" ( fun () ->
@@ -504,7 +506,7 @@ let ``Heatmap charts`` =
             |> chartGeneratedContains heatmapStyledChart
         );
         testCase "Heatmap styled layout" ( fun () ->
-            "var layout = {\"width\":700.0,\"height\":500.0,\"margin\":{\"l\":200.0}};"
+            "var layout = {\"width\":700,\"height\":500,\"margin\":{\"l\":200.0}};"
             |> chartGeneratedContains heatmapStyledChart
         );
     ]

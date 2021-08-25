@@ -2,8 +2,11 @@
 
 open Expecto
 open Plotly.NET
+open Plotly.NET.LayoutObjects
+open Plotly.NET.TraceObjects
 open TestUtils
 open Plotly.NET.GenericChart
+open Plotly.NET.LayoutObjects
 open System
 
 //---------------------- Generate linearly spaced vector ----------------------
@@ -32,7 +35,7 @@ let scatterChart =
     |> Chart.withXAxisStyle("my x-axis", Id=StyleParam.SubPlotId.Scene 1)
     |> Chart.withYAxisStyle("my y-axis", Id=StyleParam.SubPlotId.Scene 1)
     |> Chart.withZAxisStyle("my z-axis")
-    |> Chart.withSize(800.,800.)
+    |> Chart.withSize(800,800)
 
 [<Tests>]
 let ``3D Scatter charts`` =
@@ -42,7 +45,7 @@ let ``3D Scatter charts`` =
             |> chartGeneratedContains scatterChart
         );
         testCase "3D Scatter charts layout" ( fun () ->
-            """var layout = {"scene":{"xaxis":{"title":{"text":"my x-axis"}},"yaxis":{"title":{"text":"my y-axis"}},"zaxis":{"title":{"text":"my z-axis"}}},"width":800.0,"height":800.0};"""
+            """var layout = {"scene":{"xaxis":{"title":{"text":"my x-axis"}},"yaxis":{"title":{"text":"my y-axis"}},"zaxis":{"title":{"text":"my z-axis"}}},"width":800,"height":800};"""
             |> chartGeneratedContains scatterChart
         );
     ]
@@ -56,7 +59,7 @@ let pointChart =
     |> Chart.withXAxisStyle("my x-axis", Id=StyleParam.SubPlotId.Scene 1)
     |> Chart.withYAxisStyle("my y-axis", Id=StyleParam.SubPlotId.Scene 1)
     |> Chart.withZAxisStyle("my z-axis")
-    |> Chart.withSize(800.,800.)
+    |> Chart.withSize(800,800)
 
 [<Tests>]
 let ``3D Point charts`` =
@@ -66,7 +69,7 @@ let ``3D Point charts`` =
             |> chartGeneratedContains pointChart
         );
         testCase "3D Point charts layout" ( fun () ->
-            """var layout = {"scene":{"xaxis":{"title":{"text":"my x-axis"}},"yaxis":{"title":{"text":"my y-axis"}},"zaxis":{"title":{"text":"my z-axis"}}},"width":800.0,"height":800.0};"""
+            """var layout = {"scene":{"xaxis":{"title":{"text":"my x-axis"}},"yaxis":{"title":{"text":"my y-axis"}},"zaxis":{"title":{"text":"my z-axis"}}},"width":800,"height":800};"""
             |> chartGeneratedContains pointChart
         );
     ]
@@ -91,7 +94,7 @@ let lineChart =
     |> Chart.withXAxisStyle("x-axis", Id=StyleParam.SubPlotId.Scene 1)
     |> Chart.withYAxisStyle("y-axis", Id=StyleParam.SubPlotId.Scene 1)
     |> Chart.withZAxisStyle("z-axis")
-    |> Chart.withSize(800., 800.)
+    |> Chart.withSize(800, 800)
 
 [<Tests>]
 let ``Line charts`` =
@@ -101,7 +104,7 @@ let ``Line charts`` =
             |> chartGeneratedContains lineChart
         );
         testCase "Line layout" ( fun () ->
-            """var layout = {"scene":{"xaxis":{"title":{"text":"x-axis"}},"yaxis":{"title":{"text":"y-axis"}},"zaxis":{"title":{"text":"z-axis"}}},"width":800.0,"height":800.0};"""
+            """var layout = {"scene":{"xaxis":{"title":{"text":"x-axis"}},"yaxis":{"title":{"text":"y-axis"}},"zaxis":{"title":{"text":"z-axis"}}},"width":800,"height":800};"""
             |> chartGeneratedContains lineChart
         );
     ]
@@ -205,7 +208,7 @@ let meshChart =
     let b = Array.init 50 (fun _ -> rnd.NextDouble())
     let c = Array.init 50 (fun _ -> rnd.NextDouble())
     
-    Trace3d.initMesh3d 
+    Trace3D.initMesh3d 
         (fun mesh3d ->
             mesh3d?x <- a
             mesh3d?y <- b

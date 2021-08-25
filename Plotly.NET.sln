@@ -119,9 +119,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{EAE25A1F
 		src\Plotly.NET\Playground.fsx = src\Plotly.NET\Playground.fsx
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plotly.NET.Tests.CSharp", "tests\Plotly.NET.Tests.CSharp\Plotly.NET.Tests.CSharp.csproj", "{C3CEE309-4C3F-4927-B012-220DB37750F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plotly.NET.Tests.CSharp", "tests\Plotly.NET.Tests.CSharp\Plotly.NET.Tests.CSharp.csproj", "{C3CEE309-4C3F-4927-B012-220DB37750F6}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Plotly.NET.Tests.FSharpConsole", "tests\Plotly.NET.Tests.FSharpConsole\Plotly.NET.Tests.FSharpConsole.fsproj", "{60114ACE-77E6-4A19-9A2F-CB64084174AF}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Plotly.NET.Tests.FSharpConsole", "tests\Plotly.NET.Tests.FSharpConsole\Plotly.NET.Tests.FSharpConsole.fsproj", "{60114ACE-77E6-4A19-9A2F-CB64084174AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
