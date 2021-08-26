@@ -46,20 +46,6 @@ type TraceStyle() =
                 trace
             ) 
 
-    /// Sets the given axis anchor id(s) on a Trace object.
-    static member SetAxisAnchor
-        (
-            [<Optional;DefaultParameterValue(null)>] ?X:StyleParam.LinearAxisId,
-            [<Optional;DefaultParameterValue(null)>] ?Y:StyleParam.LinearAxisId
-        ) =  
-            (fun (trace:('T :> Trace)) ->
-
-                X     |> DynObj.setValueOptBy trace "xaxis" StyleParam.LinearAxisId.toString
-                Y     |> DynObj.setValueOptBy trace "yaxis" StyleParam.LinearAxisId.toString
-                    
-                trace
-            )
-
     /// Sets selection of data points on a Trace object.
     static member SetSelection
         (

@@ -107,7 +107,7 @@ module StyleParam =
         | YAxis     of int 
         | ColorAxis of int
         | Geo       of int
-        | MapBox    of int
+        | Mapbox    of int
         | Polar     of int
         | Ternary   of int
         | Scene     of int
@@ -117,7 +117,7 @@ module StyleParam =
             | YAxis     id  -> if id < 2 then "yaxis" else sprintf "yaxis%i" id
             | ColorAxis id  -> if id < 2 then "coloraxis" else sprintf "coloraxis%i" id
             | Geo       id  -> if id < 2 then "geo" else sprintf "geo%i" id
-            | MapBox    id  -> if id < 2 then "mapbox" else sprintf "mapbox%i" id
+            | Mapbox    id  -> if id < 2 then "mapbox" else sprintf "mapbox%i" id
             | Polar     id  -> if id < 2 then "polar" else sprintf "polar%i" id
             | Ternary   id  -> if id < 2 then "ternary" else sprintf "ternary%i" id
             | Scene     id  -> if id < 2 then "scene" else sprintf "scene%i" id

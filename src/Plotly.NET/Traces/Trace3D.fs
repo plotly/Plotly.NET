@@ -56,13 +56,16 @@ type Trace3DStyle() =
 
     // ######################## 3d-Charts
         
-    static member setScene 
+    static member SetScene
         (
-            [<Optional;DefaultParameterValue(null)>] ?SceneName:string
-        ) =
-            fun (trace:#Trace) ->
-                SceneName |> DynObj.setValueOpt trace "scene"
+            [<Optional;DefaultParameterValue(null)>] ?SceneId:StyleParam.SubPlotId
+        ) =  
+            (fun (trace:Trace3D) ->
+
+                SceneId |> DynObj.setValueOptBy trace "scene" StyleParam.SubPlotId.toString
+
                 trace
+            )
 
     /// <summary>
     /// Applies the style parameters of the Scatter3d chart to the given trace

@@ -114,6 +114,20 @@ type Trace2D(traceTypeName) =
 
 type Trace2DStyle() =
     
+    /// Sets the given axis anchor id(s) on a Trace object.
+    static member SetAxisAnchor
+        (
+            [<Optional;DefaultParameterValue(null)>] ?X:StyleParam.LinearAxisId,
+            [<Optional;DefaultParameterValue(null)>] ?Y:StyleParam.LinearAxisId
+        ) =  
+            (fun (trace:Trace2D) ->
+
+                X     |> DynObj.setValueOptBy trace "xaxis" StyleParam.LinearAxisId.toString
+                Y     |> DynObj.setValueOptBy trace "yaxis" StyleParam.LinearAxisId.toString
+                    
+                trace
+            )
+
     /// <summary>Create a function that applies the styles of a scatter plot to a Trace object</summary>
     /// <param name="X">Sets the x coordinates of the plotted data.</param>
     /// <param name="Y">Sets the y coordinates of the plotted data.</param>

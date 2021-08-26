@@ -98,10 +98,12 @@
     <Compile Include="Traces\Trace2D.fs" />
     <Compile Include="Traces\Trace3D.fs" />
     <Compile Include="Traces\TracePolar.fs" />
-    <Compile Include="Traces\TraceMap.fs" />
+    <Compile Include="Traces\TraceGeo.fs" />
+    <Compile Include="Traces\TraceMapbox.fs" />
     <Compile Include="Traces\TraceTernary.fs" />
     <Compile Include="Traces\TraceCarpet.fs" />
     <Compile Include="Traces\TraceDomain.fs" />
+    <Compile Include="Traces\TraceID.fs" />
     <Folder Include="Layout\ObjectAbstractions\2D\" />
     <Folder Include="Template\ObjectAbstractions\" />
     <Compile Include="Template\Template.fs" />

@@ -29,8 +29,8 @@ module ChartMap =
                 [<Optional;DefaultParameterValue(null)>] ?Zmin,
                 [<Optional;DefaultParameterValue(null)>] ?Zmax) =
 
-            TraceMap.initChoroplethMap (
-                TraceMapStyle.ChoroplethMap(
+            TraceGeo.initChoroplethMap (
+                TraceGeoStyle.ChoroplethMap(
                     Locations=locations,
                     Z=z,
                     ?Text=Text,
@@ -102,8 +102,8 @@ module ChartMap =
                 [<Optional;DefaultParameterValue(null)>] ?Fillcolor   
             ) = 
 
-            TraceMap.initScatterGeo(
-                TraceMapStyle.ScatterGeo(
+            TraceGeo.initScatterGeo(
+                TraceGeoStyle.ScatterGeo(
                     mode            = mode          ,
                     Longitudes      = longitudes    ,
                     Latitudes       = latitudes     ,
@@ -176,8 +176,8 @@ module ChartMap =
             ) = 
             let longitudes, latitudes = Seq.unzip lonlat
 
-            TraceMap.initScatterGeo(
-                TraceMapStyle.ScatterGeo(
+            TraceGeo.initScatterGeo(
+                TraceGeoStyle.ScatterGeo(
                     mode            = mode          ,
                     Longitudes      = longitudes    ,
                     Latitudes       = latitudes     ,
@@ -248,8 +248,8 @@ module ChartMap =
                 [<Optional;DefaultParameterValue(null)>] ?Fillcolor   
             ) = 
 
-            TraceMap.initScatterGeo(
-                TraceMapStyle.ScatterGeo(
+            TraceGeo.initScatterGeo(
+                TraceGeoStyle.ScatterGeo(
                     mode            = mode          ,
                     ?Locations      = locations     ,
                     ?GeoJson        = GeoJson       ,
@@ -314,8 +314,8 @@ module ChartMap =
 
             let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
 
-            TraceMap.initScatterGeo(
-                TraceMapStyle.ScatterGeo(
+            TraceGeo.initScatterGeo(
+                TraceGeoStyle.ScatterGeo(
                     mode            = changeMode StyleParam.Mode.Markers ,
                     Longitudes      = longitudes    ,
                     Latitudes       = latitudes     ,
@@ -379,8 +379,8 @@ module ChartMap =
             let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
             let longitudes, latitudes = Seq.unzip lonlat
 
-            TraceMap.initScatterGeo(
-                TraceMapStyle.ScatterGeo(
+            TraceGeo.initScatterGeo(
+                TraceGeoStyle.ScatterGeo(
                     mode            = changeMode StyleParam.Mode.Markers ,
                     Longitudes      = longitudes    ,
                     Latitudes       = latitudes     ,
@@ -443,8 +443,8 @@ module ChartMap =
         
             let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
 
-            TraceMap.initScatterGeo(
-                TraceMapStyle.ScatterGeo(
+            TraceGeo.initScatterGeo(
+                TraceGeoStyle.ScatterGeo(
                     mode        = changeMode StyleParam.Mode.Markers ,
                     ?Locations  = locations     ,
                     ?GeoJson    = GeoJson       ,
@@ -522,8 +522,8 @@ module ChartMap =
                 StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
                 >> StyleParam.ModeUtils.showMarker (isShowMarker)
 
-            TraceMap.initScatterGeo(
-                TraceMapStyle.ScatterGeo(
+            TraceGeo.initScatterGeo(
+                TraceGeoStyle.ScatterGeo(
                     mode            = changeMode StyleParam.Mode.Lines,
                     Longitudes      = longitudes    ,
                     Latitudes       = latitudes     ,
@@ -598,8 +598,8 @@ module ChartMap =
                 >> StyleParam.ModeUtils.showMarker (isShowMarker)
             let longitudes, latitudes = Seq.unzip lonlat
 
-            TraceMap.initScatterGeo(
-                TraceMapStyle.ScatterGeo(
+            TraceGeo.initScatterGeo(
+                TraceGeoStyle.ScatterGeo(
                     mode            = changeMode StyleParam.Mode.Lines,
                     Longitudes      = longitudes    ,
                     Latitudes       = latitudes     ,
@@ -674,8 +674,8 @@ module ChartMap =
                 StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
                 >> StyleParam.ModeUtils.showMarker (isShowMarker)
 
-            TraceMap.initScatterGeo(
-                TraceMapStyle.ScatterGeo(
+            TraceGeo.initScatterGeo(
+                TraceGeoStyle.ScatterGeo(
                     mode            = changeMode StyleParam.Mode.Lines,
                     Locations       = locations    ,
                     ?GeoJson        = GeoJson      ,
@@ -731,8 +731,8 @@ module ChartMap =
             [<Optional;DefaultParameterValue(null)>] ?Fillcolor   
             ) = 
 
-            TraceMap.initScatterMapbox(
-                TraceMapStyle.ScatterMapbox(
+            TraceMapbox.initScatterMapbox(
+                TraceMapboxStyle.ScatterMapbox(
                     mode            = mode          ,
                     Longitudes      = longitudes    ,
                     Latitudes       = latitudes     ,
@@ -1079,8 +1079,8 @@ module ChartMap =
             [<Optional;DefaultParameterValue(null)>] ?ZMax
             ) =
             
-                TraceMap.initChoroplethMapbox (
-                    TraceMapStyle.ChoroplethMapbox (
+                TraceMapbox.initChoroplethMapbox (
+                    TraceMapboxStyle.ChoroplethMapbox (
                         Z               = z,
                         Locations       = locations,
                         GeoJson         = geoJson,
@@ -1128,8 +1128,8 @@ module ChartMap =
             [<Optional;DefaultParameterValue(null)>] ?ZMid,
             [<Optional;DefaultParameterValue(null)>] ?ZMax
             ) =
-                TraceMap.initDensityMapbox(
-                    TraceMapStyle.DensityMapbox(
+                TraceMapbox.initDensityMapbox(
+                    TraceMapboxStyle.DensityMapbox(
                         Longitudes  = lon,
                         Latitudes   = lat,
                         ?Z          = Z,

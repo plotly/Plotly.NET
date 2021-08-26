@@ -33,6 +33,17 @@ type TracePolar(traceTypeName) =
 
 type TracePolarStyle() =
     
+    static member SetPolar
+        (
+            [<Optional;DefaultParameterValue(null)>] ?PolarId:StyleParam.SubPlotId
+        ) =  
+            (fun (trace:TracePolar) ->
+
+                PolarId |> DynObj.setValueOptBy trace "subplot" StyleParam.SubPlotId.toString
+
+                trace
+            )
+
     static member ScatterPolar
         (
             [<Optional;DefaultParameterValue(null)>] ?Name               : string,

@@ -48,6 +48,17 @@ type TraceDomain(traceTypeName) =
 
 type TraceDomainStyle() =
     
+    static member SetDomain
+        (
+            [<Optional;DefaultParameterValue(null)>] ?Domain:Domain
+        ) =  
+            (fun (trace:TraceDomain) ->
+
+                Domain |> DynObj.setValueOpt trace "domain"
+
+                trace
+            )
+
     // Applies the styles of pie plot to TraceObjects 
     static member Pie
         (                

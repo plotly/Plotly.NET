@@ -95,8 +95,11 @@ type Chart =
             
             fun (ch:GenericChart) ->
                 ch |> mapTrace (fun trace ->
-                    trace 
-                    |> TraceStyle.SetAxisAnchor(?X=idx,?Y=idy)
+                    match trace with
+                    | :? Trace2D as trace -> trace |> Trace2DStyle.SetAxisAnchor(?X=idx,?Y=idy) :> Trace
+                    | _ -> 
+                        printfn "the input was not a 2D cartesian trace. no axis anchors set."
+                        trace
                 )
     [<CompiledName("WithAxisAnchor")>]
     static member withAxisAnchor
@@ -562,7 +565,7 @@ type Chart =
     static member withMapbox(mapBox:Mapbox,[<Optional;DefaultParameterValue(null)>] ?Id:StyleParam.SubPlotId ) =
         (fun (ch:GenericChart) ->
             let layout =
-                let id = defaultArg Id (StyleParam.SubPlotId.MapBox 1)
+                let id = defaultArg Id (StyleParam.SubPlotId.Mapbox 1)
                 GenericChart.getLayout ch 
                 |> Layout.UpdateMapboxById(id,mapBox)
             GenericChart.setLayout layout ch

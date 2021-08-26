@@ -13,3 +13,16 @@ type TraceTernary(traceTypeName) =
     ///initializes a trace of type "scatterternary" applying the given trace styling function
     static member initScatterTernary (applyStyle:TraceTernary -> TraceTernary) = 
         TraceTernary("scatterternary") |> applyStyle
+
+type TraceTernaryStyle() =
+
+    static member SetTernary
+        (
+            [<Optional;DefaultParameterValue(null)>] ?TernaryId:StyleParam.SubPlotId
+        ) =  
+            (fun (trace:TraceTernary) ->
+
+                TernaryId |> DynObj.setValueOptBy trace "subplot" StyleParam.SubPlotId.toString
+
+                trace
+            )

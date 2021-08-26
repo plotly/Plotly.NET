@@ -26,31 +26,34 @@ open System.Runtime.InteropServices
 /// 
 /// - densitymapbox: density heatmaps on tile maps
 
-type TraceMap(traceTypeName) =
+type TraceMapbox(traceTypeName) =
 
     inherit Trace (traceTypeName)
 
-    ///initializes a trace of type "scattergeo" applying the given trace styling function
-    static member initScatterGeo (applyStyle: TraceMap -> TraceMap) = 
-        TraceMap("scattergeo") |> applyStyle
-
-    ///initializes a trace of type "choropleth" applying the given trace styling function
-    static member initChoroplethMap (applyStyle: TraceMap -> TraceMap) = 
-        TraceMap("choropleth") |> applyStyle
-
     ///initializes a trace of type "scattermapbox" applying the given trace styling function
-    static member initScatterMapbox (applyStyle: TraceMap -> TraceMap) = 
-        TraceMap("scattermapbox") |> applyStyle
+    static member initScatterMapbox (applyStyle: TraceMapbox -> TraceMapbox) = 
+        TraceMapbox("scattermapbox") |> applyStyle
 
     ///initializes a trace of type "choroplethmapbox" applying the given trace styling function
-    static member initChoroplethMapbox (applyStyle: TraceMap -> TraceMap) = 
-        TraceMap("choroplethmapbox") |> applyStyle
+    static member initChoroplethMapbox (applyStyle: TraceMapbox -> TraceMapbox) = 
+        TraceMapbox("choroplethmapbox") |> applyStyle
 
     ///initializes a trace of type "densitymapbox" applying the given trace styling function
-    static member initDensityMapbox (applyStyle: TraceMap -> TraceMap) = 
-        TraceMap("densitymapbox") |> applyStyle
+    static member initDensityMapbox (applyStyle: TraceMapbox -> TraceMapbox) = 
+        TraceMapbox("densitymapbox") |> applyStyle
 
-type TraceMapStyle() = 
+type TraceMapboxStyle() = 
+
+    static member SetMapbox
+        (
+            [<Optional;DefaultParameterValue(null)>] ?MapboxId:StyleParam.SubPlotId
+        ) =  
+            (fun (trace:TraceMapbox) ->
+
+                MapboxId |> DynObj.setValueOptBy trace "subplot" StyleParam.SubPlotId.toString
+
+                trace
+            )
 
     // Applies the styles of choropleth map plot to TraceObjects 
     static member ChoroplethMap

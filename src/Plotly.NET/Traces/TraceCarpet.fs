@@ -21,3 +21,16 @@ type TraceCarpet(traceTypeName) =
     ///initializes a trace of type "contourcarpet" applying the given trace styling function
     static member initContourCarpet (applyStyle: TraceCarpet -> TraceCarpet) = 
         TraceCarpet("contourcarpet") |> applyStyle
+
+type TraceCarpetStyle() =
+
+    static member SetCarpet
+        (
+            [<Optional;DefaultParameterValue(null)>] ?CarpetId:StyleParam.SubPlotId
+        ) =  
+            (fun (trace:TraceCarpet) ->
+
+                CarpetId |> DynObj.setValueOptBy trace "carpet" StyleParam.SubPlotId.toString
+
+                trace
+            )
