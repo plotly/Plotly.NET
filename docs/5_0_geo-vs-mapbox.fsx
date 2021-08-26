@@ -66,6 +66,7 @@ baseMapOnly |> GenericChart.toChartHTML
 To control the features of the map, a `Geo` object is used that can be associtaed with a given chart using the `Chart.WithGeo` function.
 Here is a map with all physical features enabled and styled, at a larger-scale 1:50m resolution:
 *)
+open Plotly.NET.LayoutObjects
 
 let myGeo =
     Geo.init(

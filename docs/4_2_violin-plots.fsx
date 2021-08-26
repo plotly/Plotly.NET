@@ -62,6 +62,8 @@ violin1 |> GenericChart.toChartHTML
 (**
 By swapping x and y plus using `StyleParam.Orientation.Horizontal` we can flip the chart horizontaly.
 *)
+open Plotly.NET.TraceObjects
+
 let violin2 =
     Chart.Violin(
         y,x,

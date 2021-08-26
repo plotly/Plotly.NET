@@ -112,6 +112,9 @@ choroplethMap1 |> GenericChart.toChartHTML
 
 you can access various map styles via `Chart.withGeoStyle`, such as the projection type, lake/ocean color, and so on.
 *)
+
+open Plotly.NET.LayoutObjects
+
 let choroplethMap2 =
     Chart.ChoroplethMap(
         locations,z,

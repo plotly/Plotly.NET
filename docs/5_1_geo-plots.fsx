@@ -52,6 +52,8 @@ The simplest type of geo plot is plotting the (lon,lat) pairs of a location via 
 Here is an example using the location of Canadian cities:
 *)
 
+open Plotly.NET.LayoutObjects
+
 let pointGeo =
     Chart.PointGeo(
         lon,

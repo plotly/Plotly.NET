@@ -73,6 +73,8 @@ let z' = [
     [1.;2.;];
     ] // column (length y)
 
+open Plotly.NET.TraceObjects
+
 let surface2 = 
     Chart.Surface(z',x',y',Opacity=0.5,Contours=Contours.initXyz(Show=true))
 

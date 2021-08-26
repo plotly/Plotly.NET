@@ -46,6 +46,8 @@ multiple annotations at once.
 **Attention**: Adding an annotation after you added a previous one currently removes the old one. This is a bug and will be fixed
 *)
 
+open Plotly.NET.LayoutObjects
+
 let a1 = Annotation.init (X=2.,Y=4.,Text = "Hi there!")
 let a2 = Annotation.init (X=5.,Y=7.,Text="I am another annotation!",BGColor="white",BorderColor="black")
 

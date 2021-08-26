@@ -66,6 +66,7 @@ combinedPolar |> GenericChart.toChartHTML
 
 Use the `Chart.withPolar` function and initialize a Polar layout with the desired looks
 *)
+open Plotly.NET.LayoutObjects
 
 let styledPolar = 
     combinedPolar
@@ -95,12 +96,12 @@ You could pass these axes to `Chart.withPolar`, but for the case where you want 
 let styledPolar2 =
     styledPolar
     |> Chart.withAngularAxis(
-        Axis.AngularAxis.init(
+        AngularAxis.init(
             Color="darkblue"
         )
     )
     |> Chart.withRadialAxis(
-        Axis.RadialAxis.init(
+        RadialAxis.init(
             Title = Title.init("Hi, i am the radial axis"),
             Color="darkblue",
             SeparateThousands = true

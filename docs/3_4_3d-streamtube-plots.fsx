@@ -38,6 +38,7 @@ open Deedle
 open FSharp.Data
 open System
 open Plotly.NET 
+open Plotly.NET.TraceObjects
 
 let tubeData =
     Http.RequestString @"https://raw.githubusercontent.com/plotly/datasets/master/streamtube-wind.csv"

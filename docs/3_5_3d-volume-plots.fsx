@@ -62,6 +62,8 @@ let values =
         sin(x*y*z) / (x*y*z)
     ) x y z
 
+open Plotly.NET.TraceObjects
+
 let volume =
     Chart.Volume(
        x, y, z, values,
