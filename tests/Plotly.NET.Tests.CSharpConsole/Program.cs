@@ -7,7 +7,8 @@ namespace Plotly.NET.Tests.CSharp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine(StyleParam.TextPosition.MiddleRight.ToString());
+            Console.WriteLine(StyleParam.TextPosition.MiddleRight.Convert());
         }
     }
 }

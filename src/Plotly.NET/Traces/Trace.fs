@@ -102,7 +102,7 @@ type TraceStyle() =
     /// Sets the given line on a Trace object.
     static member SetLine
         (
-            [<Optional;DefaultParameterValue(null)>] line:Line
+            line:Line
         ) =  
             (fun (trace:('T :> Trace)) ->
 

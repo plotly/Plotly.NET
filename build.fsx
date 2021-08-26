@@ -63,7 +63,10 @@ module ProjectInfo =
 
     let project = "Plotly.NET"
 
-    let testProject = "tests/Plotly.NET.Tests/Plotly.NET.Tests.fsproj"
+    let testProjects = [
+        "tests/Plotly.NET.Tests/Plotly.NET.Tests.fsproj"
+        "tests/Plotly.NET.Tests.CSharp/Plotly.NET.Tests.CSharp.csproj"
+    ]
 
     let summary = "A F# interactive charting library using plotly.js"
 
@@ -140,34 +143,18 @@ module TestTasks =
     open BasicTasks
 
     let runTests = BuildTask.create "RunTests" [clean; build; copyBinaries] {
-        let standardParams = Fake.DotNet.MSBuild.CliArguments.Create ()
-        Fake.DotNet.DotNet.test(fun testParams ->
-            {
-                testParams with
-                    Logger = Some "console;verbosity=detailed"
-                    Configuration = DotNet.BuildConfiguration.fromString configuration
-                    NoBuild = true
-            }
-        ) testProject
-    }
-
-    // to do: use this once we have actual tests
-    let runTestsWithCodeCov = BuildTask.create "RunTestsWithCodeCov" [clean; build; copyBinaries] {
-        let standardParams = Fake.DotNet.MSBuild.CliArguments.Create ()
-        Fake.DotNet.DotNet.test(fun testParams ->
-            {
-                testParams with
-                    MSBuildParams = {
-                        standardParams with
-                            Properties = [
-                                "AltCover","true"
-                                "AltCoverCobertura","../../codeCov.xml"
-                                "AltCoverForce","true"
-                            ]
-                    };
-                    Logger = Some "console;verbosity=detailed"
-            }
-        ) testProject
+        testProjects
+        |> Seq.iter (fun t ->
+            let standardParams = Fake.DotNet.MSBuild.CliArguments.Create ()
+            Fake.DotNet.DotNet.test(fun testParams ->
+                {
+                    testParams with
+                        Logger = Some "console;verbosity=detailed"
+                        Configuration = DotNet.BuildConfiguration.fromString configuration
+                        NoBuild = true
+                }
+            ) t
+        )
     }
 
 
