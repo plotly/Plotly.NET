@@ -4,6 +4,7 @@ open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 type TraceTernary(traceTypeName) =
 

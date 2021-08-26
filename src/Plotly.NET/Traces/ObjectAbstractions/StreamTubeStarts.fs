@@ -4,6 +4,7 @@ open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 /// An object to set the Lighting of a 3D Scene
 type StreamTubeStarts() =
@@ -17,9 +18,9 @@ type StreamTubeStarts() =
     /// <param name="Z">Sets the z components of the starting position of the streamtubes</param>
     static member init
         (
-            ?X: seq<#IConvertible>,
-            ?Y: seq<#IConvertible>,
-            ?Z: seq<#IConvertible>
+            [<Optional;DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Z: seq<#IConvertible>
         ) =
 
             StreamTubeStarts()
@@ -38,9 +39,9 @@ type StreamTubeStarts() =
     /// <param name="Z">Sets the z components of the starting position of the streamtubes</param>
     static member style 
         (
-            ?X: seq<#IConvertible>,
-            ?Y: seq<#IConvertible>,
-            ?Z: seq<#IConvertible>
+            [<Optional;DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Z: seq<#IConvertible>
         ) =
             fun (streamTubeStarts: StreamTubeStarts) ->
 

@@ -3,6 +3,7 @@
 open Plotly.NET
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 /// <summary>Determines the style of the map shown in mapbox traces</summary>
 type Mapbox() = 
@@ -13,14 +14,14 @@ type Mapbox() =
 
     static member init
         (   
-            ?Domain: Domain,
-            ?AccessToken: string,
-            ?Style: StyleParam.MapboxStyle,
-            ?Center: (float*float),
-            ?Zoom: float,
-            ?Bearing: float,
-            ?Pitch: float,
-            ?Layers: seq<MapboxLayer>
+            [<Optional;DefaultParameterValue(null)>] ?Domain: Domain,
+            [<Optional;DefaultParameterValue(null)>] ?AccessToken: string,
+            [<Optional;DefaultParameterValue(null)>] ?Style: StyleParam.MapboxStyle,
+            [<Optional;DefaultParameterValue(null)>] ?Center: (float*float),
+            [<Optional;DefaultParameterValue(null)>] ?Zoom: float,
+            [<Optional;DefaultParameterValue(null)>] ?Bearing: float,
+            [<Optional;DefaultParameterValue(null)>] ?Pitch: float,
+            [<Optional;DefaultParameterValue(null)>] ?Layers: seq<MapboxLayer>
         ) =
             Mapbox()
             |> Mapbox.style
@@ -39,14 +40,14 @@ type Mapbox() =
 
     static member style
         (   
-            ?Domain: Domain,
-            ?AccessToken: string,
-            ?Style: StyleParam.MapboxStyle,
-            ?Center: (float*float),
-            ?Zoom: float,
-            ?Bearing: float,
-            ?Pitch: float,
-            ?Layers: seq<MapboxLayer>
+            [<Optional;DefaultParameterValue(null)>] ?Domain: Domain,
+            [<Optional;DefaultParameterValue(null)>] ?AccessToken: string,
+            [<Optional;DefaultParameterValue(null)>] ?Style: StyleParam.MapboxStyle,
+            [<Optional;DefaultParameterValue(null)>] ?Center: (float*float),
+            [<Optional;DefaultParameterValue(null)>] ?Zoom: float,
+            [<Optional;DefaultParameterValue(null)>] ?Bearing: float,
+            [<Optional;DefaultParameterValue(null)>] ?Pitch: float,
+            [<Optional;DefaultParameterValue(null)>] ?Layers: seq<MapboxLayer>
 
         ) =
             (fun (mapBox:Mapbox) -> 

@@ -4,6 +4,7 @@ open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 /// CellColor type inherits from dynamic object
 type CellColor () =
@@ -12,7 +13,7 @@ type CellColor () =
     /// Initialized Line object
     static member init
         (
-            ?Color
+            [<Optional;DefaultParameterValue(null)>] ?Color
         ) =
             CellColor () 
             |> CellColor.style
@@ -22,7 +23,7 @@ type CellColor () =
     // Applies the styles to CellColor()
     static member style
         (
-            ?Color
+            [<Optional;DefaultParameterValue(null)>] ?Color
         ) =
             (fun (cell:CellColor) -> 
                 Color      |> DynObj.setValueOpt cell "color" 
@@ -39,11 +40,11 @@ type TableHeader () =
     static member init
         (   
             values: seq<#seq<#IConvertible>>, 
-            ?Align: seq<StyleParam.HorizontalAlign>,
-            ?Height: float,
-            ?Fill: CellColor,
-            ?Font: Font,
-            ?Line: Line
+            [<Optional;DefaultParameterValue(null)>] ?Align: seq<StyleParam.HorizontalAlign>,
+            [<Optional;DefaultParameterValue(null)>] ?Height: float,
+            [<Optional;DefaultParameterValue(null)>] ?Fill: CellColor,
+            [<Optional;DefaultParameterValue(null)>] ?Font: Font,
+            [<Optional;DefaultParameterValue(null)>] ?Line: Line
 
         ) =
         TableHeader () 
@@ -62,11 +63,11 @@ type TableHeader () =
     static member style
         (   
             values : seq<#seq<#IConvertible>>, 
-            ?Align : seq<StyleParam.HorizontalAlign>,
-            ?Height: float,
-            ?Fill: CellColor,
-            ?Font: Font,
-            ?Line: Line
+            [<Optional;DefaultParameterValue(null)>] ?Align : seq<StyleParam.HorizontalAlign>,
+            [<Optional;DefaultParameterValue(null)>] ?Height: float,
+            [<Optional;DefaultParameterValue(null)>] ?Fill: CellColor,
+            [<Optional;DefaultParameterValue(null)>] ?Font: Font,
+            [<Optional;DefaultParameterValue(null)>] ?Line: Line
 
         ) =
             (fun (header: TableHeader) -> 

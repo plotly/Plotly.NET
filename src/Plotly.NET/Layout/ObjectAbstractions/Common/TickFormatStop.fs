@@ -3,17 +3,18 @@
 open Plotly.NET
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 type TickFormatStop() =
     inherit DynamicObj ()
 
     static member init
         (    
-            ?Enabled            : bool,
-            ?DTickRange         : seq<string*string>,
-            ?Value              : string,
-            ?Name               : string,
-            ?TemplateItemName   : string
+            [<Optional;DefaultParameterValue(null)>] ?Enabled            : bool,
+            [<Optional;DefaultParameterValue(null)>] ?DTickRange         : seq<string*string>,
+            [<Optional;DefaultParameterValue(null)>] ?Value              : string,
+            [<Optional;DefaultParameterValue(null)>] ?Name               : string,
+            [<Optional;DefaultParameterValue(null)>] ?TemplateItemName   : string
         ) =    
             TickFormatStop()
             |> TickFormatStop.style
@@ -27,11 +28,11 @@ type TickFormatStop() =
 
     static member style
         (    
-            ?Enabled            : bool,
-            ?DTickRange         : seq<string*string>,
-            ?Value              : string,
-            ?Name               : string,
-            ?TemplateItemName   : string
+            [<Optional;DefaultParameterValue(null)>] ?Enabled            : bool,
+            [<Optional;DefaultParameterValue(null)>] ?DTickRange         : seq<string*string>,
+            [<Optional;DefaultParameterValue(null)>] ?Value              : string,
+            [<Optional;DefaultParameterValue(null)>] ?Name               : string,
+            [<Optional;DefaultParameterValue(null)>] ?TemplateItemName   : string
         ) =
             (fun (tickFormatStop:TickFormatStop) -> 
 

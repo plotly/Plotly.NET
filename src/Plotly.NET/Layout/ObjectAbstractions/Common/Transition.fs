@@ -3,15 +3,16 @@
 open Plotly.NET
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 type Transition() =
     inherit DynamicObj ()
 
     static member init
         (    
-            ?Duration   : int,
-            ?Easing     : StyleParam.TransitionEasing,
-            ?Ordering   : StyleParam.TransitionOrdering
+            [<Optional;DefaultParameterValue(null)>] ?Duration   : int,
+            [<Optional;DefaultParameterValue(null)>] ?Easing     : StyleParam.TransitionEasing,
+            [<Optional;DefaultParameterValue(null)>] ?Ordering   : StyleParam.TransitionOrdering
         ) =    
             Transition()
             |> Transition.style
@@ -23,9 +24,9 @@ type Transition() =
 
     static member style
         (    
-            ?Duration: int,
-            ?Easing: StyleParam.TransitionEasing,
-            ?Ordering: StyleParam.TransitionOrdering
+            [<Optional;DefaultParameterValue(null)>] ?Duration: int,
+            [<Optional;DefaultParameterValue(null)>] ?Easing: StyleParam.TransitionEasing,
+            [<Optional;DefaultParameterValue(null)>] ?Ordering: StyleParam.TransitionOrdering
         ) =
             (fun (transition:Transition) -> 
                

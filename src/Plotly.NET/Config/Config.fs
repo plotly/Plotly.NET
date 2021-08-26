@@ -1,6 +1,7 @@
 namespace Plotly.NET
 
 open DynamicObj
+open System.Runtime.InteropServices
 
 // missing config props:
 
@@ -323,11 +324,11 @@ type ToImageButtonOptions() =
     inherit DynamicObj()
     static member init 
         (
-            ?Format     : StyleParam.ImageFormat,
-            ?Filename   : string, 
-            ?Width      : float, 
-            ?Height     : float, 
-            ?Scale      : float
+            [<Optional;DefaultParameterValue(null)>] ?Format     : StyleParam.ImageFormat,
+            [<Optional;DefaultParameterValue(null)>] ?Filename   : string, 
+            [<Optional;DefaultParameterValue(null)>] ?Width      : float, 
+            [<Optional;DefaultParameterValue(null)>] ?Height     : float, 
+            [<Optional;DefaultParameterValue(null)>] ?Scale      : float
         ) =
             ToImageButtonOptions()
             |> ToImageButtonOptions.style 
@@ -341,11 +342,11 @@ type ToImageButtonOptions() =
     
     static member style 
         (
-            ?Format,
-            ?Filename, 
-            ?Width, 
-            ?Height, 
-            ?Scale
+            [<Optional;DefaultParameterValue(null)>] ?Format,
+            [<Optional;DefaultParameterValue(null)>] ?Filename, 
+            [<Optional;DefaultParameterValue(null)>] ?Width, 
+            [<Optional;DefaultParameterValue(null)>] ?Height, 
+            [<Optional;DefaultParameterValue(null)>] ?Scale
         ) =
             fun (btnConf:ToImageButtonOptions) ->
                 Format              |> Option.map StyleParam.ImageFormat.toString |> DynObj.setValueOpt btnConf "format"
@@ -361,13 +362,13 @@ type Config() =
     /// Init Legend type
     static member init 
         (
-            ?StaticPlot             : bool,
-            ?Autosizable            : bool,
-            ?Responsive             : bool,
-            ?ShowEditInChartStudio  : bool,
-            ?ToImageButtonOptions   : ToImageButtonOptions,
-            ?Editable               : bool,
-            ?EditableAnnotations    : seq<StyleParam.AnnotationEditOptions>
+            [<Optional;DefaultParameterValue(null)>] ?StaticPlot             : bool,
+            [<Optional;DefaultParameterValue(null)>] ?Autosizable            : bool,
+            [<Optional;DefaultParameterValue(null)>] ?Responsive             : bool,
+            [<Optional;DefaultParameterValue(null)>] ?ShowEditInChartStudio  : bool,
+            [<Optional;DefaultParameterValue(null)>] ?ToImageButtonOptions   : ToImageButtonOptions,
+            [<Optional;DefaultParameterValue(null)>] ?Editable               : bool,
+            [<Optional;DefaultParameterValue(null)>] ?EditableAnnotations    : seq<StyleParam.AnnotationEditOptions>
         ) = 
             Config()
             |> Config.style
@@ -387,13 +388,13 @@ type Config() =
         (   
 //          'Statically override options for toImage modebar button',
 //            'allowed keys are format, filename, width, height, scale',
-            ?StaticPlot             : bool,
-            ?Autosizable            : bool,
-            ?Responsive             : bool,
-            ?ToImageButtonOptions   : ToImageButtonOptions,
-            ?ShowEditInChartStudio  : bool,
-            ?Editable               : bool,
-            ?EditableAnnotations    : seq<StyleParam.AnnotationEditOptions>
+            [<Optional;DefaultParameterValue(null)>] ?StaticPlot             : bool,
+            [<Optional;DefaultParameterValue(null)>] ?Autosizable            : bool,
+            [<Optional;DefaultParameterValue(null)>] ?Responsive             : bool,
+            [<Optional;DefaultParameterValue(null)>] ?ToImageButtonOptions   : ToImageButtonOptions,
+            [<Optional;DefaultParameterValue(null)>] ?ShowEditInChartStudio  : bool,
+            [<Optional;DefaultParameterValue(null)>] ?Editable               : bool,
+            [<Optional;DefaultParameterValue(null)>] ?EditableAnnotations    : seq<StyleParam.AnnotationEditOptions>
 
         ) =
             fun (config:Config) ->

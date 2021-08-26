@@ -4,6 +4,7 @@ open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 /// Styles for connector lines in Waterfall Charts.
 ///
@@ -19,9 +20,9 @@ type WaterfallConnector () =
 
     static member init 
         (
-            ?Line           : Line,
-            ?Visible        : bool,
-            ?ConnectorMode  : StyleParam.ConnectorMode
+            [<Optional;DefaultParameterValue(null)>] ?Line           : Line,
+            [<Optional;DefaultParameterValue(null)>] ?Visible        : bool,
+            [<Optional;DefaultParameterValue(null)>] ?ConnectorMode  : StyleParam.ConnectorMode
         ) = 
 
         WaterfallConnector() 
@@ -34,9 +35,9 @@ type WaterfallConnector () =
 
     static member style 
         (
-            ?Line           : Line,
-            ?Visible        : bool,
-            ?ConnectorMode  : StyleParam.ConnectorMode
+            [<Optional;DefaultParameterValue(null)>] ?Line           : Line,
+            [<Optional;DefaultParameterValue(null)>] ?Visible        : bool,
+            [<Optional;DefaultParameterValue(null)>] ?ConnectorMode  : StyleParam.ConnectorMode
         ) = 
             (fun (connector:WaterfallConnector) -> 
                 

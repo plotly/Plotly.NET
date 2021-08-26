@@ -3,6 +3,7 @@
 open Plotly.NET
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 /// <summary></summary>
 type MapboxLayerSymbol() = 
@@ -13,12 +14,12 @@ type MapboxLayerSymbol() =
 
     static member init
         (   
-            ?Icon: string,
-            ?IconSize:float,
-            ?Text: string,
-            ?Placement: StyleParam.MapboxLayerSymbolPlacement,
-            ?TextFont: Font,
-            ?TextPosition: StyleParam.TextPosition
+            [<Optional;DefaultParameterValue(null)>] ?Icon: string,
+            [<Optional;DefaultParameterValue(null)>] ?IconSize:float,
+            [<Optional;DefaultParameterValue(null)>] ?Text: string,
+            [<Optional;DefaultParameterValue(null)>] ?Placement: StyleParam.MapboxLayerSymbolPlacement,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont: Font,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition
         ) =
             MapboxLayerSymbol()
             |> MapboxLayerSymbol.style
@@ -35,12 +36,12 @@ type MapboxLayerSymbol() =
 
     static member style
         (   
-            ?Icon: string,
-            ?IconSize:float,
-            ?Text: string,
-            ?Placement: StyleParam.MapboxLayerSymbolPlacement,
-            ?TextFont: Font,
-            ?TextPosition: StyleParam.TextPosition
+            [<Optional;DefaultParameterValue(null)>] ?Icon: string,
+            [<Optional;DefaultParameterValue(null)>] ?IconSize:float,
+            [<Optional;DefaultParameterValue(null)>] ?Text: string,
+            [<Optional;DefaultParameterValue(null)>] ?Placement: StyleParam.MapboxLayerSymbolPlacement,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont: Font,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition
 
         ) =
             (fun (mapBoxLayerSymbol:MapboxLayerSymbol) -> 

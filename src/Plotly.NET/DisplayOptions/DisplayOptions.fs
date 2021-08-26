@@ -1,6 +1,7 @@
 ﻿namespace Plotly.NET
 
 open DynamicObj
+open System.Runtime.InteropServices
 
 type ChartDescription =
     {
@@ -32,8 +33,8 @@ type DisplayOptions() =
 
     static member init
         (    
-            ?AdditionalHeadTags:seq<string>,
-            ?Description:ChartDescription
+            [<Optional;DefaultParameterValue(null)>] ?AdditionalHeadTags:seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?Description:ChartDescription
         ) =    
             DisplayOptions()
             |> DisplayOptions.style
@@ -46,8 +47,8 @@ type DisplayOptions() =
     // Applies the styles to Font()
     static member style
         (    
-            ?AdditionalHeadTags:seq<string>,
-            ?Description:ChartDescription
+            [<Optional;DefaultParameterValue(null)>] ?AdditionalHeadTags:seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?Description:ChartDescription
         ) =
             (fun (displayOptions:DisplayOptions) -> 
 

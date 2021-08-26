@@ -3,6 +3,7 @@
 open Plotly.NET.LayoutObjects
 
 open DynamicObj
+open System.Runtime.InteropServices
 
 
 type Template() = 
@@ -11,7 +12,7 @@ type Template() =
     static member init
         (
             layoutTemplate: Layout   ,
-            ?TraceTemplates: #Trace []  
+            [<Optional;DefaultParameterValue(null)>] ?TraceTemplates: #Trace []  
         ) =
             Template()
             |> Template.style
@@ -23,7 +24,7 @@ type Template() =
     static member style
         (
             layoutTemplate: Layout   ,
-            ?TraceTemplates: #Trace []  
+            [<Optional;DefaultParameterValue(null)>] ?TraceTemplates: #Trace []  
         ) =
             (fun (template:Template) -> 
                 layoutTemplate   |> DynObj.setValue template "layout"

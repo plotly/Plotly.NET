@@ -4,15 +4,16 @@ open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 type ContourProject () =
     inherit DynamicObj () 
 
     static member init 
         (
-            ?X: bool,
-            ?Y: bool,
-            ?Z: bool
+            [<Optional;DefaultParameterValue(null)>] ?X: bool,
+            [<Optional;DefaultParameterValue(null)>] ?Y: bool,
+            [<Optional;DefaultParameterValue(null)>] ?Z: bool
         ) =
             ContourProject()
             |> ContourProject.style
@@ -24,9 +25,9 @@ type ContourProject () =
 
     static member style
         (
-           ?X: bool,
-           ?Y: bool,
-           ?Z: bool
+           [<Optional;DefaultParameterValue(null)>] ?X: bool,
+           [<Optional;DefaultParameterValue(null)>] ?Y: bool,
+           [<Optional;DefaultParameterValue(null)>] ?Z: bool
         ) =
 
             fun (contourProject: ContourProject) ->
@@ -45,17 +46,17 @@ type Contour () =
     //[<CompiledName("init")>]
     static member init 
         (
-            ?Color          : string,
-            ?End            : float,
-            ?Highlight      : bool,
-            ?HighlightColor : string ,
-            ?HighlightWidth : float,
-            ?Project        : ContourProject,
-            ?Show           : bool,
-            ?Size           : float,
-            ?Start          : float,
-            ?UseColorMap    : bool,
-            ?Width          : float
+            [<Optional;DefaultParameterValue(null)>] ?Color          : string,
+            [<Optional;DefaultParameterValue(null)>] ?End            : float,
+            [<Optional;DefaultParameterValue(null)>] ?Highlight      : bool,
+            [<Optional;DefaultParameterValue(null)>] ?HighlightColor : string ,
+            [<Optional;DefaultParameterValue(null)>] ?HighlightWidth : float,
+            [<Optional;DefaultParameterValue(null)>] ?Project        : ContourProject,
+            [<Optional;DefaultParameterValue(null)>] ?Show           : bool,
+            [<Optional;DefaultParameterValue(null)>] ?Size           : float,
+            [<Optional;DefaultParameterValue(null)>] ?Start          : float,
+            [<Optional;DefaultParameterValue(null)>] ?UseColorMap    : bool,
+            [<Optional;DefaultParameterValue(null)>] ?Width          : float
         ) =
             Contour ()
             |> Contour.style
@@ -78,17 +79,17 @@ type Contour () =
     //[<CompiledName("style")>]
     static member style
         (
-            ?Color          : string,
-            ?End            : float,
-            ?Highlight      : bool,
-            ?HighlightColor : string ,
-            ?HighlightWidth : float,
-            ?Project        : ContourProject,
-            ?Show           : bool,
-            ?Size           : float,
-            ?Start          : float,
-            ?UseColorMap    : bool,
-            ?Width          : float
+            [<Optional;DefaultParameterValue(null)>] ?Color          : string,
+            [<Optional;DefaultParameterValue(null)>] ?End            : float,
+            [<Optional;DefaultParameterValue(null)>] ?Highlight      : bool,
+            [<Optional;DefaultParameterValue(null)>] ?HighlightColor : string ,
+            [<Optional;DefaultParameterValue(null)>] ?HighlightWidth : float,
+            [<Optional;DefaultParameterValue(null)>] ?Project        : ContourProject,
+            [<Optional;DefaultParameterValue(null)>] ?Show           : bool,
+            [<Optional;DefaultParameterValue(null)>] ?Size           : float,
+            [<Optional;DefaultParameterValue(null)>] ?Start          : float,
+            [<Optional;DefaultParameterValue(null)>] ?UseColorMap    : bool,
+            [<Optional;DefaultParameterValue(null)>] ?Width          : float
         ) =
             
             (fun (contour:Contour) -> 
@@ -116,9 +117,9 @@ type Contours () =
     //[<CompiledName("init")>]
     static member init 
         (
-            ?X : Contour,
-            ?Y : Contour,
-            ?Z : Contour
+            [<Optional;DefaultParameterValue(null)>] ?X : Contour,
+            [<Optional;DefaultParameterValue(null)>] ?Y : Contour,
+            [<Optional;DefaultParameterValue(null)>] ?Z : Contour
         ) =
             Contours () 
             |> Contours.style
@@ -132,9 +133,9 @@ type Contours () =
     //[<CompiledName("style")>]
     static member style
         (
-            ?X : Contour,
-            ?Y : Contour,
-            ?Z : Contour
+            [<Optional;DefaultParameterValue(null)>] ?X : Contour,
+            [<Optional;DefaultParameterValue(null)>] ?Y : Contour,
+            [<Optional;DefaultParameterValue(null)>] ?Z : Contour
         ) =
             
             (fun (contours:Contours) -> 
@@ -149,17 +150,17 @@ type Contours () =
     // Initialized x-y-z-Contours with the same properties    
     static member initXyz
         (
-            ?Color          : string,
-            ?End            : float,
-            ?Highlight      : bool,
-            ?HighlightColor : string ,
-            ?HighlightWidth : float,
-            ?Project        : ContourProject,
-            ?Show           : bool,
-            ?Size           : float,
-            ?Start          : float,
-            ?UseColorMap    : bool,
-            ?Width          : float
+            [<Optional;DefaultParameterValue(null)>] ?Color          : string,
+            [<Optional;DefaultParameterValue(null)>] ?End            : float,
+            [<Optional;DefaultParameterValue(null)>] ?Highlight      : bool,
+            [<Optional;DefaultParameterValue(null)>] ?HighlightColor : string ,
+            [<Optional;DefaultParameterValue(null)>] ?HighlightWidth : float,
+            [<Optional;DefaultParameterValue(null)>] ?Project        : ContourProject,
+            [<Optional;DefaultParameterValue(null)>] ?Show           : bool,
+            [<Optional;DefaultParameterValue(null)>] ?Size           : float,
+            [<Optional;DefaultParameterValue(null)>] ?Start          : float,
+            [<Optional;DefaultParameterValue(null)>] ?UseColorMap    : bool,
+            [<Optional;DefaultParameterValue(null)>] ?Width          : float
                 
         ) =
             Contours () 
@@ -182,17 +183,17 @@ type Contours () =
     //[<CompiledName("styleXyz")>]
     static member styleXyz
         (
-            ?Color          : string,
-            ?End            : float,
-            ?Highlight      : bool,
-            ?HighlightColor : string ,
-            ?HighlightWidth : float,
-            ?Project        : ContourProject,
-            ?Show           : bool,
-            ?Size           : float,
-            ?Start          : float,
-            ?UseColorMap    : bool,
-            ?Width          : float
+            [<Optional;DefaultParameterValue(null)>] ?Color          : string,
+            [<Optional;DefaultParameterValue(null)>] ?End            : float,
+            [<Optional;DefaultParameterValue(null)>] ?Highlight      : bool,
+            [<Optional;DefaultParameterValue(null)>] ?HighlightColor : string ,
+            [<Optional;DefaultParameterValue(null)>] ?HighlightWidth : float,
+            [<Optional;DefaultParameterValue(null)>] ?Project        : ContourProject,
+            [<Optional;DefaultParameterValue(null)>] ?Show           : bool,
+            [<Optional;DefaultParameterValue(null)>] ?Size           : float,
+            [<Optional;DefaultParameterValue(null)>] ?Start          : float,
+            [<Optional;DefaultParameterValue(null)>] ?UseColorMap    : bool,
+            [<Optional;DefaultParameterValue(null)>] ?Width          : float
                 
         ) =
             

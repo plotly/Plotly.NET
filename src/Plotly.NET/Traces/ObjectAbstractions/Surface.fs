@@ -4,16 +4,17 @@ open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 type Surface () =
     inherit DynamicObj () 
 
     static member init 
         (
-            ?Count: int,
-            ?Fill: float,
-            ?Pattern: StyleParam.SurfacePattern,
-            ?Show: bool
+            [<Optional;DefaultParameterValue(null)>] ?Count: int,
+            [<Optional;DefaultParameterValue(null)>] ?Fill: float,
+            [<Optional;DefaultParameterValue(null)>] ?Pattern: StyleParam.SurfacePattern,
+            [<Optional;DefaultParameterValue(null)>] ?Show: bool
         ) =
             Surface()
             |> Surface.style
@@ -26,10 +27,10 @@ type Surface () =
 
     static member style
         (
-            ?Count: int,
-            ?Fill: float,
-            ?Pattern: StyleParam.SurfacePattern,
-            ?Show: bool
+            [<Optional;DefaultParameterValue(null)>] ?Count: int,
+            [<Optional;DefaultParameterValue(null)>] ?Fill: float,
+            [<Optional;DefaultParameterValue(null)>] ?Pattern: StyleParam.SurfacePattern,
+            [<Optional;DefaultParameterValue(null)>] ?Show: bool
         ) =
 
             fun (surface: Surface) ->

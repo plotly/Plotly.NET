@@ -4,6 +4,7 @@ open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 /// An object to set the Lighting of a 3D Scene
 type Lighting() =
@@ -21,13 +22,13 @@ type Lighting() =
     /// <param name="VertexNormalEpsilon">Epsilon for vertex normals calculation avoids math issues arising from degenerate geometry.</param>
     static member init
         (
-            ?Ambient            : float,
-            ?Diffuse            : float,
-            ?FaceNormalEpsilon  : float,
-            ?Fresnel            : float,
-            ?Roughness          : float,
-            ?Specular           : float,
-            ?VertexNormalEpsilon: float
+            [<Optional;DefaultParameterValue(null)>] ?Ambient            : float,
+            [<Optional;DefaultParameterValue(null)>] ?Diffuse            : float,
+            [<Optional;DefaultParameterValue(null)>] ?FaceNormalEpsilon  : float,
+            [<Optional;DefaultParameterValue(null)>] ?Fresnel            : float,
+            [<Optional;DefaultParameterValue(null)>] ?Roughness          : float,
+            [<Optional;DefaultParameterValue(null)>] ?Specular           : float,
+            [<Optional;DefaultParameterValue(null)>] ?VertexNormalEpsilon: float
         ) =
             Lighting()
             |> Lighting.style
@@ -53,13 +54,13 @@ type Lighting() =
     /// <param name="VertexNormalEpsilon">Epsilon for vertex normals calculation avoids math issues arising from degenerate geometry.</param>
     static member style 
         (
-            ?Ambient            : float,
-            ?Diffuse            : float,
-            ?FaceNormalEpsilon  : float,
-            ?Fresnel            : float,
-            ?Roughness          : float,
-            ?Specular           : float,
-            ?VertexNormalEpsilon : float
+            [<Optional;DefaultParameterValue(null)>] ?Ambient            : float,
+            [<Optional;DefaultParameterValue(null)>] ?Diffuse            : float,
+            [<Optional;DefaultParameterValue(null)>] ?FaceNormalEpsilon  : float,
+            [<Optional;DefaultParameterValue(null)>] ?Fresnel            : float,
+            [<Optional;DefaultParameterValue(null)>] ?Roughness          : float,
+            [<Optional;DefaultParameterValue(null)>] ?Specular           : float,
+            [<Optional;DefaultParameterValue(null)>] ?VertexNormalEpsilon : float
         ) =
             fun (l:Lighting) ->
 
@@ -84,9 +85,9 @@ type LightPosition() =
     /// <param name="Z"></param>
     static member init   
         (
-            ?X: float,
-            ?Y: float,
-            ?Z: float
+            [<Optional;DefaultParameterValue(null)>] ?X: float,
+            [<Optional;DefaultParameterValue(null)>] ?Y: float,
+            [<Optional;DefaultParameterValue(null)>] ?Z: float
         ) =
             LightPosition()
             |> LightPosition.style
@@ -104,9 +105,9 @@ type LightPosition() =
     /// <param name="Z"></param>
     static member style
         (
-            ?X: float,
-            ?Y: float,
-            ?Z: float
+            [<Optional;DefaultParameterValue(null)>] ?X: float,
+            [<Optional;DefaultParameterValue(null)>] ?Y: float,
+            [<Optional;DefaultParameterValue(null)>] ?Z: float
         ) =
             fun (lp: LightPosition) ->
                 

@@ -4,6 +4,7 @@ open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 /// Bin type inherits from dynamic object
 type Bins () =
@@ -12,9 +13,9 @@ type Bins () =
     // Init Bins()
     static member init
         (
-            ?StartBins: float,
-            ?EndBins: float,
-            ?Size: float
+            [<Optional;DefaultParameterValue(null)>] ?StartBins: float,
+            [<Optional;DefaultParameterValue(null)>] ?EndBins: float,
+            [<Optional;DefaultParameterValue(null)>] ?Size: float
         ) =
             Bins () 
             |> Bins.style
@@ -28,9 +29,9 @@ type Bins () =
     // Applies the styles to Bins()
     static member style
         (
-            ?StartBins: float,
-            ?EndBins: float,
-            ?Size: float
+            [<Optional;DefaultParameterValue(null)>] ?StartBins: float,
+            [<Optional;DefaultParameterValue(null)>] ?EndBins: float,
+            [<Optional;DefaultParameterValue(null)>] ?Size: float
         ) =
             
             (fun (bins:Bins) -> 

@@ -4,6 +4,7 @@ open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 /// Styles for connector lines in Funnel Charts.
 ///
@@ -19,9 +20,9 @@ type FunnelConnector () =
 
     static member init 
         (
-            ?Fillcolor      : string,
-            ?Line           : Line,
-            ?Visible        : bool
+            [<Optional;DefaultParameterValue(null)>] ?Fillcolor      : string,
+            [<Optional;DefaultParameterValue(null)>] ?Line           : Line,
+            [<Optional;DefaultParameterValue(null)>] ?Visible        : bool
         ) = 
 
         FunnelConnector() 
@@ -34,9 +35,9 @@ type FunnelConnector () =
 
     static member style 
         (
-            ?Fillcolor            ,
-            ?Line           : Line,
-            ?Visible        : bool
+            [<Optional;DefaultParameterValue(null)>] ?Fillcolor            ,
+            [<Optional;DefaultParameterValue(null)>] ?Line           : Line,
+            [<Optional;DefaultParameterValue(null)>] ?Visible        : bool
         ) = 
             (fun (connector:FunnelConnector) -> 
                 

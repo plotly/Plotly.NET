@@ -3,6 +3,7 @@ namespace Plotly.NET.LayoutObjects
 open Plotly.NET
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 /// Hoverlabel type inherits from dynamic object
 type Hoverlabel () =
@@ -11,11 +12,11 @@ type Hoverlabel () =
     /// Initialized Line object
     static member init
         (
-            ?BgColor: string,
-            ?BorderColor: string,
-            ?Font: Font,
-            ?Align: StyleParam.Align,
-            ?Namelength: int
+            [<Optional;DefaultParameterValue(null)>] ?BgColor: string,
+            [<Optional;DefaultParameterValue(null)>] ?BorderColor: string,
+            [<Optional;DefaultParameterValue(null)>] ?Font: Font,
+            [<Optional;DefaultParameterValue(null)>] ?Align: StyleParam.Align,
+            [<Optional;DefaultParameterValue(null)>] ?Namelength: int
         ) =
             Hoverlabel () 
             |> Hoverlabel.style
@@ -31,11 +32,11 @@ type Hoverlabel () =
     // Applies the styles to Line()
     static member style
         (
-            ?BgColor: string,
-            ?BorderColor: string,
-            ?Font: Font,
-            ?Align: StyleParam.Align,
-            ?Namelength: int
+            [<Optional;DefaultParameterValue(null)>] ?BgColor: string,
+            [<Optional;DefaultParameterValue(null)>] ?BorderColor: string,
+            [<Optional;DefaultParameterValue(null)>] ?Font: Font,
+            [<Optional;DefaultParameterValue(null)>] ?Align: StyleParam.Align,
+            [<Optional;DefaultParameterValue(null)>] ?Namelength: int
         ) =
             (fun (label:Hoverlabel) -> 
                 BgColor       |> DynObj.setValueOpt   label "bgcolor"

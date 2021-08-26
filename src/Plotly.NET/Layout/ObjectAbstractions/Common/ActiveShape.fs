@@ -3,14 +3,15 @@
 open Plotly.NET
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 type ActiveShape() =
     inherit DynamicObj ()
 
     static member init
         (    
-            ?FillColor  : string,
-            ?Opacity    : float
+            [<Optional;DefaultParameterValue(null)>] ?FillColor  : string,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity    : float
         ) =    
             ActiveShape()
             |> ActiveShape.style
@@ -21,8 +22,8 @@ type ActiveShape() =
 
     static member style
         (    
-           ?FillColor  : string,
-           ?Opacity    : float
+           [<Optional;DefaultParameterValue(null)>] ?FillColor  : string,
+           [<Optional;DefaultParameterValue(null)>] ?Opacity    : float
         ) =
             (fun (activeShape:ActiveShape) -> 
                

@@ -3,15 +3,16 @@
 open Plotly.NET
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 type DefaultColorScales() =
     inherit DynamicObj ()
 
     static member init
         (    
-            ?Diverging      : StyleParam.Colorscale,
-            ?Sequential     : StyleParam.Colorscale,
-            ?SequentialMinus: StyleParam.Colorscale
+            [<Optional;DefaultParameterValue(null)>] ?Diverging      : StyleParam.Colorscale,
+            [<Optional;DefaultParameterValue(null)>] ?Sequential     : StyleParam.Colorscale,
+            [<Optional;DefaultParameterValue(null)>] ?SequentialMinus: StyleParam.Colorscale
         ) =    
             DefaultColorScales()
             |> DefaultColorScales.style
@@ -23,9 +24,9 @@ type DefaultColorScales() =
 
     static member style
         (    
-            ?Diverging      : StyleParam.Colorscale,
-            ?Sequential     : StyleParam.Colorscale,
-            ?SequentialMinus: StyleParam.Colorscale
+            [<Optional;DefaultParameterValue(null)>] ?Diverging      : StyleParam.Colorscale,
+            [<Optional;DefaultParameterValue(null)>] ?Sequential     : StyleParam.Colorscale,
+            [<Optional;DefaultParameterValue(null)>] ?SequentialMinus: StyleParam.Colorscale
         ) =
             (fun (defaultColorScales:DefaultColorScales) -> 
                

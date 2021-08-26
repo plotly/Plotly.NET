@@ -4,6 +4,7 @@ open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 /// Box type inherits from dynamic object (parent violin)
 type Box () =
@@ -12,10 +13,10 @@ type Box () =
     /// Initialized Line object
     static member init
         (            
-            ?Visible: bool,
-            ?Width: float,
-            ?FillColor: string,
-            ?Line: Line
+            [<Optional;DefaultParameterValue(null)>] ?Visible: bool,
+            [<Optional;DefaultParameterValue(null)>] ?Width: float,
+            [<Optional;DefaultParameterValue(null)>] ?FillColor: string,
+            [<Optional;DefaultParameterValue(null)>] ?Line: Line
         ) =
             Box () 
             |> Box.style
@@ -30,10 +31,10 @@ type Box () =
     // Applies the styles to Line()
     static member style
         (
-            ?Visible: bool,
-            ?Width: float,
-            ?FillColor: string,
-            ?Line: Line
+            [<Optional;DefaultParameterValue(null)>] ?Visible: bool,
+            [<Optional;DefaultParameterValue(null)>] ?Width: float,
+            [<Optional;DefaultParameterValue(null)>] ?FillColor: string,
+            [<Optional;DefaultParameterValue(null)>] ?Line: Line
         ) =
             (fun (box:Box) -> 
                 Visible    |> DynObj.setValueOpt box "visible"

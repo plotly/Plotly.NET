@@ -1,5 +1,6 @@
 namespace Plotly.NET
 
+open System.Runtime.InteropServices
 open DynamicObj
 open System
 
@@ -10,14 +11,14 @@ type Line () =
     /// Initialized Line object
     static member init
         (
-            ?Width:float,
-            ?Color:string,
-            ?Shape:StyleParam.Shape,
-            ?Dash:StyleParam.DrawingStyle,
-            ?Smoothing:float,
-            ?Colorscale:StyleParam.Colorscale,
-            ?OutlierColor:string,
-            ?OutlierWidth:float
+            [<Optional;DefaultParameterValue(null)>] ?Width:float,
+            [<Optional;DefaultParameterValue(null)>] ?Color:string,
+            [<Optional;DefaultParameterValue(null)>] ?Shape:StyleParam.Shape,
+            [<Optional;DefaultParameterValue(null)>] ?Dash:StyleParam.DrawingStyle,
+            [<Optional;DefaultParameterValue(null)>] ?Smoothing:float,
+            [<Optional;DefaultParameterValue(null)>] ?Colorscale:StyleParam.Colorscale,
+            [<Optional;DefaultParameterValue(null)>] ?OutlierColor:string,
+            [<Optional;DefaultParameterValue(null)>] ?OutlierWidth:float
 
         ) =
             Line () 
@@ -37,14 +38,14 @@ type Line () =
     // Applies the styles to Line()
     static member style
         (
-            ?Width:float,
-            ?Color:string,
-            ?Shape:StyleParam.Shape,
-            ?Dash:StyleParam.DrawingStyle,
-            ?Smoothing:float,
-            ?Colorscale:StyleParam.Colorscale,
-            ?OutlierColor:string,
-            ?OutlierWidth:float
+            [<Optional;DefaultParameterValue(null)>] ?Width:float,
+            [<Optional;DefaultParameterValue(null)>] ?Color:string,
+            [<Optional;DefaultParameterValue(null)>] ?Shape:StyleParam.Shape,
+            [<Optional;DefaultParameterValue(null)>] ?Dash:StyleParam.DrawingStyle,
+            [<Optional;DefaultParameterValue(null)>] ?Smoothing:float,
+            [<Optional;DefaultParameterValue(null)>] ?Colorscale:StyleParam.Colorscale,
+            [<Optional;DefaultParameterValue(null)>] ?OutlierColor:string,
+            [<Optional;DefaultParameterValue(null)>] ?OutlierWidth:float
 
         ) =
             (fun (line:Line) -> 

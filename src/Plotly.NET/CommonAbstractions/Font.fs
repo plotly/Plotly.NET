@@ -1,4 +1,5 @@
 namespace Plotly.NET
+open System.Runtime.InteropServices
 
 open DynamicObj
 
@@ -9,9 +10,9 @@ type Font () =
     /// Init Font()
     static member init
         (    
-            ?Family    ,
-            ?Size      ,
-            ?Color     
+            [<Optional;DefaultParameterValue(null)>] ?Family : StyleParam.FontFamily,
+            [<Optional;DefaultParameterValue(null)>] ?Size   : float,
+            [<Optional;DefaultParameterValue(null)>] ?Color  : string
         ) =    
             Font()
             |> Font.style
@@ -25,9 +26,9 @@ type Font () =
     // Applies the styles to Font()
     static member style
         (    
-            ?Family: StyleParam.FontFamily,
-            ?Size: float,
-            ?Color: string
+            [<Optional;DefaultParameterValue(null)>] ?Family: StyleParam.FontFamily,
+            [<Optional;DefaultParameterValue(null)>] ?Size: float,
+            [<Optional;DefaultParameterValue(null)>] ?Color: string
         ) =
             (fun (font:Font) -> 
                     

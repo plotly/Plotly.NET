@@ -3,19 +3,20 @@
 open Plotly.NET
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 type ModeBar() =
     inherit DynamicObj ()
 
     static member init
         (    
-            ?ActiveColor    : string,
-            ?Add            : seq<string>,
-            ?BGColor        : string,
-            ?Color          : string,
-            ?Orientation    : StyleParam.Orientation,
-            ?Remove         : string,
-            ?UIRevision     : string
+            [<Optional;DefaultParameterValue(null)>] ?ActiveColor    : string,
+            [<Optional;DefaultParameterValue(null)>] ?Add            : seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?BGColor        : string,
+            [<Optional;DefaultParameterValue(null)>] ?Color          : string,
+            [<Optional;DefaultParameterValue(null)>] ?Orientation    : StyleParam.Orientation,
+            [<Optional;DefaultParameterValue(null)>] ?Remove         : string,
+            [<Optional;DefaultParameterValue(null)>] ?UIRevision     : string
         ) =    
             ModeBar()
             |> ModeBar.style
@@ -31,13 +32,13 @@ type ModeBar() =
 
     static member style
         (    
-           ?ActiveColor    : string,
-           ?Add            : seq<string>,
-           ?BGColor        : string,
-           ?Color          : string,
-           ?Orientation    : StyleParam.Orientation,
-           ?Remove         : string,
-           ?UIRevision     : string
+            [<Optional;DefaultParameterValue(null)>] ?ActiveColor    : string,
+            [<Optional;DefaultParameterValue(null)>] ?Add            : seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?BGColor        : string,
+            [<Optional;DefaultParameterValue(null)>] ?Color          : string,
+            [<Optional;DefaultParameterValue(null)>] ?Orientation    : StyleParam.Orientation,
+            [<Optional;DefaultParameterValue(null)>] ?Remove         : string,
+            [<Optional;DefaultParameterValue(null)>] ?UIRevision     : string
         ) =
             (fun (modeBar:ModeBar) -> 
                

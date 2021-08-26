@@ -4,15 +4,16 @@ open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 type MarkerSelectionStyle() =
     inherit DynamicObj ()
 
     static member init
         (    
-            ?Opacity:   float,
-            ?Color:     string,
-            ?Size:      float
+            [<Optional;DefaultParameterValue(null)>] ?Opacity:   float,
+            [<Optional;DefaultParameterValue(null)>] ?Color:     string,
+            [<Optional;DefaultParameterValue(null)>] ?Size:      float
         ) =    
             MarkerSelectionStyle()
             |> MarkerSelectionStyle.style
@@ -24,9 +25,9 @@ type MarkerSelectionStyle() =
 
     static member style
         (    
-            ?Opacity:   float,
-            ?Color:     string,
-            ?Size:      float
+            [<Optional;DefaultParameterValue(null)>] ?Opacity:   float,
+            [<Optional;DefaultParameterValue(null)>] ?Color:     string,
+            [<Optional;DefaultParameterValue(null)>] ?Size:      float
         ) =
             (fun (markerSelectionStyle:MarkerSelectionStyle) -> 
 
@@ -43,7 +44,7 @@ type FontSelectionStyle() =
     /// Init Font()
     static member init
         (    
-            ?Color:     string
+            [<Optional;DefaultParameterValue(null)>] ?Color:     string
         ) =    
             FontSelectionStyle()
             |> FontSelectionStyle.style
@@ -55,7 +56,7 @@ type FontSelectionStyle() =
     // Applies the styles to Font()
     static member style
         (    
-            ?Color:     string
+            [<Optional;DefaultParameterValue(null)>] ?Color:     string
         ) =
             (fun (fontSelectionStyle:FontSelectionStyle) -> 
                 Color |> DynObj.setValueOpt fontSelectionStyle "color" 
@@ -66,8 +67,8 @@ type Selection () =
 
     static member init
         (    
-            ?MarkerSelectionStyle: MarkerSelectionStyle,
-            ?FontSelectionStyle: FontSelectionStyle
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSelectionStyle: MarkerSelectionStyle,
+            [<Optional;DefaultParameterValue(null)>] ?FontSelectionStyle: FontSelectionStyle
         ) =    
             Selection()
             |> Selection.style
@@ -78,8 +79,8 @@ type Selection () =
 
     static member style
         (    
-            ?MarkerSelectionStyle: MarkerSelectionStyle,
-            ?FontSelectionStyle: FontSelectionStyle
+            [<Optional;DefaultParameterValue(null)>] ?MarkerSelectionStyle: MarkerSelectionStyle,
+            [<Optional;DefaultParameterValue(null)>] ?FontSelectionStyle: FontSelectionStyle
         ) =
             (fun (selection:Selection) -> 
                 MarkerSelectionStyle |> DynObj.setValueOpt selection "marker"

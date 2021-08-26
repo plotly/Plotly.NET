@@ -1,4 +1,5 @@
 ﻿namespace Plotly.NET
+open System.Runtime.InteropServices
 
 open DynamicObj
 
@@ -7,10 +8,10 @@ type Title() =
 
     static member init
         (    
-            ?Text       : string,
-            ?Font       : Font,
-            ?Standoff   : int,
-            ?Side       : StyleParam.Side
+            [<Optional;DefaultParameterValue(null)>] ?Text       : string,
+            [<Optional;DefaultParameterValue(null)>] ?Font       : Font,
+            [<Optional;DefaultParameterValue(null)>] ?Standoff   : int,
+            [<Optional;DefaultParameterValue(null)>] ?Side       : StyleParam.Side
         ) =    
             Title()
             |> Title.style
@@ -23,10 +24,10 @@ type Title() =
 
     static member style
         (    
-            ?Text       : string,
-            ?Font       : Font,
-            ?Standoff   : int,
-            ?Side       : StyleParam.Side
+            [<Optional;DefaultParameterValue(null)>] ?Text       : string,
+            [<Optional;DefaultParameterValue(null)>] ?Font       : Font,
+            [<Optional;DefaultParameterValue(null)>] ?Standoff   : int,
+            [<Optional;DefaultParameterValue(null)>] ?Side       : StyleParam.Side
         ) =
             (fun (title:Title) -> 
 

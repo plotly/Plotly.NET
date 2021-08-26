@@ -4,6 +4,7 @@ open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 /// Marker type inherits from dynamic object
 type Marker () =
@@ -12,28 +13,27 @@ type Marker () =
     /// Initialized Marker object
     static member init
         (   
-            ?Size: int,
-            ?Opacity: float,
-            ?Color: string,
-            ?Symbol: StyleParam.Symbol,
-            ?MultiSizes: seq<#IConvertible>,
-            ?Line: Line,
-            ?ColorBar: ColorBar,
-            ?Colorscale : StyleParam.Colorscale,
-            ?Colors: seq<string>,
-            ?OutlierColor:string,
-                            
-            ?Maxdisplayed: int,
-            ?Sizeref: float,
-            ?Sizemin: float,
-            ?Sizemode: StyleParam.MarkerSizeMode,
-            ?Cauto: bool,
-            ?Cmax: float,
-            ?Cmin: float,
-            ?Cmid: float,
-            ?Autocolorscale: bool,
-            ?Reversescale: bool,
-            ?Showscale: bool
+            [<Optional;DefaultParameterValue(null)>] ?Size: int,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity: float,
+            [<Optional;DefaultParameterValue(null)>] ?Color: string,
+            [<Optional;DefaultParameterValue(null)>] ?Symbol: StyleParam.Symbol,
+            [<Optional;DefaultParameterValue(null)>] ?MultiSizes: seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Line: Line,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar: ColorBar,
+            [<Optional;DefaultParameterValue(null)>] ?Colorscale : StyleParam.Colorscale,
+            [<Optional;DefaultParameterValue(null)>] ?Colors: seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?OutlierColor:string,
+            [<Optional;DefaultParameterValue(null)>] ?Maxdisplayed: int,
+            [<Optional;DefaultParameterValue(null)>] ?Sizeref: float,
+            [<Optional;DefaultParameterValue(null)>] ?Sizemin: float,
+            [<Optional;DefaultParameterValue(null)>] ?Sizemode: StyleParam.MarkerSizeMode,
+            [<Optional;DefaultParameterValue(null)>] ?Cauto: bool,
+            [<Optional;DefaultParameterValue(null)>] ?Cmax: float,
+            [<Optional;DefaultParameterValue(null)>] ?Cmin: float,
+            [<Optional;DefaultParameterValue(null)>] ?Cmid: float,
+            [<Optional;DefaultParameterValue(null)>] ?Autocolorscale: bool,
+            [<Optional;DefaultParameterValue(null)>] ?Reversescale: bool,
+            [<Optional;DefaultParameterValue(null)>] ?Showscale: bool
 
         ) =
         Marker () 
@@ -66,28 +66,27 @@ type Marker () =
     // Applies the styles to Marker()
     static member style
         (   
-            ?Size: int,
-            ?Opacity: float,
-            ?Color: string,
-            ?Symbol: StyleParam.Symbol,
-            ?MultiSizes: seq<#IConvertible>,
-            ?Line: Line,
-            ?ColorBar: ColorBar,
-            ?Colorscale : StyleParam.Colorscale,
-            ?Colors: seq<string>,
-            ?OutlierColor:string,
-                            
-            ?Maxdisplayed: int,
-            ?Sizeref: float,
-            ?Sizemin: float,
-            ?Sizemode: StyleParam.MarkerSizeMode,
-            ?Cauto: bool,
-            ?Cmax: float,
-            ?Cmin: float,
-            ?Cmid: float,
-            ?Autocolorscale: bool,
-            ?Reversescale: bool,
-            ?Showscale: bool
+            [<Optional;DefaultParameterValue(null)>] ?Size: int,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity: float,
+            [<Optional;DefaultParameterValue(null)>] ?Color: string,
+            [<Optional;DefaultParameterValue(null)>] ?Symbol: StyleParam.Symbol,
+            [<Optional;DefaultParameterValue(null)>] ?MultiSizes: seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Line: Line,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar: ColorBar,
+            [<Optional;DefaultParameterValue(null)>] ?Colorscale : StyleParam.Colorscale,
+            [<Optional;DefaultParameterValue(null)>] ?Colors: seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?OutlierColor:string,
+            [<Optional;DefaultParameterValue(null)>] ?Maxdisplayed: int,
+            [<Optional;DefaultParameterValue(null)>] ?Sizeref: float,
+            [<Optional;DefaultParameterValue(null)>] ?Sizemin: float,
+            [<Optional;DefaultParameterValue(null)>] ?Sizemode: StyleParam.MarkerSizeMode,
+            [<Optional;DefaultParameterValue(null)>] ?Cauto: bool,
+            [<Optional;DefaultParameterValue(null)>] ?Cmax: float,
+            [<Optional;DefaultParameterValue(null)>] ?Cmin: float,
+            [<Optional;DefaultParameterValue(null)>] ?Cmid: float,
+            [<Optional;DefaultParameterValue(null)>] ?Autocolorscale: bool,
+            [<Optional;DefaultParameterValue(null)>] ?Reversescale: bool,
+            [<Optional;DefaultParameterValue(null)>] ?Showscale: bool
         ) =
             (fun (marker: Marker) -> 
                 Size           |> DynObj.setValueOpt marker "size" 
@@ -100,7 +99,6 @@ type Marker () =
                 Colorscale     |> DynObj.setValueOptBy marker "colorscale" StyleParam.Colorscale.convert
                 Colors         |> DynObj.setValueOpt marker "colors"     
                 OutlierColor   |> DynObj.setValueOpt marker "outliercolor"     
-                                                
                 Maxdisplayed   |> DynObj.setValueOpt marker "maxdisplayed"   
                 Sizeref        |> DynObj.setValueOpt marker "sizeref"        
                 Sizemin        |> DynObj.setValueOpt marker "sizemin"        

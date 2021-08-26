@@ -3,6 +3,7 @@
 open Plotly.NET
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 /// Text annotations inside a plot 
 type Annotation() = 
@@ -13,27 +14,27 @@ type Annotation() =
         (
             X               : System.IConvertible,
             Y               : System.IConvertible,
-            ?XRef           : System.IConvertible,
-            ?YRef           : System.IConvertible,
-            ?ArrowTailX     : float,
-            ?ArrowTailY     : float,
-            ?ShowArrow      : bool,
-            ?ArrowColor     : string,
-            ?ArrowHead      : StyleParam.ArrowHead,
-            ?ArrowSize      : float,
-            ?ArrowWidth     : float,
-            ?Z              : float,
-            ?Text           : string,
-            ?TextAngle      : float,
-            ?Font           : Font,
-            ?Width          : float,
-            ?Height         : float,
-            ?Opacity        : float,
-            ?HorizontalAlign: StyleParam.HorizontalAlign,
-            ?VerticalAlign  : StyleParam.VerticalAlign,
-            ?BGColor        : string,
-            ?BorderColor    : string,
-            ?Visible        : bool
+            [<Optional;DefaultParameterValue(null)>] ?XRef           : System.IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?YRef           : System.IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?ArrowTailX     : float,
+            [<Optional;DefaultParameterValue(null)>] ?ArrowTailY     : float,
+            [<Optional;DefaultParameterValue(null)>] ?ShowArrow      : bool,
+            [<Optional;DefaultParameterValue(null)>] ?ArrowColor     : string,
+            [<Optional;DefaultParameterValue(null)>] ?ArrowHead      : StyleParam.ArrowHead,
+            [<Optional;DefaultParameterValue(null)>] ?ArrowSize      : float,
+            [<Optional;DefaultParameterValue(null)>] ?ArrowWidth     : float,
+            [<Optional;DefaultParameterValue(null)>] ?Z              : float,
+            [<Optional;DefaultParameterValue(null)>] ?Text           : string,
+            [<Optional;DefaultParameterValue(null)>] ?TextAngle      : float,
+            [<Optional;DefaultParameterValue(null)>] ?Font           : Font,
+            [<Optional;DefaultParameterValue(null)>] ?Width          : float,
+            [<Optional;DefaultParameterValue(null)>] ?Height         : float,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity        : float,
+            [<Optional;DefaultParameterValue(null)>] ?HorizontalAlign: StyleParam.HorizontalAlign,
+            [<Optional;DefaultParameterValue(null)>] ?VerticalAlign  : StyleParam.VerticalAlign,
+            [<Optional;DefaultParameterValue(null)>] ?BGColor        : string,
+            [<Optional;DefaultParameterValue(null)>] ?BorderColor    : string,
+            [<Optional;DefaultParameterValue(null)>] ?Visible        : bool
         ) =
             Annotation()
             |> Annotation.style
@@ -67,27 +68,27 @@ type Annotation() =
         (
             X               : System.IConvertible,
             Y               : System.IConvertible,
-            ?XRef           : System.IConvertible,
-            ?YRef           : System.IConvertible,
-            ?ArrowTailX     : float,
-            ?ArrowTailY     : float,
-            ?ShowArrow      : bool,
-            ?ArrowColor     : string,
-            ?ArrowHead      : StyleParam.ArrowHead,
-            ?ArrowSize      : float,
-            ?ArrowWidth     : float,
-            ?Z              : float,
-            ?Text           : string,
-            ?TextAngle      : float,
-            ?Font           : Font,
-            ?Width          : float,
-            ?Height         : float,
-            ?Opacity        : float,
-            ?HorizontalAlign: StyleParam.HorizontalAlign,
-            ?VerticalAlign  : StyleParam.VerticalAlign,
-            ?BGColor        : string,
-            ?BorderColor    : string,
-            ?Visible        : bool
+            [<Optional;DefaultParameterValue(null)>] ?XRef           : System.IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?YRef           : System.IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?ArrowTailX     : float,
+            [<Optional;DefaultParameterValue(null)>] ?ArrowTailY     : float,
+            [<Optional;DefaultParameterValue(null)>] ?ShowArrow      : bool,
+            [<Optional;DefaultParameterValue(null)>] ?ArrowColor     : string,
+            [<Optional;DefaultParameterValue(null)>] ?ArrowHead      : StyleParam.ArrowHead,
+            [<Optional;DefaultParameterValue(null)>] ?ArrowSize      : float,
+            [<Optional;DefaultParameterValue(null)>] ?ArrowWidth     : float,
+            [<Optional;DefaultParameterValue(null)>] ?Z              : float,
+            [<Optional;DefaultParameterValue(null)>] ?Text           : string,
+            [<Optional;DefaultParameterValue(null)>] ?TextAngle      : float,
+            [<Optional;DefaultParameterValue(null)>] ?Font           : Font,
+            [<Optional;DefaultParameterValue(null)>] ?Width          : float,
+            [<Optional;DefaultParameterValue(null)>] ?Height         : float,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity        : float,
+            [<Optional;DefaultParameterValue(null)>] ?HorizontalAlign: StyleParam.HorizontalAlign,
+            [<Optional;DefaultParameterValue(null)>] ?VerticalAlign  : StyleParam.VerticalAlign,
+            [<Optional;DefaultParameterValue(null)>] ?BGColor        : string,
+            [<Optional;DefaultParameterValue(null)>] ?BorderColor    : string,
+            [<Optional;DefaultParameterValue(null)>] ?Visible        : bool
 
         ) =
             (fun (ann:Annotation) ->

@@ -4,6 +4,7 @@ open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 //enabled (boolean) 
 //If true, display the cumulative distribution by summing the binned values. Use the `direction` and `centralbin` attributes to tune the accumulation method. Note: in this mode, the "density" `histnorm` settings behave the same as their equivalents without "density": "" and "density" both rise to the number of data points, and "probability" and "probability density" both rise to the number of sample points.
@@ -22,9 +23,9 @@ type Cumulative () =
     // Init Cumulative()
     static member init
         (
-            ?Enabled    : bool,
-            ?Direction  : StyleParam.CumulativeDirection,
-            ?Currentbin : StyleParam.Currentbin
+            [<Optional;DefaultParameterValue(null)>] ?Enabled    : bool,
+            [<Optional;DefaultParameterValue(null)>] ?Direction  : StyleParam.CumulativeDirection,
+            [<Optional;DefaultParameterValue(null)>] ?Currentbin : StyleParam.Currentbin
         ) =
             Cumulative () 
             |> Cumulative.style
@@ -38,9 +39,9 @@ type Cumulative () =
     // Applies the styles to Cumulative()
     static member style
         (
-            ?Enabled    : bool,
-            ?Direction  : StyleParam.CumulativeDirection,
-            ?Currentbin : StyleParam.Currentbin
+            [<Optional;DefaultParameterValue(null)>] ?Enabled    : bool,
+            [<Optional;DefaultParameterValue(null)>] ?Direction  : StyleParam.CumulativeDirection,
+            [<Optional;DefaultParameterValue(null)>] ?Currentbin : StyleParam.Currentbin
         ) =
             
             (fun (cumulative: Cumulative) -> 

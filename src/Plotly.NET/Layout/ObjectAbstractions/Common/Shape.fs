@@ -3,6 +3,7 @@ namespace Plotly.NET.LayoutObjects
 open Plotly.NET
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 /// Shape type inherits from dynamic object
 type Shape () =
@@ -11,18 +12,18 @@ type Shape () =
     /// Init Shape type
     static member init
         (   
-            ?ShapeType: StyleParam.ShapeType,
-            ?X0: #IConvertible,
-            ?X1: #IConvertible,
-            ?Y0: #IConvertible,
-            ?Y1: #IConvertible,
-            ?Path: string,
-            ?Opacity: float,
-            ?Line: Line,
-            ?Fillcolor: string ,
-            ?Layer: StyleParam.Layer,
-            ?Xref: string,
-            ?Yref: string
+            [<Optional;DefaultParameterValue(null)>] ?ShapeType: StyleParam.ShapeType,
+            [<Optional;DefaultParameterValue(null)>] ?X0: #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?X1: #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?Y0: #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?Y1: #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?Path: string,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity: float,
+            [<Optional;DefaultParameterValue(null)>] ?Line: Line,
+            [<Optional;DefaultParameterValue(null)>] ?Fillcolor: string ,
+            [<Optional;DefaultParameterValue(null)>] ?Layer: StyleParam.Layer,
+            [<Optional;DefaultParameterValue(null)>] ?Xref: string,
+            [<Optional;DefaultParameterValue(null)>] ?Yref: string
         ) =
             Shape() 
             |> Shape.style
@@ -44,18 +45,18 @@ type Shape () =
     // Applies the styles to Shape()
     static member style
         (   
-            ?ShapeType: StyleParam.ShapeType,
-            ?X0: #IConvertible,
-            ?X1: #IConvertible,
-            ?Y0: #IConvertible,
-            ?Y1: #IConvertible,
-            ?Path: string,
-            ?Opacity: float,
-            ?Line: Line,
-            ?Fillcolor: string ,
-            ?Layer: StyleParam.Layer,
-            ?Xref: string,
-            ?Yref: string
+            [<Optional;DefaultParameterValue(null)>] ?ShapeType: StyleParam.ShapeType,
+            [<Optional;DefaultParameterValue(null)>] ?X0: #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?X1: #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?Y0: #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?Y1: #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?Path: string,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity: float,
+            [<Optional;DefaultParameterValue(null)>] ?Line: Line,
+            [<Optional;DefaultParameterValue(null)>] ?Fillcolor: string ,
+            [<Optional;DefaultParameterValue(null)>] ?Layer: StyleParam.Layer,
+            [<Optional;DefaultParameterValue(null)>] ?Xref: string,
+            [<Optional;DefaultParameterValue(null)>] ?Yref: string
         ) =
             (fun (shape:Shape) -> 
 

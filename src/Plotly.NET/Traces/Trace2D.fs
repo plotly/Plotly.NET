@@ -4,6 +4,7 @@ open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 /// The most commonly-used kind of subplot is a two-dimensional Cartesian subplot. Traces compatible with these subplots 
 /// support xaxis and yaxis attributes whose values must refer to corresponding objects in the layout portion of the figure. 
@@ -127,17 +128,17 @@ type Trace2DStyle() =
     /// <param name="Error_x">Sets horizontal error bars for this this scatter trace.</param>
     static member Scatter
         (   
-            ?X          : seq<#IConvertible>,
-            ?Y          : seq<#IConvertible>,
-            ?Mode       : StyleParam.Mode,         
-            ?Fill       : StyleParam.Fill,
-            ?Fillcolor  : string,                        
-            ?Connectgaps: bool, 
-            ?StackGroup : string,
-            ?Orientation: StyleParam.Orientation,
-            ?GroupNorm  : StyleParam.GroupNorm, 
-            ?Error_y    : Error,
-            ?Error_x    : Error
+            [<Optional;DefaultParameterValue(null)>] ?X          : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Y          : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Mode       : StyleParam.Mode,         
+            [<Optional;DefaultParameterValue(null)>] ?Fill       : StyleParam.Fill,
+            [<Optional;DefaultParameterValue(null)>] ?Fillcolor  : string,                        
+            [<Optional;DefaultParameterValue(null)>] ?Connectgaps: bool, 
+            [<Optional;DefaultParameterValue(null)>] ?StackGroup : string,
+            [<Optional;DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
+            [<Optional;DefaultParameterValue(null)>] ?GroupNorm  : StyleParam.GroupNorm, 
+            [<Optional;DefaultParameterValue(null)>] ?Error_y    : Error,
+            [<Optional;DefaultParameterValue(null)>] ?Error_x    : Error
         ) =
             (fun (trace:('T :> Trace)) ->    
                 
@@ -167,14 +168,14 @@ type Trace2DStyle() =
     /// <param name="Error_x">Sets horizontal error bars for this this scatter trace.</param>
     static member Bar
         (   
-            ?X      : seq<#IConvertible>,
-            ?Y      : seq<#IConvertible>,                                 
-            ?Marker : Marker,            
-            ?R      : seq<#IConvertible>,
-            ?T      : seq<#IConvertible>,
-            ?Error_y: Error,
-            ?Error_x: Error, 
-            ?Orientation
+            [<Optional;DefaultParameterValue(null)>] ?X      : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Y      : seq<#IConvertible>,                                 
+            [<Optional;DefaultParameterValue(null)>] ?Marker : Marker,            
+            [<Optional;DefaultParameterValue(null)>] ?R      : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?T      : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Error_y: Error,
+            [<Optional;DefaultParameterValue(null)>] ?Error_x: Error, 
+            [<Optional;DefaultParameterValue(null)>] ?Orientation
         ) =
             (fun (bar:('T :> Trace)) ->    
                 X            |> DynObj.setValueOpt bar "x"
@@ -197,19 +198,19 @@ type Trace2DStyle() =
         (
             x               : seq<#IConvertible>,
             y               : seq<#IConvertible>,
-            ?x0,
-            ?dX             : float,
-            ?y0,
-            ?dY             : float,
-            ?Width          : float,
-            ?Offset         : float,
-            ?Orientation    : StyleParam.Orientation,
-            ?Alignmentgroup : string,
-            ?Offsetgroup    : string,
-            ?Cliponaxis     : bool,
-            ?Connector      : FunnelConnector,
-            ?Insidetextfont : Font,
-            ?Outsidetextfont: Font
+            [<Optional;DefaultParameterValue(null)>] ?x0,
+            [<Optional;DefaultParameterValue(null)>] ?dX             : float,
+            [<Optional;DefaultParameterValue(null)>] ?y0,
+            [<Optional;DefaultParameterValue(null)>] ?dY             : float,
+            [<Optional;DefaultParameterValue(null)>] ?Width          : float,
+            [<Optional;DefaultParameterValue(null)>] ?Offset         : float,
+            [<Optional;DefaultParameterValue(null)>] ?Orientation    : StyleParam.Orientation,
+            [<Optional;DefaultParameterValue(null)>] ?Alignmentgroup : string,
+            [<Optional;DefaultParameterValue(null)>] ?Offsetgroup    : string,
+            [<Optional;DefaultParameterValue(null)>] ?Cliponaxis     : bool,
+            [<Optional;DefaultParameterValue(null)>] ?Connector      : FunnelConnector,
+            [<Optional;DefaultParameterValue(null)>] ?Insidetextfont : Font,
+            [<Optional;DefaultParameterValue(null)>] ?Outsidetextfont: Font
         ) = 
             (fun (trace:('T :> Trace)) -> 
                 
@@ -261,14 +262,14 @@ type Trace2DStyle() =
         (
             x               : #IConvertible seq,
             y               : #IConvertible seq,
-            ?Base           : #IConvertible,
-            ?Width          : float,
-            ?Measure        : StyleParam.WaterfallMeasure seq,
-            ?Orientation    : StyleParam.Orientation,
-            ?Connector      : WaterfallConnector,
-            ?AlignmentGroup : string,
-            ?OffsetGroup    : string,
-            ?Offset             
+            [<Optional;DefaultParameterValue(null)>] ?Base           : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?Width          : float,
+            [<Optional;DefaultParameterValue(null)>] ?Measure        : StyleParam.WaterfallMeasure seq,
+            [<Optional;DefaultParameterValue(null)>] ?Orientation    : StyleParam.Orientation,
+            [<Optional;DefaultParameterValue(null)>] ?Connector      : WaterfallConnector,
+            [<Optional;DefaultParameterValue(null)>] ?AlignmentGroup : string,
+            [<Optional;DefaultParameterValue(null)>] ?OffsetGroup    : string,
+            [<Optional;DefaultParameterValue(null)>] ?Offset             
 
         ) =
             (fun (trace:('T :> Trace)) ->
@@ -291,31 +292,26 @@ type Trace2DStyle() =
     // Applies the styles of histogram to TraceObjects
     static member Histogram
         (            
-            ?X : seq<#IConvertible>       ,
-            ?Y : seq<#IConvertible>       ,            
-            ?Text : seq<string>           ,   
-            ?xAxis                        ,
-            ?yAxis                        ,
-            ?Xsrc                         ,
-            ?Ysrc                         ,
-            ?Orientation                  , 
-            ?HistFunc                     ,
-            ?HistNorm                     ,
-            ?Cumulative : Cumulative      ,
-                
-                                              
-            ?Autobinx    : bool           ,
-            ?nBinsx      : int            ,
-            ?xBins       : Bins           ,
-            ?Autobiny    : bool           ,
-            ?nBinsy      : int            ,
-            ?yBins       : Bins           ,
-            ?Marker      : Marker         ,
-
-            ?xError       : Error         ,
-            ?yError       : Error
-
-
+            [<Optional;DefaultParameterValue(null)>] ?X : seq<#IConvertible>       ,
+            [<Optional;DefaultParameterValue(null)>] ?Y : seq<#IConvertible>       ,            
+            [<Optional;DefaultParameterValue(null)>] ?Text : seq<string>           ,   
+            [<Optional;DefaultParameterValue(null)>] ?xAxis                        ,
+            [<Optional;DefaultParameterValue(null)>] ?yAxis                        ,
+            [<Optional;DefaultParameterValue(null)>] ?Xsrc                         ,
+            [<Optional;DefaultParameterValue(null)>] ?Ysrc                         ,
+            [<Optional;DefaultParameterValue(null)>] ?Orientation                  , 
+            [<Optional;DefaultParameterValue(null)>] ?HistFunc                     ,
+            [<Optional;DefaultParameterValue(null)>] ?HistNorm                     ,
+            [<Optional;DefaultParameterValue(null)>] ?Cumulative : Cumulative      ,
+            [<Optional;DefaultParameterValue(null)>] ?Autobinx    : bool           ,
+            [<Optional;DefaultParameterValue(null)>] ?nBinsx      : int            ,
+            [<Optional;DefaultParameterValue(null)>] ?xBins       : Bins           ,
+            [<Optional;DefaultParameterValue(null)>] ?Autobiny    : bool           ,
+            [<Optional;DefaultParameterValue(null)>] ?nBinsy      : int            ,
+            [<Optional;DefaultParameterValue(null)>] ?yBins       : Bins           ,
+            [<Optional;DefaultParameterValue(null)>] ?Marker      : Marker         ,
+            [<Optional;DefaultParameterValue(null)>] ?xError       : Error         ,
+            [<Optional;DefaultParameterValue(null)>] ?yError       : Error
 
         ) =
             (fun (histogram:('T :> Trace)) ->
@@ -352,28 +348,28 @@ type Trace2DStyle() =
     // Applies the styles of box plot plot to TraceObjects 
     static member BoxPlot
         (            
-            ?Y,           
-            ?X,           
-            ?X0,          
-            ?Y0,          
-            ?Whiskerwidth,
-            ?Boxpoints,   
-            ?Boxmean,
-            ?Jitter,      
-            ?Pointpos,    
-            ?Orientation, 
-            ?Fillcolor,                   
-            ?Marker:Marker,
-            ?Line:Line,
-            ?Alignmentgroup,
-            ?Offsetgroup,
-            ?Notched:bool,
-            ?NotchWidth:float,
-            ?QuartileMethod:StyleParam.QuartileMethod,
-            ?xAxis,       
-            ?yAxis,       
-            ?Ysrc,        
-            ?Xsrc        
+            [<Optional;DefaultParameterValue(null)>] ?Y,           
+            [<Optional;DefaultParameterValue(null)>] ?X,           
+            [<Optional;DefaultParameterValue(null)>] ?X0,          
+            [<Optional;DefaultParameterValue(null)>] ?Y0,          
+            [<Optional;DefaultParameterValue(null)>] ?Whiskerwidth,
+            [<Optional;DefaultParameterValue(null)>] ?Boxpoints,   
+            [<Optional;DefaultParameterValue(null)>] ?Boxmean,
+            [<Optional;DefaultParameterValue(null)>] ?Jitter,      
+            [<Optional;DefaultParameterValue(null)>] ?Pointpos,    
+            [<Optional;DefaultParameterValue(null)>] ?Orientation, 
+            [<Optional;DefaultParameterValue(null)>] ?Fillcolor,                   
+            [<Optional;DefaultParameterValue(null)>] ?Marker:Marker,
+            [<Optional;DefaultParameterValue(null)>] ?Line:Line,
+            [<Optional;DefaultParameterValue(null)>] ?Alignmentgroup,
+            [<Optional;DefaultParameterValue(null)>] ?Offsetgroup,
+            [<Optional;DefaultParameterValue(null)>] ?Notched:bool,
+            [<Optional;DefaultParameterValue(null)>] ?NotchWidth:float,
+            [<Optional;DefaultParameterValue(null)>] ?QuartileMethod:StyleParam.QuartileMethod,
+            [<Optional;DefaultParameterValue(null)>] ?xAxis,       
+            [<Optional;DefaultParameterValue(null)>] ?yAxis,       
+            [<Optional;DefaultParameterValue(null)>] ?Ysrc,        
+            [<Optional;DefaultParameterValue(null)>] ?Xsrc        
 
         ) =
             (fun (boxPlot:('T :> Trace)) ->
@@ -410,37 +406,33 @@ type Trace2DStyle() =
     // Applies the styles of violin plot plot to TraceObjects 
     static member Violin
         (            
-            ?Y,           
-            ?X,           
-            ?X0,          
-            ?Y0,          
-                
-            ?Width,
-            ?Marker:Marker,
-            ?Line:Line,
-            ?Alignmentgroup,
-            ?Offsetgroup,
-
-            ?Box:Box,
-            ?Bandwidth,
-            ?Meanline:Meanline,
-            ?Scalegroup,
-            ?Scalemode,
-            ?Side,
-            ?Span,
-            ?SpanMode,
-            ?Uirevision,
-
-
-            ?Points,     
-            ?Jitter,      
-            ?Pointpos,    
-            ?Orientation, 
-            ?Fillcolor,   
-            ?xAxis,       
-            ?yAxis,       
-            ?Ysrc,        
-            ?Xsrc        
+            [<Optional;DefaultParameterValue(null)>] ?Y,           
+            [<Optional;DefaultParameterValue(null)>] ?X,           
+            [<Optional;DefaultParameterValue(null)>] ?X0,          
+            [<Optional;DefaultParameterValue(null)>] ?Y0,          
+            [<Optional;DefaultParameterValue(null)>] ?Width,
+            [<Optional;DefaultParameterValue(null)>] ?Marker:Marker,
+            [<Optional;DefaultParameterValue(null)>] ?Line:Line,
+            [<Optional;DefaultParameterValue(null)>] ?Alignmentgroup,
+            [<Optional;DefaultParameterValue(null)>] ?Offsetgroup,
+            [<Optional;DefaultParameterValue(null)>] ?Box:Box,
+            [<Optional;DefaultParameterValue(null)>] ?Bandwidth,
+            [<Optional;DefaultParameterValue(null)>] ?Meanline:Meanline,
+            [<Optional;DefaultParameterValue(null)>] ?Scalegroup,
+            [<Optional;DefaultParameterValue(null)>] ?Scalemode,
+            [<Optional;DefaultParameterValue(null)>] ?Side,
+            [<Optional;DefaultParameterValue(null)>] ?Span,
+            [<Optional;DefaultParameterValue(null)>] ?SpanMode,
+            [<Optional;DefaultParameterValue(null)>] ?Uirevision,
+            [<Optional;DefaultParameterValue(null)>] ?Points,     
+            [<Optional;DefaultParameterValue(null)>] ?Jitter,      
+            [<Optional;DefaultParameterValue(null)>] ?Pointpos,    
+            [<Optional;DefaultParameterValue(null)>] ?Orientation, 
+            [<Optional;DefaultParameterValue(null)>] ?Fillcolor,   
+            [<Optional;DefaultParameterValue(null)>] ?xAxis,       
+            [<Optional;DefaultParameterValue(null)>] ?yAxis,       
+            [<Optional;DefaultParameterValue(null)>] ?Ysrc,        
+            [<Optional;DefaultParameterValue(null)>] ?Xsrc        
 
         ) =
             (fun (boxPlot:('T :> Trace)) ->
@@ -484,45 +476,42 @@ type Trace2DStyle() =
             
     static member Histogram2d
         (            
-            ?X : seq<#IConvertible>       ,
-            ?Y : seq<#IConvertible>       ,            
-            ?Z : seq<#seq<#IConvertible>> ,                
-            ?X0                           ,
-            ?dX                           ,
-            ?Y0                           ,
-            ?dY                           ,
-            ?xType                        ,
-            ?yType                        ,
-            ?xAxis                        ,
-            ?yAxis                        ,
-            ?Zsrc                         ,
-            ?Xsrc                         ,
-            ?Ysrc                         ,
-                                              
-            ?Marker      : Marker         , 
-            ?Orientation                  , 
-            //?Connectgaps : bool           ,
-            ?HistFunc                     ,
-            ?HistNorm                     ,
-            ?Autobinx    : bool           ,
-            ?nBinsx      : int            ,
-            ?xBins       : Bins           ,
-            ?Autobiny    : bool           ,
-            ?nBinsy      : int            ,
-            ?yBins       : Bins           ,
-
-            ?Xgap           ,         
-            ?Ygap           ,
-            ?Transpose      ,
-            ?zAuto          ,
-            ?zMin           ,
-            ?zMax           ,
-            ?Colorscale     ,
-            ?Autocolorscale ,
-            ?Reversescale   ,
-            ?Showscale      ,
-            ?zSmooth        ,
-            ?ColorBar      
+            [<Optional;DefaultParameterValue(null)>] ?X : seq<#IConvertible>       ,
+            [<Optional;DefaultParameterValue(null)>] ?Y : seq<#IConvertible>       ,            
+            [<Optional;DefaultParameterValue(null)>] ?Z : seq<#seq<#IConvertible>> ,                
+            [<Optional;DefaultParameterValue(null)>] ?X0                           ,
+            [<Optional;DefaultParameterValue(null)>] ?dX                           ,
+            [<Optional;DefaultParameterValue(null)>] ?Y0                           ,
+            [<Optional;DefaultParameterValue(null)>] ?dY                           ,
+            [<Optional;DefaultParameterValue(null)>] ?xType                        ,
+            [<Optional;DefaultParameterValue(null)>] ?yType                        ,
+            [<Optional;DefaultParameterValue(null)>] ?xAxis                        ,
+            [<Optional;DefaultParameterValue(null)>] ?yAxis                        ,
+            [<Optional;DefaultParameterValue(null)>] ?Zsrc                         ,
+            [<Optional;DefaultParameterValue(null)>] ?Xsrc                         ,
+            [<Optional;DefaultParameterValue(null)>] ?Ysrc                         ,
+            [<Optional;DefaultParameterValue(null)>] ?Marker      : Marker         , 
+            [<Optional;DefaultParameterValue(null)>] ?Orientation                  , 
+            [<Optional;DefaultParameterValue(null)>] ?HistFunc                     ,
+            [<Optional;DefaultParameterValue(null)>] ?HistNorm                     ,
+            [<Optional;DefaultParameterValue(null)>] ?Autobinx    : bool           ,
+            [<Optional;DefaultParameterValue(null)>] ?nBinsx      : int            ,
+            [<Optional;DefaultParameterValue(null)>] ?xBins       : Bins           ,
+            [<Optional;DefaultParameterValue(null)>] ?Autobiny    : bool           ,
+            [<Optional;DefaultParameterValue(null)>] ?nBinsy      : int            ,
+            [<Optional;DefaultParameterValue(null)>] ?yBins       : Bins           ,
+            [<Optional;DefaultParameterValue(null)>] ?Xgap           ,         
+            [<Optional;DefaultParameterValue(null)>] ?Ygap           ,
+            [<Optional;DefaultParameterValue(null)>] ?Transpose      ,
+            [<Optional;DefaultParameterValue(null)>] ?zAuto          ,
+            [<Optional;DefaultParameterValue(null)>] ?zMin           ,
+            [<Optional;DefaultParameterValue(null)>] ?zMax           ,
+            [<Optional;DefaultParameterValue(null)>] ?Colorscale     ,
+            [<Optional;DefaultParameterValue(null)>] ?Autocolorscale ,
+            [<Optional;DefaultParameterValue(null)>] ?Reversescale   ,
+            [<Optional;DefaultParameterValue(null)>] ?Showscale      ,
+            [<Optional;DefaultParameterValue(null)>] ?zSmooth        ,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar      
 
         ) =
             (fun (histogram2d:('T :> Trace)) ->
@@ -576,51 +565,45 @@ type Trace2DStyle() =
 
     static member Histogram2dContour
         (            
-            ?X : seq<#IConvertible>       ,
-            ?Y : seq<#IConvertible>       ,            
-            ?Z : seq<#seq<#IConvertible>> ,                
-            ?X0                           ,
-            ?dX                           ,
-            ?Y0                           ,
-            ?dY                           ,
-            ?xType                        ,
-            ?yType                        ,
-            ?xAxis                        ,
-            ?yAxis                        ,
-            ?Zsrc                         ,
-            ?Xsrc                         ,
-            ?Ysrc                         ,
-                                              
-            ?Marker      : Marker         , 
-            ?Orientation                  , 
-            //?Connectgaps : bool           ,
-            ?HistFunc                     ,
-            ?HistNorm                     ,
-            ?Autobinx    : bool           ,
-            ?nBinsx      : int            ,
-            ?xBins       : Bins           ,
-            ?Autobiny    : bool           ,
-            ?nBinsy      : int            ,
-            ?yBins       : Bins           ,
-
-            ?nContours   : int            ,
-            ?Contours    : Contour        ,
-            ?Line        : Line           ,
-
-
-            ?Xgap           ,         
-            ?Ygap           ,
-            ?Transpose      ,
-            ?zAuto          ,
-            ?zMin           ,
-            ?zMax           ,
-            ?Colorscale     ,
-            ?Autocolorscale ,
-            ?Reversescale   ,
-            ?Showscale      ,
-            ?zSmooth        ,
-            ?ColorBar      
-
+            [<Optional;DefaultParameterValue(null)>] ?X : seq<#IConvertible>       ,
+            [<Optional;DefaultParameterValue(null)>] ?Y : seq<#IConvertible>       ,            
+            [<Optional;DefaultParameterValue(null)>] ?Z : seq<#seq<#IConvertible>> ,                
+            [<Optional;DefaultParameterValue(null)>] ?X0                           ,
+            [<Optional;DefaultParameterValue(null)>] ?dX                           ,
+            [<Optional;DefaultParameterValue(null)>] ?Y0                           ,
+            [<Optional;DefaultParameterValue(null)>] ?dY                           ,
+            [<Optional;DefaultParameterValue(null)>] ?xType                        ,
+            [<Optional;DefaultParameterValue(null)>] ?yType                        ,
+            [<Optional;DefaultParameterValue(null)>] ?xAxis                        ,
+            [<Optional;DefaultParameterValue(null)>] ?yAxis                        ,
+            [<Optional;DefaultParameterValue(null)>] ?Zsrc                         ,
+            [<Optional;DefaultParameterValue(null)>] ?Xsrc                         ,
+            [<Optional;DefaultParameterValue(null)>] ?Ysrc                         ,
+            [<Optional;DefaultParameterValue(null)>] ?Marker      : Marker         , 
+            [<Optional;DefaultParameterValue(null)>] ?Orientation                  , 
+            [<Optional;DefaultParameterValue(null)>] ?HistFunc                     ,
+            [<Optional;DefaultParameterValue(null)>] ?HistNorm                     ,
+            [<Optional;DefaultParameterValue(null)>] ?Autobinx    : bool           ,
+            [<Optional;DefaultParameterValue(null)>] ?nBinsx      : int            ,
+            [<Optional;DefaultParameterValue(null)>] ?xBins       : Bins           ,
+            [<Optional;DefaultParameterValue(null)>] ?Autobiny    : bool           ,
+            [<Optional;DefaultParameterValue(null)>] ?nBinsy      : int            ,
+            [<Optional;DefaultParameterValue(null)>] ?yBins       : Bins           ,
+            [<Optional;DefaultParameterValue(null)>] ?nContours   : int            ,
+            [<Optional;DefaultParameterValue(null)>] ?Contours    : Contour        ,
+            [<Optional;DefaultParameterValue(null)>] ?Line        : Line           ,
+            [<Optional;DefaultParameterValue(null)>] ?Xgap           ,         
+            [<Optional;DefaultParameterValue(null)>] ?Ygap           ,
+            [<Optional;DefaultParameterValue(null)>] ?Transpose      ,
+            [<Optional;DefaultParameterValue(null)>] ?zAuto          ,
+            [<Optional;DefaultParameterValue(null)>] ?zMin           ,
+            [<Optional;DefaultParameterValue(null)>] ?zMax           ,
+            [<Optional;DefaultParameterValue(null)>] ?Colorscale     ,
+            [<Optional;DefaultParameterValue(null)>] ?Autocolorscale ,
+            [<Optional;DefaultParameterValue(null)>] ?Reversescale   ,
+            [<Optional;DefaultParameterValue(null)>] ?Showscale      ,
+            [<Optional;DefaultParameterValue(null)>] ?zSmooth        ,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar      
         ) =
             (fun (histogram2dContour:('T :> Trace)) ->
 
@@ -677,33 +660,32 @@ type Trace2DStyle() =
     // Applies the styles of heatmap to TraceObjects 
     static member Heatmap
         (                
-            ?Z : seq<#seq<#IConvertible>>,
-            ?X : seq<#IConvertible>,
-            ?Y : seq<#IConvertible>,            
-            ?X0             ,
-            ?dX             ,
-            ?Y0             ,
-            ?dY             ,
-            ?xType          ,
-            ?yType          ,
-            ?xAxis          ,
-            ?yAxis          ,
-            ?Zsrc           ,
-            ?Xsrc           ,
-            ?Ysrc           ,
-
-            ?Xgap           ,         
-            ?Ygap           ,
-            ?Transpose      ,
-            ?zAuto          ,
-            ?zMin           ,
-            ?zMax           ,
-            ?Colorscale     ,
-            ?Autocolorscale ,
-            ?Reversescale   ,
-            ?Showscale      ,
-            ?zSmooth        ,
-            ?ColorBar
+            [<Optional;DefaultParameterValue(null)>] ?Z : seq<#seq<#IConvertible>>,
+            [<Optional;DefaultParameterValue(null)>] ?X : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Y : seq<#IConvertible>,            
+            [<Optional;DefaultParameterValue(null)>] ?X0             ,
+            [<Optional;DefaultParameterValue(null)>] ?dX             ,
+            [<Optional;DefaultParameterValue(null)>] ?Y0             ,
+            [<Optional;DefaultParameterValue(null)>] ?dY             ,
+            [<Optional;DefaultParameterValue(null)>] ?xType          ,
+            [<Optional;DefaultParameterValue(null)>] ?yType          ,
+            [<Optional;DefaultParameterValue(null)>] ?xAxis          ,
+            [<Optional;DefaultParameterValue(null)>] ?yAxis          ,
+            [<Optional;DefaultParameterValue(null)>] ?Zsrc           ,
+            [<Optional;DefaultParameterValue(null)>] ?Xsrc           ,
+            [<Optional;DefaultParameterValue(null)>] ?Ysrc           ,
+            [<Optional;DefaultParameterValue(null)>] ?Xgap           ,         
+            [<Optional;DefaultParameterValue(null)>] ?Ygap           ,
+            [<Optional;DefaultParameterValue(null)>] ?Transpose      ,
+            [<Optional;DefaultParameterValue(null)>] ?zAuto          ,
+            [<Optional;DefaultParameterValue(null)>] ?zMin           ,
+            [<Optional;DefaultParameterValue(null)>] ?zMax           ,
+            [<Optional;DefaultParameterValue(null)>] ?Colorscale     ,
+            [<Optional;DefaultParameterValue(null)>] ?Autocolorscale ,
+            [<Optional;DefaultParameterValue(null)>] ?Reversescale   ,
+            [<Optional;DefaultParameterValue(null)>] ?Showscale      ,
+            [<Optional;DefaultParameterValue(null)>] ?zSmooth        ,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar
         ) =
             (fun (heatmap:('T :> Trace)) -> 
             
@@ -742,33 +724,32 @@ type Trace2DStyle() =
 
     static member Contour
         (                
-            ?Z : seq<#seq<#IConvertible>>,
-            ?X : seq<#IConvertible>,
-            ?Y : seq<#IConvertible>,            
-            ?X0             ,
-            ?dX             ,
-            ?Y0             ,
-            ?dY             ,
-            ?xType          ,
-            ?yType          ,
-            ?xAxis          ,
-            ?yAxis          ,
-            ?Zsrc           ,
-            ?Xsrc           ,
-            ?Ysrc           ,
-
-            ?Xgap           ,         
-            ?Ygap           ,
-            ?Transpose      ,
-            ?zAuto          ,
-            ?zMin           ,
-            ?zMax           ,
-            ?Colorscale     ,
-            ?Autocolorscale ,
-            ?Reversescale   ,
-            ?Showscale      ,
-            ?zSmooth        ,
-            ?ColorBar
+            [<Optional;DefaultParameterValue(null)>] ?Z : seq<#seq<#IConvertible>>,
+            [<Optional;DefaultParameterValue(null)>] ?X : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Y : seq<#IConvertible>,            
+            [<Optional;DefaultParameterValue(null)>] ?X0             ,
+            [<Optional;DefaultParameterValue(null)>] ?dX             ,
+            [<Optional;DefaultParameterValue(null)>] ?Y0             ,
+            [<Optional;DefaultParameterValue(null)>] ?dY             ,
+            [<Optional;DefaultParameterValue(null)>] ?xType          ,
+            [<Optional;DefaultParameterValue(null)>] ?yType          ,
+            [<Optional;DefaultParameterValue(null)>] ?xAxis          ,
+            [<Optional;DefaultParameterValue(null)>] ?yAxis          ,
+            [<Optional;DefaultParameterValue(null)>] ?Zsrc           ,
+            [<Optional;DefaultParameterValue(null)>] ?Xsrc           ,
+            [<Optional;DefaultParameterValue(null)>] ?Ysrc           ,
+            [<Optional;DefaultParameterValue(null)>] ?Xgap           ,         
+            [<Optional;DefaultParameterValue(null)>] ?Ygap           ,
+            [<Optional;DefaultParameterValue(null)>] ?Transpose      ,
+            [<Optional;DefaultParameterValue(null)>] ?zAuto          ,
+            [<Optional;DefaultParameterValue(null)>] ?zMin           ,
+            [<Optional;DefaultParameterValue(null)>] ?zMax           ,
+            [<Optional;DefaultParameterValue(null)>] ?Colorscale     ,
+            [<Optional;DefaultParameterValue(null)>] ?Autocolorscale ,
+            [<Optional;DefaultParameterValue(null)>] ?Reversescale   ,
+            [<Optional;DefaultParameterValue(null)>] ?Showscale      ,
+            [<Optional;DefaultParameterValue(null)>] ?zSmooth        ,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar
         ) =
             (fun (contour:('T :> Trace)) -> 
             
@@ -834,11 +815,11 @@ type Trace2DStyle() =
             low             : #IConvertible seq,
             close           : #IConvertible seq,
             x               : #IConvertible seq,
-            ?Increasing     : Line,
-            ?Decreasing     : Line,
-            ?Line           : Line,
-            ?Tickwidth      : float,
-            ?XCalendar      : StyleParam.Calendar
+            [<Optional;DefaultParameterValue(null)>] ?Increasing     : Line,
+            [<Optional;DefaultParameterValue(null)>] ?Decreasing     : Line,
+            [<Optional;DefaultParameterValue(null)>] ?Line           : Line,
+            [<Optional;DefaultParameterValue(null)>] ?Tickwidth      : float,
+            [<Optional;DefaultParameterValue(null)>] ?XCalendar      : StyleParam.Calendar
         ) =
             (fun (trace:('T :> Trace)) ->
                 DynObj.setValue     trace "open"        ``open``
@@ -886,11 +867,11 @@ type Trace2DStyle() =
             low             : #IConvertible seq,
             close           : #IConvertible seq,
             x               : #IConvertible seq,
-            ?Increasing     : Line,
-            ?Decreasing     : Line,
-            ?WhiskerWidth   : float,
-            ?Line           : Line,
-            ?XCalendar      : StyleParam.Calendar
+            [<Optional;DefaultParameterValue(null)>] ?Increasing     : Line,
+            [<Optional;DefaultParameterValue(null)>] ?Decreasing     : Line,
+            [<Optional;DefaultParameterValue(null)>] ?WhiskerWidth   : float,
+            [<Optional;DefaultParameterValue(null)>] ?Line           : Line,
+            [<Optional;DefaultParameterValue(null)>] ?XCalendar      : StyleParam.Calendar
         ) =
             (fun (trace:('T :> Trace)) ->
                 DynObj.setValue     trace "open"        ``open``
@@ -912,7 +893,7 @@ type Trace2DStyle() =
     // Applies the styles of Splom plot to TraceObjects 
     static member Splom
         (   
-            ?Dimensions : seq<Dimensions>
+            [<Optional;DefaultParameterValue(null)>] ?Dimensions : seq<Dimensions>
         ) =
             (fun (trace:('T :> Trace)) ->
                 Dimensions   |> DynObj.setValueOpt trace "dimensions"

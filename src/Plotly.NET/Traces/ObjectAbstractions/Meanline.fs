@@ -4,6 +4,7 @@ open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 /// Meanline type inherits from dynamic object (parent violin)
 type Meanline () =
@@ -12,9 +13,9 @@ type Meanline () =
     /// Initialized Line object
     static member init
         (
-            ?Visible: bool,
-            ?Color: string,
-            ?Width: float
+            [<Optional;DefaultParameterValue(null)>] ?Visible: bool,
+            [<Optional;DefaultParameterValue(null)>] ?Color: string,
+            [<Optional;DefaultParameterValue(null)>] ?Width: float
         ) =
             Meanline () 
             |> Meanline.style
@@ -28,9 +29,9 @@ type Meanline () =
     // Applies the styles to Line()
     static member style
         (
-            ?Visible: bool,
-            ?Color: string,
-            ?Width: float
+            [<Optional;DefaultParameterValue(null)>] ?Visible: bool,
+            [<Optional;DefaultParameterValue(null)>] ?Color: string,
+            [<Optional;DefaultParameterValue(null)>] ?Width: float
         ) =
             (fun (line:Meanline) -> 
                 Visible    |> DynObj.setValueOpt line "visible"

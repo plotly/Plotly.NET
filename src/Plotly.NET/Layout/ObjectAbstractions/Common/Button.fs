@@ -3,6 +3,7 @@
 open Plotly.NET
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 /// Dimensions type inherits from dynamic object
 type Button () =
@@ -10,13 +11,13 @@ type Button () =
 
     static member init
         (
-            ?Visible            : bool,
-            ?Step               : StyleParam.TimeStep,
-            ?StepMode           : StyleParam.TimeStepMode,
-            ?Count              : int,
-            ?Label              : string,
-            ?Name               : string,
-            ?TemplateItemName   : string
+            [<Optional;DefaultParameterValue(null)>] ?Visible            : bool,
+            [<Optional;DefaultParameterValue(null)>] ?Step               : StyleParam.TimeStep,
+            [<Optional;DefaultParameterValue(null)>] ?StepMode           : StyleParam.TimeStepMode,
+            [<Optional;DefaultParameterValue(null)>] ?Count              : int,
+            [<Optional;DefaultParameterValue(null)>] ?Label              : string,
+            [<Optional;DefaultParameterValue(null)>] ?Name               : string,
+            [<Optional;DefaultParameterValue(null)>] ?TemplateItemName   : string
         ) =
             Button () 
             |> Button.style
@@ -32,13 +33,13 @@ type Button () =
 
     static member style
         (
-            ?Visible            : bool,
-            ?Step               : StyleParam.TimeStep,
-            ?StepMode           : StyleParam.TimeStepMode,
-            ?Count              : int,
-            ?Label              : string,
-            ?Name               : string,
-            ?TemplateItemName   : string
+            [<Optional;DefaultParameterValue(null)>] ?Visible            : bool,
+            [<Optional;DefaultParameterValue(null)>] ?Step               : StyleParam.TimeStep,
+            [<Optional;DefaultParameterValue(null)>] ?StepMode           : StyleParam.TimeStepMode,
+            [<Optional;DefaultParameterValue(null)>] ?Count              : int,
+            [<Optional;DefaultParameterValue(null)>] ?Label              : string,
+            [<Optional;DefaultParameterValue(null)>] ?Name               : string,
+            [<Optional;DefaultParameterValue(null)>] ?TemplateItemName   : string
         ) =
             (fun (button:Button) -> 
                 

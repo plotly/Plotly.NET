@@ -3,6 +3,7 @@
 open Plotly.NET
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 
 type Polar () =
@@ -21,14 +22,14 @@ type Polar () =
     /// <param name="UIRevision">Controls persistence of user-driven changes in axis attributes, if not overridden in the individual axes. Defaults to `layout.uirevision`.</param>
     static member init
         (    
-            ?Domain     : Domain,
-            ?Sector     : float*float,
-            ?Hole       : float,
-            ?BGColor    : string,
-            ?RadialAxis : RadialAxis,
-            ?AngularAxis: AngularAxis,
-            ?GridShape  : StyleParam.PolarGridShape,
-            ?UIRevision : string
+            [<Optional;DefaultParameterValue(null)>] ?Domain     : Domain,
+            [<Optional;DefaultParameterValue(null)>] ?Sector     : float*float,
+            [<Optional;DefaultParameterValue(null)>] ?Hole       : float,
+            [<Optional;DefaultParameterValue(null)>] ?BGColor    : string,
+            [<Optional;DefaultParameterValue(null)>] ?RadialAxis : RadialAxis,
+            [<Optional;DefaultParameterValue(null)>] ?AngularAxis: AngularAxis,
+            [<Optional;DefaultParameterValue(null)>] ?GridShape  : StyleParam.PolarGridShape,
+            [<Optional;DefaultParameterValue(null)>] ?UIRevision : string
         ) =    
             Polar()
             |> Polar.style
@@ -58,17 +59,17 @@ type Polar () =
     /// <param name="BarGap">Sets the gap (in plot fraction) between bars of adjacent location coordinates.</param>
     static member style
         (    
-            ?Domain     : Domain,
-            ?Sector     : float*float,
-            ?Hole       : float,
-            ?BGColor    : string,
-            ?RadialAxis : RadialAxis,
-            ?AngularAxis: AngularAxis,
-            ?GridShape  : StyleParam.PolarGridShape,
-            ?UIRevision : string,
+            [<Optional;DefaultParameterValue(null)>] ?Domain     : Domain,
+            [<Optional;DefaultParameterValue(null)>] ?Sector     : float*float,
+            [<Optional;DefaultParameterValue(null)>] ?Hole       : float,
+            [<Optional;DefaultParameterValue(null)>] ?BGColor    : string,
+            [<Optional;DefaultParameterValue(null)>] ?RadialAxis : RadialAxis,
+            [<Optional;DefaultParameterValue(null)>] ?AngularAxis: AngularAxis,
+            [<Optional;DefaultParameterValue(null)>] ?GridShape  : StyleParam.PolarGridShape,
+            [<Optional;DefaultParameterValue(null)>] ?UIRevision : string,
             //these are not documented in the official reference but seem to be the only way to make this work?!
-            ?BarMode    : StyleParam.BarMode,
-            ?BarGap     : float
+            [<Optional;DefaultParameterValue(null)>] ?BarMode    : StyleParam.BarMode,
+            [<Optional;DefaultParameterValue(null)>] ?BarGap     : float
 
         ) =
             (fun (polar:Polar) -> 

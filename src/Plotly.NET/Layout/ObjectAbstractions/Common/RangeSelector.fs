@@ -3,6 +3,8 @@
 open Plotly.NET
 open DynamicObj
 open System
+open System.Runtime.InteropServices
+
 
 /// Dimensions type inherits from dynamic object
 type RangeSelector () =
@@ -10,17 +12,17 @@ type RangeSelector () =
 
     static member init
         (
-            ?Visible    : bool,
-            ?Buttons    : seq<Button>,
-            ?X          : float,
-            ?XAnchor    : StyleParam.XAnchorPosition,
-            ?Y          : float,
-            ?YAnchor    : StyleParam.YAnchorPosition,
-            ?Font       : Font,
-            ?BGColor    : string,
-            ?ActiveColor: string,
-            ?BorderColor: string,
-            ?BorderWidth: int
+            [<Optional;DefaultParameterValue(null)>] ?Visible    : bool,
+            [<Optional;DefaultParameterValue(null)>] ?Buttons    : seq<Button>,
+            [<Optional;DefaultParameterValue(null)>] ?X          : float,
+            [<Optional;DefaultParameterValue(null)>] ?XAnchor    : StyleParam.XAnchorPosition,
+            [<Optional;DefaultParameterValue(null)>] ?Y          : float,
+            [<Optional;DefaultParameterValue(null)>] ?YAnchor    : StyleParam.YAnchorPosition,
+            [<Optional;DefaultParameterValue(null)>] ?Font       : Font,
+            [<Optional;DefaultParameterValue(null)>] ?BGColor    : string,
+            [<Optional;DefaultParameterValue(null)>] ?ActiveColor: string,
+            [<Optional;DefaultParameterValue(null)>] ?BorderColor: string,
+            [<Optional;DefaultParameterValue(null)>] ?BorderWidth: int
         ) =
             RangeSelector () 
             |> RangeSelector.style
@@ -40,17 +42,17 @@ type RangeSelector () =
 
     static member style
         (
-            ?Visible    : bool,
-            ?Buttons    : seq<Button>,
-            ?X          : float,
-            ?XAnchor    : StyleParam.XAnchorPosition,
-            ?Y          : float,
-            ?YAnchor    : StyleParam.YAnchorPosition,
-            ?Font       : Font,
-            ?BGColor    : string,
-            ?ActiveColor: string,
-            ?BorderColor: string,
-            ?BorderWidth: int
+            [<Optional;DefaultParameterValue(null)>] ?Visible    : bool,
+            [<Optional;DefaultParameterValue(null)>] ?Buttons    : seq<Button>,
+            [<Optional;DefaultParameterValue(null)>] ?X          : float,
+            [<Optional;DefaultParameterValue(null)>] ?XAnchor    : StyleParam.XAnchorPosition,
+            [<Optional;DefaultParameterValue(null)>] ?Y          : float,
+            [<Optional;DefaultParameterValue(null)>] ?YAnchor    : StyleParam.YAnchorPosition,
+            [<Optional;DefaultParameterValue(null)>] ?Font       : Font,
+            [<Optional;DefaultParameterValue(null)>] ?BGColor    : string,
+            [<Optional;DefaultParameterValue(null)>] ?ActiveColor: string,
+            [<Optional;DefaultParameterValue(null)>] ?BorderColor: string,
+            [<Optional;DefaultParameterValue(null)>] ?BorderWidth: int
         ) =
             (fun (rangeSelector:RangeSelector) -> 
 

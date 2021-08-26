@@ -3,6 +3,7 @@
 open Plotly.NET
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 /// Legend 
 type Legend() = 
@@ -11,22 +12,22 @@ type Legend() =
     /// Init Legend type
     static member init 
         (
-            ?BGColor: string,
-            ?BorderColor: string,
-            ?Borderwidth: float,
-            ?Orientation: StyleParam.Orientation,
-            ?TraceOrder: StyleParam.TraceOrder,
-            ?TraceGroupGap: float,
-            ?ItemSizing: StyleParam.TraceItemSizing,
-            ?ItemWidth: int,
-            ?ItemClick: StyleParam.TraceItemClickOptions,
-            ?ItemDoubleClick: StyleParam.TraceItemClickOptions,
-            ?X: float,
-            ?XAnchor: StyleParam.XAnchorPosition,
-            ?Y: float,
-            ?YAnchor: StyleParam.YAnchorPosition,
-            ?VerticalAlign  : StyleParam.VerticalAlign,
-            ?Title: string
+            [<Optional;DefaultParameterValue(null)>] ?BGColor: string,
+            [<Optional;DefaultParameterValue(null)>] ?BorderColor: string,
+            [<Optional;DefaultParameterValue(null)>] ?Borderwidth: float,
+            [<Optional;DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
+            [<Optional;DefaultParameterValue(null)>] ?TraceOrder: StyleParam.TraceOrder,
+            [<Optional;DefaultParameterValue(null)>] ?TraceGroupGap: float,
+            [<Optional;DefaultParameterValue(null)>] ?ItemSizing: StyleParam.TraceItemSizing,
+            [<Optional;DefaultParameterValue(null)>] ?ItemWidth: int,
+            [<Optional;DefaultParameterValue(null)>] ?ItemClick: StyleParam.TraceItemClickOptions,
+            [<Optional;DefaultParameterValue(null)>] ?ItemDoubleClick: StyleParam.TraceItemClickOptions,
+            [<Optional;DefaultParameterValue(null)>] ?X: float,
+            [<Optional;DefaultParameterValue(null)>] ?XAnchor: StyleParam.XAnchorPosition,
+            [<Optional;DefaultParameterValue(null)>] ?Y: float,
+            [<Optional;DefaultParameterValue(null)>] ?YAnchor: StyleParam.YAnchorPosition,
+            [<Optional;DefaultParameterValue(null)>] ?VerticalAlign  : StyleParam.VerticalAlign,
+            [<Optional;DefaultParameterValue(null)>] ?Title: string
         ) =
             Legend()
             |> Legend.style(
@@ -50,22 +51,22 @@ type Legend() =
 
     static member style
         (
-            ?BGColor: string,
-            ?BorderColor: string,
-            ?Borderwidth: float,
-            ?Orientation: StyleParam.Orientation,
-            ?TraceOrder: StyleParam.TraceOrder,
-            ?TraceGroupGap: float,
-            ?ItemSizing: StyleParam.TraceItemSizing,
-            ?ItemWidth: int,
-            ?ItemClick: StyleParam.TraceItemClickOptions,
-            ?ItemDoubleClick: StyleParam.TraceItemClickOptions,
-            ?X: float,
-            ?XAnchor: StyleParam.XAnchorPosition,
-            ?Y: float,
-            ?YAnchor: StyleParam.YAnchorPosition,
-            ?VerticalAlign  : StyleParam.VerticalAlign,
-            ?Title: string
+            [<Optional;DefaultParameterValue(null)>] ?BGColor: string,
+            [<Optional;DefaultParameterValue(null)>] ?BorderColor: string,
+            [<Optional;DefaultParameterValue(null)>] ?Borderwidth: float,
+            [<Optional;DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
+            [<Optional;DefaultParameterValue(null)>] ?TraceOrder: StyleParam.TraceOrder,
+            [<Optional;DefaultParameterValue(null)>] ?TraceGroupGap: float,
+            [<Optional;DefaultParameterValue(null)>] ?ItemSizing: StyleParam.TraceItemSizing,
+            [<Optional;DefaultParameterValue(null)>] ?ItemWidth: int,
+            [<Optional;DefaultParameterValue(null)>] ?ItemClick: StyleParam.TraceItemClickOptions,
+            [<Optional;DefaultParameterValue(null)>] ?ItemDoubleClick: StyleParam.TraceItemClickOptions,
+            [<Optional;DefaultParameterValue(null)>] ?X: float,
+            [<Optional;DefaultParameterValue(null)>] ?XAnchor: StyleParam.XAnchorPosition,
+            [<Optional;DefaultParameterValue(null)>] ?Y: float,
+            [<Optional;DefaultParameterValue(null)>] ?YAnchor: StyleParam.YAnchorPosition,
+            [<Optional;DefaultParameterValue(null)>] ?VerticalAlign  : StyleParam.VerticalAlign,
+            [<Optional;DefaultParameterValue(null)>] ?Title: string
         ) =
             (fun (legend:Legend) -> 
                 BGColor         |> DynObj.setValueOpt legend "bgcolor"

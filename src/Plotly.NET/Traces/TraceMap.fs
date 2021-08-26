@@ -4,6 +4,7 @@ open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 
 //Figures can include two different types of map subplots: geo subplots for outline maps and mapbox subplots for tile maps. 
@@ -54,19 +55,19 @@ type TraceMapStyle() =
     // Applies the styles of choropleth map plot to TraceObjects 
     static member ChoroplethMap
         (                
-            ?Locations      : seq<string>,
-            ?Z              : seq<#IConvertible>,
-            ?Text           : seq<#IConvertible>,
-            ?Locationmode   : StyleParam.LocationFormat,
-            ?Autocolorscale : bool,
-            ?Colorscale     : StyleParam.Colorscale,
-            ?ColorBar       : ColorBar,
-            ?Marker         : Marker,
-            ?GeoJson,
-            ?FeatureIdKey   : string,
-            ?Zmin           : float,
-            ?Zmid           : float,
-            ?Zmax           : float
+            [<Optional;DefaultParameterValue(null)>] ?Locations      : seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?Z              : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Text           : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Locationmode   : StyleParam.LocationFormat,
+            [<Optional;DefaultParameterValue(null)>] ?Autocolorscale : bool,
+            [<Optional;DefaultParameterValue(null)>] ?Colorscale     : StyleParam.Colorscale,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar       : ColorBar,
+            [<Optional;DefaultParameterValue(null)>] ?Marker         : Marker,
+            [<Optional;DefaultParameterValue(null)>] ?GeoJson,
+            [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey   : string,
+            [<Optional;DefaultParameterValue(null)>] ?Zmin           : float,
+            [<Optional;DefaultParameterValue(null)>] ?Zmid           : float,
+            [<Optional;DefaultParameterValue(null)>] ?Zmax           : float
         ) =
             (fun (choropleth: #Trace) -> 
                 
@@ -92,14 +93,14 @@ type TraceMapStyle() =
     static member ScatterGeo 
         (
             mode       : StyleParam.Mode,
-            ?Longitudes : #IConvertible seq,
-            ?Latitudes  : #IConvertible seq,
-            ?Locations  : seq<string>,
-            ?GeoJson    ,
-            ?FeatureIdKey:string,
-            ?Connectgaps : bool,
-            ?Fill        : StyleParam.Fill,
-            ?Fillcolor   
+            [<Optional;DefaultParameterValue(null)>] ?Longitudes : #IConvertible seq,
+            [<Optional;DefaultParameterValue(null)>] ?Latitudes  : #IConvertible seq,
+            [<Optional;DefaultParameterValue(null)>] ?Locations  : seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?GeoJson    ,
+            [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey:string,
+            [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool,
+            [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill,
+            [<Optional;DefaultParameterValue(null)>] ?Fillcolor   
         ) =
             (fun (trace: #Trace) -> 
             
@@ -120,12 +121,12 @@ type TraceMapStyle() =
     static member ScatterMapbox 
         (
             mode        : StyleParam.Mode,
-            ?Longitudes : #IConvertible seq,
-            ?Latitudes  : #IConvertible seq,
-            ?Below      : string,
-            ?Connectgaps: bool,
-            ?Fill       : StyleParam.Fill,
-            ?Fillcolor  : string
+            [<Optional;DefaultParameterValue(null)>] ?Longitudes : #IConvertible seq,
+            [<Optional;DefaultParameterValue(null)>] ?Latitudes  : #IConvertible seq,
+            [<Optional;DefaultParameterValue(null)>] ?Below      : string,
+            [<Optional;DefaultParameterValue(null)>] ?Connectgaps: bool,
+            [<Optional;DefaultParameterValue(null)>] ?Fill       : StyleParam.Fill,
+            [<Optional;DefaultParameterValue(null)>] ?Fillcolor  : string
         ) =
             (fun (trace:#Trace) -> 
             
@@ -142,19 +143,19 @@ type TraceMapStyle() =
 
     static member ChoroplethMapbox
         (
-            ?Z              : seq<#IConvertible>,
-            ?GeoJson,
-            ?FeatureIdKey   : string,
-            ?Locations      : seq<#IConvertible>,
-            ?Text           : seq<#IConvertible>,
-            ?Below          : string,
-            ?Colorscale     : StyleParam.Colorscale,
-            ?ColorBar       : ColorBar,
-            ?Showscale      : bool,
-            ?ZAuto          : bool,
-            ?ZMin           : float,
-            ?ZMid           : float,
-            ?ZMax           : float
+            [<Optional;DefaultParameterValue(null)>] ?Z              : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?GeoJson,
+            [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey   : string,
+            [<Optional;DefaultParameterValue(null)>] ?Locations      : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Text           : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Below          : string,
+            [<Optional;DefaultParameterValue(null)>] ?Colorscale     : StyleParam.Colorscale,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar       : ColorBar,
+            [<Optional;DefaultParameterValue(null)>] ?Showscale      : bool,
+            [<Optional;DefaultParameterValue(null)>] ?ZAuto          : bool,
+            [<Optional;DefaultParameterValue(null)>] ?ZMin           : float,
+            [<Optional;DefaultParameterValue(null)>] ?ZMid           : float,
+            [<Optional;DefaultParameterValue(null)>] ?ZMax           : float
         ) =
             (fun (trace: #Trace) -> 
                 
@@ -177,20 +178,20 @@ type TraceMapStyle() =
 
     static member DensityMapbox
         (
-            ?Z              : seq<#IConvertible>,
-            ?Radius         : float,
-            ?Longitudes     : #IConvertible seq,
-            ?Latitudes      : #IConvertible seq,
-            ?Opacity        : float,
-            ?Text           : seq<#IConvertible>,
-            ?Below          : string,
-            ?Colorscale     : StyleParam.Colorscale,
-            ?ColorBar       : ColorBar,
-            ?Showscale      : bool,
-            ?ZAuto          : bool,
-            ?ZMin           : float,
-            ?ZMid           : float,
-            ?ZMax           : float
+            [<Optional;DefaultParameterValue(null)>] ?Z              : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Radius         : float,
+            [<Optional;DefaultParameterValue(null)>] ?Longitudes     : #IConvertible seq,
+            [<Optional;DefaultParameterValue(null)>] ?Latitudes      : #IConvertible seq,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity        : float,
+            [<Optional;DefaultParameterValue(null)>] ?Text           : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Below          : string,
+            [<Optional;DefaultParameterValue(null)>] ?Colorscale     : StyleParam.Colorscale,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar       : ColorBar,
+            [<Optional;DefaultParameterValue(null)>] ?Showscale      : bool,
+            [<Optional;DefaultParameterValue(null)>] ?ZAuto          : bool,
+            [<Optional;DefaultParameterValue(null)>] ?ZMin           : float,
+            [<Optional;DefaultParameterValue(null)>] ?ZMid           : float,
+            [<Optional;DefaultParameterValue(null)>] ?ZMax           : float
 
         ) =
             (fun (trace: #Trace) -> 

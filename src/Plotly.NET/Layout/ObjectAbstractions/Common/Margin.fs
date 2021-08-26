@@ -1,6 +1,7 @@
 ﻿namespace Plotly.NET.LayoutObjects
 
 open DynamicObj
+open System.Runtime.InteropServices
 
 /// Margin 
 type Margin() = 
@@ -9,12 +10,12 @@ type Margin() =
     /// Init Margin type
     static member init
         (
-            ?Left   ,
-            ?Right  ,
-            ?Top    ,
-            ?Bottom ,
-            ?Pad    ,
-            ?Autoexpand
+            [<Optional;DefaultParameterValue(null)>] ?Left   ,
+            [<Optional;DefaultParameterValue(null)>] ?Right  ,
+            [<Optional;DefaultParameterValue(null)>] ?Top    ,
+            [<Optional;DefaultParameterValue(null)>] ?Bottom ,
+            [<Optional;DefaultParameterValue(null)>] ?Pad    ,
+            [<Optional;DefaultParameterValue(null)>] ?Autoexpand
         ) =
             Margin()
             |> Margin.style
@@ -31,12 +32,12 @@ type Margin() =
     // Applies the styles to Margin()
     static member style
         (
-            ?Left   ,
-            ?Right  ,
-            ?Top    ,
-            ?Bottom ,
-            ?Pad    ,
-            ?Autoexpand
+            [<Optional;DefaultParameterValue(null)>] ?Left   ,
+            [<Optional;DefaultParameterValue(null)>] ?Right  ,
+            [<Optional;DefaultParameterValue(null)>] ?Top    ,
+            [<Optional;DefaultParameterValue(null)>] ?Bottom ,
+            [<Optional;DefaultParameterValue(null)>] ?Pad    ,
+            [<Optional;DefaultParameterValue(null)>] ?Autoexpand
         ) =
             (fun (margin:Margin) -> 
                 Left   |> DynObj.setValueOpt margin "l"

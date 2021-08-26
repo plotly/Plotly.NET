@@ -3,6 +3,7 @@
 open Plotly.NET
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 /// <summary></summary>
 type MapboxLayer() = 
@@ -13,23 +14,23 @@ type MapboxLayer() =
 
     static member init
         (   
-            ?Visible: bool,
-            ?SourceType: StyleParam.MapboxLayerSourceType,
-            ?Source: #IConvertible,
-            ?SourceLayer: string,
-            ?SourceAttribution: string,
-            ?Type: StyleParam.MapboxLayerType,
-            ?Coordinates:seq<#IConvertible*#IConvertible>,
-            ?Below: string,
-            ?Color: string,
-            ?Opacity: float,
-            ?MinZoom:float,
-            ?MaxZoom:float,
-            ?CircleRadius: float,
-            ?Line:Line,
-            ?FillOutlineColor:string,
-            ?Symbol:MapboxLayerSymbol,
-            ?Name: string
+            [<Optional;DefaultParameterValue(null)>] ?Visible: bool,
+            [<Optional;DefaultParameterValue(null)>] ?SourceType: StyleParam.MapboxLayerSourceType,
+            [<Optional;DefaultParameterValue(null)>] ?Source: #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?SourceLayer: string,
+            [<Optional;DefaultParameterValue(null)>] ?SourceAttribution: string,
+            [<Optional;DefaultParameterValue(null)>] ?Type: StyleParam.MapboxLayerType,
+            [<Optional;DefaultParameterValue(null)>] ?Coordinates:seq<#IConvertible*#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Below: string,
+            [<Optional;DefaultParameterValue(null)>] ?Color: string,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity: float,
+            [<Optional;DefaultParameterValue(null)>] ?MinZoom:float,
+            [<Optional;DefaultParameterValue(null)>] ?MaxZoom:float,
+            [<Optional;DefaultParameterValue(null)>] ?CircleRadius: float,
+            [<Optional;DefaultParameterValue(null)>] ?Line:Line,
+            [<Optional;DefaultParameterValue(null)>] ?FillOutlineColor:string,
+            [<Optional;DefaultParameterValue(null)>] ?Symbol:MapboxLayerSymbol,
+            [<Optional;DefaultParameterValue(null)>] ?Name: string
         ) =
             MapboxLayer()
             |> MapboxLayer.style
@@ -57,23 +58,23 @@ type MapboxLayer() =
 
     static member style
         (   
-            ?Visible: bool,
-            ?SourceType: StyleParam.MapboxLayerSourceType,
-            ?Source: #IConvertible,
-            ?SourceLayer: string,
-            ?SourceAttribution: string,
-            ?Type: StyleParam.MapboxLayerType,
-            ?Coordinates:seq<#IConvertible*#IConvertible>,
-            ?Below: string,
-            ?Color: string,
-            ?Opacity: float,
-            ?MinZoom:float,
-            ?MaxZoom:float,
-            ?CircleRadius: float,
-            ?Line:Line,
-            ?FillOutlineColor:string,
-            ?Symbol:MapboxLayerSymbol,
-            ?Name: string
+            [<Optional;DefaultParameterValue(null)>] ?Visible: bool,
+            [<Optional;DefaultParameterValue(null)>] ?SourceType: StyleParam.MapboxLayerSourceType,
+            [<Optional;DefaultParameterValue(null)>] ?Source: #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?SourceLayer: string,
+            [<Optional;DefaultParameterValue(null)>] ?SourceAttribution: string,
+            [<Optional;DefaultParameterValue(null)>] ?Type: StyleParam.MapboxLayerType,
+            [<Optional;DefaultParameterValue(null)>] ?Coordinates:seq<#IConvertible*#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Below: string,
+            [<Optional;DefaultParameterValue(null)>] ?Color: string,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity: float,
+            [<Optional;DefaultParameterValue(null)>] ?MinZoom:float,
+            [<Optional;DefaultParameterValue(null)>] ?MaxZoom:float,
+            [<Optional;DefaultParameterValue(null)>] ?CircleRadius: float,
+            [<Optional;DefaultParameterValue(null)>] ?Line:Line,
+            [<Optional;DefaultParameterValue(null)>] ?FillOutlineColor:string,
+            [<Optional;DefaultParameterValue(null)>] ?Symbol:MapboxLayerSymbol,
+            [<Optional;DefaultParameterValue(null)>] ?Name: string
 
         ) =
             (fun (mapBoxLayer:MapboxLayer) -> 

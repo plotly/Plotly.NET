@@ -3,14 +3,15 @@
 open Plotly.NET
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 type UniformText() =
     inherit DynamicObj ()
 
     static member init
         (    
-            ?MinSize: int,
-            ?Mode:StyleParam.UniformTextMode
+            [<Optional;DefaultParameterValue(null)>] ?MinSize: int,
+            [<Optional;DefaultParameterValue(null)>] ?Mode:StyleParam.UniformTextMode
         ) =    
             UniformText()
             |> UniformText.style
@@ -21,8 +22,8 @@ type UniformText() =
 
     static member style
         (    
-           ?MinSize : int,
-           ?Mode    : StyleParam.UniformTextMode
+           [<Optional;DefaultParameterValue(null)>] ?MinSize : int,
+           [<Optional;DefaultParameterValue(null)>] ?Mode    : StyleParam.UniformTextMode
         ) =
             (fun (uniformText:UniformText) -> 
                

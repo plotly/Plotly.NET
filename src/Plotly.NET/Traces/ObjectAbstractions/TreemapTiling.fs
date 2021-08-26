@@ -4,6 +4,7 @@ open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 type TreemapTiling () =
     inherit DynamicObj ()
@@ -21,10 +22,10 @@ type TreemapTiling () =
     ///Pad          : Sets the inner padding (in px).
     static member init 
         (
-            ?Packing        : StyleParam.TreemapTilingPacking,
-            ?SquarifyRatio  : float,
-            ?Flip           : string,
-            ?Pad            : float
+            [<Optional;DefaultParameterValue(null)>] ?Packing        : StyleParam.TreemapTilingPacking,
+            [<Optional;DefaultParameterValue(null)>] ?SquarifyRatio  : float,
+            [<Optional;DefaultParameterValue(null)>] ?Flip           : string,
+            [<Optional;DefaultParameterValue(null)>] ?Pad            : float
         ) = 
 
         TreemapTiling() 
@@ -49,10 +50,10 @@ type TreemapTiling () =
     ///Pad          : Sets the inner padding (in px).
     static member style 
         (
-            ?Packing        : StyleParam.TreemapTilingPacking,
-            ?SquarifyRatio  : float,
-            ?Flip           : string,
-            ?Pad            : float
+            [<Optional;DefaultParameterValue(null)>] ?Packing        : StyleParam.TreemapTilingPacking,
+            [<Optional;DefaultParameterValue(null)>] ?SquarifyRatio  : float,
+            [<Optional;DefaultParameterValue(null)>] ?Flip           : string,
+            [<Optional;DefaultParameterValue(null)>] ?Pad            : float
             
         ) = 
             (fun (tiling:TreemapTiling) -> 

@@ -4,6 +4,7 @@ open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 /// Trace type inherits from dynamic object
 type Trace (traceTypeName) =
@@ -20,13 +21,13 @@ type TraceStyle() =
     /// Applies the given TraceInfo style parameters to a Trace object.
     static member TraceInfo
         (    
-            ?Name: string,
-            ?Visible: StyleParam.Visible,
-            ?Showlegend: bool,
-            ?Legendgroup:string,
-            ?Opacity: float,
-            ?Uid: string,
-            ?Hoverinfo: string
+            [<Optional;DefaultParameterValue(null)>] ?Name: string,
+            [<Optional;DefaultParameterValue(null)>] ?Visible: StyleParam.Visible,
+            [<Optional;DefaultParameterValue(null)>] ?Showlegend: bool,
+            [<Optional;DefaultParameterValue(null)>] ?Legendgroup:string,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity: float,
+            [<Optional;DefaultParameterValue(null)>] ?Uid: string,
+            [<Optional;DefaultParameterValue(null)>] ?Hoverinfo: string
             //?Stream: Stream
 
         ) =
@@ -48,8 +49,8 @@ type TraceStyle() =
     /// Sets the given axis anchor id(s) on a Trace object.
     static member SetAxisAnchor
         (
-            ?X:StyleParam.LinearAxisId,
-            ?Y:StyleParam.LinearAxisId
+            [<Optional;DefaultParameterValue(null)>] ?X:StyleParam.LinearAxisId,
+            [<Optional;DefaultParameterValue(null)>] ?Y:StyleParam.LinearAxisId
         ) =  
             (fun (trace:('T :> Trace)) ->
 
@@ -62,9 +63,9 @@ type TraceStyle() =
     /// Sets selection of data points on a Trace object.
     static member SetSelection
         (
-            ?Selectedpoints,
-            ?Selected,
-            ?UnSelected
+            [<Optional;DefaultParameterValue(null)>] ?Selectedpoints,
+            [<Optional;DefaultParameterValue(null)>] ?Selected,
+            [<Optional;DefaultParameterValue(null)>] ?UnSelected
         ) =  
             (fun (trace:('T :> Trace)) ->
 
@@ -79,11 +80,11 @@ type TraceStyle() =
     /// Sets the given text label styles on a Trace object.
     static member TextLabel
         (    
-            ?Text   : seq<#IConvertible>,
-            ?Textposition: StyleParam.TextPosition,
-            ?Textfont: Font,
-            ?Textsrc : string,
-            ?Textpositionsrc : string
+            [<Optional;DefaultParameterValue(null)>] ?Text   : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Textposition: StyleParam.TextPosition,
+            [<Optional;DefaultParameterValue(null)>] ?Textfont: Font,
+            [<Optional;DefaultParameterValue(null)>] ?Textsrc : string,
+            [<Optional;DefaultParameterValue(null)>] ?Textpositionsrc : string
 
         ) =
             (fun (trace:('T :> Trace)) ->
@@ -101,7 +102,7 @@ type TraceStyle() =
     /// Sets the given line on a Trace object.
     static member SetLine
         (
-            line:Line
+            [<Optional;DefaultParameterValue(null)>] line:Line
         ) =  
             (fun (trace:('T :> Trace)) ->
 
@@ -113,12 +114,12 @@ type TraceStyle() =
     /// Sets the given Line styles on the line property of a Trace object
     static member Line
         (
-            ?Width: float,
-            ?Color: string,
-            ?Shape: StyleParam.Shape,
-            ?Dash: StyleParam.DrawingStyle,
-            ?Smoothing: float,
-            ?Colorscale : StyleParam.Colorscale
+            [<Optional;DefaultParameterValue(null)>] ?Width: float,
+            [<Optional;DefaultParameterValue(null)>] ?Color: string,
+            [<Optional;DefaultParameterValue(null)>] ?Shape: StyleParam.Shape,
+            [<Optional;DefaultParameterValue(null)>] ?Dash: StyleParam.DrawingStyle,
+            [<Optional;DefaultParameterValue(null)>] ?Smoothing: float,
+            [<Optional;DefaultParameterValue(null)>] ?Colorscale : StyleParam.Colorscale
         ) =
             (fun (trace:('T :> Trace)) ->
                 let line =
@@ -147,27 +148,27 @@ type TraceStyle() =
     /// Sets the given Marker styles on the marker property of a Trace object
     static member Marker
         (   
-            ?Size: int,
-            ?Opacity: float,
-            ?Color: string,
-            ?Symbol: StyleParam.Symbol,
-            ?MultiSizes: seq<#IConvertible>,
-            ?Line: Line,
-            ?ColorBar: ColorBar,
-            ?Colorscale : StyleParam.Colorscale,
-            ?Colors: seq<string>,
-            ?OutlierColor:string,
-            ?Maxdisplayed: int,
-            ?Sizeref: float,
-            ?Sizemin: float,
-            ?Sizemode: StyleParam.MarkerSizeMode,
-            ?Cauto: bool,
-            ?Cmax: float,
-            ?Cmin: float,
-            ?Cmid: float,
-            ?Autocolorscale: bool,
-            ?Reversescale: bool,
-            ?Showscale: bool
+            [<Optional;DefaultParameterValue(null)>] ?Size: int,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity: float,
+            [<Optional;DefaultParameterValue(null)>] ?Color: string,
+            [<Optional;DefaultParameterValue(null)>] ?Symbol: StyleParam.Symbol,
+            [<Optional;DefaultParameterValue(null)>] ?MultiSizes: seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Line: Line,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar: ColorBar,
+            [<Optional;DefaultParameterValue(null)>] ?Colorscale : StyleParam.Colorscale,
+            [<Optional;DefaultParameterValue(null)>] ?Colors: seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?OutlierColor:string,
+            [<Optional;DefaultParameterValue(null)>] ?Maxdisplayed: int,
+            [<Optional;DefaultParameterValue(null)>] ?Sizeref: float,
+            [<Optional;DefaultParameterValue(null)>] ?Sizemin: float,
+            [<Optional;DefaultParameterValue(null)>] ?Sizemode: StyleParam.MarkerSizeMode,
+            [<Optional;DefaultParameterValue(null)>] ?Cauto: bool,
+            [<Optional;DefaultParameterValue(null)>] ?Cmax: float,
+            [<Optional;DefaultParameterValue(null)>] ?Cmin: float,
+            [<Optional;DefaultParameterValue(null)>] ?Cmid: float,
+            [<Optional;DefaultParameterValue(null)>] ?Autocolorscale: bool,
+            [<Optional;DefaultParameterValue(null)>] ?Reversescale: bool,
+            [<Optional;DefaultParameterValue(null)>] ?Showscale: bool
 
         ) =
             (fun (trace:('T :> Trace)) ->
@@ -206,10 +207,10 @@ type TraceStyle() =
     /// Sets the given Domain styles on the domain property of a Trace object
     static member Domain
         (
-            ?X     : StyleParam.Range,
-            ?Y     : StyleParam.Range,
-            ?Row   : int,
-            ?Column: int
+            [<Optional;DefaultParameterValue(null)>] ?X     : StyleParam.Range,
+            [<Optional;DefaultParameterValue(null)>] ?Y     : StyleParam.Range,
+            [<Optional;DefaultParameterValue(null)>] ?Row   : int,
+            [<Optional;DefaultParameterValue(null)>] ?Column: int
         ) =
                 (fun (trace:('T :> Trace)) ->
                     let domain =

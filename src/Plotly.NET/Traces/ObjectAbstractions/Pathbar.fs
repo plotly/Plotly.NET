@@ -4,6 +4,7 @@ open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 type Pathbar () =
     inherit DynamicObj ()
@@ -23,11 +24,11 @@ type Pathbar () =
     ///Textfont : Sets the font used inside `pathbar`.
     static member init 
         (
-            ?Visible    :bool,
-            ?Side       :StyleParam.Side,
-            ?EdgeShape  :StyleParam.TreemapEdgeShape,
-            ?Thickness  :float,
-            ?Textfont   :Font
+            [<Optional;DefaultParameterValue(null)>] ?Visible    :bool,
+            [<Optional;DefaultParameterValue(null)>] ?Side       :StyleParam.Side,
+            [<Optional;DefaultParameterValue(null)>] ?EdgeShape  :StyleParam.TreemapEdgeShape,
+            [<Optional;DefaultParameterValue(null)>] ?Thickness  :float,
+            [<Optional;DefaultParameterValue(null)>] ?Textfont   :Font
         ) = 
 
         Pathbar() 
@@ -55,11 +56,11 @@ type Pathbar () =
     ///Textfont : Sets the font used inside `pathbar`.
     static member style 
         (
-            ?Visible    :bool,
-            ?Side       :StyleParam.Side,
-            ?EdgeShape  :StyleParam.TreemapEdgeShape,
-            ?Thickness  :float,
-            ?Textfont   :Font
+            [<Optional;DefaultParameterValue(null)>] ?Visible    :bool,
+            [<Optional;DefaultParameterValue(null)>] ?Side       :StyleParam.Side,
+            [<Optional;DefaultParameterValue(null)>] ?EdgeShape  :StyleParam.TreemapEdgeShape,
+            [<Optional;DefaultParameterValue(null)>] ?Thickness  :float,
+            [<Optional;DefaultParameterValue(null)>] ?Textfont   :Font
         ) = 
             (fun (pathbar:Pathbar) -> 
                 Visible   |> DynObj.setValueOpt pathbar "visible"

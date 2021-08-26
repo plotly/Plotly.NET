@@ -3,6 +3,7 @@ namespace Plotly.NET.LayoutObjects
 open Plotly.NET
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 /// Dimensions type inherits from dynamic object
 type Domain () =
@@ -11,10 +12,10 @@ type Domain () =
     /// Initialized Dimensions object
     static member init
         (
-            ?X      : StyleParam.Range,
-            ?Y      : StyleParam.Range,
-            ?Row    : int,
-            ?Column : int
+            [<Optional;DefaultParameterValue(null)>] ?X      : StyleParam.Range,
+            [<Optional;DefaultParameterValue(null)>] ?Y      : StyleParam.Range,
+            [<Optional;DefaultParameterValue(null)>] ?Row    : int,
+            [<Optional;DefaultParameterValue(null)>] ?Column : int
         ) =
             Domain () 
             |> Domain.style
@@ -29,10 +30,10 @@ type Domain () =
     // Applies the styles to Dimensions()
     static member style
         (
-            ?X      : StyleParam.Range,
-            ?Y      : StyleParam.Range,
-            ?Row    : int,
-            ?Column : int
+            [<Optional;DefaultParameterValue(null)>] ?X      : StyleParam.Range,
+            [<Optional;DefaultParameterValue(null)>] ?Y      : StyleParam.Range,
+            [<Optional;DefaultParameterValue(null)>] ?Row    : int,
+            [<Optional;DefaultParameterValue(null)>] ?Column : int
         ) =
             (fun (dom:Domain) -> 
                 X       |> DynObj.setValueOptBy dom "x" StyleParam.Range.convert

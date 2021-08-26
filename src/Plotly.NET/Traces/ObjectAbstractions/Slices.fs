@@ -4,15 +4,16 @@ open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 type SlicesFill () =
     inherit DynamicObj () 
 
     static member init 
         (
-            ?Fill: float,
-            ?Locations: seq<#IConvertible>,
-            ?Show: bool
+            [<Optional;DefaultParameterValue(null)>] ?Fill: float,
+            [<Optional;DefaultParameterValue(null)>] ?Locations: seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Show: bool
         ) =
             SlicesFill()
             |> SlicesFill.style
@@ -24,9 +25,9 @@ type SlicesFill () =
 
     static member style
         (
-            ?Fill: float,
-            ?Locations: seq<#IConvertible>,
-            ?Show: bool
+            [<Optional;DefaultParameterValue(null)>] ?Fill: float,
+            [<Optional;DefaultParameterValue(null)>] ?Locations: seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Show: bool
         ) =
 
             fun (slicesFill: SlicesFill) ->
@@ -43,9 +44,9 @@ type Slices() =
 
     static member init
         (
-            ?X: SlicesFill,
-            ?Y: SlicesFill,
-            ?Z: SlicesFill
+            [<Optional;DefaultParameterValue(null)>] ?X: SlicesFill,
+            [<Optional;DefaultParameterValue(null)>] ?Y: SlicesFill,
+            [<Optional;DefaultParameterValue(null)>] ?Z: SlicesFill
         ) =
 
             Slices()
@@ -58,9 +59,9 @@ type Slices() =
             
     static member style 
         (
-            ?X: SlicesFill,
-            ?Y: SlicesFill,
-            ?Z: SlicesFill
+            [<Optional;DefaultParameterValue(null)>] ?X: SlicesFill,
+            [<Optional;DefaultParameterValue(null)>] ?Y: SlicesFill,
+            [<Optional;DefaultParameterValue(null)>] ?Z: SlicesFill
         ) =
             fun (slices: Slices) ->
 

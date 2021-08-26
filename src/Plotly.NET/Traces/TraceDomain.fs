@@ -4,6 +4,7 @@ open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 type TraceDomain(traceTypeName) =
 
@@ -50,24 +51,23 @@ type TraceDomainStyle() =
     // Applies the styles of pie plot to TraceObjects 
     static member Pie
         (                
-            ?Values: seq<#IConvertible>,
-            ?Labels: seq<#IConvertible>,
-            ?Label0: #IConvertible,
-            ?dLabel: #IConvertible,   
-            ?Scalegroup,
-            ?Textinfo,
-            //?Textfont: FontOptions,                    
-            ?Insidetextfont: Font,
-            ?Outsidetextfont: Font,
-            ?Domain, // TODO
-            ?Hole: float,
-            ?Sort: bool,
-            ?Direction, // TODO
-            ?Rotation: float,
-            ?Pull: float,
-            ?Labelssrc: string,
-            ?Valuessrc: string,
-            ?Pullsrc
+            [<Optional;DefaultParameterValue(null)>] ?Values: seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Labels: seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Label0: #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?dLabel: #IConvertible,   
+            [<Optional;DefaultParameterValue(null)>] ?Scalegroup,
+            [<Optional;DefaultParameterValue(null)>] ?Textinfo,
+            [<Optional;DefaultParameterValue(null)>] ?Insidetextfont: Font,
+            [<Optional;DefaultParameterValue(null)>] ?Outsidetextfont: Font,
+            [<Optional;DefaultParameterValue(null)>] ?Domain, // TODO
+            [<Optional;DefaultParameterValue(null)>] ?Hole: float,
+            [<Optional;DefaultParameterValue(null)>] ?Sort: bool,
+            [<Optional;DefaultParameterValue(null)>] ?Direction, // TODO
+            [<Optional;DefaultParameterValue(null)>] ?Rotation: float,
+            [<Optional;DefaultParameterValue(null)>] ?Pull: float,
+            [<Optional;DefaultParameterValue(null)>] ?Labelssrc: string,
+            [<Optional;DefaultParameterValue(null)>] ?Valuessrc: string,
+            [<Optional;DefaultParameterValue(null)>] ?Pullsrc
 
         ) =
             (fun (pie:('T :> Trace)) ->
@@ -102,14 +102,14 @@ type TraceDomainStyle() =
             
     static member FunnelArea
         (
-            ?Values        : seq<#IConvertible>,
-            ?Labels        : seq<#IConvertible>,
-            ?dLabel        : float,
-            ?Label0        : float,
-            ?Aspectratio   : float,
-            ?Baseratio     : float,
-            ?Insidetextfont: Font,
-            ?Scalegroup    : string
+            [<Optional;DefaultParameterValue(null)>] ?Values        : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Labels        : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?dLabel        : float,
+            [<Optional;DefaultParameterValue(null)>] ?Label0        : float,
+            [<Optional;DefaultParameterValue(null)>] ?Aspectratio   : float,
+            [<Optional;DefaultParameterValue(null)>] ?Baseratio     : float,
+            [<Optional;DefaultParameterValue(null)>] ?Insidetextfont: Font,
+            [<Optional;DefaultParameterValue(null)>] ?Scalegroup    : string
         ) = 
             (fun (trace:('T :> Trace)) -> 
         
@@ -149,12 +149,12 @@ type TraceDomainStyle() =
         (
             labels          : seq<#IConvertible>,
             parents         : seq<#IConvertible>,
-            ?Ids            : seq<string>,
-            ?Values         : seq<float>,
-            ?Text           : seq<string>,
-            ?Branchvalues   : StyleParam.BranchValues,
-            ?Level          ,
-            ?Maxdepth       : int
+            [<Optional;DefaultParameterValue(null)>] ?Ids            : seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?Values         : seq<float>,
+            [<Optional;DefaultParameterValue(null)>] ?Text           : seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?Branchvalues   : StyleParam.BranchValues,
+            [<Optional;DefaultParameterValue(null)>] ?Level          ,
+            [<Optional;DefaultParameterValue(null)>] ?Maxdepth       : int
         ) =
             (fun (trace:('T :> Trace)) -> 
                 labels       |> DynObj.setValue trace       "labels"
@@ -195,14 +195,14 @@ type TraceDomainStyle() =
         (
             labels          : seq<#IConvertible>,
             parents         : seq<#IConvertible>,
-            ?Ids            : seq<string>,
-            ?Values         : seq<float>,
-            ?Text           : seq<string>,
-            ?Branchvalues   : StyleParam.BranchValues,
-            ?Tiling         : TreemapTiling,
-            ?PathBar        : Pathbar,
-            ?Level          ,
-            ?Maxdepth       : int
+            [<Optional;DefaultParameterValue(null)>] ?Ids            : seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?Values         : seq<float>,
+            [<Optional;DefaultParameterValue(null)>] ?Text           : seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?Branchvalues   : StyleParam.BranchValues,
+            [<Optional;DefaultParameterValue(null)>] ?Tiling         : TreemapTiling,
+            [<Optional;DefaultParameterValue(null)>] ?PathBar        : Pathbar,
+            [<Optional;DefaultParameterValue(null)>] ?Level          ,
+            [<Optional;DefaultParameterValue(null)>] ?Maxdepth       : int
         ) =
             (fun (trace:('T :> Trace)) -> 
                 labels          |> DynObj.setValue trace      "labels"
@@ -223,12 +223,12 @@ type TraceDomainStyle() =
     // Applies the styles of parallel coordinates plot to TraceObjects 
     static member ParallelCoord
         (                
-            ?Dimensions : seq<Dimensions>,
-            ?Line               ,
-            ?Domain             ,
-            ?Labelfont          ,
-            ?Tickfont   :   Font,
-            ?Rangefont  :   Font        
+            [<Optional;DefaultParameterValue(null)>] ?Dimensions : seq<Dimensions>,
+            [<Optional;DefaultParameterValue(null)>] ?Line               ,
+            [<Optional;DefaultParameterValue(null)>] ?Domain             ,
+            [<Optional;DefaultParameterValue(null)>] ?Labelfont          ,
+            [<Optional;DefaultParameterValue(null)>] ?Tickfont   :   Font,
+            [<Optional;DefaultParameterValue(null)>] ?Rangefont  :   Font        
         ) =
             (fun (parcoords:('T :> Trace)) -> 
                 
@@ -245,13 +245,13 @@ type TraceDomainStyle() =
     
     static member ParallelCategories
         (                
-            ?Dimensions : seq<Dimensions>,
-            ?Line               ,
-            ?Domain             ,
-            ?Color      : seq<#IConvertible>,
-            ?Labelfont          ,
-            ?Tickfont   :   Font,
-            ?Rangefont  :   Font        
+            [<Optional;DefaultParameterValue(null)>] ?Dimensions : seq<Dimensions>,
+            [<Optional;DefaultParameterValue(null)>] ?Line               ,
+            [<Optional;DefaultParameterValue(null)>] ?Domain             ,
+            [<Optional;DefaultParameterValue(null)>] ?Color      : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Labelfont          ,
+            [<Optional;DefaultParameterValue(null)>] ?Tickfont   :   Font,
+            [<Optional;DefaultParameterValue(null)>] ?Rangefont  :   Font        
         ) =
             (fun (parcats:('T :> Trace)) -> 
         
@@ -272,8 +272,8 @@ type TraceDomainStyle() =
         (   
             header       : TableHeader  ,
             cells        : TableCells   ,
-            ?ColumnWidth : seq<int>,
-            ?ColumnOrder : seq<int>         
+            [<Optional;DefaultParameterValue(null)>] ?ColumnWidth : seq<int>,
+            [<Optional;DefaultParameterValue(null)>] ?ColumnOrder : seq<int>         
         ) =
             (fun (trace:('T :> Trace)) ->                  
                 header      |> DynObj.setValue    trace "header"

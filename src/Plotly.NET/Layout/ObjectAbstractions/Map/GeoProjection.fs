@@ -3,6 +3,7 @@
 open Plotly.NET
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 /// <summary>Determines Map rotation in GeoProjections</summary>
 type GeoProjectionRotation () = 
@@ -14,9 +15,9 @@ type GeoProjectionRotation () =
     /// <param name="Roll">Roll the map (in degrees) For example, a roll of "180" makes the map appear upside down.</param>
     static member init
         (   
-            ?Longitude  :float,
-            ?Latitude   :float,
-            ?Roll       :int
+            [<Optional;DefaultParameterValue(null)>] ?Longitude  :float,
+            [<Optional;DefaultParameterValue(null)>] ?Latitude   :float,
+            [<Optional;DefaultParameterValue(null)>] ?Roll       :int
 
         ) =
             GeoProjectionRotation()
@@ -33,9 +34,9 @@ type GeoProjectionRotation () =
     /// <param name="Roll">Roll the map (in degrees) For example, a roll of "180" makes the map appear upside down.</param>
     static member style
         (   
-            ?Longitude  :float,
-            ?Latitude   :float,
-            ?Roll       :int
+            [<Optional;DefaultParameterValue(null)>] ?Longitude  :float,
+            [<Optional;DefaultParameterValue(null)>] ?Latitude   :float,
+            [<Optional;DefaultParameterValue(null)>] ?Roll       :int
         ) =
             (fun (rotation:GeoProjectionRotation) -> 
                 Longitude |> DynObj.setValueOpt rotation "lon"
@@ -57,9 +58,9 @@ type GeoProjection() =
     static member init
         (   
             projectionType  : StyleParam.GeoProjectionType  ,
-            ?Rotation       : GeoProjectionRotation         ,
-            ?Parallels      : (float*float)                 ,
-            ?Scale          : float
+            [<Optional;DefaultParameterValue(null)>] ?Rotation       : GeoProjectionRotation         ,
+            [<Optional;DefaultParameterValue(null)>] ?Parallels      : (float*float)                 ,
+            [<Optional;DefaultParameterValue(null)>] ?Scale          : float
 
         ) =
             GeoProjection()
@@ -79,9 +80,9 @@ type GeoProjection() =
     static member style
         (   
             projectionType  : StyleParam.GeoProjectionType  ,
-            ?Rotation       : GeoProjectionRotation         ,
-            ?Parallels      : (float*float)                 ,
-            ?Scale          : float
+            [<Optional;DefaultParameterValue(null)>] ?Rotation       : GeoProjectionRotation         ,
+            [<Optional;DefaultParameterValue(null)>] ?Parallels      : (float*float)                 ,
+            [<Optional;DefaultParameterValue(null)>] ?Scale          : float
         ) =
             (fun (projection:GeoProjection) -> 
                 

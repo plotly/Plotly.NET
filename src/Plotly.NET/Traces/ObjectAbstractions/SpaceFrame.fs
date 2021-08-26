@@ -4,14 +4,15 @@ open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 type Spaceframe () =
     inherit DynamicObj () 
 
     static member init 
         (
-            ?Fill: float,
-            ?Show: bool
+            [<Optional;DefaultParameterValue(null)>] ?Fill: float,
+            [<Optional;DefaultParameterValue(null)>] ?Show: bool
         ) =
             Spaceframe()
             |> Spaceframe.style
@@ -22,8 +23,8 @@ type Spaceframe () =
 
     static member style
         (
-            ?Fill: float,
-            ?Show: bool
+            [<Optional;DefaultParameterValue(null)>] ?Fill: float,
+            [<Optional;DefaultParameterValue(null)>] ?Show: bool
         ) =
 
             fun (spaceframe: Spaceframe) ->

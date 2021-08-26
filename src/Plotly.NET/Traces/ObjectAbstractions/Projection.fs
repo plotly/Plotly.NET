@@ -4,6 +4,7 @@ open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
 open System
+open System.Runtime.InteropServices
 
 
 type ProjectionDimension () =
@@ -11,9 +12,9 @@ type ProjectionDimension () =
 
     static member init 
         (
-            ?Opacity    : float,
-            ?Scale      : float,
-            ?Show       : bool
+            [<Optional;DefaultParameterValue(null)>] ?Opacity    : float,
+            [<Optional;DefaultParameterValue(null)>] ?Scale      : float,
+            [<Optional;DefaultParameterValue(null)>] ?Show       : bool
         ) =
             ProjectionDimension()
             |> ProjectionDimension.style
@@ -25,9 +26,9 @@ type ProjectionDimension () =
 
     static member style
         (
-            ?Opacity    : float,
-            ?Scale      : float,
-            ?Show       : bool
+            [<Optional;DefaultParameterValue(null)>] ?Opacity    : float,
+            [<Optional;DefaultParameterValue(null)>] ?Scale      : float,
+            [<Optional;DefaultParameterValue(null)>] ?Show       : bool
         ) =
 
             fun (projectionDimension: ProjectionDimension) ->
@@ -43,9 +44,9 @@ type Projection () =
 
     static member init 
         (
-            ?X: ProjectionDimension,
-            ?Y: ProjectionDimension,
-            ?Z: ProjectionDimension
+            [<Optional;DefaultParameterValue(null)>] ?X: ProjectionDimension,
+            [<Optional;DefaultParameterValue(null)>] ?Y: ProjectionDimension,
+            [<Optional;DefaultParameterValue(null)>] ?Z: ProjectionDimension
         ) =
             Projection()
             |> Projection.style
@@ -57,9 +58,9 @@ type Projection () =
 
     static member style
         (
-            ?X: ProjectionDimension,
-            ?Y: ProjectionDimension,
-            ?Z: ProjectionDimension
+            [<Optional;DefaultParameterValue(null)>] ?X: ProjectionDimension,
+            [<Optional;DefaultParameterValue(null)>] ?Y: ProjectionDimension,
+            [<Optional;DefaultParameterValue(null)>] ?Z: ProjectionDimension
         ) =
 
             fun (projection: Projection) ->
