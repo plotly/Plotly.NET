@@ -45,6 +45,8 @@ multiple shapes at once.
 **Attention**: Adding a shape after you added a previous one currently removes the old one. This is a bug and will be fixed
 *)
 
+open Plotly.NET.LayoutObjects
+
 let s1 = Shape.init (StyleParam.ShapeType.Rectangle,2.,4.,3.,4.,Opacity=0.3,Fillcolor="#d3d3d3")
 let s2 = Shape.init (StyleParam.ShapeType.Rectangle,5.,7.,3.,4.,Opacity=0.3,Fillcolor="#d3d3d3")
 

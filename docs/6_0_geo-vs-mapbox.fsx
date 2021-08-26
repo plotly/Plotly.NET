@@ -50,6 +50,7 @@ Mapbox tile maps are composed of various layers, of three different types:
 a `Mapbox` object where these properties can be set can be initialized via `Mapbox.init`. To use it in a chart, use the `Chart.withMapbox` function:
 *)
 open Plotly.NET
+open Plotly.NET.LayoutObjects
 
 // a simple Mapbox with a OpenStreetMap base layer.
 let mb =

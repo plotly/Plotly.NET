@@ -63,8 +63,10 @@ for even more fine-grained control, initialize a new axis and replace the old on
 The following example creates two mirrored axes with inside ticks, one of them with a log scale:
 *)
 
+open Plotly.NET.LayoutObjects // this namespace contains all object abstractions for layout styling
+
 let mirroredXAxis =
-    Axis.LinearAxis.init(
+    LinearAxis.init(
         Title = Title.init(Text="Mirrored axis"),
         ShowLine = true,
         Mirror = StyleParam.Mirror.AllTicks,
@@ -73,7 +75,7 @@ let mirroredXAxis =
     )
 
 let mirroredLogYAxis = 
-    Axis.LinearAxis.init(
+    LinearAxis.init(
         Title = Title.init(Text="Log axis"),
         AxisType = StyleParam.AxisType.Log,
         ShowLine = true,

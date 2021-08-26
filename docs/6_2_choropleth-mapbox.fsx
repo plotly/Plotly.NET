@@ -124,6 +124,7 @@ And finally put together the chart using GeoJSON:
 *)
 
 open Plotly.NET
+open Plotly.NET.LayoutObjects
 
 let choroplethMapbox =
     Chart.ChoroplethMapbox(

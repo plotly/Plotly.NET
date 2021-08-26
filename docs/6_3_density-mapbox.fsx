@@ -50,6 +50,7 @@ let lat= dataDensityMapbox.["Latitude"] |> Series.values
 let magnitudes = dataDensityMapbox.["Magnitude"] |> Series.values
 
 open Plotly.NET
+open Plotly.NET.LayoutObjects
 
 let densityMapbox = 
     Chart.DensityMapbox(

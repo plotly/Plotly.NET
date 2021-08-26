@@ -62,6 +62,8 @@ let valueIso =
         x * x * 0.5 + y * y + z * z * 2.
     ) xIso yIso zIso
 
+open Plotly.NET.TraceObjects
+
 let isoSurface =
     Chart.IsoSurface(
         xIso,yIso,zIso,valueIso,

@@ -2,6 +2,8 @@
 
 open Expecto
 open Plotly.NET
+open Plotly.NET.LayoutObjects
+open Plotly.NET.TraceObjects
 open TestUtils
 open Plotly.NET.GenericChart
 open System
@@ -11,7 +13,7 @@ let histoChart =
     let x = [for i=0 to 500 do yield rnd.NextDouble() ]
     x
     |> Chart.Histogram
-    |> Chart.withSize(500., 500.)
+    |> Chart.withSize(500, 500)
 
 [<Tests>]
 let ``Histogram charts`` =
@@ -25,7 +27,7 @@ let ``Histogram charts`` =
             |> chartGeneratedContainsList histoChart
         );
         testCase "Histo layout" ( fun () ->
-            "var layout = {\"width\":500.0,\"height\":500.0};"
+            "var layout = {\"width\":500,\"height\":500};"
             |> chartGeneratedContains histoChart
         );
     ]
@@ -163,7 +165,7 @@ let ``Contour charts`` =
             |> chartGeneratedContains contourChart
         );
         testCase "Contour layout" ( fun () ->
-            "var layout = {\"width\":600.0,\"height\":600.0};"
+            "var layout = {\"width\":600,\"height\":600};"
             |> chartGeneratedContains contourChart
         );
     ]

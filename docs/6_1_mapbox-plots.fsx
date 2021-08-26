@@ -51,6 +51,7 @@ let lat = [
 The simplest type of geographic plot using Mapbox is plotting the (lon,lat) pairs of a location via `Chart.PointMapbox`. 
 Here is an example using the location of Canadian cities:
 *)
+open Plotly.NET.LayoutObjects
 
 let pointMapbox = 
     Chart.PointMapbox(

@@ -50,7 +50,8 @@ A common use case is the **windrose chart**.
 A wind rose is a graphic tool used by meteorologists to give a succinct view 
 of how wind speed and direction are typically distributed at a particular location.
 *)
-  
+open Plotly.NET.LayoutObjects
+
 let windrose1 =
     [
         Chart.BarPolar (r , t, Name="11-14 m/s")
@@ -60,7 +61,7 @@ let windrose1 =
     ]
     |> Chart.combine
     |> Chart.withAngularAxis(
-        Axis.AngularAxis.init(
+        AngularAxis.init(
             CategoryOrder = StyleParam.CategoryOrder.Array,
             CategoryArray = (["East"; "N-E"; "North"; "N-W"; "West"; "S-W"; "South"; "S-E";]) // set the order of the categorical axis
         )

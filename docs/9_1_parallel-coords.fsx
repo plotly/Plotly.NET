@@ -64,6 +64,8 @@ parcoords1
 parcoords1 |> GenericChart.toChartHTML
 (***include-it-raw***)
 
+open Plotly.NET.TraceObjects
+
 // Dynamic object version
 let parcoords = 
     let v = [|

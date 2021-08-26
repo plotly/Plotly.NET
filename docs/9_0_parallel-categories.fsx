@@ -34,6 +34,7 @@ The parallel categories diagram (also known as parallel sets or alluvial diagram
 Combinations of category rectangles across dimensions are connected by ribbons, where the height of the ribbon corresponds to the relative frequency of occurrence of the combination of categories in the data set.
 *)
 open Plotly.NET
+open Plotly.NET.TraceObjects
 
 let dims =
     [

@@ -235,15 +235,17 @@ static void Main(string[] args)
 ### Declarative style in F# using the underlying `DynamicObj`:
 *)
 
+open Plotly.NET.LayoutObjects
+
 let xAxis = 
-    let tmp = Axis.LinearAxis()
+    let tmp = LinearAxis()
     tmp?title <- "xAxis"
     tmp?showgrid <- false
     tmp?showline <- true    
     tmp
 
 let yAxis =
-    let tmp = Axis.LinearAxis()
+    let tmp = LinearAxis()
     tmp?title <- "yAxis"
     tmp?showgrid <- false
     tmp?showline <- true    

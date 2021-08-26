@@ -42,6 +42,7 @@ it traversed. See also the [FunnelArea]({{root}}/6_2_funnel_area.html) chart for
 *)
 
 open Plotly.NET 
+open Plotly.NET.TraceObjects
 
 // Customize the connector lines used to connect the funnel bars
 let connectorLine = Line.init (Color="royalblue", Dash=StyleParam.DrawingStyle.Dot, Width=3.)
