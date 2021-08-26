@@ -10,6 +10,9 @@
  * **Breaking:** Rename ChartDescription type: `Plotly.NET.ChartDescription.Description` -> `Plotly.NET.ChartDescription`
  * [**Possibly breaking:** target netstandad 2.0](https://github.com/plotly/Plotly.NET/commit/0fd6d42d755c060f42cf48465cbcfd02e0a07088)
  * [**Possibly breaking:** target net5.0 as well](https://github.com/plotly/Plotly.NET/commit/4f0633f0481df91cb2e310da61175d7ddb26ee11)
+ * **Breaking:** Many functions of the Chart API have been changed to be in lower camelCase (e.g `Chart.Show` -> `Chart.show`, `Chart.withX_Axis` -> `Chart.withXAxis`, etc.) see full set of changes in that category [here](https://github.com/plotly/Plotly.NET/pull/114), thanks [@WhiteBlackGoose](https://github.com/WhiteBlackGoose)
+ * **Breaking**: Many Parameters of `init` and `style` functions have been changed to PascalCase, this is ongoing and will be breaking eregularily until unified.
+ * SubPlotIds are now unified under the `StyleParam.SubPlotId` type which is used to assign subplots anchors (e.g. scenes for 3d charts, polar for polar charts) This change will be reflectes in trace type modeling in a later release.
 
 **Major Additions:**
 
@@ -32,9 +35,22 @@
  * [Add Funnel Chart](https://github.com/plotly/Plotly.NET/commit/aae24a780e88d74786f25854559ff44c7350d035), thanks [@Joott](https://github.com/Joott)]
  * [Add FunnelArea Chart](https://github.com/plotly/Plotly.NET/commit/126f5513afcc259ba2945ffe32aaeb987a1ded71), thanks [@Joott](https://github.com/Joott)
  * [Add all Mapbox Charts](https://github.com/plotly/Plotly.NET/pull/93):
-   * ScatterMapbox (and derived PointMapbox and LineMapbox)
-   * ChoroplethMapbox
-   * DensityMapbox
+    * ScatterMapbox (and derived PointMapbox and LineMapbox)
+    * ChoroplethMapbox
+    * DensityMapbox
+ * [Add all Polar Charts and related layout properties](https://github.com/plotly/Plotly.NET/pull/113) :
+    * ScatterPolar (and derived PointPolar, LinePolar, SplinePolar, BubblePolar)
+    * BarPolar
+    * Polar object
+    * Angula and RadialAxis
+ * [Add missing 3D charts and related layout options](https://github.com/plotly/Plotly.NET/pull/125)
+    * Scatter3d derived Point3d, Line3d, Bubble3d
+    * Cone
+    * StreamTube
+    * Volume
+    * IsoSurface
+    * Full Scene support
+
 
 **Minor Additions/fixes:**
 
