@@ -48,7 +48,7 @@
     <Compile Include="Layout\ObjectAbstractions\Common\ModeBar.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\DefaultColorScales.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\UniformText.fs" />
-    <Compile Include="Layout\ObjectAbstractions\Common\Margin.fs.fs" />
+    <Compile Include="Layout\ObjectAbstractions\Common\Margin.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\Domain.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\Shape.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\Annotation.fs" />
@@ -66,10 +66,10 @@
     <Compile Include="Layout\ObjectAbstractions\Map\MapboxLayer.fs" />
     <Compile Include="Layout\ObjectAbstractions\Map\Mapbox.fs" />
     <Compile Include="Layout\ObjectAbstractions\3D\Camera.fs" />
-    <Compile Include="Layout\ObjectAbstractions\3D\AspectRatio.fs.fs" />
+    <Compile Include="Layout\ObjectAbstractions\3D\AspectRatio.fs" />
     <Compile Include="Layout\ObjectAbstractions\3D\Scene.fs" />
     <Compile Include="Layout\ObjectAbstractions\Polar\AngularAxis.fs" />
-    <Compile Include="Layout\ObjectAbstractions\Polar\RadialAxis.fs.fs" />
+    <Compile Include="Layout\ObjectAbstractions\Polar\RadialAxis.fs" />
     <Compile Include="Layout\ObjectAbstractions\Polar\Polar.fs" />
     <Compile Include="Layout\Layout.fs" />
     <Compile Include="Traces\ObjectAbstractions\Marker.fs" />
