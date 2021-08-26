@@ -23,29 +23,29 @@ Outliers may be plotted as individual points.
 *)
 let box1 =
     Chart.BoxPlot(x,y,Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All)(* output: 
-<div id="490c0f38-fba6-455d-87a2-4ec4366568e8" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="b141d0ed-3e3b-42a3-8cd5-e7e91fee910b" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_490c0f38fba6455d87a24ec4366568e8 = function() {
+            var renderPlotly_b141d0ed3e3b42a38cd5e7e91fee910b = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"box","y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"boxpoints":"all","jitter":0.1,"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('490c0f38-fba6-455d-87a2-4ec4366568e8', data, layout, config);
+            Plotly.newPlot('b141d0ed-3e3b-42a3-8cd5-e7e91fee910b', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_490c0f38fba6455d87a24ec4366568e8();
+                    renderPlotly_b141d0ed3e3b42a38cd5e7e91fee910b();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_490c0f38fba6455d87a24ec4366568e8();
+                renderPlotly_b141d0ed3e3b42a38cd5e7e91fee910b();
             }
 </script>
 *)
@@ -54,29 +54,29 @@ By swapping x and y plus using `StyleParam.Orientation.Horizontal` we can flip t
 *)
 let box2 =
     Chart.BoxPlot(y,x,Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All,Orientation=StyleParam.Orientation.Horizontal)(* output: 
-<div id="d98f1090-17c7-42fc-9041-778f5dabe6ce" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="d54148a8-1a72-4630-9c23-7d39eb76dec6" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_d98f109017c742fc9041778f5dabe6ce = function() {
+            var renderPlotly_d54148a81a7246309c237d39eb76dec6 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"box","y":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"x":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"boxpoints":"all","jitter":0.1,"orientation":"h","marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('d98f1090-17c7-42fc-9041-778f5dabe6ce', data, layout, config);
+            Plotly.newPlot('d54148a8-1a72-4630-9c23-7d39eb76dec6', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_d98f109017c742fc9041778f5dabe6ce();
+                    renderPlotly_d54148a81a7246309c237d39eb76dec6();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_d98f109017c742fc9041778f5dabe6ce();
+                renderPlotly_d54148a81a7246309c237d39eb76dec6();
             }
 </script>
 *)
@@ -90,30 +90,30 @@ let box3 =
         Chart.BoxPlot("y" ,y,Name="bin1",Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All);
         Chart.BoxPlot("y'",y',Name="bin2",Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All);
     ]
-    |> Chart.Combine(* output: 
-<div id="10446ba7-403a-4107-bb6b-4b06dd929b2c" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+    |> Chart.combine(* output: 
+<div id="604ca618-1271-4de4-8b93-46fa4d5abb57" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_10446ba7403a4107bb6b4b06dd929b2c = function() {
+            var renderPlotly_604ca61812714de48b9346fa4d5abb57 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"box","y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":"y","boxpoints":"all","jitter":0.1,"name":"bin1","marker":{}},{"type":"box","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":"y'","boxpoints":"all","jitter":0.1,"name":"bin2","marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('10446ba7-403a-4107-bb6b-4b06dd929b2c', data, layout, config);
+            Plotly.newPlot('604ca618-1271-4de4-8b93-46fa4d5abb57', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_10446ba7403a4107bb6b4b06dd929b2c();
+                    renderPlotly_604ca61812714de48b9346fa4d5abb57();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_10446ba7403a4107bb6b4b06dd929b2c();
+                renderPlotly_604ca61812714de48b9346fa4d5abb57();
             }
 </script>
 *)

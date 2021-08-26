@@ -31,29 +31,29 @@ open Plotly.NET
 let baseMapOnly = 
     Chart.PointGeo([]) // deliberately empty chart to show the base map only
     |> Chart.withMarginSize(0,0,0,0)(* output: 
-<div id="58a13b0c-4c3e-4fc4-adc4-c2f48b39b0aa" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="46f41c98-f551-49de-891b-dc297899e987" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_58a13b0c4c3e4fc4adc4c2f48b39b0aa = function() {
+            var renderPlotly_46f41c98f55149de891bdc297899e987 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scattergeo","mode":"markers","lon":[],"lat":[],"marker":{}}];
             var layout = {"margin":{"l":0,"r":0,"t":0,"b":0}};
             var config = {};
-            Plotly.newPlot('58a13b0c-4c3e-4fc4-adc4-c2f48b39b0aa', data, layout, config);
+            Plotly.newPlot('46f41c98-f551-49de-891b-dc297899e987', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_58a13b0c4c3e4fc4adc4c2f48b39b0aa();
+                    renderPlotly_46f41c98f55149de891bdc297899e987();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_58a13b0c4c3e4fc4adc4c2f48b39b0aa();
+                renderPlotly_46f41c98f55149de891bdc297899e987();
             }
 </script>
 *)
@@ -78,31 +78,31 @@ let myGeo =
 
 let moreFeaturesBaseMap =
     Chart.PointGeo([])
-    |> Chart.withMap myGeo
+    |> Chart.withGeo myGeo
     |> Chart.withMarginSize(0,0,0,0)(* output: 
-<div id="e4e1b548-2d25-4072-ad4e-9f844f714d1e" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="b60a89a3-2400-40e1-97a9-64a4b43ce873" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_e4e1b5482d254072ad4e9f844f714d1e = function() {
+            var renderPlotly_b60a89a3240040e197a964a4b43ce873 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scattergeo","mode":"markers","lon":[],"lat":[],"marker":{}}];
             var layout = {"geo":{"resolution":"50","showcoastline":true,"coastlinecolor":"RebeccaPurple","showland":true,"landcolor":"LightGreen","showocean":true,"oceancolor":"LightBlue","showlakes":true,"lakecolor":"Blue","showrivers":true,"rivercolor":"Blue"},"margin":{"l":0,"r":0,"t":0,"b":0}};
             var config = {};
-            Plotly.newPlot('e4e1b548-2d25-4072-ad4e-9f844f714d1e', data, layout, config);
+            Plotly.newPlot('b60a89a3-2400-40e1-97a9-64a4b43ce873', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_e4e1b5482d254072ad4e9f844f714d1e();
+                    renderPlotly_b60a89a3240040e197a964a4b43ce873();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_e4e1b5482d254072ad4e9f844f714d1e();
+                renderPlotly_b60a89a3240040e197a964a4b43ce873();
             }
 </script>
 *)
@@ -128,31 +128,31 @@ let countryGeo =
 
 let countryBaseMap =
     Chart.PointGeo([])
-    |> Chart.withMap countryGeo
+    |> Chart.withGeo countryGeo
     |> Chart.withMarginSize(0,0,0,0)(* output: 
-<div id="1e9b4a6a-a359-4a75-9e02-7fe52de44fb6" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="1a447729-bd9a-4990-957c-eb1e3fc4fb82" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_1e9b4a6aa3594a759e027fe52de44fb6 = function() {
+            var renderPlotly_1a447729bd9a4990957ceb1e3fc4fb82 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scattergeo","mode":"markers","lon":[],"lat":[],"marker":{}}];
             var layout = {"geo":{"resolution":"50","visible":false,"showcountries":true,"countrycolor":"RebeccaPurple"},"margin":{"l":0,"r":0,"t":0,"b":0}};
             var config = {};
-            Plotly.newPlot('1e9b4a6a-a359-4a75-9e02-7fe52de44fb6', data, layout, config);
+            Plotly.newPlot('1a447729-bd9a-4990-957c-eb1e3fc4fb82', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_1e9b4a6aa3594a759e027fe52de44fb6();
+                    renderPlotly_1a447729bd9a4990957ceb1e3fc4fb82();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_1e9b4a6aa3594a759e027fe52de44fb6();
+                renderPlotly_1a447729bd9a4990957ceb1e3fc4fb82();
             }
 </script>
 *)

@@ -41,7 +41,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.6</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.7</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -75,6 +75,16 @@
     Static image export
   </a>
 </li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/0_2_display-options.html">
+    Display Options
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/0_3_chart-config.html">
+    Chart config
+  </a>
+</li>             
 <li class="nav-header">
   Chart Layout
 </li>             
@@ -99,8 +109,8 @@
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/1_4_display-options.html">
-    Display Options
+  <a class="nav-link" href="https://plotly.net/1_4_annotations.html">
+    Annotations
   </a>
 </li>             
 <li class="nav-header">
@@ -151,22 +161,37 @@
 </li>             
 <li class="nav-item">
   <a class="nav-link" href="https://plotly.net/3_0_3d-scatter-plots.html">
-    3D Scatter charts
+    3D point and line charts
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/3_1_3d-line-plots.html">
-    3D line charts
-  </a>
-</li>             
-<li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/3_2_3d-surface-plots.html">
+  <a class="nav-link" href="https://plotly.net/3_1_3d-surface-plots.html">
     3D surface plots
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/3_3_3d-mesh-plots.html">
+  <a class="nav-link" href="https://plotly.net/3_2_3d-mesh-plots.html">
     3D Mesh plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/3_3_3d-cone-charts.html">
+    3D Cone plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/3_4_3d-streamtube-plots.html">
+    3D streamtube plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/3_5_3d-volume-plots.html">
+    3D Volume plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/3_6_3d-isosurface-plots .html">
+    3D IsoSurface plots
   </a>
 </li>             
 <li class="nav-header">
@@ -265,13 +290,18 @@
   Polar Charts
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/8_0_polar-charts.html">
-    Polar charts
+  <a class="nav-link" href="https://plotly.net/8_0_polar_line-scatter-plots.html">
+    Polar line and scatter plots
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/8_1_windrose-charts.html">
-    Windrose charts
+  <a class="nav-link" href="https://plotly.net/8_1_polar_bar_charts.html">
+    Polar bar charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/8_2_styling_polar_layouts.html">
+    Styling polar layouts
   </a>
 </li>             
 <li class="nav-header">
@@ -345,29 +375,29 @@ otherwise contains one or more traces of type</code>scattergeo<code>or</code>cho
     <span onmouseout="hideTip(event, 'fs10', 10)" onmouseover="showTip(event, 'fs10', 10)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 11)" onmouseover="showTip(event, 'fs11', 11)" class="id">PointMapbox</span><span class="pn">(</span><span class="pn">[</span><span class="pn">]</span><span class="pn">,</span><span class="pn">[</span><span class="pn">]</span><span class="pn">)</span> <span class="c">// deliberately empty chart to show the base map only</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs10', 12)" onmouseover="showTip(event, 'fs10', 12)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 13)" onmouseover="showTip(event, 'fs12', 13)" class="id">withMapbox</span> <span onmouseout="hideTip(event, 'fs3', 14)" onmouseover="showTip(event, 'fs3', 14)" class="id">mb</span> <span class="c">// add the mapBox</span>
 </code></pre>
-<div id="7ce32df4-531e-47d5-b8aa-484b350db785" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="24dc959b-386f-4415-8620-e5d663ddf9f6" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_7ce32df4531e47d5b8aa484b350db785 = function() {
+            var renderPlotly_24dc959b386f44158620e5d663ddf9f6 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scattermapbox","mode":"markers","lon":[],"lat":[],"line":{},"marker":{}}];
             var layout = {"mapbox":{"style":"open-street-map"}};
             var config = {};
-            Plotly.newPlot('7ce32df4-531e-47d5-b8aa-484b350db785', data, layout, config);
+            Plotly.newPlot('24dc959b-386f-4415-8620-e5d663ddf9f6', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_7ce32df4531e47d5b8aa484b350db785();
+                    renderPlotly_24dc959b386f44158620e5d663ddf9f6();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_7ce32df4531e47d5b8aa484b350db785();
+                renderPlotly_24dc959b386f44158620e5d663ddf9f6();
             }
 </script>
 
@@ -427,19 +457,74 @@ Use <code>StyleParam.MapboxStyle.Custom</code> for:
         <div class="fsdocs-tip" id="fs1">namespace Plotly</div>
 <div class="fsdocs-tip" id="fs2">namespace Plotly.NET</div>
 <div class="fsdocs-tip" id="fs3">val mb : Mapbox</div>
-<div class="fsdocs-tip" id="fs4">Multiple items<br />type Mapbox =<br />&#160;&#160;inherit DynamicObj<br />&#160;&#160;new : unit -&gt; Mapbox<br />&#160;&#160;static member init : ?Domain:Domain * ?AccessToken:string * ?Style:MapboxStyle * ?Center:(float * float) * ?Zoom:float * ?Bearing:float * ?Pitch:float * ?Layers:seq&lt;MapboxLayer&gt; -&gt; Mapbox<br />&#160;&#160;static member style : ?Domain:Domain * ?AccessToken:string * ?Style:MapboxStyle * ?Center:(float * float) * ?Zoom:float * ?Bearing:float * ?Pitch:float * ?Layers:seq&lt;MapboxLayer&gt; -&gt; (Mapbox -&gt; Mapbox)<br /><br />--------------------<br />new : unit -&gt; Mapbox</div>
+<div class="fsdocs-tip" id="fs4">Multiple items<br />type Mapbox =
+  inherit DynamicObj
+  new : unit -&gt; Mapbox
+  static member init : ?Domain:Domain * ?AccessToken:string * ?Style:MapboxStyle * ?Center:(float * float) * ?Zoom:float * ?Bearing:float * ?Pitch:float * ?Layers:seq&lt;MapboxLayer&gt; -&gt; Mapbox
+  static member style : ?Domain:Domain * ?AccessToken:string * ?Style:MapboxStyle * ?Center:(float * float) * ?Zoom:float * ?Bearing:float * ?Pitch:float * ?Layers:seq&lt;MapboxLayer&gt; -&gt; (Mapbox -&gt; Mapbox)<br /><em>&lt;summary&gt;Determines the style of the map shown in mapbox traces&lt;/summary&gt;</em><br /><br />--------------------<br />new : unit -&gt; Mapbox</div>
 <div class="fsdocs-tip" id="fs5">static member Mapbox.init : ?Domain:Domain * ?AccessToken:string * ?Style:StyleParam.MapboxStyle * ?Center:(float * float) * ?Zoom:float * ?Bearing:float * ?Pitch:float * ?Layers:seq&lt;MapboxLayer&gt; -&gt; Mapbox</div>
-<div class="fsdocs-tip" id="fs6">module StyleParam<br /><br />from Plotly.NET</div>
-<div class="fsdocs-tip" id="fs7">type MapboxStyle =<br />&#160;&#160;| OpenStreetMap<br />&#160;&#160;| WhiteBG<br />&#160;&#160;| CartoPositron<br />&#160;&#160;| CartoDarkmatter<br />&#160;&#160;| StamenTerrain<br />&#160;&#160;| StamenToner<br />&#160;&#160;| StamenWatercolor<br />&#160;&#160;| MapboxBasic<br />&#160;&#160;| MapboxStreets<br />&#160;&#160;| MapboxOutdoors<br />&#160;&#160;...<br />&#160;&#160;&#160;&#160;static member convert : (MapboxStyle -&gt; obj)<br />&#160;&#160;&#160;&#160;static member toString : (MapboxStyle -&gt; string)</div>
+<div class="fsdocs-tip" id="fs6">module StyleParam
+
+from Plotly.NET</div>
+<div class="fsdocs-tip" id="fs7">type MapboxStyle =
+  | OpenStreetMap
+  | WhiteBG
+  | CartoPositron
+  | CartoDarkmatter
+  | StamenTerrain
+  | StamenToner
+  | StamenWatercolor
+  | MapboxBasic
+  | MapboxStreets
+  | MapboxOutdoors
+  ...
+    static member convert : (MapboxStyle -&gt; obj)
+    static member toString : (MapboxStyle -&gt; string)<br /><em>&lt;summary&gt;
+ Defines the map layers that are rendered by default below the trace layers defined in `data`, which are themselves by default rendered below the layers defined in `layout.mapbox.layers`. 
+ These layers can be defined either explicitly as a Mapbox Style object which can contain multiple layer definitions that load data from any public or private Tile Map Service (TMS or XYZ) or Web Map Service (WMS) or implicitly by using one of the built-in style objects which use WMSes which do not require any access tokens, 
+ or by using a default Mapbox style or custom Mapbox style URL, both of which require a Mapbox access token Note that Mapbox access token can be set in the `accesstoken` attribute or in the `mapboxAccessToken` config option. 
+ Mapbox Style objects are of the form described in the Mapbox GL JS documentation available at https://docs.mapbox.com/mapbox-gl-js/style-spec The built-in plotly.js styles objects are: open-street-map, white-bg, carto-positron, carto-darkmatter, stamen-terrain, stamen-toner, stamen-watercolor 
+ The built-in Mapbox styles are: basic, streets, outdoors, light, dark, satellite, satellite-streets Mapbox style URLs are of the form: mapbox://mapbox.mapbox-&amp;lt;name&amp;gt;-&amp;lt;version&amp;gt;
+&lt;/summary&gt;</em></div>
 <div class="fsdocs-tip" id="fs8">union case StyleParam.MapboxStyle.OpenStreetMap: StyleParam.MapboxStyle</div>
 <div class="fsdocs-tip" id="fs9">val baseLayerOnly : GenericChart.GenericChart</div>
-<div class="fsdocs-tip" id="fs10">type Chart =<br />&#160;&#160;static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:float -&gt; GenericChart + 1 overload<br />&#160;&#160;static member Bar : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart + 1 overload<br />&#160;&#160;static member BoxPlot : ?x:&#39;a0 * ?y:&#39;a1 * ?Name:string * ?Showlegend:bool * ?Color:string * ?Fillcolor:&#39;a2 * ?Opacity:float * ?Whiskerwidth:&#39;a3 * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:&#39;a4 * ?Pointpos:&#39;a5 * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?Alignmentgroup:&#39;a6 * ?Offsetgroup:&#39;a7 * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod -&gt; GenericChart + 1 overload<br />&#160;&#160;static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:Orientation * ?GroupNorm:GroupNorm * ?UseWebGL:bool -&gt; GenericChart + 1 overload<br />&#160;&#160;static member Candlestick : open:seq&lt;#IConvertible&gt; * high:seq&lt;#IConvertible&gt; * low:seq&lt;#IConvertible&gt; * close:seq&lt;#IConvertible&gt; * x:seq&lt;#IConvertible&gt; * ?Increasing:Line * ?Decreasing:Line * ?WhiskerWidth:float * ?Line:Line * ?XCalendar:Calendar -&gt; GenericChart + 1 overload<br />&#160;&#160;static member ChoroplethMap : locations:seq&lt;string&gt; * z:seq&lt;#IConvertible&gt; * ?Text:seq&lt;#IConvertible&gt; * ?Locationmode:LocationFormat * ?Autocolorscale:bool * ?Colorscale:Colorscale * ?Colorbar:Colorbar * ?Marker:Marker * ?GeoJson:&#39;a2 * ?FeatureIdKey:string * ?Zmin:float * ?Zmax:float -&gt; GenericChart<br />&#160;&#160;static member ChoroplethMapbox : locations:seq&lt;#IConvertible&gt; * z:seq&lt;#IConvertible&gt; * geoJson:&#39;a2 * ?FeatureIdKey:string * ?Text:seq&lt;#IConvertible&gt; * ?Below:string * ?Colorscale:Colorscale * ?Colorbar:Colorbar * ?ZAuto:bool * ?ZMin:float * ?ZMid:float * ?ZMax:float -&gt; GenericChart<br />&#160;&#160;static member Column : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart + 1 overload<br />&#160;&#160;static member Contour : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;a4 * ?zSmooth:SmoothAlg * ?Colorbar:&#39;a5 -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)<br />&#160;&#160;static member DensityMapbox : lon:seq&lt;#IConvertible&gt; * lat:seq&lt;#IConvertible&gt; * ?Z:seq&lt;#IConvertible&gt; * ?Radius:float * ?Opacity:float * ?Text:seq&lt;#IConvertible&gt; * ?Below:string * ?Colorscale:Colorscale * ?Colorbar:Colorbar * ?Showscale:bool * ?ZAuto:bool * ?ZMin:float * ?ZMid:float * ?ZMax:float -&gt; GenericChart + 1 overload<br />&#160;&#160;...</div>
+<div class="fsdocs-tip" id="fs10">type Chart =
+  static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:float -&gt; GenericChart + 1 overload
+  static member Bar : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart + 1 overload
+  static member BarPolar : r:seq&lt;#IConvertible&gt; * theta:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?LineWidth:float -&gt; GenericChart
+  static member BoxPlot : ?x:&#39;a0 * ?y:&#39;a1 * ?Name:string * ?Showlegend:bool * ?Color:string * ?Fillcolor:&#39;a2 * ?Opacity:float * ?Whiskerwidth:&#39;a3 * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:&#39;a4 * ?Pointpos:&#39;a5 * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?Alignmentgroup:&#39;a6 * ?Offsetgroup:&#39;a7 * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod -&gt; GenericChart + 1 overload
+  static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:Orientation * ?GroupNorm:GroupNorm * ?UseWebGL:bool -&gt; GenericChart + 1 overload
+  static member Bubble3d : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * z:seq&lt;#IConvertible&gt; * sizes:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font -&gt; GenericChart + 1 overload
+  static member BubblePolar : r:seq&lt;#IConvertible&gt; * theta:seq&lt;#IConvertible&gt; * sizes:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?UseWebGL:bool -&gt; GenericChart + 1 overload
+  static member Candlestick : open:seq&lt;#IConvertible&gt; * high:seq&lt;#IConvertible&gt; * low:seq&lt;#IConvertible&gt; * close:seq&lt;#IConvertible&gt; * x:seq&lt;#IConvertible&gt; * ?Increasing:Line * ?Decreasing:Line * ?WhiskerWidth:float * ?Line:Line * ?XCalendar:Calendar -&gt; GenericChart + 1 overload
+  static member ChoroplethMap : locations:seq&lt;string&gt; * z:seq&lt;#IConvertible&gt; * ?Text:seq&lt;#IConvertible&gt; * ?Locationmode:LocationFormat * ?Autocolorscale:bool * ?Colorscale:Colorscale * ?ColorBar:ColorBar * ?Marker:Marker * ?GeoJson:&#39;a2 * ?FeatureIdKey:string * ?Zmin:float * ?Zmax:float -&gt; GenericChart
+  static member ChoroplethMapbox : locations:seq&lt;#IConvertible&gt; * z:seq&lt;#IConvertible&gt; * geoJson:&#39;a2 * ?FeatureIdKey:string * ?Text:seq&lt;#IConvertible&gt; * ?Below:string * ?Colorscale:Colorscale * ?ColorBar:ColorBar * ?ZAuto:bool * ?ZMin:float * ?ZMid:float * ?ZMax:float -&gt; GenericChart
+  ...<br /><em>&lt;summary&gt;
+ Provides a set of static methods for creating charts.
+&lt;/summary&gt;</em></div>
 <div class="fsdocs-tip" id="fs11">static member Chart.PointMapbox : lonlat:seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?Width:float * ?Below:string * ?Connectgaps:bool * ?Fill:StyleParam.Fill * ?Fillcolor:string -&gt; GenericChart.GenericChart<br />static member Chart.PointMapbox : longitudes:seq&lt;#System.IConvertible&gt; * latitudes:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?Width:float * ?Below:string * ?Connectgaps:bool * ?Fill:StyleParam.Fill * ?Fillcolor:string -&gt; GenericChart.GenericChart</div>
-<div class="fsdocs-tip" id="fs12">static member Chart.withMapbox : mapBox:Mapbox * ?Id:int -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
-<div class="fsdocs-tip" id="fs13">module GenericChart<br /><br />from Plotly.NET</div>
-<div class="fsdocs-tip" id="fs14">val toChartHTML : gChart:GenericChart.GenericChart -&gt; string</div>
+<div class="fsdocs-tip" id="fs12">static member Chart.withMapbox : mapBox:Mapbox * ?Id:StyleParam.SubPlotId -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
+<div class="fsdocs-tip" id="fs13">module GenericChart
+
+from Plotly.NET<br /><em>&lt;summary&gt;
+ Module to represent a GenericChart
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs14">val toChartHTML : gChart:GenericChart.GenericChart -&gt; string<br /><em>&lt;summary&gt;
+ Converts a GenericChart to it HTML representation. The div layer has a default size of 600 if not specified otherwise.
+&lt;/summary&gt;</em></div>
 <div class="fsdocs-tip" id="fs15">val mbWithToken : Mapbox</div>
-<div class="fsdocs-tip" id="fs16">type MapboxStyle =<br />&#160;&#160;| WhiteBG<br />&#160;&#160;| OpenStreetMap<br />&#160;&#160;| CartoPositron<br />&#160;&#160;| CartoDarkmatter<br />&#160;&#160;| StamenTerrain<br />&#160;&#160;| StamenToner<br />&#160;&#160;| StamenWatercolor<br />&#160;&#160;| MapboxBasic<br />&#160;&#160;| MapboxStreets<br />&#160;&#160;| MapboxOutdoors<br />&#160;&#160;...</div>
+<div class="fsdocs-tip" id="fs16">type MapboxStyle =
+  | WhiteBG
+  | OpenStreetMap
+  | CartoPositron
+  | CartoDarkmatter
+  | StamenTerrain
+  | StamenToner
+  | StamenWatercolor
+  | MapboxBasic
+  | MapboxStreets
+  | MapboxOutdoors
+  ...</div>
 <div class="fsdocs-tip" id="fs17">union case MapboxStyle.WhiteBG: MapboxStyle</div>
 <div class="fsdocs-tip" id="fs18">union case MapboxStyle.OpenStreetMap: MapboxStyle</div>
 <div class="fsdocs-tip" id="fs19">union case MapboxStyle.CartoPositron: MapboxStyle</div>
@@ -455,7 +540,7 @@ Use <code>StyleParam.MapboxStyle.Custom</code> for:
 <div class="fsdocs-tip" id="fs29">union case MapboxStyle.MapboxSatellite: MapboxStyle</div>
 <div class="fsdocs-tip" id="fs30">union case MapboxStyle.MapboxSatelliteStreets: MapboxStyle</div>
 <div class="fsdocs-tip" id="fs31">union case MapboxStyle.Custom: string -&gt; MapboxStyle</div>
-<div class="fsdocs-tip" id="fs32">Multiple items<br />val string : value:&#39;T -&gt; string<br /><br />--------------------<br />type string = System.String</div>
+<div class="fsdocs-tip" id="fs32">Multiple items<br />val string : value:&#39;T -&gt; string<br /><em>&lt;summary&gt;Converts the argument to a string using &lt;c&gt;ToString&lt;/c&gt;.&lt;/summary&gt;<br />&lt;remarks&gt;For standard integer and floating point values the and any type that implements &lt;c&gt;IFormattable&lt;/c&gt;&lt;c&gt;ToString&lt;/c&gt; conversion uses &lt;c&gt;CultureInfo.InvariantCulture&lt;/c&gt;. &lt;/remarks&gt;<br />&lt;param name=&quot;value&quot;&gt;The input value.&lt;/param&gt;<br />&lt;returns&gt;The converted string.&lt;/returns&gt;</em><br /><br />--------------------<br />type string = System.String<br /><em>&lt;summary&gt;An abbreviation for the CLI type &lt;see cref=&quot;T:System.String&quot; /&gt;.&lt;/summary&gt;<br />&lt;category&gt;Basic Types&lt;/category&gt;</em></div>
 
     </div>
 

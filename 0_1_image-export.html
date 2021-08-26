@@ -41,7 +41,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.6</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.7</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -75,6 +75,16 @@
     Static image export
   </a>
 </li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/0_2_display-options.html">
+    Display Options
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/0_3_chart-config.html">
+    Chart config
+  </a>
+</li>             
 <li class="nav-header">
   Chart Layout
 </li>             
@@ -99,8 +109,8 @@
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/1_4_display-options.html">
-    Display Options
+  <a class="nav-link" href="https://plotly.net/1_4_annotations.html">
+    Annotations
   </a>
 </li>             
 <li class="nav-header">
@@ -151,22 +161,37 @@
 </li>             
 <li class="nav-item">
   <a class="nav-link" href="https://plotly.net/3_0_3d-scatter-plots.html">
-    3D Scatter charts
+    3D point and line charts
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/3_1_3d-line-plots.html">
-    3D line charts
-  </a>
-</li>             
-<li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/3_2_3d-surface-plots.html">
+  <a class="nav-link" href="https://plotly.net/3_1_3d-surface-plots.html">
     3D surface plots
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/3_3_3d-mesh-plots.html">
+  <a class="nav-link" href="https://plotly.net/3_2_3d-mesh-plots.html">
     3D Mesh plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/3_3_3d-cone-charts.html">
+    3D Cone plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/3_4_3d-streamtube-plots.html">
+    3D streamtube plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/3_5_3d-volume-plots.html">
+    3D Volume plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/3_6_3d-isosurface-plots .html">
+    3D IsoSurface plots
   </a>
 </li>             
 <li class="nav-header">
@@ -265,13 +290,18 @@
   Polar Charts
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/8_0_polar-charts.html">
-    Polar charts
+  <a class="nav-link" href="https://plotly.net/8_0_polar_line-scatter-plots.html">
+    Polar line and scatter plots
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/8_1_windrose-charts.html">
-    Windrose charts
+  <a class="nav-link" href="https://plotly.net/8_1_polar_bar_charts.html">
+    Polar bar charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/8_2_styling_polar_layouts.html">
+    Styling polar layouts
   </a>
 </li>             
 <li class="nav-header">
@@ -402,7 +432,7 @@ not even that is necessary and just the SVG string can be used.</p>
 <span onmouseout="hideTip(event, 'fs10', 25)" onmouseover="showTip(event, 'fs10', 25)" class="id">svgString</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 26)" onmouseover="showTip(event, 'fs12', 26)" class="id">Substring</span><span class="pn">(</span><span class="n">0</span><span class="pn">,</span><span class="n">300</span><span class="pn">)</span>
 <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs13', 27)" onmouseover="showTip(event, 'fs13', 27)" class="fn">printfn</span> <span class="s">&quot;</span><span class="pf">%s</span><span class="s">&quot;</span>
 </code></pre>
-<table class="pre"><tr><td><pre><code>&lt;svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600" height="600" style="" viewBox="0 0 300 300"&gt;&lt;rect x="0" y="0" width="300" height="300" style="fill: rgb(255, 255, 255); fill-opacity: 1;"/&gt;&lt;defs id="defs-450a18"&gt;&lt;g class="clips"&gt;&lt;clipPath</code></pre></td></tr></table>
+<table class="pre"><tr><td><pre><code>&lt;svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600" height="600" style="" viewBox="0 0 300 300"&gt;&lt;rect x="0" y="0" width="300" height="300" style="fill: rgb(255, 255, 255); fill-opacity: 1;"/&gt;&lt;defs id="defs-114ec6"&gt;&lt;g class="clips"&gt;&lt;clipPath</code></pre></td></tr></table>
 <p>In fact, the images shown on this site are included just the same way.</p>
 <h2><a name="Including-static-images-in-dotnet-interactive-notebooks" class="anchor" href="#Including-static-images-in-dotnet-interactive-notebooks">Including static images in dotnet interactive notebooks</a></h2>
 <p>To include the images in dotnet interactive, convert them to html tags as above and include them via
@@ -434,15 +464,28 @@ dotnet interactive's <code>DisplayAs</code> function. The content type for PNG/J
 <div class="fsdocs-tip" id="fs2">namespace Plotly.NET</div>
 <div class="fsdocs-tip" id="fs3">namespace Plotly.NET.ImageExport</div>
 <div class="fsdocs-tip" id="fs4">val exampleChart : GenericChart.GenericChart</div>
-<div class="fsdocs-tip" id="fs5">type Chart =<br />&#160;&#160;static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:float -&gt; GenericChart + 1 overload<br />&#160;&#160;static member Bar : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart + 1 overload<br />&#160;&#160;static member BoxPlot : ?x:&#39;a0 * ?y:&#39;a1 * ?Name:string * ?Showlegend:bool * ?Color:string * ?Fillcolor:&#39;a2 * ?Opacity:float * ?Whiskerwidth:&#39;a3 * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:&#39;a4 * ?Pointpos:&#39;a5 * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?Alignmentgroup:&#39;a6 * ?Offsetgroup:&#39;a7 * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod -&gt; GenericChart + 1 overload<br />&#160;&#160;static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:Orientation * ?GroupNorm:GroupNorm * ?UseWebGL:bool -&gt; GenericChart + 1 overload<br />&#160;&#160;static member Candlestick : open:seq&lt;#IConvertible&gt; * high:seq&lt;#IConvertible&gt; * low:seq&lt;#IConvertible&gt; * close:seq&lt;#IConvertible&gt; * x:seq&lt;#IConvertible&gt; * ?Increasing:Line * ?Decreasing:Line * ?WhiskerWidth:float * ?Line:Line * ?XCalendar:Calendar -&gt; GenericChart + 1 overload<br />&#160;&#160;static member ChoroplethMap : locations:seq&lt;string&gt; * z:seq&lt;#IConvertible&gt; * ?Text:seq&lt;#IConvertible&gt; * ?Locationmode:LocationFormat * ?Autocolorscale:bool * ?Colorscale:Colorscale * ?Colorbar:Colorbar * ?Marker:Marker * ?GeoJson:&#39;a2 * ?FeatureIdKey:string * ?Zmin:float * ?Zmax:float -&gt; GenericChart<br />&#160;&#160;static member ChoroplethMapbox : locations:seq&lt;#IConvertible&gt; * z:seq&lt;#IConvertible&gt; * geoJson:&#39;a2 * ?FeatureIdKey:string * ?Text:seq&lt;#IConvertible&gt; * ?Below:string * ?Colorscale:Colorscale * ?Colorbar:Colorbar * ?ZAuto:bool * ?ZMin:float * ?ZMid:float * ?ZMax:float -&gt; GenericChart<br />&#160;&#160;static member Column : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart + 1 overload<br />&#160;&#160;static member Contour : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;a4 * ?zSmooth:SmoothAlg * ?Colorbar:&#39;a5 -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)<br />&#160;&#160;static member DensityMapbox : lon:seq&lt;#IConvertible&gt; * lat:seq&lt;#IConvertible&gt; * ?Z:seq&lt;#IConvertible&gt; * ?Radius:float * ?Opacity:float * ?Text:seq&lt;#IConvertible&gt; * ?Below:string * ?Colorscale:Colorscale * ?Colorbar:Colorbar * ?Showscale:bool * ?ZAuto:bool * ?ZMin:float * ?ZMid:float * ?ZMax:float -&gt; GenericChart + 1 overload<br />&#160;&#160;...</div>
-<div class="fsdocs-tip" id="fs6">static member Chart.Histogram2dContour : x:seq&lt;#System.IConvertible&gt; * y:seq&lt;#System.IConvertible&gt; * ?Z:seq&lt;#seq&lt;&#39;d&gt;&gt; * ?Name:&#39;e * ?Colorscale:StyleParam.Colorscale * ?Showscale:&#39;f * ?Line:Line * ?zSmooth:StyleParam.SmoothAlg * ?Colorbar:&#39;g * ?zAuto:&#39;h * ?zMin:&#39;i * ?zMax:&#39;j * ?nBinsx:int * ?nBinsy:int * ?xBins:Bins * ?yBins:Bins * ?HistNorm:StyleParam.HistNorm * ?HistFunc:StyleParam.HistNorm -&gt; GenericChart.GenericChart (requires &#39;d :&gt; System.IConvertible)</div>
+<div class="fsdocs-tip" id="fs5">type Chart =
+  static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:float -&gt; GenericChart + 1 overload
+  static member Bar : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart + 1 overload
+  static member BarPolar : r:seq&lt;#IConvertible&gt; * theta:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?LineWidth:float -&gt; GenericChart
+  static member BoxPlot : ?x:&#39;a0 * ?y:&#39;a1 * ?Name:string * ?Showlegend:bool * ?Color:string * ?Fillcolor:&#39;a2 * ?Opacity:float * ?Whiskerwidth:&#39;a3 * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:&#39;a4 * ?Pointpos:&#39;a5 * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?Alignmentgroup:&#39;a6 * ?Offsetgroup:&#39;a7 * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod -&gt; GenericChart + 1 overload
+  static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:Orientation * ?GroupNorm:GroupNorm * ?UseWebGL:bool -&gt; GenericChart + 1 overload
+  static member Bubble3d : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * z:seq&lt;#IConvertible&gt; * sizes:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font -&gt; GenericChart + 1 overload
+  static member BubblePolar : r:seq&lt;#IConvertible&gt; * theta:seq&lt;#IConvertible&gt; * sizes:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?UseWebGL:bool -&gt; GenericChart + 1 overload
+  static member Candlestick : open:seq&lt;#IConvertible&gt; * high:seq&lt;#IConvertible&gt; * low:seq&lt;#IConvertible&gt; * close:seq&lt;#IConvertible&gt; * x:seq&lt;#IConvertible&gt; * ?Increasing:Line * ?Decreasing:Line * ?WhiskerWidth:float * ?Line:Line * ?XCalendar:Calendar -&gt; GenericChart + 1 overload
+  static member ChoroplethMap : locations:seq&lt;string&gt; * z:seq&lt;#IConvertible&gt; * ?Text:seq&lt;#IConvertible&gt; * ?Locationmode:LocationFormat * ?Autocolorscale:bool * ?Colorscale:Colorscale * ?ColorBar:ColorBar * ?Marker:Marker * ?GeoJson:&#39;a2 * ?FeatureIdKey:string * ?Zmin:float * ?Zmax:float -&gt; GenericChart
+  static member ChoroplethMapbox : locations:seq&lt;#IConvertible&gt; * z:seq&lt;#IConvertible&gt; * geoJson:&#39;a2 * ?FeatureIdKey:string * ?Text:seq&lt;#IConvertible&gt; * ?Below:string * ?Colorscale:Colorscale * ?ColorBar:ColorBar * ?ZAuto:bool * ?ZMin:float * ?ZMid:float * ?ZMax:float -&gt; GenericChart
+  ...<br /><em>&lt;summary&gt;
+ Provides a set of static methods for creating charts.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs6">static member Chart.Histogram2dContour : x:seq&lt;#System.IConvertible&gt; * y:seq&lt;#System.IConvertible&gt; * ?Z:seq&lt;#seq&lt;&#39;d&gt;&gt; * ?Name:&#39;e * ?Colorscale:StyleParam.Colorscale * ?Showscale:&#39;f * ?Line:Line * ?zSmooth:StyleParam.SmoothAlg * ?ColorBar:&#39;g * ?zAuto:&#39;h * ?zMin:&#39;i * ?zMax:&#39;j * ?nBinsx:int * ?nBinsy:int * ?xBins:Bins * ?yBins:Bins * ?HistNorm:StyleParam.HistNorm * ?HistFunc:StyleParam.HistNorm -&gt; GenericChart.GenericChart (requires &#39;d :&gt; System.IConvertible)</div>
 <div class="fsdocs-tip" id="fs7">static member Chart.saveJPG : path:string * ?EngineType:ExportEngine * ?Width:int * ?Height:int -&gt; (GenericChart.GenericChart -&gt; unit)</div>
 <div class="fsdocs-tip" id="fs8">static member Chart.toBase64JPGString : ?EngineType:ExportEngine * ?Width:int * ?Height:int -&gt; (GenericChart.GenericChart -&gt; string)</div>
 <div class="fsdocs-tip" id="fs9">val base64JPG : string</div>
 <div class="fsdocs-tip" id="fs10">val svgString : string</div>
 <div class="fsdocs-tip" id="fs11">static member Chart.toSVGString : ?EngineType:ExportEngine * ?Width:int * ?Height:int -&gt; (GenericChart.GenericChart -&gt; string)</div>
 <div class="fsdocs-tip" id="fs12">System.String.Substring(startIndex: int) : string<br />System.String.Substring(startIndex: int, length: int) : string</div>
-<div class="fsdocs-tip" id="fs13">val printfn : format:Printf.TextWriterFormat&lt;&#39;T&gt; -&gt; &#39;T</div>
+<div class="fsdocs-tip" id="fs13">val printfn : format:Printf.TextWriterFormat&lt;&#39;T&gt; -&gt; &#39;T<br /><em>&lt;summary&gt;Print to &lt;c&gt;stdout&lt;/c&gt; using the given format, and add a newline.&lt;/summary&gt;<br />&lt;param name=&quot;format&quot;&gt;The formatter.&lt;/param&gt;<br />&lt;returns&gt;The formatted result.&lt;/returns&gt;</em></div>
 <div class="fsdocs-tip" id="fs14">val base64PNGTag : string</div>
 <div class="fsdocs-tip" id="fs15">val base64 : string</div>
 <div class="fsdocs-tip" id="fs16">static member Chart.toBase64PNGString : ?EngineType:ExportEngine * ?Width:int * ?Height:int -&gt; (GenericChart.GenericChart -&gt; string)</div>

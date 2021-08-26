@@ -43,7 +43,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.6</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.7</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -77,6 +77,16 @@
     Static image export
   </a>
 </li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/0_2_display-options.html">
+    Display Options
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/0_3_chart-config.html">
+    Chart config
+  </a>
+</li>             
 <li class="nav-header">
   Chart Layout
 </li>             
@@ -101,8 +111,8 @@
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/1_4_display-options.html">
-    Display Options
+  <a class="nav-link" href="https://plotly.net/1_4_annotations.html">
+    Annotations
   </a>
 </li>             
 <li class="nav-header">
@@ -153,22 +163,37 @@
 </li>             
 <li class="nav-item">
   <a class="nav-link" href="https://plotly.net/3_0_3d-scatter-plots.html">
-    3D Scatter charts
+    3D point and line charts
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/3_1_3d-line-plots.html">
-    3D line charts
-  </a>
-</li>             
-<li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/3_2_3d-surface-plots.html">
+  <a class="nav-link" href="https://plotly.net/3_1_3d-surface-plots.html">
     3D surface plots
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/3_3_3d-mesh-plots.html">
+  <a class="nav-link" href="https://plotly.net/3_2_3d-mesh-plots.html">
     3D Mesh plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/3_3_3d-cone-charts.html">
+    3D Cone plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/3_4_3d-streamtube-plots.html">
+    3D streamtube plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/3_5_3d-volume-plots.html">
+    3D Volume plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/3_6_3d-isosurface-plots .html">
+    3D IsoSurface plots
   </a>
 </li>             
 <li class="nav-header">
@@ -267,13 +292,18 @@
   Polar Charts
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/8_0_polar-charts.html">
-    Polar charts
+  <a class="nav-link" href="https://plotly.net/8_0_polar_line-scatter-plots.html">
+    Polar line and scatter plots
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/8_1_windrose-charts.html">
-    Windrose charts
+  <a class="nav-link" href="https://plotly.net/8_1_polar_bar_charts.html">
+    Polar bar charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/8_2_styling_polar_layouts.html">
+    Styling polar layouts
   </a>
 </li>             
 <li class="nav-header">
@@ -357,32 +387,32 @@
 <ul>
 <li>
 <p>dotnet CLI</p>
-<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="shell">dotnet add package Plotly.NET --version 2.0.0-preview.6
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="shell">dotnet add package Plotly.NET --version 2.0.0-preview.7
 </code></pre></td></tr></table>
 </li>
 <li>
 <p>paket CLI</p>
-<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="shell">paket add Plotly.NET --version 2.0.0-preview.6
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="shell">paket add Plotly.NET --version 2.0.0-preview.7
 </code></pre></td></tr></table>
 </li>
 <li>
 <p>package manager</p>
-<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="shell">Install-Package Plotly.NET -Version 2.0.0-preview.6
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="shell">Install-Package Plotly.NET -Version 2.0.0-preview.7
 </code></pre></td></tr></table>
 <p>Or add the package reference directly to your <code>.*proj</code> file:</p>
-<pre class="fssnip highlighted"><code lang="fsharp"><span class="pn">&lt;</span><span class="id">PackageReference</span> <span class="id">Include</span><span class="o">=</span><span class="s">&quot;Plotly.NET&quot;</span> <span class="id">Version</span><span class="o">=</span><span class="s">&quot;2.0.0-preview.6&quot;</span> <span class="o">/&gt;</span>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pn">&lt;</span><span class="id">PackageReference</span> <span class="id">Include</span><span class="o">=</span><span class="s">&quot;Plotly.NET&quot;</span> <span class="id">Version</span><span class="o">=</span><span class="s">&quot;2.0.0-preview.7&quot;</span> <span class="o">/&gt;</span>
 </code></pre>
 </li>
 </ul>
 <h3><a name="For-scripting" class="anchor" href="#For-scripting">For scripting</a></h3>
 <p>You can include the package via an inline package reference:</p>
-<pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;nuget: Plotly.NET, 2.0.0-preview.6&quot;</span>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;nuget: Plotly.NET, 2.0.0-preview.7&quot;</span>
 </code></pre>
 <h3><a name="For-dotnet-interactive-notebooks" class="anchor" href="#For-dotnet-interactive-notebooks">For dotnet interactive notebooks</a></h3>
 <p>You can use the same inline package reference as in script, but as an additional goodie,
 the interactive extensions for dotnet interactive have you covered for seamless chart rendering:</p>
-<pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;nuget: Plotly.NET, 2.0.0-preview.6&quot;</span>
-<span class="pp">#r</span> <span class="s">&quot;nuget: Plotly.NET.Interactive, 2.0.0-preview.6&quot;</span>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;nuget: Plotly.NET, 2.0.0-preview.7&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;nuget: Plotly.NET.Interactive, 2.0.0-preview.7&quot;</span>
 </code></pre>
 <p><em>Note</em>:</p>
 <p>due to the currently fast development cycles of Dotnet Interactive, there might be increments in their versioning that renders the current version of Plotly.NET.Interactive incompatible (example <a href="https://github.com/plotly/Plotly.NET/issues/67">here</a>).</p>
@@ -414,14 +444,14 @@ mandatory arguments are the data to visualize.</p>
 <p>Styling functions are generally the <code>Chart.with*</code> naming convention. The following styling example does:</p>
 <ul>
 <li>set the chart title via <code>Chart.withTitle</code></li>
-<li>set the x axis title and removes the gridline from the axis via <code>Chart.withX_AxisStyle</code></li>
-<li>set the y axis title and removes the gridline from the axis via <code>Chart.withY_AxisStyle</code></li>
+<li>set the x axis title and removes the gridline from the axis via <code>Chart.withXAxisStyle</code></li>
+<li>set the y axis title and removes the gridline from the axis via <code>Chart.withYAxisStyle</code></li>
 </ul>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="id">myFirstStyledChart</span> <span class="o">=</span>
     <span onmouseout="hideTip(event, 'fs6', 11)" onmouseover="showTip(event, 'fs6', 11)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 12)" onmouseover="showTip(event, 'fs7', 12)" class="id">Point</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs3', 13)" onmouseover="showTip(event, 'fs3', 13)" class="id">xData</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs4', 14)" onmouseover="showTip(event, 'fs4', 14)" class="id">yData</span><span class="pn">)</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 15)" onmouseover="showTip(event, 'fs6', 15)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs9', 16)" onmouseover="showTip(event, 'fs9', 16)" class="id">withTitle</span> <span class="s">&quot;Hello world!&quot;</span>
-    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 17)" onmouseover="showTip(event, 'fs6', 17)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 18)" onmouseover="showTip(event, 'fs10', 18)" class="id">withX_AxisStyle</span> <span class="pn">(</span><span class="s">&quot;xAxis&quot;</span><span class="pn">,</span> <span class="fn">Showgrid</span><span class="o">=</span><span class="k">false</span><span class="pn">)</span>
-    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 19)" onmouseover="showTip(event, 'fs6', 19)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 20)" onmouseover="showTip(event, 'fs11', 20)" class="id">withY_AxisStyle</span> <span class="pn">(</span><span class="s">&quot;yAxis&quot;</span><span class="pn">,</span> <span class="fn">Showgrid</span><span class="o">=</span><span class="k">false</span><span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 17)" onmouseover="showTip(event, 'fs6', 17)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 18)" onmouseover="showTip(event, 'fs10', 18)" class="id">withXAxisStyle</span> <span class="pn">(</span><span class="s">&quot;xAxis&quot;</span><span class="pn">,</span> <span class="fn">ShowGrid</span><span class="o">=</span><span class="k">false</span><span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 19)" onmouseover="showTip(event, 'fs6', 19)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 20)" onmouseover="showTip(event, 'fs11', 20)" class="id">withYAxisStyle</span> <span class="pn">(</span><span class="s">&quot;yAxis&quot;</span><span class="pn">,</span> <span class="fn">ShowGrid</span><span class="o">=</span><span class="k">false</span><span class="pn">)</span>
 </code></pre>
 <p><strong>Attention:</strong> Styling functions mutate 😈 the input chart, therefore possibly affecting bindings to intermediary results.
 We recommend creating a single chart for each workflow to prevent unexpected results</p>
@@ -429,62 +459,62 @@ We recommend creating a single chart for each workflow to prevent unexpected res
 <p>The <code>Chart.Show</code> function will open a browser window and render the input chart there. When working in a notebook context, after
 <a href="#For-dotnet-interactive-notebooks">referencing Plotly.NET.Interactive</a>, the function is not necessary, just end the cell with the value of the chart.</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs5', 21)" onmouseover="showTip(event, 'fs5', 21)" class="id">myFirstChart</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 22)" onmouseover="showTip(event, 'fs6', 22)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 23)" onmouseover="showTip(event, 'fs12', 23)" class="id">Show</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 22)" onmouseover="showTip(event, 'fs6', 22)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 23)" onmouseover="showTip(event, 'fs12', 23)" class="id">show</span>
 </code></pre>
 <p>Should render this chart in your brower:</p>
-<div id="d492c99e-5645-4279-8283-167eae72d2ae" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="9aba91c0-1437-4fc3-80d3-62e28e8958fb" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_d492c99e564542798283167eae72d2ae = function() {
+            var renderPlotly_9aba91c014374fc380d362e28e8958fb = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"mode":"markers","marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('d492c99e-5645-4279-8283-167eae72d2ae', data, layout, config);
+            Plotly.newPlot('9aba91c0-1437-4fc3-80d3-62e28e8958fb', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_d492c99e564542798283167eae72d2ae();
+                    renderPlotly_9aba91c014374fc380d362e28e8958fb();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_d492c99e564542798283167eae72d2ae();
+                renderPlotly_9aba91c014374fc380d362e28e8958fb();
             }
 </script>
 
 <pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 27)" onmouseover="showTip(event, 'fs8', 27)" class="id">myFirstStyledChart</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 28)" onmouseover="showTip(event, 'fs6', 28)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 29)" onmouseover="showTip(event, 'fs12', 29)" class="id">Show</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 28)" onmouseover="showTip(event, 'fs6', 28)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 29)" onmouseover="showTip(event, 'fs12', 29)" class="id">show</span>
 </code></pre>
 <p>And here is what happened after applying the styles from above:</p>
-<div id="d59c6f72-6f47-415a-bedc-eb5304bd5852" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="f4b1c078-f543-49ac-9b02-23589bcfd6ff" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_d59c6f726f47415abedceb5304bd5852 = function() {
+            var renderPlotly_f4b1c078f54349ac9b0223589bcfd6ff = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"mode":"markers","marker":{}}];
-            var layout = {"title":"Hello world!","xaxis":{"title":"xAxis","showgrid":false},"yaxis":{"title":"yAxis","showgrid":false}};
+            var layout = {"title":{"text":"Hello world!"},"xaxis":{"title":{"text":"xAxis"},"showgrid":false},"yaxis":{"title":{"text":"yAxis"},"showgrid":false}};
             var config = {};
-            Plotly.newPlot('d59c6f72-6f47-415a-bedc-eb5304bd5852', data, layout, config);
+            Plotly.newPlot('f4b1c078-f543-49ac-9b02-23589bcfd6ff', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_d59c6f726f47415abedceb5304bd5852();
+                    renderPlotly_f4b1c078f54349ac9b0223589bcfd6ff();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_d59c6f726f47415abedceb5304bd5852();
+                renderPlotly_f4b1c078f54349ac9b0223589bcfd6ff();
             }
 </script>
 
@@ -498,8 +528,8 @@ That's why you can render charts directly in the cell output. Just end the cell 
 <p>Here is the styled chart:</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs6', 39)" onmouseover="showTip(event, 'fs6', 39)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 40)" onmouseover="showTip(event, 'fs7', 40)" class="id">Point</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs3', 41)" onmouseover="showTip(event, 'fs3', 41)" class="id">xData</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs4', 42)" onmouseover="showTip(event, 'fs4', 42)" class="id">yData</span><span class="pn">)</span>
 <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 43)" onmouseover="showTip(event, 'fs6', 43)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs9', 44)" onmouseover="showTip(event, 'fs9', 44)" class="id">withTitle</span> <span class="s">&quot;Hello world!&quot;</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 45)" onmouseover="showTip(event, 'fs6', 45)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 46)" onmouseover="showTip(event, 'fs10', 46)" class="id">withX_AxisStyle</span> <span class="pn">(</span><span class="s">&quot;xAxis&quot;</span><span class="pn">,</span> <span class="fn">Showgrid</span><span class="o">=</span><span class="k">false</span><span class="pn">)</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 47)" onmouseover="showTip(event, 'fs6', 47)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 48)" onmouseover="showTip(event, 'fs11', 48)" class="id">withY_AxisStyle</span> <span class="pn">(</span><span class="s">&quot;yAxis&quot;</span><span class="pn">,</span> <span class="fn">Showgrid</span><span class="o">=</span><span class="k">false</span><span class="pn">)</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 45)" onmouseover="showTip(event, 'fs6', 45)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 46)" onmouseover="showTip(event, 'fs10', 46)" class="id">withXAxisStyle</span> <span class="pn">(</span><span class="s">&quot;xAxis&quot;</span><span class="pn">,</span> <span class="fn">ShowGrid</span><span class="o">=</span><span class="k">false</span><span class="pn">)</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 47)" onmouseover="showTip(event, 'fs6', 47)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 48)" onmouseover="showTip(event, 'fs11', 48)" class="id">withYAxisStyle</span> <span class="pn">(</span><span class="s">&quot;yAxis&quot;</span><span class="pn">,</span> <span class="fn">ShowGrid</span><span class="o">=</span><span class="k">false</span><span class="pn">)</span>
 </code></pre>
 <h2><a name="Comparison-Usage-in-F-and-C" class="anchor" href="#Comparison-Usage-in-F-and-C">Comparison: Usage in F# and C#</a></h2>
 <p>One of the main design points of Plotly.NET it is to provide support for multiple flavors of chart generation. Here are 2 examples in different styles and languages that create an equivalent chart:</p>
@@ -507,8 +537,8 @@ That's why you can render charts directly in the cell output. Just end the cell 
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="pn">[</span><span class="pn">(</span><span class="n">1</span><span class="pn">,</span><span class="n">5</span><span class="pn">)</span><span class="pn">;</span><span class="pn">(</span><span class="n">2</span><span class="pn">,</span><span class="n">10</span><span class="pn">)</span><span class="pn">]</span>
 <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 49)" onmouseover="showTip(event, 'fs6', 49)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 50)" onmouseover="showTip(event, 'fs7', 50)" class="id">Point</span>
 <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 51)" onmouseover="showTip(event, 'fs6', 51)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 52)" onmouseover="showTip(event, 'fs17', 52)" class="id">withTraceName</span><span class="pn">(</span><span class="s">&quot;Hello from F#&quot;</span><span class="pn">,</span><span class="fn">Showlegend</span><span class="o">=</span><span class="k">true</span><span class="pn">)</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 53)" onmouseover="showTip(event, 'fs6', 53)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 54)" onmouseover="showTip(event, 'fs11', 54)" class="id">withY_AxisStyle</span><span class="pn">(</span><span class="s">&quot;xAxis&quot;</span><span class="pn">,</span><span class="fn">Showgrid</span><span class="o">=</span> <span class="k">false</span><span class="pn">,</span> <span class="fn">Showline</span><span class="o">=</span><span class="k">true</span><span class="pn">)</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 55)" onmouseover="showTip(event, 'fs6', 55)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 56)" onmouseover="showTip(event, 'fs10', 56)" class="id">withX_AxisStyle</span><span class="pn">(</span><span class="s">&quot;yAxis&quot;</span><span class="pn">,</span><span class="fn">Showgrid</span><span class="o">=</span> <span class="k">false</span><span class="pn">,</span> <span class="fn">Showline</span><span class="o">=</span><span class="k">true</span><span class="pn">)</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 53)" onmouseover="showTip(event, 'fs6', 53)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 54)" onmouseover="showTip(event, 'fs11', 54)" class="id">withYAxisStyle</span><span class="pn">(</span><span class="s">&quot;xAxis&quot;</span><span class="pn">,</span><span class="fn">ShowGrid</span><span class="o">=</span> <span class="k">false</span><span class="pn">,</span> <span class="fn">ShowLine</span><span class="o">=</span><span class="k">true</span><span class="pn">)</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 55)" onmouseover="showTip(event, 'fs6', 55)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 56)" onmouseover="showTip(event, 'fs10', 56)" class="id">withXAxisStyle</span><span class="pn">(</span><span class="s">&quot;yAxis&quot;</span><span class="pn">,</span><span class="fn">ShowGrid</span><span class="o">=</span> <span class="k">false</span><span class="pn">,</span> <span class="fn">ShowLine</span><span class="o">=</span><span class="k">true</span><span class="pn">)</span>
 </code></pre>
 <h3><a name="Fluent-interface-style-in-C" class="anchor" href="#Fluent-interface-style-in-C">Fluent interface style in C#:</a></h3>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">static</span> <span class="k">void</span> <span class="id">Main</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs18', 57)" onmouseover="showTip(event, 'fs18', 57)" class="id">string</span><span class="pn">[</span><span class="pn">]</span> <span class="id">args</span><span class="pn">)</span>
@@ -518,8 +548,8 @@ That's why you can render charts directly in the cell output. Just end the cell 
     <span class="id">GenericChart</span><span class="pn">.</span><span class="id">GenericChart</span> <span class="id">chart</span> <span class="o">=</span> <span class="id">Chart</span><span class="pn">.</span><span class="id">Point</span><span class="pn">(</span><span class="id">x</span><span class="pn">:</span> <span class="id">x</span><span class="pn">,</span> <span class="id">y</span><span class="pn">:</span> <span class="id">y</span><span class="pn">)</span><span class="pn">;</span>
     <span class="id">chart</span>
         <span class="pn">.</span><span class="id">WithTraceName</span><span class="pn">(</span><span class="s">&quot;Hello from C#&quot;</span><span class="pn">,</span> <span class="k">true</span><span class="pn">)</span>
-        <span class="pn">.</span><span class="id">WithX_AxisStyle</span><span class="pn">(</span><span class="id">title</span><span class="pn">:</span> <span class="s">&quot;xAxis&quot;</span><span class="pn">,</span> <span class="id">Showgrid</span><span class="pn">:</span> <span class="k">false</span><span class="pn">,</span> <span class="id">Showline</span><span class="pn">:</span> <span class="k">true</span><span class="pn">)</span>
-        <span class="pn">.</span><span class="id">WithY_AxisStyle</span><span class="pn">(</span><span class="id">title</span><span class="pn">:</span> <span class="s">&quot;yAxis&quot;</span><span class="pn">,</span> <span class="id">Showgrid</span><span class="pn">:</span> <span class="k">false</span><span class="pn">,</span> <span class="id">Showline</span><span class="pn">:</span> <span class="k">true</span><span class="pn">)</span>
+        <span class="pn">.</span><span class="id">withXAxisStyle</span><span class="pn">(</span><span class="id">title</span><span class="pn">:</span> <span class="s">&quot;xAxis&quot;</span><span class="pn">,</span> <span class="id">Showgrid</span><span class="pn">:</span> <span class="k">false</span><span class="pn">,</span> <span class="id">Showline</span><span class="pn">:</span> <span class="k">true</span><span class="pn">)</span>
+        <span class="pn">.</span><span class="id">withYAxisStyle</span><span class="pn">(</span><span class="id">title</span><span class="pn">:</span> <span class="s">&quot;yAxis&quot;</span><span class="pn">,</span> <span class="id">Showgrid</span><span class="pn">:</span> <span class="k">false</span><span class="pn">,</span> <span class="id">Showline</span><span class="pn">:</span> <span class="k">true</span><span class="pn">)</span>
         <span class="pn">.</span><span class="id">Show</span><span class="pn">(</span><span class="pn">)</span><span class="pn">;</span>
 <span class="pn">}</span>
 </code></pre>
@@ -606,32 +636,85 @@ redistribution for both commercial and non-commercial purposes. For more informa
 <div class="fsdocs-tip" id="fs3">val xData : float list</div>
 <div class="fsdocs-tip" id="fs4">val yData : float list</div>
 <div class="fsdocs-tip" id="fs5">val myFirstChart : GenericChart.GenericChart</div>
-<div class="fsdocs-tip" id="fs6">type Chart =<br />&#160;&#160;static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:float -&gt; GenericChart + 1 overload<br />&#160;&#160;static member Bar : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart + 1 overload<br />&#160;&#160;static member BoxPlot : ?x:&#39;a0 * ?y:&#39;a1 * ?Name:string * ?Showlegend:bool * ?Color:string * ?Fillcolor:&#39;a2 * ?Opacity:float * ?Whiskerwidth:&#39;a3 * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:&#39;a4 * ?Pointpos:&#39;a5 * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?Alignmentgroup:&#39;a6 * ?Offsetgroup:&#39;a7 * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod -&gt; GenericChart + 1 overload<br />&#160;&#160;static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:Orientation * ?GroupNorm:GroupNorm * ?UseWebGL:bool -&gt; GenericChart + 1 overload<br />&#160;&#160;static member Candlestick : open:seq&lt;#IConvertible&gt; * high:seq&lt;#IConvertible&gt; * low:seq&lt;#IConvertible&gt; * close:seq&lt;#IConvertible&gt; * x:seq&lt;#IConvertible&gt; * ?Increasing:Line * ?Decreasing:Line * ?WhiskerWidth:float * ?Line:Line * ?XCalendar:Calendar -&gt; GenericChart + 1 overload<br />&#160;&#160;static member ChoroplethMap : locations:seq&lt;string&gt; * z:seq&lt;#IConvertible&gt; * ?Text:seq&lt;#IConvertible&gt; * ?Locationmode:LocationFormat * ?Autocolorscale:bool * ?Colorscale:Colorscale * ?Colorbar:Colorbar * ?Marker:Marker * ?GeoJson:&#39;a2 * ?FeatureIdKey:string * ?Zmin:float * ?Zmax:float -&gt; GenericChart<br />&#160;&#160;static member ChoroplethMapbox : locations:seq&lt;#IConvertible&gt; * z:seq&lt;#IConvertible&gt; * geoJson:&#39;a2 * ?FeatureIdKey:string * ?Text:seq&lt;#IConvertible&gt; * ?Below:string * ?Colorscale:Colorscale * ?Colorbar:Colorbar * ?ZAuto:bool * ?ZMin:float * ?ZMid:float * ?ZMax:float -&gt; GenericChart<br />&#160;&#160;static member Column : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart + 1 overload<br />&#160;&#160;static member Contour : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;a4 * ?zSmooth:SmoothAlg * ?Colorbar:&#39;a5 -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)<br />&#160;&#160;static member DensityMapbox : lon:seq&lt;#IConvertible&gt; * lat:seq&lt;#IConvertible&gt; * ?Z:seq&lt;#IConvertible&gt; * ?Radius:float * ?Opacity:float * ?Text:seq&lt;#IConvertible&gt; * ?Below:string * ?Colorscale:Colorscale * ?Colorbar:Colorbar * ?Showscale:bool * ?ZAuto:bool * ?ZMin:float * ?ZMid:float * ?ZMax:float -&gt; GenericChart + 1 overload<br />&#160;&#160;...</div>
+<div class="fsdocs-tip" id="fs6">type Chart =
+  static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:float -&gt; GenericChart + 1 overload
+  static member Bar : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart + 1 overload
+  static member BarPolar : r:seq&lt;#IConvertible&gt; * theta:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?LineWidth:float -&gt; GenericChart
+  static member BoxPlot : ?x:&#39;a0 * ?y:&#39;a1 * ?Name:string * ?Showlegend:bool * ?Color:string * ?Fillcolor:&#39;a2 * ?Opacity:float * ?Whiskerwidth:&#39;a3 * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:&#39;a4 * ?Pointpos:&#39;a5 * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?Alignmentgroup:&#39;a6 * ?Offsetgroup:&#39;a7 * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod -&gt; GenericChart + 1 overload
+  static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:Orientation * ?GroupNorm:GroupNorm * ?UseWebGL:bool -&gt; GenericChart + 1 overload
+  static member Bubble3d : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * z:seq&lt;#IConvertible&gt; * sizes:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font -&gt; GenericChart + 1 overload
+  static member BubblePolar : r:seq&lt;#IConvertible&gt; * theta:seq&lt;#IConvertible&gt; * sizes:seq&lt;#IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?UseWebGL:bool -&gt; GenericChart + 1 overload
+  static member Candlestick : open:seq&lt;#IConvertible&gt; * high:seq&lt;#IConvertible&gt; * low:seq&lt;#IConvertible&gt; * close:seq&lt;#IConvertible&gt; * x:seq&lt;#IConvertible&gt; * ?Increasing:Line * ?Decreasing:Line * ?WhiskerWidth:float * ?Line:Line * ?XCalendar:Calendar -&gt; GenericChart + 1 overload
+  static member ChoroplethMap : locations:seq&lt;string&gt; * z:seq&lt;#IConvertible&gt; * ?Text:seq&lt;#IConvertible&gt; * ?Locationmode:LocationFormat * ?Autocolorscale:bool * ?Colorscale:Colorscale * ?ColorBar:ColorBar * ?Marker:Marker * ?GeoJson:&#39;a2 * ?FeatureIdKey:string * ?Zmin:float * ?Zmax:float -&gt; GenericChart
+  static member ChoroplethMapbox : locations:seq&lt;#IConvertible&gt; * z:seq&lt;#IConvertible&gt; * geoJson:&#39;a2 * ?FeatureIdKey:string * ?Text:seq&lt;#IConvertible&gt; * ?Below:string * ?Colorscale:Colorscale * ?ColorBar:ColorBar * ?ZAuto:bool * ?ZMin:float * ?ZMid:float * ?ZMax:float -&gt; GenericChart
+  ...<br /><em>&lt;summary&gt;
+ Provides a set of static methods for creating charts.
+&lt;/summary&gt;</em></div>
 <div class="fsdocs-tip" id="fs7">static member Chart.Point : xy:seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:StyleParam.Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:StyleParam.Orientation * ?GroupNorm:StyleParam.GroupNorm * ?UseWebGL:bool -&gt; GenericChart.GenericChart<br />static member Chart.Point : x:seq&lt;#System.IConvertible&gt; * y:seq&lt;#System.IConvertible&gt; * ?Name:string * ?Showlegend:bool * ?MarkerSymbol:StyleParam.Symbol * ?Color:string * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:StyleParam.Orientation * ?GroupNorm:StyleParam.GroupNorm * ?UseWebGL:bool -&gt; GenericChart.GenericChart</div>
 <div class="fsdocs-tip" id="fs8">val myFirstStyledChart : GenericChart.GenericChart</div>
-<div class="fsdocs-tip" id="fs9">static member Chart.withTitle : title:string * ?Titlefont:Font -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
-<div class="fsdocs-tip" id="fs10">static member Chart.withX_AxisStyle : title:string * ?MinMax:(float * float) * ?Showgrid:bool * ?Showline:bool * ?Side:StyleParam.Side * ?Overlaying:StyleParam.AxisAnchorId * ?Id:int * ?Domain:(float * float) * ?Position:float * ?Zeroline:bool * ?Anchor:StyleParam.AxisAnchorId -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
-<div class="fsdocs-tip" id="fs11">static member Chart.withY_AxisStyle : title:string * ?MinMax:(float * float) * ?Showgrid:bool * ?Showline:bool * ?Side:StyleParam.Side * ?Overlaying:StyleParam.AxisAnchorId * ?Id:int * ?Domain:(float * float) * ?Position:float * ?Zeroline:bool * ?Anchor:StyleParam.AxisAnchorId -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
-<div class="fsdocs-tip" id="fs12">static member Chart.Show : ch:GenericChart.GenericChart -&gt; unit</div>
-<div class="fsdocs-tip" id="fs13">module GenericChart<br /><br />from Plotly.NET</div>
-<div class="fsdocs-tip" id="fs14">val toChartHTML : gChart:GenericChart.GenericChart -&gt; string</div>
+<div class="fsdocs-tip" id="fs9">static member Chart.withTitle : title:string * ?TitleFont:Font -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
+<div class="fsdocs-tip" id="fs10">static member Chart.withXAxisStyle : title:string * ?TitleFont:Font * ?MinMax:(float * float) * ?ShowGrid:bool * ?ShowLine:bool * ?Side:StyleParam.Side * ?Overlaying:StyleParam.LinearAxisId * ?Id:StyleParam.SubPlotId * ?Domain:(float * float) * ?Position:float * ?Zeroline:bool * ?Anchor:StyleParam.LinearAxisId -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
+<div class="fsdocs-tip" id="fs11">static member Chart.withYAxisStyle : title:string * ?TitleFont:Font * ?MinMax:(float * float) * ?ShowGrid:bool * ?ShowLine:bool * ?Side:StyleParam.Side * ?Overlaying:StyleParam.LinearAxisId * ?Id:StyleParam.SubPlotId * ?Domain:(float * float) * ?Position:float * ?ZeroLine:bool * ?Anchor:StyleParam.LinearAxisId -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
+<div class="fsdocs-tip" id="fs12">static member Chart.show : ch:GenericChart.GenericChart -&gt; unit</div>
+<div class="fsdocs-tip" id="fs13">module GenericChart
+
+from Plotly.NET<br /><em>&lt;summary&gt;
+ Module to represent a GenericChart
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs14">val toChartHTML : gChart:GenericChart.GenericChart -&gt; string<br /><em>&lt;summary&gt;
+ Converts a GenericChart to it HTML representation. The div layer has a default size of 600 if not specified otherwise.
+&lt;/summary&gt;</em></div>
 <div class="fsdocs-tip" id="fs15">val xData&#39; : float list</div>
 <div class="fsdocs-tip" id="fs16">val yData&#39; : float list</div>
 <div class="fsdocs-tip" id="fs17">static member Chart.withTraceName : ?Name:string * ?Showlegend:bool * ?Legendgroup:string * ?Visible:StyleParam.Visible -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
-<div class="fsdocs-tip" id="fs18">Multiple items<br />val string : value:&#39;T -&gt; string<br /><br />--------------------<br />type string = System.String</div>
-<div class="fsdocs-tip" id="fs19">Multiple items<br />val double : value:&#39;T -&gt; double (requires member op_Explicit)<br /><br />--------------------<br />[&lt;Struct&gt;]<br />type double = System.Double<br /><br />--------------------<br />type double&lt;&#39;Measure&gt; = float&lt;&#39;Measure&gt;</div>
+<div class="fsdocs-tip" id="fs18">Multiple items<br />val string : value:&#39;T -&gt; string<br /><em>&lt;summary&gt;Converts the argument to a string using &lt;c&gt;ToString&lt;/c&gt;.&lt;/summary&gt;<br />&lt;remarks&gt;For standard integer and floating point values the and any type that implements &lt;c&gt;IFormattable&lt;/c&gt;&lt;c&gt;ToString&lt;/c&gt; conversion uses &lt;c&gt;CultureInfo.InvariantCulture&lt;/c&gt;. &lt;/remarks&gt;<br />&lt;param name=&quot;value&quot;&gt;The input value.&lt;/param&gt;<br />&lt;returns&gt;The converted string.&lt;/returns&gt;</em><br /><br />--------------------<br />type string = System.String<br /><em>&lt;summary&gt;An abbreviation for the CLI type &lt;see cref=&quot;T:System.String&quot; /&gt;.&lt;/summary&gt;<br />&lt;category&gt;Basic Types&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs19">Multiple items<br />val double : value:&#39;T -&gt; double (requires member op_Explicit)<br /><em>&lt;summary&gt;Converts the argument to 64-bit float.&lt;/summary&gt;<br />&lt;remarks&gt;This is a direct conversion for all 
+ primitive numeric types. For strings, the input is converted using &lt;c&gt;Double.Parse()&lt;/c&gt;  with InvariantCulture settings. Otherwise the operation requires and invokes a &lt;c&gt;ToDouble&lt;/c&gt; method on the input type.&lt;/remarks&gt;</em><br /><br />--------------------<br />[&lt;Struct&gt;]
+type double = System.Double<br /><em>&lt;summary&gt;An abbreviation for the CLI type &lt;see cref=&quot;T:System.Double&quot; /&gt;. Identical to &lt;see cref=&quot;T:Microsoft.FSharp.Core.float&quot; /&gt;.&lt;/summary&gt;<br />&lt;category&gt;Basic Types&lt;/category&gt;</em><br /><br />--------------------<br />type double&lt;&#39;Measure&gt; = float&lt;&#39;Measure&gt;<br /><em>&lt;summary&gt;The type of double-precision floating point numbers, annotated with a unit of measure. 
+ The unit of measure is erased in compiled code and when values of this type
+ are analyzed using reflection. The type is representationally equivalent to 
+ &lt;see cref=&quot;T:System.Double&quot; /&gt;.&lt;/summary&gt;<br />&lt;category index=&quot;6&quot;&gt;Basic Types with Units of Measure&lt;/category&gt;</em></div>
 <div class="fsdocs-tip" id="fs20">val xAxis : Axis.LinearAxis</div>
 <div class="fsdocs-tip" id="fs21">val tmp : Axis.LinearAxis</div>
-<div class="fsdocs-tip" id="fs22">module Axis<br /><br />from Plotly.NET</div>
-<div class="fsdocs-tip" id="fs23">Multiple items<br />type LinearAxis =<br />&#160;&#160;inherit DynamicObj<br />&#160;&#160;new : unit -&gt; LinearAxis<br />&#160;&#160;static member init : ?AxisType:AxisType * ?Title:string * ?Titlefont:Font * ?Autorange:AutoRange * ?Rangemode:RangeMode * ?Range:Range * ?RangeSlider:RangeSlider * ?Fixedrange:bool * ?Tickmode:TickMode * ?nTicks:int * ?Tick0:#IConvertible * ?dTick:#IConvertible * ?Tickvals:seq&lt;#IConvertible&gt; * ?Ticktext:seq&lt;#IConvertible&gt; * ?Ticks:TickOptions * ?Mirror:Mirror * ?Ticklen:float * ?Tickwidth:float * ?Tickcolor:string * ?Showticklabels:bool * ?Tickfont:Font * ?Tickangle:int * ?Tickprefix:string * ?Showtickprefix:ShowTickOption * ?Ticksuffix:string * ?Showticksuffix:ShowTickOption * ?Showexponent:ShowExponent * ?Exponentformat:ExponentFormat * ?Tickformat:string * ?Hoverformat:string * ?Showline:bool * ?Linecolor:string * ?Linewidth:float * ?Showgrid:bool * ?Gridcolor:string * ?Gridwidth:float * ?Zeroline:bool * ?Zerolinecolor:string * ?Zerolinewidth:float * ?Anchor:AxisAnchorId * ?Side:Side * ?Overlaying:AxisAnchorId * ?Domain:Range * ?Position:float * ?IsSubplotObj:bool * ?Showspikes:bool * ?Spikethickness:float * ?Spikecolor:string * ?Showbackground:bool * ?Backgroundcolor:string * ?Showaxeslabels:bool * ?Visible:bool * ?CategoryOrder:CategoryOrder * ?CategoryArray:seq&lt;#IConvertible&gt; -&gt; LinearAxis<br />&#160;&#160;static member initCategorical : categoryOrder:CategoryOrder * ?Title:string * ?Titlefont:Font * ?Autorange:AutoRange * ?Rangemode:RangeMode * ?Range:Range * ?RangeSlider:RangeSlider * ?Fixedrange:bool * ?Tickmode:TickMode * ?nTicks:int * ?Tick0:#IConvertible * ?dTick:#IConvertible * ?Tickvals:seq&lt;#IConvertible&gt; * ?Ticktext:seq&lt;#IConvertible&gt; * ?Ticks:TickOptions * ?Mirror:Mirror * ?Ticklen:float * ?Tickwidth:float * ?Tickcolor:string * ?Showticklabels:bool * ?Tickfont:Font * ?Tickangle:int * ?Tickprefix:string * ?Showtickprefix:ShowTickOption * ?Ticksuffix:string * ?Showticksuffix:ShowTickOption * ?Showexponent:ShowExponent * ?Exponentformat:ExponentFormat * ?Tickformat:string * ?Hoverformat:string * ?Showline:bool * ?Linecolor:string * ?Linewidth:float * ?Showgrid:bool * ?Gridcolor:string * ?Gridwidth:float * ?Zeroline:bool * ?Zerolinecolor:string * ?Zerolinewidth:float * ?Anchor:AxisAnchorId * ?Side:Side * ?Overlaying:AxisAnchorId * ?Domain:Range * ?Position:float * ?IsSubplotObj:bool * ?Showspikes:bool * ?Spikethickness:float * ?Spikecolor:string * ?Showbackground:bool * ?Backgroundcolor:string * ?Showaxeslabels:bool * ?Visible:bool * ?CategoryArray:seq&lt;#IConvertible&gt; -&gt; LinearAxis<br />&#160;&#160;static member style : ?AxisType:AxisType * ?Title:string * ?Titlefont:Font * ?Autorange:AutoRange * ?Rangemode:RangeMode * ?Range:Range * ?RangeSlider:RangeSlider * ?Fixedrange:bool * ?Tickmode:TickMode * ?nTicks:int * ?Tick0:#IConvertible * ?dTick:#IConvertible * ?Tickvals:seq&lt;#IConvertible&gt; * ?Ticktext:seq&lt;#IConvertible&gt; * ?Ticks:TickOptions * ?Mirror:Mirror * ?Ticklen:float * ?Tickwidth:float * ?Tickcolor:string * ?Showticklabels:bool * ?Tickfont:Font * ?Tickangle:int * ?Tickprefix:string * ?Showtickprefix:ShowTickOption * ?Ticksuffix:string * ?Showticksuffix:ShowTickOption * ?Showexponent:ShowExponent * ?Exponentformat:ExponentFormat * ?Tickformat:string * ?Hoverformat:string * ?Showline:bool * ?Linecolor:string * ?Linewidth:float * ?Showgrid:bool * ?Gridcolor:string * ?Gridwidth:float * ?Zeroline:bool * ?Zerolinecolor:string * ?Zerolinewidth:float * ?Anchor:AxisAnchorId * ?Side:Side * ?Overlaying:AxisAnchorId * ?Domain:Range * ?Position:float * ?IsSubplotObj:bool * ?Showspikes:bool * ?Spikethickness:float * ?Spikecolor:string * ?Showbackground:bool * ?Backgroundcolor:string * ?Showaxeslabels:bool * ?Visible:bool * ?CategoryOrder:CategoryOrder * ?CategoryArray:seq&lt;#IConvertible&gt; -&gt; (LinearAxis -&gt; LinearAxis)<br /><br />--------------------<br />new : unit -&gt; Axis.LinearAxis</div>
+<div class="fsdocs-tip" id="fs22">module Axis
+
+from Plotly.NET<br /><em>&lt;summary&gt;Various axes that can be used to add scales to your plots.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs23">Multiple items<br />type LinearAxis =
+  inherit DynamicObj
+  new : unit -&gt; LinearAxis
+  static member init : ?Visible:bool * ?Color:string * ?Title:Title * ?AxisType:AxisType * ?AutoTypeNumbers:AutoTypeNumbers * ?AutoRange:AutoRange * ?RangeMode:RangeMode * ?Range:Range * ?FixedRange:bool * ?ScaleAnchor:LinearAxisId * ?ScaleRatio:float * ?Constrain:AxisConstraint * ?ConstrainToward:AxisConstraintDirection * ?Matches:LinearAxisId * ?Rangebreaks:seq&lt;Rangebreak&gt; * ?TickMode:TickMode * ?NTicks:int * ?Tick0:#IConvertible * ?DTick:#IConvertible * ?TickVals:seq&lt;#IConvertible&gt; * ?TickText:seq&lt;#IConvertible&gt; * ?Ticks:TickOptions * ?TicksOn:CategoryTickAnchor * ?TickLabelMode:TickLabelMode * ?TickLabelPosition:TickLabelPosition * ?TickLabelOverflow:TickLabelOverflow * ?Mirror:Mirror * ?TickLen:float * ?TickWidth:float * ?TickColor:string * ?ShowTickLabels:bool * ?AutoMargin:bool * ?ShowSpikes:bool * ?SpikeColor:string * ?SpikeThickness:int * ?SpikeDash:DrawingStyle * ?SpikeMode:SpikeMode * ?SpikeSnap:SpikeSnap * ?TickFont:Font * ?TickAngle:int * ?ShowTickPrefix:ShowTickOption * ?TickPrefix:string * ?ShowTickSuffix:ShowTickOption * ?TickSuffix:string * ?ShowExponent:ShowExponent * ?ExponentFormat:ExponentFormat * ?MinExponent:float * ?SeparateThousands:bool * ?TickFormat:string * ?TickFormatStops:seq&lt;TickFormatStop&gt; * ?HoverFormat:string * ?ShowLine:bool * ?LineColor:string * ?LineWidth:float * ?ShowGrid:bool * ?GridColor:string * ?GridWidth:float * ?ZeroLine:bool * ?ZeroLineColor:string * ?ZeroLineWidth:float * ?ShowDividers:bool * ?DividerColor:string * ?DividerWidth:int * ?Anchor:LinearAxisId * ?Side:Side * ?Overlaying:LinearAxisId * ?Layer:Layer * ?Domain:Range * ?Position:float * ?CategoryOrder:CategoryOrder * ?CategoryArray:seq&lt;#IConvertible&gt; * ?UIRevision:#IConvertible * ?RangeSlider:RangeSlider * ?RangeSelector:RangeSelector * ?Calendar:Calendar -&gt; LinearAxis
+  static member initCategorical : categoryOrder:CategoryOrder * ?Visible:bool * ?Color:string * ?Title:Title * ?AutoTypeNumbers:AutoTypeNumbers * ?AutoRange:AutoRange * ?RangeMode:RangeMode * ?Range:Range * ?FixedRange:bool * ?ScaleAnchor:LinearAxisId * ?ScaleRatio:float * ?Constrain:AxisConstraint * ?ConstrainToward:AxisConstraintDirection * ?Matches:LinearAxisId * ?Rangebreaks:seq&lt;Rangebreak&gt; * ?TickMode:TickMode * ?NTicks:int * ?Tick0:#IConvertible * ?DTick:#IConvertible * ?TickVals:seq&lt;#IConvertible&gt; * ?TickText:seq&lt;#IConvertible&gt; * ?Ticks:TickOptions * ?TicksOn:CategoryTickAnchor * ?TickLabelMode:TickLabelMode * ?TickLabelPosition:TickLabelPosition * ?TickLabelOverflow:TickLabelOverflow * ?Mirror:Mirror * ?TickLen:float * ?TickWidth:float * ?TickColor:string * ?ShowTickLabels:bool * ?AutoMargin:bool * ?ShowSpikes:bool * ?SpikeColor:string * ?SpikeThickness:int * ?SpikeDash:DrawingStyle * ?SpikeMode:SpikeMode * ?SpikeSnap:SpikeSnap * ?TickFont:Font * ?TickAngle:int * ?ShowTickPrefix:ShowTickOption * ?TickPrefix:string * ?ShowTickSuffix:ShowTickOption * ?TickSuffix:string * ?ShowExponent:ShowExponent * ?ExponentFormat:ExponentFormat * ?MinExponent:float * ?SeparateThousands:bool * ?TickFormat:string * ?TickFormatStops:seq&lt;TickFormatStop&gt; * ?HoverFormat:string * ?ShowLine:bool * ?LineColor:string * ?LineWidth:float * ?ShowGrid:bool * ?GridColor:string * ?GridWidth:float * ?ZeroLine:bool * ?ZeroLineColor:string * ?ZeroLineWidth:float * ?ShowDividers:bool * ?DividerColor:string * ?DividerWidth:int * ?Anchor:LinearAxisId * ?Side:Side * ?Overlaying:LinearAxisId * ?Layer:Layer * ?Domain:Range * ?Position:float * ?CategoryArray:seq&lt;#IConvertible&gt; * ?UIRevision:#IConvertible * ?RangeSlider:RangeSlider * ?RangeSelector:RangeSelector * ?Calendar:Calendar -&gt; LinearAxis
+  static member style : ?Visible:bool * ?Color:string * ?Title:Title * ?AxisType:AxisType * ?AutoTypeNumbers:AutoTypeNumbers * ?AutoRange:AutoRange * ?RangeMode:RangeMode * ?Range:Range * ?FixedRange:bool * ?ScaleAnchor:LinearAxisId * ?ScaleRatio:float * ?Constrain:AxisConstraint * ?ConstrainToward:AxisConstraintDirection * ?Matches:LinearAxisId * ?Rangebreaks:seq&lt;Rangebreak&gt; * ?TickMode:TickMode * ?NTicks:int * ?Tick0:#IConvertible * ?DTick:#IConvertible * ?TickVals:seq&lt;#IConvertible&gt; * ?TickText:seq&lt;#IConvertible&gt; * ?Ticks:TickOptions * ?TicksOn:CategoryTickAnchor * ?TickLabelMode:TickLabelMode * ?TickLabelPosition:TickLabelPosition * ?TickLabelOverflow:TickLabelOverflow * ?Mirror:Mirror * ?TickLen:float * ?TickWidth:float * ?TickColor:string * ?ShowTickLabels:bool * ?AutoMargin:bool * ?ShowSpikes:bool * ?SpikeColor:string * ?SpikeThickness:int * ?SpikeDash:DrawingStyle * ?SpikeMode:SpikeMode * ?SpikeSnap:SpikeSnap * ?TickFont:Font * ?TickAngle:int * ?ShowTickPrefix:ShowTickOption * ?TickPrefix:string * ?ShowTickSuffix:ShowTickOption * ?TickSuffix:string * ?ShowExponent:ShowExponent * ?ExponentFormat:ExponentFormat * ?MinExponent:float * ?SeparateThousands:bool * ?TickFormat:string * ?TickFormatStops:seq&lt;TickFormatStop&gt; * ?HoverFormat:string * ?ShowLine:bool * ?LineColor:string * ?LineWidth:float * ?ShowGrid:bool * ?GridColor:string * ?GridWidth:float * ?ZeroLine:bool * ?ZeroLineColor:string * ?ZeroLineWidth:float * ?ShowDividers:bool * ?DividerColor:string * ?DividerWidth:int * ?Anchor:LinearAxisId * ?Side:Side * ?Overlaying:LinearAxisId * ?Layer:Layer * ?Domain:Range * ?Position:float * ?CategoryOrder:CategoryOrder * ?CategoryArray:seq&lt;#IConvertible&gt; * ?UIRevision:#IConvertible * ?RangeSlider:RangeSlider * ?RangeSelector:RangeSelector * ?Calendar:Calendar -&gt; (LinearAxis -&gt; LinearAxis)<br /><em>&lt;summary&gt;Linear axes can be used as x and y scales on 2D plots, and as x,y, and z scales on 3D plots.&lt;/summary&gt;</em><br /><br />--------------------<br />new : unit -&gt; Axis.LinearAxis</div>
 <div class="fsdocs-tip" id="fs24">val yAxis : Axis.LinearAxis</div>
 <div class="fsdocs-tip" id="fs25">val layout : Layout</div>
 <div class="fsdocs-tip" id="fs26">val tmp : Layout</div>
-<div class="fsdocs-tip" id="fs27">Multiple items<br />type Layout =<br />&#160;&#160;inherit DynamicObj<br />&#160;&#160;new : unit -&gt; Layout<br />&#160;&#160;static member AddLinearAxis : id:AxisId * axis:LinearAxis -&gt; (Layout -&gt; Layout)<br />&#160;&#160;static member AddMap : id:int * map:Geo -&gt; (Layout -&gt; Layout)<br />&#160;&#160;static member AddScene : name:string * scene:Scene -&gt; (Layout -&gt; Layout)<br />&#160;&#160;static member GetLayoutGrid : grid:LayoutGrid -&gt; (Layout -&gt; Layout)<br />&#160;&#160;static member SetLayoutGrid : grid:LayoutGrid -&gt; (Layout -&gt; Layout)<br />&#160;&#160;static member UpdateLinearAxisById : id:AxisId * axis:LinearAxis -&gt; (Layout -&gt; Layout)<br />&#160;&#160;static member UpdateMapById : id:int * map:Geo -&gt; (Layout -&gt; Layout)<br />&#160;&#160;static member UpdateMapboxById : id:int * mapbox:Mapbox -&gt; (Layout -&gt; Layout)<br />&#160;&#160;...<br /><br />--------------------<br />new : unit -&gt; Layout</div>
+<div class="fsdocs-tip" id="fs27">Multiple items<br />type Layout =
+  inherit DynamicObj
+  new : unit -&gt; Layout
+  static member AddGeo : id:SubPlotId * geo:Geo -&gt; (Layout -&gt; Layout)
+  static member AddLinearAxis : id:SubPlotId * axis:LinearAxis -&gt; (Layout -&gt; Layout)
+  static member AddMapbox : id:SubPlotId * mapbox:Mapbox -&gt; (Layout -&gt; Layout)
+  static member GetLayoutGrid : grid:LayoutGrid -&gt; (Layout -&gt; Layout)
+  static member SetLayoutGrid : grid:LayoutGrid -&gt; (Layout -&gt; Layout)
+  static member UpdateGeoById : id:SubPlotId * geo:Geo -&gt; (Layout -&gt; Layout)
+  static member UpdateLinearAxisById : id:SubPlotId * axis:LinearAxis -&gt; (Layout -&gt; Layout)
+  static member UpdateMapboxById : id:SubPlotId * mapbox:Mapbox -&gt; (Layout -&gt; Layout)
+  ...<br /><em>&lt;summary&gt;
+ Layout 
+&lt;/summary&gt;</em><br /><br />--------------------<br />new : unit -&gt; Layout</div>
 <div class="fsdocs-tip" id="fs28">val trace : Trace</div>
 <div class="fsdocs-tip" id="fs29">val tmp : Trace</div>
-<div class="fsdocs-tip" id="fs30">Multiple items<br />module Trace<br /><br />from Plotly.NET<br /><br />--------------------<br />type Trace =<br />&#160;&#160;inherit DynamicObj<br />&#160;&#160;new : traceTypeName:string -&gt; Trace<br />&#160;&#160;member type : string<br /><br />--------------------<br />new : traceTypeName:string -&gt; Trace</div>
-<div class="fsdocs-tip" id="fs31">val ofTraceObject : trace:Trace -&gt; GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs30">Multiple items<br />module Trace
+
+from Plotly.NET<br /><br />--------------------<br />type Trace =
+  inherit DynamicObj
+  new : traceTypeName:string -&gt; Trace
+  member type : string<br /><em>&lt;summary&gt;
+ Trace type inherits from dynamic object
+&lt;/summary&gt;</em><br /><br />--------------------<br />new : traceTypeName:string -&gt; Trace</div>
+<div class="fsdocs-tip" id="fs31">val ofTraceObject : trace:Trace -&gt; GenericChart.GenericChart<br /><em>&lt;summary&gt;
+ Converts from a trace object and a layout object into GenericChart
+&lt;/summary&gt;</em></div>
 <div class="fsdocs-tip" id="fs32">val setLayout : layout:Layout -&gt; gChart:GenericChart.GenericChart -&gt; GenericChart.GenericChart</div>
 
     </div>

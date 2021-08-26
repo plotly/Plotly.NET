@@ -92,7 +92,7 @@ let svgString =
 
 svgString.Substring(0,300)
 |> printfn "%s"(* output: 
-<svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600" height="600" style="" viewBox="0 0 300 300"><rect x="0" y="0" width="300" height="300" style="fill: rgb(255, 255, 255); fill-opacity: 1;"/><defs id="defs-adf106"><g class="clips"><clipPath*)
+<svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600" height="600" style="" viewBox="0 0 300 300"><rect x="0" y="0" width="300" height="300" style="fill: rgb(255, 255, 255); fill-opacity: 1;"/><defs id="defs-d5ab54"><g class="clips"><clipPath*)
 (**
 In fact, the images shown on this site are included just the same way.
 

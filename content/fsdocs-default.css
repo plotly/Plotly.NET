@@ -1,13 +1,9 @@
-/* @import url(https://fonts.googleapis.com/css?family=Droid+Sans|Droid+Sans+Mono|Open+Sans:400,600,700); */
-/* @import url('https://fonts.googleapis.com/css2?family=Hind+Vadodara&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Hind+Vadodara&family=Roboto+Mono&display=swap');
 /*--------------------------------------------------------------------------
   Formatting for page & standard document content
 /*--------------------------------------------------------------------------*/
 
 body {
-    /* font-family: 'Open Sans', serif; */
-    /* font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif; */
     font-family: 'Hind Vadodara', sans-serif;
     /*    padding-top: 0px;
     padding-bottom: 40px;
@@ -223,38 +219,38 @@ body {
     line-height: 1.375rem;
     letter-spacing: 0.01px;
     font-weight: 500;
-    color: #262626;
+    color: #262626;    
 }
 
-    .fsdocs-xmldoc h1 {
-        font-size: 1.2rem;
-        margin: 10px 0px 0px 0px;
-    }
+.fsdocs-xmldoc h1 {
+    font-size: 1.2rem;
+    margin: 10px 0px 0px 0px;
+}
 
-    .fsdocs-xmldoc h2 {
-        font-size: 1.2rem;
-        margin: 10px 0px 0px 0px;
-    }
+.fsdocs-xmldoc h2 {
+    font-size: 1.2rem;
+    margin: 10px 0px 0px 0px;
+}
 
-    .fsdocs-xmldoc h3 {
-        font-size: 1.1rem;
-        margin: 10px 0px 0px 0px;
-    }
+.fsdocs-xmldoc h3 {
+    font-size: 1.1rem;
+    margin: 10px 0px 0px 0px;
+}
 
 /* #fsdocs-nav .searchbox {
     margin-top: 30px;
     margin-bottom: 30px;
 } */
 
-#fsdocs-nav img.logo {
-    width: 90%;
+#fsdocs-nav img.logo{
+    width:90%;
     /* height:140px; */
     /* margin:10px 0px 0px 20px; */
-    margin-top: 40px;
-    border-style: none;
+    margin-top:40px;
+    border-style:none;
 }
 
-#fsdocs-nav input {
+#fsdocs-nav input{
     /* margin-left: 20px; */
     margin-right: 20px;
     margin-top: 20px;
@@ -267,26 +263,26 @@ body {
 #fsdocs-nav {
     /* margin-left: -5px; */
     /* width: 90%; */
-    font-size: 0.95rem;
+    font-size:0.95rem;
 }
 
-    #fsdocs-nav li.nav-header {
-        /* margin-left: -5px; */
-        /* width: 90%; */
-        padding-left: 0;
-        color: #262626;
-        text-transform: none;
-        font-size: 16px;
-        margin-top: 9px;
-        font-weight: bold;
-    }
+#fsdocs-nav li.nav-header{
+    /* margin-left: -5px; */
+    /* width: 90%; */
+    padding-left: 0;
+    color: #262626;
+    text-transform: none;
+    font-size:16px;
+    margin-top: 9px;
+    font-weight: bold;
+}
 
-    #fsdocs-nav a {
-        padding-left: 0;
-        color: #6c6c6d;
-        /* margin-left: 5px; */
-        /* width: 90%; */
-    }
+#fsdocs-nav a{
+    padding-left: 0;
+    color: #6c6c6d;
+    /* margin-left: 5px; */
+    /* width: 90%; */
+}
 
 /*--------------------------------------------------------------------------
   Formatting pre and code sections in fsdocs-content (code highlighting is
@@ -312,7 +308,7 @@ body {
 }
 
 #fsdocs-content pre .fssnip code {
-    font: 0.85rem 'Roboto Mono', monospace;
+    font: 0.86rem 'Roboto Mono', monospace;
 }
 
 #fsdocs-content table.pre,
@@ -323,36 +319,45 @@ body {
     border-top: 0px solid #e3e3e3;
     border-collapse: separate;
     white-space: pre;
-    font: 0.85rem 'Roboto Mono', monospace;
-    width: 90%;
-    /* margin: 10px 20px 20px 20px; */
+    font: 0.86rem 'Roboto Mono', monospace;
+    width: 100%;
+    margin: 10px 0px 20px 0px;
     background-color: #f3f4f7;
     padding: 10px;
-    /* border-radius: 5px; */
+    border-radius: 5px;
     color: #8e0e2b;
     max-width: none;
+    box-sizing: border-box;
 }
 
-    #fsdocs-content pre.fssnip code {
-        font: 0.85rem 'Roboto Mono', monospace;
-    }
+#fsdocs-content pre.fssnip code {
+    font: 0.86rem 'Roboto Mono', monospace;
+    font-weight: 600;
+}
 
-    #fsdocs-content table.pre pre {
-        padding: 0px;
-        margin: 0px;
-        border-radius: 0px;
-        width: 100%;
-    }
+#fsdocs-content table.pre {
+    background-color: #fff7ed;
+}
 
-    #fsdocs-content table.pre td {
-        padding: 0px;
-        white-space: normal;
-        margin: 0px;
-    }
+#fsdocs-content table.pre pre {
+    padding: 0px;
+    margin: 0px;
+    border-radius: 0px;
+    width: 100%;
+    background-color: #fff7ed;
+    color: #837b79;
+}
 
-        #fsdocs-content table.pre td.lines {
-            width: 30px;
-        }
+#fsdocs-content table.pre td {
+    padding: 0px;
+    white-space: normal;
+    margin: 0px;
+    width: 100%;
+}
+
+#fsdocs-content table.pre td.lines {
+    width: 30px;
+}
 
 
 #fsdocs-content pre {
@@ -364,7 +369,7 @@ body {
     line-height: 1.375rem;
     letter-spacing: 0.01px;
     font-weight: 700;
-    color: #262626;
+    color: #262626;    
 }
 
 /*--------------------------------------------------------------------------
@@ -379,6 +384,8 @@ body {
     .fsdocs-source-link img {
         border-style: none;
         margin-left: 10px;
+        width: auto;
+        height: 1.4em;        
     }
 
     .fsdocs-source-link .hover {
@@ -402,10 +409,10 @@ body {
 /*--------------------------------------------------------------------------*/
 
 #fsdocs-logo {
-    width: 140px;
-    height: 140px;
-    margin: 10px 0px 0px 0px;
-    border-style: none;
+    width:140px;
+    height:140px;
+    margin:10px 0px 0px 0px;
+    border-style:none;
 }
 
 /*--------------------------------------------------------------------------
@@ -506,7 +513,6 @@ body {
 #fsdocs-content span.p {
     color: #43AEC6;
 }
-
 #fsdocs-content span.pn {
     color: #262626;
 }
@@ -514,7 +520,6 @@ body {
 #fsdocs-content span.f {
     color: #e1e1e1;
 }
-
 #fsdocs-content span.fn {
     color: #990000;
 }
@@ -538,6 +543,8 @@ body {
 /* comment */
 #fsdocs-content span.c {
     color: #808080;
+    font-weight: 400;
+    font-style: italic;
 }
 /* operators */
 #fsdocs-content span.o {
@@ -584,3 +591,4 @@ div.fsdocs-tip {
         color: #d1d1d1;
         font: 0.85rem 'Roboto Mono', monospace;
     }
+

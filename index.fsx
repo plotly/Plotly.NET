@@ -40,25 +40,25 @@ You can find all available package versions on the [nuget page](https://www.nuge
  - dotnet CLI
 
     ```shell
-    dotnet add package Plotly.NET --version 2.0.0-preview.6
+    dotnet add package Plotly.NET --version 2.0.0-preview.7
     ```
 
  - paket CLI
 
     ```shell
-    paket add Plotly.NET --version 2.0.0-preview.6
+    paket add Plotly.NET --version 2.0.0-preview.7
     ```
 
  - package manager
 
     ```shell
-    Install-Package Plotly.NET -Version 2.0.0-preview.6
+    Install-Package Plotly.NET -Version 2.0.0-preview.7
     ```
 
     Or add the package reference directly to your `.*proj` file:
 
     ```
-    <PackageReference Include="Plotly.NET" Version="2.0.0-preview.6" />
+    <PackageReference Include="Plotly.NET" Version="2.0.0-preview.7" />
     ```
 
 ### For scripting
@@ -66,7 +66,7 @@ You can find all available package versions on the [nuget page](https://www.nuge
 You can include the package via an inline package reference:
 
 ```
-#r "nuget: Plotly.NET, 2.0.0-preview.6"
+#r "nuget: Plotly.NET, 2.0.0-preview.7"
 ```
 
 ### For dotnet interactive notebooks
@@ -75,8 +75,8 @@ You can use the same inline package reference as in script, but as an additional
 the interactive extensions for dotnet interactive have you covered for seamless chart rendering:
 
 ```
-#r "nuget: Plotly.NET, 2.0.0-preview.6"
-#r "nuget: Plotly.NET.Interactive, 2.0.0-preview.6"
+#r "nuget: Plotly.NET, 2.0.0-preview.7"
+#r "nuget: Plotly.NET.Interactive, 2.0.0-preview.7"
 ```
 
 _Note_: 
@@ -123,15 +123,15 @@ let myFirstChart = Chart.Point(xData,yData)
 Styling functions are generally the `Chart.with*` naming convention. The following styling example does:
 
  - set the chart title via `Chart.withTitle`
- - set the x axis title and removes the gridline from the axis via `Chart.withX_AxisStyle`
- - set the y axis title and removes the gridline from the axis via `Chart.withY_AxisStyle`
+ - set the x axis title and removes the gridline from the axis via `Chart.withXAxisStyle`
+ - set the y axis title and removes the gridline from the axis via `Chart.withYAxisStyle`
 
 *)
 let myFirstStyledChart =
     Chart.Point(xData,yData)
     |> Chart.withTitle "Hello world!"
-    |> Chart.withX_AxisStyle ("xAxis", Showgrid=false)
-    |> Chart.withY_AxisStyle ("yAxis", Showgrid=false)
+    |> Chart.withXAxisStyle ("xAxis", ShowGrid=false)
+    |> Chart.withYAxisStyle ("yAxis", ShowGrid=false)
 (**
 **Attention:** Styling functions mutate 😈 the input chart, therefore possibly affecting bindings to intermediary results. 
 We recommend creating a single chart for each workflow to prevent unexpected results
@@ -143,63 +143,63 @@ The `Chart.Show` function will open a browser window and render the input chart 
 
 *)
 myFirstChart
-|> Chart.Show
+|> Chart.show
 (**
 Should render this chart in your brower:
-<div id="38305ce0-75cc-41a0-abd1-a6ff5afdd23a" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="52620720-a67d-47ef-8dfd-5a87b935e0c7" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_38305ce075cc41a0abd1a6ff5afdd23a = function() {
+            var renderPlotly_52620720a67d47ef8dfd5a87b935e0c7 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"mode":"markers","marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('38305ce0-75cc-41a0-abd1-a6ff5afdd23a', data, layout, config);
+            Plotly.newPlot('52620720-a67d-47ef-8dfd-5a87b935e0c7', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_38305ce075cc41a0abd1a6ff5afdd23a();
+                    renderPlotly_52620720a67d47ef8dfd5a87b935e0c7();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_38305ce075cc41a0abd1a6ff5afdd23a();
+                renderPlotly_52620720a67d47ef8dfd5a87b935e0c7();
             }
 </script>
 
 *)
 myFirstStyledChart
-|> Chart.Show
+|> Chart.show
 (**
 And here is what happened after applying the styles from above:
-<div id="d0180c81-e63b-47f9-9154-3ba654906ef0" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="976e21fa-5da0-4785-85b8-d7ac8f2faf9c" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_d0180c81e63b47f991543ba654906ef0 = function() {
+            var renderPlotly_976e21fa5da0478585b8d7ac8f2faf9c = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","x":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"mode":"markers","marker":{}}];
-            var layout = {"title":"Hello world!","xaxis":{"title":"xAxis","showgrid":false},"yaxis":{"title":"yAxis","showgrid":false}};
+            var layout = {"title":{"text":"Hello world!"},"xaxis":{"title":{"text":"xAxis"},"showgrid":false},"yaxis":{"title":{"text":"yAxis"},"showgrid":false}};
             var config = {};
-            Plotly.newPlot('d0180c81-e63b-47f9-9154-3ba654906ef0', data, layout, config);
+            Plotly.newPlot('976e21fa-5da0-4785-85b8-d7ac8f2faf9c', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_d0180c81e63b47f991543ba654906ef0();
+                    renderPlotly_976e21fa5da0478585b8d7ac8f2faf9c();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_d0180c81e63b47f991543ba654906ef0();
+                renderPlotly_976e21fa5da0478585b8d7ac8f2faf9c();
             }
 </script>
 
@@ -216,8 +216,8 @@ Here is the styled chart:
 *)
 Chart.Point(xData,yData)
 |> Chart.withTitle "Hello world!"
-|> Chart.withX_AxisStyle ("xAxis", Showgrid=false)
-|> Chart.withY_AxisStyle ("yAxis", Showgrid=false)
+|> Chart.withXAxisStyle ("xAxis", ShowGrid=false)
+|> Chart.withYAxisStyle ("yAxis", ShowGrid=false)
 (**
 ## Comparison: Usage in F# and C#
 
@@ -228,8 +228,8 @@ One of the main design points of Plotly.NET it is to provide support for multipl
 [(1,5);(2,10)]
 |> Chart.Point
 |> Chart.withTraceName("Hello from F#",Showlegend=true)
-|> Chart.withY_AxisStyle("xAxis",Showgrid= false, Showline=true)
-|> Chart.withX_AxisStyle("yAxis",Showgrid= false, Showline=true)
+|> Chart.withYAxisStyle("xAxis",ShowGrid= false, ShowLine=true)
+|> Chart.withXAxisStyle("yAxis",ShowGrid= false, ShowLine=true)
 (**
 ### Fluent interface style in C#:
 
@@ -241,8 +241,8 @@ static void Main(string[] args)
     GenericChart.GenericChart chart = Chart.Point(x: x, y: y);
     chart
         .WithTraceName("Hello from C#", true)
-        .WithX_AxisStyle(title: "xAxis", Showgrid: false, Showline: true)
-        .WithY_AxisStyle(title: "yAxis", Showgrid: false, Showline: true)
+        .withXAxisStyle(title: "xAxis", Showgrid: false, Showline: true)
+        .withYAxisStyle(title: "yAxis", Showgrid: false, Showline: true)
         .Show();
 }
 ```

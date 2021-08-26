@@ -25,29 +25,29 @@ let line = Line.init (Color="purple", Width=3.)
 
 let funnelArea = 
     Chart.FunnelArea(Values=values, Text=text, Line=line)(* output: 
-<div id="3fb5be67-5132-4f13-b9ee-8962a8b66857" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="71f829cc-46f3-4fd4-b208-c0073dbb55cc" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_3fb5be6751324f13b9ee8962a8b66857 = function() {
+            var renderPlotly_71f829cc46f34fd4b208c0073dbb55cc = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"funnelarea","values":[5,4,3,2,1],"marker":{"line":{"color":"purple","width":3.0}},"domain":{},"text":["The 1st","The 2nd","The 3rd","The 4th","The 5th"]}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('3fb5be67-5132-4f13-b9ee-8962a8b66857', data, layout, config);
+            Plotly.newPlot('71f829cc-46f3-4fd4-b208-c0073dbb55cc', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_3fb5be6751324f13b9ee8962a8b66857();
+                    renderPlotly_71f829cc46f34fd4b208c0073dbb55cc();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_3fb5be6751324f13b9ee8962a8b66857();
+                renderPlotly_71f829cc46f34fd4b208c0073dbb55cc();
             }
 </script>
 *)
