@@ -22,9 +22,9 @@ module StyleParam =
             | Cube  -> "cube" 
             | Data  -> "data" 
             | Manual-> "manual"
-
-
         static member convert = AspectMode.toString >> box
+        override this.ToString() = this |> AspectMode.toString
+        member this.Convert() = this |> AspectMode.convert
     
     /// Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines
     [<RequireQualifiedAccess>]
@@ -36,8 +36,9 @@ module StyleParam =
             | Left     -> "left"            
             | Right    -> "right"
 
-
         static member convert = Align.toString >> box
+        override this.ToString() = this |> Align.toString
+        member this.Convert() = this |> Align.convert
 
     /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to "false".
     [<RequireQualifiedAccess>]
@@ -50,6 +51,8 @@ module StyleParam =
             | Reversed -> "reversed"
 
         static member convert = AutoRange.toString >> box
+        override this.ToString() = this |> AutoRange.toString
+        member this.Convert() = this |> AutoRange.convert
 
     /// Sets the axis type. By default (Auto), plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
     [<RequireQualifiedAccess>]
@@ -65,6 +68,8 @@ module StyleParam =
             | MultiCategory -> "multicategory"
 
         static member convert = AxisType.toString >> box
+        override this.ToString() = this |> AxisType.toString
+        member this.Convert() = this |> AxisType.convert
 
     [<RequireQualifiedAccess>]
     type ArrowHead =
@@ -78,7 +83,10 @@ module StyleParam =
             |Cirle         -> 6
             |Square        -> 7
             |LineOnly      -> 8
+
         static member convert = ArrowHead.toEnum >> box
+        override this.ToString() = this |> ArrowHead.toEnum |> string
+        member this.Convert() = this |> ArrowHead.convert
 
     [<RequireQualifiedAccess>]
     type LinearAxisId = 
@@ -87,7 +95,10 @@ module StyleParam =
         static member toString = function
             | X id  -> if id < 2 then "x" else sprintf "x%i" id
             | Y id  -> if id < 2 then "y" else sprintf "y%i" id
-        static member convert = LinearAxisId.toString >> box 
+
+        static member convert = LinearAxisId.toString >> box
+        override this.ToString() = this |> LinearAxisId.toString
+        member this.Convert() = this |> LinearAxisId.convert
 
     // to-do merge with axis anchor id
     [<RequireQualifiedAccess>]
@@ -112,6 +123,8 @@ module StyleParam =
             | Scene     id  -> if id < 2 then "scene" else sprintf "scene%i" id
 
         static member convert = SubPlotId.toString >> box 
+        override this.ToString() = this |> SubPlotId.toString
+        member this.Convert() = this |> SubPlotId.convert
 
     [<RequireQualifiedAccess>]
     /// Editable parts of a chart that can be set via Chart config.
@@ -149,6 +162,8 @@ module StyleParam =
             |ShapePosition      ->  "shapePosition"      
 
         static member convert = AnnotationEditOptions.toString >> box 
+        override this.ToString() = this |> AnnotationEditOptions.toString
+        member this.Convert() = this |> AnnotationEditOptions.convert
 
     [<RequireQualifiedAccess>]
     type AutoTypeNumbers =
@@ -159,6 +174,8 @@ module StyleParam =
             | Strict        -> "strict"
 
         static member convert = AutoTypeNumbers.toString >> box 
+        override this.ToString() = this |> AutoTypeNumbers.toString
+        member this.Convert() = this |> AutoTypeNumbers.convert
 
     [<RequireQualifiedAccess>]
     type AngularUnit =
@@ -172,6 +189,8 @@ module StyleParam =
             | Gradians  -> "gradians"
 
         static member convert = AngularUnit.toString >> box
+        override this.ToString() = this |> AngularUnit.toString
+        member this.Convert() = this |> AngularUnit.convert
 
 //--------------------------
 // #B#
@@ -184,11 +203,16 @@ module StyleParam =
         | Suspectedoutliers
         | False    
 
-        static member convert = function
-            | Outliers          -> box "outliers"
-            | All               -> box "all"
-            | Suspectedoutliers -> box "suspectedoutliers"
-            | False             -> box false
+        static member toString = function
+            | Outliers          -> "outliers"
+            | All               -> "all"
+            | Suspectedoutliers -> "suspectedoutliers"
+            | False             -> "false"
+
+        static member convert = Boxpoints.toString >> box
+        override this.ToString() = this |> Boxpoints.toString
+        member this.Convert() = this |> Boxpoints.convert
+
 
 
     [<RequireQualifiedAccess>]
@@ -197,10 +221,14 @@ module StyleParam =
         | False
         | SD 
          
-        static member convert = function
-            | True  -> box true
-            | False -> box false
-            | SD    -> box "SD"
+        static member toString = function
+            | True  -> "true"
+            | False -> "false"
+            | SD    -> "SD"
+
+        static member convert = BoxMean.toString >> box
+        override this.ToString() = this |> BoxMean.toString
+        member this.Convert() = this |> BoxMean.convert
 
     /// For bar and histogram plots only. This sets how multiple bar objects are plotted together. In other words, this defines how bars at the same location
     /// appear on the plot. If set to 'stack' the bars are stacked on top of one another. If set to 'group', the bars are plotted next to one another, centered 
@@ -216,6 +244,8 @@ module StyleParam =
             | Relative-> "relative"
 
         static member convert = BarMode.toString >> box    
+        override this.ToString() = this |> BarMode.toString
+        member this.Convert() = this |> BarMode.convert
 
     [<RequireQualifiedAccess>]
     type BoxMode =
@@ -226,6 +256,8 @@ module StyleParam =
             | Overlay -> "overlay"
 
         static member convert = BoxMode.toString >> box    
+        override this.ToString() = this |> BoxMode.toString
+        member this.Convert() = this |> BoxMode.convert
         
     [<RequireQualifiedAccess>]
     type BarNorm =
@@ -237,6 +269,8 @@ module StyleParam =
             | Percent   -> "percent"
 
         static member convert = BarNorm.toString >> box
+        override this.ToString() = this |> BarNorm.toString
+        member this.Convert() = this |> BarNorm.convert
 
     [<RequireQualifiedAccess>]
     type BranchValues =
@@ -248,6 +282,8 @@ module StyleParam =
             | Total     -> "total"            
 
         static member convert = BranchValues.toString >> box
+        override this.ToString() = this |> BranchValues.toString
+        member this.Convert() = this |> BranchValues.convert
 
 //--------------------------
 // #C#
@@ -267,6 +303,8 @@ module StyleParam =
             | NoClickMode   -> "none"
 
         static member convert = ClickMode.toString >> box
+        override this.ToString() = this |> ClickMode.toString
+        member this.Convert() = this |> ClickMode.convert
 
     /// Sets the calendar system to use with `x y z` date data. Default: "gregorian"
     [<RequireQualifiedAccess>]
@@ -293,6 +331,8 @@ module StyleParam =
             | Ummalqura  -> "ummalqura"
 
         static member convert = Calendar.toString >> box
+        override this.ToString() = this |> Calendar.toString
+        member this.Convert() = this |> Calendar.convert
 
     /// Only applies if cumulative is enabled. If "increasing" (default) we sum all prior bins, so the result increases from left to right.
     /// If "decreasing" we sum later bins so the result decreases from left to right.  default: "increasing"
@@ -305,6 +345,8 @@ module StyleParam =
             | Decreasing  -> "decreasing"
 
         static member convert = CumulativeDirection.toString >> box
+        override this.ToString() = this |> CumulativeDirection.toString
+        member this.Convert() = this |> CumulativeDirection.convert
 
     /// Only applies if cumulative is enabled. Sets whether the current bin is included, excluded, or has half of its value included in 
     /// the current cumulative value. "include" is the default for compatibility with various other tools, however it introduces
@@ -319,6 +361,8 @@ module StyleParam =
             | Half    -> "Half"
 
         static member convert = Currentbin.toString >> box
+                override this.ToString() = this |> Currentbin.toString
+        member this.Convert() = this |> Currentbin.convert
 
     /// The colorscale must be a collection containing a mapping of a normalized value (between 0.0 and 1.0) to it's color. At minimum, a mapping for the lowest (0.0) and highest (1.0) values are required. 
     [<RequireQualifiedAccess>]
@@ -347,6 +391,8 @@ module StyleParam =
             | Rainbow         -> box "Rainbow"
             | Viridis         -> box "Viridis"
             | Cividis         -> box "Cividis"
+
+        member this.Convert() = this |> Colorscale.convert
 
     /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses "trace", which specifies the order that is present in the data supplied. 
     /// Set `categoryorder` to "category ascending" or "category descending" if order should be determined by the alphanumerical order of the category names. 
@@ -391,6 +437,8 @@ module StyleParam =
             | MedianDescending -> "median descending"
 
         static member convert = CategoryOrder.toString >> box
+        override this.ToString() = this |> CategoryOrder.toString
+        member this.Convert() = this |> CategoryOrder.convert
 
     ///The shape of connector lines in Waterfall charts.
     [<RequireQualifiedAccess>]
@@ -402,6 +450,8 @@ module StyleParam =
             | Between   -> "between"
 
         static member convert = ConnectorMode.toString >> box
+        override this.ToString() = this |> ConnectorMode.toString
+        member this.Convert() = this |> ConnectorMode.convert
 
     /// If the axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or those of the other axis), determines how that happens: by increasing the "range", or by decreasing the "domain". Default is "domain" for axes containing image traces, "range" otherwise.
     [<RequireQualifiedAccess>]
@@ -413,6 +463,8 @@ module StyleParam =
             | Domain    -> "domain"
 
         static member convert = AxisConstraint.toString >> box
+        override this.ToString() = this |> AxisConstraint.toString
+        member this.Convert() = this |> AxisConstraint.convert
 
     [<RequireQualifiedAccess>]
     type AxisConstraintDirection =
@@ -427,6 +479,8 @@ module StyleParam =
             | Bottom    -> "bottom"
 
         static member convert = AxisConstraintDirection.toString >> box
+        override this.ToString() = this |> AxisConstraintDirection.toString
+        member this.Convert() = this |> AxisConstraintDirection.convert
 
     [<RequireQualifiedAccess>]
     type CategoryTickAnchor =
@@ -437,6 +491,8 @@ module StyleParam =
             | Boundaries-> "boundaries"
 
         static member convert = CategoryTickAnchor.toString >> box
+        override this.ToString() = this |> CategoryTickAnchor.toString
+        member this.Convert() = this |> CategoryTickAnchor.convert
         
     /// Sets the cones' anchor with respect to their x/y/z positions. Note that "cm" denote the cone's center of mass which corresponds to 1/4 from the tail to tip.
     [<RequireQualifiedAccess>]
@@ -453,6 +509,8 @@ module StyleParam =
             | Center        -> "center"
 
         static member convert = ConeAnchor.toString >> box
+        override this.ToString() = this |> ConeAnchor.toString
+        member this.Convert() = this |> ConeAnchor.convert
 
            
     /// Sets the cones' anchor with respect to their x/y/z positions. Note that "cm" denote the cone's center of mass which corresponds to 1/4 from the tail to tip.
@@ -466,7 +524,8 @@ module StyleParam =
             | Absolute -> "absolute"
 
         static member convert = ConeSizeMode.toString >> box
-
+        override this.ToString() = this |> ConeSizeMode.toString
+        member this.Convert() = this |> ConeSizeMode.convert
     
         
 //--------------------------
@@ -486,8 +545,9 @@ module StyleParam =
             | Pan    -> "pan"
             | Rotate -> "rotate"
 
-
         static member convert = DragMode.toString >> box
+        override this.ToString() = this |> DragMode.toString
+        member this.Convert() = this |> DragMode.convert
 
     /// Sets the Delaunay axis, which is the axis that is perpendicular to the surface of the Delaunay triangulation.
     /// It has an effect if `i`, `j`, `k` are not provided and `alphahull` is set to indicate Delaunay triangulation. 
@@ -502,6 +562,8 @@ module StyleParam =
             | Z   -> "z"
 
         static member convert = Delaunayaxis.toString >> box
+        override this.ToString() = this |> Delaunayaxis.toString
+        member this.Convert() = this |> Delaunayaxis.convert
 
     /// Specifies the direction at which succeeding sectors follow one another.
     [<RequireQualifiedAccess>]
@@ -513,6 +575,8 @@ module StyleParam =
             | CounterClockwise -> "counterclockwise"
 
         static member convert = Direction.toString >> box
+        override this.ToString() = this |> Direction.toString
+        member this.Convert() = this |> Direction.convert
 
     /// Dash: Sets the drawing style of the lines segments in this trace.
     /// Sets the style of the lines. Set to a dash string type or a dash length in px.
@@ -531,8 +595,8 @@ module StyleParam =
             | User px -> px.ToString()           
 
         static member convert = DrawingStyle.toString >> box
-
-    
+        override this.ToString() = this |> DrawingStyle.toString
+        member this.Convert() = this |> DrawingStyle.convert
 
 //--------------------------
 // #E#
@@ -554,7 +618,8 @@ module StyleParam =
         
     
         static member convert = ExponentFormat.toString >> box
-
+        override this.ToString() = this |> ExponentFormat.toString
+        member this.Convert() = this |> ExponentFormat.convert
 
 //--------------------------
 // #F#
@@ -570,6 +635,8 @@ module StyleParam =
             | Overlay   -> "overlay"
 
         static member convert = FunnelMode.toString >> box    
+        override this.ToString() = this |> FunnelMode.toString
+        member this.Convert() = this |> FunnelMode.convert
 
     /// Names of installed font families
     [<RequireQualifiedAccess>]
@@ -608,7 +675,8 @@ module StyleParam =
             | Custom name     -> name
 
         static member convert = FontFamily.toString >> box
-
+        override this.ToString() = this |> FontFamily.toString
+        member this.Convert() = this |> FontFamily.convert
 
     /// Sets the area to fill with a solid color. (default: "none" )
     [<RequireQualifiedAccess>]
@@ -625,6 +693,8 @@ module StyleParam =
             | ToNext    -> "tonext"
     
         static member convert = Fill.toString >> box
+        override this.ToString() = this |> Fill.toString
+        member this.Convert() = this |> Fill.convert
 
 //--------------------------
 // #G#
@@ -640,6 +710,8 @@ module StyleParam =
                | Percent            -> "percent"
 
            static member convert = GroupNorm.toString >> box
+           override this.ToString() = this |> GroupNorm.toString
+           member this.Convert() = this |> GroupNorm.convert
 
     ///Used for the Layout.geo field. Determines if this subplot's view settings are auto-computed to fit trace data. On scoped maps, setting `fitbounds` leads to `center.lon` and `center.lat` getting auto-filled. On maps with a non-clipped projection, setting `fitbounds` leads to `center.lon`, `center.lat`, and `projection.rotation.lon` getting auto-filled. On maps with a clipped projection, setting `fitbounds` leads to `center.lon`, `center.lat`, `projection.rotation.lon`, `projection.rotation.lat`, `lonaxis.range` and `lonaxis.range` getting auto-filled. If "locations", only the trace's visible locations are considered in the `fitbounds` computations. If "geojson", the entire trace input `geojson` (if provided) is considered in the `fitbounds` computations, Defaults to "false".
     [<RequireQualifiedAccess>]
@@ -652,6 +724,8 @@ module StyleParam =
                | GeoJson        -> "geojson"
 
            static member convert = GeoFitBounds.toString >> box
+           override this.ToString() = this |> GeoFitBounds.toString
+           member this.Convert() = this |> GeoFitBounds.convert
 
     ///Used for the Layout.geo field. Sets the resolution of the base layers. The values have units of km/mm e.g. 110 corresponds to a scale ratio of 1:110,000,000.
     [<RequireQualifiedAccess>]
@@ -663,6 +737,8 @@ module StyleParam =
                | R50    -> "50"
 
            static member convert = GeoResolution.toString >> box
+           override this.ToString() = this |> GeoResolution.toString
+           member this.Convert() = this |> GeoResolution.convert
 
     [<RequireQualifiedAccess>]
     type GeoScope =
@@ -678,6 +754,8 @@ module StyleParam =
                 | SouthAmerica    -> "south america"
 
             static member convert = GeoScope.toString >> box
+            override this.ToString() = this |> GeoScope.toString
+            member this.Convert() = this |> GeoScope.convert
 
     [<RequireQualifiedAccess>]
     type GeoProjectionType =
@@ -729,6 +807,8 @@ module StyleParam =
                 | Sinusoidal            -> "sinusoidal"
 
             static member convert = GeoProjectionType.toString >> box
+            override this.ToString() = this |> GeoProjectionType.toString
+            member this.Convert() = this |> GeoProjectionType.convert
 
 //--------------------------
 // #H#
@@ -755,6 +835,8 @@ module StyleParam =
             | ProbabilityDensity -> "probability density"
 
         static member convert = HistNorm.toString >> box
+        override this.ToString() = this |> HistNorm.toString
+        member this.Convert() = this |> HistNorm.convert
 
 
     /// Sets the binning function used for this histogram trace. The default value is 'count' where the histogram values are computed 
@@ -772,7 +854,9 @@ module StyleParam =
             | Min   -> "min"
             | Max   -> "max"
 
-        static member convert = HistNorm.toString >> box
+        static member convert = HistFunc.toString >> box
+        override this.ToString() = this |> HistFunc.toString
+        member this.Convert() = this |> HistFunc.convert
 
 
     /// Sets this figure's behavior when a user hovers over it. When set to 'x', all data sharing the same 'x' coordinate will be shown on screen
@@ -789,6 +873,8 @@ module StyleParam =
             | False   -> "false"
 
         static member convert = HoverMode.toString >> box
+        override this.ToString() = this |> HoverMode.toString
+        member this.Convert() = this |> HoverMode.convert
 
     [<RequireQualifiedAccess>]
     type HorizontalAlign = 
@@ -799,6 +885,8 @@ module StyleParam =
             | Right -> "right"    
 
         static member convert = HorizontalAlign.toString >> box
+        override this.ToString() = this |> HorizontalAlign.toString
+        member this.Convert() = this |> HorizontalAlign.convert
 
 //--------------------------
 // #I#
@@ -813,6 +901,8 @@ module StyleParam =
             | JPEG -> "jpeg"    
 
         static member convert = ImageFormat.toString >> box
+        override this.ToString() = this |> ImageFormat.toString
+        member this.Convert() = this |> ImageFormat.convert
         
     [<RequireQualifiedAccess>]
     type IntensityMode =
@@ -823,6 +913,8 @@ module StyleParam =
 
 
         static member convert = IntensityMode.toString >> box
+        override this.ToString() = this |> IntensityMode.toString
+        member this.Convert() = this |> IntensityMode.convert
 
 
 //--------------------------
@@ -855,6 +947,8 @@ module StyleParam =
             | BelowTraces   -> "below traces"
 
         static member convert = Layer.toString >> box
+        override this.ToString() = this |> Layer.toString
+        member this.Convert() = this |> Layer.convert
 
     /// Determines the set of locations used to match entries in `locations` to regions on the map. Default: ISO-3
     [<RequireQualifiedAccess>]
@@ -871,6 +965,8 @@ module StyleParam =
             | GeoJson_Id    -> "geojson-id"
     
         static member convert = LocationFormat.toString >> box 
+        override this.ToString() = this |> LocationFormat.toString
+        member this.Convert() = this |> LocationFormat.convert
 
     
     /// Determines wether the rows of a LayoutGrid are enumerated from the top or the bottom.
@@ -883,8 +979,9 @@ module StyleParam =
             |TopToBottom -> "top to bottom"
             |BottomToTop -> "bottom to top"       
 
-        static member convert = 
-            LayoutGridRowOrder.toString >> box
+        static member convert = LayoutGridRowOrder.toString >> box
+        override this.ToString() = this |> LayoutGridRowOrder.toString
+        member this.Convert() = this |> LayoutGridRowOrder.convert
 
     /// Pattern to use for autogenerating Axis Ids when not specifically specifying subplot axes IDs in LayoutGrids
     [<RequireQualifiedAccess>]
@@ -898,8 +995,9 @@ module StyleParam =
             | Independent -> "independent"
             | Coupled     -> "coupled"  
             
-        static member convert = 
-            LayoutGridPattern.toString >> box
+        static member convert = LayoutGridPattern.toString >> box
+        override this.ToString() = this |> LayoutGridPattern.toString
+        member this.Convert() = this |> LayoutGridPattern.convert
 
 
     /// Sets where the x axis labels and titles go on a layout grid.
@@ -917,6 +1015,8 @@ module StyleParam =
             | TopPlot    -> "top plot"
 
         static member convert = LayoutGridXSide.toString >> box
+        override this.ToString() = this |> LayoutGridXSide.toString
+        member this.Convert() = this |> LayoutGridXSide.convert
 
     /// Sets where the y axis labels and titles go on a layout grid.
     [<RequireQualifiedAccess>]
@@ -933,6 +1033,8 @@ module StyleParam =
             | RightPlot -> "right plot"
 
         static member convert = LayoutGridYSide.toString >> box
+        override this.ToString() = this |> LayoutGridYSide.toString
+        member this.Convert() = this |> LayoutGridYSide.convert
 
     [<RequireQualifiedAccess>]
     type XAnchorPosition =
@@ -948,6 +1050,8 @@ module StyleParam =
             | Right     -> "right"
 
         static member convert = XAnchorPosition.toString >> box
+        override this.ToString() = this |> XAnchorPosition.toString
+        member this.Convert() = this |> XAnchorPosition.convert
 
     [<RequireQualifiedAccess>]
     type YAnchorPosition =
@@ -963,6 +1067,8 @@ module StyleParam =
             | Bottom    -> "bottom"
 
         static member convert = YAnchorPosition.toString >> box
+        override this.ToString() = this |> YAnchorPosition.toString
+        member this.Convert() = this |> YAnchorPosition.convert
 
 //--------------------------
 // #M#
@@ -982,6 +1088,8 @@ module StyleParam =
             | AllTicks -> "allticks"
 
         static member convert = Mirror.toString >> box
+        override this.ToString() = this |> Mirror.toString
+        member this.Convert() = this |> Mirror.convert
 
     // | "lines", "markers", "text" joined with a "+" OR "none".
     [<RequireQualifiedAccess>]
@@ -1001,6 +1109,8 @@ module StyleParam =
             | Text               -> "text"             
 
         static member convert = Mode.toString >> box
+        override this.ToString() = this |> Mode.toString
+        member this.Convert() = this |> Mode.convert
 
     /// Functions to manipulate StyleParam Mode
     [<RequireQualifiedAccess>]
@@ -1090,6 +1200,8 @@ module StyleParam =
             | Custom s -> s
 
         static member convert = MapboxStyle.toString >> box
+        override this.ToString() = this |> MapboxStyle.toString
+        member this.Convert() = this |> MapboxStyle.convert
     
     [<RequireQualifiedAccess>]
     type MapboxLayerSourceType =
@@ -1105,6 +1217,8 @@ module StyleParam =
             | Image   -> "image"
 
         static member convert = MapboxLayerSourceType.toString >> box
+        override this.ToString() = this |> MapboxLayerSourceType.toString
+        member this.Convert() = this |> MapboxLayerSourceType.convert
 
     [<RequireQualifiedAccess>]
     type MapboxLayerType =
@@ -1122,6 +1236,8 @@ module StyleParam =
             | Raster -> "raster"
 
         static member convert = MapboxLayerType.toString >> box
+        override this.ToString() = this |> MapboxLayerType.toString
+        member this.Convert() = this |> MapboxLayerType.convert
 
 
     [<RequireQualifiedAccess>]
@@ -1136,6 +1252,8 @@ module StyleParam =
             | LineCenter -> "line-center"
 
         static member convert = MapboxLayerSymbolPlacement.toString >> box
+        override this.ToString() = this |> MapboxLayerSymbolPlacement.toString
+        member this.Convert() = this |> MapboxLayerSymbolPlacement.convert
 
     
     [<RequireQualifiedAccess>]
@@ -1147,6 +1265,8 @@ module StyleParam =
             | Area      -> "area"
       
         static member convert = MarkerSizeMode.toString >> box
+        override this.ToString() = this |> MarkerSizeMode.toString
+        member this.Convert() = this |> MarkerSizeMode.convert
 
 //--------------------------
 // #N#
@@ -1165,9 +1285,9 @@ module StyleParam =
             | Horizontal -> "h"
             | Vertical   -> "v"
 
-        static member convert = 
-            Orientation.toString >> box
-            
+        static member convert = Orientation.toString >> box
+        override this.ToString() = this |> Orientation.toString
+        member this.Convert() = this |> Orientation.convert
 
 //--------------------------
 // #P#
@@ -1183,6 +1303,8 @@ module StyleParam =
             | Linear    -> "linear"            
 
         static member convert = PolarGridShape.toString >> box
+        override this.ToString() = this |> PolarGridShape.toString
+        member this.Convert() = this |> PolarGridShape.convert
 
 //--------------------------
 // #Q#
@@ -1199,6 +1321,8 @@ module StyleParam =
             | Inclusive       -> "inclusive"
 
         static member convert = QuartileMethod.toString >> box
+        override this.ToString() = this |> QuartileMethod.toString
+        member this.Convert() = this |> QuartileMethod.convert
 
 
 //--------------------------
@@ -1216,6 +1340,8 @@ module StyleParam =
             | NonNegative -> "nonnegative"
 
         static member convert = RangeMode.toString >> box
+        override this.ToString() = this |> RangeMode.toString
+        member this.Convert() = this |> RangeMode.convert
 
 
     /// Defines a Range between min and max value 
@@ -1227,6 +1353,8 @@ module StyleParam =
         static member convert = function
             | MinMax (min,max)   -> box [|min;max|]
             | Values  arr   -> box arr
+
+        member this.Convert() = this |> Range.convert
 
     /// Determines a pattern on the time line that generates breaks.
     [<RequireQualifiedAccess>]
@@ -1241,6 +1369,8 @@ module StyleParam =
             | NoPattern -> ""
 
         static member convert = RangebreakPattern.toString >> box
+        override this.ToString() = this |> RangebreakPattern.toString
+        member this.Convert() = this |> RangebreakPattern.convert
     
 
 //--------------------------
@@ -1261,6 +1391,8 @@ module StyleParam =
             | Any           -> "any"
 
         static member convert = SelectDirection.toString >> box
+        override this.ToString() = this |> SelectDirection.toString
+        member this.Convert() = this |> SelectDirection.convert
 
     /// Specifies the shape type to be drawn. If "line", a line is drawn from (`x0`,`y0`) to (`x1`,`y1`) If "circle", a circle is drawn from ((`x0`+`x1`)/2, (`y0`+`y1`)/2))
     /// with radius (|(`x0`+`x1`)/2 - `x0`|, |(`y0`+`y1`)/2 -`y0`)|) If "rect", a rectangle is drawn linking (`x0`,`y0`), (`x1`,`y0`), (`x1`,`y1`), (`x0`,`y1`), (`x0`,`y0`)
@@ -1275,8 +1407,9 @@ module StyleParam =
             | SvgPath   -> "path"
             | Line      -> "line"
 
-
         static member convert = ShapeType.toString >> box
+        override this.ToString() = this |> ShapeType.toString
+        member this.Convert() = this |> ShapeType.convert
 
     [<RequireQualifiedAccess>]
     type SymbolStyle =
@@ -1289,6 +1422,8 @@ module StyleParam =
             | OpenDot -> "OpenDot"     
 
         static member convert = SymbolStyle.toString >> box
+        override this.ToString() = this |> SymbolStyle.toString
+        member this.Convert() = this |> SymbolStyle.convert
 
     [<RequireQualifiedAccess>]
     type Symbol =
@@ -1353,6 +1488,8 @@ module StyleParam =
             | Vhv    -> "vhv"
     
         static member convert  = Shape.toString >> box
+        override this.ToString() = this |> Shape.toString
+        member this.Convert() = this |> Shape.convert
 
 
     /// If "all", all tick labels are displayed with a prefix. If "first", only the first tick is displayed with a prefix. If "last", only the last tick is displayed with a suffix. If "none", tick prefixes are hidden.
@@ -1366,8 +1503,9 @@ module StyleParam =
             | Last  -> "last"
             | None  -> "none"
             
-        
         static member convert = ShowTickOption.toString >> box
+        override this.ToString() = this |> ShowTickOption.toString
+        member this.Convert() = this |> ShowTickOption.convert
 
 
     /// If "all", all exponents are shown besides their significands. If "first", only the exponent of the first tick is shown. If "last", only the exponent of the last tick is shown. If "none", no exponents appear.
@@ -1381,8 +1519,9 @@ module StyleParam =
             | Last  -> "last"
             | None  -> "none"
             
-        
         static member convert = ShowExponent.toString >> box
+        override this.ToString() = this |> ShowExponent.toString
+        member this.Convert() = this |> ShowExponent.convert
 
 
     [<RequireQualifiedAccess>]
@@ -1396,16 +1535,22 @@ module StyleParam =
             | Right  -> "right"            
    
         static member convert = Side.toString >> box
+        override this.ToString() = this |> Side.toString
+        member this.Convert() = this |> Side.convert
 
     /// Choose between algorithms ('best' or 'fast') to smooth data linked to 'z'. The default value is false corresponding to no smoothing.
     [<RequireQualifiedAccess>]
     type SmoothAlg =
         | False | Best | Fast
             
-        static member convert = function
-            | False -> box false
-            | Best  -> box "best"
-            | Fast  -> box "fast"
+        static member toString = function
+            | False -> "false"
+            | Best  -> "best"
+            | Fast  -> "fast"
+
+        static member convert = SmoothAlg.toString >> box
+        override this.ToString() = this |> SmoothAlg.toString
+        member this.Convert() = this |> SmoothAlg.convert
 
     /// Determines the drawing mode for the spike line
     [<RequireQualifiedAccess>]
@@ -1426,6 +1571,8 @@ module StyleParam =
             | AxisAcrossMarker  -> "toaxis+across+marker"
       
         static member convert = SpikeMode.toString >> box
+        override this.ToString() = this |> SpikeMode.toString
+        member this.Convert() = this |> SpikeMode.convert
         
     /// Determines whether spikelines are stuck to the cursor or to the closest datapoints.
     [<RequireQualifiedAccess>]
@@ -1440,6 +1587,8 @@ module StyleParam =
             | HoveredData   -> "hovered data"
       
         static member convert = SpikeSnap.toString >> box        
+        override this.ToString() = this |> SpikeSnap.toString
+        member this.Convert() = this |> SpikeSnap.convert
 
     /// Determines whether spikelines are stuck to the cursor or to the closest datapoints.
     [<RequireQualifiedAccess>]
@@ -1451,6 +1600,8 @@ module StyleParam =
             | ToDate    -> "todate"
       
         static member convert = TimeStepMode.toString >> box
+        override this.ToString() = this |> TimeStepMode.toString
+        member this.Convert() = this |> TimeStepMode.convert
 
     /// Sets the surface pattern of the iso-surface 3-D sections. The default pattern of the surface is `all` meaning that the rest of surface elements would be shaded. The check options (either 1 or 2) could be used to draw half of the squares on the surface. Using various combinations of capital `A`, `B`, `C`, `D` and `E` may also be used to reduce the number of triangles on the iso-surfaces and creating other patterns of interest.
     [<RequireQualifiedAccess>]
@@ -1493,6 +1644,8 @@ module StyleParam =
             | All   -> "all"
 
         static member convert = SurfacePattern.toString >> box
+        override this.ToString() = this |> SurfacePattern.toString
+        member this.Convert() = this |> SurfacePattern.convert
 
     [<RequireQualifiedAccess>]
     type SurfaceAxis =
@@ -1508,6 +1661,8 @@ module StyleParam =
             | Z             -> "2" 
       
         static member convert = SurfaceAxis.toString >> box        
+        override this.ToString() = this |> SurfaceAxis.toString
+        member this.Convert() = this |> SurfaceAxis.convert
 
 
 //--------------------------
@@ -1592,6 +1747,8 @@ module StyleParam =
             | BounceInOut   -> "bounce-in-out"
 
         static member convert = TransitionEasing.toString >> box
+        override this.ToString() = this |> TransitionEasing.toString
+        member this.Convert() = this |> TransitionEasing.convert
         
     [<RequireQualifiedAccess>]
     type TransitionOrdering =
@@ -1601,7 +1758,10 @@ module StyleParam =
         static member toString = function
             | LayoutFirst -> "layout first"
             | TracesFirst -> "traces first"
+
         static member convert = TransitionOrdering.toString >> box
+        override this.ToString() = this |> TransitionOrdering.toString
+        member this.Convert() = this |> TransitionOrdering.convert
 
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates. (default: MiddleCenter)
     [<RequireQualifiedAccess>]
@@ -1619,6 +1779,8 @@ module StyleParam =
             | BottomRight  -> "bottom right"        
 
         static member convert = TextPosition.toString >> box
+        override this.ToString() = this |> TextPosition.toString
+        member this.Convert() = this |> TextPosition.convert
 
     /// Determines which trace information appear on the graph and  on hove (HoverInfo)
     //Any combination of "label", "text", "value", "percent" joined with a "+" OR "none". 
@@ -1636,6 +1798,8 @@ module StyleParam =
             | Percent -> "percent"
 
         static member convert = TextInfo.toString >> box
+        override this.ToString() = this |> TextInfo.toString
+        member this.Convert() = this |> TextInfo.convert
 
         static member toConcatString (o:seq<TextInfo>) =
             o |> Seq.map TextInfo.toString |> String.concat "+"
@@ -1651,8 +1815,9 @@ module StyleParam =
             | Outside -> "outside"            
             | None    -> "none"            
 
-
         static member convert = TextInfoPosition.toString >> box
+        override this.ToString() = this |> TextInfoPosition.toString
+        member this.Convert() = this |> TextInfoPosition.convert
 
     /// Sets the tick mode for this axis. If "auto", the number of ticks is set via `nticks`. If "linear", the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` ("linear" is the default value if `tick0` and `dtick` are provided). 
     /// If "array", the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. ("array" is the default value if `tickvals` is provided).
@@ -1666,6 +1831,8 @@ module StyleParam =
             | Array  -> "array"
 
         static member convert = TickMode.toString >> box
+        override this.ToString() = this |> TickMode.toString
+        member this.Convert() = this |> TickMode.convert
 
     /// Determines whether ticks are drawn or not. If "", this axis' ticks are not drawn. If "outside" ("inside"), this axis' are drawn outside (inside) the axis lines.
     [<RequireQualifiedAccess>]
@@ -1678,7 +1845,8 @@ module StyleParam =
             | Empty    -> ""
 
         static member convert = TickOptions.toString >> box
-
+        override this.ToString() = this |> TickOptions.toString
+        member this.Convert() = this |> TickOptions.convert
 
     [<RequireQualifiedAccess>]
     type UnitMode = 
@@ -1688,7 +1856,8 @@ module StyleParam =
             | Pixels    -> "pixels"              
 
         static member convert = UnitMode.toString >> box
-
+        override this.ToString() = this |> UnitMode.toString
+        member this.Convert() = this |> UnitMode.convert
 
     [<RequireQualifiedAccess>]
     type TreemapEdgeShape =
@@ -1702,6 +1871,8 @@ module StyleParam =
              | BackSlash -> """\"""
 
         static member convert = TreemapEdgeShape.toString >> box
+        override this.ToString() = this |> TreemapEdgeShape.toString
+        member this.Convert() = this |> TreemapEdgeShape.convert
 
     [<RequireQualifiedAccess>]
     type TreemapTilingPacking =
@@ -1715,6 +1886,8 @@ module StyleParam =
             | SliceDice -> "slice-dice"
 
         static member convert = TreemapTilingPacking.toString >> box
+        override this.ToString() = this |> TreemapTilingPacking.toString
+        member this.Convert() = this |> TreemapTilingPacking.convert
 
     [<RequireQualifiedAccess>]
     type TraceOrder =
@@ -1730,6 +1903,8 @@ module StyleParam =
             | ReversedGrouped   -> "grouped+reversed"
     
         static member convert = TraceOrder.toString >> box
+        override this.ToString() = this |> TraceOrder.toString
+        member this.Convert() = this |> TraceOrder.convert
 
     [<RequireQualifiedAccess>]
     type TraceItemSizing =
@@ -1741,6 +1916,8 @@ module StyleParam =
             | Constant          -> "constant"
 
         static member convert = TraceItemSizing.toString >> box    
+        override this.ToString() = this |> TraceItemSizing.toString
+        member this.Convert() = this |> TraceItemSizing.convert
         
     [<RequireQualifiedAccess>]
     type TraceItemClickOptions =
@@ -1754,6 +1931,8 @@ module StyleParam =
             | False             -> "False"
 
         static member convert = TraceItemClickOptions.toString >> box
+        override this.ToString() = this |> TraceItemClickOptions.toString
+        member this.Convert() = this |> TraceItemClickOptions.convert
 
     [<RequireQualifiedAccess>]
     type TickLabelMode =
@@ -1765,6 +1944,8 @@ module StyleParam =
             | Period    -> "period"
 
         static member convert = TickLabelMode.toString >> box
+        override this.ToString() = this |> TickLabelMode.toString
+        member this.Convert() = this |> TickLabelMode.convert
 
     [<RequireQualifiedAccess>]
     type TickLabelPosition =
@@ -1792,6 +1973,8 @@ module StyleParam =
             | InsideBottom  -> "inside bottom"
 
         static member convert = TickLabelPosition.toString >> box
+        override this.ToString() = this |> TickLabelPosition.toString
+        member this.Convert() = this |> TickLabelPosition.convert
 
     [<RequireQualifiedAccess>]
     type TickLabelOverflow =
@@ -1806,6 +1989,8 @@ module StyleParam =
 
 
         static member convert = TickLabelOverflow.toString >> box
+        override this.ToString() = this |> TickLabelOverflow.toString
+        member this.Convert() = this |> TickLabelOverflow.convert
 
     [<RequireQualifiedAccess>]
     type TimeStep =
@@ -1828,6 +2013,8 @@ module StyleParam =
 
 
         static member convert = TimeStep.toString >> box
+        override this.ToString() = this |> TimeStep.toString
+        member this.Convert() = this |> TimeStep.convert
 
 
 //--------------------------
@@ -1843,11 +2030,13 @@ module StyleParam =
                 | Show  -> "show"
 
             static member convert = UniformTextMode.toString >> box
+            override this.ToString() = this |> UniformTextMode.toString
+            member this.Convert() = this |> UniformTextMode.convert
+
 //--------------------------
 // #V#
 //--------------------------
 
-    
     [<RequireQualifiedAccess>]
     type ViolinMode =
         | Group | Overlay 
@@ -1857,6 +2046,8 @@ module StyleParam =
             | Overlay -> "overlay"
 
         static member convert = ViolinMode.toString >> box    
+        override this.ToString() = this |> ViolinMode.toString
+        member this.Convert() = this |> ViolinMode.convert
 
     /// Determines whether or not this trace is visible. If "legendonly", the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     [<RequireQualifiedAccess>]
@@ -1869,8 +2060,8 @@ module StyleParam =
             | LegendOnly -> "legendonly"
 
         static member convert = Visible.toString >> box
-
-
+        override this.ToString() = this |> Visible.toString
+        member this.Convert() = this |> Visible.convert
 
     [<RequireQualifiedAccess>]
     type VerticalAlign = 
@@ -1881,6 +2072,8 @@ module StyleParam =
             | Bottom    -> "bottom"    
 
         static member convert = VerticalAlign.toString >> box
+        override this.ToString() = this |> VerticalAlign.toString
+        member this.Convert() = this |> VerticalAlign.convert
 
 //--------------------------
 // #W#
@@ -1895,6 +2088,8 @@ module StyleParam =
             | Overlay -> "overlay"
 
         static member convert = WaterfallMode.toString >> box    
+        override this.ToString() = this |> WaterfallMode.toString
+        member this.Convert() = this |> WaterfallMode.convert
 
     ///How to compute differences between bars in Waterfall Charts
     [<RequireQualifiedAccess>]
@@ -1905,6 +2100,8 @@ module StyleParam =
             | Total     -> "total"
 
         static member convert = WaterfallMeasure.toString >> box
+        override this.ToString() = this |> WaterfallMeasure.toString
+        member this.Convert() = this |> WaterfallMeasure.convert
 
 //--------------------------
 // #X#
