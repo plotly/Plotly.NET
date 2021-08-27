@@ -470,7 +470,7 @@ type Chart =
         let range  = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
         let domain = if Domain.IsSome then Some (StyleParam.Range.MinMax (Domain.Value)) else None
         let zaxis  = LinearAxis.init(Title=Title.init(Text=title, ?Font=TitleFont),?Range=range,?ShowGrid=ShowGrid,?ShowLine=ShowLine,?Anchor=Anchor,?Domain=domain)
-        Chart.withZ_Axis(zaxis)
+        Chart.withZAxis(zaxis)
 
     [<CompiledName("WithColorBar")>]
     static member withColorBar(colorbar:ColorBar) =

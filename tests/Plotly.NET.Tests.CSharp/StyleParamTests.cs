@@ -19,5 +19,11 @@ namespace Plotly.NET.Tests.CSharp
             object expected = "tonext";
             Assert.Equal(expected, actual);
         }
+        [Fact]
+        public void WithShapes()
+        {
+            // var actual = Chart3D.Chart.Line3d;
+            // Chart2D.Chart.
+        }
     }
 }

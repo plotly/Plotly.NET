@@ -6,16 +6,16 @@ open Plotly.NET.TraceObjects
 open DynamicObj
 open System
 open System.IO
-//open FSharp.Care.Collections
+open System.Runtime.CompilerServices
 
 open GenericChart
 open System.Runtime.InteropServices
 
 [<AutoOpen>]
 module Chart2D =
-
-    type Chart with
-
+    [<Extension>]
+    type Chart =
+        [<Extension>]
         static member internal renderScatterTrace (useWebGL:bool) (style: Trace2D -> Trace2D) =
             if useWebGL then
                 Trace2D.initScatterGL style
@@ -23,7 +23,7 @@ module Chart2D =
             else
                 Trace2D.initScatter style
                 |> GenericChart.ofTraceObject
-
+        [<Extension>]
         static member internal renderHeatmapTrace (useWebGL:bool) (style: Trace2D -> Trace2D) =
             if useWebGL then
                 Trace2D.initHeatmapGL style
@@ -50,6 +50,7 @@ module Chart2D =
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        [<Extension>]
         static member Scatter(x, y, mode,
                 [<Optional;DefaultParameterValue(null)>] ?Name          ,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend    ,
@@ -103,6 +104,7 @@ module Chart2D =
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        [<Extension>]
         static member Scatter(xy,mode,
                 [<Optional;DefaultParameterValue(null)>] ?Name          ,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend    ,
@@ -153,6 +155,7 @@ module Chart2D =
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        [<Extension>]
         static member Point(x, y,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend,
@@ -199,6 +202,7 @@ module Chart2D =
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        [<Extension>]
         static member Point(xy,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend,
@@ -248,6 +252,7 @@ module Chart2D =
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        [<Extension>]
         static member Line(x, y,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
@@ -310,6 +315,7 @@ module Chart2D =
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        [<Extension>]
         static member Line(xy,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
@@ -368,6 +374,7 @@ module Chart2D =
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        [<Extension>]
         static member Spline(x, y,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
@@ -431,6 +438,7 @@ module Chart2D =
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        [<Extension>]
         static member Spline(xy,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
@@ -486,6 +494,7 @@ module Chart2D =
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        [<Extension>]
         static member Bubble(x, y,sizes:seq<#IConvertible>,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend,
@@ -532,6 +541,7 @@ module Chart2D =
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        [<Extension>]
         static member Bubble(xysizes,[<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
@@ -563,6 +573,7 @@ module Chart2D =
             )
 
         /// Displays a range of data by plotting two Y values per data point, with each Y value being drawn as a line 
+        [<Extension>]
         static member Range(x, y, upper, lower,mode,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
@@ -616,6 +627,7 @@ module Chart2D =
             GenericChart.MultiChart ([lower;upper;trace],Layout(),Config(), DisplayOptions())
 
         /// Displays a range of data by plotting two Y values per data point, with each Y value being drawn as a line 
+        [<Extension>]
         static member Range(xy, upper, lower, mode,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
@@ -634,6 +646,7 @@ module Chart2D =
 
 
         /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
+        [<Extension>]
         static member Area(x, y,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
@@ -665,6 +678,7 @@ module Chart2D =
 
 
         /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
+        [<Extension>]
         static member Area(xy,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
@@ -682,6 +696,7 @@ module Chart2D =
 
 
         /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
+        [<Extension>]
         static member SplineArea(x, y,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
@@ -714,6 +729,7 @@ module Chart2D =
 
 
         /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
+        [<Extension>]
         static member SplineArea(xy,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
@@ -731,6 +747,7 @@ module Chart2D =
             Chart.SplineArea(x, y, ?Name=Name,?ShowMarkers=ShowMarkers,?Showlegend=Showlegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width,?Smoothing=Smoothing) 
 
         /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
+        [<Extension>]
         static member StackedArea(x, y,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend,
@@ -752,6 +769,7 @@ module Chart2D =
             |> GenericChart.ofTraceObject 
 
         /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
+        [<Extension>]
         static member StackedArea(xy,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend,
@@ -817,6 +835,7 @@ module Chart2D =
         /// Insidetextfont : Sets the font used for `text` lying inside the bar.
         ///
         /// Outsidetextfont: Sets the font used for `text` lying outside the bar.
+        [<Extension>]
         static member Funnel (x, y,
                 [<Optional;DefaultParameterValue(null)>] ?Name                          ,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
@@ -888,6 +907,7 @@ module Chart2D =
         /// OffsetGroup     : Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.
         ///
         /// Offset          : Shifts the position where the bar is drawn (in position axis units). In "group" barmode, traces that set "offset" will be excluded and drawn in "overlay" mode instead.
+        [<Extension>]
         static member Waterfall 
             (
                 x               : #IConvertible seq,
@@ -935,6 +955,7 @@ module Chart2D =
         /// OffsetGroup     : Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.
         ///
         /// Offset          : Shifts the position where the bar is drawn (in position axis units). In "group" barmode, traces that set "offset" will be excluded and drawn in "overlay" mode instead.
+        [<Extension>]
         static member Waterfall 
             (
                 xyMeasure: (#IConvertible*#IConvertible*StyleParam.WaterfallMeasure) seq,
@@ -963,6 +984,7 @@ module Chart2D =
 
 
         /// Illustrates comparisons among individual items
+        [<Extension>]
         static member Column(keys, values,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend,
@@ -985,6 +1007,7 @@ module Chart2D =
         
 
         /// Illustrates comparisons among individual items
+        [<Extension>]
         static member Column(keysvalues,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend,
@@ -999,6 +1022,7 @@ module Chart2D =
 
 
         /// Displays series of column chart type as stacked columns.
+        [<Extension>]
         static member StackedColumn(keys, values,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend,
@@ -1022,6 +1046,7 @@ module Chart2D =
 
 
         /// Displays series of column chart type as stacked columns.
+        [<Extension>]
         static member StackedColumn(keysvalues,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend,
@@ -1036,6 +1061,7 @@ module Chart2D =
 
 
         /// Illustrates comparisons among individual items
+        [<Extension>]
         static member Bar(keys, values,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend,
@@ -1056,6 +1082,7 @@ module Chart2D =
 
 
         /// Illustrates comparisons among individual items
+        [<Extension>]
         static member Bar(keysvalues,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend,
@@ -1070,6 +1097,7 @@ module Chart2D =
 
 
         /// Displays series of tcolumn chart type as stacked bars.
+        [<Extension>]
         static member StackedBar(keys, values,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend,
@@ -1092,6 +1120,7 @@ module Chart2D =
 
 
         /// Displays series of tcolumn chart type as stacked bars.
+        [<Extension>]
         static member StackedBar(keysvalues,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend,
@@ -1105,6 +1134,7 @@ module Chart2D =
             Chart.StackedBar(keys, values, ?Name=Name,?Showlegend=Showlegend,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Marker=Marker) 
 
         /// Computes a histogram with auto-determined the bin size.
+        [<Extension>]
         static member Histogram
             (
                 data,
@@ -1141,52 +1171,54 @@ module Chart2D =
                 
                 |> GenericChart.ofTraceObject
         
-             /// Computes the bi-dimensional histogram of two data samples and auto-determines the bin size.
-            static member Histogram2d
-                (
-                    x,y,
-                    [<Optional;DefaultParameterValue(null)>] ?Z,
-                    [<Optional;DefaultParameterValue(null)>] ?Name,
-                    [<Optional;DefaultParameterValue(null)>] ?Showlegend,
-                    [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                    [<Optional;DefaultParameterValue(null)>] ?Colorscale,
-                    [<Optional;DefaultParameterValue(null)>] ?Showscale,
-                    [<Optional;DefaultParameterValue(null)>] ?zSmooth,
-                    [<Optional;DefaultParameterValue(null)>] ?ColorBar,
-                    [<Optional;DefaultParameterValue(null)>] ?zAuto,
-                    [<Optional;DefaultParameterValue(null)>] ?zMin,
-                    [<Optional;DefaultParameterValue(null)>] ?zMax,
-                    [<Optional;DefaultParameterValue(null)>] ?nBinsx,
-                    [<Optional;DefaultParameterValue(null)>] ?nBinsy,
-                    [<Optional;DefaultParameterValue(null)>] ?xBins,
-                    [<Optional;DefaultParameterValue(null)>] ?yBins,
-                    [<Optional;DefaultParameterValue(null)>] ?HistNorm,
-                    [<Optional;DefaultParameterValue(null)>] ?HistFunc
-                ) =         
-                    Trace2D.initHistogram2d (
-                        Trace2DStyle.Histogram2d (
-                            X=x,
-                            Y=y,
-                            ?Z=Z,
-                            ?Colorscale=Colorscale,
-                            ?Showscale=Showscale,
-                            ?zSmooth=zSmooth,
-                            ?ColorBar=ColorBar,
-                            ?zAuto=zAuto,
-                            ?zMin=zMin,
-                            ?zMax=zMax,
-                            ?nBinsx=nBinsx,
-                            ?nBinsy=nBinsy,
-                            ?xBins=xBins,
-                            ?yBins=yBins,
-                            ?HistNorm=HistNorm,
-                            ?HistFunc=HistFunc 
-                        ) 
-                    )
-                    |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)   
-                    |> GenericChart.ofTraceObject
+        /// Computes the bi-dimensional histogram of two data samples and auto-determines the bin size.
+        [<Extension>]
+        static member Histogram2d
+            (
+                x,y,
+                [<Optional;DefaultParameterValue(null)>] ?Z,
+                [<Optional;DefaultParameterValue(null)>] ?Name,
+                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity,
+                [<Optional;DefaultParameterValue(null)>] ?Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?Showscale,
+                [<Optional;DefaultParameterValue(null)>] ?zSmooth,
+                [<Optional;DefaultParameterValue(null)>] ?ColorBar,
+                [<Optional;DefaultParameterValue(null)>] ?zAuto,
+                [<Optional;DefaultParameterValue(null)>] ?zMin,
+                [<Optional;DefaultParameterValue(null)>] ?zMax,
+                [<Optional;DefaultParameterValue(null)>] ?nBinsx,
+                [<Optional;DefaultParameterValue(null)>] ?nBinsy,
+                [<Optional;DefaultParameterValue(null)>] ?xBins,
+                [<Optional;DefaultParameterValue(null)>] ?yBins,
+                [<Optional;DefaultParameterValue(null)>] ?HistNorm,
+                [<Optional;DefaultParameterValue(null)>] ?HistFunc
+            ) =         
+                Trace2D.initHistogram2d (
+                    Trace2DStyle.Histogram2d (
+                        X=x,
+                        Y=y,
+                        ?Z=Z,
+                        ?Colorscale=Colorscale,
+                        ?Showscale=Showscale,
+                        ?zSmooth=zSmooth,
+                        ?ColorBar=ColorBar,
+                        ?zAuto=zAuto,
+                        ?zMin=zMin,
+                        ?zMax=zMax,
+                        ?nBinsx=nBinsx,
+                        ?nBinsy=nBinsy,
+                        ?xBins=xBins,
+                        ?yBins=yBins,
+                        ?HistNorm=HistNorm,
+                        ?HistFunc=HistFunc 
+                    ) 
+                )
+                |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)   
+                |> GenericChart.ofTraceObject
 
         /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.            
+        [<Extension>]
         static member BoxPlot
             (
                 [<Optional;DefaultParameterValue(null)>] ?x,
@@ -1224,6 +1256,7 @@ module Chart2D =
 
 
         /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.       
+        [<Extension>]
         static member BoxPlot(xy,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend,
@@ -1250,6 +1283,7 @@ module Chart2D =
 
 
         /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.            
+        [<Extension>]
         static member Violin
             (
                 [<Optional;DefaultParameterValue(null)>] ?x,
@@ -1292,6 +1326,7 @@ module Chart2D =
 
 
         /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.       
+        [<Extension>]
         static member Violin(xy,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend,
@@ -1325,7 +1360,8 @@ module Chart2D =
 
         
          /// Computes the bi-dimensional histogram of two data samples and auto-determines the bin size.
-        static member Histogram2dContour
+         [<Extension>]
+         static member Histogram2dContour
             (
                 x,y,
                 [<Optional;DefaultParameterValue(null)>] ?Z,
@@ -1366,6 +1402,7 @@ module Chart2D =
 
         /// Shows a graphical representation of a 3-dimensional surface by plotting constant z slices, called contours, on a 2-dimensional format.
         /// That is, given a value for z, lines are drawn for connecting the (x,y) coordinates where that z value occurs.
+        [<Extension>]
         static member Heatmap(data:seq<#seq<#IConvertible>>,
                 [<Optional;DefaultParameterValue(null)>] ?ColNames,
                 [<Optional;DefaultParameterValue(null)>] ?RowNames,
@@ -1400,6 +1437,7 @@ module Chart2D =
 
 
         /// Shows a graphical representation of data where the individual values contained in a matrix are represented as colors.
+        [<Extension>]
         static member Contour(data:seq<#seq<#IConvertible>>,
                 [<Optional;DefaultParameterValue(null)>]  ?X,
                 [<Optional;DefaultParameterValue(null)>]  ?Y,
@@ -1440,6 +1478,7 @@ module Chart2D =
         /// ?Tickwidth  : Sets the width of the open/close tick marks relative to the "x" minimal interval.
         ///
         /// ?XCalendar  : Sets the calendar system to use with `x` date data.
+        [<Extension>]
         static member OHLC
             (
                 ``open``        : #IConvertible seq,
@@ -1482,6 +1521,7 @@ module Chart2D =
         /// ?Tickwidth      : Sets the width of the open/close tick marks relative to the "x" minimal interval.
         ///
         /// ?XCalendar      : Sets the calendar system to use with `x` date data.
+        [<Extension>]
         static member OHLC
             (
                 stockTimeSeries: seq<System.DateTime*StockData>, 
@@ -1530,6 +1570,7 @@ module Chart2D =
         /// ?WhiskerWidth   :  Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).
         ///
         /// ?XCalendar      : Sets the calendar system to use with `x` date data.
+        [<Extension>]
         static member Candlestick
             (
                 ``open``        : #IConvertible seq,
@@ -1572,6 +1613,7 @@ module Chart2D =
         /// ?Tickwidth      : Sets the width of the open/close tick marks relative to the "x" minimal interval.
         ///
         /// ?XCalendar      : Sets the calendar system to use with `x` date data.
+        [<Extension>]
         static member Candlestick
             (
                 stockTimeSeries: seq<System.DateTime*StockData>, 
@@ -1599,7 +1641,8 @@ module Chart2D =
 
 
 
-         /// Computes the parallel coordinates plot
+        /// Computes the parallel coordinates plot
+        [<Extension>]
         static member Splom
             (
                 dims:seq<'key*#seq<'values>>,
@@ -1628,7 +1671,8 @@ module Chart2D =
                 |> GenericChart.ofTraceObject
 
 
-         /// Computes the Splom plot
+        /// Computes the Splom plot
+        [<Extension>]
         static member Splom
             (
                 dims:seq<Dimensions>,
