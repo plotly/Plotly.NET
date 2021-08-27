@@ -119,8 +119,6 @@
     <Compile Include="CSharpLayer\GenericChartExtensions.fs" />
     <Compile Include="Extensions\SankeyExtension.fs" />
     <None Include="Playground.fsx" />
-    <None Include="paket.references" />
-    <None Include="paket.template" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="DynamicObj" Version="0.0.3" />
