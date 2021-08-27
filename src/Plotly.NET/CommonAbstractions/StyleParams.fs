@@ -814,6 +814,56 @@ module StyleParam =
 // #H#
 //--------------------------
 
+    type HoverInfo =
+        | X             
+        | XY            
+        | XYZ           
+        | XYZText       
+        | Y             
+        | YZ            
+        | YZText        
+        | YZTextNames   
+        | Z             
+        | ZText         
+        | ZTextName     
+        | Text          
+        | TextName      
+        | Name          
+        | All           
+    
+        static member toString = function
+            | X             -> "x" 
+            | XY            -> "x+y" 
+            | XYZ           -> "x+y+z" 
+            | XYZText       -> "x+y+z+text" 
+            | Y             -> "y" 
+            | YZ            -> "y+z" 
+            | YZText        -> "y+z+text" 
+            | YZTextNames   -> "y+z+text+name"
+            | Z             -> "z" 
+            | ZText         -> "z+text" 
+            | ZTextName     -> "z+text+name"
+            | Text          -> "text" 
+            | TextName      -> "text+name"
+            | Name          -> "name" 
+            | All           -> "all"
+
+        static member convert = HoverInfo.toString >> box
+        override this.ToString() = this |> HoverInfo.toString
+        member this.Convert() = this |> HoverInfo.convert
+
+    [<RequireQualifiedAccess>]
+    type HoverOn =
+        | Points | Fills | PointsFills
+        static member toString = function
+            | Points        -> "points"
+            | Fills         -> "fills"
+            | PointsFills   -> "points+fills"
+
+        static member convert = HoverOn.toString >> box
+        override this.ToString() = this |> HoverOn.toString
+        member this.Convert() = this |> HoverOn.convert
+
     /// Sets the type of normalization for this histogram trace. By default ('histnorm' set to '') the height of each bar 
     /// displays the frequency of occurrence, i.e., the number of times this value was found in the corresponding bin.
     /// If set to 'percent', the height of each bar displays the percentage of total occurrences found within the corresponding bin. 
@@ -1293,6 +1343,19 @@ module StyleParam =
 // #P#
 //--------------------------
 
+    [<RequireQualifiedAccess>]
+    type PeriodAlignment =
+        | Start | Middle | End
+        
+        static member toString = function
+            | Start -> "start"            
+            | Middle-> "middle"            
+            | End   -> "end"            
+
+        static member convert = PeriodAlignment.toString >> box
+        override this.ToString() = this |> PeriodAlignment.toString
+        member this.Convert() = this |> PeriodAlignment.convert
+
     /// Sets the method used to compute the sample's Q1 and Q3 quartiles
     [<RequireQualifiedAccess>]
     type PolarGridShape =
@@ -1377,6 +1440,19 @@ module StyleParam =
 // #S#
 //--------------------------
 
+    [<RequireQualifiedAccess>]
+    type StackGaps =
+        | InferZero | Interpolate      
+    
+        static member toString = function
+            | InferZero     -> "infer zero" 
+            | Interpolate   -> "interpolate" 
+
+
+        static member convert = StackGaps.toString >> box
+        override this.ToString() = this |> StackGaps.toString
+        member this.Convert() = this |> StackGaps.convert
+        
     [<RequireQualifiedAccess>]
     type SelectDirection =
         | Horizontal    
@@ -1766,7 +1842,7 @@ module StyleParam =
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates. (default: MiddleCenter)
     [<RequireQualifiedAccess>]
     type TextPosition =
-        | TopLeft | TopCenter | TopRight | MiddleLeft | MiddleCenter | MiddleRight | BottomLeft | BottomCenter | BottomRight 
+        | TopLeft | TopCenter | TopRight | MiddleLeft | MiddleCenter | MiddleRight | BottomLeft | BottomCenter | BottomRight | Auto
         static member toString = function
             | TopLeft      -> "top left" 
             | TopCenter    -> "top center"
@@ -1777,6 +1853,7 @@ module StyleParam =
             | BottomLeft   -> "bottom left"
             | BottomCenter -> "bottom center"
             | BottomRight  -> "bottom right"        
+            | Auto         -> "auto"  
 
         static member convert = TextPosition.toString >> box
         override this.ToString() = this |> TextPosition.toString

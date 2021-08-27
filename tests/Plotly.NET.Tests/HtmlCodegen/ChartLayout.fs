@@ -91,7 +91,7 @@ let errorBarsChart =
 let ``Error bars`` =
     testList "ChartLayout.Error bars tests" [
         testCase "Full data test" ( fun () ->
-            "var data = [{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"markers\",\"name\":\"points with errors\",\"marker\":{},\"error_x\":{\"symmetric\":true,\"array\":[0.2,0.3,0.2,0.1,0.2,0.4,0.2,0.08,0.2,0.1]},\"error_y\":{\"array\":[0.3,0.2,0.1,0.4,0.2,0.4,0.1,0.18,0.02,0.2],\"arrayminus\":[0.2,0.3,0.2,0.1,0.2,0.4,0.2,0.08,0.2,0.1]}}];"
+            """var data = [{"type":"scatter","mode":"markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"name":"points with errors","marker":{},"error_x":{"symmetric":true,"array":[0.2,0.3,0.2,0.1,0.2,0.4,0.2,0.08,0.2,0.1]},"error_y":{"array":[0.3,0.2,0.1,0.4,0.2,0.4,0.1,0.18,0.02,0.2],"arrayminus":[0.2,0.3,0.2,0.1,0.2,0.4,0.2,0.08,0.2,0.1]}}];"""
             |> chartGeneratedContains errorBarsChart
         );
         testCase "Expecting name" ( fun () ->
@@ -117,7 +117,6 @@ let combinedChart =
         Chart.Line(y, x, Name="second")
     ]
     |> Chart.combine
-
 
 let subPlotChart =
     let x = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
@@ -157,17 +156,16 @@ let singleStackChart =
     |> Chart.withLayoutGridStyle(XSide=StyleParam.LayoutGridXSide.Bottom,YGap= 0.1)
     |> Chart.withTitle("Hi i am the new SingleStackChart")
     |> Chart.withXAxisStyle("im the shared xAxis")
-
     
 [<Tests>]
 let ``Multicharts and subplots`` =
     testList "ChartLayout.Multicharts and subplots" [
         testCase "Combining" ( fun () ->
-            "var data = [{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"lines\",\"line\":{},\"name\":\"first\",\"marker\":{}},{\"type\":\"scatter\",\"x\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"y\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"mode\":\"lines\",\"line\":{},\"name\":\"second\",\"marker\":{}}];"
+            """var data = [{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"line":{},"name":"first","marker":{}},{"type":"scatter","mode":"lines","x":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"y":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"line":{},"name":"second","marker":{}}];"""
             |> chartGeneratedContains combinedChart
         );
         testCase "Subplot grids data" ( fun () ->
-            "var data = [{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"markers\",\"name\":\"1,1\",\"marker\":{},\"xaxis\":\"x\",\"yaxis\":\"y\"},{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"lines\",\"line\":{},\"name\":\"1,2\",\"marker\":{},\"xaxis\":\"x2\",\"yaxis\":\"y2\"},{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"lines\",\"name\":\"2,1\",\"line\":{\"shape\":\"spline\"},\"marker\":{},\"xaxis\":\"x3\",\"yaxis\":\"y3\"},{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"markers\",\"name\":\"2,2\",\"marker\":{},\"xaxis\":\"x4\",\"yaxis\":\"y4\"}];"
+            """var data = [{"type":"scatter","mode":"markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"name":"1,1","marker":{},"xaxis":"x","yaxis":"y"},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"line":{},"name":"1,2","marker":{},"xaxis":"x2","yaxis":"y2"},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"name":"2,1","line":{"shape":"spline"},"marker":{},"xaxis":"x3","yaxis":"y3"},{"type":"scatter","mode":"markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"name":"2,2","marker":{},"xaxis":"x4","yaxis":"y4"}];"""
             |> chartGeneratedContains subPlotChart
         );
         testCase "Subplot grids layout" ( fun () ->
@@ -175,7 +173,7 @@ let ``Multicharts and subplots`` =
             |> chartGeneratedContains subPlotChart
         );
         testCase "Single Stack data" ( fun () -> 
-            "var data = [{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"markers\",\"marker\":{},\"xaxis\":\"x\",\"yaxis\":\"y\"},{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"lines\",\"line\":{},\"marker\":{},\"xaxis\":\"x\",\"yaxis\":\"y2\"},{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"lines\",\"line\":{\"shape\":\"spline\"},\"marker\":{},\"xaxis\":\"x\",\"yaxis\":\"y3\"}];"
+            """var data = [{"type":"scatter","mode":"markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{},"xaxis":"x","yaxis":"y"},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"line":{},"marker":{},"xaxis":"x","yaxis":"y2"},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"line":{"shape":"spline"},"marker":{},"xaxis":"x","yaxis":"y3"}];"""
             |> chartGeneratedContains singleStackChart
         );
         testCase "Single Stack layout" ( fun () -> 
@@ -198,7 +196,7 @@ let shapesChart =
 let ``Shapes`` =
     testList "ChartLayout.Shapes" [
         testCase "Data" ( fun () ->
-            "var data = [{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"lines\",\"line\":{},\"name\":\"line\",\"marker\":{}}];"
+            """var data = [{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"line":{},"name":"line","marker":{}}];"""
             |> chartGeneratedContains shapesChart
         );
         testCase "Layout" ( fun () ->
@@ -253,7 +251,7 @@ let mathtexChart =
 let ``Display options`` =
     testList "ChartLayout.Display options" [
         testCase "Chart description data" ( fun () ->
-            "var data = [{\"type\":\"scatter\",\"x\":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],\"mode\":\"markers\",\"name\":\"desc1\",\"marker\":{}}];"
+            """var data = [{"type":"scatter","mode":"markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"name":"desc1","marker":{}}];"""
             |> chartGeneratedContains displayOptionsChartDescriptionChart
         );
         testCase "Chart description layout" ( fun () ->
@@ -280,7 +278,7 @@ let ``Display options`` =
             |> substringListIsInChart additionalHeadTagsChart toEmbeddedHTML
         );
         testCase "MathTex data" ( fun () ->
-            "var data = [{\"type\":\"scatter\",\"x\":[1.0],\"y\":[2.0],\"mode\":\"markers\",\"name\":\"$\\\\beta_{1c} = 25 \\\\pm 11 \\\\text{ km s}^{-1}$\",\"marker\":{}},{\"type\":\"scatter\",\"x\":[2.0],\"y\":[4.0],\"mode\":\"markers\",\"name\":\"$\\\\beta_{1c} = 25 \\\\pm 11 \\\\text{ km s}^{-1}$\",\"marker\":{}}];"
+            """var data = [{"type":"scatter","mode":"markers","x":[1.0],"y":[2.0],"name":"$\\beta_{1c} = 25 \\pm 11 \\text{ km s}^{-1}$","marker":{}},{"type":"scatter","mode":"markers","x":[2.0],"y":[4.0],"name":"$\\beta_{1c} = 25 \\pm 11 \\text{ km s}^{-1}$","marker":{}}];"""
             |> chartGeneratedContains mathtexChart
         );
         testCase "MathTex layout" ( fun () ->

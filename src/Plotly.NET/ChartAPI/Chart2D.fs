@@ -591,7 +591,7 @@ module Chart2D =
 
             let trace = 
                 Trace2D.initScatter (
-                        Trace2DStyle.Scatter(X = x,Y = y, Mode=mode, ?Fillcolor=Color) )               
+                        Trace2DStyle.Scatter(X = x,Y = y, Mode=mode, ?FillColor=Color) )               
                 |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend)
                 |> TraceStyle.Line(?Color=Color)
                 |> TraceStyle.Marker(?Color=Color)
@@ -599,7 +599,7 @@ module Chart2D =
 
             let lower = 
                 Trace2D.initScatter (
-                        Trace2DStyle.Scatter(X = x,Y = lower, Mode=StyleParam.Mode.Lines, ?Fillcolor=RangeColor) )               
+                        Trace2DStyle.Scatter(X = x,Y = lower, Mode=StyleParam.Mode.Lines, ?FillColor=RangeColor) )               
                 |> TraceStyle.TraceInfo(?Name = Some lowerName, Showlegend=false)
                 |> TraceStyle.Line(Width=0.)
                 |> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,0,0.5)")             
@@ -607,7 +607,7 @@ module Chart2D =
 
             let upper = 
                 Trace2D.initScatter (
-                        Trace2DStyle.Scatter(X = x,Y = upper, Mode=StyleParam.Mode.Lines, ?Fillcolor=RangeColor, Fill=StyleParam.Fill.ToNext_y) )               
+                        Trace2DStyle.Scatter(X = x,Y = upper, Mode=StyleParam.Mode.Lines, ?FillColor=RangeColor, Fill=StyleParam.Fill.ToNext_y) )               
                 |> TraceStyle.TraceInfo(?Name = Some upperName, Showlegend=false)
                 |> TraceStyle.Line(Width=0.)
                 |> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else "rgba(0,0,0,0.5)")             

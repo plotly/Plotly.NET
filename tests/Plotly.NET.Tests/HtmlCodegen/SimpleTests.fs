@@ -16,7 +16,6 @@ let simpleChart =
     |> Chart.withXAxisStyle ("xAxis", ShowGrid=false)
     |> Chart.withYAxisStyle ("yAxis", ShowGrid=false)
 
-
 [<Tests>]
 let ``Html layout tests`` =
     testList "SimpleTests.Simple tests" [
@@ -25,11 +24,11 @@ let ``Html layout tests`` =
             |> chartGeneratedContains simpleChart
         );
         testCase "Expecting data" ( fun () ->
-            "var data = [{\"type\":\"scatter\",\"x\":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"y\":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],\"mode\":\"markers\",\"marker\":{}}];"
+            """var data = [{"type":"scatter","mode":"markers","x":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"marker":{}}];"""
             |> chartGeneratedContains simpleChart
         );
         testCase "Expecting layout info" (fun () ->
-            "var layout = {\"title\":{\"text\":\"Hello world!\"},\"xaxis\":{\"title\":{\"text\":\"xAxis\"},\"showgrid\":false},\"yaxis\":{\"title\":{\"text\":\"yAxis\"},\"showgrid\":false}};"
+            """var layout = {"title":{"text":"Hello world!"},"xaxis":{"title":{"text":"xAxis"},"showgrid":false},"yaxis":{"title":{"text":"yAxis"},"showgrid":false}};"""
             |> chartGeneratedContains simpleChart
         );
         testCase "Expecting cloudflare link" (fun () ->
