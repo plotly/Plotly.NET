@@ -1,84 +1,61 @@
 ﻿namespace Plotly.NET
 //http://www.niwa.nu/2013/05/math-behind-colorspace-conversions-rgb-hsl/
 /// Represents an ARGB (alpha, red, green, blue) color
-module Colors =   
+open Newtonsoft.Json
 
-    module internal Hex =
-    
-        open System
+module internal Hex =
 
-        [<CompiledName("ToHexDigit")>]
-        let toHexDigit n =
-            if n < 10 then char (n + 0x30) else char (n + 0x37)
+    open System
+
+    [<CompiledName("ToHexDigit")>]
+    let toHexDigit n =
+        if n < 10 then char (n + 0x30) else char (n + 0x37)
+
+    [<CompiledName("FromHexDigit")>]
+    let fromHexDigit c =
+        if c >= '0' && c <= '9' then int c - int '0'
+        elif c >= 'A' && c <= 'F' then (int c - int 'A') + 10
+        elif c >= 'a' && c <= 'f' then (int c - int 'a') + 10
+        else raise <| ArgumentException()
     
-        [<CompiledName("FromHexDigit")>]
-        let fromHexDigit c =
-            if c >= '0' && c <= '9' then int c - int '0'
-            elif c >= 'A' && c <= 'F' then (int c - int 'A') + 10
-            elif c >= 'a' && c <= 'f' then (int c - int 'a') + 10
-            else raise <| new ArgumentException()
-        
-    //    [<CompiledName("Encode")>]
-    //    let encode (buf:byte array) (prefix:bool) =
-    //        let hex = Array.zeroCreate (buf.Length * 2)
-    //        let mutable n = 0
-    //        for i = 0 to buf.Length - 1 do
-    //            hex.[n] <- toHexDigit ((int buf.[i] &&& 0xF0) >>> 4)
-    //            n <- n + 1
-    //            hex.[n] <- toHexDigit (int buf.[i] &&& 0xF)
-    //            n <- n + 1
-    //        if prefix then String.Concat("0x", new String(hex)) 
-    //        else new String(hex)
-        [<CompiledName("Encode")>]
-        let encode (prefix:string) (color:byte array)  =
-            let hex = Array.zeroCreate (color.Length * 2)
-            let mutable n = 0
-            for i = 0 to color.Length - 1 do
-                hex.[n] <- toHexDigit ((int color.[i] &&& 0xF0) >>> 4)
-                n <- n + 1
-                hex.[n] <- toHexDigit (int color.[i] &&& 0xF)
-                n <- n + 1
-            String.Concat(prefix, new String(hex))
-        
-                    
-        [<CompiledName("Decode")>]
-        let decode (s:string) =
-            match s with
-            | null -> nullArg "s"
-            | _ when s.Length = 0 -> Array.empty
-            | _ ->
-                let mutable len = s.Length
-                let mutable i = 0
-                if len >= 2 && s.[0] = '0' && (s.[1] = 'x' || s.[1] = 'X') then do
-                    len <- len - 2
+
+    [<CompiledName("Encode")>]
+    let encode (prefix:string) (color:byte array)  =
+        let hex = Array.zeroCreate (color.Length * 2)
+        let mutable n = 0
+        for i = 0 to color.Length - 1 do
+            hex.[n] <- toHexDigit ((int color.[i] &&& 0xF0) >>> 4)
+            n <- n + 1
+            hex.[n] <- toHexDigit (int color.[i] &&& 0xF)
+            n <- n + 1
+        String.Concat(prefix, String(hex))
+    
+                
+    [<CompiledName("Decode")>]
+    let decode (s:string) =
+        match s with
+        | null -> nullArg "s"
+        | _ when s.Length = 0 -> Array.empty
+        | _ ->
+            let mutable len = s.Length
+            let mutable i = 0
+            if len >= 2 && s.[0] = '0' && (s.[1] = 'x' || s.[1] = 'X') then do
+                len <- len - 2
+                i <- i + 2
+            if len % 2 <> 0 then invalidArg "s" "Invalid hex format"
+            else
+                let buf = Array.zeroCreate (len / 2)
+                let mutable n = 0
+                while i < s.Length do
+                    buf.[n] <- byte (((fromHexDigit s.[i]) <<< 4) ||| (fromHexDigit s.[i + 1]))
                     i <- i + 2
-                if len % 2 <> 0 then invalidArg "s" "Invalid hex format"
-                else
-                    let buf = Array.zeroCreate (len / 2)
-                    let mutable n = 0
-                    while i < s.Length do
-                        buf.[n] <- byte (((fromHexDigit s.[i]) <<< 4) ||| (fromHexDigit s.[i + 1]))
-                        i <- i + 2
-                        n <- n + 1
-                    buf
+                    n <- n + 1
+                buf
 
-    
-    /// Color component ARGB
-    type ColorComponent =
-        | A of byte
-        | R of byte
-        | G of byte
-        | B of byte 
-    
-    let getValueFromCC cc =
-        match cc with
-        | A v -> v
-        | R v -> v
-        | G v -> v
-        | B v -> v
 
-    /// Color structure
-    type Color = {
+module RGB =
+    [<JsonConverter(typeof<ArgbConverter>)>]
+    type Argb = { 
         /// The alpha component value of this Color structure.
         A : byte
         /// The red component value of this Color structure.
@@ -86,60 +63,41 @@ module Colors =
         /// The green component value of this Color structure.
         G : byte
         /// The blue component value of this Color structure.
-        B : byte
+        B : byte       
         }
-            
-    
-    let maxRGB c =
-        let r,g,b = R c.R,G c.G,B c.B
-        max r g |> max b
 
-    let minRGB c =
-        let r,g,b = R c.R,G c.G,B c.B
-        min r g |> min b
-        
+    and ArgbConverter() =
+        inherit JsonConverter()
 
+        override _.CanConvert(objectType) =       
+            objectType = typeof<Argb>      
 
-    /// Creates a Color structure from the four ARGB component (alpha, red, green, and blue) values.
-    let fromArgb a r g b =
-        let f v =
+        override _.ReadJson(reader, t, existingValue, serializer) =  
+            raise (System.NotImplementedException())
+            //unbox reader.Value
+
+               
+        override _.WriteJson(writer, value, serializer) =       
+            let argb = value :?> Argb
+            //writer.WriteValue(sprintf "rgba(%i, %i, %i, %0.1f)" argb.R argb.G argb.B argb.A )
+            writer.WriteValue(sprintf "rgba(%i, %i, %i, %i)" argb.R argb.G argb.B argb.A )
+
+    /// Creates a Argb Color from the four ARGB component (alpha, red, green, and blue) values.
+    let create a r g b =
+        let fi v =
             if v < 0 || v > 255 then 
                 failwithf "Value for component needs to be between 0 and 255."
             else
                 byte v
-        {A= f a; R = f r; G = f g; B = f b}
+        {A= fi a; R = fi r; G = fi g; B = fi b}
 
-    /// Creates a Color structure from the specified color values (red, green, and blue).
+    /// Creates a Argb color from the specified color values (red, green, and blue).
     /// The alpha value is implicitly 255 (fully opaque). 
     let fromRgb r g b =
-        fromArgb 255 r g b
-
-//    /// Gets the hue-saturation-brightness (HSB) brightness value for this Color structure.
-//    let getBrightness = ()
-
-    /// Gets the hue-saturation-brightness (HSB) hue value, in degrees, for this Color structure.
-    let getHue c =
-        let min = minRGB c |> getValueFromCC
-        match maxRGB c with
-        | R r -> float (c.G - c.B) / float (r - min)
-        | G g -> 2.0 + float (c.B - c. R) / float (g - min)
-        | B b -> 4.0 + float (c.R - c.G) / float (b - min)
-        | _   -> failwithf "" // can't be
-
-
-    /// Gets the hue-saturation-brightness (HSB) saturation value for this Color structure.
-    let getSaturation col =
-        let minimum = minRGB col
-        let maximum = maxRGB col
-        float (getValueFromCC minimum + getValueFromCC maximum) / 2.
-        |> round
-           
-    /// Gets the 32-bit ARGB value of this Color structure.
-    let toArgb c =
-        (int c.A, int c.R, int c.G, int c.B)
-    
+        create 255 r g b
+               
     /// Gets the hex representataion (FFFFFF) of a color (with valid prefix "0xFFFFFF")
-    let toHex prefix (c:Color) =
+    let toHex prefix (c:Argb) =
         let prefix' = if prefix then "0x" else ""
         Hex.encode prefix' [|c.R;c.G;c.B|]
 
@@ -160,56 +118,112 @@ module Colors =
         | [|r;g;b|]  -> fromRgb (int r) (int g) (int b)
         | _          -> failwithf "Invalid hex color format"
 
-
     /// Converts this Color structure to a human-readable string.
-    let toString c =
-        let a,r,g,b = toArgb c
+    let toString c =        
+        let a,r,g,b = (int c.A, int c.R, int c.G, int c.B)
         sprintf "{Alpha: %i Red: %i Green: %i Blue: %i}" a r g b
 
 
-    // http://graphicdesign.stackexchange.com/questions/3682/where-can-i-find-a-large-palette-set-of-contrasting-colors-for-coloring-many-d
-    module Table =    
 
-        let black       = fromRgb   0   0   0                
-        let blackLite   = fromRgb  89  89  89 // 35% lighter
-        let white       = fromRgb 255 255 255
+/// Plotly color can be a single color, a sequence of colors, or a sequence of numeric values referencing the color of the colorscale obj
+type Color private(obj:obj) =
 
-        /// Color palette from Microsoft office 2016
-        module Office = 
-        
-            // blue
-            let blue        = fromRgb  65 113 156        
-            let lightBlue   = fromRgb 189 215 238
-            let darkBlue    = fromRgb  68 114 196
-                        
-            // red           
-            let red         = fromRgb 241  90  96  
-            let lightRed    = fromRgb 252 212 214
+    /// Creates a Color from the four ARGB component (alpha, red, green, and blue) values.
+    static member fromArgb a r g b =
+        RGB.create a r g b 
+        // let fi v =
+        //     if v < 0 || v > 255 then 
+        //         failwithf "Value for component needs to be between 0 and 255."
+        //     else
+        //         byte v
+        // let ff v =
+        //     if v < 0. || v > 1.0 then 
+        //         failwithf "alpha component value needs to be between 0. and 1."
+        //     else
+        //         v        
+        //Color (unbox {A= ff a; R = fi r; G = fi g; B = fi b})
 
-            // orange           
-            let orange      = fromRgb 237 125  49
-            let lightOrange = fromRgb 248 203 173
-                                                                  
-            // yellow        
-            let yellow      = fromRgb 255 217 102
-            let lightYellow = fromRgb 255 230 153
-            let darkYellow  = fromRgb 255 192   0
-                         
-            // green         
-            let green       = fromRgb 122 195 106
-            let lightGreen  = fromRgb 197 224 180
-            let darkGreen   = fromRgb 112 173  71
+    /// Creates a Color from the specified color values (red, green, and blue).
+    /// The alpha value is implicitly 1. (fully opaque). 
+    static member fromRgb r g b =
+        Color.fromArgb 256 r g b
 
-            // grey         
-            let grey        = fromRgb 165 165 165
-            let lightGrey   = fromRgb 217 217 217
+    /// Color from hex representataion (FFFFFF) or (0xFFFFFF)
+    static member fromHex (s:string) =
+        match (Hex.decode s) with
+        | [|r;g;b|]  -> Color.fromRgb (int r) (int g) (int b)
+        | _          -> failwithf "Invalid hex color format"
 
-        // From publication: Escaping RGBland: Selecting Colors for Statistical Graphics
-        // http://epub.wu.ac.at/1692/1/document.pdf
-        module StatisticalGraphics24 =
-            let a = 1
-        // 
-        //{2,63,165},{125,135,185},{190,193,212},{214,188,192},{187,119,132},{142,6,59},{74,111,227},{133,149,225},{181,187,227},{230,175,185},{224,123,145},{211,63,106},{17,198,56},{141,213,147},{198,222,199},{234,211,198},{240,185,141},{239,151,8},{15,207,192},{156,222,214},{213,234,231},{243,225,235},{246,196,225},{247,156,212}
+    /// Color from web color (#FFFFFF)
+    static member fromWebColor (s:string) =
+        let s' = s.TrimStart([|'#'|])
+        match (Hex.decode s') with
+        | [|r;g;b|]  -> Color.fromRgb (int r) (int g) (int b)
+        | _          -> failwithf "Invalid hex color format"
+
+    
+    /// Color 
+    static member Colors (c:seq<Color>) =
+        let tmp =
+            c |> Seq.map (fun v -> v.Value)
+        Color (unbox tmp)
+
+    /// Color as Ploty color name e.g. 'grey'
+    static member ColorString (c:string) =
+        Color (unbox c)
+
+    /// Values are interpreted relative to color scale
+    static member ColorScaleValue (c:seq<System.IConvertible>) =
+        Color (unbox c)
+
+
+    /// extractor
+    member this.Value = obj
+    
+
+// http://graphicdesign.stackexchange.com/questions/3682/where-can-i-find-a-large-palette-set-of-contrasting-colors-for-coloring-many-d
+module Table =    
+
+    let black       = Color.fromRgb   0   0   0                
+    let blackLite   = Color.fromRgb  89  89  89 // 35% lighter
+    let white       = Color.fromRgb 255 255 255
+
+    /// Color palette from Microsoft office 2016
+    module Office = 
+    
+        // blue
+        let blue        = Color.fromRgb  65 113 156        
+        let lightBlue   = Color.fromRgb 189 215 238
+        let darkBlue    = Color.fromRgb  68 114 196
+                    
+        // red           
+        let red         = Color.fromRgb 241  90  96  
+        let lightRed    = Color.fromRgb 252 212 214
+
+        // orange           
+        let orange      = Color.fromRgb 237 125  49
+        let lightOrange = Color.fromRgb 248 203 173
+                                                              
+        // yellow        
+        let yellow      = Color.fromRgb 255 217 102
+        let lightYellow = Color.fromRgb 255 230 153
+        let darkYellow  = Color.fromRgb 255 192   0
+                     
+        // green         
+        let green       = Color.fromRgb 122 195 106
+        let lightGreen  = Color.fromRgb 197 224 180
+        let darkGreen   = Color.fromRgb 112 173  71
+
+        // grey         
+        let grey        = Color.fromRgb 165 165 165
+        let lightGrey   = Color.fromRgb 217 217 217
+
+    // From publication: Escaping RGBland: Selecting Colors for Statistical Graphics
+    // http://epub.wu.ac.at/1692/1/document.pdf
+    module StatisticalGraphics24 =
+        let a = 1
+    // 
+    //{2,63,165},{125,135,185},{190,193,212},{214,188,192},{187,119,132},{142,6,59},{74,111,227},{133,149,225},{181,187,227},{230,175,185},{224,123,145},{211,63,106},{17,198,56},{141,213,147},{198,222,199},{234,211,198},{240,185,141},{239,151,8},{15,207,192},{156,222,214},{213,234,231},{243,225,235},{246,196,225},{247,156,212}
 
 
 
