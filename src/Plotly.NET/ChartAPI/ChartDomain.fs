@@ -21,7 +21,7 @@ module ChartDomain =
                 [<Optional;DefaultParameterValue(null)>]  ?Labels:seq<'IConvertible>,
                 [<Optional;DefaultParameterValue(null)>]  ?Name,
                 [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
-                [<Optional;DefaultParameterValue(null)>]  ?Colors,
+                [<Optional;DefaultParameterValue(null)>]  ?Color,
                 [<Optional;DefaultParameterValue(null)>]  ?TextPosition,
                 [<Optional;DefaultParameterValue(null)>]  ?TextFont,
                 [<Optional;DefaultParameterValue(null)>]  ?Hoverinfo,
@@ -29,7 +29,7 @@ module ChartDomain =
                 [<Optional;DefaultParameterValue(null)>]  ?Opacity) =         
             TraceDomain.initPie (TraceDomainStyle.Pie(Values=values,?Labels=Labels,?Textinfo=Textinfo))
             |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity,?Hoverinfo=Hoverinfo)        
-            |> TraceStyle.Marker(?Colors=Colors)
+            |> TraceStyle.Marker(?Color=Color)
             |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
             |> GenericChart.ofTraceObject 
 
@@ -38,14 +38,14 @@ module ChartDomain =
         static member Pie(data:seq<#IConvertible*#IConvertible>,
                 [<Optional;DefaultParameterValue(null)>]  ?Name,
                 [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
-                [<Optional;DefaultParameterValue(null)>]  ?Colors,
+                [<Optional;DefaultParameterValue(null)>]  ?Color,
                 [<Optional;DefaultParameterValue(null)>]  ?TextPosition,
                 [<Optional;DefaultParameterValue(null)>]  ?TextFont,
                 [<Optional;DefaultParameterValue(null)>]  ?Hoverinfo,
                 [<Optional;DefaultParameterValue(null)>]  ?Textinfo,
                 [<Optional;DefaultParameterValue(null)>]  ?Opacity) =         
             let values,labels = Seq.unzip data 
-            Chart.Pie(values,Labels=labels,?Name=Name,?Showlegend=Showlegend,?Colors=Colors,?TextPosition=TextPosition,?TextFont=TextFont,?Hoverinfo=Hoverinfo,?Textinfo=Textinfo,?Opacity=Opacity)
+            Chart.Pie(values,Labels=labels,?Name=Name,?Showlegend=Showlegend,?Color=Color,?TextPosition=TextPosition,?TextFont=TextFont,?Hoverinfo=Hoverinfo,?Textinfo=Textinfo,?Opacity=Opacity)
 
 
         /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data as a whole.
@@ -53,7 +53,7 @@ module ChartDomain =
                 [<Optional;DefaultParameterValue(null)>]  ?Labels,
                 [<Optional;DefaultParameterValue(null)>]  ?Name,
                 [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
-                [<Optional;DefaultParameterValue(null)>]  ?Colors,
+                [<Optional;DefaultParameterValue(null)>]  ?Color,
                 [<Optional;DefaultParameterValue(null)>]  ?Hole,
                 [<Optional;DefaultParameterValue(null)>]  ?TextPosition,
                 [<Optional;DefaultParameterValue(null)>]  ?TextFont,
@@ -63,7 +63,7 @@ module ChartDomain =
             let hole' = if Hole.IsSome then Hole.Value else 0.4
             TraceDomain.initPie (TraceDomainStyle.Pie(Values=values,?Labels=Labels,?Textinfo=Textinfo,Hole=hole'))
             |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity,?Hoverinfo=Hoverinfo)        
-            |> TraceStyle.Marker(?Colors=Colors)
+            |> TraceStyle.Marker(?Color=Color)
             |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
             |> GenericChart.ofTraceObject 
 
@@ -72,7 +72,7 @@ module ChartDomain =
         static member Doughnut(data:seq<#IConvertible*#IConvertible>,
                 [<Optional;DefaultParameterValue(null)>]  ?Name,
                 [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
-                [<Optional;DefaultParameterValue(null)>]  ?Colors,
+                [<Optional;DefaultParameterValue(null)>]  ?Color,
                 [<Optional;DefaultParameterValue(null)>]  ?Hole,
                 [<Optional;DefaultParameterValue(null)>]  ?TextPosition,
                 [<Optional;DefaultParameterValue(null)>]  ?TextFont,
@@ -80,7 +80,7 @@ module ChartDomain =
                 [<Optional;DefaultParameterValue(null)>]  ?Textinfo,
                 [<Optional;DefaultParameterValue(null)>]  ?Opacity) =         
             let values,labels = Seq.unzip data 
-            Chart.Doughnut(values,Labels=labels,?Name=Name,?Showlegend=Showlegend,?Colors=Colors,?Hole=Hole,?TextPosition=TextPosition,?TextFont=TextFont,?Hoverinfo=Hoverinfo,?Textinfo=Textinfo,?Opacity=Opacity)
+            Chart.Doughnut(values,Labels=labels,?Name=Name,?Showlegend=Showlegend,?Color=Color,?Hole=Hole,?TextPosition=TextPosition,?TextFont=TextFont,?Hoverinfo=Hoverinfo,?Textinfo=Textinfo,?Opacity=Opacity)
 
             
         
@@ -194,12 +194,12 @@ module ChartDomain =
         ///Colors: Sets the color of each sector of this trace. If not specified, the default trace color set is used to pick the sector colors.
         static member Sunburst(labels,parents,
             [<Optional;DefaultParameterValue(null)>]?Ids,
-            [<Optional;DefaultParameterValue(null)>]?Values             ,
-            [<Optional;DefaultParameterValue(null)>]?Text               ,
-            [<Optional;DefaultParameterValue(null)>]?Branchvalues       ,
-            [<Optional;DefaultParameterValue(null)>]?Level              ,
-            [<Optional;DefaultParameterValue(null)>]?Maxdepth           ,
-            [<Optional;DefaultParameterValue(null)>]?Colors: seq<string>,
+            [<Optional;DefaultParameterValue(null)>]?Values,
+            [<Optional;DefaultParameterValue(null)>]?Text,
+            [<Optional;DefaultParameterValue(null)>]?Branchvalues,
+            [<Optional;DefaultParameterValue(null)>]?Level,
+            [<Optional;DefaultParameterValue(null)>]?Maxdepth,
+            [<Optional;DefaultParameterValue(null)>]?Color,
             [<Optional;DefaultParameterValue(null)>]?ColorBar:ColorBar
             ) =
             TraceDomain.initSunburst(
@@ -214,7 +214,7 @@ module ChartDomain =
                     ?Maxdepth       = Maxdepth
                 )
             )
-            |> TraceStyle.Marker(?Colors=Colors,?ColorBar=ColorBar)
+            |> TraceStyle.Marker(?Color=Color,?ColorBar=ColorBar)
             |> GenericChart.ofTraceObject
 
 
@@ -243,14 +243,14 @@ module ChartDomain =
         ///Colors: Sets the color of each sector of this trace. If not specified, the default trace color set is used to pick the sector colors.
         static member Treemap(labels,parents,
             [<Optional;DefaultParameterValue(null)>]?Ids,
-            [<Optional;DefaultParameterValue(null)>]?Values             ,
-            [<Optional;DefaultParameterValue(null)>]?Text               ,
-            [<Optional;DefaultParameterValue(null)>]?Branchvalues       ,
-            [<Optional;DefaultParameterValue(null)>]?Tiling             ,
-            [<Optional;DefaultParameterValue(null)>]?PathBar            ,
-            [<Optional;DefaultParameterValue(null)>]?Level              ,
-            [<Optional;DefaultParameterValue(null)>]?Maxdepth           ,
-            [<Optional;DefaultParameterValue(null)>]?Colors: seq<string>,
+            [<Optional;DefaultParameterValue(null)>]?Values,
+            [<Optional;DefaultParameterValue(null)>]?Text,
+            [<Optional;DefaultParameterValue(null)>]?Branchvalues,
+            [<Optional;DefaultParameterValue(null)>]?Tiling,
+            [<Optional;DefaultParameterValue(null)>]?PathBar,
+            [<Optional;DefaultParameterValue(null)>]?Level,
+            [<Optional;DefaultParameterValue(null)>]?Maxdepth,
+            [<Optional;DefaultParameterValue(null)>]?Color,
             [<Optional;DefaultParameterValue(null)>]?ColorBar:ColorBar
             ) =
             TraceDomain.initTreemap(
@@ -267,7 +267,7 @@ module ChartDomain =
                     ?Maxdepth       = Maxdepth
                 )
             )
-            |> TraceStyle.Marker(?Colors=Colors,?ColorBar=ColorBar)
+            |> TraceStyle.Marker(?Color=Color,?ColorBar=ColorBar)
             |> GenericChart.ofTraceObject
 
 

@@ -23,7 +23,7 @@ let main argv =
         |> Chart.withYAxisStyle("my y-axis", Id=StyleParam.SubPlotId.Scene 1)
         |> Chart.withZAxisStyle("my z-axis")
         |> Chart.withMarker(Marker.init(Size=5))
-        |> Chart.withLine(Line.init(Color="red"))
+        |> Chart.withLine(Line.init(Color=Color.ColorString "red"))
         |> Chart.withSize(800,800)
     
     let rec printObj (d:DynamicObj) =

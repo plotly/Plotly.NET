@@ -134,7 +134,7 @@ let flightsMapChart =
         Chart.LineGeo(
             [startCoords; endCoords],
             Opacity = opacityVals.[i],
-            Color = "red"
+            Color = Color.ColorString  "red"
         )
     )
     |> Chart.combine

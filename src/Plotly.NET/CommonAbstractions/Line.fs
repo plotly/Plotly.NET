@@ -11,14 +11,14 @@ type Line () =
     /// Initialized Line object
     static member init
         (
-            [<Optional;DefaultParameterValue(null)>] ?Width:float,
-            [<Optional;DefaultParameterValue(null)>] ?Color:string,
-            [<Optional;DefaultParameterValue(null)>] ?Shape:StyleParam.Shape,
-            [<Optional;DefaultParameterValue(null)>] ?Dash:StyleParam.DrawingStyle,
-            [<Optional;DefaultParameterValue(null)>] ?Smoothing:float,
-            [<Optional;DefaultParameterValue(null)>] ?Colorscale:StyleParam.Colorscale,
-            [<Optional;DefaultParameterValue(null)>] ?OutlierColor:string,
-            [<Optional;DefaultParameterValue(null)>] ?OutlierWidth:float
+            [<Optional;DefaultParameterValue(null)>] ?Width,
+            [<Optional;DefaultParameterValue(null)>] ?Color,
+            [<Optional;DefaultParameterValue(null)>] ?Shape,
+            [<Optional;DefaultParameterValue(null)>] ?Dash,
+            [<Optional;DefaultParameterValue(null)>] ?Smoothing,
+            [<Optional;DefaultParameterValue(null)>] ?Colorscale,
+            [<Optional;DefaultParameterValue(null)>] ?OutlierColor,
+            [<Optional;DefaultParameterValue(null)>] ?OutlierWidth
 
         ) =
             Line () 
@@ -39,12 +39,12 @@ type Line () =
     static member style
         (
             [<Optional;DefaultParameterValue(null)>] ?Width:float,
-            [<Optional;DefaultParameterValue(null)>] ?Color:string,
+            [<Optional;DefaultParameterValue(null)>] ?Color:Color,
             [<Optional;DefaultParameterValue(null)>] ?Shape:StyleParam.Shape,
             [<Optional;DefaultParameterValue(null)>] ?Dash:StyleParam.DrawingStyle,
             [<Optional;DefaultParameterValue(null)>] ?Smoothing:float,
             [<Optional;DefaultParameterValue(null)>] ?Colorscale:StyleParam.Colorscale,
-            [<Optional;DefaultParameterValue(null)>] ?OutlierColor:string,
+            [<Optional;DefaultParameterValue(null)>] ?OutlierColor:Color,
             [<Optional;DefaultParameterValue(null)>] ?OutlierWidth:float
 
         ) =

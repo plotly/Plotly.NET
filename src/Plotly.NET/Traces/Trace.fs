@@ -101,7 +101,7 @@ type TraceStyle() =
     static member Line
         (
             [<Optional;DefaultParameterValue(null)>] ?Width: float,
-            [<Optional;DefaultParameterValue(null)>] ?Color: string,
+            [<Optional;DefaultParameterValue(null)>] ?Color: Color,
             [<Optional;DefaultParameterValue(null)>] ?Shape: StyleParam.Shape,
             [<Optional;DefaultParameterValue(null)>] ?Dash: StyleParam.DrawingStyle,
             [<Optional;DefaultParameterValue(null)>] ?Smoothing: float,
@@ -136,14 +136,14 @@ type TraceStyle() =
         (   
             [<Optional;DefaultParameterValue(null)>] ?Size: int,
             [<Optional;DefaultParameterValue(null)>] ?Opacity: float,
-            [<Optional;DefaultParameterValue(null)>] ?Color: string,
+            [<Optional;DefaultParameterValue(null)>] ?Color: Color,
             [<Optional;DefaultParameterValue(null)>] ?Symbol: StyleParam.Symbol,
             [<Optional;DefaultParameterValue(null)>] ?MultiSizes: seq<#IConvertible>,
             [<Optional;DefaultParameterValue(null)>] ?Line: Line,
             [<Optional;DefaultParameterValue(null)>] ?ColorBar: ColorBar,
             [<Optional;DefaultParameterValue(null)>] ?Colorscale : StyleParam.Colorscale,
-            [<Optional;DefaultParameterValue(null)>] ?Colors: seq<string>,
-            [<Optional;DefaultParameterValue(null)>] ?OutlierColor:string,
+            //[<Optional;DefaultParameterValue(null)>] ?Colors: seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?OutlierColor:Color,
             [<Optional;DefaultParameterValue(null)>] ?Maxdisplayed: int,
             [<Optional;DefaultParameterValue(null)>] ?Sizeref: float,
             [<Optional;DefaultParameterValue(null)>] ?Sizemin: float,
@@ -165,7 +165,7 @@ type TraceStyle() =
                     
                     |> Marker.style(?Size=Size,?Color=Color,?Symbol=Symbol,
                         ?Opacity=Opacity,?MultiSizes=MultiSizes,?Line=Line,
-                        ?ColorBar=ColorBar,?Colorscale=Colorscale,?Colors=Colors,?OutlierColor=OutlierColor,
+                        ?ColorBar=ColorBar,?Colorscale=Colorscale,?OutlierColor=OutlierColor,
                         ?Maxdisplayed=Maxdisplayed,?Sizeref=Sizeref,?Sizemin=Sizemin,
                         ?Sizemode=Sizemode,?Cauto=Cauto,?Cmax=Cmax,?Cmin=Cmin,?Cmid=Cmid,
                         ?Autocolorscale=Autocolorscale,?Reversescale=Reversescale,?Showscale=Showscale

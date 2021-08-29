@@ -195,8 +195,8 @@ let rangePlotsChart =
     Chart.Range(
         x,y,yUpper,yLower,
         StyleParam.Mode.Lines_Markers,
-        Color="grey",
-        RangeColor="lightblue")
+        Color=Color.ColorString "grey",
+        RangeColor=Color.ColorString "lightblue")
 
 [<Tests>]
 let ``Range plot`` =
@@ -303,9 +303,9 @@ let tableStyledChart =
         AlignCells  = [HorizontalAlign.Left; HorizontalAlign.Center; HorizontalAlign.Right],
         ColorHeader = "#45546a",    
         ColorCells  = ["#deebf7"; "lightgrey"; "#deebf7"; "lightgrey"],
-        FontHeader  = Font.init(FontFamily.Courier_New, Size=12., Color="white"),      
+        FontHeader  = Font.init(FontFamily.Courier_New, Size=12., Color=Color.ColorString "white"),      
         HeightHeader= 30.,
-        LineHeader  = Line.init(2., "black"),                     
+        LineHeader  = Line.init(2.,Color.ColorString "black"),                     
         ColumnWidth = [70; 50; 100; 70],      
         ColumnOrder = [1; 2; 3; 4]                                  
     )
@@ -391,7 +391,7 @@ let sequencePresentationTableChart =
         |> Seq.map (fun x -> Seq.append x (seq ["white"]))
 
     let font = Font.init(FontFamily.Consolas,Size=14.)
-    let line = Line.init(0.,"white")
+    let line = Line.init(0., Color.ColorString "white")
     let chartwidth = 50 + 10 * elementsPerRow
 
     Chart.Table(
