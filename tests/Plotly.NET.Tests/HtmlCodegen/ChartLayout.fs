@@ -200,7 +200,7 @@ let ``Shapes`` =
             |> chartGeneratedContains shapesChart
         );
         testCase "Layout" ( fun () ->
-            "var layout = {\"shapes\":[{\"type\":\"rect\",\"x0\":2.0,\"x1\":4.0,\"y0\":3.0,\"y1\":4.0,\"opacity\":0.3,\"fillcolor\":\"#d3d3d3\"},{\"type\":\"rect\",\"x0\":5.0,\"x1\":7.0,\"y0\":3.0,\"y1\":4.0,\"opacity\":0.3,\"fillcolor\":\"#d3d3d3\"}]};"
+            "var layout = {\"shapes\":[{\"type\":\"rect\",\"x0\":2.0,\"x1\":4.0,\"y0\":3.0,\"y1\":4.0,\"opacity\":0.3,\"fillcolor\":\"rgba(211, 211, 211, 1.0)\"},{\"type\":\"rect\",\"x0\":5.0,\"x1\":7.0,\"y0\":3.0,\"y1\":4.0,\"opacity\":0.3,\"fillcolor\":\"rgba(211, 211, 211, 1.0)\"}]};"
             |> chartGeneratedContains shapesChart
         );
     ]
