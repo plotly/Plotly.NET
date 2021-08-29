@@ -602,7 +602,7 @@ module Chart2D =
                         Trace2DStyle.Scatter(X = x,Y = lower, Mode=StyleParam.Mode.Lines, ?FillColor=RangeColor) )               
                 |> TraceStyle.TraceInfo(?Name = Some lowerName, Showlegend=false)
                 |> TraceStyle.Line(Width=0.)
-                //|> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else (Color.ColorString "rgba(0,0,0,0.5)"))             
+                |> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else (Plotly.NET.Color.ColorString "rgba(0,0,0,0.5)"))             
                 |> TraceStyle.TextLabel(?Text=LowerLabels,?Textposition=TextPosition,?Textfont=TextFont)
 
             let upper = 
@@ -610,7 +610,7 @@ module Chart2D =
                         Trace2DStyle.Scatter(X = x,Y = upper, Mode=StyleParam.Mode.Lines, ?FillColor=RangeColor, Fill=StyleParam.Fill.ToNext_y) )               
                 |> TraceStyle.TraceInfo(?Name = Some upperName, Showlegend=false)
                 |> TraceStyle.Line(Width=0.)
-                //|> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else (Color.ColorString "rgba(0,0,0,0.5)"))             
+                |> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else (Plotly.NET.Color.ColorString "rgba(0,0,0,0.5)"))             
                 |> TraceStyle.TextLabel(?Text=UpperLabels,?Textposition=TextPosition,?Textfont=TextFont)
 
             GenericChart.MultiChart ([lower;upper;trace],Layout(),Config(), DisplayOptions())
