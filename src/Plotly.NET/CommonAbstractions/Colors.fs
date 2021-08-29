@@ -80,7 +80,7 @@ module RGB =
         override _.WriteJson(writer, value, serializer) =       
             let argb = value :?> Argb
             //writer.WriteValue(sprintf "rgba(%i, %i, %i, %0.1f)" argb.R argb.G argb.B argb.A )
-            writer.WriteValue(sprintf "rgba(%i, %i, %i, %i)" argb.R argb.G argb.B argb.A )
+            writer.WriteValue(sprintf "rgba(%i, %i, %i, %0.1f)" argb.R argb.G argb.B (float argb.A / 255.))
 
     /// Creates a Argb Color from the four ARGB component (alpha, red, green, and blue) values.
     let create a r g b =
@@ -126,11 +126,14 @@ module RGB =
 
 
 /// Plotly color can be a single color, a sequence of colors, or a sequence of numeric values referencing the color of the colorscale obj
+[<JsonConverter(typeof<ColorConverter>)>]
 type Color private(obj:obj) =
 
     /// Creates a Color from the four ARGB component (alpha, red, green, and blue) values.
     static member fromArgb a r g b =
-        RGB.create a r g b 
+        RGB.create a r g b
+        |> unbox
+        |> Color
         // let fi v =
         //     if v < 0 || v > 255 then 
         //         failwithf "Value for component needs to be between 0 and 255."
@@ -146,7 +149,7 @@ type Color private(obj:obj) =
     /// Creates a Color from the specified color values (red, green, and blue).
     /// The alpha value is implicitly 1. (fully opaque). 
     static member fromRgb r g b =
-        Color.fromArgb 256 r g b
+        Color.fromArgb 255 r g b
 
     /// Color from hex representataion (FFFFFF) or (0xFFFFFF)
     static member fromHex (s:string) =
@@ -179,51 +182,66 @@ type Color private(obj:obj) =
 
     /// extractor
     member this.Value = obj
-    
+
+and ColorConverter() =
+    inherit JsonConverter()
+
+    override _.CanConvert(objectType) =       
+        objectType = typeof<Color>      
+
+    override _.ReadJson(reader, t, existingValue, serializer) =  
+        raise (System.NotImplementedException())
+           
+    override _.WriteJson(writer, value, serializer) =       
+        let c  = value :?> Color
+        let jc = JsonConvert.SerializeObject(c.Value)
+        writer.WriteRawValue(jc)
+
 
 // http://graphicdesign.stackexchange.com/questions/3682/where-can-i-find-a-large-palette-set-of-contrasting-colors-for-coloring-many-d
-module Table =    
+module Color = 
+    module Table =    
 
-    let black       = Color.fromRgb   0   0   0                
-    let blackLite   = Color.fromRgb  89  89  89 // 35% lighter
-    let white       = Color.fromRgb 255 255 255
+        let black       = Color.fromRgb   0   0   0                
+        let blackLite   = Color.fromRgb  89  89  89 // 35% lighter
+        let white       = Color.fromRgb 255 255 255
 
-    /// Color palette from Microsoft office 2016
-    module Office = 
+        /// Color palette from Microsoft office 2016
+        module Office = 
     
-        // blue
-        let blue        = Color.fromRgb  65 113 156        
-        let lightBlue   = Color.fromRgb 189 215 238
-        let darkBlue    = Color.fromRgb  68 114 196
+            // blue
+            let blue        = Color.fromRgb  65 113 156        
+            let lightBlue   = Color.fromRgb 189 215 238
+            let darkBlue    = Color.fromRgb  68 114 196
                     
-        // red           
-        let red         = Color.fromRgb 241  90  96  
-        let lightRed    = Color.fromRgb 252 212 214
+            // red           
+            let red         = Color.fromRgb 241  90  96  
+            let lightRed    = Color.fromRgb 252 212 214
 
-        // orange           
-        let orange      = Color.fromRgb 237 125  49
-        let lightOrange = Color.fromRgb 248 203 173
+            // orange           
+            let orange      = Color.fromRgb 237 125  49
+            let lightOrange = Color.fromRgb 248 203 173
                                                               
-        // yellow        
-        let yellow      = Color.fromRgb 255 217 102
-        let lightYellow = Color.fromRgb 255 230 153
-        let darkYellow  = Color.fromRgb 255 192   0
+            // yellow        
+            let yellow      = Color.fromRgb 255 217 102
+            let lightYellow = Color.fromRgb 255 230 153
+            let darkYellow  = Color.fromRgb 255 192   0
                      
-        // green         
-        let green       = Color.fromRgb 122 195 106
-        let lightGreen  = Color.fromRgb 197 224 180
-        let darkGreen   = Color.fromRgb 112 173  71
+            // green         
+            let green       = Color.fromRgb 122 195 106
+            let lightGreen  = Color.fromRgb 197 224 180
+            let darkGreen   = Color.fromRgb 112 173  71
 
-        // grey         
-        let grey        = Color.fromRgb 165 165 165
-        let lightGrey   = Color.fromRgb 217 217 217
+            // grey         
+            let grey        = Color.fromRgb 165 165 165
+            let lightGrey   = Color.fromRgb 217 217 217
 
-    // From publication: Escaping RGBland: Selecting Colors for Statistical Graphics
-    // http://epub.wu.ac.at/1692/1/document.pdf
-    module StatisticalGraphics24 =
-        let a = 1
-    // 
-    //{2,63,165},{125,135,185},{190,193,212},{214,188,192},{187,119,132},{142,6,59},{74,111,227},{133,149,225},{181,187,227},{230,175,185},{224,123,145},{211,63,106},{17,198,56},{141,213,147},{198,222,199},{234,211,198},{240,185,141},{239,151,8},{15,207,192},{156,222,214},{213,234,231},{243,225,235},{246,196,225},{247,156,212}
+        // From publication: Escaping RGBland: Selecting Colors for Statistical Graphics
+        // http://epub.wu.ac.at/1692/1/document.pdf
+        module StatisticalGraphics24 =
+            let a = 1
+        // 
+        //{2,63,165},{125,135,185},{190,193,212},{214,188,192},{187,119,132},{142,6,59},{74,111,227},{133,149,225},{181,187,227},{230,175,185},{224,123,145},{211,63,106},{17,198,56},{141,213,147},{198,222,199},{234,211,198},{240,185,141},{239,151,8},{15,207,192},{156,222,214},{213,234,231},{243,225,235},{246,196,225},{247,156,212}
 
 
 
