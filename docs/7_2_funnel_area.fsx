@@ -44,7 +44,7 @@ to visualizing funnel data.
 
 open Plotly.NET 
 
-let line = Line.init (Color="purple", Width=3.)
+let line = Line.init (Color=Color.ColorString "purple", Width=3.)
 
 let funnelArea = 
     Chart.FunnelArea(Values=values, Text=text, Line=line)

@@ -79,11 +79,11 @@ let table2 =
         //sets cell row colors
         //ColorCells=[["#deebf7";"lightgrey"]],
         //sets font of header
-        FontHeader  = Font.init(FontFamily.Courier_New, Size=12., Color="white"),      
+        FontHeader  = Font.init(FontFamily.Courier_New, Size=12., Color=Color.ColorString "white"),      
         //sets the height of the header
         HeightHeader= 30.,
         //sets lines of header
-        LineHeader  = Line.init(2.,"black"),                     
+        LineHeader  = Line.init(2.,Color.ColorString "black"),                     
         ColumnWidth = [70;50;100;70],      
         //defines order of columns
         ColumnOrder = [1;2;3;4]                                  
@@ -120,8 +120,8 @@ let mapColor min max value =
     let proportion = 
         (255. * (value - min) / (max - min))
         |> int
-    Colors.fromRgb 255 (255 - proportion) proportion
-    |> Colors.toWebColor
+    RGB.fromRgb 255 (255 - proportion) proportion
+    |> RGB.toWebColor
     
 //Assign a color to every cell seperately. Matrix must be transposed for correct orientation.
 let cellcolor = 

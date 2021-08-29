@@ -45,7 +45,7 @@ let dims =
 let parcats =
     Chart.ParallelCategories(
         dims,
-        Color=[0.;1.;0.;1.;0.;0.;0.],
+        Color = Color.ColorScaleValue [0.;1.;0.;1.;0.;0.;0.],
         Colorscale = StyleParam.Colorscale.Blackbody
     )
 

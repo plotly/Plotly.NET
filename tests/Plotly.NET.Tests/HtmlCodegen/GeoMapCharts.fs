@@ -18,15 +18,15 @@ let moreFeaturesBasemapChart =
         Geo.init(
             Resolution=StyleParam.GeoResolution.R50,
             ShowCoastLines=true, 
-            CoastLineColor="RebeccaPurple",
+            CoastLineColor=Color.ColorString "RebeccaPurple",
             ShowLand=true, 
-            LandColor="LightGreen",
+            LandColor=Color.ColorString "LightGreen",
             ShowOcean=true, 
-            OceanColor="LightBlue",
+            OceanColor=Color.ColorString "LightBlue",
             ShowLakes=true, 
-            LakeColor="Blue",
+            LakeColor=Color.ColorString "Blue",
             ShowRivers=true, 
-            RiverColor="Blue"
+            RiverColor=Color.ColorString "Blue"
         )
     Chart.PointGeo([])
     |> Chart.withGeo myGeo
@@ -38,7 +38,7 @@ let cultureMapChart =
             Visible=false, 
             Resolution=StyleParam.GeoResolution.R50,
             ShowCountries=true, 
-            CountryColor="RebeccaPurple"
+            CountryColor=Color.ColorString "RebeccaPurple"
         )
     Chart.PointGeo([])
     |> Chart.withGeo countryGeo
@@ -97,7 +97,7 @@ let pointGeoChart =
     |> Chart.withGeoStyle(
         Scope=StyleParam.GeoScope.NorthAmerica, 
         Projection=GeoProjection.init(StyleParam.GeoProjectionType.AzimuthalEqualArea),
-        CountryColor = "lightgrey"
+        CountryColor = Color.ColorString "lightgrey"
     )
     |> Chart.withMarginSize(0, 0, 0, 0)
 
@@ -143,7 +143,7 @@ let flightsMapChart =
         Scope=StyleParam.GeoScope.NorthAmerica, 
         Projection=GeoProjection.init(StyleParam.GeoProjectionType.AzimuthalEqualArea),
         ShowLand=true,
-        LandColor = "lightgrey"
+        LandColor = Color.ColorString "lightgrey"
     )
     |> Chart.withMarginSize(0,0,50,0)
     |> Chart.withTitle "Feb. 2011 American Airline flights"
@@ -237,7 +237,7 @@ let choroplethMap2Chart =
         Projection=GeoProjection.init(projectionType=StyleParam.GeoProjectionType.Mollweide),
         ShowLakes=true,
         ShowOcean=true,
-        OceanColor="lightblue",
+        OceanColor= Color.ColorString "lightblue",
         ShowRivers=true)
     |> Chart.withColorBarStyle (
         Title.init(Text="Alcohol consumption[l/y]")

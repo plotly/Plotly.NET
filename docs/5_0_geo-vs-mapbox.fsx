@@ -72,15 +72,15 @@ let myGeo =
     Geo.init(
         Resolution=StyleParam.GeoResolution.R50,
         ShowCoastLines=true, 
-        CoastLineColor="RebeccaPurple",
+        CoastLineColor=Color.ColorString "RebeccaPurple",
         ShowLand=true, 
-        LandColor="LightGreen",
+        LandColor=Color.ColorString "LightGreen",
         ShowOcean=true, 
-        OceanColor="LightBlue",
+        OceanColor=Color.ColorString "LightBlue",
         ShowLakes=true, 
-        LakeColor="Blue",
+        LakeColor=Color.ColorString "Blue",
         ShowRivers=true, 
-        RiverColor="Blue"
+        RiverColor=Color.ColorString "Blue"
     )
 
 let moreFeaturesBaseMap =
@@ -114,7 +114,7 @@ let countryGeo =
         Visible=false, 
         Resolution=StyleParam.GeoResolution.R50,
         ShowCountries=true, 
-        CountryColor="RebeccaPurple"
+        CountryColor=Color.ColorString "RebeccaPurple"
     )
 
 

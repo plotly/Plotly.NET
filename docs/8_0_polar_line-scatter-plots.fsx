@@ -75,7 +75,7 @@ You can for example change the line style using `Chart.withLineStyle`
 
 let linePolar = 
     Chart.LinePolar(radial,theta)
-    |> Chart.withLineStyle(Color="purple",Dash=StyleParam.DrawingStyle.DashDot)
+    |> Chart.withLineStyle(Color=Color.ColorString "purple",Dash=StyleParam.DrawingStyle.DashDot)
 
 (*** condition: ipynb ***)
 #if IPYNB

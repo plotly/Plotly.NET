@@ -52,8 +52,8 @@ let range1 =
     Chart.Range(
         x,y,yUpper,yLower,
         StyleParam.Mode.Lines_Markers,
-        Color="grey",
-        RangeColor="lightblue")
+        Color = Color.ColorString "grey",
+        RangeColor = Color.ColorString "lightblue")
 
 (*** condition: ipynb ***)
 #if IPYNB
