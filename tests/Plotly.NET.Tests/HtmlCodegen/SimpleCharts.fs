@@ -329,8 +329,8 @@ let tableColorDependentChart =
         let proportion = 
             (255. * (value - min) / (max - min))
             |> int
-        Colors.fromRgb 255 (255 - proportion) proportion
-        |> Colors.toWebColor
+        RGB.fromRgb 255 (255 - proportion) proportion
+        |> RGB.toWebColor
         
     //Assign a color to every cell seperately. Matrix must be transposed for correct orientation.
     let cellcolor = 
