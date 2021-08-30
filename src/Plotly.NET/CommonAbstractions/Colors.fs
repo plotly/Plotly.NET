@@ -151,15 +151,9 @@ type Color private(obj:obj) =
     static member fromRgb r g b =
         Color.fromArgb 255 r g b
 
-    /// Color from hex representataion (FFFFFF) or (0xFFFFFF)
-    static member fromHex (s:string) =
-        match (Hex.decode s) with
-        | [|r;g;b|]  -> Color.fromRgb (int r) (int g) (int b)
-        | _          -> failwithf "Invalid hex color format"
-
-    /// Color from web color (#FFFFFF)
+    /// Color from web color (#FFFFFF) or hex representataion (FFFFFF) / (0xFFFFFF)
     static member fromWebColor (s:string) =
-        let s' = s.TrimStart([|'#'|])
+        let s' = s.TrimStart('#')
         match (Hex.decode s') with
         | [|r;g;b|]  -> Color.fromRgb (int r) (int g) (int b)
         | _          -> failwithf "Invalid hex color format"
