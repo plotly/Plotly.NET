@@ -46,6 +46,7 @@ The settings do not apply for the html document containing the chart but for cha
 *)
 
 open Plotly.NET
+open Plotly.NET.ConfigObjects
 
 let svgConfig =
     Config.init (
