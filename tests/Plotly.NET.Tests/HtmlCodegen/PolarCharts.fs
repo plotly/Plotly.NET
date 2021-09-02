@@ -4,9 +4,10 @@ open Expecto
 open Plotly.NET
 open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
-open TestUtils
 open Plotly.NET.GenericChart
 open System
+
+open TestUtils.HtmlCodegen
 
 //radial coordinates
 let radial  = [ 1; 2; 3; 4; 5; 6; 7;]

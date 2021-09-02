@@ -4,9 +4,10 @@ open Expecto
 open Plotly.NET
 open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
-open TestUtils
 open Plotly.NET.GenericChart
 open Plotly.NET.StyleParam
+
+open TestUtils.HtmlCodegen
 
 let withLineStyleChart =
     let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]

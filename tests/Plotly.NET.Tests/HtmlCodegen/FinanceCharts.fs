@@ -4,9 +4,10 @@ open Expecto
 open Plotly.NET
 open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
-open TestUtils
 open Plotly.NET.GenericChart
 open System
+
+open TestUtils.HtmlCodegen
 
 let candles =
     [|("2020-01-17T13:40:00", 0.68888, 0.68888, 0.68879, 0.6888);

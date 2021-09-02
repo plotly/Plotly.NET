@@ -4,10 +4,11 @@ open Expecto
 open Plotly.NET
 open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
-open TestUtils
 open Plotly.NET.GenericChart
 open Plotly.NET.LayoutObjects
 open System
+
+open TestUtils.HtmlCodegen
 
 let basemapChart =
     Chart.PointGeo([]) // deliberately empty chart to show the base map only

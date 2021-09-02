@@ -641,7 +641,7 @@ type LinearAxis () =
                 Visible            |> DynObj.setValueOpt axis   "visible" 
                 Color              |> DynObj.setValueOpt axis   "color" 
                 Title              |> DynObj.setValueOpt axis   "title" 
-                AxisType           |> DynObj.setValueOptBy axis "axistype" StyleParam.AxisType.convert
+                AxisType           |> DynObj.setValueOptBy axis "type" StyleParam.AxisType.convert
                 AutoTypeNumbers    |> DynObj.setValueOptBy axis "autotypenumbers" StyleParam.AutoTypeNumbers.convert
                 AutoRange          |> DynObj.setValueOptBy axis "autorange" StyleParam.AutoRange.convert
                 RangeMode          |> DynObj.setValueOptBy axis "rangemode" StyleParam.RangeMode.convert
@@ -650,7 +650,7 @@ type LinearAxis () =
                 ScaleAnchor        |> DynObj.setValueOptBy axis "scaleanchor" StyleParam.LinearAxisId.convert
                 ScaleRatio         |> DynObj.setValueOpt axis   "scaleratio" 
                 Constrain          |> DynObj.setValueOptBy axis "constrain" StyleParam.AxisConstraint.convert
-                ConstrainToward    |> DynObj.setValueOptBy axis "constraitoward" StyleParam.AxisConstraintDirection.convert
+                ConstrainToward    |> DynObj.setValueOptBy axis "constraintoward" StyleParam.AxisConstraintDirection.convert
                 Matches            |> DynObj.setValueOptBy axis "matches" StyleParam.LinearAxisId.convert
                 Rangebreaks        |> DynObj.setValueOpt axis   "rangebreaks" 
                 TickMode           |> DynObj.setValueOptBy axis "tickmode" StyleParam.TickMode.convert
