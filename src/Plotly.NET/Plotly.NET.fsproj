@@ -107,6 +107,7 @@
     <Folder Include="Layout\ObjectAbstractions\2D\" />
     <Folder Include="Template\ObjectAbstractions\" />
     <Compile Include="Template\Template.fs" />
+    <Compile Include="Config\ObjectAbstractions\ToImageButtonOptions.fs" />
     <Compile Include="Config\Config.fs" />
     <Compile Include="DisplayOptions\DisplayOptions.fs" />
     <Compile Include="ChartAPI\GenericChart.fs" />
@@ -125,7 +126,6 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Config\ObjectAbstraction\" />
     <Folder Include="DisplayOptions\ObjectAbstractions\" />
     <Folder Include="Layout\ObjectAbstractions\Carpet\" />
     <Folder Include="Layout\ObjectAbstractions\Ternary\" />

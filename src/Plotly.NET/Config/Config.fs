@@ -1,10 +1,24 @@
 namespace Plotly.NET
 
+open Plotly.NET.ConfigObjects
 open DynamicObj
 open System.Runtime.InteropServices
 
-// missing config props:
+//missing:
 
+//var configAttributes = {
+//    plotlyServerURL: {
+//        valType: 'string',
+//        dflt: '',
+//        description: [
+//            'When set it determines base URL for',
+//            'the \'Edit in Chart Studio\' `showEditInChartStudio`/`showSendToCloud` mode bar button',
+//            'and the showLink/sendData on-graph link.',
+//            'To enable sending your data to Chart Studio Cloud, you need to',
+//            'set both `plotlyServerURL` to \'https://chart-studio.plotly.com\' and',
+//            'also set `showSendToCloud` to true.'
+//        ].join(' ')
+//    },
 //    fillFrame: {
 //        valType: 'boolean',
 //        dflt: false,
@@ -94,7 +108,7 @@ open System.Runtime.InteropServices
 //        valType: 'boolean',
 //        dflt: false,
 //        description: [
-//            'Determines whether a link to plot.ly is displayed',
+//            'Determines whether a link to Chart Studio Cloud is displayed',
 //            'at the bottom right corner of resulting graphs.',
 //            'Use with `sendData` and `linkText`.'
 //        ].join(' ')
@@ -112,7 +126,7 @@ open System.Runtime.InteropServices
 //        dflt: true,
 //        description: [
 //            'If *showLink* is true, does it contain data',
-//            'just link to a plot.ly file?'
+//            'just link to a Chart Studio Cloud file?'
 //        ].join(' ')
 //    },
 //    showSources: {
@@ -141,10 +155,10 @@ open System.Runtime.InteropServices
 //        dflt: false,
 //        description: [
 //            'Should we include a ModeBar button, labeled "Edit in Chart Studio",',
-//            'that sends this chart to plot.ly or another plotly server as specified',
-//            'by `plotlyServerURL` for editing, export, etc? Prior to version 1.43.0',
+//            'that sends this chart to chart-studio.plotly.com (formerly plot.ly) or another plotly server',
+//            'as specified by `plotlyServerURL` for editing, export, etc? Prior to version 1.43.0',
 //            'this button was included by default, now it is opt-in using this flag.',
-//            'Note that this button can (depending on `plotlyServerURL`) send your data',
+//            'Note that this button can (depending on `plotlyServerURL` being set) send your data',
 //            'to an external server. However that server does not persist your data',
 //            'until you arrive at the Chart Studio and explicitly click "Save".'
 //        ].join(' ')
@@ -166,14 +180,6 @@ open System.Runtime.InteropServices
 //            'See ./components/modebar/buttons.js for the list of names.'
 //        ].join(' ')
 //    },
-//    modeBarButtonsToAdd: {
-//        valType: 'any',
-//        dflt: [],
-//        description: [
-//            'Add mode bar button using config objects',
-//            'See ./components/modebar/buttons.js for list of arguments.'
-//        ].join(' ')
-//    },
 //    modeBarButtons: {
 //        valType: 'any',
 //        dflt: false,
@@ -182,15 +188,6 @@ open System.Runtime.InteropServices
 //            'where the outer arrays represents button groups, and',
 //            'the inner arrays have buttons config objects or names of default buttons',
 //            'See ./components/modebar/buttons.js for more info.'
-//        ].join(' ')
-//    },
-//    toImageButtonOptions: {
-//        valType: 'any',
-//        dflt: {},
-//        description: [
-//            'Statically override options for toImage modebar button',
-//            'allowed keys are format, filename, width, height, scale',
-//            'see ../components/modebar/buttons.js'
 //        ].join(' ')
 //    },
 //    displaylogo: {
@@ -256,13 +253,30 @@ open System.Runtime.InteropServices
 //    },
 
 //    logging: {
-//        valType: 'boolean',
+//        valType: 'integer',
+//        min: 0,
+//        max: 2,
 //        dflt: 1,
 //        description: [
 //            'Turn all console logging on or off (errors will be thrown)',
 //            'This should ONLY be set via Plotly.setPlotConfig',
 //            'Available levels:',
 //            '0: no logs',
+//            '1: warnings and errors, but not informational messages',
+//            '2: verbose logs'
+//        ].join(' ')
+//    },
+
+//    notifyOnLogging: {
+//        valType: 'integer',
+//        min: 0,
+//        max: 2,
+//        dflt: 0,
+//        description: [
+//            'Set on-graph logging (notifier) level',
+//            'This should ONLY be set via Plotly.setPlotConfig',
+//            'Available levels:',
+//            '0: no on-graph logs',
 //            '1: warnings and errors, but not informational messages',
 //            '2: verbose logs'
 //        ].join(' ')
@@ -319,42 +333,6 @@ open System.Runtime.InteropServices
 //        ].join(' ')
 //    }
 //};
-
-type ToImageButtonOptions() =
-    inherit DynamicObj()
-    static member init 
-        (
-            [<Optional;DefaultParameterValue(null)>] ?Format     : StyleParam.ImageFormat,
-            [<Optional;DefaultParameterValue(null)>] ?Filename   : string, 
-            [<Optional;DefaultParameterValue(null)>] ?Width      : float, 
-            [<Optional;DefaultParameterValue(null)>] ?Height     : float, 
-            [<Optional;DefaultParameterValue(null)>] ?Scale      : float
-        ) =
-            ToImageButtonOptions()
-            |> ToImageButtonOptions.style 
-                (
-                    ?Format     = Format  ,
-                    ?Filename   = Filename,
-                    ?Width      = Width   ,
-                    ?Height     = Height  ,
-                    ?Scale      = Scale   
-                )
-    
-    static member style 
-        (
-            [<Optional;DefaultParameterValue(null)>] ?Format,
-            [<Optional;DefaultParameterValue(null)>] ?Filename, 
-            [<Optional;DefaultParameterValue(null)>] ?Width, 
-            [<Optional;DefaultParameterValue(null)>] ?Height, 
-            [<Optional;DefaultParameterValue(null)>] ?Scale
-        ) =
-            fun (btnConf:ToImageButtonOptions) ->
-                Format              |> Option.map StyleParam.ImageFormat.toString |> DynObj.setValueOpt btnConf "format"
-                Filename            |> DynObj.setValueOpt btnConf "filename"
-                Width               |> DynObj.setValueOpt btnConf "width"
-                Height              |> DynObj.setValueOpt btnConf "height"
-                Scale               |> DynObj.setValueOpt btnConf "scale"
-                btnConf
 /// Config 
 type Config() = 
     inherit DynamicObj ()
@@ -368,7 +346,8 @@ type Config() =
             [<Optional;DefaultParameterValue(null)>] ?ShowEditInChartStudio  : bool,
             [<Optional;DefaultParameterValue(null)>] ?ToImageButtonOptions   : ToImageButtonOptions,
             [<Optional;DefaultParameterValue(null)>] ?Editable               : bool,
-            [<Optional;DefaultParameterValue(null)>] ?EditableAnnotations    : seq<StyleParam.AnnotationEditOptions>
+            [<Optional;DefaultParameterValue(null)>] ?EditableAnnotations    : seq<StyleParam.AnnotationEditOptions>,
+            [<Optional;DefaultParameterValue(null)>] ?ModeBarButtonsToAdd    : seq<StyleParam.ModeBarButton>
         ) = 
             Config()
             |> Config.style
@@ -379,7 +358,8 @@ type Config() =
                     ?ToImageButtonOptions   = ToImageButtonOptions,
                     ?ShowEditInChartStudio  = ShowEditInChartStudio,
                     ?Editable               = Editable,
-                    ?EditableAnnotations    = EditableAnnotations
+                    ?EditableAnnotations    = EditableAnnotations,
+                    ?ModeBarButtonsToAdd    = ModeBarButtonsToAdd
                 )
 
 
@@ -394,7 +374,8 @@ type Config() =
             [<Optional;DefaultParameterValue(null)>] ?ToImageButtonOptions   : ToImageButtonOptions,
             [<Optional;DefaultParameterValue(null)>] ?ShowEditInChartStudio  : bool,
             [<Optional;DefaultParameterValue(null)>] ?Editable               : bool,
-            [<Optional;DefaultParameterValue(null)>] ?EditableAnnotations    : seq<StyleParam.AnnotationEditOptions>
+            [<Optional;DefaultParameterValue(null)>] ?EditableAnnotations    : seq<StyleParam.AnnotationEditOptions>,
+            [<Optional;DefaultParameterValue(null)>] ?ModeBarButtonsToAdd    : seq<StyleParam.ModeBarButton>
 
         ) =
             fun (config:Config) ->
@@ -404,6 +385,7 @@ type Config() =
                 ToImageButtonOptions    |> DynObj.setValueOpt config "toImageButtonOptions"
                 ShowEditInChartStudio   |> DynObj.setValueOpt config "showEditInChartStudio"
                 Editable                |> DynObj.setValueOpt config "editable"
+                ModeBarButtonsToAdd     |> DynObj.setValueOptBy config "modeBarButtonsToAdd" (fun x -> x |> Seq.map StyleParam.ModeBarButton.convert)
                 EditableAnnotations
                 |> Option.map 
                     (fun edits ->

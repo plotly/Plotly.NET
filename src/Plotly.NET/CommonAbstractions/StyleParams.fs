@@ -538,12 +538,32 @@ module StyleParam =
     /// default drag mode is 'rotate' which rotates the scene.
     [<RequireQualifiedAccess>]
     type DragMode =
-        | Zoom | Pan | Rotate 
-    
+        | Zoom          
+        | Pan           
+        | Select        
+        | Lasso         
+        | DrawClosedPath
+        | DrawOpenPath  
+        | DrawLine      
+        | DrawRect      
+        | DrawCircle    
+        | Orbit         
+        | TurnTable     
+        | False         
+
         static member toString = function
-            | Zoom   -> "zoom"
-            | Pan    -> "pan"
-            | Rotate -> "rotate"
+            | Zoom              -> "zoom" 
+            | Pan               -> "pan" 
+            | Select            -> "select" 
+            | Lasso             -> "lasso" 
+            | DrawClosedPath    -> "drawclosedpath" 
+            | DrawOpenPath      -> "drawopenpath" 
+            | DrawLine          -> "drawline" 
+            | DrawRect          -> "drawrect" 
+            | DrawCircle        -> "drawcircle" 
+            | Orbit             -> "orbit" 
+            | TurnTable         -> "turntable" 
+            | False             -> "False"
 
         static member convert = DragMode.toString >> box
         override this.ToString() = this |> DragMode.toString
@@ -1123,6 +1143,96 @@ module StyleParam =
 //--------------------------
 // #M#
 //--------------------------
+    
+    [<RequireQualifiedAccess>]
+    type ModeBarButton = 
+
+        | ToImage              
+        | SendDataToCloud      
+        | EditInChartStudio    
+        | Zoom2d               
+        | Pan2d                
+        | Select2d             
+        | Lasso2d              
+        | DrawClosedPath       
+        | DrawOpenPath         
+        | DrawLine             
+        | DrawRect             
+        | DrawCircle           
+        | EraseShape           
+        | ZoomIn2d             
+        | ZoomOut2d            
+        | AutoScale2d          
+        | ResetScale2d         
+        | HoverClosestCartesian
+        | HoverCompareCartesian
+        | Zoom3d               
+        | Pan3d                
+        | OrbitRotation        
+        | TableRotation        
+        | ResetCameraDefault3d 
+        | ResetCameraLastSave3d
+        | HoverClosest3d       
+        | ZoomInGeo            
+        | ZoomOutGeo           
+        | ResetGeo             
+        | HoverClosestGeo      
+        | HoverClosestGl2d     
+        | HoverClosestPie      
+        | ResetSankeyGroup     
+        | ToggleHover          
+        | ResetViews           
+        | ToggleSpikelines     
+        | ResetViewMapbox      
+        | ZoomInMapbox         
+        | ZoomOutMapbox        
+    
+        static member toString = function
+
+            | ToImage                 -> "toImage"
+            | SendDataToCloud         -> "sendDataToCloud"
+            | EditInChartStudio       -> "editInChartStudio"
+            | Zoom2d                  -> "zoom2d"
+            | Pan2d                   -> "pan2d"
+            | Select2d                -> "select2d"
+            | Lasso2d                 -> "lasso2d"
+            | DrawClosedPath          -> "drawclosedpath"
+            | DrawOpenPath            -> "drawopenpath"
+            | DrawLine                -> "drawline"
+            | DrawRect                -> "drawrect"
+            | DrawCircle              -> "drawcircle"
+            | EraseShape              -> "eraseshape"
+            | ZoomIn2d                -> "zoomIn2d"
+            | ZoomOut2d               -> "zoomOut2d"
+            | AutoScale2d             -> "autoScale2d"
+            | ResetScale2d            -> "resetScale2d"
+            | HoverClosestCartesian   -> "hoverClosestCartesian"
+            | HoverCompareCartesian   -> "hoverCompareCartesian"
+            | Zoom3d                  -> "zoom3d"
+            | Pan3d                   -> "pan3d"
+            | OrbitRotation           -> "orbitRotation"
+            | TableRotation           -> "tableRotation"
+            | ResetCameraDefault3d    -> "resetCameraDefault3d"
+            | ResetCameraLastSave3d   -> "resetCameraLastSave3d"
+            | HoverClosest3d          -> "hoverClosest3d"
+            | ZoomInGeo               -> "zoomInGeo"
+            | ZoomOutGeo              -> "zoomOutGeo"
+            | ResetGeo                -> "resetGeo"
+            | HoverClosestGeo         -> "hoverClosestGeo"
+            | HoverClosestGl2d        -> "hoverClosestGl2d"
+            | HoverClosestPie         -> "hoverClosestPie"
+            | ResetSankeyGroup        -> "resetSankeyGroup"
+            | ToggleHover             -> "toggleHover"
+            | ResetViews              -> "resetViews"
+            | ToggleSpikelines        -> "toggleSpikelines"
+            | ResetViewMapbox         -> "resetViewMapbox"
+            | ZoomInMapbox            -> "zoomInMapbox"
+            | ZoomOutMapbox           -> "zoomOutMapbox"
+
+
+        static member convert = ModeBarButton.toString >> box
+        override this.ToString() = this |> ModeBarButton.toString
+        member this.Convert() = this |> ModeBarButton.convert
 
     /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. If "true", the axis lines are mirrored. 
     /// If "ticks", the axis lines and ticks are mirrored. If "false", mirroring is disable. If "all", axis lines are mirrored on all shared-axes subplots. If "allticks", axis lines and ticks are mirrored on all shared-axes subplots.

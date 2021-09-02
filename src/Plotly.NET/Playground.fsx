@@ -100,6 +100,10 @@
 
 #load "Template.fs"
 
+#I "Config/ObjectAbstractions"
+
+#load "ToImageButtonOptions.fs"
+
 #I "Config"
 
 #load "Config.fs"
@@ -131,7 +135,7 @@ open DynamicObj
 open Plotly.NET
 open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
-open GenericChart
+open Plotly.NET.ConfigObjects
 
 open FSharp.Data
 open Newtonsoft.Json
@@ -141,6 +145,27 @@ open Deedle
 open FSharpAux
 
 open System
+
+Chart.Invisible() 
+|> Chart.withLayout(
+    Layout.init(
+        DragMode = StyleParam.DragMode.DrawRect
+    )
+)
+|> Chart.withConfig(
+    Config.init(
+        ModeBarButtonsToAdd = [
+            StyleParam.ModeBarButton.DrawLine
+            StyleParam.ModeBarButton.DrawOpenPath
+            StyleParam.ModeBarButton.DrawClosedPath
+            StyleParam.ModeBarButton.DrawCircle
+            StyleParam.ModeBarButton.DrawRect
+            StyleParam.ModeBarButton.EraseShape
+
+        ]
+    )
+)
+|> Chart.show
 
 type TraceIDLocal =
     | Cartesian2D 
@@ -163,7 +188,7 @@ type TraceIDLocal =
         | :? TraceTernary -> TraceIDLocal.Ternary    
         | :? TraceCarpet  -> TraceIDLocal.Carpet     
         | :? TraceDomain  -> TraceIDLocal.Domain     
-        | _ as unknownTraceType -> failwith $"unknown trace type {unknownTraceType.GetType()}"
+        | _ as unknownTraceType -> failwith $"cannot get trace id for type {unknownTraceType.GetType()}"
 
     static member ofTraces (t:seq<Trace>) : TraceIDLocal =
         let traceIds = t |> Seq.map TraceIDLocal.ofTrace |> Seq.distinct |> Array.ofSeq
@@ -174,7 +199,7 @@ type TraceIDLocal =
 
 let gridNew (nRows: int) (nCols: int) = 
 
-    fun (gCharts:#seq<GenericChart>) ->
+    fun (gCharts:#seq<GenericChart.GenericChart>) ->
         
         let pattern = StyleParam.LayoutGridPattern.Independent
 
