@@ -120,8 +120,8 @@ let mapColor min max value =
     let proportion = 
         (255. * (value - min) / (max - min))
         |> int
-    RGB.fromRgb 255 (255 - proportion) proportion
-    |> RGB.toWebColor
+    ARGB.fromRGB 255 (255 - proportion) proportion
+    |> ARGB.toWebHex
     
 //Assign a color to every cell seperately. Matrix must be transposed for correct orientation.
 let cellcolor = 
