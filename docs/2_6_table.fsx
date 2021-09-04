@@ -69,13 +69,18 @@ let table2 =
         //(The last alignment is applied to all potential following columns)
         AlignCells  = [HorizontalAlign.Left;HorizontalAlign.Center;HorizontalAlign.Right],
         //sets global header color
-        ColorHeader = "#45546a",    
+        ColorHeader = Color.fromString "#45546a",    
         //sets specific color to each header column
         //ColorHeader=["#45546a";"#deebf7";"#45546a";"#deebf7"],    
         //sets global cell color
         //ColorRows = "#deebf7",
         //sets cell column colors
-        ColorCells  = ["#deebf7";"lightgrey";"#deebf7";"lightgrey"],
+        ColorCells  = Color.fromColors [
+            Color.fromString "#deebf7"
+            Color.fromString "lightgrey"
+            Color.fromString "#deebf7"
+            Color.fromString "lightgrey"
+        ],
         //sets cell row colors
         //ColorCells=[["#deebf7";"lightgrey"]],
         //sets font of header
@@ -120,8 +125,7 @@ let mapColor min max value =
     let proportion = 
         (255. * (value - min) / (max - min))
         |> int
-    ARGB.fromRGB 255 (255 - proportion) proportion
-    |> ARGB.toWebHex
+    Color.fromRGB 255 (255 - proportion) proportion
     
 //Assign a color to every cell seperately. Matrix must be transposed for correct orientation.
 let cellcolor = 
@@ -129,11 +133,13 @@ let cellcolor =
      |> Seq.map (fun row ->
         row 
         |> Seq.mapi (fun index value -> 
-            if index = 0 then "white"
+            if index = 0 then Color.fromString "white"
             else mapColor 0. 5. value
             )
         )
     |> Seq.transpose
+    |> Seq.map Color.fromColors
+    |> Color.fromColors
 
 let table3 = Chart.Table(header2,rowvalues,ColorCells=cellcolor)
 
@@ -184,16 +190,18 @@ let cellcolors =
             match element with
             //colors taken from DRuMS 
             //(http://biomodel.uah.es/en/model4/dna/atgc.htm)
-            | "A" -> "#5050FF" 
-            | "T" -> "#E6E600"
-            | "G" -> "#00C000"
-            | "C" -> "#E00000"
-            | "U" -> "#B48100"
-            | _   -> "white"
+            | "A" -> Color.fromHex "#5050FF" 
+            | "T" -> Color.fromHex "#E6E600"
+            | "G" -> Color.fromHex "#00C000"
+            | "C" -> Color.fromHex "#E00000"
+            | "U" -> Color.fromHex "#B48100"
+            | _   -> Color.fromString "white"
             )
         )
     |> Seq.transpose
-    |> Seq.map (fun x -> Seq.append x (seq ["white"]))
+    |> Seq.map (fun x -> Seq.append x (seq [Color.fromString "white"]))
+    |> Seq.map Color.fromColors
+    |> Color.fromColors
 
 let font = Font.init(FontFamily.Consolas,Size=14.)
 let line = Line.init(0.,Color.fromString "white")
