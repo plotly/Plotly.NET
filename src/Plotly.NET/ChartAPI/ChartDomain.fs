@@ -10,13 +10,16 @@ open System.IO
 open GenericChart
 open StyleParam
 open System.Runtime.InteropServices
+open System.Runtime.CompilerServices
 
 [<AutoOpen>]
 module ChartDomain =
 
-    type Chart with
+    [<Extension>]
+    type Chart =
 
         /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data.
+        [<Extension>]
         static member Pie(values,
                 [<Optional;DefaultParameterValue(null)>]  ?Labels:seq<'IConvertible>,
                 [<Optional;DefaultParameterValue(null)>]  ?Name,
@@ -35,6 +38,7 @@ module ChartDomain =
 
 
         /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data.
+        [<Extension>]
         static member Pie(data:seq<#IConvertible*#IConvertible>,
                 [<Optional;DefaultParameterValue(null)>]  ?Name,
                 [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
@@ -49,6 +53,7 @@ module ChartDomain =
 
 
         /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data as a whole.
+        [<Extension>]
         static member Doughnut(values,
                 [<Optional;DefaultParameterValue(null)>]  ?Labels,
                 [<Optional;DefaultParameterValue(null)>]  ?Name,
@@ -69,6 +74,7 @@ module ChartDomain =
 
 
         /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data as a whole.
+        [<Extension>]
         static member Doughnut(data:seq<#IConvertible*#IConvertible>,
                 [<Optional;DefaultParameterValue(null)>]  ?Name,
                 [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
@@ -126,6 +132,7 @@ module ChartDomain =
         /// Insidetextfont: Sets the font used for `textinfo` lying inside the sector.
         ///
         /// Scalegroup    : If there are multiple funnelareas that should be sized according to their totals, link them by providing a non-empty group id here shared by every trace in the same group.
+        [<Extension>]
         static member FunnelArea 
             (
                 [<Optional;DefaultParameterValue(null)>] ?Values        ,
@@ -192,6 +199,7 @@ module ChartDomain =
         /// ColorBar: Sets the ColorBar for the chart
         ///
         ///Colors: Sets the color of each sector of this trace. If not specified, the default trace color set is used to pick the sector colors.
+        [<Extension>]
         static member Sunburst(labels,parents,
             [<Optional;DefaultParameterValue(null)>]?Ids,
             [<Optional;DefaultParameterValue(null)>]?Values,
@@ -241,6 +249,7 @@ module ChartDomain =
         /// ColorBar: Sets the ColorBar for the chart
         ///
         ///Colors: Sets the color of each sector of this trace. If not specified, the default trace color set is used to pick the sector colors.
+        [<Extension>]
         static member Treemap(labels,parents,
             [<Optional;DefaultParameterValue(null)>]?Ids,
             [<Optional;DefaultParameterValue(null)>]?Values,
@@ -272,6 +281,7 @@ module ChartDomain =
 
 
         /// Computes the parallel coordinates plot
+        [<Extension>]
         static member ParallelCoord
             (
                 dims:seq<'key*#seq<'values>>,
@@ -306,7 +316,8 @@ module ChartDomain =
                 |> GenericChart.ofTraceObject
 
 
-         /// Computes the parallel coordinates plot
+        /// Computes the parallel coordinates plot
+        [<Extension>]
         static member ParallelCoord
             (
                 dims:seq<Dimensions>,
@@ -333,6 +344,7 @@ module ChartDomain =
                 |> GenericChart.ofTraceObject
 
         ///Parallel categories diagram for multidimensional categorical data.
+        [<Extension>]
         static member ParallelCategories
             (
                 dims:seq<'key*#seq<'values>>,
@@ -366,6 +378,7 @@ module ChartDomain =
                 |> GenericChart.ofTraceObject
 
         ///
+        [<Extension>]
         static member ParallelCategories
             (
                 dims:seq<Dimensions>,
@@ -393,6 +406,7 @@ module ChartDomain =
 
 
         /// creates table out of header sequence and row sequences
+        [<Extension>]
         static member Table
             (
                 headerValues, cellValues, 

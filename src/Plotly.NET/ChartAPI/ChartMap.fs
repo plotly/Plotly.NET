@@ -10,13 +10,16 @@ open System.IO
 open GenericChart
 open StyleParam
 open System.Runtime.InteropServices
+open System.Runtime.CompilerServices
 
 [<AutoOpen>]
 module ChartMap =
 
-    type Chart with
+    [<Extension>]
+    type Chart =
 
         /// Computes the choropleth map plot
+        [<Extension>]
         static member ChoroplethMap(locations,z,
                 [<Optional;DefaultParameterValue(null)>] ?Text,
                 [<Optional;DefaultParameterValue(null)>] ?Locationmode,
@@ -84,6 +87,7 @@ module ChartMap =
         /// Fill        : Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.
         ///
         /// Fillcolor   : Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
+        [<Extension>]
         static member ScatterGeo(longitudes, latitudes, mode,
                 [<Optional;DefaultParameterValue(null)>] ?Name                          ,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
@@ -157,6 +161,7 @@ module ChartMap =
         /// Fill        : Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.
         ///
         /// Fillcolor   : Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
+        [<Extension>]
         static member ScatterGeo(lonlat, mode,
                 [<Optional;DefaultParameterValue(null)>] ?Name                          ,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
@@ -230,6 +235,7 @@ module ChartMap =
         /// Fill        : Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.
         ///
         /// Fillcolor   : Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
+        [<Extension>]
         static member ScatterGeo(locations, mode,
                 [<Optional;DefaultParameterValue(null)>] ?Name                          ,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
@@ -296,6 +302,7 @@ module ChartMap =
         /// Fill        : Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.
         ///
         /// Fillcolor   : Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
+        [<Extension>]
         static member PointGeo(longitudes, latitudes,
                 [<Optional;DefaultParameterValue(null)>] ?Name                          ,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
@@ -360,6 +367,7 @@ module ChartMap =
         /// Fill        : Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.
         ///
         /// Fillcolor   : Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
+        [<Extension>]
         static member PointGeo(lonlat,
                 [<Optional;DefaultParameterValue(null)>] ?Name                          ,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
@@ -425,6 +433,7 @@ module ChartMap =
         /// Fill        : Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.
         ///
         /// Fillcolor   : Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
+        [<Extension>]
         static member PointGeo(locations,
                 [<Optional;DefaultParameterValue(null)>] ?Name                          ,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
@@ -497,6 +506,7 @@ module ChartMap =
         /// Fill        : Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.
         ///
         /// Fillcolor   : Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
+        [<Extension>]
         static member LineGeo(longitudes, latitudes,
                 [<Optional;DefaultParameterValue(null)>] ?Name                          ,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
@@ -572,6 +582,7 @@ module ChartMap =
         /// Fill        : Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.
         ///
         /// Fillcolor   : Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
+        [<Extension>]
         static member LineGeo(lonlat,
                 [<Optional;DefaultParameterValue(null)>] ?Name                          ,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
@@ -648,7 +659,7 @@ module ChartMap =
         /// Fill        : Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.
         ///
         /// Fillcolor   : Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
-
+        [<Extension>]
         static member LineGeo(locations,
                 [<Optional;DefaultParameterValue(null)>] ?Name                          ,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
@@ -716,6 +727,7 @@ module ChartMap =
         /// <param name="Connectgaps">Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.</param>
         /// <param name="Fill">Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.</param>
         /// <param name="Fillcolor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        [<Extension>]
         static member ScatterMapbox(longitudes, latitudes, mode,
             [<Optional;DefaultParameterValue(null)>] ?Name                          ,
             [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
@@ -771,6 +783,7 @@ module ChartMap =
         /// <param name="Connectgaps">Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.</param>
         /// <param name="Fill">Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.</param>
         /// <param name="Fillcolor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        [<Extension>]
         static member ScatterMapbox(lonlat, mode,
             [<Optional;DefaultParameterValue(null)>] ?Name                          ,
             [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
@@ -827,6 +840,7 @@ module ChartMap =
         /// <param name="Connectgaps">Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.</param>
         /// <param name="Fill">Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.</param>
         /// <param name="Fillcolor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        [<Extension>]
         static member PointMapbox(longitudes,latitudes,
             [<Optional;DefaultParameterValue(null)>] ?Name                          ,
             [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
@@ -882,6 +896,7 @@ module ChartMap =
         /// <param name="Connectgaps">Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.</param>
         /// <param name="Fill">Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.</param>
         /// <param name="Fillcolor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        [<Extension>]
         static member PointMapbox(lonlat,
             [<Optional;DefaultParameterValue(null)>] ?Name                          ,
             [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
@@ -939,6 +954,7 @@ module ChartMap =
         /// <param name="Connectgaps">Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.</param>
         /// <param name="Fill">Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.</param>
         /// <param name="Fillcolor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        [<Extension>]
         static member LineMapbox(longitudes,latitudes,
             [<Optional;DefaultParameterValue(null)>] ?Name                          ,
             [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
@@ -1003,6 +1019,7 @@ module ChartMap =
         /// <param name="Connectgaps">Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.</param>
         /// <param name="Fill">Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.</param>
         /// <param name="Fillcolor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        [<Extension>]
         static member LineMapbox(lonlat,
             [<Optional;DefaultParameterValue(null)>] ?Name                          ,
             [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
@@ -1067,6 +1084,7 @@ module ChartMap =
         /// <param name="ZMin">Sets the lower bound of the color domain. Value should have the same units as in `z` and if set, `zmax` must be set as well.</param>
         /// <param name="ZMid">Sets the mid-point of the color domain by scaling `zmin` and/or `zmax` to be equidistant to this point. Value should have the same units as in `z`. Has no effect when `zauto` is `false`.</param>
         /// <param name="ZMax">Sets the upper bound of the color domain. Value should have the same units as in `z` and if set, `zmin` must be set as well.</param>
+        [<Extension>]
         static member ChoroplethMapbox(locations,z,geoJson,
             [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey,
             [<Optional;DefaultParameterValue(null)>] ?Text,
@@ -1114,6 +1132,7 @@ module ChartMap =
         /// <param name="ZMin">Sets the lower bound of the color domain. Value should have the same units as in `z` and if set, `zmax` must be set as well.</param>
         /// <param name="ZMid">Sets the mid-point of the color domain by scaling `zmin` and/or `zmax` to be equidistant to this point. Value should have the same units as in `z`. Has no effect when `zauto` is `false`.</param>
         /// <param name="ZMax">Sets the upper bound of the color domain. Value should have the same units as in `z` and if set, `zmin` must be set as well.</param>
+        [<Extension>]
         static member DensityMapbox (lon,lat,
             [<Optional;DefaultParameterValue(null)>] ?Z,
             [<Optional;DefaultParameterValue(null)>] ?Radius,
@@ -1164,6 +1183,7 @@ module ChartMap =
         /// <param name="ZMin">Sets the lower bound of the color domain. Value should have the same units as in `z` and if set, `zmax` must be set as well.</param>
         /// <param name="ZMid">Sets the mid-point of the color domain by scaling `zmin` and/or `zmax` to be equidistant to this point. Value should have the same units as in `z`. Has no effect when `zauto` is `false`.</param>
         /// <param name="ZMax">Sets the upper bound of the color domain. Value should have the same units as in `z` and if set, `zmin` must be set as well.</param>
+        [<Extension>]
         static member DensityMapbox (lonlat,
             [<Optional;DefaultParameterValue(null)>] ?Z,
             [<Optional;DefaultParameterValue(null)>] ?Radius,

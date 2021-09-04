@@ -10,12 +10,14 @@ open System.IO
 open GenericChart
 open StyleParam
 open System.Runtime.InteropServices
+open System.Runtime.CompilerServices
 
 [<AutoOpen>]
 module ChartPolar =
 
-    type Chart with
-
+    [<Extension>]
+    type Chart =
+        [<Extension>]
         static member internal renderScatterPolarTrace (useWebGL:bool) (style: TracePolar -> TracePolar) =
             if useWebGL then
                 TracePolar.initScatterPolarGL style
@@ -25,6 +27,7 @@ module ChartPolar =
                 |> GenericChart.ofTraceObject
 
         /// Uses points, line or both depending on the mode to represent data points in a polar chart
+        [<Extension>]
         static member ScatterPolar
             (
                 r, theta, mode,
@@ -57,6 +60,7 @@ module ChartPolar =
                 Chart.renderScatterPolarTrace useWebGL style
 
          /// Uses points, line or both depending on the mode to represent data points in a polar chart
+        [<Extension>]
         static member ScatterPolar
             (
                 rtheta, mode,
@@ -91,6 +95,7 @@ module ChartPolar =
                 )
 
         /// 
+        [<Extension>]
         static member PointPolar
             (
                 r, theta,
@@ -122,6 +127,7 @@ module ChartPolar =
                 Chart.renderScatterPolarTrace useWebGL style
 
         /// 
+        [<Extension>]
         static member PointPolar
             (
                 rTheta,
@@ -151,6 +157,7 @@ module ChartPolar =
                 )
             
         ///
+        [<Extension>]
         static member LinePolar 
             (
                 r, theta,
@@ -191,6 +198,7 @@ module ChartPolar =
                 Chart.renderScatterPolarTrace useWebGL style
 
         ///
+        [<Extension>]
         static member LinePolar 
             (
                 rTheta,
@@ -226,6 +234,7 @@ module ChartPolar =
                  )
 
         ///
+        [<Extension>]
         static member SplinePolar 
             (
                 r, theta,
@@ -266,6 +275,7 @@ module ChartPolar =
             
                 Chart.renderScatterPolarTrace useWebGL style
         ///
+        [<Extension>]
         static member SplinePolar 
             (
                 rTheta,
@@ -303,6 +313,7 @@ module ChartPolar =
                  )
 
         /// 
+        [<Extension>]
         static member BubblePolar
             (
                 r, theta, sizes:seq<#IConvertible>,
@@ -334,6 +345,7 @@ module ChartPolar =
                 Chart.renderScatterPolarTrace useWebGL style
 
         /// 
+        [<Extension>]
         static member BubblePolar
             (
                 rThetaSizes:seq<#IConvertible*#IConvertible*#IConvertible>,
@@ -363,6 +375,7 @@ module ChartPolar =
                 )
 
         /// 
+        [<Extension>]
         static member BarPolar
             (
                 r, theta,

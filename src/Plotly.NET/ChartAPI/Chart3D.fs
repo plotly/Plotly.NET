@@ -11,13 +11,16 @@ open System.IO
 open GenericChart
 open StyleParam
 open System.Runtime.InteropServices
+open System.Runtime.CompilerServices
 
 [<AutoOpen>]
 module Chart3D =
 
-    type Chart with
+    [<Extension>]
+    type Chart =
 
         /// Uses points, line or both depending on the mode to represent 3d-data points
+        [<Extension>]
         static member Scatter3d
             (
                 x, y, z, mode,
@@ -41,6 +44,7 @@ module Chart3D =
       
 
         /// Uses points, line or both depending on the mode to represent 3d-data points
+        [<Extension>]
         static member Scatter3d(xyz, mode, 
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?Showlegend,
@@ -56,6 +60,7 @@ module Chart3D =
             Chart.Scatter3d(x, y, z, mode, ?Name=Name,?Showlegend=Showlegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width) 
 
         ///
+        [<Extension>]
         static member Point3d 
             (
                 x, y, z,
@@ -87,6 +92,7 @@ module Chart3D =
                 )
         
         ///
+        [<Extension>]
         static member Point3d 
             (
                 xyz,
@@ -115,6 +121,7 @@ module Chart3D =
 
 
         /// Uses points, line or both depending on the mode to represent 3d-data points
+        [<Extension>]
         static member Line3d
             (
                 x, y, z,
@@ -156,6 +163,7 @@ module Chart3D =
                 )
         
         /// Uses points, line or both depending on the mode to represent 3d-data points
+        [<Extension>]
         static member Line3d
             (
                 xyz,
@@ -189,6 +197,7 @@ module Chart3D =
                 )
 
         ///
+        [<Extension>]
         static member Bubble3d 
             (
                 x, y, z, sizes,
@@ -217,6 +226,7 @@ module Chart3D =
                 |> GenericChart.ofTraceObject
     
         ///
+        [<Extension>]
         static member Bubble3d 
             (
                 xyz, sizes,
@@ -245,6 +255,7 @@ module Chart3D =
 
 
         /// Uses points, line or both depending on the mode to represent 3d-data points
+        [<Extension>]
         static member Surface
             (
                 zData,
@@ -274,6 +285,7 @@ module Chart3D =
 
 
         /// Uses points, line or both depending on the mode to represent 3d-data points
+        [<Extension>]
         static member Mesh3d
             (
                 x, y, z, 
@@ -301,6 +313,7 @@ module Chart3D =
             |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
             |> GenericChart.ofTraceObject 
 
+        [<Extension>]
         static member Cone 
             (
                 x, y, z, u, v, w,
@@ -331,6 +344,7 @@ module Chart3D =
                 |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=ShowLegend,?Opacity=Opacity)
                 |> GenericChart.ofTraceObject 
 
+        [<Extension>]
         static member Cone 
             (
                 coneXYZ, coneUVW,
@@ -355,6 +369,7 @@ module Chart3D =
                 )
 
 
+        [<Extension>]
         static member StreamTube 
             (
                 x, y, z, u, v, w,
@@ -390,6 +405,8 @@ module Chart3D =
                 |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=ShowLegend,?Opacity=Opacity)
                 |> GenericChart.ofTraceObject 
 
+
+        [<Extension>]
         static member StreamTube 
             (
                 streamTubeXYZ, streamTubeUVW,
@@ -417,6 +434,8 @@ module Chart3D =
                     ?Starts         = Starts
                 )
         
+        
+        [<Extension>]
         static member Volume 
             (
                 x,y,z,value,
@@ -454,7 +473,8 @@ module Chart3D =
                 |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=ShowLegend,?Opacity=Opacity)
                 |> GenericChart.ofTraceObject 
 
-                   
+                
+        [<Extension>]
         static member IsoSurface 
             (
                 x,y,z,value,
