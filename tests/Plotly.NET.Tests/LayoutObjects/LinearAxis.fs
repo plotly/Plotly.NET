@@ -1,4 +1,4 @@
-﻿module Tests.LayoutObjects
+﻿module Tests.LayoutObjects.LinearAxis
 
 open Expecto
 open Plotly.NET
@@ -90,7 +90,7 @@ let fullAxis =
 
 [<Tests>]
 let ``LinearAxis tests`` =
-    testList "LinearAxis.JSON field tests" [
+    testList "LayoutObjects.LinearAxis JSON field tests" [
         fullAxis |> createJsonFieldTest "visible" "true" 
         fullAxis |> createJsonFieldTest "color" "\"red\""
         fullAxis |> createJsonFieldTest "title" "{\"text\":\"Hi\"}"

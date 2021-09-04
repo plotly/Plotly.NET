@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <Compile Include="TestUtils.fs" />
+    <Compile Include="CommonAbstractions\Colors.fs" />
+    <Compile Include="LayoutObjects\LinearAxis.fs" />
     <Compile Include="HtmlCodegen\SimpleTests.fs" />
     <Compile Include="HtmlCodegen\ChartLayout.fs" />
     <Compile Include="HtmlCodegen\SimpleCharts.fs" />
@@ -18,7 +20,6 @@
     <Compile Include="HtmlCodegen\FinanceCharts.fs" />
     <Compile Include="HtmlCodegen\PolarCharts.fs" />
     <Compile Include="HtmlCodegen\CategoricalCharts.fs" />
-    <Compile Include="HtmlCodegen\LayoutObjects\LinearAxis.fs" />
     <Compile Include="ImageExport.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>

@@ -1,7 +1,7 @@
 ﻿namespace Plotly.NET
 
-//https://www.w3.org/TR/2011/REC-SVG11-20110816/types.html#ColorKeywords
-
+///https://www.w3.org/TR/2011/REC-SVG11-20110816/types.html#ColorKeywords
+///
 ///W3C Recognized color keyword names
 type ColorKeyword =
     | AliceBlue               
