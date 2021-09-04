@@ -49,7 +49,7 @@ multiple annotations at once.
 open Plotly.NET.LayoutObjects
 
 let a1 = Annotation.init (X=2.,Y=4.,Text = "Hi there!")
-let a2 = Annotation.init (X=5.,Y=7.,Text="I am another annotation!",BGColor="white",BorderColor="black")
+let a2 = Annotation.init (X=5.,Y=7.,Text="I am another annotation!",BGColor= Color.fromString "white",BorderColor= Color.fromString  "black")
 
 let annotations =
     Chart.Line(x,y',Name="line")    

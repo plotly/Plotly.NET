@@ -58,13 +58,13 @@ let funnelChart =
     let x = [|1200.; 909.4; 600.6; 300.; 80.|]
 
     // Customize the connector lines used to connect the funnel bars
-    let connectorLine = Line.init (Color="royalblue", Dash=StyleParam.DrawingStyle.Dot, Width=3.)
+    let connectorLine = Line.init (Color=Color.fromString "royalblue", Dash=StyleParam.DrawingStyle.Dot, Width=3.)
     let connector = FunnelConnector.init(Line=connectorLine)
     
     // Customize the outline of the funnel bars
-    let line = Line.init(Width=2.,Color="3E4E88")
+    let line = Line.init(Width=2.,Color=Color.fromString "3E4E88")
     
-    Chart.Funnel (x,y,Color="59D4E8", Line=line, Connector=connector)
+    Chart.Funnel (x,y,Color=Color.fromString "59D4E8", Line=line, Connector=connector)
     |> Chart.withMarginSize(Left=100)
 
 [<Tests>]
@@ -85,7 +85,7 @@ let ``Funnel charts`` =
 let funnelArea = 
     let values = [|5; 4; 3; 2; 1|]
     let text = [|"The 1st"; "The 2nd"; "The 3rd"; "The 4th"; "The 5th"|]
-    let line = Line.init (Color="purple", Width=3.)
+    let line = Line.init (Color=Color.fromString "purple", Width=3.)
     Chart.FunnelArea(Values=values, Text=text, Line=line)
 
 [<Tests>]

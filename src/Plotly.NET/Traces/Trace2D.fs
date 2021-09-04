@@ -234,7 +234,7 @@ type Trace2DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?ClipOnAxis         : bool,
             [<Optional;DefaultParameterValue(null)>] ?ConnectGaps        : bool,
             [<Optional;DefaultParameterValue(null)>] ?Fill               : StyleParam.Fill,
-            [<Optional;DefaultParameterValue(null)>] ?FillColor          : string,
+            [<Optional;DefaultParameterValue(null)>] ?FillColor          : Color,
             [<Optional;DefaultParameterValue(null)>] ?HoverLabel         : Hoverlabel,
             [<Optional;DefaultParameterValue(null)>] ?HoverOn            : StyleParam.HoverOn,
             [<Optional;DefaultParameterValue(null)>] ?StackGaps          : StyleParam.StackGaps,

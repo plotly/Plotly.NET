@@ -137,7 +137,7 @@ module ChartTemplates =
             Layout.init(
                 PaperBGColor = "rgb(55, 55, 61)",
                 PlotBGColor= "rgb(55, 55, 61)",
-                Font = Font.init(Color = "rgb(204, 204, 204)")
+                Font = Font.init(Color = Color.fromString "rgb(204, 204, 204)")
             )
             |> Layout.AddLinearAxis((StyleParam.SubPlotId.XAxis 1),(initDarkAxisTemplate()))
             |> Layout.AddLinearAxis((StyleParam.SubPlotId.YAxis 1),(initDarkAxisTemplate()))
@@ -175,7 +175,7 @@ module ChartTemplates =
             Layout.init(
                 PaperBGColor = "#200117",
                 PlotBGColor= "#200117",
-                Font = Font.init(Color = "white")
+                Font = Font.init(Color = Color.fromString "white")
             )
             |> Layout.AddLinearAxis((StyleParam.SubPlotId.XAxis 1),(initFslabAxisTemplate()))
             |> Layout.AddLinearAxis((StyleParam.SubPlotId.YAxis 1),(initFslabAxisTemplate()))

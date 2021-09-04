@@ -18,7 +18,7 @@ let parallelCategoriesChart =
     
     Chart.ParallelCategories(
         dims,
-        Color=[0.;1.;0.;1.;0.;0.;0.],
+        Color=Color.fromColorScaleValues [0.;1.;0.;1.;0.;0.;0.],
         Colorscale = StyleParam.Colorscale.Blackbody
     )
 
@@ -43,7 +43,7 @@ let parcoords1Chart =
             "C",[2.;4.;3.1;5.]
             "D",[4.;2.;2.;4.;]
         ]
-    Chart.ParallelCoord(data,Color="blue")
+    Chart.ParallelCoord(data,Color=Color.fromString "blue")
 
 let parcoordsChart = 
     let v = [|
@@ -61,7 +61,7 @@ let parcoordsChart =
     let dyn = Trace("parcoords")
 
     dyn?dimensions <- v
-    dyn?line <- Line.init(Color = "blue")
+    dyn?line <- Line.init(Color =Color.fromString "blue")
 
     dyn
     |> GenericChart.ofTraceObject
@@ -88,11 +88,11 @@ let ``Parallel coordinates charts`` =
 
 let sankey1 = 
     // create nodes
-    let n1 = Node.Create("a",color="Black")
-    let n2 = Node.Create("b",color="Red")
-    let n3 = Node.Create("c",color="Purple")
-    let n4 = Node.Create("d",color="Green")
-    let n5 = Node.Create("e",color="Orange")
+    let n1 = Node.Create("a",color=Color.fromString "Black")
+    let n2 = Node.Create("b",color=Color.fromString "Red")
+    let n3 = Node.Create("c",color=Color.fromString "Purple")
+    let n4 = Node.Create("d",color=Color.fromString "Green")
+    let n5 = Node.Create("e",color=Color.fromString "Orange")
     
     // create links between nodes
     let link1 = Link.Create(n1,n2,value=1.0)

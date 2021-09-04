@@ -259,7 +259,7 @@ type TraceDomainStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Dimensions : seq<Dimensions>,
             [<Optional;DefaultParameterValue(null)>] ?Line               ,
             [<Optional;DefaultParameterValue(null)>] ?Domain             ,
-            [<Optional;DefaultParameterValue(null)>] ?Color      : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Color : Color,
             [<Optional;DefaultParameterValue(null)>] ?Labelfont          ,
             [<Optional;DefaultParameterValue(null)>] ?Tickfont   :   Font,
             [<Optional;DefaultParameterValue(null)>] ?Rangefont  :   Font        

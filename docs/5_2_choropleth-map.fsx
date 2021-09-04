@@ -124,7 +124,7 @@ let choroplethMap2 =
         Projection=GeoProjection.init(projectionType=StyleParam.GeoProjectionType.Mollweide),
         ShowLakes=true,
         ShowOcean=true,
-        OceanColor="lightblue",
+        OceanColor=Color.fromString "lightblue",
         ShowRivers=true)
     |> Chart.withColorBarStyle (Title.init("Alcohol consumption[l/y]"),Length=0.5)
 
@@ -244,7 +244,7 @@ let choroplethGeoJSON =
             Scope=StyleParam.GeoScope.NorthAmerica, 
             Projection=GeoProjection.init(StyleParam.GeoProjectionType.AzimuthalEqualArea),
             ShowLand=true,
-            LandColor = "lightgrey"
+            LandColor = Color.fromString "lightgrey"
         )
     )
     |> Chart.withSize (800.,800.)

@@ -250,7 +250,7 @@ let scatterplotMatrixChart =
             "C",[|2.;4.;3.1;5.|]
             "D",[|4.;2.;2.;4.;|]
         ]
-    Chart.Splom(data, Color="blue")
+    Chart.Splom(data, Color=Color.fromString "blue")
 
 [<Tests>]
 let ``Scatterplot matrix charts`` =

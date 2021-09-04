@@ -53,7 +53,7 @@ the position of the vertex on the i-th axis corresponds to the i-th coordinate o
 *)
 
 let parcoords1 =
-    Chart.ParallelCoord(data,Color="blue")
+    Chart.ParallelCoord(data,Color=Color.fromString "blue")
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -83,7 +83,7 @@ let parcoords =
     let dyn = Trace("parcoords")
 
     dyn?dimensions <- v
-    dyn?line <- Line.init(Color = "blue")
+    dyn?line <- Line.init(Color=Color.fromString "blue")
 
     dyn
     |> GenericChart.ofTraceObject
