@@ -10,10 +10,10 @@ type ModeBar() =
 
     static member init
         (    
-            [<Optional;DefaultParameterValue(null)>] ?ActiveColor    : string,
+            [<Optional;DefaultParameterValue(null)>] ?ActiveColor    : Color,
             [<Optional;DefaultParameterValue(null)>] ?Add            : seq<string>,
-            [<Optional;DefaultParameterValue(null)>] ?BGColor        : string,
-            [<Optional;DefaultParameterValue(null)>] ?Color          : string,
+            [<Optional;DefaultParameterValue(null)>] ?BGColor        : Color,
+            [<Optional;DefaultParameterValue(null)>] ?Color          : Color,
             [<Optional;DefaultParameterValue(null)>] ?Orientation    : StyleParam.Orientation,
             [<Optional;DefaultParameterValue(null)>] ?Remove         : string,
             [<Optional;DefaultParameterValue(null)>] ?UIRevision     : string
@@ -32,10 +32,10 @@ type ModeBar() =
 
     static member style
         (    
-            [<Optional;DefaultParameterValue(null)>] ?ActiveColor    : string,
+            [<Optional;DefaultParameterValue(null)>] ?ActiveColor    : Color,
             [<Optional;DefaultParameterValue(null)>] ?Add            : seq<string>,
-            [<Optional;DefaultParameterValue(null)>] ?BGColor        : string,
-            [<Optional;DefaultParameterValue(null)>] ?Color          : string,
+            [<Optional;DefaultParameterValue(null)>] ?BGColor        : Color,
+            [<Optional;DefaultParameterValue(null)>] ?Color          : Color,
             [<Optional;DefaultParameterValue(null)>] ?Orientation    : StyleParam.Orientation,
             [<Optional;DefaultParameterValue(null)>] ?Remove         : string,
             [<Optional;DefaultParameterValue(null)>] ?UIRevision     : string

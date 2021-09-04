@@ -12,8 +12,8 @@ type Legend() =
     /// Init Legend type
     static member init 
         (
-            [<Optional;DefaultParameterValue(null)>] ?BGColor: string,
-            [<Optional;DefaultParameterValue(null)>] ?BorderColor: string,
+            [<Optional;DefaultParameterValue(null)>] ?BGColor: Color,
+            [<Optional;DefaultParameterValue(null)>] ?BorderColor: Color,
             [<Optional;DefaultParameterValue(null)>] ?Borderwidth: float,
             [<Optional;DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
             [<Optional;DefaultParameterValue(null)>] ?TraceOrder: StyleParam.TraceOrder,
@@ -51,8 +51,8 @@ type Legend() =
 
     static member style
         (
-            [<Optional;DefaultParameterValue(null)>] ?BGColor: string,
-            [<Optional;DefaultParameterValue(null)>] ?BorderColor: string,
+            [<Optional;DefaultParameterValue(null)>] ?BGColor: Color,
+            [<Optional;DefaultParameterValue(null)>] ?BorderColor: Color,
             [<Optional;DefaultParameterValue(null)>] ?Borderwidth: float,
             [<Optional;DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
             [<Optional;DefaultParameterValue(null)>] ?TraceOrder: StyleParam.TraceOrder,

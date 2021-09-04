@@ -22,13 +22,13 @@ type MapboxLayer() =
             [<Optional;DefaultParameterValue(null)>] ?Type: StyleParam.MapboxLayerType,
             [<Optional;DefaultParameterValue(null)>] ?Coordinates:seq<#IConvertible*#IConvertible>,
             [<Optional;DefaultParameterValue(null)>] ?Below: string,
-            [<Optional;DefaultParameterValue(null)>] ?Color: string,
+            [<Optional;DefaultParameterValue(null)>] ?Color: Color,
             [<Optional;DefaultParameterValue(null)>] ?Opacity: float,
             [<Optional;DefaultParameterValue(null)>] ?MinZoom:float,
             [<Optional;DefaultParameterValue(null)>] ?MaxZoom:float,
             [<Optional;DefaultParameterValue(null)>] ?CircleRadius: float,
             [<Optional;DefaultParameterValue(null)>] ?Line:Line,
-            [<Optional;DefaultParameterValue(null)>] ?FillOutlineColor:string,
+            [<Optional;DefaultParameterValue(null)>] ?FillOutlineColor:Color,
             [<Optional;DefaultParameterValue(null)>] ?Symbol:MapboxLayerSymbol,
             [<Optional;DefaultParameterValue(null)>] ?Name: string
         ) =
@@ -66,13 +66,13 @@ type MapboxLayer() =
             [<Optional;DefaultParameterValue(null)>] ?Type: StyleParam.MapboxLayerType,
             [<Optional;DefaultParameterValue(null)>] ?Coordinates:seq<#IConvertible*#IConvertible>,
             [<Optional;DefaultParameterValue(null)>] ?Below: string,
-            [<Optional;DefaultParameterValue(null)>] ?Color: string,
+            [<Optional;DefaultParameterValue(null)>] ?Color: Color,
             [<Optional;DefaultParameterValue(null)>] ?Opacity: float,
             [<Optional;DefaultParameterValue(null)>] ?MinZoom:float,
             [<Optional;DefaultParameterValue(null)>] ?MaxZoom:float,
             [<Optional;DefaultParameterValue(null)>] ?CircleRadius: float,
             [<Optional;DefaultParameterValue(null)>] ?Line:Line,
-            [<Optional;DefaultParameterValue(null)>] ?FillOutlineColor:string,
+            [<Optional;DefaultParameterValue(null)>] ?FillOutlineColor:Color,
             [<Optional;DefaultParameterValue(null)>] ?Symbol:MapboxLayerSymbol,
             [<Optional;DefaultParameterValue(null)>] ?Name: string
 

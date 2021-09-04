@@ -19,9 +19,9 @@ type RangeSelector () =
             [<Optional;DefaultParameterValue(null)>] ?Y          : float,
             [<Optional;DefaultParameterValue(null)>] ?YAnchor    : StyleParam.YAnchorPosition,
             [<Optional;DefaultParameterValue(null)>] ?Font       : Font,
-            [<Optional;DefaultParameterValue(null)>] ?BGColor    : string,
-            [<Optional;DefaultParameterValue(null)>] ?ActiveColor: string,
-            [<Optional;DefaultParameterValue(null)>] ?BorderColor: string,
+            [<Optional;DefaultParameterValue(null)>] ?BGColor    : Color,
+            [<Optional;DefaultParameterValue(null)>] ?ActiveColor: Color,
+            [<Optional;DefaultParameterValue(null)>] ?BorderColor: Color,
             [<Optional;DefaultParameterValue(null)>] ?BorderWidth: int
         ) =
             RangeSelector () 
@@ -49,9 +49,9 @@ type RangeSelector () =
             [<Optional;DefaultParameterValue(null)>] ?Y          : float,
             [<Optional;DefaultParameterValue(null)>] ?YAnchor    : StyleParam.YAnchorPosition,
             [<Optional;DefaultParameterValue(null)>] ?Font       : Font,
-            [<Optional;DefaultParameterValue(null)>] ?BGColor    : string,
-            [<Optional;DefaultParameterValue(null)>] ?ActiveColor: string,
-            [<Optional;DefaultParameterValue(null)>] ?BorderColor: string,
+            [<Optional;DefaultParameterValue(null)>] ?BGColor    : Color,
+            [<Optional;DefaultParameterValue(null)>] ?ActiveColor: Color,
+            [<Optional;DefaultParameterValue(null)>] ?BorderColor: Color,
             [<Optional;DefaultParameterValue(null)>] ?BorderWidth: int
         ) =
             (fun (rangeSelector:RangeSelector) -> 

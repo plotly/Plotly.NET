@@ -12,7 +12,7 @@ type MarkerSelectionStyle() =
     static member init
         (    
             [<Optional;DefaultParameterValue(null)>] ?Opacity:   float,
-            [<Optional;DefaultParameterValue(null)>] ?Color:     string,
+            [<Optional;DefaultParameterValue(null)>] ?Color:     Color,
             [<Optional;DefaultParameterValue(null)>] ?Size:      float
         ) =    
             MarkerSelectionStyle()
@@ -26,7 +26,7 @@ type MarkerSelectionStyle() =
     static member style
         (    
             [<Optional;DefaultParameterValue(null)>] ?Opacity:   float,
-            [<Optional;DefaultParameterValue(null)>] ?Color:     string,
+            [<Optional;DefaultParameterValue(null)>] ?Color:     Color,
             [<Optional;DefaultParameterValue(null)>] ?Size:      float
         ) =
             (fun (markerSelectionStyle:MarkerSelectionStyle) -> 
@@ -44,7 +44,7 @@ type FontSelectionStyle() =
     /// Init Font()
     static member init
         (    
-            [<Optional;DefaultParameterValue(null)>] ?Color:     string
+            [<Optional;DefaultParameterValue(null)>] ?Color:     Color
         ) =    
             FontSelectionStyle()
             |> FontSelectionStyle.style
@@ -56,7 +56,7 @@ type FontSelectionStyle() =
     // Applies the styles to Font()
     static member style
         (    
-            [<Optional;DefaultParameterValue(null)>] ?Color:     string
+            [<Optional;DefaultParameterValue(null)>] ?Color:     Color
         ) =
             (fun (fontSelectionStyle:FontSelectionStyle) -> 
                 Color |> DynObj.setValueOpt fontSelectionStyle "color" 

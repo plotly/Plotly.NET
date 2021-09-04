@@ -46,10 +46,10 @@ type Contour () =
     //[<CompiledName("init")>]
     static member init 
         (
-            [<Optional;DefaultParameterValue(null)>] ?Color          : string,
+            [<Optional;DefaultParameterValue(null)>] ?Color          : Color,
             [<Optional;DefaultParameterValue(null)>] ?End            : float,
             [<Optional;DefaultParameterValue(null)>] ?Highlight      : bool,
-            [<Optional;DefaultParameterValue(null)>] ?HighlightColor : string ,
+            [<Optional;DefaultParameterValue(null)>] ?HighlightColor : Color ,
             [<Optional;DefaultParameterValue(null)>] ?HighlightWidth : float,
             [<Optional;DefaultParameterValue(null)>] ?Project        : ContourProject,
             [<Optional;DefaultParameterValue(null)>] ?Show           : bool,
@@ -79,10 +79,10 @@ type Contour () =
     //[<CompiledName("style")>]
     static member style
         (
-            [<Optional;DefaultParameterValue(null)>] ?Color          : string,
+            [<Optional;DefaultParameterValue(null)>] ?Color          : Color,
             [<Optional;DefaultParameterValue(null)>] ?End            : float,
             [<Optional;DefaultParameterValue(null)>] ?Highlight      : bool,
-            [<Optional;DefaultParameterValue(null)>] ?HighlightColor : string ,
+            [<Optional;DefaultParameterValue(null)>] ?HighlightColor : Color ,
             [<Optional;DefaultParameterValue(null)>] ?HighlightWidth : float,
             [<Optional;DefaultParameterValue(null)>] ?Project        : ContourProject,
             [<Optional;DefaultParameterValue(null)>] ?Show           : bool,
@@ -150,10 +150,10 @@ type Contours () =
     // Initialized x-y-z-Contours with the same properties    
     static member initXyz
         (
-            [<Optional;DefaultParameterValue(null)>] ?Color          : string,
+            [<Optional;DefaultParameterValue(null)>] ?Color          : Color,
             [<Optional;DefaultParameterValue(null)>] ?End            : float,
             [<Optional;DefaultParameterValue(null)>] ?Highlight      : bool,
-            [<Optional;DefaultParameterValue(null)>] ?HighlightColor : string ,
+            [<Optional;DefaultParameterValue(null)>] ?HighlightColor : Color ,
             [<Optional;DefaultParameterValue(null)>] ?HighlightWidth : float,
             [<Optional;DefaultParameterValue(null)>] ?Project        : ContourProject,
             [<Optional;DefaultParameterValue(null)>] ?Show           : bool,
@@ -183,10 +183,10 @@ type Contours () =
     //[<CompiledName("styleXyz")>]
     static member styleXyz
         (
-            [<Optional;DefaultParameterValue(null)>] ?Color          : string,
+            [<Optional;DefaultParameterValue(null)>] ?Color          : Color,
             [<Optional;DefaultParameterValue(null)>] ?End            : float,
             [<Optional;DefaultParameterValue(null)>] ?Highlight      : bool,
-            [<Optional;DefaultParameterValue(null)>] ?HighlightColor : string ,
+            [<Optional;DefaultParameterValue(null)>] ?HighlightColor : Color ,
             [<Optional;DefaultParameterValue(null)>] ?HighlightWidth : float,
             [<Optional;DefaultParameterValue(null)>] ?Project        : ContourProject,
             [<Optional;DefaultParameterValue(null)>] ?Show           : bool,

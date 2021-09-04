@@ -14,7 +14,7 @@ type Meanline () =
     static member init
         (
             [<Optional;DefaultParameterValue(null)>] ?Visible: bool,
-            [<Optional;DefaultParameterValue(null)>] ?Color: string,
+            [<Optional;DefaultParameterValue(null)>] ?Color: Color,
             [<Optional;DefaultParameterValue(null)>] ?Width: float
         ) =
             Meanline () 
@@ -30,7 +30,7 @@ type Meanline () =
     static member style
         (
             [<Optional;DefaultParameterValue(null)>] ?Visible: bool,
-            [<Optional;DefaultParameterValue(null)>] ?Color: string,
+            [<Optional;DefaultParameterValue(null)>] ?Color: Color,
             [<Optional;DefaultParameterValue(null)>] ?Width: float
         ) =
             (fun (line:Meanline) -> 

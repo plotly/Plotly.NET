@@ -15,6 +15,6 @@ namespace Plotly.NET.Tests.CSharp.APITest
 
         [Fact]
         public void Table()
-            => ChartDomain.Chart.Table<int[], int, int[], int, int, int>(xofy, xofy);
+            => ChartDomain.Chart.Table<int[], int, int[], int>(xofy, xofy);
     }
 }

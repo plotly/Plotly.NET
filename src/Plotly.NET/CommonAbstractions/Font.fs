@@ -10,9 +10,9 @@ type Font () =
     /// Init Font()
     static member init
         (    
-            [<Optional;DefaultParameterValue(null)>] ?Family,
-            [<Optional;DefaultParameterValue(null)>] ?Size,
-            [<Optional;DefaultParameterValue(null)>] ?Color
+            [<Optional;DefaultParameterValue(null)>] ?Family: StyleParam.FontFamily,
+            [<Optional;DefaultParameterValue(null)>] ?Size: float,
+            [<Optional;DefaultParameterValue(null)>] ?Color: Color
         ) =    
             Font()
             |> Font.style

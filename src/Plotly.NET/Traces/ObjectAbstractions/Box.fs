@@ -15,7 +15,7 @@ type Box () =
         (            
             [<Optional;DefaultParameterValue(null)>] ?Visible: bool,
             [<Optional;DefaultParameterValue(null)>] ?Width: float,
-            [<Optional;DefaultParameterValue(null)>] ?FillColor: string,
+            [<Optional;DefaultParameterValue(null)>] ?FillColor: Color,
             [<Optional;DefaultParameterValue(null)>] ?Line: Line
         ) =
             Box () 
@@ -33,7 +33,7 @@ type Box () =
         (
             [<Optional;DefaultParameterValue(null)>] ?Visible: bool,
             [<Optional;DefaultParameterValue(null)>] ?Width: float,
-            [<Optional;DefaultParameterValue(null)>] ?FillColor: string,
+            [<Optional;DefaultParameterValue(null)>] ?FillColor: Color,
             [<Optional;DefaultParameterValue(null)>] ?Line: Line
         ) =
             (fun (box:Box) -> 

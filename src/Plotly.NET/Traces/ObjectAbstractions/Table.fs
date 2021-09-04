@@ -13,7 +13,7 @@ type CellColor () =
     /// Initialized Line object
     static member init
         (
-            [<Optional;DefaultParameterValue(null)>] ?Color
+            [<Optional;DefaultParameterValue(null)>] ?Color : Color
         ) =
             CellColor () 
             |> CellColor.style
@@ -23,7 +23,7 @@ type CellColor () =
     // Applies the styles to CellColor()
     static member style
         (
-            [<Optional;DefaultParameterValue(null)>] ?Color
+            [<Optional;DefaultParameterValue(null)>] ?Color : Color
         ) =
             (fun (cell:CellColor) -> 
                 Color      |> DynObj.setValueOpt cell "color" 

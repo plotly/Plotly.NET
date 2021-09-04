@@ -11,7 +11,7 @@ open TestUtils.LayoutObjects
 let fullAxis =
     LinearAxis.init(
         Visible            = true,
-        Color              = "red",
+        Color              = Color.fromString "red",
         Title              = Title.init("Hi"),
         AxisType           = StyleParam.AxisType.Log,
         AutoTypeNumbers    = StyleParam.AutoTypeNumbers.Strict,

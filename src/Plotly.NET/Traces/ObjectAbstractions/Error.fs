@@ -32,7 +32,7 @@ type Error () =
             [<Optional;DefaultParameterValue(null)>] ?Traceref: int,
             [<Optional;DefaultParameterValue(null)>] ?Tracerefminus: int,
             [<Optional;DefaultParameterValue(null)>] ?Copy_ystyle: bool,
-            [<Optional;DefaultParameterValue(null)>] ?Color: string,
+            [<Optional;DefaultParameterValue(null)>] ?Color: Color,
             [<Optional;DefaultParameterValue(null)>] ?Thickness: float,
             [<Optional;DefaultParameterValue(null)>] ?Width: float
         ) =
@@ -74,7 +74,7 @@ type Error () =
             [<Optional;DefaultParameterValue(null)>] ?Traceref: int,
             [<Optional;DefaultParameterValue(null)>] ?Tracerefminus: int,
             [<Optional;DefaultParameterValue(null)>] ?Copy_ystyle: bool,
-            [<Optional;DefaultParameterValue(null)>] ?Color: string,
+            [<Optional;DefaultParameterValue(null)>] ?Color: Color,
             [<Optional;DefaultParameterValue(null)>] ?Thickness: float,
             [<Optional;DefaultParameterValue(null)>] ?Width: float
 

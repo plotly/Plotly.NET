@@ -56,6 +56,7 @@ type Marker () =
                 ?Sizemode      = Sizemode       ,
                 ?Cauto         = Cauto          ,
                 ?Cmax          = Cmax           ,
+                ?Cmid          = Cmid           ,
                 ?Cmin          = Cmin           ,
                 ?Autocolorscale= Autocolorscale ,
                 ?Reversescale  = Reversescale   ,
@@ -105,6 +106,7 @@ type Marker () =
                 Sizemode       |> DynObj.setValueOptBy marker "sizemode" StyleParam.MarkerSizeMode.convert
                 Cauto          |> DynObj.setValueOpt marker "cauto"          
                 Cmax           |> DynObj.setValueOpt marker "cmax"           
+                Cmid           |> DynObj.setValueOpt marker "cmid"           
                 Cmin           |> DynObj.setValueOpt marker "cmin"           
                 Autocolorscale |> DynObj.setValueOpt marker "autocolorscale" 
                 Reversescale   |> DynObj.setValueOpt marker "reversescale"   

@@ -20,7 +20,7 @@ type FunnelConnector () =
 
     static member init 
         (
-            [<Optional;DefaultParameterValue(null)>] ?Fillcolor      : string,
+            [<Optional;DefaultParameterValue(null)>] ?Fillcolor      : Color,
             [<Optional;DefaultParameterValue(null)>] ?Line           : Line,
             [<Optional;DefaultParameterValue(null)>] ?Visible        : bool
         ) = 
@@ -35,7 +35,7 @@ type FunnelConnector () =
 
     static member style 
         (
-            [<Optional;DefaultParameterValue(null)>] ?Fillcolor            ,
+            [<Optional;DefaultParameterValue(null)>] ?Fillcolor      : Color,
             [<Optional;DefaultParameterValue(null)>] ?Line           : Line,
             [<Optional;DefaultParameterValue(null)>] ?Visible        : bool
         ) = 

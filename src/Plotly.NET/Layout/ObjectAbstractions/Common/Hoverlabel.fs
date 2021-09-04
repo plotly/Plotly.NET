@@ -12,11 +12,11 @@ type Hoverlabel () =
     /// Initialized Line object
     static member init
         (
-            [<Optional;DefaultParameterValue(null)>] ?BgColor: string,
-            [<Optional;DefaultParameterValue(null)>] ?BorderColor: string,
-            [<Optional;DefaultParameterValue(null)>] ?Font: Font,
-            [<Optional;DefaultParameterValue(null)>] ?Align: StyleParam.Align,
-            [<Optional;DefaultParameterValue(null)>] ?Namelength: int
+            [<Optional;DefaultParameterValue(null)>] ?BgColor       : Color,
+            [<Optional;DefaultParameterValue(null)>] ?BorderColor   : Color,
+            [<Optional;DefaultParameterValue(null)>] ?Font          : Font,
+            [<Optional;DefaultParameterValue(null)>] ?Align         : StyleParam.Align,
+            [<Optional;DefaultParameterValue(null)>] ?Namelength    : int
         ) =
             Hoverlabel () 
             |> Hoverlabel.style
@@ -32,11 +32,11 @@ type Hoverlabel () =
     // Applies the styles to Line()
     static member style
         (
-            [<Optional;DefaultParameterValue(null)>] ?BgColor: string,
-            [<Optional;DefaultParameterValue(null)>] ?BorderColor: string,
-            [<Optional;DefaultParameterValue(null)>] ?Font: Font,
-            [<Optional;DefaultParameterValue(null)>] ?Align: StyleParam.Align,
-            [<Optional;DefaultParameterValue(null)>] ?Namelength: int
+            [<Optional;DefaultParameterValue(null)>] ?BgColor       : Color,
+            [<Optional;DefaultParameterValue(null)>] ?BorderColor   : Color,
+            [<Optional;DefaultParameterValue(null)>] ?Font          : Font,
+            [<Optional;DefaultParameterValue(null)>] ?Align         : StyleParam.Align,
+            [<Optional;DefaultParameterValue(null)>] ?Namelength    : int
         ) =
             (fun (label:Hoverlabel) -> 
                 BgColor       |> DynObj.setValueOpt   label "bgcolor"

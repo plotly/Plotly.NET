@@ -12,18 +12,18 @@ type Shape () =
     /// Init Shape type
     static member init
         (   
-            [<Optional;DefaultParameterValue(null)>] ?ShapeType,
-            [<Optional;DefaultParameterValue(null)>] ?X0,
-            [<Optional;DefaultParameterValue(null)>] ?X1,
-            [<Optional;DefaultParameterValue(null)>] ?Y0,
-            [<Optional;DefaultParameterValue(null)>] ?Y1,
-            [<Optional;DefaultParameterValue(null)>] ?Path,
-            [<Optional;DefaultParameterValue(null)>] ?Opacity,
-            [<Optional;DefaultParameterValue(null)>] ?Line,
-            [<Optional;DefaultParameterValue(null)>] ?Fillcolor,
-            [<Optional;DefaultParameterValue(null)>] ?Layer,
-            [<Optional;DefaultParameterValue(null)>] ?Xref,
-            [<Optional;DefaultParameterValue(null)>] ?Yref
+            [<Optional;DefaultParameterValue(null)>] ?ShapeType: StyleParam.ShapeType,
+            [<Optional;DefaultParameterValue(null)>] ?X0: #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?X1: #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?Y0: #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?Y1: #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?Path: string,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity: float,
+            [<Optional;DefaultParameterValue(null)>] ?Line: Line,
+            [<Optional;DefaultParameterValue(null)>] ?Fillcolor: Color,
+            [<Optional;DefaultParameterValue(null)>] ?Layer: StyleParam.Layer,
+            [<Optional;DefaultParameterValue(null)>] ?Xref: string,
+            [<Optional;DefaultParameterValue(null)>] ?Yref: string
         ) =
             Shape() 
             |> Shape.style

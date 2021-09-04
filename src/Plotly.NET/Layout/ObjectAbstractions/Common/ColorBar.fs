@@ -55,8 +55,8 @@ type ColorBar () =
     /// <param name="YPad">Sets the amount of padding (in px) along the y direction.</param>
     static member init
         (   
-            [<Optional;DefaultParameterValue(null)>] ?BGColor            : string,        
-            [<Optional;DefaultParameterValue(null)>] ?BorderColor        : string,    
+            [<Optional;DefaultParameterValue(null)>] ?BGColor            : Color,        
+            [<Optional;DefaultParameterValue(null)>] ?BorderColor        : Color,    
             [<Optional;DefaultParameterValue(null)>] ?BorderWidth        : float,    
             [<Optional;DefaultParameterValue(null)>] ?DTick              : IConvertible,          
             [<Optional;DefaultParameterValue(null)>] ?ExponentFormat     : StyleParam.ExponentFormat, 
@@ -64,7 +64,7 @@ type ColorBar () =
             [<Optional;DefaultParameterValue(null)>] ?LenMode            : StyleParam.UnitMode,        
             [<Optional;DefaultParameterValue(null)>] ?MinExponent        : float,
             [<Optional;DefaultParameterValue(null)>] ?NTicks             : int,         
-            [<Optional;DefaultParameterValue(null)>] ?OutlineColor       : string,   
+            [<Optional;DefaultParameterValue(null)>] ?OutlineColor       : Color,   
             [<Optional;DefaultParameterValue(null)>] ?OutlineWidth       : float,   
             [<Optional;DefaultParameterValue(null)>] ?SeparateThousands  : bool,
             [<Optional;DefaultParameterValue(null)>] ?ShowExponent       : StyleParam.ShowExponent,   
@@ -75,7 +75,7 @@ type ColorBar () =
             [<Optional;DefaultParameterValue(null)>] ?ThicknessMode      : StyleParam.UnitMode,  
             [<Optional;DefaultParameterValue(null)>] ?Tick0              : IConvertible,          
             [<Optional;DefaultParameterValue(null)>] ?TickAngle          : int,      
-            [<Optional;DefaultParameterValue(null)>] ?TickColor          : string,      
+            [<Optional;DefaultParameterValue(null)>] ?TickColor          : Color,      
             [<Optional;DefaultParameterValue(null)>] ?TickFont           : Font,       
             [<Optional;DefaultParameterValue(null)>] ?TickFormat         : string,     
             [<Optional;DefaultParameterValue(null)>] ?TickFormatStops    : seq<TickFormatStop>,
@@ -191,8 +191,8 @@ type ColorBar () =
     /// <param name="YPad">Sets the amount of padding (in px) along the y direction.</param>
     static member style
         (   
-            [<Optional;DefaultParameterValue(null)>] ?BGColor            : string,        
-            [<Optional;DefaultParameterValue(null)>] ?BorderColor        : string,    
+            [<Optional;DefaultParameterValue(null)>] ?BGColor            : Color,        
+            [<Optional;DefaultParameterValue(null)>] ?BorderColor        : Color,    
             [<Optional;DefaultParameterValue(null)>] ?BorderWidth        : float,    
             [<Optional;DefaultParameterValue(null)>] ?DTick              : IConvertible,          
             [<Optional;DefaultParameterValue(null)>] ?ExponentFormat     : StyleParam.ExponentFormat, 
@@ -200,7 +200,7 @@ type ColorBar () =
             [<Optional;DefaultParameterValue(null)>] ?LenMode            : StyleParam.UnitMode,        
             [<Optional;DefaultParameterValue(null)>] ?MinExponent        : float,
             [<Optional;DefaultParameterValue(null)>] ?NTicks             : int,         
-            [<Optional;DefaultParameterValue(null)>] ?OutlineColor       : string,   
+            [<Optional;DefaultParameterValue(null)>] ?OutlineColor       : Color,   
             [<Optional;DefaultParameterValue(null)>] ?OutlineWidth       : float,   
             [<Optional;DefaultParameterValue(null)>] ?SeparateThousands  : bool,
             [<Optional;DefaultParameterValue(null)>] ?ShowExponent       : StyleParam.ShowExponent,   
@@ -211,7 +211,7 @@ type ColorBar () =
             [<Optional;DefaultParameterValue(null)>] ?ThicknessMode      : StyleParam.UnitMode,  
             [<Optional;DefaultParameterValue(null)>] ?Tick0              : IConvertible,          
             [<Optional;DefaultParameterValue(null)>] ?TickAngle          : int,      
-            [<Optional;DefaultParameterValue(null)>] ?TickColor          : string,      
+            [<Optional;DefaultParameterValue(null)>] ?TickColor          : Color,      
             [<Optional;DefaultParameterValue(null)>] ?TickFont           : Font,       
             [<Optional;DefaultParameterValue(null)>] ?TickFormat         : string,     
             [<Optional;DefaultParameterValue(null)>] ?TickFormatStops    : seq<TickFormatStop>,

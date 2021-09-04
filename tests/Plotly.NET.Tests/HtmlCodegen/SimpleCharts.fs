@@ -302,8 +302,8 @@ let tableStyledChart =
         rows,
         AlignHeader = [HorizontalAlign.Center],
         AlignCells  = [HorizontalAlign.Left; HorizontalAlign.Center; HorizontalAlign.Right],
-        ColorHeader = "#45546a",    
-        ColorCells  = ["#deebf7"; "lightgrey"; "#deebf7"; "lightgrey"],
+        ColorHeader = Color.fromString "#45546a",    
+        ColorCells  = Color.fromColors [Color.fromString "#deebf7"; Color.fromString "lightgrey"; Color.fromString "#deebf7"; Color.fromString "lightgrey"],
         FontHeader  = Font.init(FontFamily.Courier_New, Size=12., Color=Color.fromString "white"),      
         HeightHeader= 30.,
         LineHeader  = Line.init(2.,Color.fromString "black"),                     
@@ -330,8 +330,7 @@ let tableColorDependentChart =
         let proportion = 
             (255. * (value - min) / (max - min))
             |> int
-        ARGB.fromRGB 255 (255 - proportion) proportion
-        |> ARGB.toWebHex
+        Color.fromRGB 255 (255 - proportion) proportion
         
     //Assign a color to every cell seperately. Matrix must be transposed for correct orientation.
     let cellcolor = 
@@ -339,11 +338,13 @@ let tableColorDependentChart =
          |> Seq.map (fun row ->
             row 
             |> Seq.mapi (fun index value -> 
-                if index = 0 then "white"
+                if index = 0 then Color.fromString "white"
                 else mapColor 0. 5. value
                 )
             )
         |> Seq.transpose
+        |> Seq.map Color.fromColors
+        |> Color.fromColors
 
     Chart.Table(header2,rowvalues,ColorCells=cellcolor)
 
@@ -380,16 +381,18 @@ let sequencePresentationTableChart =
                 match element with
                 //colors taken from DRuMS 
                 //(http://biomodel.uah.es/en/model4/dna/atgc.htm)
-                | "A" -> "#5050FF" 
-                | "T" -> "#E6E600"
-                | "G" -> "#00C000"
-                | "C" -> "#E00000"
-                | "U" -> "#B48100"
-                | _   -> "white"
+                | "A" -> Color.fromString "#5050FF" 
+                | "T" -> Color.fromString "#E6E600"
+                | "G" -> Color.fromString "#00C000"
+                | "C" -> Color.fromString "#E00000"
+                | "U" -> Color.fromString "#B48100"
+                | _   -> Color.fromString "white"
                 )
             )
         |> Seq.transpose
-        |> Seq.map (fun x -> Seq.append x (seq ["white"]))
+        |> Seq.map (fun x -> Seq.append x (seq [Color.fromString "white"]))
+        |> Seq.map Color.fromColors
+        |> Color.fromColors
 
     let font = Font.init(FontFamily.Consolas,Size=14.)
     let line = Line.init(0., Color.fromString "white")
@@ -429,7 +432,7 @@ let ``Table charts`` =
             emptyLayout tableStyledChart
         );
         testCase "Color dependent chart data" ( fun () ->
-            "var data = [{\"type\":\"table\",\"header\":{\"values\":[\"Identifier\",\"T0\",\"T1\",\"T2\",\"T3\"]},\"cells\":{\"values\":[[10004.0,10001.0,10005.0,10006.0,10007.0,10002.0,10003.0],[0.0,0.2,1.0,1.0,2.0,2.1,4.5],[0.1,2.0,1.6,0.8,2.0,2.0,3.0],[0.3,4.0,1.8,1.5,2.1,1.8,2.0],[0.2,5.0,2.2,0.7,1.9,2.1,2.5]],\"fill\":{\"color\":[[\"white\",\"white\",\"white\",\"white\",\"white\",\"white\",\"white\"],[\"#FFFF00\",\"#FFF50A\",\"#FFCC33\",\"#FFCC33\",\"#FF9966\",\"#FF946B\",\"#FF1AE5\"],[\"#FFFA05\",\"#FF9966\",\"#FFAE51\",\"#FFD728\",\"#FF9966\",\"#FF9966\",\"#FF6699\"],[\"#FFF00F\",\"#FF33CC\",\"#FFA45B\",\"#FFB34C\",\"#FF946B\",\"#FFA45B\",\"#FF9966\"],[\"#FFF50A\",\"#FF00FF\",\"#FF8F70\",\"#FFDC23\",\"#FF9F60\",\"#FF946B\",\"#FF807F\"]]}}}];"
+            """var data = [{"type":"table","header":{"values":["Identifier","T0","T1","T2","T3"]},"cells":{"values":[[10004.0,10001.0,10005.0,10006.0,10007.0,10002.0,10003.0],[0.0,0.2,1.0,1.0,2.0,2.1,4.5],[0.1,2.0,1.6,0.8,2.0,2.0,3.0],[0.3,4.0,1.8,1.5,2.1,1.8,2.0],[0.2,5.0,2.2,0.7,1.9,2.1,2.5]],"fill":{"color":[["white","white","white","white","white","white","white"],["rgba(255, 255, 0, 1.0)","rgba(255, 245, 10, 1.0)","rgba(255, 204, 51, 1.0)","rgba(255, 204, 51, 1.0)","rgba(255, 153, 102, 1.0)","rgba(255, 148, 107, 1.0)","rgba(255, 26, 229, 1.0)"],["rgba(255, 250, 5, 1.0)","rgba(255, 153, 102, 1.0)","rgba(255, 174, 81, 1.0)","rgba(255, 215, 40, 1.0)","rgba(255, 153, 102, 1.0)","rgba(255, 153, 102, 1.0)","rgba(255, 102, 153, 1.0)"],["rgba(255, 240, 15, 1.0)","rgba(255, 51, 204, 1.0)","rgba(255, 164, 91, 1.0)","rgba(255, 179, 76, 1.0)","rgba(255, 148, 107, 1.0)","rgba(255, 164, 91, 1.0)","rgba(255, 153, 102, 1.0)"],["rgba(255, 245, 10, 1.0)","rgba(255, 0, 255, 1.0)","rgba(255, 143, 112, 1.0)","rgba(255, 220, 35, 1.0)","rgba(255, 159, 96, 1.0)","rgba(255, 148, 107, 1.0)","rgba(255, 128, 127, 1.0)"]]}}}];"""
             |> chartGeneratedContains tableColorDependentChart
         );
         testCase "Color dependent chart layout" ( fun () ->

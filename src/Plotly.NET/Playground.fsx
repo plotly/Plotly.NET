@@ -7,6 +7,7 @@
 #I "CommonAbstractions"
 
 #load "StyleParams.fs"
+#load "ColorKeyword.fs"
 #load "Colors.fs"
 #load "Frame.fs"
 #load "Font.fs"
@@ -145,6 +146,46 @@ open Deedle
 open FSharpAux
 
 open System
+
+
+let tableColorDependentChart =
+    let header2 = ["Identifier";"T0";"T1";"T2";"T3"]
+    let rowvalues = 
+        [
+         [10001.;0.2;2.0;4.0;5.0]
+         [10002.;2.1;2.0;1.8;2.1]
+         [10003.;4.5;3.0;2.0;2.5]
+         [10004.;0.0;0.1;0.3;0.2]
+         [10005.;1.0;1.6;1.8;2.2]
+         [10006.;1.0;0.8;1.5;0.7]
+         [10007.;2.0;2.0;2.1;1.9]
+        ]
+        |> Seq.sortBy (fun x -> x.[1])
+    
+    //map color from value to hex representation
+    let mapColor min max value = 
+        let proportion = 
+            (255. * (value - min) / (max - min))
+            |> int
+        Color.fromRGB 255 (255 - proportion) proportion
+        
+    //Assign a color to every cell seperately. Matrix must be transposed for correct orientation.
+    let cellcolor = 
+         rowvalues
+         |> Seq.map (fun row ->
+            row 
+            |> Seq.mapi (fun index value -> 
+                if index = 0 then Color.fromString "white"
+                else mapColor 0. 5. value
+                )
+            )
+        |> Seq.transpose
+        |> Seq.map Color.fromColors
+        |> Color.fromColors
+
+    Chart.Table(header2,rowvalues,ColorCells=cellcolor)
+
+tableColorDependentChart |> Chart.show
 
 Chart.Invisible() 
 |> Chart.withLayout(

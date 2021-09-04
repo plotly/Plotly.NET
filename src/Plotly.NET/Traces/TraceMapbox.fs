@@ -103,7 +103,7 @@ type TraceMapboxStyle() =
             [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey:string,
             [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool,
             [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill,
-            [<Optional;DefaultParameterValue(null)>] ?Fillcolor   
+            [<Optional;DefaultParameterValue(null)>] ?Fillcolor   : Color
         ) =
             (fun (trace: #Trace) -> 
             

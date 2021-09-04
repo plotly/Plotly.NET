@@ -167,6 +167,12 @@ type Color private(obj:obj) =
     static member fromKeyword (c: ColorKeyword) =
         Color (unbox (ARGB.fromKeyword c))
 
+    override this.Equals(other) =
+        match other with
+        | :? Color as otherColor -> this.Value = otherColor.Value
+        | _  -> false
+
+    override this.GetHashCode() = this.Value.GetHashCode()
 
     /// extractor
     member this.Value = obj
