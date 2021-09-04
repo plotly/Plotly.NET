@@ -1,6 +1,5 @@
 ﻿namespace Plotly.NET
 //http://www.niwa.nu/2013/05/math-behind-colorspace-conversions-rgb-hsl/
-/// Represents an ARGB (alpha, red, green, blue) color
 open Newtonsoft.Json
 
 module internal Hex =
@@ -53,37 +52,22 @@ module internal Hex =
                 buf
 
 
-module RGB =
-    [<JsonConverter(typeof<ArgbConverter>)>]
-    type Argb = { 
-        /// The alpha component value of this Color structure.
-        A : byte
-        /// The red component value of this Color structure.
-        R : byte
-        /// The green component value of this Color structure.
-        G : byte
-        /// The blue component value of this Color structure.
-        B : byte       
-        }
 
-    and ArgbConverter() =
-        inherit JsonConverter()
-
-        override _.CanConvert(objectType) =       
-            objectType = typeof<Argb>      
-
-        override _.ReadJson(reader, t, existingValue, serializer) =  
-            raise (System.NotImplementedException())
-            //unbox reader.Value
-
-               
-        override _.WriteJson(writer, value, serializer) =       
-            let argb = value :?> Argb
-            //writer.WriteValue(sprintf "rgba(%i, %i, %i, %0.1f)" argb.R argb.G argb.B argb.A )
-            writer.WriteValue(sprintf "rgba(%i, %i, %i, %0.1f)" argb.R argb.G argb.B (float argb.A / 255.))
+/// Represents an ARGB (alpha, red, green, blue) color
+[<JsonConverter(typeof<ARGBConverter>)>]
+type ARGB = { 
+    /// The alpha component value of this Color structure.
+    A : byte
+    /// The red component value of this Color structure.
+    R : byte
+    /// The green component value of this Color structure.
+    G : byte
+    /// The blue component value of this Color structure.
+    B : byte       
+    } with
 
     /// Creates a Argb Color from the four ARGB component (alpha, red, green, and blue) values.
-    let create a r g b =
+    static member create a r g b =
         let fi v =
             if v < 0 || v > 255 then 
                 failwithf "Value for component needs to be between 0 and 255."
@@ -93,85 +77,95 @@ module RGB =
 
     /// Creates a Argb color from the specified color values (red, green, and blue).
     /// The alpha value is implicitly 255 (fully opaque). 
-    let fromRgb r g b =
-        create 255 r g b
+    static member fromRGB r g b =
+        ARGB.create 255 r g b
                
     /// Gets the hex representataion (FFFFFF) of a color (with valid prefix "0xFFFFFF")
-    let toHex prefix (c:Argb) =
+    static member toHex prefix (c:ARGB) =
         let prefix' = if prefix then "0x" else ""
         Hex.encode prefix' [|c.R;c.G;c.B|]
 
     /// Gets color from hex representataion (FFFFFF) or (0xFFFFFF)
-    let fromHex (s:string) =
+    static member fromHex (s:string) =
         match (Hex.decode s) with
-        | [|r;g;b|]  -> fromRgb (int r) (int g) (int b)
+        | [|r;g;b|]  -> ARGB.fromRGB (int r) (int g) (int b)
         | _          -> failwithf "Invalid hex color format"
 
     /// Gets the web color representataion (#FFFFFF)
-    let toWebColor c =        
+    static member toWebHex c =        
         Hex.encode "#" [|c.R;c.G;c.B|]                
 
     /// Gets color from web color (#FFFFFF)
-    let fromWebColor (s:string) =
+    static member fromWebHex (s:string) =
         let s' = s.TrimStart([|'#'|])
         match (Hex.decode s') with
-        | [|r;g;b|]  -> fromRgb (int r) (int g) (int b)
+        | [|r;g;b|]  -> ARGB.fromRGB (int r) (int g) (int b)
         | _          -> failwithf "Invalid hex color format"
 
     /// Converts this Color structure to a human-readable string.
-    let toString c =        
+    static member toString c =        
         let a,r,g,b = (int c.A, int c.R, int c.G, int c.B)
         sprintf "{Alpha: %i Red: %i Green: %i Blue: %i}" a r g b
 
+    static member fromKeyword (c:ColorKeyword) =
+        c
+        |> ColorKeyword.toRGB
+        |> fun (r,g,b) -> ARGB.fromRGB r g b
 
+and ARGBConverter() =
+    inherit JsonConverter()
+
+    override _.CanConvert(objectType) =       
+        objectType = typeof<ARGB>      
+
+    override _.ReadJson(reader, t, existingValue, serializer) =  
+        raise (System.NotImplementedException())
+        //unbox reader.Value
+
+    override _.WriteJson(writer, value, serializer) =       
+        let argb = value :?> ARGB
+        //writer.WriteValue(sprintf "rgba(%i, %i, %i, %0.1f)" argb.R argb.G argb.B argb.A )
+        writer.WriteValue(sprintf "rgba(%i, %i, %i, %0.1f)" argb.R argb.G argb.B (float argb.A / 255.))
 
 /// Plotly color can be a single color, a sequence of colors, or a sequence of numeric values referencing the color of the colorscale obj
 [<JsonConverter(typeof<ColorConverter>)>]
 type Color private(obj:obj) =
 
     /// Creates a Color from the four ARGB component (alpha, red, green, and blue) values.
-    static member fromArgb a r g b =
-        RGB.create a r g b
+    static member fromARGB a r g b =
+        ARGB.create a r g b
         |> unbox
         |> Color
-        // let fi v =
-        //     if v < 0 || v > 255 then 
-        //         failwithf "Value for component needs to be between 0 and 255."
-        //     else
-        //         byte v
-        // let ff v =
-        //     if v < 0. || v > 1.0 then 
-        //         failwithf "alpha component value needs to be between 0. and 1."
-        //     else
-        //         v        
-        //Color (unbox {A= ff a; R = fi r; G = fi g; B = fi b})
 
     /// Creates a Color from the specified color values (red, green, and blue).
     /// The alpha value is implicitly 1. (fully opaque). 
-    static member fromRgb r g b =
-        Color.fromArgb 255 r g b
+    static member fromRGB r g b =
+        Color.fromARGB 255 r g b
 
     /// Color from web color (#FFFFFF) or hex representataion (FFFFFF) / (0xFFFFFF)
-    static member fromWebColor (s:string) =
+    static member fromHex (s:string) =
         let s' = s.TrimStart('#')
         match (Hex.decode s') with
-        | [|r;g;b|]  -> Color.fromRgb (int r) (int g) (int b)
+        | [|r;g;b|]  -> Color.fromRGB (int r) (int g) (int b)
         | _          -> failwithf "Invalid hex color format"
 
-    
     /// Color 
-    static member Colors (c:seq<Color>) =
+    static member fromColors (c:seq<Color>) =
         let tmp =
             c |> Seq.map (fun v -> v.Value)
         Color (unbox tmp)
 
-    /// Color as Ploty color name e.g. 'grey'
-    static member ColorString (c:string) =
+    /// Color from a raw string input, no check for correctness performed
+    static member fromString (c:string) =
         Color (unbox c)
 
     /// Values are interpreted relative to color scale
-    static member ColorScaleValue (c:seq<System.IConvertible>) =
+    static member fromColorScaleValues (c:seq<System.IConvertible>) =
         Color (unbox c)
+
+    /// Color from a standard web color keyword, e.g. White -> "white" (see //https://www.w3.org/TR/2011/REC-SVG11-20110816/types.html#ColorKeywords)
+    static member fromKeyword (c: ColorKeyword) =
+        Color (unbox (ARGB.fromKeyword c))
 
 
     /// extractor
@@ -196,39 +190,39 @@ and ColorConverter() =
 module Color = 
     module Table =    
 
-        let black       = Color.fromRgb   0   0   0                
-        let blackLite   = Color.fromRgb  89  89  89 // 35% lighter
-        let white       = Color.fromRgb 255 255 255
+        let black       = Color.fromRGB   0   0   0                
+        let blackLite   = Color.fromRGB  89  89  89 // 35% lighter
+        let white       = Color.fromRGB 255 255 255
 
         /// Color palette from Microsoft office 2016
         module Office = 
     
             // blue
-            let blue        = Color.fromRgb  65 113 156        
-            let lightBlue   = Color.fromRgb 189 215 238
-            let darkBlue    = Color.fromRgb  68 114 196
+            let blue        = Color.fromRGB  65 113 156        
+            let lightBlue   = Color.fromRGB 189 215 238
+            let darkBlue    = Color.fromRGB  68 114 196
                     
             // red           
-            let red         = Color.fromRgb 241  90  96  
-            let lightRed    = Color.fromRgb 252 212 214
+            let red         = Color.fromRGB 241  90  96  
+            let lightRed    = Color.fromRGB 252 212 214
 
             // orange           
-            let orange      = Color.fromRgb 237 125  49
-            let lightOrange = Color.fromRgb 248 203 173
+            let orange      = Color.fromRGB 237 125  49
+            let lightOrange = Color.fromRGB 248 203 173
                                                               
             // yellow        
-            let yellow      = Color.fromRgb 255 217 102
-            let lightYellow = Color.fromRgb 255 230 153
-            let darkYellow  = Color.fromRgb 255 192   0
+            let yellow      = Color.fromRGB 255 217 102
+            let lightYellow = Color.fromRGB 255 230 153
+            let darkYellow  = Color.fromRGB 255 192   0
                      
             // green         
-            let green       = Color.fromRgb 122 195 106
-            let lightGreen  = Color.fromRgb 197 224 180
-            let darkGreen   = Color.fromRgb 112 173  71
+            let green       = Color.fromRGB 122 195 106
+            let lightGreen  = Color.fromRGB 197 224 180
+            let darkGreen   = Color.fromRGB 112 173  71
 
             // grey         
-            let grey        = Color.fromRgb 165 165 165
-            let lightGrey   = Color.fromRgb 217 217 217
+            let grey        = Color.fromRGB 165 165 165
+            let lightGrey   = Color.fromRGB 217 217 217
 
         // From publication: Escaping RGBland: Selecting Colors for Statistical Graphics
         // http://epub.wu.ac.at/1692/1/document.pdf

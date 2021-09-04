@@ -97,13 +97,13 @@ let styledPolar2 =
     styledPolar
     |> Chart.withAngularAxis(
         AngularAxis.init(
-            Color=Color.ColorString "darkblue"
+            Color=Color.fromString "darkblue"
         )
     )
     |> Chart.withRadialAxis(
         RadialAxis.init(
             Title = Title.init("Hi, i am the radial axis"),
-            Color=Color.ColorString "darkblue",
+            Color=Color.fromString "darkblue",
             SeparateThousands = true
         )
     )

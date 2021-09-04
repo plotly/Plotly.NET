@@ -64,7 +64,7 @@ let pointGeo =
     |> Chart.withGeoStyle(
         Scope=StyleParam.GeoScope.NorthAmerica, 
         Projection=GeoProjection.init(StyleParam.GeoProjectionType.AzimuthalEqualArea),
-        CountryColor = Color.ColorString "lightgrey"
+        CountryColor = Color.fromString "lightgrey"
     )
     |> Chart.withMarginSize(0,0,0,0)
 
@@ -106,7 +106,7 @@ let flights =
         Chart.LineGeo(
             [startCoords; endCoords],
             Opacity = opacityVals.[i],
-            Color = Color.ColorString "red"
+            Color = Color.fromString "red"
         )
     )
     |> Chart.combine
@@ -115,7 +115,7 @@ let flights =
         Scope=StyleParam.GeoScope.NorthAmerica, 
         Projection=GeoProjection.init(StyleParam.GeoProjectionType.AzimuthalEqualArea),
         ShowLand=true,
-        LandColor = Color.ColorString "lightgrey"
+        LandColor = Color.fromString "lightgrey"
     )
     |> Chart.withMarginSize(0,0,50,0)
     |> Chart.withTitle "Feb. 2011 American Airline flights"

@@ -79,11 +79,11 @@ let table2 =
         //sets cell row colors
         //ColorCells=[["#deebf7";"lightgrey"]],
         //sets font of header
-        FontHeader  = Font.init(FontFamily.Courier_New, Size=12., Color=Color.ColorString "white"),      
+        FontHeader  = Font.init(FontFamily.Courier_New, Size=12., Color=Color.fromString "white"),      
         //sets the height of the header
         HeightHeader= 30.,
         //sets lines of header
-        LineHeader  = Line.init(2.,Color.ColorString "black"),                     
+        LineHeader  = Line.init(2.,Color.fromString "black"),                     
         ColumnWidth = [70;50;100;70],      
         //defines order of columns
         ColumnOrder = [1;2;3;4]                                  
@@ -196,7 +196,7 @@ let cellcolors =
     |> Seq.map (fun x -> Seq.append x (seq ["white"]))
 
 let font = Font.init(FontFamily.Consolas,Size=14.)
-let line = Line.init(0.,Color.ColorString "white")
+let line = Line.init(0.,Color.fromString "white")
 let chartwidth = 50. + 10. * float elementsPerRow
 
 let table4 =

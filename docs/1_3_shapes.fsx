@@ -47,8 +47,8 @@ multiple shapes at once.
 
 open Plotly.NET.LayoutObjects
 
-let s1 = Shape.init (StyleParam.ShapeType.Rectangle,2.,4.,3.,4.,Opacity=0.3,Fillcolor= Color.fromWebColor "#d3d3d3")
-let s2 = Shape.init (StyleParam.ShapeType.Rectangle,5.,7.,3.,4.,Opacity=0.3,Fillcolor= Color.fromWebColor "#d3d3d3")
+let s1 = Shape.init (StyleParam.ShapeType.Rectangle,2.,4.,3.,4.,Opacity=0.3,Fillcolor= Color.fromHex "#d3d3d3")
+let s2 = Shape.init (StyleParam.ShapeType.Rectangle,5.,7.,3.,4.,Opacity=0.3,Fillcolor= Color.fromHex "#d3d3d3")
 
 let shapes =
     Chart.Line(x,y',Name="line")    

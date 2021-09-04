@@ -18,15 +18,15 @@ let moreFeaturesBasemapChart =
         Geo.init(
             Resolution=StyleParam.GeoResolution.R50,
             ShowCoastLines=true, 
-            CoastLineColor=Color.ColorString "RebeccaPurple",
+            CoastLineColor=Color.fromString "RebeccaPurple",
             ShowLand=true, 
-            LandColor=Color.ColorString "LightGreen",
+            LandColor=Color.fromString "LightGreen",
             ShowOcean=true, 
-            OceanColor=Color.ColorString "LightBlue",
+            OceanColor=Color.fromString "LightBlue",
             ShowLakes=true, 
-            LakeColor=Color.ColorString "Blue",
+            LakeColor=Color.fromString "Blue",
             ShowRivers=true, 
-            RiverColor=Color.ColorString "Blue"
+            RiverColor=Color.fromString "Blue"
         )
     Chart.PointGeo([])
     |> Chart.withGeo myGeo
@@ -38,7 +38,7 @@ let cultureMapChart =
             Visible=false, 
             Resolution=StyleParam.GeoResolution.R50,
             ShowCountries=true, 
-            CountryColor=Color.ColorString "RebeccaPurple"
+            CountryColor=Color.fromString "RebeccaPurple"
         )
     Chart.PointGeo([])
     |> Chart.withGeo countryGeo
@@ -97,7 +97,7 @@ let pointGeoChart =
     |> Chart.withGeoStyle(
         Scope=StyleParam.GeoScope.NorthAmerica, 
         Projection=GeoProjection.init(StyleParam.GeoProjectionType.AzimuthalEqualArea),
-        CountryColor = Color.ColorString "lightgrey"
+        CountryColor = Color.fromString "lightgrey"
     )
     |> Chart.withMarginSize(0, 0, 0, 0)
 
@@ -134,7 +134,7 @@ let flightsMapChart =
         Chart.LineGeo(
             [startCoords; endCoords],
             Opacity = opacityVals.[i],
-            Color = Color.ColorString  "red"
+            Color = Color.fromString  "red"
         )
     )
     |> Chart.combine
@@ -143,7 +143,7 @@ let flightsMapChart =
         Scope=StyleParam.GeoScope.NorthAmerica, 
         Projection=GeoProjection.init(StyleParam.GeoProjectionType.AzimuthalEqualArea),
         ShowLand=true,
-        LandColor = Color.ColorString "lightgrey"
+        LandColor = Color.fromString "lightgrey"
     )
     |> Chart.withMarginSize(0,0,50,0)
     |> Chart.withTitle "Feb. 2011 American Airline flights"
@@ -237,7 +237,7 @@ let choroplethMap2Chart =
         Projection=GeoProjection.init(projectionType=StyleParam.GeoProjectionType.Mollweide),
         ShowLakes=true,
         ShowOcean=true,
-        OceanColor= Color.ColorString "lightblue",
+        OceanColor= Color.fromString "lightblue",
         ShowRivers=true)
     |> Chart.withColorBarStyle (
         Title.init(Text="Alcohol consumption[l/y]")

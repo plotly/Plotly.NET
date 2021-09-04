@@ -45,15 +45,15 @@ open Plotly.NET
 open Plotly.NET.TraceObjects
 
 // Customize the connector lines used to connect the funnel bars
-let connectorLine = Line.init (Color=Color.ColorString "royalblue", Dash=StyleParam.DrawingStyle.Dot, Width=3.)
+let connectorLine = Line.init (Color=Color.fromString "royalblue", Dash=StyleParam.DrawingStyle.Dot, Width=3.)
 let connector = FunnelConnector.init(Line=connectorLine)
 
 // Customize the outline of the funnel bars
-let line = Line.init(Width=2.,Color=Color.fromWebColor "3E4E88")
+let line = Line.init(Width=2.,Color=Color.fromHex "3E4E88")
 
 // create a funnel chart using custom connectors and outlines
 let funnel =
-    Chart.Funnel (x,y,Color=Color.fromWebColor "59D4E8", Line=line, Connector=connector)
+    Chart.Funnel (x,y,Color=Color.fromHex "59D4E8", Line=line, Connector=connector)
     |> Chart.withMarginSize(Left=100)
 
 (*** condition: ipynb ***)

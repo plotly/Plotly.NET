@@ -87,7 +87,7 @@ let flightsChart =
         Chart.LineMapbox(
             [startCoords; endCoords],
             Opacity = opacityVals.[i],
-            Color = Color.ColorString "red"
+            Color = Color.fromString "red"
         )
     )
     |> Chart.combine

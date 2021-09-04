@@ -52,7 +52,7 @@ Until that is fixed, consider creating splom plot programatically using `Chart.G
 *)
 
 let splom1 =
-    Chart.Splom(data,Color=Color.ColorString "blue")
+    Chart.Splom(data,Color=Color.fromString "blue")
 
 (*** condition: ipynb ***)
 #if IPYNB

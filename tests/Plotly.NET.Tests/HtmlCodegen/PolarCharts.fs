@@ -18,7 +18,7 @@ let pointPolar = Chart.PointPolar(radial,theta)
 
 let linePolar = 
     Chart.LinePolar(radial,theta)
-    |> Chart.withLineStyle(Color=Color.ColorString "purple",Dash=StyleParam.DrawingStyle.DashDot)
+    |> Chart.withLineStyle(Color=Color.fromString "purple",Dash=StyleParam.DrawingStyle.DashDot)
 
 let splinePolar = 
     Chart.SplinePolar(

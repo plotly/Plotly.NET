@@ -195,8 +195,8 @@ let rangePlotsChart =
     Chart.Range(
         x,y,yUpper,yLower,
         StyleParam.Mode.Lines_Markers,
-        Color=Color.ColorString "grey",
-        RangeColor=Color.ColorString "lightblue")
+        Color=Color.fromString "grey",
+        RangeColor=Color.fromString "lightblue")
 
 [<Tests>]
 let ``Range plot`` =
@@ -303,9 +303,9 @@ let tableStyledChart =
         AlignCells  = [HorizontalAlign.Left; HorizontalAlign.Center; HorizontalAlign.Right],
         ColorHeader = "#45546a",    
         ColorCells  = ["#deebf7"; "lightgrey"; "#deebf7"; "lightgrey"],
-        FontHeader  = Font.init(FontFamily.Courier_New, Size=12., Color=Color.ColorString "white"),      
+        FontHeader  = Font.init(FontFamily.Courier_New, Size=12., Color=Color.fromString "white"),      
         HeightHeader= 30.,
-        LineHeader  = Line.init(2.,Color.ColorString "black"),                     
+        LineHeader  = Line.init(2.,Color.fromString "black"),                     
         ColumnWidth = [70; 50; 100; 70],      
         ColumnOrder = [1; 2; 3; 4]                                  
     )
@@ -329,8 +329,8 @@ let tableColorDependentChart =
         let proportion = 
             (255. * (value - min) / (max - min))
             |> int
-        RGB.fromRgb 255 (255 - proportion) proportion
-        |> RGB.toWebColor
+        ARGB.fromRGB 255 (255 - proportion) proportion
+        |> ARGB.toWebHex
         
     //Assign a color to every cell seperately. Matrix must be transposed for correct orientation.
     let cellcolor = 
@@ -391,7 +391,7 @@ let sequencePresentationTableChart =
         |> Seq.map (fun x -> Seq.append x (seq ["white"]))
 
     let font = Font.init(FontFamily.Consolas,Size=14.)
-    let line = Line.init(0., Color.ColorString "white")
+    let line = Line.init(0., Color.fromString "white")
     let chartwidth = 50 + 10 * elementsPerRow
 
     Chart.Table(
