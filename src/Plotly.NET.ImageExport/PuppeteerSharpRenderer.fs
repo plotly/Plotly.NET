@@ -41,7 +41,7 @@ type PuppeteerSharpRenderer() =
                     fun (x:Match) -> 
                         x.Result(
                             "$1" 
-                            + $".then(x => Plotly.toImage(x, {{ format: '{StyleParam.ImageFormat.toString format}', scale: 2, width: {width}, height: {height} }}))" 
+                            + $".then(x => Plotly.toImage(x, {{ format: '{StyleParam.ImageFormat.toString format}', scale: 1, width: {width}, height: {height} }}))" 
                             + ".then(img => window.plotlyImage = img)"
                         )
                 )
