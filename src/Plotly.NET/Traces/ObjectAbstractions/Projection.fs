@@ -8,7 +8,7 @@ open System.Runtime.InteropServices
 
 
 type ProjectionDimension () =
-    inherit DynamicObj () 
+    inherit ImmutableDynamicObj () 
 
     static member init 
         (
@@ -40,7 +40,7 @@ type ProjectionDimension () =
                 projectionDimension
 
 type Projection () =
-    inherit DynamicObj () 
+    inherit ImmutableDynamicObj () 
 
     static member init 
         (

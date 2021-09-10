@@ -6,7 +6,7 @@ open System
 
 /// Line type inherits from dynamic object
 type Line () =
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     /// Initialized Line object
     static member init

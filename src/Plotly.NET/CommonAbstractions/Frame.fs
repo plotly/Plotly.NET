@@ -2,4 +2,4 @@
 
 open DynamicObj
 
-type Frame() = inherit DynamicObj()
+type Frame() = inherit ImmutableDynamicObj()

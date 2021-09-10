@@ -4,7 +4,7 @@ open System.Runtime.InteropServices
 open DynamicObj
 
 type Title() =
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     static member init
         (    

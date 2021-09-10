@@ -7,7 +7,7 @@ open System.Runtime.InteropServices
 
 /// Shape type inherits from dynamic object
 type Shape () =
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     /// Init Shape type
     static member init

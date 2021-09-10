@@ -102,12 +102,12 @@ module SankeyExtension =
                         match (linkLineClrs,linkLineWidths) with 
                         | None,None -> None 
                         | cs,ws -> 
-                            let ln = new DynamicObj()
+                            let ln = new ImmutableDynamicObj()
                             DynObj.setValueOpt ln "color" cs
                             DynObj.setValueOpt ln "width" ws
                             Some ln
 
-                    let l = new DynamicObj()
+                    let l = new ImmutableDynamicObj()
                     DynObj.setValue     l "source" (links |> Seq.map (fun x->lblMap.[x.Source.Label]))
                     DynObj.setValue     l "target" (links |> Seq.map (fun x->lblMap.[x.Target.Label]))
                     DynObj.setValueOpt  l "color"  linkClrs
@@ -156,12 +156,12 @@ module SankeyExtension =
                         match (nodeLineClrs,nodeLineWidths) with 
                         | None,None -> None 
                         | cs,ws -> 
-                            let ln = new DynamicObj()
+                            let ln = new ImmutableDynamicObj()
                             DynObj.setValueOpt ln "color" cs
                             DynObj.setValueOpt ln "width" ws
                             Some ln
 
-                    let n = new DynamicObj()
+                    let n = new ImmutableDynamicObj()
                     DynObj.setValue    n "label" (nodes |> Seq.map (fun  x->x.Label)) 
                     DynObj.setValueOpt n "groups" groups
                     DynObj.setValueOpt n "pad" nodePadding

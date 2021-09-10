@@ -6,7 +6,7 @@ open System
 open System.Runtime.InteropServices
 
 type UniformText() =
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     static member init
         (    

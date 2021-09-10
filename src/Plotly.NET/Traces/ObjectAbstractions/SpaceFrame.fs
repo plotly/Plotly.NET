@@ -7,7 +7,7 @@ open System
 open System.Runtime.InteropServices
 
 type Spaceframe () =
-    inherit DynamicObj () 
+    inherit ImmutableDynamicObj () 
 
     static member init 
         (

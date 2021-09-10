@@ -8,7 +8,7 @@ open System.Runtime.InteropServices
 
 /// Error type inherits from dynamic object
 type Error () =
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
     
     /// <summary>Init Error type</summary>
     /// <param name ="Symmetric">Determines whether or not the error bars have the same length in both direction (top/bottom for vertical bars, left/right for horizontal bars.</param>

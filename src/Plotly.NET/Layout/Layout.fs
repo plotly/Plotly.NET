@@ -7,7 +7,7 @@ open System.Runtime.InteropServices
 
 /// Layout 
 type Layout() = 
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     /// Init Layout type
     static member init
@@ -40,7 +40,7 @@ type Layout() =
             [<Optional;DefaultParameterValue(null)>] ?UIRevision             : string,
             [<Optional;DefaultParameterValue(null)>] ?EditRevision           : string,
             [<Optional;DefaultParameterValue(null)>] ?SelectRevision         : string,
-            [<Optional;DefaultParameterValue(null)>] ?Template               : DynamicObj,
+            [<Optional;DefaultParameterValue(null)>] ?Template               : ImmutableDynamicObj,
             [<Optional;DefaultParameterValue(null)>] ?Meta                   : string,
             [<Optional;DefaultParameterValue(null)>] ?Computed               : string,
             [<Optional;DefaultParameterValue(null)>] ?Grid                   : LayoutGrid,
@@ -179,7 +179,7 @@ type Layout() =
             [<Optional;DefaultParameterValue(null)>] ?UIRevision             : string,
             [<Optional;DefaultParameterValue(null)>] ?EditRevision           : string,
             [<Optional;DefaultParameterValue(null)>] ?SelectRevision         : string,
-            [<Optional;DefaultParameterValue(null)>] ?Template               : DynamicObj,
+            [<Optional;DefaultParameterValue(null)>] ?Template               : ImmutableDynamicObj,
             [<Optional;DefaultParameterValue(null)>] ?Meta                   : string,
             [<Optional;DefaultParameterValue(null)>] ?Computed               : string,
             [<Optional;DefaultParameterValue(null)>] ?Grid                   : LayoutGrid,
@@ -318,7 +318,7 @@ type Layout() =
                     let axis' = 
                         match layout.TryGetValue (StyleParam.SubPlotId.toString id) with
                         | Some a -> DynObj.combine (unbox a) axis
-                        | None  -> axis :>  DynamicObj
+                        | None  -> axis :>  ImmutableDynamicObj
                 
                     axis'           |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
 
@@ -345,7 +345,7 @@ type Layout() =
                 let scene' = 
                     match layout.TryGetValue (StyleParam.SubPlotId.toString id) with
                     | Some a -> DynObj.combine (unbox a) scene
-                    | None  -> scene :> DynamicObj
+                    | None  -> scene :> ImmutableDynamicObj
 
                 scene' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
                 layout
@@ -378,7 +378,7 @@ type Layout() =
                 let geo' = 
                     match layout.TryGetValue (StyleParam.SubPlotId.toString id) with
                     | Some a -> DynObj.combine (unbox a) geo
-                    | None  -> geo :> DynamicObj
+                    | None  -> geo :> ImmutableDynamicObj
 
                 geo' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
                 layout
@@ -406,7 +406,7 @@ type Layout() =
                 let mapbox' = 
                     match layout.TryGetValue (StyleParam.SubPlotId.toString id) with
                     | Some a -> DynObj.combine (unbox a) mapbox
-                    | None  -> mapbox :> DynamicObj
+                    | None  -> mapbox :> ImmutableDynamicObj
 
                 mapbox' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
                 layout
@@ -429,7 +429,7 @@ type Layout() =
                 let polar' = 
                     match layout |> Layout.tryGetPolarById(id) with
                     | Some a  -> DynObj.combine (unbox a) polar
-                    | None    -> polar :> DynamicObj
+                    | None    -> polar :> ImmutableDynamicObj
                 
                 polar' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
 
@@ -453,7 +453,7 @@ type Layout() =
                 let colorAxis' = 
                     match layout |> Layout.tryGetColorAxisById(id) with
                     | Some a  -> DynObj.combine (unbox a) colorAxis
-                    | None    -> colorAxis :> DynamicObj
+                    | None    -> colorAxis :> ImmutableDynamicObj
                 
                 colorAxis' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
 

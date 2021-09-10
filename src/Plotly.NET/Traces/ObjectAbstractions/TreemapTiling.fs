@@ -7,7 +7,7 @@ open System
 open System.Runtime.InteropServices
 
 type TreemapTiling () =
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     ///Initializes tiling object (used in Chart.Treemap)
     ///

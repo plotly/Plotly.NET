@@ -29,7 +29,7 @@ type ChartDescription =
 
 
 type DisplayOptions() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (    

@@ -7,7 +7,7 @@ open System
 open System.Runtime.InteropServices
 
 type ToImageButtonOptions() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
     static member init 
         (
             [<Optional;DefaultParameterValue(null)>] ?Format     : StyleParam.ImageFormat,

@@ -6,7 +6,7 @@ open System
 open System.Runtime.InteropServices
 
 type TickFormatStop() =
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     static member init
         (    

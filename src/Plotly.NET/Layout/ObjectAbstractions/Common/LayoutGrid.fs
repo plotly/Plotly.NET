@@ -7,7 +7,7 @@ open System.Runtime.InteropServices
 
 /// A plot grid that can contain subplots with shared axes.
 type LayoutGrid () =
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     /// <summary>Initializes a LayoutGrid object</summary>
     /// <param name ="Rows">The number of rows in the grid. If you provide a 2D `subplots` array or a `yaxes` array, its length is used as the default. But it's also possible to have a different length, if you want to leave a row at the end for non-cartesian subplots.</param>

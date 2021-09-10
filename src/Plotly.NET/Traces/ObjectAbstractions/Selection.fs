@@ -7,7 +7,7 @@ open System
 open System.Runtime.InteropServices
 
 type MarkerSelectionStyle() =
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     static member init
         (    
@@ -39,7 +39,7 @@ type MarkerSelectionStyle() =
             )
 
 type FontSelectionStyle() =
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     /// Init Font()
     static member init
@@ -63,7 +63,7 @@ type FontSelectionStyle() =
             )
 
 type Selection () =
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     static member init
         (    

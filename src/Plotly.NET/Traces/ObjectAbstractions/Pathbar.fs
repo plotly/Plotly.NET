@@ -7,7 +7,7 @@ open System
 open System.Runtime.InteropServices
 
 type Pathbar () =
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     ///Initializes pathbar object (used in Chart.Treemap)
     ///
