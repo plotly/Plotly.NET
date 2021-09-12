@@ -767,8 +767,8 @@ type Trace2DStyle() =
 
                 ++?? ("orientation", Orientation, StyleParam.Orientation.convert)
                 //Connectgaps    |> DynObj.setValueOptBy histogram2dContour< "connectgaps" StyleParam.Orientation.convert
-                HistFunc       |> DynObj.setValueOptBy histogram2dContour "histfunc   " StyleParam.HistFunc.convert
-                HistNorm       |> DynObj.setValueOptBy histogram2dContour "histnorm   " StyleParam.HistNorm.convert
+                HistFunc       |> DynObj.setValueOptBy histogram2dContour "histfunc" StyleParam.HistFunc.convert
+                HistNorm       |> DynObj.setValueOptBy histogram2dContour "histnorm" StyleParam.HistNorm.convert
                 ++? ("autobinx", Autobinx)
                 ++? ("nbinsx", nBinsx)
                 ++? ("xbins", xBins)
