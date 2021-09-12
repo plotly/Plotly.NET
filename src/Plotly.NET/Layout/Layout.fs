@@ -219,6 +219,8 @@ type Layout() =
         ) =
             (fun (layout:Layout) -> 
                 layout
+
+                layout
                 ++? ("title", Title)
                 ++? ("showlegend", ShowLegend)
                 ++? ("legend", Legend)
@@ -284,8 +286,6 @@ type Layout() =
                 ++? ("iciclecolorway", IcicleColorWay)
                 ++? ("annotations", Annotations)
                 ++? ("shapes", Shapes)
-
-                layout
             )
 
 
@@ -298,8 +298,8 @@ type Layout() =
 
                 match id with
                 | StyleParam.SubPlotId.XAxis _ | StyleParam.SubPlotId.YAxis _ ->
-                    ++? ((StyleParam.SubPlotId.toString id), axis)
                     layout
+                    ++? ((StyleParam.SubPlotId.toString id), axis)
 
                 | _ -> failwith $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting a linear axis on layout"
             )
@@ -319,10 +319,10 @@ type Layout() =
                         match layout.TryGetValue (StyleParam.SubPlotId.toString id) with
                         | Some a -> DynObj.combine (unbox a) axis
                         | None  -> axis :>  ImmutableDynamicObj
-                
-                    ++? ((StyleParam.SubPlotId.toString id), axis')
 
                     layout
+                
+                    ++? ((StyleParam.SubPlotId.toString id), axis')
                 | _ -> failwith $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting a linear axis on layout"
             )
 
@@ -332,8 +332,8 @@ type Layout() =
             scene   : Scene
         ) =
             (fun (layout:Layout) -> 
-                ++? ((StyleParam.SubPlotId.toString id), scene)
                 layout
+                ++? ((StyleParam.SubPlotId.toString id), scene)
             )
 
     static member updateSceneById
@@ -346,9 +346,9 @@ type Layout() =
                     match layout.TryGetValue (StyleParam.SubPlotId.toString id) with
                     | Some a -> DynObj.combine (unbox a) scene
                     | None  -> scene :> ImmutableDynamicObj
+                layout
 
                 ++? ((StyleParam.SubPlotId.toString id), scene')
-                layout
             )
 
     static member tryGetSceneById (id:StyleParam.SubPlotId) =
@@ -362,10 +362,10 @@ type Layout() =
             geo  : Geo
         ) =
             (fun (layout:Layout) -> 
-                
-                ++? ((StyleParam.SubPlotId.toString id), geo)
 
                 layout
+                
+                ++? ((StyleParam.SubPlotId.toString id), geo)
             )
 
     // Updates the style of current geo map with given Id
@@ -379,9 +379,9 @@ type Layout() =
                     match layout.TryGetValue (StyleParam.SubPlotId.toString id) with
                     | Some a -> DynObj.combine (unbox a) geo
                     | None  -> geo :> ImmutableDynamicObj
+                layout
 
                 ++? ((StyleParam.SubPlotId.toString id), geo')
-                layout
             )
 
     static member AddMapbox
@@ -390,10 +390,10 @@ type Layout() =
             mapbox  : Mapbox
         ) =
             (fun (layout:Layout) -> 
-            
-                ++? ((StyleParam.SubPlotId.toString id), mapbox)
 
                 layout
+            
+                ++? ((StyleParam.SubPlotId.toString id), mapbox)
             )
             
     // Updates the style of current geo map with given Id
@@ -407,9 +407,9 @@ type Layout() =
                     match layout.TryGetValue (StyleParam.SubPlotId.toString id) with
                     | Some a -> DynObj.combine (unbox a) mapbox
                     | None  -> mapbox :> ImmutableDynamicObj
+                layout
 
                 ++? ((StyleParam.SubPlotId.toString id), mapbox')
-                layout
             )
 
     static member tryGetPolarById (id:StyleParam.SubPlotId) =
@@ -430,10 +430,10 @@ type Layout() =
                     match layout |> Layout.tryGetPolarById(id) with
                     | Some a  -> DynObj.combine (unbox a) polar
                     | None    -> polar :> ImmutableDynamicObj
-                
-                ++? ((StyleParam.SubPlotId.toString id), polar')
 
                 layout
+                
+                ++? ((StyleParam.SubPlotId.toString id), polar')
             )
 
     static member tryGetColorAxisById (id:StyleParam.SubPlotId) =
@@ -454,10 +454,10 @@ type Layout() =
                     match layout |> Layout.tryGetColorAxisById(id) with
                     | Some a  -> DynObj.combine (unbox a) colorAxis
                     | None    -> colorAxis :> ImmutableDynamicObj
-                
-                ++? ((StyleParam.SubPlotId.toString id), colorAxis')
 
                 layout
+                
+                ++? ((StyleParam.SubPlotId.toString id), colorAxis')
             )
 
     static member SetLayoutGrid 

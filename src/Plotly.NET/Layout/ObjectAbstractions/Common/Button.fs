@@ -42,6 +42,8 @@ type Button () =
             [<Optional;DefaultParameterValue(null)>] ?TemplateItemName   : string
         ) =
             (fun (button:Button) -> 
+
+                button
                 
                 ++? ("visible", Visible)
                 ++?? ("step", Step, StyleParam.TimeStep.convert)
@@ -50,6 +52,4 @@ type Button () =
                 ++? ("label", Label)
                 ++? ("name", Name)
                 ++? ("templateitemname", TemplateItemName)
-
-                button
             )

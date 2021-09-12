@@ -40,10 +40,10 @@ type WaterfallConnector () =
             [<Optional;DefaultParameterValue(null)>] ?ConnectorMode  : StyleParam.ConnectorMode
         ) = 
             (fun (connector:WaterfallConnector) -> 
+
+                connector
                 
                 ++? ("line", Line)
                 ++? ("visible", Visible)
                 ++?? ("mode", ConnectorMode, StyleParam.ConnectorMode.convert)
-
-                connector
             )

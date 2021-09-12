@@ -63,11 +63,11 @@ type Pathbar () =
             [<Optional;DefaultParameterValue(null)>] ?Textfont   :Font
         ) = 
             (fun (pathbar:Pathbar) -> 
+
+                pathbar
                 ++? ("visible", Visible)
                 ++?? ("side", Side, StyleParam.Side.convert)
                 ++?? ("edgeshape", EdgeShape, StyleParam.TreemapEdgeShape.convert)
                 ++? ("thickness", Thickness)
                 ++? ("textfont", Textfont)
-
-                pathbar
             )

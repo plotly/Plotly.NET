@@ -34,12 +34,12 @@ type Meanline () =
             [<Optional;DefaultParameterValue(null)>] ?Width: float
         ) =
             (fun (line:Meanline) -> 
-                ++? ("visible", Visible)
-                ++? ("color", Color)
-                ++? ("width", Width)
                     
                 // out -> 
                 line
+                ++? ("visible", Visible)
+                ++? ("color", Color)
+                ++? ("width", Width)
             )
 
 

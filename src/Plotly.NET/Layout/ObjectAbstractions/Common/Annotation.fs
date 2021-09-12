@@ -92,6 +92,8 @@ type Annotation() =
 
         ) =
             (fun (ann:Annotation) ->
+
+                ann
                 ++? ("x", X)
                 ++? ("y", Y)
                 ++? ("xref", XRef)
@@ -115,6 +117,4 @@ type Annotation() =
                 ++? ("bgcolor", BGColor)
                 ++? ("bordercolor", BorderColor)
                 ++? ("visible", Visible)
-
-                ann
             )

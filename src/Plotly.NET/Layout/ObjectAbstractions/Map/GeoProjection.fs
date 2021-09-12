@@ -39,11 +39,11 @@ type GeoProjectionRotation () =
             [<Optional;DefaultParameterValue(null)>] ?Roll       :int
         ) =
             (fun (rotation:GeoProjectionRotation) -> 
+
+                rotation
                 ++? ("lon", Longitude)
                 ++? ("lat", Latitude)
                 ++? ("roll", Roll)
-
-                rotation
             ) 
 
 /// <summary>Determines the map projection in geo traces.</summary>
@@ -91,7 +91,7 @@ type GeoProjection() =
                 |> ++ ("type", Parallels       )
                 |> Option.map (fun (a,b) -> sprintf "[%f,%f]" a b) 
                 |> ++? ("parallels", ++? ("rotation", Rotation))
-                ++? ("scale", Scale)
 
                 projection
+                ++? ("scale", Scale)
             ) 

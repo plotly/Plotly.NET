@@ -26,9 +26,9 @@ type ActiveShape() =
            [<Optional;DefaultParameterValue(null)>] ?Opacity    : float
         ) =
             (fun (activeShape:ActiveShape) -> 
+
+                activeShape
                
                 ++? ("fillcolor", FillColor)
                 ++? ("opacity", Opacity)
-
-                activeShape
             )

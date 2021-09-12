@@ -46,9 +46,9 @@ type TraceGeoStyle() =
         ) =  
             (fun (trace:TraceGeo) ->
 
-                ++?? ("geo", GeoId, StyleParam.SubPlotId.toString)
-
                 trace
+
+                ++?? ("geo", GeoId, StyleParam.SubPlotId.toString)
             )
 
     // Applies the styles of choropleth map plot to TraceObjects 
@@ -69,6 +69,8 @@ type TraceGeoStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Zmax           : float
         ) =
             (fun (choropleth: #Trace) -> 
+                    
+                choropleth
                 
                 ++? ("locations", Locations)         
                 ++? ("z", Z)                     
@@ -83,9 +85,7 @@ type TraceGeoStyle() =
                 ++? ("featureidkey", FeatureIdKey)
                 ++? ("zmin", Zmin)
                 ++? ("zmid", Zmid)
-                ++? ("zmax", Zmax)  
-                    
-                choropleth 
+                ++? ("zmax", Zmax)   
             ) 
 
 
@@ -104,6 +104,8 @@ type TraceGeoStyle() =
             (fun (trace: #Trace) -> 
             
                 mode        |> StyleParam.Mode.convert |> ++ ("mode", ++? ("lon", Longitudes))
+
+                trace
                 ++? ("lat", Latitudes)
                 ++? ("locations", Locations)
                 ++? ("geojson", GeoJson)
@@ -111,7 +113,5 @@ type TraceGeoStyle() =
                 ++? ("connectgaps", Connectgaps)
                 ++?? ("fill", Fill, StyleParam.Fill.convert)
                 ++? ("fillcolor", Fillcolor)
-
-                trace
 
             )

@@ -45,9 +45,9 @@ type Cumulative () =
         ) =
             
             (fun (cumulative: Cumulative) -> 
+           
+                cumulative
                 ++? ("enabled", Enabled)
                 ++?? ("direction", Direction, StyleParam.CumulativeDirection.convert)
                 ++?? ("currentbin", Currentbin, StyleParam.Currentbin.convert)
-           
-                cumulative
             )

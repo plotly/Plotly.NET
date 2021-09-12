@@ -37,9 +37,9 @@ type ToImageButtonOptions() =
         ) =
             fun (btnConf:ToImageButtonOptions) ->
                 let format = Format              |> Option.map StyleParam.ImageFormat.toString
-                btnConf
+                btnConf Scale
                 ++? ("format", format)
                 ++? ("filename", Filename)
                 ++? ("width", Width)
                 ++? ("height", Height)
-                ++? ("scale", Scale)
+                ++? ("scale",)

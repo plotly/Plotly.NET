@@ -36,12 +36,12 @@ type TickFormatStop() =
         ) =
             (fun (tickFormatStop:TickFormatStop) -> 
 
+
+                tickFormatStop
+
                 ++? ("enabled", Enabled)
                 ++? ("dtickrange", DTickRange)
                 ++? ("value", Value)
                 ++? ("name", Name)
                 ++? ("templateitemname", TemplateItemName)
-
-
-                tickFormatStop
             )

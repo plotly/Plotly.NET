@@ -40,6 +40,8 @@ type Margin() =
             [<Optional;DefaultParameterValue(null)>] ?Autoexpand
         ) =
             (fun (margin:Margin) -> 
+
+                margin
                 ++? ("l", Left)
                 ++? ("r", Right)
                 ++? ("t", Top)
@@ -47,6 +49,4 @@ type Margin() =
 
                 ++? ("pad", Pad)
                 ++? ("autoexpand", Autoexpand)
-
-                margin
                 )

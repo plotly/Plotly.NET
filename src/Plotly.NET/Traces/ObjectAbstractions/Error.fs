@@ -80,6 +80,9 @@ type Error () =
 
         ) =
             (fun (error:Error) -> 
+
+                // out ->
+                error
                 ++? ("symmetric", Symmetric)
                 ++? ("array", Array)
                 ++? ("arrayminus", Arrayminus)
@@ -91,9 +94,6 @@ type Error () =
                 ++? ("color", Color)
                 ++? ("thickness", Thickness)
                 ++? ("width", Width)
-
-                // out ->
-                error
             )
     
  

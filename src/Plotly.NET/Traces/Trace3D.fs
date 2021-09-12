@@ -62,9 +62,9 @@ type Trace3DStyle() =
         ) =  
             (fun (trace:Trace3D) ->
 
-                ++?? ("scene", SceneId, StyleParam.SubPlotId.toString)
-
                 trace
+
+                ++?? ("scene", SceneId, StyleParam.SubPlotId.toString)
             )
 
     /// <summary>
@@ -153,6 +153,8 @@ type Trace3DStyle() =
         ) =
 
             (fun (scatter: #Trace) ->
+
+                scatter
                 
                 ++? ("name", Name)
                 ++?? ("visible", Visible, StyleParam.Visible.convert)
@@ -193,8 +195,6 @@ type Trace3DStyle() =
                 ++?? ("ycalendar", YCalendar, StyleParam.Calendar.convert)
                 ++?? ("zcalendar", ZCalendar, StyleParam.Calendar.convert)
                 ++? ("uirevision", UIRevision)
-
-                scatter
             )
 
 
@@ -292,6 +292,8 @@ type Trace3DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?UIRevision         : string
         ) =
             (fun (surface: #Trace) -> 
+                    
+                surface
 
                 ++? ("name", Name)
                 ++?? ("visible", Visible, StyleParam.Visible.convert)
@@ -335,9 +337,7 @@ type Trace3DStyle() =
                 ++?? ("xcalendar", XCalendar, StyleParam.Calendar.convert)
                 ++?? ("ycalendar", YCalendar, StyleParam.Calendar.convert)
                 ++?? ("zcalendar", ZCalendar, StyleParam.Calendar.convert)
-                ++? ("uirevision", UIRevision)
-                    
-                surface 
+                ++? ("uirevision", UIRevision) 
             )
 
 
@@ -448,6 +448,8 @@ type Trace3DStyle() =
 
             fun (mesh3d: #Trace) ->
 
+                    mesh3d
+
                     ++? ("name", Name)
                     ++?? ("visible", Visible, StyleParam.Visible.convert)
                     ++? ("showlegend", ShowLegend)
@@ -497,8 +499,6 @@ type Trace3DStyle() =
                     ++?? ("ycalendar", YCalendar, StyleParam.Calendar.convert)
                     ++?? ("zcalendar", ZCalendar, StyleParam.Calendar.convert)
                     ++? ("uirevision", UIRevision)
-
-                    mesh3d
                 
 
     /// <summary>
@@ -597,6 +597,8 @@ type Trace3DStyle() =
 
         ) =
             (fun (cone: #Trace) -> 
+
+                cone
                 ++? ("name", Name)
                 ++?? ("visible", Visible, StyleParam.Visible.convert)
                 ++? ("showlegend", ShowLegend)
@@ -641,8 +643,6 @@ type Trace3DStyle() =
                 ++?? ("sizemode", SizeMode, StyleParam.ConeSizeMode.convert)
                 ++? ("sizeref", SizeRef)
                 ++? ("uirevision", UIRevision)
-
-                cone
             )
 
     /// <summary>
@@ -741,6 +741,8 @@ type Trace3DStyle() =
 
         ) =
             (fun (streamTube: #Trace) -> 
+
+                streamTube
                 ++? ("name", Name)
                 ++?? ("visible", Visible, StyleParam.Visible.convert)
                 ++? ("showlegend", ShowLegend)
@@ -785,8 +787,6 @@ type Trace3DStyle() =
                 ++? ("sizeref", SizeRef)
                 ++? ("starts", Starts)
                 ++? ("uirevision", UIRevision)
-
-                streamTube
             )
 
     /// <summary>
@@ -888,6 +888,8 @@ type Trace3DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?UIRevision         : seq<#IConvertible>
         ) =
             fun (volume: #Trace) -> 
+                
+                volume
 
                 ++? ("name", Name)
                 ++?? ("visible", Visible, StyleParam.Visible.convert)
@@ -935,8 +937,6 @@ type Trace3DStyle() =
                 ++? ("spaceframe", SpaceFrame)
                 ++? ("surface", Surface)
                 ++? ("uirevision", UIRevision)
-                
-                volume
                     
     /// <summary>
     /// Applies the style parameters of the isosurface chart to the given trace
@@ -1037,6 +1037,8 @@ type Trace3DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?UIRevision         : seq<#IConvertible>
         ) =
             fun (volume: #Trace) -> 
+                
+                volume
 
                 ++? ("name", Name)
                 ++?? ("visible", Visible, StyleParam.Visible.convert)
@@ -1084,5 +1086,3 @@ type Trace3DStyle() =
                 ++? ("spaceframe", SpaceFrame)
                 ++? ("surface", Surface)
                 ++? ("uirevision", UIRevision)
-                
-                volume

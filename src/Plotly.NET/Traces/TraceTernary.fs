@@ -22,7 +22,7 @@ type TraceTernaryStyle() =
         ) =  
             (fun (trace:TraceTernary) ->
 
-                ++?? ("subplot", TernaryId, StyleParam.SubPlotId.toString)
-
                 trace
+
+                ++?? ("subplot", TernaryId, StyleParam.SubPlotId.toString)
             )

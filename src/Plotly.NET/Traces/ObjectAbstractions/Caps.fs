@@ -28,11 +28,11 @@ type CapFill () =
         ) =
 
             fun (capFill: CapFill) ->
+
+                capFill
                 
                 ++? ("fill", Fill)
                 ++? ("show", Show)
-
-                capFill
 
 
 type Caps() =
@@ -61,8 +61,8 @@ type Caps() =
         ) =
             fun (caps: Caps) ->
 
+                caps
+
                 ++? ("x", X)
                 ++? ("y", Y)
                 ++? ("z", Z)
-
-                caps

@@ -121,11 +121,11 @@ type Trace2DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Y:StyleParam.LinearAxisId
         ) =  
             (fun (trace:Trace2D) ->
+                    
+                trace
 
                 ++?? ("xaxis", X, StyleParam.LinearAxisId.toString)
                 ++?? ("yaxis", Y, StyleParam.LinearAxisId.toString)
-                    
-                trace
             )
 
     /// <summary>
@@ -243,6 +243,8 @@ type Trace2DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?UIRevision         : string
         ) =
             (fun (trace:('T :> Trace)) ->    
+
+                trace
                 
                 ++? ("name", Name)
                 ++?? ("visible", Visible, StyleParam.Visible.convert)
@@ -298,8 +300,6 @@ type Trace2DStyle() =
                 ++?? ("xcalendar", XCalendar, StyleParam.Calendar.convert)
                 ++?? ("ycalendar", YCalendar, StyleParam.Calendar.convert)
                 ++? ("uirevision", UIRevision)
-
-                trace
             ) 
 
     /// <summary>Create a function that applies the styles of a bar plot to a Trace object</summary>
@@ -323,19 +323,19 @@ type Trace2DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Orientation
         ) =
             (fun (bar:('T :> Trace)) ->    
+                        
+                // Update
                 ++? ("x", X)
                 ++? ("y", Y)    
                 ++? ("r", R)
                 ++? ("t", T)
-                ++?? ("orientation", Orientation, StyleParam.Orientation.convert)
-                        
-                // Update                
-                ++? ("marker", Marker)                
-                ++? ("error_x", Error_x)
-                ++? ("error_y", Error_y)
+                ++?? ("orientation", Orientation, StyleParam.Orientation.convert)                
                         
                 // out ->
                 bar
+                ++? ("marker", Marker)                
+                ++? ("error_x", Error_x)
+                ++? ("error_y", Error_y)
 
             ) 
     
@@ -360,6 +360,8 @@ type Trace2DStyle() =
             (fun (trace:('T :> Trace)) -> 
                 
                 x               |> ++ ("x", ++? ("y"), y)
+
+                trace
                 ++? ("x0", x0)
                 ++? ("dx", dX)
                 ++? ("y0", y0)
@@ -373,8 +375,6 @@ type Trace2DStyle() =
                 ++? ("connector", Connector)
                 ++? ("insidetextfont", Insidetextfont)
                 ++? ("outsidetextfont", Outsidetextfont)
-
-                trace
 
             )
     
@@ -419,6 +419,8 @@ type Trace2DStyle() =
             (fun (trace:('T :> Trace)) ->
                     
                 x               |> ++ ("x", ++? ("y"), y)
+                    
+                trace
                 ++? ("base", Base)
                 ++? ("width", Width)
                 ++?? ("measure", Measure, (Seq.map StyleParam.WaterfallMeasure.convert))
@@ -427,8 +429,6 @@ type Trace2DStyle() =
                 ++? ("connector", Connector)
                 ++? ("offsetgroup", OffsetGroup)
                 ++? ("offset", Offset)
-                    
-                trace
             )
 
 
@@ -458,6 +458,8 @@ type Trace2DStyle() =
 
         ) =
             (fun (histogram:('T :> Trace)) ->
+
+                // Update
         
                 ++? ("x", X)               
                 ++? ("y", Y)                          
@@ -477,15 +479,13 @@ type Trace2DStyle() =
                 ++? ("xbins", xBins)
                 ++? ("autobiny", Autobiny)
                 ++? ("nbinsy", nBinsy)
-                ++? ("ybins", yBins)
-
-                // Update                
-                ++? ("marker", Marker)
-                ++? ("error_x", xError)
-                ++? ("error_y", yError)
+                ++? ("ybins", yBins)                
                     
                 // out ->
                 histogram
+                ++? ("marker", Marker)
+                ++? ("error_x", xError)
+                ++? ("error_y", yError)
             ) 
     
     // Applies the styles of box plot plot to TraceObjects 
@@ -516,6 +516,9 @@ type Trace2DStyle() =
 
         ) =
             (fun (boxPlot:('T :> Trace)) ->
+                    
+                // out ->
+                boxPlot
 
                 ++? ("y", Y)           
                 ++? ("x", X)           
@@ -540,9 +543,6 @@ type Trace2DStyle() =
                 ++? ("yaxis", yAxis)       
                 ++? ("ysrc", Ysrc)        
                 ++? ("xsrc", Xsrc)        
-                    
-                // out ->
-                boxPlot
             ) 
 
 
@@ -579,6 +579,9 @@ type Trace2DStyle() =
 
         ) =
             (fun (boxPlot:('T :> Trace)) ->
+                    
+                // out ->
+                boxPlot
 
                 ++? ("y", Y)           
                 ++? ("x", X)           
@@ -611,9 +614,6 @@ type Trace2DStyle() =
                 ++? ("yaxis", yAxis)       
                 ++? ("ysrc", Ysrc)        
                 ++? ("xsrc", Xsrc)        
-                    
-                // out ->
-                boxPlot
             ) 
 
             
@@ -658,6 +658,7 @@ type Trace2DStyle() =
 
         ) =
             (fun (histogram2d:('T :> Trace)) ->
+                //++?? ("connectgaps", Connectgaps, StyleParam.Orientation.convert
 
                 ++? ("z", Z)         
                 ++? ("x", X)               
@@ -674,8 +675,9 @@ type Trace2DStyle() =
                 ++? ("xsrc", Xsrc)       
                 ++? ("ysrc", Ysrc)  
 
-                ++?? ("orientation", Orientation, StyleParam.Orientation.convert)
-                //++?? ("connectgaps", Connectgaps, StyleParam.Orientation.convert)
+                ++?? ("orientation", Orientation, StyleParam.Orientation.convert))
+
+                // Update
                 ++?? ("histfunc", HistFunc, StyleParam.HistFunc.convert)
                 ++?? ("histnorm", HistNorm, StyleParam.HistNorm.convert)
                 ++? ("autobinx", Autobinx)
@@ -696,13 +698,11 @@ type Trace2DStyle() =
                 ++? ("reversescale", Reversescale)  
                 ++? ("showscale", Showscale)     
                 ++?? ("zsmooth", zSmooth, StyleParam.SmoothAlg.convert   )
-                ++? ("colorbar", ColorBar)    
-
-                // Update                
-                ++? ("marker", Marker)  
+                ++? ("colorbar", ColorBar)                    
                     
                 // out ->
                 histogram2d
+                ++? ("marker", Marker)  
             ) 
 
 
@@ -749,6 +749,7 @@ type Trace2DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?ColorBar      
         ) =
             (fun (histogram2dContour:('T :> Trace)) ->
+                //Connectgaps    |> DynObj.setValueOptBy histogram2dContour< "connectgaps" StyleParam.Orientation.convert
 
                 ++? ("z", Z)         
                 ++? ("x", X)               
@@ -766,7 +767,8 @@ type Trace2DStyle() =
                 ++? ("ysrc", Ysrc)  
 
                 ++?? ("orientation", Orientation, StyleParam.Orientation.convert)
-                //Connectgaps    |> DynObj.setValueOptBy histogram2dContour< "connectgaps" StyleParam.Orientation.convert
+
+                // Update
                 ++?? ("histfunc", HistFunc, StyleParam.HistFunc.convert)
                 ++?? ("histnorm", HistNorm, StyleParam.HistNorm.convert)
                 ++? ("autobinx", Autobinx)
@@ -790,13 +792,11 @@ type Trace2DStyle() =
                 ++? ("reversescale", Reversescale)  
                 ++? ("showscale", Showscale)     
                 ++?? ("zsmooth", zSmooth, StyleParam.SmoothAlg.convert   )
-                ++? ("colorbar", ColorBar)    
-
-                // Update                
-                ++? ("marker", Marker)  
+                ++? ("colorbar", ColorBar)                    
                     
                 // out ->
                 histogram2dContour
+                ++? ("marker", Marker)  
             ) 
 
 
@@ -831,6 +831,9 @@ type Trace2DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?ColorBar
         ) =
             (fun (heatmap:('T :> Trace)) -> 
+
+                // out ->
+                heatmap
             
                 ++? ("z", Z)         
                 ++? ("x", X)               
@@ -858,10 +861,7 @@ type Trace2DStyle() =
                 ++? ("reversescale", Reversescale)  
                 ++? ("showscale", Showscale)     
                 ++?? ("zsmooth", zSmooth, StyleParam.SmoothAlg.convert)   
-                ++? ("colorbar", ColorBar)    
-
-                // out ->
-                heatmap 
+                ++? ("colorbar", ColorBar)     
             ) 
 
 
@@ -895,6 +895,9 @@ type Trace2DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?ColorBar
         ) =
             (fun (contour:('T :> Trace)) -> 
+
+                // out ->
+                contour
             
                 ++? ("z", Z)         
                 ++? ("x", X)               
@@ -922,10 +925,7 @@ type Trace2DStyle() =
                 ++? ("reversescale", Reversescale)  
                 ++? ("showscale", Showscale)     
                 ++?? ("zsmooth", zSmooth, StyleParam.SmoothAlg.convert)   
-                ++? ("colorbar", ColorBar)    
-
-                // out ->
-                contour 
+                ++? ("colorbar", ColorBar)     
             )
 
             
@@ -965,6 +965,8 @@ type Trace2DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?XCalendar      : StyleParam.Calendar
         ) =
             (fun (trace:('T :> Trace)) ->
+                    
+                trace
                 ++ ("open", ``open``)
                 ++ ("high", high)
                 ++ ("low", low)
@@ -977,8 +979,6 @@ type Trace2DStyle() =
                 ++? ("tickwidth", Tickwidth)
                 ++? ("line", Line)
                 ++? ("xcalendar", XCalendar)
-                    
-                trace
             )
 
 
@@ -1017,6 +1017,8 @@ type Trace2DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?XCalendar      : StyleParam.Calendar
         ) =
             (fun (trace:('T :> Trace)) ->
+
+                trace
                 ++ ("open", ``open``)
                 ++ ("high", high)
                 ++ ("low", low)
@@ -1029,8 +1031,6 @@ type Trace2DStyle() =
                 ++? ("whiskerwidth", WhiskerWidth)
                 ++? ("line", Line)
                 ++? ("xcalendar", XCalendar)
-
-                trace
             )
 
     // Applies the styles of Splom plot to TraceObjects 
@@ -1039,8 +1039,8 @@ type Trace2DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Dimensions : seq<Dimensions>
         ) =
             (fun (trace:('T :> Trace)) ->
-                ++? ("dimensions", Dimensions)
                         
                 // out ->
                 trace
+                ++? ("dimensions", Dimensions)
             )

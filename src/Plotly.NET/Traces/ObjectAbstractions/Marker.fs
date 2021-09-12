@@ -90,6 +90,7 @@ type Marker () =
             [<Optional;DefaultParameterValue(null)>] ?Showscale: bool
         ) =
             (fun (marker: Marker) -> 
+                //++? ("colors", Colors
                 ++? ("size", Size) 
                 ++? ("color", Color)
                 ++? ("symbol", Symbol)
@@ -97,8 +98,9 @@ type Marker () =
                 ++? ("size", MultiSizes)
                 ++? ("line", Line)        
                 ++? ("colorbar", ColorBar)       
-                ++?? ("colorscale", Colorscale, StyleParam.Colorscale.convert)
-                //++? ("colors", Colors)     
+                ++?? ("colorscale", Colorscale, StyleParam.Colorscale.convert))     
+
+                marker
                 ++? ("outliercolor", OutlierColor)     
                 ++? ("maxdisplayed", Maxdisplayed)   
                 ++? ("sizeref", Sizeref)        
@@ -111,8 +113,6 @@ type Marker () =
                 ++? ("autocolorscale", Autocolorscale) 
                 ++? ("reversescale", Reversescale)   
                 ++? ("showscale", Showscale)      
-
-                marker
             )
 
 

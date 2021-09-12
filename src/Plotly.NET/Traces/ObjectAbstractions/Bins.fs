@@ -35,11 +35,11 @@ type Bins () =
         ) =
             
             (fun (bins:Bins) -> 
+           
+                bins
                 ++? ("start", StartBins)
                 ++? ("end", EndBins)
                 ++? ("size", Size)
-           
-                bins
             )
 
 

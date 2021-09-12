@@ -61,6 +61,8 @@ type Rangebreak() =
             [<Optional;DefaultParameterValue(null)>] ?TemplateItemName   : string
         ) =
             (fun (rangebreak:Rangebreak) -> 
+
+                rangebreak
                 ++? ("enabled", Enabled)
                 ++?? ("bounds", Bounds, (fun (a,b) -> [|a;b|]))
                 ++?? ("pattern", Pattern, StyleParam.RangebreakPattern.convert)
@@ -68,6 +70,4 @@ type Rangebreak() =
                 ++? ("dvalue", DValue)
                 ++? ("name", Name)
                 ++? ("templateitemname", TemplateItemName)
-
-                rangebreak
             )

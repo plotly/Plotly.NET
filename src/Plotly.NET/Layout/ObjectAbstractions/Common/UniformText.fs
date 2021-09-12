@@ -26,9 +26,9 @@ type UniformText() =
            [<Optional;DefaultParameterValue(null)>] ?Mode    : StyleParam.UniformTextMode
         ) =
             (fun (uniformText:UniformText) -> 
+
+                uniformText
                
                 ++? ("minsize", MinSize)
                 ++?? ("mode", Mode, StyleParam.UniformTextMode.convert)
-
-                uniformText
             )

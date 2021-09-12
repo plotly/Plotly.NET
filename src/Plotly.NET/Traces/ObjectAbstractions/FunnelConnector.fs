@@ -40,10 +40,10 @@ type FunnelConnector () =
             [<Optional;DefaultParameterValue(null)>] ?Visible        : bool
         ) = 
             (fun (connector:FunnelConnector) -> 
+
+                connector
                 
                 ++? ("fillcolor", Fillcolor)
                 ++? ("line", Line)
                 ++? ("visible", Visible)
-
-                connector
             )

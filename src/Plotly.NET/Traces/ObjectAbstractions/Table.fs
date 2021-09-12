@@ -26,9 +26,9 @@ type CellColor () =
             [<Optional;DefaultParameterValue(null)>] ?Color : Color
         ) =
             (fun (cell:CellColor) -> 
-                ++? ("color", Color) 
                 // out -> 
                 cell
+                ++? ("color", Color) 
             )
 
 
@@ -73,11 +73,11 @@ type TableHeader () =
             (fun (header: TableHeader) -> 
 
                 values |> ++ ("values", ++?? ("align", Align, (Seq.map StyleParam.HorizontalAlign.convert)))
+                header
                 ++? ("height", Height)
                 ++? ("fill", Fill) 
                 ++? ("line", Line)    
                 ++? ("font", Font)
-                header
             )
 
 /// Cells type inherits from dynamic object
@@ -121,9 +121,9 @@ type TableCells () =
            (fun (cells: TableCells) -> 
 
                 values |> ++ ("values", ++?? ("align", Align, (Seq.map StyleParam.HorizontalAlign.convert)))
+                cells
                 ++? ("height", Height)
                 ++? ("fill", Fill)
                 ++? ("line", Line)     
                 ++? ("font", Font)  
-                cells
             )
