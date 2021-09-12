@@ -72,8 +72,7 @@ type TableHeader () =
         ) =
             (fun (header: TableHeader) -> 
 
-                values |> DynObj.setValue      header "values" 
-                Align  |> DynObj.setValueOptBy header "align" (Seq.map StyleParam.HorizontalAlign.convert)
+                values |> ++ ("values", Align  |> DynObj.setValueOptBy header "align" (Seq.map StyleParam.HorizontalAlign.convert))
                 ++? ("height", Height)
                 ++? ("fill", Fill) 
                 ++? ("line", Line)    
@@ -121,8 +120,7 @@ type TableCells () =
         ) =
            (fun (cells: TableCells) -> 
 
-                values |> DynObj.setValue      cells "values" 
-                Align  |> DynObj.setValueOptBy cells "align" (Seq.map StyleParam.HorizontalAlign.convert)
+                values |> ++ ("values", Align  |> DynObj.setValueOptBy cells "align" (Seq.map StyleParam.HorizontalAlign.convert))
                 ++? ("height", Height)
                 ++? ("fill", Fill)
                 ++? ("line", Line)     

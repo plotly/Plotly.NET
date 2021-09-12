@@ -168,8 +168,7 @@ type TraceDomainStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Maxdepth       : int
         ) =
             (fun (trace:('T :> Trace)) -> 
-                labels       |> DynObj.setValue trace       "labels"
-                parents       |> DynObj.setValue trace      "parents"
+                labels       |> ++ ("labels", parents       |> DynObj.setValue trace      "parents")
                 ++? ("ids", Ids)
                 ++? ("values", Values)
                 ++? ("text", Text)
@@ -216,8 +215,7 @@ type TraceDomainStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Maxdepth       : int
         ) =
             (fun (trace:('T :> Trace)) -> 
-                labels          |> DynObj.setValue trace      "labels"
-                parents         |> DynObj.setValue trace      "parents"
+                labels          |> ++ ("labels", parents         |> DynObj.setValue trace      "parents")
                 ++? ("ids", Ids)
                 ++? ("values", Values)
                 ++? ("text", Text)
@@ -287,8 +285,7 @@ type TraceDomainStyle() =
             [<Optional;DefaultParameterValue(null)>] ?ColumnOrder : seq<int>         
         ) =
             (fun (trace:('T :> Trace)) ->                  
-                header      |> DynObj.setValue    trace "header"
-                cells       |> DynObj.setValue    trace "cells"
+                header      |> ++ ("header", cells       |> DynObj.setValue    trace "cells")
                 ++? ("columnwidth", ColumnWidth)
                 ++? ("columnorder", ColumnOrder)
                 // out ->

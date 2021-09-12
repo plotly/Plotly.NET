@@ -27,8 +27,7 @@ type Template() =
             [<Optional;DefaultParameterValue(null)>] ?TraceTemplates: #Trace []  
         ) =
             (fun (template:Template) -> 
-                layoutTemplate   |> DynObj.setValue template "layout"
-                ++? ("data", TraceTemplates)
+                layoutTemplate   |> ++ ("layout", ++? ("data", TraceTemplates))
                 
                 template
                 )
@@ -48,8 +47,7 @@ type Template() =
     static member withColorWay (colorway:Color) (template:Template) =
         template
         |> Template.mapLayoutTemplate (fun l ->
-            colorway |> DynObj.setValue l "colorway"
-            l
+            colorway |> ++ ("colorway", l)
         )
 
 module ChartTemplates =

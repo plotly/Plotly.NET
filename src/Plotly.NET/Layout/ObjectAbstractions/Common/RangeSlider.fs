@@ -80,7 +80,4 @@ type RangeSlider () =
                     ++? ("range", YAxisRange) 
                     tmp
 
-                yAxis |> DynObj.setValue rangeslider "yaxis"
-
-
-                rangeslider
+                yAxis |> ++ ("yaxis", rangeslider)

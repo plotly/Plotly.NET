@@ -477,8 +477,7 @@ type Chart =
         (fun (ch:GenericChart) ->
             ch
             |> GenericChart.mapTrace(fun t ->
-                colorbar |> DynObj.setValue t "colorbar" 
-                t
+                colorbar |> ++ ("colorbar", t)
             )
         )
 
@@ -877,8 +876,7 @@ type Chart =
         (fun (ch:GenericChart) ->
             ch
             |> GenericChart.mapLayout (fun l ->
-                template |> DynObj.setValue l "template"
-                l
+                template |> ++ ("template", l)
                 )
         )
 

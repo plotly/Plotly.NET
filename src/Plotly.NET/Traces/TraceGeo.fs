@@ -103,8 +103,7 @@ type TraceGeoStyle() =
         ) =
             (fun (trace: #Trace) -> 
             
-                mode        |> StyleParam.Mode.convert |> DynObj.setValue trace "mode"
-                ++? ("lon", Longitudes)
+                mode        |> StyleParam.Mode.convert |> ++ ("mode", ++? ("lon", Longitudes))
                 ++? ("lat", Latitudes)
                 ++? ("locations", Locations)
                 ++? ("geojson", GeoJson)
