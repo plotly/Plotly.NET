@@ -61,7 +61,7 @@ let doughnut1 =
         values,
         labels,
         Hole=0.3,
-        Textinfo=labels
+        TextLabels=labels
     )
 
 (*** condition: ipynb ***)

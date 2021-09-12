@@ -142,7 +142,7 @@ type TraceStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Line: Line,
             [<Optional;DefaultParameterValue(null)>] ?ColorBar: ColorBar,
             [<Optional;DefaultParameterValue(null)>] ?Colorscale : StyleParam.Colorscale,
-            //[<Optional;DefaultParameterValue(null)>] ?Colors: seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?Colors: seq<Color>,
             [<Optional;DefaultParameterValue(null)>] ?OutlierColor:Color,
             [<Optional;DefaultParameterValue(null)>] ?Maxdisplayed: int,
             [<Optional;DefaultParameterValue(null)>] ?Sizeref: float,
@@ -163,7 +163,7 @@ type TraceStyle() =
                     | Some m -> m :?> Marker
                     | None -> Marker ()
                     
-                    |> Marker.style(?Size=Size,?Color=Color,?Symbol=Symbol,
+                    |> Marker.style(?Size=Size,?Color=Color,?Colors=Colors,?Symbol=Symbol,
                         ?Opacity=Opacity,?MultiSizes=MultiSizes,?Line=Line,
                         ?ColorBar=ColorBar,?Colorscale=Colorscale,?OutlierColor=OutlierColor,
                         ?Maxdisplayed=Maxdisplayed,?Sizeref=Sizeref,?Sizemin=Sizemin,

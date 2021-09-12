@@ -962,6 +962,21 @@ module StyleParam =
 // #I#
 //--------------------------
 
+
+
+    [<RequireQualifiedAccess>]
+    type InsideTextOrientation =
+        | Horizontal | Radial | Tangential | Auto
+        static member toString = function
+            | Horizontal   -> "horizontal"             
+            | Radial       -> "radial"            
+            | Tangential   -> "tangential"    
+            | Auto         -> "auto"    
+
+        static member convert = InsideTextOrientation.toString >> box
+        override this.ToString() = this |> InsideTextOrientation.toString
+        member this.Convert() = this |> InsideTextOrientation.convert
+        
     [<RequireQualifiedAccess>]
     type ImageFormat =
         | SVG  | PNG | JPEG
@@ -1949,21 +1964,31 @@ module StyleParam =
         override this.ToString() = this |> TransitionOrdering.toString
         member this.Convert() = this |> TransitionOrdering.convert
 
-    /// Sets the positions of the `text` elements with respects to the (x,y) coordinates. (default: MiddleCenter)
+    /// Sets the positions of the `text` elements. Note that not all options work for every type of trace, e.g. Pie Charts only support "inside" | "outside" | "auto" | "none"
+    ///
+    /// - Cartesian plots: Sets the positions of the `text` elements with respects to the (x,y) coordinates.
+    ///
+    /// - Pie Charts and derivatives: Specifies the location of the text with respects to the sector.
+
     [<RequireQualifiedAccess>]
     type TextPosition =
-        | TopLeft | TopCenter | TopRight | MiddleLeft | MiddleCenter | MiddleRight | BottomLeft | BottomCenter | BottomRight | Auto
+        | TopLeft | TopCenter | TopRight | MiddleLeft | MiddleCenter | MiddleRight | BottomLeft | BottomCenter | BottomRight
+        | Auto | Inside | Outside | None
+
         static member toString = function
-            | TopLeft      -> "top left" 
-            | TopCenter    -> "top center"
-            | TopRight     -> "top right"
-            | MiddleLeft   -> "middle left"
-            | MiddleCenter -> "middle center"
-            | MiddleRight  -> "middle right"
-            | BottomLeft   -> "bottom left"
-            | BottomCenter -> "bottom center"
-            | BottomRight  -> "bottom right"        
-            | Auto         -> "auto"  
+            | TopLeft       -> "top left" 
+            | TopCenter     -> "top center"
+            | TopRight      -> "top right"
+            | MiddleLeft    -> "middle left"
+            | MiddleCenter  -> "middle center"
+            | MiddleRight   -> "middle right"
+            | BottomLeft    -> "bottom left"
+            | BottomCenter  -> "bottom center"
+            | BottomRight   -> "bottom right"        
+            | Auto          -> "auto"
+            | Inside        -> "inside"
+            | Outside       -> "outside"            
+            | None          -> "none"            
 
         static member convert = TextPosition.toString >> box
         override this.ToString() = this |> TextPosition.toString
@@ -1990,21 +2015,6 @@ module StyleParam =
 
         static member toConcatString (o:seq<TextInfo>) =
             o |> Seq.map TextInfo.toString |> String.concat "+"
-
-    /// Specifies the location of the `textinfo`.
-    [<RequireQualifiedAccess>]
-    type TextInfoPosition =
-        | Auto | Inside | Outside | None
-    
-        static member toString = function
-            | Auto    -> "auto"
-            | Inside  -> "inside"
-            | Outside -> "outside"            
-            | None    -> "none"            
-
-        static member convert = TextInfoPosition.toString >> box
-        override this.ToString() = this |> TextInfoPosition.toString
-        member this.Convert() = this |> TextInfoPosition.convert
 
     /// Sets the tick mode for this axis. If "auto", the number of ticks is set via `nticks`. If "linear", the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` ("linear" is the default value if `tick0` and `dtick` are provided). 
     /// If "array", the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. ("array" is the default value if `tickvals` is provided).

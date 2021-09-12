@@ -147,6 +147,34 @@ open FSharpAux
 
 open System
 
+let doughnutChart =
+    let values = [19; 26; 55;]
+    let labels = ["Residential"; "Non-Residential"; "Utility"]
+    Chart.Doughnut(
+        values,
+        labels,
+        Hole=0.3,
+        TextLabels=labels
+    )
+    |> Chart.show
+
+Chart.Doughnut(
+    values = [10; 15; 15; 30; 22],
+    labels = ["some"; "random"; "slice"; "labels"; "bruh"],
+    TextLabels = ["text"; "labels"; "are"; "different"; "thing"],
+    TextPosition = StyleParam.TextPosition.Outside,
+    Direction = StyleParam.Direction.CounterClockwise,
+    Pull = 0.1,
+    SectionColors = [
+        Color.fromKeyword ColorKeyword.DarkCyan
+        Color.fromKeyword ColorKeyword.DarkOrchid
+        Color.fromKeyword ColorKeyword.DarkKhaki
+        Color.fromKeyword ColorKeyword.DarkGoldenRod
+        Color.fromKeyword ColorKeyword.Darkolivegreen
+    ],
+    Sort = false
+)
+|> Chart.show
 
 let tableColorDependentChart =
     let header2 = ["Identifier";"T0";"T1";"T2";"T3"]

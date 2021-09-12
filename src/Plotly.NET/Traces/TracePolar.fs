@@ -63,7 +63,7 @@ type TracePolarStyle() =
             [<Optional;DefaultParameterValue(null)>] ?DTheta             : #IConvertible,
             [<Optional;DefaultParameterValue(null)>] ?ThetaUnit          : StyleParam.AngularUnit,
             [<Optional;DefaultParameterValue(null)>] ?Text               : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?TextPosition       : StyleParam.TextInfoPosition,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition       : StyleParam.TextPosition,
             [<Optional;DefaultParameterValue(null)>] ?TextTemplate       : seq<#IConvertible>,
             [<Optional;DefaultParameterValue(null)>] ?HoverText          : seq<#IConvertible>,
             [<Optional;DefaultParameterValue(null)>] ?HoverInfo          : string,
@@ -104,7 +104,7 @@ type TracePolarStyle() =
                 DTheta             |> DynObj.setValueOpt trace "dtheta"
                 ThetaUnit          |> DynObj.setValueOptBy trace "thetaunit" StyleParam.AngularUnit.convert
                 Text               |> DynObj.setValueOpt trace "text"
-                TextPosition       |> DynObj.setValueOptBy trace "textposition" StyleParam.TextInfoPosition.convert
+                TextPosition       |> DynObj.setValueOptBy trace "textposition" StyleParam.TextPosition.convert
                 TextTemplate       |> DynObj.setValueOpt trace "texttemplate"
                 HoverText          |> DynObj.setValueOpt trace "hovertext"
                 HoverInfo          |> DynObj.setValueOpt trace "hoverinfo"

@@ -21,7 +21,7 @@ type Marker () =
             [<Optional;DefaultParameterValue(null)>] ?Line,
             [<Optional;DefaultParameterValue(null)>] ?ColorBar,
             [<Optional;DefaultParameterValue(null)>] ?Colorscale,
-            //[<Optional;DefaultParameterValue(null)>] ?Colors: seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?Colors: seq<Color>,
             [<Optional;DefaultParameterValue(null)>] ?OutlierColor,
             [<Optional;DefaultParameterValue(null)>] ?Maxdisplayed,
             [<Optional;DefaultParameterValue(null)>] ?Sizeref,
@@ -75,7 +75,7 @@ type Marker () =
             [<Optional;DefaultParameterValue(null)>] ?Line: Line,
             [<Optional;DefaultParameterValue(null)>] ?ColorBar: ColorBar,
             [<Optional;DefaultParameterValue(null)>] ?Colorscale : StyleParam.Colorscale,
-            //[<Optional;DefaultParameterValue(null)>] ?Colors: seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?Colors: seq<Color>,
             [<Optional;DefaultParameterValue(null)>] ?OutlierColor:Color,
             [<Optional;DefaultParameterValue(null)>] ?Maxdisplayed: int,
             [<Optional;DefaultParameterValue(null)>] ?Sizeref: float,
@@ -98,7 +98,7 @@ type Marker () =
                 Line           |> DynObj.setValueOpt marker "line"        
                 ColorBar       |> DynObj.setValueOpt marker "colorbar"       
                 Colorscale     |> DynObj.setValueOptBy marker "colorscale" StyleParam.Colorscale.convert
-                //Colors         |> DynObj.setValueOpt marker "colors"     
+                Colors         |> DynObj.setValueOpt marker "colors"     
                 OutlierColor   |> DynObj.setValueOpt marker "outliercolor"     
                 Maxdisplayed   |> DynObj.setValueOpt marker "maxdisplayed"   
                 Sizeref        |> DynObj.setValueOpt marker "sizeref"        

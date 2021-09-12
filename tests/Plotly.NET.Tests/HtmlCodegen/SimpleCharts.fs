@@ -241,7 +241,7 @@ let doughnutChart =
         values,
         labels,
         Hole=0.3,
-        Textinfo=labels
+        TextLabels=labels
     )
 
 let sunburstChart =
@@ -265,7 +265,7 @@ let ``Pie and doughnut Charts`` =
             emptyLayout pieChart
         );
         testCase "Doughnut data" ( fun () ->
-            "var data = [{\"type\":\"pie\",\"values\":[19,26,55],\"labels\":[\"Residential\",\"Non-Residential\",\"Utility\"],\"textinfo\":[\"Residential\",\"Non-Residential\",\"Utility\"],\"hole\":0.3,\"marker\":{},\"text\":[\"Residential\",\"Non-Residential\",\"Utility\"]}];"
+            """var data = [{"type":"pie","values":[19,26,55],"labels":["Residential","Non-Residential","Utility"],"text":["Residential","Non-Residential","Utility"],"hole":0.3,"marker":{}}];"""
             |> chartGeneratedContains doughnutChart
         );
         testCase "Doughnut layout" ( fun () ->

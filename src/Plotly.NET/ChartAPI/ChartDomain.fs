@@ -20,73 +20,138 @@ module ChartDomain =
 
         /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data.
         [<Extension>]
-        static member Pie(values,
-                [<Optional;DefaultParameterValue(null)>]  ?Labels:seq<'IConvertible>,
-                [<Optional;DefaultParameterValue(null)>]  ?Name,
-                [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
-                [<Optional;DefaultParameterValue(null)>]  ?Color,
-                [<Optional;DefaultParameterValue(null)>]  ?TextPosition,
-                [<Optional;DefaultParameterValue(null)>]  ?TextFont,
-                [<Optional;DefaultParameterValue(null)>]  ?Hoverinfo,
-                [<Optional;DefaultParameterValue(null)>]  ?Textinfo,
-                [<Optional;DefaultParameterValue(null)>]  ?Opacity) =         
-            TraceDomain.initPie (TraceDomainStyle.Pie(Values=values,?Labels=Labels,?Textinfo=Textinfo))
-            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity,?Hoverinfo=Hoverinfo)        
-            |> TraceStyle.Marker(?Color=Color)
-            |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-            |> GenericChart.ofTraceObject 
-
+        static member Pie
+            (
+                values        : seq<#IConvertible>,
+                labels        : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Name          : string,
+                [<Optional;DefaultParameterValue(null)>] ?TextLabels    : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition  : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?Direction     : StyleParam.Direction,
+                [<Optional;DefaultParameterValue(null)>] ?Pull          : float,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend    : bool,
+                [<Optional;DefaultParameterValue(null)>] ?SectionColors : seq<Color>,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity       : float,
+                [<Optional;DefaultParameterValue(null)>] ?Sort          : bool
+            ) =         
+                TraceDomain.initPie(
+                    TraceDomainStyle.Pie(
+                        Values          = values,
+                        Labels          = labels,
+                        ?Name           = Name,
+                        ?Text           = TextLabels,
+                        ?TextPosition   = TextPosition,
+                        ?Direction      = Direction,
+                        ?Pull           = Pull,
+                        ?ShowLegend     = ShowLegend,
+                        ?Opacity        = Opacity,
+                        ?Sort           = Sort
+                    )
+                )
+                |> TraceStyle.Marker(?Colors=SectionColors)
+                |> TraceStyle.TextLabel(Text=(TextLabels |> Option.defaultValue labels),?Textposition=TextPosition)
+                |> GenericChart.ofTraceObject 
 
         /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data.
         [<Extension>]
-        static member Pie(data:seq<#IConvertible*#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>]  ?Name,
-                [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
-                [<Optional;DefaultParameterValue(null)>]  ?Color,
-                [<Optional;DefaultParameterValue(null)>]  ?TextPosition,
-                [<Optional;DefaultParameterValue(null)>]  ?TextFont,
-                [<Optional;DefaultParameterValue(null)>]  ?Hoverinfo,
-                [<Optional;DefaultParameterValue(null)>]  ?Textinfo,
-                [<Optional;DefaultParameterValue(null)>]  ?Opacity) =         
-            let values,labels = Seq.unzip data 
-            Chart.Pie(values,Labels=labels,?Name=Name,?Showlegend=Showlegend,?Color=Color,?TextPosition=TextPosition,?TextFont=TextFont,?Hoverinfo=Hoverinfo,?Textinfo=Textinfo,?Opacity=Opacity)
+        static member Pie
+            (
+                valuesLabels:seq<#IConvertible*#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Name          : string,
+                [<Optional;DefaultParameterValue(null)>] ?TextLabels    : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition  : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?Direction     : StyleParam.Direction,
+                [<Optional;DefaultParameterValue(null)>] ?Pull          : float,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend    : bool,
+                [<Optional;DefaultParameterValue(null)>] ?SectionColors : seq<Color>,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity       : float,
+                [<Optional;DefaultParameterValue(null)>] ?Sort          : bool
+            ) = 
+                let values,labels = Seq.unzip valuesLabels 
+                Chart.Pie(
+                    values,
+                    labels,
+                    ?Name          = Name         ,
+                    ?TextLabels    = TextLabels   ,
+                    ?TextPosition  = TextPosition ,
+                    ?Direction     = Direction    ,
+                    ?Pull          = Pull         ,
+                    ?ShowLegend    = ShowLegend   ,
+                    ?SectionColors = SectionColors,
+                    ?Opacity       = Opacity      ,
+                    ?Sort           = Sort
+                )
 
 
         /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data as a whole.
         [<Extension>]
-        static member Doughnut(values,
-                [<Optional;DefaultParameterValue(null)>]  ?Labels,
-                [<Optional;DefaultParameterValue(null)>]  ?Name,
-                [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
-                [<Optional;DefaultParameterValue(null)>]  ?Color,
-                [<Optional;DefaultParameterValue(null)>]  ?Hole,
-                [<Optional;DefaultParameterValue(null)>]  ?TextPosition,
-                [<Optional;DefaultParameterValue(null)>]  ?TextFont,
-                [<Optional;DefaultParameterValue(null)>]  ?Hoverinfo,
-                [<Optional;DefaultParameterValue(null)>]  ?Textinfo,
-                [<Optional;DefaultParameterValue(null)>]  ?Opacity) =         
-            let hole' = if Hole.IsSome then Hole.Value else 0.4
-            TraceDomain.initPie (TraceDomainStyle.Pie(Values=values,?Labels=Labels,?Textinfo=Textinfo,Hole=hole'))
-            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity,?Hoverinfo=Hoverinfo)        
-            |> TraceStyle.Marker(?Color=Color)
-            |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-            |> GenericChart.ofTraceObject 
+        static member Doughnut
+            (
+               values        : seq<#IConvertible>,
+               labels        : seq<#IConvertible>,
+               [<Optional;DefaultParameterValue(null)>] ?Hole          : float,
+               [<Optional;DefaultParameterValue(null)>] ?Name          : string,
+               [<Optional;DefaultParameterValue(null)>] ?TextLabels    : seq<#IConvertible>,
+               [<Optional;DefaultParameterValue(null)>] ?TextPosition  : StyleParam.TextPosition,
+               [<Optional;DefaultParameterValue(null)>] ?Direction     : StyleParam.Direction,
+               [<Optional;DefaultParameterValue(null)>] ?Pull          : float,
+               [<Optional;DefaultParameterValue(null)>] ?ShowLegend    : bool,
+               [<Optional;DefaultParameterValue(null)>] ?SectionColors : seq<Color>,
+               [<Optional;DefaultParameterValue(null)>] ?Opacity       : float,
+               [<Optional;DefaultParameterValue(null)>] ?Sort          : bool
+            ) =         
+                let hole' = Option.defaultValue 0.4 Hole
+                TraceDomain.initPie(
+                    TraceDomainStyle.Pie(
+                        Values          = values,
+                        Labels          = labels,
+                        ?Name           = Name,
+                        ?Text           = TextLabels,
+                        ?TextPosition   = TextPosition,
+                        ?Direction      = Direction,
+                        ?Pull           = Pull,
+                        ?ShowLegend     = ShowLegend,
+                        ?Opacity        = Opacity,
+                        Hole            = hole',
+                        ?Sort           = Sort
+                    )
+                )
+                |> TraceStyle.Marker(?Colors=SectionColors)
+                |> TraceStyle.TextLabel(Text=(TextLabels |> Option.defaultValue labels),?Textposition=TextPosition)
+                |> GenericChart.ofTraceObject 
 
 
         /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data as a whole.
         [<Extension>]
-        static member Doughnut(data:seq<#IConvertible*#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>]  ?Name,
-                [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
-                [<Optional;DefaultParameterValue(null)>]  ?Color,
-                [<Optional;DefaultParameterValue(null)>]  ?Hole,
-                [<Optional;DefaultParameterValue(null)>]  ?TextPosition,
-                [<Optional;DefaultParameterValue(null)>]  ?TextFont,
-                [<Optional;DefaultParameterValue(null)>]  ?Hoverinfo,
-                [<Optional;DefaultParameterValue(null)>]  ?Textinfo,
-                [<Optional;DefaultParameterValue(null)>]  ?Opacity) =         
-            let values,labels = Seq.unzip data 
-            Chart.Doughnut(values,Labels=labels,?Name=Name,?Showlegend=Showlegend,?Color=Color,?Hole=Hole,?TextPosition=TextPosition,?TextFont=TextFont,?Hoverinfo=Hoverinfo,?Textinfo=Textinfo,?Opacity=Opacity)
+        static member Doughnut
+            (
+                valuesLabels:seq<#IConvertible*#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Hole          : float,
+                [<Optional;DefaultParameterValue(null)>] ?Name          : string,
+                [<Optional;DefaultParameterValue(null)>] ?TextLabels    : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition  : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?Direction     : StyleParam.Direction,
+                [<Optional;DefaultParameterValue(null)>] ?Pull          : float,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend    : bool,
+                [<Optional;DefaultParameterValue(null)>] ?SectionColors : seq<Color>,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity       : float,
+                [<Optional;DefaultParameterValue(null)>] ?Sort          : bool
+            ) = 
+                let values,labels = Seq.unzip valuesLabels 
+                Chart.Doughnut(
+                    values,
+                    labels,
+                    ?Name          = Name         ,
+                    ?TextLabels    = TextLabels   ,
+                    ?TextPosition  = TextPosition ,
+                    ?Direction     = Direction    ,
+                    ?Pull          = Pull         ,
+                    ?ShowLegend    = ShowLegend   ,
+                    ?SectionColors = SectionColors,
+                    ?Opacity       = Opacity      ,
+                    ?Hole          = Hole          ,
+                    ?Sort          = Sort
+                )
 
             
         

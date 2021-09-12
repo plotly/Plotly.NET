@@ -62,51 +62,82 @@ type TraceDomainStyle() =
     // Applies the styles of pie plot to TraceObjects 
     static member Pie
         (                
-            [<Optional;DefaultParameterValue(null)>] ?Values: seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?Labels: seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?Label0: #IConvertible,
-            [<Optional;DefaultParameterValue(null)>] ?dLabel: #IConvertible,   
-            [<Optional;DefaultParameterValue(null)>] ?Scalegroup,
-            [<Optional;DefaultParameterValue(null)>] ?Textinfo,
-            [<Optional;DefaultParameterValue(null)>] ?Insidetextfont: Font,
-            [<Optional;DefaultParameterValue(null)>] ?Outsidetextfont: Font,
-            [<Optional;DefaultParameterValue(null)>] ?Domain, // TODO
-            [<Optional;DefaultParameterValue(null)>] ?Hole: float,
-            [<Optional;DefaultParameterValue(null)>] ?Sort: bool,
-            [<Optional;DefaultParameterValue(null)>] ?Direction, // TODO
-            [<Optional;DefaultParameterValue(null)>] ?Rotation: float,
-            [<Optional;DefaultParameterValue(null)>] ?Pull: float,
-            [<Optional;DefaultParameterValue(null)>] ?Labelssrc: string,
-            [<Optional;DefaultParameterValue(null)>] ?Valuessrc: string,
-            [<Optional;DefaultParameterValue(null)>] ?Pullsrc
-
+            [<Optional;DefaultParameterValue(null)>] ?Name                  : string,
+            [<Optional;DefaultParameterValue(null)>] ?Title                 : Title,
+            [<Optional;DefaultParameterValue(null)>] ?Visible               : StyleParam.Visible,
+            [<Optional;DefaultParameterValue(null)>] ?ShowLegend            : bool,
+            [<Optional;DefaultParameterValue(null)>] ?LegendGroup           : string,
+            [<Optional;DefaultParameterValue(null)>] ?LegendGroupTitle      : Title,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity               : float,
+            [<Optional;DefaultParameterValue(null)>] ?Ids                   : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Values                : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Labels                : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?DLabel                : #IConvertible,   
+            [<Optional;DefaultParameterValue(null)>] ?Label0                : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?Pull                  : float,
+            [<Optional;DefaultParameterValue(null)>] ?Text                  : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition          : StyleParam.TextPosition,
+            [<Optional;DefaultParameterValue(null)>] ?TextTemplate          : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverText             : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverInfo             : string,
+            [<Optional;DefaultParameterValue(null)>] ?HoverTemplate         : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Meta                  : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?CustomData            : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Domain                : Domain,
+            [<Optional;DefaultParameterValue(null)>] ?AutoMargin            : bool,
+            [<Optional;DefaultParameterValue(null)>] ?Marker                : Marker,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont              : Font,
+            [<Optional;DefaultParameterValue(null)>] ?TextInfo              : StyleParam.TextInfo,
+            [<Optional;DefaultParameterValue(null)>] ?Direction             : StyleParam.Direction,
+            [<Optional;DefaultParameterValue(null)>] ?Hole                  : float,
+            [<Optional;DefaultParameterValue(null)>] ?HoverLabel            : Hoverlabel,
+            [<Optional;DefaultParameterValue(null)>] ?InsideTextFont        : Font,
+            [<Optional;DefaultParameterValue(null)>] ?InsideTextOrientation : StyleParam.InsideTextOrientation,
+            [<Optional;DefaultParameterValue(null)>] ?OutsideTextFont       : Font,
+            [<Optional;DefaultParameterValue(null)>] ?Rotation              : float,
+            [<Optional;DefaultParameterValue(null)>] ?ScaleGroup            : string,
+            [<Optional;DefaultParameterValue(null)>] ?Sort                  : bool,
+            [<Optional;DefaultParameterValue(null)>] ?UIRevision            : string
         ) =
             (fun (pie:('T :> Trace)) ->
 
-                Values          |> DynObj.setValueOpt pie "values"
-                Labels          |> DynObj.setValueOpt pie "labels"
-                Label0          |> DynObj.setValueOpt pie "label0"
-                dLabel          |> DynObj.setValueOpt pie "dlabel" //-- temporarily
-                Scalegroup      |> DynObj.setValueOpt pie "scalegroup"
-                Textinfo        |> DynObj.setValueOpt pie "textinfo"      
-                                    
-                Domain          |> DynObj.setValueOpt pie "domain"         
-                Hole            |> DynObj.setValueOpt pie "hole"           
-                Sort            |> DynObj.setValueOpt pie "sort"          
-                Direction       |> DynObj.setValueOpt pie "direction"      
-                Rotation        |> DynObj.setValueOpt pie "rotation"       
-                Pull            |> DynObj.setValueOpt pie "pull"           
-                Labelssrc       |> DynObj.setValueOpt pie "labelssrc"      
-                Valuessrc       |> DynObj.setValueOpt pie "valuessrc"      
-                Pullsrc         |> DynObj.setValueOpt pie "pullsrc"        
-                    
-                // Update
-                //Marker          |> Option.iter (updatePropertyValueAndIgnore pie <@ pie.marker          @>)
-                //Textfont        |> Option.iter (updatePropertyValueAndIgnore pie <@ pie.textfont        @>)
-                Insidetextfont  |> DynObj.setValueOpt pie "insidetextfont"
-                Outsidetextfont |> DynObj.setValueOpt pie "outsidetextfont"
-                        
-                // out ->
+                Name                  |> DynObj.setValueOpt pie "name"
+                Title                 |> DynObj.setValueOpt pie "title"
+                Visible               |> DynObj.setValueOptBy pie "visible" StyleParam.Visible.convert
+                ShowLegend            |> DynObj.setValueOpt pie "showlegend"
+                LegendGroup           |> DynObj.setValueOpt pie "legendgroup"
+                LegendGroupTitle      |> DynObj.setValueOpt pie "legendgrouptitle"
+                Opacity               |> DynObj.setValueOpt pie "opacity"
+                Ids                   |> DynObj.setValueOpt pie "ids"
+                Values                |> DynObj.setValueOpt pie "values"
+                Labels                |> DynObj.setValueOpt pie "labels"
+                DLabel                |> DynObj.setValueOpt pie "dlabel"
+                Label0                |> DynObj.setValueOpt pie "label0"
+                Pull                  |> DynObj.setValueOpt pie "pull"
+                Text                  |> DynObj.setValueOpt pie "text"
+                TextPosition          |> DynObj.setValueOptBy pie "textposition" StyleParam.TextPosition.convert
+                TextTemplate          |> DynObj.setValueOpt pie "texttemplate"
+                HoverText             |> DynObj.setValueOpt pie "hovertext"
+                HoverInfo             |> DynObj.setValueOpt pie "hoverinfo"
+                HoverTemplate         |> DynObj.setValueOpt pie "hovertemplate"
+                Meta                  |> DynObj.setValueOpt pie "meta"
+                CustomData            |> DynObj.setValueOpt pie "customdata"
+                Domain                |> DynObj.setValueOpt pie "domain"
+                AutoMargin            |> DynObj.setValueOpt pie "automargin"
+                Marker                |> DynObj.setValueOpt pie "marker"
+                TextFont              |> DynObj.setValueOpt pie "textfont"
+                TextInfo              |> DynObj.setValueOptBy pie "textinfo" StyleParam.TextInfo.convert
+                Direction             |> DynObj.setValueOptBy pie "direction" StyleParam.Direction.convert
+                Hole                  |> DynObj.setValueOpt pie "hole"
+                HoverLabel            |> DynObj.setValueOpt pie "hoverlabel"
+                InsideTextFont        |> DynObj.setValueOpt pie "insidetextfont"
+                InsideTextOrientation |> DynObj.setValueOptBy pie "insidetextorientation" StyleParam.InsideTextOrientation.convert
+                OutsideTextFont       |> DynObj.setValueOpt pie "outsidetextfont"
+                Rotation              |> DynObj.setValueOpt pie "rotation"
+                ScaleGroup            |> DynObj.setValueOpt pie "scalegroup"
+                Sort                  |> DynObj.setValueOpt pie "sort"
+                UIRevision            |> DynObj.setValueOpt pie "uirevision"
+
                 pie
             ) 
 
