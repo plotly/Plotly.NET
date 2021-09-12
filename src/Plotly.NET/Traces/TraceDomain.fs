@@ -124,14 +124,14 @@ type TraceDomainStyle() =
         ) = 
             (fun (trace:('T :> Trace)) -> 
         
-                Values         |> DynObj.setValueOpt   trace "values"
-                Labels         |> DynObj.setValueOpt   trace "labels"
-                dLabel         |> DynObj.setValueOpt   trace "dlabel"
+                ++? ("values", Values)
+                ++? ("labels", Labels)
+                ++? ("dlabel", dLabel)
                 Label0         |> DynObj.setValueOpt   trace "label0"
-                Aspectratio    |> DynObj.setValueOpt   trace "aspectratio"
-                Baseratio      |> DynObj.setValueOpt   trace "baseratio"
-                Insidetextfont |> DynObj.setValueOpt   trace "insidetextfont"
-                Scalegroup     |> DynObj.setValueOpt   trace "scalegroup"
+                ++? ("aspectratio", Aspectratio)
+                ++? ("baseratio", Baseratio)
+                ++? ("insidetextfont", Insidetextfont)
+                ++? ("scalegroup", Scalegroup)
 
                 trace
 
@@ -170,12 +170,12 @@ type TraceDomainStyle() =
             (fun (trace:('T :> Trace)) -> 
                 labels       |> DynObj.setValue trace       "labels"
                 parents       |> DynObj.setValue trace      "parents"
-                Ids           |> DynObj.setValueOpt trace   "ids"
-                Values        |> DynObj.setValueOpt trace   "values"
-                Text          |> DynObj.setValueOpt trace   "text"
+                ++? ("ids", Ids)
+                ++? ("values", Values)
+                ++? ("text", Text)
                 ++?? ("branchvalues", Branchvalues, StyleParam.BranchValues.convert)
-                Level         |> DynObj.setValueOpt trace   "level"
-                Maxdepth      |> DynObj.setValueOpt trace   "maxdepth"
+                ++? ("level", Level)
+                ++? ("maxdepth", Maxdepth)
                 trace
             )
 
@@ -218,14 +218,14 @@ type TraceDomainStyle() =
             (fun (trace:('T :> Trace)) -> 
                 labels          |> DynObj.setValue trace      "labels"
                 parents         |> DynObj.setValue trace      "parents"
-                Ids             |> DynObj.setValueOpt trace   "ids"
-                Values          |> DynObj.setValueOpt trace   "values"
-                Text            |> DynObj.setValueOpt trace   "text"
+                ++? ("ids", Ids)
+                ++? ("values", Values)
+                ++? ("text", Text)
                 ++?? ("branchvalues", Branchvalues, StyleParam.BranchValues.convert)
-                Tiling          |> DynObj.setValueOpt trace   "tiling"
-                PathBar         |> DynObj.setValueOpt trace   "pathbar"
-                Level           |> DynObj.setValueOpt trace   "level"
-                Maxdepth        |> DynObj.setValueOpt trace   "maxdepth"
+                ++? ("tiling", Tiling)
+                ++? ("pathbar", PathBar)
+                ++? ("level", Level)
+                ++? ("maxdepth", Maxdepth)
                 trace
             )
 

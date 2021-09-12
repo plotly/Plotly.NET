@@ -638,80 +638,80 @@ type LinearAxis () =
         ) =
             (fun (axis:LinearAxis) -> 
                 
-                Visible            |> DynObj.setValueOpt axis   "visible" 
-                Color              |> DynObj.setValueOpt axis   "color" 
-                Title              |> DynObj.setValueOpt axis   "title" 
+                ++? ("visible", Visible) 
+                ++? ("color", Color) 
+                ++? ("title", Title) 
                 ++?? ("type", AxisType, StyleParam.AxisType.convert)
                 ++?? ("autotypenumbers", AutoTypeNumbers, StyleParam.AutoTypeNumbers.convert)
                 ++?? ("autorange", AutoRange, StyleParam.AutoRange.convert)
                 ++?? ("rangemode", RangeMode, StyleParam.RangeMode.convert)
                 ++?? ("range", Range, StyleParam.Range.convert)
-                FixedRange         |> DynObj.setValueOpt axis   "fixedrange" 
+                ++? ("fixedrange", FixedRange) 
                 ++?? ("scaleanchor", ScaleAnchor, StyleParam.LinearAxisId.convert)
-                ScaleRatio         |> DynObj.setValueOpt axis   "scaleratio" 
+                ++? ("scaleratio", ScaleRatio) 
                 ++?? ("constrain", Constrain, StyleParam.AxisConstraint.convert)
                 ++?? ("constraintoward", ConstrainToward, StyleParam.AxisConstraintDirection.convert)
                 ++?? ("matches", Matches, StyleParam.LinearAxisId.convert)
-                Rangebreaks        |> DynObj.setValueOpt axis   "rangebreaks" 
+                ++? ("rangebreaks", Rangebreaks) 
                 ++?? ("tickmode", TickMode, StyleParam.TickMode.convert)
-                NTicks             |> DynObj.setValueOpt axis   "nticks" 
+                ++? ("nticks", NTicks) 
                 Tick0              |> DynObj.setValueOpt axis   "tick0" 
-                DTick              |> DynObj.setValueOpt axis   "dtick" 
-                TickVals           |> DynObj.setValueOpt axis   "tickvals" 
-                TickText           |> DynObj.setValueOpt axis   "ticktext" 
+                ++? ("dtick", DTick) 
+                ++? ("tickvals", TickVals) 
+                ++? ("ticktext", TickText) 
                 ++?? ("ticks", Ticks, StyleParam.TickOptions.convert)
                 ++?? ("tickson", TicksOn, StyleParam.CategoryTickAnchor.convert)
                 ++?? ("ticklabelmode", TickLabelMode, StyleParam.TickLabelMode.convert)
                 ++?? ("ticklabelposition", TickLabelPosition, StyleParam.TickLabelPosition.convert)
                 ++?? ("ticklabeloverflow", TickLabelOverflow, StyleParam.TickLabelOverflow.convert)
                 ++?? ("mirror", Mirror, StyleParam.Mirror.convert)
-                TickLen            |> DynObj.setValueOpt axis   "ticklen" 
-                TickWidth          |> DynObj.setValueOpt axis   "tickwidth" 
-                TickColor          |> DynObj.setValueOpt axis   "tickcolor" 
-                ShowTickLabels     |> DynObj.setValueOpt axis   "showticklabels" 
-                AutoMargin         |> DynObj.setValueOpt axis   "automargin" 
-                ShowSpikes         |> DynObj.setValueOpt axis   "showspikes" 
-                SpikeColor         |> DynObj.setValueOpt axis   "spikecolor" 
-                SpikeThickness     |> DynObj.setValueOpt axis   "spikethickness" 
+                ++? ("ticklen", TickLen) 
+                ++? ("tickwidth", TickWidth) 
+                ++? ("tickcolor", TickColor) 
+                ++? ("showticklabels", ShowTickLabels) 
+                ++? ("automargin", AutoMargin) 
+                ++? ("showspikes", ShowSpikes) 
+                ++? ("spikecolor", SpikeColor) 
+                ++? ("spikethickness", SpikeThickness) 
                 ++?? ("spikedash", SpikeDash, StyleParam.DrawingStyle.convert)
                 ++?? ("spikemode", SpikeMode, StyleParam.SpikeMode.convert)
                 ++?? ("spikesnap", SpikeSnap, StyleParam.SpikeSnap.convert)
-                TickFont           |> DynObj.setValueOpt axis   "tickfont" 
-                TickAngle          |> DynObj.setValueOpt axis   "tickangle" 
+                ++? ("tickfont", TickFont) 
+                ++? ("tickangle", TickAngle) 
                 ++?? ("showtickprefix", ShowTickPrefix, StyleParam.ShowTickOption.convert)
-                TickPrefix         |> DynObj.setValueOpt axis   "tickprefix" 
+                ++? ("tickprefix", TickPrefix) 
                 ++?? ("showticksuffix", ShowTickSuffix, StyleParam.ShowTickOption.convert)
-                TickSuffix         |> DynObj.setValueOpt axis   "ticksuffix" 
+                ++? ("ticksuffix", TickSuffix) 
                 ++?? ("showexponent", ShowExponent, StyleParam.ShowExponent.convert)
                 ++?? ("exponentformat", ExponentFormat, StyleParam.ExponentFormat.convert)
-                MinExponent        |> DynObj.setValueOpt axis   "minexponent" 
-                SeparateThousands  |> DynObj.setValueOpt axis   "separatethousands" 
-                TickFormat         |> DynObj.setValueOpt axis   "tickformat" 
-                TickFormatStops    |> DynObj.setValueOpt axis   "tickformatstops"
-                HoverFormat        |> DynObj.setValueOpt axis   "hoverformat" 
-                ShowLine           |> DynObj.setValueOpt axis   "showline" 
-                LineColor          |> DynObj.setValueOpt axis   "linecolor" 
-                LineWidth          |> DynObj.setValueOpt axis   "linewidth" 
-                ShowGrid           |> DynObj.setValueOpt axis   "showgrid" 
-                GridColor          |> DynObj.setValueOpt axis   "gridcolor" 
-                GridWidth          |> DynObj.setValueOpt axis   "gridwidth" 
-                ZeroLine           |> DynObj.setValueOpt axis   "zeroline" 
-                ZeroLineColor      |> DynObj.setValueOpt axis   "zerolinecolor" 
-                ZeroLineWidth      |> DynObj.setValueOpt axis   "zerolinewidth" 
-                ShowDividers       |> DynObj.setValueOpt axis   "showdividers" 
-                DividerColor       |> DynObj.setValueOpt axis   "dividercolor" 
-                DividerWidth       |> DynObj.setValueOpt axis   "dividerwidth" 
+                ++? ("minexponent", MinExponent) 
+                ++? ("separatethousands", SeparateThousands) 
+                ++? ("tickformat", TickFormat) 
+                ++? ("tickformatstops", TickFormatStops)
+                ++? ("hoverformat", HoverFormat) 
+                ++? ("showline", ShowLine) 
+                ++? ("linecolor", LineColor) 
+                ++? ("linewidth", LineWidth) 
+                ++? ("showgrid", ShowGrid) 
+                ++? ("gridcolor", GridColor) 
+                ++? ("gridwidth", GridWidth) 
+                ++? ("zeroline", ZeroLine) 
+                ++? ("zerolinecolor", ZeroLineColor) 
+                ++? ("zerolinewidth", ZeroLineWidth) 
+                ++? ("showdividers", ShowDividers) 
+                ++? ("dividercolor", DividerColor) 
+                ++? ("dividerwidth", DividerWidth) 
                 ++?? ("anchor", Anchor, StyleParam.LinearAxisId.convert)
                 ++?? ("side", Side, StyleParam.Side.convert)
                 ++?? ("overlaying", Overlaying, StyleParam.LinearAxisId.convert)
                 ++?? ("layer", Layer, StyleParam.Layer.convert)
                 ++?? ("domain", Domain, StyleParam.Range.convert)
-                Position           |> DynObj.setValueOpt axis   "position" 
+                ++? ("position", Position) 
                 ++?? ("categoryorder", CategoryOrder, StyleParam.CategoryOrder.convert)
-                CategoryArray      |> DynObj.setValueOpt axis   "categoryarray" 
-                UIRevision         |> DynObj.setValueOpt axis   "uirevision" 
-                RangeSlider        |> DynObj.setValueOpt axis   "rangeslider" 
-                RangeSelector      |> DynObj.setValueOpt axis   "rangeselector" 
+                ++? ("categoryarray", CategoryArray) 
+                ++? ("uirevision", UIRevision) 
+                ++? ("rangeslider", RangeSlider) 
+                ++? ("rangeselector", RangeSelector) 
                 ++?? ("calendar", Calendar, StyleParam.Calendar.convert)
 
                 axis

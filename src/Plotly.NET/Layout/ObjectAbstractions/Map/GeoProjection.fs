@@ -94,8 +94,8 @@ type GeoProjection() =
                 |> Option.map (fun (a,b) -> sprintf "[%f,%f]" a b) 
                 |> DynObj.setValueOpt projection "parallels"
 
-                Rotation        |> DynObj.setValueOpt   projection "rotation"
-                Scale           |> DynObj.setValueOpt   projection "scale"
+                ++? ("rotation", Rotation)
+                ++? ("scale", Scale)
 
                 projection
             ) 

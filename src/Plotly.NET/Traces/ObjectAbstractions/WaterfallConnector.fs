@@ -41,8 +41,8 @@ type WaterfallConnector () =
         ) = 
             (fun (connector:WaterfallConnector) -> 
                 
-                Line          |> DynObj.setValueOpt   connector "line"
-                Visible       |> DynObj.setValueOpt   connector "visible"
+                ++? ("line", Line)
+                ++? ("visible", Visible)
                 ++?? ("mode", ConnectorMode, StyleParam.ConnectorMode.convert)
 
                 connector

@@ -52,8 +52,8 @@ type Mapbox() =
         ) =
             (fun (mapBox:Mapbox) -> 
                 
-                Domain          |> DynObj.setValueOpt   mapBox "domain"
-                AccessToken     |> DynObj.setValueOpt   mapBox "accesstoken"
+                ++? ("domain", Domain)
+                ++? ("accesstoken", AccessToken)
                 ++?? ("style", Style, StyleParam.MapboxStyle.convert)
 
                 Center         
@@ -65,10 +65,10 @@ type Mapbox() =
                 )
                 |> DynObj.setValueOpt mapBox "center"
 
-                Zoom            |> DynObj.setValueOpt   mapBox "zoom"
-                Bearing         |> DynObj.setValueOpt   mapBox "bearing"
-                Pitch           |> DynObj.setValueOpt   mapBox "pitch"
-                Layers          |> DynObj.setValueOpt   mapBox "layers"
+                ++? ("zoom", Zoom)
+                ++? ("bearing", Bearing)
+                ++? ("pitch", Pitch)
+                ++? ("layers", Layers)
 
                 mapBox
             ) 

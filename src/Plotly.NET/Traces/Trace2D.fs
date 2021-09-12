@@ -362,18 +362,18 @@ type Trace2DStyle() =
                 x               |> DynObj.setValue      trace "x"
                 y               |> DynObj.setValue      trace "y"
                 x0              |> DynObj.setValueOpt   trace "x0"
-                dX              |> DynObj.setValueOpt   trace "dx"
+                ++? ("dx", dX)
                 y0              |> DynObj.setValueOpt   trace "y0"
-                dY              |> DynObj.setValueOpt   trace "dy"
-                Width           |> DynObj.setValueOpt   trace "width"
-                Offset          |> DynObj.setValueOpt   trace "offset"
+                ++? ("dy", dY)
+                ++? ("width", Width)
+                ++? ("offset", Offset)
                 ++?? ("orientation", Orientation, StyleParam.Orientation.convert)
-                Alignmentgroup  |> DynObj.setValueOpt   trace "alignmentgroup"
-                Offsetgroup     |> DynObj.setValueOpt   trace "offsetgroup"
-                Cliponaxis      |> DynObj.setValueOpt   trace "cliponaxis"
-                Connector       |> DynObj.setValueOpt   trace "connector"
-                Insidetextfont  |> DynObj.setValueOpt   trace "insidetextfont"
-                Outsidetextfont |> DynObj.setValueOpt   trace "outsidetextfont"
+                ++? ("alignmentgroup", Alignmentgroup)
+                ++? ("offsetgroup", Offsetgroup)
+                ++? ("cliponaxis", Cliponaxis)
+                ++? ("connector", Connector)
+                ++? ("insidetextfont", Insidetextfont)
+                ++? ("outsidetextfont", Outsidetextfont)
 
                 trace
 
@@ -421,14 +421,14 @@ type Trace2DStyle() =
                     
                 x               |> DynObj.setValue      trace "x"
                 y               |> DynObj.setValue      trace "y"
-                Base            |> DynObj.setValueOpt   trace "base"
-                Width           |> DynObj.setValueOpt   trace "width"
+                ++? ("base", Base)
+                ++? ("width", Width)
                 Measure         |> DynObj.setValueOptBy trace "measure" (Seq.map StyleParam.WaterfallMeasure.convert)
                 ++?? ("orientation", Orientation, StyleParam.Orientation.convert)
-                AlignmentGroup  |> DynObj.setValueOpt   trace "alignmentgroup"
-                Connector       |> DynObj.setValueOpt   trace "connector"
-                OffsetGroup     |> DynObj.setValueOpt   trace "offsetgroup"
-                Offset          |> DynObj.setValueOpt   trace "offset"
+                ++? ("alignmentgroup", AlignmentGroup)
+                ++? ("connector", Connector)
+                ++? ("offsetgroup", OffsetGroup)
+                ++? ("offset", Offset)
                     
                 trace
             )
@@ -913,18 +913,18 @@ type Trace2DStyle() =
                 ++? ("xsrc", Xsrc)       
                 ++? ("ysrc", Ysrc)  
 
-                Xgap           |> DynObj.setValueOpt contour   "xgap"       
-                Ygap           |> DynObj.setValueOpt contour   "ygap"  
-                Transpose      |> DynObj.setValueOpt contour   "transpose" 
-                zAuto          |> DynObj.setValueOpt contour   "zauto"     
-                zMin           |> DynObj.setValueOpt contour   "zmin"      
-                zMax           |> DynObj.setValueOpt contour   "zmax"      
+                ++? ("xgap", Xgap)       
+                ++? ("ygap", Ygap)  
+                ++? ("transpose", Transpose) 
+                ++? ("zauto", zAuto)     
+                ++? ("zmin", zMin)      
+                ++? ("zmax", zMax)      
                 ++?? ("colorscale", Colorscale, StyleParam.Colorscale.convert) 
-                Autocolorscale |> DynObj.setValueOpt contour   "autocolorscale"
-                Reversescale   |> DynObj.setValueOpt contour   "reversescale"  
-                Showscale      |> DynObj.setValueOpt contour   "showscale"     
+                ++? ("autocolorscale", Autocolorscale)
+                ++? ("reversescale", Reversescale)  
+                ++? ("showscale", Showscale)     
                 ++?? ("zsmooth", zSmooth, StyleParam.SmoothAlg.convert)   
-                ColorBar       |> DynObj.setValueOpt contour   "colorbar"    
+                ++? ("colorbar", ColorBar)    
 
                 // out ->
                 contour 

@@ -74,10 +74,10 @@ type TableHeader () =
 
                 values |> DynObj.setValue      header "values" 
                 Align  |> DynObj.setValueOptBy header "align" (Seq.map StyleParam.HorizontalAlign.convert)
-                Height |> DynObj.setValueOpt   header "height"
-                Fill   |> DynObj.setValueOpt   header "fill" 
-                Line   |> DynObj.setValueOpt   header "line"    
-                Font   |> DynObj.setValueOpt   header "font"
+                ++? ("height", Height)
+                ++? ("fill", Fill) 
+                ++? ("line", Line)    
+                ++? ("font", Font)
                 header
             )
 
@@ -123,9 +123,9 @@ type TableCells () =
 
                 values |> DynObj.setValue      cells "values" 
                 Align  |> DynObj.setValueOptBy cells "align" (Seq.map StyleParam.HorizontalAlign.convert)
-                Height |> DynObj.setValueOpt   cells "height"
-                Fill   |> DynObj.setValueOpt   cells "fill"
-                Line   |> DynObj.setValueOpt   cells "line"     
-                Font   |> DynObj.setValueOpt   cells "font"  
+                ++? ("height", Height)
+                ++? ("fill", Fill)
+                ++? ("line", Line)     
+                ++? ("font", Font)  
                 cells
             )

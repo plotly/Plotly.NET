@@ -49,14 +49,14 @@ type Dimensions () =
             [<Optional;DefaultParameterValue(null)>] ?TickFormat: StyleParam.TickMode
         ) =
             (fun (dims:Dimensions) -> 
-                Values           |> DynObj.setValueOpt   dims "values"
+                ++? ("values", Values)
                 ++?? ("range", Range, StyleParam.Range.convert)                
                 ++?? ("constraintrange", Constraintrange, StyleParam.Range.convert)                 
-                Visible          |> DynObj.setValueOpt   dims "Visible"
-                Label            |> DynObj.setValueOpt   dims "label"
-                Tickvals         |> DynObj.setValueOpt   dims "tickvals"
-                TickText         |> DynObj.setValueOpt   dims "ticktext"   
-                TickFormat       |> DynObj.setValueOpt   dims "tickformat"
+                ++? ("Visible", Visible)
+                ++? ("label", Label)
+                ++? ("tickvals", Tickvals)
+                ++? ("ticktext", TickText)   
+                ++? ("tickformat", TickFormat)
                 
                 // out -> 
                 dims
