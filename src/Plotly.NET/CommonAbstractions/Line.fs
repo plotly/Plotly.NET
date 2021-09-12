@@ -2,6 +2,7 @@ namespace Plotly.NET
 
 open System.Runtime.InteropServices
 open DynamicObj
+open DynamicObj.Operators
 open System
 
 /// Line type inherits from dynamic object

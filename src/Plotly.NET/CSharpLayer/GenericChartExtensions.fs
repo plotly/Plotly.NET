@@ -6,6 +6,7 @@ open System
 open System.IO
 
 open DynamicObj
+open DynamicObj.Operators
 open GenericChart
 open System.Runtime.InteropServices
 open System.Runtime.CompilerServices
@@ -245,7 +246,8 @@ module GenericChartExtensions =
         member this.withColorBar(colorbar:ColorBar) =
             this
             |> GenericChart.mapTrace(fun t ->
-                colorbar |> ++ ("colorbar", t)
+                t
+                ++ ("colorbar", colorBar)
             )
 
         [<CompiledName("WithColorbar")>]

@@ -2,6 +2,7 @@
 open System.Runtime.InteropServices
 
 open DynamicObj
+open DynamicObj.Operators
 
 type Title() =
     inherit ImmutableDynamicObj ()

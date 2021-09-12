@@ -1,6 +1,7 @@
 namespace Plotly.NET
 
 open DynamicObj
+open DynamicObj.Operators
 open System
 open Newtonsoft.Json
 open System.Runtime.CompilerServices

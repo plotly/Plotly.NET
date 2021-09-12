@@ -2,6 +2,7 @@ namespace Plotly.NET
 
 open Plotly.NET.ConfigObjects
 open DynamicObj
+open DynamicObj.Operators
 open System.Runtime.InteropServices
 
 //missing:

@@ -132,6 +132,7 @@
 #load "SankeyExtension.fs"
 
 open DynamicObj
+open DynamicObj.Operators
 
 open Plotly.NET
 open Plotly.NET.LayoutObjects
