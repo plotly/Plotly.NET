@@ -398,6 +398,4 @@ type Config() =
                             )
                         ed
                     )
-                |> DynObj.setValueOpt config "edits"
-
-                config
+                |> ++? ("edits", config)

@@ -972,11 +972,11 @@ type Trace2DStyle() =
                 ++ ("x", x)
                 ++ ("xaxis", "x")
                 ++ ("yaxis", "y")
-                DynObj.setValueOpt  trace "increasing"  Increasing
-                DynObj.setValueOpt  trace "decreasing"  Decreasing
-                DynObj.setValueOpt  trace "tickwidth"   Tickwidth
-                DynObj.setValueOpt  trace "line"        Line
-                DynObj.setValueOpt  trace "xcalendar"   XCalendar
+                ++? ("increasing", Increasing)
+                ++? ("decreasing", Decreasing)
+                ++? ("tickwidth", Tickwidth)
+                ++? ("line", Line)
+                ++? ("xcalendar", XCalendar)
                     
                 trace
             )
@@ -1024,11 +1024,11 @@ type Trace2DStyle() =
                 ++ ("x", x)
                 ++ ("xaxis", "x")
                 ++ ("yaxis", "y")
-                DynObj.setValueOpt  trace "increasing"  Increasing
-                DynObj.setValueOpt  trace "decreasing"  Decreasing
+                ++? ("increasing", Increasing)
+                ++? ("decreasing", Decreasing)
                 DynObj.setValueOpt  trace "whiskerwidth"WhiskerWidth
-                DynObj.setValueOpt  trace "line"        Line
-                DynObj.setValueOpt  trace "xcalendar"   XCalendar
+                ++? ("line", Line)
+                ++? ("xcalendar", XCalendar)
 
                 trace
             )

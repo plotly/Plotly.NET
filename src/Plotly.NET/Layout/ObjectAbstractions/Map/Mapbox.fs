@@ -63,9 +63,7 @@ type Mapbox() =
                     t?lat <- lat
                     t
                 )
-                |> DynObj.setValueOpt mapBox "center"
-
-                ++? ("zoom", Zoom)
+                |> ++? ("center", ++? ("zoom", Zoom))
                 ++? ("bearing", Bearing)
                 ++? ("pitch", Pitch)
                 ++? ("layers", Layers)

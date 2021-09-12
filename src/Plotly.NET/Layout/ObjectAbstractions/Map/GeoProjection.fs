@@ -90,9 +90,7 @@ type GeoProjection() =
                 |> StyleParam.GeoProjectionType.convert 
                 |> ++ ("type", Parallels       )
                 |> Option.map (fun (a,b) -> sprintf "[%f,%f]" a b) 
-                |> DynObj.setValueOpt projection "parallels"
-
-                ++? ("rotation", Rotation)
+                |> ++? ("parallels", ++? ("rotation", Rotation))
                 ++? ("scale", Scale)
 
                 projection

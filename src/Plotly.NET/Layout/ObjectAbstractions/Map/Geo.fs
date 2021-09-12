@@ -194,9 +194,7 @@ type Geo() =
                     t?lat <- lat
                     t
                 )
-                |> DynObj.setValueOpt geo "center"
-
-                ++? ("visible", Visible)
+                |> ++? ("center", ++? ("visible", Visible))
                 ++? ("showcoastline", ShowCoastLines)
                 ++? ("coastlinecolor", CoastLineColor)
                 ++? ("coastlinewidth", CoastLineWidth)

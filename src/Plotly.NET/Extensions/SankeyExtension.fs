@@ -103,16 +103,16 @@ module SankeyExtension =
                         | None,None -> None 
                         | cs,ws -> 
                             let ln = new ImmutableDynamicObj()
-                            DynObj.setValueOpt ln "color" cs
-                            DynObj.setValueOpt ln "width" ws
+                            ++? ("color", cs)
+                            ++? ("width", ws)
                             Some ln
 
                     let l = new ImmutableDynamicObj()
                     ++ ("source", (links |> Seq.map (fun x->lblMap.[x.Source.Label])))
                     ++ ("target", (links |> Seq.map (fun x->lblMap.[x.Target.Label])))
-                    DynObj.setValueOpt  l "color"  linkClrs
-                    DynObj.setValueOpt  l "value"  values
-                    DynObj.setValueOpt  l "line"   line
+                    ++? ("color", linkClrs)
+                    ++? ("value", values)
+                    ++? ("line", line)
 
                     l
 
@@ -157,20 +157,20 @@ module SankeyExtension =
                         | None,None -> None 
                         | cs,ws -> 
                             let ln = new ImmutableDynamicObj()
-                            DynObj.setValueOpt ln "color" cs
-                            DynObj.setValueOpt ln "width" ws
+                            ++? ("color", cs)
+                            ++? ("width", ws)
                             Some ln
 
                     let n = new ImmutableDynamicObj()
                     n
                     ++ ("label", (nodes |> Seq.map (fun  x->x.Label)) )
-                    DynObj.setValueOpt n "groups" groups
-                    DynObj.setValueOpt n "pad" nodePadding
-                    DynObj.setValueOpt n "thickness" nodeThickness
-                    DynObj.setValueOpt n "x" xRanks
-                    DynObj.setValueOpt n "y" yRanks
-                    DynObj.setValueOpt n "color" nodeClrs
-                    DynObj.setValueOpt n "line" line
+                    ++? ("groups", groups)
+                    ++? ("pad", nodePadding)
+                    ++? ("thickness", nodeThickness)
+                    ++? ("x", xRanks)
+                    ++? ("y", yRanks)
+                    ++? ("color", nodeClrs)
+                    ++? ("line", line)
                     n
             
                 ++ ("node", node)

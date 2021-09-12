@@ -98,9 +98,7 @@ type MapboxLayer() =
                     circle?radius <- r
                     circle
                 )
-                |> DynObj.setValueOpt mapBoxLayer "circle"
-
-                ++? ("line", Line)
+                |> ++? ("circle", ++? ("line", Line))
 
                 FillOutlineColor
                 |> Option.map(fun c ->
@@ -108,9 +106,7 @@ type MapboxLayer() =
                     fill?outlinecolor <- c
                     fill
                 )
-                |> DynObj.setValueOpt mapBoxLayer "fill"
-
-                ++? ("symbol", Symbol)
+                |> ++? ("fill", ++? ("symbol", Symbol))
                 ++? ("name", Name)
                                                        
                 mapBoxLayer
