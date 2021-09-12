@@ -78,14 +78,14 @@ type Legend() =
                 ++? ("y", Y)
                 ++? ("Title", Title)
 
-                Orientation     |> DynObj.setValueOptBy legend "orientation"        StyleParam.Orientation.convert
-                TraceOrder      |> DynObj.setValueOptBy legend "traceorder"         StyleParam.TraceOrder.convert
-                ItemSizing      |> DynObj.setValueOptBy legend "itemsizing"         StyleParam.TraceItemSizing.convert
-                ItemClick       |> DynObj.setValueOptBy legend "itemclick"          StyleParam.TraceItemClickOptions.convert
-                ItemDoubleClick |> DynObj.setValueOptBy legend "itemdoubleclick"    StyleParam.TraceItemClickOptions.convert
-                XAnchor         |> DynObj.setValueOptBy legend "yanchor"            StyleParam.XAnchorPosition.convert
-                YAnchor         |> DynObj.setValueOptBy legend "yanchor"            StyleParam.YAnchorPosition.convert
-                VerticalAlign   |> DynObj.setValueOptBy legend "valign"             StyleParam.VerticalAlign.convert
+                ++?? ("orientation", Orientation, StyleParam.Orientation.convert)
+                ++?? ("traceorder", TraceOrder, StyleParam.TraceOrder.convert)
+                ++?? ("itemsizing", ItemSizing, StyleParam.TraceItemSizing.convert)
+                ++?? ("itemclick", ItemClick, StyleParam.TraceItemClickOptions.convert)
+                ++?? ("itemdoubleclick", ItemDoubleClick, StyleParam.TraceItemClickOptions.convert)
+                ++?? ("yanchor", XAnchor, StyleParam.XAnchorPosition.convert)
+                ++?? ("yanchor", YAnchor, StyleParam.YAnchorPosition.convert)
+                ++?? ("valign", VerticalAlign, StyleParam.VerticalAlign.convert)
 
                 legend
             )

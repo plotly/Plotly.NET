@@ -385,7 +385,7 @@ type Config() =
                 ++? ("toImageButtonOptions", ToImageButtonOptions)
                 ++? ("showEditInChartStudio", ShowEditInChartStudio)
                 ++? ("editable", Editable)
-                ModeBarButtonsToAdd     |> DynObj.setValueOptBy config "modeBarButtonsToAdd" (fun x -> x |> Seq.map StyleParam.ModeBarButton.convert)
+                ++?? ("modeBarButtonsToAdd", ModeBarButtonsToAdd, (fun x -> x |> Seq.map StyleParam.ModeBarButton.convert))
                 EditableAnnotations
                 |> Option.map 
                     (fun edits ->

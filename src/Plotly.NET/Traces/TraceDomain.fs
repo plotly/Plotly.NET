@@ -168,7 +168,7 @@ type TraceDomainStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Maxdepth       : int
         ) =
             (fun (trace:('T :> Trace)) -> 
-                labels       |> ++ ("labels", parents       |> DynObj.setValue trace      "parents")
+                labels       |> ++ ("labels", ++? ("parents"), parents)
                 ++? ("ids", Ids)
                 ++? ("values", Values)
                 ++? ("text", Text)
@@ -215,7 +215,7 @@ type TraceDomainStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Maxdepth       : int
         ) =
             (fun (trace:('T :> Trace)) -> 
-                labels          |> ++ ("labels", parents         |> DynObj.setValue trace      "parents")
+                labels          |> ++ ("labels", ++? ("parents"), parents)
                 ++? ("ids", Ids)
                 ++? ("values", Values)
                 ++? ("text", Text)

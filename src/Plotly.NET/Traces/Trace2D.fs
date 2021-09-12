@@ -359,7 +359,7 @@ type Trace2DStyle() =
         ) = 
             (fun (trace:('T :> Trace)) -> 
                 
-                x               |> ++ ("x", y               |> DynObj.setValue      trace "y")
+                x               |> ++ ("x", ++? ("y"), y)
                 ++? ("x0", x0)
                 ++? ("dx", dX)
                 ++? ("y0", y0)
@@ -418,10 +418,10 @@ type Trace2DStyle() =
         ) =
             (fun (trace:('T :> Trace)) ->
                     
-                x               |> ++ ("x", y               |> DynObj.setValue      trace "y")
+                x               |> ++ ("x", ++? ("y"), y)
                 ++? ("base", Base)
                 ++? ("width", Width)
-                Measure         |> DynObj.setValueOptBy trace "measure" (Seq.map StyleParam.WaterfallMeasure.convert)
+                ++?? ("measure", Measure, (Seq.map StyleParam.WaterfallMeasure.convert))
                 ++?? ("orientation", Orientation, StyleParam.Orientation.convert)
                 ++? ("alignmentgroup", AlignmentGroup)
                 ++? ("connector", Connector)
@@ -468,8 +468,8 @@ type Trace2DStyle() =
                 ++? ("ysrc", Ysrc)  
 
                 ++?? ("orientation", Orientation, StyleParam.Orientation.convert)
-                HistFunc       |> DynObj.setValueOptBy histogram "histfunc"    StyleParam.HistFunc.convert
-                HistNorm       |> DynObj.setValueOptBy histogram "histnorm"    StyleParam.HistNorm.convert
+                ++?? ("histfunc", HistFunc, StyleParam.HistFunc.convert)
+                ++?? ("histnorm", HistNorm, StyleParam.HistNorm.convert)
                 ++? ("cumulative", Cumulative)
 
                 ++? ("autobinx", Autobinx)
@@ -522,8 +522,8 @@ type Trace2DStyle() =
                 ++? ("x0", X0)          
                 ++? ("y0", Y0)          
                 ++? ("whiskerwidth", Whiskerwidth)
-                Boxpoints       |> DynObj.setValueOptBy boxPlot "boxpoints"  StyleParam.Boxpoints.convert  
-                Boxmean         |> DynObj.setValueOptBy boxPlot "boxmean"    StyleParam.BoxMean.convert    
+                ++?? ("boxpoints", Boxpoints, StyleParam.Boxpoints.convert  )
+                ++?? ("boxmean", Boxmean, StyleParam.BoxMean.convert    )
                 ++? ("jitter", Jitter)      
                 ++? ("pointpos", Pointpos)    
                 ++?? ("orientation", Orientation, StyleParam.Orientation.convert)
@@ -584,7 +584,7 @@ type Trace2DStyle() =
                 ++? ("x", X)           
                 ++? ("x0", X0)          
                 ++? ("y0", Y0)          
-                Points           |> DynObj.setValueOptBy boxPlot "points"  StyleParam.Jitterpoints.convert      
+                ++?? ("points", Points, StyleParam.Jitterpoints.convert      )
                 ++? ("jitter", Jitter)      
                 ++? ("pointpos", Pointpos)    
                 ++?? ("orientation", Orientation, StyleParam.Orientation.convert)
@@ -674,8 +674,8 @@ type Trace2DStyle() =
                 ++? ("xsrc", Xsrc)       
                 ++? ("ysrc", Ysrc)  
 
-                Orientation    |> DynObj.setValueOptBy histogram2d "orientation" StyleParam.Orientation.convert
-                //Connectgaps    |> DynObj.setValueOptBy histogram2d "connectgaps" StyleParam.Orientation.convert
+                ++?? ("orientation", Orientation, StyleParam.Orientation.convert)
+                //++?? ("connectgaps", Connectgaps, StyleParam.Orientation.convert)
                 HistFunc       |> DynObj.setValueOptBy histogram2d "histfunc   " StyleParam.HistFunc.convert
                 HistNorm       |> DynObj.setValueOptBy histogram2d "histnorm   " StyleParam.HistNorm.convert
                 ++? ("autobinx", Autobinx)
@@ -691,11 +691,11 @@ type Trace2DStyle() =
                 ++? ("zauto", zAuto)     
                 ++? ("zmin", zMin)      
                 ++? ("zmax", zMax)      
-                Colorscale     |> DynObj.setValueOptBy histogram2d "colorscale" StyleParam.Colorscale.convert 
+                ++?? ("colorscale", Colorscale, StyleParam.Colorscale.convert )
                 ++? ("autocolorscale", Autocolorscale)
                 ++? ("reversescale", Reversescale)  
                 ++? ("showscale", Showscale)     
-                zSmooth        |> DynObj.setValueOptBy histogram2d "zsmooth" StyleParam.SmoothAlg.convert   
+                ++?? ("zsmooth", zSmooth, StyleParam.SmoothAlg.convert   )
                 ++? ("colorbar", ColorBar)    
 
                 // Update                
@@ -765,7 +765,7 @@ type Trace2DStyle() =
                 ++? ("xsrc", Xsrc)       
                 ++? ("ysrc", Ysrc)  
 
-                Orientation    |> DynObj.setValueOptBy histogram2dContour "orientation" StyleParam.Orientation.convert
+                ++?? ("orientation", Orientation, StyleParam.Orientation.convert)
                 //Connectgaps    |> DynObj.setValueOptBy histogram2dContour< "connectgaps" StyleParam.Orientation.convert
                 HistFunc       |> DynObj.setValueOptBy histogram2dContour "histfunc   " StyleParam.HistFunc.convert
                 HistNorm       |> DynObj.setValueOptBy histogram2dContour "histnorm   " StyleParam.HistNorm.convert
@@ -785,11 +785,11 @@ type Trace2DStyle() =
                 ++? ("zauto", zAuto)     
                 ++? ("zmin", zMin)      
                 ++? ("zmax", zMax)      
-                Colorscale     |> DynObj.setValueOptBy histogram2dContour "colorscale" StyleParam.Colorscale.convert 
+                ++?? ("colorscale", Colorscale, StyleParam.Colorscale.convert )
                 ++? ("autocolorscale", Autocolorscale)
                 ++? ("reversescale", Reversescale)  
                 ++? ("showscale", Showscale)     
-                zSmooth        |> DynObj.setValueOptBy histogram2dContour "zsmooth" StyleParam.SmoothAlg.convert   
+                ++?? ("zsmooth", zSmooth, StyleParam.SmoothAlg.convert   )
                 ++? ("colorbar", ColorBar)    
 
                 // Update                

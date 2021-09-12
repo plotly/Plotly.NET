@@ -298,7 +298,7 @@ type Layout() =
 
                 match id with
                 | StyleParam.SubPlotId.XAxis _ | StyleParam.SubPlotId.YAxis _ ->
-                    axis |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+                    ++? ((StyleParam.SubPlotId.toString id), axis)
                     layout
 
                 | _ -> failwith $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting a linear axis on layout"
@@ -320,7 +320,7 @@ type Layout() =
                         | Some a -> DynObj.combine (unbox a) axis
                         | None  -> axis :>  ImmutableDynamicObj
                 
-                    axis'           |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+                    ++? ((StyleParam.SubPlotId.toString id), axis')
 
                     layout
                 | _ -> failwith $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting a linear axis on layout"
@@ -332,7 +332,7 @@ type Layout() =
             scene   : Scene
         ) =
             (fun (layout:Layout) -> 
-                scene |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+                ++? ((StyleParam.SubPlotId.toString id), scene)
                 layout
             )
 
@@ -347,7 +347,7 @@ type Layout() =
                     | Some a -> DynObj.combine (unbox a) scene
                     | None  -> scene :> ImmutableDynamicObj
 
-                scene' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+                ++? ((StyleParam.SubPlotId.toString id), scene')
                 layout
             )
 
@@ -363,7 +363,7 @@ type Layout() =
         ) =
             (fun (layout:Layout) -> 
                 
-                geo |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+                ++? ((StyleParam.SubPlotId.toString id), geo)
 
                 layout
             )
@@ -380,7 +380,7 @@ type Layout() =
                     | Some a -> DynObj.combine (unbox a) geo
                     | None  -> geo :> ImmutableDynamicObj
 
-                geo' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+                ++? ((StyleParam.SubPlotId.toString id), geo')
                 layout
             )
 
@@ -391,7 +391,7 @@ type Layout() =
         ) =
             (fun (layout:Layout) -> 
             
-                mapbox |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+                ++? ((StyleParam.SubPlotId.toString id), mapbox)
 
                 layout
             )
@@ -408,7 +408,7 @@ type Layout() =
                     | Some a -> DynObj.combine (unbox a) mapbox
                     | None  -> mapbox :> ImmutableDynamicObj
 
-                mapbox' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+                ++? ((StyleParam.SubPlotId.toString id), mapbox')
                 layout
             )
 
@@ -431,7 +431,7 @@ type Layout() =
                     | Some a  -> DynObj.combine (unbox a) polar
                     | None    -> polar :> ImmutableDynamicObj
                 
-                polar' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+                ++? ((StyleParam.SubPlotId.toString id), polar')
 
                 layout
             )
@@ -455,7 +455,7 @@ type Layout() =
                     | Some a  -> DynObj.combine (unbox a) colorAxis
                     | None    -> colorAxis :> ImmutableDynamicObj
                 
-                colorAxis' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+                ++? ((StyleParam.SubPlotId.toString id), colorAxis')
 
                 layout
             )

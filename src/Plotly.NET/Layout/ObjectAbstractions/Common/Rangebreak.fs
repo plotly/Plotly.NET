@@ -62,7 +62,7 @@ type Rangebreak() =
         ) =
             (fun (rangebreak:Rangebreak) -> 
                 ++? ("enabled", Enabled)
-                Bounds          |> DynObj.setValueOptBy rangebreak "bounds" (fun (a,b) -> [|a;b|])
+                ++?? ("bounds", Bounds, (fun (a,b) -> [|a;b|]))
                 ++?? ("pattern", Pattern, StyleParam.RangebreakPattern.convert)
                 ++? ("values", Values)
                 ++? ("dvalue", DValue)

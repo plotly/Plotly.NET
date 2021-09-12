@@ -449,7 +449,7 @@ type Trace3DStyle() =
             fun (mesh3d: #Trace) ->
 
                     ++? ("name", Name)
-                    Visible            |> DynObj.setValueOptBy mesh3d "visible" StyleParam.Visible.convert
+                    ++?? ("visible", Visible, StyleParam.Visible.convert)
                     ++? ("showlegend", ShowLegend)
                     ++? ("legendrank", LegendRank)
                     ++? ("legendgroup", LegendGroup)
@@ -464,7 +464,7 @@ type Trace3DStyle() =
                     ++? ("k", K)
                     ++? ("facecolor", FaceColor)
                     ++? ("intensity", Intensity)
-                    IntensityMode      |> DynObj.setValueOptBy mesh3d "intensitymode" StyleParam.IntensityMode.convert
+                    ++?? ("intensitymode", IntensityMode, StyleParam.IntensityMode.convert)
                     ++? ("vertexcolor", VertexColor)
                     ++? ("text", Text)
                     ++? ("hovertext", HoverText)
@@ -475,11 +475,11 @@ type Trace3DStyle() =
                     ++? ("zhoverformat", ZHoverFormat)
                     ++? ("meta", Meta)
                     ++? ("customdata", CustomData)
-                    Scene              |> DynObj.setValueOptBy mesh3d "scene" StyleParam.SubPlotId.convert
-                    ColorAxis          |> DynObj.setValueOptBy mesh3d "coloraxis" StyleParam.SubPlotId.convert
+                    ++?? ("scene", Scene, StyleParam.SubPlotId.convert)
+                    ++?? ("coloraxis", ColorAxis, StyleParam.SubPlotId.convert)
                     ++? ("colorbar", ColorBar)
                     ++? ("autocolorscale", AutoColorScale)
-                    ColorScale         |> DynObj.setValueOptBy mesh3d "colorscale" StyleParam.Colorscale.convert
+                    ++?? ("colorscale", ColorScale, StyleParam.Colorscale.convert)
                     ++? ("showscale", ShowScale)
                     ++? ("reversescale", ReverseScale)
                     ++? ("cauto", CAuto)
@@ -487,15 +487,15 @@ type Trace3DStyle() =
                     ++? ("cmid", CMid)
                     ++? ("cmax", CMax)
                     ++? ("alphahull", AlphaHull)
-                    Delaunayaxis       |> DynObj.setValueOptBy mesh3d "delaunayaxis" StyleParam.Delaunayaxis.convert
+                    ++?? ("delaunayaxis", Delaunayaxis, StyleParam.Delaunayaxis.convert)
                     ++? ("contour", Contour)
                     ++? ("flatshading", FlatShading)
                     ++? ("hoverlabel", Hoverlabel)
                     ++? ("lighting", Lighting)
                     ++? ("lightposition", LightPosition)
-                    XCalendar          |> DynObj.setValueOptBy mesh3d "xcalendar" StyleParam.Calendar.convert
-                    YCalendar          |> DynObj.setValueOptBy mesh3d "ycalendar" StyleParam.Calendar.convert
-                    ZCalendar          |> DynObj.setValueOptBy mesh3d "zcalendar" StyleParam.Calendar.convert
+                    ++?? ("xcalendar", XCalendar, StyleParam.Calendar.convert)
+                    ++?? ("ycalendar", YCalendar, StyleParam.Calendar.convert)
+                    ++?? ("zcalendar", ZCalendar, StyleParam.Calendar.convert)
                     ++? ("uirevision", UIRevision)
 
                     mesh3d

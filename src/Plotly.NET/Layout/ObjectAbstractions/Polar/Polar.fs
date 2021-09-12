@@ -75,7 +75,7 @@ type Polar () =
             (fun (polar:Polar) -> 
 
                 ++? ("domain", Domain)
-                Sector      |> DynObj.setValueOptBy polar "sector" (fun (a,b) -> [|a;b|])
+                ++?? ("sector", Sector, (fun (a,b) -> [|a;b|]))
                 ++? ("hole", Hole)
                 ++? ("bgcolor", BGColor)
                 ++? ("radialaxis", RadialAxis)
