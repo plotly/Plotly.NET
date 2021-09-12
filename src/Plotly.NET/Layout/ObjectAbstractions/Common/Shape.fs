@@ -63,11 +63,11 @@ type Shape () =
                     
                 ++?? ("type", ShapeType, StyleParam.ShapeType.toString)    
                 ++? ("xref", Xref)     
-                X0        |> DynObj.setValueOpt shape "x0"        
-                X1        |> DynObj.setValueOpt shape "x1"        
+                ++? ("x0", X0)        
+                ++? ("x1", X1)        
                 ++? ("yref", Yref)     
-                Y0        |> DynObj.setValueOpt shape "y0"       
-                Y1        |> DynObj.setValueOpt shape "y1"       
+                ++? ("y0", Y0)       
+                ++? ("y1", Y1)       
                 ++? ("path", Path)     
                 ++? ("opacity", Opacity)      
                 ++? ("line", Line)

@@ -655,7 +655,7 @@ type LinearAxis () =
                 ++? ("rangebreaks", Rangebreaks) 
                 ++?? ("tickmode", TickMode, StyleParam.TickMode.convert)
                 ++? ("nticks", NTicks) 
-                Tick0              |> DynObj.setValueOpt axis   "tick0" 
+                ++? ("tick0", Tick0) 
                 ++? ("dtick", DTick) 
                 ++? ("tickvals", TickVals) 
                 ++? ("ticktext", TickText) 

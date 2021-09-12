@@ -244,7 +244,7 @@ type ColorBar () =
                 ++? ("exponentformat", ExponentFormat)
                 ++? ("len", Len)
                 ++? ("lenmode", LenMode)
-                MinExponent         |> DynObj.setValueOpt colorBar "min3xponent"
+                ++? ("min3xponent", MinExponent)
                 ++? ("nticks", NTicks)
                 ++? ("outlinecolor", OutlineColor)
                 ++? ("outlinewidth", OutlineWidth)
@@ -255,7 +255,7 @@ type ColorBar () =
                 ++? ("showticksuffix", ShowTickSuffix)
                 ++? ("thickness", Thickness)
                 ++? ("thicknessmode", ThicknessMode)
-                Tick0               |> DynObj.setValueOpt colorBar "tick0"
+                ++? ("tick0", Tick0)
                 ++? ("tickangle", TickAngle)
                 ++? ("tickcolor", TickColor)
                 ++? ("tickfont", TickFont)

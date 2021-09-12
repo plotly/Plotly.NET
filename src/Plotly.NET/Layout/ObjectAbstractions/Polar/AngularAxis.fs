@@ -259,7 +259,7 @@ type AngularAxis () =
                 ++? ("gridwidth", GridWidth)
                 ++?? ("tickmode", TickMode, StyleParam.TickMode.convert)
                 ++? ("nticks", NTicks)
-                Tick0               |> DynObj.setValueOpt angularAxis "tick0"
+                ++? ("tick0", Tick0)
                 ++? ("dtick", DTick)
                 ++? ("TickVals", TickVals)
                 ++? ("TickText", TickText)

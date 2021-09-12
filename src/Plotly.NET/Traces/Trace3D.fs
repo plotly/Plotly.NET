@@ -448,55 +448,55 @@ type Trace3DStyle() =
 
             fun (mesh3d: #Trace) ->
 
-                    Name               |> DynObj.setValueOpt mesh3d "name"
+                    ++? ("name", Name)
                     Visible            |> DynObj.setValueOptBy mesh3d "visible" StyleParam.Visible.convert
-                    ShowLegend         |> DynObj.setValueOpt mesh3d "showlegend"
-                    LegendRank         |> DynObj.setValueOpt mesh3d "legendrank"
-                    LegendGroup        |> DynObj.setValueOpt mesh3d "legendgroup"
-                    LegendGroupTitle   |> DynObj.setValueOpt mesh3d "legendgrouptitle"
-                    Opacity            |> DynObj.setValueOpt mesh3d "opacity"
-                    Ids                |> DynObj.setValueOpt mesh3d "ids"
-                    X                  |> DynObj.setValueOpt mesh3d "x"
-                    Y                  |> DynObj.setValueOpt mesh3d "y"
-                    Z                  |> DynObj.setValueOpt mesh3d "z"
-                    I                  |> DynObj.setValueOpt mesh3d "i"
-                    J                  |> DynObj.setValueOpt mesh3d "j"
-                    K                  |> DynObj.setValueOpt mesh3d "k"
-                    FaceColor          |> DynObj.setValueOpt mesh3d "facecolor"
-                    Intensity          |> DynObj.setValueOpt mesh3d "intensity"
+                    ++? ("showlegend", ShowLegend)
+                    ++? ("legendrank", LegendRank)
+                    ++? ("legendgroup", LegendGroup)
+                    ++? ("legendgrouptitle", LegendGroupTitle)
+                    ++? ("opacity", Opacity)
+                    ++? ("ids", Ids)
+                    ++? ("x", X)
+                    ++? ("y", Y)
+                    ++? ("z", Z)
+                    ++? ("i", I)
+                    ++? ("j", J)
+                    ++? ("k", K)
+                    ++? ("facecolor", FaceColor)
+                    ++? ("intensity", Intensity)
                     IntensityMode      |> DynObj.setValueOptBy mesh3d "intensitymode" StyleParam.IntensityMode.convert
-                    VertexColor        |> DynObj.setValueOpt mesh3d "vertexcolor"
-                    Text               |> DynObj.setValueOpt mesh3d "text"
-                    HoverText          |> DynObj.setValueOpt mesh3d "hovertext"
-                    HoverInfo          |> DynObj.setValueOpt mesh3d "hoverinfo"
-                    HoverTemplate      |> DynObj.setValueOpt mesh3d "hovertemplate"
-                    XHoverFormat       |> DynObj.setValueOpt mesh3d "xhoverformat"
-                    YHoverFormat       |> DynObj.setValueOpt mesh3d "yhoverformat"
-                    ZHoverFormat       |> DynObj.setValueOpt mesh3d "zhoverformat"
-                    Meta               |> DynObj.setValueOpt mesh3d "meta"
-                    CustomData         |> DynObj.setValueOpt mesh3d "customdata"
+                    ++? ("vertexcolor", VertexColor)
+                    ++? ("text", Text)
+                    ++? ("hovertext", HoverText)
+                    ++? ("hoverinfo", HoverInfo)
+                    ++? ("hovertemplate", HoverTemplate)
+                    ++? ("xhoverformat", XHoverFormat)
+                    ++? ("yhoverformat", YHoverFormat)
+                    ++? ("zhoverformat", ZHoverFormat)
+                    ++? ("meta", Meta)
+                    ++? ("customdata", CustomData)
                     Scene              |> DynObj.setValueOptBy mesh3d "scene" StyleParam.SubPlotId.convert
                     ColorAxis          |> DynObj.setValueOptBy mesh3d "coloraxis" StyleParam.SubPlotId.convert
-                    ColorBar           |> DynObj.setValueOpt mesh3d "colorbar"
-                    AutoColorScale     |> DynObj.setValueOpt mesh3d "autocolorscale"
+                    ++? ("colorbar", ColorBar)
+                    ++? ("autocolorscale", AutoColorScale)
                     ColorScale         |> DynObj.setValueOptBy mesh3d "colorscale" StyleParam.Colorscale.convert
-                    ShowScale          |> DynObj.setValueOpt mesh3d "showscale"
-                    ReverseScale       |> DynObj.setValueOpt mesh3d "reversescale"
-                    CAuto              |> DynObj.setValueOpt mesh3d "cauto"
-                    CMin               |> DynObj.setValueOpt mesh3d "cmin"
-                    CMid               |> DynObj.setValueOpt mesh3d "cmid"
-                    CMax               |> DynObj.setValueOpt mesh3d "cmax"
-                    AlphaHull          |> DynObj.setValueOpt mesh3d "alphahull"
+                    ++? ("showscale", ShowScale)
+                    ++? ("reversescale", ReverseScale)
+                    ++? ("cauto", CAuto)
+                    ++? ("cmin", CMin)
+                    ++? ("cmid", CMid)
+                    ++? ("cmax", CMax)
+                    ++? ("alphahull", AlphaHull)
                     Delaunayaxis       |> DynObj.setValueOptBy mesh3d "delaunayaxis" StyleParam.Delaunayaxis.convert
-                    Contour            |> DynObj.setValueOpt mesh3d "contour"
-                    FlatShading        |> DynObj.setValueOpt mesh3d "flatshading"
-                    Hoverlabel         |> DynObj.setValueOpt mesh3d "hoverlabel"
-                    Lighting           |> DynObj.setValueOpt mesh3d "lighting"
-                    LightPosition      |> DynObj.setValueOpt mesh3d "lightposition"
+                    ++? ("contour", Contour)
+                    ++? ("flatshading", FlatShading)
+                    ++? ("hoverlabel", Hoverlabel)
+                    ++? ("lighting", Lighting)
+                    ++? ("lightposition", LightPosition)
                     XCalendar          |> DynObj.setValueOptBy mesh3d "xcalendar" StyleParam.Calendar.convert
                     YCalendar          |> DynObj.setValueOptBy mesh3d "ycalendar" StyleParam.Calendar.convert
                     ZCalendar          |> DynObj.setValueOptBy mesh3d "zcalendar" StyleParam.Calendar.convert
-                    UIRevision         |> DynObj.setValueOpt mesh3d "uirevision"
+                    ++? ("uirevision", UIRevision)
 
                     mesh3d
                 

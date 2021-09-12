@@ -97,10 +97,10 @@ type TracePolarStyle() =
                 ++?? ("mode", Mode, StyleParam.Mode.convert)
                 ++? ("ids", Ids)
                 ++? ("r", R)
-                R0                 |> DynObj.setValueOpt trace "r0"
+                ++? ("r0", R0)
                 ++? ("dr", DR)
                 ++? ("theta", Theta)
-                Theta0             |> DynObj.setValueOpt trace "theta0"
+                ++? ("theta0", Theta0)
                 ++? ("dtheta", DTheta)
                 ++?? ("thetaunit", ThetaUnit, StyleParam.AngularUnit.convert)
                 ++? ("text", Text)
@@ -175,10 +175,10 @@ type TracePolarStyle() =
                 ++? ("ids", Ids)
                 ++? ("base", Base)
                 ++? ("r", R)
-                R0                  |> DynObj.setValueOpt trace "r0"
+                ++? ("r0", R0)
                 ++? ("dr", DR)
                 ++? ("theta", Theta)
-                Theta0              |> DynObj.setValueOpt trace "theta0"
+                ++? ("theta0", Theta0)
                 ++? ("dtheta", DTheta)
                 ++?? ("thetaunit", ThetaUnit, StyleParam.AngularUnit.convert)
                 ++? ("width", Width)

@@ -85,7 +85,7 @@ type TraceDomainStyle() =
 
                 ++? ("values", Values)
                 ++? ("labels", Labels)
-                Label0          |> DynObj.setValueOpt pie "label0"
+                ++? ("label0", Label0)
                 ++? ("dlabel", dLabel) //-- temporarily
                 ++? ("scalegroup", Scalegroup)
                 ++? ("textinfo", Textinfo)      
@@ -127,7 +127,7 @@ type TraceDomainStyle() =
                 ++? ("values", Values)
                 ++? ("labels", Labels)
                 ++? ("dlabel", dLabel)
-                Label0         |> DynObj.setValueOpt   trace "label0"
+                ++? ("label0", Label0)
                 ++? ("aspectratio", Aspectratio)
                 ++? ("baseratio", Baseratio)
                 ++? ("insidetextfont", Insidetextfont)
