@@ -92,7 +92,8 @@ type Annotation() =
 
         ) =
             (fun (ann:Annotation) ->
-                X               |> ++ ("x", Y               |> DynObj.setValue ann "y")
+                X               |> DynObj.setValue ann "x"
+                Y               |> DynObj.setValue ann "y"
                 ++? ("xref", XRef)
                 ++? ("yref", YRef)
                 ++? ("ax", ArrowTailX)

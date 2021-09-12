@@ -284,10 +284,10 @@ type TraceDomainStyle() =
             [<Optional;DefaultParameterValue(null)>] ?ColumnWidth : seq<int>,
             [<Optional;DefaultParameterValue(null)>] ?ColumnOrder : seq<int>         
         ) =
-            (fun (trace:('T :> Trace)) ->                  
-                header      |> ++ ("header", cells       |> DynObj.setValue    trace "cells")
-                ++? ("columnwidth", ColumnWidth)
-                ++? ("columnorder", ColumnOrder)
+            (fun (trace:('T :> Trace)) ->    
+                ++?? ("family", Family, StyleParam.FontFamily.toString)                
+                ++? ("size", Size)
+                ++? ("color", Color)
                 // out ->
                 trace
             ) 
