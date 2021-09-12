@@ -26,7 +26,7 @@ type CellColor () =
             [<Optional;DefaultParameterValue(null)>] ?Color : Color
         ) =
             (fun (cell:CellColor) -> 
-                Color      |> DynObj.setValueOpt cell "color" 
+                ++? ("color", Color) 
                 // out -> 
                 cell
             )

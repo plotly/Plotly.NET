@@ -46,7 +46,7 @@ type TraceGeoStyle() =
         ) =  
             (fun (trace:TraceGeo) ->
 
-                GeoId |> DynObj.setValueOptBy trace "geo" StyleParam.SubPlotId.toString
+                ++?? ("geo", GeoId, StyleParam.SubPlotId.toString)
 
                 trace
             )
@@ -73,10 +73,10 @@ type TraceGeoStyle() =
                 Locations          |> DynObj.setValueOpt   choropleth "locations"         
                 Z                  |> DynObj.setValueOpt   choropleth "z"                     
                 Text               |> DynObj.setValueOpt   choropleth "text"     
-                Locationmode       |> DynObj.setValueOptBy choropleth "locationmode" StyleParam.LocationFormat.convert            
+                ++?? ("locationmode", Locationmode, StyleParam.LocationFormat.convert)            
                 Autocolorscale     |> DynObj.setValueOpt   choropleth "autocolorscale"    
                     
-                Colorscale         |> DynObj.setValueOptBy choropleth "colorscale" StyleParam.Colorscale.convert
+                ++?? ("colorscale", Colorscale, StyleParam.Colorscale.convert)
                 ColorBar           |> DynObj.setValueOpt   choropleth "colorbar"
                 Marker             |> DynObj.setValueOpt   choropleth "marker"  
                 GeoJson            |> DynObj.setValueOpt   choropleth "geojson" 
@@ -110,7 +110,7 @@ type TraceGeoStyle() =
                 GeoJson     |> DynObj.setValueOpt   trace "geojson"
                 FeatureIdKey|> DynObj.setValueOpt   trace "featureidkey"
                 Connectgaps |> DynObj.setValueOpt   trace "connectgaps"
-                Fill        |> DynObj.setValueOptBy trace "fill" StyleParam.Fill.convert
+                ++?? ("fill", Fill, StyleParam.Fill.convert)
                 Fillcolor   |> DynObj.setValueOpt   trace "fillcolor"
 
                 trace

@@ -42,7 +42,7 @@ type Hoverlabel () =
                 BgColor       |> DynObj.setValueOpt   label "bgcolor"
                 BorderColor   |> DynObj.setValueOpt   label "bordercolor"
                 Font          |> DynObj.setValueOpt   label "font" 
-                Align         |> DynObj.setValueOptBy label "align" StyleParam.Align.convert
+                ++?? ("align", Align, StyleParam.Align.convert)
                 Namelength    |> DynObj.setValueOpt   label "namelength" 
                     
                 // out -> 

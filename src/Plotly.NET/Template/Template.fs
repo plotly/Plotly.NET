@@ -28,7 +28,7 @@ type Template() =
         ) =
             (fun (template:Template) -> 
                 layoutTemplate   |> DynObj.setValue template "layout"
-                TraceTemplates   |> DynObj.setValueOpt template "data"
+                ++? ("data", TraceTemplates)
                 
                 template
                 )

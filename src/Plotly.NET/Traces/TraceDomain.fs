@@ -53,8 +53,8 @@ type TraceDomainStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Domain:Domain
         ) =  
             (fun (trace:TraceDomain) ->
-
-                Domain |> DynObj.setValueOpt trace "domain"
+                trace
+                ++? ("domain", Domain)
 
                 trace
             )
@@ -83,28 +83,28 @@ type TraceDomainStyle() =
         ) =
             (fun (pie:('T :> Trace)) ->
 
-                Values          |> DynObj.setValueOpt pie "values"
-                Labels          |> DynObj.setValueOpt pie "labels"
+                ++? ("values", Values)
+                ++? ("labels", Labels)
                 Label0          |> DynObj.setValueOpt pie "label0"
-                dLabel          |> DynObj.setValueOpt pie "dlabel" //-- temporarily
-                Scalegroup      |> DynObj.setValueOpt pie "scalegroup"
-                Textinfo        |> DynObj.setValueOpt pie "textinfo"      
+                ++? ("dlabel", dLabel) //-- temporarily
+                ++? ("scalegroup", Scalegroup)
+                ++? ("textinfo", Textinfo)      
                                     
-                Domain          |> DynObj.setValueOpt pie "domain"         
-                Hole            |> DynObj.setValueOpt pie "hole"           
-                Sort            |> DynObj.setValueOpt pie "sort"          
-                Direction       |> DynObj.setValueOpt pie "direction"      
-                Rotation        |> DynObj.setValueOpt pie "rotation"       
-                Pull            |> DynObj.setValueOpt pie "pull"           
-                Labelssrc       |> DynObj.setValueOpt pie "labelssrc"      
-                Valuessrc       |> DynObj.setValueOpt pie "valuessrc"      
-                Pullsrc         |> DynObj.setValueOpt pie "pullsrc"        
+                ++? ("domain", Domain)         
+                ++? ("hole", Hole)           
+                ++? ("sort", Sort)          
+                ++? ("direction", Direction)      
+                ++? ("rotation", Rotation)       
+                ++? ("pull", Pull)           
+                ++? ("labelssrc", Labelssrc)      
+                ++? ("valuessrc", Valuessrc)      
+                ++? ("pullsrc", Pullsrc)        
                     
                 // Update
                 //Marker          |> Option.iter (updatePropertyValueAndIgnore pie <@ pie.marker          @>)
                 //Textfont        |> Option.iter (updatePropertyValueAndIgnore pie <@ pie.textfont        @>)
-                Insidetextfont  |> DynObj.setValueOpt pie "insidetextfont"
-                Outsidetextfont |> DynObj.setValueOpt pie "outsidetextfont"
+                ++? ("insidetextfont", Insidetextfont)
+                ++? ("outsidetextfont", Outsidetextfont)
                         
                 // out ->
                 pie
@@ -173,7 +173,7 @@ type TraceDomainStyle() =
                 Ids           |> DynObj.setValueOpt trace   "ids"
                 Values        |> DynObj.setValueOpt trace   "values"
                 Text          |> DynObj.setValueOpt trace   "text"
-                Branchvalues  |> DynObj.setValueOptBy trace "branchvalues" StyleParam.BranchValues.convert
+                ++?? ("branchvalues", Branchvalues, StyleParam.BranchValues.convert)
                 Level         |> DynObj.setValueOpt trace   "level"
                 Maxdepth      |> DynObj.setValueOpt trace   "maxdepth"
                 trace
@@ -221,7 +221,7 @@ type TraceDomainStyle() =
                 Ids             |> DynObj.setValueOpt trace   "ids"
                 Values          |> DynObj.setValueOpt trace   "values"
                 Text            |> DynObj.setValueOpt trace   "text"
-                Branchvalues    |> DynObj.setValueOptBy trace "branchvalues" StyleParam.BranchValues.convert
+                ++?? ("branchvalues", Branchvalues, StyleParam.BranchValues.convert)
                 Tiling          |> DynObj.setValueOpt trace   "tiling"
                 PathBar         |> DynObj.setValueOpt trace   "pathbar"
                 Level           |> DynObj.setValueOpt trace   "level"
@@ -243,12 +243,12 @@ type TraceDomainStyle() =
         ) =
             (fun (parcoords:('T :> Trace)) -> 
                 
-                Dimensions         |> DynObj.setValueOpt parcoords "dimensions"         
-                Line               |> DynObj.setValueOpt parcoords "line"                     
-                Domain             |> DynObj.setValueOpt parcoords "domain"     
-                Labelfont          |> DynObj.setValueOpt parcoords "labelfont"               
-                Tickfont           |> DynObj.setValueOpt parcoords "tickfont"                
-                Rangefont          |> DynObj.setValueOpt parcoords "rangefont"              
+                ++? ("dimensions", Dimensions)         
+                ++? ("line", Line)                     
+                ++? ("domain", Domain)     
+                ++? ("labelfont", Labelfont)               
+                ++? ("tickfont", Tickfont)                
+                ++? ("rangefont", Rangefont)              
                     
                 // out ->
                 parcoords 
@@ -266,13 +266,13 @@ type TraceDomainStyle() =
         ) =
             (fun (parcats:('T :> Trace)) -> 
         
-                Dimensions         |> DynObj.setValueOpt parcats "dimensions"         
-                Line               |> DynObj.setValueOpt parcats "line"                     
-                Domain             |> DynObj.setValueOpt parcats "domain"     
-                Color              |> DynObj.setValueOpt parcats "color"     
-                Labelfont          |> DynObj.setValueOpt parcats "labelfont"               
-                Tickfont           |> DynObj.setValueOpt parcats "tickfont"                
-                Rangefont          |> DynObj.setValueOpt parcats "rangefont"              
+                ++? ("dimensions", Dimensions)         
+                ++? ("line", Line)                     
+                ++? ("domain", Domain)     
+                ++? ("color", Color)     
+                ++? ("labelfont", Labelfont)               
+                ++? ("tickfont", Tickfont)                
+                ++? ("rangefont", Rangefont)              
             
                 // out ->
                 parcats 
@@ -289,8 +289,8 @@ type TraceDomainStyle() =
             (fun (trace:('T :> Trace)) ->                  
                 header      |> DynObj.setValue    trace "header"
                 cells       |> DynObj.setValue    trace "cells"
-                ColumnWidth |> DynObj.setValueOpt trace "columnwidth"
-                ColumnOrder |> DynObj.setValueOpt trace "columnorder"
+                ++? ("columnwidth", ColumnWidth)
+                ++? ("columnorder", ColumnOrder)
                 // out ->
                 trace
             ) 

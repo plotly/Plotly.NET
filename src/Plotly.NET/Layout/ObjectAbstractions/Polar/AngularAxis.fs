@@ -239,47 +239,47 @@ type AngularAxis () =
         ) =
             fun (angularAxis: AngularAxis) ->
                 
-                Visible             |> DynObj.setValueOpt angularAxis "visible"
-                AxisType            |> DynObj.setValueOptBy angularAxis "type" StyleParam.AxisType.convert
-                AutoTypeNumbers     |> DynObj.setValueOptBy angularAxis "autotypenumbers" StyleParam.AutoTypeNumbers.convert
-                CategoryOrder       |> DynObj.setValueOptBy angularAxis "categoryorder" StyleParam.CategoryOrder.convert
-                CategoryArray       |> DynObj.setValueOpt angularAxis "categoryarray"
-                ThetaUnit           |> DynObj.setValueOpt angularAxis "thetaunit"
-                Period              |> DynObj.setValueOpt angularAxis "Period"
-                Direction           |> DynObj.setValueOpt angularAxis "Direction"
-                Rotation            |> DynObj.setValueOpt angularAxis "Rotation"
-                HoverFormat         |> DynObj.setValueOpt angularAxis "hoverformat"
-                UIRevision          |> DynObj.setValueOpt angularAxis "uirevision"
-                Color               |> DynObj.setValueOpt angularAxis "color"
-                ShowLine            |> DynObj.setValueOpt angularAxis "showline"
-                LineColor           |> DynObj.setValueOpt angularAxis "linecolor"
-                LineWidth           |> DynObj.setValueOpt angularAxis "linewidth"
-                ShowGrid            |> DynObj.setValueOpt angularAxis "showgrid"
-                GridColor           |> DynObj.setValueOpt angularAxis "gridcolor"
-                GridWidth           |> DynObj.setValueOpt angularAxis "gridwidth"
-                TickMode            |> DynObj.setValueOptBy angularAxis "tickmode" StyleParam.TickMode.convert
-                NTicks              |> DynObj.setValueOpt angularAxis "nticks"
+                ++? ("visible", Visible)
+                ++?? ("type", AxisType, StyleParam.AxisType.convert)
+                ++?? ("autotypenumbers", AutoTypeNumbers, StyleParam.AutoTypeNumbers.convert)
+                ++?? ("categoryorder", CategoryOrder, StyleParam.CategoryOrder.convert)
+                ++? ("categoryarray", CategoryArray)
+                ++? ("thetaunit", ThetaUnit)
+                ++? ("Period", Period)
+                ++? ("Direction", Direction)
+                ++? ("Rotation", Rotation)
+                ++? ("hoverformat", HoverFormat)
+                ++? ("uirevision", UIRevision)
+                ++? ("color", Color)
+                ++? ("showline", ShowLine)
+                ++? ("linecolor", LineColor)
+                ++? ("linewidth", LineWidth)
+                ++? ("showgrid", ShowGrid)
+                ++? ("gridcolor", GridColor)
+                ++? ("gridwidth", GridWidth)
+                ++?? ("tickmode", TickMode, StyleParam.TickMode.convert)
+                ++? ("nticks", NTicks)
                 Tick0               |> DynObj.setValueOpt angularAxis "tick0"
-                DTick               |> DynObj.setValueOpt angularAxis "dtick"
-                TickVals            |> DynObj.setValueOpt angularAxis "TickVals"
-                TickText            |> DynObj.setValueOpt angularAxis "TickText"
-                Ticks               |> DynObj.setValueOptBy angularAxis "ticks" StyleParam.TickOptions.convert
-                TickLen             |> DynObj.setValueOpt angularAxis "ticklen"
-                TickWidth           |> DynObj.setValueOpt angularAxis "tickwidth"
-                TickColor           |> DynObj.setValueOpt angularAxis "tickcolor"
-                ShowTickLabels      |> DynObj.setValueOpt angularAxis "showticklabels"
-                ShowTickPrefix      |> DynObj.setValueOptBy angularAxis "showtickprefix" StyleParam.ShowTickOption.convert
-                TickPrefix          |> DynObj.setValueOpt angularAxis "tickprefix"
-                ShowTickSuffix      |> DynObj.setValueOptBy angularAxis "showticksuffix" StyleParam.ShowTickOption.convert
-                TickSuffix          |> DynObj.setValueOpt angularAxis "ticksuffix"
-                ShowExponent        |> DynObj.setValueOptBy angularAxis "showexponent" StyleParam.ShowExponent.convert
-                ExponentFormat      |> DynObj.setValueOptBy angularAxis "exponentformat" StyleParam.ExponentFormat.convert
-                MinExponent         |> DynObj.setValueOpt angularAxis "minexponent"
-                SeparateThousands   |> DynObj.setValueOpt angularAxis "separatethousands"
-                TickFont            |> DynObj.setValueOpt angularAxis "tickfont"
-                TickAngle           |> DynObj.setValueOpt angularAxis "tickangle"
-                TickFormat          |> DynObj.setValueOpt angularAxis "TickFormat"
-                TickFormatStops     |> DynObj.setValueOpt angularAxis "tickformatstops"
-                Layer               |> DynObj.setValueOptBy angularAxis "layer" StyleParam.Layer.convert
+                ++? ("dtick", DTick)
+                ++? ("TickVals", TickVals)
+                ++? ("TickText", TickText)
+                ++?? ("ticks", Ticks, StyleParam.TickOptions.convert)
+                ++? ("ticklen", TickLen)
+                ++? ("tickwidth", TickWidth)
+                ++? ("tickcolor", TickColor)
+                ++? ("showticklabels", ShowTickLabels)
+                ++?? ("showtickprefix", ShowTickPrefix, StyleParam.ShowTickOption.convert)
+                ++? ("tickprefix", TickPrefix)
+                ++?? ("showticksuffix", ShowTickSuffix, StyleParam.ShowTickOption.convert)
+                ++? ("ticksuffix", TickSuffix)
+                ++?? ("showexponent", ShowExponent, StyleParam.ShowExponent.convert)
+                ++?? ("exponentformat", ExponentFormat, StyleParam.ExponentFormat.convert)
+                ++? ("minexponent", MinExponent)
+                ++? ("separatethousands", SeparateThousands)
+                ++? ("tickfont", TickFont)
+                ++? ("tickangle", TickAngle)
+                ++? ("TickFormat", TickFormat)
+                ++? ("tickformatstops", TickFormatStops)
+                ++?? ("layer", Layer, StyleParam.Layer.convert)
 
                 angularAxis

@@ -61,18 +61,18 @@ type Shape () =
             (fun (shape:Shape) -> 
 
                     
-                ShapeType |> DynObj.setValueOptBy shape "type" StyleParam.ShapeType.toString    
-                Xref      |> DynObj.setValueOpt shape "xref"     
+                ++?? ("type", ShapeType, StyleParam.ShapeType.toString)    
+                ++? ("xref", Xref)     
                 X0        |> DynObj.setValueOpt shape "x0"        
                 X1        |> DynObj.setValueOpt shape "x1"        
-                Yref      |> DynObj.setValueOpt shape "yref"     
+                ++? ("yref", Yref)     
                 Y0        |> DynObj.setValueOpt shape "y0"       
                 Y1        |> DynObj.setValueOpt shape "y1"       
-                Path      |> DynObj.setValueOpt shape "path"     
-                Opacity   |> DynObj.setValueOpt shape "opacity"      
-                Line      |> DynObj.setValueOpt shape "line"
-                Fillcolor |> DynObj.setValueOpt shape "fillcolor"
-                Layer     |> DynObj.setValueOptBy shape "layer" StyleParam.Layer.toString
+                ++? ("path", Path)     
+                ++? ("opacity", Opacity)      
+                ++? ("line", Line)
+                ++? ("fillcolor", Fillcolor)
+                ++?? ("layer", Layer, StyleParam.Layer.toString)
                 // out ->
                 shape
             ) 

@@ -94,27 +94,27 @@ type Annotation() =
             (fun (ann:Annotation) ->
                 X               |> DynObj.setValue ann "x"
                 Y               |> DynObj.setValue ann "y"
-                XRef            |> DynObj.setValueOpt ann "xref"
-                YRef            |> DynObj.setValueOpt ann "yref"
-                ArrowTailX      |> DynObj.setValueOpt ann "ax"
-                ArrowTailY      |> DynObj.setValueOpt ann "ay"
-                ArrowHead       |> DynObj.setValueOptBy ann "arrowhead" StyleParam.ArrowHead.convert
-                ArrowSize       |> DynObj.setValueOpt ann "arrowsize"
-                ArrowWidth      |> DynObj.setValueOpt ann "arrowwidth"
-                ShowArrow       |> DynObj.setValueOpt ann "showarrow"
-                ArrowColor      |> DynObj.setValueOpt ann "arrowcolor"
-                Z               |> DynObj.setValueOpt ann "z"
-                Text            |> DynObj.setValueOpt ann "text"
-                TextAngle       |> DynObj.setValueOpt ann "textangle"
-                Font            |> DynObj.setValueOpt ann "font"
-                Width           |> DynObj.setValueOpt ann "width"
-                Height          |> DynObj.setValueOpt ann "height"
-                Opacity         |> DynObj.setValueOpt ann "opacity"
-                HorizontalAlign |> DynObj.setValueOptBy ann "align" StyleParam.HorizontalAlign.convert
-                VerticalAlign   |> DynObj.setValueOptBy ann "valign" StyleParam.VerticalAlign.convert
-                BGColor         |> DynObj.setValueOpt ann "bgcolor"
-                BorderColor     |> DynObj.setValueOpt ann "bordercolor"
-                Visible         |> DynObj.setValueOpt ann "visible"
+                ++? ("xref", XRef)
+                ++? ("yref", YRef)
+                ++? ("ax", ArrowTailX)
+                ++? ("ay", ArrowTailY)
+                ++?? ("arrowhead", ArrowHead, StyleParam.ArrowHead.convert)
+                ++? ("arrowsize", ArrowSize)
+                ++? ("arrowwidth", ArrowWidth)
+                ++? ("showarrow", ShowArrow)
+                ++? ("arrowcolor", ArrowColor)
+                ++? ("z", Z)
+                ++? ("text", Text)
+                ++? ("textangle", TextAngle)
+                ++? ("font", Font)
+                ++? ("width", Width)
+                ++? ("height", Height)
+                ++? ("opacity", Opacity)
+                ++?? ("align", HorizontalAlign, StyleParam.HorizontalAlign.convert)
+                ++?? ("valign", VerticalAlign, StyleParam.VerticalAlign.convert)
+                ++? ("bgcolor", BGColor)
+                ++? ("bordercolor", BorderColor)
+                ++? ("visible", Visible)
 
                 ann
             )

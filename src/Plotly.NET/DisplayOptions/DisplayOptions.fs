@@ -52,8 +52,8 @@ type DisplayOptions() =
         ) =
             (fun (displayOptions:DisplayOptions) -> 
 
-                AdditionalHeadTags    |> DynObj.setValueOpt displayOptions "AdditionalHeadTags"
-                Description             |> DynObj.setValueOpt displayOptions "Description"
+                ++? ("AdditionalHeadTags", AdditionalHeadTags)
+                ++? ("Description", Description)
 
                 displayOptions
             )

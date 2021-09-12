@@ -32,9 +32,9 @@ type ContourProject () =
 
             fun (contourProject: ContourProject) ->
                 
-                X   |> DynObj.setValueOpt contourProject "x"
-                Y   |> DynObj.setValueOpt contourProject "y"
-                Z   |> DynObj.setValueOpt contourProject "z"
+                ++? ("x", X)
+                ++? ("y", Y)
+                ++? ("z", Z)
 
                 contourProject
 
@@ -93,17 +93,17 @@ type Contour () =
         ) =
             
             (fun (contour:Contour) -> 
-                Color            |> DynObj.setValueOpt contour "color"
-                End              |> DynObj.setValueOpt contour "end"
-                Highlight        |> DynObj.setValueOpt contour "highlight"
-                HighlightColor   |> DynObj.setValueOpt contour "highlightcolor"
-                HighlightWidth   |> DynObj.setValueOpt contour "highlightwidth"
-                Project          |> DynObj.setValueOpt contour "project"
-                Show             |> DynObj.setValueOpt contour "show"
-                Size             |> DynObj.setValueOpt contour "size"
-                Start            |> DynObj.setValueOpt contour "start"
-                UseColorMap      |> DynObj.setValueOpt contour "usecolormap"
-                Width            |> DynObj.setValueOpt contour "width"
+                ++? ("color", Color)
+                ++? ("end", End)
+                ++? ("highlight", Highlight)
+                ++? ("highlightcolor", HighlightColor)
+                ++? ("highlightwidth", HighlightWidth)
+                ++? ("project", Project)
+                ++? ("show", Show)
+                ++? ("size", Size)
+                ++? ("start", Start)
+                ++? ("usecolormap", UseColorMap)
+                ++? ("width", Width)
                
 
                 contour
@@ -139,9 +139,9 @@ type Contours () =
         ) =
             
             (fun (contours:Contours) -> 
-                X |> DynObj.setValueOpt contours "x"
-                Y |> DynObj.setValueOpt contours "y"
-                Z |> DynObj.setValueOpt contours "z"
+                ++? ("x", X)
+                ++? ("y", Y)
+                ++? ("z", Z)
            
                 contours
             )

@@ -22,7 +22,7 @@ type TraceTernaryStyle() =
         ) =  
             (fun (trace:TraceTernary) ->
 
-                TernaryId |> DynObj.setValueOptBy trace "subplot" StyleParam.SubPlotId.toString
+                ++?? ("subplot", TernaryId, StyleParam.SubPlotId.toString)
 
                 trace
             )

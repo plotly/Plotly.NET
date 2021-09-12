@@ -35,9 +35,9 @@ type Bins () =
         ) =
             
             (fun (bins:Bins) -> 
-                StartBins |> DynObj.setValueOpt bins "start"
-                EndBins   |> DynObj.setValueOpt bins "end"
-                Size      |> DynObj.setValueOpt bins "size"
+                ++? ("start", StartBins)
+                ++? ("end", EndBins)
+                ++? ("size", Size)
            
                 bins
             )

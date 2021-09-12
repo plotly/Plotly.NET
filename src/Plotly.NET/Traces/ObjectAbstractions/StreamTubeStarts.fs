@@ -45,8 +45,8 @@ type StreamTubeStarts() =
         ) =
             fun (streamTubeStarts: StreamTubeStarts) ->
 
-                X   |> DynObj.setValueOpt streamTubeStarts "x"
-                Y   |> DynObj.setValueOpt streamTubeStarts "y"
-                Z   |> DynObj.setValueOpt streamTubeStarts "z"
+                ++? ("x", X)
+                ++? ("y", Y)
+                ++? ("z", Z)
 
                 streamTubeStarts

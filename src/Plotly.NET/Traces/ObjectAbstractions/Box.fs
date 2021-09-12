@@ -37,10 +37,10 @@ type Box () =
             [<Optional;DefaultParameterValue(null)>] ?Line: Line
         ) =
             (fun (box:Box) -> 
-                Visible    |> DynObj.setValueOpt box "visible"
-                Width      |> DynObj.setValueOpt box "width"
-                FillColor  |> DynObj.setValueOpt box "fillColor"
-                Line       |> DynObj.setValueOpt box "line"
+                ++? ("visible", Visible)
+                ++? ("width", Width)
+                ++? ("fillColor", FillColor)
+                ++? ("line", Line)
                     
                 // out -> 
                 box

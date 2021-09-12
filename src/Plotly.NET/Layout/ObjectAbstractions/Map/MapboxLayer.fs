@@ -79,18 +79,18 @@ type MapboxLayer() =
         ) =
             (fun (mapBoxLayer:MapboxLayer) -> 
 
-                Visible          |> DynObj.setValueOpt mapBoxLayer "visible"
-                SourceType       |> DynObj.setValueOptBy mapBoxLayer "sourcetype" StyleParam.MapboxLayerSourceType.convert
-                Source           |> DynObj.setValueOpt mapBoxLayer "source"
-                SourceLayer      |> DynObj.setValueOpt mapBoxLayer "sourcelayer"
-                SourceAttribution|> DynObj.setValueOpt mapBoxLayer "sourceattribution"
-                Type             |> DynObj.setValueOptBy mapBoxLayer "type" StyleParam.MapboxLayerType.convert
-                Coordinates      |> DynObj.setValueOpt mapBoxLayer "coordinates"
-                Below            |> DynObj.setValueOpt mapBoxLayer "below"
-                Color            |> DynObj.setValueOpt mapBoxLayer "color"
-                Opacity          |> DynObj.setValueOpt mapBoxLayer "opacity"
-                MinZoom          |> DynObj.setValueOpt mapBoxLayer "minzoom"
-                MaxZoom          |> DynObj.setValueOpt mapBoxLayer "maxzoom"
+                ++? ("visible", Visible)
+                ++?? ("sourcetype", SourceType, StyleParam.MapboxLayerSourceType.convert)
+                ++? ("source", Source)
+                ++? ("sourcelayer", SourceLayer)
+                ++? ("sourceattribution", SourceAttribution)
+                ++?? ("type", Type, StyleParam.MapboxLayerType.convert)
+                ++? ("coordinates", Coordinates)
+                ++? ("below", Below)
+                ++? ("color", Color)
+                ++? ("opacity", Opacity)
+                ++? ("minzoom", MinZoom)
+                ++? ("maxzoom", MaxZoom)
 
                 CircleRadius     
                 |> Option.map(fun r ->
@@ -100,7 +100,7 @@ type MapboxLayer() =
                 )
                 |> DynObj.setValueOpt mapBoxLayer "circle"
 
-                Line             |> DynObj.setValueOpt mapBoxLayer "line"
+                ++? ("line", Line)
 
                 FillOutlineColor
                 |> Option.map(fun c ->
@@ -110,8 +110,8 @@ type MapboxLayer() =
                 )
                 |> DynObj.setValueOpt mapBoxLayer "fill"
 
-                Symbol           |> DynObj.setValueOpt mapBoxLayer "symbol"
-                Name             |> DynObj.setValueOpt mapBoxLayer "name"
+                ++? ("symbol", Symbol)
+                ++? ("name", Name)
                                                        
                 mapBoxLayer
             ) 

@@ -56,17 +56,17 @@ type RangeSelector () =
         ) =
             (fun (rangeSelector:RangeSelector) -> 
 
-                Visible     |> DynObj.setValueOpt rangeSelector "visible"
-                Buttons     |> DynObj.setValueOpt rangeSelector "buttons"
-                X           |> DynObj.setValueOpt rangeSelector "x"
-                XAnchor     |> DynObj.setValueOptBy rangeSelector "xanchor" StyleParam.XAnchorPosition.convert
-                Y           |> DynObj.setValueOpt rangeSelector "y"
-                YAnchor     |> DynObj.setValueOptBy rangeSelector "yanchor" StyleParam.YAnchorPosition.convert
-                Font        |> DynObj.setValueOpt rangeSelector "font"
-                BGColor     |> DynObj.setValueOpt rangeSelector "bgcolor"
-                ActiveColor |> DynObj.setValueOpt rangeSelector "activecolor"
-                BorderColor |> DynObj.setValueOpt rangeSelector "bordercolor"
-                BorderWidth |> DynObj.setValueOpt rangeSelector "borderwidth"
+                ++? ("visible", Visible)
+                ++? ("buttons", Buttons)
+                ++? ("x", X)
+                ++?? ("xanchor", XAnchor, StyleParam.XAnchorPosition.convert)
+                ++? ("y", Y)
+                ++?? ("yanchor", YAnchor, StyleParam.YAnchorPosition.convert)
+                ++? ("font", Font)
+                ++? ("bgcolor", BGColor)
+                ++? ("activecolor", ActiveColor)
+                ++? ("bordercolor", BorderColor)
+                ++? ("borderwidth", BorderWidth)
 
                 rangeSelector
             )

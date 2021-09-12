@@ -218,72 +218,72 @@ type Layout() =
             [<Optional;DefaultParameterValue(null)>] ?Shapes                 : seq<Shape>
         ) =
             (fun (layout:Layout) -> 
-                
-                Title                  |> DynObj.setValueOpt layout "title"
-                ShowLegend             |> DynObj.setValueOpt layout "showlegend"
-                Legend                 |> DynObj.setValueOpt layout "legend"
-                Margin                 |> DynObj.setValueOpt layout "margin"
-                AutoSize               |> DynObj.setValueOpt layout "autosize"
-                Width                  |> DynObj.setValueOpt layout "width"
-                Height                 |> DynObj.setValueOpt layout "height"
-                Font                   |> DynObj.setValueOpt layout "font"
-                UniformText            |> DynObj.setValueOpt layout "uniformtext"
-                Separators             |> DynObj.setValueOpt layout "separators"
-                PaperBGColor           |> DynObj.setValueOpt layout "paper_bgcolor"
-                PlotBGColor            |> DynObj.setValueOpt layout "plot_bgcolor"
-                AutoTypeNumbers        |> DynObj.setValueOptBy layout "autotypenumbers" StyleParam.AutoTypeNumbers.convert
-                Colorscale             |> DynObj.setValueOpt layout "colorscale"
-                Colorway               |> DynObj.setValueOpt layout "colorway"
-                ModeBar                |> DynObj.setValueOpt layout "modebar"
-                HoverMode              |> DynObj.setValueOptBy layout "hovermode" StyleParam.HoverMode.convert
-                ClickMode              |> DynObj.setValueOptBy layout "clickmode" StyleParam.ClickMode.convert
-                DragMode               |> DynObj.setValueOptBy layout "dragmode" StyleParam.DragMode.convert
-                SelectDirection        |> DynObj.setValueOptBy layout "selectdirection" StyleParam.SelectDirection.convert
-                HoverDistance          |> DynObj.setValueOpt layout "hoverdistance"
-                SpikeDistance          |> DynObj.setValueOpt layout "spikedistance"
-                Hoverlabel             |> DynObj.setValueOpt layout "hoverlabel"
-                Transition             |> DynObj.setValueOpt layout "transition"
-                DataRevision           |> DynObj.setValueOpt layout "datarevision"
-                UIRevision             |> DynObj.setValueOpt layout "uirevision"
-                EditRevision           |> DynObj.setValueOpt layout "editrevision"
-                SelectRevision         |> DynObj.setValueOpt layout "selectrevision"
-                Template               |> DynObj.setValueOpt layout "template"
-                Meta                   |> DynObj.setValueOpt layout "meta"
-                Computed               |> DynObj.setValueOpt layout "computed"
-                Grid                   |> DynObj.setValueOpt layout "grid"
-                Calendar               |> DynObj.setValueOptBy layout "calendar" StyleParam.Calendar.convert
-                NewShape               |> DynObj.setValueOpt layout "newshape"
-                ActiveShape            |> DynObj.setValueOpt layout "activeshape"
-                HideSources            |> DynObj.setValueOpt layout "hidesources"
-                BarGap                 |> DynObj.setValueOpt layout "bargap"
-                BarGroupGap            |> DynObj.setValueOpt layout "bargroupgap"
-                BarMode                |> DynObj.setValueOptBy layout "barmode" StyleParam.BarMode.convert
-                BarNorm                |> DynObj.setValueOptBy layout "barnorm" StyleParam.BarNorm.convert
-                ExtendPieColors        |> DynObj.setValueOpt layout "extendpiecolors"
-                HiddenLabels           |> DynObj.setValueOpt layout "hiddenlabels"
-                PieColorWay            |> DynObj.setValueOpt layout "piecolorway"
-                BoxGap                 |> DynObj.setValueOpt layout "boxgap"
-                BoxGroupGap            |> DynObj.setValueOpt layout "boxgroupgap"
-                BoxMode                |> DynObj.setValueOptBy layout "boxmode" StyleParam.BoxMode.convert
-                ViolinGap              |> DynObj.setValueOpt layout "violingap"
-                ViolinGroupGap         |> DynObj.setValueOpt layout "violingroupgap"
-                ViolinMode             |> DynObj.setValueOptBy layout "violinmode" StyleParam.ViolinMode.convert
-                WaterfallGap           |> DynObj.setValueOpt layout "waterfallgap"
-                WaterfallGroupGap      |> DynObj.setValueOpt layout "waterfallgroupgap"
-                WaterfallMode          |> DynObj.setValueOptBy layout "waterfallmode" StyleParam.WaterfallMode.convert
-                FunnelGap              |> DynObj.setValueOpt layout "funnelgap"
-                FunnelGroupGap         |> DynObj.setValueOpt layout "funnelgroupgap"
-                FunnelMode             |> DynObj.setValueOptBy layout "funnelmode" StyleParam.FunnelMode.convert
+                layout
+                ++? ("title", Title)
+                ++? ("showlegend", ShowLegend)
+                ++? ("legend", Legend)
+                ++? ("margin", Margin)
+                ++? ("autosize", AutoSize)
+                ++? ("width", Width)
+                ++? ("height", Height)
+                ++? ("font", Font)
+                ++? ("uniformtext", UniformText)
+                ++? ("separators", Separators)
+                ++? ("paper_bgcolor", PaperBGColor)
+                ++? ("plot_bgcolor", PlotBGColor)
+                ++?? ("autotypenumbers", AutoTypeNumbers, StyleParam.AutoTypeNumbers.convert)
+                ++? ("colorscale", Colorscale)
+                ++? ("colorway", Colorway)
+                ++? ("modebar", ModeBar)
+                ++?? ("hovermode", HoverMode, StyleParam.HoverMode.convert)
+                ++?? ("clickmode", ClickMode, StyleParam.ClickMode.convert)
+                ++?? ("dragmode", DragMode, StyleParam.DragMode.convert)
+                ++?? ("selectdirection", SelectDirection, StyleParam.SelectDirection.convert)
+                ++? ("hoverdistance", HoverDistance)
+                ++? ("spikedistance", SpikeDistance)
+                ++? ("hoverlabel", Hoverlabel)
+                ++? ("transition", Transition)
+                ++? ("datarevision", DataRevision)
+                ++? ("uirevision", UIRevision)
+                ++? ("editrevision", EditRevision)
+                ++? ("selectrevision", SelectRevision)
+                ++? ("template", Template)
+                ++? ("meta", Meta)
+                ++? ("computed", Computed)
+                ++? ("grid", Grid)
+                ++?? ("calendar", Calendar, StyleParam.Calendar.convert)
+                ++? ("newshape", NewShape)
+                ++? ("activeshape", ActiveShape)
+                ++? ("hidesources", HideSources)
+                ++? ("bargap", BarGap)
+                ++? ("bargroupgap", BarGroupGap)
+                ++?? ("barmode", BarMode, StyleParam.BarMode.convert)
+                ++?? ("barnorm", BarNorm, StyleParam.BarNorm.convert)
+                ++? ("extendpiecolors", ExtendPieColors)
+                ++? ("hiddenlabels", HiddenLabels)
+                ++? ("piecolorway", PieColorWay)
+                ++? ("boxgap", BoxGap)
+                ++? ("boxgroupgap", BoxGroupGap)
+                ++?? ("boxmode", BoxMode, StyleParam.BoxMode.convert)
+                ++? ("violingap", ViolinGap)
+                ++? ("violingroupgap", ViolinGroupGap)
+                ++?? ("violinmode", ViolinMode, StyleParam.ViolinMode.convert)
+                ++? ("waterfallgap", WaterfallGap)
+                ++? ("waterfallgroupgap", WaterfallGroupGap)
+                ++?? ("waterfallmode", WaterfallMode, StyleParam.WaterfallMode.convert)
+                ++? ("funnelgap", FunnelGap)
+                ++? ("funnelgroupgap", FunnelGroupGap)
+                ++?? ("funnelmode", FunnelMode, StyleParam.FunnelMode.convert)
                 ExtendFunnelAreaColors |> DynObj.setValueOpt layout "extendfunnelareacolors "
-                FunnelAreaColorWay     |> DynObj.setValueOpt layout "funnelareacolorway"
-                ExtendSunBurstColors   |> DynObj.setValueOpt layout "extendsunburstcolors"
-                SunBurstColorWay       |> DynObj.setValueOpt layout "sunburstcolorway"
-                ExtendTreeMapColors    |> DynObj.setValueOpt layout "extendtreemapcolors"
-                TreeMapColorWay        |> DynObj.setValueOpt layout "treemapcolorway"
-                ExtendIcicleColors     |> DynObj.setValueOpt layout "extendiciclecolors"
-                IcicleColorWay         |> DynObj.setValueOpt layout "iciclecolorway"
-                Annotations            |> DynObj.setValueOpt layout "annotations"
-                Shapes                 |> DynObj.setValueOpt layout "shapes"
+                ++? ("funnelareacolorway", FunnelAreaColorWay)
+                ++? ("extendsunburstcolors", ExtendSunBurstColors)
+                ++? ("sunburstcolorway", SunBurstColorWay)
+                ++? ("extendtreemapcolors", ExtendTreeMapColors)
+                ++? ("treemapcolorway", TreeMapColorWay)
+                ++? ("extendiciclecolors", ExtendIcicleColors)
+                ++? ("iciclecolorway", IcicleColorWay)
+                ++? ("annotations", Annotations)
+                ++? ("shapes", Shapes)
 
                 layout
             )

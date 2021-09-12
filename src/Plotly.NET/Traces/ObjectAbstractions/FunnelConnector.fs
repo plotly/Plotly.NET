@@ -41,9 +41,9 @@ type FunnelConnector () =
         ) = 
             (fun (connector:FunnelConnector) -> 
                 
-                Fillcolor     |> DynObj.setValueOpt connector "fillcolor"
-                Line          |> DynObj.setValueOpt connector "line"
-                Visible       |> DynObj.setValueOpt connector "visible"
+                ++? ("fillcolor", Fillcolor)
+                ++? ("line", Line)
+                ++? ("visible", Visible)
 
                 connector
             )

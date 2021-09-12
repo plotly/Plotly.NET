@@ -90,27 +90,27 @@ type Marker () =
             [<Optional;DefaultParameterValue(null)>] ?Showscale: bool
         ) =
             (fun (marker: Marker) -> 
-                Size           |> DynObj.setValueOpt marker "size" 
-                Color          |> DynObj.setValueOpt marker "color"
-                Symbol         |> DynObj.setValueOpt marker "symbol"
-                Opacity        |> DynObj.setValueOpt marker "opacity"
-                MultiSizes     |> DynObj.setValueOpt marker "size"
-                Line           |> DynObj.setValueOpt marker "line"        
-                ColorBar       |> DynObj.setValueOpt marker "colorbar"       
-                Colorscale     |> DynObj.setValueOptBy marker "colorscale" StyleParam.Colorscale.convert
-                //Colors         |> DynObj.setValueOpt marker "colors"     
-                OutlierColor   |> DynObj.setValueOpt marker "outliercolor"     
-                Maxdisplayed   |> DynObj.setValueOpt marker "maxdisplayed"   
-                Sizeref        |> DynObj.setValueOpt marker "sizeref"        
-                Sizemin        |> DynObj.setValueOpt marker "sizemin"        
-                Sizemode       |> DynObj.setValueOptBy marker "sizemode" StyleParam.MarkerSizeMode.convert
-                Cauto          |> DynObj.setValueOpt marker "cauto"          
-                Cmax           |> DynObj.setValueOpt marker "cmax"           
-                Cmid           |> DynObj.setValueOpt marker "cmid"           
-                Cmin           |> DynObj.setValueOpt marker "cmin"           
-                Autocolorscale |> DynObj.setValueOpt marker "autocolorscale" 
-                Reversescale   |> DynObj.setValueOpt marker "reversescale"   
-                Showscale      |> DynObj.setValueOpt marker "showscale"      
+                ++? ("size", Size) 
+                ++? ("color", Color)
+                ++? ("symbol", Symbol)
+                ++? ("opacity", Opacity)
+                ++? ("size", MultiSizes)
+                ++? ("line", Line)        
+                ++? ("colorbar", ColorBar)       
+                ++?? ("colorscale", Colorscale, StyleParam.Colorscale.convert)
+                //++? ("colors", Colors)     
+                ++? ("outliercolor", OutlierColor)     
+                ++? ("maxdisplayed", Maxdisplayed)   
+                ++? ("sizeref", Sizeref)        
+                ++? ("sizemin", Sizemin)        
+                ++?? ("sizemode", Sizemode, StyleParam.MarkerSizeMode.convert)
+                ++? ("cauto", Cauto)          
+                ++? ("cmax", Cmax)           
+                ++? ("cmid", Cmid)           
+                ++? ("cmin", Cmin)           
+                ++? ("autocolorscale", Autocolorscale) 
+                ++? ("reversescale", Reversescale)   
+                ++? ("showscale", Showscale)      
 
                 marker
             )

@@ -69,14 +69,14 @@ type Legend() =
             [<Optional;DefaultParameterValue(null)>] ?Title: string
         ) =
             (fun (legend:Legend) -> 
-                BGColor         |> DynObj.setValueOpt legend "bgcolor"
-                BorderColor     |> DynObj.setValueOpt legend "bordercolor"
-                Borderwidth     |> DynObj.setValueOpt legend "borderwidth"
-                TraceGroupGap   |> DynObj.setValueOpt legend "tracegroupgap"
-                ItemWidth       |> DynObj.setValueOpt legend "itemwidth"
-                X               |> DynObj.setValueOpt legend "x"
-                Y               |> DynObj.setValueOpt legend "y"
-                Title           |> DynObj.setValueOpt legend "Title"
+                ++? ("bgcolor", BGColor)
+                ++? ("bordercolor", BorderColor)
+                ++? ("borderwidth", Borderwidth)
+                ++? ("tracegroupgap", TraceGroupGap)
+                ++? ("itemwidth", ItemWidth)
+                ++? ("x", X)
+                ++? ("y", Y)
+                ++? ("Title", Title)
 
                 Orientation     |> DynObj.setValueOptBy legend "orientation"        StyleParam.Orientation.convert
                 TraceOrder      |> DynObj.setValueOptBy legend "traceorder"         StyleParam.TraceOrder.convert

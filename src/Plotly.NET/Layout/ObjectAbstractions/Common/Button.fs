@@ -43,13 +43,13 @@ type Button () =
         ) =
             (fun (button:Button) -> 
                 
-                Visible             |> DynObj.setValueOpt button "visible"
-                Step                |> DynObj.setValueOptBy button "step" StyleParam.TimeStep.convert
-                StepMode            |> DynObj.setValueOptBy button "stepmode" StyleParam.TimeStepMode.convert
-                Count               |> DynObj.setValueOpt button "count"
-                Label               |> DynObj.setValueOpt button "label"
-                Name                |> DynObj.setValueOpt button "name"
-                TemplateItemName    |> DynObj.setValueOpt button "templateitemname"
+                ++? ("visible", Visible)
+                ++?? ("step", Step, StyleParam.TimeStep.convert)
+                ++?? ("stepmode", StepMode, StyleParam.TimeStepMode.convert)
+                ++? ("count", Count)
+                ++? ("label", Label)
+                ++? ("name", Name)
+                ++? ("templateitemname", TemplateItemName)
 
                 button
             )

@@ -3,6 +3,7 @@
 open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
@@ -35,9 +36,10 @@ type ToImageButtonOptions() =
             [<Optional;DefaultParameterValue(null)>] ?Scale
         ) =
             fun (btnConf:ToImageButtonOptions) ->
-                Format              |> Option.map StyleParam.ImageFormat.toString |> DynObj.setValueOpt btnConf "format"
-                Filename            |> DynObj.setValueOpt btnConf "filename"
-                Width               |> DynObj.setValueOpt btnConf "width"
-                Height              |> DynObj.setValueOpt btnConf "height"
-                Scale               |> DynObj.setValueOpt btnConf "scale"
+                let format = Format              |> Option.map StyleParam.ImageFormat.toString
                 btnConf
+                ++? ("format", format)
+                ++? ("filename", Filename)
+                ++? ("width", Width)
+                ++? ("height", Height)
+                ++? ("scale", Scale)
