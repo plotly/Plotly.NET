@@ -23,7 +23,7 @@ module ChartDomain =
         static member Pie
             (
                 values        : seq<#IConvertible>,
-                labels        : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Labels        : seq<#IConvertible>,
                 [<Optional;DefaultParameterValue(null)>] ?Name          : string,
                 [<Optional;DefaultParameterValue(null)>] ?TextLabels    : seq<#IConvertible>,
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition  : StyleParam.TextPosition,
@@ -37,7 +37,7 @@ module ChartDomain =
                 TraceDomain.initPie(
                     TraceDomainStyle.Pie(
                         Values          = values,
-                        Labels          = labels,
+                        ?Labels         = Labels,
                         ?Name           = Name,
                         ?Text           = TextLabels,
                         ?TextPosition   = TextPosition,
@@ -49,7 +49,7 @@ module ChartDomain =
                     )
                 )
                 |> TraceStyle.Marker(?Colors=SectionColors)
-                |> TraceStyle.TextLabel(Text=(TextLabels |> Option.defaultValue labels),?Textposition=TextPosition)
+                |> TraceStyle.TextLabel(?Text=(if TextLabels.IsSome then TextLabels else Labels),?Textposition=TextPosition)
                 |> GenericChart.ofTraceObject 
 
         /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data.
@@ -70,7 +70,7 @@ module ChartDomain =
                 let values,labels = Seq.unzip valuesLabels 
                 Chart.Pie(
                     values,
-                    labels,
+                    Labels = labels,
                     ?Name          = Name         ,
                     ?TextLabels    = TextLabels   ,
                     ?TextPosition  = TextPosition ,
@@ -88,7 +88,7 @@ module ChartDomain =
         static member Doughnut
             (
                values        : seq<#IConvertible>,
-               labels        : seq<#IConvertible>,
+               [<Optional;DefaultParameterValue(null)>] ?Labels        : seq<#IConvertible>,
                [<Optional;DefaultParameterValue(null)>] ?Hole          : float,
                [<Optional;DefaultParameterValue(null)>] ?Name          : string,
                [<Optional;DefaultParameterValue(null)>] ?TextLabels    : seq<#IConvertible>,
@@ -104,7 +104,7 @@ module ChartDomain =
                 TraceDomain.initPie(
                     TraceDomainStyle.Pie(
                         Values          = values,
-                        Labels          = labels,
+                        ?Labels         = Labels,
                         ?Name           = Name,
                         ?Text           = TextLabels,
                         ?TextPosition   = TextPosition,
@@ -117,7 +117,7 @@ module ChartDomain =
                     )
                 )
                 |> TraceStyle.Marker(?Colors=SectionColors)
-                |> TraceStyle.TextLabel(Text=(TextLabels |> Option.defaultValue labels),?Textposition=TextPosition)
+                |> TraceStyle.TextLabel(?Text=(if TextLabels.IsSome then TextLabels else Labels),?Textposition=TextPosition)
                 |> GenericChart.ofTraceObject 
 
 
@@ -140,7 +140,7 @@ module ChartDomain =
                 let values,labels = Seq.unzip valuesLabels 
                 Chart.Doughnut(
                     values,
-                    labels,
+                    Labels = labels,
                     ?Name          = Name         ,
                     ?TextLabels    = TextLabels   ,
                     ?TextPosition  = TextPosition ,
