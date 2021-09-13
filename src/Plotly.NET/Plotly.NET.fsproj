@@ -66,6 +66,7 @@
     <Compile Include="Layout\ObjectAbstractions\Map\MapboxLayerSymbol.fs" />
     <Compile Include="Layout\ObjectAbstractions\Map\MapboxLayer.fs" />
     <Compile Include="Layout\ObjectAbstractions\Map\Mapbox.fs" />
+    <Compile Include="Layout\ObjectAbstractions\Ternary\Ternary.fs" />
     <Compile Include="Layout\ObjectAbstractions\3D\Camera.fs" />
     <Compile Include="Layout\ObjectAbstractions\3D\AspectRatio.fs" />
     <Compile Include="Layout\ObjectAbstractions\3D\Scene.fs" />
@@ -130,6 +131,5 @@
   <ItemGroup>
     <Folder Include="DisplayOptions\ObjectAbstractions\" />
     <Folder Include="Layout\ObjectAbstractions\Carpet\" />
-    <Folder Include="Layout\ObjectAbstractions\Ternary\" />
   </ItemGroup>
 </Project>
