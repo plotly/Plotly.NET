@@ -27,10 +27,10 @@
 #load "Margin.fs"
 #load "Domain.fs"
 #load "Shape.fs"
-#load "Hoverlabel.fs"
 #load "Annotation.fs"
 #load "LayoutGrid.fs"
 #load "Legend.fs"
+#load "Hoverlabel.fs"
 #load "TickFormatStop.fs"
 #load "ColorBar.fs"
 #load "Rangebreak.fs"
@@ -121,6 +121,7 @@
 #load "Chart3D.fs"
 #load "ChartPolar.fs"
 #load "ChartMap.fs"
+#load "ChartTernary.fs"
 #load "ChartDomain.fs"
 
 #I "CSharpLayer"
@@ -147,12 +148,24 @@ open FSharpAux
 
 open System
 
-let products = ["Product A"; "Product B"; "Product C"];
-let sfValues = [20; 14; 23]
-Chart.Column (    products,
-    sfValues,
-    Labels= sfValues,
-    TextPosition = StyleParam.TextPosition.Inside
+Chart.ScatterTernary(
+    A = [1; 2; 3],
+    B = [3; 2; 1],
+    C = [0; 1; 2],
+    Labels = ["A"; "B"; "C"],
+    Mode= StyleParam.Mode.Lines_Markers_Text,
+    TextPosition = StyleParam.TextPosition.BottomCenter
+)
+|> Chart.withLineStyle(Shape=StyleParam.Shape.Spline)
+|> Chart.withMarkerStyle(Symbol = StyleParam.Symbol.Cross)
+|> Chart.show
+
+Chart.LineTernary(
+    A = [10; 20; 30; 40; 50; 60; 70; 80;],
+    B = ([10; 20; 30; 40; 50; 60; 70; 80;] |> List.rev),
+    Sum = 100,
+    ShowMarkers = true,
+    Dash = StyleParam.DrawingStyle.DashDot
 )
 |> Chart.show
 
