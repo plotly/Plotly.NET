@@ -37,7 +37,7 @@ module Chart2D =
         /// <param name="y">Sets the y coordinates of the plotted data.</param>
         /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
-        /// <param name="Showlegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="MarkerSymbol">Sets the type of symbol that datums are displayed as</param>
         /// <param name="Color">Sets Line/Marker Color</param>
         /// <param name="Opacity">Sets the Opacity of the trace</param>
@@ -53,7 +53,7 @@ module Chart2D =
         [<Extension>]
         static member Scatter(x, y, mode,
                 [<Optional;DefaultParameterValue(null)>] ?Name          ,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend    ,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend    ,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol  ,
                 [<Optional;DefaultParameterValue(null)>] ?Color         ,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity       ,
@@ -77,7 +77,7 @@ module Chart2D =
                     ?Orientation= Orientation   , 
                     ?GroupNorm  = GroupNorm
                 )               
-                >> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+                >> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
                 >> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
                 >> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
                 >> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
@@ -91,7 +91,7 @@ module Chart2D =
         /// <param name="xy">Sets the x,y coordinates of the plotted data.</param>
         /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
-        /// <param name="Showlegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="MarkerSymbol">Sets the type of symbol that datums are displayed as</param>
         /// <param name="Color">Sets Line/Marker Color</param>
         /// <param name="Opacity">Sets the Opacity of the trace</param>
@@ -107,7 +107,7 @@ module Chart2D =
         [<Extension>]
         static member Scatter(xy,mode,
                 [<Optional;DefaultParameterValue(null)>] ?Name          ,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend    ,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend    ,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol  ,
                 [<Optional;DefaultParameterValue(null)>] ?Color         ,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity       ,
@@ -123,7 +123,7 @@ module Chart2D =
             let x,y = Seq.unzip xy 
             Chart.Scatter(x, y, mode,
                 ?Name           = Name          ,
-                ?Showlegend     = Showlegend    ,
+                ?ShowLegend     = ShowLegend    ,
                 ?MarkerSymbol   = MarkerSymbol  ,
                 ?Color          = Color         ,
                 ?Opacity        = Opacity       ,
@@ -144,7 +144,7 @@ module Chart2D =
         /// <param name="x">Sets the x coordinates of the plotted data.</param>
         /// <param name="y">Sets the y coordinates of the plotted data.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
-        /// <param name="Showlegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="MarkerSymbol">Sets the type of symbol that datums are displayed as</param>
         /// <param name="Color">Sets Line/Marker Color</param>
         /// <param name="Opacity">Sets the Opacity of the trace</param>
@@ -158,7 +158,7 @@ module Chart2D =
         [<Extension>]
         static member Point(x, y,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -182,7 +182,7 @@ module Chart2D =
                     ?StackGroup = StackGroup, 
                     ?Orientation= Orientation, 
                     ?GroupNorm  = GroupNorm)              
-                >> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+                >> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
                 >> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
                 >> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
 
@@ -191,7 +191,7 @@ module Chart2D =
         /// <summary>Creates a Point chart, which uses Points in a 2D space to visualize data. </summary>
         /// <param name="xy">Sets the x,y coordinates of the plotted data.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
-        /// <param name="Showlegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="MarkerSymbol">Sets the type of symbol that datums are displayed as</param>
         /// <param name="Color">Sets Line/Marker Color</param>
         /// <param name="Opacity">Sets the Opacity of the trace</param>
@@ -205,7 +205,7 @@ module Chart2D =
         [<Extension>]
         static member Point(xy,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -220,7 +220,7 @@ module Chart2D =
             let x,y = Seq.unzip xy 
             Chart.Point(x, y, 
                 ?Name           = Name,
-                ?Showlegend     = Showlegend,
+                ?ShowLegend     = ShowLegend,
                 ?MarkerSymbol   = MarkerSymbol,
                 ?Color          = Color,
                 ?Opacity        = Opacity,
@@ -239,7 +239,7 @@ module Chart2D =
         /// <param name="y">Sets the y coordinates of the plotted data.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
-        /// <param name="Showlegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="MarkerSymbol">Sets the type of symbol that datums are displayed as</param>
         /// <param name="Color">Sets Line/Marker Color</param>
         /// <param name="Opacity">Sets the Opacity of the trace</param>
@@ -256,7 +256,7 @@ module Chart2D =
         static member Line(x, y,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -289,7 +289,7 @@ module Chart2D =
                     ?Orientation= Orientation, 
                     ?GroupNorm  = GroupNorm)          
                 >> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
-                >> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+                >> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
                 >> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
                 >> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
 
@@ -302,7 +302,7 @@ module Chart2D =
         /// <param name="xy">Sets the x,y coordinates of the plotted data.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
-        /// <param name="Showlegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="MarkerSymbol">Sets the type of symbol that datums are displayed as</param>
         /// <param name="Color">Sets Line/Marker Color</param>
         /// <param name="Opacity">Sets the Opacity of the trace</param>
@@ -319,7 +319,7 @@ module Chart2D =
         static member Line(xy,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -338,7 +338,7 @@ module Chart2D =
                 x, y, 
                 ?Name           = Name,
                 ?ShowMarkers    = ShowMarkers,
-                ?Showlegend     = Showlegend,
+                ?ShowLegend     = ShowLegend,
                 ?MarkerSymbol   = MarkerSymbol,
                 ?Color          = Color,
                 ?Opacity        = Opacity,
@@ -360,7 +360,7 @@ module Chart2D =
         /// <param name="y">Sets the y coordinates of the plotted data.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
-        /// <param name="Showlegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="MarkerSymbol">Sets the type of symbol that datums are displayed as</param>
         /// <param name="Color">Sets Line/Marker Color</param>
         /// <param name="Opacity">Sets the Opacity of the trace</param>
@@ -378,7 +378,7 @@ module Chart2D =
         static member Spline(x, y,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -410,7 +410,7 @@ module Chart2D =
                     ?StackGroup = StackGroup, 
                     ?Orientation= Orientation, 
                     ?GroupNorm  = GroupNorm)      
-                >> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+                >> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
                 >> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width, Shape=StyleParam.Shape.Spline, ?Smoothing=Smoothing)
                 >> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
                 >> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
@@ -424,7 +424,7 @@ module Chart2D =
         /// <param name="xy">Sets the x,y coordinates of the plotted data.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
-        /// <param name="Showlegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="MarkerSymbol">Sets the type of symbol that datums are displayed as</param>
         /// <param name="Color">Sets Line/Marker Color</param>
         /// <param name="Opacity">Sets the Opacity of the trace</param>
@@ -442,7 +442,7 @@ module Chart2D =
         static member Spline(xy,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -461,7 +461,7 @@ module Chart2D =
             Chart.Spline(x, y, 
                 ?Name           = Name,
                 ?ShowMarkers    = ShowMarkers,
-                ?Showlegend     = Showlegend,
+                ?ShowLegend     = ShowLegend,
                 ?MarkerSymbol   = MarkerSymbol,
                 ?Color          = Color,
                 ?Opacity        = Opacity,
@@ -483,7 +483,7 @@ module Chart2D =
         /// <param name="y">Sets the y coordinates of the plotted data.</param>
         /// <param name="sizes">Sets the bubble size of the plotted data</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
-        /// <param name="Showlegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="MarkerSymbol">Sets the type of symbol that datums are displayed as</param>
         /// <param name="Color">Sets Line/Marker Color</param>
         /// <param name="Opacity">Sets the Opacity of the trace</param>
@@ -497,7 +497,7 @@ module Chart2D =
         [<Extension>]
         static member Bubble(x, y,sizes:seq<#IConvertible>,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -520,7 +520,7 @@ module Chart2D =
                     ?StackGroup = StackGroup, 
                     ?Orientation= Orientation, 
                     ?GroupNorm  = GroupNorm)                  
-                >> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+                >> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
                 >> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol, MultiSizes=sizes)
                 >> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
 
@@ -530,7 +530,7 @@ module Chart2D =
         /// <summary>Creates a bubble chart. A bubble chart is a variation of the Point chart, where the data points get an additional scale by being rendered as bubbles of different sizes.</summary>
         /// <param name="xysizes">Sets the x coordinates, y coordinates, and bubble sizes of the plotted data.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
-        /// <param name="Showlegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="MarkerSymbol">Sets the type of symbol that datums are displayed as</param>
         /// <param name="Color">Sets Line/Marker Color</param>
         /// <param name="Opacity">Sets the Opacity of the trace</param>
@@ -543,7 +543,7 @@ module Chart2D =
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         [<Extension>]
         static member Bubble(xysizes,[<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -559,7 +559,7 @@ module Chart2D =
             Chart.Bubble(
                 x, y,sizes,
                 ?Name           = Name,
-                ?Showlegend     = Showlegend,
+                ?ShowLegend     = ShowLegend,
                 ?MarkerSymbol   = MarkerSymbol,
                 ?Color          = Color,
                 ?Opacity        = Opacity,
@@ -577,7 +577,7 @@ module Chart2D =
         static member Range(x, y, upper, lower,mode,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?RangeColor,
                 [<Optional;DefaultParameterValue(null)>] ?Labels,
@@ -603,7 +603,7 @@ module Chart2D =
             let trace = 
                 Trace2D.initScatter (
                         Trace2DStyle.Scatter(X = x,Y = y, Mode=mode, ?FillColor=Color) )               
-                |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend)
+                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend)
                 |> TraceStyle.Line(?Color=Color)
                 |> TraceStyle.Marker(?Color=Color)
                 |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
@@ -611,7 +611,7 @@ module Chart2D =
             let lower = 
                 Trace2D.initScatter (
                         Trace2DStyle.Scatter(X = x,Y = lower, Mode=StyleParam.Mode.Lines, ?FillColor=RangeColor) )               
-                |> TraceStyle.TraceInfo(?Name = Some lowerName, Showlegend=false)
+                |> TraceStyle.TraceInfo(?Name = Some lowerName, ShowLegend=false)
                 |> TraceStyle.Line(Width=0.)
                 |> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else (Plotly.NET.Color.fromString "rgba(0,0,0,0.5)"))             
                 |> TraceStyle.TextLabel(?Text=LowerLabels,?Textposition=TextPosition,?Textfont=TextFont)
@@ -619,7 +619,7 @@ module Chart2D =
             let upper = 
                 Trace2D.initScatter (
                         Trace2DStyle.Scatter(X = x,Y = upper, Mode=StyleParam.Mode.Lines, ?FillColor=RangeColor, Fill=StyleParam.Fill.ToNext_y) )               
-                |> TraceStyle.TraceInfo(?Name = Some upperName, Showlegend=false)
+                |> TraceStyle.TraceInfo(?Name = Some upperName, ShowLegend=false)
                 |> TraceStyle.Line(Width=0.)
                 |> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else (Plotly.NET.Color.fromString "rgba(0,0,0,0.5)"))             
                 |> TraceStyle.TextLabel(?Text=UpperLabels,?Textposition=TextPosition,?Textfont=TextFont)
@@ -631,7 +631,7 @@ module Chart2D =
         static member Range(xy, upper, lower, mode,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?RangeColor,
                 [<Optional;DefaultParameterValue(null)>] ?Labels,
@@ -642,7 +642,7 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?LowerName,
                 [<Optional;DefaultParameterValue(null)>] ?UpperName) =  
             let x,y = Seq.unzip xy
-            Chart.Range(x, y, upper, lower, mode, ?Name=Name,?ShowMarkers=ShowMarkers,?Showlegend=Showlegend,?Color=Color,?RangeColor=RangeColor,?Labels=Labels,?UpperLabels=UpperLabels,?LowerLabels=LowerLabels,?TextPosition=TextPosition,?TextFont=TextFont,?LowerName=LowerName,?UpperName=UpperName)
+            Chart.Range(x, y, upper, lower, mode, ?Name=Name,?ShowMarkers=ShowMarkers,?ShowLegend=ShowLegend,?Color=Color,?RangeColor=RangeColor,?Labels=Labels,?UpperLabels=UpperLabels,?LowerLabels=LowerLabels,?TextPosition=TextPosition,?TextFont=TextFont,?LowerName=LowerName,?UpperName=UpperName)
 
 
         /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
@@ -650,7 +650,7 @@ module Chart2D =
         static member Area(x, y,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -670,7 +670,7 @@ module Chart2D =
 
             Trace2D.initScatter (
                     Trace2DStyle.Scatter(X = x,Y = y, Mode=changeMode StyleParam.Mode.Lines,Fill=StyleParam.Fill.ToZero_y) )               
-            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
             |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
             |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
             |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
@@ -682,7 +682,7 @@ module Chart2D =
         static member Area(xy,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -692,7 +692,7 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?Dash,
                 [<Optional;DefaultParameterValue(null)>] ?Width) = 
             let x,y = Seq.unzip xy
-            Chart.Area(x, y, ?Name=Name,?ShowMarkers=ShowMarkers,?Showlegend=Showlegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width) 
+            Chart.Area(x, y, ?Name=Name,?ShowMarkers=ShowMarkers,?ShowLegend=ShowLegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width) 
 
 
         /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
@@ -700,7 +700,7 @@ module Chart2D =
         static member SplineArea(x, y,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -721,7 +721,7 @@ module Chart2D =
   
             Trace2D.initScatter (
                     Trace2DStyle.Scatter(X = x,Y = y, Mode=changeMode StyleParam.Mode.Lines,Fill=StyleParam.Fill.ToZero_y) )               
-            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
             |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width, Shape=StyleParam.Shape.Spline, ?Smoothing=Smoothing)
             |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
             |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
@@ -733,7 +733,7 @@ module Chart2D =
         static member SplineArea(xy,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -744,13 +744,13 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?Width,
                 [<Optional;DefaultParameterValue(null)>] ?Smoothing) = 
             let x,y = Seq.unzip xy
-            Chart.SplineArea(x, y, ?Name=Name,?ShowMarkers=ShowMarkers,?Showlegend=Showlegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width,?Smoothing=Smoothing) 
+            Chart.SplineArea(x, y, ?Name=Name,?ShowMarkers=ShowMarkers,?ShowLegend=ShowLegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width,?Smoothing=Smoothing) 
 
         /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
         [<Extension>]
         static member StackedArea(x, y,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -761,7 +761,7 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?Width) = 
             Trace2D.initScatter (
                     Trace2DStyle.Scatter(X = x,Y = y, Mode=StyleParam.Mode.Lines) )               
-            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
             |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
             |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
             |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
@@ -772,7 +772,7 @@ module Chart2D =
         [<Extension>]
         static member StackedArea(xy,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -782,7 +782,7 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?Dash,
                 [<Optional;DefaultParameterValue(null)>] ?Width) = 
             let x,y = Seq.unzip xy
-            Chart.StackedArea(x, y, ?Name=Name,?Showlegend=Showlegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width) 
+            Chart.StackedArea(x, y, ?Name=Name,?ShowLegend=ShowLegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width) 
 
         
         /// Creates a Funnel chart.
@@ -796,7 +796,7 @@ module Chart2D =
         ///
         /// Name           : Sets the trace name. The trace name appear as the legend item and on hover
         ///
-        /// Showlegend     : Determines whether or not an item corresponding to this trace is shown in the legend.
+        /// ShowLegend     : Determines whether or not an item corresponding to this trace is shown in the legend.
         ///
         /// Opacity        : Sets the Opacity of the trace
         ///
@@ -838,7 +838,7 @@ module Chart2D =
         [<Extension>]
         static member Funnel (x, y,
                 [<Optional;DefaultParameterValue(null)>] ?Name                          ,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
                 [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
@@ -879,7 +879,7 @@ module Chart2D =
                         ?Outsidetextfont = Outsidetextfont
                     )
                 )
-                |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
                 |> TraceStyle.Marker(?Color=Color,?Line=Line)
                 |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
                 |> GenericChart.ofTraceObject
@@ -987,7 +987,7 @@ module Chart2D =
         [<Extension>]
         static member Column(keys, values,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
                 [<Optional;DefaultParameterValue(null)>] ?Labels,
@@ -1001,7 +1001,7 @@ module Chart2D =
                 | Option.None        -> TraceObjects.Marker.init (?Color=Color)
                 
             Trace2D.initBar (Trace2DStyle.Bar(X = keys,Y = values,Marker=marker))
-            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)        
+            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)        
             |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
             |> GenericChart.ofTraceObject  
         
@@ -1010,7 +1010,7 @@ module Chart2D =
         [<Extension>]
         static member Column(keysvalues,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
                 [<Optional;DefaultParameterValue(null)>] ?Labels,
@@ -1018,14 +1018,14 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?TextFont,
                 [<Optional;DefaultParameterValue(null)>] ?Marker) = 
             let keys,values = Seq.unzip keysvalues
-            Chart.Column(keys, values, ?Name=Name,?Showlegend=Showlegend,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Marker=Marker) 
+            Chart.Column(keys, values, ?Name=Name,?ShowLegend=ShowLegend,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Marker=Marker) 
 
 
         /// Displays series of column chart type as stacked columns.
         [<Extension>]
         static member StackedColumn(keys, values,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
                 [<Optional;DefaultParameterValue(null)>] ?Labels,
@@ -1038,7 +1038,7 @@ module Chart2D =
                 | Option.None        -> TraceObjects.Marker.init (?Color=Color)
 
             Trace2D.initBar (Trace2DStyle.Bar(X = keys,Y = values,Marker=marker))
-            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)        
+            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)        
             |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
             |> GenericChart.ofTraceObject  
             //|> GenericChart.setLayout (Layout.init (Layout.style(Barmode=StyleParam.Barmode.Stack)))
@@ -1049,7 +1049,7 @@ module Chart2D =
         [<Extension>]
         static member StackedColumn(keysvalues,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
                 [<Optional;DefaultParameterValue(null)>] ?Labels,
@@ -1057,14 +1057,14 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?TextFont,
                 [<Optional;DefaultParameterValue(null)>] ?Marker) =  
             let keys,values = Seq.unzip keysvalues
-            Chart.StackedColumn(keys, values,?Name=Name,?Showlegend=Showlegend,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Marker=Marker) 
+            Chart.StackedColumn(keys, values,?Name=Name,?ShowLegend=ShowLegend,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Marker=Marker) 
 
 
         /// Illustrates comparisons among individual items
         [<Extension>]
         static member Bar(keys, values,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
                 [<Optional;DefaultParameterValue(null)>] ?Labels,
@@ -1076,7 +1076,7 @@ module Chart2D =
                 | Some marker -> marker |> TraceObjects.Marker.style(?Color=Color)
                 | Option.None        -> TraceObjects.Marker.init (?Color=Color)
             Trace2D.initBar (Trace2DStyle.Bar(X = values,Y = keys,Marker=marker,Orientation = StyleParam.Orientation.Horizontal))
-            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)        
+            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)        
             |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
             |> GenericChart.ofTraceObject  
 
@@ -1085,7 +1085,7 @@ module Chart2D =
         [<Extension>]
         static member Bar(keysvalues,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
                 [<Optional;DefaultParameterValue(null)>] ?Labels,
@@ -1093,14 +1093,14 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?TextFont,
                 [<Optional;DefaultParameterValue(null)>] ?Marker) = 
             let keys,values = Seq.unzip keysvalues
-            Chart.Bar(keys, values, ?Name=Name,?Showlegend=Showlegend,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Marker=Marker) 
+            Chart.Bar(keys, values, ?Name=Name,?ShowLegend=ShowLegend,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Marker=Marker) 
 
 
         /// Displays series of tcolumn chart type as stacked bars.
         [<Extension>]
         static member StackedBar(keys, values,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
                 [<Optional;DefaultParameterValue(null)>] ?Labels,
@@ -1112,7 +1112,7 @@ module Chart2D =
                 | Some marker -> marker |> TraceObjects.Marker.style(?Color=Color)
                 | Option.None        -> TraceObjects.Marker.init (?Color=Color)
             Trace2D.initBar (Trace2DStyle.Bar(X = values,Y = keys,Marker=marker,Orientation = StyleParam.Orientation.Horizontal))
-            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)        
+            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)        
             |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
             |> GenericChart.ofTraceObject  
             //|> GenericChart.setLayout (Layout.init (Layout.style(Barmode=StyleParam.Barmode.Stack)))
@@ -1123,7 +1123,7 @@ module Chart2D =
         [<Extension>]
         static member StackedBar(keysvalues,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
                 [<Optional;DefaultParameterValue(null)>] ?Labels,
@@ -1131,7 +1131,7 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?TextFont,
                 [<Optional;DefaultParameterValue(null)>] ?Marker) = 
             let keys,values = Seq.unzip keysvalues
-            Chart.StackedBar(keys, values, ?Name=Name,?Showlegend=Showlegend,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Marker=Marker) 
+            Chart.StackedBar(keys, values, ?Name=Name,?ShowLegend=ShowLegend,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Marker=Marker) 
 
         /// Computes a histogram with auto-determined the bin size.
         [<Extension>]
@@ -1140,7 +1140,7 @@ module Chart2D =
                 data,
                 [<Optional;DefaultParameterValue(null)>]  ?Orientation,
                 [<Optional;DefaultParameterValue(null)>]  ?Name,
-                [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>]  ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>]  ?Opacity,
                 [<Optional;DefaultParameterValue(null)>]  ?Color,
                 [<Optional;DefaultParameterValue(null)>]  ?HistNorm,
@@ -1167,7 +1167,7 @@ module Chart2D =
                     )
                 )
                 |> TraceStyle.Marker(?Color=Color)
-                |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)   
+                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)   
                 
                 |> GenericChart.ofTraceObject
         
@@ -1178,7 +1178,7 @@ module Chart2D =
                 x,y,
                 [<Optional;DefaultParameterValue(null)>] ?Z,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
                 [<Optional;DefaultParameterValue(null)>] ?Colorscale,
                 [<Optional;DefaultParameterValue(null)>] ?Showscale,
@@ -1214,7 +1214,7 @@ module Chart2D =
                         ?HistFunc=HistFunc 
                     ) 
                 )
-                |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)   
+                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)   
                 |> GenericChart.ofTraceObject
 
         /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.            
@@ -1224,7 +1224,7 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?x,
                 [<Optional;DefaultParameterValue(null)>] ?y,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Fillcolor,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -1250,7 +1250,7 @@ module Chart2D =
                         ?Marker=Marker,?Line=Line,?Alignmentgroup=Alignmentgroup,?Offsetgroup=Offsetgroup,?Notched=Notched,?NotchWidth=NotchWidth,?QuartileMethod=QuartileMethod
                     ) 
                 )
-                |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)   
+                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)   
                 |> TraceStyle.Marker(?Color=Color)
                 |> GenericChart.ofTraceObject
 
@@ -1259,7 +1259,7 @@ module Chart2D =
         [<Extension>]
         static member BoxPlot(xy,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Fillcolor,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -1278,7 +1278,7 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?QuartileMethod
                 ) = 
             let x,y = Seq.unzip xy
-            Chart.BoxPlot(x, y, ?Name=Name,?Showlegend=Showlegend,?Color=Color,?Fillcolor=Fillcolor,?Opacity=Opacity,?Whiskerwidth=Whiskerwidth,?Boxpoints=Boxpoints,?Boxmean=Boxmean,?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation,
+            Chart.BoxPlot(x, y, ?Name=Name,?ShowLegend=ShowLegend,?Color=Color,?Fillcolor=Fillcolor,?Opacity=Opacity,?Whiskerwidth=Whiskerwidth,?Boxpoints=Boxpoints,?Boxmean=Boxmean,?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation,
                                 ?Marker=Marker,?Line=Line,?Alignmentgroup=Alignmentgroup,?Offsetgroup=Offsetgroup,?Notched=Notched,?NotchWidth=NotchWidth,?QuartileMethod=QuartileMethod) 
 
 
@@ -1289,7 +1289,7 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?x,
                 [<Optional;DefaultParameterValue(null)>] ?y,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Fillcolor,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -1320,7 +1320,7 @@ module Chart2D =
                         ?Scalegroup=Scalegroup,?Scalemode=Scalemode,?Side=Side,?Span=Span,?SpanMode=SpanMode,?Uirevision=Uirevision
                     ) 
                 )
-                |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)   
+                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)   
                 |> TraceStyle.Marker(?Color=Color)
                 |> GenericChart.ofTraceObject
 
@@ -1329,7 +1329,7 @@ module Chart2D =
         [<Extension>]
         static member Violin(xy,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Fillcolor,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -1353,7 +1353,7 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?Uirevision        
             ) = 
             let x,y = Seq.unzip xy
-            Chart.Violin(x, y, ?Name=Name,?Showlegend=Showlegend,?Color=Color,?Fillcolor=Fillcolor,?Opacity=Opacity,?Points=Points,?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation,
+            Chart.Violin(x, y, ?Name=Name,?ShowLegend=ShowLegend,?Color=Color,?Fillcolor=Fillcolor,?Opacity=Opacity,?Points=Points,?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation,
                             ?Width=Width,?Marker=Marker,?Line=Line,?Alignmentgroup=Alignmentgroup,?Offsetgroup=Offsetgroup,?Box=Box,?Bandwidth=Bandwidth,?Meanline=Meanline,
                             ?Scalegroup=Scalegroup,?Scalemode=Scalemode,?Side=Side,?Span=Span,?SpanMode=SpanMode,?Uirevision=Uirevision
                 ) 
@@ -1407,7 +1407,7 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?ColNames,
                 [<Optional;DefaultParameterValue(null)>] ?RowNames,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
                 [<Optional;DefaultParameterValue(null)>] ?Colorscale,
                 [<Optional;DefaultParameterValue(null)>] ?Showscale,
@@ -1429,7 +1429,7 @@ module Chart2D =
                     ?zSmooth=zSmooth,
                     ?ColorBar=ColorBar
                 )
-                >> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+                >> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
 
             let useWebGL = defaultArg UseWebGL false
 
@@ -1442,7 +1442,7 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>]  ?X,
                 [<Optional;DefaultParameterValue(null)>]  ?Y,
                 [<Optional;DefaultParameterValue(null)>]  ?Name,
-                [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>]  ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>]  ?Opacity,
                 [<Optional;DefaultParameterValue(null)>]  ?Colorscale,
                 [<Optional;DefaultParameterValue(null)>]  ?Showscale,
@@ -1454,7 +1454,7 @@ module Chart2D =
                     ?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?ColorBar=ColorBar
                 )
             )
-            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)   
+            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)   
             |> GenericChart.ofTraceObject
 
         /// Creates an OHLC (open-high-low-close) chart. OHLC charts are typically used to illustrate movements in the price of a financial instrument over time.

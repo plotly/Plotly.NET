@@ -32,7 +32,7 @@ module ChartPolar =
             (
                 r, theta, mode,
                 [<Optional;DefaultParameterValue(null)>]  ?Name,
-                [<Optional;DefaultParameterValue(null)>]  ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>]  ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>]  ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>]  ?Color,
                 [<Optional;DefaultParameterValue(null)>]  ?Opacity,
@@ -50,7 +50,7 @@ module ChartPolar =
                         Theta   = theta, 
                         Mode    = mode
                     ) 
-                    >> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+                    >> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
                     >> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
                     >> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
                     >> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
@@ -65,7 +65,7 @@ module ChartPolar =
             (
                 rtheta, mode,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -82,7 +82,7 @@ module ChartPolar =
                 Chart.ScatterPolar(
                     r, t, mode,
                     ?Name=Name,
-                    ?Showlegend=Showlegend,
+                    ?ShowLegend=ShowLegend,
                     ?MarkerSymbol=MarkerSymbol,
                     ?Color=Color,
                     ?Opacity=Opacity,
@@ -100,7 +100,7 @@ module ChartPolar =
             (
                 r, theta,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -118,7 +118,7 @@ module ChartPolar =
                         Theta   = theta, 
                         Mode    = changeMode StyleParam.Mode.Markers
                     ) 
-                    >> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+                    >> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
                     >> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
                     >> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
 
@@ -132,7 +132,7 @@ module ChartPolar =
             (
                 rTheta,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -146,7 +146,7 @@ module ChartPolar =
                 Chart.PointPolar(
                     r, t,
                     ?Name           = Name,
-                    ?Showlegend     = Showlegend,
+                    ?ShowLegend     = ShowLegend,
                     ?MarkerSymbol   = MarkerSymbol,
                     ?Color          = Color,
                     ?Opacity        = Opacity,
@@ -162,7 +162,7 @@ module ChartPolar =
             (
                 r, theta,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
@@ -188,7 +188,7 @@ module ChartPolar =
                         Theta   = theta, 
                         Mode    = changeMode StyleParam.Mode.Lines
                     ) 
-                    >> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+                    >> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
                     >> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
                     >> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
                     >> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
@@ -203,7 +203,7 @@ module ChartPolar =
             (
                 rTheta,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
@@ -220,7 +220,7 @@ module ChartPolar =
                  Chart.LinePolar(
                     r, t,
                     ?Name           = Name,
-                    ?Showlegend     = Showlegend,
+                    ?ShowLegend     = ShowLegend,
                     ?ShowMarkers    = ShowMarkers,
                     ?MarkerSymbol   = MarkerSymbol,
                     ?Color          = Color,
@@ -239,7 +239,7 @@ module ChartPolar =
             (
                 r, theta,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
@@ -266,7 +266,7 @@ module ChartPolar =
                         Theta   = theta, 
                         Mode    = changeMode StyleParam.Mode.Lines
                     ) 
-                    >> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+                    >> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
                     >> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width, Shape=StyleParam.Shape.Spline, ?Smoothing=Smoothing)
                     >> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
                     >> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
@@ -280,7 +280,7 @@ module ChartPolar =
             (
                 rTheta,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
@@ -298,7 +298,7 @@ module ChartPolar =
                  Chart.SplinePolar(
                     r, t,
                     ?Name           = Name,
-                    ?Showlegend     = Showlegend,
+                    ?ShowLegend     = ShowLegend,
                     ?ShowMarkers    = ShowMarkers,
                     ?MarkerSymbol   = MarkerSymbol,
                     ?Color          = Color,
@@ -318,7 +318,7 @@ module ChartPolar =
             (
                 r, theta, sizes:seq<#IConvertible>,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -336,7 +336,7 @@ module ChartPolar =
                         Theta   = theta, 
                         Mode    = changeMode StyleParam.Mode.Markers
                     ) 
-                    >> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+                    >> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
                     >> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol,MultiSizes=sizes)
                     >> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
 
@@ -350,7 +350,7 @@ module ChartPolar =
             (
                 rThetaSizes:seq<#IConvertible*#IConvertible*#IConvertible>,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -364,7 +364,7 @@ module ChartPolar =
                 Chart.BubblePolar(
                     r, t, sizes,
                     ?Name           = Name,
-                    ?Showlegend     = Showlegend,
+                    ?ShowLegend     = ShowLegend,
                     ?MarkerSymbol   = MarkerSymbol,
                     ?Color          = Color,
                     ?Opacity        = Opacity,
@@ -380,7 +380,7 @@ module ChartPolar =
             (
                 r, theta,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
                 [<Optional;DefaultParameterValue(null)>] ?Labels,
@@ -394,7 +394,7 @@ module ChartPolar =
                         R = r, Theta = theta
                     )
                 )
-                |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
                 |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=LineWidth)
                 |> TraceStyle.Marker(?Color=Color)
                 |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)

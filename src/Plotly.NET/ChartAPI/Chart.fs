@@ -72,15 +72,15 @@ type Chart =
     static member withTraceName
         (
             [<Optional;DefaultParameterValue(null)>] ?Name,
-            [<Optional;DefaultParameterValue(null)>] ?Showlegend,
-            [<Optional;DefaultParameterValue(null)>] ?Legendgroup,
+            [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
+            [<Optional;DefaultParameterValue(null)>] ?LegendGroup,
             [<Optional;DefaultParameterValue(null)>] ?Visible
         ) =
             fun (ch:GenericChart) ->
                 ch |> mapiTrace (fun i trace ->
                     let naming i name = name |> Option.map (fun v -> if i = 0 then v else sprintf "%s_%i" v i)
                     trace 
-                    |> TraceStyle.TraceInfo(?Name=(naming i Name),?Showlegend=Showlegend,?Legendgroup=Legendgroup,?Visible=Visible)
+                    |> TraceStyle.TraceInfo(?Name=(naming i Name),?ShowLegend=ShowLegend,?LegendGroup=LegendGroup,?Visible=Visible)
                 )
 
         /// Set the axis anchor id the trace is belonging to

@@ -21,11 +21,11 @@ module GenericChartExtensions =
         member this.WithTraceName
             (
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
-                [<Optional;DefaultParameterValue(null)>] ?Legendgroup,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
+                [<Optional;DefaultParameterValue(null)>] ?LegendGroup,
                 [<Optional;DefaultParameterValue(null)>] ?Visible
             ) =
-                this |> Chart.withTraceName(?Name=Name,?Showlegend=Showlegend,?Legendgroup=Legendgroup,?Visible=Visible)
+                this |> Chart.withTraceName(?Name=Name,?ShowLegend=ShowLegend,?LegendGroup=LegendGroup,?Visible=Visible)
 
         /// Set the axis anchor id the trace is belonging to
         [<CompiledName("WithAxisAnchor")>]
