@@ -147,6 +147,15 @@ open FSharpAux
 
 open System
 
+let products = ["Product A"; "Product B"; "Product C"];
+let sfValues = [20; 14; 23]
+Chart.Column (    products,
+    sfValues,
+    Labels= sfValues,
+    TextPosition = StyleParam.TextPosition.Inside
+)
+|> Chart.show
+
 let doughnutChart =
     let values = [19; 26; 55;]
     let labels = ["Residential"; "Non-Residential"; "Utility"]
@@ -160,7 +169,7 @@ let doughnutChart =
 
 Chart.Doughnut(
     values = [10; 15; 15; 30; 22],
-    labels = ["some"; "random"; "slice"; "labels"; "bruh"],
+    Labels = ["some"; "random"; "slice"; "labels"; "bruh"],
     TextLabels = ["text"; "labels"; "are"; "different"; "thing"],
     TextPosition = StyleParam.TextPosition.Outside,
     Direction = StyleParam.Direction.CounterClockwise,

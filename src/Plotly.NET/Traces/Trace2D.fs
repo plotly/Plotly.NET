@@ -303,38 +303,119 @@ type Trace2DStyle() =
             ) 
 
     /// <summary>Create a function that applies the styles of a bar plot to a Trace object</summary>
-    /// <param name="X">Sets the x coordinates of the plotted data.</param>
-    /// <param name="Y">Sets the y coordinates of the plotted data.</param>
-    /// <param name="Marker">Sets Marker</param>
-    /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
-    /// <param name="R">[Legacy] used for polar charts. Will be removed when adding the new polar charts.</param>
-    /// <param name="T">[Legacy] used for polar charts. Will be removed when adding the new polar charts.</param>
-    /// <param name="Error_y">Sets vertical error bars for this this scatter trace.</param>
-    /// <param name="Error_x">Sets horizontal error bars for this this scatter trace.</param>
     static member Bar
         (   
-            [<Optional;DefaultParameterValue(null)>] ?X      : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?Y      : seq<#IConvertible>,                                 
-            [<Optional;DefaultParameterValue(null)>] ?Marker : Marker,            
-            [<Optional;DefaultParameterValue(null)>] ?R      : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?T      : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?Error_y: Error,
-            [<Optional;DefaultParameterValue(null)>] ?Error_x: Error, 
-            [<Optional;DefaultParameterValue(null)>] ?Orientation
+            [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+            [<Optional;DefaultParameterValue(null)>] ?Visible           : StyleParam.Visible,
+            [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+            [<Optional;DefaultParameterValue(null)>] ?LegendRank        : int,
+            [<Optional;DefaultParameterValue(null)>] ?LegendGroup       : string,
+            [<Optional;DefaultParameterValue(null)>] ?LegendGroupTitle  : Title,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+            [<Optional;DefaultParameterValue(null)>] ?Ids               : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?X                 : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?X0                : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?DX                : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?Y                 : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Y0                : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?DY                : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?Base              : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?Text              : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
+            [<Optional;DefaultParameterValue(null)>] ?TextTemplate      : string,
+            [<Optional;DefaultParameterValue(null)>] ?HoverText         : string,
+            [<Optional;DefaultParameterValue(null)>] ?HoverInfo         : StyleParam.HoverInfo,
+            [<Optional;DefaultParameterValue(null)>] ?HoverTemplate     : string,
+            [<Optional;DefaultParameterValue(null)>] ?XHoverFormat      : string,
+            [<Optional;DefaultParameterValue(null)>] ?YHoverFormat      : string,
+            [<Optional;DefaultParameterValue(null)>] ?Meta              : string,
+            [<Optional;DefaultParameterValue(null)>] ?CustomData        : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?XAxis             : StyleParam.LinearAxisId,
+            [<Optional;DefaultParameterValue(null)>] ?YAxis             : StyleParam.LinearAxisId,
+            [<Optional;DefaultParameterValue(null)>] ?Orientation       : StyleParam.Orientation,
+            [<Optional;DefaultParameterValue(null)>] ?AlignmentGroup    : string,
+            [<Optional;DefaultParameterValue(null)>] ?OffsetGroup       : string,
+            [<Optional;DefaultParameterValue(null)>] ?XPeriod           : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?XPeriodAlignment  : StyleParam.PeriodAlignment,            
+            [<Optional;DefaultParameterValue(null)>] ?XPeriod0          : #IConvertible,            
+            [<Optional;DefaultParameterValue(null)>] ?YPeriod           : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?YPeriodAlignment  : StyleParam.PeriodAlignment,
+            [<Optional;DefaultParameterValue(null)>] ?YPeriod0          : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+            [<Optional;DefaultParameterValue(null)>] ?TextAngle         : float,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
+            [<Optional;DefaultParameterValue(null)>] ?ErrorX            : Error,
+            [<Optional;DefaultParameterValue(null)>] ?ErrorY            : Error,
+            [<Optional;DefaultParameterValue(null)>] ?SelectedPoints    : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Selected          : Selection,
+            [<Optional;DefaultParameterValue(null)>] ?Unselected        : Selection,
+            [<Optional;DefaultParameterValue(null)>] ?ClipOnAxis        : bool,
+            [<Optional;DefaultParameterValue(null)>] ?Constraintext     : StyleParam.ConstrainText,
+            [<Optional;DefaultParameterValue(null)>] ?HoverLabel        : Hoverlabel,
+            [<Optional;DefaultParameterValue(null)>] ?InsideTextAnchor  : StyleParam.InsideTextAnchor,
+            [<Optional;DefaultParameterValue(null)>] ?InsideTextFont    : Font,
+            [<Optional;DefaultParameterValue(null)>] ?OutsideTextFont   : Font,
+            [<Optional;DefaultParameterValue(null)>] ?XCalendar         : StyleParam.Calendar,
+            [<Optional;DefaultParameterValue(null)>] ?YCalendar         : StyleParam.Calendar,
+            [<Optional;DefaultParameterValue(null)>] ?UIRevision        : string
+
         ) =
             (fun (bar:('T :> Trace)) ->    
-                X            |> DynObj.setValueOpt bar "x"
-                Y            |> DynObj.setValueOpt bar "y"    
-                R            |> DynObj.setValueOpt bar "r"
-                T            |> DynObj.setValueOpt bar "t"
-                Orientation  |> DynObj.setValueOptBy bar "orientation" StyleParam.Orientation.convert
-                        
-                // Update                
-                Marker       |> DynObj.setValueOpt bar "marker"                
-                Error_x      |> DynObj.setValueOpt bar "error_x"
-                Error_y      |> DynObj.setValueOpt bar "error_y"
-                        
-                // out ->
+               
+                Name              |> DynObj.setValueOpt bar "name"
+                Visible           |> DynObj.setValueOptBy bar "visible" StyleParam.Visible.convert
+                ShowLegend        |> DynObj.setValueOpt bar "showlegend"
+                LegendRank        |> DynObj.setValueOpt bar "legendrank"
+                LegendGroup       |> DynObj.setValueOpt bar "legendgroup"
+                LegendGroupTitle  |> DynObj.setValueOpt bar "legendgrouptitle"
+                Opacity           |> DynObj.setValueOpt bar "opacity"
+                Ids               |> DynObj.setValueOpt bar "ids"
+                X                 |> DynObj.setValueOpt bar "x"
+                X0                |> DynObj.setValueOpt bar "x0"
+                DX                |> DynObj.setValueOpt bar "dx"
+                Y                 |> DynObj.setValueOpt bar "y"
+                Y0                |> DynObj.setValueOpt bar "y0"
+                DY                |> DynObj.setValueOpt bar "dy"
+                Base              |> DynObj.setValueOpt bar "base"
+                Text              |> DynObj.setValueOpt bar "text"
+                TextPosition      |> DynObj.setValueOptBy bar "textposition" StyleParam.TextPosition.convert
+                TextTemplate      |> DynObj.setValueOpt bar "texttemplate"
+                HoverText         |> DynObj.setValueOpt bar "hovertext"
+                HoverInfo         |> DynObj.setValueOptBy bar "hoverinfo"  StyleParam.HoverInfo.convert
+                HoverTemplate     |> DynObj.setValueOpt bar "hovertemplate"
+                XHoverFormat      |> DynObj.setValueOpt bar "xhoverformat"
+                YHoverFormat      |> DynObj.setValueOpt bar "yhoverformat"
+                Meta              |> DynObj.setValueOpt bar "meta"
+                CustomData        |> DynObj.setValueOpt bar "customdata"
+                XAxis             |> DynObj.setValueOptBy bar "xaxis" StyleParam.LinearAxisId.convert
+                YAxis             |> DynObj.setValueOptBy bar "yaxis"  StyleParam.LinearAxisId.convert
+                Orientation       |> DynObj.setValueOptBy bar "orientation" StyleParam.Orientation.convert
+                AlignmentGroup    |> DynObj.setValueOpt bar "alignmentgroup"
+                OffsetGroup       |> DynObj.setValueOpt bar "offsetgroup"
+                XPeriod           |> DynObj.setValueOpt bar "xperiod"
+                XPeriodAlignment  |> DynObj.setValueOptBy bar "xperiodalignment" StyleParam.PeriodAlignment.convert
+                XPeriod0          |> DynObj.setValueOpt bar "xperiod0"
+                YPeriod           |> DynObj.setValueOpt bar "yperiod"
+                YPeriodAlignment  |> DynObj.setValueOptBy bar "yperiodalignment" StyleParam.PeriodAlignment.convert
+                YPeriod0          |> DynObj.setValueOpt bar "yperiod0"
+                Marker            |> DynObj.setValueOpt bar "marker"
+                TextAngle         |> DynObj.setValueOpt bar "textangle"
+                TextFont          |> DynObj.setValueOpt bar "textfont"
+                ErrorX            |> DynObj.setValueOpt bar "errorx"
+                ErrorY            |> DynObj.setValueOpt bar "errory"
+                SelectedPoints    |> DynObj.setValueOpt bar "selectedpoints"
+                Selected          |> DynObj.setValueOpt bar "selected"
+                Unselected        |> DynObj.setValueOpt bar "unselected"
+                ClipOnAxis        |> DynObj.setValueOpt bar "cliponaxis"
+                Constraintext     |> DynObj.setValueOptBy bar "constraintext" StyleParam.ConstrainText.convert
+                HoverLabel        |> DynObj.setValueOpt bar "hoverlabel"
+                InsideTextAnchor  |> DynObj.setValueOptBy bar "insidetextanchor" StyleParam.InsideTextAnchor.convert
+                InsideTextFont    |> DynObj.setValueOpt bar "insidetextfont"
+                OutsideTextFont   |> DynObj.setValueOpt bar "outsidetextfont"
+                XCalendar         |> DynObj.setValueOptBy bar "xcalendar" StyleParam.Calendar.convert
+                YCalendar         |> DynObj.setValueOptBy bar "ycalendar" StyleParam.Calendar.convert
+                UIRevision        |> DynObj.setValueOpt bar "uirevision"
+
                 bar
 
             ) 

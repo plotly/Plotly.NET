@@ -290,6 +290,23 @@ module StyleParam =
 //--------------------------
     
     [<RequireQualifiedAccess>]
+    type ConstrainText =
+        | Inside      
+        | Outside     
+        | Both
+        | None
+    
+        static member toString = function
+            | Inside    -> "inside"
+            | Outside   -> "outside"
+            | Both      -> "both"
+            | None      -> "none"
+
+        static member convert = ConstrainText.toString >> box
+        override this.ToString() = this |> ConstrainText.toString
+        member this.Convert() = this |> ConstrainText.convert
+
+    [<RequireQualifiedAccess>]
     type ClickMode =
         | Event      
         | Select     
@@ -962,8 +979,18 @@ module StyleParam =
 // #I#
 //--------------------------
 
+    [<RequireQualifiedAccess>]
+    type InsideTextAnchor =
+        | End | Middle | Start
+        static member toString = function
+            | End       -> "end"             
+            | Middle    -> "middle"            
+            | Start     -> "start"    
 
-
+        static member convert = InsideTextAnchor.toString >> box
+        override this.ToString() = this |> InsideTextAnchor.toString
+        member this.Convert() = this |> InsideTextAnchor.convert
+        
     [<RequireQualifiedAccess>]
     type InsideTextOrientation =
         | Horizontal | Radial | Tangential | Auto
