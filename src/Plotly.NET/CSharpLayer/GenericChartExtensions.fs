@@ -659,3 +659,8 @@ module GenericChartExtensions =
         member this.WithScene(scene:Scene, [<Optional;DefaultParameterValue(null)>] ?Id) =
             this |> Chart.withScene(scene,?Id=Id)
 
+        /// Sets the scene object with the given id on the chart layout
+        [<CompiledName("WithTernary")>]
+        member this.WithTernary(ternary:Ternary, [<Optional;DefaultParameterValue(null)>] ?Id) =
+            this |> Chart.withTernary(ternary,?Id=Id)
+

@@ -57,6 +57,10 @@
 #load "RadialAxis.fs"
 #load "Polar.fs"
 
+#I "Layout/ObjectAbstractions/Ternary"
+
+#load "Ternary.fs"
+
 #load "Layout/Layout.fs"
 
 #I "Traces/ObjectAbstractions"
@@ -166,6 +170,13 @@ Chart.LineTernary(
     Sum = 100,
     ShowMarkers = true,
     Dash = StyleParam.DrawingStyle.DashDot
+)
+|> Chart.withTernary(
+    Ternary.init(
+        AAxis = LinearAxis.init(Color = Color.fromKeyword ColorKeyword.DarkOrchid),
+        BAxis = LinearAxis.init(Color = Color.fromKeyword ColorKeyword.DarkMagenta),
+        CAxis = LinearAxis.init(Color = Color.fromKeyword ColorKeyword.DarkCyan)
+    )
 )
 |> Chart.show
 
@@ -407,6 +418,23 @@ let gridNew (nRows: int) (nCols: int) =
                     |> TraceDomainStyle.SetDomain newDomain
                     :> Trace
                 )
+
+            | TraceIDLocal.Ternary ->
+
+                let ternary = 
+                    layout.TryGetTypedValue<Ternary> "ternary" |> Option.defaultValue (Ternary.init())
+                    |> Ternary.style(Domain = Domain.init(Row = rowIndex - 1, Column = colIndex - 1))
+
+                let ternaryAnchor = StyleParam.SubPlotId.Ternary (i+1)
+
+                gChart
+                |> GenericChart.mapTrace(fun t ->
+                    t 
+                    :?> TraceTernary
+                    |> TraceTernaryStyle.SetTernary ternaryAnchor
+                    :> Trace
+                )
+                |> Chart.withTernary(ternary,ternaryAnchor)
         )
         |> Chart.combine
         |> Chart.withLayoutGrid (
@@ -458,7 +486,7 @@ gridNew 3 3 [
     ]
     |> Chart.combine
     Chart.PointPolar([1,2])
-    Chart.PointGeo([1,2])
+    Chart.PointTernary([1,2,3])
     Chart.PointMapbox([1,2]) |> Chart.withMapbox(Mapbox.init(Style = StyleParam.MapboxStyle.OpenStreetMap))
     Chart.Sunburst(
         ["A";"B";"C";"D";"E"],

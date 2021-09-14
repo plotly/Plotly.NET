@@ -1420,3 +1420,14 @@ type Chart =
                 |> Layout.updateSceneById(id,scene)
             GenericChart.setLayout layout ch
         )
+
+    /// Sets the scene with the given id on the chart layout
+    [<CompiledName("WithTernary")>]
+    static member withTernary(ternary:Ternary, [<Optional;DefaultParameterValue(null)>] ?Id) =
+        (fun (ch:GenericChart) ->
+            let layout =
+                let id = defaultArg Id (StyleParam.SubPlotId.Ternary 1)
+                GenericChart.getLayout ch 
+                |> Layout.updateTernaryById(id,ternary)
+            GenericChart.setLayout layout ch
+        )
