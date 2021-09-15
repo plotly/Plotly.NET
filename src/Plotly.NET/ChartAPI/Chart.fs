@@ -1431,3 +1431,63 @@ type Chart =
                 |> Layout.updateTernaryById(id,ternary)
             GenericChart.setLayout layout ch
         )
+        
+    /// Sets the A-Axis of the ternary coordinate system with the given id on the chart layout
+    [<CompiledName("WithAAxis")>]
+    static member withAAxis(aAxis:LinearAxis, [<Optional;DefaultParameterValue(null)>] ?Id) =
+        (fun (ch:GenericChart) ->
+            let id = defaultArg Id (StyleParam.SubPlotId.Ternary 1)
+            let layout = GenericChart.getLayout ch 
+
+            let updatedTernary = 
+                layout
+                |> Layout.tryGetTernaryById(id)
+                |> Option.defaultValue (Ternary.init())
+                |> Ternary.style(AAxis = aAxis)
+
+            let updatedLayout =
+                layout
+                |> Layout.updateTernaryById(id,updatedTernary)
+
+            GenericChart.setLayout updatedLayout ch
+        )
+                
+    /// Sets the A-Axis of the ternary coordinate system with the given id on the chart layout
+    [<CompiledName("WithBAxis")>]
+    static member withBAxis(bAxis:LinearAxis, [<Optional;DefaultParameterValue(null)>] ?Id) =
+        (fun (ch:GenericChart) ->
+            let id = defaultArg Id (StyleParam.SubPlotId.Ternary 1)
+            let layout = GenericChart.getLayout ch 
+
+            let updatedTernary = 
+                layout
+                |> Layout.tryGetTernaryById(id)
+                |> Option.defaultValue (Ternary.init())
+                |> Ternary.style(BAxis = bAxis)
+
+            let updatedLayout =
+                layout
+                |> Layout.updateTernaryById(id,updatedTernary)
+
+            GenericChart.setLayout updatedLayout ch
+        )
+                
+    /// Sets the A-Axis of the ternary coordinate system with the given id on the chart layout
+    [<CompiledName("WithCAxis")>]
+    static member withCAxis(cAxis:LinearAxis, [<Optional;DefaultParameterValue(null)>] ?Id) =
+        (fun (ch:GenericChart) ->
+            let id = defaultArg Id (StyleParam.SubPlotId.Ternary 1)
+            let layout = GenericChart.getLayout ch 
+
+            let updatedTernary = 
+                layout
+                |> Layout.tryGetTernaryById(id)
+                |> Option.defaultValue (Ternary.init())
+                |> Ternary.style(CAxis = cAxis)
+
+            let updatedLayout =
+                layout
+                |> Layout.updateTernaryById(id,updatedTernary)
+
+            GenericChart.setLayout updatedLayout ch
+        )
