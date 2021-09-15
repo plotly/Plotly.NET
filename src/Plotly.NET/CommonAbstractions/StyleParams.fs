@@ -14,6 +14,31 @@ module StyleParam =
 //--------------------------
     
     [<RequireQualifiedAccess>]
+    type ArrowSide =
+        | Start | End | StartEnd | None 
+
+        static member toString = function
+            | Start     -> "start"
+            | End       -> "end"
+            | StartEnd  -> "startend"
+            | None      -> "none"
+        static member convert = ArrowSide.toString >> box
+        override this.ToString() = this |> ArrowSide.toString
+        member this.Convert() = this |> ArrowSide.convert
+    
+    [<RequireQualifiedAccess>]
+    type AnnotationAlignment =
+        | Left | Center | Right 
+
+        static member toString = function
+            | Left  -> "left" 
+            | Center-> "center" 
+            | Right -> "right" 
+        static member convert = AnnotationAlignment.toString >> box
+        override this.ToString() = this |> AnnotationAlignment.toString
+        member this.Convert() = this |> AnnotationAlignment.convert
+    
+    [<RequireQualifiedAccess>]
     type AspectMode =
         | Auto | Cube | Data | Manual
 
@@ -289,6 +314,19 @@ module StyleParam =
 // #C#
 //--------------------------
     
+    [<RequireQualifiedAccess>]
+    type ClickToShow =
+        | False | OnOff | OnOut
+    
+        static member toString = function
+            | False -> "false"
+            | OnOff -> "onoff"
+            | OnOut -> "onout"
+
+        static member convert = ClickToShow.toString >> box
+        override this.ToString() = this |> ClickToShow.toString
+        member this.Convert() = this |> ClickToShow.convert
+
     [<RequireQualifiedAccess>]
     type ConstrainText =
         | Inside      

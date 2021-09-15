@@ -43,7 +43,6 @@ let y' = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
 use the `Annotation.init` function to generate a shape, and either the `Chart.withAnnotation` or the `Chart.withAnnotations` function to add
 multiple annotations at once.
 
-**Attention**: Adding an annotation after you added a previous one currently removes the old one. This is a bug and will be fixed
 *)
 
 open Plotly.NET.LayoutObjects

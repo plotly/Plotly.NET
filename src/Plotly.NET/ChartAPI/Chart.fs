@@ -792,12 +792,36 @@ type Chart =
         (fun (ch:GenericChart) ->
             GenericChart.setConfig config ch)
         
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="annotations">The annotations to add to the input charts layout</param>
+    /// <param name="Append">If true, the input annotations will be appended to existing annotations, otherwise existing annotations will be removed (default: true)</param>
     [<CompiledName("WithAnnotations")>]
-    static member withAnnotations(annotations:seq<Annotation>) =
-        (fun (ch:GenericChart) -> 
-            ch
-            |> GenericChart.mapLayout 
-                (Layout.style (Annotations = annotations)))
+    static member withAnnotations
+        (
+            annotations:seq<Annotation>,
+            [<Optional;DefaultParameterValue(true)>] ?Append: bool
+        ) =
+            let append = defaultArg Append true
+
+            fun (ch:GenericChart) -> 
+                
+                let annotations' = 
+
+                    if append then
+
+                        let layout = GenericChart.getLayout ch
+
+                        layout.TryGetTypedValue<seq<Annotation>>("annotations")
+                        |> Option.defaultValue Seq.empty
+                        |> Seq.append annotations
+
+                    else annotations
+
+                ch
+                |> GenericChart.mapLayout 
+                    (Layout.style (Annotations = annotations'))
 
     // Set the title of a Chart
     [<CompiledName("WithTitle")>]

@@ -52,10 +52,10 @@
     <Compile Include="Layout\ObjectAbstractions\Common\Margin.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\Domain.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\Shape.fs" />
+    <Compile Include="Layout\ObjectAbstractions\Common\Hoverlabel.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\Annotation.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\LayoutGrid.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\Legend.fs" />
-    <Compile Include="Layout\ObjectAbstractions\Common\Hoverlabel.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\TickFormatStop.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\ColorBar.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\Rangebreak.fs" />
