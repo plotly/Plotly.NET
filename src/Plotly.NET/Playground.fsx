@@ -151,6 +151,7 @@ open Deedle
 open FSharpAux
 
 open System
+open System.IO
 
 Chart.ScatterTernary(
     A = [1; 2; 3],
