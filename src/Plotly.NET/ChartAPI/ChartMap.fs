@@ -62,7 +62,7 @@ module ChartMap =
         ///
         /// Name        : Sets the trace name. The trace name appear as the legend item and on hover
         ///
-        /// Showlegend  : Determines whether or not an item corresponding to this trace is shown in the legend.
+        /// ShowLegend  : Determines whether or not an item corresponding to this trace is shown in the legend.
         ///
         /// MarkerSymbol: Sets the type of symbol that datums are displayed as
         ///
@@ -90,7 +90,7 @@ module ChartMap =
         [<Extension>]
         static member ScatterGeo(longitudes, latitudes, mode,
                 [<Optional;DefaultParameterValue(null)>] ?Name                          ,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol                  ,
                 [<Optional;DefaultParameterValue(null)>] ?Color                         ,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
@@ -118,7 +118,7 @@ module ChartMap =
                     ?Fillcolor      = Fillcolor    
                 )               
             )
-            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
             |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
             |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
             |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
@@ -136,7 +136,7 @@ module ChartMap =
         ///
         /// Name        : Sets the trace name. The trace name appear as the legend item and on hover
         ///
-        /// Showlegend  : Determines whether or not an item corresponding to this trace is shown in the legend.
+        /// ShowLegend  : Determines whether or not an item corresponding to this trace is shown in the legend.
         ///
         /// MarkerSymbol: Sets the type of symbol that datums are displayed as
         ///
@@ -164,7 +164,7 @@ module ChartMap =
         [<Extension>]
         static member ScatterGeo(lonlat, mode,
                 [<Optional;DefaultParameterValue(null)>] ?Name                          ,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol                  ,
                 [<Optional;DefaultParameterValue(null)>] ?Color                         ,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
@@ -193,7 +193,7 @@ module ChartMap =
                     ?Fillcolor      = Fillcolor    
                 )               
             )
-            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
             |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
             |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
             |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
@@ -210,7 +210,7 @@ module ChartMap =
         ///
         /// Name        : Sets the trace name. The trace name appear as the legend item and on hover
         ///
-        /// Showlegend  : Determines whether or not an item corresponding to this trace is shown in the legend.
+        /// ShowLegend  : Determines whether or not an item corresponding to this trace is shown in the legend.
         ///
         /// MarkerSymbol: Sets the type of symbol that datums are displayed as
         ///
@@ -238,7 +238,7 @@ module ChartMap =
         [<Extension>]
         static member ScatterGeo(locations, mode,
                 [<Optional;DefaultParameterValue(null)>] ?Name                          ,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol                  ,
                 [<Optional;DefaultParameterValue(null)>] ?Color                         ,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
@@ -265,7 +265,7 @@ module ChartMap =
                     ?Fillcolor      = Fillcolor    
                 )               
             )
-            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
             |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
             |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
             |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
@@ -281,7 +281,7 @@ module ChartMap =
         ///
         /// Name        : Sets the trace name. The trace name appear as the legend item and on hover
         ///
-        /// Showlegend  : Determines whether or not an item corresponding to this trace is shown in the legend.
+        /// ShowLegend  : Determines whether or not an item corresponding to this trace is shown in the legend.
         ///
         /// MarkerSymbol: Sets the type of symbol that datums are displayed as
         ///
@@ -305,7 +305,7 @@ module ChartMap =
         [<Extension>]
         static member PointGeo(longitudes, latitudes,
                 [<Optional;DefaultParameterValue(null)>] ?Name                          ,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol                  ,
                 [<Optional;DefaultParameterValue(null)>] ?Color                         ,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
@@ -333,7 +333,7 @@ module ChartMap =
                     ?Fillcolor      = Fillcolor    
                 )               
             )
-            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
             |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
             |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
             |> GenericChart.ofTraceObject
@@ -346,7 +346,7 @@ module ChartMap =
         ///
         /// Name        : Sets the trace name. The trace name appear as the legend item and on hover
         ///
-        /// Showlegend  : Determines whether or not an item corresponding to this trace is shown in the legend.
+        /// ShowLegend  : Determines whether or not an item corresponding to this trace is shown in the legend.
         ///
         /// MarkerSymbol: Sets the type of symbol that datums are displayed as
         ///
@@ -370,7 +370,7 @@ module ChartMap =
         [<Extension>]
         static member PointGeo(lonlat,
                 [<Optional;DefaultParameterValue(null)>] ?Name                          ,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol                  ,
                 [<Optional;DefaultParameterValue(null)>] ?Color                         ,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
@@ -399,7 +399,7 @@ module ChartMap =
                     ?Fillcolor      = Fillcolor    
                 )               
             )
-            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
             |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
             |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
             |> GenericChart.ofTraceObject
@@ -412,7 +412,7 @@ module ChartMap =
         ///
         /// Name        : Sets the trace name. The trace name appear as the legend item and on hover
         ///
-        /// Showlegend  : Determines whether or not an item corresponding to this trace is shown in the legend.
+        /// ShowLegend  : Determines whether or not an item corresponding to this trace is shown in the legend.
         ///
         /// MarkerSymbol: Sets the type of symbol that datums are displayed as
         ///
@@ -436,7 +436,7 @@ module ChartMap =
         [<Extension>]
         static member PointGeo(locations,
                 [<Optional;DefaultParameterValue(null)>] ?Name                          ,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol                  ,
                 [<Optional;DefaultParameterValue(null)>] ?Color                         ,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
@@ -462,7 +462,7 @@ module ChartMap =
                     ?Fillcolor  = Fillcolor    
                 )               
             )
-            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
             |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
             |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
             |> GenericChart.ofTraceObject
@@ -479,7 +479,7 @@ module ChartMap =
         ///
         /// ShowMarkers : Determines wether or not markers will be rendered for each datum.
         ///
-        /// Showlegend  : Determines whether or not an item corresponding to this trace is shown in the legend.
+        /// ShowLegend  : Determines whether or not an item corresponding to this trace is shown in the legend.
         ///
         /// MarkerSymbol: Sets the type of symbol that datums are displayed as
         ///
@@ -509,7 +509,7 @@ module ChartMap =
         [<Extension>]
         static member LineGeo(longitudes, latitudes,
                 [<Optional;DefaultParameterValue(null)>] ?Name                          ,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol                  ,
                 [<Optional;DefaultParameterValue(null)>] ?ShowMarkers                   ,
                 [<Optional;DefaultParameterValue(null)>] ?Color                         ,
@@ -544,7 +544,7 @@ module ChartMap =
                     ?Fillcolor      = Fillcolor    
                 )               
             )
-            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
             |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
             |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
             |> GenericChart.ofTraceObject
@@ -559,7 +559,7 @@ module ChartMap =
         ///
         /// ShowMarkers : Determines wether or not markers will be rendered for each datum.
         ///
-        /// Showlegend  : Determines whether or not an item corresponding to this trace is shown in the legend.
+        /// ShowLegend  : Determines whether or not an item corresponding to this trace is shown in the legend.
         ///
         /// MarkerSymbol: Sets the type of symbol that datums are displayed as
         ///
@@ -585,7 +585,7 @@ module ChartMap =
         [<Extension>]
         static member LineGeo(lonlat,
                 [<Optional;DefaultParameterValue(null)>] ?Name                          ,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol                  ,
                 [<Optional;DefaultParameterValue(null)>] ?ShowMarkers                   ,
                 [<Optional;DefaultParameterValue(null)>] ?Color                         ,
@@ -621,7 +621,7 @@ module ChartMap =
                     ?Fillcolor      = Fillcolor    
                 )               
             )
-            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
             |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
             |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
             |> GenericChart.ofTraceObject
@@ -636,7 +636,7 @@ module ChartMap =
         ///
         /// ShowMarkers : Determines wether or not markers will be rendered for each datum.
         ///
-        /// Showlegend  : Determines whether or not an item corresponding to this trace is shown in the legend.
+        /// ShowLegend  : Determines whether or not an item corresponding to this trace is shown in the legend.
         ///
         /// MarkerSymbol: Sets the type of symbol that datums are displayed as
         ///
@@ -662,7 +662,7 @@ module ChartMap =
         [<Extension>]
         static member LineGeo(locations,
                 [<Optional;DefaultParameterValue(null)>] ?Name                          ,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend                    ,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol                  ,
                 [<Optional;DefaultParameterValue(null)>] ?ShowMarkers                   ,
                 [<Optional;DefaultParameterValue(null)>] ?Color                         ,
@@ -696,7 +696,7 @@ module ChartMap =
                     ?Fillcolor      = Fillcolor    
                 )               
             )
-            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
             |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
             |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
             |> GenericChart.ofTraceObject
@@ -754,7 +754,7 @@ module ChartMap =
                     ?Fillcolor      = Fillcolor    
                 )               
             )
-            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=ShowLegend,?Opacity=Opacity)
+            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
             |> TraceStyle.Line(?Color=Color,?Width=Width)
             |> TraceStyle.Marker(?Color=Color)
             |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)

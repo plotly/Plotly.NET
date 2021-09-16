@@ -23,8 +23,8 @@ type TraceStyle() =
         (    
             [<Optional;DefaultParameterValue(null)>] ?Name: string,
             [<Optional;DefaultParameterValue(null)>] ?Visible: StyleParam.Visible,
-            [<Optional;DefaultParameterValue(null)>] ?Showlegend: bool,
-            [<Optional;DefaultParameterValue(null)>] ?Legendgroup:string,
+            [<Optional;DefaultParameterValue(null)>] ?ShowLegend: bool,
+            [<Optional;DefaultParameterValue(null)>] ?LegendGroup:string,
             [<Optional;DefaultParameterValue(null)>] ?Opacity: float,
             [<Optional;DefaultParameterValue(null)>] ?Uid: string,
             [<Optional;DefaultParameterValue(null)>] ?Hoverinfo: string
@@ -34,8 +34,8 @@ type TraceStyle() =
             (fun (trace:('T :> Trace)) ->  
                 Name        |> DynObj.setValueOpt trace "name"
                 Visible     |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.toString
-                Showlegend  |> DynObj.setValueOpt trace "showlegend"
-                Legendgroup |> DynObj.setValueOpt trace "legendgroup"  
+                ShowLegend  |> DynObj.setValueOpt trace "showlegend"
+                LegendGroup |> DynObj.setValueOpt trace "legendgroup"  
                 Opacity     |> DynObj.setValueOpt trace "opacity"
                 Uid         |> DynObj.setValueOpt trace "uid"
                 Hoverinfo   |> DynObj.setValueOpt trace "hoverinfo"

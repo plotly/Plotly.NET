@@ -25,7 +25,7 @@ module Chart3D =
             (
                 x, y, z, mode,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -36,7 +36,7 @@ module Chart3D =
                 [<Optional;DefaultParameterValue(null)>] ?Width
             ) = 
                 Trace3D.initScatter3d (Trace3DStyle.Scatter3d(X = x,Y = y,Z=z, Mode=mode) )              
-                |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
                 |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
                 |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
                 |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
@@ -47,7 +47,7 @@ module Chart3D =
         [<Extension>]
         static member Scatter3d(xyz, mode, 
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -57,7 +57,7 @@ module Chart3D =
                 [<Optional;DefaultParameterValue(null)>] ?Dash,
                 [<Optional;DefaultParameterValue(null)>] ?Width) = 
             let x,y,z = Seq.unzip3 xyz
-            Chart.Scatter3d(x, y, z, mode, ?Name=Name,?Showlegend=Showlegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width) 
+            Chart.Scatter3d(x, y, z, mode, ?Name=Name,?ShowLegend=ShowLegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width) 
 
         ///
         [<Extension>]
@@ -65,7 +65,7 @@ module Chart3D =
             (
                 x, y, z,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -82,7 +82,7 @@ module Chart3D =
                     z = z,
                     mode            = changeMode StyleParam.Mode.Markers,
                     ?Name           = Name,
-                    ?Showlegend     = Showlegend,
+                    ?ShowLegend     = ShowLegend,
                     ?MarkerSymbol   = MarkerSymbol,
                     ?Color          = Color,
                     ?Opacity        = Opacity,
@@ -97,7 +97,7 @@ module Chart3D =
             (
                 xyz,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -110,7 +110,7 @@ module Chart3D =
                 Chart.Point3d(
                     x, y, z,
                     ?Name           = Name,
-                    ?Showlegend     = Showlegend,
+                    ?ShowLegend     = ShowLegend,
                     ?MarkerSymbol   = MarkerSymbol,
                     ?Color          = Color,
                     ?Opacity        = Opacity,
@@ -127,7 +127,7 @@ module Chart3D =
                 x, y, z,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -151,7 +151,7 @@ module Chart3D =
                     z = z,
                     mode = changeMode StyleParam.Mode.Lines,
                     ?Name           = Name        ,
-                    ?Showlegend     = Showlegend  ,
+                    ?ShowLegend     = ShowLegend  ,
                     ?MarkerSymbol   = MarkerSymbol,
                     ?Color          = Color       ,
                     ?Opacity        = Opacity     ,
@@ -169,7 +169,7 @@ module Chart3D =
                 xyz,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -185,7 +185,7 @@ module Chart3D =
                     x, y, z,
                     ?Name           = Name        ,
                     ?ShowMarkers    = ShowMarkers ,
-                    ?Showlegend     = Showlegend  ,
+                    ?ShowLegend     = ShowLegend  ,
                     ?MarkerSymbol   = MarkerSymbol,
                     ?Color          = Color       ,
                     ?Opacity        = Opacity     ,
@@ -202,7 +202,7 @@ module Chart3D =
             (
                 x, y, z, sizes,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -220,7 +220,7 @@ module Chart3D =
                         Mode=changeMode StyleParam.Mode.Markers
                     )
                 )
-                |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
                 |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol, MultiSizes=sizes)
                 |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
                 |> GenericChart.ofTraceObject
@@ -231,7 +231,7 @@ module Chart3D =
             (
                 xyz, sizes,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
@@ -244,7 +244,7 @@ module Chart3D =
                 Chart.Bubble3d(
                     x, y, z, sizes,
                     ?Name           = Name,
-                    ?Showlegend     = Showlegend,
+                    ?ShowLegend     = ShowLegend,
                     ?MarkerSymbol   = MarkerSymbol,
                     ?Color          = Color,
                     ?Opacity        = Opacity,
@@ -262,7 +262,7 @@ module Chart3D =
                 [<Optional;DefaultParameterValue(null)>] ?X,
                 [<Optional;DefaultParameterValue(null)>] ?Y,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
                 [<Optional;DefaultParameterValue(null)>] ?Contours,
                 [<Optional;DefaultParameterValue(null)>] ?ColorScale,
@@ -280,7 +280,7 @@ module Chart3D =
                     ?ColorBar=ColorBar 
                 )
             )              
-            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
             |> GenericChart.ofTraceObject 
 
 
@@ -293,7 +293,7 @@ module Chart3D =
                 [<Optional;DefaultParameterValue(null)>] ?J,
                 [<Optional;DefaultParameterValue(null)>] ?K,
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
                 [<Optional;DefaultParameterValue(null)>] ?Contours,
                 [<Optional;DefaultParameterValue(null)>] ?ColorScale,
@@ -310,7 +310,7 @@ module Chart3D =
                     ?K  = K
                 ) 
             )              
-            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
             |> GenericChart.ofTraceObject 
 
         [<Extension>]
@@ -341,7 +341,7 @@ module Chart3D =
                         ?ColorBar   = ColorBar
                     )
                 )
-                |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=ShowLegend,?Opacity=Opacity)
+                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
                 |> GenericChart.ofTraceObject 
 
         [<Extension>]
@@ -402,7 +402,7 @@ module Chart3D =
                         ?Starts         = Starts
                     )
                 )
-                |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=ShowLegend,?Opacity=Opacity)
+                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
                 |> GenericChart.ofTraceObject 
 
 
@@ -470,7 +470,7 @@ module Chart3D =
                         ?Surface        = Surface   
                     )
                 )
-                |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=ShowLegend,?Opacity=Opacity)
+                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
                 |> GenericChart.ofTraceObject 
 
                 
@@ -509,6 +509,6 @@ module Chart3D =
                         ?Surface        = Surface   
                     )
                 )
-                |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=ShowLegend,?Opacity=Opacity)
+                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
                 |> GenericChart.ofTraceObject 
         

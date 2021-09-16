@@ -37,7 +37,7 @@ Plotly and therefore Plotly.NET supports two different kinds of maps:
 - **Geo maps** are outline-based maps. If your figure is created with a `Chart.ScatterGeo, `Chart.PointGeo`, `Chart.LineGeo` or `Chart.Choropleth` function or 
     otherwise contains one or more traces of type `scattergeo` or `choropleth`, the layout.geo object in your figure contains configuration information for the map itself.
     
-_This page documents Mapbox tile-based maps, and the [Geo map documentation]({{root}}/5_0_geo-vs-mapbox.html) describes how to configure outline-based maps_
+_This page documents Mapbox tile-based maps, and the [Geo map documentation]({{root}}/05_0_geo-vs-mapbox.html) describes how to configure outline-based maps_
 
 ## How Layers Work in Mapbox Tile Maps
 

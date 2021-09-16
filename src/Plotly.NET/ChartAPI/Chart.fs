@@ -72,15 +72,15 @@ type Chart =
     static member withTraceName
         (
             [<Optional;DefaultParameterValue(null)>] ?Name,
-            [<Optional;DefaultParameterValue(null)>] ?Showlegend,
-            [<Optional;DefaultParameterValue(null)>] ?Legendgroup,
+            [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
+            [<Optional;DefaultParameterValue(null)>] ?LegendGroup,
             [<Optional;DefaultParameterValue(null)>] ?Visible
         ) =
             fun (ch:GenericChart) ->
                 ch |> mapiTrace (fun i trace ->
                     let naming i name = name |> Option.map (fun v -> if i = 0 then v else sprintf "%s_%i" v i)
                     trace 
-                    |> TraceStyle.TraceInfo(?Name=(naming i Name),?Showlegend=Showlegend,?Legendgroup=Legendgroup,?Visible=Visible)
+                    |> TraceStyle.TraceInfo(?Name=(naming i Name),?ShowLegend=ShowLegend,?LegendGroup=LegendGroup,?Visible=Visible)
                 )
 
         /// Set the axis anchor id the trace is belonging to
@@ -1419,4 +1419,75 @@ type Chart =
                 GenericChart.getLayout ch 
                 |> Layout.updateSceneById(id,scene)
             GenericChart.setLayout layout ch
+        )
+
+    /// Sets the scene with the given id on the chart layout
+    [<CompiledName("WithTernary")>]
+    static member withTernary(ternary:Ternary, [<Optional;DefaultParameterValue(null)>] ?Id) =
+        (fun (ch:GenericChart) ->
+            let layout =
+                let id = defaultArg Id (StyleParam.SubPlotId.Ternary 1)
+                GenericChart.getLayout ch 
+                |> Layout.updateTernaryById(id,ternary)
+            GenericChart.setLayout layout ch
+        )
+        
+    /// Sets the A-Axis of the ternary coordinate system with the given id on the chart layout
+    [<CompiledName("WithAAxis")>]
+    static member withAAxis(aAxis:LinearAxis, [<Optional;DefaultParameterValue(null)>] ?Id) =
+        (fun (ch:GenericChart) ->
+            let id = defaultArg Id (StyleParam.SubPlotId.Ternary 1)
+            let layout = GenericChart.getLayout ch 
+
+            let updatedTernary = 
+                layout
+                |> Layout.tryGetTernaryById(id)
+                |> Option.defaultValue (Ternary.init())
+                |> Ternary.style(AAxis = aAxis)
+
+            let updatedLayout =
+                layout
+                |> Layout.updateTernaryById(id,updatedTernary)
+
+            GenericChart.setLayout updatedLayout ch
+        )
+                
+    /// Sets the A-Axis of the ternary coordinate system with the given id on the chart layout
+    [<CompiledName("WithBAxis")>]
+    static member withBAxis(bAxis:LinearAxis, [<Optional;DefaultParameterValue(null)>] ?Id) =
+        (fun (ch:GenericChart) ->
+            let id = defaultArg Id (StyleParam.SubPlotId.Ternary 1)
+            let layout = GenericChart.getLayout ch 
+
+            let updatedTernary = 
+                layout
+                |> Layout.tryGetTernaryById(id)
+                |> Option.defaultValue (Ternary.init())
+                |> Ternary.style(BAxis = bAxis)
+
+            let updatedLayout =
+                layout
+                |> Layout.updateTernaryById(id,updatedTernary)
+
+            GenericChart.setLayout updatedLayout ch
+        )
+                
+    /// Sets the A-Axis of the ternary coordinate system with the given id on the chart layout
+    [<CompiledName("WithCAxis")>]
+    static member withCAxis(cAxis:LinearAxis, [<Optional;DefaultParameterValue(null)>] ?Id) =
+        (fun (ch:GenericChart) ->
+            let id = defaultArg Id (StyleParam.SubPlotId.Ternary 1)
+            let layout = GenericChart.getLayout ch 
+
+            let updatedTernary = 
+                layout
+                |> Layout.tryGetTernaryById(id)
+                |> Option.defaultValue (Ternary.init())
+                |> Ternary.style(CAxis = cAxis)
+
+            let updatedLayout =
+                layout
+                |> Layout.updateTernaryById(id,updatedTernary)
+
+            GenericChart.setLayout updatedLayout ch
         )

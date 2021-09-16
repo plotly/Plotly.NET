@@ -170,7 +170,7 @@ module ChartDomain =
         ///
         /// Name          : Sets the trace name. The trace name appear as the legend item and on hover.
         ///
-        /// Showlegend    : Determines whether or not an item corresponding to this trace is shown in the legend.
+        /// ShowLegend    : Determines whether or not an item corresponding to this trace is shown in the legend.
         ///
         /// Opacity       : Sets the opacity of the trace.
         ///
@@ -205,7 +205,7 @@ module ChartDomain =
                 [<Optional;DefaultParameterValue(null)>] ?dLabel        ,
                 [<Optional;DefaultParameterValue(null)>] ?Label0        ,
                 [<Optional;DefaultParameterValue(null)>] ?Name          ,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend    ,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend    ,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity       ,
                 [<Optional;DefaultParameterValue(null)>] ?Color         ,
                 [<Optional;DefaultParameterValue(null)>] ?Line          ,
@@ -233,7 +233,7 @@ module ChartDomain =
                     ?Scalegroup     = Scalegroup
                 )
             )
-            |> TraceStyle.TraceInfo(?Name=Name,?Showlegend=Showlegend,?Opacity=Opacity)
+            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
             |> TraceStyle.Marker(?Color=Color,?Line=Line)
             |> TraceStyle.Domain(?X=X,?Y=Y,?Row=Row,?Column=Column)
             |> TraceStyle.TextLabel(?Text=Text,?Textposition=TextPosition)

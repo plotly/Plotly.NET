@@ -460,6 +460,30 @@ type Layout() =
                 layout
             )
 
+    static member tryGetTernaryById (id:StyleParam.SubPlotId) =
+        (fun (layout:Layout) -> 
+            layout.TryGetTypedValue<Ternary>(StyleParam.SubPlotId.toString id)
+        )
+
+    /// Updates the style of current polar object with given Id. 
+    /// If there does not exist a polar object with the given id, sets it with the given polar object
+    static member updateTernaryById
+        (   
+           id       : StyleParam.SubPlotId,
+           ternary  : Ternary
+        ) =
+            (fun (layout:Layout) -> 
+
+                let ternary' = 
+                    match layout |> Layout.tryGetTernaryById(id) with
+                    | Some a  -> DynObj.combine (unbox a) ternary
+                    | None    -> ternary :> DynamicObj
+                
+                ternary' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+
+                layout
+            )
+
     static member SetLayoutGrid 
         (
             grid: LayoutGrid

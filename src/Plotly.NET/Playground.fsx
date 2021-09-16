@@ -27,10 +27,10 @@
 #load "Margin.fs"
 #load "Domain.fs"
 #load "Shape.fs"
-#load "Hoverlabel.fs"
 #load "Annotation.fs"
 #load "LayoutGrid.fs"
 #load "Legend.fs"
+#load "Hoverlabel.fs"
 #load "TickFormatStop.fs"
 #load "ColorBar.fs"
 #load "Rangebreak.fs"
@@ -56,6 +56,10 @@
 #load "AngularAxis.fs"
 #load "RadialAxis.fs"
 #load "Polar.fs"
+
+#I "Layout/ObjectAbstractions/Ternary"
+
+#load "Ternary.fs"
 
 #load "Layout/Layout.fs"
 
@@ -121,6 +125,7 @@
 #load "Chart3D.fs"
 #load "ChartPolar.fs"
 #load "ChartMap.fs"
+#load "ChartTernary.fs"
 #load "ChartDomain.fs"
 
 #I "CSharpLayer"
@@ -146,14 +151,40 @@ open Deedle
 open FSharpAux
 
 open System
+open System.IO
 
-let products = ["Product A"; "Product B"; "Product C"];
-let sfValues = [20; 14; 23]
-Chart.Column (    products,
-    sfValues,
-    Labels= sfValues,
-    TextPosition = StyleParam.TextPosition.Inside
+Chart.ScatterTernary(
+    A = [1; 2; 3],
+    B = [3; 2; 1],
+    C = [0; 1; 2],
+    Labels = ["A"; "B"; "C"],
+    Mode= StyleParam.Mode.Lines_Markers_Text,
+    TextPosition = StyleParam.TextPosition.BottomCenter
 )
+|> Chart.withLineStyle(Shape=StyleParam.Shape.Spline)
+|> Chart.withMarkerStyle(Symbol = StyleParam.Symbol.Cross)
+|> Chart.show
+
+Chart.LineTernary(
+    A = [10; 20; 30; 40; 50; 60; 70; 80;],
+    B = ([10; 20; 30; 40; 50; 60; 70; 80;] |> List.rev),
+    Sum = 100,
+    ShowMarkers = true,
+    Dash = StyleParam.DrawingStyle.DashDot
+)
+|> Chart.withTernary(
+    Ternary.init(
+        AAxis = LinearAxis.init(Color = Color.fromKeyword ColorKeyword.DarkOrchid),
+        BAxis = LinearAxis.init(Color = Color.fromKeyword ColorKeyword.DarkRed),
+        CAxis = LinearAxis.init(Color = Color.fromKeyword ColorKeyword.DarkCyan)
+    )
+)
+|> Chart.show
+
+Chart.PointTernary([1,2,3])
+|> Chart.withAAxis(LinearAxis.init(Title = Title.init("A"), Color = Color.fromKeyword ColorKeyword.DarkOrchid))
+|> Chart.withBAxis(LinearAxis.init(Title = Title.init("B"), Color = Color.fromKeyword ColorKeyword.DarkRed))
+|> Chart.withCAxis(LinearAxis.init(Title = Title.init("C"), Color = Color.fromKeyword ColorKeyword.DarkCyan))
 |> Chart.show
 
 let doughnutChart =
@@ -394,6 +425,23 @@ let gridNew (nRows: int) (nCols: int) =
                     |> TraceDomainStyle.SetDomain newDomain
                     :> Trace
                 )
+
+            | TraceIDLocal.Ternary ->
+
+                let ternary = 
+                    layout.TryGetTypedValue<Ternary> "ternary" |> Option.defaultValue (Ternary.init())
+                    |> Ternary.style(Domain = Domain.init(Row = rowIndex - 1, Column = colIndex - 1))
+
+                let ternaryAnchor = StyleParam.SubPlotId.Ternary (i+1)
+
+                gChart
+                |> GenericChart.mapTrace(fun t ->
+                    t 
+                    :?> TraceTernary
+                    |> TraceTernaryStyle.SetTernary ternaryAnchor
+                    :> Trace
+                )
+                |> Chart.withTernary(ternary,ternaryAnchor)
         )
         |> Chart.combine
         |> Chart.withLayoutGrid (
@@ -445,7 +493,7 @@ gridNew 3 3 [
     ]
     |> Chart.combine
     Chart.PointPolar([1,2])
-    Chart.PointGeo([1,2])
+    Chart.PointTernary([1,2,3])
     Chart.PointMapbox([1,2]) |> Chart.withMapbox(Mapbox.init(Style = StyleParam.MapboxStyle.OpenStreetMap))
     Chart.Sunburst(
         ["A";"B";"C";"D";"E"],

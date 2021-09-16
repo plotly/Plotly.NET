@@ -21,11 +21,11 @@ module GenericChartExtensions =
         member this.WithTraceName
             (
                 [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Showlegend,
-                [<Optional;DefaultParameterValue(null)>] ?Legendgroup,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
+                [<Optional;DefaultParameterValue(null)>] ?LegendGroup,
                 [<Optional;DefaultParameterValue(null)>] ?Visible
             ) =
-                this |> Chart.withTraceName(?Name=Name,?Showlegend=Showlegend,?Legendgroup=Legendgroup,?Visible=Visible)
+                this |> Chart.withTraceName(?Name=Name,?ShowLegend=ShowLegend,?LegendGroup=LegendGroup,?Visible=Visible)
 
         /// Set the axis anchor id the trace is belonging to
         [<CompiledName("WithAxisAnchor")>]
@@ -658,4 +658,9 @@ module GenericChartExtensions =
         [<CompiledName("WithScene")>]
         member this.WithScene(scene:Scene, [<Optional;DefaultParameterValue(null)>] ?Id) =
             this |> Chart.withScene(scene,?Id=Id)
+
+        /// Sets the scene object with the given id on the chart layout
+        [<CompiledName("WithTernary")>]
+        member this.WithTernary(ternary:Ternary, [<Optional;DefaultParameterValue(null)>] ?Id) =
+            this |> Chart.withTernary(ternary,?Id=Id)
 
