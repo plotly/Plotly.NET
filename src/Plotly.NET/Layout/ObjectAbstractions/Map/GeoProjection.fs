@@ -86,9 +86,8 @@ type GeoProjection() =
         ) =
             (fun (projection:GeoProjection) -> 
                 
-                projectionType  
-                |> StyleParam.GeoProjectionType.convert 
-                |> DynObj.setValue projection "type"
+                ++ ("type", projectionType |> StyleParam.GeoProjectionType.convert )
+
 
                 Parallels       
                 |> Option.map (fun (a,b) -> sprintf "[%f,%f]" a b) 

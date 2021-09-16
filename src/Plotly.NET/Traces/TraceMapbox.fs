@@ -107,7 +107,7 @@ type TraceMapboxStyle() =
         ) =
             (fun (trace: #Trace) -> 
             
-                mode        |> StyleParam.Mode.convert |> DynObj.setValue trace "mode"
+                ++ ("mode", mode        |> StyleParam.Mode.convert )
                 Longitudes  |> DynObj.setValueOpt   trace "lon"
                 Latitudes   |> DynObj.setValueOpt   trace "lat"
                 Locations   |> DynObj.setValueOpt   trace "locations"
@@ -133,7 +133,7 @@ type TraceMapboxStyle() =
         ) =
             (fun (trace:#Trace) -> 
             
-                mode        |> StyleParam.Mode.convert |> DynObj.setValue trace "mode"
+                ++ ("mode", mode        |> StyleParam.Mode.convert )
                 Longitudes  |> DynObj.setValueOpt   trace "lon"
                 Latitudes   |> DynObj.setValueOpt   trace "lat"
                 Below       |> DynObj.setValueOpt   trace "below"

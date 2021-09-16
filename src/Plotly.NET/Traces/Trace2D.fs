@@ -440,8 +440,8 @@ type Trace2DStyle() =
         ) = 
             (fun (trace:('T :> Trace)) -> 
                 
-                x               |> DynObj.setValue      trace "x"
-                y               |> DynObj.setValue      trace "y"
+                ++ ("x", x               )
+                ++ ("y", y               )
                 x0              |> DynObj.setValueOpt   trace "x0"
                 dX              |> DynObj.setValueOpt   trace "dx"
                 y0              |> DynObj.setValueOpt   trace "y0"
@@ -500,8 +500,8 @@ type Trace2DStyle() =
         ) =
             (fun (trace:('T :> Trace)) ->
                     
-                x               |> DynObj.setValue      trace "x"
-                y               |> DynObj.setValue      trace "y"
+                ++ ("x", x               )
+                ++ ("y", y               )
                 Base            |> DynObj.setValueOpt   trace "base"
                 Width           |> DynObj.setValueOpt   trace "width"
                 Measure         |> DynObj.setValueOptBy trace "measure" (Seq.map StyleParam.WaterfallMeasure.convert)

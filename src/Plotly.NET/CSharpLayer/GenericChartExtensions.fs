@@ -245,7 +245,7 @@ module GenericChartExtensions =
         member this.withColorBar(colorbar:ColorBar) =
             this
             |> GenericChart.mapTrace(fun t ->
-                colorbar |> DynObj.setValue t "colorbar" 
+                ++ ("colorbar", colorbar ) 
                 t
             )
 
@@ -563,7 +563,7 @@ module GenericChartExtensions =
         member this.WithTemplate(template: Template) =
             this
             |> GenericChart.mapLayout (fun l ->
-                template |> DynObj.setValue l "template"
+                ++ ("template", template )
                 l
             )
 

@@ -489,7 +489,7 @@ type Layout() =
             grid: LayoutGrid
         ) =
             (fun (layout:Layout) ->
-                grid |> DynObj.setValue layout "grid"
+                ++ ("grid", grid )
                 layout
             )
 
@@ -498,12 +498,12 @@ type Layout() =
             grid: LayoutGrid
         ) =
             (fun (layout:Layout) ->
-                grid |> DynObj.setValue layout "grid"
+                ++ ("grid", grid )
                 layout
             )
 
     static member setLegend(legend:Legend) =
         (fun (layout:Layout) -> 
-            legend |> DynObj.setValue layout "legend"
+            ++ ("legend", legend )
             layout
         )
