@@ -14,7 +14,7 @@
  * **Breaking**: Many Parameters of `init` and `style` functions have been changed to PascalCase, this is ongoing and will be breaking eregularily until unified.
  * SubPlotIds are now unified under the `StyleParam.SubPlotId` type which is used to assign subplots anchors (e.g. scenes for 3d charts, polar for polar charts) This change will be reflectes in trace type modeling in a later release.
  * **Breaking**: Layout and trace object abstractions are now in new namespaces: `Plotly.NET.LayoutObjects`/`Plotly.NET.TraceObjects`
-
+ * **Breaking**: every argument/parameter concerned with color has been changed to use the new Color type isntead of a plain string.
 **Major Additions:**
 
  * [Add kernel formatting extension for dotnet interactive notebooks](https://github.com/plotly/Plotly.NET/commit/fa990371dd68ec1f5784288ccd9e2d28d761ac93) (thanks [@WalternativeE](https://github.com/WalternativE))
