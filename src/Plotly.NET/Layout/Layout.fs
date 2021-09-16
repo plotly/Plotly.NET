@@ -274,7 +274,7 @@ type Layout() =
                 ++? ("funnelgap", FunnelGap              )
                 ++? ("funnelgroupgap", FunnelGroupGap         )
                 ++?? ("funnelmode", FunnelMode             , StyleParam.FunnelMode.convert)
-                ExtendFunnelAreaColors |> DynObj.setValueOpt layout "extendfunnelareacolors "
+                +? ("extendfunnelareacolors", ExtendFunnelAreaColors)
                 ++? ("funnelareacolorway", FunnelAreaColorWay     )
                 ++? ("extendsunburstcolors", ExtendSunBurstColors   )
                 ++? ("sunburstcolorway", SunBurstColorWay       )

@@ -183,7 +183,7 @@ type Geo() =
                 
                 ++? ("domain", Domain         )
                 ++?? ("fitbounds", FitBounds      , StyleParam.GeoFitBounds.convert)
-                Resolution     |> DynObj.setValueOptBy  geo "resolution"StyleParam.GeoResolution.convert
+                ++?? ("resolution", Resolution)
                 ++?? ("scope", Scope          , StyleParam.GeoScope.convert)
                 ++? ("projection", Projection     )
                 

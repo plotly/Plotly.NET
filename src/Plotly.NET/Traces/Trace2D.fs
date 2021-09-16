@@ -759,8 +759,8 @@ type Trace2DStyle() =
 
                 ++?? ("orientation", Orientation    , StyleParam.Orientation.convert)
                 ++?? ("connectgaps", //Connectgaps    , StyleParam.Orientation.convert)
-                HistFunc       |> DynObj.setValueOptBy histogram2d "histfunc   " StyleParam.HistFunc.convert
-                HistNorm       |> DynObj.setValueOptBy histogram2d "histnorm   " StyleParam.HistNorm.convert
+                ++?? ("histfunc", HistFunc       , StyleParam.HistFunc.convert)
+                ++?? ("histnorm", HistNorm       , StyleParam.HistNorm.convert)
                 ++? ("autobinx", Autobinx       )
                 ++? ("nbinsx", nBinsx         )
                 ++? ("xbins", xBins          )
@@ -850,8 +850,8 @@ type Trace2DStyle() =
 
                 ++?? ("orientation", Orientation    , StyleParam.Orientation.convert)
                 //Connectgaps    |> DynObj.setValueOptBy histogram2dContour< "connectgaps" StyleParam.Orientation.convert
-                HistFunc       |> DynObj.setValueOptBy histogram2dContour "histfunc   " StyleParam.HistFunc.convert
-                HistNorm       |> DynObj.setValueOptBy histogram2dContour "histnorm   " StyleParam.HistNorm.convert
+                ++?? ("histfunc", HistFunc       , StyleParam.HistFunc.convert)
+                ++?? ("histnorm", HistNorm       , StyleParam.HistNorm.convert)
                 ++? ("autobinx", Autobinx       )
                 ++? ("nbinsx", nBinsx         )
                 ++? ("xbins", xBins          )
@@ -1109,7 +1109,7 @@ type Trace2DStyle() =
                 ++ ("yaxis", "y")
                 ++? ("increasing", Increasing)
                 ++? ("decreasing", Decreasing)
-                DynObj.setValueOpt  trace "whiskerwidth"WhiskerWidth
+                ++? ("whiskerwidth", WhiskerWidth)
                 ++? ("line", Line)
                 ++? ("xcalendar", XCalendar)
 

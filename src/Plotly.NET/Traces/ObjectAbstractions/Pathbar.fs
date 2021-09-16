@@ -67,7 +67,7 @@ type Pathbar () =
                 ++?? ("side", Side      , StyleParam.Side.convert)
                 ++?? ("edgeshape", EdgeShape , StyleParam.TreemapEdgeShape.convert)
                 ++? ("thickness", Thickness )
-                Textfont  |> DynObj.setValueOpt pathbar "textfont "
+                ++? ("textfont", Textfont)
 
                 pathbar
             )
