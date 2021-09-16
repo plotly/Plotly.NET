@@ -13,12 +13,14 @@
  * **Breaking:** Many functions of the Chart API have been changed to be in lower camelCase (e.g `Chart.Show` -> `Chart.show`, `Chart.withX_Axis` -> `Chart.withXAxis`, etc.) see full set of changes in that category [here](https://github.com/plotly/Plotly.NET/pull/114), thanks [@WhiteBlackGoose](https://github.com/WhiteBlackGoose)
  * **Breaking**: Many Parameters of `init` and `style` functions have been changed to PascalCase, this is ongoing and will be breaking eregularily until unified.
  * SubPlotIds are now unified under the `StyleParam.SubPlotId` type which is used to assign subplots anchors (e.g. scenes for 3d charts, polar for polar charts) This change will be reflectes in trace type modeling in a later release.
+ * **Breaking**: Layout and trace object abstractions are now in new namespaces: `Plotly.NET.LayoutObjects`/`Plotly.NET.TraceObjects`
 
 **Major Additions:**
 
  * [Add kernel formatting extension for dotnet interactive notebooks](https://github.com/plotly/Plotly.NET/commit/fa990371dd68ec1f5784288ccd9e2d28d761ac93) (thanks [@WalternativeE](https://github.com/WalternativE))
  * [Greatly improve C# interop](https://github.com/plotly/Plotly.NET/commit/c1ed1be0234a4fcfab921acb43f1c0cf128cc233)
  * [Add the Plotly.NET.ImageExport project](https://github.com/plotly/Plotly.NET/pull/94) - Render Plotly.NET charts as static images
+ * [Use a statically typed color representation that is compatible with all ways plotly uses colors](https://github.com/plotly/Plotly.NET/commit/19763db129b9160906964d9831ff3f67279926cc) - thanks [@muehlhaus](https://github.com/muehlhaus)
 
 **New Charts:**
 
@@ -50,6 +52,7 @@
     * Volume
     * IsoSurface
     * Full Scene support
+ * [Add Ternary Charts (ScatterTernary and derived PointTernary, LineTernary)](https://github.com/plotly/Plotly.NET/pull/184):
 
 
 **Minor Additions/fixes:**
@@ -70,6 +73,10 @@
  * [Add functionality and docs for using GeoJSON with geo charts](https://github.com/plotly/Plotly.NET/commit/a68db7de0109e6714aeb044b806be2796f2bd400) [#86](https://github.com/plotly/Plotly.NET/issues/86)
  * [Add functionality to customize Lower and upper labels of range charts](https://github.com/plotly/Plotly.NET/commit/86357cf05e9cfe2f264369255dcf90e31861275a) [#83](https://github.com/plotly/Plotly.NET/issues/86)
  * [Allow custom font family](https://github.com/plotly/Plotly.NET/commit/b99e34c1890989d8b07dbc6b388618572372617e), thanks [@pirrmann](https://github.com/pirrmann)]
+ * [Use custom attributes for all parameters for better C# interop](https://github.com/plotly/Plotly.NET/commit/9dfed2c50c69c8f72ca8131b89a8cf20a229bbd0)
+ * [Add ToString() and Convert() instance members to StyleParams for better C# interop](https://github.com/plotly/Plotly.NET/commit/cf8658153d6a1af98afe33e41f3735222aed6706)
+ * [Improve Trace type system](https://github.com/plotly/Plotly.NET/commit/096f4bf7382441b153687835c3d51c9e2e3497ec)
+ * [Fix incorrect scale used in image export](https://github.com/plotly/Plotly.NET/commit/893cf02a5700ce562c6d67470883123a2d84c3c1) - thanks [@pirrmann](https://github.com/pirrmann)]
 
 **Other notable changes**
 
