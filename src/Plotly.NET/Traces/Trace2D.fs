@@ -1048,13 +1048,13 @@ type Trace2DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?XCalendar      : StyleParam.Calendar
         ) =
             (fun (trace:('T :> Trace)) ->
-                DynObj.setValue     trace "open"        ``open``
-                DynObj.setValue     trace "high"        high
-                DynObj.setValue     trace "low"         low
-                DynObj.setValue     trace "close"       close
-                DynObj.setValue     trace "x"           x
-                DynObj.setValue     trace "xaxis"       "x"
-                DynObj.setValue     trace "yaxis"       "y"
+                ++ ("open", ``open``)
+                ++ ("high", high)
+                ++ ("low", low)
+                ++ ("close", close)
+                ++ ("x", x)
+                ++ ("xaxis", "x")
+                ++ ("yaxis", "y")
                 DynObj.setValueOpt  trace "increasing"  Increasing
                 DynObj.setValueOpt  trace "decreasing"  Decreasing
                 DynObj.setValueOpt  trace "tickwidth"   Tickwidth
@@ -1100,13 +1100,13 @@ type Trace2DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?XCalendar      : StyleParam.Calendar
         ) =
             (fun (trace:('T :> Trace)) ->
-                DynObj.setValue     trace "open"        ``open``
-                DynObj.setValue     trace "high"        high
-                DynObj.setValue     trace "low"         low
-                DynObj.setValue     trace "close"       close
-                DynObj.setValue     trace "x"           x
-                DynObj.setValue     trace "xaxis"       "x"
-                DynObj.setValue     trace "yaxis"       "y"
+                ++ ("open", ``open``)
+                ++ ("high", high)
+                ++ ("low", low)
+                ++ ("close", close)
+                ++ ("x", x)
+                ++ ("xaxis", "x")
+                ++ ("yaxis", "y")
                 DynObj.setValueOpt  trace "increasing"  Increasing
                 DynObj.setValueOpt  trace "decreasing"  Decreasing
                 DynObj.setValueOpt  trace "whiskerwidth"WhiskerWidth

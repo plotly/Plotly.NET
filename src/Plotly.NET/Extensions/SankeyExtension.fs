@@ -108,8 +108,8 @@ module SankeyExtension =
                             Some ln
 
                     let l = new DynamicObj()
-                    DynObj.setValue     l "source" (links |> Seq.map (fun x->lblMap.[x.Source.Label]))
-                    DynObj.setValue     l "target" (links |> Seq.map (fun x->lblMap.[x.Target.Label]))
+                    ++ ("source", (links |> Seq.map (fun x->lblMap.[x.Source.Label])))
+                    ++ ("target", (links |> Seq.map (fun x->lblMap.[x.Target.Label])))
                     DynObj.setValueOpt  l "color"  linkClrs
                     DynObj.setValueOpt  l "value"  values
                     DynObj.setValueOpt  l "line"   line
@@ -162,7 +162,7 @@ module SankeyExtension =
                             Some ln
 
                     let n = new DynamicObj()
-                    DynObj.setValue    n "label" (nodes |> Seq.map (fun  x->x.Label)) 
+                    ++ ("label", (nodes |> Seq.map (fun  x->x.Label)) )
                     DynObj.setValueOpt n "groups" groups
                     DynObj.setValueOpt n "pad" nodePadding
                     DynObj.setValueOpt n "thickness" nodeThickness
@@ -172,8 +172,8 @@ module SankeyExtension =
                     DynObj.setValueOpt n "line" line
                     n
             
-                DynObj.setValue trace "node" node
-                DynObj.setValue trace "link" link
+                ++ ("node", node)
+                ++ ("link", link)
 
                 trace
             )
