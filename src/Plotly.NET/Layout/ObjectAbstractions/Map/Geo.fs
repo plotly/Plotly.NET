@@ -182,9 +182,9 @@ type Geo() =
             (fun (geo:Geo) -> 
                 
                 ++? ("domain", Domain         )
-                FitBounds      |> DynObj.setValueOptBy  geo "fitbounds" StyleParam.GeoFitBounds.convert
+                ++?? ("fitbounds", FitBounds      , StyleParam.GeoFitBounds.convert)
                 Resolution     |> DynObj.setValueOptBy  geo "resolution"StyleParam.GeoResolution.convert
-                Scope          |> DynObj.setValueOptBy  geo "scope"     StyleParam.GeoScope.convert
+                ++?? ("scope", Scope          , StyleParam.GeoScope.convert)
                 ++? ("projection", Projection     )
                 
                 Center         

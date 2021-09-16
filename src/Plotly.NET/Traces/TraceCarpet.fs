@@ -30,7 +30,7 @@ type TraceCarpetStyle() =
         ) =  
             (fun (trace:TraceCarpet) ->
 
-                CarpetId |> DynObj.setValueOptBy trace "carpet" StyleParam.SubPlotId.toString
+                ++?? ("carpet", CarpetId , StyleParam.SubPlotId.toString)
 
                 trace
             )

@@ -103,7 +103,7 @@ type TraceDomainStyle() =
 
                 ++? ("name", Name                  )
                 ++? ("title", Title                 )
-                Visible               |> DynObj.setValueOptBy pie "visible" StyleParam.Visible.convert
+                ++?? ("visible", Visible               , StyleParam.Visible.convert)
                 ++? ("showlegend", ShowLegend            )
                 ++? ("legendgroup", LegendGroup           )
                 ++? ("legendgrouptitle", LegendGroupTitle      )
@@ -115,7 +115,7 @@ type TraceDomainStyle() =
                 ++? ("label0", Label0                )
                 ++? ("pull", Pull                  )
                 ++? ("text", Text                  )
-                TextPosition          |> DynObj.setValueOptBy pie "textposition" StyleParam.TextPosition.convert
+                ++?? ("textposition", TextPosition          , StyleParam.TextPosition.convert)
                 ++? ("texttemplate", TextTemplate          )
                 ++? ("hovertext", HoverText             )
                 ++? ("hoverinfo", HoverInfo             )
@@ -126,12 +126,12 @@ type TraceDomainStyle() =
                 ++? ("automargin", AutoMargin            )
                 ++? ("marker", Marker                )
                 ++? ("textfont", TextFont              )
-                TextInfo              |> DynObj.setValueOptBy pie "textinfo" StyleParam.TextInfo.convert
-                Direction             |> DynObj.setValueOptBy pie "direction" StyleParam.Direction.convert
+                ++?? ("textinfo", TextInfo              , StyleParam.TextInfo.convert)
+                ++?? ("direction", Direction             , StyleParam.Direction.convert)
                 ++? ("hole", Hole                  )
                 ++? ("hoverlabel", HoverLabel            )
                 ++? ("insidetextfont", InsideTextFont        )
-                InsideTextOrientation |> DynObj.setValueOptBy pie "insidetextorientation" StyleParam.InsideTextOrientation.convert
+                ++?? ("insidetextorientation", InsideTextOrientation , StyleParam.InsideTextOrientation.convert)
                 ++? ("outsidetextfont", OutsideTextFont       )
                 ++? ("rotation", Rotation              )
                 ++? ("scalegroup", ScaleGroup            )
@@ -204,7 +204,7 @@ type TraceDomainStyle() =
                 ++? ("ids", Ids           )
                 ++? ("values", Values        )
                 ++? ("text", Text          )
-                Branchvalues  |> DynObj.setValueOptBy trace "branchvalues" StyleParam.BranchValues.convert
+                ++?? ("branchvalues", Branchvalues  , StyleParam.BranchValues.convert)
                 ++? ("level", Level         )
                 ++? ("maxdepth", Maxdepth      )
                 trace
@@ -252,7 +252,7 @@ type TraceDomainStyle() =
                 ++? ("ids", Ids             )
                 ++? ("values", Values          )
                 ++? ("text", Text            )
-                Branchvalues    |> DynObj.setValueOptBy trace "branchvalues" StyleParam.BranchValues.convert
+                ++?? ("branchvalues", Branchvalues    , StyleParam.BranchValues.convert)
                 ++? ("tiling", Tiling          )
                 ++? ("pathbar", PathBar         )
                 ++? ("level", Level           )

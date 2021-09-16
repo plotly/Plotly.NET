@@ -50,7 +50,7 @@ type TraceMapboxStyle() =
         ) =  
             (fun (trace:TraceMapbox) ->
 
-                MapboxId |> DynObj.setValueOptBy trace "subplot" StyleParam.SubPlotId.toString
+                ++?? ("subplot", MapboxId , StyleParam.SubPlotId.toString)
 
                 trace
             )
@@ -77,10 +77,10 @@ type TraceMapboxStyle() =
                 ++? ("locations", Locations          )         
                 ++? ("z", Z                  )                     
                 ++? ("text", Text               )     
-                Locationmode       |> DynObj.setValueOptBy choropleth "locationmode" StyleParam.LocationFormat.convert            
+                ++?? ("locationmode", Locationmode       , StyleParam.LocationFormat.convert            )
                 ++? ("autocolorscale", Autocolorscale     )    
                     
-                Colorscale         |> DynObj.setValueOptBy choropleth "colorscale" StyleParam.Colorscale.convert
+                ++?? ("colorscale", Colorscale         , StyleParam.Colorscale.convert)
                 ++? ("colorbar", ColorBar           )
                 ++? ("marker", Marker             )  
                 ++? ("geojson", GeoJson            ) 
@@ -114,7 +114,7 @@ type TraceMapboxStyle() =
                 ++? ("geojson", GeoJson     )
                 ++? ("featureidkey", FeatureIdKey)
                 ++? ("connectgaps", Connectgaps )
-                Fill        |> DynObj.setValueOptBy trace "fill" StyleParam.Fill.convert
+                ++?? ("fill", Fill        , StyleParam.Fill.convert)
                 ++? ("fillcolor", Fillcolor   )
 
                 trace
@@ -138,7 +138,7 @@ type TraceMapboxStyle() =
                 ++? ("lat", Latitudes   )
                 ++? ("below", Below       )
                 ++? ("connectgaps", Connectgaps )
-                Fill        |> DynObj.setValueOptBy trace "fill" StyleParam.Fill.convert
+                ++?? ("fill", Fill        , StyleParam.Fill.convert)
                 ++? ("fillcolor", Fillcolor   )
 
                 trace
@@ -168,7 +168,7 @@ type TraceMapboxStyle() =
                 ++? ("locations", Locations   )
                 ++? ("text", Text        )
                 ++? ("below", Below       )
-                Colorscale  |> DynObj.setValueOptBy trace "colorscale" StyleParam.Colorscale.convert
+                ++?? ("colorscale", Colorscale  , StyleParam.Colorscale.convert)
                 ++? ("colorbar", ColorBar    )
                 ++? ("showscale", Showscale   )
                 ++? ("zauto", ZAuto       )
@@ -206,7 +206,7 @@ type TraceMapboxStyle() =
                 ++? ("opacity", Opacity     )
                 ++? ("text", Text        )
                 ++? ("below", Below       )
-                Colorscale  |> DynObj.setValueOptBy trace "colorscale" StyleParam.Colorscale.convert
+                ++?? ("colorscale", Colorscale  , StyleParam.Colorscale.convert)
                 ++? ("colorbar", ColorBar    )
                 ++? ("showscale", Showscale   )
                 ++? ("zauto", ZAuto       )

@@ -59,9 +59,9 @@ type RangeSelector () =
                 ++? ("visible", Visible     )
                 ++? ("buttons", Buttons     )
                 ++? ("x", X           )
-                XAnchor     |> DynObj.setValueOptBy rangeSelector "xanchor" StyleParam.XAnchorPosition.convert
+                ++?? ("xanchor", XAnchor     , StyleParam.XAnchorPosition.convert)
                 ++? ("y", Y           )
-                YAnchor     |> DynObj.setValueOptBy rangeSelector "yanchor" StyleParam.YAnchorPosition.convert
+                ++?? ("yanchor", YAnchor     , StyleParam.YAnchorPosition.convert)
                 ++? ("font", Font        )
                 ++? ("bgcolor", BGColor     )
                 ++? ("activecolor", ActiveColor )

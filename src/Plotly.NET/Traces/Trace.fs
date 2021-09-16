@@ -33,7 +33,7 @@ type TraceStyle() =
         ) =
             (fun (trace:('T :> Trace)) ->  
                 ++? ("name", Name        )
-                Visible     |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.toString
+                ++?? ("visible", Visible     , StyleParam.Visible.toString)
                 ++? ("showlegend", ShowLegend  )
                 ++? ("legendgroup", LegendGroup )  
                 ++? ("opacity", Opacity     )
@@ -75,7 +75,7 @@ type TraceStyle() =
         ) =
             (fun (trace:('T :> Trace)) ->
                 ++? ("text", Text            )
-                Textposition    |> DynObj.setValueOptBy trace "textposition" StyleParam.TextPosition.toString                  
+                ++?? ("textposition", Textposition    , StyleParam.TextPosition.toString                  )
                 ++? ("textsrc", Textsrc         )
                 ++? ("textpositionsrc", Textpositionsrc )
                 ++? ("textfont", Textfont        )

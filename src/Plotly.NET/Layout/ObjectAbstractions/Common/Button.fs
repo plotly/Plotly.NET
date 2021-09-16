@@ -44,8 +44,8 @@ type Button () =
             (fun (button:Button) -> 
                 
                 ++? ("visible", Visible             )
-                Step                |> DynObj.setValueOptBy button "step" StyleParam.TimeStep.convert
-                StepMode            |> DynObj.setValueOptBy button "stepmode" StyleParam.TimeStepMode.convert
+                ++?? ("step", Step                , StyleParam.TimeStep.convert)
+                ++?? ("stepmode", StepMode            , StyleParam.TimeStepMode.convert)
                 ++? ("count", Count               )
                 ++? ("label", Label               )
                 ++? ("name", Name                )

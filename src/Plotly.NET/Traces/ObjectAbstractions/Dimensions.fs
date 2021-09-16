@@ -50,8 +50,8 @@ type Dimensions () =
         ) =
             (fun (dims:Dimensions) -> 
                 ++? ("values", Values           )
-                Range            |> DynObj.setValueOptBy dims "range" StyleParam.Range.convert                
-                Constraintrange  |> DynObj.setValueOptBy dims "constraintrange" StyleParam.Range.convert                 
+                ++?? ("range", Range            , StyleParam.Range.convert                )
+                ++?? ("constraintrange", Constraintrange  , StyleParam.Range.convert                 )
                 ++? ("Visible", Visible          )
                 ++? ("label", Label            )
                 ++? ("tickvals", Tickvals         )

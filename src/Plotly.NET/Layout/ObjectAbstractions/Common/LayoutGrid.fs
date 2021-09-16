@@ -86,18 +86,18 @@ type LayoutGrid () =
             [<Optional;DefaultParameterValue(null)>] ?YSide      : StyleParam.LayoutGridYSide
         ) =
             (fun (layoutGrid: LayoutGrid) -> 
-                SubPlots |> DynObj.setValueOptBy layoutGrid "subplots" (Array.map (Array.map ( fun (x,y) -> $"{StyleParam.LinearAxisId.toString x}{StyleParam.LinearAxisId.toString y}")))
-                XAxes    |> DynObj.setValueOptBy layoutGrid "xaxes"    (Array.map StyleParam.LinearAxisId.toString)
-                YAxes    |> DynObj.setValueOptBy layoutGrid "yaxes"    (Array.map StyleParam.LinearAxisId.toString)
+                ++?? ("subplots", SubPlots , (Array.map (Array.map ( fun (x,y) -> $"{StyleParam.LinearAxisId.toString x}{StyleParam.LinearAxisId.toString y}"))))
+                ++?? ("xaxes", XAxes    , (Array.map StyleParam.LinearAxisId.toString))
+                ++?? ("yaxes", YAxes    , (Array.map StyleParam.LinearAxisId.toString))
                 ++? ("rows", Rows     )    
                 ++? ("columns", Columns  ) 
-                RowOrder |> DynObj.setValueOptBy layoutGrid "roworder" StyleParam.LayoutGridRowOrder.toString
-                Pattern  |> DynObj.setValueOptBy layoutGrid "pattern"  StyleParam.LayoutGridPattern.toString
+                ++?? ("roworder", RowOrder , StyleParam.LayoutGridRowOrder.toString)
+                ++?? ("pattern", Pattern  , StyleParam.LayoutGridPattern.toString)
                 ++? ("xgap", XGap     )    
                 ++? ("ygap", YGap     )    
                 ++? ("domain", Domain   )   
-                XSide    |> DynObj.setValueOptBy layoutGrid "xside"   StyleParam.LayoutGridXSide.toString
-                YSide    |> DynObj.setValueOptBy layoutGrid "yside"   StyleParam.LayoutGridYSide.toString
+                ++?? ("xside", XSide    , StyleParam.LayoutGridXSide.toString)
+                ++?? ("yside", YSide    , StyleParam.LayoutGridYSide.toString)
 
                 layoutGrid
             )

@@ -89,13 +89,13 @@ type Scene() =
             (fun (scene:Scene) -> 
 
                 ++? ("annotations", Annotations )
-                AspectMode  |> DynObj.setValueOptBy  scene "aspectmode" StyleParam.AspectMode.convert
+                ++?? ("aspectmode", AspectMode  , StyleParam.AspectMode.convert)
                 ++? ("aspectratio", AspectRatio )
                 ++? ("bgcolor", BGColor     )
                 ++? ("camera", Camera      )
                 ++? ("domain", Domain      )
-                DragMode    |> DynObj.setValueOptBy  scene "dragmode" StyleParam.DragMode.convert
-                HoverMode   |> DynObj.setValueOptBy  scene "hovermode" StyleParam.HoverMode.convert
+                ++?? ("dragmode", DragMode    , StyleParam.DragMode.convert)
+                ++?? ("hovermode", HoverMode   , StyleParam.HoverMode.convert)
                 ++? ("uirevision", UIRevision  )
                 ++? ("xaxis", XAxis       )
                 ++? ("yaxis", YAxis       )

@@ -254,15 +254,15 @@ type RadialAxis () =
             fun (radialAxis:RadialAxis) ->
 
                 ++? ("visible", Visible            )
-                AxisType           |> DynObj.setValueOptBy radialAxis "type" StyleParam.AxisType.convert
-                AutoTypeNumbers    |> DynObj.setValueOptBy radialAxis "autotypenumbers" StyleParam.AutoTypeNumbers.convert
-                AutoRange          |> DynObj.setValueOptBy radialAxis "autorange" StyleParam.AutoRange.convert
-                RangeMode          |> DynObj.setValueOptBy radialAxis "rangemode" StyleParam.RangeMode.convert
-                Range              |> DynObj.setValueOptBy radialAxis "range" StyleParam.Range.convert
-                CategoryOrder      |> DynObj.setValueOptBy radialAxis "categoryorder" StyleParam.CategoryOrder.convert
+                ++?? ("type", AxisType           , StyleParam.AxisType.convert)
+                ++?? ("autotypenumbers", AutoTypeNumbers    , StyleParam.AutoTypeNumbers.convert)
+                ++?? ("autorange", AutoRange          , StyleParam.AutoRange.convert)
+                ++?? ("rangemode", RangeMode          , StyleParam.RangeMode.convert)
+                ++?? ("range", Range              , StyleParam.Range.convert)
+                ++?? ("categoryorder", CategoryOrder      , StyleParam.CategoryOrder.convert)
                 ++? ("categoryarray", CategoryArray      )
                 ++? ("angle", Angle              )
-                Side               |> DynObj.setValueOptBy radialAxis "side" StyleParam.Direction.convert
+                ++?? ("side", Side               , StyleParam.Direction.convert)
                 ++? ("title", Title              )
                 ++? ("hoverformat", HoverFormat        )
                 ++? ("uirevision", UIRevision         )
@@ -273,30 +273,30 @@ type RadialAxis () =
                 ++? ("showgrid", ShowGrid           )
                 ++? ("gridcolor", GridColor          )
                 ++? ("gridwidth", GridWidth          )
-                TickMode           |> DynObj.setValueOptBy radialAxis "tickmode" StyleParam.TickMode.convert
+                ++?? ("tickmode", TickMode           , StyleParam.TickMode.convert)
                 ++? ("nticks", NTicks             )
                 ++? ("tick0", Tick0              )
                 ++? ("dtick", DTick              )
                 ++? ("TickVals", TickVals           )
                 ++? ("TickText", TickText           )
-                Ticks              |> DynObj.setValueOptBy radialAxis "ticks" StyleParam.TickOptions.convert
+                ++?? ("ticks", Ticks              , StyleParam.TickOptions.convert)
                 ++? ("ticklen", TickLen            )
                 ++? ("tickwidth", TickWidth          )
                 ++? ("tickcolor", TickColor          )
                 ++? ("showticklabels", ShowTickLabels     )
-                ShowTickPrefix     |> DynObj.setValueOptBy radialAxis "showtickprefix" StyleParam.ShowTickOption.convert
+                ++?? ("showtickprefix", ShowTickPrefix     , StyleParam.ShowTickOption.convert)
                 ++? ("tickprefix", TickPrefix         )
-                ShowTickSuffix     |> DynObj.setValueOptBy radialAxis "showticksuffix" StyleParam.ShowTickOption.convert
+                ++?? ("showticksuffix", ShowTickSuffix     , StyleParam.ShowTickOption.convert)
                 ++? ("ticksuffix", TickSuffix         )
-                ShowExponent       |> DynObj.setValueOptBy radialAxis "showexponent" StyleParam.ShowExponent.convert
-                ExponentFormat     |> DynObj.setValueOptBy radialAxis "exponentformat" StyleParam.ExponentFormat.convert
+                ++?? ("showexponent", ShowExponent       , StyleParam.ShowExponent.convert)
+                ++?? ("exponentformat", ExponentFormat     , StyleParam.ExponentFormat.convert)
                 ++? ("minexponent", MinExponent        )
                 ++? ("separatethousands", SeparateThousands  )
                 ++? ("tickfont", TickFont           )
                 ++? ("tickangle", TickAngle          )
                 ++? ("TickFormat", TickFormat         )
                 ++? ("tickformatstops", TickFormatStops    )
-                Layer              |> DynObj.setValueOptBy radialAxis "layer" StyleParam.Layer.convert
-                Calendar           |> DynObj.setValueOptBy radialAxis "calendar" StyleParam.Calendar.convert
+                ++?? ("layer", Layer              , StyleParam.Layer.convert)
+                ++?? ("calendar", Calendar           , StyleParam.Calendar.convert)
 
                 radialAxis

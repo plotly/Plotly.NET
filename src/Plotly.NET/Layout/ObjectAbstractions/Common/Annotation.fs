@@ -151,10 +151,10 @@ type Annotation() =
                 
                 ++? ("x", X                   )
                 ++? ("y", Y                   )
-                Align               |> DynObj.setValueOptBy ann "align" StyleParam.AnnotationAlignment.convert
+                ++?? ("align", Align               , StyleParam.AnnotationAlignment.convert)
                 ++? ("arrowcolor", ArrowColor          )
-                ArrowHead           |> DynObj.setValueOptBy ann "arrowhead" StyleParam.ArrowHead.convert
-                ArrowSide           |> DynObj.setValueOptBy ann "arrowside" StyleParam.ArrowSide.convert
+                ++?? ("arrowhead", ArrowHead           , StyleParam.ArrowHead.convert)
+                ++?? ("arrowside", ArrowSide           , StyleParam.ArrowSide.convert)
                 ++? ("arrowsize", ArrowSize           )
                 ++? ("ax", AX                  )
                 ++? ("axref", AXRef               )
@@ -165,7 +165,7 @@ type Annotation() =
                 ++? ("borderpad", BorderPad           )
                 ++? ("borderwidth", BorderWidth         )
                 ++? ("captureevents", CaptureEvents       )
-                ClickToShow         |> DynObj.setValueOptBy ann "clicktoshow" StyleParam.ClickToShow.convert
+                ++?? ("clicktoshow", ClickToShow         , StyleParam.ClickToShow.convert)
                 ++? ("font", Font                )
                 ++? ("height", Height              )
                 ++? ("hoverlabel", HoverLabel          )
@@ -180,14 +180,14 @@ type Annotation() =
                 ++? ("templateitemname", TemplateItemName    )
                 ++? ("text", Text                )
                 ++? ("textangle", TextAngle           )
-                VAlign              |> DynObj.setValueOptBy ann "valign" StyleParam.VerticalAlign.convert
+                ++?? ("valign", VAlign              , StyleParam.VerticalAlign.convert)
                 ++? ("visible", Visible             )
                 ++? ("width", Width               )
-                XAnchor             |> DynObj.setValueOptBy ann "xanchor" StyleParam.XAnchorPosition.convert
+                ++?? ("xanchor", XAnchor             , StyleParam.XAnchorPosition.convert)
                 ++? ("xclick", XClick              )
                 ++? ("xref", XRef                )
                 ++? ("xshift", XShift              )
-                YAnchor             |> DynObj.setValueOptBy ann "yanchor" StyleParam.YAnchorPosition.convert
+                ++?? ("yanchor", YAnchor             , StyleParam.YAnchorPosition.convert)
                 ++? ("yclick", YClick              )
                 ++? ("yref", YRef                )
                 ++? ("yshift", YShift              )

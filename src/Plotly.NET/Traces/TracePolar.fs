@@ -39,7 +39,7 @@ type TracePolarStyle() =
         ) =  
             (fun (trace:TracePolar) ->
 
-                PolarId |> DynObj.setValueOptBy trace "subplot" StyleParam.SubPlotId.toString
+                ++?? ("subplot", PolarId , StyleParam.SubPlotId.toString)
 
                 trace
             )
@@ -88,13 +88,13 @@ type TracePolarStyle() =
             (fun (trace:('T :> Trace)) -> 
 
                 ++? ("name", Name               )
-                Visible            |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+                ++?? ("visible", Visible            , StyleParam.Visible.convert)
                 ++? ("showlegend", ShowLegend         )
                 ++? ("legendrank", LegendRank         )
                 ++? ("legendgroup", LegendGroup        )
                 ++? ("legendgrouptitle", LegendGroupTitle   )
                 ++? ("opacity", Opacity            )
-                Mode               |> DynObj.setValueOptBy trace "mode" StyleParam.Mode.convert
+                ++?? ("mode", Mode               , StyleParam.Mode.convert)
                 ++? ("ids", Ids                )
                 ++? ("r", R                  )
                 ++? ("r0", R0                 )
@@ -102,9 +102,9 @@ type TracePolarStyle() =
                 ++? ("theta", Theta              )
                 ++? ("theta0", Theta0             )
                 ++? ("dtheta", DTheta             )
-                ThetaUnit          |> DynObj.setValueOptBy trace "thetaunit" StyleParam.AngularUnit.convert
+                ++?? ("thetaunit", ThetaUnit          , StyleParam.AngularUnit.convert)
                 ++? ("text", Text               )
-                TextPosition       |> DynObj.setValueOptBy trace "textposition" StyleParam.TextPosition.convert
+                ++?? ("textposition", TextPosition       , StyleParam.TextPosition.convert)
                 ++? ("texttemplate", TextTemplate       )
                 ++? ("hovertext", HoverText          )
                 ++? ("hoverinfo", HoverInfo          )
@@ -120,7 +120,7 @@ type TracePolarStyle() =
                 ++? ("unselected", Unselected         )
                 ++? ("cliponaxis", ClipOnAxis         )
                 ++? ("connectgaps", ConnectGaps        )
-                Fill               |> DynObj.setValueOptBy trace "fill" StyleParam.Fill.convert
+                ++?? ("fill", Fill               , StyleParam.Fill.convert)
                 ++? ("fillcolor", FillColor          )
                 ++? ("hoverlabel", HoverLabel         )
                 ++? ("hoveron", HoverOn            )
@@ -166,7 +166,7 @@ type TracePolarStyle() =
             (fun (trace:('T :> Trace)) -> 
 
                 ++? ("name", Name                )
-                Visible             |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+                ++?? ("visible", Visible             , StyleParam.Visible.convert)
                 ++? ("showlegend", ShowLegend          )
                 ++? ("legendrank", LegendRank          )
                 ++? ("legendgroup", LegendGroup         )
@@ -180,7 +180,7 @@ type TracePolarStyle() =
                 ++? ("theta", Theta               )
                 ++? ("theta0", Theta0              )
                 ++? ("dtheta", DTheta              )
-                ThetaUnit           |> DynObj.setValueOptBy trace "thetaunit" StyleParam.AngularUnit.convert
+                ++?? ("thetaunit", ThetaUnit           , StyleParam.AngularUnit.convert)
                 ++? ("width", Width               )
                 ++? ("offset", Offset              )
                 ++? ("text", Text                )

@@ -97,13 +97,13 @@ type Marker () =
                 ++? ("size", MultiSizes     )
                 ++? ("line", Line           )        
                 ++? ("colorbar", ColorBar       )       
-                Colorscale     |> DynObj.setValueOptBy marker "colorscale" StyleParam.Colorscale.convert
+                ++?? ("colorscale", Colorscale     , StyleParam.Colorscale.convert)
                 ++? ("colors", Colors         )     
                 ++? ("outliercolor", OutlierColor   )     
                 ++? ("maxdisplayed", Maxdisplayed   )   
                 ++? ("sizeref", Sizeref        )        
                 ++? ("sizemin", Sizemin        )        
-                Sizemode       |> DynObj.setValueOptBy marker "sizemode" StyleParam.MarkerSizeMode.convert
+                ++?? ("sizemode", Sizemode       , StyleParam.MarkerSizeMode.convert)
                 ++? ("cauto", Cauto          )          
                 ++? ("cmax", Cmax           )           
                 ++? ("cmid", Cmid           )           

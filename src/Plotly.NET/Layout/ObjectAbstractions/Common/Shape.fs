@@ -61,7 +61,7 @@ type Shape () =
             (fun (shape:Shape) -> 
 
                     
-                ShapeType |> DynObj.setValueOptBy shape "type" StyleParam.ShapeType.toString    
+                ++?? ("type", ShapeType , StyleParam.ShapeType.toString    )
                 ++? ("xref", Xref      )     
                 ++? ("x0", X0        )        
                 ++? ("x1", X1        )        
@@ -72,7 +72,7 @@ type Shape () =
                 ++? ("opacity", Opacity   )      
                 ++? ("line", Line      )
                 ++? ("fillcolor", Fillcolor )
-                Layer     |> DynObj.setValueOptBy shape "layer" StyleParam.Layer.toString
+                ++?? ("layer", Layer     , StyleParam.Layer.toString)
                 // out ->
                 shape
             ) 

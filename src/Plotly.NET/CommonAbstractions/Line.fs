@@ -51,10 +51,10 @@ type Line () =
             (fun (line:Line) -> 
                 ++? ("color", Color          )
                 ++? ("width", Width          )
-                Shape          |> DynObj.setValueOptBy line "shape" StyleParam.Shape.convert
+                ++?? ("shape", Shape          , StyleParam.Shape.convert)
                 ++? ("smoothing", Smoothing      )
-                Dash           |> DynObj.setValueOptBy line "dash" StyleParam.DrawingStyle.convert
-                Colorscale     |> DynObj.setValueOptBy line "colorscale" StyleParam.Colorscale.convert
+                ++?? ("dash", Dash           , StyleParam.DrawingStyle.convert)
+                ++?? ("colorscale", Colorscale     , StyleParam.Colorscale.convert)
                 ++? ("outliercolor", OutlierColor   )
                 ++? ("outlierwidth", OutlierWidth   )
                     
