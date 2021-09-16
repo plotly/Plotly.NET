@@ -92,7 +92,7 @@ type TraceStyle() =
         ) =  
             (fun (trace:('T :> Trace)) ->
 
-                trace.SetValue("line", line)
+                ++ ("line", line)
                 trace
             )
 
@@ -114,7 +114,7 @@ type TraceStyle() =
                     | None -> Line.init()
                     |> Line.style(?Width=Width,?Color=Color,?Shape=Shape,?Dash=Dash,?Smoothing=Smoothing,?Colorscale=Colorscale)
                     
-                trace.SetValue("line", line)
+                ++ ("line", line)
                 trace
             )    
 
@@ -126,7 +126,7 @@ type TraceStyle() =
         ) =  
             (fun (trace:('T :> Trace)) ->
 
-                trace.SetValue("marker", marker)
+                ++ ("marker", marker)
                 trace
             )
 
@@ -171,7 +171,7 @@ type TraceStyle() =
                         ?Autocolorscale=Autocolorscale,?Reversescale=Reversescale,?Showscale=Showscale
                         )
 
-                trace.SetValue("marker", marker)
+                ++ ("marker", marker)
                 trace                   
 
             )
@@ -186,7 +186,7 @@ type TraceStyle() =
         ) =  
             (fun (trace:('T :> Trace)) ->
 
-                trace.SetValue("domain", domain)
+                ++ ("domain", domain)
                 trace
             )
         
@@ -206,7 +206,7 @@ type TraceStyle() =
      
                         |> Domain.style(?X=X,?Y=Y,?Row=Row,?Column=Column)
 
-                    trace.SetValue("domain", domain)
+                    ++ ("domain", domain)
                     trace
                 )
 
@@ -217,7 +217,7 @@ type TraceStyle() =
         ) =  
             (fun (trace:('T :> Trace)) ->
 
-                trace.SetValue("error_x", error)
+                ++ ("error_x", error)
                 trace
             )
 
@@ -228,7 +228,7 @@ type TraceStyle() =
         ) =  
             (fun (trace:('T :> Trace)) ->
 
-                trace.SetValue("error_y", error)
+                ++ ("error_y", error)
                 trace
             )
 
@@ -239,7 +239,7 @@ type TraceStyle() =
         ) =  
             (fun (trace:('T :> Trace)) ->
 
-                trace.SetValue("error_z", error)
+                ++ ("error_z", error)
                 trace
             )
 
@@ -250,6 +250,6 @@ type TraceStyle() =
         ) =  
             (fun (trace:('T :> Trace)) ->
 
-                trace.SetValue("stackgroup", stackgroup)
+                ++ ("stackgroup", stackgroup)
                 trace
             )
