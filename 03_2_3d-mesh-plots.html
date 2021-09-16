@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>3D Mesh plots</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Timo Mühlhaus, Kevin Schneider, F# open source contributors">
+    
+    <!--Opengraph properties (https://ogp.me/)-->
+    <meta property="og:title" content="3D Mesh plots" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Plotly.NET" />
+    
+    <link rel="shortcut icon" type="image/x-icon" href="https://plotly.net//img/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script> -->
+
+    <link type="text/css" rel="stylesheet" href="https://plotly.net/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="https://plotly.net/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="https://plotly.net/content/fsdocs-tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head> 
+
+<body>
+    <div class="columns is-fullheight m-0">
+        <div id="fsdocs-menu" class="column is-2 is-paddingless">
+            <aside class="menu">
+                <div class="container is-paddingless is-marginless has-background-dark">
+                    <a href="https://plotly.net/">
+                        <figure class="image is-128x128 container">
+                            <img src="https://plotly.net/img/logo.png">
+                        </figure>
+                    </a>
+                    <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.8</h5>
+                </div>
+                <div class="content">
+                    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+                    <div id="header">
+                        <div class="searchbox" id="fsdocs-searchbox">
+                            <label for="search-by">
+                                <i class="fas fa-search"></i>
+                            </label>
+                            <input data-search-input="" id="search-by" type="search" placeholder="Search..." class="input"/>
+                            <span data-search-clear="">
+                                <i class="fas fa-times"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- END SEARCH BOX: this adds support for the search box -->
+                    <ul class="navbar-nav">
+                        <li class="nav-header">Links</li>
+                        <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License (MIT)</a></li>
+                        <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release Notes</a></li>
+                        <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source Repository</a></li>
+                        <li class="nav-header">
+  General
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/00_0_basics.html">
+    Basics
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/00_1_image-export.html">
+    Static image export
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/00_2_display-options.html">
+    Display Options
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/00_3_chart-config.html">
+    Chart config
+  </a>
+</li>             
+<li class="nav-header">
+  Chart Layout
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/01_0_axis-styling.html">
+    Axis styling
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/01_1_errorbars.html">
+    Error bars
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/01_2_multiple-charts.html">
+    Multicharts and subplots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/01_3_shapes.html">
+    Shapes
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/01_4_annotations.html">
+    Annotations
+  </a>
+</li>             
+<li class="nav-header">
+  Simple Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/02_0_line-scatter-plots.html">
+    Line and scatter plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/02_1_bar-and-column-charts.html">
+    Bar and column charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/02_2_area-plots.html">
+    Area charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/02_3_range-plots.html">
+    Range plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/02_4_bubble-charts.html">
+    Bubble charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/02_5_pie-doughnut-charts.html">
+    Pie and doughnut Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/02_6_table.html">
+    Tables
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/02_7_heatmaps.html">
+    Heatmaps
+  </a>
+</li>             
+<li class="nav-header">
+  3D Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/03_0_3d-scatter-plots.html">
+    3D point and line charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/03_1_3d-surface-plots.html">
+    3D surface plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/03_2_3d-mesh-plots.html">
+    3D Mesh plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/03_3_3d-cone-charts.html">
+    3D Cone plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/03_4_3d-streamtube-plots.html">
+    3D streamtube plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/03_5_3d-volume-plots.html">
+    3D Volume plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/03_6_3d-isosurface-plots .html">
+    3D IsoSurface plots
+  </a>
+</li>             
+<li class="nav-header">
+  Distribution Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/04_0_histograms.html">
+    Histograms
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/04_1_box-plots.html">
+    BoxPlots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/04_2_violin-plots.html">
+    Violin plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/04_4_2d-histograms.html">
+    2D Histograms
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/04_3_contour-plots.html">
+    Contour plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/04_5_splom.html">
+    Scatterplot matrix
+  </a>
+</li>             
+<li class="nav-header">
+  Geo map charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/05_0_geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/05_1_geo-plots.html">
+    Scatter and line plots on Geo maps
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/05_2_choropleth-map.html">
+    Choropleth maps
+  </a>
+</li>             
+<li class="nav-header">
+  Finance Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_0_candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_1_funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_2_funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
+<li class="nav-header">
+  Mapbox map charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/06_0_geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/06_1_mapbox-plots.html">
+    Scatter and line plots on Mapbox maps
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/06_2_choropleth-mapbox.html">
+    ChoroplethMapbox
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/06_3_density-mapbox.html">
+    DensityMapbox charts
+  </a>
+</li>             
+<li class="nav-header">
+  Polar Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/08_0_polar_line-scatter-plots.html">
+    Polar line and scatter plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/08_1_polar_bar_charts.html">
+    Polar bar charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/08_2_styling_polar_layouts.html">
+    Styling polar layouts
+  </a>
+</li>             
+<li class="nav-header">
+  Ternary Plots
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/10_0_ternary_line_scatter_plots.html">
+    Ternary line and scatter plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/10_1_styling_ternary_layouts.html">
+    Styling ternary layouts
+  </a>
+</li>             
+<li class="nav-header">
+  Categorical Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/09_0_parallel-categories.html">
+    Parallel categories
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/09_1_parallel-coords.html">
+    Parallel coordinates
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/09_2_sankey.html">
+    Sankey Charts
+  </a>
+</li>
+                        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+        <div class="column is-10 is-paddingless">
+            <div class="section pt-4">
+                <div class="container" id="fsdocs-content">
+                    
+<h1><a name="3D-Mesh-plots" class="anchor" href="#3D-Mesh-plots">3D Mesh plots</a></h1>
+<p><a href="https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=03_2_3d-mesh-plots.ipynb"><img src="https://plotly.net/img/badge-binder.svg" alt="Binder" /></a>&emsp;
+<a href="https://plotly.net/03_2_3d-mesh-plots.fsx"><img src="https://plotly.net/img/badge-script.svg" alt="Script" /></a>&emsp;
+<a href="https://plotly.net/03_2_3d-mesh-plots.ipynb"><img src="https://plotly.net/img/badge-notebook.svg" alt="Notebook" /></a></p>
+<p><em>Summary:</em> This example shows how to create 3D-Mesh charts in F#.</p>
+<p>let's first create some data for the purpose of creating example charts:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">System</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">Plotly</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="id">NET</span> 
+
+
+<span class="c">//---------------------- Generate linearly spaced vector ----------------------</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="fn">linspace</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="fn">min</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="fn">max</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs7', 7)" onmouseover="showTip(event, 'fs7', 7)" class="fn">n</span><span class="pn">)</span> <span class="o">=</span> 
+    <span class="k">if</span> <span onmouseout="hideTip(event, 'fs7', 8)" onmouseover="showTip(event, 'fs7', 8)" class="fn">n</span> <span class="o">&lt;=</span> <span class="n">2</span> <span class="k">then</span> <span onmouseout="hideTip(event, 'fs8', 9)" onmouseover="showTip(event, 'fs8', 9)" class="fn">failwithf</span> <span class="s">&quot;n needs to be larger then 2&quot;</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs9', 10)" onmouseover="showTip(event, 'fs9', 10)" class="fn">bw</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs10', 11)" onmouseover="showTip(event, 'fs10', 11)" class="fn">float</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs6', 12)" onmouseover="showTip(event, 'fs6', 12)" class="fn">max</span> <span class="o">-</span> <span onmouseout="hideTip(event, 'fs5', 13)" onmouseover="showTip(event, 'fs5', 13)" class="fn">min</span><span class="pn">)</span> <span class="o">/</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs10', 14)" onmouseover="showTip(event, 'fs10', 14)" class="fn">float</span> <span onmouseout="hideTip(event, 'fs7', 15)" onmouseover="showTip(event, 'fs7', 15)" class="fn">n</span> <span class="o">-</span> <span class="n">1.</span><span class="pn">)</span>
+    <span onmouseout="hideTip(event, 'fs11', 16)" onmouseover="showTip(event, 'fs11', 16)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 17)" onmouseover="showTip(event, 'fs12', 17)" class="id">init</span> <span onmouseout="hideTip(event, 'fs7', 18)" onmouseover="showTip(event, 'fs7', 18)" class="fn">n</span> <span class="pn">(</span><span class="k">fun</span> <span onmouseout="hideTip(event, 'fs13', 19)" onmouseover="showTip(event, 'fs13', 19)" class="fn">i</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs5', 20)" onmouseover="showTip(event, 'fs5', 20)" class="fn">min</span> <span class="o">+</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs9', 21)" onmouseover="showTip(event, 'fs9', 21)" class="fn">bw</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs10', 22)" onmouseover="showTip(event, 'fs10', 22)" class="fn">float</span> <span onmouseout="hideTip(event, 'fs13', 23)" onmouseover="showTip(event, 'fs13', 23)" class="fn">i</span><span class="pn">)</span><span class="pn">)</span>
+    <span class="c">//[|min ..bw ..max|]</span>
+
+<span class="c">//---------------------- Create example data ----------------------</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs14', 24)" onmouseover="showTip(event, 'fs14', 24)" class="id">size</span> <span class="o">=</span> <span class="n">100</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs15', 25)" onmouseover="showTip(event, 'fs15', 25)" class="id">x</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs4', 26)" onmouseover="showTip(event, 'fs4', 26)" class="fn">linspace</span><span class="pn">(</span><span class="o">-</span><span class="n">2.</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs16', 27)" onmouseover="showTip(event, 'fs16', 27)" class="id">Math</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 28)" onmouseover="showTip(event, 'fs17', 28)" class="id">PI</span><span class="pn">,</span> <span class="n">2.</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs16', 29)" onmouseover="showTip(event, 'fs16', 29)" class="id">Math</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 30)" onmouseover="showTip(event, 'fs17', 30)" class="id">PI</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs14', 31)" onmouseover="showTip(event, 'fs14', 31)" class="id">size</span><span class="pn">)</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs18', 32)" onmouseover="showTip(event, 'fs18', 32)" class="id">y</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs4', 33)" onmouseover="showTip(event, 'fs4', 33)" class="fn">linspace</span><span class="pn">(</span><span class="o">-</span><span class="n">2.</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs16', 34)" onmouseover="showTip(event, 'fs16', 34)" class="id">Math</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 35)" onmouseover="showTip(event, 'fs17', 35)" class="id">PI</span><span class="pn">,</span> <span class="n">2.</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs16', 36)" onmouseover="showTip(event, 'fs16', 36)" class="id">Math</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 37)" onmouseover="showTip(event, 'fs17', 37)" class="id">PI</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs14', 38)" onmouseover="showTip(event, 'fs14', 38)" class="id">size</span><span class="pn">)</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs19', 39)" onmouseover="showTip(event, 'fs19', 39)" class="fn">f</span> <span onmouseout="hideTip(event, 'fs20', 40)" onmouseover="showTip(event, 'fs20', 40)" class="fn">x</span> <span onmouseout="hideTip(event, 'fs21', 41)" onmouseover="showTip(event, 'fs21', 41)" class="fn">y</span> <span class="o">=</span> <span class="o">-</span> <span class="pn">(</span><span class="n">5.</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs20', 42)" onmouseover="showTip(event, 'fs20', 42)" class="fn">x</span> <span class="o">/</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs20', 43)" onmouseover="showTip(event, 'fs20', 43)" class="fn">x</span><span class="o">**</span><span class="n">2.</span> <span class="o">+</span> <span onmouseout="hideTip(event, 'fs21', 44)" onmouseover="showTip(event, 'fs21', 44)" class="fn">y</span><span class="o">**</span><span class="n">2.</span> <span class="o">+</span> <span class="n">1.</span><span class="pn">)</span> <span class="pn">)</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs22', 45)" onmouseover="showTip(event, 'fs22', 45)" class="id">z</span> <span class="o">=</span> 
+    <span onmouseout="hideTip(event, 'fs11', 46)" onmouseover="showTip(event, 'fs11', 46)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 47)" onmouseover="showTip(event, 'fs12', 47)" class="id">init</span> <span onmouseout="hideTip(event, 'fs14', 48)" onmouseover="showTip(event, 'fs14', 48)" class="id">size</span> <span class="pn">(</span><span class="k">fun</span> <span onmouseout="hideTip(event, 'fs13', 49)" onmouseover="showTip(event, 'fs13', 49)" class="fn">i</span> <span class="k">-&gt;</span> 
+        <span onmouseout="hideTip(event, 'fs11', 50)" onmouseover="showTip(event, 'fs11', 50)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 51)" onmouseover="showTip(event, 'fs12', 51)" class="id">init</span> <span onmouseout="hideTip(event, 'fs14', 52)" onmouseover="showTip(event, 'fs14', 52)" class="id">size</span> <span class="pn">(</span><span class="k">fun</span> <span onmouseout="hideTip(event, 'fs23', 53)" onmouseover="showTip(event, 'fs23', 53)" class="fn">j</span> <span class="k">-&gt;</span> 
+            <span onmouseout="hideTip(event, 'fs19', 54)" onmouseover="showTip(event, 'fs19', 54)" class="fn">f</span> <span onmouseout="hideTip(event, 'fs15', 55)" onmouseover="showTip(event, 'fs15', 55)" class="id">x</span><span class="id">.</span><span class="pn">[</span><span onmouseout="hideTip(event, 'fs23', 56)" onmouseover="showTip(event, 'fs23', 56)" class="fn">j</span><span class="pn">]</span> <span onmouseout="hideTip(event, 'fs18', 57)" onmouseover="showTip(event, 'fs18', 57)" class="id">y</span><span class="id">.</span><span class="pn">[</span><span onmouseout="hideTip(event, 'fs13', 58)" onmouseover="showTip(event, 'fs13', 58)" class="fn">i</span><span class="pn">]</span> 
+        <span class="pn">)</span>
+    <span class="pn">)</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs24', 59)" onmouseover="showTip(event, 'fs24', 59)" class="id">rnd</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs1', 60)" onmouseover="showTip(event, 'fs1', 60)" class="id">System</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 61)" onmouseover="showTip(event, 'fs25', 61)" class="id">Random</span><span class="pn">(</span><span class="pn">)</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs26', 62)" onmouseover="showTip(event, 'fs26', 62)" class="id">a</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs11', 63)" onmouseover="showTip(event, 'fs11', 63)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 64)" onmouseover="showTip(event, 'fs12', 64)" class="id">init</span> <span class="n">50</span> <span class="pn">(</span><span class="k">fun</span> <span class="id">_</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs24', 65)" onmouseover="showTip(event, 'fs24', 65)" class="id">rnd</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs27', 66)" onmouseover="showTip(event, 'fs27', 66)" class="id">NextDouble</span><span class="pn">(</span><span class="pn">)</span><span class="pn">)</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs28', 67)" onmouseover="showTip(event, 'fs28', 67)" class="id">b</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs11', 68)" onmouseover="showTip(event, 'fs11', 68)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 69)" onmouseover="showTip(event, 'fs12', 69)" class="id">init</span> <span class="n">50</span> <span class="pn">(</span><span class="k">fun</span> <span class="id">_</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs24', 70)" onmouseover="showTip(event, 'fs24', 70)" class="id">rnd</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs27', 71)" onmouseover="showTip(event, 'fs27', 71)" class="id">NextDouble</span><span class="pn">(</span><span class="pn">)</span><span class="pn">)</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs29', 72)" onmouseover="showTip(event, 'fs29', 72)" class="id">c</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs11', 73)" onmouseover="showTip(event, 'fs11', 73)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 74)" onmouseover="showTip(event, 'fs12', 74)" class="id">init</span> <span class="n">50</span> <span class="pn">(</span><span class="k">fun</span> <span class="id">_</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs24', 75)" onmouseover="showTip(event, 'fs24', 75)" class="id">rnd</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs27', 76)" onmouseover="showTip(event, 'fs27', 76)" class="id">NextDouble</span><span class="pn">(</span><span class="pn">)</span><span class="pn">)</span>
+
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 77)" onmouseover="showTip(event, 'fs2', 77)" class="id">Plotly</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 78)" onmouseover="showTip(event, 'fs3', 78)" class="id">NET</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 79)" onmouseover="showTip(event, 'fs30', 79)" class="id">TraceObjects</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs31', 80)" onmouseover="showTip(event, 'fs31', 80)" class="id">mesh3d</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs32', 81)" onmouseover="showTip(event, 'fs32', 81)" class="rt">Trace3D</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs33', 82)" onmouseover="showTip(event, 'fs33', 82)" class="id">initMesh3d</span> 
+        <span class="pn">(</span><span class="k">fun</span> <span onmouseout="hideTip(event, 'fs34', 83)" onmouseover="showTip(event, 'fs34', 83)" class="fn">mesh3d</span> <span class="k">-&gt;</span>
+            <span onmouseout="hideTip(event, 'fs34', 84)" onmouseover="showTip(event, 'fs34', 84)" class="pn">mesh3d</span><span class="o">?</span><span onmouseout="hideTip(event, 'fs15', 85)" onmouseover="showTip(event, 'fs15', 85)" class="id">x</span> <span class="k">&lt;-</span> <span onmouseout="hideTip(event, 'fs26', 86)" onmouseover="showTip(event, 'fs26', 86)" class="id">a</span>
+            <span onmouseout="hideTip(event, 'fs34', 87)" onmouseover="showTip(event, 'fs34', 87)" class="pn">mesh3d</span><span class="o">?</span><span onmouseout="hideTip(event, 'fs18', 88)" onmouseover="showTip(event, 'fs18', 88)" class="id">y</span> <span class="k">&lt;-</span> <span onmouseout="hideTip(event, 'fs28', 89)" onmouseover="showTip(event, 'fs28', 89)" class="id">b</span>
+            <span onmouseout="hideTip(event, 'fs34', 90)" onmouseover="showTip(event, 'fs34', 90)" class="pn">mesh3d</span><span class="o">?</span><span onmouseout="hideTip(event, 'fs22', 91)" onmouseover="showTip(event, 'fs22', 91)" class="id">z</span> <span class="k">&lt;-</span> <span onmouseout="hideTip(event, 'fs29', 92)" onmouseover="showTip(event, 'fs29', 92)" class="id">c</span>
+            <span onmouseout="hideTip(event, 'fs34', 93)" onmouseover="showTip(event, 'fs34', 93)" class="pn">mesh3d</span><span class="o">?</span><span class="id">flatshading</span> <span class="k">&lt;-</span> <span class="k">true</span>
+            <span onmouseout="hideTip(event, 'fs34', 94)" onmouseover="showTip(event, 'fs34', 94)" class="pn">mesh3d</span><span class="o">?</span><span class="id">contour</span> <span class="k">&lt;-</span> <span onmouseout="hideTip(event, 'fs35', 95)" onmouseover="showTip(event, 'fs35', 95)" class="rt">Contours</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs36', 96)" onmouseover="showTip(event, 'fs36', 96)" class="id">initXyz</span><span class="pn">(</span><span class="fn">Show</span><span class="o">=</span><span class="k">true</span><span class="pn">)</span>
+            <span onmouseout="hideTip(event, 'fs34', 97)" onmouseover="showTip(event, 'fs34', 97)" class="fn">mesh3d</span>
+            <span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs37', 98)" onmouseover="showTip(event, 'fs37', 98)" class="m">GenericChart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs38', 99)" onmouseover="showTip(event, 'fs38', 99)" class="id">ofTraceObject</span> 
+    
+</code></pre>
+<div id="f2323ddc-ccbc-4642-9381-7355bf7bfff3" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<script type="text/javascript">
+
+            var renderPlotly_f2323ddcccbc464293817355bf7bfff3 = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            fsharpPlotlyRequire(['plotly'], function(Plotly) {
+
+            var data = [{"type":"mesh3d","x":[0.32643408809156815,0.36907883797263674,0.18583917626451663,0.23055005130849315,0.42823446189436803,0.36925182275904894,0.5295718673288691,0.7332678384768161,0.5719747345764072,0.15365471511783763,0.9441199893802963,0.17054823980226566,0.7365667204077201,0.38928272686399645,0.5834725567062723,0.6821526557589661,0.6569603367973865,0.8975676726072876,0.9450236214068828,0.18294275933082343,0.15365740710574083,0.9971510926248278,0.3810837759548257,0.4956803976072373,0.9140054275812607,0.09831306901681845,0.599083179421296,0.397753697539565,0.036240849195160366,0.4324303425068177,0.8324607055785417,0.7197795094548629,0.9084869292138549,0.6436404039355184,0.448895758226931,0.4761585176345699,0.1712289285712079,0.6553691130389315,0.22580592484483772,0.49839534587152085,0.10930442489185577,0.6371387311430363,0.05957539848032193,0.7809692922890975,0.5726857676974897,0.20819987552622327,0.9693954316756667,0.10444199997207243,0.19388011572597555,0.9873682395496258],"y":[0.7186163858131582,0.3161849846673128,0.36410386178833615,0.39896314144086237,0.43791387716211094,0.32928299546674034,0.9879950620178111,0.6901587786572794,0.3165446237272325,0.32992139287754957,0.7701686433377529,0.1318181697893041,0.6970269892816557,0.13954439206958952,0.32119400953929594,0.2243404799254334,0.26206131058841076,0.09292631647220176,0.9403869686370655,0.10731403907170242,0.5109237271877581,0.0015912237584550044,0.6717617477624499,0.446628275535362,0.07363833443896767,0.5165186759627045,0.9375756941445058,0.6001144836657283,0.9229946299097476,0.7058055520550374,0.12891763734115178,0.49464117944922353,0.20387358181358947,0.04887260964553459,0.7138139566936595,0.5162757209112289,0.3556756476665268,0.5095237877729926,0.20572652677340736,0.11961276276019064,0.4881634556167589,0.48107014991392855,0.33882448931169906,0.8958845319672881,0.7282267025337679,0.9774862551025517,0.9401117418613805,0.9200310064107324,0.45977528274980156,0.3483452877720563],"z":[0.9461385649378126,0.8764691152034649,0.16405503133500696,0.08656607665427313,0.4764445123618676,0.7170251620547032,0.6444232369048629,0.9174755862529742,0.3253248070018947,0.9213952011994064,0.39170730132223447,0.3878805783520828,0.7671641487475318,0.6107390716721951,0.2010037555363978,0.27552746388852944,0.9279445879757147,0.6481543796361212,0.42573043537593,0.804918288628067,0.8686648322589066,0.7525375228154182,0.8871997896987944,0.8207742058768749,0.6191505834549436,0.029853577273829642,0.6627667344467559,0.7758772157951618,0.7184015730015941,0.09615207933641601,0.576406934101324,0.017544687733773462,0.1403392009159267,0.5746493421376913,0.7596669871172248,0.25244852213768687,0.3305861481142166,0.11730750515931636,0.572428097283667,0.9967887946389563,0.871852484006366,0.43820006141355267,0.1841989807710978,0.284331325574001,0.7279054614379562,0.10028287726467609,0.7139060011663968,0.728085417639504,0.6948807764308903,0.4526992386452384],"flatshading":true,"contour":{"x":{"show":true},"y":{"show":true},"z":{"show":true}}}];
+            var layout = {};
+            var config = {};
+            Plotly.newPlot('f2323ddc-ccbc-4642-9381-7355bf7bfff3', data, layout, config);
+});
+            };
+            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
+                var script = document.createElement("script");
+                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
+                script.onload = function(){
+                    renderPlotly_f2323ddcccbc464293817355bf7bfff3();
+                };
+                document.getElementsByTagName("head")[0].appendChild(script);
+            }
+            else {
+                renderPlotly_f2323ddcccbc464293817355bf7bfff3();
+            }
+</script>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="fsdocs-tip" id="fs1">namespace System</div>
+<div class="fsdocs-tip" id="fs2">namespace Plotly</div>
+<div class="fsdocs-tip" id="fs3">namespace Plotly.NET</div>
+<div class="fsdocs-tip" id="fs4">val linspace : min:float * max:float * n:int -&gt; float []</div>
+<div class="fsdocs-tip" id="fs5">val min : float</div>
+<div class="fsdocs-tip" id="fs6">val max : float</div>
+<div class="fsdocs-tip" id="fs7">val n : int</div>
+<div class="fsdocs-tip" id="fs8">val failwithf : format:Printf.StringFormat&lt;&#39;T,&#39;Result&gt; -&gt; &#39;T<br /><em>&lt;summary&gt;Print to a string buffer and raise an exception with the given
+ result. Helper printers must return strings.&lt;/summary&gt;<br />&lt;param name=&quot;format&quot;&gt;The formatter.&lt;/param&gt;<br />&lt;returns&gt;The formatted result.&lt;/returns&gt;</em></div>
+<div class="fsdocs-tip" id="fs9">val bw : float</div>
+<div class="fsdocs-tip" id="fs10">Multiple items<br />val float : value:&#39;T -&gt; float (requires member op_Explicit)<br /><em>&lt;summary&gt;Converts the argument to 64-bit float. This is a direct conversion for all 
+ primitive numeric types. For strings, the input is converted using &lt;c&gt;Double.Parse()&lt;/c&gt;  
+ with InvariantCulture settings. Otherwise the operation requires an appropriate
+ static conversion method on the input type.&lt;/summary&gt;<br />&lt;param name=&quot;value&quot;&gt;The input value.&lt;/param&gt;<br />&lt;returns&gt;The converted float&lt;/returns&gt;</em><br /><br />--------------------<br />[&lt;Struct&gt;]
+type float = Double<br /><em>&lt;summary&gt;An abbreviation for the CLI type &lt;see cref=&quot;T:System.Double&quot; /&gt;.&lt;/summary&gt;<br />&lt;category&gt;Basic Types&lt;/category&gt;</em><br /><br />--------------------<br />type float&lt;&#39;Measure&gt; =
+  float<br /><em>&lt;summary&gt;The type of double-precision floating point numbers, annotated with a unit of measure. 
+ The unit of measure is erased in compiled code and when values of this type
+ are analyzed using reflection. The type is representationally equivalent to 
+ &lt;see cref=&quot;T:System.Double&quot; /&gt;.&lt;/summary&gt;<br />&lt;category index=&quot;6&quot;&gt;Basic Types with Units of Measure&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs11">type Array =
+  interface ICollection
+  interface IEnumerable
+  interface IList
+  interface IStructuralComparable
+  interface IStructuralEquatable
+  interface ICloneable
+  new : unit -&gt; unit
+  member Clone : unit -&gt; obj
+  member CopyTo : array: Array * index: int -&gt; unit + 1 overload
+  member GetEnumerator : unit -&gt; IEnumerator
+  ...<br /><em>&lt;summary&gt;Provides methods for creating, manipulating, searching, and sorting arrays, thereby serving as the base class for all arrays in the common language runtime.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs12">val init : count:int -&gt; initializer:(int -&gt; &#39;T) -&gt; &#39;T []<br /><em>&lt;summary&gt;Creates an array given the dimension and a generator function to compute the elements.&lt;/summary&gt;<br />&lt;param name=&quot;count&quot;&gt;The number of elements to initialize.&lt;/param&gt;<br />&lt;param name=&quot;initializer&quot;&gt;The function to generate the initial values for each index.&lt;/param&gt;<br />&lt;returns&gt;The created array.&lt;/returns&gt;<br />&lt;exception cref=&quot;T:System.ArgumentException&quot;&gt;Thrown when count is negative.&lt;/exception&gt;</em></div>
+<div class="fsdocs-tip" id="fs13">val i : int</div>
+<div class="fsdocs-tip" id="fs14">val size : int</div>
+<div class="fsdocs-tip" id="fs15">val x : float []</div>
+<div class="fsdocs-tip" id="fs16">type Math =
+  static member Abs : value: decimal -&gt; decimal + 6 overloads
+  static member Acos : d: float -&gt; float
+  static member Acosh : d: float -&gt; float
+  static member Asin : d: float -&gt; float
+  static member Asinh : d: float -&gt; float
+  static member Atan : d: float -&gt; float
+  static member Atan2 : y: float * x: float -&gt; float
+  static member Atanh : d: float -&gt; float
+  static member BigMul : a: int * b: int -&gt; int64 + 2 overloads
+  static member BitDecrement : x: float -&gt; float
+  ...<br /><em>&lt;summary&gt;Provides constants and static methods for trigonometric, logarithmic, and other common mathematical functions.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs17">field Math.PI: float = 3.14159265359<br /><em>&lt;summary&gt;Represents the ratio of the circumference of a circle to its diameter, specified by the constant, π.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs18">val y : float []</div>
+<div class="fsdocs-tip" id="fs19">val f : x:float -&gt; y:float -&gt; float</div>
+<div class="fsdocs-tip" id="fs20">val x : float</div>
+<div class="fsdocs-tip" id="fs21">val y : float</div>
+<div class="fsdocs-tip" id="fs22">val z : float [] []</div>
+<div class="fsdocs-tip" id="fs23">val j : int</div>
+<div class="fsdocs-tip" id="fs24">val rnd : Random</div>
+<div class="fsdocs-tip" id="fs25">Multiple items<br />type Random =
+  new : unit -&gt; unit + 1 overload
+  member Next : unit -&gt; int + 2 overloads
+  member NextBytes : buffer: byte [] -&gt; unit + 1 overload
+  member NextDouble : unit -&gt; float
+  member Sample : unit -&gt; float<br /><em>&lt;summary&gt;Represents a pseudo-random number generator, which is an algorithm that produces a sequence of numbers that meet certain statistical requirements for randomness.&lt;/summary&gt;</em><br /><br />--------------------<br />Random() : Random<br />Random(Seed: int) : Random</div>
+<div class="fsdocs-tip" id="fs26">val a : float []</div>
+<div class="fsdocs-tip" id="fs27">Random.NextDouble() : float</div>
+<div class="fsdocs-tip" id="fs28">val b : float []</div>
+<div class="fsdocs-tip" id="fs29">val c : float []</div>
+<div class="fsdocs-tip" id="fs30">namespace Plotly.NET.TraceObjects</div>
+<div class="fsdocs-tip" id="fs31">val mesh3d : GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs32">Multiple items<br />type Trace3D =
+  inherit Trace
+  new : traceTypeName:string -&gt; Trace3D
+  static member initCone : applyStyle:(Trace3D -&gt; Trace3D) -&gt; Trace3D
+  static member initIsoSurface : applyStyle:(Trace3D -&gt; Trace3D) -&gt; Trace3D
+  static member initMesh3d : applyStyle:(Trace3D -&gt; Trace3D) -&gt; Trace3D
+  static member initScatter3d : applyStyle:(Trace3D -&gt; Trace3D) -&gt; Trace3D
+  static member initStreamTube : applyStyle:(Trace3D -&gt; Trace3D) -&gt; Trace3D
+  static member initSurface : applyStyle:(Trace3D -&gt; Trace3D) -&gt; Trace3D
+  static member initVolume : applyStyle:(Trace3D -&gt; Trace3D) -&gt; Trace3D<br /><em>&lt;summary&gt;
+ Traces for 3D subplots, using layout.scene as anchors.
+
+ These trace types are compatible with 3D subplots via the scene attribute, which contains special camera controls:
+
+- scatter3d, which can be used to draw individual markers, 3d bubble charts and lines and curves
+
+- surface and mesh: 3d surface trace types
+
+- cone and streamtube: 3d vector field trace types
+
+- volume and isosurface: 3d volume trace types
+&lt;/summary&gt;</em><br /><br />--------------------<br />new : traceTypeName:string -&gt; Trace3D</div>
+<div class="fsdocs-tip" id="fs33">static member Trace3D.initMesh3d : applyStyle:(Trace3D -&gt; Trace3D) -&gt; Trace3D</div>
+<div class="fsdocs-tip" id="fs34">val mesh3d : Trace3D</div>
+<div class="fsdocs-tip" id="fs35">Multiple items<br />type Contours =
+  inherit DynamicObj
+  new : unit -&gt; Contours
+  static member init : ?X:Contour * ?Y:Contour * ?Z:Contour -&gt; Contours
+  static member initXyz : ?Color:Color * ?End:float * ?Highlight:bool * ?HighlightColor:Color * ?HighlightWidth:float * ?Project:ContourProject * ?Show:bool * ?Size:float * ?Start:float * ?UseColorMap:bool * ?Width:float -&gt; Contours
+  static member style : ?X:Contour * ?Y:Contour * ?Z:Contour -&gt; (Contours -&gt; Contours)
+  static member styleXyz : ?Color:Color * ?End:float * ?Highlight:bool * ?HighlightColor:Color * ?HighlightWidth:float * ?Project:ContourProject * ?Show:bool * ?Size:float * ?Start:float * ?UseColorMap:bool * ?Width:float -&gt; (Contours -&gt; Contours)<br /><em>&lt;summary&gt;
+ Contours type inherits from dynamic object
+&lt;/summary&gt;</em><br /><br />--------------------<br />new : unit -&gt; Contours</div>
+<div class="fsdocs-tip" id="fs36">static member Contours.initXyz : ?Color:Color * ?End:float * ?Highlight:bool * ?HighlightColor:Color * ?HighlightWidth:float * ?Project:ContourProject * ?Show:bool * ?Size:float * ?Start:float * ?UseColorMap:bool * ?Width:float -&gt; Contours</div>
+<div class="fsdocs-tip" id="fs37">module GenericChart
+
+from Plotly.NET<br /><em>&lt;summary&gt;
+ Module to represent a GenericChart
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs38">val ofTraceObject : trace:Trace -&gt; GenericChart.GenericChart<br /><em>&lt;summary&gt;
+ Converts from a trace object and a layout object into GenericChart
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs39">val toChartHTML : gChart:GenericChart.GenericChart -&gt; string<br /><em>&lt;summary&gt;
+ Converts a GenericChart to it HTML representation. The div layer has a default size of 600 if not specified otherwise.
+&lt;/summary&gt;</em></div>
+
+    </div>
+
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <script type="text/javascript">var fsdocs_search_baseurl = 'https://plotly.net/'</script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+    <script type="text/javascript" src="https://plotly.net/content/fsdocs-search.js"></script>
+    <!-- END SEARCH BOX: this adds support for the search box -->
+</body>
+
+</html>

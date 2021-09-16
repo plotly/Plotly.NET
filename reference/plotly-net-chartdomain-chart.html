@@ -1,0 +1,3225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Chart (Plotly.NET)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Timo Mühlhaus, Kevin Schneider, F# open source contributors">
+    <link rel="shortcut icon" type="image/x-icon" href="https://plotly.net//img/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script> -->
+
+    <link type="text/css" rel="stylesheet" href="https://plotly.net/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="https://plotly.net/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="https://plotly.net/content/fsdocs-tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head> 
+
+<body>
+    <div class="columns is-fullheight m-0">
+        <div id="fsdocs-menu" class="column is-2 is-paddingless">
+            <aside class="menu">
+                <div class="container is-paddingless is-marginless has-background-dark">
+                    <a href="https://plotly.net/">
+                        <figure class="image is-128x128 container">
+                            <img src="https://plotly.net/img/logo.png">
+                        </figure>
+                    </a>
+                    <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.8</h5>
+                </div>
+                <div class="content">
+                    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+                    <div id="header">
+                        <div class="searchbox" id="fsdocs-searchbox">
+                            <label for="search-by">
+                                <i class="fas fa-search"></i>
+                            </label>
+                            <input data-search-input="" id="search-by" type="search" placeholder="Search..." class="input"/>
+                            <span data-search-clear="">
+                                <i class="fas fa-times"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- END SEARCH BOX: this adds support for the search box -->
+                    <ul class="navbar-nav">
+                        <li class="nav-header">Links</li>
+                        <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License (MIT)</a></li>
+                        <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release Notes</a></li>
+                        <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source Repository</a></li>
+                        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+        <div class="column is-10 is-paddingless">
+            <div class="section pt-4">
+                <div class="container" id="fsdocs-content">
+                    <div>
+  <h2>
+    Chart Type
+  </h2>
+  <dl class="fsdocs-metadata">
+    <dt>
+      Namespace: 
+      <a href="https://plotly.net/reference/plotly-net.html">
+        Plotly.NET
+      </a>
+    </dt>
+    <dt>
+      Assembly: Plotly.NET.dll
+    </dt>
+    <dt>
+      Parent Module: 
+      <a href="https://plotly.net/reference/plotly-net-chartdomain.html">
+        ChartDomain
+      </a>
+    </dt>
+    <dt>
+      Base Type: 
+      <code>obj</code>
+    </dt>
+  </dl>
+  <div class="fsdocs-xmldoc">
+    <div>
+      <p class="fsdocs-summary">
+        
+      </p>
+    </div>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div>
+    <h3>
+      Static members
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Static member
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '201', 201)" onmouseover="showTip(event, '201', 201)">
+                <p>
+                  <a id="Doughnut">
+                    <a href="#Doughnut">
+                      <code><span>Chart.Doughnut<span><span>(<span>valuesLabels,&#32;?Hole,&#32;?Name,&#32;?TextLabels,&#32;?TextPosition,&#32;?Direction,&#32;?Pull,&#32;?ShowLegend,&#32;?SectionColors,&#32;?Opacity,&#32;?Sort</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="201">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Chart.Doughnut<span><span>(<span>valuesLabels,&#32;?Hole,&#32;?Name,&#32;?TextLabels,&#32;?TextPosition,&#32;?Direction,&#32;?Pull,&#32;?ShowLegend,&#32;?SectionColors,&#32;?Opacity,&#32;?Sort</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        valuesLabels
+                      </b>
+                      :
+                      <code><span>seq&lt;<span>'a&#32;*&#32;'b</span>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Hole
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Name
+                      </b>
+                      :
+                      <code>string</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?TextLabels
+                      </b>
+                      :
+                      <code><span>seq&lt;'b&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?TextPosition
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Direction
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-direction.html">Direction</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Pull
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ShowLegend
+                      </b>
+                      :
+                      <code>bool</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?SectionColors
+                      </b>
+                      :
+                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-color.html">Color</a>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Opacity
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Sort
+                      </b>
+                      :
+                      <code>bool</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.ChartDomain.Chart.Doughnut``2```')">
+                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ChartDomain.Chart.Doughnut``2\'/>')">
+                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartDomain.fs#L126-126" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Shows how proportions of data, shown as pie-shaped pieces, contribute to the data as a whole.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  valuesLabels
+                </span>
+                :
+                <code><span>seq&lt;<span>'a&#32;*&#32;'b</span>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Hole
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Name
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TextLabels
+                </span>
+                :
+                <code><span>seq&lt;'b&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TextPosition
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Direction
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-direction.html">Direction</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Pull
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ShowLegend
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?SectionColors
+                </span>
+                :
+                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-color.html">Color</a>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Opacity
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Sort
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '202', 202)" onmouseover="showTip(event, '202', 202)">
+                <p>
+                  <a id="Doughnut">
+                    <a href="#Doughnut">
+                      <code><span>Chart.Doughnut<span><span>(<span>values,&#32;?Labels,&#32;?Hole,&#32;?Name,&#32;?TextLabels,&#32;?TextPosition,&#32;?Direction,&#32;?Pull,&#32;?ShowLegend,&#32;?SectionColors,&#32;?Opacity,&#32;?Sort</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="202">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Chart.Doughnut<span><span>(<span>values,&#32;?Labels,&#32;?Hole,&#32;?Name,&#32;?TextLabels,&#32;?TextPosition,&#32;?Direction,&#32;?Pull,&#32;?ShowLegend,&#32;?SectionColors,&#32;?Opacity,&#32;?Sort</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        values
+                      </b>
+                      :
+                      <code><span>seq&lt;'a&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Labels
+                      </b>
+                      :
+                      <code><span>seq&lt;'b&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Hole
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Name
+                      </b>
+                      :
+                      <code>string</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?TextLabels
+                      </b>
+                      :
+                      <code><span>seq&lt;'b&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?TextPosition
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Direction
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-direction.html">Direction</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Pull
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ShowLegend
+                      </b>
+                      :
+                      <code>bool</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?SectionColors
+                      </b>
+                      :
+                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-color.html">Color</a>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Opacity
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Sort
+                      </b>
+                      :
+                      <code>bool</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.ChartDomain.Chart.Doughnut``2```')">
+                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ChartDomain.Chart.Doughnut``2\'/>')">
+                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartDomain.fs#L88-88" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Shows how proportions of data, shown as pie-shaped pieces, contribute to the data as a whole.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  values
+                </span>
+                :
+                <code><span>seq&lt;'a&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Labels
+                </span>
+                :
+                <code><span>seq&lt;'b&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Hole
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Name
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TextLabels
+                </span>
+                :
+                <code><span>seq&lt;'b&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TextPosition
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Direction
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-direction.html">Direction</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Pull
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ShowLegend
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?SectionColors
+                </span>
+                :
+                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-color.html">Color</a>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Opacity
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Sort
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '203', 203)" onmouseover="showTip(event, '203', 203)">
+                <p>
+                  <a id="FunnelArea">
+                    <a href="#FunnelArea">
+                      <code><span>Chart.FunnelArea<span><span>(<span>?Values,&#32;?Labels,&#32;?dLabel,&#32;?Label0,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?Color,&#32;?Line,&#32;?Text,&#32;?TextPosition,&#32;?X,&#32;?Y,&#32;?Row,&#32;?Column,&#32;?Aspectratio,&#32;?Baseratio,&#32;?Insidetextfont,&#32;?Scalegroup</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="203">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Chart.FunnelArea<span><span>(<span>?Values,&#32;?Labels,&#32;?dLabel,&#32;?Label0,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?Color,&#32;?Line,&#32;?Text,&#32;?TextPosition,&#32;?X,&#32;?Y,&#32;?Row,&#32;?Column,&#32;?Aspectratio,&#32;?Baseratio,&#32;?Insidetextfont,&#32;?Scalegroup</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        ?Values
+                      </b>
+                      :
+                      <code><span>seq&lt;'a&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Labels
+                      </b>
+                      :
+                      <code><span>seq&lt;'b&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?dLabel
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Label0
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Name
+                      </b>
+                      :
+                      <code>string</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ShowLegend
+                      </b>
+                      :
+                      <code>bool</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Opacity
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Color
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Line
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Text
+                      </b>
+                      :
+                      <code><span>seq&lt;'c&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?TextPosition
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?X
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-range.html">Range</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Y
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-range.html">Range</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Row
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Column
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Aspectratio
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Baseratio
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Insidetextfont
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Scalegroup
+                      </b>
+                      :
+                      <code>string</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.ChartDomain.Chart.FunnelArea``3```')">
+                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ChartDomain.Chart.FunnelArea``3\'/>')">
+                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartDomain.fs#L201-201" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Creates a FunnelArea chart.
+ FunnelArea charts visualize stages in a process using area-encoded trapezoids. This trace can be used to show data in a part-to-whole representation similar to a "pie" trace, wherein each item appears in a single stage. See also the "funnel" trace type for a different approach to visualizing funnel data.
+
+ Parameters:
+ 
+ Values        : Sets the values of the sectors. If omitted, we count occurrences of each label.
+
+ Labels        : Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
+
+ dLabel        : Sets the label step. See `label0` for more info.
+
+ Label0        : Alternate to `labels`. Builds a numeric set of labels. Use with `dlabel` where `label0` is the starting label and `dlabel` the step.
+
+ Name          : Sets the trace name. The trace name appear as the legend item and on hover.
+
+ ShowLegend    : Determines whether or not an item corresponding to this trace is shown in the legend.
+
+ Opacity       : Sets the opacity of the trace.
+
+ Color         : Sets Marker Color
+
+ Line          : Line type
+
+ Text          : Sets text elements associated with each sector. If trace `textinfo` contains a "text" flag, these elements will be seen on the chart. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.
+
+ TextPosition  : Specifies the location of the `textinfo`.
+
+ X             : Sets the horizontal domain of this funnelarea trace (in plot fraction).
+
+ Y             : Sets the vertical domain of this funnelarea trace (in plot fraction).
+
+ Row           : If there is a layout grid, use the domain for this row in the grid for this funnelarea trace .
+
+ Column        : If there is a layout grid, use the domain for this column in the grid for this funnelarea trace .
+
+ Aspectratio   : Sets the ratio between height and width
+
+ Baseratio     : Sets the ratio between bottom length and maximum top length.
+
+ Insidetextfont: Sets the font used for `textinfo` lying inside the sector.
+
+ Scalegroup    : If there are multiple funnelareas that should be sized according to their totals, link them by providing a non-empty group id here shared by every trace in the same group.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Values
+                </span>
+                :
+                <code><span>seq&lt;'a&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Labels
+                </span>
+                :
+                <code><span>seq&lt;'b&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?dLabel
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Label0
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Name
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ShowLegend
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Opacity
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Color
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Line
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Text
+                </span>
+                :
+                <code><span>seq&lt;'c&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TextPosition
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?X
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-range.html">Range</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Y
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-range.html">Range</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Row
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Column
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Aspectratio
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Baseratio
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Insidetextfont
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Scalegroup
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '204', 204)" onmouseover="showTip(event, '204', 204)">
+                <p>
+                  <a id="ParallelCategories">
+                    <a href="#ParallelCategories">
+                      <code><span>Chart.ParallelCategories<span><span>(<span>dims,&#32;?Color,&#32;?Colorscale,&#32;?Width,&#32;?Dash,&#32;?Domain,&#32;?Labelfont,&#32;?Tickfont,&#32;?Rangefont</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="204">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Chart.ParallelCategories<span><span>(<span>dims,&#32;?Color,&#32;?Colorscale,&#32;?Width,&#32;?Dash,&#32;?Domain,&#32;?Labelfont,&#32;?Tickfont,&#32;?Rangefont</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        dims
+                      </b>
+                      :
+                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-traceobjects-dimensions.html">Dimensions</a>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Color
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Colorscale
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Width
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Dash
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Domain
+                      </b>
+                      :
+                      <code>'a</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Labelfont
+                      </b>
+                      :
+                      <code>'b</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Tickfont
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Rangefont
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.ChartDomain.Chart.ParallelCategories``2```')">
+                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ChartDomain.Chart.ParallelCategories``2\'/>')">
+                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartDomain.fs#L447-447" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  dims
+                </span>
+                :
+                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-traceobjects-dimensions.html">Dimensions</a>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Color
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Colorscale
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Width
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Dash
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Domain
+                </span>
+                :
+                <code>'a</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Labelfont
+                </span>
+                :
+                <code>'b</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Tickfont
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Rangefont
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '205', 205)" onmouseover="showTip(event, '205', 205)">
+                <p>
+                  <a id="ParallelCategories">
+                    <a href="#ParallelCategories">
+                      <code><span>Chart.ParallelCategories<span><span>(<span>dims,&#32;?Range,&#32;?Constraintrange,&#32;?Color,&#32;?Colorscale,&#32;?Width,&#32;?Dash,&#32;?Domain,&#32;?Labelfont,&#32;?Tickfont,&#32;?Rangefont</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="205">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Chart.ParallelCategories<span><span>(<span>dims,&#32;?Range,&#32;?Constraintrange,&#32;?Color,&#32;?Colorscale,&#32;?Width,&#32;?Dash,&#32;?Domain,&#32;?Labelfont,&#32;?Tickfont,&#32;?Rangefont</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        dims
+                      </b>
+                      :
+                      <code><span>seq&lt;<span>'key&#32;*&#32;'a</span>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Range
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-range.html">Range</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Constraintrange
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-range.html">Range</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Color
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Colorscale
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Width
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Dash
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Domain
+                      </b>
+                      :
+                      <code>'b</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Labelfont
+                      </b>
+                      :
+                      <code>'c</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Tickfont
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Rangefont
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.ChartDomain.Chart.ParallelCategories``5```')">
+                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ChartDomain.Chart.ParallelCategories``5\'/>')">
+                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartDomain.fs#L413-413" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+Parallel categories diagram for multidimensional categorical data.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  dims
+                </span>
+                :
+                <code><span>seq&lt;<span>'key&#32;*&#32;'a</span>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Range
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-range.html">Range</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Constraintrange
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-range.html">Range</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Color
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Colorscale
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Width
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Dash
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Domain
+                </span>
+                :
+                <code>'b</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Labelfont
+                </span>
+                :
+                <code>'c</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Tickfont
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Rangefont
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '206', 206)" onmouseover="showTip(event, '206', 206)">
+                <p>
+                  <a id="ParallelCoord">
+                    <a href="#ParallelCoord">
+                      <code><span>Chart.ParallelCoord<span><span>(<span>dims,&#32;?Color,&#32;?Colorscale,&#32;?Width,&#32;?Dash,&#32;?Domain,&#32;?Labelfont,&#32;?Tickfont,&#32;?Rangefont</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="206">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Chart.ParallelCoord<span><span>(<span>dims,&#32;?Color,&#32;?Colorscale,&#32;?Width,&#32;?Dash,&#32;?Domain,&#32;?Labelfont,&#32;?Tickfont,&#32;?Rangefont</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        dims
+                      </b>
+                      :
+                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-traceobjects-dimensions.html">Dimensions</a>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Color
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Colorscale
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Width
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Dash
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Domain
+                      </b>
+                      :
+                      <code>'a</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Labelfont
+                      </b>
+                      :
+                      <code>'b</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Tickfont
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Rangefont
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.ChartDomain.Chart.ParallelCoord``2```')">
+                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ChartDomain.Chart.ParallelCoord``2\'/>')">
+                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartDomain.fs#L386-386" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Computes the parallel coordinates plot
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  dims
+                </span>
+                :
+                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-traceobjects-dimensions.html">Dimensions</a>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Color
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Colorscale
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Width
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Dash
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Domain
+                </span>
+                :
+                <code>'a</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Labelfont
+                </span>
+                :
+                <code>'b</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Tickfont
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Rangefont
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '207', 207)" onmouseover="showTip(event, '207', 207)">
+                <p>
+                  <a id="ParallelCoord">
+                    <a href="#ParallelCoord">
+                      <code><span>Chart.ParallelCoord<span><span>(<span>dims,&#32;?Range,&#32;?Constraintrange,&#32;?Color,&#32;?Colorscale,&#32;?Width,&#32;?Dash,&#32;?Domain,&#32;?Labelfont,&#32;?Tickfont,&#32;?Rangefont</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="207">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Chart.ParallelCoord<span><span>(<span>dims,&#32;?Range,&#32;?Constraintrange,&#32;?Color,&#32;?Colorscale,&#32;?Width,&#32;?Dash,&#32;?Domain,&#32;?Labelfont,&#32;?Tickfont,&#32;?Rangefont</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        dims
+                      </b>
+                      :
+                      <code><span>seq&lt;<span>'key&#32;*&#32;'a</span>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Range
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-range.html">Range</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Constraintrange
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-range.html">Range</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Color
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Colorscale
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Width
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Dash
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Domain
+                      </b>
+                      :
+                      <code>'b</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Labelfont
+                      </b>
+                      :
+                      <code>'c</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Tickfont
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Rangefont
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.ChartDomain.Chart.ParallelCoord``5```')">
+                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ChartDomain.Chart.ParallelCoord``5\'/>')">
+                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartDomain.fs#L350-350" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Computes the parallel coordinates plot
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  dims
+                </span>
+                :
+                <code><span>seq&lt;<span>'key&#32;*&#32;'a</span>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Range
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-range.html">Range</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Constraintrange
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-range.html">Range</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Color
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Colorscale
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Width
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Dash
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Domain
+                </span>
+                :
+                <code>'b</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Labelfont
+                </span>
+                :
+                <code>'c</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Tickfont
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Rangefont
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '208', 208)" onmouseover="showTip(event, '208', 208)">
+                <p>
+                  <a id="Pie">
+                    <a href="#Pie">
+                      <code><span>Chart.Pie<span><span>(<span>valuesLabels,&#32;?Name,&#32;?TextLabels,&#32;?TextPosition,&#32;?Direction,&#32;?Pull,&#32;?ShowLegend,&#32;?SectionColors,&#32;?Opacity,&#32;?Sort</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="208">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Chart.Pie<span><span>(<span>valuesLabels,&#32;?Name,&#32;?TextLabels,&#32;?TextPosition,&#32;?Direction,&#32;?Pull,&#32;?ShowLegend,&#32;?SectionColors,&#32;?Opacity,&#32;?Sort</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        valuesLabels
+                      </b>
+                      :
+                      <code><span>seq&lt;<span>'a&#32;*&#32;'b</span>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Name
+                      </b>
+                      :
+                      <code>string</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?TextLabels
+                      </b>
+                      :
+                      <code><span>seq&lt;'b&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?TextPosition
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Direction
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-direction.html">Direction</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Pull
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ShowLegend
+                      </b>
+                      :
+                      <code>bool</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?SectionColors
+                      </b>
+                      :
+                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-color.html">Color</a>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Opacity
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Sort
+                      </b>
+                      :
+                      <code>bool</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.ChartDomain.Chart.Pie``2```')">
+                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ChartDomain.Chart.Pie``2\'/>')">
+                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartDomain.fs#L57-57" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Shows how proportions of data, shown as pie-shaped pieces, contribute to the data.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  valuesLabels
+                </span>
+                :
+                <code><span>seq&lt;<span>'a&#32;*&#32;'b</span>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Name
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TextLabels
+                </span>
+                :
+                <code><span>seq&lt;'b&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TextPosition
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Direction
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-direction.html">Direction</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Pull
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ShowLegend
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?SectionColors
+                </span>
+                :
+                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-color.html">Color</a>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Opacity
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Sort
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '209', 209)" onmouseover="showTip(event, '209', 209)">
+                <p>
+                  <a id="Pie">
+                    <a href="#Pie">
+                      <code><span>Chart.Pie<span><span>(<span>values,&#32;?Labels,&#32;?Name,&#32;?TextLabels,&#32;?TextPosition,&#32;?Direction,&#32;?Pull,&#32;?ShowLegend,&#32;?SectionColors,&#32;?Opacity,&#32;?Sort</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="209">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Chart.Pie<span><span>(<span>values,&#32;?Labels,&#32;?Name,&#32;?TextLabels,&#32;?TextPosition,&#32;?Direction,&#32;?Pull,&#32;?ShowLegend,&#32;?SectionColors,&#32;?Opacity,&#32;?Sort</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        values
+                      </b>
+                      :
+                      <code><span>seq&lt;'a&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Labels
+                      </b>
+                      :
+                      <code><span>seq&lt;'b&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Name
+                      </b>
+                      :
+                      <code>string</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?TextLabels
+                      </b>
+                      :
+                      <code><span>seq&lt;'b&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?TextPosition
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Direction
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-direction.html">Direction</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Pull
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ShowLegend
+                      </b>
+                      :
+                      <code>bool</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?SectionColors
+                      </b>
+                      :
+                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-color.html">Color</a>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Opacity
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Sort
+                      </b>
+                      :
+                      <code>bool</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.ChartDomain.Chart.Pie``2```')">
+                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ChartDomain.Chart.Pie``2\'/>')">
+                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartDomain.fs#L23-23" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Shows how proportions of data, shown as pie-shaped pieces, contribute to the data.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  values
+                </span>
+                :
+                <code><span>seq&lt;'a&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Labels
+                </span>
+                :
+                <code><span>seq&lt;'b&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Name
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TextLabels
+                </span>
+                :
+                <code><span>seq&lt;'b&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TextPosition
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Direction
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-direction.html">Direction</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Pull
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ShowLegend
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?SectionColors
+                </span>
+                :
+                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-color.html">Color</a>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Opacity
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Sort
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '210', 210)" onmouseover="showTip(event, '210', 210)">
+                <p>
+                  <a id="Sunburst">
+                    <a href="#Sunburst">
+                      <code><span>Chart.Sunburst<span><span>(<span>labels,&#32;parents,&#32;?Ids,&#32;?Values,&#32;?Text,&#32;?Branchvalues,&#32;?Level,&#32;?Maxdepth,&#32;?Color,&#32;?ColorBar</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="210">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Chart.Sunburst<span><span>(<span>labels,&#32;parents,&#32;?Ids,&#32;?Values,&#32;?Text,&#32;?Branchvalues,&#32;?Level,&#32;?Maxdepth,&#32;?Color,&#32;?ColorBar</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        labels
+                      </b>
+                      :
+                      <code><span>seq&lt;'a&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        parents
+                      </b>
+                      :
+                      <code><span>seq&lt;'b&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Ids
+                      </b>
+                      :
+                      <code><span>seq&lt;string&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Values
+                      </b>
+                      :
+                      <code><span>seq&lt;float&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Text
+                      </b>
+                      :
+                      <code><span>seq&lt;string&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Branchvalues
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-branchvalues.html">BranchValues</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Level
+                      </b>
+                      :
+                      <code>'c</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Maxdepth
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Color
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ColorBar
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-colorbar.html">ColorBar</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.ChartDomain.Chart.Sunburst``3```')">
+                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ChartDomain.Chart.Sunburst``3\'/>')">
+                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartDomain.fs#L268-268" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Creates a sunburst chart. Visualize hierarchical data spanning outward radially from root to leaves.
+ Applies the styles of sundburst plot to TraceObjects 
+
+ Parameters:
+
+ labels: Sets the labels of each of the sectors.
+
+ parents: Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be "ids" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
+
+ Ids: Assigns id labels to each datum. These ids for object constancy of data points during animation.
+
+ Values: Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
+
+ Text: Sets text elements associated with each sector. If trace `textinfo` contains a "text" flag, these elements will be seen on the chart. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.
+
+ Branchvalues: Determines how the items in `values` are summed. When set to "total", items in `values` are taken to be value of all its descendants. When set to "remainder", items in `values` corresponding to the root and the branches sectors are taken to be the extra part not part of the sum of the values at their leaves.
+
+ Level: Sets the level from which this trace hierarchy is rendered. Set `level` to `''` to start from the root node in the hierarchy. Must be an "id" if `ids` is filled in, otherwise plotly attempts to find a matching item in `labels`.
+
+ Maxdepth: Sets the number of rendered sectors from any given `level`. Set `maxdepth` to "-1" to render all the levels in the hierarchy.
+
+ ColorBar: Sets the ColorBar for the chart
+
+Colors: Sets the color of each sector of this trace. If not specified, the default trace color set is used to pick the sector colors.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  labels
+                </span>
+                :
+                <code><span>seq&lt;'a&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  parents
+                </span>
+                :
+                <code><span>seq&lt;'b&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Ids
+                </span>
+                :
+                <code><span>seq&lt;string&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Values
+                </span>
+                :
+                <code><span>seq&lt;float&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Text
+                </span>
+                :
+                <code><span>seq&lt;string&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Branchvalues
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-branchvalues.html">BranchValues</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Level
+                </span>
+                :
+                <code>'c</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Maxdepth
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Color
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ColorBar
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-colorbar.html">ColorBar</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '211', 211)" onmouseover="showTip(event, '211', 211)">
+                <p>
+                  <a id="Table">
+                    <a href="#Table">
+                      <code><span>Chart.Table<span><span>(<span>headerValues,&#32;cellValues,&#32;?AlignHeader,&#32;?AlignCells,&#32;?ColumnWidth,&#32;?ColumnOrder,&#32;?ColorHeader,&#32;?ColorCells,&#32;?FontHeader,&#32;?FontCells,&#32;?HeightHeader,&#32;?HeightCells,&#32;?LineHeader,&#32;?LineCells</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="211">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Chart.Table<span><span>(<span>headerValues,&#32;cellValues,&#32;?AlignHeader,&#32;?AlignCells,&#32;?ColumnWidth,&#32;?ColumnOrder,&#32;?ColorHeader,&#32;?ColorCells,&#32;?FontHeader,&#32;?FontCells,&#32;?HeightHeader,&#32;?HeightCells,&#32;?LineHeader,&#32;?LineCells</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        headerValues
+                      </b>
+                      :
+                      <code><span>seq&lt;'a&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        cellValues
+                      </b>
+                      :
+                      <code><span>seq&lt;'c&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?AlignHeader
+                      </b>
+                      :
+                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-horizontalalign.html">HorizontalAlign</a>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?AlignCells
+                      </b>
+                      :
+                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-horizontalalign.html">HorizontalAlign</a>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ColumnWidth
+                      </b>
+                      :
+                      <code><span>seq&lt;int&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ColumnOrder
+                      </b>
+                      :
+                      <code><span>seq&lt;int&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ColorHeader
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ColorCells
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?FontHeader
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?FontCells
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?HeightHeader
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?HeightCells
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineHeader
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineCells
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.ChartDomain.Chart.Table``4```')">
+                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ChartDomain.Chart.Table``4\'/>')">
+                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartDomain.fs#L475-475" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ creates table out of header sequence and row sequences
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  headerValues
+                </span>
+                :
+                <code><span>seq&lt;'a&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  cellValues
+                </span>
+                :
+                <code><span>seq&lt;'c&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?AlignHeader
+                </span>
+                :
+                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-horizontalalign.html">HorizontalAlign</a>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?AlignCells
+                </span>
+                :
+                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-horizontalalign.html">HorizontalAlign</a>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ColumnWidth
+                </span>
+                :
+                <code><span>seq&lt;int&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ColumnOrder
+                </span>
+                :
+                <code><span>seq&lt;int&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ColorHeader
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ColorCells
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?FontHeader
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?FontCells
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?HeightHeader
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?HeightCells
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineHeader
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineCells
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '212', 212)" onmouseover="showTip(event, '212', 212)">
+                <p>
+                  <a id="Treemap">
+                    <a href="#Treemap">
+                      <code><span>Chart.Treemap<span><span>(<span>labels,&#32;parents,&#32;?Ids,&#32;?Values,&#32;?Text,&#32;?Branchvalues,&#32;?Tiling,&#32;?PathBar,&#32;?Level,&#32;?Maxdepth,&#32;?Color,&#32;?ColorBar</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="212">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Chart.Treemap<span><span>(<span>labels,&#32;parents,&#32;?Ids,&#32;?Values,&#32;?Text,&#32;?Branchvalues,&#32;?Tiling,&#32;?PathBar,&#32;?Level,&#32;?Maxdepth,&#32;?Color,&#32;?ColorBar</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        labels
+                      </b>
+                      :
+                      <code><span>seq&lt;'a&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        parents
+                      </b>
+                      :
+                      <code><span>seq&lt;'b&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Ids
+                      </b>
+                      :
+                      <code><span>seq&lt;string&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Values
+                      </b>
+                      :
+                      <code><span>seq&lt;float&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Text
+                      </b>
+                      :
+                      <code><span>seq&lt;string&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Branchvalues
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-branchvalues.html">BranchValues</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Tiling
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-traceobjects-treemaptiling.html">TreemapTiling</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?PathBar
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-traceobjects-pathbar.html">Pathbar</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Level
+                      </b>
+                      :
+                      <code>'c</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Maxdepth
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Color
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ColorBar
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-colorbar.html">ColorBar</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.ChartDomain.Chart.Treemap``3```')">
+                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ChartDomain.Chart.Treemap``3\'/>')">
+                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartDomain.fs#L318-318" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Creates a treemap chart. Treemap charts visualize hierarchical data using nested rectangles. Same as Sunburst the hierarchy is defined by labels and parents attributes. Click on one sector to zoom in/out, which also displays a pathbar in the upper-left corner of your treemap. To zoom out you can use the path bar as well.
+
+ Parameters:
+
+ labels: Sets the labels of each of the sectors.
+
+ parents: Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be "ids" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
+
+ Ids: Assigns id labels to each datum. These ids for object constancy of data points during animation.
+
+ Values: Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
+
+ Text: Sets text elements associated with each sector. If trace `textinfo` contains a "text" flag, these elements will be seen on the chart. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.
+
+ Branchvalues: Determines how the items in `values` are summed. When set to "total", items in `values` are taken to be value of all its descendants. When set to "remainder", items in `values` corresponding to the root and the branches sectors are taken to be the extra part not part of the sum of the values at their leaves.
+
+ Level: Sets the level from which this trace hierarchy is rendered. Set `level` to `''` to start from the root node in the hierarchy. Must be an "id" if `ids` is filled in, otherwise plotly attempts to find a matching item in `labels`.
+
+ Maxdepth: Sets the number of rendered sectors from any given `level`. Set `maxdepth` to "-1" to render all the levels in the hierarchy.
+
+ ColorBar: Sets the ColorBar for the chart
+
+Colors: Sets the color of each sector of this trace. If not specified, the default trace color set is used to pick the sector colors.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  labels
+                </span>
+                :
+                <code><span>seq&lt;'a&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  parents
+                </span>
+                :
+                <code><span>seq&lt;'b&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Ids
+                </span>
+                :
+                <code><span>seq&lt;string&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Values
+                </span>
+                :
+                <code><span>seq&lt;float&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Text
+                </span>
+                :
+                <code><span>seq&lt;string&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Branchvalues
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-branchvalues.html">BranchValues</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Tiling
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-traceobjects-treemaptiling.html">TreemapTiling</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?PathBar
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-traceobjects-pathbar.html">Pathbar</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Level
+                </span>
+                :
+                <code>'c</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Maxdepth
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Color
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ColorBar
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-colorbar.html">ColorBar</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <script type="text/javascript">var fsdocs_search_baseurl = 'https://plotly.net/'</script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+    <script type="text/javascript" src="https://plotly.net/content/fsdocs-search.js"></script>
+    <!-- END SEARCH BOX: this adds support for the search box -->
+</body>
+
+</html>

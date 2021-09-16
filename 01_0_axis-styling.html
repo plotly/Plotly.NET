@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Axis styling</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Timo Mühlhaus, Kevin Schneider, F# open source contributors">
+    
+    <!--Opengraph properties (https://ogp.me/)-->
+    <meta property="og:title" content="Axis styling" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Plotly.NET" />
+    
+    <link rel="shortcut icon" type="image/x-icon" href="https://plotly.net//img/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script> -->
+
+    <link type="text/css" rel="stylesheet" href="https://plotly.net/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="https://plotly.net/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="https://plotly.net/content/fsdocs-tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head> 
+
+<body>
+    <div class="columns is-fullheight m-0">
+        <div id="fsdocs-menu" class="column is-2 is-paddingless">
+            <aside class="menu">
+                <div class="container is-paddingless is-marginless has-background-dark">
+                    <a href="https://plotly.net/">
+                        <figure class="image is-128x128 container">
+                            <img src="https://plotly.net/img/logo.png">
+                        </figure>
+                    </a>
+                    <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.8</h5>
+                </div>
+                <div class="content">
+                    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+                    <div id="header">
+                        <div class="searchbox" id="fsdocs-searchbox">
+                            <label for="search-by">
+                                <i class="fas fa-search"></i>
+                            </label>
+                            <input data-search-input="" id="search-by" type="search" placeholder="Search..." class="input"/>
+                            <span data-search-clear="">
+                                <i class="fas fa-times"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- END SEARCH BOX: this adds support for the search box -->
+                    <ul class="navbar-nav">
+                        <li class="nav-header">Links</li>
+                        <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License (MIT)</a></li>
+                        <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release Notes</a></li>
+                        <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source Repository</a></li>
+                        <li class="nav-header">
+  General
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/00_0_basics.html">
+    Basics
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/00_1_image-export.html">
+    Static image export
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/00_2_display-options.html">
+    Display Options
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/00_3_chart-config.html">
+    Chart config
+  </a>
+</li>             
+<li class="nav-header">
+  Chart Layout
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/01_0_axis-styling.html">
+    Axis styling
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/01_1_errorbars.html">
+    Error bars
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/01_2_multiple-charts.html">
+    Multicharts and subplots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/01_3_shapes.html">
+    Shapes
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/01_4_annotations.html">
+    Annotations
+  </a>
+</li>             
+<li class="nav-header">
+  Simple Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/02_0_line-scatter-plots.html">
+    Line and scatter plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/02_1_bar-and-column-charts.html">
+    Bar and column charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/02_2_area-plots.html">
+    Area charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/02_3_range-plots.html">
+    Range plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/02_4_bubble-charts.html">
+    Bubble charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/02_5_pie-doughnut-charts.html">
+    Pie and doughnut Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/02_6_table.html">
+    Tables
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/02_7_heatmaps.html">
+    Heatmaps
+  </a>
+</li>             
+<li class="nav-header">
+  3D Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/03_0_3d-scatter-plots.html">
+    3D point and line charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/03_1_3d-surface-plots.html">
+    3D surface plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/03_2_3d-mesh-plots.html">
+    3D Mesh plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/03_3_3d-cone-charts.html">
+    3D Cone plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/03_4_3d-streamtube-plots.html">
+    3D streamtube plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/03_5_3d-volume-plots.html">
+    3D Volume plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/03_6_3d-isosurface-plots .html">
+    3D IsoSurface plots
+  </a>
+</li>             
+<li class="nav-header">
+  Distribution Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/04_0_histograms.html">
+    Histograms
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/04_1_box-plots.html">
+    BoxPlots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/04_2_violin-plots.html">
+    Violin plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/04_4_2d-histograms.html">
+    2D Histograms
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/04_3_contour-plots.html">
+    Contour plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/04_5_splom.html">
+    Scatterplot matrix
+  </a>
+</li>             
+<li class="nav-header">
+  Geo map charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/05_0_geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/05_1_geo-plots.html">
+    Scatter and line plots on Geo maps
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/05_2_choropleth-map.html">
+    Choropleth maps
+  </a>
+</li>             
+<li class="nav-header">
+  Finance Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_0_candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_1_funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_2_funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
+<li class="nav-header">
+  Mapbox map charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/06_0_geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/06_1_mapbox-plots.html">
+    Scatter and line plots on Mapbox maps
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/06_2_choropleth-mapbox.html">
+    ChoroplethMapbox
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/06_3_density-mapbox.html">
+    DensityMapbox charts
+  </a>
+</li>             
+<li class="nav-header">
+  Polar Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/08_0_polar_line-scatter-plots.html">
+    Polar line and scatter plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/08_1_polar_bar_charts.html">
+    Polar bar charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/08_2_styling_polar_layouts.html">
+    Styling polar layouts
+  </a>
+</li>             
+<li class="nav-header">
+  Ternary Plots
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/10_0_ternary_line_scatter_plots.html">
+    Ternary line and scatter plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/10_1_styling_ternary_layouts.html">
+    Styling ternary layouts
+  </a>
+</li>             
+<li class="nav-header">
+  Categorical Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/09_0_parallel-categories.html">
+    Parallel categories
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/09_1_parallel-coords.html">
+    Parallel coordinates
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/09_2_sankey.html">
+    Sankey Charts
+  </a>
+</li>
+                        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+        <div class="column is-10 is-paddingless">
+            <div class="section pt-4">
+                <div class="container" id="fsdocs-content">
+                    
+<h1><a name="Axis-styling" class="anchor" href="#Axis-styling">Axis styling</a></h1>
+<p><a href="https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=01_0_axis-styling.ipynb"><img src="https://plotly.net/img/badge-binder.svg" alt="Binder" /></a>&emsp;
+<a href="https://plotly.net/01_0_axis-styling.fsx"><img src="https://plotly.net/img/badge-script.svg" alt="Script" /></a>&emsp;
+<a href="https://plotly.net/01_0_axis-styling.ipynb"><img src="https://plotly.net/img/badge-notebook.svg" alt="Notebook" /></a></p>
+<p><em>Summary:</em> This example shows how to style chart axes in F#.</p>
+<p>let's first create some data for the purpose of creating example charts:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">Plotly</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">NET</span> 
+  
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="id">x</span> <span class="o">=</span> <span class="pn">[</span><span class="n">1.</span><span class="pn">;</span> <span class="n">2.</span><span class="pn">;</span> <span class="n">3.</span><span class="pn">;</span> <span class="n">4.</span><span class="pn">;</span> <span class="n">5.</span><span class="pn">;</span> <span class="n">6.</span><span class="pn">;</span> <span class="n">7.</span><span class="pn">;</span> <span class="n">8.</span><span class="pn">;</span> <span class="n">9.</span><span class="pn">;</span> <span class="n">10.</span><span class="pn">;</span> <span class="pn">]</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="id">y</span> <span class="o">=</span> <span class="pn">[</span><span class="n">2.</span><span class="pn">;</span> <span class="n">1.5</span><span class="pn">;</span> <span class="n">5.</span><span class="pn">;</span> <span class="n">1.5</span><span class="pn">;</span> <span class="n">3.</span><span class="pn">;</span> <span class="n">2.5</span><span class="pn">;</span> <span class="n">2.5</span><span class="pn">;</span> <span class="n">1.5</span><span class="pn">;</span> <span class="n">3.5</span><span class="pn">;</span> <span class="n">1.</span><span class="pn">]</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="id">y&#39;</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="id">y</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 7)" onmouseover="showTip(event, 'fs6', 7)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 8)" onmouseover="showTip(event, 'fs7', 8)" class="id">map</span> <span class="pn">(</span><span class="k">fun</span> <span onmouseout="hideTip(event, 'fs8', 9)" onmouseover="showTip(event, 'fs8', 9)" class="fn">y</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="fn">y</span> <span class="o">*</span> <span class="n">2.</span><span class="pn">)</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 11)" onmouseover="showTip(event, 'fs6', 11)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs9', 12)" onmouseover="showTip(event, 'fs9', 12)" class="id">rev</span>
+</code></pre>
+<h2><a name="Single-axis-styling" class="anchor" href="#Single-axis-styling">Single axis styling</a></h2>
+<p>To style a specific axis of a plot, use the respective <code>Chart.with*_AxisStyle</code> function:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs10', 13)" onmouseover="showTip(event, 'fs10', 13)" class="id">plot1</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs11', 14)" onmouseover="showTip(event, 'fs11', 14)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 15)" onmouseover="showTip(event, 'fs12', 15)" class="id">Point</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs3', 16)" onmouseover="showTip(event, 'fs3', 16)" class="id">x</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs4', 17)" onmouseover="showTip(event, 'fs4', 17)" class="id">y</span><span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 18)" onmouseover="showTip(event, 'fs11', 18)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 19)" onmouseover="showTip(event, 'fs13', 19)" class="id">withXAxisStyle</span> <span class="pn">(</span><span class="s">&quot;X axis title&quot;</span><span class="pn">,</span> <span class="fn">MinMax</span> <span class="o">=</span> <span class="pn">(</span><span class="o">-</span><span class="n">1.</span><span class="pn">,</span><span class="n">10.</span><span class="pn">)</span><span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 20)" onmouseover="showTip(event, 'fs11', 20)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 21)" onmouseover="showTip(event, 'fs14', 21)" class="id">withYAxisStyle</span> <span class="pn">(</span><span class="s">&quot;Y axis title&quot;</span><span class="pn">,</span> <span class="fn">MinMax</span> <span class="o">=</span> <span class="pn">(</span><span class="o">-</span><span class="n">1.</span><span class="pn">,</span><span class="n">10.</span><span class="pn">)</span><span class="pn">)</span>
+</code></pre>
+<div id="68726d07-0256-4ece-9052-438afbf2de03" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<script type="text/javascript">
+
+            var renderPlotly_68726d0702564ece9052438afbf2de03 = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            fsharpPlotlyRequire(['plotly'], function(Plotly) {
+
+            var data = [{"type":"scatter","mode":"markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{}}];
+            var layout = {"xaxis":{"title":{"text":"X axis title"},"range":[-1.0,10.0]},"yaxis":{"title":{"text":"Y axis title"},"range":[-1.0,10.0]}};
+            var config = {};
+            Plotly.newPlot('68726d07-0256-4ece-9052-438afbf2de03', data, layout, config);
+});
+            };
+            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
+                var script = document.createElement("script");
+                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
+                script.onload = function(){
+                    renderPlotly_68726d0702564ece9052438afbf2de03();
+                };
+                document.getElementsByTagName("head")[0].appendChild(script);
+            }
+            else {
+                renderPlotly_68726d0702564ece9052438afbf2de03();
+            }
+</script>
+
+<p>for even more fine-grained control, initialize a new axis and replace the old one of the plot with ````.
+The following example creates two mirrored axes with inside ticks, one of them with a log scale:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 25)" onmouseover="showTip(event, 'fs1', 25)" class="id">Plotly</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 26)" onmouseover="showTip(event, 'fs2', 26)" class="id">NET</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 27)" onmouseover="showTip(event, 'fs17', 27)" class="id">LayoutObjects</span> <span class="c">// this namespace contains all object abstractions for layout styling</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs18', 28)" onmouseover="showTip(event, 'fs18', 28)" class="id">mirroredXAxis</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs19', 29)" onmouseover="showTip(event, 'fs19', 29)" class="rt">LinearAxis</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 30)" onmouseover="showTip(event, 'fs20', 30)" class="id">init</span><span class="pn">(</span>
+        <span onmouseout="hideTip(event, 'fs21', 31)" onmouseover="showTip(event, 'fs21', 31)" class="fn">Title</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs21', 32)" onmouseover="showTip(event, 'fs21', 32)" class="rt">Title</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs22', 33)" onmouseover="showTip(event, 'fs22', 33)" class="id">init</span><span class="pn">(</span><span class="fn">Text</span><span class="o">=</span><span class="s">&quot;Mirrored axis&quot;</span><span class="pn">)</span><span class="pn">,</span>
+        <span class="fn">ShowLine</span> <span class="o">=</span> <span class="k">true</span><span class="pn">,</span>
+        <span class="fn">Mirror</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs23', 34)" onmouseover="showTip(event, 'fs23', 34)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs24', 35)" onmouseover="showTip(event, 'fs24', 35)" class="rt">Mirror</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 36)" onmouseover="showTip(event, 'fs25', 36)" class="id">AllTicks</span><span class="pn">,</span>
+        <span class="fn">ShowGrid</span> <span class="o">=</span> <span class="k">false</span><span class="pn">,</span>
+        <span class="fn">Ticks</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs23', 37)" onmouseover="showTip(event, 'fs23', 37)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs26', 38)" onmouseover="showTip(event, 'fs26', 38)" class="rt">TickOptions</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs27', 39)" onmouseover="showTip(event, 'fs27', 39)" class="id">Inside</span>
+    <span class="pn">)</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs28', 40)" onmouseover="showTip(event, 'fs28', 40)" class="id">mirroredLogYAxis</span> <span class="o">=</span> 
+    <span onmouseout="hideTip(event, 'fs19', 41)" onmouseover="showTip(event, 'fs19', 41)" class="rt">LinearAxis</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 42)" onmouseover="showTip(event, 'fs20', 42)" class="id">init</span><span class="pn">(</span>
+        <span onmouseout="hideTip(event, 'fs21', 43)" onmouseover="showTip(event, 'fs21', 43)" class="fn">Title</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs21', 44)" onmouseover="showTip(event, 'fs21', 44)" class="rt">Title</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs22', 45)" onmouseover="showTip(event, 'fs22', 45)" class="id">init</span><span class="pn">(</span><span class="fn">Text</span><span class="o">=</span><span class="s">&quot;Log axis&quot;</span><span class="pn">)</span><span class="pn">,</span>
+        <span class="fn">AxisType</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs23', 46)" onmouseover="showTip(event, 'fs23', 46)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs29', 47)" onmouseover="showTip(event, 'fs29', 47)" class="rt">AxisType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 48)" onmouseover="showTip(event, 'fs30', 48)" class="id">Log</span><span class="pn">,</span>
+        <span class="fn">ShowLine</span> <span class="o">=</span> <span class="k">true</span><span class="pn">,</span>
+        <span class="fn">Mirror</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs23', 49)" onmouseover="showTip(event, 'fs23', 49)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs24', 50)" onmouseover="showTip(event, 'fs24', 50)" class="rt">Mirror</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 51)" onmouseover="showTip(event, 'fs25', 51)" class="id">AllTicks</span><span class="pn">,</span>
+        <span class="fn">ShowGrid</span> <span class="o">=</span> <span class="k">false</span><span class="pn">,</span>
+        <span class="fn">Ticks</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs23', 52)" onmouseover="showTip(event, 'fs23', 52)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs26', 53)" onmouseover="showTip(event, 'fs26', 53)" class="rt">TickOptions</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs27', 54)" onmouseover="showTip(event, 'fs27', 54)" class="id">Inside</span>
+    <span class="pn">)</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs31', 55)" onmouseover="showTip(event, 'fs31', 55)" class="id">plot2</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs11', 56)" onmouseover="showTip(event, 'fs11', 56)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 57)" onmouseover="showTip(event, 'fs12', 57)" class="id">Point</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs3', 58)" onmouseover="showTip(event, 'fs3', 58)" class="id">x</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs4', 59)" onmouseover="showTip(event, 'fs4', 59)" class="id">y</span><span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 60)" onmouseover="showTip(event, 'fs11', 60)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs32', 61)" onmouseover="showTip(event, 'fs32', 61)" class="id">withXAxis</span> <span onmouseout="hideTip(event, 'fs18', 62)" onmouseover="showTip(event, 'fs18', 62)" class="id">mirroredXAxis</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 63)" onmouseover="showTip(event, 'fs11', 63)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs33', 64)" onmouseover="showTip(event, 'fs33', 64)" class="id">withYAxis</span> <span onmouseout="hideTip(event, 'fs28', 65)" onmouseover="showTip(event, 'fs28', 65)" class="id">mirroredLogYAxis</span>
+</code></pre>
+<div id="f29db79d-c5f0-41a2-8734-9b5b6a0d27bb" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<script type="text/javascript">
+
+            var renderPlotly_f29db79dc5f041a287349b5b6a0d27bb = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            fsharpPlotlyRequire(['plotly'], function(Plotly) {
+
+            var data = [{"type":"scatter","mode":"markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{}}];
+            var layout = {"xaxis":{"title":{"text":"Mirrored axis"},"ticks":"inside","mirror":"allticks","showline":true,"showgrid":false},"yaxis":{"title":{"text":"Log axis"},"type":"log","ticks":"inside","mirror":"allticks","showline":true,"showgrid":false}};
+            var config = {};
+            Plotly.newPlot('f29db79d-c5f0-41a2-8734-9b5b6a0d27bb', data, layout, config);
+});
+            };
+            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
+                var script = document.createElement("script");
+                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
+                script.onload = function(){
+                    renderPlotly_f29db79dc5f041a287349b5b6a0d27bb();
+                };
+                document.getElementsByTagName("head")[0].appendChild(script);
+            }
+            else {
+                renderPlotly_f29db79dc5f041a287349b5b6a0d27bb();
+            }
+</script>
+
+<h2><a name="Multiple-axes" class="anchor" href="#Multiple-axes">Multiple axes</a></h2>
+<p>Assign different axis anchors to subplots to map them to different axes.</p>
+<h3><a name="Multiple-axes-on-different-sides-of-the-chart" class="anchor" href="#Multiple-axes-on-different-sides-of-the-chart">Multiple axes on different sides of the chart</a></h3>
+<p>The following example first creates a multichart containing two plots with different axis anchors.
+Subsequently, multiple axes with the respective anchors are added to the plot.
+Note that the same can be done as above, defining axes beforehand.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs34', 69)" onmouseover="showTip(event, 'fs34', 69)" class="id">anchoredAt1</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs11', 70)" onmouseover="showTip(event, 'fs11', 70)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs35', 71)" onmouseover="showTip(event, 'fs35', 71)" class="id">Line</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs3', 72)" onmouseover="showTip(event, 'fs3', 72)" class="id">x</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs4', 73)" onmouseover="showTip(event, 'fs4', 73)" class="id">y</span><span class="pn">,</span><span class="fn">Name</span><span class="o">=</span><span class="s">&quot;anchor 1&quot;</span><span class="pn">)</span>
+        <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 74)" onmouseover="showTip(event, 'fs11', 74)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs36', 75)" onmouseover="showTip(event, 'fs36', 75)" class="id">withAxisAnchor</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs37', 76)" onmouseover="showTip(event, 'fs37', 76)" class="fn">Y</span><span class="o">=</span><span class="n">1</span><span class="pn">)</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs38', 77)" onmouseover="showTip(event, 'fs38', 77)" class="id">anchoredAt2</span> <span class="o">=</span>
+     <span onmouseout="hideTip(event, 'fs11', 78)" onmouseover="showTip(event, 'fs11', 78)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs35', 79)" onmouseover="showTip(event, 'fs35', 79)" class="id">Line</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs3', 80)" onmouseover="showTip(event, 'fs3', 80)" class="id">x</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs5', 81)" onmouseover="showTip(event, 'fs5', 81)" class="id">y&#39;</span><span class="pn">,</span><span class="fn">Name</span><span class="o">=</span><span class="s">&quot;anchor 2&quot;</span><span class="pn">)</span>
+        <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 82)" onmouseover="showTip(event, 'fs11', 82)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs36', 83)" onmouseover="showTip(event, 'fs36', 83)" class="id">withAxisAnchor</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs37', 84)" onmouseover="showTip(event, 'fs37', 84)" class="fn">Y</span><span class="o">=</span><span class="n">2</span><span class="pn">)</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs39', 85)" onmouseover="showTip(event, 'fs39', 85)" class="id">twoXAxes1</span> <span class="o">=</span> 
+    <span class="pn">[</span>
+       <span onmouseout="hideTip(event, 'fs34', 86)" onmouseover="showTip(event, 'fs34', 86)" class="id">anchoredAt1</span>
+       <span onmouseout="hideTip(event, 'fs38', 87)" onmouseover="showTip(event, 'fs38', 87)" class="id">anchoredAt2</span>
+    <span class="pn">]</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 88)" onmouseover="showTip(event, 'fs11', 88)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs40', 89)" onmouseover="showTip(event, 'fs40', 89)" class="id">combine</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 90)" onmouseover="showTip(event, 'fs11', 90)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 91)" onmouseover="showTip(event, 'fs14', 91)" class="id">withYAxisStyle</span><span class="pn">(</span>
+        <span class="s">&quot;axis 1&quot;</span><span class="pn">,</span>
+        <span class="fn">Side</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs23', 92)" onmouseover="showTip(event, 'fs23', 92)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs41', 93)" onmouseover="showTip(event, 'fs41', 93)" class="rt">Side</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs42', 94)" onmouseover="showTip(event, 'fs42', 94)" class="id">Left</span><span class="pn">,</span>
+        <span class="fn">Id</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs23', 95)" onmouseover="showTip(event, 'fs23', 95)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs43', 96)" onmouseover="showTip(event, 'fs43', 96)" class="rt">SubPlotId</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs44', 97)" onmouseover="showTip(event, 'fs44', 97)" class="id">YAxis</span> <span class="n">1</span>
+    <span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 98)" onmouseover="showTip(event, 'fs11', 98)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 99)" onmouseover="showTip(event, 'fs14', 99)" class="id">withYAxisStyle</span><span class="pn">(</span>
+        <span class="s">&quot;axis2&quot;</span><span class="pn">,</span>
+        <span class="fn">Side</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs23', 100)" onmouseover="showTip(event, 'fs23', 100)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs41', 101)" onmouseover="showTip(event, 'fs41', 101)" class="rt">Side</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs45', 102)" onmouseover="showTip(event, 'fs45', 102)" class="id">Right</span><span class="pn">,</span>
+        <span class="fn">Id</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs23', 103)" onmouseover="showTip(event, 'fs23', 103)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs43', 104)" onmouseover="showTip(event, 'fs43', 104)" class="rt">SubPlotId</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs44', 105)" onmouseover="showTip(event, 'fs44', 105)" class="id">YAxis</span> <span class="n">2</span><span class="pn">,</span>
+        <span class="fn">Overlaying</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs23', 106)" onmouseover="showTip(event, 'fs23', 106)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs46', 107)" onmouseover="showTip(event, 'fs46', 107)" class="rt">LinearAxisId</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs47', 108)" onmouseover="showTip(event, 'fs47', 108)" class="id">Y</span> <span class="n">1</span>
+    <span class="pn">)</span>
+        
+</code></pre>
+<div id="bec600d8-ba9b-42a3-acd7-c985b5c35487" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<script type="text/javascript">
+
+            var renderPlotly_bec600d8ba9b42a3acd7c985b5c35487 = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            fsharpPlotlyRequire(['plotly'], function(Plotly) {
+
+            var data = [{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"line":{},"name":"anchor 1","marker":{},"yaxis":"y"},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,7.0,3.0,5.0,5.0,6.0,3.0,10.0,3.0,4.0],"line":{},"name":"anchor 2","marker":{},"yaxis":"y2"}];
+            var layout = {"yaxis":{"title":{"text":"axis 1"},"side":"left"},"yaxis2":{"title":{"text":"axis2"},"side":"right","overlaying":"y"}};
+            var config = {};
+            Plotly.newPlot('bec600d8-ba9b-42a3-acd7-c985b5c35487', data, layout, config);
+});
+            };
+            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
+                var script = document.createElement("script");
+                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
+                script.onload = function(){
+                    renderPlotly_bec600d8ba9b42a3acd7c985b5c35487();
+                };
+                document.getElementsByTagName("head")[0].appendChild(script);
+            }
+            else {
+                renderPlotly_bec600d8ba9b42a3acd7c985b5c35487();
+            }
+</script>
+
+<h3><a name="Multiple-axes-on-the-same-side-of-the-chart" class="anchor" href="#Multiple-axes-on-the-same-side-of-the-chart">Multiple axes on the same side of the chart</a></h3>
+<p>Analogous to above, but move the whole plot to the right by adjusting its domain, and then add a second axis to the left:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs48', 112)" onmouseover="showTip(event, 'fs48', 112)" class="id">twoXAxes2</span> <span class="o">=</span>
+    <span class="pn">[</span>
+        <span onmouseout="hideTip(event, 'fs34', 113)" onmouseover="showTip(event, 'fs34', 113)" class="id">anchoredAt1</span>
+        <span onmouseout="hideTip(event, 'fs38', 114)" onmouseover="showTip(event, 'fs38', 114)" class="id">anchoredAt2</span>
+    <span class="pn">]</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 115)" onmouseover="showTip(event, 'fs11', 115)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs40', 116)" onmouseover="showTip(event, 'fs40', 116)" class="id">combine</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 117)" onmouseover="showTip(event, 'fs11', 117)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 118)" onmouseover="showTip(event, 'fs14', 118)" class="id">withYAxisStyle</span><span class="pn">(</span>
+            <span class="s">&quot;first y-axis&quot;</span><span class="pn">,</span>
+            <span class="fn">ShowLine</span><span class="o">=</span><span class="k">true</span>
+            <span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 119)" onmouseover="showTip(event, 'fs11', 119)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 120)" onmouseover="showTip(event, 'fs13', 120)" class="id">withXAxisStyle</span><span class="pn">(</span>
+        <span class="s">&quot;x-axis&quot;</span><span class="pn">,</span>
+        <span onmouseout="hideTip(event, 'fs49', 121)" onmouseover="showTip(event, 'fs49', 121)" class="fn">Domain</span><span class="o">=</span><span class="pn">(</span><span class="n">0.3</span><span class="pn">,</span> <span class="n">1.0</span><span class="pn">)</span> <span class="c">// moves the first axis and the whole plot to the right</span>
+    <span class="pn">)</span> 
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 122)" onmouseover="showTip(event, 'fs11', 122)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 123)" onmouseover="showTip(event, 'fs14', 123)" class="id">withYAxisStyle</span><span class="pn">(</span>
+        <span class="s">&quot;second y-axis&quot;</span><span class="pn">,</span>
+        <span class="fn">Side</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs23', 124)" onmouseover="showTip(event, 'fs23', 124)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs41', 125)" onmouseover="showTip(event, 'fs41', 125)" class="rt">Side</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs42', 126)" onmouseover="showTip(event, 'fs42', 126)" class="id">Left</span><span class="pn">,</span>
+        <span class="fn">Id</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs23', 127)" onmouseover="showTip(event, 'fs23', 127)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs43', 128)" onmouseover="showTip(event, 'fs43', 128)" class="rt">SubPlotId</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs44', 129)" onmouseover="showTip(event, 'fs44', 129)" class="id">YAxis</span> <span class="n">2</span><span class="pn">,</span>
+        <span class="fn">Overlaying</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs23', 130)" onmouseover="showTip(event, 'fs23', 130)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs46', 131)" onmouseover="showTip(event, 'fs46', 131)" class="rt">LinearAxisId</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs47', 132)" onmouseover="showTip(event, 'fs47', 132)" class="id">Y</span> <span class="n">1</span><span class="pn">,</span>
+        <span class="fn">Position</span><span class="o">=</span><span class="n">0.10</span><span class="pn">,</span> <span class="c">// position the axis beteen the leftmost edge and the firt axis at 0.3</span>
+        <span class="c">//Anchor=StyleParam.AxisAnchorId.Free,</span>
+        <span class="fn">ShowLine</span><span class="o">=</span><span class="k">true</span>
+    <span class="pn">)</span>
+</code></pre>
+<div id="faf161a7-bf37-49cf-a9cc-dbe10aeb90e9" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<script type="text/javascript">
+
+            var renderPlotly_faf161a7bf3749cfa9ccdbe10aeb90e9 = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            fsharpPlotlyRequire(['plotly'], function(Plotly) {
+
+            var data = [{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"line":{},"name":"anchor 1","marker":{},"yaxis":"y"},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,7.0,3.0,5.0,5.0,6.0,3.0,10.0,3.0,4.0],"line":{},"name":"anchor 2","marker":{},"yaxis":"y2"}];
+            var layout = {"yaxis":{"title":{"text":"first y-axis"},"side":"left","showline":true},"yaxis2":{"title":{"text":"second y-axis"},"side":"left","overlaying":"y","showline":true,"position":0.1},"xaxis":{"title":{"text":"x-axis"},"domain":[0.3,1.0]}};
+            var config = {};
+            Plotly.newPlot('faf161a7-bf37-49cf-a9cc-dbe10aeb90e9', data, layout, config);
+});
+            };
+            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
+                var script = document.createElement("script");
+                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
+                script.onload = function(){
+                    renderPlotly_faf161a7bf3749cfa9ccdbe10aeb90e9();
+                };
+                document.getElementsByTagName("head")[0].appendChild(script);
+            }
+            else {
+                renderPlotly_faf161a7bf3749cfa9ccdbe10aeb90e9();
+            }
+</script>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="fsdocs-tip" id="fs1">namespace Plotly</div>
+<div class="fsdocs-tip" id="fs2">namespace Plotly.NET</div>
+<div class="fsdocs-tip" id="fs3">val x : float list</div>
+<div class="fsdocs-tip" id="fs4">val y : float list</div>
+<div class="fsdocs-tip" id="fs5">val y&#39; : float list</div>
+<div class="fsdocs-tip" id="fs6">Multiple items<br />module List
+
+from Microsoft.FSharp.Collections<br /><em>&lt;summary&gt;Contains operations for working with values of type &lt;see cref=&quot;T:Microsoft.FSharp.Collections.list`1&quot; /&gt;.&lt;/summary&gt;<br />&lt;namespacedoc&gt;&lt;summary&gt;Operations for collections such as lists, arrays, sets, maps and sequences. See also 
+    &lt;a href=&quot;https://docs.microsoft.com/dotnet/fsharp/language-reference/fsharp-collection-types&quot;&gt;F# Collection Types&lt;/a&gt; in the F# Language Guide.
+ &lt;/summary&gt;&lt;/namespacedoc&gt;</em><br /><br />--------------------<br />type List&lt;&#39;T&gt; =
+  | ( [] )
+  | ( :: ) of Head: &#39;T * Tail: &#39;T list
+    interface IReadOnlyList&lt;&#39;T&gt;
+    interface IReadOnlyCollection&lt;&#39;T&gt;
+    interface IEnumerable
+    interface IEnumerable&lt;&#39;T&gt;
+    member GetReverseIndex : rank:int * offset:int -&gt; int
+    member GetSlice : startIndex:int option * endIndex:int option -&gt; &#39;T list
+    static member Cons : head:&#39;T * tail:&#39;T list -&gt; &#39;T list
+    member Head : &#39;T
+    member IsEmpty : bool
+    member Item : index:int -&gt; &#39;T with get
+    ...<br /><em>&lt;summary&gt;The type of immutable singly-linked lists.&lt;/summary&gt;<br />&lt;remarks&gt;Use the constructors &lt;c&gt;[]&lt;/c&gt; and &lt;c&gt;::&lt;/c&gt; (infix) to create values of this type, or
+ the notation &lt;c&gt;[1;2;3]&lt;/c&gt;. Use the values in the &lt;c&gt;List&lt;/c&gt; module to manipulate 
+ values of this type, or pattern match against the values directly.
+ &lt;/remarks&gt;<br />&lt;exclude /&gt;</em></div>
+<div class="fsdocs-tip" id="fs7">val map : mapping:(&#39;T -&gt; &#39;U) -&gt; list:&#39;T list -&gt; &#39;U list<br /><em>&lt;summary&gt;Builds a new collection whose elements are the results of applying the given function
+ to each of the elements of the collection.&lt;/summary&gt;<br />&lt;param name=&quot;mapping&quot;&gt;The function to transform elements from the input list.&lt;/param&gt;<br />&lt;param name=&quot;list&quot;&gt;The input list.&lt;/param&gt;<br />&lt;returns&gt;The list of transformed elements.&lt;/returns&gt;</em></div>
+<div class="fsdocs-tip" id="fs8">val y : float</div>
+<div class="fsdocs-tip" id="fs9">val rev : list:&#39;T list -&gt; &#39;T list<br /><em>&lt;summary&gt;Returns a new list with the elements in reverse order.&lt;/summary&gt;<br />&lt;param name=&quot;list&quot;&gt;The input list.&lt;/param&gt;<br />&lt;returns&gt;The reversed list.&lt;/returns&gt;</em></div>
+<div class="fsdocs-tip" id="fs10">val plot1 : GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs11">type Chart =
+  static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:Symbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:float -&gt; GenericChart + 1 overload
+  static member Bar : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart + 1 overload
+  static member BoxPlot : ?x:&#39;a0 * ?y:&#39;a1 * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Fillcolor:Color * ?Opacity:float * ?Whiskerwidth:&#39;a2 * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:&#39;a3 * ?Pointpos:&#39;a4 * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?Alignmentgroup:&#39;a5 * ?Offsetgroup:&#39;a6 * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod -&gt; GenericChart + 1 overload
+  static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:Symbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:Orientation * ?GroupNorm:GroupNorm * ?UseWebGL:bool -&gt; GenericChart + 1 overload
+  static member Candlestick : open:seq&lt;#IConvertible&gt; * high:seq&lt;#IConvertible&gt; * low:seq&lt;#IConvertible&gt; * close:seq&lt;#IConvertible&gt; * x:seq&lt;#IConvertible&gt; * ?Increasing:Line * ?Decreasing:Line * ?WhiskerWidth:float * ?Line:Line * ?XCalendar:Calendar -&gt; GenericChart + 1 overload
+  static member Column : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart + 1 overload
+  static member Contour : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;a4 * ?zSmooth:SmoothAlg * ?ColorBar:&#39;a5 -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)
+  static member Funnel : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Color:Color * ?Line:Line * ?x0:&#39;a3 * ?dX:float * ?y0:&#39;a4 * ?dY:float * ?Width:float * ?Offset:float * ?Orientation:Orientation * ?Alignmentgroup:string * ?Offsetgroup:string * ?Cliponaxis:bool * ?Connector:FunnelConnector * ?Insidetextfont:Font * ?Outsidetextfont:Font -&gt; GenericChart
+  static member Heatmap : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?ColNames:seq&lt;#IConvertible&gt; * ?RowNames:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;a4 * ?Xgap:&#39;a5 * ?Ygap:&#39;a6 * ?zSmooth:SmoothAlg * ?ColorBar:&#39;a7 * ?UseWebGL:bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)
+  static member Histogram : data:seq&lt;#IConvertible&gt; * ?Orientation:Orientation * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Color:Color * ?HistNorm:HistNorm * ?HistFunc:HistFunc * ?nBinsx:int * ?nBinsy:int * ?Xbins:Bins * ?Ybins:Bins * ?xError:&#39;a1 * ?yError:&#39;a2 -&gt; GenericChart
+  ...</div>
+<div class="fsdocs-tip" id="fs12">static member Chart.Point : xy:seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.Symbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:StyleParam.Orientation * ?GroupNorm:StyleParam.GroupNorm * ?UseWebGL:bool -&gt; GenericChart.GenericChart<br />static member Chart.Point : x:seq&lt;#System.IConvertible&gt; * y:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.Symbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:StyleParam.Orientation * ?GroupNorm:StyleParam.GroupNorm * ?UseWebGL:bool -&gt; GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs13">static member Chart.withXAxisStyle : title:string * ?TitleFont:Font * ?MinMax:(float * float) * ?ShowGrid:bool * ?ShowLine:bool * ?Side:StyleParam.Side * ?Overlaying:StyleParam.LinearAxisId * ?Id:StyleParam.SubPlotId * ?Domain:(float * float) * ?Position:float * ?Zeroline:bool * ?Anchor:StyleParam.LinearAxisId -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
+<div class="fsdocs-tip" id="fs14">static member Chart.withYAxisStyle : title:string * ?TitleFont:Font * ?MinMax:(float * float) * ?ShowGrid:bool * ?ShowLine:bool * ?Side:StyleParam.Side * ?Overlaying:StyleParam.LinearAxisId * ?Id:StyleParam.SubPlotId * ?Domain:(float * float) * ?Position:float * ?ZeroLine:bool * ?Anchor:StyleParam.LinearAxisId -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
+<div class="fsdocs-tip" id="fs15">module GenericChart
+
+from Plotly.NET<br /><em>&lt;summary&gt;
+ Module to represent a GenericChart
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs16">val toChartHTML : gChart:GenericChart.GenericChart -&gt; string<br /><em>&lt;summary&gt;
+ Converts a GenericChart to it HTML representation. The div layer has a default size of 600 if not specified otherwise.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs17">namespace Plotly.NET.LayoutObjects</div>
+<div class="fsdocs-tip" id="fs18">val mirroredXAxis : LinearAxis</div>
+<div class="fsdocs-tip" id="fs19">Multiple items<br />type LinearAxis =
+  inherit DynamicObj
+  new : unit -&gt; LinearAxis
+  static member init : ?Visible:bool * ?Color:Color * ?Title:Title * ?AxisType:AxisType * ?AutoTypeNumbers:AutoTypeNumbers * ?AutoRange:AutoRange * ?RangeMode:RangeMode * ?Range:Range * ?FixedRange:bool * ?ScaleAnchor:LinearAxisId * ?ScaleRatio:float * ?Constrain:AxisConstraint * ?ConstrainToward:AxisConstraintDirection * ?Matches:LinearAxisId * ?Rangebreaks:seq&lt;Rangebreak&gt; * ?TickMode:TickMode * ?NTicks:int * ?Tick0:#IConvertible * ?DTick:#IConvertible * ?TickVals:seq&lt;#IConvertible&gt; * ?TickText:seq&lt;#IConvertible&gt; * ?Ticks:TickOptions * ?TicksOn:CategoryTickAnchor * ?TickLabelMode:TickLabelMode * ?TickLabelPosition:TickLabelPosition * ?TickLabelOverflow:TickLabelOverflow * ?Mirror:Mirror * ?TickLen:float * ?TickWidth:float * ?TickColor:Color * ?ShowTickLabels:bool * ?AutoMargin:bool * ?ShowSpikes:bool * ?SpikeColor:Color * ?SpikeThickness:int * ?SpikeDash:DrawingStyle * ?SpikeMode:SpikeMode * ?SpikeSnap:SpikeSnap * ?TickFont:Font * ?TickAngle:int * ?ShowTickPrefix:ShowTickOption * ?TickPrefix:string * ?ShowTickSuffix:ShowTickOption * ?TickSuffix:string * ?ShowExponent:ShowExponent * ?ExponentFormat:ExponentFormat * ?MinExponent:float * ?SeparateThousands:bool * ?TickFormat:string * ?TickFormatStops:seq&lt;TickFormatStop&gt; * ?HoverFormat:string * ?ShowLine:bool * ?LineColor:Color * ?LineWidth:float * ?ShowGrid:bool * ?GridColor:Color * ?GridWidth:float * ?ZeroLine:bool * ?ZeroLineColor:Color * ?ZeroLineWidth:float * ?ShowDividers:bool * ?DividerColor:Color * ?DividerWidth:int * ?Anchor:LinearAxisId * ?Side:Side * ?Overlaying:LinearAxisId * ?Layer:Layer * ?Domain:Range * ?Position:float * ?CategoryOrder:CategoryOrder * ?CategoryArray:seq&lt;#IConvertible&gt; * ?UIRevision:#IConvertible * ?RangeSlider:RangeSlider * ?RangeSelector:RangeSelector * ?Calendar:Calendar -&gt; LinearAxis
+  static member initCategorical : categoryOrder:CategoryOrder * ?Visible:bool * ?Color:Color * ?Title:Title * ?AutoTypeNumbers:AutoTypeNumbers * ?AutoRange:AutoRange * ?RangeMode:RangeMode * ?Range:Range * ?FixedRange:bool * ?ScaleAnchor:LinearAxisId * ?ScaleRatio:float * ?Constrain:AxisConstraint * ?ConstrainToward:AxisConstraintDirection * ?Matches:LinearAxisId * ?Rangebreaks:seq&lt;Rangebreak&gt; * ?TickMode:TickMode * ?NTicks:int * ?Tick0:#IConvertible * ?DTick:#IConvertible * ?TickVals:seq&lt;#IConvertible&gt; * ?TickText:seq&lt;#IConvertible&gt; * ?Ticks:TickOptions * ?TicksOn:CategoryTickAnchor * ?TickLabelMode:TickLabelMode * ?TickLabelPosition:TickLabelPosition * ?TickLabelOverflow:TickLabelOverflow * ?Mirror:Mirror * ?TickLen:float * ?TickWidth:float * ?TickColor:Color * ?ShowTickLabels:bool * ?AutoMargin:bool * ?ShowSpikes:bool * ?SpikeColor:Color * ?SpikeThickness:int * ?SpikeDash:DrawingStyle * ?SpikeMode:SpikeMode * ?SpikeSnap:SpikeSnap * ?TickFont:Font * ?TickAngle:int * ?ShowTickPrefix:ShowTickOption * ?TickPrefix:string * ?ShowTickSuffix:ShowTickOption * ?TickSuffix:string * ?ShowExponent:ShowExponent * ?ExponentFormat:ExponentFormat * ?MinExponent:float * ?SeparateThousands:bool * ?TickFormat:string * ?TickFormatStops:seq&lt;TickFormatStop&gt; * ?HoverFormat:string * ?ShowLine:bool * ?LineColor:Color * ?LineWidth:float * ?ShowGrid:bool * ?GridColor:Color * ?GridWidth:float * ?ZeroLine:bool * ?ZeroLineColor:Color * ?ZeroLineWidth:float * ?ShowDividers:bool * ?DividerColor:Color * ?DividerWidth:int * ?Anchor:LinearAxisId * ?Side:Side * ?Overlaying:LinearAxisId * ?Layer:Layer * ?Domain:Range * ?Position:float * ?CategoryArray:seq&lt;#IConvertible&gt; * ?UIRevision:#IConvertible * ?RangeSlider:RangeSlider * ?RangeSelector:RangeSelector * ?Calendar:Calendar -&gt; LinearAxis
+  static member style : ?Visible:bool * ?Color:Color * ?Title:Title * ?AxisType:AxisType * ?AutoTypeNumbers:AutoTypeNumbers * ?AutoRange:AutoRange * ?RangeMode:RangeMode * ?Range:Range * ?FixedRange:bool * ?ScaleAnchor:LinearAxisId * ?ScaleRatio:float * ?Constrain:AxisConstraint * ?ConstrainToward:AxisConstraintDirection * ?Matches:LinearAxisId * ?Rangebreaks:seq&lt;Rangebreak&gt; * ?TickMode:TickMode * ?NTicks:int * ?Tick0:#IConvertible * ?DTick:#IConvertible * ?TickVals:seq&lt;#IConvertible&gt; * ?TickText:seq&lt;#IConvertible&gt; * ?Ticks:TickOptions * ?TicksOn:CategoryTickAnchor * ?TickLabelMode:TickLabelMode * ?TickLabelPosition:TickLabelPosition * ?TickLabelOverflow:TickLabelOverflow * ?Mirror:Mirror * ?TickLen:float * ?TickWidth:float * ?TickColor:Color * ?ShowTickLabels:bool * ?AutoMargin:bool * ?ShowSpikes:bool * ?SpikeColor:Color * ?SpikeThickness:int * ?SpikeDash:DrawingStyle * ?SpikeMode:SpikeMode * ?SpikeSnap:SpikeSnap * ?TickFont:Font * ?TickAngle:int * ?ShowTickPrefix:ShowTickOption * ?TickPrefix:string * ?ShowTickSuffix:ShowTickOption * ?TickSuffix:string * ?ShowExponent:ShowExponent * ?ExponentFormat:ExponentFormat * ?MinExponent:float * ?SeparateThousands:bool * ?TickFormat:string * ?TickFormatStops:seq&lt;TickFormatStop&gt; * ?HoverFormat:string * ?ShowLine:bool * ?LineColor:Color * ?LineWidth:float * ?ShowGrid:bool * ?GridColor:Color * ?GridWidth:float * ?ZeroLine:bool * ?ZeroLineColor:Color * ?ZeroLineWidth:float * ?ShowDividers:bool * ?DividerColor:Color * ?DividerWidth:int * ?Anchor:LinearAxisId * ?Side:Side * ?Overlaying:LinearAxisId * ?Layer:Layer * ?Domain:Range * ?Position:float * ?CategoryOrder:CategoryOrder * ?CategoryArray:seq&lt;#IConvertible&gt; * ?UIRevision:#IConvertible * ?RangeSlider:RangeSlider * ?RangeSelector:RangeSelector * ?Calendar:Calendar -&gt; (LinearAxis -&gt; LinearAxis)<br /><em>&lt;summary&gt;Linear axes can be used as x and y scales on 2D plots, and as x,y, and z scales on 3D plots.&lt;/summary&gt;</em><br /><br />--------------------<br />new : unit -&gt; LinearAxis</div>
+<div class="fsdocs-tip" id="fs20">static member LinearAxis.init : ?Visible:bool * ?Color:Color * ?Title:Title * ?AxisType:StyleParam.AxisType * ?AutoTypeNumbers:StyleParam.AutoTypeNumbers * ?AutoRange:StyleParam.AutoRange * ?RangeMode:StyleParam.RangeMode * ?Range:StyleParam.Range * ?FixedRange:bool * ?ScaleAnchor:StyleParam.LinearAxisId * ?ScaleRatio:float * ?Constrain:StyleParam.AxisConstraint * ?ConstrainToward:StyleParam.AxisConstraintDirection * ?Matches:StyleParam.LinearAxisId * ?Rangebreaks:seq&lt;Rangebreak&gt; * ?TickMode:StyleParam.TickMode * ?NTicks:int * ?Tick0:#System.IConvertible * ?DTick:#System.IConvertible * ?TickVals:seq&lt;#System.IConvertible&gt; * ?TickText:seq&lt;#System.IConvertible&gt; * ?Ticks:StyleParam.TickOptions * ?TicksOn:StyleParam.CategoryTickAnchor * ?TickLabelMode:StyleParam.TickLabelMode * ?TickLabelPosition:StyleParam.TickLabelPosition * ?TickLabelOverflow:StyleParam.TickLabelOverflow * ?Mirror:StyleParam.Mirror * ?TickLen:float * ?TickWidth:float * ?TickColor:Color * ?ShowTickLabels:bool * ?AutoMargin:bool * ?ShowSpikes:bool * ?SpikeColor:Color * ?SpikeThickness:int * ?SpikeDash:StyleParam.DrawingStyle * ?SpikeMode:StyleParam.SpikeMode * ?SpikeSnap:StyleParam.SpikeSnap * ?TickFont:Font * ?TickAngle:int * ?ShowTickPrefix:StyleParam.ShowTickOption * ?TickPrefix:string * ?ShowTickSuffix:StyleParam.ShowTickOption * ?TickSuffix:string * ?ShowExponent:StyleParam.ShowExponent * ?ExponentFormat:StyleParam.ExponentFormat * ?MinExponent:float * ?SeparateThousands:bool * ?TickFormat:string * ?TickFormatStops:seq&lt;TickFormatStop&gt; * ?HoverFormat:string * ?ShowLine:bool * ?LineColor:Color * ?LineWidth:float * ?ShowGrid:bool * ?GridColor:Color * ?GridWidth:float * ?ZeroLine:bool * ?ZeroLineColor:Color * ?ZeroLineWidth:float * ?ShowDividers:bool * ?DividerColor:Color * ?DividerWidth:int * ?Anchor:StyleParam.LinearAxisId * ?Side:StyleParam.Side * ?Overlaying:StyleParam.LinearAxisId * ?Layer:StyleParam.Layer * ?Domain:StyleParam.Range * ?Position:float * ?CategoryOrder:StyleParam.CategoryOrder * ?CategoryArray:seq&lt;#System.IConvertible&gt; * ?UIRevision:#System.IConvertible * ?RangeSlider:RangeSlider * ?RangeSelector:RangeSelector * ?Calendar:StyleParam.Calendar -&gt; LinearAxis</div>
+<div class="fsdocs-tip" id="fs21">Multiple items<br />type Title =
+  inherit DynamicObj
+  new : unit -&gt; Title
+  static member init : ?Text:string * ?Font:Font * ?Standoff:int * ?Side:Side -&gt; Title
+  static member style : ?Text:string * ?Font:Font * ?Standoff:int * ?Side:Side -&gt; (Title -&gt; Title)<br /><br />--------------------<br />new : unit -&gt; Title</div>
+<div class="fsdocs-tip" id="fs22">static member Title.init : ?Text:string * ?Font:Font * ?Standoff:int * ?Side:StyleParam.Side -&gt; Title</div>
+<div class="fsdocs-tip" id="fs23">module StyleParam
+
+from Plotly.NET</div>
+<div class="fsdocs-tip" id="fs24">type Mirror =
+  | True
+  | Ticks
+  | False
+  | All
+  | AllTicks
+    member Convert : unit -&gt; obj
+    override ToString : unit -&gt; string
+    static member convert : (Mirror -&gt; obj)
+    static member toString : (Mirror -&gt; string)<br /><em>&lt;summary&gt;
+ Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. If &quot;true&quot;, the axis lines are mirrored. 
+ If &quot;ticks&quot;, the axis lines and ticks are mirrored. If &quot;false&quot;, mirroring is disable. If &quot;all&quot;, axis lines are mirrored on all shared-axes subplots. If &quot;allticks&quot;, axis lines and ticks are mirrored on all shared-axes subplots.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs25">union case StyleParam.Mirror.AllTicks: StyleParam.Mirror</div>
+<div class="fsdocs-tip" id="fs26">type TickOptions =
+  | Outside
+  | Inside
+  | Empty
+    member Convert : unit -&gt; obj
+    override ToString : unit -&gt; string
+    static member convert : (TickOptions -&gt; obj)
+    static member toString : (TickOptions -&gt; string)<br /><em>&lt;summary&gt;
+ Determines whether ticks are drawn or not. If &quot;&quot;, this axis&#39; ticks are not drawn. If &quot;outside&quot; (&quot;inside&quot;), this axis&#39; are drawn outside (inside) the axis lines.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs27">union case StyleParam.TickOptions.Inside: StyleParam.TickOptions</div>
+<div class="fsdocs-tip" id="fs28">val mirroredLogYAxis : LinearAxis</div>
+<div class="fsdocs-tip" id="fs29">type AxisType =
+  | Auto
+  | Linear
+  | Log
+  | Date
+  | Category
+  | MultiCategory
+    member Convert : unit -&gt; obj
+    override ToString : unit -&gt; string
+    static member convert : (AxisType -&gt; obj)
+    static member toString : (AxisType -&gt; string)<br /><em>&lt;summary&gt;
+ Sets the axis type. By default (Auto), plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs30">union case StyleParam.AxisType.Log: StyleParam.AxisType</div>
+<div class="fsdocs-tip" id="fs31">val plot2 : GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs32">static member Chart.withXAxis : xAxis:LinearAxis * ?Id:StyleParam.SubPlotId -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
+<div class="fsdocs-tip" id="fs33">static member Chart.withYAxis : yAxis:LinearAxis * ?Id:StyleParam.SubPlotId -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
+<div class="fsdocs-tip" id="fs34">val anchoredAt1 : GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs35">static member Chart.Line : xy:seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.Symbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?Dash:StyleParam.DrawingStyle * ?Width:float * ?StackGroup:string * ?Orientation:StyleParam.Orientation * ?GroupNorm:StyleParam.GroupNorm * ?UseWebGL:bool -&gt; GenericChart.GenericChart<br />static member Chart.Line : x:seq&lt;#System.IConvertible&gt; * y:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.Symbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?Dash:StyleParam.DrawingStyle * ?Width:float * ?StackGroup:string * ?Orientation:StyleParam.Orientation * ?GroupNorm:StyleParam.GroupNorm * ?UseWebGL:bool -&gt; GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs36">static member Chart.withAxisAnchor : ?X:int * ?Y:int -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)<br />static member Chart.withAxisAnchor : ch:GenericChart.GenericChart * ?X:int * ?Y:int -&gt; GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs37">argument Y: int option<br /><em>&lt;summary&gt;
+ Set the axis anchor id the trace is belonging to
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs38">val anchoredAt2 : GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs39">val twoXAxes1 : GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs40">static member Chart.combine : gCharts:seq&lt;GenericChart.GenericChart&gt; -&gt; GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs41">type Side =
+  | Top
+  | Bottom
+  | Left
+  | Right
+    member Convert : unit -&gt; obj
+    override ToString : unit -&gt; string
+    static member convert : (Side -&gt; obj)
+    static member toString : (Side -&gt; string)</div>
+<div class="fsdocs-tip" id="fs42">union case StyleParam.Side.Left: StyleParam.Side</div>
+<div class="fsdocs-tip" id="fs43">type SubPlotId =
+  | XAxis of int
+  | YAxis of int
+  | ColorAxis of int
+  | Geo of int
+  | Mapbox of int
+  | Polar of int
+  | Ternary of int
+  | Scene of int
+    member Convert : unit -&gt; obj
+    override ToString : unit -&gt; string
+    static member convert : (SubPlotId -&gt; obj)
+    static member toString : (SubPlotId -&gt; string)</div>
+<div class="fsdocs-tip" id="fs44">union case StyleParam.SubPlotId.YAxis: int -&gt; StyleParam.SubPlotId</div>
+<div class="fsdocs-tip" id="fs45">union case StyleParam.Side.Right: StyleParam.Side</div>
+<div class="fsdocs-tip" id="fs46">type LinearAxisId =
+  | X of int
+  | Y of int
+    member Convert : unit -&gt; obj
+    override ToString : unit -&gt; string
+    static member convert : (LinearAxisId -&gt; obj)
+    static member toString : (LinearAxisId -&gt; string)</div>
+<div class="fsdocs-tip" id="fs47">union case StyleParam.LinearAxisId.Y: int -&gt; StyleParam.LinearAxisId</div>
+<div class="fsdocs-tip" id="fs48">val twoXAxes2 : GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs49">Multiple items<br />type Domain =
+  inherit DynamicObj
+  new : unit -&gt; Domain
+  static member init : ?X:Range * ?Y:Range * ?Row:int * ?Column:int -&gt; Domain
+  static member style : ?X:Range * ?Y:Range * ?Row:int * ?Column:int -&gt; (Domain -&gt; Domain)<br /><em>&lt;summary&gt;
+ Dimensions type inherits from dynamic object
+&lt;/summary&gt;</em><br /><br />--------------------<br />new : unit -&gt; Domain</div>
+
+    </div>
+
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <script type="text/javascript">var fsdocs_search_baseurl = 'https://plotly.net/'</script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+    <script type="text/javascript" src="https://plotly.net/content/fsdocs-search.js"></script>
+    <!-- END SEARCH BOX: this adds support for the search box -->
+</body>
+
+</html>

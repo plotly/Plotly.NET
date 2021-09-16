@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Trace3d (Plotly.NET)</title>
+    <title>Trace3D (Plotly.NET)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Timo Mühlhaus, Kevin Schneider, F# open source contributors">
     <link rel="shortcut icon" type="image/x-icon" href="https://plotly.net//img/favicon.ico">
@@ -35,7 +35,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.7</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.8</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -73,7 +73,7 @@
                 <div class="container" id="fsdocs-content">
                     <div>
   <h2>
-    Trace3d Type
+    Trace3D Type
   </h2>
   <dl class="fsdocs-metadata">
     <dt>
@@ -98,7 +98,17 @@
     <div>
       <p class="fsdocs-summary">
         
- Trace type inherits from dynamic object
+ Traces for 3D subplots, using layout.scene as anchors.
+
+ These trace types are compatible with 3D subplots via the scene attribute, which contains special camera controls:
+
+- scatter3d, which can be used to draw individual markers, 3d bubble charts and lines and curves
+
+- surface and mesh: 3d surface trace types
+
+- cone and streamtube: 3d vector field trace types
+
+- volume and isosurface: 3d volume trace types
 
       </p>
     </div>
@@ -128,19 +138,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '1317', 1317)" onmouseover="showTip(event, '1317', 1317)">
+              <code onmouseout="hideTip(event, '1591', 1591)" onmouseover="showTip(event, '1591', 1591)">
                 <p>
                   <a id="( .ctor )">
                     <a href="#( .ctor )">
-                      <code><span>Trace3d<span><span>(<span>traceTypeName</span>)</span></span></span></code>
+                      <code><span>Trace3D<span><span>(<span>traceTypeName</span>)</span></span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="1317">
+              <div class="fsdocs-tip" id="1591">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Trace3d<span><span>(<span>traceTypeName</span>)</span></span></span></code>
+                  <code><span>Trace3D<span><span>(<span>traceTypeName</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -157,7 +167,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3d</a></code>
+                    <code><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a></code>
                   </span>
                   <br/>
                 </div>
@@ -166,15 +176,15 @@
           </td>
           <td class="fsdocs-member-xmldoc">
             <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.Trace3d.#ctor`')">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.Trace3D.#ctor`')">
                 <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
               </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace3d.#ctor\'/>')">
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace3D.#ctor\'/>')">
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Trace3d.fs#L7-7" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace3D.fs#L21-21" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
@@ -197,7 +207,7 @@
                 <span class="fsdocs-return-name">
                   Returns: 
                 </span>
-                <code><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3d</a></code>
+                <code><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a></code>
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
@@ -207,7 +217,585 @@
     </table>
   </div>
   <div></div>
-  <div></div>
+  <div>
+    <h3>
+      Static members
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Static member
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1592', 1592)" onmouseover="showTip(event, '1592', 1592)">
+                <p>
+                  <a id="initCone">
+                    <a href="#initCone">
+                      <code><span>Trace3D.initCone&#32;<span>applyStyle</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1592">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Trace3D.initCone&#32;<span>applyStyle</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        applyStyle
+                      </b>
+                      :
+                      <code><span><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a>&#32;->&#32;<a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a></span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.Trace3D.initCone`')">
+                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace3D.initCone\'/>')">
+                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace3D.fs#L37-37" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+initializes a trace of type "cone" applying the givin trace styling function
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  applyStyle
+                </span>
+                :
+                <code><span><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a>&#32;->&#32;<a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a></span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1593', 1593)" onmouseover="showTip(event, '1593', 1593)">
+                <p>
+                  <a id="initIsoSurface">
+                    <a href="#initIsoSurface">
+                      <code><span>Trace3D.initIsoSurface&#32;<span>applyStyle</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1593">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Trace3D.initIsoSurface&#32;<span>applyStyle</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        applyStyle
+                      </b>
+                      :
+                      <code><span><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a>&#32;->&#32;<a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a></span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.Trace3D.initIsoSurface`')">
+                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace3D.initIsoSurface\'/>')">
+                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace3D.fs#L49-49" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+initializes a trace of type "isosurface" applying the givin trace styling function
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  applyStyle
+                </span>
+                :
+                <code><span><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a>&#32;->&#32;<a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a></span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1594', 1594)" onmouseover="showTip(event, '1594', 1594)">
+                <p>
+                  <a id="initMesh3d">
+                    <a href="#initMesh3d">
+                      <code><span>Trace3D.initMesh3d&#32;<span>applyStyle</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1594">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Trace3D.initMesh3d&#32;<span>applyStyle</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        applyStyle
+                      </b>
+                      :
+                      <code><span><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a>&#32;->&#32;<a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a></span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.Trace3D.initMesh3d`')">
+                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace3D.initMesh3d\'/>')">
+                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace3D.fs#L33-33" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+initializes a trace of type "mesh3d" applying the givin trace styling function
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  applyStyle
+                </span>
+                :
+                <code><span><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a>&#32;->&#32;<a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a></span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1595', 1595)" onmouseover="showTip(event, '1595', 1595)">
+                <p>
+                  <a id="initScatter3d">
+                    <a href="#initScatter3d">
+                      <code><span>Trace3D.initScatter3d&#32;<span>applyStyle</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1595">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Trace3D.initScatter3d&#32;<span>applyStyle</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        applyStyle
+                      </b>
+                      :
+                      <code><span><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a>&#32;->&#32;<a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a></span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.Trace3D.initScatter3d`')">
+                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace3D.initScatter3d\'/>')">
+                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace3D.fs#L25-25" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+initializes a trace of type "scatter3d" applying the givin trace styling function
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  applyStyle
+                </span>
+                :
+                <code><span><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a>&#32;->&#32;<a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a></span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1596', 1596)" onmouseover="showTip(event, '1596', 1596)">
+                <p>
+                  <a id="initStreamTube">
+                    <a href="#initStreamTube">
+                      <code><span>Trace3D.initStreamTube&#32;<span>applyStyle</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1596">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Trace3D.initStreamTube&#32;<span>applyStyle</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        applyStyle
+                      </b>
+                      :
+                      <code><span><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a>&#32;->&#32;<a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a></span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.Trace3D.initStreamTube`')">
+                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace3D.initStreamTube\'/>')">
+                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace3D.fs#L41-41" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+initializes a trace of type "streamtube" applying the givin trace styling function
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  applyStyle
+                </span>
+                :
+                <code><span><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a>&#32;->&#32;<a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a></span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1597', 1597)" onmouseover="showTip(event, '1597', 1597)">
+                <p>
+                  <a id="initSurface">
+                    <a href="#initSurface">
+                      <code><span>Trace3D.initSurface&#32;<span>applyStyle</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1597">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Trace3D.initSurface&#32;<span>applyStyle</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        applyStyle
+                      </b>
+                      :
+                      <code><span><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a>&#32;->&#32;<a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a></span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.Trace3D.initSurface`')">
+                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace3D.initSurface\'/>')">
+                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace3D.fs#L29-29" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+initializes a trace of type "surface" applying the givin trace styling function
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  applyStyle
+                </span>
+                :
+                <code><span><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a>&#32;->&#32;<a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a></span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1598', 1598)" onmouseover="showTip(event, '1598', 1598)">
+                <p>
+                  <a id="initVolume">
+                    <a href="#initVolume">
+                      <code><span>Trace3D.initVolume&#32;<span>applyStyle</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1598">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Trace3D.initVolume&#32;<span>applyStyle</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        applyStyle
+                      </b>
+                      :
+                      <code><span><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a>&#32;->&#32;<a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a></span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.Trace3D.initVolume`')">
+                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace3D.initVolume\'/>')">
+                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace3D.fs#L45-45" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+initializes a trace of type "volume" applying the givin trace styling function
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  applyStyle
+                </span>
+                :
+                <code><span><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a>&#32;->&#32;<a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a></span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://plotly.net/reference/plotly-net-trace3d.html">Trace3D</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
                 </div>
             </div>
