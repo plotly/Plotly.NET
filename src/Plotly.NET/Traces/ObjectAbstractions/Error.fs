@@ -80,17 +80,17 @@ type Error () =
 
         ) =
             (fun (error:Error) -> 
-                Symmetric     |> DynObj.setValueOpt error "symmetric"
-                Array         |> DynObj.setValueOpt error "array"
-                Arrayminus    |> DynObj.setValueOpt error "arrayminus"
-                Value         |> DynObj.setValueOpt error "value"
-                Valueminus    |> DynObj.setValueOpt error "valueminus"
-                Traceref      |> DynObj.setValueOpt error "traceref"
-                Tracerefminus |> DynObj.setValueOpt error "tracerefminus"
-                Copy_ystyle   |> DynObj.setValueOpt error "copy_ystyle"
-                Color         |> DynObj.setValueOpt error "color"
-                Thickness     |> DynObj.setValueOpt error "thickness"
-                Width         |> DynObj.setValueOpt error "width"
+                ++? ("symmetric", Symmetric     )
+                ++? ("array", Array         )
+                ++? ("arrayminus", Arrayminus    )
+                ++? ("value", Value         )
+                ++? ("valueminus", Valueminus    )
+                ++? ("traceref", Traceref      )
+                ++? ("tracerefminus", Tracerefminus )
+                ++? ("copy_ystyle", Copy_ystyle   )
+                ++? ("color", Color         )
+                ++? ("thickness", Thickness     )
+                ++? ("width", Width         )
 
                 // out ->
                 error

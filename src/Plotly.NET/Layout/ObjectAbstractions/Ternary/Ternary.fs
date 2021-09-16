@@ -52,11 +52,11 @@ type Ternary() =
         ) =
             (fun (ternary:Ternary) -> 
                
-                AAxis  |> DynObj.setValueOpt ternary "aaxis"
-                BAxis  |> DynObj.setValueOpt ternary "baxis"
-                CAxis  |> DynObj.setValueOpt ternary "caxis"
-                Domain |> DynObj.setValueOpt ternary "domain"
-                Sum    |> DynObj.setValueOpt ternary "sum"
+                ++? ("aaxis", AAxis  )
+                ++? ("baxis", BAxis  )
+                ++? ("caxis", CAxis  )
+                ++? ("domain", Domain )
+                ++? ("sum", Sum    )
 
                 ternary
             )

@@ -39,9 +39,9 @@ type GeoProjectionRotation () =
             [<Optional;DefaultParameterValue(null)>] ?Roll       :int
         ) =
             (fun (rotation:GeoProjectionRotation) -> 
-                Longitude |> DynObj.setValueOpt rotation "lon"
-                Latitude  |> DynObj.setValueOpt rotation "lat"
-                Roll      |> DynObj.setValueOpt rotation "roll"
+                ++? ("lon", Longitude )
+                ++? ("lat", Latitude  )
+                ++? ("roll", Roll      )
 
                 rotation
             ) 
@@ -89,12 +89,10 @@ type GeoProjection() =
                 ++ ("type", projectionType |> StyleParam.GeoProjectionType.convert )
 
 
-                Parallels       
-                |> Option.map (fun (a,b) -> sprintf "[%f,%f]" a b) 
-                |> DynObj.setValueOpt projection "parallels"
+                ++? ("parallels", Parallels       |> Option.map (fun (a,b) -> sprintf "[%f,%f]" a b) )
 
-                Rotation        |> DynObj.setValueOpt   projection "rotation"
-                Scale           |> DynObj.setValueOpt   projection "scale"
+                ++? ("rotation", Rotation        )
+                ++? ("scale", Scale           )
 
                 projection
             ) 

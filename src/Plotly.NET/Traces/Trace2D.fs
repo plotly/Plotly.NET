@@ -244,60 +244,60 @@ type Trace2DStyle() =
         ) =
             (fun (trace:('T :> Trace)) ->    
                 
-                Name               |> DynObj.setValueOpt trace "name"
+                ++? ("name", Name               )
                 Visible            |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
-                ShowLegend         |> DynObj.setValueOpt trace "showlegend"
-                LegendRank         |> DynObj.setValueOpt trace "legendrank"
-                LegendGroup        |> DynObj.setValueOpt trace "legendgroup"
-                LegendGroupTitle   |> DynObj.setValueOpt trace "legendgrouptitle"
-                Opacity            |> DynObj.setValueOpt trace "opacity"
+                ++? ("showlegend", ShowLegend         )
+                ++? ("legendrank", LegendRank         )
+                ++? ("legendgroup", LegendGroup        )
+                ++? ("legendgrouptitle", LegendGroupTitle   )
+                ++? ("opacity", Opacity            )
                 Mode               |> DynObj.setValueOptBy trace "mode" StyleParam.Mode.convert
-                Ids                |> DynObj.setValueOpt trace "ids"
-                X                  |> DynObj.setValueOpt trace "x"
-                X0                 |> DynObj.setValueOpt trace "x0"
-                DX                 |> DynObj.setValueOpt trace "dx"
-                Y                  |> DynObj.setValueOpt trace "y"
-                Y0                 |> DynObj.setValueOpt trace "y0"
-                DY                 |> DynObj.setValueOpt trace "dy"
-                Text               |> DynObj.setValueOpt trace "text"
+                ++? ("ids", Ids                )
+                ++? ("x", X                  )
+                ++? ("x0", X0                 )
+                ++? ("dx", DX                 )
+                ++? ("y", Y                  )
+                ++? ("y0", Y0                 )
+                ++? ("dy", DY                 )
+                ++? ("text", Text               )
                 TextPosition       |> DynObj.setValueOptBy trace "textposition" StyleParam.TextPosition.convert
-                TextTemplate       |> DynObj.setValueOpt trace "texttemplate"
-                HoverText          |> DynObj.setValueOpt trace "hovertext"
+                ++? ("texttemplate", TextTemplate       )
+                ++? ("hovertext", HoverText          )
                 HoverInfo          |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
-                HoverTemplate      |> DynObj.setValueOpt trace "hovertemplate"
-                XHoverFormat       |> DynObj.setValueOpt trace "xhoverformat"
-                YHoverFormat       |> DynObj.setValueOpt trace "yhoverformat"
-                Meta               |> DynObj.setValueOpt trace "meta"
-                CustomData         |> DynObj.setValueOpt trace "customdata"
+                ++? ("hovertemplate", HoverTemplate      )
+                ++? ("xhoverformat", XHoverFormat       )
+                ++? ("yhoverformat", YHoverFormat       )
+                ++? ("meta", Meta               )
+                ++? ("customdata", CustomData         )
                 XAxis              |> DynObj.setValueOptBy trace "xaxis" StyleParam.LinearAxisId.convert
                 YAxis              |> DynObj.setValueOptBy trace "yaxis" StyleParam.LinearAxisId.convert
                 Orientation        |> DynObj.setValueOptBy trace "orientation" StyleParam.Orientation.convert
                 GroupNorm          |> DynObj.setValueOptBy trace "groupnorm" StyleParam.GroupNorm.convert
-                StackGroup         |> DynObj.setValueOpt trace "stackgroup"
-                XPeriod            |> DynObj.setValueOpt trace "xperiod"
+                ++? ("stackgroup", StackGroup         )
+                ++? ("xperiod", XPeriod            )
                 XPeriodAlignment   |> DynObj.setValueOptBy trace "xperiodalignment" StyleParam.PeriodAlignment.convert
-                XPeriod0           |> DynObj.setValueOpt trace "xperiod0"
-                YPeriod            |> DynObj.setValueOpt trace "yperiod"
+                ++? ("xperiod0", XPeriod0           )
+                ++? ("yperiod", YPeriod            )
                 YPeriodAlignment   |> DynObj.setValueOptBy trace "yperiodalignment" StyleParam.PeriodAlignment.convert
-                YPeriod0           |> DynObj.setValueOpt trace "yperiod0"
-                Marker             |> DynObj.setValueOpt trace "marker"
-                Line               |> DynObj.setValueOpt trace "line"
-                TextFont           |> DynObj.setValueOpt trace "textfont"
-                ErrorX             |> DynObj.setValueOpt trace "error_x"
-                ErrorY             |> DynObj.setValueOpt trace "error_y"
-                SelectedPoints     |> DynObj.setValueOpt trace "selectedpoints"
-                Selected           |> DynObj.setValueOpt trace "selected"
-                Unselected         |> DynObj.setValueOpt trace "unselected"
-                ClipOnAxis         |> DynObj.setValueOpt trace "cliponaxis"
-                ConnectGaps        |> DynObj.setValueOpt trace "connectgaps"
+                ++? ("yperiod0", YPeriod0           )
+                ++? ("marker", Marker             )
+                ++? ("line", Line               )
+                ++? ("textfont", TextFont           )
+                ++? ("error_x", ErrorX             )
+                ++? ("error_y", ErrorY             )
+                ++? ("selectedpoints", SelectedPoints     )
+                ++? ("selected", Selected           )
+                ++? ("unselected", Unselected         )
+                ++? ("cliponaxis", ClipOnAxis         )
+                ++? ("connectgaps", ConnectGaps        )
                 Fill               |> DynObj.setValueOptBy trace "fill" StyleParam.Fill.convert
-                FillColor          |> DynObj.setValueOpt trace "fillcolor"
-                HoverLabel         |> DynObj.setValueOpt trace "hoverlabel"
+                ++? ("fillcolor", FillColor          )
+                ++? ("hoverlabel", HoverLabel         )
                 HoverOn            |> DynObj.setValueOptBy trace "hoveron" StyleParam.HoverOn.convert
                 StackGaps          |> DynObj.setValueOptBy trace "stackgaps" StyleParam.StackGaps.convert
                 XCalendar          |> DynObj.setValueOptBy trace "xcalendar" StyleParam.Calendar.convert
                 YCalendar          |> DynObj.setValueOptBy trace "ycalendar" StyleParam.Calendar.convert
-                UIRevision         |> DynObj.setValueOpt trace "uirevision"
+                ++? ("uirevision", UIRevision         )
 
                 trace
             ) 
@@ -362,59 +362,59 @@ type Trace2DStyle() =
         ) =
             (fun (bar:('T :> Trace)) ->    
                
-                Name              |> DynObj.setValueOpt bar "name"
+                ++? ("name", Name              )
                 Visible           |> DynObj.setValueOptBy bar "visible" StyleParam.Visible.convert
-                ShowLegend        |> DynObj.setValueOpt bar "showlegend"
-                LegendRank        |> DynObj.setValueOpt bar "legendrank"
-                LegendGroup       |> DynObj.setValueOpt bar "legendgroup"
-                LegendGroupTitle  |> DynObj.setValueOpt bar "legendgrouptitle"
-                Opacity           |> DynObj.setValueOpt bar "opacity"
-                Ids               |> DynObj.setValueOpt bar "ids"
-                X                 |> DynObj.setValueOpt bar "x"
-                X0                |> DynObj.setValueOpt bar "x0"
-                DX                |> DynObj.setValueOpt bar "dx"
-                Y                 |> DynObj.setValueOpt bar "y"
-                Y0                |> DynObj.setValueOpt bar "y0"
-                DY                |> DynObj.setValueOpt bar "dy"
-                Base              |> DynObj.setValueOpt bar "base"
-                Text              |> DynObj.setValueOpt bar "text"
+                ++? ("showlegend", ShowLegend        )
+                ++? ("legendrank", LegendRank        )
+                ++? ("legendgroup", LegendGroup       )
+                ++? ("legendgrouptitle", LegendGroupTitle  )
+                ++? ("opacity", Opacity           )
+                ++? ("ids", Ids               )
+                ++? ("x", X                 )
+                ++? ("x0", X0                )
+                ++? ("dx", DX                )
+                ++? ("y", Y                 )
+                ++? ("y0", Y0                )
+                ++? ("dy", DY                )
+                ++? ("base", Base              )
+                ++? ("text", Text              )
                 TextPosition      |> DynObj.setValueOptBy bar "textposition" StyleParam.TextPosition.convert
-                TextTemplate      |> DynObj.setValueOpt bar "texttemplate"
-                HoverText         |> DynObj.setValueOpt bar "hovertext"
+                ++? ("texttemplate", TextTemplate      )
+                ++? ("hovertext", HoverText         )
                 HoverInfo         |> DynObj.setValueOptBy bar "hoverinfo"  StyleParam.HoverInfo.convert
-                HoverTemplate     |> DynObj.setValueOpt bar "hovertemplate"
-                XHoverFormat      |> DynObj.setValueOpt bar "xhoverformat"
-                YHoverFormat      |> DynObj.setValueOpt bar "yhoverformat"
-                Meta              |> DynObj.setValueOpt bar "meta"
-                CustomData        |> DynObj.setValueOpt bar "customdata"
+                ++? ("hovertemplate", HoverTemplate     )
+                ++? ("xhoverformat", XHoverFormat      )
+                ++? ("yhoverformat", YHoverFormat      )
+                ++? ("meta", Meta              )
+                ++? ("customdata", CustomData        )
                 XAxis             |> DynObj.setValueOptBy bar "xaxis" StyleParam.LinearAxisId.convert
                 YAxis             |> DynObj.setValueOptBy bar "yaxis"  StyleParam.LinearAxisId.convert
                 Orientation       |> DynObj.setValueOptBy bar "orientation" StyleParam.Orientation.convert
-                AlignmentGroup    |> DynObj.setValueOpt bar "alignmentgroup"
-                OffsetGroup       |> DynObj.setValueOpt bar "offsetgroup"
-                XPeriod           |> DynObj.setValueOpt bar "xperiod"
+                ++? ("alignmentgroup", AlignmentGroup    )
+                ++? ("offsetgroup", OffsetGroup       )
+                ++? ("xperiod", XPeriod           )
                 XPeriodAlignment  |> DynObj.setValueOptBy bar "xperiodalignment" StyleParam.PeriodAlignment.convert
-                XPeriod0          |> DynObj.setValueOpt bar "xperiod0"
-                YPeriod           |> DynObj.setValueOpt bar "yperiod"
+                ++? ("xperiod0", XPeriod0          )
+                ++? ("yperiod", YPeriod           )
                 YPeriodAlignment  |> DynObj.setValueOptBy bar "yperiodalignment" StyleParam.PeriodAlignment.convert
-                YPeriod0          |> DynObj.setValueOpt bar "yperiod0"
-                Marker            |> DynObj.setValueOpt bar "marker"
-                TextAngle         |> DynObj.setValueOpt bar "textangle"
-                TextFont          |> DynObj.setValueOpt bar "textfont"
-                ErrorX            |> DynObj.setValueOpt bar "errorx"
-                ErrorY            |> DynObj.setValueOpt bar "errory"
-                SelectedPoints    |> DynObj.setValueOpt bar "selectedpoints"
-                Selected          |> DynObj.setValueOpt bar "selected"
-                Unselected        |> DynObj.setValueOpt bar "unselected"
-                ClipOnAxis        |> DynObj.setValueOpt bar "cliponaxis"
+                ++? ("yperiod0", YPeriod0          )
+                ++? ("marker", Marker            )
+                ++? ("textangle", TextAngle         )
+                ++? ("textfont", TextFont          )
+                ++? ("errorx", ErrorX            )
+                ++? ("errory", ErrorY            )
+                ++? ("selectedpoints", SelectedPoints    )
+                ++? ("selected", Selected          )
+                ++? ("unselected", Unselected        )
+                ++? ("cliponaxis", ClipOnAxis        )
                 Constraintext     |> DynObj.setValueOptBy bar "constraintext" StyleParam.ConstrainText.convert
-                HoverLabel        |> DynObj.setValueOpt bar "hoverlabel"
+                ++? ("hoverlabel", HoverLabel        )
                 InsideTextAnchor  |> DynObj.setValueOptBy bar "insidetextanchor" StyleParam.InsideTextAnchor.convert
-                InsideTextFont    |> DynObj.setValueOpt bar "insidetextfont"
-                OutsideTextFont   |> DynObj.setValueOpt bar "outsidetextfont"
+                ++? ("insidetextfont", InsideTextFont    )
+                ++? ("outsidetextfont", OutsideTextFont   )
                 XCalendar         |> DynObj.setValueOptBy bar "xcalendar" StyleParam.Calendar.convert
                 YCalendar         |> DynObj.setValueOptBy bar "ycalendar" StyleParam.Calendar.convert
-                UIRevision        |> DynObj.setValueOpt bar "uirevision"
+                ++? ("uirevision", UIRevision        )
 
                 bar
 
@@ -442,19 +442,19 @@ type Trace2DStyle() =
                 
                 ++ ("x", x               )
                 ++ ("y", y               )
-                x0              |> DynObj.setValueOpt   trace "x0"
-                dX              |> DynObj.setValueOpt   trace "dx"
-                y0              |> DynObj.setValueOpt   trace "y0"
-                dY              |> DynObj.setValueOpt   trace "dy"
-                Width           |> DynObj.setValueOpt   trace "width"
-                Offset          |> DynObj.setValueOpt   trace "offset"
+                ++? ("x0", x0              )
+                ++? ("dx", dX              )
+                ++? ("y0", y0              )
+                ++? ("dy", dY              )
+                ++? ("width", Width           )
+                ++? ("offset", Offset          )
                 Orientation     |> DynObj.setValueOptBy trace "orientation" StyleParam.Orientation.convert
-                Alignmentgroup  |> DynObj.setValueOpt   trace "alignmentgroup"
-                Offsetgroup     |> DynObj.setValueOpt   trace "offsetgroup"
-                Cliponaxis      |> DynObj.setValueOpt   trace "cliponaxis"
-                Connector       |> DynObj.setValueOpt   trace "connector"
-                Insidetextfont  |> DynObj.setValueOpt   trace "insidetextfont"
-                Outsidetextfont |> DynObj.setValueOpt   trace "outsidetextfont"
+                ++? ("alignmentgroup", Alignmentgroup  )
+                ++? ("offsetgroup", Offsetgroup     )
+                ++? ("cliponaxis", Cliponaxis      )
+                ++? ("connector", Connector       )
+                ++? ("insidetextfont", Insidetextfont  )
+                ++? ("outsidetextfont", Outsidetextfont )
 
                 trace
 
@@ -502,14 +502,14 @@ type Trace2DStyle() =
                     
                 ++ ("x", x               )
                 ++ ("y", y               )
-                Base            |> DynObj.setValueOpt   trace "base"
-                Width           |> DynObj.setValueOpt   trace "width"
+                ++? ("base", Base            )
+                ++? ("width", Width           )
                 Measure         |> DynObj.setValueOptBy trace "measure" (Seq.map StyleParam.WaterfallMeasure.convert)
                 Orientation     |> DynObj.setValueOptBy trace "orientation" StyleParam.Orientation.convert
-                AlignmentGroup  |> DynObj.setValueOpt   trace "alignmentgroup"
-                Connector       |> DynObj.setValueOpt   trace "connector"
-                OffsetGroup     |> DynObj.setValueOpt   trace "offsetgroup"
-                Offset          |> DynObj.setValueOpt   trace "offset"
+                ++? ("alignmentgroup", AlignmentGroup  )
+                ++? ("connector", Connector       )
+                ++? ("offsetgroup", OffsetGroup     )
+                ++? ("offset", Offset          )
                     
                 trace
             )
@@ -542,30 +542,30 @@ type Trace2DStyle() =
         ) =
             (fun (histogram:('T :> Trace)) ->
         
-                X              |> DynObj.setValueOpt histogram "x"               
-                Y              |> DynObj.setValueOpt histogram "y"                          
-                Text           |> DynObj.setValueOpt histogram "text"
-                xAxis          |> DynObj.setValueOpt histogram "xaxis"         
-                yAxis          |> DynObj.setValueOpt histogram "yaxis"                
-                Xsrc           |> DynObj.setValueOpt histogram "xsrc"       
-                Ysrc           |> DynObj.setValueOpt histogram "ysrc"  
+                ++? ("x", X              )               
+                ++? ("y", Y              )                          
+                ++? ("text", Text           )
+                ++? ("xaxis", xAxis          )         
+                ++? ("yaxis", yAxis          )                
+                ++? ("xsrc", Xsrc           )       
+                ++? ("ysrc", Ysrc           )  
 
                 Orientation    |> DynObj.setValueOptBy histogram "orientation" StyleParam.Orientation.convert
                 HistFunc       |> DynObj.setValueOptBy histogram "histfunc"    StyleParam.HistFunc.convert
                 HistNorm       |> DynObj.setValueOptBy histogram "histnorm"    StyleParam.HistNorm.convert
-                Cumulative     |> DynObj.setValueOpt histogram "cumulative"
+                ++? ("cumulative", Cumulative     )
 
-                Autobinx       |> DynObj.setValueOpt histogram "autobinx"
-                nBinsx         |> DynObj.setValueOpt histogram "nbinsx"
-                xBins          |> DynObj.setValueOpt histogram "xbins"
-                Autobiny       |> DynObj.setValueOpt histogram "autobiny"
-                nBinsy         |> DynObj.setValueOpt histogram "nbinsy"
-                yBins          |> DynObj.setValueOpt histogram "ybins"
+                ++? ("autobinx", Autobinx       )
+                ++? ("nbinsx", nBinsx         )
+                ++? ("xbins", xBins          )
+                ++? ("autobiny", Autobiny       )
+                ++? ("nbinsy", nBinsy         )
+                ++? ("ybins", yBins          )
 
                 // Update                
-                Marker         |> DynObj.setValueOpt histogram "marker"
-                xError         |> DynObj.setValueOpt histogram "error_x"
-                yError         |> DynObj.setValueOpt histogram "error_y"
+                ++? ("marker", Marker         )
+                ++? ("error_x", xError         )
+                ++? ("error_y", yError         )
                     
                 // out ->
                 histogram
@@ -600,29 +600,29 @@ type Trace2DStyle() =
         ) =
             (fun (boxPlot:('T :> Trace)) ->
 
-                Y               |> DynObj.setValueOpt boxPlot "y"           
-                X               |> DynObj.setValueOpt boxPlot "x"           
-                X0              |> DynObj.setValueOpt boxPlot "x0"          
-                Y0              |> DynObj.setValueOpt boxPlot "y0"          
-                Whiskerwidth    |> DynObj.setValueOpt boxPlot "whiskerwidth"
+                ++? ("y", Y               )           
+                ++? ("x", X               )           
+                ++? ("x0", X0              )          
+                ++? ("y0", Y0              )          
+                ++? ("whiskerwidth", Whiskerwidth    )
                 Boxpoints       |> DynObj.setValueOptBy boxPlot "boxpoints"  StyleParam.Boxpoints.convert  
                 Boxmean         |> DynObj.setValueOptBy boxPlot "boxmean"    StyleParam.BoxMean.convert    
-                Jitter          |> DynObj.setValueOpt boxPlot "jitter"      
-                Pointpos        |> DynObj.setValueOpt boxPlot "pointpos"    
+                ++? ("jitter", Jitter          )      
+                ++? ("pointpos", Pointpos        )    
                 Orientation     |> DynObj.setValueOptBy boxPlot "orientation" StyleParam.Orientation.convert
-                Fillcolor       |> DynObj.setValueOpt boxPlot "fillcolor"   
-                Marker          |> DynObj.setValueOpt boxPlot "marker"   
-                Line            |> DynObj.setValueOpt boxPlot "line"   
-                Alignmentgroup  |> DynObj.setValueOpt boxPlot "alignmentgroup"   
-                Offsetgroup     |> DynObj.setValueOpt boxPlot "offsetgroup"                     
-                Notched         |> DynObj.setValueOpt boxPlot "notched"   
-                NotchWidth      |> DynObj.setValueOpt boxPlot "notchwidth"   
+                ++? ("fillcolor", Fillcolor       )   
+                ++? ("marker", Marker          )   
+                ++? ("line", Line            )   
+                ++? ("alignmentgroup", Alignmentgroup  )   
+                ++? ("offsetgroup", Offsetgroup     )                     
+                ++? ("notched", Notched         )   
+                ++? ("notchwidth", NotchWidth      )   
                 QuartileMethod  |> DynObj.setValueOptBy boxPlot "quartilemethod" StyleParam.QuartileMethod.convert
 
-                xAxis           |> DynObj.setValueOpt boxPlot "xaxis"       
-                yAxis           |> DynObj.setValueOpt boxPlot "yaxis"       
-                Ysrc            |> DynObj.setValueOpt boxPlot "ysrc"        
-                Xsrc            |> DynObj.setValueOpt boxPlot "xsrc"        
+                ++? ("xaxis", xAxis           )       
+                ++? ("yaxis", yAxis           )       
+                ++? ("ysrc", Ysrc            )        
+                ++? ("xsrc", Xsrc            )        
                     
                 // out ->
                 boxPlot
@@ -663,37 +663,37 @@ type Trace2DStyle() =
         ) =
             (fun (boxPlot:('T :> Trace)) ->
 
-                Y                |> DynObj.setValueOpt boxPlot "y"           
-                X                |> DynObj.setValueOpt boxPlot "x"           
-                X0               |> DynObj.setValueOpt boxPlot "x0"          
-                Y0               |> DynObj.setValueOpt boxPlot "y0"          
+                ++? ("y", Y                )           
+                ++? ("x", X                )           
+                ++? ("x0", X0               )          
+                ++? ("y0", Y0               )          
                 Points           |> DynObj.setValueOptBy boxPlot "points"  StyleParam.Jitterpoints.convert      
-                Jitter           |> DynObj.setValueOpt boxPlot "jitter"      
-                Pointpos         |> DynObj.setValueOpt boxPlot "pointpos"    
+                ++? ("jitter", Jitter           )      
+                ++? ("pointpos", Pointpos         )    
                 Orientation      |> DynObj.setValueOptBy boxPlot "orientation" StyleParam.Orientation.convert
-                Fillcolor        |> DynObj.setValueOpt boxPlot "fillcolor"   
+                ++? ("fillcolor", Fillcolor        )   
                                      
-                Width            |> DynObj.setValueOpt boxPlot "width"  
-                Marker           |> DynObj.setValueOpt boxPlot "marker"   
-                Line             |> DynObj.setValueOpt boxPlot "line" 
-                Alignmentgroup   |> DynObj.setValueOpt boxPlot "alignmentgroup"   
-                Offsetgroup      |> DynObj.setValueOpt boxPlot "offsetgroup"  
+                ++? ("width", Width            )  
+                ++? ("marker", Marker           )   
+                ++? ("line", Line             ) 
+                ++? ("alignmentgroup", Alignmentgroup   )   
+                ++? ("offsetgroup", Offsetgroup      )  
                                     
-                Box              |> DynObj.setValueOpt boxPlot "box"  
-                Bandwidth        |> DynObj.setValueOpt boxPlot "bandwidth"  
-                Meanline         |> DynObj.setValueOpt boxPlot "meanline"  
-                Scalegroup       |> DynObj.setValueOpt boxPlot "scalegroup"  
-                Scalemode        |> DynObj.setValueOpt boxPlot "scalemode"  
-                Side             |> DynObj.setValueOpt boxPlot "side"  
-                Span             |> DynObj.setValueOpt boxPlot "span"  
-                SpanMode         |> DynObj.setValueOpt boxPlot "spanmode"  
-                Uirevision       |> DynObj.setValueOpt boxPlot "uirevision"  
+                ++? ("box", Box              )  
+                ++? ("bandwidth", Bandwidth        )  
+                ++? ("meanline", Meanline         )  
+                ++? ("scalegroup", Scalegroup       )  
+                ++? ("scalemode", Scalemode        )  
+                ++? ("side", Side             )  
+                ++? ("span", Span             )  
+                ++? ("spanmode", SpanMode         )  
+                ++? ("uirevision", Uirevision       )  
 
                     
-                xAxis        |> DynObj.setValueOpt boxPlot "xaxis"       
-                yAxis        |> DynObj.setValueOpt boxPlot "yaxis"       
-                Ysrc         |> DynObj.setValueOpt boxPlot "ysrc"        
-                Xsrc         |> DynObj.setValueOpt boxPlot "xsrc"        
+                ++? ("xaxis", xAxis        )       
+                ++? ("yaxis", yAxis        )       
+                ++? ("ysrc", Ysrc         )        
+                ++? ("xsrc", Xsrc         )        
                     
                 // out ->
                 boxPlot
@@ -742,47 +742,47 @@ type Trace2DStyle() =
         ) =
             (fun (histogram2d:('T :> Trace)) ->
 
-                Z              |> DynObj.setValueOpt histogram2d "z"         
-                X              |> DynObj.setValueOpt histogram2d "x"               
-                Y              |> DynObj.setValueOpt histogram2d "y"
-                X0             |> DynObj.setValueOpt histogram2d "x0"             
-                dX             |> DynObj.setValueOpt histogram2d "dx"             
-                Y0             |> DynObj.setValueOpt histogram2d "y0"            
-                dY             |> DynObj.setValueOpt histogram2d "dy"            
-                xType          |> DynObj.setValueOpt histogram2d "xtype"         
-                yType          |> DynObj.setValueOpt histogram2d "ytype"                          
-                xAxis          |> DynObj.setValueOpt histogram2d "xaxis"         
-                yAxis          |> DynObj.setValueOpt histogram2d "yaxis"         
-                Zsrc           |> DynObj.setValueOpt histogram2d "zsrc"       
-                Xsrc           |> DynObj.setValueOpt histogram2d "xsrc"       
-                Ysrc           |> DynObj.setValueOpt histogram2d "ysrc"  
+                ++? ("z", Z              )         
+                ++? ("x", X              )               
+                ++? ("y", Y              )
+                ++? ("x0", X0             )             
+                ++? ("dx", dX             )             
+                ++? ("y0", Y0             )            
+                ++? ("dy", dY             )            
+                ++? ("xtype", xType          )         
+                ++? ("ytype", yType          )                          
+                ++? ("xaxis", xAxis          )         
+                ++? ("yaxis", yAxis          )         
+                ++? ("zsrc", Zsrc           )       
+                ++? ("xsrc", Xsrc           )       
+                ++? ("ysrc", Ysrc           )  
 
                 Orientation    |> DynObj.setValueOptBy histogram2d "orientation" StyleParam.Orientation.convert
                 //Connectgaps    |> DynObj.setValueOptBy histogram2d "connectgaps" StyleParam.Orientation.convert
                 HistFunc       |> DynObj.setValueOptBy histogram2d "histfunc   " StyleParam.HistFunc.convert
                 HistNorm       |> DynObj.setValueOptBy histogram2d "histnorm   " StyleParam.HistNorm.convert
-                Autobinx       |> DynObj.setValueOpt histogram2d "autobinx"
-                nBinsx         |> DynObj.setValueOpt histogram2d "nbinsx"
-                xBins          |> DynObj.setValueOpt histogram2d "xbins"
-                Autobiny       |> DynObj.setValueOpt histogram2d "autobiny"
-                nBinsy         |> DynObj.setValueOpt histogram2d "nbinsy"
-                yBins          |> DynObj.setValueOpt histogram2d "ybins"
+                ++? ("autobinx", Autobinx       )
+                ++? ("nbinsx", nBinsx         )
+                ++? ("xbins", xBins          )
+                ++? ("autobiny", Autobiny       )
+                ++? ("nbinsy", nBinsy         )
+                ++? ("ybins", yBins          )
                     
-                Xgap           |> DynObj.setValueOpt histogram2d   "xgap"       
-                Ygap           |> DynObj.setValueOpt histogram2d   "ygap"  
-                Transpose      |> DynObj.setValueOpt histogram2d   "transpose" 
-                zAuto          |> DynObj.setValueOpt histogram2d   "zauto"     
-                zMin           |> DynObj.setValueOpt histogram2d   "zmin"      
-                zMax           |> DynObj.setValueOpt histogram2d   "zmax"      
+                ++? ("xgap", Xgap           )       
+                ++? ("ygap", Ygap           )  
+                ++? ("transpose", Transpose      ) 
+                ++? ("zauto", zAuto          )     
+                ++? ("zmin", zMin           )      
+                ++? ("zmax", zMax           )      
                 Colorscale     |> DynObj.setValueOptBy histogram2d "colorscale" StyleParam.Colorscale.convert 
-                Autocolorscale |> DynObj.setValueOpt histogram2d   "autocolorscale"
-                Reversescale   |> DynObj.setValueOpt histogram2d   "reversescale"  
-                Showscale      |> DynObj.setValueOpt histogram2d   "showscale"     
+                ++? ("autocolorscale", Autocolorscale )
+                ++? ("reversescale", Reversescale   )  
+                ++? ("showscale", Showscale      )     
                 zSmooth        |> DynObj.setValueOptBy histogram2d "zsmooth" StyleParam.SmoothAlg.convert   
-                ColorBar       |> DynObj.setValueOpt histogram2d   "colorbar"    
+                ++? ("colorbar", ColorBar       )    
 
                 // Update                
-                Marker       |> DynObj.setValueOpt histogram2d "marker"  
+                ++? ("marker", Marker       )  
                     
                 // out ->
                 histogram2d
@@ -833,50 +833,50 @@ type Trace2DStyle() =
         ) =
             (fun (histogram2dContour:('T :> Trace)) ->
 
-                Z              |> DynObj.setValueOpt histogram2dContour "z"         
-                X              |> DynObj.setValueOpt histogram2dContour "x"               
-                Y              |> DynObj.setValueOpt histogram2dContour "y"
-                X0             |> DynObj.setValueOpt histogram2dContour "x0"             
-                dX             |> DynObj.setValueOpt histogram2dContour "dx"             
-                Y0             |> DynObj.setValueOpt histogram2dContour "y0"            
-                dY             |> DynObj.setValueOpt histogram2dContour "dy"            
-                xType          |> DynObj.setValueOpt histogram2dContour "xtype"         
-                yType          |> DynObj.setValueOpt histogram2dContour "ytype"                          
-                xAxis          |> DynObj.setValueOpt histogram2dContour "xaxis"         
-                yAxis          |> DynObj.setValueOpt histogram2dContour "yaxis"         
-                Zsrc           |> DynObj.setValueOpt histogram2dContour "zsrc"       
-                Xsrc           |> DynObj.setValueOpt histogram2dContour "xsrc"       
-                Ysrc           |> DynObj.setValueOpt histogram2dContour "ysrc"  
+                ++? ("z", Z              )         
+                ++? ("x", X              )               
+                ++? ("y", Y              )
+                ++? ("x0", X0             )             
+                ++? ("dx", dX             )             
+                ++? ("y0", Y0             )            
+                ++? ("dy", dY             )            
+                ++? ("xtype", xType          )         
+                ++? ("ytype", yType          )                          
+                ++? ("xaxis", xAxis          )         
+                ++? ("yaxis", yAxis          )         
+                ++? ("zsrc", Zsrc           )       
+                ++? ("xsrc", Xsrc           )       
+                ++? ("ysrc", Ysrc           )  
 
                 Orientation    |> DynObj.setValueOptBy histogram2dContour "orientation" StyleParam.Orientation.convert
                 //Connectgaps    |> DynObj.setValueOptBy histogram2dContour< "connectgaps" StyleParam.Orientation.convert
                 HistFunc       |> DynObj.setValueOptBy histogram2dContour "histfunc   " StyleParam.HistFunc.convert
                 HistNorm       |> DynObj.setValueOptBy histogram2dContour "histnorm   " StyleParam.HistNorm.convert
-                Autobinx       |> DynObj.setValueOpt histogram2dContour "autobinx"
-                nBinsx         |> DynObj.setValueOpt histogram2dContour "nbinsx"
-                xBins          |> DynObj.setValueOpt histogram2dContour "xbins"
-                Autobiny       |> DynObj.setValueOpt histogram2dContour "autobiny"
-                nBinsy         |> DynObj.setValueOpt histogram2dContour "nbinsy"
-                yBins          |> DynObj.setValueOpt histogram2dContour "ybins"
+                ++? ("autobinx", Autobinx       )
+                ++? ("nbinsx", nBinsx         )
+                ++? ("xbins", xBins          )
+                ++? ("autobiny", Autobiny       )
+                ++? ("nbinsy", nBinsy         )
+                ++? ("ybins", yBins          )
 
-                nContours      |> DynObj.setValueOpt histogram2dContour   "ncontours"       
-                Contours       |> DynObj.setValueOpt histogram2dContour   "contours"  
-                Line           |> DynObj.setValueOpt histogram2dContour   "line"                     
-                Xgap           |> DynObj.setValueOpt histogram2dContour   "xgap"       
-                Ygap           |> DynObj.setValueOpt histogram2dContour   "ygap"  
-                Transpose      |> DynObj.setValueOpt histogram2dContour   "transpose" 
-                zAuto          |> DynObj.setValueOpt histogram2dContour   "zauto"     
-                zMin           |> DynObj.setValueOpt histogram2dContour   "zmin"      
-                zMax           |> DynObj.setValueOpt histogram2dContour   "zmax"      
+                ++? ("ncontours", nContours      )       
+                ++? ("contours", Contours       )  
+                ++? ("line", Line           )                     
+                ++? ("xgap", Xgap           )       
+                ++? ("ygap", Ygap           )  
+                ++? ("transpose", Transpose      ) 
+                ++? ("zauto", zAuto          )     
+                ++? ("zmin", zMin           )      
+                ++? ("zmax", zMax           )      
                 Colorscale     |> DynObj.setValueOptBy histogram2dContour "colorscale" StyleParam.Colorscale.convert 
-                Autocolorscale |> DynObj.setValueOpt histogram2dContour   "autocolorscale"
-                Reversescale   |> DynObj.setValueOpt histogram2dContour   "reversescale"  
-                Showscale      |> DynObj.setValueOpt histogram2dContour   "showscale"     
+                ++? ("autocolorscale", Autocolorscale )
+                ++? ("reversescale", Reversescale   )  
+                ++? ("showscale", Showscale      )     
                 zSmooth        |> DynObj.setValueOptBy histogram2dContour "zsmooth" StyleParam.SmoothAlg.convert   
-                ColorBar       |> DynObj.setValueOpt histogram2dContour   "colorbar"    
+                ++? ("colorbar", ColorBar       )    
 
                 // Update                
-                Marker       |> DynObj.setValueOpt histogram2dContour "marker"  
+                ++? ("marker", Marker       )  
                     
                 // out ->
                 histogram2dContour
@@ -915,33 +915,33 @@ type Trace2DStyle() =
         ) =
             (fun (heatmap:('T :> Trace)) -> 
             
-                Z              |> DynObj.setValueOpt heatmap "z"         
-                X              |> DynObj.setValueOpt heatmap "x"               
-                Y              |> DynObj.setValueOpt heatmap "y"
-                X0             |> DynObj.setValueOpt heatmap "x0"             
-                dX             |> DynObj.setValueOpt heatmap "dx"             
-                Y0             |> DynObj.setValueOpt heatmap "y0"            
-                dY             |> DynObj.setValueOpt heatmap "dy"            
-                xType          |> DynObj.setValueOpt heatmap "xtype"         
-                yType          |> DynObj.setValueOpt heatmap "ytype"                          
-                xAxis          |> DynObj.setValueOpt heatmap "xaxis"         
-                yAxis          |> DynObj.setValueOpt heatmap "yaxis"         
-                Zsrc           |> DynObj.setValueOpt heatmap "zsrc"       
-                Xsrc           |> DynObj.setValueOpt heatmap "xsrc"       
-                Ysrc           |> DynObj.setValueOpt heatmap "ysrc"  
+                ++? ("z", Z              )         
+                ++? ("x", X              )               
+                ++? ("y", Y              )
+                ++? ("x0", X0             )             
+                ++? ("dx", dX             )             
+                ++? ("y0", Y0             )            
+                ++? ("dy", dY             )            
+                ++? ("xtype", xType          )         
+                ++? ("ytype", yType          )                          
+                ++? ("xaxis", xAxis          )         
+                ++? ("yaxis", yAxis          )         
+                ++? ("zsrc", Zsrc           )       
+                ++? ("xsrc", Xsrc           )       
+                ++? ("ysrc", Ysrc           )  
 
-                Xgap           |> DynObj.setValueOpt heatmap "xgap"       
-                Ygap           |> DynObj.setValueOpt heatmap "ygap"  
-                Transpose      |> DynObj.setValueOpt heatmap "transpose" 
-                zAuto          |> DynObj.setValueOpt heatmap "zauto"     
-                zMin           |> DynObj.setValueOpt heatmap "zmin"      
-                zMax           |> DynObj.setValueOpt heatmap "zmax"      
+                ++? ("xgap", Xgap           )       
+                ++? ("ygap", Ygap           )  
+                ++? ("transpose", Transpose      ) 
+                ++? ("zauto", zAuto          )     
+                ++? ("zmin", zMin           )      
+                ++? ("zmax", zMax           )      
                 Colorscale     |> DynObj.setValueOptBy heatmap "colorscale" StyleParam.Colorscale.convert 
-                Autocolorscale |> DynObj.setValueOpt heatmap "autocolorscale"
-                Reversescale   |> DynObj.setValueOpt heatmap "reversescale"  
-                Showscale      |> DynObj.setValueOpt heatmap "showscale"     
+                ++? ("autocolorscale", Autocolorscale )
+                ++? ("reversescale", Reversescale   )  
+                ++? ("showscale", Showscale      )     
                 zSmooth        |> DynObj.setValueOptBy heatmap "zsmooth" StyleParam.SmoothAlg.convert   
-                ColorBar       |> DynObj.setValueOpt heatmap "colorbar"    
+                ++? ("colorbar", ColorBar       )    
 
                 // out ->
                 heatmap 
@@ -979,33 +979,33 @@ type Trace2DStyle() =
         ) =
             (fun (contour:('T :> Trace)) -> 
             
-                Z              |> DynObj.setValueOpt contour "z"         
-                X              |> DynObj.setValueOpt contour "x"               
-                Y              |> DynObj.setValueOpt contour "y"
-                X0             |> DynObj.setValueOpt contour "x0"             
-                dX             |> DynObj.setValueOpt contour "dx"             
-                Y0             |> DynObj.setValueOpt contour "y0"            
-                dY             |> DynObj.setValueOpt contour "dy"            
-                xType          |> DynObj.setValueOpt contour "xtype"         
-                yType          |> DynObj.setValueOpt contour "ytype"                          
-                xAxis          |> DynObj.setValueOpt contour "xaxis"         
-                yAxis          |> DynObj.setValueOpt contour "yaxis"         
-                Zsrc           |> DynObj.setValueOpt contour "zsrc"       
-                Xsrc           |> DynObj.setValueOpt contour "xsrc"       
-                Ysrc           |> DynObj.setValueOpt contour "ysrc"  
+                ++? ("z", Z              )         
+                ++? ("x", X              )               
+                ++? ("y", Y              )
+                ++? ("x0", X0             )             
+                ++? ("dx", dX             )             
+                ++? ("y0", Y0             )            
+                ++? ("dy", dY             )            
+                ++? ("xtype", xType          )         
+                ++? ("ytype", yType          )                          
+                ++? ("xaxis", xAxis          )         
+                ++? ("yaxis", yAxis          )         
+                ++? ("zsrc", Zsrc           )       
+                ++? ("xsrc", Xsrc           )       
+                ++? ("ysrc", Ysrc           )  
 
-                Xgap           |> DynObj.setValueOpt contour   "xgap"       
-                Ygap           |> DynObj.setValueOpt contour   "ygap"  
-                Transpose      |> DynObj.setValueOpt contour   "transpose" 
-                zAuto          |> DynObj.setValueOpt contour   "zauto"     
-                zMin           |> DynObj.setValueOpt contour   "zmin"      
-                zMax           |> DynObj.setValueOpt contour   "zmax"      
+                ++? ("xgap", Xgap           )       
+                ++? ("ygap", Ygap           )  
+                ++? ("transpose", Transpose      ) 
+                ++? ("zauto", zAuto          )     
+                ++? ("zmin", zMin           )      
+                ++? ("zmax", zMax           )      
                 Colorscale     |> DynObj.setValueOptBy contour "colorscale" StyleParam.Colorscale.convert 
-                Autocolorscale |> DynObj.setValueOpt contour   "autocolorscale"
-                Reversescale   |> DynObj.setValueOpt contour   "reversescale"  
-                Showscale      |> DynObj.setValueOpt contour   "showscale"     
+                ++? ("autocolorscale", Autocolorscale )
+                ++? ("reversescale", Reversescale   )  
+                ++? ("showscale", Showscale      )     
                 zSmooth        |> DynObj.setValueOptBy contour "zsmooth" StyleParam.SmoothAlg.convert   
-                ColorBar       |> DynObj.setValueOpt contour   "colorbar"    
+                ++? ("colorbar", ColorBar       )    
 
                 // out ->
                 contour 
@@ -1122,7 +1122,7 @@ type Trace2DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Dimensions : seq<Dimensions>
         ) =
             (fun (trace:('T :> Trace)) ->
-                Dimensions   |> DynObj.setValueOpt trace "dimensions"
+                ++? ("dimensions", Dimensions   )
                         
                 // out ->
                 trace

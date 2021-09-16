@@ -70,20 +70,20 @@ type TraceGeoStyle() =
         ) =
             (fun (choropleth: #Trace) -> 
                 
-                Locations          |> DynObj.setValueOpt   choropleth "locations"         
-                Z                  |> DynObj.setValueOpt   choropleth "z"                     
-                Text               |> DynObj.setValueOpt   choropleth "text"     
+                ++? ("locations", Locations          )         
+                ++? ("z", Z                  )                     
+                ++? ("text", Text               )     
                 Locationmode       |> DynObj.setValueOptBy choropleth "locationmode" StyleParam.LocationFormat.convert            
-                Autocolorscale     |> DynObj.setValueOpt   choropleth "autocolorscale"    
+                ++? ("autocolorscale", Autocolorscale     )    
                     
                 Colorscale         |> DynObj.setValueOptBy choropleth "colorscale" StyleParam.Colorscale.convert
-                ColorBar           |> DynObj.setValueOpt   choropleth "colorbar"
-                Marker             |> DynObj.setValueOpt   choropleth "marker"  
-                GeoJson            |> DynObj.setValueOpt   choropleth "geojson" 
-                FeatureIdKey       |> DynObj.setValueOpt   choropleth "featureidkey"
-                Zmin               |> DynObj.setValueOpt   choropleth "zmin"
-                Zmid               |> DynObj.setValueOpt   choropleth "zmid"
-                Zmax               |> DynObj.setValueOpt   choropleth "zmax"  
+                ++? ("colorbar", ColorBar           )
+                ++? ("marker", Marker             )  
+                ++? ("geojson", GeoJson            ) 
+                ++? ("featureidkey", FeatureIdKey       )
+                ++? ("zmin", Zmin               )
+                ++? ("zmid", Zmid               )
+                ++? ("zmax", Zmax               )  
                     
                 choropleth 
             ) 
@@ -104,14 +104,14 @@ type TraceGeoStyle() =
             (fun (trace: #Trace) -> 
             
                 ++ ("mode", mode        |> StyleParam.Mode.convert )
-                Longitudes  |> DynObj.setValueOpt   trace "lon"
-                Latitudes   |> DynObj.setValueOpt   trace "lat"
-                Locations   |> DynObj.setValueOpt   trace "locations"
-                GeoJson     |> DynObj.setValueOpt   trace "geojson"
-                FeatureIdKey|> DynObj.setValueOpt   trace "featureidkey"
-                Connectgaps |> DynObj.setValueOpt   trace "connectgaps"
+                ++? ("lon", Longitudes  )
+                ++? ("lat", Latitudes   )
+                ++? ("locations", Locations   )
+                ++? ("geojson", GeoJson     )
+                ++? ("featureidkey", FeatureIdKey)
+                ++? ("connectgaps", Connectgaps )
                 Fill        |> DynObj.setValueOptBy trace "fill" StyleParam.Fill.convert
-                Fillcolor   |> DynObj.setValueOpt   trace "fillcolor"
+                ++? ("fillcolor", Fillcolor   )
 
                 trace
 

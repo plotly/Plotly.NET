@@ -87,44 +87,44 @@ type TracePolarStyle() =
         ) =
             (fun (trace:('T :> Trace)) -> 
 
-                Name               |> DynObj.setValueOpt trace "name"
+                ++? ("name", Name               )
                 Visible            |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
-                ShowLegend         |> DynObj.setValueOpt trace "showlegend"
-                LegendRank         |> DynObj.setValueOpt trace "legendrank"
-                LegendGroup        |> DynObj.setValueOpt trace "legendgroup"
-                LegendGroupTitle   |> DynObj.setValueOpt trace "legendgrouptitle"
-                Opacity            |> DynObj.setValueOpt trace "opacity"
+                ++? ("showlegend", ShowLegend         )
+                ++? ("legendrank", LegendRank         )
+                ++? ("legendgroup", LegendGroup        )
+                ++? ("legendgrouptitle", LegendGroupTitle   )
+                ++? ("opacity", Opacity            )
                 Mode               |> DynObj.setValueOptBy trace "mode" StyleParam.Mode.convert
-                Ids                |> DynObj.setValueOpt trace "ids"
-                R                  |> DynObj.setValueOpt trace "r"
-                R0                 |> DynObj.setValueOpt trace "r0"
-                DR                 |> DynObj.setValueOpt trace "dr"
-                Theta              |> DynObj.setValueOpt trace "theta"
-                Theta0             |> DynObj.setValueOpt trace "theta0"
-                DTheta             |> DynObj.setValueOpt trace "dtheta"
+                ++? ("ids", Ids                )
+                ++? ("r", R                  )
+                ++? ("r0", R0                 )
+                ++? ("dr", DR                 )
+                ++? ("theta", Theta              )
+                ++? ("theta0", Theta0             )
+                ++? ("dtheta", DTheta             )
                 ThetaUnit          |> DynObj.setValueOptBy trace "thetaunit" StyleParam.AngularUnit.convert
-                Text               |> DynObj.setValueOpt trace "text"
+                ++? ("text", Text               )
                 TextPosition       |> DynObj.setValueOptBy trace "textposition" StyleParam.TextPosition.convert
-                TextTemplate       |> DynObj.setValueOpt trace "texttemplate"
-                HoverText          |> DynObj.setValueOpt trace "hovertext"
-                HoverInfo          |> DynObj.setValueOpt trace "hoverinfo"
-                HoverTemplate      |> DynObj.setValueOpt trace "hovertemplate"
-                Meta               |> DynObj.setValueOpt trace "meta"
-                CustomData         |> DynObj.setValueOpt trace "customdata"
-                Subplot            |> DynObj.setValueOpt trace "subplot"
-                Marker             |> DynObj.setValueOpt trace "marker"
-                Line               |> DynObj.setValueOpt trace "line"
-                TextFont           |> DynObj.setValueOpt trace "textfont"
-                SelectedPoints     |> DynObj.setValueOpt trace "selectedpoints"
-                Selected           |> DynObj.setValueOpt trace "selected"
-                Unselected         |> DynObj.setValueOpt trace "unselected"
-                ClipOnAxis         |> DynObj.setValueOpt trace "cliponaxis"
-                ConnectGaps        |> DynObj.setValueOpt trace "connectgaps"
+                ++? ("texttemplate", TextTemplate       )
+                ++? ("hovertext", HoverText          )
+                ++? ("hoverinfo", HoverInfo          )
+                ++? ("hovertemplate", HoverTemplate      )
+                ++? ("meta", Meta               )
+                ++? ("customdata", CustomData         )
+                ++? ("subplot", Subplot            )
+                ++? ("marker", Marker             )
+                ++? ("line", Line               )
+                ++? ("textfont", TextFont           )
+                ++? ("selectedpoints", SelectedPoints     )
+                ++? ("selected", Selected           )
+                ++? ("unselected", Unselected         )
+                ++? ("cliponaxis", ClipOnAxis         )
+                ++? ("connectgaps", ConnectGaps        )
                 Fill               |> DynObj.setValueOptBy trace "fill" StyleParam.Fill.convert
-                FillColor          |> DynObj.setValueOpt trace "fillcolor"
-                HoverLabel         |> DynObj.setValueOpt trace "hoverlabel"
-                HoverOn            |> DynObj.setValueOpt trace "hoveron"
-                UIRevision         |> DynObj.setValueOpt trace "uirevision"
+                ++? ("fillcolor", FillColor          )
+                ++? ("hoverlabel", HoverLabel         )
+                ++? ("hoveron", HoverOn            )
+                ++? ("uirevision", UIRevision         )
 
                 trace
             )
@@ -165,37 +165,37 @@ type TracePolarStyle() =
         ) =
             (fun (trace:('T :> Trace)) -> 
 
-                Name                |> DynObj.setValueOpt trace "name"
+                ++? ("name", Name                )
                 Visible             |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
-                ShowLegend          |> DynObj.setValueOpt trace "showlegend"
-                LegendRank          |> DynObj.setValueOpt trace "legendrank"
-                LegendGroup         |> DynObj.setValueOpt trace "legendgroup"
-                LegendGroupTitle    |> DynObj.setValueOpt trace "legendgrouptitle"
-                Opacity             |> DynObj.setValueOpt trace "opacity"
-                Ids                 |> DynObj.setValueOpt trace "ids"
-                Base                |> DynObj.setValueOpt trace "base"
-                R                   |> DynObj.setValueOpt trace "r"
-                R0                  |> DynObj.setValueOpt trace "r0"
-                DR                  |> DynObj.setValueOpt trace "dr"
-                Theta               |> DynObj.setValueOpt trace "theta"
-                Theta0              |> DynObj.setValueOpt trace "theta0"
-                DTheta              |> DynObj.setValueOpt trace "dtheta"
+                ++? ("showlegend", ShowLegend          )
+                ++? ("legendrank", LegendRank          )
+                ++? ("legendgroup", LegendGroup         )
+                ++? ("legendgrouptitle", LegendGroupTitle    )
+                ++? ("opacity", Opacity             )
+                ++? ("ids", Ids                 )
+                ++? ("base", Base                )
+                ++? ("r", R                   )
+                ++? ("r0", R0                  )
+                ++? ("dr", DR                  )
+                ++? ("theta", Theta               )
+                ++? ("theta0", Theta0              )
+                ++? ("dtheta", DTheta              )
                 ThetaUnit           |> DynObj.setValueOptBy trace "thetaunit" StyleParam.AngularUnit.convert
-                Width               |> DynObj.setValueOpt trace "width"
-                Offset              |> DynObj.setValueOpt trace "offset"
-                Text                |> DynObj.setValueOpt trace "text"
-                HoverText           |> DynObj.setValueOpt trace "hovertext"
-                HoverInfo           |> DynObj.setValueOpt trace "hoverinfo"
-                HoverTemplate       |> DynObj.setValueOpt trace "hovertemplate"
-                Meta                |> DynObj.setValueOpt trace "meta"
-                CustomData          |> DynObj.setValueOpt trace "customdata"
-                Subplot             |> DynObj.setValueOpt trace "subplot"
-                Marker              |> DynObj.setValueOpt trace "marker"
-                SelectedPoints      |> DynObj.setValueOpt trace "selectedpoints"
-                Selected            |> DynObj.setValueOpt trace "selected"
-                Unselected          |> DynObj.setValueOpt trace "unselected"
-                HoverLabel          |> DynObj.setValueOpt trace "hoverlabel"
-                UIRevision          |> DynObj.setValueOpt trace "uirevision"
+                ++? ("width", Width               )
+                ++? ("offset", Offset              )
+                ++? ("text", Text                )
+                ++? ("hovertext", HoverText           )
+                ++? ("hoverinfo", HoverInfo           )
+                ++? ("hovertemplate", HoverTemplate       )
+                ++? ("meta", Meta                )
+                ++? ("customdata", CustomData          )
+                ++? ("subplot", Subplot             )
+                ++? ("marker", Marker              )
+                ++? ("selectedpoints", SelectedPoints      )
+                ++? ("selected", Selected            )
+                ++? ("unselected", Unselected          )
+                ++? ("hoverlabel", HoverLabel          )
+                ++? ("uirevision", UIRevision          )
                     
                 trace
             )

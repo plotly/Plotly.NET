@@ -34,9 +34,9 @@ type Meanline () =
             [<Optional;DefaultParameterValue(null)>] ?Width: float
         ) =
             (fun (line:Meanline) -> 
-                Visible    |> DynObj.setValueOpt line "visible"
-                Color      |> DynObj.setValueOpt line "color"
-                Width      |> DynObj.setValueOpt line "width"
+                ++? ("visible", Visible    )
+                ++? ("color", Color      )
+                ++? ("width", Width      )
                     
                 // out -> 
                 line

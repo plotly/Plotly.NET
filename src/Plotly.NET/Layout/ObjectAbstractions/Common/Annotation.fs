@@ -149,48 +149,48 @@ type Annotation() =
         ) =
             (fun (ann:Annotation) ->
                 
-                X                   |> DynObj.setValueOpt ann "x"
-                Y                   |> DynObj.setValueOpt ann "y"
+                ++? ("x", X                   )
+                ++? ("y", Y                   )
                 Align               |> DynObj.setValueOptBy ann "align" StyleParam.AnnotationAlignment.convert
-                ArrowColor          |> DynObj.setValueOpt ann "arrowcolor"
+                ++? ("arrowcolor", ArrowColor          )
                 ArrowHead           |> DynObj.setValueOptBy ann "arrowhead" StyleParam.ArrowHead.convert
                 ArrowSide           |> DynObj.setValueOptBy ann "arrowside" StyleParam.ArrowSide.convert
-                ArrowSize           |> DynObj.setValueOpt ann "arrowsize"
-                AX                  |> DynObj.setValueOpt ann "ax"
-                AXRef               |> DynObj.setValueOpt ann "axref"
-                AY                  |> DynObj.setValueOpt ann "ay"
-                AYRef               |> DynObj.setValueOpt ann "ayref"
-                BGColor             |> DynObj.setValueOpt ann "bgcolor"
-                BorderColor         |> DynObj.setValueOpt ann "bordercolor"
-                BorderPad           |> DynObj.setValueOpt ann "borderpad"
-                BorderWidth         |> DynObj.setValueOpt ann "borderwidth"
-                CaptureEvents       |> DynObj.setValueOpt ann "captureevents"
+                ++? ("arrowsize", ArrowSize           )
+                ++? ("ax", AX                  )
+                ++? ("axref", AXRef               )
+                ++? ("ay", AY                  )
+                ++? ("ayref", AYRef               )
+                ++? ("bgcolor", BGColor             )
+                ++? ("bordercolor", BorderColor         )
+                ++? ("borderpad", BorderPad           )
+                ++? ("borderwidth", BorderWidth         )
+                ++? ("captureevents", CaptureEvents       )
                 ClickToShow         |> DynObj.setValueOptBy ann "clicktoshow" StyleParam.ClickToShow.convert
-                Font                |> DynObj.setValueOpt ann "font"
-                Height              |> DynObj.setValueOpt ann "height"
-                HoverLabel          |> DynObj.setValueOpt ann "hoverlabel"
-                HoverText           |> DynObj.setValueOpt ann "hovertext"
-                Name                |> DynObj.setValueOpt ann "name"
-                Opacity             |> DynObj.setValueOpt ann "opacity"
-                ShowArrow           |> DynObj.setValueOpt ann "showarrow"
-                StandOff            |> DynObj.setValueOpt ann "standoff"
-                StartArrowHead      |> DynObj.setValueOpt ann "startarrowhead"
-                StartArrowSize      |> DynObj.setValueOpt ann "startarrowsize"
-                StartStandOff       |> DynObj.setValueOpt ann "startstandoff"
-                TemplateItemName    |> DynObj.setValueOpt ann "templateitemname"
-                Text                |> DynObj.setValueOpt ann "text"
-                TextAngle           |> DynObj.setValueOpt ann "textangle"
+                ++? ("font", Font                )
+                ++? ("height", Height              )
+                ++? ("hoverlabel", HoverLabel          )
+                ++? ("hovertext", HoverText           )
+                ++? ("name", Name                )
+                ++? ("opacity", Opacity             )
+                ++? ("showarrow", ShowArrow           )
+                ++? ("standoff", StandOff            )
+                ++? ("startarrowhead", StartArrowHead      )
+                ++? ("startarrowsize", StartArrowSize      )
+                ++? ("startstandoff", StartStandOff       )
+                ++? ("templateitemname", TemplateItemName    )
+                ++? ("text", Text                )
+                ++? ("textangle", TextAngle           )
                 VAlign              |> DynObj.setValueOptBy ann "valign" StyleParam.VerticalAlign.convert
-                Visible             |> DynObj.setValueOpt ann "visible"
-                Width               |> DynObj.setValueOpt ann "width"
+                ++? ("visible", Visible             )
+                ++? ("width", Width               )
                 XAnchor             |> DynObj.setValueOptBy ann "xanchor" StyleParam.XAnchorPosition.convert
-                XClick              |> DynObj.setValueOpt ann "xclick"
-                XRef                |> DynObj.setValueOpt ann "xref"
-                XShift              |> DynObj.setValueOpt ann "xshift"
+                ++? ("xclick", XClick              )
+                ++? ("xref", XRef                )
+                ++? ("xshift", XShift              )
                 YAnchor             |> DynObj.setValueOptBy ann "yanchor" StyleParam.YAnchorPosition.convert
-                YClick              |> DynObj.setValueOpt ann "yclick"
-                YRef                |> DynObj.setValueOpt ann "yref"
-                YShift              |> DynObj.setValueOpt ann "yshift"
+                ++? ("yclick", YClick              )
+                ++? ("yref", YRef                )
+                ++? ("yshift", YShift              )
 
                 ann
             )

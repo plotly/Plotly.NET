@@ -66,18 +66,18 @@ type RangeSlider () =
             [<Optional;DefaultParameterValue(null)>] ?YAxisRange: seq<#IConvertible>
         ) = 
             fun (rangeslider : RangeSlider) ->
-                BgColor        |> DynObj.setValueOpt rangeslider "bgcolor"
-                BorderColor    |> DynObj.setValueOpt rangeslider "BorderColor"
-                BorderWidth    |> DynObj.setValueOpt rangeslider "BorderWidth"
-                AutoRange      |> DynObj.setValueOpt rangeslider "AutoRange"
-                Range          |> DynObj.setValueOpt rangeslider "range"
-                Thickness      |> DynObj.setValueOpt rangeslider "thickness"
-                Visible        |> DynObj.setValueOpt rangeslider "visible"
+                ++? ("bgcolor", BgColor        )
+                ++? ("BorderColor", BorderColor    )
+                ++? ("BorderWidth", BorderWidth    )
+                ++? ("AutoRange", AutoRange      )
+                ++? ("range", Range          )
+                ++? ("thickness", Thickness      )
+                ++? ("visible", Visible        )
 
                 let yAxis = 
                     let tmp = DynamicObj()
-                    YAxisRangeMode  |> DynObj.setValueOpt tmp "rangemode" 
-                    YAxisRange      |> DynObj.setValueOpt tmp "range" 
+                    ++? ("rangemode", YAxisRangeMode  ) 
+                    ++? ("range", YAxisRange      ) 
                     tmp
 
                 ++ ("yaxis", yAxis )

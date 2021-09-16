@@ -33,9 +33,9 @@ type ProjectionDimension () =
 
             fun (projectionDimension: ProjectionDimension) ->
                 
-                Opacity |> DynObj.setValueOpt projectionDimension "opacity"
-                Scale   |> DynObj.setValueOpt projectionDimension "scale"
-                Show    |> DynObj.setValueOpt projectionDimension "show"
+                ++? ("opacity", Opacity )
+                ++? ("scale", Scale   )
+                ++? ("show", Show    )
 
                 projectionDimension
 
@@ -65,8 +65,8 @@ type Projection () =
 
             fun (projection: Projection) ->
                 
-                X   |> DynObj.setValueOpt projection "x"
-                Y   |> DynObj.setValueOpt projection "y"
-                Z   |> DynObj.setValueOpt projection "z"
+                ++? ("x", X   )
+                ++? ("y", Y   )
+                ++? ("z", Z   )
 
                 projection

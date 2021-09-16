@@ -46,11 +46,11 @@ type MapboxLayerSymbol() =
         ) =
             (fun (mapBoxLayerSymbol:MapboxLayerSymbol) -> 
                 
-                Icon        |> DynObj.setValueOpt mapBoxLayerSymbol "icon"
-                IconSize    |> DynObj.setValueOpt mapBoxLayerSymbol "iconsize"
-                Text        |> DynObj.setValueOpt mapBoxLayerSymbol "text"
+                ++? ("icon", Icon        )
+                ++? ("iconsize", IconSize    )
+                ++? ("text", Text        )
                 Placement   |> DynObj.setValueOptBy mapBoxLayerSymbol "placement" StyleParam.MapboxLayerSymbolPlacement.convert 
-                TextFont    |> DynObj.setValueOpt mapBoxLayerSymbol "textfont"
+                ++? ("textfont", TextFont    )
                 TextPosition|> DynObj.setValueOptBy mapBoxLayerSymbol "textposition" StyleParam.TextPosition.convert
                 
 

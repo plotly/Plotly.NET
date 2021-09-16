@@ -379,12 +379,12 @@ type Config() =
 
         ) =
             fun (config:Config) ->
-                StaticPlot              |> DynObj.setValueOpt config "staticPlot" 
-                Autosizable             |> DynObj.setValueOpt config "autosizable" 
-                Responsive              |> DynObj.setValueOpt config "responsive"
-                ToImageButtonOptions    |> DynObj.setValueOpt config "toImageButtonOptions"
-                ShowEditInChartStudio   |> DynObj.setValueOpt config "showEditInChartStudio"
-                Editable                |> DynObj.setValueOpt config "editable"
+                ++? ("staticPlot", StaticPlot              ) 
+                ++? ("autosizable", Autosizable             ) 
+                ++? ("responsive", Responsive              )
+                ++? ("toImageButtonOptions", ToImageButtonOptions    )
+                ++? ("showEditInChartStudio", ShowEditInChartStudio   )
+                ++? ("editable", Editable                )
                 ModeBarButtonsToAdd     |> DynObj.setValueOptBy config "modeBarButtonsToAdd" (fun x -> x |> Seq.map StyleParam.ModeBarButton.convert)
                 EditableAnnotations
                 |> Option.map 
@@ -397,7 +397,6 @@ type Config() =
                                 ed?(fieldName) <- true
                             )
                         ed
-                    )
-                |> DynObj.setValueOpt config "edits"
+                    ++? ("edits", ))
 
                 config

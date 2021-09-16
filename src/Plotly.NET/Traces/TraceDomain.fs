@@ -54,7 +54,7 @@ type TraceDomainStyle() =
         ) =  
             (fun (trace:TraceDomain) ->
 
-                Domain |> DynObj.setValueOpt trace "domain"
+                ++? ("domain", Domain )
 
                 trace
             )
@@ -101,42 +101,42 @@ type TraceDomainStyle() =
         ) =
             (fun (pie:('T :> Trace)) ->
 
-                Name                  |> DynObj.setValueOpt pie "name"
-                Title                 |> DynObj.setValueOpt pie "title"
+                ++? ("name", Name                  )
+                ++? ("title", Title                 )
                 Visible               |> DynObj.setValueOptBy pie "visible" StyleParam.Visible.convert
-                ShowLegend            |> DynObj.setValueOpt pie "showlegend"
-                LegendGroup           |> DynObj.setValueOpt pie "legendgroup"
-                LegendGroupTitle      |> DynObj.setValueOpt pie "legendgrouptitle"
-                Opacity               |> DynObj.setValueOpt pie "opacity"
-                Ids                   |> DynObj.setValueOpt pie "ids"
-                Values                |> DynObj.setValueOpt pie "values"
-                Labels                |> DynObj.setValueOpt pie "labels"
-                DLabel                |> DynObj.setValueOpt pie "dlabel"
-                Label0                |> DynObj.setValueOpt pie "label0"
-                Pull                  |> DynObj.setValueOpt pie "pull"
-                Text                  |> DynObj.setValueOpt pie "text"
+                ++? ("showlegend", ShowLegend            )
+                ++? ("legendgroup", LegendGroup           )
+                ++? ("legendgrouptitle", LegendGroupTitle      )
+                ++? ("opacity", Opacity               )
+                ++? ("ids", Ids                   )
+                ++? ("values", Values                )
+                ++? ("labels", Labels                )
+                ++? ("dlabel", DLabel                )
+                ++? ("label0", Label0                )
+                ++? ("pull", Pull                  )
+                ++? ("text", Text                  )
                 TextPosition          |> DynObj.setValueOptBy pie "textposition" StyleParam.TextPosition.convert
-                TextTemplate          |> DynObj.setValueOpt pie "texttemplate"
-                HoverText             |> DynObj.setValueOpt pie "hovertext"
-                HoverInfo             |> DynObj.setValueOpt pie "hoverinfo"
-                HoverTemplate         |> DynObj.setValueOpt pie "hovertemplate"
-                Meta                  |> DynObj.setValueOpt pie "meta"
-                CustomData            |> DynObj.setValueOpt pie "customdata"
-                Domain                |> DynObj.setValueOpt pie "domain"
-                AutoMargin            |> DynObj.setValueOpt pie "automargin"
-                Marker                |> DynObj.setValueOpt pie "marker"
-                TextFont              |> DynObj.setValueOpt pie "textfont"
+                ++? ("texttemplate", TextTemplate          )
+                ++? ("hovertext", HoverText             )
+                ++? ("hoverinfo", HoverInfo             )
+                ++? ("hovertemplate", HoverTemplate         )
+                ++? ("meta", Meta                  )
+                ++? ("customdata", CustomData            )
+                ++? ("domain", Domain                )
+                ++? ("automargin", AutoMargin            )
+                ++? ("marker", Marker                )
+                ++? ("textfont", TextFont              )
                 TextInfo              |> DynObj.setValueOptBy pie "textinfo" StyleParam.TextInfo.convert
                 Direction             |> DynObj.setValueOptBy pie "direction" StyleParam.Direction.convert
-                Hole                  |> DynObj.setValueOpt pie "hole"
-                HoverLabel            |> DynObj.setValueOpt pie "hoverlabel"
-                InsideTextFont        |> DynObj.setValueOpt pie "insidetextfont"
+                ++? ("hole", Hole                  )
+                ++? ("hoverlabel", HoverLabel            )
+                ++? ("insidetextfont", InsideTextFont        )
                 InsideTextOrientation |> DynObj.setValueOptBy pie "insidetextorientation" StyleParam.InsideTextOrientation.convert
-                OutsideTextFont       |> DynObj.setValueOpt pie "outsidetextfont"
-                Rotation              |> DynObj.setValueOpt pie "rotation"
-                ScaleGroup            |> DynObj.setValueOpt pie "scalegroup"
-                Sort                  |> DynObj.setValueOpt pie "sort"
-                UIRevision            |> DynObj.setValueOpt pie "uirevision"
+                ++? ("outsidetextfont", OutsideTextFont       )
+                ++? ("rotation", Rotation              )
+                ++? ("scalegroup", ScaleGroup            )
+                ++? ("sort", Sort                  )
+                ++? ("uirevision", UIRevision            )
 
                 pie
             ) 
@@ -155,14 +155,14 @@ type TraceDomainStyle() =
         ) = 
             (fun (trace:('T :> Trace)) -> 
         
-                Values         |> DynObj.setValueOpt   trace "values"
-                Labels         |> DynObj.setValueOpt   trace "labels"
-                dLabel         |> DynObj.setValueOpt   trace "dlabel"
-                Label0         |> DynObj.setValueOpt   trace "label0"
-                Aspectratio    |> DynObj.setValueOpt   trace "aspectratio"
-                Baseratio      |> DynObj.setValueOpt   trace "baseratio"
-                Insidetextfont |> DynObj.setValueOpt   trace "insidetextfont"
-                Scalegroup     |> DynObj.setValueOpt   trace "scalegroup"
+                ++? ("values", Values         )
+                ++? ("labels", Labels         )
+                ++? ("dlabel", dLabel         )
+                ++? ("label0", Label0         )
+                ++? ("aspectratio", Aspectratio    )
+                ++? ("baseratio", Baseratio      )
+                ++? ("insidetextfont", Insidetextfont )
+                ++? ("scalegroup", Scalegroup     )
 
                 trace
 
@@ -201,12 +201,12 @@ type TraceDomainStyle() =
             (fun (trace:('T :> Trace)) -> 
                 ++ ("labels", labels       )
                 ++ ("parents", parents       )
-                Ids           |> DynObj.setValueOpt trace   "ids"
-                Values        |> DynObj.setValueOpt trace   "values"
-                Text          |> DynObj.setValueOpt trace   "text"
+                ++? ("ids", Ids           )
+                ++? ("values", Values        )
+                ++? ("text", Text          )
                 Branchvalues  |> DynObj.setValueOptBy trace "branchvalues" StyleParam.BranchValues.convert
-                Level         |> DynObj.setValueOpt trace   "level"
-                Maxdepth      |> DynObj.setValueOpt trace   "maxdepth"
+                ++? ("level", Level         )
+                ++? ("maxdepth", Maxdepth      )
                 trace
             )
 
@@ -249,14 +249,14 @@ type TraceDomainStyle() =
             (fun (trace:('T :> Trace)) -> 
                 ++ ("labels", labels          )
                 ++ ("parents", parents         )
-                Ids             |> DynObj.setValueOpt trace   "ids"
-                Values          |> DynObj.setValueOpt trace   "values"
-                Text            |> DynObj.setValueOpt trace   "text"
+                ++? ("ids", Ids             )
+                ++? ("values", Values          )
+                ++? ("text", Text            )
                 Branchvalues    |> DynObj.setValueOptBy trace "branchvalues" StyleParam.BranchValues.convert
-                Tiling          |> DynObj.setValueOpt trace   "tiling"
-                PathBar         |> DynObj.setValueOpt trace   "pathbar"
-                Level           |> DynObj.setValueOpt trace   "level"
-                Maxdepth        |> DynObj.setValueOpt trace   "maxdepth"
+                ++? ("tiling", Tiling          )
+                ++? ("pathbar", PathBar         )
+                ++? ("level", Level           )
+                ++? ("maxdepth", Maxdepth        )
                 trace
             )
 
@@ -274,12 +274,12 @@ type TraceDomainStyle() =
         ) =
             (fun (parcoords:('T :> Trace)) -> 
                 
-                Dimensions         |> DynObj.setValueOpt parcoords "dimensions"         
-                Line               |> DynObj.setValueOpt parcoords "line"                     
-                Domain             |> DynObj.setValueOpt parcoords "domain"     
-                Labelfont          |> DynObj.setValueOpt parcoords "labelfont"               
-                Tickfont           |> DynObj.setValueOpt parcoords "tickfont"                
-                Rangefont          |> DynObj.setValueOpt parcoords "rangefont"              
+                ++? ("dimensions", Dimensions         )         
+                ++? ("line", Line               )                     
+                ++? ("domain", Domain             )     
+                ++? ("labelfont", Labelfont          )               
+                ++? ("tickfont", Tickfont           )                
+                ++? ("rangefont", Rangefont          )              
                     
                 // out ->
                 parcoords 
@@ -297,13 +297,13 @@ type TraceDomainStyle() =
         ) =
             (fun (parcats:('T :> Trace)) -> 
         
-                Dimensions         |> DynObj.setValueOpt parcats "dimensions"         
-                Line               |> DynObj.setValueOpt parcats "line"                     
-                Domain             |> DynObj.setValueOpt parcats "domain"     
-                Color              |> DynObj.setValueOpt parcats "color"     
-                Labelfont          |> DynObj.setValueOpt parcats "labelfont"               
-                Tickfont           |> DynObj.setValueOpt parcats "tickfont"                
-                Rangefont          |> DynObj.setValueOpt parcats "rangefont"              
+                ++? ("dimensions", Dimensions         )         
+                ++? ("line", Line               )                     
+                ++? ("domain", Domain             )     
+                ++? ("color", Color              )     
+                ++? ("labelfont", Labelfont          )               
+                ++? ("tickfont", Tickfont           )                
+                ++? ("rangefont", Rangefont          )              
             
                 // out ->
                 parcats 
@@ -320,8 +320,8 @@ type TraceDomainStyle() =
             (fun (trace:('T :> Trace)) ->                  
                 ++ ("header", header      )
                 ++ ("cells", cells       )
-                ColumnWidth |> DynObj.setValueOpt trace "columnwidth"
-                ColumnOrder |> DynObj.setValueOpt trace "columnorder"
+                ++? ("columnwidth", ColumnWidth )
+                ++? ("columnorder", ColumnOrder )
                 // out ->
                 trace
             ) 

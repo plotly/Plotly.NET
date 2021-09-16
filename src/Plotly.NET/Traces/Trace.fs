@@ -32,13 +32,13 @@ type TraceStyle() =
 
         ) =
             (fun (trace:('T :> Trace)) ->  
-                Name        |> DynObj.setValueOpt trace "name"
+                ++? ("name", Name        )
                 Visible     |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.toString
-                ShowLegend  |> DynObj.setValueOpt trace "showlegend"
-                LegendGroup |> DynObj.setValueOpt trace "legendgroup"  
-                Opacity     |> DynObj.setValueOpt trace "opacity"
-                Uid         |> DynObj.setValueOpt trace "uid"
-                Hoverinfo   |> DynObj.setValueOpt trace "hoverinfo"
+                ++? ("showlegend", ShowLegend  )
+                ++? ("legendgroup", LegendGroup )  
+                ++? ("opacity", Opacity     )
+                ++? ("uid", Uid         )
+                ++? ("hoverinfo", Hoverinfo   )
                 // Update
                 //Stream: Stream                    
                     
@@ -55,9 +55,9 @@ type TraceStyle() =
         ) =  
             (fun (trace:('T :> Trace)) ->
 
-                Selectedpoints |> DynObj.setValueOpt trace "Selectedpoints"
-                Selected       |> DynObj.setValueOpt trace "Selected"
-                UnSelected     |> DynObj.setValueOpt trace "UnSelected"
+                ++? ("Selectedpoints", Selectedpoints )
+                ++? ("Selected", Selected       )
+                ++? ("UnSelected", UnSelected     )
             
                 trace
             )
@@ -74,11 +74,11 @@ type TraceStyle() =
 
         ) =
             (fun (trace:('T :> Trace)) ->
-                Text            |> DynObj.setValueOpt trace "text"
+                ++? ("text", Text            )
                 Textposition    |> DynObj.setValueOptBy trace "textposition" StyleParam.TextPosition.toString                  
-                Textsrc         |> DynObj.setValueOpt trace "textsrc"
-                Textpositionsrc |> DynObj.setValueOpt trace "textpositionsrc"
-                Textfont        |> DynObj.setValueOpt trace "textfont"
+                ++? ("textsrc", Textsrc         )
+                ++? ("textpositionsrc", Textpositionsrc )
+                ++? ("textfont", Textfont        )
                     
                 // out ->
                 trace

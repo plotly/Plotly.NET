@@ -28,21 +28,19 @@ type Template() =
         ) =
             (fun (template:Template) -> 
                 ++ ("layout", layoutTemplate   )
-                TraceTemplates   |> DynObj.setValueOpt template "data"
+                ++? ("data", TraceTemplates   )
                 
                 template
                 )
             
     static member mapLayoutTemplate (styleF: Layout -> Layout) (template:Template) =
         template.TryGetTypedValue<Layout>("layout")
-        |> Option.map (styleF)
-        |> DynObj.setValueOpt template "layout"
+        ++? ("layout", |> Option.map (styleF))
         template
 
     static member mapTraceTemplates (styleF: #Trace [] -> #Trace []) (template:Template) =
         template.TryGetTypedValue<#Trace []>("data")
-        |> Option.map (styleF)
-        |> DynObj.setValueOpt template "data"
+        ++? ("data", |> Option.map (styleF))
         template
 
     static member withColorWay (colorway:Color) (template:Template) =
@@ -148,12 +146,10 @@ module ChartTemplates =
         dark
         |> Template.mapLayoutTemplate (fun l ->
             l.TryGetTypedValue<LinearAxis>("xaxis")
-            |> Option.map (LinearAxis.style (Mirror=StyleParam.Mirror.AllTicks))
-            |> DynObj.setValueOpt l "xaxis"
+            ++? ("xaxis", |> Option.map (LinearAxis.style (Mirror=StyleParam.Mirror.AllTicks)))
 
             l.TryGetTypedValue<LinearAxis>("yaxis")
-            |> Option.map (LinearAxis.style (Mirror=StyleParam.Mirror.AllTicks))
-            |> DynObj.setValueOpt l "yaxis"
+            ++? ("yaxis", |> Option.map (LinearAxis.style (Mirror=StyleParam.Mirror.AllTicks)))
 
             l
         )

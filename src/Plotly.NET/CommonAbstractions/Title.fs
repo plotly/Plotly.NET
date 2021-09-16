@@ -31,10 +31,10 @@ type Title() =
         ) =
             (fun (title:Title) -> 
 
-                Text    |> DynObj.setValueOpt title "text"
-                Font    |> DynObj.setValueOpt title "font"
-                Standoff|> DynObj.setValueOpt title "standoff"
-                Side    |> DynObj.setValueOpt title "side"
+                ++? ("text", Text    )
+                ++? ("font", Font    )
+                ++? ("standoff", Standoff)
+                ++? ("side", Side    )
 
                 title
             )

@@ -26,7 +26,7 @@ type CellColor () =
             [<Optional;DefaultParameterValue(null)>] ?Color : Color
         ) =
             (fun (cell:CellColor) -> 
-                Color      |> DynObj.setValueOpt cell "color" 
+                ++? ("color", Color      ) 
                 // out -> 
                 cell
             )
@@ -74,10 +74,10 @@ type TableHeader () =
 
                 ++ ("values", values ) 
                 Align  |> DynObj.setValueOptBy header "align" (Seq.map StyleParam.HorizontalAlign.convert)
-                Height |> DynObj.setValueOpt   header "height"
-                Fill   |> DynObj.setValueOpt   header "fill" 
-                Line   |> DynObj.setValueOpt   header "line"    
-                Font   |> DynObj.setValueOpt   header "font"
+                ++? ("height", Height )
+                ++? ("fill", Fill   ) 
+                ++? ("line", Line   )    
+                ++? ("font", Font   )
                 header
             )
 
@@ -123,9 +123,9 @@ type TableCells () =
 
                 ++ ("values", values ) 
                 Align  |> DynObj.setValueOptBy cells "align" (Seq.map StyleParam.HorizontalAlign.convert)
-                Height |> DynObj.setValueOpt   cells "height"
-                Fill   |> DynObj.setValueOpt   cells "fill"
-                Line   |> DynObj.setValueOpt   cells "line"     
-                Font   |> DynObj.setValueOpt   cells "font"  
+                ++? ("height", Height )
+                ++? ("fill", Fill   )
+                ++? ("line", Line   )     
+                ++? ("font", Font   )  
                 cells
             )

@@ -72,14 +72,14 @@ type ColorAxis() =
         ) =
             fun (ca:ColorAxis) ->
 
-                AutoColorScale  |> DynObj.setValueOpt ca "autocolorscale"
-                CAuto           |> DynObj.setValueOpt ca "cauto"
-                CMin            |> DynObj.setValueOpt ca "cmin"
-                CMid            |> DynObj.setValueOpt ca "cmid"
-                CMax            |> DynObj.setValueOpt ca "cmax"
-                ColorBar        |> DynObj.setValueOpt ca "colorbar"
-                ColorScale      |> DynObj.setValueOpt ca "colorscale"
-                ShowScale       |> DynObj.setValueOpt ca "showscale"
-                ReverseScale    |> DynObj.setValueOpt ca "reversescale"
+                ++? ("autocolorscale", AutoColorScale  )
+                ++? ("cauto", CAuto           )
+                ++? ("cmin", CMin            )
+                ++? ("cmid", CMid            )
+                ++? ("cmax", CMax            )
+                ++? ("colorbar", ColorBar        )
+                ++? ("colorscale", ColorScale      )
+                ++? ("showscale", ShowScale       )
+                ++? ("reversescale", ReverseScale    )
 
                 ca

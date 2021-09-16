@@ -32,9 +32,9 @@ type SlicesFill () =
 
             fun (slicesFill: SlicesFill) ->
                 
-                Fill        |> DynObj.setValueOpt slicesFill "fill"
-                Locations   |> DynObj.setValueOpt slicesFill "locations"
-                Show        |> DynObj.setValueOpt slicesFill "show"
+                ++? ("fill", Fill        )
+                ++? ("locations", Locations   )
+                ++? ("show", Show        )
 
                 slicesFill
 
@@ -65,8 +65,8 @@ type Slices() =
         ) =
             fun (slices: Slices) ->
 
-                X   |> DynObj.setValueOpt slices "x"
-                Y   |> DynObj.setValueOpt slices "y"
-                Z   |> DynObj.setValueOpt slices "z"
+                ++? ("x", X   )
+                ++? ("y", Y   )
+                ++? ("z", Z   )
 
                 slices
