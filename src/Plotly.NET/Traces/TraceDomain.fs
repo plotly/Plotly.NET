@@ -54,9 +54,9 @@ type TraceDomainStyle() =
         ) =  
             (fun (trace:TraceDomain) ->
 
-                ++? ("domain", Domain )
-
                 trace
+
+                ++? ("domain", Domain )
             )
 
     // Applies the styles of pie plot to TraceObjects 
@@ -101,6 +101,8 @@ type TraceDomainStyle() =
         ) =
             (fun (pie:('T :> Trace)) ->
 
+                pie
+
                 ++? ("name", Name                  )
                 ++? ("title", Title                 )
                 ++?? ("visible", Visible               , StyleParam.Visible.convert)
@@ -137,8 +139,6 @@ type TraceDomainStyle() =
                 ++? ("scalegroup", ScaleGroup            )
                 ++? ("sort", Sort                  )
                 ++? ("uirevision", UIRevision            )
-
-                pie
             ) 
 
             
@@ -154,6 +154,8 @@ type TraceDomainStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Scalegroup    : string
         ) = 
             (fun (trace:('T :> Trace)) -> 
+
+                trace
         
                 ++? ("values", Values         )
                 ++? ("labels", Labels         )
@@ -163,8 +165,6 @@ type TraceDomainStyle() =
                 ++? ("baseratio", Baseratio      )
                 ++? ("insidetextfont", Insidetextfont )
                 ++? ("scalegroup", Scalegroup     )
-
-                trace
 
             )
             
@@ -199,6 +199,7 @@ type TraceDomainStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Maxdepth       : int
         ) =
             (fun (trace:('T :> Trace)) -> 
+                trace
                 ++ ("labels", labels       )
                 ++ ("parents", parents       )
                 ++? ("ids", Ids           )
@@ -207,7 +208,6 @@ type TraceDomainStyle() =
                 ++?? ("branchvalues", Branchvalues  , StyleParam.BranchValues.convert)
                 ++? ("level", Level         )
                 ++? ("maxdepth", Maxdepth      )
-                trace
             )
 
     /// Applies the styles of treemap plot to TraceObjects 
@@ -247,6 +247,7 @@ type TraceDomainStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Maxdepth       : int
         ) =
             (fun (trace:('T :> Trace)) -> 
+                trace
                 ++ ("labels", labels          )
                 ++ ("parents", parents         )
                 ++? ("ids", Ids             )
@@ -257,7 +258,6 @@ type TraceDomainStyle() =
                 ++? ("pathbar", PathBar         )
                 ++? ("level", Level           )
                 ++? ("maxdepth", Maxdepth        )
-                trace
             )
 
             
@@ -272,17 +272,17 @@ type TraceDomainStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Tickfont   :   Font,
             [<Optional;DefaultParameterValue(null)>] ?Rangefont  :   Font        
         ) =
-            (fun (parcoords:('T :> Trace)) -> 
+            (fun (parcoords:('T :> Trace)) ->               
+                    
+                // out ->
+                parcoords
                 
                 ++? ("dimensions", Dimensions         )         
                 ++? ("line", Line               )                     
                 ++? ("domain", Domain             )     
                 ++? ("labelfont", Labelfont          )               
                 ++? ("tickfont", Tickfont           )                
-                ++? ("rangefont", Rangefont          )              
-                    
-                // out ->
-                parcoords 
+                ++? ("rangefont", Rangefont          ) 
             ) 
     
     static member ParallelCategories
@@ -295,7 +295,10 @@ type TraceDomainStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Tickfont   :   Font,
             [<Optional;DefaultParameterValue(null)>] ?Rangefont  :   Font        
         ) =
-            (fun (parcats:('T :> Trace)) -> 
+            (fun (parcats:('T :> Trace)) ->               
+            
+                // out ->
+                parcats
         
                 ++? ("dimensions", Dimensions         )         
                 ++? ("line", Line               )                     
@@ -303,10 +306,7 @@ type TraceDomainStyle() =
                 ++? ("color", Color              )     
                 ++? ("labelfont", Labelfont          )               
                 ++? ("tickfont", Tickfont           )                
-                ++? ("rangefont", Rangefont          )              
-            
-                // out ->
-                parcats 
+                ++? ("rangefont", Rangefont          ) 
             ) 
 
     // Applies the styles of table plot to TraceObjects 
@@ -318,11 +318,11 @@ type TraceDomainStyle() =
             [<Optional;DefaultParameterValue(null)>] ?ColumnOrder : seq<int>         
         ) =
             (fun (trace:('T :> Trace)) ->                  
+                // out ->
+                trace
                 ++ ("header", header      )
                 ++ ("cells", cells       )
                 ++? ("columnwidth", ColumnWidth )
                 ++? ("columnorder", ColumnOrder )
-                // out ->
-                trace
             ) 
 

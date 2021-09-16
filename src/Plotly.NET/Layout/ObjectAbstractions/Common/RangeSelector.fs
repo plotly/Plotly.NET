@@ -56,6 +56,8 @@ type RangeSelector () =
         ) =
             (fun (rangeSelector:RangeSelector) -> 
 
+                rangeSelector
+
                 ++? ("visible", Visible     )
                 ++? ("buttons", Buttons     )
                 ++? ("x", X           )
@@ -67,6 +69,4 @@ type RangeSelector () =
                 ++? ("activecolor", ActiveColor )
                 ++? ("bordercolor", BorderColor )
                 ++? ("borderwidth", BorderWidth )
-
-                rangeSelector
             )

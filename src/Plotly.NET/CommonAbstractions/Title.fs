@@ -31,10 +31,10 @@ type Title() =
         ) =
             (fun (title:Title) -> 
 
+                title
+
                 ++? ("text", Text    )
                 ++? ("font", Font    )
                 ++? ("standoff", Standoff)
                 ++? ("side", Side    )
-
-                title
             )

@@ -49,6 +49,9 @@ type Dimensions () =
             [<Optional;DefaultParameterValue(null)>] ?TickFormat: StyleParam.TickMode
         ) =
             (fun (dims:Dimensions) -> 
+                
+                // out -> 
+                dims
                 ++? ("values", Values           )
                 ++?? ("range", Range            , StyleParam.Range.convert                )
                 ++?? ("constraintrange", Constraintrange  , StyleParam.Range.convert                 )
@@ -57,9 +60,6 @@ type Dimensions () =
                 ++? ("tickvals", Tickvals         )
                 ++? ("ticktext", TickText         )   
                 ++? ("tickformat", TickFormat       )
-                
-                // out -> 
-                dims
             )
 
 

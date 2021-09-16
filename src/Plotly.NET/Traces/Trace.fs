@@ -32,6 +32,11 @@ type TraceStyle() =
 
         ) =
             (fun (trace:('T :> Trace)) ->  
+                // Update
+                //Stream: Stream                    
+                    
+                // out ->
+                trace
                 ++? ("name", Name        )
                 ++?? ("visible", Visible     , StyleParam.Visible.toString)
                 ++? ("showlegend", ShowLegend  )
@@ -39,11 +44,6 @@ type TraceStyle() =
                 ++? ("opacity", Opacity     )
                 ++? ("uid", Uid         )
                 ++? ("hoverinfo", Hoverinfo   )
-                // Update
-                //Stream: Stream                    
-                    
-                // out ->
-                trace
             ) 
 
     /// Sets selection of data points on a Trace object.
@@ -54,12 +54,12 @@ type TraceStyle() =
             [<Optional;DefaultParameterValue(null)>] ?UnSelected
         ) =  
             (fun (trace:('T :> Trace)) ->
+            
+                trace
 
                 ++? ("Selectedpoints", Selectedpoints )
                 ++? ("Selected", Selected       )
                 ++? ("UnSelected", UnSelected     )
-            
-                trace
             )
 
 
@@ -74,14 +74,14 @@ type TraceStyle() =
 
         ) =
             (fun (trace:('T :> Trace)) ->
+                    
+                // out ->
+                trace
                 ++? ("text", Text            )
                 ++?? ("textposition", Textposition    , StyleParam.TextPosition.toString                  )
                 ++? ("textsrc", Textsrc         )
                 ++? ("textpositionsrc", Textpositionsrc )
                 ++? ("textfont", Textfont        )
-                    
-                // out ->
-                trace
             )  
 
 
@@ -91,9 +91,9 @@ type TraceStyle() =
             line:Line
         ) =  
             (fun (trace:('T :> Trace)) ->
+                trace
 
                 ++ ("line", line)
-                trace
             )
 
 
@@ -113,9 +113,9 @@ type TraceStyle() =
                     | Some line -> line :?> Line
                     | None -> Line.init()
                     |> Line.style(?Width=Width,?Color=Color,?Shape=Shape,?Dash=Dash,?Smoothing=Smoothing,?Colorscale=Colorscale)
+                trace
                     
                 ++ ("line", line)
-                trace
             )    
 
 
@@ -125,9 +125,9 @@ type TraceStyle() =
             marker:Marker
         ) =  
             (fun (trace:('T :> Trace)) ->
+                trace
 
                 ++ ("marker", marker)
-                trace
             )
 
 
@@ -170,9 +170,9 @@ type TraceStyle() =
                         ?Sizemode=Sizemode,?Cauto=Cauto,?Cmax=Cmax,?Cmin=Cmin,?Cmid=Cmid,
                         ?Autocolorscale=Autocolorscale,?Reversescale=Reversescale,?Showscale=Showscale
                         )
+                trace
 
-                ++ ("marker", marker)
-                trace                   
+                ++ ("marker", marker)                   
 
             )
 
@@ -185,9 +185,9 @@ type TraceStyle() =
             domain:Domain
         ) =  
             (fun (trace:('T :> Trace)) ->
+                trace
 
                 ++ ("domain", domain)
-                trace
             )
         
     /// Sets the given Domain styles on the domain property of a Trace object
@@ -205,9 +205,9 @@ type TraceStyle() =
                         | None -> Domain ()
      
                         |> Domain.style(?X=X,?Y=Y,?Row=Row,?Column=Column)
+                    trace
 
                     ++ ("domain", domain)
-                    trace
                 )
 
     // Sets the X-Error an a Trace object.
@@ -216,9 +216,9 @@ type TraceStyle() =
             error:Error
         ) =  
             (fun (trace:('T :> Trace)) ->
+                trace
 
                 ++ ("error_x", error)
-                trace
             )
 
     // Sets Y-Error() to TraceObjects
@@ -227,9 +227,9 @@ type TraceStyle() =
             error:Error
         ) =  
             (fun (trace:('T :> Trace)) ->
+                trace
 
                 ++ ("error_y", error)
-                trace
             )
 
     // Sets Z-Error() to TraceObjects
@@ -238,9 +238,9 @@ type TraceStyle() =
             error:Error
         ) =  
             (fun (trace:('T :> Trace)) ->
+                trace
 
                 ++ ("error_z", error)
-                trace
             )
 
     // Sets Stackgroup() to TraceObjects
@@ -249,7 +249,7 @@ type TraceStyle() =
             stackgroup: string
         ) =  
             (fun (trace:('T :> Trace)) ->
+                trace
 
                 ++ ("stackgroup", stackgroup)
-                trace
             )

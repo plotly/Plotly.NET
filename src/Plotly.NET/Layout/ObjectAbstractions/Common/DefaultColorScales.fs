@@ -29,10 +29,10 @@ type DefaultColorScales() =
             [<Optional;DefaultParameterValue(null)>] ?SequentialMinus: StyleParam.Colorscale
         ) =
             (fun (defaultColorScales:DefaultColorScales) -> 
+
+                defaultColorScales
                
                 ++?? ("diverging", Diverging       , StyleParam.Colorscale.convert)
                 ++?? ("sequential", Sequential      , StyleParam.Colorscale.convert)
                 ++?? ("sequentialminus", SequentialMinus , StyleParam.Colorscale.convert)
-
-                defaultColorScales
             )

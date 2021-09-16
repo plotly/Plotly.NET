@@ -86,6 +86,8 @@ type LayoutGrid () =
             [<Optional;DefaultParameterValue(null)>] ?YSide      : StyleParam.LayoutGridYSide
         ) =
             (fun (layoutGrid: LayoutGrid) -> 
+
+                layoutGrid
                 ++?? ("subplots", SubPlots , (Array.map (Array.map ( fun (x,y) -> $"{StyleParam.LinearAxisId.toString x}{StyleParam.LinearAxisId.toString y}"))))
                 ++?? ("xaxes", XAxes    , (Array.map StyleParam.LinearAxisId.toString))
                 ++?? ("yaxes", YAxes    , (Array.map StyleParam.LinearAxisId.toString))
@@ -98,6 +100,4 @@ type LayoutGrid () =
                 ++? ("domain", Domain   )   
                 ++?? ("xside", XSide    , StyleParam.LayoutGridXSide.toString)
                 ++?? ("yside", YSide    , StyleParam.LayoutGridYSide.toString)
-
-                layoutGrid
             )

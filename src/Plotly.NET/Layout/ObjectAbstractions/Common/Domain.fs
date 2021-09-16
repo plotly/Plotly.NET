@@ -36,11 +36,11 @@ type Domain () =
             [<Optional;DefaultParameterValue(null)>] ?Column : int
         ) =
             (fun (dom:Domain) -> 
+               
+                // out -> 
+                dom
                 ++?? ("x", X       , StyleParam.Range.convert)
                 ++?? ("y", Y       , StyleParam.Range.convert                )
                 ++? ("row", Row     )                 
                 ++? ("column", Column  )
-               
-                // out -> 
-                dom
             )

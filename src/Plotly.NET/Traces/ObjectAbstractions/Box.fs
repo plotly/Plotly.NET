@@ -37,13 +37,13 @@ type Box () =
             [<Optional;DefaultParameterValue(null)>] ?Line: Line
         ) =
             (fun (box:Box) -> 
+                    
+                // out -> 
+                box
                 ++? ("visible", Visible    )
                 ++? ("width", Width      )
                 ++? ("fillColor", FillColor  )
                 ++? ("line", Line       )
-                    
-                // out -> 
-                box
             )
 
 

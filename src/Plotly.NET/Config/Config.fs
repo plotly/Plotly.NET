@@ -379,6 +379,7 @@ type Config() =
 
         ) =
             fun (config:Config) ->
+                EditableAnnotations
                 ++? ("staticPlot", StaticPlot              ) 
                 ++? ("autosizable", Autosizable             ) 
                 ++? ("responsive", Responsive              )
@@ -386,7 +387,6 @@ type Config() =
                 ++? ("showEditInChartStudio", ShowEditInChartStudio   )
                 ++? ("editable", Editable                )
                 ++?? ("modeBarButtonsToAdd", ModeBarButtonsToAdd     , (fun x -> x |> Seq.map StyleParam.ModeBarButton.convert))
-                EditableAnnotations
                 |> Option.map 
                     (fun edits ->
                         let ed = DynamicObj()
@@ -397,6 +397,6 @@ type Config() =
                                 ed?(fieldName) <- true
                             )
                         ed
-                    ++? ("edits", ))
 
                 config
+                    ++? ("edits", ))

@@ -637,6 +637,8 @@ type LinearAxis () =
             [<Optional;DefaultParameterValue(null)>] ?Calendar           : StyleParam.Calendar
         ) =
             (fun (axis:LinearAxis) -> 
+
+                axis
                 
                 ++? ("visible", Visible            ) 
                 ++? ("color", Color              ) 
@@ -713,6 +715,4 @@ type LinearAxis () =
                 ++? ("rangeslider", RangeSlider        ) 
                 ++? ("rangeselector", RangeSelector      ) 
                 ++?? ("calendar", Calendar           , StyleParam.Calendar.convert)
-
-                axis
             )

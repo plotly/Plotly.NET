@@ -237,6 +237,8 @@ type ColorBar () =
                 
             (fun (colorBar:ColorBar) ->            
 
+                colorBar
+
                 ++? ("bgcolor", BGColor             )
                 ++? ("bordercolor", BorderColor         )
                 ++? ("borderwidth", BorderWidth         )
@@ -278,6 +280,4 @@ type ColorBar () =
                 ++? ("y", Y                   )
                 ++? ("yanchor", YAnchor             )
                 ++? ("ypad", YPad                )
-
-                colorBar
             )

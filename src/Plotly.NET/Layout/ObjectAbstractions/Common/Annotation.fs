@@ -148,6 +148,8 @@ type Annotation() =
             ?YShift             : int
         ) =
             (fun (ann:Annotation) ->
+
+                ann
                 
                 ++? ("x", X                   )
                 ++? ("y", Y                   )
@@ -191,6 +193,4 @@ type Annotation() =
                 ++? ("yclick", YClick              )
                 ++? ("yref", YRef                )
                 ++? ("yshift", YShift              )
-
-                ann
             )

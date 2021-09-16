@@ -41,6 +41,8 @@ type ModeBar() =
             [<Optional;DefaultParameterValue(null)>] ?UIRevision     : string
         ) =
             (fun (modeBar:ModeBar) -> 
+
+                modeBar
                
                 ++? ("activecolor", ActiveColor )
                 ++? ("add", Add         )
@@ -49,6 +51,4 @@ type ModeBar() =
                 ++?? ("orientation", Orientation , StyleParam.Orientation.convert)
                 ++? ("remove", Remove      )
                 ++? ("uirevision", UIRevision  )
-
-                modeBar
             )

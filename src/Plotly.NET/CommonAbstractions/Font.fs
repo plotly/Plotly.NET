@@ -31,11 +31,11 @@ type Font () =
             [<Optional;DefaultParameterValue(null)>] ?Color: Color
         ) =
             (fun (font:Font) -> 
+                        
+                font
                     
                 ++?? ("family", Family       , StyleParam.FontFamily.toString                )
                 ++? ("size", Size         )
                 ++? ("color", Color        )
-                        
-                font
             )
 

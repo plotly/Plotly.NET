@@ -52,10 +52,10 @@ type DisplayOptions() =
         ) =
             (fun (displayOptions:DisplayOptions) -> 
 
+                displayOptions
+
                 ++? ("AdditionalHeadTags", AdditionalHeadTags    )
                 ++? ("Description", Description             )
-
-                displayOptions
             )
 
 

@@ -181,18 +181,20 @@ type Geo() =
         ) =
             (fun (geo:Geo) -> 
                 
+                Center
+                
                 ++? ("domain", Domain         )
                 ++?? ("fitbounds", FitBounds      , StyleParam.GeoFitBounds.convert)
                 ++?? ("resolution", Resolution)
                 ++?? ("scope", Scope          , StyleParam.GeoScope.convert)
-                ++? ("projection", Projection     )
-                
-                Center         
+                ++? ("projection", Projection     )         
                 |> Option.map (fun (lon,lat) -> 
                     let t = DynamicObj()
                     t?lon <- lon
                     t?lat <- lat
                     t
+
+                geo
                 ++? ("center", ))
 
                 ++? ("visible", Visible         )
@@ -220,6 +222,4 @@ type Geo() =
                 ++? ("bgcolor", BgColor         )
                 ++? ("lataxis", LatAxis         )
                 ++? ("lonaxis", LonAxis         )
-
-                geo
             ) 

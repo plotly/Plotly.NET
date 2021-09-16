@@ -476,9 +476,9 @@ type Chart =
     static member withColorBar(colorbar:ColorBar) =
         (fun (ch:GenericChart) ->
             ch
-            |> GenericChart.mapTrace(fun t ->
-                ++ ("colorbar", colorbar ) 
+            |> GenericChart.mapTrace(fun t -> 
                 t
+                ++ ("colorbar", colorbar )
             )
         )
 
@@ -901,8 +901,8 @@ type Chart =
         (fun (ch:GenericChart) ->
             ch
             |> GenericChart.mapLayout (fun l ->
-                ++ ("template", template )
                 l
+                ++ ("template", template )
                 )
         )
 

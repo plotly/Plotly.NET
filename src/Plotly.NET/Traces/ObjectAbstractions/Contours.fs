@@ -31,12 +31,12 @@ type ContourProject () =
         ) =
 
             fun (contourProject: ContourProject) ->
+
+                contourProject
                 
                 ++? ("x", X   )
                 ++? ("y", Y   )
                 ++? ("z", Z   )
-
-                contourProject
 
 /// Contour object inherits from dynamic object
 type Contour () =
@@ -93,6 +93,9 @@ type Contour () =
         ) =
             
             (fun (contour:Contour) -> 
+               
+
+                contour
                 ++? ("color", Color            )
                 ++? ("end", End              )
                 ++? ("highlight", Highlight        )
@@ -104,9 +107,6 @@ type Contour () =
                 ++? ("start", Start            )
                 ++? ("usecolormap", UseColorMap      )
                 ++? ("width", Width            )
-               
-
-                contour
             )
 
 /// Contours type inherits from dynamic object
@@ -139,11 +139,11 @@ type Contours () =
         ) =
             
             (fun (contours:Contours) -> 
+           
+                contours
                 ++? ("x", X )
                 ++? ("y", Y )
                 ++? ("z", Z )
-           
-                contours
             )
 
 

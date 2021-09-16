@@ -57,10 +57,10 @@ type TreemapTiling () =
             
         ) = 
             (fun (tiling:TreemapTiling) -> 
+
+                tiling
                 ++?? ("packing", Packing       , StyleParam.TreemapTilingPacking.convert)
                 ++? ("squarifyRatio", SquarifyRatio )
                 ++? ("flip", Flip          )
                 ++? ("pad", Pad           )
-
-                tiling
             )

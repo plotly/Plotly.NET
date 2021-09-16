@@ -31,11 +31,11 @@ type MarkerSelectionStyle() =
         ) =
             (fun (markerSelectionStyle:MarkerSelectionStyle) -> 
 
+                markerSelectionStyle
+
                 ++? ("opacity", Opacity    )
                 ++? ("color", Color      )
                 ++? ("size", Size       )
-
-                markerSelectionStyle
             )
 
 type FontSelectionStyle() =
@@ -83,7 +83,7 @@ type Selection () =
             [<Optional;DefaultParameterValue(null)>] ?FontSelectionStyle: FontSelectionStyle
         ) =
             (fun (selection:Selection) -> 
+                selection
                 ++? ("marker", MarkerSelectionStyle )
                 ++? ("textfont", FontSelectionStyle   )
-                selection
             )

@@ -30,9 +30,9 @@ type Transition() =
         ) =
             (fun (transition:Transition) -> 
                
+                transition
+               
                 ++? ("duration", Duration    )
                 ++?? ("easing", Easing      , StyleParam.TransitionEasing.convert)
                 ++?? ("ordering", Ordering    , StyleParam.TransitionOrdering.convert)
-               
-                transition
             )

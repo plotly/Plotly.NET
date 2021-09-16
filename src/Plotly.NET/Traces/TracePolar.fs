@@ -39,9 +39,9 @@ type TracePolarStyle() =
         ) =  
             (fun (trace:TracePolar) ->
 
-                ++?? ("subplot", PolarId , StyleParam.SubPlotId.toString)
-
                 trace
+
+                ++?? ("subplot", PolarId , StyleParam.SubPlotId.toString)
             )
 
     static member ScatterPolar
@@ -87,6 +87,8 @@ type TracePolarStyle() =
         ) =
             (fun (trace:('T :> Trace)) -> 
 
+                trace
+
                 ++? ("name", Name               )
                 ++?? ("visible", Visible            , StyleParam.Visible.convert)
                 ++? ("showlegend", ShowLegend         )
@@ -125,8 +127,6 @@ type TracePolarStyle() =
                 ++? ("hoverlabel", HoverLabel         )
                 ++? ("hoveron", HoverOn            )
                 ++? ("uirevision", UIRevision         )
-
-                trace
             )
 
     static member BarPolar
@@ -164,6 +164,8 @@ type TracePolarStyle() =
             [<Optional;DefaultParameterValue(null)>] ?UIRevision         : seq<#IConvertible>
         ) =
             (fun (trace:('T :> Trace)) -> 
+                    
+                trace
 
                 ++? ("name", Name                )
                 ++?? ("visible", Visible             , StyleParam.Visible.convert)
@@ -196,6 +198,4 @@ type TracePolarStyle() =
                 ++? ("unselected", Unselected          )
                 ++? ("hoverlabel", HoverLabel          )
                 ++? ("uirevision", UIRevision          )
-                    
-                trace
             )

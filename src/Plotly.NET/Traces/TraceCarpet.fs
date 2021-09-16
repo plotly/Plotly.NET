@@ -30,7 +30,7 @@ type TraceCarpetStyle() =
         ) =  
             (fun (trace:TraceCarpet) ->
 
-                ++?? ("carpet", CarpetId , StyleParam.SubPlotId.toString)
-
                 trace
+
+                ++?? ("carpet", CarpetId , StyleParam.SubPlotId.toString)
             )

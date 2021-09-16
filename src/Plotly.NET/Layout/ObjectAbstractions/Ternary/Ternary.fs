@@ -51,12 +51,12 @@ type Ternary() =
             ?Sum        : #IConvertible
         ) =
             (fun (ternary:Ternary) -> 
+
+                ternary
                
                 ++? ("aaxis", AAxis  )
                 ++? ("baxis", BAxis  )
                 ++? ("caxis", CAxis  )
                 ++? ("domain", Domain )
                 ++? ("sum", Sum    )
-
-                ternary
             )

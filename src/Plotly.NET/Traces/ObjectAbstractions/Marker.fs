@@ -89,7 +89,9 @@ type Marker () =
             [<Optional;DefaultParameterValue(null)>] ?Reversescale: bool,
             [<Optional;DefaultParameterValue(null)>] ?Showscale: bool
         ) =
-            (fun (marker: Marker) -> 
+            (fun (marker: Marker) ->       
+
+                marker
                 ++? ("size", Size           ) 
                 ++? ("color", Color          )
                 ++? ("symbol", Symbol         )
@@ -110,9 +112,7 @@ type Marker () =
                 ++? ("cmin", Cmin           )           
                 ++? ("autocolorscale", Autocolorscale ) 
                 ++? ("reversescale", Reversescale   )   
-                ++? ("showscale", Showscale      )      
-
-                marker
+                ++? ("showscale", Showscale      )
             )
 
 

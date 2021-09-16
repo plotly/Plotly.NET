@@ -49,6 +49,9 @@ type Line () =
 
         ) =
             (fun (line:Line) -> 
+                    
+                // out -> 
+                line
                 ++? ("color", Color          )
                 ++? ("width", Width          )
                 ++?? ("shape", Shape          , StyleParam.Shape.convert)
@@ -57,9 +60,6 @@ type Line () =
                 ++?? ("colorscale", Colorscale     , StyleParam.Colorscale.convert)
                 ++? ("outliercolor", OutlierColor   )
                 ++? ("outlierwidth", OutlierWidth   )
-                    
-                // out -> 
-                line
             )
 
 

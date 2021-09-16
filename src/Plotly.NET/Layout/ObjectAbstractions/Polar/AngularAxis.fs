@@ -238,6 +238,8 @@ type AngularAxis () =
             [<Optional;DefaultParameterValue(null)>] ?Layer              : StyleParam.Layer
         ) =
             fun (angularAxis: AngularAxis) ->
+
+                angularAxis
                 
                 ++? ("visible", Visible             )
                 ++?? ("type", AxisType            , StyleParam.AxisType.convert)
@@ -281,5 +283,3 @@ type AngularAxis () =
                 ++? ("TickFormat", TickFormat          )
                 ++? ("tickformatstops", TickFormatStops     )
                 ++?? ("layer", Layer               , StyleParam.Layer.convert)
-
-                angularAxis

@@ -22,9 +22,9 @@ type TraceTernaryStyle() =
         ) =  
             (fun (trace:TraceTernary) ->
 
-                ++?? ("subplot", TernaryId , StyleParam.SubPlotId.toString)
-
                 trace
+
+                ++?? ("subplot", TernaryId , StyleParam.SubPlotId.toString)
             )
 
     static member ScatterTernary
@@ -66,6 +66,8 @@ type TraceTernaryStyle() =
 
         ) =
             fun (trace: TraceTernary) ->
+
+                trace
                 
                 ++? ("name", Name              )
                 ++?? ("visible", Visible           , StyleParam.Visible.convert)
@@ -101,5 +103,3 @@ type TraceTernaryStyle() =
                 ++? ("hoverlabel", HoverLabel        )
                 ++?? ("hoveron", HoverOn           , StyleParam.HoverOn.convert)
                 ++? ("sum", Sum               )
-
-                trace

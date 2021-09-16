@@ -72,6 +72,8 @@ type ColorAxis() =
         ) =
             fun (ca:ColorAxis) ->
 
+                ca
+
                 ++? ("autocolorscale", AutoColorScale  )
                 ++? ("cauto", CAuto           )
                 ++? ("cmin", CMin            )
@@ -81,5 +83,3 @@ type ColorAxis() =
                 ++? ("colorscale", ColorScale      )
                 ++? ("showscale", ShowScale       )
                 ++? ("reversescale", ReverseScale    )
-
-                ca

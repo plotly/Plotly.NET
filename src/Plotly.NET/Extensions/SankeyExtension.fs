@@ -103,18 +103,18 @@ module SankeyExtension =
                         | None,None -> None 
                         | cs,ws -> 
                             let ln = new DynamicObj()
+                            Some
                             ++? ("color", cs)
-                            ++? ("width", ws)
-                            Some ln
+                            ++? ("width", ws) ln
 
                     let l = new DynamicObj()
+
+                    l
                     ++ ("source", (links |> Seq.map (fun x->lblMap.[x.Source.Label])))
                     ++ ("target", (links |> Seq.map (fun x->lblMap.[x.Target.Label])))
                     ++? ("color", linkClrs)
                     ++? ("value", values)
                     ++? ("line", line)
-
-                    l
 
                 let node = 
                     let groups = 
@@ -157,11 +157,12 @@ module SankeyExtension =
                         | None,None -> None 
                         | cs,ws -> 
                             let ln = new DynamicObj()
+                            Some
                             ++? ("color", cs)
-                            ++? ("width", ws)
-                            Some ln
+                            ++? ("width", ws) ln
 
                     let n = new DynamicObj()
+                    n
                     ++ ("label", (nodes |> Seq.map (fun  x->x.Label)) )
                     ++? ("groups", groups)
                     ++? ("pad", nodePadding)
@@ -170,12 +171,11 @@ module SankeyExtension =
                     ++? ("y", yRanks)
                     ++? ("color", nodeClrs)
                     ++? ("line", line)
-                    n
+
+                trace
             
                 ++ ("node", node)
                 ++ ("link", link)
-
-                trace
             )
 
     type Chart with

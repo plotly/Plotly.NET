@@ -50,9 +50,9 @@ type TraceMapboxStyle() =
         ) =  
             (fun (trace:TraceMapbox) ->
 
-                ++?? ("subplot", MapboxId , StyleParam.SubPlotId.toString)
-
                 trace
+
+                ++?? ("subplot", MapboxId , StyleParam.SubPlotId.toString)
             )
 
     // Applies the styles of choropleth map plot to TraceObjects 
@@ -72,7 +72,9 @@ type TraceMapboxStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Zmid           : float,
             [<Optional;DefaultParameterValue(null)>] ?Zmax           : float
         ) =
-            (fun (choropleth: #Trace) -> 
+            (fun (choropleth: #Trace) ->   
+                    
+                choropleth
                 
                 ++? ("locations", Locations          )         
                 ++? ("z", Z                  )                     
@@ -87,9 +89,7 @@ type TraceMapboxStyle() =
                 ++? ("featureidkey", FeatureIdKey       )
                 ++? ("zmin", Zmin               )
                 ++? ("zmid", Zmid               )
-                ++? ("zmax", Zmax               )  
-                    
-                choropleth 
+                ++? ("zmax", Zmax               ) 
             ) 
 
 
@@ -106,6 +106,8 @@ type TraceMapboxStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Fillcolor   : Color
         ) =
             (fun (trace: #Trace) -> 
+
+                trace
             
                 ++ ("mode", mode        |> StyleParam.Mode.convert )
                 ++? ("lon", Longitudes  )
@@ -116,8 +118,6 @@ type TraceMapboxStyle() =
                 ++? ("connectgaps", Connectgaps )
                 ++?? ("fill", Fill        , StyleParam.Fill.convert)
                 ++? ("fillcolor", Fillcolor   )
-
-                trace
 
             )
 
@@ -132,6 +132,8 @@ type TraceMapboxStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Fillcolor  : string
         ) =
             (fun (trace:#Trace) -> 
+
+                trace
             
                 ++ ("mode", mode        |> StyleParam.Mode.convert )
                 ++? ("lon", Longitudes  )
@@ -140,8 +142,6 @@ type TraceMapboxStyle() =
                 ++? ("connectgaps", Connectgaps )
                 ++?? ("fill", Fill        , StyleParam.Fill.convert)
                 ++? ("fillcolor", Fillcolor   )
-
-                trace
             )
 
     static member ChoroplethMapbox
@@ -161,6 +161,8 @@ type TraceMapboxStyle() =
             [<Optional;DefaultParameterValue(null)>] ?ZMax           : float
         ) =
             (fun (trace: #Trace) -> 
+
+                trace
                 
                 ++? ("z", Z           )
                 ++? ("geojson", GeoJson     )
@@ -175,8 +177,6 @@ type TraceMapboxStyle() =
                 ++? ("zmin", ZMin        )
                 ++? ("zmid", ZMid        )
                 ++? ("zmax", ZMax        )
-
-                trace
             )
 
     static member DensityMapbox
@@ -198,6 +198,8 @@ type TraceMapboxStyle() =
 
         ) =
             (fun (trace: #Trace) -> 
+
+                trace
                 
                 ++? ("z", Z           )
                 ++? ("radius", Radius      )
@@ -213,6 +215,4 @@ type TraceMapboxStyle() =
                 ++? ("zmin", ZMin        )
                 ++? ("zmid", ZMid        )
                 ++? ("zmax", ZMax        )
-
-                trace
             )

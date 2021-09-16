@@ -28,8 +28,8 @@ type Spaceframe () =
         ) =
 
             fun (spaceframe: Spaceframe) ->
+
+                spaceframe
                 
                 ++? ("fill", Fill        )
                 ++? ("show", Show        )
-
-                spaceframe

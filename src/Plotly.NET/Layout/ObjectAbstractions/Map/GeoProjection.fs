@@ -39,11 +39,11 @@ type GeoProjectionRotation () =
             [<Optional;DefaultParameterValue(null)>] ?Roll       :int
         ) =
             (fun (rotation:GeoProjectionRotation) -> 
+
+                rotation
                 ++? ("lon", Longitude )
                 ++? ("lat", Latitude  )
                 ++? ("roll", Roll      )
-
-                rotation
             ) 
 
 /// <summary>Determines the map projection in geo traces.</summary>
@@ -85,6 +85,8 @@ type GeoProjection() =
             [<Optional;DefaultParameterValue(null)>] ?Scale          : float
         ) =
             (fun (projection:GeoProjection) -> 
+
+                projection
                 
                 ++ ("type", projectionType |> StyleParam.GeoProjectionType.convert )
 
@@ -93,6 +95,4 @@ type GeoProjection() =
 
                 ++? ("rotation", Rotation        )
                 ++? ("scale", Scale           )
-
-                projection
             ) 

@@ -66,21 +66,21 @@ type RangeSlider () =
             [<Optional;DefaultParameterValue(null)>] ?YAxisRange: seq<#IConvertible>
         ) = 
             fun (rangeslider : RangeSlider) ->
+
+                let
                 ++? ("bgcolor", BgColor        )
                 ++? ("BorderColor", BorderColor    )
                 ++? ("BorderWidth", BorderWidth    )
                 ++? ("AutoRange", AutoRange      )
                 ++? ("range", Range          )
                 ++? ("thickness", Thickness      )
-                ++? ("visible", Visible        )
-
-                let yAxis = 
-                    let tmp = DynamicObj()
-                    ++? ("rangemode", YAxisRangeMode  ) 
-                    ++? ("range", YAxisRange      ) 
+                ++? ("visible", Visible        ) yAxis = 
+                    let tmp = DynamicObj() 
                     tmp
-
-                ++ ("yaxis", yAxis )
+                    ++? ("rangemode", YAxisRangeMode  ) 
+                    ++? ("range", YAxisRange      )
 
 
                 rangeslider
+
+                ++ ("yaxis", yAxis )
