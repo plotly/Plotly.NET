@@ -56,10 +56,10 @@ let ``Colors tests`` =
         testCase "fromColorScaleValues" (fun () ->
             let testColor = 
                 Color.fromColorScaleValues [
-                    1;2;3;4;5;6;3.4
+                    1;2;3;4;5;6
                 ] 
                 |> JsonConvert.SerializeObject
-            Expect.equal testColor """[1,2,3,4,5,6,3.4]""" "Color.fromColorScaleValues not correctly serialized"
+            Expect.equal testColor """[1,2,3,4,5,6]""" "Color.fromColorScaleValues not correctly serialized"
         )
     ]
     
