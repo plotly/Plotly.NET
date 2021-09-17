@@ -542,7 +542,7 @@ type Trace2DStyle() =
 
         ) =
             (fun (histogram:('T :> Trace)) ->
-
+                histogram
                 // Update
         
                 ++? ("x", X              )               
@@ -566,7 +566,7 @@ type Trace2DStyle() =
                 ++? ("ybins", yBins          )                
                     
                 // out ->
-                histogram
+                
                 ++? ("marker", Marker         )
                 ++? ("error_x", xError         )
                 ++? ("error_y", yError         )
@@ -742,7 +742,7 @@ type Trace2DStyle() =
 
         ) =
             (fun (histogram2d:('T :> Trace)) ->    
-
+                histogram2d
                 // Update
 
                 ++? ("z", Z              )         
@@ -785,7 +785,7 @@ type Trace2DStyle() =
                 ++? ("colorbar", ColorBar       )                  
                     
                 // out ->
-                histogram2d
+                
                 ++? ("marker", Marker       )
             ) 
 

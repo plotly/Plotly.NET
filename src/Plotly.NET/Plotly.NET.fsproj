@@ -125,8 +125,8 @@
     <None Include="Playground.fsx" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="ImmutableDynamicObj" Version="0.0.3" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="DynamicObj" Version="0.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DisplayOptions\ObjectAbstractions\" />
