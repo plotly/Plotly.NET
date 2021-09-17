@@ -15,7 +15,7 @@ module HTML =
     <head>
         <!-- Plotly.js -->
         <meta http-equiv="X-UA-Compatible" content="IE=11" >
-        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <script src="https://cdn.plot.ly/plotly-2.4.2.min.js"></script>
         [ADDITIONAL_HEAD_TAGS]
         <style>
         .container {
@@ -62,7 +62,7 @@ module HTML =
         newScript.AppendLine("<script type=\"text/javascript\">") |> ignore
         newScript.AppendLine(@"
             var renderPlotly_[SCRIPTID] = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {")  |> ignore
         newScript.AppendLine(@"
             var data = [DATA];
