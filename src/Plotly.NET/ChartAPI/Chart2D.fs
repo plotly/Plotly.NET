@@ -3,7 +3,7 @@
 open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
 
-open DynamicObj
+OHNONONO
 open System
 open System.IO
 open System.Runtime.CompilerServices

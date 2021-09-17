@@ -2,7 +2,7 @@
 
 open Plotly.NET.LayoutObjects
 
-open DynamicObj
+OHNONONO
 open System.Runtime.InteropServices
 
 

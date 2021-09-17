@@ -1,7 +1,7 @@
 namespace Plotly.NET
 open System.Runtime.InteropServices
 
-open DynamicObj
+OHNONONO
 
 /// Font type inherits from dynamic object
 type Font () =

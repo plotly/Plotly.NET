@@ -1,6 +1,6 @@
 namespace Plotly.NET
 
-open DynamicObj
+OHNONONO
 open Plotly.NET.LayoutObjects
 open System
 open System.Runtime.InteropServices

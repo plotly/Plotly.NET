@@ -1,5 +1,5 @@
 ﻿namespace Plotly.NET
 
-open DynamicObj
+OHNONONO
 
 type Frame() = inherit DynamicObj()

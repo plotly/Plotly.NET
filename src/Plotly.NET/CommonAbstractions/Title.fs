@@ -1,7 +1,7 @@
 ﻿namespace Plotly.NET
 open System.Runtime.InteropServices
 
-open DynamicObj
+OHNONONO
 
 type Title() =
     inherit DynamicObj ()
