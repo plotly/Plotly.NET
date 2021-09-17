@@ -1,6 +1,7 @@
 ﻿namespace Plotly.NET
 //http://www.niwa.nu/2013/05/math-behind-colorspace-conversions-rgb-hsl/
 open Newtonsoft.Json
+open System
 
 module internal Hex =
 
@@ -160,7 +161,7 @@ type Color private(obj:obj) =
         Color (unbox c)
 
     /// Values are interpreted relative to color scale
-    static member fromColorScaleValues (c:seq<System.IConvertible>) =
+    static member fromColorScaleValues (c:seq<#IConvertible>) =
         Color (unbox c)
 
     /// Color from a standard web color keyword, e.g. White -> "white" (see //https://www.w3.org/TR/2011/REC-SVG11-20110816/types.html#ColorKeywords)
