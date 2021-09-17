@@ -946,6 +946,77 @@ type Trace2DStyle() =
                 // out ->
                 heatmap 
             ) 
+            
+    // Applies the styles of heatmap to TraceObjects 
+    static member Image
+        (                
+            [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+            [<Optional;DefaultParameterValue(null)>] ?Visible           : StyleParam.Visible,
+            [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+            [<Optional;DefaultParameterValue(null)>] ?LegendRank        : int,
+            [<Optional;DefaultParameterValue(null)>] ?LegendGroup       : string,
+            [<Optional;DefaultParameterValue(null)>] ?LegendGroupTitle  : Title,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity           : float, 
+            [<Optional;DefaultParameterValue(null)>] ?Ids               : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?X                 : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?X0                : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?DX                : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?Y                 : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Y0                : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?DY                : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?Z                 : seq<#seq<#IConvertible>>,
+            [<Optional;DefaultParameterValue(null)>] ?Source            : string,
+            [<Optional;DefaultParameterValue(null)>] ?Text              : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverText         : string,
+            [<Optional;DefaultParameterValue(null)>] ?HoverInfo         : StyleParam.HoverInfo,
+            [<Optional;DefaultParameterValue(null)>] ?HoverTemplate     : string,
+            [<Optional;DefaultParameterValue(null)>] ?Meta              : string,
+            [<Optional;DefaultParameterValue(null)>] ?CustomData        : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?XAxis             : StyleParam.LinearAxisId,
+            [<Optional;DefaultParameterValue(null)>] ?YAxis             : StyleParam.LinearAxisId,
+            [<Optional;DefaultParameterValue(null)>] ?ColorModel        : StyleParam.ColorModel,
+            [<Optional;DefaultParameterValue(null)>] ?ZMax              : StyleParam.ColorComponentBound,
+            [<Optional;DefaultParameterValue(null)>] ?ZMin              : StyleParam.ColorComponentBound,
+            [<Optional;DefaultParameterValue(null)>] ?ZSmooth           : StyleParam.SmoothAlg,
+            [<Optional;DefaultParameterValue(null)>] ?HoverLabel        : Hoverlabel,
+            [<Optional;DefaultParameterValue(null)>] ?UIRevision        : string
+        ) =
+            (fun (image: ('T :> Trace)) -> 
+
+                Name              |> DynObj.setValueOpt image "name"
+                Visible           |> DynObj.setValueOptBy image "visible" StyleParam.Visible.convert
+                ShowLegend        |> DynObj.setValueOpt image "showlegend"
+                LegendRank        |> DynObj.setValueOpt image "legendrank"
+                LegendGroup       |> DynObj.setValueOpt image "legendgroup"
+                LegendGroupTitle  |> DynObj.setValueOpt image "legendgrouptitle"
+                Opacity           |> DynObj.setValueOpt image "opacity"
+                Ids               |> DynObj.setValueOpt image "ids"
+                X                 |> DynObj.setValueOpt image "x"
+                X0                |> DynObj.setValueOpt image "x0"
+                DX                |> DynObj.setValueOpt image "dx"
+                Y                 |> DynObj.setValueOpt image "y"
+                Y0                |> DynObj.setValueOpt image "y0"
+                DY                |> DynObj.setValueOpt image "dy"
+                Z                 |> DynObj.setValueOpt image "z"
+                Source            |> DynObj.setValueOpt image "source"
+                Text              |> DynObj.setValueOpt image "text"
+                HoverText         |> DynObj.setValueOpt image "hovertext"
+                HoverInfo         |> DynObj.setValueOptBy image "hoverinfo" StyleParam.HoverInfo.convert
+                HoverTemplate     |> DynObj.setValueOpt image "hovertemplate"
+                Meta              |> DynObj.setValueOpt image "meta"
+                CustomData        |> DynObj.setValueOpt image "customdata"
+                XAxis             |> DynObj.setValueOptBy image "xaxis"       StyleParam.LinearAxisId.convert
+                YAxis             |> DynObj.setValueOptBy image "yaxis"       StyleParam.LinearAxisId.convert
+                ColorModel        |> DynObj.setValueOptBy image "colormodel"  StyleParam.ColorModel.convert
+                ZMax              |> DynObj.setValueOptBy image "zmax"        StyleParam.ColorComponentBound.convert
+                ZMin              |> DynObj.setValueOptBy image "zmin"        StyleParam.ColorComponentBound.convert
+                ZSmooth           |> DynObj.setValueOptBy image "zsmooth"     StyleParam.SmoothAlg.convert
+                HoverLabel        |> DynObj.setValueOpt image "hoverlabel"
+                UIRevision        |> DynObj.setValueOpt image "uirevision"
+
+                // out ->
+                image 
+            ) 
 
 
     static member Contour

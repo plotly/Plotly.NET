@@ -314,6 +314,44 @@ module StyleParam =
 // #C#
 //--------------------------
     
+        
+    [<RequireQualifiedAccess>]
+    type ColorModel =
+        | RGB      
+        | RGBA     
+        | RGBA256  
+        | HSL      
+        | HSLA     
+        
+        static member toString = function
+            | RGB       -> "rgb" 
+            | RGBA      -> "rgba" 
+            | RGBA256   -> "rgba256" 
+            | HSL       -> "hsl" 
+            | HSLA      -> "hsla"
+
+        static member convert = ColorModel.toString >> box
+        override this.ToString() = this |> ColorModel.toString
+        member this.Convert() = this |> ColorModel.convert
+
+    [<RequireQualifiedAccess>]
+    type ColorComponentBound =
+        | RGB      of R:int * G:int * B:int
+        | RGBA     of R:int * G:int * B:int * A:int
+        | RGBA256  of int*int*int*int
+        | HSL      of H:int * S:int * L:int
+        | HSLA     of H:int * S:int * L:int * A:int
+
+        static member convert = function
+            | RGB       (r,g,b)     -> [r;g;b]   |> box
+            | RGBA      (r,g,b,a)   -> [r;g;b;a] |> box
+            | RGBA256   (i,d,k,m)   -> [i;d;k;m] |> box
+            | HSL       (h,s,l)     -> [h;s;l]   |> box
+            | HSLA      (h,s,l,a)   -> [h;s;l;a] |> box
+
+        member this.Convert() = this |> ColorComponentBound.convert
+
+
     [<RequireQualifiedAccess>]
     type ClickToShow =
         | False | OnOff | OnOut
