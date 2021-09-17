@@ -1,6 +1,7 @@
 ﻿namespace Plotly.NET.LayoutObjects
 
-OHNONONO
+open DynamicObj
+open DynamicObj.Operators
 open System.Runtime.InteropServices
 
 /// Margin 

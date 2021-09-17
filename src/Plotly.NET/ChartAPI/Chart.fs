@@ -3,7 +3,8 @@ namespace Plotly.NET
 open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
 
-OHNONONO
+open DynamicObj
+open DynamicObj.Operators
 open System
 open System.IO
 

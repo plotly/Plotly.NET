@@ -5,7 +5,8 @@ open Plotly.NET.TraceObjects
 open System
 open System.IO
 
-OHNONONO
+open DynamicObj
+open DynamicObj.Operators
 open GenericChart
 open System.Runtime.InteropServices
 open System.Runtime.CompilerServices

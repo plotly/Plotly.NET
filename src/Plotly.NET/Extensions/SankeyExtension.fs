@@ -1,6 +1,7 @@
 ﻿namespace Plotly.NET
 
-OHNONONO
+open DynamicObj
+open DynamicObj.Operators
 open System.Runtime.InteropServices
 
 type Node = 
