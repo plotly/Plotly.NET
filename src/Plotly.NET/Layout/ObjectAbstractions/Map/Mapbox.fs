@@ -8,7 +8,7 @@ open System.Runtime.InteropServices
 /// <summary>Determines the style of the map shown in mapbox traces</summary>
 type Mapbox() = 
 
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     /// <summary>Initialize a Mapbox object that determines the style of the map shown in geo mapbox</summary>
 
@@ -58,7 +58,7 @@ type Mapbox() =
                 ++? ("accesstoken", AccessToken     )
                 ++?? ("style", Style           , StyleParam.MapboxStyle.convert)         
                 |> Option.map (fun (lon,lat) -> 
-                    let t = DynamicObj()
+                    let t = ImmutableDynamicObj()
                     t?lon <- lon
                     t?lat <- lat
                     t

@@ -8,7 +8,7 @@ open System.Runtime.InteropServices
 
 /// Marker type inherits from dynamic object
 type Marker () =
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     /// Initialized Marker object
     static member init

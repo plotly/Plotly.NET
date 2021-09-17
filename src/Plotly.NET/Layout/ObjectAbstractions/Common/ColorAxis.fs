@@ -6,7 +6,7 @@ open System
 open System.Runtime.InteropServices
 
 type ColorAxis() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     /// <summary>
     /// Initializes a ColorAxis object

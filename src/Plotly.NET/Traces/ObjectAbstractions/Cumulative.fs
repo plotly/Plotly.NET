@@ -18,7 +18,7 @@ open System.Runtime.InteropServices
 
 /// Cumulative type inherits from dynamic object
 type Cumulative () =
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     // Init Cumulative()
     static member init

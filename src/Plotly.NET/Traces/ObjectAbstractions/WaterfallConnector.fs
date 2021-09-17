@@ -16,7 +16,7 @@ open System.Runtime.InteropServices
 ///
 /// ConnectorMode : Sets the shape of connector lines.
 type WaterfallConnector () =
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     static member init 
         (

@@ -8,7 +8,7 @@ open System.Runtime.InteropServices
 /// <summary>Determines the style of the map shown in geo traces</summary>
 type Geo() = 
 
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     /// <summary>Initialize a Geo object that determines the style of the map shown in geo traces</summary>
     /// <param name="FitBounds">Determines if and how this subplot's view settings are auto-computed to fit trace data</param>
@@ -189,7 +189,7 @@ type Geo() =
                 ++?? ("scope", Scope          , StyleParam.GeoScope.convert)
                 ++? ("projection", Projection     )         
                 |> Option.map (fun (lon,lat) -> 
-                    let t = DynamicObj()
+                    let t = ImmutableDynamicObj()
                     t?lon <- lon
                     t?lat <- lat
                     t

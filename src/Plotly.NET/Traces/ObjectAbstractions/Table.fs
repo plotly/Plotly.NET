@@ -8,7 +8,7 @@ open System.Runtime.InteropServices
 
 /// CellColor type inherits from dynamic object
 type CellColor () =
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     /// Initialized Line object
     static member init
@@ -34,7 +34,7 @@ type CellColor () =
 
 /// Header type inherits from dynamic object
 type TableHeader () =
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     /// Initialized Header object
     static member init
@@ -83,7 +83,7 @@ type TableHeader () =
 
 /// Cells type inherits from dynamic object
 type TableCells () =
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     /// Initialized Cells object
     static member init

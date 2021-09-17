@@ -7,7 +7,7 @@ open System.Runtime.InteropServices
 
 
 type Polar () =
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     /// <summary>
     /// Initialize a Polar object that contains layout options concerned with polar plots.

@@ -7,7 +7,7 @@ open System
 open System.Runtime.InteropServices
 
 type CapFill () =
-    inherit DynamicObj () 
+    inherit ImmutableDynamicObj () 
 
     static member init 
         (
@@ -36,7 +36,7 @@ type CapFill () =
 
 
 type Caps() =
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     static member init
         (

@@ -8,7 +8,7 @@ open System.Runtime.InteropServices
 /// <summary></summary>
 type MapboxLayer() = 
 
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     /// <summary>Initialize a MapboxLayer object</summary>
 
@@ -94,7 +94,7 @@ type MapboxLayer() =
                 ++? ("minzoom", MinZoom          )
                 ++? ("maxzoom", MaxZoom          )     
                 |> Option.map(fun r ->
-                    let circle = DynamicObj()
+                    let circle = ImmutableDynamicObj()
                     circle?radius <- r
                     circle
 
@@ -103,7 +103,7 @@ type MapboxLayer() =
 
                 ++? ("line", Line             )
                 |> Option.map(fun c ->
-                    let fill = DynamicObj()
+                    let fill = ImmutableDynamicObj()
                     fill?outlinecolor <- c
                     fill
                                                        

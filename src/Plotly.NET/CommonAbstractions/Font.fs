@@ -5,7 +5,7 @@ OHNONONO
 
 /// Font type inherits from dynamic object
 type Font () =
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     /// Init Font()
     static member init

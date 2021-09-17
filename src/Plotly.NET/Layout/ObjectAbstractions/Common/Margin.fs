@@ -5,7 +5,7 @@ open System.Runtime.InteropServices
 
 /// Margin 
 type Margin() = 
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     /// Init Margin type
     static member init

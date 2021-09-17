@@ -8,7 +8,7 @@ open System.Runtime.InteropServices
 
 /// Box type inherits from dynamic object (parent violin)
 type Box () =
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     /// Initialized Line object
     static member init

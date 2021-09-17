@@ -9,7 +9,7 @@ open System.Runtime.InteropServices
 //Parent: layout.xaxis
 //Type: object containing one or more of the keys listed below.
 type RangeSlider () = 
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     static member init 
         (
@@ -75,7 +75,7 @@ type RangeSlider () =
                 ++? ("range", Range          )
                 ++? ("thickness", Thickness      )
                 ++? ("visible", Visible        ) yAxis = 
-                    let tmp = DynamicObj() 
+                    let tmp = ImmutableDynamicObj() 
                     tmp
                     ++? ("rangemode", YAxisRangeMode  ) 
                     ++? ("range", YAxisRange      )

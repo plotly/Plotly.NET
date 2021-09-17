@@ -102,12 +102,12 @@ module SankeyExtension =
                         match (linkLineClrs,linkLineWidths) with 
                         | None,None -> None 
                         | cs,ws -> 
-                            let ln = new DynamicObj()
+                            let ln = new ImmutableDynamicObj()
                             Some
                             ++? ("color", cs)
                             ++? ("width", ws) ln
 
-                    let l = new DynamicObj()
+                    let l = new ImmutableDynamicObj()
 
                     l
                     ++ ("source", (links |> Seq.map (fun x->lblMap.[x.Source.Label])))
@@ -156,12 +156,12 @@ module SankeyExtension =
                         match (nodeLineClrs,nodeLineWidths) with 
                         | None,None -> None 
                         | cs,ws -> 
-                            let ln = new DynamicObj()
+                            let ln = new ImmutableDynamicObj()
                             Some
                             ++? ("color", cs)
                             ++? ("width", ws) ln
 
-                    let n = new DynamicObj()
+                    let n = new ImmutableDynamicObj()
                     n
                     ++ ("label", (nodes |> Seq.map (fun  x->x.Label)) )
                     ++? ("groups", groups)

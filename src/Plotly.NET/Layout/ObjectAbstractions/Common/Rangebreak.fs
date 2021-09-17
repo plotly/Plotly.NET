@@ -6,7 +6,7 @@ open System
 open System.Runtime.InteropServices
 
 type Rangebreak() =
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
     
     /// <summary>
     /// Initialize a Rangebreak object.

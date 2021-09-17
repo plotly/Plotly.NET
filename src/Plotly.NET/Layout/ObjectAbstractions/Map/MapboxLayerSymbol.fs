@@ -8,7 +8,7 @@ open System.Runtime.InteropServices
 /// <summary></summary>
 type MapboxLayerSymbol() = 
 
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     /// <summary>Initialize a MapboxLayer object</summary>
 

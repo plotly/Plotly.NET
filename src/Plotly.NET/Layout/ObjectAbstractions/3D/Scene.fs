@@ -7,7 +7,7 @@ open System.Runtime.InteropServices
 
 /// Scene 
 type Scene() = 
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     /// <summary>
     /// Initialize a categorical Scene object that can be used as a laxout anchor for a 3D coordinate system.

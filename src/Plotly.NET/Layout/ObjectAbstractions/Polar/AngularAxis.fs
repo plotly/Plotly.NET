@@ -8,7 +8,7 @@ open System.Runtime.InteropServices
 
 /// <summary>Angular axes can be used as a scale for the angular coordinates in polar plots.</summary>
 type AngularAxis () =
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     /// <summary>
     /// Initialize an AngularAxis object that can be used as a angular scale for polar coordinates.

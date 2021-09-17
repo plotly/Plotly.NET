@@ -7,7 +7,7 @@ open System.Runtime.InteropServices
 
 /// <summary>Linear axes can be used as x and y scales on 2D plots, and as x,y, and z scales on 3D plots.</summary>
 type LinearAxis () =
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     /// <summary>
     /// Initialize a LinearAxis object that can be used as a positional scale for Y, X or Z coordinates.

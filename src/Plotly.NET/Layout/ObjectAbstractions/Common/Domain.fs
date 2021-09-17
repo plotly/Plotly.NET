@@ -7,7 +7,7 @@ open System.Runtime.InteropServices
 
 /// Dimensions type inherits from dynamic object
 type Domain () =
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     /// Initialized Dimensions object
     static member init

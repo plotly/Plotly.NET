@@ -7,7 +7,7 @@ open System.Runtime.InteropServices
 
 
 type Template() = 
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     static member init
         (

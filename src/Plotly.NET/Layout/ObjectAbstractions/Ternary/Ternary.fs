@@ -6,7 +6,7 @@ open System
 open System.Runtime.InteropServices
 
 type Ternary() =
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     /// <summary>
     /// Initializes a ternary object

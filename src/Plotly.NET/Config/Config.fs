@@ -335,7 +335,7 @@ open System.Runtime.InteropServices
 //};
 /// Config 
 type Config() = 
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     /// Init Legend type
     static member init 
@@ -389,7 +389,7 @@ type Config() =
                 ++?? ("modeBarButtonsToAdd", ModeBarButtonsToAdd     , (fun x -> x |> Seq.map StyleParam.ModeBarButton.convert))
                 |> Option.map 
                     (fun edits ->
-                        let ed = DynamicObj()
+                        let ed = ImmutableDynamicObj()
                         edits 
                         |> Seq.iter 
                             (fun edit -> 

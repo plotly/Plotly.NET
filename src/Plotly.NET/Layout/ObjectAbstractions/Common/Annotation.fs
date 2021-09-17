@@ -7,7 +7,7 @@ open System.Runtime.InteropServices
 
 /// Text annotations inside a plot 
 type Annotation() = 
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     /// Init Annotation type
     static member init 

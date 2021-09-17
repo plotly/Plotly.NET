@@ -7,7 +7,7 @@ open System.Runtime.InteropServices
 
 /// <summary>Determines Map rotation in GeoProjections</summary>
 type GeoProjectionRotation () = 
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     /// <summary>Initialize a GeoProjectionRotation object that determines Map rotation in GeoProjections</summary>
     /// <param name="Longitude">Rotates the map along parallels (in degrees East). Defaults to the center of the `lonaxis.range` values.</param>
@@ -48,7 +48,7 @@ type GeoProjectionRotation () =
 
 /// <summary>Determines the map projection in geo traces.</summary>
 type GeoProjection() = 
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     /// <summary>Initialize a GeoProjection object that determines the map projection in geo traces.</summary>
     /// <param name="projectionType">Sets the type of projection</param>

@@ -8,7 +8,7 @@ open System.Runtime.InteropServices
 
 /// Meanline type inherits from dynamic object (parent violin)
 type Meanline () =
-    inherit DynamicObj ()
+    inherit ImmutableDynamicObj ()
 
     /// Initialized Line object
     static member init
