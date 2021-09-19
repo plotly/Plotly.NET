@@ -16,6 +16,7 @@
 
 #I "Layout/ObjectAbstractions/Common"
 
+#load "LayoutImage.fs"
 #load "Button.fs"
 #load "RangeSelector.fs"
 #load "RangeSlider.fs"
@@ -152,6 +153,23 @@ open FSharpAux
 
 open System
 open System.IO
+
+Chart.Line([0.; 0.5; 1.; 2.; 2.2], y=[1.23; 2.5; 0.42; 3.; 1.])
+|> Chart.withLayoutImage(
+    LayoutImage.init(
+        Source="https://fsharp.org/img/logo/fsharp.svg",
+        XRef="x",
+        YRef="y",
+        X=0,
+        Y=3,
+        SizeX=2,
+        SizeY=2,
+        Sizing=StyleParam.LayoutImageSizing.Stretch,
+        Opacity=0.5,
+        Layer=StyleParam.Layer.Below
+    )
+)
+|> Chart.show
 
 let imagebase64 =
     System.Convert.ToBase64String(File.ReadAllBytes(@"C:\Users\schne\Pictures\Untitled.jpg"))

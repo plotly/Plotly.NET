@@ -823,6 +823,14 @@ type Chart =
                 |> GenericChart.mapLayout 
                     (Layout.style (Annotations = annotations'))
 
+    [<CompiledName("WithAnnotation")>]
+    static member withAnnotation
+        (
+            annotation: Annotation,
+            [<Optional;DefaultParameterValue(true)>] ?Append: bool
+        ) =
+            Chart.withAnnotations([annotation], ?Append = Append)
+
     // Set the title of a Chart
     [<CompiledName("WithTitle")>]
     static member withTitle(title,[<Optional;DefaultParameterValue(null)>] ?TitleFont) =
@@ -911,23 +919,45 @@ type Chart =
 //Specifies the shape type to be drawn. If "line", a line is drawn from (`x0`,`y0`) to (`x1`,`y1`) If "circle", a circle is drawn from 
 //((`x0`+`x1`)/2, (`y0`+`y1`)/2)) with radius (|(`x0`+`x1`)/2 - `x0`|, |(`y0`+`y1`)/2 -`y0`)|) If "rect", a rectangle is drawn linking 
 //(`x0`,`y0`), (`x1`,`y0`), (`x1`,`y1`), (`x0`,`y1`), (`x0`,`y0`)  
-    [<CompiledName("WithShape")>]
-    static member withShape(shape:Shape) =
-        (fun (ch:GenericChart) ->
-            let layout = 
-                GenericChart.getLayout ch
-                |> Layout.style (Shapes=[shape])
-            GenericChart.setLayout layout ch)
-
-
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="shapes">The shapes to add to the input charts layout</param>
+    /// <param name="Append">If true, the input annotations will be appended to existing annotations, otherwise existing annotations will be removed (default: true)</param>
     [<CompiledName("WithShapes")>]
-    static member withShapes(shapes:Shape seq) =
-        (fun (ch:GenericChart) ->
-            let layout = 
-                GenericChart.getLayout ch
-                |> Layout.style (Shapes=shapes)
-            GenericChart.setLayout layout ch)
+    static member withShapes
+        (
+            shapes:seq<Shape>,
+            [<Optional;DefaultParameterValue(true)>] ?Append: bool
+        ) =
+            let append = defaultArg Append true
 
+            fun (ch:GenericChart) -> 
+                
+                let shapes' = 
+
+                    if append then
+
+                        let layout = GenericChart.getLayout ch
+
+                        layout.TryGetTypedValue<seq<Shape>>("shapes")
+                        |> Option.defaultValue Seq.empty
+                        |> Seq.append shapes
+
+                    else shapes
+
+                ch
+                |> GenericChart.mapLayout 
+                    (Layout.style (Shapes = shapes'))
+
+    [<CompiledName("WithShape")>]
+    static member withShape
+        (
+            shape: Shape,
+            [<Optional;DefaultParameterValue(true)>] ?Append: bool
+        ) =
+            Chart.withShapes([shape], ?Append = Append)
 
     // ####################### 
     /// Create a combined chart with the given charts merged
@@ -1491,3 +1521,43 @@ type Chart =
 
             GenericChart.setLayout updatedLayout ch
         )
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="images">The images to add to the input charts layout</param>
+    /// <param name="Append">If true, the input images will be appended to existing annotations, otherwise existing annotations will be removed (default: true)</param>
+    [<CompiledName("WithImages")>]
+    static member withLayoutImages
+        (
+            images:seq<LayoutImage>,
+            [<Optional;DefaultParameterValue(true)>] ?Append: bool
+        ) =
+            let append = defaultArg Append true
+
+            fun (ch:GenericChart) -> 
+                
+                let images' = 
+
+                    if append then
+
+                        let layout = GenericChart.getLayout ch
+
+                        layout.TryGetTypedValue<seq<LayoutImage>>("images")
+                        |> Option.defaultValue Seq.empty
+                        |> Seq.append images
+
+                    else images
+
+                ch
+                |> GenericChart.mapLayout 
+                    (Layout.style (Images = images'))
+
+    [<CompiledName("WithLayoutImage")>]
+    static member withLayoutImage
+        (
+            image: LayoutImage,
+            [<Optional;DefaultParameterValue(true)>] ?Append: bool
+        ) =
+
+            Chart.withLayoutImages([image], ?Append = Append)
