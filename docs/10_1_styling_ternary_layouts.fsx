@@ -2,8 +2,8 @@
 ---
 title: Styling ternary layouts
 category: Ternary Plots
-categoryindex: 9 
-index: 3
+categoryindex: 11
+index: 2
 ---
 *)
 

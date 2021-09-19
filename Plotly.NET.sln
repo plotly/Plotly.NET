@@ -49,6 +49,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{7B09CC0A-F
 		docs\01_2_multiple-charts.fsx = docs\01_2_multiple-charts.fsx
 		docs\01_3_shapes.fsx = docs\01_3_shapes.fsx
 		docs\01_4_annotations.fsx = docs\01_4_annotations.fsx
+		docs\01_5_layout_images.fsx = docs\01_5_layout_images.fsx
 		docs\02_0_line-scatter-plots.fsx = docs\02_0_line-scatter-plots.fsx
 		docs\02_1_bar-and-column-charts.fsx = docs\02_1_bar-and-column-charts.fsx
 		docs\02_2_area-plots.fsx = docs\02_2_area-plots.fsx
