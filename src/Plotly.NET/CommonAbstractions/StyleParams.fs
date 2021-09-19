@@ -1119,7 +1119,23 @@ module StyleParam =
 // #L#
 //--------------------------
 
+    
+    /// Specifies whether shapes are drawn below or above traces. Default is Above
+    [<RequireQualifiedAccess>]
+    type LayoutImageSizing =
+        | Fill 
+        | Contain 
+        | Stretch
 
+        static member toString = function
+            |  Fill     -> "fill"
+            |  Contain  -> "contain"
+            |  Stretch  -> "stretch"
+
+        static member convert = LayoutImageSizing.toString >> box
+        override this.ToString() = this |> LayoutImageSizing.toString
+        member this.Convert() = this |> LayoutImageSizing.convert
+            
     /// Specifies whether shapes are drawn below or above traces. Default is Above
     [<RequireQualifiedAccess>]
     type Layer =
