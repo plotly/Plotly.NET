@@ -964,7 +964,7 @@ type Trace2DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Y                 : seq<#IConvertible>,
             [<Optional;DefaultParameterValue(null)>] ?Y0                : #IConvertible,
             [<Optional;DefaultParameterValue(null)>] ?DY                : #IConvertible,
-            [<Optional;DefaultParameterValue(null)>] ?Z                 : seq<#seq<#IConvertible>>,
+            [<Optional;DefaultParameterValue(null)>] ?Z                 : #seq<#seq<#seq<int>>>,
             [<Optional;DefaultParameterValue(null)>] ?Source            : string,
             [<Optional;DefaultParameterValue(null)>] ?Text              : seq<#IConvertible>,
             [<Optional;DefaultParameterValue(null)>] ?HoverText         : string,

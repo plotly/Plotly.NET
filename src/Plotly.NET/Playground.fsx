@@ -27,10 +27,10 @@
 #load "Margin.fs"
 #load "Domain.fs"
 #load "Shape.fs"
+#load "Hoverlabel.fs"
 #load "Annotation.fs"
 #load "LayoutGrid.fs"
 #load "Legend.fs"
-#load "Hoverlabel.fs"
 #load "TickFormatStop.fs"
 #load "ColorBar.fs"
 #load "Rangebreak.fs"
@@ -152,6 +152,36 @@ open FSharpAux
 
 open System
 open System.IO
+
+let imagebase64 =
+    System.Convert.ToBase64String(File.ReadAllBytes(@"C:\Users\schne\Pictures\Untitled.jpg"))
+
+Chart.Image(
+    Source=($"data:image/jpg;base64,{imagebase64}")
+)
+|> Chart.show
+
+let colors = [
+    [[0  ;0  ;255]; [255;255;0  ]; [0  ;0  ;255]]
+    [[255;0  ;0  ]; [255;0  ;255]; [255;0  ;255]]
+    [[0  ;255;0  ]; [0  ;255;255]; [255;0  ;0  ]]
+]
+
+Chart.Image(
+    Z=colors
+)
+|> Chart.show
+
+let argbs = [
+    [(0  ,0  ,255); (0  ,255,255); (0  ,0  ,255)] |> List.map (fun (r,g,b) -> ARGB.fromRGB r g b )
+    [(255,0  ,0  ); (255,0  ,255); (0  ,0  ,0  )] |> List.map (fun (r,g,b) -> ARGB.fromRGB r g b )
+    [(0  ,255,0  ); (255,255,0  ); (0  ,0  ,255)] |> List.map (fun (r,g,b) -> ARGB.fromRGB r g b )
+]
+
+Chart.Image(
+    argbs
+)
+|> Chart.show
 
 Chart.ScatterTernary(
     A = [1; 2; 3],
