@@ -58,6 +58,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{7B09CC0A-F
 		docs\02_5_pie-doughnut-charts.fsx = docs\02_5_pie-doughnut-charts.fsx
 		docs\02_6_table.fsx = docs\02_6_table.fsx
 		docs\02_7_heatmaps.fsx = docs\02_7_heatmaps.fsx
+		docs\02_8_Images.fsx = docs\02_8_Images.fsx
 		docs\03_0_3d-scatter-plots.fsx = docs\03_0_3d-scatter-plots.fsx
 		docs\03_1_3d-surface-plots.fsx = docs\03_1_3d-surface-plots.fsx
 		docs\03_2_3d-mesh-plots.fsx = docs\03_2_3d-mesh-plots.fsx
