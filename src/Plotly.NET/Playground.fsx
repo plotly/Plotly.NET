@@ -16,6 +16,7 @@
 
 #I "Layout/ObjectAbstractions/Common"
 
+#load "LayoutImage.fs"
 #load "Button.fs"
 #load "RangeSelector.fs"
 #load "RangeSlider.fs"
@@ -27,10 +28,10 @@
 #load "Margin.fs"
 #load "Domain.fs"
 #load "Shape.fs"
+#load "Hoverlabel.fs"
 #load "Annotation.fs"
 #load "LayoutGrid.fs"
 #load "Legend.fs"
-#load "Hoverlabel.fs"
 #load "TickFormatStop.fs"
 #load "ColorBar.fs"
 #load "Rangebreak.fs"
@@ -152,6 +153,53 @@ open FSharpAux
 
 open System
 open System.IO
+
+Chart.Line([0.; 0.5; 1.; 2.; 2.2], y=[1.23; 2.5; 0.42; 3.; 1.])
+|> Chart.withLayoutImage(
+    LayoutImage.init(
+        Source="https://fsharp.org/img/logo/fsharp.svg",
+        XRef="x",
+        YRef="y",
+        X=0,
+        Y=3,
+        SizeX=2,
+        SizeY=2,
+        Sizing=StyleParam.LayoutImageSizing.Stretch,
+        Opacity=0.5,
+        Layer=StyleParam.Layer.Below
+    )
+)
+|> Chart.show
+
+let imagebase64 =
+    System.Convert.ToBase64String(File.ReadAllBytes(@"C:\Users\schne\Pictures\Untitled.jpg"))
+
+Chart.Image(
+    Source=($"data:image/jpg;base64,{imagebase64}")
+)
+|> Chart.show
+
+let colors = [
+    [[0  ;0  ;255]; [255;255;0  ]; [0  ;0  ;255]]
+    [[255;0  ;0  ]; [255;0  ;255]; [255;0  ;255]]
+    [[0  ;255;0  ]; [0  ;255;255]; [255;0  ;0  ]]
+]
+
+Chart.Image(
+    Z=colors
+)
+|> Chart.show
+
+let argbs = [
+    [(0  ,0  ,255); (0  ,255,255); (0  ,0  ,255)] |> List.map (fun (r,g,b) -> ARGB.fromRGB r g b )
+    [(255,0  ,0  ); (255,0  ,255); (0  ,0  ,0  )] |> List.map (fun (r,g,b) -> ARGB.fromRGB r g b )
+    [(0  ,255,0  ); (255,255,0  ); (0  ,0  ,255)] |> List.map (fun (r,g,b) -> ARGB.fromRGB r g b )
+]
+
+Chart.Image(
+    argbs
+)
+|> Chart.show
 
 Chart.ScatterTernary(
     A = [1; 2; 3],

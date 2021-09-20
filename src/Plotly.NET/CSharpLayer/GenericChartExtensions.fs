@@ -493,12 +493,15 @@ module GenericChartExtensions =
         member this.WithConfig (config:Config) =
             GenericChart.setConfig config this
 
+        [<CompiledName("WithAnnotation")>]
+        [<Extension>]
+        member this.WithAnnotation(annotation:Annotation, [<Optional;DefaultParameterValue(true)>]?Append:bool) =
+            this |> Chart.withAnnotation(annotation, ?Append = Append)
+
         [<CompiledName("WithAnnotations")>]
         [<Extension>]
-        member this.WithAnnotations(annotations:seq<Annotation>) =
-            this
-            |> GenericChart.mapLayout 
-                (Layout.style (Annotations = annotations))
+        member this.WithAnnotations(annotations:Annotation seq, [<Optional;DefaultParameterValue(true)>]?Append:bool) =
+            this |> Chart.withAnnotations(annotations, ?Append = Append)
 
         // Set the title of a Chart
         [<CompiledName("WithTitle")>]
@@ -574,19 +577,13 @@ module GenericChartExtensions =
             //(`x0`,`y0`), (`x1`,`y0`), (`x1`,`y1`), (`x0`,`y1`), (`x0`,`y0`)  
         [<CompiledName("WithShape")>]
         [<Extension>]
-        member this.WithShape(shape:Shape) =
-            let layout = 
-                GenericChart.getLayout this
-                |> Layout.style (Shapes=[shape])
-            GenericChart.setLayout layout this
+        member this.WithShape(shape:Shape, [<Optional;DefaultParameterValue(true)>]?Append:bool) =
+            this |> Chart.withShape(shape, ?Append = Append)
 
         [<CompiledName("WithShapes")>]
         [<Extension>]
-        member this.WithShapes(shapes:Shape seq) =
-            let layout = 
-                GenericChart.getLayout this
-                |> Layout.style (Shapes=shapes)
-            GenericChart.setLayout layout this
+        member this.WithShapes(shapes:Shape seq, [<Optional;DefaultParameterValue(true)>]?Append:bool) =
+            this |> Chart.withShapes(shapes, ?Append = Append)
 
         // ############################################################
         // ####################### Apply to DisplayOptions
@@ -664,3 +661,13 @@ module GenericChartExtensions =
         member this.WithTernary(ternary:Ternary, [<Optional;DefaultParameterValue(null)>] ?Id) =
             this |> Chart.withTernary(ternary,?Id=Id)
 
+    
+        [<CompiledName("WithLayoutImage")>]
+        [<Extension>]
+        member this.WithLayoutImage(image:LayoutImage, [<Optional;DefaultParameterValue(true)>]?Append:bool) =
+            this |> Chart.withLayoutImage(image, ?Append = Append)
+
+        [<CompiledName("WithLayoutImages")>]
+        [<Extension>]
+        member this.WithLayoutImages(images:seq<LayoutImage>, [<Optional;DefaultParameterValue(true)>]?Append:bool) =
+            this |> Chart.withLayoutImages(images, ?Append = Append)

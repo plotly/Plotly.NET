@@ -1436,6 +1436,78 @@ module Chart2D =
             Chart.renderHeatmapTrace useWebGL style
 
 
+        [<Extension>]
+        static member Image
+            (
+                [<Optional;DefaultParameterValue(null)>] ?Z                 : seq<#seq<#seq<int>>>,
+                [<Optional;DefaultParameterValue(null)>] ?Source            : string,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float, 
+                [<Optional;DefaultParameterValue(null)>] ?Ids               : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?X                 : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Y                 : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?ColorModel        : StyleParam.ColorModel,
+                [<Optional;DefaultParameterValue(null)>] ?ZMax              : StyleParam.ColorComponentBound,
+                [<Optional;DefaultParameterValue(null)>] ?ZMin              : StyleParam.ColorComponentBound,
+                [<Optional;DefaultParameterValue(null)>] ?ZSmooth           : StyleParam.SmoothAlg
+            ) =
+
+                Trace2D.initImage (
+                    Trace2DStyle.Image (
+                        ?Z                 = Z         ,
+                        ?Source            = Source    ,
+                        ?Name              = Name      ,
+                        ?ShowLegend        = ShowLegend,
+                        ?Opacity           = Opacity   ,
+                        ?Ids               = Ids       ,
+                        ?X                 = X         ,
+                        ?Y                 = Y         ,
+                        ?ColorModel        = ColorModel,
+                        ?ZMax              = ZMax      ,
+                        ?ZMin              = ZMin      ,
+                        ?ZSmooth           = ZSmooth           
+                    )
+                )
+                |> GenericChart.ofTraceObject
+
+        [<Extension>]
+        static member Image
+            (
+                z                  : seq<#seq<ARGB>>,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float, 
+                [<Optional;DefaultParameterValue(null)>] ?Ids               : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?X                 : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Y                 : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?ZMax              : StyleParam.ColorComponentBound,
+                [<Optional;DefaultParameterValue(null)>] ?ZMin              : StyleParam.ColorComponentBound,
+                [<Optional;DefaultParameterValue(null)>] ?ZSmooth           : StyleParam.SmoothAlg
+            ) =
+                
+                let z' =
+                    z
+                    |> Seq.map (Seq.map (fun argb -> seq{int argb.R; int argb.G; int argb.B; int argb.A;}))
+
+
+                Trace2D.initImage (
+                    Trace2DStyle.Image (
+                        Z                  = z'        ,
+                        ?Name              = Name      ,
+                        ?ShowLegend        = ShowLegend,
+                        ?Opacity           = Opacity   ,
+                        ?Ids               = Ids       ,
+                        ?X                 = X         ,
+                        ?Y                 = Y         ,
+                        ColorModel         = StyleParam.ColorModel.RGBA,
+                        ?ZMax              = ZMax      ,
+                        ?ZMin              = ZMin      ,
+                        ?ZSmooth           = ZSmooth           
+                    )
+                )
+                |> GenericChart.ofTraceObject
+
         /// Shows a graphical representation of data where the individual values contained in a matrix are represented as colors.
         [<Extension>]
         static member Contour(data:seq<#seq<#IConvertible>>,

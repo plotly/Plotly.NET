@@ -76,7 +76,8 @@ type Layout() =
             [<Optional;DefaultParameterValue(null)>] ?ExtendIcicleColors     : bool,
             [<Optional;DefaultParameterValue(null)>] ?IcicleColorWay         : Color,
             [<Optional;DefaultParameterValue(null)>] ?Annotations            : seq<Annotation>,
-            [<Optional;DefaultParameterValue(null)>] ?Shapes                 : seq<Shape>
+            [<Optional;DefaultParameterValue(null)>] ?Shapes                 : seq<Shape>,
+            [<Optional;DefaultParameterValue(null)>] ?Images                 : seq<LayoutImage>
         ) =
             Layout()
             |> Layout.style
@@ -145,7 +146,8 @@ type Layout() =
                    ?ExtendIcicleColors     = ExtendIcicleColors     ,
                    ?IcicleColorWay         = IcicleColorWay         ,
                    ?Annotations            = Annotations            ,
-                   ?Shapes                 = Shapes
+                   ?Shapes                 = Shapes                 ,
+                   ?Images                 = Images
                 )
 
     // Applies the styles to Layout()
@@ -215,7 +217,8 @@ type Layout() =
             [<Optional;DefaultParameterValue(null)>] ?ExtendIcicleColors     : bool,
             [<Optional;DefaultParameterValue(null)>] ?IcicleColorWay         : Color,
             [<Optional;DefaultParameterValue(null)>] ?Annotations            : seq<Annotation>,
-            [<Optional;DefaultParameterValue(null)>] ?Shapes                 : seq<Shape>
+            [<Optional;DefaultParameterValue(null)>] ?Shapes                 : seq<Shape>,
+            [<Optional;DefaultParameterValue(null)>] ?Images                 : seq<LayoutImage>
         ) =
             (fun (layout:Layout) -> 
                 
@@ -284,6 +287,7 @@ type Layout() =
                 IcicleColorWay         |> DynObj.setValueOpt layout "iciclecolorway"
                 Annotations            |> DynObj.setValueOpt layout "annotations"
                 Shapes                 |> DynObj.setValueOpt layout "shapes"
+                Images                 |> DynObj.setValueOpt layout "images"
 
                 layout
             )

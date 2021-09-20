@@ -2,7 +2,7 @@
 ---
 title: Ternary line and scatter plots
 category: Ternary Plots
-categoryindex: 10
+categoryindex: 11
 index: 1
 ---
 *)
