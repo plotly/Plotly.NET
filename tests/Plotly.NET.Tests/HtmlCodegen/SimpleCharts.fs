@@ -555,11 +555,6 @@ let logoImageChart =
         Source=($"data:image/jpg;base64,{base64String}")
     )
     |> Chart.withTitle "This is Plotly.NET:"
-    
-imageRawChart       |> Chart.show
-imageRawHSLChart    |> Chart.show
-imageARGBChart      |> Chart.show
-logoImageChart      |> Chart.show
 
 [<Tests>]
 let ``Image charts`` =
