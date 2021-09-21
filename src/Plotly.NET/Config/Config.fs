@@ -380,7 +380,16 @@ type Config() =
 
         ) =
             fun (config:Config) ->
-                EditableAnnotations
+                let edits = EditableAnnotations |> (Option.map 
+                                (fun edits ->
+
+                                let addEditToIdo (ido : ImmutableDynamicObj) edit =
+                                    ido
+                                    ++ (StyleParam.AnnotationEditOptions.toString edit, true)
+
+                                Seq.fold addEditToIdo (ImmutableDynamicObj()) edits))
+
+                config
                 ++? ("staticPlot", StaticPlot              ) 
                 ++? ("autosizable", Autosizable             ) 
                 ++? ("responsive", Responsive              )
@@ -388,16 +397,4 @@ type Config() =
                 ++? ("showEditInChartStudio", ShowEditInChartStudio   )
                 ++? ("editable", Editable                )
                 ++?? ("modeBarButtonsToAdd", ModeBarButtonsToAdd     , (fun x -> x |> Seq.map StyleParam.ModeBarButton.convert))
-                |> Option.map 
-                    (fun edits ->
-                        let ed = ImmutableDynamicObj()
-                        edits 
-                        |> Seq.iter 
-                            (fun edit -> 
-                                let fieldName = StyleParam.AnnotationEditOptions.toString edit
-                                ed?(fieldName) <- true
-                            )
-                        ed
-
-                config
-                    ++? ("edits", ))
+                ++? ("edits", edits)

@@ -219,7 +219,7 @@ type Layout() =
             [<Optional;DefaultParameterValue(null)>] ?Shapes                 : seq<Shape>
         ) =
             (fun (layout:Layout) -> 
-                
+                layout
                 ++? ("title", Title                  )
                 ++? ("showlegend", ShowLegend             )
                 ++? ("legend", Legend                 )
@@ -276,8 +276,6 @@ type Layout() =
                 ++? ("funnelgroupgap", FunnelGroupGap         )
                 ++?? ("funnelmode", FunnelMode             , StyleParam.FunnelMode.convert)
                 +? ("extendfunnelareacolors", ExtendFunnelAreaColors)
-
-                layout
                 ++? ("funnelareacolorway", FunnelAreaColorWay     )
                 ++? ("extendsunburstcolors", ExtendSunBurstColors   )
                 ++? ("sunburstcolorway", SunBurstColorWay       )

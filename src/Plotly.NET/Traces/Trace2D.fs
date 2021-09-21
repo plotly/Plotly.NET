@@ -44,6 +44,7 @@ type Trace2D(traceTypeName) =
 
     inherit Trace (traceTypeName)
 
+
     ///initializes a trace of type "scatter" applying the given trace styling function
     static member initScatter (applyStyle: Trace2D -> Trace2D) = 
         Trace2D("scatter") |> applyStyle
@@ -761,7 +762,7 @@ type Trace2DStyle() =
                 ++? ("ysrc", Ysrc           )  
 
                 ++?? ("orientation", Orientation    , StyleParam.Orientation.convert)
-                ++?? ("connectgaps", //Connectgaps    , StyleParam.Orientation.convert)
+                // ++?? ("connectgaps", Connectgaps    , StyleParam.Orientation.convert)
                 ++?? ("histfunc", HistFunc       , StyleParam.HistFunc.convert)
                 ++?? ("histnorm", HistNorm       , StyleParam.HistNorm.convert)
                 ++? ("autobinx", Autobinx       )
@@ -835,6 +836,7 @@ type Trace2DStyle() =
             (fun (histogram2dContour:('T :> Trace)) ->
                 //Connectgaps    |> DynObj.setValueOptBy histogram2dContour< "connectgaps" StyleParam.Orientation.convert
 
+                histogram2dContour
                 ++? ("z", Z              )         
                 ++? ("x", X              )               
                 ++? ("y", Y              )
@@ -877,9 +879,7 @@ type Trace2DStyle() =
                 ++? ("showscale", Showscale      )     
                 ++?? ("zsmooth", zSmooth        , StyleParam.SmoothAlg.convert   )
                 ++? ("colorbar", ColorBar       )                  
-                    
-                // out ->
-                histogram2dContour
+
                 ++? ("marker", Marker       )
             ) 
 

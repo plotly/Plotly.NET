@@ -60,6 +60,7 @@ type FontSelectionStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Color:     Color
         ) =
             (fun (fontSelectionStyle:FontSelectionStyle) -> 
+                fontSelectionStyle
                 ++? ("color", Color ) 
             )
 

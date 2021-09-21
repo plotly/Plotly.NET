@@ -182,22 +182,20 @@ type Geo() =
         ) =
             (fun (geo:Geo) -> 
                 
-                Center
+                let center = Center |> Option.map (fun (lon,lat) -> 
+                    ImmutableDynamicObj()
+                    ++ ("lon", lon)
+                    ++ ("lat", lat)
+                    )
+
+                geo
                 
                 ++? ("domain", Domain         )
                 ++?? ("fitbounds", FitBounds      , StyleParam.GeoFitBounds.convert)
-                ++?? ("resolution", Resolution)
+                ++?? ("resolution", Resolution, StyleParam.GeoResolution.convert)
                 ++?? ("scope", Scope          , StyleParam.GeoScope.convert)
                 ++? ("projection", Projection     )         
-                |> Option.map (fun (lon,lat) -> 
-                    let t = ImmutableDynamicObj()
-                    t?lon <- lon
-                    t?lat <- lat
-                    t
-
-                geo
-                ++? ("center", ))
-
+                ++? ("center", center)
                 ++? ("visible", Visible         )
                 ++? ("showcoastline", ShowCoastLines  )
                 ++? ("coastlinecolor", CoastLineColor  )

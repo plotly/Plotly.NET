@@ -58,9 +58,9 @@ type Chart =
                 ZeroLine        = false
             )
         
-        let trace = Trace2D.initScatter(id)
-        trace.Remove("type") |> ignore
-        GenericChart.ofTraceObject trace
+        Trace2D.initScatter(id)
+        -- "type"
+        |> GenericChart.ofTraceObject
         |> GenericChart.mapLayout ( fun l ->
             l
             |> Layout.AddLinearAxis(StyleParam.SubPlotId.XAxis 1,hiddenAxis())

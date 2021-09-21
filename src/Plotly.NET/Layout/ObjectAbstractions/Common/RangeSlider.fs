@@ -68,20 +68,17 @@ type RangeSlider () =
         ) = 
             fun (rangeslider : RangeSlider) ->
 
-                let
+                let yAxis = 
+                    ImmutableDynamicObj()
+                    ++? ("rangemode", YAxisRangeMode)
+                    ++? ("range", YAxisRange)
+
+                rangeslider
                 ++? ("bgcolor", BgColor        )
                 ++? ("BorderColor", BorderColor    )
                 ++? ("BorderWidth", BorderWidth    )
                 ++? ("AutoRange", AutoRange      )
                 ++? ("range", Range          )
                 ++? ("thickness", Thickness      )
-                ++? ("visible", Visible        ) yAxis = 
-                    let tmp = ImmutableDynamicObj() 
-                    tmp
-                    ++? ("rangemode", YAxisRangeMode  ) 
-                    ++? ("range", YAxisRange      )
-
-
-                rangeslider
-
+                ++? ("visible", Visible        ) 
                 ++ ("yaxis", yAxis )

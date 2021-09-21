@@ -53,19 +53,19 @@ type Mapbox() =
         ) =
             (fun (mapBox:Mapbox) -> 
 
-                Center
+                let center = Center |> Option.map (fun (lon,lat) -> 
+                    ImmutableDynamicObj()
+                    ++ ("lon", lon)
+                    ++ ("lat", lat)
+                    )
+
+                mapBox
                 
                 ++? ("domain", Domain          )
                 ++? ("accesstoken", AccessToken     )
                 ++?? ("style", Style           , StyleParam.MapboxStyle.convert)         
-                |> Option.map (fun (lon,lat) -> 
-                    let t = ImmutableDynamicObj()
-                    t?lon <- lon
-                    t?lat <- lat
-                    t
 
-                mapBox
-                ++? ("center", ))
+                ++? ("center", center)
 
                 ++? ("zoom", Zoom            )
                 ++? ("bearing", Bearing         )

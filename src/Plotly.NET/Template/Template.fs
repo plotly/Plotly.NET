@@ -35,14 +35,12 @@ type Template() =
                 )
             
     static member mapLayoutTemplate (styleF: Layout -> Layout) (template:Template) =
-        template.TryGetTypedValue<Layout>("layout")
         template
-        ++? ("layout", |> Option.map (styleF))
+        ++? ("layout", template.TryGetTypedValue<Layout>("layout") |> Option.map (styleF))
 
     static member mapTraceTemplates (styleF: #Trace [] -> #Trace []) (template:Template) =
-        template.TryGetTypedValue<#Trace []>("data")
         template
-        ++? ("data", |> Option.map (styleF))
+        ++? ("data", template.TryGetTypedValue<#Trace []>("data") |> Option.map (styleF))
 
     static member withColorWay (colorway:Color) (template:Template) =
         template
@@ -146,13 +144,9 @@ module ChartTemplates =
     let darkMirrored =
         dark
         |> Template.mapLayoutTemplate (fun l ->
-            l.TryGetTypedValue<LinearAxis>("xaxis")
-
             l
-            ++? ("xaxis", |> Option.map (LinearAxis.style (Mirror=StyleParam.Mirror.AllTicks))).TryGetTypedValue<LinearAxis>("yaxis")
-
-            l
-            ++? ("yaxis", |> Option.map (LinearAxis.style (Mirror=StyleParam.Mirror.AllTicks)))
+            ++? ("xaxis", l.TryGetTypedValue<LinearAxis>("xaxis") |> Option.map (LinearAxis.style (Mirror=StyleParam.Mirror.AllTicks)))
+            ++? ("yaxis", l.TryGetTypedValue<LinearAxis>("xaxis") |> Option.map (LinearAxis.style (Mirror=StyleParam.Mirror.AllTicks)))
         )
 
     let fslab = 
