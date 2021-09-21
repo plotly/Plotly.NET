@@ -880,7 +880,7 @@ module Chart2D =
                     )
                 )
                 |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
-                |> TraceStyle.Marker(?Color=Color,?Line=Line)
+                |> TraceStyle.Marker(?Color=Color,?Outline=Line)
                 |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
                 |> GenericChart.ofTraceObject
 

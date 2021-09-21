@@ -134,28 +134,31 @@ type TraceStyle() =
     /// Sets the given Marker styles on the marker property of a Trace object
     static member Marker
         (   
-            [<Optional;DefaultParameterValue(null)>] ?Size: int,
-            [<Optional;DefaultParameterValue(null)>] ?Opacity: float,
-            [<Optional;DefaultParameterValue(null)>] ?Color: Color,
-            [<Optional;DefaultParameterValue(null)>] ?Symbol: StyleParam.Symbol,
-            [<Optional;DefaultParameterValue(null)>] ?MultiSizes: seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?Line: Line,
-            [<Optional;DefaultParameterValue(null)>] ?ColorBar: ColorBar,
-            [<Optional;DefaultParameterValue(null)>] ?Colorscale : StyleParam.Colorscale,
-            [<Optional;DefaultParameterValue(null)>] ?Colors: seq<Color>,
-            [<Optional;DefaultParameterValue(null)>] ?OutlierColor:Color,
-            [<Optional;DefaultParameterValue(null)>] ?Maxdisplayed: int,
-            [<Optional;DefaultParameterValue(null)>] ?Sizeref: float,
-            [<Optional;DefaultParameterValue(null)>] ?Sizemin: float,
-            [<Optional;DefaultParameterValue(null)>] ?Sizemode: StyleParam.MarkerSizeMode,
-            [<Optional;DefaultParameterValue(null)>] ?Cauto: bool,
-            [<Optional;DefaultParameterValue(null)>] ?Cmax: float,
-            [<Optional;DefaultParameterValue(null)>] ?Cmin: float,
-            [<Optional;DefaultParameterValue(null)>] ?Cmid: float,
-            [<Optional;DefaultParameterValue(null)>] ?Autocolorscale: bool,
-            [<Optional;DefaultParameterValue(null)>] ?Reversescale: bool,
-            [<Optional;DefaultParameterValue(null)>] ?Showscale: bool
-
+            [<Optional;DefaultParameterValue(null)>] ?AutoColorScale    : bool,
+            [<Optional;DefaultParameterValue(null)>] ?CAuto             : bool,
+            [<Optional;DefaultParameterValue(null)>] ?CMax              : float,
+            [<Optional;DefaultParameterValue(null)>] ?CMid              : float,
+            [<Optional;DefaultParameterValue(null)>] ?CMin              : float,
+            [<Optional;DefaultParameterValue(null)>] ?Color             : Color,
+            [<Optional;DefaultParameterValue(null)>] ?Colors            : seq<Color>,
+            [<Optional;DefaultParameterValue(null)>] ?ColorAxis         : StyleParam.SubPlotId,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar          : ColorBar,
+            [<Optional;DefaultParameterValue(null)>] ?Colorscale        : StyleParam.Colorscale,
+            [<Optional;DefaultParameterValue(null)>] ?Gradient          : Gradient,
+            [<Optional;DefaultParameterValue(null)>] ?Outline           : Line,
+            [<Optional;DefaultParameterValue(null)>] ?Size              : int,
+            [<Optional;DefaultParameterValue(null)>] ?MultiSizes        : seq<int>,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+            [<Optional;DefaultParameterValue(null)>] ?MultiOpacities    : seq<float>,
+            [<Optional;DefaultParameterValue(null)>] ?Symbol            : StyleParam.MarkerSymbol,
+            [<Optional;DefaultParameterValue(null)>] ?MultiSymbols      : seq<StyleParam.MarkerSymbol>,
+            [<Optional;DefaultParameterValue(null)>] ?OutlierColor      : Color,
+            [<Optional;DefaultParameterValue(null)>] ?Maxdisplayed      : int,
+            [<Optional;DefaultParameterValue(null)>] ?ReverseScale      : bool,
+            [<Optional;DefaultParameterValue(null)>] ?ShowScale         : bool,
+            [<Optional;DefaultParameterValue(null)>] ?SizeMin           : int,
+            [<Optional;DefaultParameterValue(null)>] ?SizeMode          : StyleParam.MarkerSizeMode,
+            [<Optional;DefaultParameterValue(null)>] ?SizeRef           : int
         ) =
             (fun (trace:('T :> Trace)) ->
                 let marker =
@@ -163,13 +166,33 @@ type TraceStyle() =
                     | Some m -> m :?> Marker
                     | None -> Marker ()
                     
-                    |> Marker.style(?Size=Size,?Color=Color,?Colors=Colors,?Symbol=Symbol,
-                        ?Opacity=Opacity,?MultiSizes=MultiSizes,?Line=Line,
-                        ?ColorBar=ColorBar,?Colorscale=Colorscale,?OutlierColor=OutlierColor,
-                        ?Maxdisplayed=Maxdisplayed,?Sizeref=Sizeref,?Sizemin=Sizemin,
-                        ?Sizemode=Sizemode,?Cauto=Cauto,?Cmax=Cmax,?Cmin=Cmin,?Cmid=Cmid,
-                        ?Autocolorscale=Autocolorscale,?Reversescale=Reversescale,?Showscale=Showscale
-                        )
+                    |> Marker.style(
+                        ?AutoColorScale    = AutoColorScale,
+                        ?CAuto             = CAuto         ,
+                        ?CMax              = CMax          ,
+                        ?CMid              = CMid          ,
+                        ?CMin              = CMin          ,
+                        ?Color             = Color         ,
+                        ?Colors            = Colors        ,
+                        ?ColorAxis         = ColorAxis     ,
+                        ?ColorBar          = ColorBar      ,
+                        ?Colorscale        = Colorscale    ,
+                        ?Gradient          = Gradient      ,
+                        ?Outline           = Outline       ,
+                        ?Size              = Size          ,
+                        ?MultiSizes        = MultiSizes    ,
+                        ?Opacity           = Opacity       ,
+                        ?MultiOpacities    = MultiOpacities,
+                        ?Symbol            = Symbol        ,
+                        ?MultiSymbols      = MultiSymbols  ,
+                        ?OutlierColor      = OutlierColor  ,
+                        ?Maxdisplayed      = Maxdisplayed  ,
+                        ?ReverseScale      = ReverseScale  ,
+                        ?ShowScale         = ShowScale     ,
+                        ?SizeMin           = SizeMin       ,
+                        ?SizeMode          = SizeMode      ,
+                        ?SizeRef           = SizeRef           
+                    )
 
                 trace.SetValue("marker", marker)
                 trace                   

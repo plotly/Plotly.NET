@@ -16,7 +16,7 @@ let withLineStyleChart =
         x,y,
         Name="line",
         ShowMarkers=true,
-        MarkerSymbol=StyleParam.Symbol.Square)    
+        MarkerSymbol=StyleParam.MarkerSymbol.Square)    
     |> Chart.withLineStyle(Width=2.,Dash=StyleParam.DrawingStyle.Dot)
 
 
