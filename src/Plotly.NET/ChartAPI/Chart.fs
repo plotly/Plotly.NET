@@ -1011,9 +1011,11 @@ type Chart =
                     |> GenericChart.mapLayout (fun l ->
                         if i > 0 then 
                             // remove default axes from consecutive charts, otherwise they will override the first one
-                            l.Remove("xaxis") |> ignore
-                            l.Remove("yaxis") |> ignore
-                        l
+                            l
+                            -- "xaxis"
+                            -- "yaxis"
+                        else
+                            l
                     )
                 )
                 |> Chart.combine
@@ -1218,8 +1220,8 @@ type Chart =
                     ch
                     |> mapTrace 
                         (fun t -> 
-                            t?scene <- (StyleParam.SubPlotId.toString sceneId)
                             t
+                            ++ ("scene", StyleParam.SubPlotId.toString sceneId)
                         )
                     |> GenericChart.setLayout layout
                     //|> Chart.withAxisAnchor(X=index,Y=index) 
@@ -1229,26 +1231,23 @@ type Chart =
                         let layout = GenericChart.getLayout ch
                         let xName, yName = StyleParam.LinearAxisId.X 1 |> StyleParam.LinearAxisId.toString, StyleParam.LinearAxisId.Y 1 |> StyleParam.LinearAxisId.toString
                         match (layout.TryGetTypedValue<LinearAxis> xName),(layout.TryGetTypedValue<LinearAxis> yName) with
-                        | Some x, Some y ->
-                            // remove axis
-                            DynObj.remove layout xName
-                            DynObj.remove layout yName
-
+                        | Some x, Some y ->                            
                             x |> LinearAxis.style(Anchor=StyleParam.LinearAxisId.Y index,Domain=StyleParam.Range.MinMax xdomain),
                             y |> LinearAxis.style(Anchor=StyleParam.LinearAxisId.X index,Domain=StyleParam.Range.MinMax ydomain),
+                            // remove axis
                             layout
+                            -- xName
+                            -- yName
                         | Some x, None -> 
-                            // remove x - axis
-                            DynObj.remove layout xName
                             x |> LinearAxis.style(Anchor=StyleParam.LinearAxisId.Y index,Domain=StyleParam.Range.MinMax xdomain),
                             LinearAxis.init(Anchor=StyleParam.LinearAxisId.X index,Domain=StyleParam.Range.MinMax ydomain),
-                            layout
+                            // remove x - axis
+                            layout -- xName
                         | None, Some y -> 
-                            // remove y - axis
-                            DynObj.remove layout yName
                             LinearAxis.init(Anchor=StyleParam.LinearAxisId.Y index,Domain=StyleParam.Range.MinMax xdomain),
                             y |> LinearAxis.style(Anchor=StyleParam.LinearAxisId.X index,Domain=StyleParam.Range.MinMax ydomain),
-                            layout
+                            // remove y - axis
+                            layout -- yName
                         | None, None ->
                             LinearAxis.init(Anchor=StyleParam.LinearAxisId.Y index,Domain=StyleParam.Range.MinMax xdomain),
                             LinearAxis.init(Anchor=StyleParam.LinearAxisId.X index,Domain=StyleParam.Range.MinMax ydomain),

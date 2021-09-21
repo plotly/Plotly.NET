@@ -275,7 +275,7 @@ type Layout() =
                 ++? ("funnelgap", FunnelGap              )
                 ++? ("funnelgroupgap", FunnelGroupGap         )
                 ++?? ("funnelmode", FunnelMode             , StyleParam.FunnelMode.convert)
-                +? ("extendfunnelareacolors", ExtendFunnelAreaColors)
+                ++? ("extendfunnelareacolors", ExtendFunnelAreaColors)
                 ++? ("funnelareacolorway", FunnelAreaColorWay     )
                 ++? ("extendsunburstcolors", ExtendSunBurstColors   )
                 ++? ("sunburstcolorway", SunBurstColorWay       )

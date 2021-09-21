@@ -30,6 +30,7 @@ open System.Runtime.InteropServices
 type TraceMapbox(traceTypeName) =
 
     inherit Trace (traceTypeName)
+    new() = TraceMapbox(null)
 
     ///initializes a trace of type "scattermapbox" applying the given trace styling function
     static member initScatterMapbox (applyStyle: TraceMapbox -> TraceMapbox) = 

@@ -21,6 +21,7 @@ open System.Runtime.InteropServices
 
 type Trace3D (traceTypeName) =
     inherit Trace (traceTypeName)
+    new() = Trace3D(null)
 
     ///initializes a trace of type "scatter3d" applying the givin trace styling function
     static member initScatter3d (applyStyle:Trace3D -> Trace3D) = 
