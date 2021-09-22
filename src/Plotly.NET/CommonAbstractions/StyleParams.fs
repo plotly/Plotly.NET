@@ -1602,6 +1602,46 @@ module StyleParam =
 // #P#
 //--------------------------
 
+    
+    [<RequireQualifiedAccess>]
+    type PatternFillMode =
+        | Replace | Overlay 
+    
+        static member toString = function
+            | Replace   -> "replace"
+            | Overlay   -> "overlay"
+
+        static member convert = PatternFillMode.toString >> box    
+        override this.ToString() = this |> PatternFillMode.toString
+        member this.Convert() = this |> PatternFillMode.convert
+        
+    
+    [<RequireQualifiedAccess>]
+    type PatternShape =
+        | None 
+        | DiagonalDescending 
+        | DiagonalAscending
+        | DiagonalChecked
+        | HorizontalLines
+        | VerticalLines
+        | Checked
+        | Dots
+    
+        static member toString = function
+            | None                  -> "" 
+            | DiagonalDescending    -> "/" 
+            | DiagonalAscending     -> """\"""
+            | DiagonalChecked       -> "x" 
+            | HorizontalLines       -> "-" 
+            | VerticalLines         -> "|" 
+            | Checked               -> "+" 
+            | Dots                  -> "."
+
+        static member convert = PatternShape.toString >> box    
+        override this.ToString() = this |> PatternShape.toString
+        member this.Convert() = this |> PatternShape.convert
+        
+
     [<RequireQualifiedAccess>]
     type PeriodAlignment =
         | Start | Middle | End

@@ -78,19 +78,19 @@ let ``Line and scatter plots`` =
 let columnChart =
     let values = [20; 14; 23;]
     let keys   = ["Product A"; "Product B"; "Product C";]
-    Chart.Column(keys, values)
+    Chart.Column(keys = keys, values = values)
 
 let barChart =
     let values = [20; 14; 23;]
     let keys   = ["Product A"; "Product B"; "Product C";]
-    Chart.Bar(keys, values)
+    Chart.Bar(keys = keys, values = values)
 
 let stackedBarChart =
     let values = [20; 14; 23;]
     let keys   = ["Product A"; "Product B"; "Product C";]
     [
-        Chart.StackedBar(keys,values,Name="old");
-        Chart.StackedBar(keys,[8; 21; 13;],Name="new")
+        Chart.StackedBar(keys = keys, values = values,Name="old");
+        Chart.StackedBar(keys = keys, values = [8; 21; 13;],Name="new")
     ]
     |> Chart.combine
 

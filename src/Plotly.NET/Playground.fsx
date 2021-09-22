@@ -69,6 +69,7 @@
 #I "Traces/ObjectAbstractions"
 
 #load "Gradient.fs"
+#load "Pattern.fs"
 #load "Marker.fs"
 #load "Projection.fs"
 #load "Surface.fs"
@@ -165,8 +166,8 @@ let crazyMarker =
             StyleParam.MarkerSymbol.Modified(StyleParam.MarkerSymbol.Square, StyleParam.SymbolStyle.Open)
             StyleParam.MarkerSymbol.Modified(StyleParam.MarkerSymbol.Hexagon2, StyleParam.SymbolStyle.Dot)
         ],
-        MultiSizes = [50;60;100;70],
-        MultiOpacities = [0.3; 0.6; 0.9; 1.],
+        MultiSize = [50;60;100;70],
+        MultiOpacity = [0.3; 0.6; 0.9; 1.],
         Color = Color.fromColorScaleValues [0.; 0.5; 1.; 0.8],
         Colorscale = StyleParam.Colorscale.Viridis,
         ShowScale = true
@@ -175,6 +176,44 @@ let crazyMarker =
 Chart.Point [1,1; 2,2; 3,3; 4,4]
 |> Chart.withMarker crazyMarker
 |> Chart.show
+
+
+let labels, values = 
+    [
+        "A", 1
+        "B", 3
+        "C", 2
+        "D", 4
+        "E", 6
+        "F", 5
+        "G", 7
+        "H", 8
+    ]
+    |> List.unzip
+
+Chart.Bar(
+    keys = labels, 
+    values = values,
+    Color = Color.fromColorScaleValues values
+)
+|> Chart.withMarkerStyle(
+    Colorscale = StyleParam.Colorscale.Viridis,
+    ShowScale = true,
+    Pattern = Pattern.init(
+        MultiShapes = [
+            StyleParam.PatternShape.None 
+            StyleParam.PatternShape.DiagonalDescending
+            StyleParam.PatternShape.DiagonalAscending
+            StyleParam.PatternShape.DiagonalChecked
+            StyleParam.PatternShape.HorizontalLines
+            StyleParam.PatternShape.VerticalLines
+            StyleParam.PatternShape.Checked
+            StyleParam.PatternShape.Dots
+        ]
+    )
+)
+|> Chart.show
+
 
 
 Chart.Line([0.; 0.5; 1.; 2.; 2.2], y=[1.23; 2.5; 0.42; 3.; 1.])

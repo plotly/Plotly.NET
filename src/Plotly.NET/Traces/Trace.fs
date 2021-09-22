@@ -13,6 +13,9 @@ type Trace (traceTypeName) =
         // Implictit ITrace
     member val ``type`` = traceTypeName with get,set
 
+    static member tryGetTypedMember<'T> (propName:string) (trace: Trace) =
+        trace.TryGetTypedValue<'T>(propName)
+
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 /// Functions provide the styling of the Chart objects
 /// These functions are used internally to style traces of Chart objects. Users are usually pointed
@@ -130,7 +133,6 @@ type TraceStyle() =
                 trace
             )
 
-
     /// Sets the given Marker styles on the marker property of a Trace object
     static member Marker
         (   
@@ -147,9 +149,10 @@ type TraceStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Gradient          : Gradient,
             [<Optional;DefaultParameterValue(null)>] ?Outline           : Line,
             [<Optional;DefaultParameterValue(null)>] ?Size              : int,
-            [<Optional;DefaultParameterValue(null)>] ?MultiSizes        : seq<int>,
+            [<Optional;DefaultParameterValue(null)>] ?MultiSize         : seq<int>,
             [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
-            [<Optional;DefaultParameterValue(null)>] ?MultiOpacities    : seq<float>,
+            [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
+            [<Optional;DefaultParameterValue(null)>] ?Pattern           : Pattern,
             [<Optional;DefaultParameterValue(null)>] ?Symbol            : StyleParam.MarkerSymbol,
             [<Optional;DefaultParameterValue(null)>] ?MultiSymbols      : seq<StyleParam.MarkerSymbol>,
             [<Optional;DefaultParameterValue(null)>] ?OutlierColor      : Color,
@@ -162,10 +165,9 @@ type TraceStyle() =
         ) =
             (fun (trace:('T :> Trace)) ->
                 let marker =
-                    match (trace.TryGetValue "marker") with
-                    | Some m -> m :?> Marker
-                    | None -> Marker ()
-                    
+                    trace
+                    |> Trace.tryGetTypedMember<Marker> "marker"
+                    |> Option.defaultValue (Marker.init())
                     |> Marker.style(
                         ?AutoColorScale    = AutoColorScale,
                         ?CAuto             = CAuto         ,
@@ -180,9 +182,10 @@ type TraceStyle() =
                         ?Gradient          = Gradient      ,
                         ?Outline           = Outline       ,
                         ?Size              = Size          ,
-                        ?MultiSizes        = MultiSizes    ,
+                        ?MultiSize         = MultiSize     ,
                         ?Opacity           = Opacity       ,
-                        ?MultiOpacities    = MultiOpacities,
+                        ?MultiOpacity      = MultiOpacity  ,
+                        ?Pattern           = Pattern       ,
                         ?Symbol            = Symbol        ,
                         ?MultiSymbols      = MultiSymbols  ,
                         ?OutlierColor      = OutlierColor  ,
@@ -191,7 +194,7 @@ type TraceStyle() =
                         ?ShowScale         = ShowScale     ,
                         ?SizeMin           = SizeMin       ,
                         ?SizeMode          = SizeMode      ,
-                        ?SizeRef           = SizeRef           
+                        ?SizeRef           = SizeRef       
                     )
 
                 trace.SetValue("marker", marker)

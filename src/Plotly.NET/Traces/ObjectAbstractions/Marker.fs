@@ -26,9 +26,10 @@ type Marker () =
             [<Optional;DefaultParameterValue(null)>] ?Gradient          : Gradient,
             [<Optional;DefaultParameterValue(null)>] ?Outline           : Line,
             [<Optional;DefaultParameterValue(null)>] ?Size              : int,
-            [<Optional;DefaultParameterValue(null)>] ?MultiSizes        : seq<int>,
+            [<Optional;DefaultParameterValue(null)>] ?MultiSize         : seq<int>,
             [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
-            [<Optional;DefaultParameterValue(null)>] ?MultiOpacities    : seq<float>,
+            [<Optional;DefaultParameterValue(null)>] ?Pattern           : Pattern,
+            [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
             [<Optional;DefaultParameterValue(null)>] ?Symbol            : StyleParam.MarkerSymbol,
             [<Optional;DefaultParameterValue(null)>] ?MultiSymbols      : seq<StyleParam.MarkerSymbol>,
             [<Optional;DefaultParameterValue(null)>] ?OutlierColor      : Color,
@@ -56,9 +57,10 @@ type Marker () =
                 ?Gradient       = Gradient      ,
                 ?Outline        = Outline       ,
                 ?Size           = Size          ,
-                ?MultiSizes     = MultiSizes    ,
+                ?MultiSize      = MultiSize     ,
                 ?Opacity        = Opacity       ,
-                ?MultiOpacities = MultiOpacities,
+                ?Pattern        = Pattern       ,
+                ?MultiOpacity   = MultiOpacity  ,
                 ?Symbol         = Symbol        ,
                 ?MultiSymbols   = MultiSymbols  ,
                 ?OutlierColor   = OutlierColor  ,
@@ -86,9 +88,10 @@ type Marker () =
             [<Optional;DefaultParameterValue(null)>] ?Gradient          : Gradient,
             [<Optional;DefaultParameterValue(null)>] ?Outline           : Line,
             [<Optional;DefaultParameterValue(null)>] ?Size              : int,
-            [<Optional;DefaultParameterValue(null)>] ?MultiSizes        : seq<int>,
+            [<Optional;DefaultParameterValue(null)>] ?MultiSize         : seq<int>,
             [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
-            [<Optional;DefaultParameterValue(null)>] ?MultiOpacities    : seq<float>,
+            [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
+            [<Optional;DefaultParameterValue(null)>] ?Pattern           : Pattern,
             [<Optional;DefaultParameterValue(null)>] ?Symbol            : StyleParam.MarkerSymbol,
             [<Optional;DefaultParameterValue(null)>] ?MultiSymbols      : seq<StyleParam.MarkerSymbol>,
             [<Optional;DefaultParameterValue(null)>] ?OutlierColor      : Color,
@@ -113,8 +116,9 @@ type Marker () =
                 Colorscale                  |> DynObj.setValueOptBy marker "colorscale" StyleParam.Colorscale.convert
                 Gradient                    |> DynObj.setValueOpt marker "gradient"
                 Outline                     |> DynObj.setValueOpt marker "line"
-                (Size, MultiSizes)          |> DynObj.setSingleOrMultiOpt marker "size"
-                (Opacity, MultiOpacities)   |> DynObj.setSingleOrMultiOpt marker "opacity"
+                (Size, MultiSize)           |> DynObj.setSingleOrMultiOpt marker "size"
+                (Opacity, MultiOpacity)     |> DynObj.setSingleOrMultiOpt marker "opacity"
+                Pattern                     |> DynObj.setValueOpt marker "pattern"
                 (Symbol, MultiSymbols)      |> DynObj.setSingleOrMultiOptBy marker "symbol" StyleParam.MarkerSymbol.convert
                 OutlierColor                |> DynObj.setValueOpt marker "outliercolor"
                 Maxdisplayed                |> DynObj.setValueOpt marker "maxdisplayed"
