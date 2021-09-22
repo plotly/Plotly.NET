@@ -192,8 +192,7 @@ let labels, values =
     |> List.unzip
 
 Chart.Bar(
-    keys = labels, 
-    values = values,
+    values,
     Color = Color.fromColorScaleValues values
 )
 |> Chart.withMarkerStyle(

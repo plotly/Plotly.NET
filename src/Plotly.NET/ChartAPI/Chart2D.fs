@@ -1064,8 +1064,8 @@ module Chart2D =
         [<Extension>]
         static member Bar
             (
-                [<Optional;DefaultParameterValue(null)>] ?X                 : seq<#IConvertible>, 
-                [<Optional;DefaultParameterValue(null)>] ?Y                 : seq<#IConvertible>,
+                values: seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Keys              : seq<#IConvertible>, 
                 [<Optional;DefaultParameterValue(null)>] ?Name              : string         ,
                 [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
                 [<Optional;DefaultParameterValue(null)>] ?Color             : Color             ,
@@ -1095,8 +1095,8 @@ module Chart2D =
 
                 Trace2D.initBar (
                     Trace2DStyle.Bar(
-                        ?X                  = X,
-                        ?Y                  = Y,
+                        X                   = values,
+                        ?Y                  = Keys,
                         Orientation         = StyleParam.Orientation.Horizontal,
                         ?Name               = Name              ,
                         ?ShowLegend         = ShowLegend        ,
@@ -1113,47 +1113,6 @@ module Chart2D =
                     )
                 )
                 |> GenericChart.ofTraceObject  
-
-        [<Extension>]
-        static member Bar
-            (
-                keys: seq<#IConvertible>, 
-                values: seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?Name              : string         ,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
-                [<Optional;DefaultParameterValue(null)>] ?Color             : Color             ,
-                [<Optional;DefaultParameterValue(null)>] ?Pattern           : Pattern,
-                [<Optional;DefaultParameterValue(null)>] ?Base              : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?Width             : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?MultiWidth        : seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
-                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
-                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker
-            ) = 
-                Chart.Bar (
-                    X                   = values           ,
-                    Y                   = keys             ,
-                    ?Name               = Name             ,
-                    ?ShowLegend         = ShowLegend       ,
-                    ?Color              = Color            ,
-                    ?Pattern            = Pattern          ,
-                    ?Base               = Base             ,
-                    ?Width              = Width            ,
-                    ?MultiWidth         = MultiWidth       ,
-                    ?Opacity            = Opacity          ,
-                    ?MultiOpacity       = MultiOpacity     ,
-                    ?Text               = Text             ,
-                    ?MultiText          = MultiText        ,
-                    ?TextPosition       = TextPosition     ,
-                    ?MultiTextPosition  = MultiTextPosition,
-                    ?TextFont           = TextFont         ,
-                    ?Marker             = Marker           
-                )
 
         /// Illustrates comparisons among individual items
         [<Extension>]
@@ -1178,8 +1137,8 @@ module Chart2D =
             ) = 
                 let keys,values = Seq.unzip keysValues
                 Chart.Bar(
-                    X                   = values           ,
-                    Y                   = keys             ,
+                    values,
+                    keys,
                     ?Name               = Name             ,
                     ?ShowLegend         = ShowLegend       ,
                     ?Color              = Color            ,
