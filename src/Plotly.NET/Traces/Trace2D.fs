@@ -381,59 +381,61 @@ type Trace2DStyle() =
         ) =
             (fun (bar:('T :> Trace)) ->    
                
-                Name              |> DynObj.setValueOpt bar "name"
-                Visible           |> DynObj.setValueOptBy bar "visible" StyleParam.Visible.convert
-                ShowLegend        |> DynObj.setValueOpt bar "showlegend"
-                LegendRank        |> DynObj.setValueOpt bar "legendrank"
-                LegendGroup       |> DynObj.setValueOpt bar "legendgroup"
-                LegendGroupTitle  |> DynObj.setValueOpt bar "legendgrouptitle"
-                Opacity           |> DynObj.setValueOpt bar "opacity"
-                Ids               |> DynObj.setValueOpt bar "ids"
-                X                 |> DynObj.setValueOpt bar "x"
-                X0                |> DynObj.setValueOpt bar "x0"
-                DX                |> DynObj.setValueOpt bar "dx"
-                Y                 |> DynObj.setValueOpt bar "y"
-                Y0                |> DynObj.setValueOpt bar "y0"
-                DY                |> DynObj.setValueOpt bar "dy"
-                Base              |> DynObj.setValueOpt bar "base"
-                Text              |> DynObj.setValueOpt bar "text"
-                TextPosition      |> DynObj.setValueOptBy bar "textposition" StyleParam.TextPosition.convert
-                TextTemplate      |> DynObj.setValueOpt bar "texttemplate"
-                HoverText         |> DynObj.setValueOpt bar "hovertext"
-                HoverInfo         |> DynObj.setValueOptBy bar "hoverinfo"  StyleParam.HoverInfo.convert
-                HoverTemplate     |> DynObj.setValueOpt bar "hovertemplate"
-                XHoverFormat      |> DynObj.setValueOpt bar "xhoverformat"
-                YHoverFormat      |> DynObj.setValueOpt bar "yhoverformat"
-                Meta              |> DynObj.setValueOpt bar "meta"
-                CustomData        |> DynObj.setValueOpt bar "customdata"
-                XAxis             |> DynObj.setValueOptBy bar "xaxis" StyleParam.LinearAxisId.convert
-                YAxis             |> DynObj.setValueOptBy bar "yaxis"  StyleParam.LinearAxisId.convert
-                Orientation       |> DynObj.setValueOptBy bar "orientation" StyleParam.Orientation.convert
-                AlignmentGroup    |> DynObj.setValueOpt bar "alignmentgroup"
-                OffsetGroup       |> DynObj.setValueOpt bar "offsetgroup"
-                XPeriod           |> DynObj.setValueOpt bar "xperiod"
-                XPeriodAlignment  |> DynObj.setValueOptBy bar "xperiodalignment" StyleParam.PeriodAlignment.convert
-                XPeriod0          |> DynObj.setValueOpt bar "xperiod0"
-                YPeriod           |> DynObj.setValueOpt bar "yperiod"
-                YPeriodAlignment  |> DynObj.setValueOptBy bar "yperiodalignment" StyleParam.PeriodAlignment.convert
-                YPeriod0          |> DynObj.setValueOpt bar "yperiod0"
-                Marker            |> DynObj.setValueOpt bar "marker"
-                TextAngle         |> DynObj.setValueOpt bar "textangle"
-                TextFont          |> DynObj.setValueOpt bar "textfont"
-                ErrorX            |> DynObj.setValueOpt bar "errorx"
-                ErrorY            |> DynObj.setValueOpt bar "errory"
-                SelectedPoints    |> DynObj.setValueOpt bar "selectedpoints"
-                Selected          |> DynObj.setValueOpt bar "selected"
-                Unselected        |> DynObj.setValueOpt bar "unselected"
-                ClipOnAxis        |> DynObj.setValueOpt bar "cliponaxis"
-                Constraintext     |> DynObj.setValueOptBy bar "constraintext" StyleParam.ConstrainText.convert
-                HoverLabel        |> DynObj.setValueOpt bar "hoverlabel"
-                InsideTextAnchor  |> DynObj.setValueOptBy bar "insidetextanchor" StyleParam.InsideTextAnchor.convert
-                InsideTextFont    |> DynObj.setValueOpt bar "insidetextfont"
-                OutsideTextFont   |> DynObj.setValueOpt bar "outsidetextfont"
-                XCalendar         |> DynObj.setValueOptBy bar "xcalendar" StyleParam.Calendar.convert
-                YCalendar         |> DynObj.setValueOptBy bar "ycalendar" StyleParam.Calendar.convert
-                UIRevision        |> DynObj.setValueOpt bar "uirevision"
+                Name                                |> DynObj.setValueOpt bar "name"
+                Visible                             |> DynObj.setValueOptBy bar "visible" StyleParam.Visible.convert
+                ShowLegend                          |> DynObj.setValueOpt bar "showlegend"
+                LegendRank                          |> DynObj.setValueOpt bar "legendrank"
+                LegendGroup                         |> DynObj.setValueOpt bar "legendgroup"
+                LegendGroupTitle                    |> DynObj.setValueOpt bar "legendgrouptitle"
+                Opacity                             |> DynObj.setValueOpt bar "opacity"
+                Ids                                 |> DynObj.setValueOpt bar "ids"
+                X                                   |> DynObj.setValueOpt bar "x"
+                X0                                  |> DynObj.setValueOpt bar "x0"
+                DX                                  |> DynObj.setValueOpt bar "dx"
+                Y                                   |> DynObj.setValueOpt bar "y"
+                Y0                                  |> DynObj.setValueOpt bar "y0"
+                DY                                  |> DynObj.setValueOpt bar "dy"
+                Base                                |> DynObj.setValueOpt bar "base"
+                (Width, MultiWidth)                 |> DynObj.setSingleOrMultiOpt bar "width"
+                (Offset, MultiOffset)               |> DynObj.setSingleOrMultiOpt bar "offset"
+                (Text, MultiText)                   |> DynObj.setSingleOrMultiOpt bar "text"
+                (TextPosition, MultiTextPosition)   |> DynObj.setSingleOrMultiOptBy bar "textposition" StyleParam.TextPosition.convert
+                (TextTemplate, MultiTextTemplate)   |> DynObj.setSingleOrMultiOpt bar "texttemplate"
+                (HoverText, MultiHoverText)         |> DynObj.setSingleOrMultiOpt bar "hovertext"
+                HoverInfo                           |> DynObj.setValueOptBy bar "hoverinfo"  StyleParam.HoverInfo.convert
+                (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt bar "hovertemplate"
+                XHoverFormat                        |> DynObj.setValueOpt bar "xhoverformat"
+                YHoverFormat                        |> DynObj.setValueOpt bar "yhoverformat"
+                Meta                                |> DynObj.setValueOpt bar "meta"
+                CustomData                          |> DynObj.setValueOpt bar "customdata"
+                XAxis                               |> DynObj.setValueOptBy bar "xaxis" StyleParam.LinearAxisId.convert
+                YAxis                               |> DynObj.setValueOptBy bar "yaxis"  StyleParam.LinearAxisId.convert
+                Orientation                         |> DynObj.setValueOptBy bar "orientation" StyleParam.Orientation.convert
+                AlignmentGroup                      |> DynObj.setValueOpt bar "alignmentgroup"
+                OffsetGroup                         |> DynObj.setValueOpt bar "offsetgroup"
+                XPeriod                             |> DynObj.setValueOpt bar "xperiod"
+                XPeriodAlignment                    |> DynObj.setValueOptBy bar "xperiodalignment" StyleParam.PeriodAlignment.convert
+                XPeriod0                            |> DynObj.setValueOpt bar "xperiod0"
+                YPeriod                             |> DynObj.setValueOpt bar "yperiod"
+                YPeriodAlignment                    |> DynObj.setValueOptBy bar "yperiodalignment" StyleParam.PeriodAlignment.convert
+                YPeriod0                            |> DynObj.setValueOpt bar "yperiod0"
+                Marker                              |> DynObj.setValueOpt bar "marker"
+                TextAngle                           |> DynObj.setValueOpt bar "textangle"
+                TextFont                            |> DynObj.setValueOpt bar "textfont"
+                ErrorX                              |> DynObj.setValueOpt bar "errorx"
+                ErrorY                              |> DynObj.setValueOpt bar "errory"
+                SelectedPoints                      |> DynObj.setValueOpt bar "selectedpoints"
+                Selected                            |> DynObj.setValueOpt bar "selected"
+                Unselected                          |> DynObj.setValueOpt bar "unselected"
+                ClipOnAxis                          |> DynObj.setValueOpt bar "cliponaxis"
+                Constraintext                       |> DynObj.setValueOptBy bar "constraintext" StyleParam.ConstrainText.convert
+                HoverLabel                          |> DynObj.setValueOpt bar "hoverlabel"
+                InsideTextAnchor                    |> DynObj.setValueOptBy bar "insidetextanchor" StyleParam.InsideTextAnchor.convert
+                InsideTextFont                      |> DynObj.setValueOpt bar "insidetextfont"
+                OutsideTextFont                     |> DynObj.setValueOpt bar "outsidetextfont"
+                XCalendar                           |> DynObj.setValueOptBy bar "xcalendar" StyleParam.Calendar.convert
+                YCalendar                           |> DynObj.setValueOptBy bar "ycalendar" StyleParam.Calendar.convert
+                UIRevision                          |> DynObj.setValueOpt bar "uirevision"
 
                 bar
 
