@@ -991,6 +991,8 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?Name              : string         ,
                 [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
                 [<Optional;DefaultParameterValue(null)>] ?Color             : Color             ,
+                [<Optional;DefaultParameterValue(null)>] ?PatternShape      : StyleParam.PatternShape,
+                [<Optional;DefaultParameterValue(null)>] ?MultiPatternShape : seq<StyleParam.PatternShape>,
                 [<Optional;DefaultParameterValue(null)>] ?Pattern           : Pattern,
                 [<Optional;DefaultParameterValue(null)>] ?Base              : #IConvertible,
                 [<Optional;DefaultParameterValue(null)>] ?Width             : #IConvertible,
@@ -1005,12 +1007,19 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker
             ) = 
 
+                let pattern = 
+                    Pattern
+                    |> Option.defaultValue (TraceObjects.Pattern.init())
+                    |> TraceObjects.Pattern.style(
+                        ?Shape = PatternShape,
+                        ?MultiShape = MultiPatternShape
+                    )
                 let marker =
                     Marker 
                     |> Option.defaultValue (TraceObjects.Marker.init())
                     |> TraceObjects.Marker.style(
                         ?Color          = Color,
-                        ?Pattern        = Pattern,
+                        Pattern        = pattern,
                         ?MultiOpacity = MultiOpacity
                     )
 
@@ -1044,6 +1053,8 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?Name              : string         ,
                 [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
                 [<Optional;DefaultParameterValue(null)>] ?Color             : Color             ,
+                [<Optional;DefaultParameterValue(null)>] ?PatternShape      : StyleParam.PatternShape,
+                [<Optional;DefaultParameterValue(null)>] ?MultiPatternShape : seq<StyleParam.PatternShape>,
                 [<Optional;DefaultParameterValue(null)>] ?Pattern           : Pattern,
                 [<Optional;DefaultParameterValue(null)>] ?Base              : #IConvertible,
                 [<Optional;DefaultParameterValue(null)>] ?Width             : #IConvertible,
@@ -1064,6 +1075,8 @@ module Chart2D =
                     ?Name               = Name             ,
                     ?ShowLegend         = ShowLegend       ,
                     ?Color              = Color            ,
+                    ?PatternShape       = PatternShape     ,
+                    ?MultiPatternShape  = MultiPatternShape,
                     ?Pattern            = Pattern          ,
                     ?Base               = Base             ,
                     ?Width              = Width            ,
@@ -1088,6 +1101,8 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?Name              : string         ,
                 [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
                 [<Optional;DefaultParameterValue(null)>] ?Color             : Color             ,
+                [<Optional;DefaultParameterValue(null)>] ?PatternShape      : StyleParam.PatternShape,
+                [<Optional;DefaultParameterValue(null)>] ?MultiPatternShape : seq<StyleParam.PatternShape>,
                 [<Optional;DefaultParameterValue(null)>] ?Pattern           : Pattern,
                 [<Optional;DefaultParameterValue(null)>] ?Base              : #IConvertible,
                 [<Optional;DefaultParameterValue(null)>] ?Width             : #IConvertible,
@@ -1109,6 +1124,8 @@ module Chart2D =
                     ?Name               = Name             ,
                     ?ShowLegend         = ShowLegend       ,
                     ?Color              = Color            ,
+                    ?PatternShape       = PatternShape     ,
+                    ?MultiPatternShape  = MultiPatternShape,
                     ?Pattern            = Pattern          ,
                     ?Base               = Base             ,
                     ?Width              = Width            ,
@@ -1133,6 +1150,8 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?Name              : string         ,
                 [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
                 [<Optional;DefaultParameterValue(null)>] ?Color             : Color             ,
+                [<Optional;DefaultParameterValue(null)>] ?PatternShape      : StyleParam.PatternShape,
+                [<Optional;DefaultParameterValue(null)>] ?MultiPatternShape : seq<StyleParam.PatternShape>,
                 [<Optional;DefaultParameterValue(null)>] ?Pattern           : Pattern,
                 [<Optional;DefaultParameterValue(null)>] ?Base              : #IConvertible,
                 [<Optional;DefaultParameterValue(null)>] ?Width             : #IConvertible,
@@ -1155,6 +1174,8 @@ module Chart2D =
                     ?ShowLegend         = ShowLegend       ,
                     ?Color              = Color            ,
                     ?Pattern            = Pattern          ,
+                    ?PatternShape       = PatternShape     ,
+                    ?MultiPatternShape  = MultiPatternShape,
                     ?Base               = Base             ,
                     ?Width              = Width            ,
                     ?MultiWidth         = MultiWidth       ,
@@ -1178,6 +1199,8 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
                 [<Optional;DefaultParameterValue(null)>] ?Color             : Color             ,
                 [<Optional;DefaultParameterValue(null)>] ?Pattern           : Pattern,
+                [<Optional;DefaultParameterValue(null)>] ?PatternShape      : StyleParam.PatternShape,
+                [<Optional;DefaultParameterValue(null)>] ?MultiPatternShape : seq<StyleParam.PatternShape>,
                 [<Optional;DefaultParameterValue(null)>] ?Base              : #IConvertible,
                 [<Optional;DefaultParameterValue(null)>] ?Width             : #IConvertible,
                 [<Optional;DefaultParameterValue(null)>] ?MultiWidth        : seq<#IConvertible>,
@@ -1191,15 +1214,21 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker
             ) = 
 
+                let pattern = 
+                    Pattern
+                    |> Option.defaultValue (TraceObjects.Pattern.init())
+                    |> TraceObjects.Pattern.style(
+                        ?Shape = PatternShape,
+                        ?MultiShape = MultiPatternShape
+                    )
                 let marker =
                     Marker 
                     |> Option.defaultValue (TraceObjects.Marker.init())
                     |> TraceObjects.Marker.style(
                         ?Color          = Color,
-                        ?Pattern        = Pattern,
+                        Pattern        = pattern,
                         ?MultiOpacity = MultiOpacity
                     )
-
 
                 Trace2D.initBar (
                     Trace2DStyle.Bar(
@@ -1230,6 +1259,8 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?Name              : string         ,
                 [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
                 [<Optional;DefaultParameterValue(null)>] ?Color             : Color             ,
+                [<Optional;DefaultParameterValue(null)>] ?PatternShape      : StyleParam.PatternShape,
+                [<Optional;DefaultParameterValue(null)>] ?MultiPatternShape : seq<StyleParam.PatternShape>,
                 [<Optional;DefaultParameterValue(null)>] ?Pattern           : Pattern,
                 [<Optional;DefaultParameterValue(null)>] ?Base              : #IConvertible,
                 [<Optional;DefaultParameterValue(null)>] ?Width             : #IConvertible,
@@ -1251,6 +1282,8 @@ module Chart2D =
                     ?ShowLegend         = ShowLegend       ,
                     ?Color              = Color            ,
                     ?Pattern            = Pattern          ,
+                    ?PatternShape       = PatternShape     ,
+                    ?MultiPatternShape  = MultiPatternShape,
                     ?Base               = Base             ,
                     ?Width              = Width            ,
                     ?MultiWidth         = MultiWidth       ,
@@ -1274,6 +1307,8 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?Name              : string         ,
                 [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
                 [<Optional;DefaultParameterValue(null)>] ?Color             : Color             ,
+                [<Optional;DefaultParameterValue(null)>] ?PatternShape      : StyleParam.PatternShape,
+                [<Optional;DefaultParameterValue(null)>] ?MultiPatternShape : seq<StyleParam.PatternShape>,
                 [<Optional;DefaultParameterValue(null)>] ?Pattern           : Pattern,
                 [<Optional;DefaultParameterValue(null)>] ?Base              : #IConvertible,
                 [<Optional;DefaultParameterValue(null)>] ?Width             : #IConvertible,
@@ -1295,6 +1330,8 @@ module Chart2D =
                     ?Name               = Name             ,
                     ?ShowLegend         = ShowLegend       ,
                     ?Color              = Color            ,
+                    ?PatternShape       = PatternShape     ,
+                    ?MultiPatternShape  = MultiPatternShape,
                     ?Pattern            = Pattern          ,
                     ?Base               = Base             ,
                     ?Width              = Width            ,
@@ -1320,6 +1357,8 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
                 [<Optional;DefaultParameterValue(null)>] ?Color             : Color             ,
                 [<Optional;DefaultParameterValue(null)>] ?Pattern           : Pattern,
+                [<Optional;DefaultParameterValue(null)>] ?PatternShape      : StyleParam.PatternShape,
+                [<Optional;DefaultParameterValue(null)>] ?MultiPatternShape : seq<StyleParam.PatternShape>,
                 [<Optional;DefaultParameterValue(null)>] ?Base              : #IConvertible,
                 [<Optional;DefaultParameterValue(null)>] ?Width             : #IConvertible,
                 [<Optional;DefaultParameterValue(null)>] ?MultiWidth        : seq<#IConvertible>,
@@ -1340,6 +1379,8 @@ module Chart2D =
                     ?Name               = Name             ,
                     ?ShowLegend         = ShowLegend       ,
                     ?Color              = Color            ,
+                    ?PatternShape       = PatternShape     ,
+                    ?MultiPatternShape  = MultiPatternShape,
                     ?Pattern            = Pattern          ,
                     ?Base               = Base             ,
                     ?Width              = Width            ,

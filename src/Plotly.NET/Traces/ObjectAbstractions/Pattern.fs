@@ -17,7 +17,7 @@ type Pattern () =
     /// <param name="FGOpacity">Sets the opacity of the foreground pattern fill. Defaults to a 0.5 when `fillmode` is "overlay". Otherwise, defaults to 1.</param>
     /// <param name="FillMode">Determines whether `marker.color` should be used as a default to `bgcolor` or a `fgcolor`.</param>
     /// <param name="Shape">Sets the shape of the pattern fill. By default, no pattern is used for filling the area.</param>
-    /// <param name="MultiShapes">Sets the shape of the pattern fill. By default, no pattern is used for filling the area.</param>
+    /// <param name="MultiShape">Sets the shape of the pattern fill. By default, no pattern is used for filling the area.</param>
     /// <param name="Size">Sets the size of unit squares of the pattern fill in pixels, which corresponds to the interval of repetition of the pattern.</param>
     /// <param name="MultiSize">Sets the size of unit squares of the pattern fill in pixels, which corresponds to the interval of repetition of the pattern.</param>
     /// <param name="Solidity">Sets the solidity of the pattern fill. Solidity is roughly the fraction of the area filled by the pattern. Solidity of 0 shows only the background color without pattern and solidty of 1 shows only the foreground color without pattern.</param>
@@ -28,7 +28,7 @@ type Pattern () =
             ?FGOpacity  : float,
             ?FillMode   : StyleParam.PatternFillMode,
             ?Shape      : StyleParam.PatternShape,
-            ?MultiShapes: seq<StyleParam.PatternShape>,
+            ?MultiShape : seq<StyleParam.PatternShape>,
             ?Size       : int,
             ?MultiSize : seq<int>,
             ?Solidity   : float
@@ -41,7 +41,7 @@ type Pattern () =
                    ?FGOpacity   = FGOpacity  ,
                    ?FillMode    = FillMode   ,
                    ?Shape       = Shape      ,
-                   ?MultiShapes = MultiShapes,
+                   ?MultiShape  = MultiShape ,
                    ?Size        = Size       ,
                    ?MultiSize  = MultiSize ,
                    ?Solidity    = Solidity   
@@ -54,9 +54,9 @@ type Pattern () =
             ?FGOpacity  : float,
             ?FillMode   : StyleParam.PatternFillMode,
             ?Shape      : StyleParam.PatternShape,
-            ?MultiShapes: seq<StyleParam.PatternShape>,
+            ?MultiShape : seq<StyleParam.PatternShape>,
             ?Size       : int,
-            ?MultiSize : seq<int>,
+            ?MultiSize  : seq<int>,
             ?Solidity   : float
         ) =
 
@@ -66,8 +66,8 @@ type Pattern () =
                 FGColor             |> DynObj.setValueOpt pattern "fgcolor"
                 FGOpacity           |> DynObj.setValueOpt pattern "fgopacity"
                 FillMode            |> DynObj.setValueOptBy pattern "fillmode"  StyleParam.PatternFillMode.convert
-                (Shape, MultiShapes)|> DynObj.setSingleOrMultiOptBy pattern "shape" StyleParam.PatternShape.convert
-                (Size, MultiSize)  |> DynObj.setSingleOrMultiOpt pattern "size"
+                (Shape, MultiShape) |> DynObj.setSingleOrMultiOptBy pattern "shape" StyleParam.PatternShape.convert
+                (Size, MultiSize)   |> DynObj.setSingleOrMultiOpt pattern "size"
                 Solidity            |> DynObj.setValueOpt pattern "solidity"
                
                 pattern

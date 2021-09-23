@@ -107,21 +107,21 @@ let stackedColumnChart =
 let ``Bar and column charts`` =
     testList "SimpleCharts.Bar and column charts" [
         testCase "Column chart data" ( fun () ->
-            """var data = [{"type":"bar","x":["Product A","Product B","Product C"],"y":[20,14,23],"orientation":"v","marker":{}}];"""
+            """var data = [{"type":"bar","x":["Product A","Product B","Product C"],"y":[20,14,23],"orientation":"v","marker":{"pattern":{}}}];"""
             |> chartGeneratedContains columnChart
         );
         testCase "Column chart layout" ( fun () ->
             emptyLayout columnChart
         );
         testCase "Bar chart data" ( fun () ->
-            "var data = [{\"type\":\"bar\",\"x\":[20,14,23],\"y\":[\"Product A\",\"Product B\",\"Product C\"],\"orientation\":\"h\",\"marker\":{}}];"
+            """var data = [{"type":"bar","x":[20,14,23],"y":["Product A","Product B","Product C"],"orientation":"h","marker":{"pattern":{}}}];"""
             |> chartGeneratedContains barChart
         );
         testCase "Bar chart layout" ( fun () ->
             emptyLayout barChart
         );
         testCase "Stacked bar data" ( fun () ->
-            """var data = [{"type":"bar","name":"old","x":[20,14,23],"y":["Product A","Product B","Product C"],"orientation":"h","marker":{}},{"type":"bar","name":"new","x":[8,21,13],"y":["Product A","Product B","Product C"],"orientation":"h","marker":{}}];"""
+            """var data = [{"type":"bar","name":"old","x":[20,14,23],"y":["Product A","Product B","Product C"],"orientation":"h","marker":{"pattern":{}}},{"type":"bar","name":"new","x":[8,21,13],"y":["Product A","Product B","Product C"],"orientation":"h","marker":{"pattern":{}}}];"""
             |> chartGeneratedContains stackedBarChart
         );
         testCase "Stacked bar layout" ( fun () ->
@@ -129,7 +129,7 @@ let ``Bar and column charts`` =
             |> chartGeneratedContains stackedColumnChart
         );
         testCase "Stacked column data" ( fun () ->
-            """var data = [{"type":"bar","name":"old","x":["Product A","Product B","Product C"],"y":[20,14,23],"orientation":"v","marker":{}},{"type":"bar","name":"new","x":["Product A","Product B","Product C"],"y":[8,21,13],"orientation":"v","marker":{}}];"""
+            """var data = [{"type":"bar","name":"old","x":["Product A","Product B","Product C"],"y":[20,14,23],"orientation":"v","marker":{"pattern":{}}},{"type":"bar","name":"new","x":["Product A","Product B","Product C"],"y":[8,21,13],"orientation":"v","marker":{"pattern":{}}}];"""
             |> chartGeneratedContains stackedColumnChart
         );
         testCase "Stacked column layout" ( fun () ->
