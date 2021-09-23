@@ -78,19 +78,19 @@ let ``Line and scatter plots`` =
 let columnChart =
     let values = [20; 14; 23;]
     let keys   = ["Product A"; "Product B"; "Product C";]
-    Chart.Column(keys = keys, values = values)
+    Chart.Column(values, keys)
 
 let barChart =
     let values = [20; 14; 23;]
     let keys   = ["Product A"; "Product B"; "Product C";]
-    Chart.Bar(keys = keys, values = values)
+    Chart.Bar(values, keys)
 
 let stackedBarChart =
     let values = [20; 14; 23;]
     let keys   = ["Product A"; "Product B"; "Product C";]
     [
-        Chart.StackedBar(keys = keys, values = values,Name="old");
-        Chart.StackedBar(keys = keys, values = [8; 21; 13;],Name="new")
+        Chart.StackedBar(values, keys, Name="old");
+        Chart.StackedBar([8; 21; 13;], keys, Name="new")
     ]
     |> Chart.combine
 
@@ -98,8 +98,8 @@ let stackedColumnChart =
     let values = [20; 14; 23;]
     let keys   = ["Product A"; "Product B"; "Product C";]
     [
-        Chart.StackedColumn(keys,values,Name="old");
-        Chart.StackedColumn(keys,[8; 21; 13;],Name="new")
+        Chart.StackedColumn(values,keys,Name="old");
+        Chart.StackedColumn([8; 21; 13;],keys,Name="new")
     ]
     |> Chart.combine
 
@@ -107,7 +107,7 @@ let stackedColumnChart =
 let ``Bar and column charts`` =
     testList "SimpleCharts.Bar and column charts" [
         testCase "Column chart data" ( fun () ->
-            "var data = [{\"type\":\"bar\",\"x\":[\"Product A\",\"Product B\",\"Product C\"],\"y\":[20,14,23],\"marker\":{}}];"
+            """var data = [{"type":"bar","x":["Product A","Product B","Product C"],"y":[20,14,23],"orientation":"v","marker":{}}];"""
             |> chartGeneratedContains columnChart
         );
         testCase "Column chart layout" ( fun () ->
@@ -121,7 +121,7 @@ let ``Bar and column charts`` =
             emptyLayout barChart
         );
         testCase "Stacked bar data" ( fun () ->
-            "var data = [{\"type\":\"bar\",\"x\":[20,14,23],\"y\":[\"Product A\",\"Product B\",\"Product C\"],\"orientation\":\"h\",\"marker\":{},\"name\":\"old\"},{\"type\":\"bar\",\"x\":[8,21,13],\"y\":[\"Product A\",\"Product B\",\"Product C\"],\"orientation\":\"h\",\"marker\":{},\"name\":\"new\"}];"
+            """var data = [{"type":"bar","name":"old","x":[20,14,23],"y":["Product A","Product B","Product C"],"orientation":"h","marker":{}},{"type":"bar","name":"new","x":[8,21,13],"y":["Product A","Product B","Product C"],"orientation":"h","marker":{}}];"""
             |> chartGeneratedContains stackedBarChart
         );
         testCase "Stacked bar layout" ( fun () ->
@@ -129,7 +129,7 @@ let ``Bar and column charts`` =
             |> chartGeneratedContains stackedColumnChart
         );
         testCase "Stacked column data" ( fun () ->
-            "var data = [{\"type\":\"bar\",\"x\":[\"Product A\",\"Product B\",\"Product C\"],\"y\":[20,14,23],\"marker\":{},\"name\":\"old\"},{\"type\":\"bar\",\"x\":[\"Product A\",\"Product B\",\"Product C\"],\"y\":[8,21,13],\"marker\":{},\"name\":\"new\"}];"
+            """var data = [{"type":"bar","name":"old","x":["Product A","Product B","Product C"],"y":[20,14,23],"orientation":"v","marker":{}},{"type":"bar","name":"new","x":["Product A","Product B","Product C"],"y":[8,21,13],"orientation":"v","marker":{}}];"""
             |> chartGeneratedContains stackedColumnChart
         );
         testCase "Stacked column layout" ( fun () ->
