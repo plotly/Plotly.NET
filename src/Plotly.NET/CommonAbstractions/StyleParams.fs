@@ -715,6 +715,22 @@ module StyleParam =
 // #E#
 //--------------------------
 
+    [<RequireQualifiedAccess>]
+    type ErrorType =
+        | Percent | Constant| Sqrt | Data    
+    
+        static member toString = function
+            | Percent   -> "percent" 
+            | Constant  -> "constant" 
+            | Sqrt      -> "sqrt" 
+            | Data      -> "data" 
+
+    
+        static member convert = ErrorType.toString >> box
+        override this.ToString() = this |> ErrorType.toString
+        member this.Convert() = this |> ErrorType.convert
+
+
     /// Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If "none", it appears as 1,000,000,000. If "e", 1e+9. If "E", 1E+9. 
     /// If "power", 1x10^9 (with 9 in a super script). If "SI", 1G. If "B", 1B.
     [<RequireQualifiedAccess>]
