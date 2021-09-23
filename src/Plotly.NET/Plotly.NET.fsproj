@@ -78,7 +78,6 @@
     <Compile Include="Layout\Layout.fs" />
     <Compile Include="Traces\ObjectAbstractions\Pattern.fs" />
     <Compile Include="Traces\ObjectAbstractions\Gradient.fs" />
-    <Compile Include="Traces\ObjectAbstractions\Pattern.fs" />
     <Compile Include="Traces\ObjectAbstractions\Marker.fs" />
     <Compile Include="Traces\ObjectAbstractions\Projection.fs" />
     <Compile Include="Traces\ObjectAbstractions\Surface.fs" />
