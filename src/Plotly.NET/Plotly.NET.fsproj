@@ -123,6 +123,7 @@
     <Compile Include="ChartAPI\ChartPolar.fs" />
     <Compile Include="ChartAPI\ChartMap.fs" />
     <Compile Include="ChartAPI\ChartTernary.fs" />
+    <Compile Include="ChartAPI\ChartCarpet.fs" />
     <Compile Include="ChartAPI\ChartDomain.fs" />
     <Compile Include="CSharpLayer\GenericChartExtensions.fs" />
     <Compile Include="Extensions\SankeyExtension.fs" />

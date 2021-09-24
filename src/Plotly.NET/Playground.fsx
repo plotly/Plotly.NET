@@ -131,6 +131,7 @@
 #load "ChartPolar.fs"
 #load "ChartMap.fs"
 #load "ChartTernary.fs"
+#load "ChartCarpet.fs"
 #load "ChartDomain.fs"
 
 #I "CSharpLayer"
@@ -157,6 +158,14 @@ open FSharpAux
 
 open System
 open System.IO
+
+Chart.Carpet(
+    "carpet1",
+    A= [4.; 4.; 4.; 4.5; 4.5; 4.5; 5.; 5.; 5.; 6.; 6.; 6.],
+    B= [1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.],
+    Y= [2.; 3.5; 4.; 3.; 4.5; 5.; 5.5; 6.5; 7.5; 8.; 8.5; 10.]
+)
+|> Chart.show
 
 let crazyMarker =
     Marker.init(
@@ -199,7 +208,7 @@ Chart.Bar(
     Colorscale = StyleParam.Colorscale.Viridis,
     ShowScale = true,
     Pattern = Pattern.init(
-        MultiShapes = [
+        MultiShape = [
             StyleParam.PatternShape.None 
             StyleParam.PatternShape.DiagonalDescending
             StyleParam.PatternShape.DiagonalAscending
