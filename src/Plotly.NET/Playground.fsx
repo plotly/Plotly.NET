@@ -159,17 +159,32 @@ open FSharpAux
 open System
 open System.IO
 
-Chart.Carpet(
-    "carpet1",
-    A= [4.; 4.; 4.; 4.5; 4.5; 4.5; 5.; 5.; 5.; 6.; 6.; 6.],
-    B= [1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.],
-    Y= [2.; 3.5; 4.; 3.; 4.5; 5.; 5.5; 6.5; 7.5; 8.; 8.5; 10.]
-)
+[
+    Chart.Carpet(
+        "carpet1",
+        A= [4.; 4.; 4.; 4.5; 4.5; 4.5; 5.; 5.; 5.; 6.; 6.; 6.],
+        B= [1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.],
+        Y= [2.; 3.5; 4.; 3.; 4.5; 5.; 5.5; 6.5; 7.5; 8.; 8.5; 10.]
+    )    
+    Chart.Carpet(
+        "carpet2",
+        A= ([4.; 4.; 4.; 4.5; 4.5; 4.5; 5.; 5.; 5.; 6.; 6.; 6.] |> List.rev),
+        B= ([1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.]|> List.rev),
+        Y= ([2.; 3.5; 4.; 3.; 4.5; 5.; 5.5; 6.5; 7.5; 8.; 8.5; 10.] |> List.map (fun x -> x + 10.))
+    )
+    Chart.ScatterCarpet(
+        [4.; 5.; 5.; 6.],
+        [1.; 1.; 2.; 3.],
+        StyleParam.Mode.Lines_Markers,
+        CarpetId = "carpet2"
+    )
+]
+|> Chart.combine
 |> Chart.show
 
 let crazyMarker =
     Marker.init(
-        MultiSymbols = [
+        MultiSymbol = [
             StyleParam.MarkerSymbol.ArrowBarDown
             StyleParam.MarkerSymbol.Modified(StyleParam.MarkerSymbol.DiamondCross, StyleParam.SymbolStyle.OpenDot)
             StyleParam.MarkerSymbol.Modified(StyleParam.MarkerSymbol.Square, StyleParam.SymbolStyle.Open)

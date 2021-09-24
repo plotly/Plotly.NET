@@ -31,7 +31,7 @@ type Marker () =
             [<Optional;DefaultParameterValue(null)>] ?Pattern           : Pattern,
             [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
             [<Optional;DefaultParameterValue(null)>] ?Symbol            : StyleParam.MarkerSymbol,
-            [<Optional;DefaultParameterValue(null)>] ?MultiSymbols      : seq<StyleParam.MarkerSymbol>,
+            [<Optional;DefaultParameterValue(null)>] ?MultiSymbol       : seq<StyleParam.MarkerSymbol>,
             [<Optional;DefaultParameterValue(null)>] ?OutlierColor      : Color,
             [<Optional;DefaultParameterValue(null)>] ?Maxdisplayed      : int,
             [<Optional;DefaultParameterValue(null)>] ?ReverseScale      : bool,
@@ -62,7 +62,7 @@ type Marker () =
                 ?Pattern        = Pattern       ,
                 ?MultiOpacity   = MultiOpacity  ,
                 ?Symbol         = Symbol        ,
-                ?MultiSymbols   = MultiSymbols  ,
+                ?MultiSymbol    = MultiSymbol   ,
                 ?OutlierColor   = OutlierColor  ,
                 ?Maxdisplayed   = Maxdisplayed  ,
                 ?ReverseScale   = ReverseScale  ,
@@ -93,7 +93,7 @@ type Marker () =
             [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
             [<Optional;DefaultParameterValue(null)>] ?Pattern           : Pattern,
             [<Optional;DefaultParameterValue(null)>] ?Symbol            : StyleParam.MarkerSymbol,
-            [<Optional;DefaultParameterValue(null)>] ?MultiSymbols      : seq<StyleParam.MarkerSymbol>,
+            [<Optional;DefaultParameterValue(null)>] ?MultiSymbol       : seq<StyleParam.MarkerSymbol>,
             [<Optional;DefaultParameterValue(null)>] ?OutlierColor      : Color,
             [<Optional;DefaultParameterValue(null)>] ?Maxdisplayed      : int,
             [<Optional;DefaultParameterValue(null)>] ?ReverseScale      : bool,
@@ -119,7 +119,7 @@ type Marker () =
                 (Size, MultiSize)           |> DynObj.setSingleOrMultiOpt marker "size"
                 (Opacity, MultiOpacity)     |> DynObj.setSingleOrMultiOpt marker "opacity"
                 Pattern                     |> DynObj.setValueOpt marker "pattern"
-                (Symbol, MultiSymbols)      |> DynObj.setSingleOrMultiOptBy marker "symbol" StyleParam.MarkerSymbol.convert
+                (Symbol, MultiSymbol)       |> DynObj.setSingleOrMultiOptBy marker "symbol" StyleParam.MarkerSymbol.convert
                 OutlierColor                |> DynObj.setValueOpt marker "outliercolor"
                 Maxdisplayed                |> DynObj.setValueOpt marker "maxdisplayed"
                 ReverseScale                |> DynObj.setValueOpt marker "reversescale"
