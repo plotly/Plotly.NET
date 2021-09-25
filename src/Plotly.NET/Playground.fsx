@@ -159,6 +159,9 @@ open FSharpAux
 open System
 open System.IO
 
+let a = [4.; 5.; 5.; 6.]
+let b = [1.; 1.; 2.; 3.]
+
 [
     Chart.Carpet(
         "carpet1",
@@ -173,11 +176,22 @@ open System.IO
         Y= ([2.; 3.5; 4.; 3.; 4.5; 5.; 5.5; 6.5; 7.5; 8.; 8.5; 10.] |> List.map (fun x -> x + 10.))
     )
     Chart.ScatterCarpet(
-        [4.; 5.; 5.; 6.],
-        [1.; 1.; 2.; 3.],
+        a,b,
         StyleParam.Mode.Lines_Markers,
-        CarpetId = "carpet2"
+        "carpet1",
+        Name = "Scatter",
+        MultiMarkerSymbol =[
+            StyleParam.MarkerSymbol.ArrowDown
+            StyleParam.MarkerSymbol.TriangleNW
+            StyleParam.MarkerSymbol.DiamondX
+            StyleParam.MarkerSymbol.Hexagon2
+        ],
+        MultiSize = [
+            10; 15; 20; 25
+        ],
+        Color = Color.fromColors ([Red; Blue; Green; Yellow] |> List.map Color.fromKeyword)
     )
+    Chart.PointCarpet(a,b,"carpet2",Name = "Point")
 ]
 |> Chart.combine
 |> Chart.show

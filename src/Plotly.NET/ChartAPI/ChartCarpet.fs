@@ -64,10 +64,10 @@ module ChartCarpet =
         [<Extension>]
         static member ScatterCarpet
             (
-                a       : seq<#IConvertible>,
-                b       : seq<#IConvertible>,
-                mode    : StyleParam.Mode,
-                [<Optional;DefaultParameterValue(null)>] ?CarpetId          : string,
+                a               : seq<#IConvertible>,
+                b               : seq<#IConvertible>,
+                mode            : StyleParam.Mode,
+                carpetAnchorId  : string,
                 [<Optional;DefaultParameterValue(null)>] ?Name              : string,
                 [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol      : StyleParam.MarkerSymbol,
@@ -80,6 +80,8 @@ module ChartCarpet =
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
+                [<Optional;DefaultParameterValue(null)>] ?Size              : int,
+                [<Optional;DefaultParameterValue(null)>] ?MultiSize         : seq<int>,
                 [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
                 [<Optional;DefaultParameterValue(null)>] ?Dash              : StyleParam.DrawingStyle,
                 [<Optional;DefaultParameterValue(null)>] ?Width             : float ,
@@ -90,7 +92,7 @@ module ChartCarpet =
                         A                   = a,
                         B                   = b,
                         Mode                = mode,
-                        ?Carpet             = (CarpetId |> Option.map StyleParam.SubPlotId.Carpet),
+                        Carpet             = (carpetAnchorId |> StyleParam.SubPlotId.Carpet),
                         ?Name               = Name             ,
                         ?ShowLegend         = ShowLegend       ,
                         ?Opacity            = Opacity          ,
@@ -107,7 +109,9 @@ module ChartCarpet =
                         ?MultiSymbol    = MultiMarkerSymbol,
                         ?Color          = Color            ,
                         ?Opacity        = Opacity          ,
-                        ?MultiOpacity   = MultiOpacity     
+                        ?MultiOpacity   = MultiOpacity     ,
+                        ?Size           = Size,
+                        ?MultiSize      = MultiSize
                     )
                     >> TraceStyle.Line(
                         ?Dash   = Dash,
@@ -123,7 +127,7 @@ module ChartCarpet =
             (
                 ab       : seq<#IConvertible*#IConvertible>,
                 mode    : StyleParam.Mode,
-                [<Optional;DefaultParameterValue(null)>] ?CarpetId          : string,
+                carpetAnchorId  : string,
                 [<Optional;DefaultParameterValue(null)>] ?Name              : string,
                 [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol      : StyleParam.MarkerSymbol,
@@ -136,6 +140,8 @@ module ChartCarpet =
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
+                [<Optional;DefaultParameterValue(null)>] ?Size              : int,
+                [<Optional;DefaultParameterValue(null)>] ?MultiSize         : seq<int>,
                 [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
                 [<Optional;DefaultParameterValue(null)>] ?Dash              : StyleParam.DrawingStyle,
                 [<Optional;DefaultParameterValue(null)>] ?Width             : float ,
@@ -144,8 +150,7 @@ module ChartCarpet =
                 let a,b = Seq.unzip ab
 
                 Chart.ScatterCarpet(
-                    a,b,mode,
-                    ?CarpetId           = CarpetId,
+                    a, b, mode, carpetAnchorId,
                     ?Name               = Name             ,
                     ?ShowLegend         = ShowLegend       ,
                     ?MarkerSymbol       = MarkerSymbol     ,
@@ -158,8 +163,107 @@ module ChartCarpet =
                     ?TextPosition       = TextPosition     ,
                     ?MultiTextPosition  = MultiTextPosition,
                     ?TextFont           = TextFont         ,
+                    ?Size               = Size             ,
+                    ?MultiSize          = MultiSize        ,
                     ?Marker             = Marker           ,
                     ?Dash               = Dash             ,
                     ?Width              = Width            ,
                     ?Line               = Line             
+                )
+
+
+        [<Extension>]
+        static member PointCarpet
+            (
+                a               : seq<#IConvertible>,
+                b               : seq<#IConvertible>,
+                carpetAnchorId  : string,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol      : StyleParam.MarkerSymbol,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol : seq<StyleParam.MarkerSymbol>,
+                [<Optional;DefaultParameterValue(null)>] ?Color             : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
+                [<Optional;DefaultParameterValue(null)>] ?Size              : int,
+                [<Optional;DefaultParameterValue(null)>] ?MultiSize         : seq<int>,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker
+            ) =
+
+                let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
+
+                TraceCarpet.initScatterCarpet(
+                    TraceCarpetStyle.ScatterCarpet(
+                        A                   = a,
+                        B                   = b,
+                        Mode                = changeMode StyleParam.Mode.Markers,
+                        Carpet              = (carpetAnchorId |> StyleParam.SubPlotId.Carpet),
+                        ?Name               = Name             ,
+                        ?ShowLegend         = ShowLegend       ,
+                        ?Opacity            = Opacity          ,
+                        ?Text               = Text             ,
+                        ?MultiText          = MultiText        ,
+                        ?TextPosition       = TextPosition     ,
+                        ?MultiTextPosition  = MultiTextPosition,
+                        ?TextFont           = TextFont         ,
+                        ?Marker             = Marker           
+                    )
+                    >> TraceStyle.Marker(
+                        ?Symbol         = MarkerSymbol     ,
+                        ?MultiSymbol    = MultiMarkerSymbol,
+                        ?Color          = Color            ,
+                        ?Opacity        = Opacity          ,
+                        ?MultiOpacity   = MultiOpacity     ,
+                        ?Size           = Size             ,
+                        ?MultiSize      = MultiSize
+                    )
+                )
+                |> GenericChart.ofTraceObject
+
+        [<Extension>]
+        static member PointCarpet
+            (
+                ab : seq<#IConvertible*#IConvertible>,
+                carpetAnchorId          : string,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol      : StyleParam.MarkerSymbol,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol : seq<StyleParam.MarkerSymbol>,
+                [<Optional;DefaultParameterValue(null)>] ?Color             : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
+                [<Optional;DefaultParameterValue(null)>] ?Size              : int,
+                [<Optional;DefaultParameterValue(null)>] ?MultiSize         : seq<int>,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker
+            ) =
+
+                let a,b = Seq.unzip ab
+
+                Chart.PointCarpet(
+                    a, b, carpetAnchorId,
+                    ?Name              = Name              ,
+                    ?ShowLegend        = ShowLegend        ,
+                    ?MarkerSymbol      = MarkerSymbol      ,
+                    ?MultiMarkerSymbol = MultiMarkerSymbol ,
+                    ?Color             = Color             ,
+                    ?Opacity           = Opacity           ,
+                    ?MultiOpacity      = MultiOpacity      ,
+                    ?Text              = Text              ,
+                    ?MultiText         = MultiText         ,
+                    ?TextPosition      = TextPosition      ,
+                    ?MultiTextPosition = MultiTextPosition ,
+                    ?TextFont          = TextFont          ,
+                    ?Size              = Size              ,
+                    ?MultiSize         = MultiSize         ,
+                    ?Marker            = Marker            
                 )
