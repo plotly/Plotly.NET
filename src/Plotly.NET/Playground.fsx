@@ -161,20 +161,43 @@ open System.IO
 
 let a = [4.; 5.; 5.; 6.]
 let b = [1.; 1.; 2.; 3.]
+let carpets = 
+    [
+        Chart.Carpet(
+            "carpet1",
+            A= [4.; 4.; 4.; 4.5; 4.5; 4.5; 5.; 5.; 5.; 6.; 6.; 6.],
+            B= [1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.],
+            Y= [2.; 3.5; 4.; 3.; 4.5; 5.; 5.5; 6.5; 7.5; 8.; 8.5; 10.]
+        )    
+        Chart.Carpet(
+            "carpet2",
+            A= ([4.; 4.; 4.; 4.5; 4.5; 4.5; 5.; 5.; 5.; 6.; 6.; 6.] |> List.rev),
+            B= ([1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.]|> List.rev),
+            Y= ([2.; 3.5; 4.; 3.; 4.5; 5.; 5.5; 6.5; 7.5; 8.; 8.5; 10.] |> List.map (fun x -> x + 10.))
+        )        
+        Chart.Carpet(
+            "carpet3",
+            A= [4.; 4.; 4.; 4.5; 4.5; 4.5; 5.; 5.; 5.; 6.; 6.; 6.],
+            B= [1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.],
+            Y= ([2.; 3.5; 4.; 3.; 4.5; 5.; 5.5; 6.5; 7.5; 8.; 8.5; 10.] |> List.map (fun x -> x + 20.))
+        )    
+        Chart.Carpet(
+            "carpet4",
+            A= ([4.; 4.; 4.; 4.5; 4.5; 4.5; 5.; 5.; 5.; 6.; 6.; 6.] |> List.rev),
+            B= ([1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.]|> List.rev),
+            Y= ([2.; 3.5; 4.; 3.; 4.5; 5.; 5.5; 6.5; 7.5; 8.; 8.5; 10.] |> List.map (fun x -> x + 30.))
+        )        
+        Chart.Carpet(
+            "carpet5",
+            A= ([4.; 4.; 4.; 4.5; 4.5; 4.5; 5.; 5.; 5.; 6.; 6.; 6.] |> List.rev),
+            B= ([1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.]|> List.rev),
+            Y= ([2.; 3.5; 4.; 3.; 4.5; 5.; 5.5; 6.5; 7.5; 8.; 8.5; 10.] |> List.map (fun x -> x + 40.))
+        )
+    ]
+    |> Chart.combine
 
 [
-    Chart.Carpet(
-        "carpet1",
-        A= [4.; 4.; 4.; 4.5; 4.5; 4.5; 5.; 5.; 5.; 6.; 6.; 6.],
-        B= [1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.],
-        Y= [2.; 3.5; 4.; 3.; 4.5; 5.; 5.5; 6.5; 7.5; 8.; 8.5; 10.]
-    )    
-    Chart.Carpet(
-        "carpet2",
-        A= ([4.; 4.; 4.; 4.5; 4.5; 4.5; 5.; 5.; 5.; 6.; 6.; 6.] |> List.rev),
-        B= ([1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.]|> List.rev),
-        Y= ([2.; 3.5; 4.; 3.; 4.5; 5.; 5.5; 6.5; 7.5; 8.; 8.5; 10.] |> List.map (fun x -> x + 10.))
-    )
+    carpets
     Chart.ScatterCarpet(
         a,b,
         StyleParam.Mode.Lines_Markers,
@@ -192,8 +215,10 @@ let b = [1.; 1.; 2.; 3.]
         Color = Color.fromColors ([Red; Blue; Green; Yellow] |> List.map Color.fromKeyword)
     )
     Chart.PointCarpet(a,b,"carpet2",Name = "Point")
+    Chart.LineCarpet(a,b,"carpet3",Name = "Line")
 ]
 |> Chart.combine
+|> Chart.withSize(Height=1000)
 |> Chart.show
 
 let crazyMarker =
