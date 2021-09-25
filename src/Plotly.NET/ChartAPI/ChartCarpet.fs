@@ -512,3 +512,80 @@ module ChartCarpet =
                     ?MultiSize         = MultiSize         ,
                     ?Marker            = Marker            
                 )
+
+        static member BubbleCarpet 
+            (
+                a               : seq<#IConvertible>,
+                b               : seq<#IConvertible>,
+                sizes           : seq<int>,
+                carpetAnchorId  : string,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol      : StyleParam.MarkerSymbol,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol : seq<StyleParam.MarkerSymbol>,
+                [<Optional;DefaultParameterValue(null)>] ?Color             : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker
+            ) =
+                Chart.PointCarpet(
+                    a,b,carpetAnchorId,
+                    MultiSize = sizes,
+                    ?Name               = Name             ,
+                    ?ShowLegend         = ShowLegend       ,
+                    ?MarkerSymbol       = MarkerSymbol     ,
+                    ?MultiMarkerSymbol  = MultiMarkerSymbol,
+                    ?Color              = Color            ,
+                    ?Opacity            = Opacity          ,
+                    ?MultiOpacity       = MultiOpacity     ,
+                    ?Text               = Text             ,
+                    ?MultiText          = MultiText        ,
+                    ?TextPosition       = TextPosition     ,
+                    ?MultiTextPosition  = MultiTextPosition,
+                    ?TextFont           = TextFont         ,
+                    ?Marker             = Marker           
+                )
+
+        static member BubbleCarpet 
+            (
+                absizes         : seq<#IConvertible*#IConvertible*int>,
+                carpetAnchorId  : string,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol      : StyleParam.MarkerSymbol,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol : seq<StyleParam.MarkerSymbol>,
+                [<Optional;DefaultParameterValue(null)>] ?Color             : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker
+            ) =
+                
+                let a,b,sizes = Seq.unzip3 absizes
+                
+                Chart.PointCarpet(
+                    a,b,carpetAnchorId,
+                    MultiSize = sizes,
+                    ?Name               = Name             ,
+                    ?ShowLegend         = ShowLegend       ,
+                    ?MarkerSymbol       = MarkerSymbol     ,
+                    ?MultiMarkerSymbol  = MultiMarkerSymbol,
+                    ?Color              = Color            ,
+                    ?Opacity            = Opacity          ,
+                    ?MultiOpacity       = MultiOpacity     ,
+                    ?Text               = Text             ,
+                    ?MultiText          = MultiText        ,
+                    ?TextPosition       = TextPosition     ,
+                    ?MultiTextPosition  = MultiTextPosition,
+                    ?TextFont           = TextFont         ,
+                    ?Marker             = Marker           
+                )

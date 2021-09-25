@@ -161,6 +161,8 @@ open System.IO
 
 let a = [4.; 5.; 5.; 6.]
 let b = [1.; 1.; 2.; 3.]
+let sizes = [5; 10; 15; 20]
+
 let carpets = 
     [
         Chart.Carpet(
@@ -217,6 +219,7 @@ let carpets =
     Chart.PointCarpet(a,b,"carpet2",Name = "Point")
     Chart.LineCarpet(a,b,"carpet3",Name = "Line")
     Chart.SplineCarpet(a,b,"carpet4",Name = "Spline")
+    Chart.BubbleCarpet((Seq.zip3 a b sizes),"carpet5",Name = "Spline")
 ]
 |> Chart.combine
 |> Chart.withSize(Height=1000)
