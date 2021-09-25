@@ -216,6 +216,7 @@ let carpets =
     )
     Chart.PointCarpet(a,b,"carpet2",Name = "Point")
     Chart.LineCarpet(a,b,"carpet3",Name = "Line")
+    Chart.SplineCarpet(a,b,"carpet4",Name = "Spline")
 ]
 |> Chart.combine
 |> Chart.withSize(Height=1000)
