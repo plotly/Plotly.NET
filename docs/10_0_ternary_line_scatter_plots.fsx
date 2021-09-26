@@ -60,14 +60,14 @@ Ternary plots are tools for analyzing compositional data in the three-dimensiona
 use `Chart.PointTernary` to create a ternary plot that displays points on a ternary coordinate system:
 *)
 
-let ternaryPolar = Chart.PointTernary(a,b,c)
+let ternaryPoint = Chart.PointTernary(a,b,c)
 (*** condition: ipynb ***)
 #if IPYNB
-ternaryPolar
+ternaryPoint
 #endif // IPYNB
 
 (***hide***)
-ternaryPolar |> GenericChart.toChartHTML
+ternaryPoint |> GenericChart.toChartHTML
 (***include-it-raw***)
 
 (**
