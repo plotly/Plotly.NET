@@ -318,6 +318,19 @@ module StyleParam =
     
         
     [<RequireQualifiedAccess>]
+    type CoordinateType =
+        | Array      
+        | Scaled
+
+        static member toString = function
+            | Array -> "array" 
+            | Scaled -> "scaled" 
+
+        static member convert = CoordinateType.toString >> box
+        override this.ToString() = this |> CoordinateType.toString
+        member this.Convert() = this |> CoordinateType.convert        
+                
+    [<RequireQualifiedAccess>]
     type CheaterType =
         | Index      
         | Value

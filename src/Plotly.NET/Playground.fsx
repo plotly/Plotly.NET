@@ -163,6 +163,36 @@ let a = [4.; 5.; 5.; 6.]
 let b = [1.; 1.; 2.; 3.]
 let sizes = [5; 10; 15; 20]
 
+[
+    Chart.Carpet(
+        "contour",
+        A = [0.; 1.; 2.; 3.; 0.; 1.; 2.; 3.; 0.; 1.; 2.; 3.],
+        B = [4.; 4.; 4.; 4.; 5.; 5.; 5.; 5.; 6.; 6.; 6.; 6.],
+        X = [2.; 3.; 4.; 5.; 2.2; 3.1; 4.1; 5.1; 1.5; 2.5; 3.5; 4.5],
+        Y = [1.; 1.4; 1.6; 1.75; 2.; 2.5; 2.7; 2.75; 3.; 3.5; 3.7; 3.75],
+        AAxis = LinearAxis.initCarpet(
+            TickPrefix = "a = ",
+            Smoothing = 0.,
+            MinorGridCount = 9,
+            AxisType = StyleParam.AxisType.Linear
+        ),
+        BAxis = LinearAxis.initCarpet(
+            TickPrefix = "b = ",
+            Smoothing = 0.,
+            MinorGridCount = 9,
+            AxisType = StyleParam.AxisType.Linear
+        )
+    )    
+    Chart.ContourCarpet(
+        "contour",
+        A = [0; 1; 2; 3; 0; 1; 2; 3; 0; 1; 2; 3],
+        B = [4; 4; 4; 4; 5; 5; 5; 5; 6; 6; 6; 6],
+        Z = [1.; 1.96; 2.56; 3.0625; 4.; 5.0625; 1.; 7.5625; 9.; 12.25; 15.21; 14.0625]
+    )
+]
+|> Chart.combine
+|> Chart.show
+
 let carpets = 
     [
         Chart.Carpet(
@@ -194,7 +224,7 @@ let carpets =
             A= ([4.; 4.; 4.; 4.5; 4.5; 4.5; 5.; 5.; 5.; 6.; 6.; 6.] |> List.rev),
             B= ([1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.]|> List.rev),
             Y= ([2.; 3.5; 4.; 3.; 4.5; 5.; 5.5; 6.5; 7.5; 8.; 8.5; 10.] |> List.map (fun x -> x + 40.))
-        )
+        )        
     ]
     |> Chart.combine
 

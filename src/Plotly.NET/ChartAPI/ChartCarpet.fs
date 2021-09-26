@@ -589,3 +589,93 @@ module ChartCarpet =
                     ?TextFont           = TextFont         ,
                     ?Marker             = Marker           
                 )
+
+        static member ContourCarpet 
+            (
+                carpetAnchorId  : string,
+                z               : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Name      : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity   : float,
+                [<Optional;DefaultParameterValue(null)>] ?A         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?B         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Text      : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Dash      : StyleParam.DrawingStyle,
+                [<Optional;DefaultParameterValue(null)>] ?Width     : float ,
+                [<Optional;DefaultParameterValue(null)>] ?LineColor : Color ,
+                [<Optional;DefaultParameterValue(null)>] ?Line      : Line,
+                [<Optional;DefaultParameterValue(null)>] ?ColorScale: StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?ShowScale : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Contours  : Contours
+            ) =
+                TraceCarpet.initContourCarpet(
+                    TraceCarpetStyle.ContourCarpet (
+                        Carpet = StyleParam.SubPlotId.Carpet carpetAnchorId,
+                        ?Name       = Name              ,
+                        ?ShowLegend = ShowLegend        ,
+                        ?Opacity    = Opacity           ,
+                        Z           = z                 ,
+                        ?A          = A                 ,
+                        ?B          = B                 ,
+                        ?Text       = Text              ,
+                        ?MultiText  = MultiText         ,
+                        ?Line       = Line              ,
+                        ?ColorScale = ColorScale        ,
+                        ?ShowScale  = ShowScale         ,
+                        ?Contours   = Contours          
+                    )
+                    >> TraceStyle.Line(
+                        ?Dash       = Dash              ,
+                        ?Width      = Width             ,
+                        ?Color      = LineColor         
+                    )
+                )
+                |> GenericChart.ofTraceObject
+                
+                
+        static member ContourCarpet 
+            (
+                carpetAnchorId  : string,
+                abz             : seq<#IConvertible * #IConvertible * #IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Name      : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity   : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text      : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Dash      : StyleParam.DrawingStyle,
+                [<Optional;DefaultParameterValue(null)>] ?Width     : float ,
+                [<Optional;DefaultParameterValue(null)>] ?LineColor : Color ,
+                [<Optional;DefaultParameterValue(null)>] ?Line      : Line,
+                [<Optional;DefaultParameterValue(null)>] ?ColorScale: StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?ShowScale : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Contours  : Contours
+            ) =
+                
+                let a,b,z = Seq.unzip3 abz
+
+                TraceCarpet.initContourCarpet(
+                    TraceCarpetStyle.ContourCarpet (
+                        Carpet = StyleParam.SubPlotId.Carpet carpetAnchorId,
+                        ?Name       = Name              ,
+                        ?ShowLegend = ShowLegend        ,
+                        ?Opacity    = Opacity           ,
+                        Z           = z                 ,
+                        A           = a                 ,
+                        B           = b                 ,
+                        ?Text       = Text              ,
+                        ?MultiText  = MultiText         ,
+                        ?Line       = Line              ,
+                        ?ColorScale = ColorScale        ,
+                        ?ShowScale  = ShowScale         ,
+                        ?Contours   = Contours          
+                    )
+                    >> TraceStyle.Line(
+                        ?Dash       = Dash              ,
+                        ?Width      = Width             ,
+                        ?Color      = LineColor         
+                    )
+                )
+                |> GenericChart.ofTraceObject
+                
+                
