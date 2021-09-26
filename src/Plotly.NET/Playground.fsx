@@ -131,6 +131,7 @@
 #load "ChartPolar.fs"
 #load "ChartMap.fs"
 #load "ChartTernary.fs"
+#load "ChartCarpet.fs"
 #load "ChartDomain.fs"
 
 #I "CSharpLayer"
@@ -158,9 +159,91 @@ open FSharpAux
 open System
 open System.IO
 
+[
+    Chart.Carpet(
+        "contour",
+        A = [0.; 1.; 2.; 3.; 0.; 1.; 2.; 3.; 0.; 1.; 2.; 3.],
+        B = [4.; 4.; 4.; 4.; 5.; 5.; 5.; 5.; 6.; 6.; 6.; 6.],
+        X = [2.; 3.; 4.; 5.; 2.2; 3.1; 4.1; 5.1; 1.5; 2.5; 3.5; 4.5],
+        Y = [1.; 1.4; 1.6; 1.75; 2.; 2.5; 2.7; 2.75; 3.; 3.5; 3.7; 3.75],
+        AAxis = LinearAxis.initCarpet(
+            TickPrefix = "a = ",
+            Smoothing = 0.,
+            MinorGridCount = 9,
+            AxisType = StyleParam.AxisType.Linear
+        ),
+        BAxis = LinearAxis.initCarpet(
+            TickPrefix = "b = ",
+            Smoothing = 0.,
+            MinorGridCount = 9,
+            AxisType = StyleParam.AxisType.Linear
+        )
+    )    
+    Chart.ContourCarpet(
+        "contour",
+        [1.; 1.96; 2.56; 3.0625; 4.; 5.0625; 1.; 7.5625; 9.; 12.25; 15.21; 14.0625],
+        A = [0; 1; 2; 3; 0; 1; 2; 3; 0; 1; 2; 3],
+        B = [4; 4; 4; 4; 5; 5; 5; 5; 6; 6; 6; 6]
+    )
+]
+|> Chart.combine
+|> Chart.show
+
+let a = [4.; 4.; 4.; 4.5; 4.5; 4.5; 5.; 5.; 5.; 6.; 6.; 6.]
+let b = [1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.]
+let y = [2.; 3.5; 4.; 3.; 4.5; 5.; 5.5; 6.5; 7.5; 8.; 8.5; 10.]
+
+let carpets = 
+    [
+        Chart.Carpet("carpet1",A = a, B = b, Y = y)
+        Chart.Carpet("carpet2",A = (a |> List.rev) , B = (b |> List.rev), Y = (y |> List.map (fun x -> x + 10.)))
+        Chart.Carpet("carpet3",A = a, B = b, Y = (y |> List.map (fun x -> x + 20.)))
+        Chart.Carpet("carpet4",A = (a |> List.rev) , B = (b |> List.rev), Y = (y |> List.map (fun x -> x + 30.)))
+        Chart.Carpet("carpet5",A = a, B = b, Y = (y |> List.map (fun x -> x + 40.)))
+    ]
+
+let aData = [4.; 5.; 5.; 6.]
+let bData = [1.; 1.; 2.; 3.]
+let sizes = [5; 10; 15; 20]
+
+let carpetCharts =
+    [
+        Chart.ScatterCarpet(
+            aData,bData,
+            StyleParam.Mode.Lines_Markers,
+            "carpet1",
+            Name = "Scatter",
+            MultiMarkerSymbol =[
+                StyleParam.MarkerSymbol.ArrowDown
+                StyleParam.MarkerSymbol.TriangleNW
+                StyleParam.MarkerSymbol.DiamondX
+                StyleParam.MarkerSymbol.Hexagon2
+            ],
+            MultiSize = sizes,
+            Color = Color.fromColors ([Red; Blue; Green; Yellow] |> List.map Color.fromKeyword)
+        )
+        Chart.PointCarpet(aData,bData,"carpet2",Name = "Point")
+        Chart.LineCarpet(aData,bData,"carpet3",Name = "Line")
+        Chart.SplineCarpet(aData,bData,"carpet4",Name = "Spline")
+        Chart.BubbleCarpet((Seq.zip3 aData bData sizes),"carpet5",Name = "Bubble")
+    ]
+
+let scatter = Chart.combine [carpets.[0]; carpetCharts.[0]]
+let point   = Chart.combine [carpets.[1]; carpetCharts.[1]]
+let line    = Chart.combine [carpets.[2]; carpetCharts.[2]]
+let spline  = Chart.combine [carpets.[3]; carpetCharts.[3]]
+let bubble  = Chart.combine [carpets.[4]; carpetCharts.[4]]
+
+scatter |> Chart.show
+point   |> Chart.show
+line    |> Chart.show
+spline  |> Chart.show
+bubble  |> Chart.show 
+
+
 let crazyMarker =
     Marker.init(
-        MultiSymbols = [
+        MultiSymbol = [
             StyleParam.MarkerSymbol.ArrowBarDown
             StyleParam.MarkerSymbol.Modified(StyleParam.MarkerSymbol.DiamondCross, StyleParam.SymbolStyle.OpenDot)
             StyleParam.MarkerSymbol.Modified(StyleParam.MarkerSymbol.Square, StyleParam.SymbolStyle.Open)
@@ -199,7 +282,7 @@ Chart.Bar(
     Colorscale = StyleParam.Colorscale.Viridis,
     ShowScale = true,
     Pattern = Pattern.init(
-        MultiShapes = [
+        MultiShape = [
             StyleParam.PatternShape.None 
             StyleParam.PatternShape.DiagonalDescending
             StyleParam.PatternShape.DiagonalAscending

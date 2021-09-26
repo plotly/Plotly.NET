@@ -136,6 +136,7 @@ module StyleParam =
         | Polar     of int
         | Ternary   of int
         | Scene     of int
+        | Carpet    of string
     
         static member toString = function
             | XAxis     id  -> if id < 2 then "xaxis" else sprintf "xaxis%i" id
@@ -146,6 +147,7 @@ module StyleParam =
             | Polar     id  -> if id < 2 then "polar" else sprintf "polar%i" id
             | Ternary   id  -> if id < 2 then "ternary" else sprintf "ternary%i" id
             | Scene     id  -> if id < 2 then "scene" else sprintf "scene%i" id
+            | Carpet    id  -> id
 
         static member convert = SubPlotId.toString >> box 
         override this.ToString() = this |> SubPlotId.toString
@@ -315,6 +317,32 @@ module StyleParam =
 //--------------------------
     
         
+    [<RequireQualifiedAccess>]
+    type CoordinateType =
+        | Array      
+        | Scaled
+
+        static member toString = function
+            | Array -> "array" 
+            | Scaled -> "scaled" 
+
+        static member convert = CoordinateType.toString >> box
+        override this.ToString() = this |> CoordinateType.toString
+        member this.Convert() = this |> CoordinateType.convert        
+                
+    [<RequireQualifiedAccess>]
+    type CheaterType =
+        | Index      
+        | Value
+
+        static member toString = function
+            | Index -> "index" 
+            | Value -> "value" 
+
+        static member convert = CheaterType.toString >> box
+        override this.ToString() = this |> CheaterType.toString
+        member this.Convert() = this |> CheaterType.convert        
+
     [<RequireQualifiedAccess>]
     type ColorModel =
         | RGB      
