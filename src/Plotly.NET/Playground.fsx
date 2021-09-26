@@ -159,10 +159,6 @@ open FSharpAux
 open System
 open System.IO
 
-let a = [4.; 5.; 5.; 6.]
-let b = [1.; 1.; 2.; 3.]
-let sizes = [5; 10; 15; 20]
-
 [
     Chart.Carpet(
         "contour",
@@ -185,75 +181,65 @@ let sizes = [5; 10; 15; 20]
     )    
     Chart.ContourCarpet(
         "contour",
+        [1.; 1.96; 2.56; 3.0625; 4.; 5.0625; 1.; 7.5625; 9.; 12.25; 15.21; 14.0625],
         A = [0; 1; 2; 3; 0; 1; 2; 3; 0; 1; 2; 3],
-        B = [4; 4; 4; 4; 5; 5; 5; 5; 6; 6; 6; 6],
-        Z = [1.; 1.96; 2.56; 3.0625; 4.; 5.0625; 1.; 7.5625; 9.; 12.25; 15.21; 14.0625]
+        B = [4; 4; 4; 4; 5; 5; 5; 5; 6; 6; 6; 6]
     )
 ]
 |> Chart.combine
 |> Chart.show
+
+let a = [4.; 4.; 4.; 4.5; 4.5; 4.5; 5.; 5.; 5.; 6.; 6.; 6.]
+let b = [1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.]
+let y = [2.; 3.5; 4.; 3.; 4.5; 5.; 5.5; 6.5; 7.5; 8.; 8.5; 10.]
 
 let carpets = 
     [
-        Chart.Carpet(
-            "carpet1",
-            A= [4.; 4.; 4.; 4.5; 4.5; 4.5; 5.; 5.; 5.; 6.; 6.; 6.],
-            B= [1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.],
-            Y= [2.; 3.5; 4.; 3.; 4.5; 5.; 5.5; 6.5; 7.5; 8.; 8.5; 10.]
-        )    
-        Chart.Carpet(
-            "carpet2",
-            A= ([4.; 4.; 4.; 4.5; 4.5; 4.5; 5.; 5.; 5.; 6.; 6.; 6.] |> List.rev),
-            B= ([1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.]|> List.rev),
-            Y= ([2.; 3.5; 4.; 3.; 4.5; 5.; 5.5; 6.5; 7.5; 8.; 8.5; 10.] |> List.map (fun x -> x + 10.))
-        )        
-        Chart.Carpet(
-            "carpet3",
-            A= [4.; 4.; 4.; 4.5; 4.5; 4.5; 5.; 5.; 5.; 6.; 6.; 6.],
-            B= [1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.],
-            Y= ([2.; 3.5; 4.; 3.; 4.5; 5.; 5.5; 6.5; 7.5; 8.; 8.5; 10.] |> List.map (fun x -> x + 20.))
-        )    
-        Chart.Carpet(
-            "carpet4",
-            A= ([4.; 4.; 4.; 4.5; 4.5; 4.5; 5.; 5.; 5.; 6.; 6.; 6.] |> List.rev),
-            B= ([1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.]|> List.rev),
-            Y= ([2.; 3.5; 4.; 3.; 4.5; 5.; 5.5; 6.5; 7.5; 8.; 8.5; 10.] |> List.map (fun x -> x + 30.))
-        )        
-        Chart.Carpet(
-            "carpet5",
-            A= ([4.; 4.; 4.; 4.5; 4.5; 4.5; 5.; 5.; 5.; 6.; 6.; 6.] |> List.rev),
-            B= ([1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.]|> List.rev),
-            Y= ([2.; 3.5; 4.; 3.; 4.5; 5.; 5.5; 6.5; 7.5; 8.; 8.5; 10.] |> List.map (fun x -> x + 40.))
-        )        
+        Chart.Carpet("carpet1",A = a, B = b, Y = y)
+        Chart.Carpet("carpet2",A = (a |> List.rev) , B = (b |> List.rev), Y = (y |> List.map (fun x -> x + 10.)))
+        Chart.Carpet("carpet3",A = a, B = b, Y = (y |> List.map (fun x -> x + 20.)))
+        Chart.Carpet("carpet4",A = (a |> List.rev) , B = (b |> List.rev), Y = (y |> List.map (fun x -> x + 30.)))
+        Chart.Carpet("carpet5",A = a, B = b, Y = (y |> List.map (fun x -> x + 40.)))
     ]
-    |> Chart.combine
 
-[
-    carpets
-    Chart.ScatterCarpet(
-        a,b,
-        StyleParam.Mode.Lines_Markers,
-        "carpet1",
-        Name = "Scatter",
-        MultiMarkerSymbol =[
-            StyleParam.MarkerSymbol.ArrowDown
-            StyleParam.MarkerSymbol.TriangleNW
-            StyleParam.MarkerSymbol.DiamondX
-            StyleParam.MarkerSymbol.Hexagon2
-        ],
-        MultiSize = [
-            10; 15; 20; 25
-        ],
-        Color = Color.fromColors ([Red; Blue; Green; Yellow] |> List.map Color.fromKeyword)
-    )
-    Chart.PointCarpet(a,b,"carpet2",Name = "Point")
-    Chart.LineCarpet(a,b,"carpet3",Name = "Line")
-    Chart.SplineCarpet(a,b,"carpet4",Name = "Spline")
-    Chart.BubbleCarpet((Seq.zip3 a b sizes),"carpet5",Name = "Spline")
-]
-|> Chart.combine
-|> Chart.withSize(Height=1000)
-|> Chart.show
+let aData = [4.; 5.; 5.; 6.]
+let bData = [1.; 1.; 2.; 3.]
+let sizes = [5; 10; 15; 20]
+
+let carpetCharts =
+    [
+        Chart.ScatterCarpet(
+            aData,bData,
+            StyleParam.Mode.Lines_Markers,
+            "carpet1",
+            Name = "Scatter",
+            MultiMarkerSymbol =[
+                StyleParam.MarkerSymbol.ArrowDown
+                StyleParam.MarkerSymbol.TriangleNW
+                StyleParam.MarkerSymbol.DiamondX
+                StyleParam.MarkerSymbol.Hexagon2
+            ],
+            MultiSize = sizes,
+            Color = Color.fromColors ([Red; Blue; Green; Yellow] |> List.map Color.fromKeyword)
+        )
+        Chart.PointCarpet(aData,bData,"carpet2",Name = "Point")
+        Chart.LineCarpet(aData,bData,"carpet3",Name = "Line")
+        Chart.SplineCarpet(aData,bData,"carpet4",Name = "Spline")
+        Chart.BubbleCarpet((Seq.zip3 aData bData sizes),"carpet5",Name = "Bubble")
+    ]
+
+let scatter = Chart.combine [carpets.[0]; carpetCharts.[0]]
+let point   = Chart.combine [carpets.[1]; carpetCharts.[1]]
+let line    = Chart.combine [carpets.[2]; carpetCharts.[2]]
+let spline  = Chart.combine [carpets.[3]; carpetCharts.[3]]
+let bubble  = Chart.combine [carpets.[4]; carpetCharts.[4]]
+
+scatter |> Chart.show
+point   |> Chart.show
+line    |> Chart.show
+spline  |> Chart.show
+bubble  |> Chart.show 
+
 
 let crazyMarker =
     Marker.init(

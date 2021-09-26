@@ -20,6 +20,7 @@
     <Compile Include="HtmlCodegen\FinanceCharts.fs" />
     <Compile Include="HtmlCodegen\PolarCharts.fs" />
     <Compile Include="HtmlCodegen\TernaryCharts.fs" />
+    <Compile Include="HtmlCodegen\CarpetCharts.fs" />
     <Compile Include="HtmlCodegen\CategoricalCharts.fs" />
     <Compile Include="ImageExport.fs" />
     <Compile Include="Main.fs" />
