@@ -560,3 +560,125 @@ module ChartDomain =
                     )
                 )
                 |> GenericChart.ofTraceObject
+
+        /// creates table out of header sequence and row sequences
+        [<Extension>]
+        static member Icicle
+            (
+               labels   : seq<#IConvertible>,
+               parents  : seq<#IConvertible>,
+               [<Optional;DefaultParameterValue(null)>] ?Name               : string,
+               [<Optional;DefaultParameterValue(null)>] ?ShowLegend         : bool,
+               [<Optional;DefaultParameterValue(null)>] ?Values             : seq<#IConvertible>,
+               [<Optional;DefaultParameterValue(null)>] ?Opacity            : float,
+               [<Optional;DefaultParameterValue(null)>] ?MultiOpacity       : seq<float>,
+               [<Optional;DefaultParameterValue(null)>] ?Color              : Color,
+               [<Optional;DefaultParameterValue(null)>] ?ColorScale         : StyleParam.Colorscale,
+               [<Optional;DefaultParameterValue(null)>] ?ShowScale          : bool,
+               [<Optional;DefaultParameterValue(null)>] ?Marker             : Marker,
+               [<Optional;DefaultParameterValue(null)>] ?Text               : #IConvertible,
+               [<Optional;DefaultParameterValue(null)>] ?MultiText          : seq<#IConvertible>,
+               [<Optional;DefaultParameterValue(null)>] ?TextPosition       : StyleParam.TextPosition,
+               [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition  : seq<StyleParam.TextPosition>,
+               [<Optional;DefaultParameterValue(null)>] ?Domain             : Domain,
+               [<Optional;DefaultParameterValue(null)>] ?BranchValues       : StyleParam.BranchValues,
+               [<Optional;DefaultParameterValue(null)>] ?Count              : StyleParam.IcicleCount,
+               [<Optional;DefaultParameterValue(null)>] ?TilingOrientation  : StyleParam.Orientation,
+               [<Optional;DefaultParameterValue(null)>] ?TilingFlip         : StyleParam.TilingFlip,
+               [<Optional;DefaultParameterValue(null)>] ?Tiling             : IcicleTiling,
+               [<Optional;DefaultParameterValue(null)>] ?PathBarEdgeShape   : StyleParam.PathbarEdgeShape,
+               [<Optional;DefaultParameterValue(null)>] ?PathBar            : Pathbar
+            ) = 
+
+                let tiling = 
+                    Tiling
+                    |> Option.defaultValue(IcicleTiling.init())
+                    |> IcicleTiling.style(?Orientation = TilingOrientation, ?Flip = TilingFlip)
+
+                let pathbar = 
+                    PathBar
+                    |> Option.defaultValue(Pathbar.init())
+                    |> Pathbar.style(?EdgeShape = PathBarEdgeShape)
+
+                TraceDomain.initIcicle(
+                    TraceDomainStyle.Icicle(
+                        ?Name              = Name              ,
+                        ?ShowLegend        = ShowLegend        ,
+                        ?Opacity           = Opacity           ,
+                        Parents            = parents           ,
+                        ?Values            = Values            ,
+                        Labels             = labels            ,
+                        ?Text              = Text              ,
+                        ?MultiText         = MultiText         ,
+                        ?TextPosition      = TextPosition      ,
+                        ?MultiTextPosition = MultiTextPosition ,
+                        ?Domain            = Domain            ,
+                        ?Marker            = Marker            ,
+                        ?BranchValues      = BranchValues      ,
+                        ?Count             = Count             ,
+                        Tiling             = tiling            ,
+                        PathBar            = pathbar           
+                    )
+                    >> TraceStyle.Marker (
+                        ?Color          = Color,
+                        ?MultiOpacity   = MultiOpacity,
+                        ?Colorscale     = ColorScale,
+                        ?ShowScale      = ShowScale
+                    )
+                )
+                |> GenericChart.ofTraceObject
+
+        /// creates table out of header sequence and row sequences
+        [<Extension>]
+        static member Icicle
+            (
+               labelsParents: seq<#IConvertible * #IConvertible>,
+               [<Optional;DefaultParameterValue(null)>] ?Name               : string,
+               [<Optional;DefaultParameterValue(null)>] ?ShowLegend         : bool,
+               [<Optional;DefaultParameterValue(null)>] ?Values             : seq<#IConvertible>,
+               [<Optional;DefaultParameterValue(null)>] ?Opacity            : float,
+               [<Optional;DefaultParameterValue(null)>] ?MultiOpacity       : seq<float>,
+               [<Optional;DefaultParameterValue(null)>] ?Color              : Color,
+               [<Optional;DefaultParameterValue(null)>] ?ColorScale         : StyleParam.Colorscale,
+               [<Optional;DefaultParameterValue(null)>] ?ShowScale          : bool,
+               [<Optional;DefaultParameterValue(null)>] ?Marker             : Marker,
+               [<Optional;DefaultParameterValue(null)>] ?Text               : #IConvertible,
+               [<Optional;DefaultParameterValue(null)>] ?MultiText          : seq<#IConvertible>,
+               [<Optional;DefaultParameterValue(null)>] ?TextPosition       : StyleParam.TextPosition,
+               [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition  : seq<StyleParam.TextPosition>,
+               [<Optional;DefaultParameterValue(null)>] ?Domain             : Domain,
+               [<Optional;DefaultParameterValue(null)>] ?BranchValues       : StyleParam.BranchValues,
+               [<Optional;DefaultParameterValue(null)>] ?Count              : StyleParam.IcicleCount,
+               [<Optional;DefaultParameterValue(null)>] ?TilingOrientation  : StyleParam.Orientation,
+               [<Optional;DefaultParameterValue(null)>] ?TilingFlip         : StyleParam.TilingFlip,
+               [<Optional;DefaultParameterValue(null)>] ?Tiling             : IcicleTiling,
+               [<Optional;DefaultParameterValue(null)>] ?PathBarEdgeShape   : StyleParam.PathbarEdgeShape,
+               [<Optional;DefaultParameterValue(null)>] ?PathBar            : Pathbar
+            ) = 
+
+                let labels, parents = Seq.unzip labelsParents
+
+                Chart.Icicle(
+                    labels, parents,
+                    ?Name               = Name               ,
+                    ?ShowLegend         = ShowLegend         ,
+                    ?Values             = Values             ,
+                    ?Opacity            = Opacity            ,
+                    ?MultiOpacity       = MultiOpacity       ,
+                    ?Color              = Color              ,
+                    ?ColorScale         = ColorScale         ,
+                    ?ShowScale          = ShowScale          ,
+                    ?Marker             = Marker             ,
+                    ?Text               = Text               ,
+                    ?MultiText          = MultiText          ,
+                    ?TextPosition       = TextPosition       ,
+                    ?MultiTextPosition  = MultiTextPosition  ,
+                    ?Domain             = Domain             ,
+                    ?BranchValues       = BranchValues       ,
+                    ?Count              = Count              ,
+                    ?TilingOrientation  = TilingOrientation  ,
+                    ?TilingFlip         = TilingFlip         ,
+                    ?Tiling             = Tiling             ,
+                    ?PathBarEdgeShape   = PathBarEdgeShape   ,
+                    ?PathBar            = PathBar            
+                )

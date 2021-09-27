@@ -46,6 +46,10 @@ type TraceDomain(traceTypeName) =
     static member initIndicator (applyStyle: TraceDomain -> TraceDomain) = 
         TraceDomain("indicator") |> applyStyle
 
+    ///initializes a trace of type "icicle" applying the given trace styling function
+    static member initIcicle (applyStyle: TraceDomain -> TraceDomain) = 
+        TraceDomain("icicle") |> applyStyle
+
 type TraceDomainStyle() =
     
     static member SetDomain
@@ -367,5 +371,92 @@ type TraceDomainStyle() =
                 Number            |> DynObj.setValueOpt trace "number"
                 Gauge             |> DynObj.setValueOpt trace "gauge"
                 UIRevision        |> DynObj.setValueOpt trace "uirevision"
+
+                trace
+
+    static member Icicle
+        (
+            [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+            [<Optional;DefaultParameterValue(null)>] ?Title             : string,
+            [<Optional;DefaultParameterValue(null)>] ?Visible           : StyleParam.Visible,
+            [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+            [<Optional;DefaultParameterValue(null)>] ?LegendRank        : int,
+            [<Optional;DefaultParameterValue(null)>] ?LegendGroup       : string,
+            [<Optional;DefaultParameterValue(null)>] ?LegendGroupTitle  : Title,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+            [<Optional;DefaultParameterValue(null)>] ?Ids               : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Parents           : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Values            : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Labels            : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
+            [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
+            [<Optional;DefaultParameterValue(null)>] ?TextTemplate      : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiTextTemplate : seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverText         : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiHoverText    : seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverInfo         : StyleParam.HoverInfo,
+            [<Optional;DefaultParameterValue(null)>] ?HoverTemplate     : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiHoverTemplate: seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?Meta              : string,
+            [<Optional;DefaultParameterValue(null)>] ?CustomData        : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Domain            : Domain,
+            [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
+            [<Optional;DefaultParameterValue(null)>] ?TextInfo          : StyleParam.TextInfo,
+            [<Optional;DefaultParameterValue(null)>] ?BranchValues      : StyleParam.BranchValues,
+            [<Optional;DefaultParameterValue(null)>] ?Count             : StyleParam.IcicleCount,
+            [<Optional;DefaultParameterValue(null)>] ?Tiling            : IcicleTiling,
+            [<Optional;DefaultParameterValue(null)>] ?PathBar           : Pathbar,
+            [<Optional;DefaultParameterValue(null)>] ?HoverLabel        : Hoverlabel,
+            [<Optional;DefaultParameterValue(null)>] ?InsideTextFont    : Font,
+            [<Optional;DefaultParameterValue(null)>] ?OutsideTextFont   : Font,
+            [<Optional;DefaultParameterValue(null)>] ?Root              : IcicleRoot,
+            [<Optional;DefaultParameterValue(null)>] ?Leaf              : IcicleLeaf,
+            [<Optional;DefaultParameterValue(null)>] ?Level             : string,
+            [<Optional;DefaultParameterValue(null)>] ?MaxDepth          : int,
+            [<Optional;DefaultParameterValue(null)>] ?Sort              : bool,
+            [<Optional;DefaultParameterValue(null)>] ?UIRevision        : string
+        ) =
+            fun (trace: #Trace) ->                  
+
+                Name                                |> DynObj.setValueOpt trace "name"
+                Title                               |> DynObj.setValueOpt trace "title"
+                Visible                             |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+                ShowLegend                          |> DynObj.setValueOpt trace "showlegend"
+                LegendRank                          |> DynObj.setValueOpt trace "legendrank"
+                LegendGroup                         |> DynObj.setValueOpt trace "legendgroup"
+                LegendGroupTitle                    |> DynObj.setValueOpt trace "legendgrouptitle"
+                Opacity                             |> DynObj.setValueOpt trace "opacity"
+                Ids                                 |> DynObj.setValueOpt trace "ids"
+                Parents                             |> DynObj.setValueOpt trace "parents"
+                Values                              |> DynObj.setValueOpt trace "values"
+                Labels                              |> DynObj.setValueOpt trace "labels"
+                (Text, MultiText)                   |> DynObj.setSingleOrMultiOpt trace "text"
+                (TextPosition, MultiTextPosition)   |> DynObj.setSingleOrMultiOptBy trace "textposition" StyleParam.TextPosition.convert
+                (TextTemplate, MultiTextTemplate)   |> DynObj.setSingleOrMultiOpt trace "texttemplate"
+                (HoverText, MultiHoverText)         |> DynObj.setSingleOrMultiOpt trace "hovertext"
+                HoverInfo                           |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
+                (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
+                Meta                                |> DynObj.setValueOpt trace "meta"
+                CustomData                          |> DynObj.setValueOpt trace "customdata"
+                Domain                              |> DynObj.setValueOpt trace "domain"
+                Marker                              |> DynObj.setValueOpt trace "marker"
+                TextFont                            |> DynObj.setValueOpt trace "textfont"
+                TextInfo                            |> DynObj.setValueOptBy trace "textinfo" StyleParam.TextInfo.convert
+                BranchValues                        |> DynObj.setValueOptBy trace "branchvalues" StyleParam.BranchValues.convert
+                Count                               |> DynObj.setValueOptBy trace "count" StyleParam.IcicleCount.convert
+                Tiling                              |> DynObj.setValueOpt trace "tiling"
+                PathBar                             |> DynObj.setValueOpt trace "pathbar"
+                HoverLabel                          |> DynObj.setValueOpt trace "hoverlabel"
+                InsideTextFont                      |> DynObj.setValueOpt trace "insidetextfont"
+                OutsideTextFont                     |> DynObj.setValueOpt trace "outsidetextfont"
+                Root                                |> DynObj.setValueOpt trace "root"
+                Leaf                                |> DynObj.setValueOpt trace "leaf"
+                Level                               |> DynObj.setValueOpt trace "level"
+                MaxDepth                            |> DynObj.setValueOpt trace "maxdepth"
+                Sort                                |> DynObj.setValueOpt trace "sort"
+                UIRevision                          |> DynObj.setValueOpt trace "uirevision"
 
                 trace

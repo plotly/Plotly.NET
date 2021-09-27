@@ -24,7 +24,7 @@ type TreemapTiling () =
         (
             [<Optional;DefaultParameterValue(null)>] ?Packing        : StyleParam.TreemapTilingPacking,
             [<Optional;DefaultParameterValue(null)>] ?SquarifyRatio  : float,
-            [<Optional;DefaultParameterValue(null)>] ?Flip           : string,
+            [<Optional;DefaultParameterValue(null)>] ?Flip           : StyleParam.TilingFlip,
             [<Optional;DefaultParameterValue(null)>] ?Pad            : float
         ) = 
 
@@ -52,14 +52,14 @@ type TreemapTiling () =
         (
             [<Optional;DefaultParameterValue(null)>] ?Packing        : StyleParam.TreemapTilingPacking,
             [<Optional;DefaultParameterValue(null)>] ?SquarifyRatio  : float,
-            [<Optional;DefaultParameterValue(null)>] ?Flip           : string,
+            [<Optional;DefaultParameterValue(null)>] ?Flip           : StyleParam.TilingFlip,
             [<Optional;DefaultParameterValue(null)>] ?Pad            : float
             
         ) = 
             (fun (tiling:TreemapTiling) -> 
                 Packing       |> DynObj.setValueOptBy tiling "packing" StyleParam.TreemapTilingPacking.convert
                 SquarifyRatio |> DynObj.setValueOpt   tiling "squarifyRatio"
-                Flip          |> DynObj.setValueOpt   tiling "flip"
+                Flip          |> DynObj.setValueOptBy tiling "flip" StyleParam.TilingFlip.convert
                 Pad           |> DynObj.setValueOpt   tiling "pad"
 
                 tiling
