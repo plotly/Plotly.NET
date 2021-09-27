@@ -39,40 +39,42 @@ There are different types of indicator charts, depending on the `IndicatorMode` 
 
 open Plotly.NET 
 open Plotly.NET.TraceObjects
+open Plotly.NET.LayoutObjects
 
 let allIndicatorTypes =
     [
         Chart.Indicator(
-            200., StyleParam.IndicatorMode.NumberDeltaGauge,
-            Title = Title.init("Angular gauge showing number and delta")
-            Delta = IndicatorDelta.init(Reference=160),
-            Range = StyleParam.Range.MinMax(0., 250.),
-            Domain = Domain.init(Row = 0, Column = 0)
-        )
-        Chart.Indicator(
             120., StyleParam.IndicatorMode.NumberDeltaGauge,
-            Title = Title.init("Bullet gauge showing number and delta")
+            Title = "Bullet gauge",
             DeltaReference = 90.,
             Range = StyleParam.Range.MinMax(-200., 200.),
             GaugeShape = StyleParam.IndicatorGaugeShape.Bullet,
             ShowGaugeAxis = false,
-            Domain  = Domain.init(Row = 0, Column = 1)
+            Domain  = Domain.init(Row = 0, Column = 0)
+        )
+        Chart.Indicator(
+            200., StyleParam.IndicatorMode.NumberDeltaGauge,
+            Title = "Angular gauge",
+            Delta = IndicatorDelta.init(Reference=160),
+            Range = StyleParam.Range.MinMax(0., 250.),
+            Domain = Domain.init(Row = 0, Column = 1)
         )
         Chart.Indicator(
             300., StyleParam.IndicatorMode.NumberDelta,
-            Title = Title.init("Only showing number and delta")
+            Title = "number and delta",
             DeltaReference = 90.,
             Domain  = Domain.init(Row = 1, Column = 0)
         )        
         Chart.Indicator(
             40., StyleParam.IndicatorMode.Delta,
-            Title = Title.init("Only showing delta")
+            Title = "delta",
             DeltaReference = 90.,
             Domain  = Domain.init(Row = 1, Column = 1)
         )
     ]
     |> Chart.combine
     |> Chart.withLayoutGridStyle(Rows = 2, Columns = 2)
+    |> Chart.withMarginSize(Left = 200)
 
 
 (*** condition: ipynb ***)
