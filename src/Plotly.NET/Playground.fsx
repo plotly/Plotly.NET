@@ -163,7 +163,6 @@ open System.IO
 
 let character   = ["Eve"; "Cain"; "Seth"; "Enos"; "Noam"; "Abel"; "Awan"; "Enoch"; "Azura"]
 let parent      = [""; "Eve"; "Eve"; "Seth"; "Seth"; "Eve"; "Eve"; "Awan"; "Eve" ]
-let value       = [10; 14; 12; 10; 2; 6; 6; 4; 4]
 
 Chart.Icicle(
     character,
@@ -171,7 +170,8 @@ Chart.Icicle(
     ShowScale = true,
     ColorScale = StyleParam.Colorscale.Viridis,
     TilingOrientation = StyleParam.Orientation.Vertical,
-    TilingFlip = StyleParam.TilingFlip.Y
+    TilingFlip = StyleParam.TilingFlip.Y,
+    PathBarEdgeShape = StyleParam.PathbarEdgeShape.BackSlash
 )
 |> Chart.show
 
