@@ -99,3 +99,49 @@ let ``Funnel area charts`` =
             emptyLayout funnelArea
         );
     ]
+
+
+
+let indicators =
+    [
+        ChartDomain.Chart.Indicator(
+            200., StyleParam.IndicatorMode.NumberDeltaGauge,
+            Delta   = IndicatorDelta.init(Reference=160),
+            Range   = StyleParam.Range.MinMax(0., 250.),
+            Domain  = Domain.init(Row = 0, Column = 0)
+        )
+        Chart.Indicator(
+            120, StyleParam.IndicatorMode.NumberDeltaGauge,
+            DeltaReference = 90,
+            Range = StyleParam.Range.MinMax(-200., 200.),
+            GaugeShape = StyleParam.IndicatorGaugeShape.Bullet,
+            ShowGaugeAxis = false,
+            Domain  = Domain.init(Row = 0, Column = 1)
+        )
+        Chart.Indicator(
+            "300", StyleParam.IndicatorMode.NumberDelta,
+            DeltaReference = 90.,
+            Domain  = Domain.init(Row = 1, Column = 0)
+        )        
+        Chart.Indicator(
+            40., StyleParam.IndicatorMode.Delta,
+            DeltaReference = 90.,
+            Domain  = Domain.init(Row = 1, Column = 1)
+        )
+    ]
+    |> Chart.combine
+    |> Chart.withLayoutGridStyle(Rows = 2, Columns = 2)
+
+
+[<Tests>]
+let ``Indicator charts`` =
+    testList "FinanceCharts.Indicator charts" [
+        testCase "Indicator data" ( fun () ->
+            """var data = [{"type":"indicator","mode":"number+delta+gauge","value":200.0,"domain":{"row":0,"column":0},"delta":{"reference":160},"gauge":{"axis":{"range":[0.0,250.0]}}},{"type":"indicator","mode":"number+delta+gauge","value":120,"domain":{"row":0,"column":1},"delta":{"reference":90},"gauge":{"axis":{"visible":false,"range":[-200.0,200.0]},"shape":"bullet"}},{"type":"indicator","mode":"number+delta","value":"300","domain":{"row":1,"column":0},"delta":{"reference":90.0},"gauge":{"axis":{}}},{"type":"indicator","mode":"delta","value":40.0,"domain":{"row":1,"column":1},"delta":{"reference":90.0},"gauge":{"axis":{}}}];"""
+            |> chartGeneratedContains indicators
+        );
+        testCase "Indicator layout" ( fun () ->
+            """var layout = {"grid":{"rows":2,"columns":2}};"""
+            |> chartGeneratedContains indicators
+        );
+    ]

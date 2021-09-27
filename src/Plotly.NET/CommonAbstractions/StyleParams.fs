@@ -1115,6 +1115,61 @@ module StyleParam =
 //--------------------------
 
     [<RequireQualifiedAccess>]
+    type IndicatorMode =
+        | Number | Delta | Gauge
+        | NumberDelta | NumberGauge
+        | DeltaGauge
+        | NumberDeltaGauge
+        static member toString = function
+            | Number            -> "number"
+            | Delta             -> "delta"
+            | Gauge             -> "gauge"
+            | NumberDelta       -> "number+delta"
+            | NumberGauge      -> "number+gauge"
+            | DeltaGauge        -> "delta+gauge"
+            | NumberDeltaGauge  -> "number+delta+gauge"
+
+        static member convert = IndicatorMode.toString >> box
+        override this.ToString() = this |> IndicatorMode.toString
+        member this.Convert() = this |> IndicatorMode.convert
+        
+    [<RequireQualifiedAccess>]
+    type IndicatorAlignment =
+        | Left | Center | Right
+        static member toString = function
+            | Left  -> "left"
+            | Center-> "center" 
+            | Right -> "right"
+
+        static member convert = IndicatorAlignment.toString >> box
+        override this.ToString() = this |> IndicatorAlignment.toString
+        member this.Convert() = this |> IndicatorAlignment.convert
+        
+    [<RequireQualifiedAccess>]
+    type IndicatorGaugeShape =
+        | Angular | Bullet 
+        static member toString = function
+            | Angular   -> "angular"
+            | Bullet    -> "bullet"
+
+        static member convert = IndicatorGaugeShape.toString >> box
+        override this.ToString() = this |> IndicatorGaugeShape.toString
+        member this.Convert() = this |> IndicatorGaugeShape.convert
+        
+    [<RequireQualifiedAccess>]
+    type IndicatorDeltaPosition =
+        | Top | Bottom | Left | Right
+        static member toString = function
+            | Top       -> "top"
+            | Bottom    -> "bottom"
+            | Left      -> "left"
+            | Right     -> "right"
+
+        static member convert = IndicatorDeltaPosition.toString >> box
+        override this.ToString() = this |> IndicatorDeltaPosition.toString
+        member this.Convert() = this |> IndicatorDeltaPosition.convert
+        
+    [<RequireQualifiedAccess>]
     type InsideTextAnchor =
         | End | Middle | Start
         static member toString = function

@@ -326,3 +326,46 @@ type TraceDomainStyle() =
                 trace
             ) 
 
+    static member Indicator
+        (
+            [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+            [<Optional;DefaultParameterValue(null)>] ?Title             : string,
+            [<Optional;DefaultParameterValue(null)>] ?Visible           : StyleParam.Visible,
+            [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+            [<Optional;DefaultParameterValue(null)>] ?LegendRank        : int,
+            [<Optional;DefaultParameterValue(null)>] ?LegendGroup       : string,
+            [<Optional;DefaultParameterValue(null)>] ?LegendGroupTitle  : Title,
+            [<Optional;DefaultParameterValue(null)>] ?Mode              : StyleParam.IndicatorMode,
+            [<Optional;DefaultParameterValue(null)>] ?Ids               : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Value             : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?Meta              : string,
+            [<Optional;DefaultParameterValue(null)>] ?CustomData        : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Domain            : Domain,
+            [<Optional;DefaultParameterValue(null)>] ?Align             : StyleParam.IndicatorAlignment,
+            [<Optional;DefaultParameterValue(null)>] ?Delta             : IndicatorDelta,
+            [<Optional;DefaultParameterValue(null)>] ?Number            : IndicatorNumber,
+            [<Optional;DefaultParameterValue(null)>] ?Gauge             : IndicatorGauge,
+            [<Optional;DefaultParameterValue(null)>] ?UIRevision        : string
+        ) =
+            fun (trace: #Trace) ->                  
+                
+                Name              |> DynObj.setValueOpt trace "name"
+                Title             |> DynObj.setValueOpt trace "title" 
+                Visible           |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+                ShowLegend        |> DynObj.setValueOpt trace "showlegend"
+                LegendRank        |> DynObj.setValueOpt trace "legendrank"
+                LegendGroup       |> DynObj.setValueOpt trace "legendgroup"
+                LegendGroupTitle  |> DynObj.setValueOpt trace "legendgrouptitle"
+                Mode              |> DynObj.setValueOptBy trace "mode" StyleParam.IndicatorMode.convert
+                Ids               |> DynObj.setValueOpt trace "ids"
+                Value             |> DynObj.setValueOpt trace "value"
+                Meta              |> DynObj.setValueOpt trace "meta"
+                CustomData        |> DynObj.setValueOpt trace "customdata"
+                Domain            |> DynObj.setValueOpt trace "domain"
+                Align             |> DynObj.setValueOptBy trace "align" StyleParam.IndicatorAlignment.convert
+                Delta             |> DynObj.setValueOpt trace "delta"
+                Number            |> DynObj.setValueOpt trace "number"
+                Gauge             |> DynObj.setValueOpt trace "gauge"
+                UIRevision        |> DynObj.setValueOpt trace "uirevision"
+
+                trace

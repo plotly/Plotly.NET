@@ -92,6 +92,7 @@
 #load "Cumulative.fs"
 #load "Error.fs"
 #load "Table.fs"
+#load "Indicator.fs"
 
 #I "Traces"
 
@@ -158,6 +159,42 @@ open FSharpAux
 
 open System
 open System.IO
+
+[
+    Chart.Indicator(
+        120., StyleParam.IndicatorMode.NumberDeltaGauge,
+        Title = "Bullet gauge",
+        DeltaReference = 90.,
+        Range = StyleParam.Range.MinMax(-200., 200.),
+        GaugeShape = StyleParam.IndicatorGaugeShape.Bullet,
+        ShowGaugeAxis = false,
+        Domain  = Domain.init(Row = 0, Column = 0)
+    )
+    Chart.Indicator(
+        200., StyleParam.IndicatorMode.NumberDeltaGauge,
+        Title = "Angular gauge",
+        Delta = IndicatorDelta.init(Reference=160),
+        Range = StyleParam.Range.MinMax(0., 250.),
+        Domain = Domain.init(Row = 0, Column = 1)
+    )
+    Chart.Indicator(
+        300., StyleParam.IndicatorMode.NumberDelta,
+        Title = "number and delta",
+        DeltaReference = 90.,
+        Domain  = Domain.init(Row = 1, Column = 0)
+    )        
+    Chart.Indicator(
+        40., StyleParam.IndicatorMode.Delta,
+        Title = "delta",
+        DeltaReference = 90.,
+        Domain  = Domain.init(Row = 1, Column = 1)
+    )
+]
+|> Chart.combine
+|> Chart.withLayoutGridStyle(Rows = 2, Columns = 2)
+|> Chart.withMarginSize(Left = 200)
+|> Chart.show
+
 
 [
     Chart.Carpet(

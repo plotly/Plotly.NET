@@ -82,6 +82,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{7B09CC0A-F
 		docs\07_0_candlestick.fsx = docs\07_0_candlestick.fsx
 		docs\07_1_funnel.fsx = docs\07_1_funnel.fsx
 		docs\07_2_funnel_area.fsx = docs\07_2_funnel_area.fsx
+		docs\07_3_indicator.fsx = docs\07_3_indicator.fsx
 		docs\08_0_polar_line-scatter-plots.fsx = docs\08_0_polar_line-scatter-plots.fsx
 		docs\08_1_polar_bar_charts.fsx = docs\08_1_polar_bar_charts.fsx
 		docs\08_2_styling_polar_layouts.fsx = docs\08_2_styling_polar_layouts.fsx
