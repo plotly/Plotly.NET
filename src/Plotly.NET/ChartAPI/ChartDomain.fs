@@ -509,3 +509,54 @@ module ChartDomain =
                         )
                     )
                 |> GenericChart.ofTraceObject 
+
+        /// creates table out of header sequence and row sequences
+        [<Extension>]
+        static member Indicator
+            (
+               value      : #IConvertible,
+               mode       : StyleParam.IndicatorMode,
+               [<Optional;DefaultParameterValue(null)>] ?Range          : StyleParam.Range,
+               [<Optional;DefaultParameterValue(null)>] ?Name           : string,
+               [<Optional;DefaultParameterValue(null)>] ?Title          : string,
+               [<Optional;DefaultParameterValue(null)>] ?ShowLegend     : bool,
+               [<Optional;DefaultParameterValue(null)>] ?Domain         : Domain,
+               [<Optional;DefaultParameterValue(null)>] ?Align          : StyleParam.IndicatorAlignment,
+               [<Optional;DefaultParameterValue(null)>] ?DeltaReference : #IConvertible,
+               [<Optional;DefaultParameterValue(null)>] ?Delta          : IndicatorDelta,
+               [<Optional;DefaultParameterValue(null)>] ?Number         : IndicatorNumber,
+               [<Optional;DefaultParameterValue(null)>] ?GaugeShape     : StyleParam.IndicatorGaugeShape,
+               [<Optional;DefaultParameterValue(null)>] ?Gauge          : IndicatorGauge,
+               [<Optional;DefaultParameterValue(null)>] ?ShowGaugeAxis  : bool,
+               [<Optional;DefaultParameterValue(null)>] ?GaugeAxis      : LinearAxis
+            ) = 
+                let axis = 
+                    GaugeAxis
+                    |> Option.defaultValue(LinearAxis.init())
+                    |> LinearAxis.style(?Range=Range, ?Visible=ShowGaugeAxis)
+
+                let gauge =
+                    Gauge
+                    |> Option.defaultValue(IndicatorGauge.init())
+                    |> IndicatorGauge.style(Axis=axis, ?Shape=GaugeShape)
+
+                let delta =
+                    Delta
+                    |> Option.defaultValue(IndicatorDelta.init())
+                    |> IndicatorDelta.style(?Reference = DeltaReference)
+
+                TraceDomain.initIndicator(
+                    TraceDomainStyle.Indicator(
+                        ?Name       = Name      ,
+                        ?Title      = Title     ,
+                        ?ShowLegend = ShowLegend,
+                        Mode        = mode      ,
+                        Value       = value     ,
+                        ?Domain     = Domain    ,
+                        ?Align      = Align     ,
+                        Delta       = delta     ,
+                        ?Number     = Number    ,
+                        Gauge       = gauge     
+                    )
+                )
+                |> GenericChart.ofTraceObject
