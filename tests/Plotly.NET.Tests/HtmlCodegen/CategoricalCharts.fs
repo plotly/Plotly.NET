@@ -112,9 +112,35 @@ let ``Sankey charts`` =
         testCase "Sankey data" ( fun () ->
             "var data = [{\"type\":\"sankey\",\"node\":{\"label\":[\"a\",\"b\",\"c\",\"d\",\"e\"],\"color\":[\"Black\",\"Red\",\"Purple\",\"Green\",\"Orange\"]},\"link\":{\"source\":[0,1,0,3,2],\"target\":[1,2,4,4,4],\"value\":[1.0,2.0,1.3,1.5,0.5]}}];"
             |> chartGeneratedContains sankey1
-        );
+        )
         testCase "Sankey layout" ( fun () ->
             "var layout = {\"title\":{\"text\":\"Sankey Sample\"}};"
             |> chartGeneratedContains sankey1
-        );
+        )
+    ]
+
+let character   = ["Eve"; "Cain"; "Seth"; "Enos"; "Noam"; "Abel"; "Awan"; "Enoch"; "Azura"]
+let parent      = [""; "Eve"; "Eve"; "Seth"; "Seth"; "Eve"; "Eve"; "Awan"; "Eve" ]
+
+let icicleChart =
+    Chart.Icicle(
+        character,
+        parent,
+        ShowScale = true,
+        ColorScale = StyleParam.Colorscale.Viridis,
+        TilingOrientation = StyleParam.Orientation.Vertical,
+        TilingFlip = StyleParam.TilingFlip.Y,
+        PathBarEdgeShape = StyleParam.PathbarEdgeShape.BackSlash
+    )
+
+[<Tests>]
+let ``Icicle charts`` =
+    testList "CategoricalCharts.Icicle charts" [
+        testCase "Icicle data" ( fun () ->
+            """var data = [{"type":"icicle","parents":["","Eve","Eve","Seth","Seth","Eve","Eve","Awan","Eve"],"labels":["Eve","Cain","Seth","Enos","Noam","Abel","Awan","Enoch","Azura"],"tiling":{"flip":"y","orientation":"v"},"pathbar":{"edgeshape":"\\"},"marker":{"colorscale":"Viridis","showscale":true}}];"""
+            |> chartGeneratedContains icicleChart
+        )
+        testCase "Icicle layout" ( fun () ->
+            emptyLayout icicleChart
+        )
     ]

@@ -26,7 +26,7 @@ type Pathbar () =
         (
             [<Optional;DefaultParameterValue(null)>] ?Visible    :bool,
             [<Optional;DefaultParameterValue(null)>] ?Side       :StyleParam.Side,
-            [<Optional;DefaultParameterValue(null)>] ?EdgeShape  :StyleParam.TreemapEdgeShape,
+            [<Optional;DefaultParameterValue(null)>] ?EdgeShape  :StyleParam.PathbarEdgeShape,
             [<Optional;DefaultParameterValue(null)>] ?Thickness  :float,
             [<Optional;DefaultParameterValue(null)>] ?Textfont   :Font
         ) = 
@@ -58,14 +58,14 @@ type Pathbar () =
         (
             [<Optional;DefaultParameterValue(null)>] ?Visible    :bool,
             [<Optional;DefaultParameterValue(null)>] ?Side       :StyleParam.Side,
-            [<Optional;DefaultParameterValue(null)>] ?EdgeShape  :StyleParam.TreemapEdgeShape,
+            [<Optional;DefaultParameterValue(null)>] ?EdgeShape  :StyleParam.PathbarEdgeShape,
             [<Optional;DefaultParameterValue(null)>] ?Thickness  :float,
             [<Optional;DefaultParameterValue(null)>] ?Textfont   :Font
         ) = 
             (fun (pathbar:Pathbar) -> 
                 Visible   |> DynObj.setValueOpt pathbar "visible"
                 Side      |> DynObj.setValueOptBy pathbar "side" StyleParam.Side.convert
-                EdgeShape |> DynObj.setValueOptBy pathbar "edgeshape" StyleParam.TreemapEdgeShape.convert
+                EdgeShape |> DynObj.setValueOptBy pathbar "edgeshape" StyleParam.PathbarEdgeShape.convert
                 Thickness |> DynObj.setValueOpt pathbar "thickness"
                 Textfont  |> DynObj.setValueOpt pathbar "textfont "
 

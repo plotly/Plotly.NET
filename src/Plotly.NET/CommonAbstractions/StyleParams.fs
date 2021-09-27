@@ -1113,6 +1113,19 @@ module StyleParam =
 //--------------------------
 // #I#
 //--------------------------
+        
+    [<RequireQualifiedAccess>]
+    type IcicleCount =
+        | Branches | Leaves | BranchesLeaves
+        static member toString = function
+            | Branches      -> "branches"
+            | Leaves        -> "leaves"
+            | BranchesLeaves-> "branches+leaves"
+
+        static member convert = IcicleCount.toString >> box
+        override this.ToString() = this |> IcicleCount.toString
+        member this.Convert() = this |> IcicleCount.convert
+        
 
     [<RequireQualifiedAccess>]
     type IndicatorMode =
@@ -1144,7 +1157,6 @@ module StyleParam =
         static member convert = IndicatorAlignment.toString >> box
         override this.ToString() = this |> IndicatorAlignment.toString
         member this.Convert() = this |> IndicatorAlignment.convert
-        
     [<RequireQualifiedAccess>]
     type IndicatorGaugeShape =
         | Angular | Bullet 
@@ -2216,7 +2228,22 @@ module StyleParam =
 //--------------------------
 // #T#
 //--------------------------
-    
+
+    [<RequireQualifiedAccess>]
+    type TilingFlip =
+        | X
+        | Y
+        | XY
+
+        static member toString = function
+            | X -> "x"
+            | Y -> "y"
+            | XY-> "x+y"
+
+        static member convert = TilingFlip.toString >> box
+        override this.ToString() = this |> TilingFlip.toString
+        member this.Convert() = this |> TilingFlip.convert
+
     [<RequireQualifiedAccess>]
     type TransitionEasing =
         | Linear        
@@ -2404,7 +2431,7 @@ module StyleParam =
         member this.Convert() = this |> UnitMode.convert
 
     [<RequireQualifiedAccess>]
-    type TreemapEdgeShape =
+    type PathbarEdgeShape =
         | ArrowRight | ArrowLeft | Straight | Slash | BackSlash 
 
         static member toString = function
@@ -2414,9 +2441,9 @@ module StyleParam =
              | Slash     -> "/"
              | BackSlash -> """\"""
 
-        static member convert = TreemapEdgeShape.toString >> box
-        override this.ToString() = this |> TreemapEdgeShape.toString
-        member this.Convert() = this |> TreemapEdgeShape.convert
+        static member convert = PathbarEdgeShape.toString >> box
+        override this.ToString() = this |> PathbarEdgeShape.toString
+        member this.Convert() = this |> PathbarEdgeShape.convert
 
     [<RequireQualifiedAccess>]
     type TreemapTilingPacking =

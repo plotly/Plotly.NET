@@ -89,6 +89,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{7B09CC0A-F
 		docs\09_0_parallel-categories.fsx = docs\09_0_parallel-categories.fsx
 		docs\09_1_parallel-coords.fsx = docs\09_1_parallel-coords.fsx
 		docs\09_2_sankey.fsx = docs\09_2_sankey.fsx
+		docs\09_3_icicle.fsx = docs\09_3_icicle.fsx
 		docs\10_0_ternary_line_scatter_plots.fsx = docs\10_0_ternary_line_scatter_plots.fsx
 		docs\10_1_styling_ternary_layouts.fsx = docs\10_1_styling_ternary_layouts.fsx
 		docs\11_1_carpet_line_scatter_plots.fsx = docs\11_1_carpet_line_scatter_plots.fsx

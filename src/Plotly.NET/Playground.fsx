@@ -93,6 +93,7 @@
 #load "Error.fs"
 #load "Table.fs"
 #load "Indicator.fs"
+#load "Icicle.fs"
 
 #I "Traces"
 
@@ -159,6 +160,20 @@ open FSharpAux
 
 open System
 open System.IO
+
+let character   = ["Eve"; "Cain"; "Seth"; "Enos"; "Noam"; "Abel"; "Awan"; "Enoch"; "Azura"]
+let parent      = [""; "Eve"; "Eve"; "Seth"; "Seth"; "Eve"; "Eve"; "Awan"; "Eve" ]
+
+Chart.Icicle(
+    character,
+    parent,
+    ShowScale = true,
+    ColorScale = StyleParam.Colorscale.Viridis,
+    TilingOrientation = StyleParam.Orientation.Vertical,
+    TilingFlip = StyleParam.TilingFlip.Y,
+    PathBarEdgeShape = StyleParam.PathbarEdgeShape.BackSlash
+)
+|> Chart.show
 
 [
     Chart.Indicator(
