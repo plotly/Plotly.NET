@@ -514,7 +514,7 @@ module ChartDomain =
         [<Extension>]
         static member Indicator
             (
-               value      : #IConvertible,
+               value      : IConvertible,
                mode       : StyleParam.IndicatorMode,
                [<Optional;DefaultParameterValue(null)>] ?Range          : StyleParam.Range,
                [<Optional;DefaultParameterValue(null)>] ?Name           : string,

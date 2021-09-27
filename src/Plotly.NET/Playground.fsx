@@ -161,22 +161,22 @@ open System
 open System.IO
 
 [
-    Chart.Indicator(
+    ChartDomain.Chart.Indicator(
         200., StyleParam.IndicatorMode.NumberDeltaGauge,
         Delta   = IndicatorDelta.init(Reference=160),
         Range   = StyleParam.Range.MinMax(0., 250.),
         Domain  = Domain.init(Row = 0, Column = 0)
     )
     Chart.Indicator(
-        120., StyleParam.IndicatorMode.NumberDeltaGauge,
-        DeltaReference = 90.,
+        120, StyleParam.IndicatorMode.NumberDeltaGauge,
+        DeltaReference = 90,
         Range = StyleParam.Range.MinMax(-200., 200.),
         GaugeShape = StyleParam.IndicatorGaugeShape.Bullet,
         ShowGaugeAxis = false,
         Domain  = Domain.init(Row = 0, Column = 1)
     )
     Chart.Indicator(
-        300., StyleParam.IndicatorMode.NumberDelta,
+        "300", StyleParam.IndicatorMode.NumberDelta,
         DeltaReference = 90.,
         Domain  = Domain.init(Row = 1, Column = 0)
     )        
