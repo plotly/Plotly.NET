@@ -15,7 +15,9 @@
  * SubPlotIds are now unified under the `StyleParam.SubPlotId` type which is used to assign subplots anchors (e.g. scenes for 3d charts, polar for polar charts) This change will be reflectes in trace type modeling in a later release.
  * **Breaking**: Layout and trace object abstractions are now in new namespaces: `Plotly.NET.LayoutObjects`/`Plotly.NET.TraceObjects`
  * **Breaking**: every argument/parameter concerned with color has been changed to use the new Color type isntead of a plain string.
- 
+ * **Breaking**: The underlying plotly.js version is now correctly pinned at 2.42
+ * [**Breaking**: POC of multivalue support (breaks Bar charts)](https://github.com/plotly/Plotly.NET/commit/c5f6fbb6e3ac14bae06192d696dcf8637dcaa21e)
+
 **Major Additions:**
 
  * [Add kernel formatting extension for dotnet interactive notebooks](https://github.com/plotly/Plotly.NET/commit/fa990371dd68ec1f5784288ccd9e2d28d761ac93) (thanks [@WalternativeE](https://github.com/WalternativE))
@@ -23,7 +25,7 @@
  * [Add the Plotly.NET.ImageExport project](https://github.com/plotly/Plotly.NET/pull/94) - Render Plotly.NET charts as static images
  * [Use a statically typed color representation that is compatible with all ways plotly uses colors](https://github.com/plotly/Plotly.NET/commit/19763db129b9160906964d9831ff3f67279926cc) - thanks [@muehlhaus](https://github.com/muehlhaus)
 
-**New Charts:**
+**Plotly.NET now has 100% trace coverage! New Charts:**
 
  * Refactor Chart.Stack into:
      * Chart.Grid: Uses the grid object of plotly.js to generate various types of subplot grids
@@ -45,7 +47,7 @@
     * ScatterPolar (and derived PointPolar, LinePolar, SplinePolar, BubblePolar)
     * BarPolar
     * Polar object
-    * Angula and RadialAxis
+    * Angular and RadialAxis
  * [Add missing 3D charts and related layout options](https://github.com/plotly/Plotly.NET/pull/125)
     * Scatter3d derived Point3d, Line3d, Bubble3d
     * Cone
@@ -54,7 +56,13 @@
     * IsoSurface
     * Full Scene support
  * [Add Ternary Charts (ScatterTernary and derived PointTernary, LineTernary)](https://github.com/plotly/Plotly.NET/pull/184):
-
+ * [Add image charts](https://github.com/plotly/Plotly.NET/pull/188)
+ * [Add all carpet charts](https://github.com/plotly/Plotly.NET/pull/201)
+    * Carpet
+    * ScatterCarpet (and derived PointCarpet, LineCarpet, SplineCarpet, BubbleCarpet)
+    * ContourCarpet
+ * [Add indicator charts](https://github.com/plotly/Plotly.NET/pull/207)
+ * [Add icicle charts](https://github.com/plotly/Plotly.NET/pull/210)
 
 **Minor Additions/fixes:**
 
@@ -78,6 +86,7 @@
  * [Add ToString() and Convert() instance members to StyleParams for better C# interop](https://github.com/plotly/Plotly.NET/commit/cf8658153d6a1af98afe33e41f3735222aed6706)
  * [Improve Trace type system](https://github.com/plotly/Plotly.NET/commit/096f4bf7382441b153687835c3d51c9e2e3497ec)
  * [Fix incorrect scale used in image export](https://github.com/plotly/Plotly.NET/commit/893cf02a5700ce562c6d67470883123a2d84c3c1) - thanks [@pirrmann](https://github.com/pirrmann)]
+ * [Improve Chart.Grid](https://github.com/plotly/Plotly.NET/pull/212)
 
 **Other notable changes**
 
