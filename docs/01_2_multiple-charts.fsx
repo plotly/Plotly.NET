@@ -237,3 +237,65 @@ singleStack
 (***hide***)
 singleStack |> GenericChart.toChartHTML
 (***include-it-raw***)
+
+(**
+### Using subplots of different trace types in a grid
+
+Chart.Grid does some internal magic to make sure that all trace types get their grid cell according to plotly.js's inner logic. 
+
+The only thing you have to consider is, that when you are using nested combined charts, that these have to have the same trace type.
+
+Otherwise, you can freely combine all charts with Chart.Grid:
+
+*)
+open Plotly.NET.LayoutObjects
+
+let multipleTraceTypesGrid =
+    [
+        Chart.Point([1,2; 2,3])
+        Chart.PointTernary([1,2,3; 2,3,4])
+        Chart.Heatmap([[1; 2];[3; 4]], Showscale=false)
+        Chart.Point3d([1,3,2])
+        Chart.PointMapbox([1,2]) |> Chart.withMapbox(Mapbox.init(Style = StyleParam.MapboxStyle.OpenStreetMap))
+        [
+            // you can use nested combined charts, but they have to have the same trace type (Cartesian2D in this case)
+            let y =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+            Chart.BoxPlot("y" ,y,Name="bin1",Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All);
+            Chart.BoxPlot("y'",y,Name="bin2",Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All);
+        ]
+        |> Chart.combine
+    ]
+    |> Chart.Grid(2,3)
+    |> Chart.withSize(1000,1000)
+
+(*** condition: ipynb ***)
+#if IPYNB
+multipleTraceTypesGrid
+#endif // IPYNB
+
+(***hide***)
+multipleTraceTypesGrid |> GenericChart.toChartHTML
+(***include-it-raw***)
+    
+(**
+If you are not sure if traceTypes are compatible, look at the `TraceIDs`:
+*)
+
+let pointType = Chart.Point([1,2]) |> GenericChart.getTraceID
+(***include-it***)
+
+[
+     Chart.Point([1,2])
+     Chart.PointTernary([1,2,3])
+]
+|> Chart.combine
+|> GenericChart.getTraceID
+(***include-it***)
+
+[
+     Chart.Point([1,2])
+     Chart.PointTernary([1,2,3])
+]
+|> Chart.combine
+|> GenericChart.getTraceIDs
+(***include-it***)
