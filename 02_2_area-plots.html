@@ -41,7 +41,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.8</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.9</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -113,6 +113,11 @@
     Annotations
   </a>
 </li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/01_5_layout_images.html">
+    Layout images
+  </a>
+</li>             
 <li class="nav-header">
   Simple Charts
 </li>             
@@ -154,6 +159,11 @@
 <li class="nav-item">
   <a class="nav-link" href="https://plotly.net/02_7_heatmaps.html">
     Heatmaps
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/02_8_Images.html">
+    Images
   </a>
 </li>             
 <li class="nav-header">
@@ -263,6 +273,11 @@
     FunnelArea Charts
   </a>
 </li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_3_indicator.html">
+    Indicator Charts
+  </a>
+</li>             
 <li class="nav-header">
   Mapbox map charts
 </li>             
@@ -305,19 +320,6 @@
   </a>
 </li>             
 <li class="nav-header">
-  Ternary Plots
-</li>             
-<li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/10_0_ternary_line_scatter_plots.html">
-    Ternary line and scatter plots
-  </a>
-</li>             
-<li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/10_1_styling_ternary_layouts.html">
-    Styling ternary layouts
-  </a>
-</li>             
-<li class="nav-header">
   Categorical Charts
 </li>             
 <li class="nav-item">
@@ -333,6 +335,37 @@
 <li class="nav-item">
   <a class="nav-link" href="https://plotly.net/09_2_sankey.html">
     Sankey Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/09_3_icicle.html">
+    Icicle Charts
+  </a>
+</li>             
+<li class="nav-header">
+  Ternary Plots
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/10_0_ternary_line_scatter_plots.html">
+    Ternary line and scatter plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/10_1_styling_ternary_layouts.html">
+    Styling ternary layouts
+  </a>
+</li>             
+<li class="nav-header">
+  Carpet Plots
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/11_1_carpet_line_scatter_plots.html">
+    Carpet line and scatter plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/11_2_contourcarpet_plots.html">
+    Contour carpet plots
   </a>
 </li>
                         <li class="nav-header">
@@ -367,29 +400,29 @@ The area between axis and line are commonly emphasized with colors, textures and
 <h3><a name="Simple-area-chart" class="anchor" href="#Simple-area-chart">Simple area chart</a></h3>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="id">area1</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 7)" onmouseover="showTip(event, 'fs7', 7)" class="id">Area</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs3', 8)" onmouseover="showTip(event, 'fs3', 8)" class="id">x</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs4', 9)" onmouseover="showTip(event, 'fs4', 9)" class="id">y</span><span class="pn">)</span>
 </code></pre>
-<div id="bea4026f-2cf0-49f0-ae01-3a4b3fc10810" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="2c3706d5-4ea3-414c-a8f8-b46abd9a9ee3" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_bea4026f2cf049f0ae013a4b3fc10810 = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_2c3706d54ea3414ca8f8b46abd9a9ee3 = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,2.5,5.0,7.5,5.0,2.5,7.5,4.5,5.5,5.0],"fill":"tozeroy","line":{},"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('bea4026f-2cf0-49f0-ae01-3a4b3fc10810', data, layout, config);
+            Plotly.newPlot('2c3706d5-4ea3-414c-a8f8-b46abd9a9ee3', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_bea4026f2cf049f0ae013a4b3fc10810();
+                    renderPlotly_2c3706d54ea3414ca8f8b46abd9a9ee3();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_bea4026f2cf049f0ae013a4b3fc10810();
+                renderPlotly_2c3706d54ea3414ca8f8b46abd9a9ee3();
             }
 </script>
 
@@ -397,29 +430,29 @@ The area between axis and line are commonly emphasized with colors, textures and
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs10', 13)" onmouseover="showTip(event, 'fs10', 13)" class="id">area2</span> <span class="o">=</span>
     <span onmouseout="hideTip(event, 'fs6', 14)" onmouseover="showTip(event, 'fs6', 14)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 15)" onmouseover="showTip(event, 'fs11', 15)" class="id">SplineArea</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs3', 16)" onmouseover="showTip(event, 'fs3', 16)" class="id">x</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs4', 17)" onmouseover="showTip(event, 'fs4', 17)" class="id">y</span><span class="pn">)</span>
 </code></pre>
-<div id="630af2e3-9e65-4ad0-affc-48aabdc8aa23" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="5c52c239-0526-418b-a08a-3219751a3e72" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_630af2e39e654ad0affc48aabdc8aa23 = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_5c52c2390526418ba08a3219751a3e72 = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,2.5,5.0,7.5,5.0,2.5,7.5,4.5,5.5,5.0],"fill":"tozeroy","line":{"shape":"spline"},"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('630af2e3-9e65-4ad0-affc-48aabdc8aa23', data, layout, config);
+            Plotly.newPlot('5c52c239-0526-418b-a08a-3219751a3e72', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_630af2e39e654ad0affc48aabdc8aa23();
+                    renderPlotly_5c52c2390526418ba08a3219751a3e72();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_630af2e39e654ad0affc48aabdc8aa23();
+                renderPlotly_5c52c2390526418ba08a3219751a3e72();
             }
 </script>
 
@@ -431,29 +464,29 @@ The area between axis and line are commonly emphasized with colors, textures and
     <span class="pn">]</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 32)" onmouseover="showTip(event, 'fs6', 32)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs16', 33)" onmouseover="showTip(event, 'fs16', 33)" class="id">combine</span>
 </code></pre>
-<div id="00a98f1f-dbfa-46de-8e09-af7d3d1dc76c" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="4fc4dd15-0eed-41f7-92f2-223ca4e3b5f8" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_00a98f1fdbfa46de8e09af7d3d1dc76c = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_4fc4dd150eed41f792f2223ca4e3b5f8 = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,2.5,5.0,7.5,5.0,2.5,7.5,4.5,5.5,5.0],"line":{},"marker":{},"stackgroup":"static"},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,5.5,4.5,7.5,2.5,5.0,7.5,5.0,2.5,5.0],"line":{},"marker":{},"stackgroup":"static"}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('00a98f1f-dbfa-46de-8e09-af7d3d1dc76c', data, layout, config);
+            Plotly.newPlot('4fc4dd15-0eed-41f7-92f2-223ca4e3b5f8', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_00a98f1fdbfa46de8e09af7d3d1dc76c();
+                    renderPlotly_4fc4dd150eed41f792f2223ca4e3b5f8();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_00a98f1fdbfa46de8e09af7d3d1dc76c();
+                renderPlotly_4fc4dd150eed41f792f2223ca4e3b5f8();
             }
 </script>
 
@@ -467,18 +500,18 @@ The area between axis and line are commonly emphasized with colors, textures and
 <div class="fsdocs-tip" id="fs4">val y : float list</div>
 <div class="fsdocs-tip" id="fs5">val area1 : GenericChart.GenericChart</div>
 <div class="fsdocs-tip" id="fs6">type Chart =
-  static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:Symbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:float -&gt; GenericChart + 1 overload
-  static member Bar : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart + 1 overload
+  static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:float -&gt; GenericChart + 1 overload
+  static member Bar : values:seq&lt;#IConvertible&gt; * ?Keys:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?PatternShape:PatternShape * ?MultiPatternShape:seq&lt;PatternShape&gt; * ?Pattern:Pattern * ?Base:#IConvertible * ?Width:&#39;a3 * ?MultiWidth:seq&lt;&#39;a3&gt; * ?Opacity:float * ?MultiOpacity:seq&lt;float&gt; * ?Text:&#39;a4 * ?MultiText:seq&lt;&#39;a4&gt; * ?TextPosition:TextPosition * ?MultiTextPosition:seq&lt;TextPosition&gt; * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart (requires &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
   static member BoxPlot : ?x:&#39;a0 * ?y:&#39;a1 * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Fillcolor:Color * ?Opacity:float * ?Whiskerwidth:&#39;a2 * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:&#39;a3 * ?Pointpos:&#39;a4 * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?Alignmentgroup:&#39;a5 * ?Offsetgroup:&#39;a6 * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod -&gt; GenericChart + 1 overload
-  static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:Symbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:Orientation * ?GroupNorm:GroupNorm * ?UseWebGL:bool -&gt; GenericChart + 1 overload
+  static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;int&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:Orientation * ?GroupNorm:GroupNorm * ?UseWebGL:bool -&gt; GenericChart + 1 overload
   static member Candlestick : open:seq&lt;#IConvertible&gt; * high:seq&lt;#IConvertible&gt; * low:seq&lt;#IConvertible&gt; * close:seq&lt;#IConvertible&gt; * x:seq&lt;#IConvertible&gt; * ?Increasing:Line * ?Decreasing:Line * ?WhiskerWidth:float * ?Line:Line * ?XCalendar:Calendar -&gt; GenericChart + 1 overload
-  static member Column : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart + 1 overload
+  static member Column : values:seq&lt;#IConvertible&gt; * ?Keys:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Pattern:Pattern * ?PatternShape:PatternShape * ?MultiPatternShape:seq&lt;PatternShape&gt; * ?Base:#IConvertible * ?Width:&#39;a3 * ?MultiWidth:seq&lt;&#39;a3&gt; * ?Opacity:float * ?MultiOpacity:seq&lt;float&gt; * ?Text:&#39;a4 * ?MultiText:seq&lt;&#39;a4&gt; * ?TextPosition:TextPosition * ?MultiTextPosition:seq&lt;TextPosition&gt; * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart (requires &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
   static member Contour : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;a4 * ?zSmooth:SmoothAlg * ?ColorBar:&#39;a5 -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)
   static member Funnel : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Color:Color * ?Line:Line * ?x0:&#39;a3 * ?dX:float * ?y0:&#39;a4 * ?dY:float * ?Width:float * ?Offset:float * ?Orientation:Orientation * ?Alignmentgroup:string * ?Offsetgroup:string * ?Cliponaxis:bool * ?Connector:FunnelConnector * ?Insidetextfont:Font * ?Outsidetextfont:Font -&gt; GenericChart
   static member Heatmap : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?ColNames:seq&lt;#IConvertible&gt; * ?RowNames:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;a4 * ?Xgap:&#39;a5 * ?Ygap:&#39;a6 * ?zSmooth:SmoothAlg * ?ColorBar:&#39;a7 * ?UseWebGL:bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)
   static member Histogram : data:seq&lt;#IConvertible&gt; * ?Orientation:Orientation * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Color:Color * ?HistNorm:HistNorm * ?HistFunc:HistFunc * ?nBinsx:int * ?nBinsy:int * ?Xbins:Bins * ?Ybins:Bins * ?xError:&#39;a1 * ?yError:&#39;a2 -&gt; GenericChart
   ...</div>
-<div class="fsdocs-tip" id="fs7">static member Chart.Area : xy:seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.Symbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?Dash:StyleParam.DrawingStyle * ?Width:float -&gt; GenericChart.GenericChart<br />static member Chart.Area : x:seq&lt;#System.IConvertible&gt; * y:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.Symbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?Dash:StyleParam.DrawingStyle * ?Width:float -&gt; GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs7">static member Chart.Area : xy:seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?Dash:StyleParam.DrawingStyle * ?Width:float -&gt; GenericChart.GenericChart<br />static member Chart.Area : x:seq&lt;#System.IConvertible&gt; * y:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?Dash:StyleParam.DrawingStyle * ?Width:float -&gt; GenericChart.GenericChart</div>
 <div class="fsdocs-tip" id="fs8">module GenericChart
 
 from Plotly.NET<br /><em>&lt;summary&gt;
@@ -488,9 +521,9 @@ from Plotly.NET<br /><em>&lt;summary&gt;
  Converts a GenericChart to it HTML representation. The div layer has a default size of 600 if not specified otherwise.
 &lt;/summary&gt;</em></div>
 <div class="fsdocs-tip" id="fs10">val area2 : GenericChart.GenericChart</div>
-<div class="fsdocs-tip" id="fs11">static member Chart.SplineArea : xy:seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.Symbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?Dash:StyleParam.DrawingStyle * ?Width:float * ?Smoothing:float -&gt; GenericChart.GenericChart<br />static member Chart.SplineArea : x:seq&lt;#System.IConvertible&gt; * y:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.Symbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?Dash:StyleParam.DrawingStyle * ?Width:float * ?Smoothing:float -&gt; GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs11">static member Chart.SplineArea : xy:seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?Dash:StyleParam.DrawingStyle * ?Width:float * ?Smoothing:float -&gt; GenericChart.GenericChart<br />static member Chart.SplineArea : x:seq&lt;#System.IConvertible&gt; * y:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?Dash:StyleParam.DrawingStyle * ?Width:float * ?Smoothing:float -&gt; GenericChart.GenericChart</div>
 <div class="fsdocs-tip" id="fs12">val stackedArea : GenericChart.GenericChart</div>
-<div class="fsdocs-tip" id="fs13">static member Chart.StackedArea : xy:seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.Symbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?Dash:StyleParam.DrawingStyle * ?Width:float -&gt; GenericChart.GenericChart<br />static member Chart.StackedArea : x:seq&lt;#System.IConvertible&gt; * y:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.Symbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?Dash:StyleParam.DrawingStyle * ?Width:float -&gt; GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs13">static member Chart.StackedArea : xy:seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?Dash:StyleParam.DrawingStyle * ?Width:float -&gt; GenericChart.GenericChart<br />static member Chart.StackedArea : x:seq&lt;#System.IConvertible&gt; * y:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?Dash:StyleParam.DrawingStyle * ?Width:float -&gt; GenericChart.GenericChart</div>
 <div class="fsdocs-tip" id="fs14">Multiple items<br />module Seq
 
 from Plotly.NET<br /><br />--------------------<br />module Seq

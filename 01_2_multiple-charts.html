@@ -41,7 +41,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.8</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.9</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -113,6 +113,11 @@
     Annotations
   </a>
 </li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/01_5_layout_images.html">
+    Layout images
+  </a>
+</li>             
 <li class="nav-header">
   Simple Charts
 </li>             
@@ -154,6 +159,11 @@
 <li class="nav-item">
   <a class="nav-link" href="https://plotly.net/02_7_heatmaps.html">
     Heatmaps
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/02_8_Images.html">
+    Images
   </a>
 </li>             
 <li class="nav-header">
@@ -263,6 +273,11 @@
     FunnelArea Charts
   </a>
 </li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_3_indicator.html">
+    Indicator Charts
+  </a>
+</li>             
 <li class="nav-header">
   Mapbox map charts
 </li>             
@@ -305,19 +320,6 @@
   </a>
 </li>             
 <li class="nav-header">
-  Ternary Plots
-</li>             
-<li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/10_0_ternary_line_scatter_plots.html">
-    Ternary line and scatter plots
-  </a>
-</li>             
-<li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/10_1_styling_ternary_layouts.html">
-    Styling ternary layouts
-  </a>
-</li>             
-<li class="nav-header">
   Categorical Charts
 </li>             
 <li class="nav-item">
@@ -333,6 +335,37 @@
 <li class="nav-item">
   <a class="nav-link" href="https://plotly.net/09_2_sankey.html">
     Sankey Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/09_3_icicle.html">
+    Icicle Charts
+  </a>
+</li>             
+<li class="nav-header">
+  Ternary Plots
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/10_0_ternary_line_scatter_plots.html">
+    Ternary line and scatter plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/10_1_styling_ternary_layouts.html">
+    Styling ternary layouts
+  </a>
+</li>             
+<li class="nav-header">
+  Carpet Plots
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/11_1_carpet_line_scatter_plots.html">
+    Carpet line and scatter plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/11_2_contourcarpet_plots.html">
+    Contour carpet plots
   </a>
 </li>
                         <li class="nav-header">
@@ -376,29 +409,29 @@ produce a composite chart with one layout containing all traces of the input:</p
 <span class="inactive">combinedChart</span>
 <span class="pp">#endif</span> <span class="c">// end cell with chart value in a notebook context</span>
 </code></pre>
-<div id="4711c51f-77e0-4585-a342-6d1173e5a8ec" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="42c049a6-267d-4b04-a8ec-ef5680755fa3" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_4711c51f77e04585a3426d1173e5a8ec = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_42c049a6267d4b04a8ecef5680755fa3 = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"line":{},"name":"first","marker":{}},{"type":"scatter","mode":"lines","x":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"y":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"line":{},"name":"second","marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('4711c51f-77e0-4585-a342-6d1173e5a8ec', data, layout, config);
+            Plotly.newPlot('42c049a6-267d-4b04-a8ec-ef5680755fa3', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_4711c51f77e04585a3426d1173e5a8ec();
+                    renderPlotly_42c049a6267d4b04a8ecef5680755fa3();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_4711c51f77e04585a3426d1173e5a8ec();
+                renderPlotly_42c049a6267d4b04a8ecef5680755fa3();
             }
 </script>
 
@@ -424,29 +457,29 @@ produce a composite chart with one layout containing all traces of the input:</p
     <span class="pn">]</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 52)" onmouseover="showTip(event, 'fs6', 52)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs16', 53)" onmouseover="showTip(event, 'fs16', 53)" class="id">Grid</span><span class="pn">(</span><span class="n">2</span><span class="pn">,</span><span class="n">2</span><span class="pn">)</span>
 </code></pre>
-<div id="8aff48ff-8e6d-4718-bf7e-b93c30f3b96c" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="5ceca300-5baf-409e-8a76-599aa8b0b0d2" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_8aff48ff8e6d4718bf7eb93c30f3b96c = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_5ceca3005baf409e8a76599aa8b0b0d2 = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","mode":"markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"name":"1,1","marker":{},"xaxis":"x","yaxis":"y"},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"line":{},"name":"1,2","marker":{},"xaxis":"x2","yaxis":"y2"},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"name":"2,1","line":{"shape":"spline"},"marker":{},"xaxis":"x3","yaxis":"y3"},{"type":"scatter","mode":"markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"name":"2,2","marker":{},"xaxis":"x4","yaxis":"y4"}];
             var layout = {"xaxis":{"title":{"text":"x1"}},"yaxis":{"title":{"text":"y1"}},"xaxis2":{"title":{"text":"x2"}},"yaxis2":{"title":{"text":"y2"}},"xaxis3":{"title":{"text":"x3"}},"yaxis3":{"title":{"text":"y3"}},"xaxis4":{"title":{"text":"x4"}},"yaxis4":{"title":{"text":"y4"}},"grid":{"rows":2,"columns":2,"pattern":"independent"}};
             var config = {};
-            Plotly.newPlot('8aff48ff-8e6d-4718-bf7e-b93c30f3b96c', data, layout, config);
+            Plotly.newPlot('5ceca300-5baf-409e-8a76-599aa8b0b0d2', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_8aff48ff8e6d4718bf7eb93c30f3b96c();
+                    renderPlotly_5ceca3005baf409e8a76599aa8b0b0d2();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_8aff48ff8e6d4718bf7eb93c30f3b96c();
+                renderPlotly_5ceca3005baf409e8a76599aa8b0b0d2();
             }
 </script>
 
@@ -474,29 +507,29 @@ produce a composite chart with one layout containing all traces of the input:</p
     <span class="pn">]</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 90)" onmouseover="showTip(event, 'fs6', 90)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs16', 91)" onmouseover="showTip(event, 'fs16', 91)" class="id">Grid</span><span class="pn">(</span><span class="pn">)</span>
 </code></pre>
-<div id="7ba369b3-3757-4b84-9fd4-9aaccb04501f" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="bac2bd2b-d032-46ab-af38-6afc88b10e50" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_7ba369b337574b849fd49aaccb04501f = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_bac2bd2bd03246abaf386afc88b10e50 = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","mode":"markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"name":"1,1","marker":{},"xaxis":"x","yaxis":"y"},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"line":{},"name":"1,2","marker":{},"xaxis":"x2","yaxis":"y2"},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"name":"2,1","line":{"shape":"spline"},"marker":{},"xaxis":"x3","yaxis":"y3"},{"type":"scatter","mode":"markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"name":"2,2","marker":{},"xaxis":"x4","yaxis":"y4"}];
             var layout = {"xaxis":{"title":{"text":"x1"}},"yaxis":{"title":{"text":"y1"}},"xaxis2":{"title":{"text":"x2"}},"yaxis2":{"title":{"text":"y2"}},"xaxis3":{"title":{"text":"x3"}},"yaxis3":{"title":{"text":"y3"}},"xaxis4":{"title":{"text":"x4"}},"yaxis4":{"title":{"text":"y4"}},"grid":{"rows":2,"columns":2,"pattern":"independent"}};
             var config = {};
-            Plotly.newPlot('7ba369b3-3757-4b84-9fd4-9aaccb04501f', data, layout, config);
+            Plotly.newPlot('bac2bd2b-d032-46ab-af38-6afc88b10e50', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_7ba369b337574b849fd49aaccb04501f();
+                    renderPlotly_bac2bd2bd03246abaf386afc88b10e50();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_7ba369b337574b849fd49aaccb04501f();
+                renderPlotly_bac2bd2bd03246abaf386afc88b10e50();
             }
 </script>
 
@@ -522,29 +555,29 @@ to the row with the highest amount of charts, and the other rows will be filled 
     <span class="pn">]</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 122)" onmouseover="showTip(event, 'fs6', 122)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs16', 123)" onmouseover="showTip(event, 'fs16', 123)" class="id">Grid</span><span class="pn">(</span><span class="n">2</span><span class="pn">,</span><span class="n">2</span><span class="pn">)</span>
 </code></pre>
-<div id="524cd0dc-93b5-46cc-8d30-411f9fc95267" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="2160fd1d-e8b2-4ddd-a0c4-d27cebd00154" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_524cd0dc93b546cc8d30411f9fc95267 = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_2160fd1de8b24ddda0c4d27cebd00154 = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","mode":"markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"name":"1,1","marker":{},"xaxis":"x","yaxis":"y"},{"type":null,"xaxis":"x2","yaxis":"y2"},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"name":"2,1","line":{"shape":"spline"},"marker":{},"xaxis":"x3","yaxis":"y3"},{"type":"scatter","mode":"markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"name":"2,2","marker":{},"xaxis":"x4","yaxis":"y4"}];
             var layout = {"xaxis":{"title":{"text":"x1"}},"yaxis":{"title":{"text":"y1"}},"xaxis2":{"showticklabels":false,"showline":false,"showgrid":false,"zeroline":false},"yaxis2":{"showticklabels":false,"showline":false,"showgrid":false,"zeroline":false},"xaxis3":{"title":{"text":"x3"}},"yaxis3":{"title":{"text":"y3"}},"xaxis4":{"title":{"text":"x4"}},"yaxis4":{"title":{"text":"y4"}},"grid":{"rows":2,"columns":2,"pattern":"independent"}};
             var config = {};
-            Plotly.newPlot('524cd0dc-93b5-46cc-8d30-411f9fc95267', data, layout, config);
+            Plotly.newPlot('2160fd1d-e8b2-4ddd-a0c4-d27cebd00154', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_524cd0dc93b546cc8d30411f9fc95267();
+                    renderPlotly_2160fd1de8b24ddda0c4d27cebd00154();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_524cd0dc93b546cc8d30411f9fc95267();
+                renderPlotly_2160fd1de8b24ddda0c4d27cebd00154();
             }
 </script>
 
@@ -567,29 +600,29 @@ to the row with the highest amount of charts, and the other rows will be filled 
     <span class="pn">]</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 160)" onmouseover="showTip(event, 'fs6', 160)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs16', 161)" onmouseover="showTip(event, 'fs16', 161)" class="id">Grid</span><span class="pn">(</span><span class="n">2</span><span class="pn">,</span><span class="n">2</span><span class="pn">,</span><span class="fn">Pattern</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs21', 162)" onmouseover="showTip(event, 'fs21', 162)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs22', 163)" onmouseover="showTip(event, 'fs22', 163)" class="rt">LayoutGridPattern</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs23', 164)" onmouseover="showTip(event, 'fs23', 164)" class="id">Coupled</span><span class="pn">)</span>
 </code></pre>
-<div id="2da7de4e-0252-4b2c-8d37-9029b1ba8db4" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="ea3cc402-fb29-40e5-8717-a47588817ecd" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_2da7de4e02524b2c8d379029b1ba8db4 = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_ea3cc402fb2940e58717a47588817ecd = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","mode":"markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"name":"1,1","marker":{},"xaxis":"x","yaxis":"y"},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"line":{},"name":"1,2","marker":{},"xaxis":"x2","yaxis":"y"},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"name":"2,1","line":{"shape":"spline"},"marker":{},"xaxis":"x","yaxis":"y2"},{"type":"scatter","mode":"markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"name":"2,2","marker":{},"xaxis":"x2","yaxis":"y2"}];
             var layout = {"xaxis":{"title":{"text":"x1"}},"yaxis":{"title":{"text":"y1"}},"xaxis2":{"title":{"text":"x2"}},"yaxis2":{"title":{"text":"y2"}},"xaxis3":{"title":{"text":"x3"}},"yaxis3":{"title":{"text":"y3"}},"xaxis4":{"title":{"text":"x4"}},"yaxis4":{"title":{"text":"y4"}},"grid":{"rows":2,"columns":2,"pattern":"coupled"}};
             var config = {};
-            Plotly.newPlot('2da7de4e-0252-4b2c-8d37-9029b1ba8db4', data, layout, config);
+            Plotly.newPlot('ea3cc402-fb29-40e5-8717-a47588817ecd', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_2da7de4e02524b2c8d379029b1ba8db4();
+                    renderPlotly_ea3cc402fb2940e58717a47588817ecd();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_2da7de4e02524b2c8d379029b1ba8db4();
+                renderPlotly_ea3cc402fb2940e58717a47588817ecd();
             }
 </script>
 
@@ -614,32 +647,104 @@ It uses a shared x axis per default.</p>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 194)" onmouseover="showTip(event, 'fs6', 194)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs27', 195)" onmouseover="showTip(event, 'fs27', 195)" class="id">withTitle</span><span class="pn">(</span><span class="s">&quot;Hi i am the new SingleStackChart&quot;</span><span class="pn">)</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 196)" onmouseover="showTip(event, 'fs6', 196)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 197)" onmouseover="showTip(event, 'fs13', 197)" class="id">withXAxisStyle</span><span class="pn">(</span><span class="s">&quot;im the shared xAxis&quot;</span><span class="pn">)</span>
 </code></pre>
-<div id="b7eaa838-4f88-462a-abb5-3f5c978da535" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="e0a9e485-fbd4-4aa9-8563-7c0cd74d87e0" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_b7eaa8384f88462aabb53f5c978da535 = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_e0a9e485fbd44aa985637c0cd74d87e0 = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","mode":"markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{},"xaxis":"x","yaxis":"y"},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"line":{},"marker":{},"xaxis":"x","yaxis":"y2"},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"line":{"shape":"spline"},"marker":{},"xaxis":"x","yaxis":"y3"}];
             var layout = {"yaxis":{"title":{"text":"This title must"}},"xaxis":{"title":{"text":"im the shared xAxis"}},"xaxis2":{},"yaxis2":{"title":{"text":"be set on the"}},"xaxis3":{},"yaxis3":{"title":{"text":"respective subplots"}},"grid":{"rows":3,"columns":1,"pattern":"coupled","ygap":0.1},"title":{"text":"Hi i am the new SingleStackChart"}};
             var config = {};
-            Plotly.newPlot('b7eaa838-4f88-462a-abb5-3f5c978da535', data, layout, config);
+            Plotly.newPlot('e0a9e485-fbd4-4aa9-8563-7c0cd74d87e0', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_b7eaa8384f88462aabb53f5c978da535();
+                    renderPlotly_e0a9e485fbd44aa985637c0cd74d87e0();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_b7eaa8384f88462aabb53f5c978da535();
+                renderPlotly_e0a9e485fbd44aa985637c0cd74d87e0();
             }
 </script>
 
+<h3><a name="Using-subplots-of-different-trace-types-in-a-grid" class="anchor" href="#Using-subplots-of-different-trace-types-in-a-grid">Using subplots of different trace types in a grid</a></h3>
+<p>Chart.Grid does some internal magic to make sure that all trace types get their grid cell according to plotly.js's inner logic.</p>
+<p>The only thing you have to consider is, that when you are using nested combined charts, that these have to have the same trace type.</p>
+<p>Otherwise, you can freely combine all charts with Chart.Grid:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 201)" onmouseover="showTip(event, 'fs1', 201)" class="id">Plotly</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 202)" onmouseover="showTip(event, 'fs2', 202)" class="id">NET</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs28', 203)" onmouseover="showTip(event, 'fs28', 203)" class="id">LayoutObjects</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs29', 204)" onmouseover="showTip(event, 'fs29', 204)" class="id">multipleTraceTypesGrid</span> <span class="o">=</span>
+    <span class="pn">[</span>
+        <span onmouseout="hideTip(event, 'fs6', 205)" onmouseover="showTip(event, 'fs6', 205)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 206)" onmouseover="showTip(event, 'fs12', 206)" class="id">Point</span><span class="pn">(</span><span class="pn">[</span><span class="n">1</span><span class="pn">,</span><span class="n">2</span><span class="pn">;</span> <span class="n">2</span><span class="pn">,</span><span class="n">3</span><span class="pn">]</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs6', 207)" onmouseover="showTip(event, 'fs6', 207)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 208)" onmouseover="showTip(event, 'fs30', 208)" class="id">PointTernary</span><span class="pn">(</span><span class="pn">[</span><span class="n">1</span><span class="pn">,</span><span class="n">2</span><span class="pn">,</span><span class="n">3</span><span class="pn">;</span> <span class="n">2</span><span class="pn">,</span><span class="n">3</span><span class="pn">,</span><span class="n">4</span><span class="pn">]</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs6', 209)" onmouseover="showTip(event, 'fs6', 209)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs31', 210)" onmouseover="showTip(event, 'fs31', 210)" class="id">Heatmap</span><span class="pn">(</span><span class="pn">[</span><span class="pn">[</span><span class="n">1</span><span class="pn">;</span> <span class="n">2</span><span class="pn">]</span><span class="pn">;</span><span class="pn">[</span><span class="n">3</span><span class="pn">;</span> <span class="n">4</span><span class="pn">]</span><span class="pn">]</span><span class="pn">,</span> <span class="fn">Showscale</span><span class="o">=</span><span class="k">false</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs6', 211)" onmouseover="showTip(event, 'fs6', 211)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs32', 212)" onmouseover="showTip(event, 'fs32', 212)" class="id">Point3d</span><span class="pn">(</span><span class="pn">[</span><span class="n">1</span><span class="pn">,</span><span class="n">3</span><span class="pn">,</span><span class="n">2</span><span class="pn">]</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs6', 213)" onmouseover="showTip(event, 'fs6', 213)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs33', 214)" onmouseover="showTip(event, 'fs33', 214)" class="id">PointMapbox</span><span class="pn">(</span><span class="pn">[</span><span class="n">1</span><span class="pn">,</span><span class="n">2</span><span class="pn">]</span><span class="pn">)</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 215)" onmouseover="showTip(event, 'fs6', 215)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs34', 216)" onmouseover="showTip(event, 'fs34', 216)" class="id">withMapbox</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs35', 217)" onmouseover="showTip(event, 'fs35', 217)" class="rt">Mapbox</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs36', 218)" onmouseover="showTip(event, 'fs36', 218)" class="id">init</span><span class="pn">(</span><span class="fn">Style</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs21', 219)" onmouseover="showTip(event, 'fs21', 219)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs37', 220)" onmouseover="showTip(event, 'fs37', 220)" class="rt">MapboxStyle</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs38', 221)" onmouseover="showTip(event, 'fs38', 221)" class="id">OpenStreetMap</span><span class="pn">)</span><span class="pn">)</span>
+        <span class="pn">[</span>
+            <span class="c">// you can use nested combined charts, but they have to have the same trace type (Cartesian2D in this case)</span>
+            <span class="k">let</span> <span onmouseout="hideTip(event, 'fs4', 222)" onmouseover="showTip(event, 'fs4', 222)" class="fn">y</span> <span class="o">=</span>  <span class="pn">[</span><span class="n">2.</span><span class="pn">;</span> <span class="n">1.5</span><span class="pn">;</span> <span class="n">5.</span><span class="pn">;</span> <span class="n">1.5</span><span class="pn">;</span> <span class="n">2.</span><span class="pn">;</span> <span class="n">2.5</span><span class="pn">;</span> <span class="n">2.1</span><span class="pn">;</span> <span class="n">2.5</span><span class="pn">;</span> <span class="n">1.5</span><span class="pn">;</span> <span class="n">1.</span><span class="pn">;</span><span class="n">2.</span><span class="pn">;</span> <span class="n">1.5</span><span class="pn">;</span> <span class="n">5.</span><span class="pn">;</span> <span class="n">1.5</span><span class="pn">;</span> <span class="n">3.</span><span class="pn">;</span> <span class="n">2.5</span><span class="pn">;</span> <span class="n">2.5</span><span class="pn">;</span> <span class="n">1.5</span><span class="pn">;</span> <span class="n">3.5</span><span class="pn">;</span> <span class="n">1.</span><span class="pn">]</span>
+            <span onmouseout="hideTip(event, 'fs6', 223)" onmouseover="showTip(event, 'fs6', 223)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs39', 224)" onmouseover="showTip(event, 'fs39', 224)" class="id">BoxPlot</span><span class="pn">(</span><span class="s">&quot;y&quot;</span> <span class="pn">,</span><span onmouseout="hideTip(event, 'fs4', 225)" onmouseover="showTip(event, 'fs4', 225)" class="fn">y</span><span class="pn">,</span><span class="fn">Name</span><span class="o">=</span><span class="s">&quot;bin1&quot;</span><span class="pn">,</span><span class="fn">Jitter</span><span class="o">=</span><span class="n">0.1</span><span class="pn">,</span><span class="fn">Boxpoints</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs21', 226)" onmouseover="showTip(event, 'fs21', 226)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs40', 227)" onmouseover="showTip(event, 'fs40', 227)" class="rt">Boxpoints</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs41', 228)" onmouseover="showTip(event, 'fs41', 228)" class="id">All</span><span class="pn">)</span><span class="pn">;</span>
+            <span onmouseout="hideTip(event, 'fs6', 229)" onmouseover="showTip(event, 'fs6', 229)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs39', 230)" onmouseover="showTip(event, 'fs39', 230)" class="id">BoxPlot</span><span class="pn">(</span><span class="s">&quot;y&#39;&quot;</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs4', 231)" onmouseover="showTip(event, 'fs4', 231)" class="fn">y</span><span class="pn">,</span><span class="fn">Name</span><span class="o">=</span><span class="s">&quot;bin2&quot;</span><span class="pn">,</span><span class="fn">Jitter</span><span class="o">=</span><span class="n">0.1</span><span class="pn">,</span><span class="fn">Boxpoints</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs21', 232)" onmouseover="showTip(event, 'fs21', 232)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs40', 233)" onmouseover="showTip(event, 'fs40', 233)" class="rt">Boxpoints</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs41', 234)" onmouseover="showTip(event, 'fs41', 234)" class="id">All</span><span class="pn">)</span><span class="pn">;</span>
+        <span class="pn">]</span>
+        <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 235)" onmouseover="showTip(event, 'fs6', 235)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs8', 236)" onmouseover="showTip(event, 'fs8', 236)" class="id">combine</span>
+    <span class="pn">]</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 237)" onmouseover="showTip(event, 'fs6', 237)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs42', 238)" onmouseover="showTip(event, 'fs42', 238)" class="id">Grid</span><span class="pn">(</span><span class="n">2</span><span class="pn">,</span><span class="n">3</span><span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 239)" onmouseover="showTip(event, 'fs6', 239)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs43', 240)" onmouseover="showTip(event, 'fs43', 240)" class="id">withSize</span><span class="pn">(</span><span class="n">1000</span><span class="pn">,</span><span class="n">1000</span><span class="pn">)</span>
+</code></pre>
+<div id="71b6dc33-d43b-43b7-ac1b-2792e0205d5f" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<script type="text/javascript">
+
+            var renderPlotly_71b6dc33d43b43b7ac1b2792e0205d5f = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
+            fsharpPlotlyRequire(['plotly'], function(Plotly) {
+
+            var data = [{"type":"scatter","mode":"markers","x":[1,2],"y":[2,3],"marker":{},"xaxis":"x","yaxis":"y"},{"type":"scatterternary","mode":"markers","a":[1,2],"b":[2,3],"c":[3,4],"marker":{},"subplot":"ternary2"},{"type":"heatmap","z":[[1,2],[3,4]],"showscale":false,"xaxis":"x3","yaxis":"y3"},{"type":"scatter3d","mode":"markers","x":[1],"y":[3],"z":[2],"line":{},"marker":{},"scene":"scene4"},{"type":"scattermapbox","mode":"markers","lon":[1],"lat":[2],"line":{},"marker":{},"subplot":"mapbox5"},{"type":"box","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":"y","boxpoints":"all","jitter":0.1,"name":"bin1","marker":{},"xaxis":"x6","yaxis":"y6"},{"type":"box","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":"y'","boxpoints":"all","jitter":0.1,"name":"bin2","marker":{},"xaxis":"x6","yaxis":"y6"}];
+            var layout = {"xaxis":{},"yaxis":{},"ternary2":{"domain":{"row":0,"column":1}},"xaxis3":{},"yaxis3":{},"scene4":{"domain":{"row":1,"column":0}},"mapbox":{"style":"open-street-map","domain":{"row":1,"column":1}},"mapbox5":{"style":"open-street-map","domain":{"row":1,"column":1}},"xaxis6":{},"yaxis6":{},"grid":{"rows":2,"columns":3,"pattern":"independent"},"width":1000,"height":1000};
+            var config = {};
+            Plotly.newPlot('71b6dc33-d43b-43b7-ac1b-2792e0205d5f', data, layout, config);
+});
+            };
+            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
+                var script = document.createElement("script");
+                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
+                script.onload = function(){
+                    renderPlotly_71b6dc33d43b43b7ac1b2792e0205d5f();
+                };
+                document.getElementsByTagName("head")[0].appendChild(script);
+            }
+            else {
+                renderPlotly_71b6dc33d43b43b7ac1b2792e0205d5f();
+            }
+</script>
+
+<pre class="fssnip highlighted"><code lang="fsharp">    
+</code></pre>
+<p>If you are not sure if traceTypes are compatible, look at the <code>TraceIDs</code>:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs44', 244)" onmouseover="showTip(event, 'fs44', 244)" class="id">pointType</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 245)" onmouseover="showTip(event, 'fs6', 245)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 246)" onmouseover="showTip(event, 'fs12', 246)" class="id">Point</span><span class="pn">(</span><span class="pn">[</span><span class="n">1</span><span class="pn">,</span><span class="n">2</span><span class="pn">]</span><span class="pn">)</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs9', 247)" onmouseover="showTip(event, 'fs9', 247)" class="m">GenericChart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs45', 248)" onmouseover="showTip(event, 'fs45', 248)" class="id">getTraceID</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>&lt;null&gt;</code></pre></td></tr></table>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pn">[</span>
+     <span onmouseout="hideTip(event, 'fs6', 249)" onmouseover="showTip(event, 'fs6', 249)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 250)" onmouseover="showTip(event, 'fs12', 250)" class="id">Point</span><span class="pn">(</span><span class="pn">[</span><span class="n">1</span><span class="pn">,</span><span class="n">2</span><span class="pn">]</span><span class="pn">)</span>
+     <span onmouseout="hideTip(event, 'fs6', 251)" onmouseover="showTip(event, 'fs6', 251)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 252)" onmouseover="showTip(event, 'fs30', 252)" class="id">PointTernary</span><span class="pn">(</span><span class="pn">[</span><span class="n">1</span><span class="pn">,</span><span class="n">2</span><span class="pn">,</span><span class="n">3</span><span class="pn">]</span><span class="pn">)</span>
+<span class="pn">]</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 253)" onmouseover="showTip(event, 'fs6', 253)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs8', 254)" onmouseover="showTip(event, 'fs8', 254)" class="id">combine</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs9', 255)" onmouseover="showTip(event, 'fs9', 255)" class="m">GenericChart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs45', 256)" onmouseover="showTip(event, 'fs45', 256)" class="id">getTraceID</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>Multi</code></pre></td></tr></table>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pn">[</span>
+     <span onmouseout="hideTip(event, 'fs6', 257)" onmouseover="showTip(event, 'fs6', 257)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 258)" onmouseover="showTip(event, 'fs12', 258)" class="id">Point</span><span class="pn">(</span><span class="pn">[</span><span class="n">1</span><span class="pn">,</span><span class="n">2</span><span class="pn">]</span><span class="pn">)</span>
+     <span onmouseout="hideTip(event, 'fs6', 259)" onmouseover="showTip(event, 'fs6', 259)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 260)" onmouseover="showTip(event, 'fs30', 260)" class="id">PointTernary</span><span class="pn">(</span><span class="pn">[</span><span class="n">1</span><span class="pn">,</span><span class="n">2</span><span class="pn">,</span><span class="n">3</span><span class="pn">]</span><span class="pn">)</span>
+<span class="pn">]</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 261)" onmouseover="showTip(event, 'fs6', 261)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs8', 262)" onmouseover="showTip(event, 'fs8', 262)" class="id">combine</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs9', 263)" onmouseover="showTip(event, 'fs9', 263)" class="m">GenericChart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs46', 264)" onmouseover="showTip(event, 'fs46', 264)" class="id">getTraceIDs</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>[Cartesian2D; Ternary]</code></pre></td></tr></table>
 
                 </div>
             </div>
@@ -650,18 +755,18 @@ It uses a shared x axis per default.</p>
 <div class="fsdocs-tip" id="fs4">val y : float list</div>
 <div class="fsdocs-tip" id="fs5">val combinedChart : GenericChart.GenericChart</div>
 <div class="fsdocs-tip" id="fs6">type Chart =
-  static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:Symbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:float -&gt; GenericChart + 1 overload
-  static member Bar : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart + 1 overload
-  static member BoxPlot : ?x:&#39;a0 * ?y:&#39;a1 * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Fillcolor:Color * ?Opacity:float * ?Whiskerwidth:&#39;a2 * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:&#39;a3 * ?Pointpos:&#39;a4 * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?Alignmentgroup:&#39;a5 * ?Offsetgroup:&#39;a6 * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod -&gt; GenericChart + 1 overload
-  static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:Symbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:Orientation * ?GroupNorm:GroupNorm * ?UseWebGL:bool -&gt; GenericChart + 1 overload
+  static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:float -&gt; GenericChart + 1 overload
+  static member Bar : values:seq&lt;#IConvertible&gt; * ?Keys:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?PatternShape:PatternShape * ?MultiPatternShape:seq&lt;PatternShape&gt; * ?Pattern:Pattern * ?Base:#IConvertible * ?Width:&#39;a3 * ?MultiWidth:seq&lt;&#39;a3&gt; * ?Opacity:float * ?MultiOpacity:seq&lt;float&gt; * ?Text:&#39;a4 * ?MultiText:seq&lt;&#39;a4&gt; * ?TextPosition:TextPosition * ?MultiTextPosition:seq&lt;TextPosition&gt; * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart (requires &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
+  static member BoxPlot : ?x:&#39;a * ?y:&#39;b * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Fillcolor:Color * ?Opacity:float * ?Whiskerwidth:&#39;c * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:&#39;d * ?Pointpos:&#39;e * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?Alignmentgroup:&#39;f * ?Offsetgroup:&#39;g * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod -&gt; GenericChart + 1 overload
+  static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;int&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:Orientation * ?GroupNorm:GroupNorm * ?UseWebGL:bool -&gt; GenericChart + 1 overload
   static member Candlestick : open:seq&lt;#IConvertible&gt; * high:seq&lt;#IConvertible&gt; * low:seq&lt;#IConvertible&gt; * close:seq&lt;#IConvertible&gt; * x:seq&lt;#IConvertible&gt; * ?Increasing:Line * ?Decreasing:Line * ?WhiskerWidth:float * ?Line:Line * ?XCalendar:Calendar -&gt; GenericChart + 1 overload
-  static member Column : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart + 1 overload
+  static member Column : values:seq&lt;#IConvertible&gt; * ?Keys:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Pattern:Pattern * ?PatternShape:PatternShape * ?MultiPatternShape:seq&lt;PatternShape&gt; * ?Base:#IConvertible * ?Width:&#39;a3 * ?MultiWidth:seq&lt;&#39;a3&gt; * ?Opacity:float * ?MultiOpacity:seq&lt;float&gt; * ?Text:&#39;a4 * ?MultiText:seq&lt;&#39;a4&gt; * ?TextPosition:TextPosition * ?MultiTextPosition:seq&lt;TextPosition&gt; * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart (requires &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
   static member Contour : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;a4 * ?zSmooth:SmoothAlg * ?ColorBar:&#39;a5 -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)
   static member Funnel : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Color:Color * ?Line:Line * ?x0:&#39;a3 * ?dX:float * ?y0:&#39;a4 * ?dY:float * ?Width:float * ?Offset:float * ?Orientation:Orientation * ?Alignmentgroup:string * ?Offsetgroup:string * ?Cliponaxis:bool * ?Connector:FunnelConnector * ?Insidetextfont:Font * ?Outsidetextfont:Font -&gt; GenericChart
-  static member Heatmap : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?ColNames:seq&lt;#IConvertible&gt; * ?RowNames:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;a4 * ?Xgap:&#39;a5 * ?Ygap:&#39;a6 * ?zSmooth:SmoothAlg * ?ColorBar:&#39;a7 * ?UseWebGL:bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)
+  static member Heatmap : data:seq&lt;#seq&lt;&#39;b&gt;&gt; * ?ColNames:seq&lt;#IConvertible&gt; * ?RowNames:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;e * ?Xgap:&#39;f * ?Ygap:&#39;g * ?zSmooth:SmoothAlg * ?ColorBar:&#39;h * ?UseWebGL:bool -&gt; GenericChart (requires &#39;b :&gt; IConvertible)
   static member Histogram : data:seq&lt;#IConvertible&gt; * ?Orientation:Orientation * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Color:Color * ?HistNorm:HistNorm * ?HistFunc:HistFunc * ?nBinsx:int * ?nBinsy:int * ?Xbins:Bins * ?Ybins:Bins * ?xError:&#39;a1 * ?yError:&#39;a2 -&gt; GenericChart
   ...</div>
-<div class="fsdocs-tip" id="fs7">static member Chart.Line : xy:seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.Symbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?Dash:StyleParam.DrawingStyle * ?Width:float * ?StackGroup:string * ?Orientation:StyleParam.Orientation * ?GroupNorm:StyleParam.GroupNorm * ?UseWebGL:bool -&gt; GenericChart.GenericChart<br />static member Chart.Line : x:seq&lt;#System.IConvertible&gt; * y:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.Symbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?Dash:StyleParam.DrawingStyle * ?Width:float * ?StackGroup:string * ?Orientation:StyleParam.Orientation * ?GroupNorm:StyleParam.GroupNorm * ?UseWebGL:bool -&gt; GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs7">static member Chart.Line : xy:seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?Dash:StyleParam.DrawingStyle * ?Width:float * ?StackGroup:string * ?Orientation:StyleParam.Orientation * ?GroupNorm:StyleParam.GroupNorm * ?UseWebGL:bool -&gt; GenericChart.GenericChart<br />static member Chart.Line : x:seq&lt;#System.IConvertible&gt; * y:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?Dash:StyleParam.DrawingStyle * ?Width:float * ?StackGroup:string * ?Orientation:StyleParam.Orientation * ?GroupNorm:StyleParam.GroupNorm * ?UseWebGL:bool -&gt; GenericChart.GenericChart</div>
 <div class="fsdocs-tip" id="fs8">static member Chart.combine : gCharts:seq&lt;GenericChart.GenericChart&gt; -&gt; GenericChart.GenericChart</div>
 <div class="fsdocs-tip" id="fs9">module GenericChart
 
@@ -672,10 +777,10 @@ from Plotly.NET<br /><em>&lt;summary&gt;
  Converts a GenericChart to it HTML representation. The div layer has a default size of 600 if not specified otherwise.
 &lt;/summary&gt;</em></div>
 <div class="fsdocs-tip" id="fs11">val grid : GenericChart.GenericChart</div>
-<div class="fsdocs-tip" id="fs12">static member Chart.Point : xy:seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.Symbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:StyleParam.Orientation * ?GroupNorm:StyleParam.GroupNorm * ?UseWebGL:bool -&gt; GenericChart.GenericChart<br />static member Chart.Point : x:seq&lt;#System.IConvertible&gt; * y:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.Symbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:StyleParam.Orientation * ?GroupNorm:StyleParam.GroupNorm * ?UseWebGL:bool -&gt; GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs12">static member Chart.Point : xy:seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:StyleParam.Orientation * ?GroupNorm:StyleParam.GroupNorm * ?UseWebGL:bool -&gt; GenericChart.GenericChart<br />static member Chart.Point : x:seq&lt;#System.IConvertible&gt; * y:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:StyleParam.Orientation * ?GroupNorm:StyleParam.GroupNorm * ?UseWebGL:bool -&gt; GenericChart.GenericChart</div>
 <div class="fsdocs-tip" id="fs13">static member Chart.withXAxisStyle : title:string * ?TitleFont:Font * ?MinMax:(float * float) * ?ShowGrid:bool * ?ShowLine:bool * ?Side:StyleParam.Side * ?Overlaying:StyleParam.LinearAxisId * ?Id:StyleParam.SubPlotId * ?Domain:(float * float) * ?Position:float * ?Zeroline:bool * ?Anchor:StyleParam.LinearAxisId -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
 <div class="fsdocs-tip" id="fs14">static member Chart.withYAxisStyle : title:string * ?TitleFont:Font * ?MinMax:(float * float) * ?ShowGrid:bool * ?ShowLine:bool * ?Side:StyleParam.Side * ?Overlaying:StyleParam.LinearAxisId * ?Id:StyleParam.SubPlotId * ?Domain:(float * float) * ?Position:float * ?ZeroLine:bool * ?Anchor:StyleParam.LinearAxisId -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
-<div class="fsdocs-tip" id="fs15">static member Chart.Spline : xy:seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.Symbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?Dash:StyleParam.DrawingStyle * ?Width:float * ?Smoothing:float * ?StackGroup:string * ?Orientation:StyleParam.Orientation * ?GroupNorm:StyleParam.GroupNorm * ?UseWebGL:bool -&gt; GenericChart.GenericChart<br />static member Chart.Spline : x:seq&lt;#System.IConvertible&gt; * y:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.Symbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?Dash:StyleParam.DrawingStyle * ?Width:float * ?Smoothing:float * ?StackGroup:string * ?Orientation:StyleParam.Orientation * ?GroupNorm:StyleParam.GroupNorm * ?UseWebGL:bool -&gt; GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs15">static member Chart.Spline : xy:seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?Dash:StyleParam.DrawingStyle * ?Width:float * ?Smoothing:float * ?StackGroup:string * ?Orientation:StyleParam.Orientation * ?GroupNorm:StyleParam.GroupNorm * ?UseWebGL:bool -&gt; GenericChart.GenericChart<br />static member Chart.Spline : x:seq&lt;#System.IConvertible&gt; * y:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?Dash:StyleParam.DrawingStyle * ?Width:float * ?Smoothing:float * ?StackGroup:string * ?Orientation:StyleParam.Orientation * ?GroupNorm:StyleParam.GroupNorm * ?UseWebGL:bool -&gt; GenericChart.GenericChart</div>
 <div class="fsdocs-tip" id="fs16">static member Chart.Grid : ?SubPlots:(StyleParam.LinearAxisId * StyleParam.LinearAxisId) [] [] * ?XAxes:StyleParam.LinearAxisId [] * ?YAxes:StyleParam.LinearAxisId [] * ?RowOrder:StyleParam.LayoutGridRowOrder * ?Pattern:StyleParam.LayoutGridPattern * ?XGap:float * ?YGap:float * ?Domain:LayoutObjects.Domain * ?XSide:StyleParam.LayoutGridXSide * ?YSide:StyleParam.LayoutGridYSide -&gt; (#seq&lt;&#39;b&gt; -&gt; GenericChart.GenericChart) (requires &#39;b :&gt; seq&lt;GenericChart.GenericChart&gt;)<br />static member Chart.Grid : nRows:int * nCols:int * ?SubPlots:(StyleParam.LinearAxisId * StyleParam.LinearAxisId) [] [] * ?XAxes:StyleParam.LinearAxisId [] * ?YAxes:StyleParam.LinearAxisId [] * ?RowOrder:StyleParam.LayoutGridRowOrder * ?Pattern:StyleParam.LayoutGridPattern * ?XGap:float * ?YGap:float * ?Domain:LayoutObjects.Domain * ?XSide:StyleParam.LayoutGridXSide * ?YSide:StyleParam.LayoutGridYSide -&gt; (#seq&lt;GenericChart.GenericChart&gt; -&gt; GenericChart.GenericChart)</div>
 <div class="fsdocs-tip" id="fs17">val grid2 : GenericChart.GenericChart</div>
 <div class="fsdocs-tip" id="fs18">val grid3 : GenericChart.GenericChart</div>
@@ -700,6 +805,62 @@ from Plotly.NET</div>
 <div class="fsdocs-tip" id="fs25">static member Chart.SingleStack : ?SubPlots:(StyleParam.LinearAxisId * StyleParam.LinearAxisId) [] [] * ?XAxes:StyleParam.LinearAxisId [] * ?YAxes:StyleParam.LinearAxisId [] * ?RowOrder:StyleParam.LayoutGridRowOrder * ?Pattern:StyleParam.LayoutGridPattern * ?XGap:float * ?YGap:float * ?Domain:LayoutObjects.Domain * ?XSide:StyleParam.LayoutGridXSide * ?YSide:StyleParam.LayoutGridYSide -&gt; (#seq&lt;GenericChart.GenericChart&gt; -&gt; GenericChart.GenericChart)</div>
 <div class="fsdocs-tip" id="fs26">static member Chart.withLayoutGridStyle : ?SubPlots:(StyleParam.LinearAxisId * StyleParam.LinearAxisId) [] [] * ?XAxes:StyleParam.LinearAxisId [] * ?YAxes:StyleParam.LinearAxisId [] * ?Rows:int * ?Columns:int * ?RowOrder:StyleParam.LayoutGridRowOrder * ?Pattern:StyleParam.LayoutGridPattern * ?XGap:float * ?YGap:float * ?Domain:LayoutObjects.Domain * ?XSide:StyleParam.LayoutGridXSide * ?YSide:StyleParam.LayoutGridYSide -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
 <div class="fsdocs-tip" id="fs27">static member Chart.withTitle : title:string * ?TitleFont:Font -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
+<div class="fsdocs-tip" id="fs28">namespace Plotly.NET.LayoutObjects</div>
+<div class="fsdocs-tip" id="fs29">val multipleTraceTypesGrid : GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs30">static member Chart.PointTernary : abc:seq&lt;#System.IConvertible * #System.IConvertible * #System.IConvertible&gt; * ?Labels:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.MarkerSymbol * ?Color:Color * ?Opacity:float * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font -&gt; GenericChart.GenericChart<br />static member Chart.PointTernary : ?A:seq&lt;#System.IConvertible&gt; * ?B:seq&lt;#System.IConvertible&gt; * ?C:seq&lt;#System.IConvertible&gt; * ?Sum:#System.IConvertible * ?Labels:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.MarkerSymbol * ?Color:Color * ?Opacity:float * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font -&gt; GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs31">static member Chart.Heatmap : data:seq&lt;#seq&lt;&#39;b&gt;&gt; * ?ColNames:seq&lt;#System.IConvertible&gt; * ?RowNames:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Colorscale:StyleParam.Colorscale * ?Showscale:&#39;e * ?Xgap:&#39;f * ?Ygap:&#39;g * ?zSmooth:StyleParam.SmoothAlg * ?ColorBar:&#39;h * ?UseWebGL:bool -&gt; GenericChart.GenericChart (requires &#39;b :&gt; System.IConvertible)</div>
+<div class="fsdocs-tip" id="fs32">static member Chart.Point3d : xyz:seq&lt;#System.IConvertible * #System.IConvertible * #System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font -&gt; GenericChart.GenericChart<br />static member Chart.Point3d : x:seq&lt;#System.IConvertible&gt; * y:seq&lt;#System.IConvertible&gt; * z:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font -&gt; GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs33">static member Chart.PointMapbox : lonlat:seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?Width:float * ?Below:string * ?Connectgaps:bool * ?Fill:StyleParam.Fill * ?Fillcolor:string -&gt; GenericChart.GenericChart<br />static member Chart.PointMapbox : longitudes:seq&lt;#System.IConvertible&gt; * latitudes:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?Width:float * ?Below:string * ?Connectgaps:bool * ?Fill:StyleParam.Fill * ?Fillcolor:string -&gt; GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs34">static member Chart.withMapbox : mapBox:Mapbox * ?Id:StyleParam.SubPlotId -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
+<div class="fsdocs-tip" id="fs35">Multiple items<br />type Mapbox =
+  inherit DynamicObj
+  new : unit -&gt; Mapbox
+  static member init : ?Domain:Domain * ?AccessToken:string * ?Style:MapboxStyle * ?Center:(float * float) * ?Zoom:float * ?Bearing:float * ?Pitch:float * ?Layers:seq&lt;MapboxLayer&gt; -&gt; Mapbox
+  static member style : ?Domain:Domain * ?AccessToken:string * ?Style:MapboxStyle * ?Center:(float * float) * ?Zoom:float * ?Bearing:float * ?Pitch:float * ?Layers:seq&lt;MapboxLayer&gt; -&gt; (Mapbox -&gt; Mapbox)<br /><em>&lt;summary&gt;Determines the style of the map shown in mapbox traces&lt;/summary&gt;</em><br /><br />--------------------<br />new : unit -&gt; Mapbox</div>
+<div class="fsdocs-tip" id="fs36">static member Mapbox.init : ?Domain:Domain * ?AccessToken:string * ?Style:StyleParam.MapboxStyle * ?Center:(float * float) * ?Zoom:float * ?Bearing:float * ?Pitch:float * ?Layers:seq&lt;MapboxLayer&gt; -&gt; Mapbox</div>
+<div class="fsdocs-tip" id="fs37">type MapboxStyle =
+  | OpenStreetMap
+  | WhiteBG
+  | CartoPositron
+  | CartoDarkmatter
+  | StamenTerrain
+  | StamenToner
+  | StamenWatercolor
+  | MapboxBasic
+  | MapboxStreets
+  | MapboxOutdoors
+  ...
+    member Convert : unit -&gt; obj
+    override ToString : unit -&gt; string
+    static member convert : (MapboxStyle -&gt; obj)
+    static member toString : (MapboxStyle -&gt; string)<br /><em>&lt;summary&gt;
+ Defines the map layers that are rendered by default below the trace layers defined in `data`, which are themselves by default rendered below the layers defined in `layout.mapbox.layers`. 
+ These layers can be defined either explicitly as a Mapbox Style object which can contain multiple layer definitions that load data from any public or private Tile Map Service (TMS or XYZ) or Web Map Service (WMS) or implicitly by using one of the built-in style objects which use WMSes which do not require any access tokens, 
+ or by using a default Mapbox style or custom Mapbox style URL, both of which require a Mapbox access token Note that Mapbox access token can be set in the `accesstoken` attribute or in the `mapboxAccessToken` config option. 
+ Mapbox Style objects are of the form described in the Mapbox GL JS documentation available at https://docs.mapbox.com/mapbox-gl-js/style-spec The built-in plotly.js styles objects are: open-street-map, white-bg, carto-positron, carto-darkmatter, stamen-terrain, stamen-toner, stamen-watercolor 
+ The built-in Mapbox styles are: basic, streets, outdoors, light, dark, satellite, satellite-streets Mapbox style URLs are of the form: mapbox://mapbox.mapbox-&amp;lt;name&amp;gt;-&amp;lt;version&amp;gt;
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs38">union case StyleParam.MapboxStyle.OpenStreetMap: StyleParam.MapboxStyle</div>
+<div class="fsdocs-tip" id="fs39">static member Chart.BoxPlot : xy:seq&lt;&#39;a0 * &#39;a1&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Fillcolor:Color * ?Opacity:float * ?Whiskerwidth:&#39;a2 * ?Boxpoints:StyleParam.Boxpoints * ?Boxmean:StyleParam.BoxMean * ?Jitter:&#39;a3 * ?Pointpos:&#39;a4 * ?Orientation:StyleParam.Orientation * ?Marker:TraceObjects.Marker * ?Line:Line * ?Alignmentgroup:&#39;a5 * ?Offsetgroup:&#39;a6 * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:StyleParam.QuartileMethod -&gt; GenericChart.GenericChart<br />static member Chart.BoxPlot : ?x:&#39;a * ?y:&#39;b * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Fillcolor:Color * ?Opacity:float * ?Whiskerwidth:&#39;c * ?Boxpoints:StyleParam.Boxpoints * ?Boxmean:StyleParam.BoxMean * ?Jitter:&#39;d * ?Pointpos:&#39;e * ?Orientation:StyleParam.Orientation * ?Marker:TraceObjects.Marker * ?Line:Line * ?Alignmentgroup:&#39;f * ?Offsetgroup:&#39;g * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:StyleParam.QuartileMethod -&gt; GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs40">type Boxpoints =
+  | Outliers
+  | All
+  | Suspectedoutliers
+  | False
+    member Convert : unit -&gt; obj
+    override ToString : unit -&gt; string
+    static member convert : (Boxpoints -&gt; obj)
+    static member toString : (Boxpoints -&gt; string)</div>
+<div class="fsdocs-tip" id="fs41">union case StyleParam.Boxpoints.All: StyleParam.Boxpoints</div>
+<div class="fsdocs-tip" id="fs42">static member Chart.Grid : ?SubPlots:(StyleParam.LinearAxisId * StyleParam.LinearAxisId) [] [] * ?XAxes:StyleParam.LinearAxisId [] * ?YAxes:StyleParam.LinearAxisId [] * ?RowOrder:StyleParam.LayoutGridRowOrder * ?Pattern:StyleParam.LayoutGridPattern * ?XGap:float * ?YGap:float * ?Domain:Domain * ?XSide:StyleParam.LayoutGridXSide * ?YSide:StyleParam.LayoutGridYSide -&gt; (#seq&lt;&#39;b&gt; -&gt; GenericChart.GenericChart) (requires &#39;b :&gt; seq&lt;GenericChart.GenericChart&gt;)<br />static member Chart.Grid : nRows:int * nCols:int * ?SubPlots:(StyleParam.LinearAxisId * StyleParam.LinearAxisId) [] [] * ?XAxes:StyleParam.LinearAxisId [] * ?YAxes:StyleParam.LinearAxisId [] * ?RowOrder:StyleParam.LayoutGridRowOrder * ?Pattern:StyleParam.LayoutGridPattern * ?XGap:float * ?YGap:float * ?Domain:Domain * ?XSide:StyleParam.LayoutGridXSide * ?YSide:StyleParam.LayoutGridYSide -&gt; (#seq&lt;GenericChart.GenericChart&gt; -&gt; GenericChart.GenericChart)</div>
+<div class="fsdocs-tip" id="fs43">static member Chart.withSize : width:float * height:float -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)<br />static member Chart.withSize : ?Width:int * ?Height:int -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
+<div class="fsdocs-tip" id="fs44">val pointType : TraceID</div>
+<div class="fsdocs-tip" id="fs45">val getTraceID : gChart:GenericChart.GenericChart -&gt; TraceID<br /><em>&lt;summary&gt;
+ returns a single TraceID (when all traces of the charts are of the same type), or traceID.Multi if the chart contains traces of multiple different types
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs46">val getTraceIDs : gChart:GenericChart.GenericChart -&gt; TraceID list<br /><em>&lt;summary&gt;
+ returns a list of TraceIDs representing the types of all traces contained in the chart.
+&lt;/summary&gt;</em></div>
 
     </div>
 

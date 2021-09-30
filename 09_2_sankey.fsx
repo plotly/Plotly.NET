@@ -37,29 +37,29 @@ let sankey1 =
         [link1;link2;link3;link4;link5]
     )
     |> Chart.withTitle "Sankey Sample"(* output: 
-<div id="78bdf9ef-7160-487c-bf4c-65d455c4a980" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="14ec1303-5dc6-4536-b5a2-505a3c605d0c" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_78bdf9ef7160487cbf4c65d455c4a980 = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_14ec13035dc64536b5a2505a3c605d0c = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"sankey","node":{"label":["a","b","c","d","e"],"color":["Black","Red","Purple","Green","Orange"]},"link":{"source":[0,1,0,3,2],"target":[1,2,4,4,4],"value":[1.0,2.0,1.3,1.5,0.5]}}];
             var layout = {"title":{"text":"Sankey Sample"}};
             var config = {};
-            Plotly.newPlot('78bdf9ef-7160-487c-bf4c-65d455c4a980', data, layout, config);
+            Plotly.newPlot('14ec1303-5dc6-4536-b5a2-505a3c605d0c', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_78bdf9ef7160487cbf4c65d455c4a980();
+                    renderPlotly_14ec13035dc64536b5a2505a3c605d0c();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_78bdf9ef7160487cbf4c65d455c4a980();
+                renderPlotly_14ec13035dc64536b5a2505a3c605d0c();
             }
 </script>
 *)

@@ -24,29 +24,29 @@ let cone =
         v = [1; 1; 2],
         w = [4; 4; 1]
     )(* output: 
-<div id="f7a4aa67-2ad9-4468-bbd3-7879218822b7" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="86f43905-74b8-4050-8614-21d4b7a7198f" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_f7a4aa672ad94468bbd37879218822b7 = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_86f4390574b84050861421d4b7a7198f = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"cone","x":[1,1,1],"y":[1,2,3],"z":[1,1,1],"u":[1,2,3],"v":[1,1,2],"w":[4,4,1]}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('f7a4aa67-2ad9-4468-bbd3-7879218822b7', data, layout, config);
+            Plotly.newPlot('86f43905-74b8-4050-8614-21d4b7a7198f', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_f7a4aa672ad94468bbd37879218822b7();
+                    renderPlotly_86f4390574b84050861421d4b7a7198f();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_f7a4aa672ad94468bbd37879218822b7();
+                renderPlotly_86f4390574b84050861421d4b7a7198f();
             }
 </script>
 *)

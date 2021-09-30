@@ -42,29 +42,29 @@ let mb =
 let baseLayerOnly = 
     Chart.PointMapbox([],[]) // deliberately empty chart to show the base map only
     |> Chart.withMapbox mb // add the mapBox(* output: 
-<div id="6f381751-3710-4a6e-9e60-6b00aa629b1e" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="4042e51f-ce88-4505-98a7-449f54926bdc" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_6f38175137104a6e9e606b00aa629b1e = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_4042e51fce88450598a7449f54926bdc = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scattermapbox","mode":"markers","lon":[],"lat":[],"line":{},"marker":{}}];
             var layout = {"mapbox":{"style":"open-street-map"}};
             var config = {};
-            Plotly.newPlot('6f381751-3710-4a6e-9e60-6b00aa629b1e', data, layout, config);
+            Plotly.newPlot('4042e51f-ce88-4505-98a7-449f54926bdc', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_6f38175137104a6e9e606b00aa629b1e();
+                    renderPlotly_4042e51fce88450598a7449f54926bdc();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_6f38175137104a6e9e606b00aa629b1e();
+                renderPlotly_4042e51fce88450598a7449f54926bdc();
             }
 </script>
 *)

@@ -25,29 +25,29 @@ When creating pie charts, it is usually desirable to provide both labels and val
 *)
 let pie1 =
     Chart.Pie(values,labels)(* output: 
-<div id="e3d7a7cb-d614-42af-929e-4da9bff01c50" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="9a6fc865-6b30-4680-9305-bd74f8ca18ee" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_e3d7a7cbd61442af929e4da9bff01c50 = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_9a6fc8656b3046809305bd74f8ca18ee = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"pie","values":[19,26,55],"labels":["Residential","Non-Residential","Utility"],"marker":{},"text":["Residential","Non-Residential","Utility"]}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('e3d7a7cb-d614-42af-929e-4da9bff01c50', data, layout, config);
+            Plotly.newPlot('9a6fc865-6b30-4680-9305-bd74f8ca18ee', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_e3d7a7cbd61442af929e4da9bff01c50();
+                    renderPlotly_9a6fc8656b3046809305bd74f8ca18ee();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_e3d7a7cbd61442af929e4da9bff01c50();
+                renderPlotly_9a6fc8656b3046809305bd74f8ca18ee();
             }
 </script>
 *)
@@ -58,29 +58,29 @@ let doughnut1 =
         Hole=0.3,
         TextLabels=labels
     )(* output: 
-<div id="5e65b150-1e09-45da-bc0c-f7c883d80abb" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="afceaa65-e164-41bc-933f-fc4584627909" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_5e65b1501e0945dabc0cf7c883d80abb = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_afceaa65e16441bc933ffc4584627909 = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"pie","values":[19,26,55],"labels":["Residential","Non-Residential","Utility"],"text":["Residential","Non-Residential","Utility"],"hole":0.3,"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('5e65b150-1e09-45da-bc0c-f7c883d80abb', data, layout, config);
+            Plotly.newPlot('afceaa65-e164-41bc-933f-fc4584627909', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_5e65b1501e0945dabc0cf7c883d80abb();
+                    renderPlotly_afceaa65e16441bc933ffc4584627909();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_5e65b1501e0945dabc0cf7c883d80abb();
+                renderPlotly_afceaa65e16441bc933ffc4584627909();
             }
 </script>
 *)
@@ -91,29 +91,29 @@ let sunburst1 =
         Values=[5.;0.;3.;2.;3.],
         Text=["At";"Bt";"Ct";"Dt";"Et"]
     )(* output: 
-<div id="e5984b48-e7ab-42e9-a2eb-aaf08b0e99e4" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="dbd5ea16-b2eb-441e-9b91-7fd824141304" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_e5984b48e7ab42e9a2ebaaf08b0e99e4 = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_dbd5ea16b2eb441e9b917fd824141304 = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"sunburst","labels":["A","B","C","D","E"],"parents":["","","B","B",""],"values":[5.0,0.0,3.0,2.0,3.0],"text":["At","Bt","Ct","Dt","Et"],"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('e5984b48-e7ab-42e9-a2eb-aaf08b0e99e4', data, layout, config);
+            Plotly.newPlot('dbd5ea16-b2eb-441e-9b91-7fd824141304', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_e5984b48e7ab42e9a2ebaaf08b0e99e4();
+                    renderPlotly_dbd5ea16b2eb441e9b917fd824141304();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_e5984b48e7ab42e9a2ebaaf08b0e99e4();
+                renderPlotly_dbd5ea16b2eb441e9b917fd824141304();
             }
 </script>
 *)

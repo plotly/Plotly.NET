@@ -35,29 +35,29 @@ use `Chart.PointPolar` to create a polar plot that displays points on a polar co
 
 *)
 let pointPolar = Chart.PointPolar(radial,theta)(* output: 
-<div id="f21fc847-05c9-4cda-b28d-1cea515153ec" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="dbb9778e-2cfc-43f3-950d-d371d407b5ee" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_f21fc84705c94cdab28d1cea515153ec = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_dbb9778e2cfc43f3950dd371d407b5ee = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatterpolar","mode":"markers","r":[1,2,3,4,5,6,7],"theta":[0,45,90,135,200,320,184],"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('f21fc847-05c9-4cda-b28d-1cea515153ec', data, layout, config);
+            Plotly.newPlot('dbb9778e-2cfc-43f3-950d-d371d407b5ee', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_f21fc84705c94cdab28d1cea515153ec();
+                    renderPlotly_dbb9778e2cfc43f3950dd371d407b5ee();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_f21fc84705c94cdab28d1cea515153ec();
+                renderPlotly_dbb9778e2cfc43f3950dd371d407b5ee();
             }
 </script>
 *)
@@ -72,29 +72,29 @@ You can for example change the line style using `Chart.withLineStyle`
 let linePolar = 
     Chart.LinePolar(radial,theta)
     |> Chart.withLineStyle(Color=Color.fromString "purple",Dash=StyleParam.DrawingStyle.DashDot)(* output: 
-<div id="1dc93a55-3ed8-4147-9eaa-68c72022a232" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="c28006df-84c4-451c-8b76-06ed7fac155b" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_1dc93a553ed841479eaa68c72022a232 = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_c28006df84c4451c8b7606ed7fac155b = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatterpolar","mode":"lines","r":[1,2,3,4,5,6,7],"theta":[0,45,90,135,200,320,184],"line":{"color":"purple","dash":"dashdot"},"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('1dc93a55-3ed8-4147-9eaa-68c72022a232', data, layout, config);
+            Plotly.newPlot('c28006df-84c4-451c-8b76-06ed7fac155b', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_1dc93a553ed841479eaa68c72022a232();
+                    renderPlotly_c28006df84c4451c8b7606ed7fac155b();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_1dc93a553ed841479eaa68c72022a232();
+                renderPlotly_c28006df84c4451c8b7606ed7fac155b();
             }
 </script>
 *)
@@ -114,29 +114,29 @@ let splinePolar =
         TextPosition=StyleParam.TextPosition.TopCenter,
         ShowMarkers=true
     )(* output: 
-<div id="8fe1e844-e6dd-44db-8eda-e30f96d0a5d7" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="d2d2c482-c92c-4f55-a396-a3c584106145" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_8fe1e844e6dd44db8edae30f96d0a5d7 = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_d2d2c482c92c4f55a396a3c584106145 = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatterpolar","mode":"lines+markers+text","r":[1,2,3,4,5,6,7],"theta":[0,45,90,135,200,320,184],"line":{"shape":"spline"},"marker":{},"text":["one","two","three","four","five","six","seven"],"textposition":"top center"}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('8fe1e844-e6dd-44db-8eda-e30f96d0a5d7', data, layout, config);
+            Plotly.newPlot('d2d2c482-c92c-4f55-a396-a3c584106145', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_8fe1e844e6dd44db8edae30f96d0a5d7();
+                    renderPlotly_d2d2c482c92c4f55a396a3c584106145();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_8fe1e844e6dd44db8edae30f96d0a5d7();
+                renderPlotly_d2d2c482c92c4f55a396a3c584106145();
             }
 </script>
 *)

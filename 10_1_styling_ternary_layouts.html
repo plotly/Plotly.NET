@@ -41,7 +41,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.8</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.9</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -113,6 +113,11 @@
     Annotations
   </a>
 </li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/01_5_layout_images.html">
+    Layout images
+  </a>
+</li>             
 <li class="nav-header">
   Simple Charts
 </li>             
@@ -154,6 +159,11 @@
 <li class="nav-item">
   <a class="nav-link" href="https://plotly.net/02_7_heatmaps.html">
     Heatmaps
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/02_8_Images.html">
+    Images
   </a>
 </li>             
 <li class="nav-header">
@@ -263,6 +273,11 @@
     FunnelArea Charts
   </a>
 </li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_3_indicator.html">
+    Indicator Charts
+  </a>
+</li>             
 <li class="nav-header">
   Mapbox map charts
 </li>             
@@ -305,19 +320,6 @@
   </a>
 </li>             
 <li class="nav-header">
-  Ternary Plots
-</li>             
-<li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/10_0_ternary_line_scatter_plots.html">
-    Ternary line and scatter plots
-  </a>
-</li>             
-<li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/10_1_styling_ternary_layouts.html">
-    Styling ternary layouts
-  </a>
-</li>             
-<li class="nav-header">
   Categorical Charts
 </li>             
 <li class="nav-item">
@@ -333,6 +335,37 @@
 <li class="nav-item">
   <a class="nav-link" href="https://plotly.net/09_2_sankey.html">
     Sankey Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/09_3_icicle.html">
+    Icicle Charts
+  </a>
+</li>             
+<li class="nav-header">
+  Ternary Plots
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/10_0_ternary_line_scatter_plots.html">
+    Ternary line and scatter plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/10_1_styling_ternary_layouts.html">
+    Styling ternary layouts
+  </a>
+</li>             
+<li class="nav-header">
+  Carpet Plots
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/11_1_carpet_line_scatter_plots.html">
+    Carpet line and scatter plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/11_2_contourcarpet_plots.html">
+    Contour carpet plots
   </a>
 </li>
                         <li class="nav-header">
@@ -377,29 +410,29 @@
     
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs9', 19)" onmouseover="showTip(event, 'fs9', 19)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 20)" onmouseover="showTip(event, 'fs12', 20)" class="id">combine</span>
 </code></pre>
-<div id="41a53994-3b67-4194-ad8f-1c4c8d01c8e3" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="1e68e3cb-88e1-4c0d-abd2-4f8143617f4f" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_41a539943b674194ad8f1c4c8d01c8e3 = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_1e68e3cb88e14c0dabd24f8143617f4f = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatterternary","mode":"markers","a":[1,2,3,4,5,6,7],"b":[7,6,5,4,3,2,1],"c":[2,2,2,2,2,2,2],"marker":{}},{"type":"scatterternary","mode":"lines","a":[1,2,3,4,5,6,7],"b":[2,2,2,2,2,2,2],"sum":10,"line":{},"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('41a53994-3b67-4194-ad8f-1c4c8d01c8e3', data, layout, config);
+            Plotly.newPlot('1e68e3cb-88e1-4c0d-abd2-4f8143617f4f', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_41a539943b674194ad8f1c4c8d01c8e3();
+                    renderPlotly_1e68e3cb88e14c0dabd24f8143617f4f();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_41a539943b674194ad8f1c4c8d01c8e3();
+                renderPlotly_1e68e3cb88e14c0dabd24f8143617f4f();
             }
 </script>
 
@@ -416,29 +449,29 @@
         <span class="pn">)</span>
     <span class="pn">)</span>
 </code></pre>
-<div id="27b81192-e09b-4e0e-8aa2-7ce12f4b8341" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="6e61679b-06eb-49b8-8f57-e663e8db6ff5" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_27b81192e09b4e0e8aa27ce12f4b8341 = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_6e61679b06eb49b88f57e663e8db6ff5 = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatterternary","mode":"markers","a":[1,2,3,4,5,6,7],"b":[7,6,5,4,3,2,1],"c":[2,2,2,2,2,2,2],"marker":{}},{"type":"scatterternary","mode":"lines","a":[1,2,3,4,5,6,7],"b":[2,2,2,2,2,2,2],"sum":10,"line":{},"marker":{}}];
             var layout = {"ternary":{"aaxis":{"color":"rgba(153, 50, 204, 1.0)","title":{"text":"A"}},"baxis":{"color":"rgba(139, 0, 0, 1.0)","title":{"text":"B"}}}};
             var config = {};
-            Plotly.newPlot('27b81192-e09b-4e0e-8aa2-7ce12f4b8341', data, layout, config);
+            Plotly.newPlot('6e61679b-06eb-49b8-8f57-e663e8db6ff5', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_27b81192e09b4e0e8aa27ce12f4b8341();
+                    renderPlotly_6e61679b06eb49b88f57e663e8db6ff5();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_27b81192e09b4e0e8aa27ce12f4b8341();
+                renderPlotly_6e61679b06eb49b88f57e663e8db6ff5();
             }
 </script>
 
@@ -449,29 +482,29 @@
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs9', 58)" onmouseover="showTip(event, 'fs9', 58)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 59)" onmouseover="showTip(event, 'fs30', 59)" class="id">withCAxis</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs20', 60)" onmouseover="showTip(event, 'fs20', 60)" class="rt">LinearAxis</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs21', 61)" onmouseover="showTip(event, 'fs21', 61)" class="id">init</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs22', 62)" onmouseover="showTip(event, 'fs22', 62)" class="fn">Title</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs22', 63)" onmouseover="showTip(event, 'fs22', 63)" class="rt">Title</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs23', 64)" onmouseover="showTip(event, 'fs23', 64)" class="id">init</span><span class="pn">(</span><span class="s">&quot;C&quot;</span><span class="pn">)</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs24', 65)" onmouseover="showTip(event, 'fs24', 65)" class="fn">Color</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs24', 66)" onmouseover="showTip(event, 'fs24', 66)" class="m">Color</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 67)" onmouseover="showTip(event, 'fs25', 67)" class="id">fromKeyword</span> <span onmouseout="hideTip(event, 'fs26', 68)" onmouseover="showTip(event, 'fs26', 68)" class="rt">ColorKeyword</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs31', 69)" onmouseover="showTip(event, 'fs31', 69)" class="id">DarkCyan</span><span class="pn">)</span><span class="pn">)</span>
     
 </code></pre>
-<div id="27d1669f-c3fb-47e3-8ca5-5503f2a52ac3" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="c9ccc5b2-dd01-46f9-96de-b3fd5c69565d" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_27d1669fc3fb47e38ca55503f2a52ac3 = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_c9ccc5b2dd0146f996deb3fd5c69565d = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatterternary","mode":"markers","a":[1,2,3,4,5,6,7],"b":[7,6,5,4,3,2,1],"c":[2,2,2,2,2,2,2],"marker":{}},{"type":"scatterternary","mode":"lines","a":[1,2,3,4,5,6,7],"b":[2,2,2,2,2,2,2],"sum":10,"line":{},"marker":{}}];
             var layout = {"ternary":{"aaxis":{"color":"rgba(153, 50, 204, 1.0)","title":{"text":"A"}},"baxis":{"color":"rgba(139, 0, 0, 1.0)","title":{"text":"B"}},"caxis":{"color":"rgba(0, 139, 139, 1.0)","title":{"text":"C"}}}};
             var config = {};
-            Plotly.newPlot('27d1669f-c3fb-47e3-8ca5-5503f2a52ac3', data, layout, config);
+            Plotly.newPlot('c9ccc5b2-dd01-46f9-96de-b3fd5c69565d', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_27d1669fc3fb47e38ca55503f2a52ac3();
+                    renderPlotly_c9ccc5b2dd0146f996deb3fd5c69565d();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_27d1669fc3fb47e38ca55503f2a52ac3();
+                renderPlotly_c9ccc5b2dd0146f996deb3fd5c69565d();
             }
 </script>
 
@@ -508,19 +541,19 @@ from Microsoft.FSharp.Collections<br /><em>&lt;summary&gt;Contains operations fo
 <div class="fsdocs-tip" id="fs7">val c : int list</div>
 <div class="fsdocs-tip" id="fs8">val combinedTernary : GenericChart.GenericChart</div>
 <div class="fsdocs-tip" id="fs9">type Chart =
-  static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:Symbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:float -&gt; GenericChart + 1 overload
-  static member Bar : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart + 1 overload
+  static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:float -&gt; GenericChart + 1 overload
+  static member Bar : values:seq&lt;#IConvertible&gt; * ?Keys:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?PatternShape:PatternShape * ?MultiPatternShape:seq&lt;PatternShape&gt; * ?Pattern:Pattern * ?Base:#IConvertible * ?Width:&#39;a3 * ?MultiWidth:seq&lt;&#39;a3&gt; * ?Opacity:float * ?MultiOpacity:seq&lt;float&gt; * ?Text:&#39;a4 * ?MultiText:seq&lt;&#39;a4&gt; * ?TextPosition:TextPosition * ?MultiTextPosition:seq&lt;TextPosition&gt; * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart (requires &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
   static member BoxPlot : ?x:&#39;a0 * ?y:&#39;a1 * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Fillcolor:Color * ?Opacity:float * ?Whiskerwidth:&#39;a2 * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:&#39;a3 * ?Pointpos:&#39;a4 * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?Alignmentgroup:&#39;a5 * ?Offsetgroup:&#39;a6 * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod -&gt; GenericChart + 1 overload
-  static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:Symbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:Orientation * ?GroupNorm:GroupNorm * ?UseWebGL:bool -&gt; GenericChart + 1 overload
+  static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;int&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:Orientation * ?GroupNorm:GroupNorm * ?UseWebGL:bool -&gt; GenericChart + 1 overload
   static member Candlestick : open:seq&lt;#IConvertible&gt; * high:seq&lt;#IConvertible&gt; * low:seq&lt;#IConvertible&gt; * close:seq&lt;#IConvertible&gt; * x:seq&lt;#IConvertible&gt; * ?Increasing:Line * ?Decreasing:Line * ?WhiskerWidth:float * ?Line:Line * ?XCalendar:Calendar -&gt; GenericChart + 1 overload
-  static member Column : keys:seq&lt;#IConvertible&gt; * values:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart + 1 overload
+  static member Column : values:seq&lt;#IConvertible&gt; * ?Keys:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Pattern:Pattern * ?PatternShape:PatternShape * ?MultiPatternShape:seq&lt;PatternShape&gt; * ?Base:#IConvertible * ?Width:&#39;a3 * ?MultiWidth:seq&lt;&#39;a3&gt; * ?Opacity:float * ?MultiOpacity:seq&lt;float&gt; * ?Text:&#39;a4 * ?MultiText:seq&lt;&#39;a4&gt; * ?TextPosition:TextPosition * ?MultiTextPosition:seq&lt;TextPosition&gt; * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart (requires &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
   static member Contour : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;a4 * ?zSmooth:SmoothAlg * ?ColorBar:&#39;a5 -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)
   static member Funnel : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Color:Color * ?Line:Line * ?x0:&#39;a3 * ?dX:float * ?y0:&#39;a4 * ?dY:float * ?Width:float * ?Offset:float * ?Orientation:Orientation * ?Alignmentgroup:string * ?Offsetgroup:string * ?Cliponaxis:bool * ?Connector:FunnelConnector * ?Insidetextfont:Font * ?Outsidetextfont:Font -&gt; GenericChart
   static member Heatmap : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?ColNames:seq&lt;#IConvertible&gt; * ?RowNames:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;a4 * ?Xgap:&#39;a5 * ?Ygap:&#39;a6 * ?zSmooth:SmoothAlg * ?ColorBar:&#39;a7 * ?UseWebGL:bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)
   static member Histogram : data:seq&lt;#IConvertible&gt; * ?Orientation:Orientation * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Color:Color * ?HistNorm:HistNorm * ?HistFunc:HistFunc * ?nBinsx:int * ?nBinsy:int * ?Xbins:Bins * ?Ybins:Bins * ?xError:&#39;a1 * ?yError:&#39;a2 -&gt; GenericChart
   ...</div>
-<div class="fsdocs-tip" id="fs10">static member Chart.PointTernary : abc:seq&lt;#System.IConvertible * #System.IConvertible * #System.IConvertible&gt; * ?Labels:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.Symbol * ?Color:Color * ?Opacity:float * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font -&gt; GenericChart.GenericChart<br />static member Chart.PointTernary : ?A:seq&lt;#System.IConvertible&gt; * ?B:seq&lt;#System.IConvertible&gt; * ?C:seq&lt;#System.IConvertible&gt; * ?Sum:#System.IConvertible * ?Labels:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.Symbol * ?Color:Color * ?Opacity:float * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font -&gt; GenericChart.GenericChart</div>
-<div class="fsdocs-tip" id="fs11">static member Chart.LineTernary : abc:seq&lt;#System.IConvertible * #System.IConvertible * #System.IConvertible&gt; * ?Labels:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?ShowMarkers:bool * ?Dash:StyleParam.DrawingStyle * ?Width:float * ?MarkerSymbol:StyleParam.Symbol * ?Color:Color * ?Opacity:float * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font -&gt; GenericChart.GenericChart<br />static member Chart.LineTernary : ?A:seq&lt;#System.IConvertible&gt; * ?B:seq&lt;#System.IConvertible&gt; * ?C:seq&lt;#System.IConvertible&gt; * ?Sum:#System.IConvertible * ?Labels:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?ShowMarkers:bool * ?Dash:StyleParam.DrawingStyle * ?Width:float * ?MarkerSymbol:StyleParam.Symbol * ?Color:Color * ?Opacity:float * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font -&gt; GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs10">static member Chart.PointTernary : abc:seq&lt;#System.IConvertible * #System.IConvertible * #System.IConvertible&gt; * ?Labels:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.MarkerSymbol * ?Color:Color * ?Opacity:float * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font -&gt; GenericChart.GenericChart<br />static member Chart.PointTernary : ?A:seq&lt;#System.IConvertible&gt; * ?B:seq&lt;#System.IConvertible&gt; * ?C:seq&lt;#System.IConvertible&gt; * ?Sum:#System.IConvertible * ?Labels:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.MarkerSymbol * ?Color:Color * ?Opacity:float * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font -&gt; GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs11">static member Chart.LineTernary : abc:seq&lt;#System.IConvertible * #System.IConvertible * #System.IConvertible&gt; * ?Labels:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?ShowMarkers:bool * ?Dash:StyleParam.DrawingStyle * ?Width:float * ?MarkerSymbol:StyleParam.MarkerSymbol * ?Color:Color * ?Opacity:float * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font -&gt; GenericChart.GenericChart<br />static member Chart.LineTernary : ?A:seq&lt;#System.IConvertible&gt; * ?B:seq&lt;#System.IConvertible&gt; * ?C:seq&lt;#System.IConvertible&gt; * ?Sum:#System.IConvertible * ?Labels:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?ShowMarkers:bool * ?Dash:StyleParam.DrawingStyle * ?Width:float * ?MarkerSymbol:StyleParam.MarkerSymbol * ?Color:Color * ?Opacity:float * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font -&gt; GenericChart.GenericChart</div>
 <div class="fsdocs-tip" id="fs12">static member Chart.combine : gCharts:seq&lt;GenericChart.GenericChart&gt; -&gt; GenericChart.GenericChart</div>
 <div class="fsdocs-tip" id="fs13">module GenericChart
 
@@ -542,10 +575,12 @@ from Plotly.NET<br /><em>&lt;summary&gt;
 <div class="fsdocs-tip" id="fs20">Multiple items<br />type LinearAxis =
   inherit DynamicObj
   new : unit -&gt; LinearAxis
-  static member init : ?Visible:bool * ?Color:Color * ?Title:Title * ?AxisType:AxisType * ?AutoTypeNumbers:AutoTypeNumbers * ?AutoRange:AutoRange * ?RangeMode:RangeMode * ?Range:Range * ?FixedRange:bool * ?ScaleAnchor:LinearAxisId * ?ScaleRatio:float * ?Constrain:AxisConstraint * ?ConstrainToward:AxisConstraintDirection * ?Matches:LinearAxisId * ?Rangebreaks:seq&lt;Rangebreak&gt; * ?TickMode:TickMode * ?NTicks:int * ?Tick0:#IConvertible * ?DTick:#IConvertible * ?TickVals:seq&lt;#IConvertible&gt; * ?TickText:seq&lt;#IConvertible&gt; * ?Ticks:TickOptions * ?TicksOn:CategoryTickAnchor * ?TickLabelMode:TickLabelMode * ?TickLabelPosition:TickLabelPosition * ?TickLabelOverflow:TickLabelOverflow * ?Mirror:Mirror * ?TickLen:float * ?TickWidth:float * ?TickColor:Color * ?ShowTickLabels:bool * ?AutoMargin:bool * ?ShowSpikes:bool * ?SpikeColor:Color * ?SpikeThickness:int * ?SpikeDash:DrawingStyle * ?SpikeMode:SpikeMode * ?SpikeSnap:SpikeSnap * ?TickFont:Font * ?TickAngle:int * ?ShowTickPrefix:ShowTickOption * ?TickPrefix:string * ?ShowTickSuffix:ShowTickOption * ?TickSuffix:string * ?ShowExponent:ShowExponent * ?ExponentFormat:ExponentFormat * ?MinExponent:float * ?SeparateThousands:bool * ?TickFormat:string * ?TickFormatStops:seq&lt;TickFormatStop&gt; * ?HoverFormat:string * ?ShowLine:bool * ?LineColor:Color * ?LineWidth:float * ?ShowGrid:bool * ?GridColor:Color * ?GridWidth:float * ?ZeroLine:bool * ?ZeroLineColor:Color * ?ZeroLineWidth:float * ?ShowDividers:bool * ?DividerColor:Color * ?DividerWidth:int * ?Anchor:LinearAxisId * ?Side:Side * ?Overlaying:LinearAxisId * ?Layer:Layer * ?Domain:Range * ?Position:float * ?CategoryOrder:CategoryOrder * ?CategoryArray:seq&lt;#IConvertible&gt; * ?UIRevision:#IConvertible * ?RangeSlider:RangeSlider * ?RangeSelector:RangeSelector * ?Calendar:Calendar -&gt; LinearAxis
-  static member initCategorical : categoryOrder:CategoryOrder * ?Visible:bool * ?Color:Color * ?Title:Title * ?AutoTypeNumbers:AutoTypeNumbers * ?AutoRange:AutoRange * ?RangeMode:RangeMode * ?Range:Range * ?FixedRange:bool * ?ScaleAnchor:LinearAxisId * ?ScaleRatio:float * ?Constrain:AxisConstraint * ?ConstrainToward:AxisConstraintDirection * ?Matches:LinearAxisId * ?Rangebreaks:seq&lt;Rangebreak&gt; * ?TickMode:TickMode * ?NTicks:int * ?Tick0:#IConvertible * ?DTick:#IConvertible * ?TickVals:seq&lt;#IConvertible&gt; * ?TickText:seq&lt;#IConvertible&gt; * ?Ticks:TickOptions * ?TicksOn:CategoryTickAnchor * ?TickLabelMode:TickLabelMode * ?TickLabelPosition:TickLabelPosition * ?TickLabelOverflow:TickLabelOverflow * ?Mirror:Mirror * ?TickLen:float * ?TickWidth:float * ?TickColor:Color * ?ShowTickLabels:bool * ?AutoMargin:bool * ?ShowSpikes:bool * ?SpikeColor:Color * ?SpikeThickness:int * ?SpikeDash:DrawingStyle * ?SpikeMode:SpikeMode * ?SpikeSnap:SpikeSnap * ?TickFont:Font * ?TickAngle:int * ?ShowTickPrefix:ShowTickOption * ?TickPrefix:string * ?ShowTickSuffix:ShowTickOption * ?TickSuffix:string * ?ShowExponent:ShowExponent * ?ExponentFormat:ExponentFormat * ?MinExponent:float * ?SeparateThousands:bool * ?TickFormat:string * ?TickFormatStops:seq&lt;TickFormatStop&gt; * ?HoverFormat:string * ?ShowLine:bool * ?LineColor:Color * ?LineWidth:float * ?ShowGrid:bool * ?GridColor:Color * ?GridWidth:float * ?ZeroLine:bool * ?ZeroLineColor:Color * ?ZeroLineWidth:float * ?ShowDividers:bool * ?DividerColor:Color * ?DividerWidth:int * ?Anchor:LinearAxisId * ?Side:Side * ?Overlaying:LinearAxisId * ?Layer:Layer * ?Domain:Range * ?Position:float * ?CategoryArray:seq&lt;#IConvertible&gt; * ?UIRevision:#IConvertible * ?RangeSlider:RangeSlider * ?RangeSelector:RangeSelector * ?Calendar:Calendar -&gt; LinearAxis
-  static member style : ?Visible:bool * ?Color:Color * ?Title:Title * ?AxisType:AxisType * ?AutoTypeNumbers:AutoTypeNumbers * ?AutoRange:AutoRange * ?RangeMode:RangeMode * ?Range:Range * ?FixedRange:bool * ?ScaleAnchor:LinearAxisId * ?ScaleRatio:float * ?Constrain:AxisConstraint * ?ConstrainToward:AxisConstraintDirection * ?Matches:LinearAxisId * ?Rangebreaks:seq&lt;Rangebreak&gt; * ?TickMode:TickMode * ?NTicks:int * ?Tick0:#IConvertible * ?DTick:#IConvertible * ?TickVals:seq&lt;#IConvertible&gt; * ?TickText:seq&lt;#IConvertible&gt; * ?Ticks:TickOptions * ?TicksOn:CategoryTickAnchor * ?TickLabelMode:TickLabelMode * ?TickLabelPosition:TickLabelPosition * ?TickLabelOverflow:TickLabelOverflow * ?Mirror:Mirror * ?TickLen:float * ?TickWidth:float * ?TickColor:Color * ?ShowTickLabels:bool * ?AutoMargin:bool * ?ShowSpikes:bool * ?SpikeColor:Color * ?SpikeThickness:int * ?SpikeDash:DrawingStyle * ?SpikeMode:SpikeMode * ?SpikeSnap:SpikeSnap * ?TickFont:Font * ?TickAngle:int * ?ShowTickPrefix:ShowTickOption * ?TickPrefix:string * ?ShowTickSuffix:ShowTickOption * ?TickSuffix:string * ?ShowExponent:ShowExponent * ?ExponentFormat:ExponentFormat * ?MinExponent:float * ?SeparateThousands:bool * ?TickFormat:string * ?TickFormatStops:seq&lt;TickFormatStop&gt; * ?HoverFormat:string * ?ShowLine:bool * ?LineColor:Color * ?LineWidth:float * ?ShowGrid:bool * ?GridColor:Color * ?GridWidth:float * ?ZeroLine:bool * ?ZeroLineColor:Color * ?ZeroLineWidth:float * ?ShowDividers:bool * ?DividerColor:Color * ?DividerWidth:int * ?Anchor:LinearAxisId * ?Side:Side * ?Overlaying:LinearAxisId * ?Layer:Layer * ?Domain:Range * ?Position:float * ?CategoryOrder:CategoryOrder * ?CategoryArray:seq&lt;#IConvertible&gt; * ?UIRevision:#IConvertible * ?RangeSlider:RangeSlider * ?RangeSelector:RangeSelector * ?Calendar:Calendar -&gt; (LinearAxis -&gt; LinearAxis)<br /><em>&lt;summary&gt;Linear axes can be used as x and y scales on 2D plots, and as x,y, and z scales on 3D plots.&lt;/summary&gt;</em><br /><br />--------------------<br />new : unit -&gt; LinearAxis</div>
-<div class="fsdocs-tip" id="fs21">static member LinearAxis.init : ?Visible:bool * ?Color:Color * ?Title:Title * ?AxisType:StyleParam.AxisType * ?AutoTypeNumbers:StyleParam.AutoTypeNumbers * ?AutoRange:StyleParam.AutoRange * ?RangeMode:StyleParam.RangeMode * ?Range:StyleParam.Range * ?FixedRange:bool * ?ScaleAnchor:StyleParam.LinearAxisId * ?ScaleRatio:float * ?Constrain:StyleParam.AxisConstraint * ?ConstrainToward:StyleParam.AxisConstraintDirection * ?Matches:StyleParam.LinearAxisId * ?Rangebreaks:seq&lt;Rangebreak&gt; * ?TickMode:StyleParam.TickMode * ?NTicks:int * ?Tick0:#System.IConvertible * ?DTick:#System.IConvertible * ?TickVals:seq&lt;#System.IConvertible&gt; * ?TickText:seq&lt;#System.IConvertible&gt; * ?Ticks:StyleParam.TickOptions * ?TicksOn:StyleParam.CategoryTickAnchor * ?TickLabelMode:StyleParam.TickLabelMode * ?TickLabelPosition:StyleParam.TickLabelPosition * ?TickLabelOverflow:StyleParam.TickLabelOverflow * ?Mirror:StyleParam.Mirror * ?TickLen:float * ?TickWidth:float * ?TickColor:Color * ?ShowTickLabels:bool * ?AutoMargin:bool * ?ShowSpikes:bool * ?SpikeColor:Color * ?SpikeThickness:int * ?SpikeDash:StyleParam.DrawingStyle * ?SpikeMode:StyleParam.SpikeMode * ?SpikeSnap:StyleParam.SpikeSnap * ?TickFont:Font * ?TickAngle:int * ?ShowTickPrefix:StyleParam.ShowTickOption * ?TickPrefix:string * ?ShowTickSuffix:StyleParam.ShowTickOption * ?TickSuffix:string * ?ShowExponent:StyleParam.ShowExponent * ?ExponentFormat:StyleParam.ExponentFormat * ?MinExponent:float * ?SeparateThousands:bool * ?TickFormat:string * ?TickFormatStops:seq&lt;TickFormatStop&gt; * ?HoverFormat:string * ?ShowLine:bool * ?LineColor:Color * ?LineWidth:float * ?ShowGrid:bool * ?GridColor:Color * ?GridWidth:float * ?ZeroLine:bool * ?ZeroLineColor:Color * ?ZeroLineWidth:float * ?ShowDividers:bool * ?DividerColor:Color * ?DividerWidth:int * ?Anchor:StyleParam.LinearAxisId * ?Side:StyleParam.Side * ?Overlaying:StyleParam.LinearAxisId * ?Layer:StyleParam.Layer * ?Domain:StyleParam.Range * ?Position:float * ?CategoryOrder:StyleParam.CategoryOrder * ?CategoryArray:seq&lt;#System.IConvertible&gt; * ?UIRevision:#System.IConvertible * ?RangeSlider:RangeSlider * ?RangeSelector:RangeSelector * ?Calendar:StyleParam.Calendar -&gt; LinearAxis</div>
+  static member init : ?Visible:bool * ?Color:Color * ?Title:Title * ?AxisType:AxisType * ?AutoTypeNumbers:AutoTypeNumbers * ?AutoRange:AutoRange * ?RangeMode:RangeMode * ?Range:Range * ?FixedRange:bool * ?ScaleAnchor:LinearAxisId * ?ScaleRatio:float * ?Constrain:AxisConstraint * ?ConstrainToward:AxisConstraintDirection * ?Matches:LinearAxisId * ?Rangebreaks:seq&lt;Rangebreak&gt; * ?TickMode:TickMode * ?NTicks:int * ?Tick0:#IConvertible * ?DTick:#IConvertible * ?TickVals:seq&lt;#IConvertible&gt; * ?TickText:seq&lt;#IConvertible&gt; * ?Ticks:TickOptions * ?TicksOn:CategoryTickAnchor * ?TickLabelMode:TickLabelMode * ?TickLabelPosition:TickLabelPosition * ?TickLabelOverflow:TickLabelOverflow * ?Mirror:Mirror * ?TickLen:int * ?TickWidth:int * ?TickColor:Color * ?ShowTickLabels:bool * ?AutoMargin:bool * ?ShowSpikes:bool * ?SpikeColor:Color * ?SpikeThickness:int * ?SpikeDash:DrawingStyle * ?SpikeMode:SpikeMode * ?SpikeSnap:SpikeSnap * ?TickFont:Font * ?TickAngle:int * ?ShowTickPrefix:ShowTickOption * ?TickPrefix:string * ?ShowTickSuffix:ShowTickOption * ?TickSuffix:string * ?ShowExponent:ShowExponent * ?ExponentFormat:ExponentFormat * ?MinExponent:float * ?SeparateThousands:bool * ?TickFormat:string * ?TickFormatStops:seq&lt;TickFormatStop&gt; * ?HoverFormat:string * ?ShowLine:bool * ?LineColor:Color * ?LineWidth:float * ?ShowGrid:bool * ?GridColor:Color * ?GridWidth:float * ?ZeroLine:bool * ?ZeroLineColor:Color * ?ZeroLineWidth:float * ?ShowDividers:bool * ?DividerColor:Color * ?DividerWidth:int * ?Anchor:LinearAxisId * ?Side:Side * ?Overlaying:LinearAxisId * ?Layer:Layer * ?Domain:Range * ?Position:float * ?CategoryOrder:CategoryOrder * ?CategoryArray:seq&lt;#IConvertible&gt; * ?UIRevision:#IConvertible * ?RangeSlider:RangeSlider * ?RangeSelector:RangeSelector * ?Calendar:Calendar -&gt; LinearAxis
+  static member initCarpet : ?Color:Color * ?Title:Title * ?AxisType:AxisType * ?AutoTypeNumbers:AutoTypeNumbers * ?AutoRange:AutoRange * ?RangeMode:RangeMode * ?Range:Range * ?FixedRange:bool * ?TickMode:TickMode * ?NTicks:int * ?Tick0:#IConvertible * ?DTick:#IConvertible * ?TickVals:seq&lt;#IConvertible&gt; * ?TickText:seq&lt;#IConvertible&gt; * ?Ticks:TickOptions * ?ShowTickLabels:bool * ?TickFont:Font * ?TickAngle:int * ?ShowTickPrefix:ShowTickOption * ?TickPrefix:string * ?ShowTickSuffix:ShowTickOption * ?TickSuffix:string * ?ShowExponent:ShowExponent * ?ExponentFormat:ExponentFormat * ?MinExponent:float * ?SeparateThousands:bool * ?TickFormat:string * ?TickFormatStops:seq&lt;TickFormatStop&gt; * ?ShowLine:bool * ?LineColor:Color * ?LineWidth:float * ?ShowGrid:bool * ?GridColor:Color * ?GridWidth:float * ?CategoryOrder:CategoryOrder * ?CategoryArray:seq&lt;#IConvertible&gt; * ?ArrayDTick:int * ?ArrayTick0:int * ?CheaterType:CheaterType * ?EndLine:bool * ?EndLineColor:Color * ?EndLineWidth:int * ?LabelPadding:int * ?LabelPrefix:string * ?LabelSuffix:string * ?MinorGridColor:Color * ?MinorGridCount:int * ?MinorGridWidth:int * ?Smoothing:float * ?StartLine:bool * ?StartLineColor:Color * ?StartLineWidth:int -&gt; LinearAxis
+  static member initCategorical : categoryOrder:CategoryOrder * ?Visible:bool * ?Color:Color * ?Title:Title * ?AutoTypeNumbers:AutoTypeNumbers * ?AutoRange:AutoRange * ?RangeMode:RangeMode * ?Range:Range * ?FixedRange:bool * ?ScaleAnchor:LinearAxisId * ?ScaleRatio:float * ?Constrain:AxisConstraint * ?ConstrainToward:AxisConstraintDirection * ?Matches:LinearAxisId * ?Rangebreaks:seq&lt;Rangebreak&gt; * ?TickMode:TickMode * ?NTicks:int * ?Tick0:#IConvertible * ?DTick:#IConvertible * ?TickVals:seq&lt;#IConvertible&gt; * ?TickText:seq&lt;#IConvertible&gt; * ?Ticks:TickOptions * ?TicksOn:CategoryTickAnchor * ?TickLabelMode:TickLabelMode * ?TickLabelPosition:TickLabelPosition * ?TickLabelOverflow:TickLabelOverflow * ?Mirror:Mirror * ?TickLen:int * ?TickWidth:int * ?TickColor:Color * ?ShowTickLabels:bool * ?AutoMargin:bool * ?ShowSpikes:bool * ?SpikeColor:Color * ?SpikeThickness:int * ?SpikeDash:DrawingStyle * ?SpikeMode:SpikeMode * ?SpikeSnap:SpikeSnap * ?TickFont:Font * ?TickAngle:int * ?ShowTickPrefix:ShowTickOption * ?TickPrefix:string * ?ShowTickSuffix:ShowTickOption * ?TickSuffix:string * ?ShowExponent:ShowExponent * ?ExponentFormat:ExponentFormat * ?MinExponent:float * ?SeparateThousands:bool * ?TickFormat:string * ?TickFormatStops:seq&lt;TickFormatStop&gt; * ?HoverFormat:string * ?ShowLine:bool * ?LineColor:Color * ?LineWidth:float * ?ShowGrid:bool * ?GridColor:Color * ?GridWidth:float * ?ZeroLine:bool * ?ZeroLineColor:Color * ?ZeroLineWidth:float * ?ShowDividers:bool * ?DividerColor:Color * ?DividerWidth:int * ?Anchor:LinearAxisId * ?Side:Side * ?Overlaying:LinearAxisId * ?Layer:Layer * ?Domain:Range * ?Position:float * ?CategoryArray:seq&lt;#IConvertible&gt; * ?UIRevision:#IConvertible * ?RangeSlider:RangeSlider * ?RangeSelector:RangeSelector * ?Calendar:Calendar -&gt; LinearAxis
+  static member initIndicatorGauge : ?DTick:#IConvertible * ?ExponentFormat:ExponentFormat * ?MinExponent:float * ?NTicks:int * ?Range:Range * ?SeparateThousands:bool * ?ShowExponent:ShowExponent * ?ShowTickLabels:bool * ?ShowTickPrefix:ShowTickOption * ?ShowTickSuffix:ShowTickOption * ?Tick0:#IConvertible * ?TickAngle:int * ?TickColor:Color * ?TickFont:Font * ?TickFormat:string * ?TickFormatStops:seq&lt;TickFormatStop&gt; * ?TickLen:int * ?TickMode:TickMode * ?TickPrefix:string * ?Ticks:TickOptions * ?TickSuffix:string * ?TickText:seq&lt;#IConvertible&gt; * ?TickVals:seq&lt;#IConvertible&gt; * ?TickWidth:int * ?Visible:bool -&gt; LinearAxis
+  static member style : ?Visible:bool * ?Color:Color * ?Title:Title * ?AxisType:AxisType * ?AutoTypeNumbers:AutoTypeNumbers * ?AutoRange:AutoRange * ?RangeMode:RangeMode * ?Range:Range * ?FixedRange:bool * ?ScaleAnchor:LinearAxisId * ?ScaleRatio:float * ?Constrain:AxisConstraint * ?ConstrainToward:AxisConstraintDirection * ?Matches:LinearAxisId * ?Rangebreaks:seq&lt;Rangebreak&gt; * ?TickMode:TickMode * ?NTicks:int * ?Tick0:#IConvertible * ?DTick:#IConvertible * ?TickVals:seq&lt;#IConvertible&gt; * ?TickText:seq&lt;#IConvertible&gt; * ?Ticks:TickOptions * ?TicksOn:CategoryTickAnchor * ?TickLabelMode:TickLabelMode * ?TickLabelPosition:TickLabelPosition * ?TickLabelOverflow:TickLabelOverflow * ?Mirror:Mirror * ?TickLen:int * ?TickWidth:int * ?TickColor:Color * ?ShowTickLabels:bool * ?AutoMargin:bool * ?ShowSpikes:bool * ?SpikeColor:Color * ?SpikeThickness:int * ?SpikeDash:DrawingStyle * ?SpikeMode:SpikeMode * ?SpikeSnap:SpikeSnap * ?TickFont:Font * ?TickAngle:int * ?ShowTickPrefix:ShowTickOption * ?TickPrefix:string * ?ShowTickSuffix:ShowTickOption * ?TickSuffix:string * ?ShowExponent:ShowExponent * ?ExponentFormat:ExponentFormat * ?MinExponent:float * ?SeparateThousands:bool * ?TickFormat:string * ?TickFormatStops:seq&lt;TickFormatStop&gt; * ?HoverFormat:string * ?ShowLine:bool * ?LineColor:Color * ?LineWidth:float * ?ShowGrid:bool * ?GridColor:Color * ?GridWidth:float * ?ZeroLine:bool * ?ZeroLineColor:Color * ?ZeroLineWidth:float * ?ShowDividers:bool * ?DividerColor:Color * ?DividerWidth:int * ?Anchor:LinearAxisId * ?Side:Side * ?Overlaying:LinearAxisId * ?Layer:Layer * ?Domain:Range * ?Position:float * ?CategoryOrder:CategoryOrder * ?CategoryArray:seq&lt;#IConvertible&gt; * ?UIRevision:#IConvertible * ?RangeSlider:RangeSlider * ?RangeSelector:RangeSelector * ?Calendar:Calendar * ?ArrayDTick:int * ?ArrayTick0:int * ?CheaterType:CheaterType * ?EndLine:bool * ?EndLineColor:Color * ?EndLineWidth:int * ?LabelPadding:int * ?LabelPrefix:string * ?LabelSuffix:string * ?MinorGridColor:Color * ?MinorGridCount:int * ?MinorGridWidth:int * ?Smoothing:float * ?StartLine:bool * ?StartLineColor:Color * ?StartLineWidth:int -&gt; (LinearAxis -&gt; LinearAxis)<br /><em>&lt;summary&gt;Linear axes can be used as x and y scales on 2D plots, and as x,y, and z scales on 3D plots.&lt;/summary&gt;</em><br /><br />--------------------<br />new : unit -&gt; LinearAxis</div>
+<div class="fsdocs-tip" id="fs21">static member LinearAxis.init : ?Visible:bool * ?Color:Color * ?Title:Title * ?AxisType:StyleParam.AxisType * ?AutoTypeNumbers:StyleParam.AutoTypeNumbers * ?AutoRange:StyleParam.AutoRange * ?RangeMode:StyleParam.RangeMode * ?Range:StyleParam.Range * ?FixedRange:bool * ?ScaleAnchor:StyleParam.LinearAxisId * ?ScaleRatio:float * ?Constrain:StyleParam.AxisConstraint * ?ConstrainToward:StyleParam.AxisConstraintDirection * ?Matches:StyleParam.LinearAxisId * ?Rangebreaks:seq&lt;Rangebreak&gt; * ?TickMode:StyleParam.TickMode * ?NTicks:int * ?Tick0:#System.IConvertible * ?DTick:#System.IConvertible * ?TickVals:seq&lt;#System.IConvertible&gt; * ?TickText:seq&lt;#System.IConvertible&gt; * ?Ticks:StyleParam.TickOptions * ?TicksOn:StyleParam.CategoryTickAnchor * ?TickLabelMode:StyleParam.TickLabelMode * ?TickLabelPosition:StyleParam.TickLabelPosition * ?TickLabelOverflow:StyleParam.TickLabelOverflow * ?Mirror:StyleParam.Mirror * ?TickLen:int * ?TickWidth:int * ?TickColor:Color * ?ShowTickLabels:bool * ?AutoMargin:bool * ?ShowSpikes:bool * ?SpikeColor:Color * ?SpikeThickness:int * ?SpikeDash:StyleParam.DrawingStyle * ?SpikeMode:StyleParam.SpikeMode * ?SpikeSnap:StyleParam.SpikeSnap * ?TickFont:Font * ?TickAngle:int * ?ShowTickPrefix:StyleParam.ShowTickOption * ?TickPrefix:string * ?ShowTickSuffix:StyleParam.ShowTickOption * ?TickSuffix:string * ?ShowExponent:StyleParam.ShowExponent * ?ExponentFormat:StyleParam.ExponentFormat * ?MinExponent:float * ?SeparateThousands:bool * ?TickFormat:string * ?TickFormatStops:seq&lt;TickFormatStop&gt; * ?HoverFormat:string * ?ShowLine:bool * ?LineColor:Color * ?LineWidth:float * ?ShowGrid:bool * ?GridColor:Color * ?GridWidth:float * ?ZeroLine:bool * ?ZeroLineColor:Color * ?ZeroLineWidth:float * ?ShowDividers:bool * ?DividerColor:Color * ?DividerWidth:int * ?Anchor:StyleParam.LinearAxisId * ?Side:StyleParam.Side * ?Overlaying:StyleParam.LinearAxisId * ?Layer:StyleParam.Layer * ?Domain:StyleParam.Range * ?Position:float * ?CategoryOrder:StyleParam.CategoryOrder * ?CategoryArray:seq&lt;#System.IConvertible&gt; * ?UIRevision:#System.IConvertible * ?RangeSlider:RangeSlider * ?RangeSelector:RangeSelector * ?Calendar:StyleParam.Calendar -&gt; LinearAxis</div>
 <div class="fsdocs-tip" id="fs22">Multiple items<br />type Title =
   inherit DynamicObj
   new : unit -&gt; Title
@@ -559,7 +594,7 @@ from Plotly.NET<br /><br />--------------------<br />type Color =
   override Equals : other:obj -&gt; bool
   override GetHashCode : unit -&gt; int
   static member fromARGB : a:int -&gt; r:int -&gt; g:int -&gt; b:int -&gt; Color
-  static member fromColorScaleValues : c:seq&lt;IConvertible&gt; -&gt; Color
+  static member fromColorScaleValues : c:seq&lt;#IConvertible&gt; -&gt; Color
   static member fromColors : c:seq&lt;Color&gt; -&gt; Color
   static member fromHex : s:string -&gt; Color
   static member fromKeyword : c:ColorKeyword -&gt; Color

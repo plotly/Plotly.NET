@@ -40,25 +40,25 @@ You can find all available package versions on the [nuget page](https://www.nuge
  - dotnet CLI
 
     ```shell
-    dotnet add package Plotly.NET --version 2.0.0-preview.8
+    dotnet add package Plotly.NET --version 2.0.0-preview.9
     ```
 
  - paket CLI
 
     ```shell
-    paket add Plotly.NET --version 2.0.0-preview.8
+    paket add Plotly.NET --version 2.0.0-preview.9
     ```
 
  - package manager
 
     ```shell
-    Install-Package Plotly.NET -Version 2.0.0-preview.8
+    Install-Package Plotly.NET -Version 2.0.0-preview.9
     ```
 
     Or add the package reference directly to your `.*proj` file:
 
     ```
-    <PackageReference Include="Plotly.NET" Version="2.0.0-preview.8" />
+    <PackageReference Include="Plotly.NET" Version="2.0.0-preview.9" />
     ```
 
 ### For scripting
@@ -66,7 +66,7 @@ You can find all available package versions on the [nuget page](https://www.nuge
 You can include the package via an inline package reference:
 
 ```
-#r "nuget: Plotly.NET, 2.0.0-preview.8"
+#r "nuget: Plotly.NET, 2.0.0-preview.9"
 ```
 
 ### For dotnet interactive notebooks
@@ -75,8 +75,8 @@ You can use the same inline package reference as in script, but as an additional
 the interactive extensions for dotnet interactive have you covered for seamless chart rendering:
 
 ```
-#r "nuget: Plotly.NET, 2.0.0-preview.8"
-#r "nuget: Plotly.NET.Interactive, 2.0.0-preview.8"
+#r "nuget: Plotly.NET, 2.0.0-preview.9"
+#r "nuget: Plotly.NET.Interactive, 2.0.0-preview.9"
 ```
 
 _Note_: 
@@ -149,29 +149,29 @@ myFirstChart
 |> Chart.show
 (**
 Should render this chart in your brower:
-<div id="daf28e24-349c-49e1-a378-ced10b215cfe" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="409be44f-5d6e-4b7c-93cf-c5cc183909ed" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_daf28e24349c49e1a378ced10b215cfe = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_409be44f5d6e4b7c93cfc5cc183909ed = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","mode":"markers","x":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('daf28e24-349c-49e1-a378-ced10b215cfe', data, layout, config);
+            Plotly.newPlot('409be44f-5d6e-4b7c-93cf-c5cc183909ed', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_daf28e24349c49e1a378ced10b215cfe();
+                    renderPlotly_409be44f5d6e4b7c93cfc5cc183909ed();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_daf28e24349c49e1a378ced10b215cfe();
+                renderPlotly_409be44f5d6e4b7c93cfc5cc183909ed();
             }
 </script>
 
@@ -180,29 +180,29 @@ myFirstStyledChart
 |> Chart.show
 (**
 And here is what happened after applying the styles from above:
-<div id="6459be7a-0eca-47d3-8df1-f70fb56d39f5" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="c41cc0d0-d390-406d-a640-33503f1ae201" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_6459be7a0eca47d38df1f70fb56d39f5 = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_c41cc0d0d390406da64033503f1ae201 = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","mode":"markers","x":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"marker":{}}];
             var layout = {"title":{"text":"Hello world!"},"xaxis":{"title":{"text":"xAxis"},"showgrid":false},"yaxis":{"title":{"text":"yAxis"},"showgrid":false}};
             var config = {};
-            Plotly.newPlot('6459be7a-0eca-47d3-8df1-f70fb56d39f5', data, layout, config);
+            Plotly.newPlot('c41cc0d0-d390-406d-a640-33503f1ae201', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_6459be7a0eca47d38df1f70fb56d39f5();
+                    renderPlotly_c41cc0d0d390406da64033503f1ae201();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_6459be7a0eca47d38df1f70fb56d39f5();
+                renderPlotly_c41cc0d0d390406da64033503f1ae201();
             }
 </script>
 
@@ -239,17 +239,28 @@ One of the main design points of Plotly.NET it is to provide support for multipl
 ### Fluent interface style in C#:
 
 ```
-static void Main(string[] args)
+using System;
+using Plotly.NET;
+using Microsoft.FSharp.Core; // use this for less verbose and more helpful intellisense
+
+namespace Plotly.NET.Tests.CSharp
 {
-    double[] x = new double[] { 1, 2 };
-    double[] y = new double[] { 5, 10 };
-    GenericChart.GenericChart chart = Chart.Point(x: x, y: y);
-    chart
-        .WithTraceName("Hello from C#", true)
-        .withXAxisStyle(title: "xAxis", Showgrid: false, Showline: true)
-        .withYAxisStyle(title: "yAxis", Showgrid: false, Showline: true)
-        .Show();
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            double[] x = new double[] { 1, 2 };
+            double[] y = new double[] { 5, 10 };
+            GenericChart.GenericChart chart = Chart2D.Chart.Point<double, double, string>(x: x, y: y);
+            chart
+                .WithTraceName("Hello from C#", true)
+                .WithXAxisStyle(title: Title.init("xAxis"), ShowGrid: false, ShowLine: true)
+                .WithYAxisStyle(title: Title.init("yAxis"), ShowGrid: false, ShowLine: true)
+                .Show();
+        }
+    }
 }
+
 ```
 
 ### Declarative style in F# using the underlying `DynamicObj`:
@@ -292,36 +303,47 @@ GenericChart.ofTraceObject(trace)
 ### Declarative style in C# using the underlying `DynamicObj`:
 
 ```
-static void Main(string[] args)
+using System;
+using Plotly.NET;
+using Microsoft.FSharp.Core; // use this for less verbose and more helpful intellisense
+using Plotly.NET.LayoutObjects;
+
+namespace Plotly.NET.Tests.CSharp
 {
-    double[] x = new double[] { 1, 2 };
-    double[] y = new double[] { 5, 10 };
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            double[] x = new double[] { 1, 2 };
+            double[] y = new double[] { 5, 10 };
 
-    Axis.LinearAxis xAxis = new Axis.LinearAxis();
-    xAxis.SetValue("title", "xAxis");
-    xAxis.SetValue("showgrid", false);
-    xAxis.SetValue("showline", true);
+            LinearAxis xAxis = new LinearAxis();
+            xAxis.SetValue("title", "xAxis");
+            xAxis.SetValue("showgrid", false);
+            xAxis.SetValue("showline", true);
 
-    Axis.LinearAxis yAxis = new Axis.LinearAxis();
-    yAxis.SetValue("title", "yAxis");
-    yAxis.SetValue("showgrid", false);
-    yAxis.SetValue("showline", true);
+            LinearAxis yAxis = new LinearAxis();
+            yAxis.SetValue("title", "yAxis");
+            yAxis.SetValue("showgrid", false);
+            yAxis.SetValue("showline", true);
 
-    Layout layout = new Layout();
-    layout.SetValue("xaxis", xAxis);
-    layout.SetValue("yaxis", yAxis);
-    layout.SetValue("showlegend", true);
+            Layout layout = new Layout();
+            layout.SetValue("xaxis", xAxis);
+            layout.SetValue("yaxis", yAxis);
+            layout.SetValue("showlegend", true);
 
-    Trace trace = new Trace("scatter");
-    trace.SetValue("x", x);
-    trace.SetValue("y", y);
-    trace.SetValue("mode", "markers");
-    trace.SetValue("name", "Hello from C#");
+            Trace trace = new Trace("scatter");
+            trace.SetValue("x", x);
+            trace.SetValue("y", y);
+            trace.SetValue("mode", "markers");
+            trace.SetValue("name", "Hello from C#");
 
-    GenericChart
-        .ofTraceObject(trace)
-        .WithLayout(layout)
-        .Show();
+            GenericChart
+                .ofTraceObject(trace)
+                .WithLayout(layout)
+                .Show();
+        }
+    }
 }
 ```
 

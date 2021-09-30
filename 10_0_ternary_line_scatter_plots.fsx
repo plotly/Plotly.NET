@@ -1,5 +1,5 @@
 (**
-// can't yet format YamlFrontmatter (["title: Ternary line and scatter plots"; "category: Ternary Plots"; "categoryindex: 10"; "index: 1"], Some { StartLine = 2 StartColumn = 0 EndLine = 6 EndColumn = 8 }) to pynb markdown
+// can't yet format YamlFrontmatter (["title: Ternary line and scatter plots"; "category: Ternary Plots"; "categoryindex: 11"; "index: 1"], Some { StartLine = 2 StartColumn = 0 EndLine = 6 EndColumn = 8 }) to pynb markdown
 
 # Ternary charts
 
@@ -38,30 +38,30 @@ Ternary plots are tools for analyzing compositional data in the three-dimensiona
 use `Chart.PointTernary` to create a ternary plot that displays points on a ternary coordinate system:
 
 *)
-let ternaryPolar = Chart.PointTernary(a,b,c)(* output: 
-<div id="4115fff9-d5a4-44a5-804c-38ae5bebea7e" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+let ternaryPoint = Chart.PointTernary(a,b,c)(* output: 
+<div id="cf5beae8-975e-4b48-a222-67a2b8d91e12" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_4115fff9d5a444a5804c38ae5bebea7e = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_cf5beae8975e4b48a22267a2b8d91e12 = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatterternary","mode":"markers","a":[1,2,3,4,5,6,7],"b":[7,6,5,4,3,2,1],"c":[2,2,2,2,2,2,2],"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('4115fff9-d5a4-44a5-804c-38ae5bebea7e', data, layout, config);
+            Plotly.newPlot('cf5beae8-975e-4b48-a222-67a2b8d91e12', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_4115fff9d5a444a5804c38ae5bebea7e();
+                    renderPlotly_cf5beae8975e4b48a22267a2b8d91e12();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_4115fff9d5a444a5804c38ae5bebea7e();
+                renderPlotly_cf5beae8975e4b48a22267a2b8d91e12();
             }
 </script>
 *)
@@ -78,29 +78,29 @@ You can also for example change the line style using `Chart.withLineStyle`
 let lineTernary = 
     Chart.LineTernary(a,b,Sum = 10)
     |> Chart.withLineStyle(Color=Color.fromString "purple",Dash=StyleParam.DrawingStyle.DashDot)(* output: 
-<div id="675336e0-7f9c-44eb-9c72-15d799c77619" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="45090c20-4193-4a83-991e-0ead48150821" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_675336e07f9c44eb9c7215d799c77619 = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_45090c2041934a83991e0ead48150821 = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatterternary","mode":"lines","a":[1,2,3,4,5,6,7],"b":[7,6,5,4,3,2,1],"sum":10,"line":{"color":"purple","dash":"dashdot"},"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('675336e0-7f9c-44eb-9c72-15d799c77619', data, layout, config);
+            Plotly.newPlot('45090c20-4193-4a83-991e-0ead48150821', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_675336e07f9c44eb9c7215d799c77619();
+                    renderPlotly_45090c2041934a83991e0ead48150821();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_675336e07f9c44eb9c7215d799c77619();
+                renderPlotly_45090c2041934a83991e0ead48150821();
             }
 </script>
 *)

@@ -25,29 +25,29 @@ third its size.
 
 *)
 let bubble1 = Chart.Bubble(x,y,size)(* output: 
-<div id="80709a86-b1b8-470c-aab4-9704801b1a1c" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="2696bba2-d706-4198-b09d-0e10d78e0a6d" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_80709a86b1b8470caab49704801b1a1c = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_2696bba2d7064198b09d0e10d78e0a6d = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","mode":"markers","x":[2,4,6],"y":[4,1,6],"marker":{"size":[19,26,55]}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('80709a86-b1b8-470c-aab4-9704801b1a1c', data, layout, config);
+            Plotly.newPlot('2696bba2-d706-4198-b09d-0e10d78e0a6d', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_80709a86b1b8470caab49704801b1a1c();
+                    renderPlotly_2696bba2d7064198b09d0e10d78e0a6d();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_80709a86b1b8470caab49704801b1a1c();
+                renderPlotly_2696bba2d7064198b09d0e10d78e0a6d();
             }
 </script>
 *)

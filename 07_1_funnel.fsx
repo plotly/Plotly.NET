@@ -34,29 +34,29 @@ let line = Line.init(Width=2.,Color=Color.fromHex "3E4E88")
 let funnel =
     Chart.Funnel (x,y,Color=Color.fromHex "59D4E8", Line=line, Connector=connector)
     |> Chart.withMarginSize(Left=100)(* output: 
-<div id="fe199207-4eb3-4c79-8463-086cc4959383" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="096c1f74-8f77-40c8-b7ad-7ba25176f583" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_fe1992074eb34c798463086cc4959383 = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_096c1f748f7740c8b7ad7ba25176f583 = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"funnel","x":[1200.0,909.4,600.6,300.0,80.0],"y":["Sales person A","Sales person B","Sales person C","Sales person D","Sales person E"],"connector":{"line":{"color":"royalblue","width":3.0,"dash":"dot"}},"marker":{"color":"rgba(89, 212, 232, 1.0)","line":{"color":"rgba(62, 78, 136, 1.0)","width":2.0}}}];
             var layout = {"margin":{"l":100}};
             var config = {};
-            Plotly.newPlot('fe199207-4eb3-4c79-8463-086cc4959383', data, layout, config);
+            Plotly.newPlot('096c1f74-8f77-40c8-b7ad-7ba25176f583', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_fe1992074eb34c798463086cc4959383();
+                    renderPlotly_096c1f748f7740c8b7ad7ba25176f583();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_fe1992074eb34c798463086cc4959383();
+                renderPlotly_096c1f748f7740c8b7ad7ba25176f583();
             }
 </script>
 *)

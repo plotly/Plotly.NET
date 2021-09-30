@@ -27,29 +27,29 @@ let line = Line.init (Color=Color.fromString "purple", Width=3.)
 
 let funnelArea = 
     Chart.FunnelArea(Values=values, Text=text, Line=line)(* output: 
-<div id="c4a74099-0a86-4988-8e34-3a4a88100f8f" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="5c525c8d-a9ca-41e9-96a1-a3dded2e90bd" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_c4a740990a8649888e343a4a88100f8f = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_5c525c8da9ca41e996a1a3dded2e90bd = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"funnelarea","values":[5,4,3,2,1],"marker":{"line":{"color":"purple","width":3.0}},"domain":{},"text":["The 1st","The 2nd","The 3rd","The 4th","The 5th"]}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('c4a74099-0a86-4988-8e34-3a4a88100f8f', data, layout, config);
+            Plotly.newPlot('5c525c8d-a9ca-41e9-96a1-a3dded2e90bd', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_c4a740990a8649888e343a4a88100f8f();
+                    renderPlotly_5c525c8da9ca41e996a1a3dded2e90bd();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_c4a740990a8649888e343a4a88100f8f();
+                renderPlotly_5c525c8da9ca41e996a1a3dded2e90bd();
             }
 </script>
 *)

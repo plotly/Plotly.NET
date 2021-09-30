@@ -32,29 +32,29 @@ open Plotly.NET
 let baseMapOnly = 
     Chart.PointGeo([]) // deliberately empty chart to show the base map only
     |> Chart.withMarginSize(0,0,0,0)(* output: 
-<div id="f6757fea-690b-4223-8350-cc3cfe9d5bfc" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="42f942ce-4940-4631-b5f2-7053ba09b02c" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_f6757fea690b42238350cc3cfe9d5bfc = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_42f942ce49404631b5f27053ba09b02c = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scattergeo","mode":"markers","lon":[],"lat":[],"marker":{}}];
             var layout = {"margin":{"l":0,"r":0,"t":0,"b":0}};
             var config = {};
-            Plotly.newPlot('f6757fea-690b-4223-8350-cc3cfe9d5bfc', data, layout, config);
+            Plotly.newPlot('42f942ce-4940-4631-b5f2-7053ba09b02c', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_f6757fea690b42238350cc3cfe9d5bfc();
+                    renderPlotly_42f942ce49404631b5f27053ba09b02c();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_f6757fea690b42238350cc3cfe9d5bfc();
+                renderPlotly_42f942ce49404631b5f27053ba09b02c();
             }
 </script>
 *)
@@ -84,29 +84,29 @@ let moreFeaturesBaseMap =
     Chart.PointGeo([])
     |> Chart.withGeo myGeo
     |> Chart.withMarginSize(0,0,0,0)(* output: 
-<div id="893b9fab-c98e-406b-99b6-eed16362ed75" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="ba6d670f-6bd9-4383-87d4-9f8cdddd2817" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_893b9fabc98e406b99b6eed16362ed75 = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_ba6d670f6bd9438387d49f8cdddd2817 = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scattergeo","mode":"markers","lon":[],"lat":[],"marker":{}}];
             var layout = {"geo":{"resolution":"50","showcoastline":true,"coastlinecolor":"RebeccaPurple","showland":true,"landcolor":"LightGreen","showocean":true,"oceancolor":"LightBlue","showlakes":true,"lakecolor":"Blue","showrivers":true,"rivercolor":"Blue"},"margin":{"l":0,"r":0,"t":0,"b":0}};
             var config = {};
-            Plotly.newPlot('893b9fab-c98e-406b-99b6-eed16362ed75', data, layout, config);
+            Plotly.newPlot('ba6d670f-6bd9-4383-87d4-9f8cdddd2817', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_893b9fabc98e406b99b6eed16362ed75();
+                    renderPlotly_ba6d670f6bd9438387d49f8cdddd2817();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_893b9fabc98e406b99b6eed16362ed75();
+                renderPlotly_ba6d670f6bd9438387d49f8cdddd2817();
             }
 </script>
 *)
@@ -135,29 +135,29 @@ let countryBaseMap =
     Chart.PointGeo([])
     |> Chart.withGeo countryGeo
     |> Chart.withMarginSize(0,0,0,0)(* output: 
-<div id="cc8633b7-672f-4c75-b4ae-0327a0ed0720" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="03bdf979-9682-402f-b0ae-ffc85c38276f" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_cc8633b7672f4c75b4ae0327a0ed0720 = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_03bdf9799682402fb0aeffc85c38276f = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scattergeo","mode":"markers","lon":[],"lat":[],"marker":{}}];
             var layout = {"geo":{"resolution":"50","visible":false,"showcountries":true,"countrycolor":"RebeccaPurple"},"margin":{"l":0,"r":0,"t":0,"b":0}};
             var config = {};
-            Plotly.newPlot('cc8633b7-672f-4c75-b4ae-0327a0ed0720', data, layout, config);
+            Plotly.newPlot('03bdf979-9682-402f-b0ae-ffc85c38276f', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_cc8633b7672f4c75b4ae0327a0ed0720();
+                    renderPlotly_03bdf9799682402fb0aeffc85c38276f();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_cc8633b7672f4c75b4ae0327a0ed0720();
+                renderPlotly_03bdf9799682402fb0aeffc85c38276f();
             }
 </script>
 *)

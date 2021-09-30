@@ -42,29 +42,29 @@ let svgConfig =
 let svgButtonChart = 
     Chart.Point([(1.,2.)])
     |> Chart.withConfig svgConfig(* output: 
-<div id="162c619a-81ed-4af0-a5f7-ea13587e5383" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="eed97db9-3380-48fe-8122-22c4fb66b81f" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_162c619a81ed4af0a5f7ea13587e5383 = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_eed97db9338048fe812222c4fb66b81f = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","mode":"markers","x":[1.0],"y":[2.0],"marker":{}}];
             var layout = {};
             var config = {"toImageButtonOptions":{"format":"jpeg","filename":"mySvgChart","width":900.0,"height":600.0,"scale":10.0}};
-            Plotly.newPlot('162c619a-81ed-4af0-a5f7-ea13587e5383', data, layout, config);
+            Plotly.newPlot('eed97db9-3380-48fe-8122-22c4fb66b81f', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_162c619a81ed4af0a5f7ea13587e5383();
+                    renderPlotly_eed97db9338048fe812222c4fb66b81f();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_162c619a81ed4af0a5f7ea13587e5383();
+                renderPlotly_eed97db9338048fe812222c4fb66b81f();
             }
 </script>
 *)
@@ -80,29 +80,29 @@ let staticConfig = Config.init(StaticPlot=true)
 let staticPlot =
     Chart.Point([(1.,2.)])
     |> Chart.withConfig staticConfig(* output: 
-<div id="8fe42229-9652-40d5-ae63-3ed0546dd418" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="189fc905-5714-49e2-bcbb-27a999dbbe16" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_8fe42229965240d5ae633ed0546dd418 = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_189fc905571449e2bcbb27a999dbbe16 = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","mode":"markers","x":[1.0],"y":[2.0],"marker":{}}];
             var layout = {};
             var config = {"staticPlot":true};
-            Plotly.newPlot('8fe42229-9652-40d5-ae63-3ed0546dd418', data, layout, config);
+            Plotly.newPlot('189fc905-5714-49e2-bcbb-27a999dbbe16', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_8fe42229965240d5ae633ed0546dd418();
+                    renderPlotly_189fc905571449e2bcbb27a999dbbe16();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_8fe42229965240d5ae633ed0546dd418();
+                renderPlotly_189fc905571449e2bcbb27a999dbbe16();
             }
 </script>
 *)
@@ -126,29 +126,29 @@ let editableConfig =
 let editablePlot =
     Chart.Point([(1.,2.)])
     |> Chart.withConfig editableConfig(* output: 
-<div id="fe41ac22-bf80-4a9b-af3e-9ca91f3a31b1" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="5a9bbb87-15f7-4f5c-94ff-b88a2766893f" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_fe41ac22bf804a9baf3e9ca91f3a31b1 = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_5a9bbb8715f74f5c94ffb88a2766893f = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","mode":"markers","x":[1.0],"y":[2.0],"marker":{}}];
             var layout = {};
             var config = {"editable":true,"edits":{"legendPosition":true,"axisTitleText":true,"legendText":true}};
-            Plotly.newPlot('fe41ac22-bf80-4a9b-af3e-9ca91f3a31b1', data, layout, config);
+            Plotly.newPlot('5a9bbb87-15f7-4f5c-94ff-b88a2766893f', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_fe41ac22bf804a9baf3e9ca91f3a31b1();
+                    renderPlotly_5a9bbb8715f74f5c94ffb88a2766893f();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_fe41ac22bf804a9baf3e9ca91f3a31b1();
+                renderPlotly_5a9bbb8715f74f5c94ffb88a2766893f();
             }
 </script>
 *)
@@ -165,29 +165,29 @@ let responsiveConfig = Config.init(Responsive=true)
 let responsivePlot =
     Chart.Point([(1.,2.)])
     |> Chart.withConfig responsiveConfig(* output: 
-<div id="780b48af-b5c0-40d9-bcca-95ca623f1cdf" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="2ca9020f-b428-4e6a-95da-2254f5738e91" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_780b48afb5c040d9bcca95ca623f1cdf = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-latest.min'}}) || require;
+            var renderPlotly_2ca9020fb4284e6a95da2254f5738e91 = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","mode":"markers","x":[1.0],"y":[2.0],"marker":{}}];
             var layout = {};
             var config = {"responsive":true};
-            Plotly.newPlot('780b48af-b5c0-40d9-bcca-95ca623f1cdf', data, layout, config);
+            Plotly.newPlot('2ca9020f-b428-4e6a-95da-2254f5738e91', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_780b48afb5c040d9bcca95ca623f1cdf();
+                    renderPlotly_2ca9020fb4284e6a95da2254f5738e91();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_780b48afb5c040d9bcca95ca623f1cdf();
+                renderPlotly_2ca9020fb4284e6a95da2254f5738e91();
             }
 </script>
 *)
