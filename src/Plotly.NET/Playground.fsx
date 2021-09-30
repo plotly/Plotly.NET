@@ -636,3 +636,20 @@ let heatmap2=
 |> Chart.Grid(1,2)
 |> Chart.withColorAxis(ColorAxis.init(AutoColorScale=true))
 |> Chart.show
+
+[
+    Chart.Point([1,2; 2,3])
+    Chart.PointTernary([1,2,3; 2,3,4])
+    Chart.Heatmap([[1; 2];[3; 4]], Showscale=false)
+    Chart.Point3d([1,3,2])
+    Chart.PointMapbox([1,2]) |> Chart.withMapbox(Mapbox.init(Style = StyleParam.MapboxStyle.OpenStreetMap))
+    [
+        let y =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+        Chart.BoxPlot("y" ,y,Name="bin1",Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All);
+        Chart.BoxPlot("y'",y,Name="bin2",Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All);
+    ]
+    |> Chart.combine
+]
+|> Chart.Grid(2,3)
+|> Chart.withSize(1000,1000)
+|> Chart.show
