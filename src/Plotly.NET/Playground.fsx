@@ -520,183 +520,7 @@ Chart.Invisible()
 )
 |> Chart.show
 
-type TraceIDLocal =
-    | Cartesian2D 
-    | Cartesian3D 
-    | Polar 
-    | Geo 
-    | Mapbox
-    | Ternary 
-    | Carpet 
-    | Domain 
-    | Multi
-
-    static member ofTrace (t:Trace) : TraceIDLocal =
-        match t with
-        | :? Trace2D      -> TraceIDLocal.Cartesian2D
-        | :? Trace3D      -> TraceIDLocal.Cartesian3D
-        | :? TracePolar   -> TraceIDLocal.Polar      
-        | :? TraceGeo     -> TraceIDLocal.Geo        
-        | :? TraceMapbox  -> TraceIDLocal.Mapbox     
-        | :? TraceTernary -> TraceIDLocal.Ternary    
-        | :? TraceCarpet  -> TraceIDLocal.Carpet     
-        | :? TraceDomain  -> TraceIDLocal.Domain     
-        | _ as unknownTraceType -> failwith $"cannot get trace id for type {unknownTraceType.GetType()}"
-
-    static member ofTraces (t:seq<Trace>) : TraceIDLocal =
-        let traceIds = t |> Seq.map TraceIDLocal.ofTrace |> Seq.distinct |> Array.ofSeq
-        match traceIds with
-        | [|sameTraceID|]   -> sameTraceID
-        | [||]              -> TraceIDLocal.Domain
-        | _                 -> TraceIDLocal.Multi
-
-let gridNew (nRows: int) (nCols: int) = 
-
-    fun (gCharts:#seq<GenericChart.GenericChart>) ->
-        
-        let pattern = StyleParam.LayoutGridPattern.Independent
-
-        let hasSharedAxes = false
-
-        // rows x cols coordinate grid
-        let gridCoordinates = 
-            Array.init nRows (fun rowIndex ->
-                Array.init nCols (fun colIndex ->
-                    rowIndex+1,colIndex+1
-                )
-            )
-            |> Array.concat
-
-        gCharts
-        |> Seq.zip gridCoordinates
-        |> Seq.mapi (fun i ((rowIndex, colIndex), gChart) ->
-
-            let layout = gChart |> GenericChart.getLayout
-
-            match TraceIDLocal.ofTraces (gChart |> GenericChart.getTraces) with
-            | TraceIDLocal.Multi -> failwith $"the trace for ({rowIndex},{colIndex}) contains multiple different subplot types. this is not supported."
-            | TraceIDLocal.Cartesian2D ->
-                
-                let xAxis = layout.TryGetTypedValue<LinearAxis> "xaxis" |> Option.defaultValue (LinearAxis.init())
-                let yAxis = layout.TryGetTypedValue<LinearAxis> "yaxis" |> Option.defaultValue (LinearAxis.init())
-
-                let xAnchor, yAnchor = 
-                    if hasSharedAxes then 
-                        colIndex, rowIndex //set axis anchors according to grid coordinates
-                    else
-                        i+1, i+1
-
-                gChart
-                |> Chart.withAxisAnchor(xAnchor,yAnchor) // set adapted axis anchors
-                |> Chart.withXAxis(xAxis,(StyleParam.SubPlotId.XAxis (i+1))) // set previous axis with adapted id (one individual axis for each subplot, wether or not they will be used later)
-                |> Chart.withYAxis(yAxis,(StyleParam.SubPlotId.YAxis (i+1))) // set previous axis with adapted id (one individual axis for each subplot, wether or not they will be used later)
-                |> GenericChart.mapLayout (fun l ->
-                    if i > 0 then 
-                        // remove default axes from consecutive charts, otherwise they will override the first one
-                        l.Remove("xaxis") |> ignore
-                        l.Remove("yaxis") |> ignore
-                    l
-                )
-            | TraceIDLocal.Cartesian3D ->
-                
-                let scene = 
-                    layout.TryGetTypedValue<Scene> "scene" |> Option.defaultValue (Scene.init())
-                    |> Scene.style(Domain = Domain.init(Row = rowIndex - 1, Column = colIndex - 1))
-
-                let sceneAnchor = StyleParam.SubPlotId.Scene (i+1)
-
-                gChart
-                |> GenericChart.mapTrace(fun t ->
-                    t 
-                    :?> Trace3D
-                    |> Trace3DStyle.SetScene sceneAnchor
-                    :> Trace
-                )
-                |> Chart.withScene(scene,sceneAnchor)
-            | TraceIDLocal.Polar ->
-
-                let polar = 
-                    layout.TryGetTypedValue<Polar> "polar" |> Option.defaultValue (Polar.init())
-                    |> Polar.style(Domain = Domain.init(Row = rowIndex - 1, Column = colIndex - 1))
-
-                let polarAnchor = StyleParam.SubPlotId.Polar (i+1)
-
-                gChart
-                |> GenericChart.mapTrace(fun t ->
-                    t 
-                    :?> TracePolar
-                    |> TracePolarStyle.SetPolar polarAnchor
-                    :> Trace
-                )
-                |> Chart.withPolar(polar,polarAnchor)
-            | TraceIDLocal.Geo ->
-                let geo = 
-                    layout.TryGetTypedValue<Geo> "geo" |> Option.defaultValue (Geo.init())
-                    |> Geo.style(Domain = Domain.init(Row = rowIndex - 1, Column = colIndex - 1))
-
-                let geoAnchor = StyleParam.SubPlotId.Geo (i+1)
-
-                gChart
-                |> GenericChart.mapTrace(fun t ->
-                    t 
-                    :?> TraceGeo
-                    |> TraceGeoStyle.SetGeo geoAnchor
-                    :> Trace
-                )
-                |> Chart.withGeo(geo,geoAnchor)
-            | TraceIDLocal.Mapbox ->
-                let mapbox = 
-                    layout.TryGetTypedValue<Mapbox> "mapbox" |> Option.defaultValue (Mapbox.init())
-                    |> Mapbox.style(Domain = Domain.init(Row = rowIndex - 1, Column = colIndex - 1))
-
-                let mapboxAnchor = StyleParam.SubPlotId.Mapbox (i+1)
-
-                gChart
-                |> GenericChart.mapTrace(fun t ->
-                    t 
-                    :?> TraceMapbox
-                    |> TraceMapboxStyle.SetMapbox mapboxAnchor
-                    :> Trace
-                )
-                |> Chart.withMapbox(mapbox,mapboxAnchor)
-            | TraceIDLocal.Domain ->
-                let newDomain = Domain.init(Row = rowIndex - 1, Column = colIndex - 1)
-
-                gChart
-                |> GenericChart.mapTrace(fun t ->
-                    t 
-                    :?> TraceDomain
-                    |> TraceDomainStyle.SetDomain newDomain
-                    :> Trace
-                )
-
-            | TraceIDLocal.Ternary ->
-
-                let ternary = 
-                    layout.TryGetTypedValue<Ternary> "ternary" |> Option.defaultValue (Ternary.init())
-                    |> Ternary.style(Domain = Domain.init(Row = rowIndex - 1, Column = colIndex - 1))
-
-                let ternaryAnchor = StyleParam.SubPlotId.Ternary (i+1)
-
-                gChart
-                |> GenericChart.mapTrace(fun t ->
-                    t 
-                    :?> TraceTernary
-                    |> TraceTernaryStyle.SetTernary ternaryAnchor
-                    :> Trace
-                )
-                |> Chart.withTernary(ternary,ternaryAnchor)
-        )
-        |> Chart.combine
-        |> Chart.withLayoutGrid (
-            LayoutGrid.init(
-                Rows      = nRows,
-                Columns   = nCols,
-                Pattern   = pattern
-            )
-        )
-
-gridNew 3 3 [
+[
 
     let header = ["<b>RowIndex</b>";"A";"simple";"table"]
     let rows = 
@@ -725,35 +549,90 @@ gridNew 3 3 [
                 f x.[j] y.[i] 
             )
         )
-    
+    [
+        Chart.Contour(z, Showscale = false)
+        [
+            Chart.Carpet(
+                "contour",
+                A = [0.; 1.; 2.; 3.; 0.; 1.; 2.; 3.; 0.; 1.; 2.; 3.],
+                B = [4.; 4.; 4.; 4.; 5.; 5.; 5.; 5.; 6.; 6.; 6.; 6.],
+                X = [2.; 3.; 4.; 5.; 2.2; 3.1; 4.1; 5.1; 1.5; 2.5; 3.5; 4.5],
+                Y = [1.; 1.4; 1.6; 1.75; 2.; 2.5; 2.7; 2.75; 3.; 3.5; 3.7; 3.75],
+                AAxis = LinearAxis.initCarpet(
+                    TickPrefix = "a = ",
+                    Smoothing = 0.,
+                    MinorGridCount = 9,
+                    AxisType = StyleParam.AxisType.Linear
+                ),
+                BAxis = LinearAxis.initCarpet(
+                    TickPrefix = "b = ",
+                    Smoothing = 0.,
+                    MinorGridCount = 9,
+                    AxisType = StyleParam.AxisType.Linear
+                )
+            )    
+            Chart.ContourCarpet(
+                "contour",
+                [1.; 1.96; 2.56; 3.0625; 4.; 5.0625; 1.; 7.5625; 9.; 12.25; 15.21; 14.0625],
+                A = [0; 1; 2; 3; 0; 1; 2; 3; 0; 1; 2; 3],
+                B = [4; 4; 4; 4; 5; 5; 5; 5; 6; 6; 6; 6],
+                ShowScale = false
+            )
+        ]
+        |> Chart.combine
+        Chart.Point3d([1,3,2])
+    ]
+    [
+        [
+            Chart.Line([1,2; 3,4; 5,6])
+            Chart.Spline([1,2; 3,4; 5,7])
+        ]
+        |> Chart.combine
+        Chart.PointPolar([1,2])
+        Chart.PointTernary([1,2,3])
+    ]
+    [
+        Chart.PointMapbox([1,2]) |> Chart.withMapbox(Mapbox.init(Style = StyleParam.MapboxStyle.OpenStreetMap))
+        Chart.Sunburst(
+            ["A";"B";"C";"D";"E"],
+            ["";"";"B";"B";""],
+            Values=[5.;0.;3.;2.;3.],
+            Text=["At";"Bt";"Ct";"Dt";"Et"]
+        )
+        let x = ["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"bin1"]
+        let y' =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     
 
-    Chart.Contour(z, Showscale = false)
-    Chart.Table(header, rows)
-    Chart.Point3d([1,3,2])
-    [
-        Chart.Line([1,2; 3,4; 5,6])
-        Chart.Spline([1,2; 3,4; 5,7])
-    ]
-    |> Chart.combine
-    Chart.PointPolar([1,2])
-    Chart.PointTernary([1,2,3])
-    Chart.PointMapbox([1,2]) |> Chart.withMapbox(Mapbox.init(Style = StyleParam.MapboxStyle.OpenStreetMap))
-    Chart.Sunburst(
-        ["A";"B";"C";"D";"E"],
-        ["";"";"B";"B";""],
-        Values=[5.;0.;3.;2.;3.],
-        Text=["At";"Bt";"Ct";"Dt";"Et"]
-    )
-    let x = ["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"bin1"]
-    let y' =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+        [
+            Chart.BoxPlot("y" ,y,Name="bin1",Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All);
+            Chart.BoxPlot("y'",y',Name="bin2",Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All);
+        ]
+        |> Chart.combine
     
-
-    [
-        Chart.BoxPlot("y" ,y,Name="bin1",Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All);
-        Chart.BoxPlot("y'",y',Name="bin2",Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All);
     ]
-    |> Chart.combine
+
 ]
+|> Chart.Grid()
 |> Chart.withSize(1500,1500)
+|> Chart.show
+
+let z0=[|1; 2; 3; 4;4;-3;-1;1;|];
+let z1=[|10; 2; 1; 0;4;3;5;6;|];
+let seq1 = [1 ..4 ] |> Seq.map(fun _-> z0) |> Seq.toArray
+let seq2 = [1 ..4 ] |> Seq.map(fun _-> z1) |> Seq.toArray
+let marker = Marker.init(Size= 25,Colorscale=StyleParam.Colorscale.Viridis, ShowScale=false);
+
+let heatmap1=
+           Chart.Heatmap(data=seq1)
+           |> Chart.withMarker(marker)
+           |> Chart.withColorAxisAnchor(1)
+
+let heatmap2=
+           Chart.Heatmap(seq2)
+           |> Chart.withMarker(marker)
+           |> Chart.withColorAxisAnchor(1)
+
+[|heatmap1;heatmap2|]
+|> Chart.Grid(1,2)
+|> Chart.withColorAxis(ColorAxis.init(AutoColorScale=true))
 |> Chart.show
