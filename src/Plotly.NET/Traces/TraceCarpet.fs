@@ -24,6 +24,20 @@ type TraceCarpet(traceTypeName) =
 
 type TraceCarpetStyle() =
 
+    /// Sets the given axis anchor id(s) on a Trace object.
+    static member SetAxisAnchor
+        (
+            [<Optional;DefaultParameterValue(null)>] ?X:StyleParam.LinearAxisId,
+            [<Optional;DefaultParameterValue(null)>] ?Y:StyleParam.LinearAxisId
+        ) =  
+            (fun (trace:TraceCarpet) ->
+
+                X     |> DynObj.setValueOptBy trace "xaxis" StyleParam.LinearAxisId.toString
+                Y     |> DynObj.setValueOptBy trace "yaxis" StyleParam.LinearAxisId.toString
+                
+                trace
+            )
+
     static member SetCarpet
         (
             [<Optional;DefaultParameterValue(null)>] ?CarpetId:StyleParam.SubPlotId

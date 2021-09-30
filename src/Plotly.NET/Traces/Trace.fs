@@ -7,7 +7,7 @@ open System
 open System.Runtime.InteropServices
 
 /// Trace type inherits from dynamic object
-type Trace (traceTypeName) =
+type Trace (traceTypeName:string) =
     inherit DynamicObj ()
     //interface ITrace with
         // Implictit ITrace
@@ -202,8 +202,13 @@ type TraceStyle() =
 
             )
 
-
-
+    /// Sets the given color axis anchor on a Trace object. (determines which colorscale it uses)
+    static member setColorAxisAnchor (?ColorAxisId: int) =
+        let id = ColorAxisId |> Option.map StyleParam.SubPlotId.ColorAxis 
+        (fun (trace:('T :> Trace)) ->
+            id |> DynObj.setValueOptBy trace "coloraxis" StyleParam.SubPlotId.convert
+            trace
+        )
 
     /// Sets the given domain on a Trace object.
     static member SetDomain

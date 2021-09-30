@@ -12,7 +12,7 @@ type TraceID =
     | Cartesian3D 
     | Polar 
     | Geo 
-    | Mapbox 
+    | Mapbox
     | Ternary 
     | Carpet 
     | Domain 
@@ -28,4 +28,11 @@ type TraceID =
         | :? TraceTernary -> TraceID.Ternary    
         | :? TraceCarpet  -> TraceID.Carpet     
         | :? TraceDomain  -> TraceID.Domain     
-        | _ as unknownTraceType -> failwith $"unknown trace type {unknownTraceType.GetType()}"
+        | _ as unknownTraceType -> failwith $"cannot get trace id for type {unknownTraceType.GetType()}"
+
+    static member ofTraces (t:seq<Trace>) : TraceID =
+        let traceIds = t |> Seq.map TraceID.ofTrace |> Seq.distinct |> Array.ofSeq
+        match traceIds with
+        | [|sameTraceID|]   -> sameTraceID
+        | [||]              -> TraceID.Domain
+        | _                 -> TraceID.Multi
