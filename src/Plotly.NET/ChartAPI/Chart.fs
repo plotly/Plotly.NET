@@ -83,7 +83,7 @@ type Chart =
                     |> TraceStyle.TraceInfo(?Name=(naming i Name),?ShowLegend=ShowLegend,?LegendGroup=LegendGroup,?Visible=Visible)
                 )
 
-        /// Set the axis anchor id the trace is belonging to
+    /// Set the axis anchor id the trace is belonging to
     [<CompiledName("WithAxisAnchor")>]
     static member withAxisAnchor
         (
@@ -96,9 +96,11 @@ type Chart =
             fun (ch:GenericChart) ->
                 ch |> mapTrace (fun trace ->
                     match trace with
-                    | :? Trace2D as trace -> trace |> Trace2DStyle.SetAxisAnchor(?X=idx,?Y=idy) :> Trace
+                    | :? Trace2D as trace ->  trace |> Trace2DStyle.SetAxisAnchor(?X=idx,?Y=idy) :> Trace
+                    | :? TraceCarpet as trace when trace.``type`` = "carpet" -> 
+                        trace |> TraceCarpetStyle.SetAxisAnchor(?X=idx,?Y=idy) :> Trace
                     | _ -> 
-                        printfn "the input was not a 2D cartesian trace. no axis anchors set."
+                        printfn "the input was not a 2D cartesian or carpet trace. no axis anchors set."
                         trace
                 )
     [<CompiledName("WithAxisAnchor")>]
@@ -110,6 +112,14 @@ type Chart =
         ) =
             ch |> Chart.withAxisAnchor(?X=X,?Y=Y)
   
+    /// Set the axis anchor id the trace is belonging to
+    [<CompiledName("WithColorAxisAnchor")>]
+    static member withColorAxisAnchor
+        (
+            [<Optional;DefaultParameterValue(null)>] ?Id: int
+        ) =
+            fun (ch:GenericChart) -> ch |> mapTrace (TraceStyle.setColorAxisAnchor(?ColorAxisId = Id))
+
     /// Apply styling to the Marker(s) of the chart as Object.
     [<CompiledName("WithMarker")>]
     static member withMarker(marker:Marker) =
@@ -1051,73 +1061,156 @@ type Chart =
         [<Optional;DefaultParameterValue(null)>]?XSide      : StyleParam.LayoutGridXSide,
         [<Optional;DefaultParameterValue(null)>]?YSide      : StyleParam.LayoutGridYSide
         ) =
-            fun (gCharts:#seq<GenericChart>) ->
-                    
+            fun (gCharts:#seq<GenericChart.GenericChart>) ->
+                
                 let pattern = defaultArg Pattern StyleParam.LayoutGridPattern.Independent
 
                 let hasSharedAxes = pattern = StyleParam.LayoutGridPattern.Coupled
 
                 // rows x cols coordinate grid
                 let gridCoordinates = 
-                    Array.init nRows (fun i ->
-                        Array.init nCols (fun j ->
-                            i+1,j+1
+                    Array.init nRows (fun rowIndex ->
+                        Array.init nCols (fun colIndex ->
+                            rowIndex+1,colIndex+1
                         )
                     )
                     |> Array.concat
 
-                // extract all axes from the plots to later add them with an updated axis anchor
-                // TODO: currently only gets the default (first) x and y axis. There might be charts with multiple axes which might cause havoc downstream.
-                // those should either be removed or accounted for
-                let axes =
-                    gCharts
-                    |> Seq.map (fun gChart ->
-                        gChart 
-                        |> GenericChart.getLayout
-                        |> fun l -> 
-                            let xAxis = l.TryGetTypedValue<LinearAxis> "xaxis" |> Option.defaultValue (LinearAxis.init())
-                            let yAxis = l.TryGetTypedValue<LinearAxis> "yaxis" |> Option.defaultValue (LinearAxis.init())
-                            xAxis,yAxis
-                    )
-
                 gCharts
                 |> Seq.zip gridCoordinates
-                |> Seq.zip axes
-                |> Seq.mapi (fun i ((xAxis,yAxis), ((y,x), gChart)) ->
+                |> Seq.mapi (fun i ((rowIndex, colIndex), gChart) ->
 
-                    let xAnchor, yAnchor = 
-                        if hasSharedAxes then 
-                            x, y //set axis anchors according to grid coordinates
-                        else
-                            i+1, i+1 //set individual axis anchors for each subplot
+                    let layout = gChart |> GenericChart.getLayout
 
-                    gChart
-                    |> Chart.withAxisAnchor(xAnchor,yAnchor) // set adapted axis anchors
-                    |> Chart.withXAxis(xAxis,(StyleParam.SubPlotId.XAxis (i+1))) // set previous axis with adapted id (one individual axis for each subplot, wether or not they will be used later)
-                    |> Chart.withYAxis(yAxis,(StyleParam.SubPlotId.YAxis (i+1))) // set previous axis with adapted id (one individual axis for each subplot, wether or not they will be used later)
-                    |> GenericChart.mapLayout (fun l ->
-                        if i > 0 then 
-                            // remove default axes from consecutive charts, otherwise they will override the first one
-                            l.Remove("xaxis") |> ignore
-                            l.Remove("yaxis") |> ignore
-                        l
-                    )
+                    match TraceID.ofTraces (gChart |> GenericChart.getTraces) with
+                    | TraceID.Multi -> failwith $"the trace for ({rowIndex},{colIndex}) contains multiple different subplot types. this is not supported."
+                    | TraceID.Cartesian2D | TraceID.Carpet ->
+                        
+                        let xAxis = layout.TryGetTypedValue<LinearAxis> "xaxis" |> Option.defaultValue (LinearAxis.init())
+                        let yAxis = layout.TryGetTypedValue<LinearAxis> "yaxis" |> Option.defaultValue (LinearAxis.init())
+
+                        let xAnchor, yAnchor = 
+                            if hasSharedAxes then 
+                                colIndex, rowIndex //set axis anchors according to grid coordinates
+                            else
+                                i+1, i+1
+
+                        gChart
+                        |> Chart.withAxisAnchor(xAnchor,yAnchor) // set adapted axis anchors
+                        |> Chart.withXAxis(xAxis,(StyleParam.SubPlotId.XAxis (i+1))) // set previous axis with adapted id (one individual axis for each subplot, wether or not they will be used later)
+                        |> Chart.withYAxis(yAxis,(StyleParam.SubPlotId.YAxis (i+1))) // set previous axis with adapted id (one individual axis for each subplot, wether or not they will be used later)
+                        |> GenericChart.mapLayout (fun l ->
+                            if i > 0 then 
+                                // remove default axes from consecutive charts, otherwise they will override the first one
+                                l.Remove("xaxis") |> ignore
+                                l.Remove("yaxis") |> ignore
+                            l
+                        )
+                    | TraceID.Cartesian3D ->
+                        
+                        let scene = 
+                            layout.TryGetTypedValue<Scene> "scene" |> Option.defaultValue (Scene.init())
+                            |> Scene.style(Domain = LayoutObjects.Domain.init(Row = rowIndex - 1, Column = colIndex - 1))
+
+                        let sceneAnchor = StyleParam.SubPlotId.Scene (i+1)
+
+                        gChart
+                        |> GenericChart.mapTrace(fun t ->
+                            t 
+                            :?> Trace3D
+                            |> Trace3DStyle.SetScene sceneAnchor
+                            :> Trace
+                        )
+                        |> Chart.withScene(scene,sceneAnchor)
+                    | TraceID.Polar ->
+
+                        let polar = 
+                            layout.TryGetTypedValue<Polar> "polar" |> Option.defaultValue (Polar.init())
+                            |> Polar.style(Domain = LayoutObjects.Domain.init(Row = rowIndex - 1, Column = colIndex - 1))
+
+                        let polarAnchor = StyleParam.SubPlotId.Polar (i+1)
+
+                        gChart
+                        |> GenericChart.mapTrace(fun t ->
+                            t 
+                            :?> TracePolar
+                            |> TracePolarStyle.SetPolar polarAnchor
+                            :> Trace
+                        )
+                        |> Chart.withPolar(polar,polarAnchor)
+                    | TraceID.Geo ->
+                        let geo = 
+                            layout.TryGetTypedValue<Geo> "geo" |> Option.defaultValue (Geo.init())
+                            |> Geo.style(Domain = LayoutObjects.Domain.init(Row = rowIndex - 1, Column = colIndex - 1))
+
+                        let geoAnchor = StyleParam.SubPlotId.Geo (i+1)
+
+                        gChart
+                        |> GenericChart.mapTrace(fun t ->
+                            t 
+                            :?> TraceGeo
+                            |> TraceGeoStyle.SetGeo geoAnchor
+                            :> Trace
+                        )
+                        |> Chart.withGeo(geo,geoAnchor)
+                    | TraceID.Mapbox ->
+                        let mapbox = 
+                            layout.TryGetTypedValue<Mapbox> "mapbox" |> Option.defaultValue (Mapbox.init())
+                            |> Mapbox.style(Domain = LayoutObjects.Domain.init(Row = rowIndex - 1, Column = colIndex - 1))
+
+                        let mapboxAnchor = StyleParam.SubPlotId.Mapbox (i+1)
+
+                        gChart
+                        |> GenericChart.mapTrace(fun t ->
+                            t 
+                            :?> TraceMapbox
+                            |> TraceMapboxStyle.SetMapbox mapboxAnchor
+                            :> Trace
+                        )
+                        |> Chart.withMapbox(mapbox,mapboxAnchor)
+                    | TraceID.Domain ->
+                        let newDomain = LayoutObjects.Domain.init(Row = rowIndex - 1, Column = colIndex - 1)
+
+                        gChart
+                        |> GenericChart.mapTrace(fun t ->
+                            t 
+                            :?> TraceDomain
+                            |> TraceDomainStyle.SetDomain newDomain
+                            :> Trace
+                        )
+
+                    | TraceID.Ternary ->
+
+                        let ternary = 
+                            layout.TryGetTypedValue<Ternary> "ternary" |> Option.defaultValue (Ternary.init())
+                            |> Ternary.style(Domain = LayoutObjects.Domain.init(Row = rowIndex - 1, Column = colIndex - 1))
+
+                        let ternaryAnchor = StyleParam.SubPlotId.Ternary (i+1)
+
+                        gChart
+                        |> GenericChart.mapTrace(fun t ->
+                            t 
+                            :?> TraceTernary
+                            |> TraceTernaryStyle.SetTernary ternaryAnchor
+                            :> Trace
+                        )
+                        |> Chart.withTernary(ternary,ternaryAnchor)
                 )
                 |> Chart.combine
                 |> Chart.withLayoutGrid (
                     LayoutGrid.init(
-                        Rows      = nRows,
-                        Columns   = nCols,
-                        Pattern   = pattern,
-                        ?SubPlots = SubPlots,
-                        ?XAxes    = XAxes,
-                        ?YAxes    = YAxes,
-                        ?RowOrder = RowOrder,
-                        ?XGap     = XGap,
-                        ?YGap     = YGap,
-                        ?Domain   = Domain,
-                        ?XSide    = XSide,
-                        ?YSide    = YSide   
+                        Rows        = nRows     ,
+                        Columns     = nCols     ,
+                        Pattern     = pattern   ,
+                        ?SubPlots   = SubPlots  ,
+                        ?XAxes      = XAxes     ,
+                        ?YAxes      = YAxes     ,
+                        ?RowOrder   = RowOrder  ,
+                        ?XGap       = XGap      ,
+                        ?YGap       = YGap      ,
+                        ?Domain     = Domain    ,
+                        ?XSide      = XSide     ,
+                        ?YSide      = YSide      
                     )
                 )
 

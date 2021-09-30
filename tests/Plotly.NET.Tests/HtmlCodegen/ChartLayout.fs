@@ -157,7 +157,44 @@ let singleStackChart =
     |> Chart.withLayoutGridStyle(XSide=StyleParam.LayoutGridXSide.Bottom,YGap= 0.1)
     |> Chart.withTitle("Hi i am the new SingleStackChart")
     |> Chart.withXAxisStyle("im the shared xAxis")
-    
+
+let multiTraceGrid = 
+    [
+        Chart.Point([1,2; 2,3])
+        Chart.PointTernary([1,2,3; 2,3,4])
+        Chart.Heatmap([[1; 2];[3; 4]], Showscale=false)
+        Chart.Point3d([1,3,2])
+        Chart.PointMapbox([1,2]) |> Chart.withMapbox(Mapbox.init(Style = StyleParam.MapboxStyle.OpenStreetMap))
+        [
+            // you can use nested combined charts, but they have to have the same trace type (Cartesian2D in this case)
+            let y =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+            Chart.BoxPlot("y" ,y,Name="bin1",Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All);
+            Chart.BoxPlot("y'",y,Name="bin2",Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All);
+        ]
+        |> Chart.combine
+    ]
+    |> Chart.Grid(2,3)
+    |> Chart.withSize(1000,1000)
+
+
+let multiTraceSingleStack = 
+    [
+        Chart.Point([1,2; 2,3])
+        Chart.PointTernary([1,2,3; 2,3,4])
+        Chart.Heatmap([[1; 2];[3; 4]], Showscale=false)
+        Chart.Point3d([1,3,2])
+        Chart.PointMapbox([1,2]) |> Chart.withMapbox(Mapbox.init(Style = StyleParam.MapboxStyle.OpenStreetMap))
+        [
+            // you can use nested combined charts, but they have to have the same trace type (Cartesian2D in this case)
+            let y =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+            Chart.BoxPlot("y" ,y,Name="bin1",Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All);
+            Chart.BoxPlot("y'",y,Name="bin2",Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All);
+        ]
+        |> Chart.combine
+    ]
+    |> Chart.SingleStack()
+    |> Chart.withSize(1000,1000)
+
 [<Tests>]
 let ``Multicharts and subplots`` =
     testList "ChartLayout.Multicharts and subplots" [
@@ -172,6 +209,14 @@ let ``Multicharts and subplots`` =
         testCase "Subplot grids layout" ( fun () ->
             "var layout = {\"xaxis\":{\"title\":{\"text\":\"x1\"}},\"yaxis\":{\"title\":{\"text\":\"y1\"}},\"xaxis2\":{\"title\":{\"text\":\"x2\"}},\"yaxis2\":{\"title\":{\"text\":\"y2\"}},\"xaxis3\":{\"title\":{\"text\":\"x3\"}},\"yaxis3\":{\"title\":{\"text\":\"y3\"}},\"xaxis4\":{\"title\":{\"text\":\"x4\"}},\"yaxis4\":{\"title\":{\"text\":\"y4\"}},\"grid\":{\"rows\":2,\"columns\":2,\"pattern\":\"independent\"}};"
             |> chartGeneratedContains subPlotChart
+        );        
+        testCase "MultiTrace Subplot grid data" ( fun () ->
+            """var data = [{"type":"scatter","mode":"markers","x":[1,2],"y":[2,3],"marker":{},"xaxis":"x","yaxis":"y"},{"type":"scatterternary","mode":"markers","a":[1,2],"b":[2,3],"c":[3,4],"marker":{},"subplot":"ternary2"},{"type":"heatmap","z":[[1,2],[3,4]],"showscale":false,"xaxis":"x3","yaxis":"y3"},{"type":"scatter3d","mode":"markers","x":[1],"y":[3],"z":[2],"line":{},"marker":{},"scene":"scene4"},{"type":"scattermapbox","mode":"markers","lon":[1],"lat":[2],"line":{},"marker":{},"subplot":"mapbox5"},{"type":"box","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":"y","boxpoints":"all","jitter":0.1,"name":"bin1","marker":{},"xaxis":"x6","yaxis":"y6"},{"type":"box","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":"y'","boxpoints":"all","jitter":0.1,"name":"bin2","marker":{},"xaxis":"x6","yaxis":"y6"}];"""
+            |> chartGeneratedContains multiTraceGrid
+        );
+        testCase "MultiTrace Subplot grid layout" ( fun () ->
+            """var layout = {"xaxis":{},"yaxis":{},"ternary2":{"domain":{"row":0,"column":1}},"xaxis3":{},"yaxis3":{},"scene4":{"domain":{"row":1,"column":0}},"mapbox":{"style":"open-street-map","domain":{"row":1,"column":1}},"mapbox5":{"style":"open-street-map","domain":{"row":1,"column":1}},"xaxis6":{},"yaxis6":{},"grid":{"rows":2,"columns":3,"pattern":"independent"},"width":1000,"height":1000};"""
+            |> chartGeneratedContains multiTraceGrid
         );
         testCase "Single Stack data" ( fun () -> 
             """var data = [{"type":"scatter","mode":"markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{},"xaxis":"x","yaxis":"y"},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"line":{},"marker":{},"xaxis":"x","yaxis":"y2"},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"line":{"shape":"spline"},"marker":{},"xaxis":"x","yaxis":"y3"}];"""
@@ -180,6 +225,15 @@ let ``Multicharts and subplots`` =
         testCase "Single Stack layout" ( fun () -> 
             "var layout = {\"yaxis\":{\"title\":{\"text\":\"This title must\"}},\"xaxis\":{\"title\":{\"text\":\"im the shared xAxis\"}},\"xaxis2\":{},\"yaxis2\":{\"title\":{\"text\":\"be set on the\"},\"zeroline\":false},\"xaxis3\":{},\"yaxis3\":{\"title\":{\"text\":\"respective subplots\"},\"zeroline\":false},\"grid\":{\"rows\":3,\"columns\":1,\"pattern\":\"coupled\",\"ygap\":0.1,\"xside\":\"bottom\"},\"title\":{\"text\":\"Hi i am the new SingleStackChart\"}};"
             |> chartGeneratedContains singleStackChart
+        );        
+        
+        testCase "MultiTrace Single Stack data" ( fun () -> 
+            """var data = [{"type":"scatter","mode":"markers","x":[1,2],"y":[2,3],"marker":{},"xaxis":"x","yaxis":"y"},{"type":"scatterternary","mode":"markers","a":[1,2],"b":[2,3],"c":[3,4],"marker":{},"subplot":"ternary2"},{"type":"heatmap","z":[[1,2],[3,4]],"showscale":false,"xaxis":"x3","yaxis":"y3"},{"type":"scatter3d","mode":"markers","x":[1],"y":[3],"z":[2],"line":{},"marker":{},"scene":"scene4"},{"type":"scattermapbox","mode":"markers","lon":[1],"lat":[2],"line":{},"marker":{},"subplot":"mapbox5"},{"type":"box","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":"y","boxpoints":"all","jitter":0.1,"name":"bin1","marker":{},"xaxis":"x6","yaxis":"y6"},{"type":"box","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":"y'","boxpoints":"all","jitter":0.1,"name":"bin2","marker":{},"xaxis":"x6","yaxis":"y6"}];"""
+            |> chartGeneratedContains multiTraceSingleStack
+        );
+        testCase "MultiTrace Single Stack layout" ( fun () -> 
+            """var layout = {"xaxis":{},"yaxis":{},"ternary2":{"domain":{"row":1,"column":0}},"xaxis3":{},"yaxis3":{},"scene4":{"domain":{"row":3,"column":0}},"mapbox":{"style":"open-street-map","domain":{"row":4,"column":0}},"mapbox5":{"style":"open-street-map","domain":{"row":4,"column":0}},"xaxis6":{},"yaxis6":{},"grid":{"rows":6,"columns":1,"pattern":"independent"},"width":1000,"height":1000};"""
+            |> chartGeneratedContains multiTraceSingleStack
         );
     ]
 
