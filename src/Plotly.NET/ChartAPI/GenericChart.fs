@@ -409,4 +409,14 @@ module GenericChart =
         | Chart (trace, layout, config, displayOpts)       -> Chart (trace, layout, config, f displayOpts)
         | MultiChart (traces, layout, config, displayOpts) -> MultiChart (traces,layout,config, f displayOpts)
 
-
+    /// returns a single TraceID (when all traces of the charts are of the same type), or traceID.Multi if the chart contains traces of multiple different types
+    let getTraceID gChart =
+        match gChart with
+        | Chart (trace, _, _, _)       -> TraceID.ofTrace trace
+        | MultiChart (traces, layout, config, displayOpts) -> TraceID.ofTraces traces
+        
+    /// returns a list of TraceIDs representing the types of all traces contained in the chart.
+    let getTraceIDs gChart =
+        match gChart with
+        | Chart (trace, _, _, _)       -> [TraceID.ofTrace trace]
+        | MultiChart (traces, _, _, _) -> traces |> List.map TraceID.ofTrace
