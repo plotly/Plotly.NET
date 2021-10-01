@@ -372,6 +372,7 @@ type Trace3DStyle() =
     /// <param name="Meta">Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.</param>
     /// <param name="CustomData">Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, "scatter" traces also appends customdata items in the markers DOM elements</param>
     /// <param name="Scene">Sets a reference between this trace's 3D coordinate system and a 3D scene. If "scene" (the default value), the (x,y,z) coordinates refer to `layout.scene`. If "scene2", the (x,y,z) coordinates refer to `layout.scene2`, and so on.</param>
+    /// <param name="Color">Sets the color values, used for setting a color scale independent of `z`.</param>
     /// <param name="ColorAxis">Sets a reference to a shared color axis. References to these shared color axes are "coloraxis", "coloraxis2", "coloraxis3", etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.</param>
     /// <param name="ColorBar">Sets the colorbar of this trace.</param>
     /// <param name="AutoColorScale">Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `colorscale`. In case `colorscale` is unspecified or `autocolorscale` is true, the default palette will be chosen according to whether numbers in the `color` array are all positive, all negative or mixed.</param>
@@ -423,6 +424,7 @@ type Trace3DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Meta               : string,
             [<Optional;DefaultParameterValue(null)>] ?CustomData         : seq<#IConvertible>,
             [<Optional;DefaultParameterValue(null)>] ?Scene              : StyleParam.SubPlotId,
+            [<Optional;DefaultParameterValue(null)>] ?Color              : Color,
             [<Optional;DefaultParameterValue(null)>] ?ColorAxis          : StyleParam.SubPlotId,
             [<Optional;DefaultParameterValue(null)>] ?ColorBar           : ColorBar,
             [<Optional;DefaultParameterValue(null)>] ?AutoColorScale     : bool,
@@ -476,6 +478,7 @@ type Trace3DStyle() =
                     Meta               |> DynObj.setValueOpt mesh3d "meta"
                     CustomData         |> DynObj.setValueOpt mesh3d "customdata"
                     Scene              |> DynObj.setValueOptBy mesh3d "scene" StyleParam.SubPlotId.convert
+                    Color              |> DynObj.setValueOpt mesh3d "color"
                     ColorAxis          |> DynObj.setValueOptBy mesh3d "coloraxis" StyleParam.SubPlotId.convert
                     ColorBar           |> DynObj.setValueOpt mesh3d "colorbar"
                     AutoColorScale     |> DynObj.setValueOpt mesh3d "autocolorscale"

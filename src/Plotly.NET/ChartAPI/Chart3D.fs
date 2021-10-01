@@ -295,6 +295,7 @@ module Chart3D =
                 [<Optional;DefaultParameterValue(null)>] ?Name,
                 [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
+                [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Contours,
                 [<Optional;DefaultParameterValue(null)>] ?ColorScale,
                 [<Optional;DefaultParameterValue(null)>] ?ShowScale,
@@ -307,7 +308,8 @@ module Chart3D =
                     Z   = z,
                     ?I  = I,
                     ?J  = J,
-                    ?K  = K
+                    ?K  = K,
+                    ?Color = Color
                 ) 
             )              
             |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
