@@ -45,7 +45,7 @@ or horizontally. A vertical bar chart is called a column bar chart.
 ### Column Charts
 *)
 
-let column = Chart.Column(keys,values)
+let column = Chart.Column(values,keys)
 
 (*** condition: ipynb ***)
 #if IPYNB
