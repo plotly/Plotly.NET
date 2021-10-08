@@ -82,8 +82,8 @@ The following example shows how to create a stacked bar chart by combining bar c
 
 let stackedBar =
     [
-        Chart.StackedBar(keys,values,Name="old");
-        Chart.StackedBar(keys,[8; 21; 13;],Name="new")
+        Chart.StackedBar(values,keys,Name="old");
+        Chart.StackedBar([8; 21; 13;],keys,Name="new")
     ]
     |> Chart.combine
 
@@ -102,8 +102,8 @@ stackedBar |> GenericChart.toChartHTML
 
 let stackedColumn =
     [
-        Chart.StackedColumn(keys,values,Name="old");
-        Chart.StackedColumn(keys,[8; 21; 13;],Name="new")
+        Chart.StackedColumn(values,keys,Name="old");
+        Chart.StackedColumn([8; 21; 13;],keys,Name="new")
     ]
     |> Chart.combine
 
