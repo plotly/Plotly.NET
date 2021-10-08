@@ -61,7 +61,7 @@ column |> GenericChart.toChartHTML
 *)
 
 let bar =
-    Chart.Bar(keys,values)
+    Chart.Bar(values,keys)
 
 (*** condition: ipynb ***)
 #if IPYNB
