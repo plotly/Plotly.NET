@@ -40,25 +40,25 @@ You can find all available package versions on the [nuget page](https://www.nuge
  - dotnet CLI
 
     ```shell
-    dotnet add package Plotly.NET --version 2.0.0-preview.9
+    dotnet add package Plotly.NET --version 2.0.0-preview.10
     ```
 
  - paket CLI
 
     ```shell
-    paket add Plotly.NET --version 2.0.0-preview.9
+    paket add Plotly.NET --version 2.0.0-preview.10
     ```
 
  - package manager
 
     ```shell
-    Install-Package Plotly.NET -Version 2.0.0-preview.9
+    Install-Package Plotly.NET -Version 2.0.0-preview.10
     ```
 
     Or add the package reference directly to your `.*proj` file:
 
     ```
-    <PackageReference Include="Plotly.NET" Version="2.0.0-preview.9" />
+    <PackageReference Include="Plotly.NET" Version="2.0.0-preview.10" />
     ```
 
 ### For scripting
@@ -66,7 +66,7 @@ You can find all available package versions on the [nuget page](https://www.nuge
 You can include the package via an inline package reference:
 
 ```
-#r "nuget: Plotly.NET, 2.0.0-preview.9"
+#r "nuget: Plotly.NET, 2.0.0-preview.10"
 ```
 
 ### For dotnet interactive notebooks
@@ -75,8 +75,8 @@ You can use the same inline package reference as in script, but as an additional
 the interactive extensions for dotnet interactive have you covered for seamless chart rendering:
 
 ```
-#r "nuget: Plotly.NET, 2.0.0-preview.9"
-#r "nuget: Plotly.NET.Interactive, 2.0.0-preview.9"
+#r "nuget: Plotly.NET, 2.0.0-preview.10"
+#r "nuget: Plotly.NET.Interactive, 2.0.0-preview.10"
 ```
 
 _Note_: 
@@ -149,29 +149,29 @@ myFirstChart
 |> Chart.show
 (**
 Should render this chart in your brower:
-<div id="409be44f-5d6e-4b7c-93cf-c5cc183909ed" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="1d6817ef-bf57-4343-9933-b152f4ffdb74" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_409be44f5d6e4b7c93cfc5cc183909ed = function() {
+            var renderPlotly_1d6817efbf5743439933b152f4ffdb74 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","mode":"markers","x":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('409be44f-5d6e-4b7c-93cf-c5cc183909ed', data, layout, config);
+            Plotly.newPlot('1d6817ef-bf57-4343-9933-b152f4ffdb74', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_409be44f5d6e4b7c93cfc5cc183909ed();
+                    renderPlotly_1d6817efbf5743439933b152f4ffdb74();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_409be44f5d6e4b7c93cfc5cc183909ed();
+                renderPlotly_1d6817efbf5743439933b152f4ffdb74();
             }
 </script>
 
@@ -180,29 +180,29 @@ myFirstStyledChart
 |> Chart.show
 (**
 And here is what happened after applying the styles from above:
-<div id="c41cc0d0-d390-406d-a640-33503f1ae201" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="65b24c31-6034-4511-a0ab-015952ca7246" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_c41cc0d0d390406da64033503f1ae201 = function() {
+            var renderPlotly_65b24c3160344511a0ab015952ca7246 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","mode":"markers","x":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"marker":{}}];
             var layout = {"title":{"text":"Hello world!"},"xaxis":{"title":{"text":"xAxis"},"showgrid":false},"yaxis":{"title":{"text":"yAxis"},"showgrid":false}};
             var config = {};
-            Plotly.newPlot('c41cc0d0-d390-406d-a640-33503f1ae201', data, layout, config);
+            Plotly.newPlot('65b24c31-6034-4511-a0ab-015952ca7246', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_c41cc0d0d390406da64033503f1ae201();
+                    renderPlotly_65b24c3160344511a0ab015952ca7246();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_c41cc0d0d390406da64033503f1ae201();
+                renderPlotly_65b24c3160344511a0ab015952ca7246();
             }
 </script>
 

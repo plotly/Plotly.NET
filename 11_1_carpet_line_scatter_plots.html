@@ -41,7 +41,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.9</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.10</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -413,29 +413,29 @@
 <p>Use <code>Chart.Carpet</code> to define these <code>coordinate traces</code>. All carpets have a mandatory identifier, which will be used by other traces to define which carpet coordinate system to use.</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs9', 9)" onmouseover="showTip(event, 'fs9', 9)" class="id">carpet</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs10', 10)" onmouseover="showTip(event, 'fs10', 10)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 11)" onmouseover="showTip(event, 'fs11', 11)" class="id">Carpet</span><span class="pn">(</span><span class="s">&quot;carpetIdentifier&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs12', 12)" onmouseover="showTip(event, 'fs12', 12)" class="fn">A</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs3', 13)" onmouseover="showTip(event, 'fs3', 13)" class="id">a</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs13', 14)" onmouseover="showTip(event, 'fs13', 14)" class="fn">B</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs4', 15)" onmouseover="showTip(event, 'fs4', 15)" class="id">b</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs14', 16)" onmouseover="showTip(event, 'fs14', 16)" class="fn">Y</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs5', 17)" onmouseover="showTip(event, 'fs5', 17)" class="id">y</span><span class="pn">)</span>
 </code></pre>
-<div id="e2d478c2-31d3-4256-b44c-2a87f027fd4a" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="bd6bf437-9ba1-4a29-9638-3336d5da76dd" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_e2d478c231d34256b44c2a87f027fd4a = function() {
+            var renderPlotly_bd6bf4379ba14a2996383336d5da76dd = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"carpet","y":[2.0,3.5,4.0,3.0,4.5,5.0,5.5,6.5,7.5,8.0,8.5,10.0],"a":[4.0,4.0,4.0,4.5,4.5,4.5,5.0,5.0,5.0,6.0,6.0,6.0],"b":[1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0],"carpet":"carpetIdentifier"}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('e2d478c2-31d3-4256-b44c-2a87f027fd4a', data, layout, config);
+            Plotly.newPlot('bd6bf437-9ba1-4a29-9638-3336d5da76dd', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_e2d478c231d34256b44c2a87f027fd4a();
+                    renderPlotly_bd6bf4379ba14a2996383336d5da76dd();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_e2d478c231d34256b44c2a87f027fd4a();
+                renderPlotly_bd6bf4379ba14a2996383336d5da76dd();
             }
 </script>
 
@@ -448,29 +448,29 @@
     <span class="pn">]</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs10', 27)" onmouseover="showTip(event, 'fs10', 27)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs19', 28)" onmouseover="showTip(event, 'fs19', 28)" class="id">combine</span>
 </code></pre>
-<div id="257eb433-3182-4dbc-aabd-dd58639dd6b9" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="223970e2-cd09-415c-b15b-438da6b26283" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_257eb43331824dbcaabddd58639dd6b9 = function() {
+            var renderPlotly_223970e2cd09415cb15b438da6b26283 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"carpet","y":[2.0,3.5,4.0,3.0,4.5,5.0,5.5,6.5,7.5,8.0,8.5,10.0],"a":[4.0,4.0,4.0,4.5,4.5,4.5,5.0,5.0,5.0,6.0,6.0,6.0],"b":[1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0],"carpet":"carpetIdentifier"},{"type":"scattercarpet","name":"Point","mode":"markers","a":[4.0,5.0,5.0,6.0],"b":[1.0,1.0,2.0,3.0],"carpet":"carpetIdentifier","marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('257eb433-3182-4dbc-aabd-dd58639dd6b9', data, layout, config);
+            Plotly.newPlot('223970e2-cd09-415c-b15b-438da6b26283', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_257eb43331824dbcaabddd58639dd6b9();
+                    renderPlotly_223970e2cd09415cb15b438da6b26283();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_257eb43331824dbcaabddd58639dd6b9();
+                renderPlotly_223970e2cd09415cb15b438da6b26283();
             }
 </script>
 
@@ -483,29 +483,29 @@
     <span class="pn">]</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs10', 38)" onmouseover="showTip(event, 'fs10', 38)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs19', 39)" onmouseover="showTip(event, 'fs19', 39)" class="id">combine</span>
 </code></pre>
-<div id="14c4044d-a3a8-483a-974e-06ea6f337386" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="a9fd00d6-e954-4f13-9387-756c850de401" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_14c4044da3a8483a974e06ea6f337386 = function() {
+            var renderPlotly_a9fd00d6e9544f139387756c850de401 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"carpet","y":[2.0,3.5,4.0,3.0,4.5,5.0,5.5,6.5,7.5,8.0,8.5,10.0],"a":[4.0,4.0,4.0,4.5,4.5,4.5,5.0,5.0,5.0,6.0,6.0,6.0],"b":[1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0],"carpet":"carpetIdentifier"},{"type":"scattercarpet","name":"Line","mode":"lines","a":[4.0,5.0,5.0,6.0],"b":[1.0,1.0,2.0,3.0],"carpet":"carpetIdentifier","marker":{},"line":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('14c4044d-a3a8-483a-974e-06ea6f337386', data, layout, config);
+            Plotly.newPlot('a9fd00d6-e954-4f13-9387-756c850de401', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_14c4044da3a8483a974e06ea6f337386();
+                    renderPlotly_a9fd00d6e9544f139387756c850de401();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_14c4044da3a8483a974e06ea6f337386();
+                renderPlotly_a9fd00d6e9544f139387756c850de401();
             }
 </script>
 
@@ -518,29 +518,29 @@
     <span class="pn">]</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs10', 49)" onmouseover="showTip(event, 'fs10', 49)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs19', 50)" onmouseover="showTip(event, 'fs19', 50)" class="id">combine</span>
 </code></pre>
-<div id="60f9353d-be4b-42cb-997a-1c39f4fdd6a3" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="5c3acb25-b69d-41f7-a2f5-75fe81fb6a74" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_60f9353dbe4b42cb997a1c39f4fdd6a3 = function() {
+            var renderPlotly_5c3acb25b69d41f7a2f575fe81fb6a74 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"carpet","y":[2.0,3.5,4.0,3.0,4.5,5.0,5.5,6.5,7.5,8.0,8.5,10.0],"a":[4.0,4.0,4.0,4.5,4.5,4.5,5.0,5.0,5.0,6.0,6.0,6.0],"b":[1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0],"carpet":"carpetIdentifier"},{"type":"scattercarpet","name":"Spline","mode":"lines","a":[4.0,5.0,5.0,6.0],"b":[1.0,1.0,2.0,3.0],"carpet":"carpetIdentifier","marker":{},"line":{"shape":"spline"}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('60f9353d-be4b-42cb-997a-1c39f4fdd6a3', data, layout, config);
+            Plotly.newPlot('5c3acb25-b69d-41f7-a2f5-75fe81fb6a74', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_60f9353dbe4b42cb997a1c39f4fdd6a3();
+                    renderPlotly_5c3acb25b69d41f7a2f575fe81fb6a74();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_60f9353dbe4b42cb997a1c39f4fdd6a3();
+                renderPlotly_5c3acb25b69d41f7a2f575fe81fb6a74();
             }
 </script>
 
@@ -553,29 +553,29 @@
     <span class="pn">]</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs10', 63)" onmouseover="showTip(event, 'fs10', 63)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs19', 64)" onmouseover="showTip(event, 'fs19', 64)" class="id">combine</span>
 </code></pre>
-<div id="7028e0ec-2d0e-439f-8e5c-dece83074a1c" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="1211a88d-4ed5-49b3-8019-963851214766" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_7028e0ec2d0e439f8e5cdece83074a1c = function() {
+            var renderPlotly_1211a88d4ed549b38019963851214766 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"carpet","y":[2.0,3.5,4.0,3.0,4.5,5.0,5.5,6.5,7.5,8.0,8.5,10.0],"a":[4.0,4.0,4.0,4.5,4.5,4.5,5.0,5.0,5.0,6.0,6.0,6.0],"b":[1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0],"carpet":"carpetIdentifier"},{"type":"scattercarpet","name":"Bubble","mode":"markers","a":[4.0,5.0,5.0,6.0],"b":[1.0,1.0,2.0,3.0],"carpet":"carpetIdentifier","marker":{"size":[5,10,15,20]}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('7028e0ec-2d0e-439f-8e5c-dece83074a1c', data, layout, config);
+            Plotly.newPlot('1211a88d-4ed5-49b3-8019-963851214766', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_7028e0ec2d0e439f8e5cdece83074a1c();
+                    renderPlotly_1211a88d4ed549b38019963851214766();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_7028e0ec2d0e439f8e5cdece83074a1c();
+                renderPlotly_1211a88d4ed549b38019963851214766();
             }
 </script>
 

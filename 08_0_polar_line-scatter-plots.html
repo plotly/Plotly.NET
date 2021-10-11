@@ -41,7 +41,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.9</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.10</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -407,29 +407,29 @@ Each data point is determined by the distance from the pole (the radial coordina
 <p>use <code>Chart.PointPolar</code> to create a polar plot that displays points on a polar coordinate system:</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="id">pointPolar</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 7)" onmouseover="showTip(event, 'fs7', 7)" class="id">PointPolar</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs3', 8)" onmouseover="showTip(event, 'fs3', 8)" class="id">radial</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs4', 9)" onmouseover="showTip(event, 'fs4', 9)" class="id">theta</span><span class="pn">)</span>
 </code></pre>
-<div id="d2a20ecc-2243-406d-af0c-c2934b19e250" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="e280e8c1-8f62-46d1-9411-914b6e3fd252" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_d2a20ecc2243406daf0cc2934b19e250 = function() {
+            var renderPlotly_e280e8c18f6246d19411914b6e3fd252 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatterpolar","mode":"markers","r":[1,2,3,4,5,6,7],"theta":[0,45,90,135,200,320,184],"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('d2a20ecc-2243-406d-af0c-c2934b19e250', data, layout, config);
+            Plotly.newPlot('e280e8c1-8f62-46d1-9411-914b6e3fd252', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_d2a20ecc2243406daf0cc2934b19e250();
+                    renderPlotly_e280e8c18f6246d19411914b6e3fd252();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_d2a20ecc2243406daf0cc2934b19e250();
+                renderPlotly_e280e8c18f6246d19411914b6e3fd252();
             }
 </script>
 
@@ -440,29 +440,29 @@ Each data point is determined by the distance from the pole (the radial coordina
     <span onmouseout="hideTip(event, 'fs6', 14)" onmouseover="showTip(event, 'fs6', 14)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 15)" onmouseover="showTip(event, 'fs11', 15)" class="id">LinePolar</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs3', 16)" onmouseover="showTip(event, 'fs3', 16)" class="id">radial</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs4', 17)" onmouseover="showTip(event, 'fs4', 17)" class="id">theta</span><span class="pn">)</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 18)" onmouseover="showTip(event, 'fs6', 18)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 19)" onmouseover="showTip(event, 'fs12', 19)" class="id">withLineStyle</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs13', 20)" onmouseover="showTip(event, 'fs13', 20)" class="fn">Color</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs13', 21)" onmouseover="showTip(event, 'fs13', 21)" class="m">Color</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 22)" onmouseover="showTip(event, 'fs14', 22)" class="id">fromString</span> <span class="s">&quot;purple&quot;</span><span class="pn">,</span><span class="fn">Dash</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs15', 23)" onmouseover="showTip(event, 'fs15', 23)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs16', 24)" onmouseover="showTip(event, 'fs16', 24)" class="rt">DrawingStyle</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 25)" onmouseover="showTip(event, 'fs17', 25)" class="id">DashDot</span><span class="pn">)</span>
 </code></pre>
-<div id="795eda45-bb41-48f7-97cd-6d64389996e1" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="f8395aed-bf47-461f-b37e-b3ce78729548" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_795eda45bb4148f797cd6d64389996e1 = function() {
+            var renderPlotly_f8395aedbf47461fb37eb3ce78729548 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatterpolar","mode":"lines","r":[1,2,3,4,5,6,7],"theta":[0,45,90,135,200,320,184],"line":{"color":"purple","dash":"dashdot"},"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('795eda45-bb41-48f7-97cd-6d64389996e1', data, layout, config);
+            Plotly.newPlot('f8395aed-bf47-461f-b37e-b3ce78729548', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_795eda45bb4148f797cd6d64389996e1();
+                    renderPlotly_f8395aedbf47461fb37eb3ce78729548();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_795eda45bb4148f797cd6d64389996e1();
+                renderPlotly_f8395aedbf47461fb37eb3ce78729548();
             }
 </script>
 
@@ -478,29 +478,29 @@ Each data point is determined by the distance from the pole (the radial coordina
         <span class="fn">ShowMarkers</span><span class="o">=</span><span class="k">true</span>
     <span class="pn">)</span>
 </code></pre>
-<div id="cac6e92f-5b3f-4c44-ad00-a667d58c4706" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="8e3c871d-9018-450e-85eb-2078a69321b0" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_cac6e92f5b3f4c44ad00a667d58c4706 = function() {
+            var renderPlotly_8e3c871d9018450e85eb2078a69321b0 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatterpolar","mode":"lines+markers+text","r":[1,2,3,4,5,6,7],"theta":[0,45,90,135,200,320,184],"line":{"shape":"spline"},"marker":{},"text":["one","two","three","four","five","six","seven"],"textposition":"top center"}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('cac6e92f-5b3f-4c44-ad00-a667d58c4706', data, layout, config);
+            Plotly.newPlot('8e3c871d-9018-450e-85eb-2078a69321b0', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_cac6e92f5b3f4c44ad00a667d58c4706();
+                    renderPlotly_8e3c871d9018450e85eb2078a69321b0();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_cac6e92f5b3f4c44ad00a667d58c4706();
+                renderPlotly_8e3c871d9018450e85eb2078a69321b0();
             }
 </script>
 

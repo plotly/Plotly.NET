@@ -35,29 +35,29 @@ use `Chart.PointPolar` to create a polar plot that displays points on a polar co
 
 *)
 let pointPolar = Chart.PointPolar(radial,theta)(* output: 
-<div id="dbb9778e-2cfc-43f3-950d-d371d407b5ee" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="eefcfea8-a305-4306-8ba4-e3d2de6bb589" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_dbb9778e2cfc43f3950dd371d407b5ee = function() {
+            var renderPlotly_eefcfea8a30543068ba4e3d2de6bb589 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatterpolar","mode":"markers","r":[1,2,3,4,5,6,7],"theta":[0,45,90,135,200,320,184],"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('dbb9778e-2cfc-43f3-950d-d371d407b5ee', data, layout, config);
+            Plotly.newPlot('eefcfea8-a305-4306-8ba4-e3d2de6bb589', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_dbb9778e2cfc43f3950dd371d407b5ee();
+                    renderPlotly_eefcfea8a30543068ba4e3d2de6bb589();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_dbb9778e2cfc43f3950dd371d407b5ee();
+                renderPlotly_eefcfea8a30543068ba4e3d2de6bb589();
             }
 </script>
 *)
@@ -72,29 +72,29 @@ You can for example change the line style using `Chart.withLineStyle`
 let linePolar = 
     Chart.LinePolar(radial,theta)
     |> Chart.withLineStyle(Color=Color.fromString "purple",Dash=StyleParam.DrawingStyle.DashDot)(* output: 
-<div id="c28006df-84c4-451c-8b76-06ed7fac155b" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="41976640-f902-4425-9782-586bba796f6b" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_c28006df84c4451c8b7606ed7fac155b = function() {
+            var renderPlotly_41976640f90244259782586bba796f6b = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatterpolar","mode":"lines","r":[1,2,3,4,5,6,7],"theta":[0,45,90,135,200,320,184],"line":{"color":"purple","dash":"dashdot"},"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('c28006df-84c4-451c-8b76-06ed7fac155b', data, layout, config);
+            Plotly.newPlot('41976640-f902-4425-9782-586bba796f6b', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_c28006df84c4451c8b7606ed7fac155b();
+                    renderPlotly_41976640f90244259782586bba796f6b();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_c28006df84c4451c8b7606ed7fac155b();
+                renderPlotly_41976640f90244259782586bba796f6b();
             }
 </script>
 *)
@@ -114,29 +114,29 @@ let splinePolar =
         TextPosition=StyleParam.TextPosition.TopCenter,
         ShowMarkers=true
     )(* output: 
-<div id="d2d2c482-c92c-4f55-a396-a3c584106145" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="31b21828-704d-430d-ad6f-712f918cae16" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_d2d2c482c92c4f55a396a3c584106145 = function() {
+            var renderPlotly_31b21828704d430dad6f712f918cae16 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatterpolar","mode":"lines+markers+text","r":[1,2,3,4,5,6,7],"theta":[0,45,90,135,200,320,184],"line":{"shape":"spline"},"marker":{},"text":["one","two","three","four","five","six","seven"],"textposition":"top center"}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('d2d2c482-c92c-4f55-a396-a3c584106145', data, layout, config);
+            Plotly.newPlot('31b21828-704d-430d-ad6f-712f918cae16', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_d2d2c482c92c4f55a396a3c584106145();
+                    renderPlotly_31b21828704d430dad6f712f918cae16();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_d2d2c482c92c4f55a396a3c584106145();
+                renderPlotly_31b21828704d430dad6f712f918cae16();
             }
 </script>
 *)

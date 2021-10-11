@@ -31,29 +31,29 @@ let icicle =
         TilingFlip = StyleParam.TilingFlip.Y, // flip in the Y direction (grow up instead of down)
         PathBarEdgeShape = StyleParam.PathbarEdgeShape.BackSlash
     )(* output: 
-<div id="3b889cd3-baa3-4764-a4e4-36547bf3af36" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="624d1ef3-0ed6-4183-849a-99a295a7707c" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_3b889cd3baa34764a4e436547bf3af36 = function() {
+            var renderPlotly_624d1ef30ed64183849a99a295a7707c = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"icicle","parents":["","Eve","Eve","Seth","Seth","Eve","Eve","Awan","Eve"],"labels":["Eve","Cain","Seth","Enos","Noam","Abel","Awan","Enoch","Azura"],"tiling":{"flip":"y","orientation":"v"},"pathbar":{"edgeshape":"\\"},"marker":{"colorscale":"Viridis","showscale":true}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('3b889cd3-baa3-4764-a4e4-36547bf3af36', data, layout, config);
+            Plotly.newPlot('624d1ef3-0ed6-4183-849a-99a295a7707c', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_3b889cd3baa34764a4e436547bf3af36();
+                    renderPlotly_624d1ef30ed64183849a99a295a7707c();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_3b889cd3baa34764a4e436547bf3af36();
+                renderPlotly_624d1ef30ed64183849a99a295a7707c();
             }
 </script>
 *)

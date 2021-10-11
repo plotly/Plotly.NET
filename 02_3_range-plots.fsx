@@ -33,29 +33,29 @@ let range1 =
         StyleParam.Mode.Lines_Markers,
         Color = Color.fromString "grey",
         RangeColor = Color.fromString "lightblue")(* output: 
-<div id="0a1fda44-c288-4aa2-9b9b-7b4d2a5f8d70" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="d0b93977-dee1-4cc0-92af-1c8dc0b378a0" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_0a1fda44c2884aa29b9b7b4d2a5f8d70 = function() {
+            var renderPlotly_d0b93977dee14cc092af1c8dc0b378a0 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
-            var data = [{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[1.4631075064945536,0.9896315054454056,4.937768704228927,0.7727651271376597,2.1811028808267334,2.312742042733702,2.220901114736172,1.0855778612129288,2.7762667561305068,0.7253973985674779],"fillcolor":"lightblue","name":"lower","showlegend":false,"line":{"width":0.0},"marker":{"color":"lightblue"}},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.116020951008434,1.539234940446557,5.0117393983582685,1.7038730835560119,3.2565445398243815,2.765980509233652,2.8366385420489304,1.6779108742149131,4.064846589027367,1.2095173286318395],"fill":"tonexty","fillcolor":"lightblue","name":"upper","showlegend":false,"line":{"width":0.0},"marker":{"color":"lightblue"}},{"type":"scatter","mode":"lines+markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"fillcolor":"grey","line":{"color":"grey"},"marker":{"color":"grey"}}];
+            var data = [{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[1.7168919819951487,1.3416594666622856,4.5093940633858525,0.6239775415155933,2.8395002218147276,2.2302957632254325,1.5431028856165256,0.6812790744850781,3.1531715493896844,0.8299703187448766],"fillcolor":"lightblue","name":"lower","showlegend":false,"line":{"width":0.0},"marker":{"color":"lightblue"}},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.7972062373520834,1.8490042748623547,5.003893097864414,2.0474030080006473,3.2145507630028534,2.9066412013055016,3.2244835988266782,2.305691180194584,3.570514101102256,1.4990815122141883],"fill":"tonexty","fillcolor":"lightblue","name":"upper","showlegend":false,"line":{"width":0.0},"marker":{"color":"lightblue"}},{"type":"scatter","mode":"lines+markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"fillcolor":"grey","line":{"color":"grey"},"marker":{"color":"grey"}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('0a1fda44-c288-4aa2-9b9b-7b4d2a5f8d70', data, layout, config);
+            Plotly.newPlot('d0b93977-dee1-4cc0-92af-1c8dc0b378a0', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_0a1fda44c2884aa29b9b7b4d2a5f8d70();
+                    renderPlotly_d0b93977dee14cc092af1c8dc0b378a0();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_0a1fda44c2884aa29b9b7b4d2a5f8d70();
+                renderPlotly_d0b93977dee14cc092af1c8dc0b378a0();
             }
 </script>
 *)
