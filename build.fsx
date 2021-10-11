@@ -1,3 +1,4 @@
+#if FAKE
 #r "paket:
 nuget BlackFox.Fake.BuildTask
 nuget Fake.Core.Target
@@ -15,12 +16,28 @@ nuget Fake.Api.Github
 nuget Fake.DotNet.Testing.Expecto 
 nuget Fake.Tools.Git //"
 
-#r "FSharp.Compiler.Service.dll"
-
+#endif
 #if !FAKE
+#r "nuget: BlackFox.Fake.BuildTask"
+#r "nuget: Fake.Core.Target"
+#r "nuget: Fake.Core.Process"
+#r "nuget: Fake.Core.ReleaseNotes"
+#r "nuget: Fake.IO.FileSystem"
+#r "nuget: Fake.DotNet.Cli"
+#r "nuget: Fake.DotNet.MSBuild"
+#r "nuget: Fake.DotNet.AssemblyInfoFile"
+#r "nuget: Fake.DotNet.Paket"
+#r "nuget: Fake.DotNet.FSFormatting"
+#r "nuget: Fake.DotNet.Fsi"
+#r "nuget: Fake.DotNet.NuGet"
+#r "nuget: Fake.Api.Github"
+#r "nuget: Fake.DotNet.Testing.Expecto"
+#r "nuget: Fake.Tools.Git"
 #load "./.fake/build.fsx/intellisense.fsx"
 #r "netstandard" // Temp fix for https://github.com/dotnet/fsharp/issues/5216
 #endif
+
+#r "FSharp.Compiler.Service.dll"
 
 open BlackFox.Fake
 open System.IO
