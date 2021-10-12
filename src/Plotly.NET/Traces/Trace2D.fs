@@ -595,55 +595,135 @@ type Trace2DStyle() =
     // Applies the styles of box plot plot to TraceObjects 
     static member BoxPlot
         (            
-            [<Optional;DefaultParameterValue(null)>] ?Y,           
-            [<Optional;DefaultParameterValue(null)>] ?X,           
-            [<Optional;DefaultParameterValue(null)>] ?X0,          
-            [<Optional;DefaultParameterValue(null)>] ?Y0,          
-            [<Optional;DefaultParameterValue(null)>] ?Whiskerwidth,
-            [<Optional;DefaultParameterValue(null)>] ?Boxpoints,   
-            [<Optional;DefaultParameterValue(null)>] ?Boxmean,
-            [<Optional;DefaultParameterValue(null)>] ?Jitter,      
-            [<Optional;DefaultParameterValue(null)>] ?Pointpos,    
-            [<Optional;DefaultParameterValue(null)>] ?Orientation, 
-            [<Optional;DefaultParameterValue(null)>] ?Fillcolor : Color,                   
-            [<Optional;DefaultParameterValue(null)>] ?Marker:Marker,
-            [<Optional;DefaultParameterValue(null)>] ?Line:Line,
-            [<Optional;DefaultParameterValue(null)>] ?Alignmentgroup,
-            [<Optional;DefaultParameterValue(null)>] ?Offsetgroup,
-            [<Optional;DefaultParameterValue(null)>] ?Notched:bool,
-            [<Optional;DefaultParameterValue(null)>] ?NotchWidth:float,
-            [<Optional;DefaultParameterValue(null)>] ?QuartileMethod:StyleParam.QuartileMethod,
-            [<Optional;DefaultParameterValue(null)>] ?xAxis,       
-            [<Optional;DefaultParameterValue(null)>] ?yAxis,       
-            [<Optional;DefaultParameterValue(null)>] ?Ysrc,        
-            [<Optional;DefaultParameterValue(null)>] ?Xsrc        
+            [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+            [<Optional;DefaultParameterValue(null)>] ?Visible           : StyleParam.Visible,
+            [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+            [<Optional;DefaultParameterValue(null)>] ?LegendRank        : int,
+            [<Optional;DefaultParameterValue(null)>] ?LegendGroup       : string,
+            [<Optional;DefaultParameterValue(null)>] ?LegendGroupTitle  : Title,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity           : float, 
+            [<Optional;DefaultParameterValue(null)>] ?Ids               : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?X                 : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?X0                : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?DX                : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?Y                 : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Y0                : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?DY                : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?Width             : float,
+            [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverText         : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiHoverText    : seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverInfo         : StyleParam.HoverInfo,
+            [<Optional;DefaultParameterValue(null)>] ?HoverTemplate     : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiHoverTemplate: seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?XHoverFormat      : string,
+            [<Optional;DefaultParameterValue(null)>] ?YHoverFormat      : string,
+            [<Optional;DefaultParameterValue(null)>] ?Meta              : string,
+            [<Optional;DefaultParameterValue(null)>] ?CustomData        : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?XAxis             : StyleParam.LinearAxisId,
+            [<Optional;DefaultParameterValue(null)>] ?YAxis             : StyleParam.LinearAxisId,
+            [<Optional;DefaultParameterValue(null)>] ?Orientation       : StyleParam.Orientation,
+            [<Optional;DefaultParameterValue(null)>] ?AlignmentGroup    : string,
+            [<Optional;DefaultParameterValue(null)>] ?OffsetGroup       : string,
+            [<Optional;DefaultParameterValue(null)>] ?XPeriod           : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?XPeriodAlignment  : StyleParam.PeriodAlignment,            
+            [<Optional;DefaultParameterValue(null)>] ?XPeriod0          : #IConvertible,            
+            [<Optional;DefaultParameterValue(null)>] ?YPeriod           : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?YPeriodAlignment  : StyleParam.PeriodAlignment,
+            [<Optional;DefaultParameterValue(null)>] ?YPeriod0          : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+            [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
+            [<Optional;DefaultParameterValue(null)>] ?BoxMean           : StyleParam.BoxMean,
+            [<Optional;DefaultParameterValue(null)>] ?BoxPoints         : StyleParam.BoxPoints,   
+            [<Optional;DefaultParameterValue(null)>] ?Notched           : bool,
+            [<Optional;DefaultParameterValue(null)>] ?NotchWidth        : float,
+            [<Optional;DefaultParameterValue(null)>] ?Whiskerwidth      : float,
+            [<Optional;DefaultParameterValue(null)>] ?Q1                : seq<IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Median            : seq<IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Q3                : seq<IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?LowerFence        : seq<IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?UpperFence        : seq<IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?NotchSpan         : seq<IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Mean              : seq<IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?SD                : seq<IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?QuartileMethod    : StyleParam.QuartileMethod,
+            [<Optional;DefaultParameterValue(null)>] ?SelectedPoints    : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Selected          : Selection,
+            [<Optional;DefaultParameterValue(null)>] ?Unselected        : Selection,
+            [<Optional;DefaultParameterValue(null)>] ?FillColor         : Color,                   
+            [<Optional;DefaultParameterValue(null)>] ?HoverLabel        : Hoverlabel,
+            [<Optional;DefaultParameterValue(null)>] ?HoverOn           : StyleParam.HoverOn,
+            [<Optional;DefaultParameterValue(null)>] ?PointPos          : float,    
+            [<Optional;DefaultParameterValue(null)>] ?Jitter            : float,      
+            [<Optional;DefaultParameterValue(null)>] ?XCalendar         : StyleParam.Calendar,
+            [<Optional;DefaultParameterValue(null)>] ?YCalendar         : StyleParam.Calendar,
+            [<Optional;DefaultParameterValue(null)>] ?UIRevision        : string
 
         ) =
             (fun (boxPlot:('T :> Trace)) ->
 
-                Y               |> DynObj.setValueOpt boxPlot "y"           
-                X               |> DynObj.setValueOpt boxPlot "x"           
-                X0              |> DynObj.setValueOpt boxPlot "x0"          
-                Y0              |> DynObj.setValueOpt boxPlot "y0"          
-                Whiskerwidth    |> DynObj.setValueOpt boxPlot "whiskerwidth"
-                Boxpoints       |> DynObj.setValueOptBy boxPlot "boxpoints"  StyleParam.Boxpoints.convert  
-                Boxmean         |> DynObj.setValueOptBy boxPlot "boxmean"    StyleParam.BoxMean.convert    
-                Jitter          |> DynObj.setValueOpt boxPlot "jitter"      
-                Pointpos        |> DynObj.setValueOpt boxPlot "pointpos"    
-                Orientation     |> DynObj.setValueOptBy boxPlot "orientation" StyleParam.Orientation.convert
-                Fillcolor       |> DynObj.setValueOpt boxPlot "fillcolor"   
-                Marker          |> DynObj.setValueOpt boxPlot "marker"   
-                Line            |> DynObj.setValueOpt boxPlot "line"   
-                Alignmentgroup  |> DynObj.setValueOpt boxPlot "alignmentgroup"   
-                Offsetgroup     |> DynObj.setValueOpt boxPlot "offsetgroup"                     
-                Notched         |> DynObj.setValueOpt boxPlot "notched"   
-                NotchWidth      |> DynObj.setValueOpt boxPlot "notchwidth"   
-                QuartileMethod  |> DynObj.setValueOptBy boxPlot "quartilemethod" StyleParam.QuartileMethod.convert
-
-                xAxis           |> DynObj.setValueOpt boxPlot "xaxis"       
-                yAxis           |> DynObj.setValueOpt boxPlot "yaxis"       
-                Ysrc            |> DynObj.setValueOpt boxPlot "ysrc"        
-                Xsrc            |> DynObj.setValueOpt boxPlot "xsrc"        
+                Name                                |> DynObj.setValueOpt boxPlot "name"              
+                Visible                             |> DynObj.setValueOptBy boxPlot "visible" StyleParam.Visible.convert
+                ShowLegend                          |> DynObj.setValueOpt boxPlot "showlegend"            
+                LegendRank                          |> DynObj.setValueOpt boxPlot "legendrank"            
+                LegendGroup                         |> DynObj.setValueOpt boxPlot "legendgroup"           
+                LegendGroupTitle                    |> DynObj.setValueOpt boxPlot "legendgrouptitle"      
+                Opacity                             |> DynObj.setValueOpt boxPlot "opacity"               
+                Ids                                 |> DynObj.setValueOpt boxPlot "ids"                   
+                X                                   |> DynObj.setValueOpt boxPlot "x"                     
+                X0                                  |> DynObj.setValueOpt boxPlot "x0"                    
+                DX                                  |> DynObj.setValueOpt boxPlot "dx"                    
+                Y                                   |> DynObj.setValueOpt boxPlot "y"                     
+                Y0                                  |> DynObj.setValueOpt boxPlot "y0"                    
+                DY                                  |> DynObj.setValueOpt boxPlot "dy"                    
+                Width                               |> DynObj.setValueOpt boxPlot "width"                 
+                (Text, MultiText)                   |> DynObj.setSingleOrMultiOpt boxPlot "text"
+                (HoverText, MultiHoverText)         |> DynObj.setSingleOrMultiOpt boxPlot "hovertext"
+                HoverInfo                           |> DynObj.setValueOptBy boxPlot "hoverinfo" StyleParam.HoverInfo.convert
+                (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt boxPlot "hovertemplate"
+                XHoverFormat                        |> DynObj.setValueOpt boxPlot "xhoverformat"          
+                YHoverFormat                        |> DynObj.setValueOpt boxPlot "yhoverformat"          
+                Meta                                |> DynObj.setValueOpt boxPlot "meta"                  
+                CustomData                          |> DynObj.setValueOpt boxPlot "customdata"            
+                XAxis                               |> DynObj.setValueOptBy boxPlot "xaxis" StyleParam.LinearAxisId.convert
+                YAxis                               |> DynObj.setValueOptBy boxPlot "yaxis" StyleParam.LinearAxisId.convert
+                Orientation                         |> DynObj.setValueOptBy boxPlot "orientation" StyleParam.Orientation.convert
+                AlignmentGroup                      |> DynObj.setValueOpt boxPlot "alignmentgroup"        
+                OffsetGroup                         |> DynObj.setValueOpt boxPlot "offsetgroup"           
+                XPeriod                             |> DynObj.setValueOpt boxPlot "xperiod"               
+                XPeriodAlignment                    |> DynObj.setValueOptBy boxPlot "xperiodalignment" StyleParam.PeriodAlignment.convert
+                XPeriod0                            |> DynObj.setValueOpt boxPlot "xperiod0"                
+                YPeriod                             |> DynObj.setValueOpt boxPlot "yperiod"               
+                YPeriodAlignment                    |> DynObj.setValueOptBy boxPlot "yperiodalignment" StyleParam.PeriodAlignment.convert
+                YPeriod0                            |> DynObj.setValueOpt boxPlot "yperiod0"              
+                Marker                              |> DynObj.setValueOpt boxPlot "marker"                
+                Line                                |> DynObj.setValueOpt boxPlot "line"                  
+                BoxMean                             |> DynObj.setValueOptBy boxPlot "boxmean" StyleParam.BoxMean.convert
+                BoxPoints                           |> DynObj.setValueOptBy boxPlot "boxpoints" StyleParam.BoxPoints.convert
+                Notched                             |> DynObj.setValueOpt boxPlot "notched"               
+                NotchWidth                          |> DynObj.setValueOpt boxPlot "notchwidth"            
+                Whiskerwidth                        |> DynObj.setValueOpt boxPlot "whiskerwidth"          
+                Q1                                  |> DynObj.setValueOpt boxPlot "q1"                    
+                Median                              |> DynObj.setValueOpt boxPlot "median"                
+                Q3                                  |> DynObj.setValueOpt boxPlot "q3"                    
+                LowerFence                          |> DynObj.setValueOpt boxPlot "lowerfence"            
+                UpperFence                          |> DynObj.setValueOpt boxPlot "upperfence"            
+                NotchSpan                           |> DynObj.setValueOpt boxPlot "notchspan"             
+                Mean                                |> DynObj.setValueOpt boxPlot "mean"                  
+                SD                                  |> DynObj.setValueOpt boxPlot "sd"                    
+                QuartileMethod                      |> DynObj.setValueOptBy boxPlot "quartilemethod" StyleParam.QuartileMethod.convert
+                SelectedPoints                      |> DynObj.setValueOpt boxPlot "selectedpoints"        
+                Selected                            |> DynObj.setValueOpt boxPlot "selected"              
+                Unselected                          |> DynObj.setValueOpt boxPlot "unselected"            
+                FillColor                           |> DynObj.setValueOpt boxPlot "fillcolor"             
+                HoverLabel                          |> DynObj.setValueOpt boxPlot "hoverlabel"            
+                HoverOn                             |> DynObj.setValueOptBy boxPlot "hoveron" StyleParam.HoverOn.convert
+                PointPos                            |> DynObj.setValueOpt boxPlot "pointpos"             
+                Jitter                              |> DynObj.setValueOpt boxPlot "jitter"               
+                XCalendar                           |> DynObj.setValueOptBy boxPlot "xcalendar" StyleParam.Calendar.convert
+                YCalendar                           |> DynObj.setValueOptBy boxPlot "ycalendar" StyleParam.Calendar.convert
+                UIRevision                          |> DynObj.setValueOpt boxPlot "uirevision"            
                     
                 // out ->
                 boxPlot
@@ -688,7 +768,7 @@ type Trace2DStyle() =
                 X                |> DynObj.setValueOpt boxPlot "x"           
                 X0               |> DynObj.setValueOpt boxPlot "x0"          
                 Y0               |> DynObj.setValueOpt boxPlot "y0"          
-                Points           |> DynObj.setValueOptBy boxPlot "points"  StyleParam.Jitterpoints.convert      
+                Points           |> DynObj.setValueOptBy boxPlot "points"  StyleParam.JitterPoints.convert      
                 Jitter           |> DynObj.setValueOpt boxPlot "jitter"      
                 Pointpos         |> DynObj.setValueOpt boxPlot "pointpos"    
                 Orientation      |> DynObj.setValueOptBy boxPlot "orientation" StyleParam.Orientation.convert

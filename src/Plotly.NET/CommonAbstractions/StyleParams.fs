@@ -224,7 +224,7 @@ module StyleParam =
 //--------------------------
 
     [<RequireQualifiedAccess>]
-    type Boxpoints =
+    type BoxPoints =
         | Outliers
         | All
         | Suspectedoutliers
@@ -236,9 +236,9 @@ module StyleParam =
             | Suspectedoutliers -> "suspectedoutliers"
             | False             -> "false"
 
-        static member convert = Boxpoints.toString >> box
-        override this.ToString() = this |> Boxpoints.toString
-        member this.Convert() = this |> Boxpoints.convert
+        static member convert = BoxPoints.toString >> box
+        override this.ToString() = this |> BoxPoints.toString
+        member this.Convert() = this |> BoxPoints.convert
 
 
 
@@ -1235,7 +1235,7 @@ module StyleParam =
 // #J#
 
     [<RequireQualifiedAccess>]
-    type Jitterpoints = Boxpoints
+    type JitterPoints = BoxPoints
 
 //--------------------------
 // #K#
