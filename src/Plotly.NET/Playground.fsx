@@ -87,7 +87,7 @@
 #load "WaterfallConnector.fs"
 #load "FunnelConnector.fs"
 #load "Box.fs"
-#load "Meanline.fs"
+#load "MeanLine.fs"
 #load "Bins.fs"
 #load "Cumulative.fs"
 #load "Error.fs"
@@ -160,6 +160,39 @@ open FSharpAux
 
 open System
 open System.IO
+
+
+let violin1Chart =
+    let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+    let x = ["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"bin1"]
+    Chart.Violin (
+        x,y,
+        Points=StyleParam.JitterPoints.All
+    )
+
+let violin2Chart =
+    let x =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+    let y = ["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"bin1"]
+    Chart.Violin(
+        x,y,
+        Jitter=0.1,
+        Points=StyleParam.JitterPoints.All,
+        Orientation=StyleParam.Orientation.Horizontal,
+        MeanLine=MeanLine.init(Visible=true)
+    )
+
+let violin3Chart =
+    let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+    let y' =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+    [
+        Chart.Violin ("y" ,y,Name="bin1",Jitter=0.1,Points=StyleParam.JitterPoints.All);
+        Chart.Violin ("y'",y',Name="bin2",Jitter=0.1,Points=StyleParam.JitterPoints.All);
+    ]
+    |> Chart.combine
+
+violin1Chart |> Chart.show
+violin2Chart |> Chart.show
+violin3Chart |> Chart.show
 
 let character   = ["Eve"; "Cain"; "Seth"; "Enos"; "Noam"; "Abel"; "Awan"; "Enoch"; "Azura"]
 let parent      = [""; "Eve"; "Eve"; "Seth"; "Seth"; "Eve"; "Eve"; "Awan"; "Eve" ]

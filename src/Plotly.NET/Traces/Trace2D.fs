@@ -777,7 +777,7 @@ type Trace2DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?PointPos          : float,    
             [<Optional;DefaultParameterValue(null)>] ?Jitter            : float,      
             [<Optional;DefaultParameterValue(null)>] ?MeanLine          : MeanLine,
-            [<Optional;DefaultParameterValue(null)>] ?Points            : StyleParam.BoxPoints,
+            [<Optional;DefaultParameterValue(null)>] ?Points            : StyleParam.JitterPoints,
             [<Optional;DefaultParameterValue(null)>] ?ScaleGroup        : string,
             [<Optional;DefaultParameterValue(null)>] ?ScaleMode         : StyleParam.ScaleMode,
             [<Optional;DefaultParameterValue(null)>] ?Side              : StyleParam.ViolinSide,
@@ -788,54 +788,54 @@ type Trace2DStyle() =
         ) =
             (fun (violin:('T :> Trace)) ->
 
-                Name                                |> DynObj.setValueOpt violin "Name"
-                Visible                             |> DynObj.setValueOptBy violin "Visible" StyleParam.Visible.convert
-                ShowLegend                          |> DynObj.setValueOpt violin "ShowLegend"           
-                LegendRank                          |> DynObj.setValueOpt violin "LegendRank"           
-                LegendGroup                         |> DynObj.setValueOpt violin "LegendGroup"          
-                LegendGroupTitle                    |> DynObj.setValueOpt violin "LegendGroupTitle"     
-                Opacity                             |> DynObj.setValueOpt violin "Opacity"              
-                Ids                                 |> DynObj.setValueOpt violin "Ids"                  
-                X                                   |> DynObj.setValueOpt violin "X"                    
-                X0                                  |> DynObj.setValueOpt violin "X0"                  
-                DX                                  |> DynObj.setValueOpt violin "DX"                  
-                Y                                   |> DynObj.setValueOpt violin "Y"                   
-                Y0                                  |> DynObj.setValueOpt violin "Y0"                  
-                DY                                  |> DynObj.setValueOpt violin "DY"                  
-                Width                               |> DynObj.setValueOpt violin "Width"               
+                Name                                |> DynObj.setValueOpt violin "name"
+                Visible                             |> DynObj.setValueOptBy violin "visible" StyleParam.Visible.convert
+                ShowLegend                          |> DynObj.setValueOpt violin "showlegend"           
+                LegendRank                          |> DynObj.setValueOpt violin "legendrank"           
+                LegendGroup                         |> DynObj.setValueOpt violin "legendgroup"          
+                LegendGroupTitle                    |> DynObj.setValueOpt violin "legendgrouptitle"     
+                Opacity                             |> DynObj.setValueOpt violin "opacity"              
+                Ids                                 |> DynObj.setValueOpt violin "ids"                  
+                X                                   |> DynObj.setValueOpt violin "x"                    
+                X0                                  |> DynObj.setValueOpt violin "x0"                  
+                DX                                  |> DynObj.setValueOpt violin "dx"                  
+                Y                                   |> DynObj.setValueOpt violin "y"                   
+                Y0                                  |> DynObj.setValueOpt violin "y0"                  
+                DY                                  |> DynObj.setValueOpt violin "dy"                  
+                Width                               |> DynObj.setValueOpt violin "width"               
                 (Text, MultiText)                   |> DynObj.setSingleOrMultiOpt violin "text"
                 (HoverText, MultiHoverText)         |> DynObj.setSingleOrMultiOpt violin "hovertext"
                 HoverInfo                           |> DynObj.setValueOptBy violin "hoverinfo" StyleParam.HoverInfo.convert
                 (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt violin "hovertemplate"
-                XHoverFormat                        |> DynObj.setValueOpt violin "XHoverFormat"         
-                YHoverFormat                        |> DynObj.setValueOpt violin "YHoverFormat"         
-                Meta                                |> DynObj.setValueOpt violin "Meta"                 
-                CustomData                          |> DynObj.setValueOpt violin "CustomData"           
-                XAxis                               |> DynObj.setValueOptBy violin "XAxis" StyleParam.LinearAxisId.convert
-                YAxis                               |> DynObj.setValueOptBy violin "YAxis" StyleParam.LinearAxisId.convert
-                Orientation                         |> DynObj.setValueOptBy violin "Orientation" StyleParam.Orientation.convert
-                AlignmentGroup                      |> DynObj.setValueOpt violin "AlignmentGroup"       
-                OffsetGroup                         |> DynObj.setValueOpt violin "OffsetGroup"          
-                Marker                              |> DynObj.setValueOpt violin "Marker"               
-                Line                                |> DynObj.setValueOpt violin "Line"                 
-                Box                                 |> DynObj.setValueOpt violin "Box"                  
-                SelectedPoints                      |> DynObj.setValueOpt violin "SelectedPoints"       
-                Selected                            |> DynObj.setValueOpt violin "Selected"             
-                Unselected                          |> DynObj.setValueOpt violin "Unselected"           
-                BandWidth                           |> DynObj.setValueOpt violin "BandWidth"            
-                FillColor                           |> DynObj.setValueOpt violin "FillColor"                       
-                HoverLabel                          |> DynObj.setValueOpt violin "HoverLabel"           
-                HoverOn                             |> DynObj.setValueOptBy violin "HoverOn" StyleParam.HoverOn.convert
-                PointPos                            |> DynObj.setValueOpt violin "PointPos"             
-                Jitter                              |> DynObj.setValueOpt violin "Jitter"               
-                MeanLine                            |> DynObj.setValueOpt violin "MeanLine"             
-                Points                              |> DynObj.setValueOptBy violin "Points" StyleParam.BoxPoints.convert
-                ScaleGroup                          |> DynObj.setValueOpt violin "ScaleGroup"           
-                ScaleMode                           |> DynObj.setValueOptBy violin "ScaleMode" StyleParam.ScaleMode.convert
-                Side                                |> DynObj.setValueOptBy violin "Side" StyleParam.ViolinSide.convert
-                Span                                |> DynObj.setValueOptBy violin "Span" StyleParam.Range.convert
-                SpanMode                            |> DynObj.setValueOptBy violin "SpanMode" StyleParam.SpanMode.convert
-                UIRevision                          |> DynObj.setValueOpt violin "UIRevision"           
+                XHoverFormat                        |> DynObj.setValueOpt violin "xhoverformat"         
+                YHoverFormat                        |> DynObj.setValueOpt violin "yhoverformat"         
+                Meta                                |> DynObj.setValueOpt violin "meta"                 
+                CustomData                          |> DynObj.setValueOpt violin "customdata"           
+                XAxis                               |> DynObj.setValueOptBy violin "xaxis" StyleParam.LinearAxisId.convert
+                YAxis                               |> DynObj.setValueOptBy violin "yaxis" StyleParam.LinearAxisId.convert
+                Orientation                         |> DynObj.setValueOptBy violin "orientation" StyleParam.Orientation.convert
+                AlignmentGroup                      |> DynObj.setValueOpt violin "alignmentgroup"       
+                OffsetGroup                         |> DynObj.setValueOpt violin "offsetgroup"          
+                Marker                              |> DynObj.setValueOpt violin "marker"               
+                Line                                |> DynObj.setValueOpt violin "line"                 
+                Box                                 |> DynObj.setValueOpt violin "box"                  
+                SelectedPoints                      |> DynObj.setValueOpt violin "selectedpoints"       
+                Selected                            |> DynObj.setValueOpt violin "selected"             
+                Unselected                          |> DynObj.setValueOpt violin "unselected"           
+                BandWidth                           |> DynObj.setValueOpt violin "bandwidth"            
+                FillColor                           |> DynObj.setValueOpt violin "fillcolor"                       
+                HoverLabel                          |> DynObj.setValueOpt violin "hoverlabel"           
+                HoverOn                             |> DynObj.setValueOptBy violin "hoveron" StyleParam.HoverOn.convert
+                PointPos                            |> DynObj.setValueOpt violin "pointpos"             
+                Jitter                              |> DynObj.setValueOpt violin "jitter"               
+                MeanLine                            |> DynObj.setValueOpt violin "meanline"             
+                Points                              |> DynObj.setValueOptBy violin "points" StyleParam.JitterPoints.convert
+                ScaleGroup                          |> DynObj.setValueOpt violin "scalegroup"           
+                ScaleMode                           |> DynObj.setValueOptBy violin "scalemode" StyleParam.ScaleMode.convert
+                Side                                |> DynObj.setValueOptBy violin "side" StyleParam.ViolinSide.convert
+                Span                                |> DynObj.setValueOptBy violin "span" StyleParam.Range.convert
+                SpanMode                            |> DynObj.setValueOptBy violin "spanmode" StyleParam.SpanMode.convert
+                UIRevision                          |> DynObj.setValueOpt violin "uirevision"           
 
                 violin
             ) 
