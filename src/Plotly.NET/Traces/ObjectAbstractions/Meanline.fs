@@ -7,7 +7,7 @@ open System
 open System.Runtime.InteropServices
 
 /// Meanline type inherits from dynamic object (parent violin)
-type Meanline () =
+type MeanLine () =
     inherit DynamicObj ()
 
     /// Initialized Line object
@@ -17,8 +17,8 @@ type Meanline () =
             [<Optional;DefaultParameterValue(null)>] ?Color: Color,
             [<Optional;DefaultParameterValue(null)>] ?Width: float
         ) =
-            Meanline () 
-            |> Meanline.style
+            MeanLine () 
+            |> MeanLine.style
                 (
                     ?Visible    = Visible,
                     ?Color      = Color  ,
@@ -33,7 +33,7 @@ type Meanline () =
             [<Optional;DefaultParameterValue(null)>] ?Color: Color,
             [<Optional;DefaultParameterValue(null)>] ?Width: float
         ) =
-            (fun (line:Meanline) -> 
+            (fun (line:MeanLine) -> 
                 Visible    |> DynObj.setValueOpt line "visible"
                 Color      |> DynObj.setValueOpt line "color"
                 Width      |> DynObj.setValueOpt line "width"

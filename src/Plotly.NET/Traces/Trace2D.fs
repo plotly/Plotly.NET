@@ -733,71 +733,111 @@ type Trace2DStyle() =
     // Applies the styles of violin plot plot to TraceObjects 
     static member Violin
         (            
-            [<Optional;DefaultParameterValue(null)>] ?Y,           
-            [<Optional;DefaultParameterValue(null)>] ?X,           
-            [<Optional;DefaultParameterValue(null)>] ?X0,          
-            [<Optional;DefaultParameterValue(null)>] ?Y0,          
-            [<Optional;DefaultParameterValue(null)>] ?Width,
-            [<Optional;DefaultParameterValue(null)>] ?Marker:Marker,
-            [<Optional;DefaultParameterValue(null)>] ?Line:Line,
-            [<Optional;DefaultParameterValue(null)>] ?Alignmentgroup,
-            [<Optional;DefaultParameterValue(null)>] ?Offsetgroup,
-            [<Optional;DefaultParameterValue(null)>] ?Box:Box,
-            [<Optional;DefaultParameterValue(null)>] ?Bandwidth,
-            [<Optional;DefaultParameterValue(null)>] ?Meanline:Meanline,
-            [<Optional;DefaultParameterValue(null)>] ?Scalegroup,
-            [<Optional;DefaultParameterValue(null)>] ?Scalemode,
-            [<Optional;DefaultParameterValue(null)>] ?Side,
-            [<Optional;DefaultParameterValue(null)>] ?Span,
-            [<Optional;DefaultParameterValue(null)>] ?SpanMode,
-            [<Optional;DefaultParameterValue(null)>] ?Uirevision,
-            [<Optional;DefaultParameterValue(null)>] ?Points,     
-            [<Optional;DefaultParameterValue(null)>] ?Jitter,      
-            [<Optional;DefaultParameterValue(null)>] ?Pointpos,    
-            [<Optional;DefaultParameterValue(null)>] ?Orientation, 
-            [<Optional;DefaultParameterValue(null)>] ?Fillcolor: Color,   
-            [<Optional;DefaultParameterValue(null)>] ?xAxis,       
-            [<Optional;DefaultParameterValue(null)>] ?yAxis,       
-            [<Optional;DefaultParameterValue(null)>] ?Ysrc,        
-            [<Optional;DefaultParameterValue(null)>] ?Xsrc        
+            [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+            [<Optional;DefaultParameterValue(null)>] ?Visible           : StyleParam.Visible,
+            [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+            [<Optional;DefaultParameterValue(null)>] ?LegendRank        : int,
+            [<Optional;DefaultParameterValue(null)>] ?LegendGroup       : string,
+            [<Optional;DefaultParameterValue(null)>] ?LegendGroupTitle  : Title,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity           : float, 
+            [<Optional;DefaultParameterValue(null)>] ?Ids               : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?X                 : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?X0                : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?DX                : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?Y                 : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Y0                : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?DY                : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?Width             : float,
+            [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverText         : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiHoverText    : seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverInfo         : StyleParam.HoverInfo,
+            [<Optional;DefaultParameterValue(null)>] ?HoverTemplate     : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiHoverTemplate: seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?XHoverFormat      : string,
+            [<Optional;DefaultParameterValue(null)>] ?YHoverFormat      : string,
+            [<Optional;DefaultParameterValue(null)>] ?Meta              : string,
+            [<Optional;DefaultParameterValue(null)>] ?CustomData        : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?XAxis             : StyleParam.LinearAxisId,
+            [<Optional;DefaultParameterValue(null)>] ?YAxis             : StyleParam.LinearAxisId,
+            [<Optional;DefaultParameterValue(null)>] ?Orientation       : StyleParam.Orientation,
+            [<Optional;DefaultParameterValue(null)>] ?AlignmentGroup    : string,
+            [<Optional;DefaultParameterValue(null)>] ?OffsetGroup       : string,
+            [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+            [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
+            [<Optional;DefaultParameterValue(null)>] ?Box               : Box,
+            [<Optional;DefaultParameterValue(null)>] ?SelectedPoints    : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Selected          : Selection,
+            [<Optional;DefaultParameterValue(null)>] ?Unselected        : Selection,
+            [<Optional;DefaultParameterValue(null)>] ?BandWidth         : float,
+            [<Optional;DefaultParameterValue(null)>] ?FillColor         : Color,                   
+            [<Optional;DefaultParameterValue(null)>] ?HoverLabel        : Hoverlabel,
+            [<Optional;DefaultParameterValue(null)>] ?HoverOn           : StyleParam.HoverOn,
+            [<Optional;DefaultParameterValue(null)>] ?PointPos          : float,    
+            [<Optional;DefaultParameterValue(null)>] ?Jitter            : float,      
+            [<Optional;DefaultParameterValue(null)>] ?MeanLine          : MeanLine,
+            [<Optional;DefaultParameterValue(null)>] ?Points            : StyleParam.BoxPoints,
+            [<Optional;DefaultParameterValue(null)>] ?ScaleGroup        : string,
+            [<Optional;DefaultParameterValue(null)>] ?ScaleMode         : StyleParam.ScaleMode,
+            [<Optional;DefaultParameterValue(null)>] ?Side              : StyleParam.ViolinSide,
+            [<Optional;DefaultParameterValue(null)>] ?Span              : StyleParam.Range,
+            [<Optional;DefaultParameterValue(null)>] ?SpanMode          : StyleParam.SpanMode,
+            [<Optional;DefaultParameterValue(null)>] ?UIRevision        : string
 
         ) =
-            (fun (boxPlot:('T :> Trace)) ->
+            (fun (violin:('T :> Trace)) ->
 
-                Y                |> DynObj.setValueOpt boxPlot "y"           
-                X                |> DynObj.setValueOpt boxPlot "x"           
-                X0               |> DynObj.setValueOpt boxPlot "x0"          
-                Y0               |> DynObj.setValueOpt boxPlot "y0"          
-                Points           |> DynObj.setValueOptBy boxPlot "points"  StyleParam.JitterPoints.convert      
-                Jitter           |> DynObj.setValueOpt boxPlot "jitter"      
-                Pointpos         |> DynObj.setValueOpt boxPlot "pointpos"    
-                Orientation      |> DynObj.setValueOptBy boxPlot "orientation" StyleParam.Orientation.convert
-                Fillcolor        |> DynObj.setValueOpt boxPlot "fillcolor"   
-                                     
-                Width            |> DynObj.setValueOpt boxPlot "width"  
-                Marker           |> DynObj.setValueOpt boxPlot "marker"   
-                Line             |> DynObj.setValueOpt boxPlot "line" 
-                Alignmentgroup   |> DynObj.setValueOpt boxPlot "alignmentgroup"   
-                Offsetgroup      |> DynObj.setValueOpt boxPlot "offsetgroup"  
-                                    
-                Box              |> DynObj.setValueOpt boxPlot "box"  
-                Bandwidth        |> DynObj.setValueOpt boxPlot "bandwidth"  
-                Meanline         |> DynObj.setValueOpt boxPlot "meanline"  
-                Scalegroup       |> DynObj.setValueOpt boxPlot "scalegroup"  
-                Scalemode        |> DynObj.setValueOpt boxPlot "scalemode"  
-                Side             |> DynObj.setValueOpt boxPlot "side"  
-                Span             |> DynObj.setValueOpt boxPlot "span"  
-                SpanMode         |> DynObj.setValueOpt boxPlot "spanmode"  
-                Uirevision       |> DynObj.setValueOpt boxPlot "uirevision"  
+                Name                                |> DynObj.setValueOpt violin "Name"
+                Visible                             |> DynObj.setValueOptBy violin "Visible" StyleParam.Visible.convert
+                ShowLegend                          |> DynObj.setValueOpt violin "ShowLegend"           
+                LegendRank                          |> DynObj.setValueOpt violin "LegendRank"           
+                LegendGroup                         |> DynObj.setValueOpt violin "LegendGroup"          
+                LegendGroupTitle                    |> DynObj.setValueOpt violin "LegendGroupTitle"     
+                Opacity                             |> DynObj.setValueOpt violin "Opacity"              
+                Ids                                 |> DynObj.setValueOpt violin "Ids"                  
+                X                                   |> DynObj.setValueOpt violin "X"                    
+                X0                                  |> DynObj.setValueOpt violin "X0"                  
+                DX                                  |> DynObj.setValueOpt violin "DX"                  
+                Y                                   |> DynObj.setValueOpt violin "Y"                   
+                Y0                                  |> DynObj.setValueOpt violin "Y0"                  
+                DY                                  |> DynObj.setValueOpt violin "DY"                  
+                Width                               |> DynObj.setValueOpt violin "Width"               
+                (Text, MultiText)                   |> DynObj.setSingleOrMultiOpt violin "text"
+                (HoverText, MultiHoverText)         |> DynObj.setSingleOrMultiOpt violin "hovertext"
+                HoverInfo                           |> DynObj.setValueOptBy violin "hoverinfo" StyleParam.HoverInfo.convert
+                (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt violin "hovertemplate"
+                XHoverFormat                        |> DynObj.setValueOpt violin "XHoverFormat"         
+                YHoverFormat                        |> DynObj.setValueOpt violin "YHoverFormat"         
+                Meta                                |> DynObj.setValueOpt violin "Meta"                 
+                CustomData                          |> DynObj.setValueOpt violin "CustomData"           
+                XAxis                               |> DynObj.setValueOptBy violin "XAxis" StyleParam.LinearAxisId.convert
+                YAxis                               |> DynObj.setValueOptBy violin "YAxis" StyleParam.LinearAxisId.convert
+                Orientation                         |> DynObj.setValueOptBy violin "Orientation" StyleParam.Orientation.convert
+                AlignmentGroup                      |> DynObj.setValueOpt violin "AlignmentGroup"       
+                OffsetGroup                         |> DynObj.setValueOpt violin "OffsetGroup"          
+                Marker                              |> DynObj.setValueOpt violin "Marker"               
+                Line                                |> DynObj.setValueOpt violin "Line"                 
+                Box                                 |> DynObj.setValueOpt violin "Box"                  
+                SelectedPoints                      |> DynObj.setValueOpt violin "SelectedPoints"       
+                Selected                            |> DynObj.setValueOpt violin "Selected"             
+                Unselected                          |> DynObj.setValueOpt violin "Unselected"           
+                BandWidth                           |> DynObj.setValueOpt violin "BandWidth"            
+                FillColor                           |> DynObj.setValueOpt violin "FillColor"                       
+                HoverLabel                          |> DynObj.setValueOpt violin "HoverLabel"           
+                HoverOn                             |> DynObj.setValueOptBy violin "HoverOn" StyleParam.HoverOn.convert
+                PointPos                            |> DynObj.setValueOpt violin "PointPos"             
+                Jitter                              |> DynObj.setValueOpt violin "Jitter"               
+                MeanLine                            |> DynObj.setValueOpt violin "MeanLine"             
+                Points                              |> DynObj.setValueOptBy violin "Points" StyleParam.BoxPoints.convert
+                ScaleGroup                          |> DynObj.setValueOpt violin "ScaleGroup"           
+                ScaleMode                           |> DynObj.setValueOptBy violin "ScaleMode" StyleParam.ScaleMode.convert
+                Side                                |> DynObj.setValueOptBy violin "Side" StyleParam.ViolinSide.convert
+                Span                                |> DynObj.setValueOptBy violin "Span" StyleParam.Range.convert
+                SpanMode                            |> DynObj.setValueOptBy violin "SpanMode" StyleParam.SpanMode.convert
+                UIRevision                          |> DynObj.setValueOpt violin "UIRevision"           
 
-                    
-                xAxis        |> DynObj.setValueOpt boxPlot "xaxis"       
-                yAxis        |> DynObj.setValueOpt boxPlot "yaxis"       
-                Ysrc         |> DynObj.setValueOpt boxPlot "ysrc"        
-                Xsrc         |> DynObj.setValueOpt boxPlot "xsrc"        
-                    
-                // out ->
-                boxPlot
+                violin
             ) 
 
             
