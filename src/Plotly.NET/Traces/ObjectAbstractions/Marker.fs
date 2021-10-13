@@ -33,6 +33,7 @@ type Marker () =
             [<Optional;DefaultParameterValue(null)>] ?Symbol            : StyleParam.MarkerSymbol,
             [<Optional;DefaultParameterValue(null)>] ?MultiSymbol       : seq<StyleParam.MarkerSymbol>,
             [<Optional;DefaultParameterValue(null)>] ?OutlierColor      : Color,
+            [<Optional;DefaultParameterValue(null)>] ?OutlierWidth      : int,
             [<Optional;DefaultParameterValue(null)>] ?Maxdisplayed      : int,
             [<Optional;DefaultParameterValue(null)>] ?ReverseScale      : bool,
             [<Optional;DefaultParameterValue(null)>] ?ShowScale         : bool,
@@ -64,6 +65,7 @@ type Marker () =
                 ?Symbol         = Symbol        ,
                 ?MultiSymbol    = MultiSymbol   ,
                 ?OutlierColor   = OutlierColor  ,
+                ?OutlierWidth   = OutlierWidth  ,
                 ?Maxdisplayed   = Maxdisplayed  ,
                 ?ReverseScale   = ReverseScale  ,
                 ?ShowScale      = ShowScale     ,
@@ -95,6 +97,7 @@ type Marker () =
             [<Optional;DefaultParameterValue(null)>] ?Symbol            : StyleParam.MarkerSymbol,
             [<Optional;DefaultParameterValue(null)>] ?MultiSymbol       : seq<StyleParam.MarkerSymbol>,
             [<Optional;DefaultParameterValue(null)>] ?OutlierColor      : Color,
+            [<Optional;DefaultParameterValue(null)>] ?OutlierWidth      : int,
             [<Optional;DefaultParameterValue(null)>] ?Maxdisplayed      : int,
             [<Optional;DefaultParameterValue(null)>] ?ReverseScale      : bool,
             [<Optional;DefaultParameterValue(null)>] ?ShowScale         : bool,
@@ -121,6 +124,7 @@ type Marker () =
                 Pattern                     |> DynObj.setValueOpt marker "pattern"
                 (Symbol, MultiSymbol)       |> DynObj.setSingleOrMultiOptBy marker "symbol" StyleParam.MarkerSymbol.convert
                 OutlierColor                |> DynObj.setValueOpt marker "outliercolor"
+                OutlierWidth                |> DynObj.setValueOpt marker "outlierwidth"
                 Maxdisplayed                |> DynObj.setValueOpt marker "maxdisplayed"
                 ReverseScale                |> DynObj.setValueOpt marker "reversescale"
                 ShowScale                   |> DynObj.setValueOpt marker "showscale"

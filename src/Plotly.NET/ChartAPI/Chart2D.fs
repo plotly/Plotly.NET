@@ -1483,65 +1483,112 @@ module Chart2D =
         [<Extension>]
         static member BoxPlot
             (
-                [<Optional;DefaultParameterValue(null)>] ?x,
-                [<Optional;DefaultParameterValue(null)>] ?y,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?Color,
-                [<Optional;DefaultParameterValue(null)>] ?Fillcolor,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Whiskerwidth,
-                [<Optional;DefaultParameterValue(null)>] ?Boxpoints,
-                [<Optional;DefaultParameterValue(null)>] ?Boxmean,
-                [<Optional;DefaultParameterValue(null)>] ?Jitter,
-                [<Optional;DefaultParameterValue(null)>] ?Pointpos,
-                [<Optional;DefaultParameterValue(null)>] ?Orientation,
-                [<Optional;DefaultParameterValue(null)>] ?Marker,
-                [<Optional;DefaultParameterValue(null)>] ?Line,
-                [<Optional;DefaultParameterValue(null)>] ?Alignmentgroup,
-                [<Optional;DefaultParameterValue(null)>] ?Offsetgroup,
-                [<Optional;DefaultParameterValue(null)>] ?Notched,
-                [<Optional;DefaultParameterValue(null)>] ?NotchWidth,
-                [<Optional;DefaultParameterValue(null)>] ?QuartileMethod
+                [<Optional;DefaultParameterValue(null)>] ?x             : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?y             : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Name          : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend    : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Text          : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText     : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Fillcolor     : Color,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?OutlierColor  : Color,
+                [<Optional;DefaultParameterValue(null)>] ?OutlierWidth  : int,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity       : float,
+                [<Optional;DefaultParameterValue(null)>] ?WhiskerWidth  : float,
+                [<Optional;DefaultParameterValue(null)>] ?BoxPoints     : StyleParam.BoxPoints,
+                [<Optional;DefaultParameterValue(null)>] ?BoxMean       : StyleParam.BoxMean,
+                [<Optional;DefaultParameterValue(null)>] ?Jitter        : float,
+                [<Optional;DefaultParameterValue(null)>] ?PointPos      : float,
+                [<Optional;DefaultParameterValue(null)>] ?Orientation   : StyleParam.Orientation,
+                [<Optional;DefaultParameterValue(null)>] ?Marker        : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?Line          : Line,
+                [<Optional;DefaultParameterValue(null)>] ?AlignmentGroup: string,
+                [<Optional;DefaultParameterValue(null)>] ?Offsetgroup   : string,
+                [<Optional;DefaultParameterValue(null)>] ?Notched       : bool,
+                [<Optional;DefaultParameterValue(null)>] ?NotchWidth    : float,
+                [<Optional;DefaultParameterValue(null)>] ?QuartileMethod: StyleParam.QuartileMethod
             ) = 
                 Trace2D.initBoxPlot (
                     Trace2DStyle.BoxPlot(
-                        ?X=x, ?Y = y,
-                        ?Whiskerwidth=Whiskerwidth,?Boxpoints=Boxpoints,
-                        ?Boxmean=Boxmean,?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation,?Fillcolor=Fillcolor,
-                        ?Marker=Marker,?Line=Line,?Alignmentgroup=Alignmentgroup,?Offsetgroup=Offsetgroup,?Notched=Notched,?NotchWidth=NotchWidth,?QuartileMethod=QuartileMethod
+                        ?X              = x, 
+                        ?Y              = y,
+                        ?Text           = Text,
+                        ?MultiText      = MultiText,
+                        ?Whiskerwidth   = WhiskerWidth,
+                        ?BoxPoints      = BoxPoints,
+                        ?BoxMean        = BoxMean,
+                        ?Jitter         = Jitter,
+                        ?PointPos       = PointPos,
+                        ?Orientation    = Orientation,
+                        ?FillColor      = Fillcolor,
+                        ?Marker         = Marker,
+                        ?Line           = Line,
+                        ?AlignmentGroup = AlignmentGroup,
+                        ?OffsetGroup    = Offsetgroup,
+                        ?Notched        = Notched,
+                        ?NotchWidth     = NotchWidth,
+                        ?QuartileMethod = QuartileMethod
                     ) 
                 )
                 |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)   
-                |> TraceStyle.Marker(?Color=Color)
+                |> TraceStyle.Marker(?Color=MarkerColor, ?OutlierColor=OutlierColor, ?OutlierWidth=OutlierWidth)
                 |> GenericChart.ofTraceObject
 
 
         /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.       
         [<Extension>]
-        static member BoxPlot(xy,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?Color,
-                [<Optional;DefaultParameterValue(null)>] ?Fillcolor,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Whiskerwidth,
-                [<Optional;DefaultParameterValue(null)>] ?Boxpoints,
-                [<Optional;DefaultParameterValue(null)>] ?Boxmean,
-                [<Optional;DefaultParameterValue(null)>] ?Jitter,
-                [<Optional;DefaultParameterValue(null)>] ?Pointpos,
-                [<Optional;DefaultParameterValue(null)>] ?Orientation,
-                [<Optional;DefaultParameterValue(null)>] ?Marker,
-                [<Optional;DefaultParameterValue(null)>] ?Line,
-                [<Optional;DefaultParameterValue(null)>] ?Alignmentgroup,
-                [<Optional;DefaultParameterValue(null)>] ?Offsetgroup,
-                [<Optional;DefaultParameterValue(null)>] ?Notched,
-                [<Optional;DefaultParameterValue(null)>] ?NotchWidth,
-                [<Optional;DefaultParameterValue(null)>] ?QuartileMethod
+        static member BoxPlot(
+            xy: seq<#IConvertible * #IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Name          : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend    : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Text          : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText     : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Fillcolor     : Color,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?OutlierColor  : Color,
+                [<Optional;DefaultParameterValue(null)>] ?OutlierWidth  : int,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity       : float,
+                [<Optional;DefaultParameterValue(null)>] ?WhiskerWidth  : float,
+                [<Optional;DefaultParameterValue(null)>] ?BoxPoints     : StyleParam.BoxPoints,
+                [<Optional;DefaultParameterValue(null)>] ?BoxMean       : StyleParam.BoxMean,
+                [<Optional;DefaultParameterValue(null)>] ?Jitter        : float,
+                [<Optional;DefaultParameterValue(null)>] ?PointPos      : float,
+                [<Optional;DefaultParameterValue(null)>] ?Orientation   : StyleParam.Orientation,
+                [<Optional;DefaultParameterValue(null)>] ?Marker        : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?Line          : Line,
+                [<Optional;DefaultParameterValue(null)>] ?AlignmentGroup: string,
+                [<Optional;DefaultParameterValue(null)>] ?Offsetgroup   : string,
+                [<Optional;DefaultParameterValue(null)>] ?Notched       : bool,
+                [<Optional;DefaultParameterValue(null)>] ?NotchWidth    : float,
+                [<Optional;DefaultParameterValue(null)>] ?QuartileMethod: StyleParam.QuartileMethod
                 ) = 
             let x,y = Seq.unzip xy
-            Chart.BoxPlot(x, y, ?Name=Name,?ShowLegend=ShowLegend,?Color=Color,?Fillcolor=Fillcolor,?Opacity=Opacity,?Whiskerwidth=Whiskerwidth,?Boxpoints=Boxpoints,?Boxmean=Boxmean,?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation,
-                                ?Marker=Marker,?Line=Line,?Alignmentgroup=Alignmentgroup,?Offsetgroup=Offsetgroup,?Notched=Notched,?NotchWidth=NotchWidth,?QuartileMethod=QuartileMethod) 
+            Chart.BoxPlot(
+                x, y, 
+                ?Name           = Name          ,
+                ?ShowLegend     = ShowLegend    ,
+                ?Text           = Text          ,
+                ?MultiText      = MultiText     ,
+                ?Fillcolor      = Fillcolor     ,
+                ?MarkerColor    = MarkerColor   ,
+                ?OutlierColor   = OutlierColor  ,
+                ?OutlierWidth   = OutlierWidth  ,
+                ?Opacity        = Opacity       ,
+                ?WhiskerWidth   = WhiskerWidth  ,
+                ?BoxPoints      = BoxPoints     ,
+                ?BoxMean        = BoxMean       ,
+                ?Jitter         = Jitter        ,
+                ?PointPos       = PointPos      ,
+                ?Orientation    = Orientation   ,
+                ?Marker         = Marker        ,
+                ?Line           = Line          ,
+                ?AlignmentGroup = AlignmentGroup,
+                ?Offsetgroup    = Offsetgroup   ,
+                ?Notched        = Notched       ,
+                ?NotchWidth     = NotchWidth    ,
+                ?QuartileMethod = QuartileMethod
+            )
+               
 
 
         /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.            
