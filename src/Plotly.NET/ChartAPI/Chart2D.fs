@@ -1395,43 +1395,128 @@ module Chart2D =
                     ?Marker             = Marker           
                 )
 
-        /// Computes a histogram with auto-determined the bin size.
+        
+        /// Visualizes the distribution of the input data as a histogram.
+        [<Extension>]
+        static member Histogram
+            (   
+                [<Optional;DefaultParameterValue(null)>] ?X                 : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Y                 : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Orientation       : StyleParam.Orientation,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float, 
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?HistFunc          : StyleParam.HistFunc,
+                [<Optional;DefaultParameterValue(null)>] ?HistNorm          : StyleParam.HistNorm,
+                [<Optional;DefaultParameterValue(null)>] ?AlignmentGroup    : string,
+                [<Optional;DefaultParameterValue(null)>] ?OffsetGroup       : string,
+                [<Optional;DefaultParameterValue(null)>] ?NBinsX            : int,
+                [<Optional;DefaultParameterValue(null)>] ?NBinsY            : int,
+                [<Optional;DefaultParameterValue(null)>] ?BinGroup          : string,
+                [<Optional;DefaultParameterValue(null)>] ?XBins             : Bins,
+                [<Optional;DefaultParameterValue(null)>] ?YBins             : Bins,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
+                [<Optional;DefaultParameterValue(null)>] ?ErrorX            : Error,
+                [<Optional;DefaultParameterValue(null)>] ?ErrorY            : Error,
+                [<Optional;DefaultParameterValue(null)>] ?Cumulative        : Cumulative,
+                [<Optional;DefaultParameterValue(null)>] ?HoverLabel        : Hoverlabel
+            ) =         
+                Trace2D.initHistogram (
+                    Trace2DStyle.Histogram (
+                        ?X                 = X,
+                        ?Y                 = Y,
+                        ?Text              = Text              ,
+                        ?MultiText         = MultiText         ,
+                        ?Orientation       = Orientation       ,
+                        ?HistFunc          = HistFunc          ,
+                        ?HistNorm          = HistNorm          ,
+                        ?AlignmentGroup    = AlignmentGroup    ,
+                        ?OffsetGroup       = OffsetGroup       ,
+                        ?NBinsX            = NBinsX            ,
+                        ?NBinsY            = NBinsY            ,
+                        ?BinGroup          = BinGroup          ,
+                        ?XBins             = XBins             ,
+                        ?YBins             = YBins             ,
+                        ?Marker            = Marker            ,
+                        ?Line              = Line              ,
+                        ?ErrorX            = ErrorX            ,
+                        ?ErrorY            = ErrorY            ,
+                        ?Cumulative        = Cumulative        ,
+                        ?HoverLabel        = HoverLabel        
+                    )
+                )
+                |> TraceStyle.Marker(?Color=MarkerColor)
+                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)   
+                |> GenericChart.ofTraceObject
+
+        /// Visualizes the distribution of the input data as a histogram, automatically determining if the data is to be used for the x or y dimension based on the `orientation` parameter.
         [<Extension>]
         static member Histogram
             (
-                data,
-                [<Optional;DefaultParameterValue(null)>]  ?Orientation,
-                [<Optional;DefaultParameterValue(null)>]  ?Name,
-                [<Optional;DefaultParameterValue(null)>]  ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>]  ?Opacity,
-                [<Optional;DefaultParameterValue(null)>]  ?Color,
-                [<Optional;DefaultParameterValue(null)>]  ?HistNorm,
-                [<Optional;DefaultParameterValue(null)>]  ?HistFunc,
-                [<Optional;DefaultParameterValue(null)>]  ?nBinsx,
-                [<Optional;DefaultParameterValue(null)>]  ?nBinsy,
-                [<Optional;DefaultParameterValue(null)>]  ?Xbins,
-                [<Optional;DefaultParameterValue(null)>]  ?Ybins,
-                // TODO
-                [<Optional;DefaultParameterValue(null)>]  ?xError,
-                [<Optional;DefaultParameterValue(null)>]  ?yError
+                data: seq<#IConvertible>,
+                orientation : StyleParam.Orientation,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float, 
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?HistFunc          : StyleParam.HistFunc,
+                [<Optional;DefaultParameterValue(null)>] ?HistNorm          : StyleParam.HistNorm,
+                [<Optional;DefaultParameterValue(null)>] ?AlignmentGroup    : string,
+                [<Optional;DefaultParameterValue(null)>] ?OffsetGroup       : string,
+                [<Optional;DefaultParameterValue(null)>] ?NBinsX            : int,
+                [<Optional;DefaultParameterValue(null)>] ?NBinsY            : int,
+                [<Optional;DefaultParameterValue(null)>] ?BinGroup          : string,
+                [<Optional;DefaultParameterValue(null)>] ?XBins             : Bins,
+                [<Optional;DefaultParameterValue(null)>] ?YBins             : Bins,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
+                [<Optional;DefaultParameterValue(null)>] ?ErrorX            : Error,
+                [<Optional;DefaultParameterValue(null)>] ?ErrorY            : Error,
+                [<Optional;DefaultParameterValue(null)>] ?Cumulative        : Cumulative,
+                [<Optional;DefaultParameterValue(null)>] ?HoverLabel        : Hoverlabel
             ) =         
-        
-                Trace2D.initHistogram (
-                    Trace2DStyle.Histogram (
-                        X=data,
-                        ?Orientation=Orientation,
-                        ?HistNorm=HistNorm,
-                        ?HistFunc=HistFunc,
-                        ?nBinsx=nBinsx,
-                        ?nBinsy=nBinsy,
-                        ?xBins=Xbins,
-                        ?yBins=Ybins
-                    )
-                )
-                |> TraceStyle.Marker(?Color=Color)
-                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)   
                 
-                |> GenericChart.ofTraceObject
+                let histChart = 
+                    Trace2D.initHistogram (
+                        Trace2DStyle.Histogram (
+                            ?Text              = Text              ,
+                            ?MultiText         = MultiText         ,
+                            Orientation        = orientation       ,
+                            ?HistFunc          = HistFunc          ,
+                            ?HistNorm          = HistNorm          ,
+                            ?AlignmentGroup    = AlignmentGroup    ,
+                            ?OffsetGroup       = OffsetGroup       ,
+                            ?NBinsX            = NBinsX            ,
+                            ?NBinsY            = NBinsY            ,
+                            ?BinGroup          = BinGroup          ,
+                            ?XBins             = XBins             ,
+                            ?YBins             = YBins             ,
+                            ?Marker            = Marker            ,
+                            ?Line              = Line              ,
+                            ?ErrorX            = ErrorX            ,
+                            ?ErrorY            = ErrorY            ,
+                            ?Cumulative        = Cumulative        ,
+                            ?HoverLabel        = HoverLabel        
+                        )
+                    )
+                    |> TraceStyle.Marker(?Color=MarkerColor)
+                    |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)   
+                    |> GenericChart.ofTraceObject
+                
+                match orientation with
+                    | StyleParam.Orientation.Horizontal -> 
+                        histChart
+                        |> GenericChart.mapTrace (Trace2DStyle.Histogram(Y=data))
+                    | StyleParam.Orientation.Vertical -> 
+                        histChart
+                        |> GenericChart.mapTrace (Trace2DStyle.Histogram(X=data))
+                
         
         /// Computes the bi-dimensional histogram of two data samples and auto-determines the bin size.
         [<Extension>]

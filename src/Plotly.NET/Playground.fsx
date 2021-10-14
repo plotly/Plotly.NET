@@ -160,7 +160,31 @@ open FSharpAux
 
 open System
 open System.IO
-
+[
+    Chart.Histogram(
+        [for i in 0 .. 10000 do yield System.Random().NextDouble() *  10.], 
+        StyleParam.Orientation.Vertical,
+        HistFunc = StyleParam.HistFunc.Avg,
+        HistNorm = StyleParam.HistNorm.ProbabilityDensity,
+        BinGroup = "myHist",
+        Opacity = 0.6
+    )    
+    Chart.Histogram(
+        [for i in 0 .. 1000 do yield System.Random().NextDouble() *  10.], 
+        StyleParam.Orientation.Vertical,
+        HistFunc = StyleParam.HistFunc.Avg,
+        HistNorm = StyleParam.HistNorm.ProbabilityDensity,
+        BinGroup = "myHist",
+        Opacity = 0.6
+    )
+]
+|> Chart.combine
+|> Chart.withLayout(
+    Layout.init(
+        BarMode = StyleParam.BarMode.Overlay
+    )
+)
+|> Chart.show
 
 let violin1Chart =
     let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]

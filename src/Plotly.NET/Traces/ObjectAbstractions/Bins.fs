@@ -13,31 +13,31 @@ type Bins () =
     // Init Bins()
     static member init
         (
-            [<Optional;DefaultParameterValue(null)>] ?StartBins: float,
-            [<Optional;DefaultParameterValue(null)>] ?EndBins: float,
+            [<Optional;DefaultParameterValue(null)>] ?Start: float,
+            [<Optional;DefaultParameterValue(null)>] ?End: float,
             [<Optional;DefaultParameterValue(null)>] ?Size: float
         ) =
             Bins () 
             |> Bins.style
                 (
-                    ?StartBins = StartBins,
-                    ?EndBins   = EndBins  ,
-                    ?Size      = Size           
+                    ?Start = Start,
+                    ?End   = End  ,
+                    ?Size  = Size           
                 )
 
 
     // Applies the styles to Bins()
     static member style
         (
-            [<Optional;DefaultParameterValue(null)>] ?StartBins: float,
-            [<Optional;DefaultParameterValue(null)>] ?EndBins: float,
+            [<Optional;DefaultParameterValue(null)>] ?Start: float,
+            [<Optional;DefaultParameterValue(null)>] ?End: float,
             [<Optional;DefaultParameterValue(null)>] ?Size: float
         ) =
             
             (fun (bins:Bins) -> 
-                StartBins |> DynObj.setValueOpt bins "start"
-                EndBins   |> DynObj.setValueOpt bins "end"
-                Size      |> DynObj.setValueOpt bins "size"
+                Start   |> DynObj.setValueOpt bins "start"
+                End     |> DynObj.setValueOpt bins "end"
+                Size    |> DynObj.setValueOpt bins "size"
            
                 bins
             )
