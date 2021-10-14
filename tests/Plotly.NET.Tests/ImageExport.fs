@@ -2,7 +2,7 @@
 
 open Expecto
 open Plotly.NET
-open Plotly.NET.ImageExport
+// open Plotly.NET.ImageExport
 
 open System.IO
 

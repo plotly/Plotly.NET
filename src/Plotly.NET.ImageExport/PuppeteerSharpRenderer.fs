@@ -18,13 +18,13 @@ type PuppeteerSharpRenderer() =
         
         gChart
         |> GenericChart.mapConfig(fun c ->
-            DynObj.setValue c "responsive" true
             c
+            ++ ("responsive", true)
         )
         |> GenericChart.mapLayout(fun l ->
-            DynObj.setValue l "width" "100%"
-            DynObj.setValue l "height" "100%"
             l
+            ++ ("width", "100%")
+            ++ ("height", "100%")
         )
         |> GenericChart.toChartHTML
         |> fun html -> html.Replace("width: 600px; height: 600px;", "width: 100%; height: 100%;")

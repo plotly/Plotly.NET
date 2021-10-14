@@ -58,12 +58,9 @@ let parcoordsChart =
             StyleParam.Range.MinMax (1.,5.),Label="D");
     |]
 
-    let dyn = Trace("parcoords")
-
-    dyn?dimensions <- v
-    dyn?line <- Line.init(Color =Color.fromString "blue")
-
-    dyn
+    (Trace("parcoords"))
+    ++ ("dimensions", v)
+    ++ ("line", Line.init(Color = Color.fromString "blue"))
     |> GenericChart.ofTraceObject
 
 [<Tests>]

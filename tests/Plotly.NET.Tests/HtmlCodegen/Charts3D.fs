@@ -211,12 +211,12 @@ let meshChart =
     
     Trace3D.initMesh3d 
         (fun mesh3d ->
-            mesh3d?x <- a
-            mesh3d?y <- b
-            mesh3d?z <- c
-            mesh3d?flatshading <- true
-            mesh3d?contour <- Contours.initXyz(Show=true)
             mesh3d
+            ++ ("x", a)
+            ++ ("y", b)
+            ++ ("z", c)
+            ++ ("flatshading", true)
+            ++ ("contour", Contours.initXyz(Show=true))
             )
     |> GenericChart.ofTraceObject
 
