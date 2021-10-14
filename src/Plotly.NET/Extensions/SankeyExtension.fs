@@ -104,9 +104,10 @@ module SankeyExtension =
                         | None,None -> None 
                         | cs,ws -> 
                             let ln = new ImmutableDynamicObj()
-                            Some
+                            ln
                             ++? ("color", cs)
-                            ++? ("width", ws) ln
+                            ++? ("width", ws)
+                            |> Some
 
                     let l = new ImmutableDynamicObj()
 
@@ -158,9 +159,10 @@ module SankeyExtension =
                         | None,None -> None 
                         | cs,ws -> 
                             let ln = new ImmutableDynamicObj()
-                            Some
+                            ln
                             ++? ("color", cs)
-                            ++? ("width", ws) ln
+                            ++? ("width", ws)
+                            |> Some
 
                     let n = new ImmutableDynamicObj()
                     n
