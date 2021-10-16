@@ -57,12 +57,12 @@ let x = Array.init n (fun i -> ((step i)**3.) + (0.3 * (normal (rnd) 0. 2.) ))
 let y = Array.init n (fun i -> ((step i)**6.) + (0.3 * (normal (rnd) 0. 2.) ))
 
 (**
-A Histogram2d chart can be created using the `Chart.Histogram2d` or `Chart.Histogram2dContour` functions.
+A Histogram2D chart can be created using the `Chart.Histogram2D` or `Chart.Histogram2DContour` functions.
 *)
 
 let histogramContour =
     [
-        Chart.Histogram2dContour (x,y,Line=Line.init(Width=0.))
+        Chart.Histogram2DContour (x,y,Line=Line.init(Width=0.))
         Chart.Point(x,y,Opacity=0.3)
     ]
     |> Chart.combine
@@ -76,14 +76,14 @@ histogramContour
 histogramContour |> GenericChart.toChartHTML
 (*** include-it-raw ***)
 
-let histogram2d = 
-    Chart.Histogram2d (x,y)
+let histogram2D = 
+    Chart.Histogram2D (x,y)
 
 (*** condition: ipynb ***)
 #if IPYNB
-histogram2d
+histogram2D
 #endif // IPYNB
 
 (***hide***)
-histogram2d |> GenericChart.toChartHTML
+histogram2D |> GenericChart.toChartHTML
 (*** include-it-raw ***)

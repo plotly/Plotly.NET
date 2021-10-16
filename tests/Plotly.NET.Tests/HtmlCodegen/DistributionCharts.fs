@@ -193,13 +193,13 @@ let histogramContourChart =
     let x = Array.init n (fun i -> ((step i)**3.) + (0.3 * (normal (rnd) 0. 2.) ))
     let y = Array.init n (fun i -> ((step i)**6.) + (0.3 * (normal (rnd) 0. 2.) ))
     [
-        Chart.Histogram2dContour (x,y,Line=Line.init(Width=0.))
+        Chart.Histogram2DContour (x,y,Line=Line.init(Width=0.))
         Chart.Point(x,y,Opacity=0.3)
     ]
     |> Chart.combine
 
 
-let histogram2dChart =
+let histogram2DChart =
     let normal (rnd:System.Random) mu tau =
         let mutable v1 = 2.0 * rnd.NextDouble() - 1.0
         let mutable v2 = 2.0 * rnd.NextDouble() - 1.0
@@ -220,24 +220,24 @@ let histogram2dChart =
     //---------------------- generate data distributed in x and y direction ---------------------- 
     let x = Array.init n (fun i -> ((step i)**3.) + (0.3 * (normal (rnd) 0. 2.) ))
     let y = Array.init n (fun i -> ((step i)**6.) + (0.3 * (normal (rnd) 0. 2.) ))
-    Chart.Histogram2d (x,y)
+    Chart.Histogram2D (x,y)
 
 [<Tests>]
 let ``Histogram 2D charts`` =
     testList "DistributionCharts.Histogram charts" [
         testCase "Histo contour data" ( fun () ->
-            "var data = [{\"type\":\"histogram2dcontour\",\"x\":[-1.566002360265054,-1.833996340961623,-1.0330391275776571,-0.8476993487909306,-0.8471270832604864,-1.021055309868153,-0.5368298779218124,-0.9982579324563884,-0.6367576994858231,-1.433590036163408,-1.3735531103452598"
+            "var data = [{\"type\":\"histogram2Dcontour\",\"x\":[-1.566002360265054,-1.833996340961623,-1.0330391275776571,-0.8476993487909306,-0.8471270832604864,-1.021055309868153,-0.5368298779218124,-0.9982579324563884,-0.6367576994858231,-1.433590036163408,-1.3735531103452598"
             |> chartGeneratedContains histogramContourChart
         );
         testCase "Histo contour layout" ( fun () ->
             emptyLayout histogramContourChart
         );
-        testCase "Histo 2d data" ( fun () ->
-            "var data = [{\"type\":\"histogram2d\",\"x\":[-1.566002360265054,-1.833996340961623,-1.0330391275776571,-0.8476993487909306,-0.8471270832604864,-1.021055309868153,-0.5368298779218124,-0.9982579324563884,-0.6367576994858231,-1.433590036163408,-1.3735531103452598"
-            |> chartGeneratedContains histogram2dChart
+        testCase "Histo 2D data" ( fun () ->
+            "var data = [{\"type\":\"histogram2D\",\"x\":[-1.566002360265054,-1.833996340961623,-1.0330391275776571,-0.8476993487909306,-0.8471270832604864,-1.021055309868153,-0.5368298779218124,-0.9982579324563884,-0.6367576994858231,-1.433590036163408,-1.3735531103452598"
+            |> chartGeneratedContains histogram2DChart
         );
-        testCase "Histo 2d layout" ( fun () ->
-            emptyLayout histogram2dChart
+        testCase "Histo 2D layout" ( fun () ->
+            emptyLayout histogram2DChart
         );
     ]
 

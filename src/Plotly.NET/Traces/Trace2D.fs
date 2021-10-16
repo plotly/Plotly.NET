@@ -19,7 +19,7 @@ open System.Runtime.InteropServices
 /// top of one another to create dual-axis or multiple-axis charts. 2-d cartesian subplots lend themselves very well to creating 
 /// "small multiples" figures, also known as facet or trellis plots.
 ///
-/// The following trace types are compatible with 2d-cartesian subplots via the xaxis and yaxis attributes:
+/// The following trace types are compatible with 2D-cartesian subplots via the xaxis and yaxis attributes:
 ///
 /// - scatter-like trace types: scatter and scattergl can be used to draw scatter plots, line plots and curves, time-series plots, 
 /// bubble charts, dot plots and filled areas and also support error bars
@@ -30,7 +30,7 @@ open System.Runtime.InteropServices
 ///
 /// - box and violin: 1-dimensional distribution-like trace types
 ///
-/// - histogram2d and histogram2dcontour: 2-dimensional distribution-like density trace types
+/// - histogram2D and histogram2Dcontour: 2-dimensional distribution-like density trace types
 ///
 /// - image, heatmap and contour: matrix trace types
 ///
@@ -75,13 +75,13 @@ type Trace2D(traceTypeName) =
     static member initViolin (applyStyle: Trace2D -> Trace2D) = 
         Trace2D("violin") |> applyStyle
 
-    ///initializes a trace of type "histogram2d" applying the given trace styling function
-    static member initHistogram2d (applyStyle: Trace2D -> Trace2D) = 
-        Trace2D("histogram2d") |> applyStyle
+    ///initializes a trace of type "histogram2D" applying the given trace styling function
+    static member initHistogram2D (applyStyle: Trace2D -> Trace2D) = 
+        Trace2D("histogram2D") |> applyStyle
 
-    ///initializes a trace of type "histogram2dcontour" applying the given trace styling function
-    static member initHistogram2dContour (applyStyle: Trace2D -> Trace2D) = 
-        Trace2D("histogram2dcontour") |> applyStyle
+    ///initializes a trace of type "histogram2Dcontour" applying the given trace styling function
+    static member initHistogram2DContour (applyStyle: Trace2D -> Trace2D) = 
+        Trace2D("histogram2Dcontour") |> applyStyle
 
     ///initializes a trace of type "image" applying the given trace styling function
     static member initImage (applyStyle: Trace2D -> Trace2D) = 
@@ -886,7 +886,7 @@ type Trace2DStyle() =
             ) 
 
             
-    static member Histogram2d
+    static member Histogram2D
         (            
             [<Optional;DefaultParameterValue(null)>] ?Name              : string,
             [<Optional;DefaultParameterValue(null)>] ?Visible           : StyleParam.Visible,
@@ -936,150 +936,169 @@ type Trace2DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?YCalendar         : StyleParam.Calendar,
             [<Optional;DefaultParameterValue(null)>] ?UIRevision        : string
         ) =
-            (fun (histogram2d:('T :> Trace)) ->
+            (fun (histogram2D:('T :> Trace)) ->
 
-                Name                                |> DynObj.setValueOpt histogram2d "name"              
-                Visible                             |> DynObj.setValueOptBy histogram2d "visible" StyleParam.Visible.convert
-                ShowLegend                          |> DynObj.setValueOpt histogram2d "showlegend"            
-                LegendRank                          |> DynObj.setValueOpt histogram2d "legendrank"            
-                LegendGroup                         |> DynObj.setValueOpt histogram2d "legendgroup"           
-                LegendGroupTitle                    |> DynObj.setValueOpt histogram2d "legendgrouptitle"      
-                Opacity                             |> DynObj.setValueOpt histogram2d "opacity"               
-                Ids                                 |> DynObj.setValueOpt histogram2d "ids"                   
-                X                                   |> DynObj.setValueOpt histogram2d "x"
-                XGap                                |> DynObj.setValueOpt histogram2d "xgap"
-                Y                                   |> DynObj.setValueOpt histogram2d "y"
-                YGap                                |> DynObj.setValueOpt histogram2d "ygap"
-                Z                                   |> DynObj.setValueOpt histogram2d "z"
-                HoverInfo                           |> DynObj.setValueOptBy histogram2d "hoverinfo" StyleParam.HoverInfo.convert
-                (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt histogram2d "hovertemplate"
-                XHoverFormat                        |> DynObj.setValueOpt histogram2d "xhoverformat"          
-                YHoverFormat                        |> DynObj.setValueOpt histogram2d "yhoverformat"          
-                Meta                                |> DynObj.setValueOpt histogram2d "meta"                  
-                CustomData                          |> DynObj.setValueOpt histogram2d "customdata"            
-                XAxis                               |> DynObj.setValueOptBy histogram2d "xaxis" StyleParam.LinearAxisId.convert
-                YAxis                               |> DynObj.setValueOptBy histogram2d "yaxis" StyleParam.LinearAxisId.convert
-                ColorAxis                           |> DynObj.setValueOpt histogram2d "coloraxis"
-                HistFunc                            |> DynObj.setValueOptBy histogram2d "histfunc"    StyleParam.HistFunc.convert
-                HistNorm                            |> DynObj.setValueOptBy histogram2d "histnorm"    StyleParam.HistNorm.convert
-                NBinsX                              |> DynObj.setValueOpt histogram2d "nbinsx"           
-                NBinsY                              |> DynObj.setValueOpt histogram2d "nbinsy"           
-                AutoBinX                            |> DynObj.setValueOpt histogram2d "autobinx"           
-                AutoBinY                            |> DynObj.setValueOpt histogram2d "autobiny"           
-                XBins                               |> DynObj.setValueOpt histogram2d "xbins"           
-                YBins                               |> DynObj.setValueOpt histogram2d "ybins"           
-                Marker                              |> DynObj.setValueOpt histogram2d "marker"
-                ColorBar                            |> DynObj.setValueOpt histogram2d "colorbar"
-                AutoColorScale                      |> DynObj.setValueOpt histogram2d "autocolorscale" 
-                ColorScale                          |> DynObj.setValueOptBy histogram2d "colorscale" StyleParam.Colorscale.convert
-                ShowScale                           |> DynObj.setValueOpt histogram2d "showscale"
-                ReverseScale                        |> DynObj.setValueOpt histogram2d "reversescale"
-                ZAuto                               |> DynObj.setValueOpt histogram2d "zauto"
-                ZHoverFormat                        |> DynObj.setValueOpt histogram2d "zhoverformat"
-                Zmin                                |> DynObj.setValueOpt histogram2d "zmin"
-                Zmid                                |> DynObj.setValueOpt histogram2d "zmid"
-                Zmax                                |> DynObj.setValueOpt histogram2d "zmax"
-                ZSmooth                             |> DynObj.setValueOptBy histogram2d "zsmooth" StyleParam.SmoothAlg.convert
-                HoverLabel                          |> DynObj.setValueOpt histogram2d "hoverlabel"            
-                XCalendar                           |> DynObj.setValueOptBy histogram2d "xcalendar" StyleParam.Calendar.convert
-                YCalendar                           |> DynObj.setValueOptBy histogram2d "ycalendar" StyleParam.Calendar.convert
-                UIRevision                          |> DynObj.setValueOpt histogram2d "uirevision"         
+                Name                                |> DynObj.setValueOpt histogram2D "name"              
+                Visible                             |> DynObj.setValueOptBy histogram2D "visible" StyleParam.Visible.convert
+                ShowLegend                          |> DynObj.setValueOpt histogram2D "showlegend"            
+                LegendRank                          |> DynObj.setValueOpt histogram2D "legendrank"            
+                LegendGroup                         |> DynObj.setValueOpt histogram2D "legendgroup"           
+                LegendGroupTitle                    |> DynObj.setValueOpt histogram2D "legendgrouptitle"      
+                Opacity                             |> DynObj.setValueOpt histogram2D "opacity"               
+                Ids                                 |> DynObj.setValueOpt histogram2D "ids"                   
+                X                                   |> DynObj.setValueOpt histogram2D "x"
+                XGap                                |> DynObj.setValueOpt histogram2D "xgap"
+                Y                                   |> DynObj.setValueOpt histogram2D "y"
+                YGap                                |> DynObj.setValueOpt histogram2D "ygap"
+                Z                                   |> DynObj.setValueOpt histogram2D "z"
+                HoverInfo                           |> DynObj.setValueOptBy histogram2D "hoverinfo" StyleParam.HoverInfo.convert
+                (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt histogram2D "hovertemplate"
+                XHoverFormat                        |> DynObj.setValueOpt histogram2D "xhoverformat"          
+                YHoverFormat                        |> DynObj.setValueOpt histogram2D "yhoverformat"          
+                Meta                                |> DynObj.setValueOpt histogram2D "meta"                  
+                CustomData                          |> DynObj.setValueOpt histogram2D "customdata"            
+                XAxis                               |> DynObj.setValueOptBy histogram2D "xaxis" StyleParam.LinearAxisId.convert
+                YAxis                               |> DynObj.setValueOptBy histogram2D "yaxis" StyleParam.LinearAxisId.convert
+                ColorAxis                           |> DynObj.setValueOpt histogram2D "coloraxis"
+                HistFunc                            |> DynObj.setValueOptBy histogram2D "histfunc"    StyleParam.HistFunc.convert
+                HistNorm                            |> DynObj.setValueOptBy histogram2D "histnorm"    StyleParam.HistNorm.convert
+                NBinsX                              |> DynObj.setValueOpt histogram2D "nbinsx"           
+                NBinsY                              |> DynObj.setValueOpt histogram2D "nbinsy"           
+                AutoBinX                            |> DynObj.setValueOpt histogram2D "autobinx"           
+                AutoBinY                            |> DynObj.setValueOpt histogram2D "autobiny"           
+                XBins                               |> DynObj.setValueOpt histogram2D "xbins"           
+                YBins                               |> DynObj.setValueOpt histogram2D "ybins"           
+                Marker                              |> DynObj.setValueOpt histogram2D "marker"
+                ColorBar                            |> DynObj.setValueOpt histogram2D "colorbar"
+                AutoColorScale                      |> DynObj.setValueOpt histogram2D "autocolorscale" 
+                ColorScale                          |> DynObj.setValueOptBy histogram2D "colorscale" StyleParam.Colorscale.convert
+                ShowScale                           |> DynObj.setValueOpt histogram2D "showscale"
+                ReverseScale                        |> DynObj.setValueOpt histogram2D "reversescale"
+                ZAuto                               |> DynObj.setValueOpt histogram2D "zauto"
+                ZHoverFormat                        |> DynObj.setValueOpt histogram2D "zhoverformat"
+                Zmin                                |> DynObj.setValueOpt histogram2D "zmin"
+                Zmid                                |> DynObj.setValueOpt histogram2D "zmid"
+                Zmax                                |> DynObj.setValueOpt histogram2D "zmax"
+                ZSmooth                             |> DynObj.setValueOptBy histogram2D "zsmooth" StyleParam.SmoothAlg.convert
+                HoverLabel                          |> DynObj.setValueOpt histogram2D "hoverlabel"            
+                XCalendar                           |> DynObj.setValueOptBy histogram2D "xcalendar" StyleParam.Calendar.convert
+                YCalendar                           |> DynObj.setValueOptBy histogram2D "ycalendar" StyleParam.Calendar.convert
+                UIRevision                          |> DynObj.setValueOpt histogram2D "uirevision"         
                 
-                histogram2d
+                histogram2D
             ) 
 
 
-    static member Histogram2dContour
+    static member Histogram2DContour
         (            
-            [<Optional;DefaultParameterValue(null)>] ?X : seq<#IConvertible>       ,
-            [<Optional;DefaultParameterValue(null)>] ?Y : seq<#IConvertible>       ,            
-            [<Optional;DefaultParameterValue(null)>] ?Z : seq<#seq<#IConvertible>> ,                
-            [<Optional;DefaultParameterValue(null)>] ?X0                           ,
-            [<Optional;DefaultParameterValue(null)>] ?dX                           ,
-            [<Optional;DefaultParameterValue(null)>] ?Y0                           ,
-            [<Optional;DefaultParameterValue(null)>] ?dY                           ,
-            [<Optional;DefaultParameterValue(null)>] ?xType                        ,
-            [<Optional;DefaultParameterValue(null)>] ?yType                        ,
-            [<Optional;DefaultParameterValue(null)>] ?xAxis                        ,
-            [<Optional;DefaultParameterValue(null)>] ?yAxis                        ,
-            [<Optional;DefaultParameterValue(null)>] ?Zsrc                         ,
-            [<Optional;DefaultParameterValue(null)>] ?Xsrc                         ,
-            [<Optional;DefaultParameterValue(null)>] ?Ysrc                         ,
-            [<Optional;DefaultParameterValue(null)>] ?Marker      : Marker         , 
-            [<Optional;DefaultParameterValue(null)>] ?Orientation                  , 
-            [<Optional;DefaultParameterValue(null)>] ?HistFunc                     ,
-            [<Optional;DefaultParameterValue(null)>] ?HistNorm                     ,
-            [<Optional;DefaultParameterValue(null)>] ?Autobinx    : bool           ,
-            [<Optional;DefaultParameterValue(null)>] ?nBinsx      : int            ,
-            [<Optional;DefaultParameterValue(null)>] ?xBins       : Bins           ,
-            [<Optional;DefaultParameterValue(null)>] ?Autobiny    : bool           ,
-            [<Optional;DefaultParameterValue(null)>] ?nBinsy      : int            ,
-            [<Optional;DefaultParameterValue(null)>] ?yBins       : Bins           ,
-            [<Optional;DefaultParameterValue(null)>] ?nContours   : int            ,
-            [<Optional;DefaultParameterValue(null)>] ?Contours    : Contour        ,
-            [<Optional;DefaultParameterValue(null)>] ?Line        : Line           ,
-            [<Optional;DefaultParameterValue(null)>] ?Xgap           ,         
-            [<Optional;DefaultParameterValue(null)>] ?Ygap           ,
-            [<Optional;DefaultParameterValue(null)>] ?Transpose      ,
-            [<Optional;DefaultParameterValue(null)>] ?zAuto          ,
-            [<Optional;DefaultParameterValue(null)>] ?zMin           ,
-            [<Optional;DefaultParameterValue(null)>] ?zMax           ,
-            [<Optional;DefaultParameterValue(null)>] ?Colorscale     ,
-            [<Optional;DefaultParameterValue(null)>] ?Autocolorscale ,
-            [<Optional;DefaultParameterValue(null)>] ?Reversescale   ,
-            [<Optional;DefaultParameterValue(null)>] ?Showscale      ,
-            [<Optional;DefaultParameterValue(null)>] ?zSmooth        ,
-            [<Optional;DefaultParameterValue(null)>] ?ColorBar      
+            [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+            [<Optional;DefaultParameterValue(null)>] ?Visible           : StyleParam.Visible,
+            [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+            [<Optional;DefaultParameterValue(null)>] ?LegendRank        : int,
+            [<Optional;DefaultParameterValue(null)>] ?LegendGroup       : string,
+            [<Optional;DefaultParameterValue(null)>] ?LegendGroupTitle  : Title,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity           : float, 
+            [<Optional;DefaultParameterValue(null)>] ?Ids               : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?X                 : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Y                 : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Z                 : seq<#seq<#IConvertible>>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverInfo         : StyleParam.HoverInfo,
+            [<Optional;DefaultParameterValue(null)>] ?HoverTemplate     : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiHoverTemplate: seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?XHoverFormat      : string,
+            [<Optional;DefaultParameterValue(null)>] ?YHoverFormat      : string,
+            [<Optional;DefaultParameterValue(null)>] ?Meta              : string,
+            [<Optional;DefaultParameterValue(null)>] ?CustomData        : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?XAxis             : StyleParam.LinearAxisId,
+            [<Optional;DefaultParameterValue(null)>] ?YAxis             : StyleParam.LinearAxisId,
+            [<Optional;DefaultParameterValue(null)>] ?ColorAxis         : StyleParam.SubPlotId,
+            [<Optional;DefaultParameterValue(null)>] ?HistFunc          : StyleParam.HistFunc,
+            [<Optional;DefaultParameterValue(null)>] ?HistNorm          : StyleParam.HistNorm,
+            [<Optional;DefaultParameterValue(null)>] ?NBinsX            : int,
+            [<Optional;DefaultParameterValue(null)>] ?NBinsY            : int,
+            [<Optional;DefaultParameterValue(null)>] ?AutoBinX          : bool,
+            [<Optional;DefaultParameterValue(null)>] ?AutoBinY          : bool,
+            [<Optional;DefaultParameterValue(null)>] ?BinGroup          : string,
+            [<Optional;DefaultParameterValue(null)>] ?XBinGroup         : string,
+            [<Optional;DefaultParameterValue(null)>] ?XBins             : Bins,
+            [<Optional;DefaultParameterValue(null)>] ?YBinGroup         : string,
+            [<Optional;DefaultParameterValue(null)>] ?YBins             : Bins,
+            [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+            [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar          : ColorBar,
+            [<Optional;DefaultParameterValue(null)>] ?AutoColorScale    : bool,
+            [<Optional;DefaultParameterValue(null)>] ?ColorScale        : StyleParam.Colorscale,
+            [<Optional;DefaultParameterValue(null)>] ?ShowScale         : bool,
+            [<Optional;DefaultParameterValue(null)>] ?ReverseScale      : bool,
+            [<Optional;DefaultParameterValue(null)>] ?ZAuto             : bool,
+            [<Optional;DefaultParameterValue(null)>] ?ZHoverFormat      : string,
+            [<Optional;DefaultParameterValue(null)>] ?Zmin              : float,
+            [<Optional;DefaultParameterValue(null)>] ?Zmid              : float,
+            [<Optional;DefaultParameterValue(null)>] ?Zmax              : float,
+            [<Optional;DefaultParameterValue(null)>] ?AutoContour       : bool,
+            [<Optional;DefaultParameterValue(null)>] ?Contours          : Contours,
+            [<Optional;DefaultParameterValue(null)>] ?HoverLabel        : Hoverlabel,
+            [<Optional;DefaultParameterValue(null)>] ?NContours         : int,
+            [<Optional;DefaultParameterValue(null)>] ?XCalendar         : StyleParam.Calendar,
+            [<Optional;DefaultParameterValue(null)>] ?YCalendar         : StyleParam.Calendar,
+            [<Optional;DefaultParameterValue(null)>] ?UIRevision        : string
+
+
         ) =
-            (fun (histogram2dContour:('T :> Trace)) ->
+            (fun (histogram2DContour:('T :> Trace)) ->
 
-                Z              |> DynObj.setValueOpt histogram2dContour "z"         
-                X              |> DynObj.setValueOpt histogram2dContour "x"               
-                Y              |> DynObj.setValueOpt histogram2dContour "y"
-                X0             |> DynObj.setValueOpt histogram2dContour "x0"             
-                dX             |> DynObj.setValueOpt histogram2dContour "dx"             
-                Y0             |> DynObj.setValueOpt histogram2dContour "y0"            
-                dY             |> DynObj.setValueOpt histogram2dContour "dy"            
-                xType          |> DynObj.setValueOpt histogram2dContour "xtype"         
-                yType          |> DynObj.setValueOpt histogram2dContour "ytype"                          
-                xAxis          |> DynObj.setValueOpt histogram2dContour "xaxis"         
-                yAxis          |> DynObj.setValueOpt histogram2dContour "yaxis"         
-                Zsrc           |> DynObj.setValueOpt histogram2dContour "zsrc"       
-                Xsrc           |> DynObj.setValueOpt histogram2dContour "xsrc"       
-                Ysrc           |> DynObj.setValueOpt histogram2dContour "ysrc"  
+                Name                                |> DynObj.setValueOpt histogram2DContour "name"              
+                Visible                             |> DynObj.setValueOptBy histogram2DContour "visible" StyleParam.Visible.convert
+                ShowLegend                          |> DynObj.setValueOpt histogram2DContour "showlegend"            
+                LegendRank                          |> DynObj.setValueOpt histogram2DContour "legendrank"            
+                LegendGroup                         |> DynObj.setValueOpt histogram2DContour "legendgroup"           
+                LegendGroupTitle                    |> DynObj.setValueOpt histogram2DContour "legendgrouptitle"      
+                Opacity                             |> DynObj.setValueOpt histogram2DContour "opacity"               
+                Ids                                 |> DynObj.setValueOpt histogram2DContour "ids"                   
+                X                                   |> DynObj.setValueOpt histogram2DContour "x"
+                Y                                   |> DynObj.setValueOpt histogram2DContour "y"
+                Z                                   |> DynObj.setValueOpt histogram2DContour "z"
+                HoverInfo                           |> DynObj.setValueOptBy histogram2DContour "hoverinfo" StyleParam.HoverInfo.convert
+                (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt histogram2DContour "hovertemplate"
+                XHoverFormat                        |> DynObj.setValueOpt histogram2DContour "xhoverformat"          
+                YHoverFormat                        |> DynObj.setValueOpt histogram2DContour "yhoverformat"          
+                Meta                                |> DynObj.setValueOpt histogram2DContour "meta"                  
+                CustomData                          |> DynObj.setValueOpt histogram2DContour "customdata"            
+                XAxis                               |> DynObj.setValueOptBy histogram2DContour "xaxis" StyleParam.LinearAxisId.convert
+                YAxis                               |> DynObj.setValueOptBy histogram2DContour "yaxis" StyleParam.LinearAxisId.convert
+                ColorAxis                           |> DynObj.setValueOpt histogram2DContour "coloraxis"
+                HistFunc                            |> DynObj.setValueOptBy histogram2DContour "histfunc"    StyleParam.HistFunc.convert
+                HistNorm                            |> DynObj.setValueOptBy histogram2DContour "histnorm"    StyleParam.HistNorm.convert
+                NBinsX                              |> DynObj.setValueOpt histogram2DContour "nbinsx"           
+                NBinsY                              |> DynObj.setValueOpt histogram2DContour "nbinsy"           
+                AutoBinX                            |> DynObj.setValueOpt histogram2DContour "autobinx"           
+                AutoBinY                            |> DynObj.setValueOpt histogram2DContour "autobiny"           
+                BinGroup                            |> DynObj.setValueOpt histogram2DContour "bingroup"     
+                XBinGroup                           |> DynObj.setValueOpt histogram2DContour "xbingroup"
+                XBins                               |> DynObj.setValueOpt histogram2DContour "xbins"           
+                YBinGroup                           |> DynObj.setValueOpt histogram2DContour "ybingroup"
+                YBins                               |> DynObj.setValueOpt histogram2DContour "ybins"           
+                Marker                              |> DynObj.setValueOpt histogram2DContour "marker"
+                Line                                |> DynObj.setValueOpt histogram2DContour "line"
+                ColorBar                            |> DynObj.setValueOpt histogram2DContour "colorbar"
+                AutoColorScale                      |> DynObj.setValueOpt histogram2DContour "autocolorscale" 
+                ColorScale                          |> DynObj.setValueOptBy histogram2DContour "colorscale" StyleParam.Colorscale.convert
+                ShowScale                           |> DynObj.setValueOpt histogram2DContour "showscale"
+                ReverseScale                        |> DynObj.setValueOpt histogram2DContour "reversescale"
+                ZAuto                               |> DynObj.setValueOpt histogram2DContour "zauto"
+                ZHoverFormat                        |> DynObj.setValueOpt histogram2DContour "zhoverformat"
+                Zmin                                |> DynObj.setValueOpt histogram2DContour "zmin"
+                Zmid                                |> DynObj.setValueOpt histogram2DContour "zmid"
+                Zmax                                |> DynObj.setValueOpt histogram2DContour "zmax"
+                AutoContour                         |> DynObj.setValueOpt histogram2DContour "autocontour"
+                Contours                            |> DynObj.setValueOpt histogram2DContour "contours"
+                HoverLabel                          |> DynObj.setValueOpt histogram2DContour "hoverlabel"            
+                NContours                           |> DynObj.setValueOpt histogram2DContour "ncontours"
+                XCalendar                           |> DynObj.setValueOptBy histogram2DContour "xcalendar" StyleParam.Calendar.convert
+                YCalendar                           |> DynObj.setValueOptBy histogram2DContour "ycalendar" StyleParam.Calendar.convert
+                UIRevision                          |> DynObj.setValueOpt histogram2DContour "uirevision"         
 
-                Orientation    |> DynObj.setValueOptBy histogram2dContour "orientation" StyleParam.Orientation.convert
-                //Connectgaps    |> DynObj.setValueOptBy histogram2dContour< "connectgaps" StyleParam.Orientation.convert
-                HistFunc       |> DynObj.setValueOptBy histogram2dContour "histfunc   " StyleParam.HistFunc.convert
-                HistNorm       |> DynObj.setValueOptBy histogram2dContour "histnorm   " StyleParam.HistNorm.convert
-                Autobinx       |> DynObj.setValueOpt histogram2dContour "autobinx"
-                nBinsx         |> DynObj.setValueOpt histogram2dContour "nbinsx"
-                xBins          |> DynObj.setValueOpt histogram2dContour "xbins"
-                Autobiny       |> DynObj.setValueOpt histogram2dContour "autobiny"
-                nBinsy         |> DynObj.setValueOpt histogram2dContour "nbinsy"
-                yBins          |> DynObj.setValueOpt histogram2dContour "ybins"
-
-                nContours      |> DynObj.setValueOpt histogram2dContour   "ncontours"       
-                Contours       |> DynObj.setValueOpt histogram2dContour   "contours"  
-                Line           |> DynObj.setValueOpt histogram2dContour   "line"                     
-                Xgap           |> DynObj.setValueOpt histogram2dContour   "xgap"       
-                Ygap           |> DynObj.setValueOpt histogram2dContour   "ygap"  
-                Transpose      |> DynObj.setValueOpt histogram2dContour   "transpose" 
-                zAuto          |> DynObj.setValueOpt histogram2dContour   "zauto"     
-                zMin           |> DynObj.setValueOpt histogram2dContour   "zmin"      
-                zMax           |> DynObj.setValueOpt histogram2dContour   "zmax"      
-                Colorscale     |> DynObj.setValueOptBy histogram2dContour "colorscale" StyleParam.Colorscale.convert 
-                Autocolorscale |> DynObj.setValueOpt histogram2dContour   "autocolorscale"
-                Reversescale   |> DynObj.setValueOpt histogram2dContour   "reversescale"  
-                Showscale      |> DynObj.setValueOpt histogram2dContour   "showscale"     
-                zSmooth        |> DynObj.setValueOptBy histogram2dContour "zsmooth" StyleParam.SmoothAlg.convert   
-                ColorBar       |> DynObj.setValueOpt histogram2dContour   "colorbar"    
-
-                // Update                
-                Marker       |> DynObj.setValueOpt histogram2dContour "marker"  
-                    
-                // out ->
-                histogram2dContour
+                histogram2DContour
             ) 
 
 

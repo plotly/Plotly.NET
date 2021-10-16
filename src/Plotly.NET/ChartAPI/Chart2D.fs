@@ -1519,7 +1519,7 @@ module Chart2D =
                 
         /// Computes the bi-dimensional histogram of two data samples.
         [<Extension>]
-        static member Histogram2d
+        static member Histogram2D
             (
                 x                 : seq<#IConvertible>,
                 y                 : seq<#IConvertible>,
@@ -1543,8 +1543,8 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?ReverseScale      : bool,
                 [<Optional;DefaultParameterValue(null)>] ?ZSmooth           : StyleParam.SmoothAlg
             ) =         
-                Trace2D.initHistogram2d (
-                    Trace2DStyle.Histogram2d (
+                Trace2D.initHistogram2D (
+                    Trace2DStyle.Histogram2D (
                         X               = x           ,
                         ?XGap           = XGap        ,
                         Y               = y           ,
@@ -1826,43 +1826,60 @@ module Chart2D =
         
          /// Computes the bi-dimensional histogram of two data samples and auto-determines the bin size.
          [<Extension>]
-         static member Histogram2dContour
+         static member Histogram2DContour
             (
-                x,y,
-                [<Optional;DefaultParameterValue(null)>] ?Z,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?Showscale,
-                [<Optional;DefaultParameterValue(null)>] ?Line,
-                [<Optional;DefaultParameterValue(null)>] ?zSmooth,
-                [<Optional;DefaultParameterValue(null)>] ?ColorBar,
-                [<Optional;DefaultParameterValue(null)>] ?zAuto,
-                [<Optional;DefaultParameterValue(null)>] ?zMin,
-                [<Optional;DefaultParameterValue(null)>] ?zMax,
-                [<Optional;DefaultParameterValue(null)>] ?nBinsx,
-                [<Optional;DefaultParameterValue(null)>] ?nBinsy,
-                [<Optional;DefaultParameterValue(null)>] ?xBins,
-                [<Optional;DefaultParameterValue(null)>] ?yBins,
-                [<Optional;DefaultParameterValue(null)>] ?HistNorm,
-                [<Optional;DefaultParameterValue(null)>] ?HistFunc
-            ) =         
-                Trace2D.initHistogram2dContour (
-                    Trace2DStyle.Histogram2dContour (X=x, Y=y,? Z=Z,?Line=Line,
-                        ?Colorscale=Colorscale,
-                        ?Showscale=Showscale,
-                        ?zSmooth=zSmooth,
-                        ?ColorBar=ColorBar,
-                        ?zAuto=zAuto,
-                        ?zMin=zMin,
-                        ?zMax=zMax,
-                        ?nBinsx=nBinsx,
-                        ?nBinsy=nBinsy,
-                        ?xBins=xBins,
-                        ?yBins=yBins,
-                        ?HistNorm=HistNorm,
-                        ?HistFunc=HistFunc                                
+                x                 : seq<#IConvertible>,
+                y                 : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float, 
+                [<Optional;DefaultParameterValue(null)>] ?Z                 : seq<#seq<#IConvertible>>,
+                [<Optional;DefaultParameterValue(null)>] ?HistFunc          : StyleParam.HistFunc,
+                [<Optional;DefaultParameterValue(null)>] ?HistNorm          : StyleParam.HistNorm,
+                [<Optional;DefaultParameterValue(null)>] ?NBinsX            : int,
+                [<Optional;DefaultParameterValue(null)>] ?NBinsY            : int,
+                [<Optional;DefaultParameterValue(null)>] ?BinGroup          : string,
+                [<Optional;DefaultParameterValue(null)>] ?XBinGroup         : string,
+                [<Optional;DefaultParameterValue(null)>] ?XBins             : Bins,
+                [<Optional;DefaultParameterValue(null)>] ?YBinGroup         : string,
+                [<Optional;DefaultParameterValue(null)>] ?YBins             : Bins,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?LineDash          : StyleParam.DrawingStyle,
+                [<Optional;DefaultParameterValue(null)>] ?LineColor         : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
+                [<Optional;DefaultParameterValue(null)>] ?ColorBar          : ColorBar,
+                [<Optional;DefaultParameterValue(null)>] ?ColorScale        : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?ShowScale         : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ReverseScale      : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Contours          : Contours,
+                [<Optional;DefaultParameterValue(null)>] ?NContours         : int
+            ) = 
+                Trace2D.initHistogram2DContour (
+                    Trace2DStyle.Histogram2DContour (
+                        X               = x,
+                        Y               = y,
+                        ?Z              = Z           ,
+                        ?HistFunc       = HistFunc    ,
+                        ?HistNorm       = HistNorm    ,
+                        ?NBinsX         = NBinsX      ,
+                        ?NBinsY         = NBinsY      ,
+                        ?BinGroup       = BinGroup    ,
+                        ?XBinGroup      = XBinGroup   ,
+                        ?XBins          = XBins       ,
+                        ?YBinGroup      = YBinGroup   ,
+                        ?YBins          = YBins       ,
+                        ?Marker         = Marker      ,
+                        ?Line           = Line        ,
+                        ?ColorBar       = ColorBar    ,
+                        ?ColorScale     = ColorScale  ,
+                        ?ShowScale      = ShowScale   ,
+                        ?ReverseScale   = ReverseScale,
+                        ?Contours       = Contours    ,
+                        ?NContours      = NContours   
                     )
                 )
+                |> TraceStyle.TraceInfo(?Name=Name, ?ShowLegend=ShowLegend, ?Opacity=Opacity)   
+                |> TraceStyle.Line(?Color=LineColor, ?Dash=LineDash)
                 |> GenericChart.ofTraceObject
 
         /// Shows a graphical representation of a 3-dimensional surface by plotting constant z slices, called contours, on a 2-dimensional format.
