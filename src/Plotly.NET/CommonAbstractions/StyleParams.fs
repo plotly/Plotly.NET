@@ -247,14 +247,12 @@ module StyleParam =
         | True
         | False
         | SD 
-         
-        static member toString = function
-            | True  -> "true"
-            | False -> "false"
-            | SD    -> "SD"
 
-        static member convert = BoxMean.toString >> box
-        override this.ToString() = this |> BoxMean.toString
+        static member convert = function
+            | True  -> box true
+            | False -> box false
+            | SD    -> box "sd"
+
         member this.Convert() = this |> BoxMean.convert
 
     /// For bar and histogram plots only. This sets how multiple bar objects are plotted together. In other words, this defines how bars at the same location
