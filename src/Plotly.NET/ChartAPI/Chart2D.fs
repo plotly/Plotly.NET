@@ -1517,48 +1517,52 @@ module Chart2D =
                         histChart
                         |> GenericChart.mapTrace (Trace2DStyle.Histogram(X=data))
                 
-        
-        /// Computes the bi-dimensional histogram of two data samples and auto-determines the bin size.
+        /// Computes the bi-dimensional histogram of two data samples.
         [<Extension>]
         static member Histogram2d
             (
-                x,y,
-                [<Optional;DefaultParameterValue(null)>] ?Z,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?Showscale,
-                [<Optional;DefaultParameterValue(null)>] ?zSmooth,
-                [<Optional;DefaultParameterValue(null)>] ?ColorBar,
-                [<Optional;DefaultParameterValue(null)>] ?zAuto,
-                [<Optional;DefaultParameterValue(null)>] ?zMin,
-                [<Optional;DefaultParameterValue(null)>] ?zMax,
-                [<Optional;DefaultParameterValue(null)>] ?nBinsx,
-                [<Optional;DefaultParameterValue(null)>] ?nBinsy,
-                [<Optional;DefaultParameterValue(null)>] ?xBins,
-                [<Optional;DefaultParameterValue(null)>] ?yBins,
-                [<Optional;DefaultParameterValue(null)>] ?HistNorm,
-                [<Optional;DefaultParameterValue(null)>] ?HistFunc
+                x                 : seq<#IConvertible>,
+                y                 : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Z                 : seq<#seq<#IConvertible>>,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float, 
+                [<Optional;DefaultParameterValue(null)>] ?XGap              : int,
+                [<Optional;DefaultParameterValue(null)>] ?YGap              : int,
+                [<Optional;DefaultParameterValue(null)>] ?HistFunc          : StyleParam.HistFunc,
+                [<Optional;DefaultParameterValue(null)>] ?HistNorm          : StyleParam.HistNorm,
+                [<Optional;DefaultParameterValue(null)>] ?NBinsX            : int,
+                [<Optional;DefaultParameterValue(null)>] ?NBinsY            : int,
+                [<Optional;DefaultParameterValue(null)>] ?AutoBinX          : bool,
+                [<Optional;DefaultParameterValue(null)>] ?AutoBinY          : bool,
+                [<Optional;DefaultParameterValue(null)>] ?XBins             : Bins,
+                [<Optional;DefaultParameterValue(null)>] ?YBins             : Bins,
+                [<Optional;DefaultParameterValue(null)>] ?ColorBar          : ColorBar,
+                [<Optional;DefaultParameterValue(null)>] ?ColorScale        : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?ShowScale         : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ReverseScale      : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ZSmooth           : StyleParam.SmoothAlg
             ) =         
                 Trace2D.initHistogram2d (
                     Trace2DStyle.Histogram2d (
-                        X=x,
-                        Y=y,
-                        ?Z=Z,
-                        ?Colorscale=Colorscale,
-                        ?Showscale=Showscale,
-                        ?zSmooth=zSmooth,
-                        ?ColorBar=ColorBar,
-                        ?zAuto=zAuto,
-                        ?zMin=zMin,
-                        ?zMax=zMax,
-                        ?nBinsx=nBinsx,
-                        ?nBinsy=nBinsy,
-                        ?xBins=xBins,
-                        ?yBins=yBins,
-                        ?HistNorm=HistNorm,
-                        ?HistFunc=HistFunc 
+                        X               = x           ,
+                        ?XGap           = XGap        ,
+                        Y               = y           ,
+                        ?YGap           = YGap        ,
+                        ?Z              = Z           ,
+                        ?HistFunc       = HistFunc    ,
+                        ?HistNorm       = HistNorm    ,
+                        ?NBinsX         = NBinsX      ,
+                        ?NBinsY         = NBinsY      ,
+                        ?AutoBinX       = AutoBinX    ,
+                        ?AutoBinY       = AutoBinY    ,
+                        ?XBins          = XBins       ,
+                        ?YBins          = YBins       ,
+                        ?ColorBar       = ColorBar    ,
+                        ?ColorScale     = ColorScale  ,
+                        ?ShowScale      = ShowScale   ,
+                        ?ReverseScale   = ReverseScale,
+                        ?ZSmooth        = ZSmooth     
                     ) 
                 )
                 |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)   

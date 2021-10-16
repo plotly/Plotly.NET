@@ -160,6 +160,9 @@ open FSharpAux
 
 open System
 open System.IO
+
+
+
 [
     Chart.Histogram(
         [for i in 0 .. 10000 do yield System.Random().NextDouble() *  10.], 
