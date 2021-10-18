@@ -87,7 +87,7 @@
 #load "WaterfallConnector.fs"
 #load "FunnelConnector.fs"
 #load "Box.fs"
-#load "Meanline.fs"
+#load "MeanLine.fs"
 #load "Bins.fs"
 #load "Cumulative.fs"
 #load "Error.fs"
@@ -160,6 +160,85 @@ open FSharpAux
 
 open System
 open System.IO
+
+let y=[2.37; 2.16; 4.82; 1.73; 1.04; 0.23; 1.32; 2.91; 0.11; 4.51; 0.51; 3.75; 1.35; 2.98; 4.50; 0.18; 4.66; 1.30; 2.06; 1.19]
+
+[
+    Chart.BoxPlot(y=y,BoxPoints=StyleParam.BoxPoints.All,Jitter=0.5,Notched=true,MarkerColor = Color.fromString "red",BoxMean=StyleParam.BoxMean.True,Name="Only Mean");
+    Chart.BoxPlot(y=y,BoxPoints=StyleParam.BoxPoints.All,Jitter=0.5,Notched=true,MarkerColor = Color.fromString "blue",BoxMean=StyleParam.BoxMean.SD,Name="Mean & SD")
+]
+|> Chart.combine
+|> Chart.show
+
+Chart.Histogram2DContour(
+    [for _ in 0 .. 10000 do yield System.Random().NextDouble()], 
+    [for _ in 0 .. 10000 do yield System.Random().NextDouble()],
+    LineDash = StyleParam.DrawingStyle.DashDot,
+    NContours= 20,
+    LineColor= Color.fromKeyword White,
+    ColorScale = StyleParam.Colorscale.Viridis
+)
+|> Chart.show
+
+[
+    Chart.Histogram(
+        [for i in 0 .. 10000 do yield System.Random().NextDouble() *  10.], 
+        StyleParam.Orientation.Vertical,
+        HistFunc = StyleParam.HistFunc.Avg,
+        HistNorm = StyleParam.HistNorm.ProbabilityDensity,
+        BinGroup = "myHist",
+        Opacity = 0.6,
+        Cumulative = Cumulative.init(Enabled=true)
+    )    
+    Chart.Histogram(
+        [for i in 0 .. 1000 do yield System.Random().NextDouble() *  10.], 
+        StyleParam.Orientation.Vertical,
+        HistFunc = StyleParam.HistFunc.Avg,
+        HistNorm = StyleParam.HistNorm.ProbabilityDensity,
+        BinGroup = "myHist",
+        Opacity = 0.6,
+        Cumulative = Cumulative.init(Enabled=true,Direction = StyleParam.CumulativeDirection.Decreasing)
+    )
+]
+|> Chart.combine
+|> Chart.withLayout(
+    Layout.init(
+        BarMode = StyleParam.BarMode.Overlay
+    )
+)
+|> Chart.show
+
+let violin1Chart =
+    let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+    let x = ["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"bin1"]
+    Chart.Violin (
+        x,y,
+        Points=StyleParam.JitterPoints.All
+    )
+
+let violin2Chart =
+    let x =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+    let y = ["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"bin1"]
+    Chart.Violin(
+        x,y,
+        Jitter=0.1,
+        Points=StyleParam.JitterPoints.All,
+        Orientation=StyleParam.Orientation.Horizontal,
+        MeanLine=MeanLine.init(Visible=true)
+    )
+
+let violin3Chart =
+    let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+    let y' =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+    [
+        Chart.Violin ("y" ,y,Name="bin1",Jitter=0.1,Points=StyleParam.JitterPoints.All);
+        Chart.Violin ("y'",y',Name="bin2",Jitter=0.1,Points=StyleParam.JitterPoints.All);
+    ]
+    |> Chart.combine
+
+violin1Chart |> Chart.show
+violin2Chart |> Chart.show
+violin3Chart |> Chart.show
 
 let character   = ["Eve"; "Cain"; "Seth"; "Enos"; "Noam"; "Abel"; "Awan"; "Enoch"; "Azura"]
 let parent      = [""; "Eve"; "Eve"; "Seth"; "Seth"; "Eve"; "Eve"; "Awan"; "Eve" ]
@@ -604,8 +683,8 @@ Chart.Invisible()
     
 
         [
-            Chart.BoxPlot("y" ,y,Name="bin1",Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All);
-            Chart.BoxPlot("y'",y',Name="bin2",Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All);
+            Chart.BoxPlot("y" ,y,Name="bin1",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All);
+            Chart.BoxPlot("y'",y',Name="bin2",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All);
         ]
         |> Chart.combine
     
@@ -645,8 +724,8 @@ let heatmap2=
     Chart.PointMapbox([1,2]) |> Chart.withMapbox(Mapbox.init(Style = StyleParam.MapboxStyle.OpenStreetMap))
     [
         let y =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
-        Chart.BoxPlot("y" ,y,Name="bin1",Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All);
-        Chart.BoxPlot("y'",y,Name="bin2",Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All);
+        Chart.BoxPlot("y" ,y,Name="bin1",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All);
+        Chart.BoxPlot("y'",y,Name="bin2",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All);
     ]
     |> Chart.combine
 ]

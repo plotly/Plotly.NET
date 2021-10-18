@@ -260,8 +260,8 @@ let multipleTraceTypesGrid =
         [
             // you can use nested combined charts, but they have to have the same trace type (Cartesian2D in this case)
             let y =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
-            Chart.BoxPlot("y" ,y,Name="bin1",Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All);
-            Chart.BoxPlot("y'",y,Name="bin2",Jitter=0.1,Boxpoints=StyleParam.Boxpoints.All);
+            Chart.BoxPlot("y" ,y,Name="bin1",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All);
+            Chart.BoxPlot("y'",y,Name="bin2",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All);
         ]
         |> Chart.combine
     ]

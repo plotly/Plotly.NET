@@ -16,15 +16,17 @@ type Box () =
             [<Optional;DefaultParameterValue(null)>] ?Visible: bool,
             [<Optional;DefaultParameterValue(null)>] ?Width: float,
             [<Optional;DefaultParameterValue(null)>] ?FillColor: Color,
-            [<Optional;DefaultParameterValue(null)>] ?Line: Line
+            [<Optional;DefaultParameterValue(null)>] ?LineColor: Color,
+            [<Optional;DefaultParameterValue(null)>] ?LineWidth: float
         ) =
             Box () 
             |> Box.style
                 (
-                    ?Visible   = Visible,
-                    ?Width     = Width,
-                    ?FillColor = FillColor,
-                    ?Line      = Line           
+                    ?Visible    = Visible,
+                    ?Width      = Width,
+                    ?FillColor  = FillColor,
+                    ?LineColor  = LineColor,
+                    ?LineWidth  = LineWidth
                 )
 
 
@@ -34,13 +36,20 @@ type Box () =
             [<Optional;DefaultParameterValue(null)>] ?Visible: bool,
             [<Optional;DefaultParameterValue(null)>] ?Width: float,
             [<Optional;DefaultParameterValue(null)>] ?FillColor: Color,
-            [<Optional;DefaultParameterValue(null)>] ?Line: Line
+            [<Optional;DefaultParameterValue(null)>] ?LineColor: Color,
+            [<Optional;DefaultParameterValue(null)>] ?LineWidth: float
         ) =
             (fun (box:Box) -> 
+
+                let line = 
+                    if LineColor.IsSome || LineWidth.IsSome then
+                        Some (Line.init(?Color = LineColor, ?Width = LineWidth))
+                    else None
+
                 Visible    |> DynObj.setValueOpt box "visible"
                 Width      |> DynObj.setValueOpt box "width"
                 FillColor  |> DynObj.setValueOpt box "fillColor"
-                Line       |> DynObj.setValueOpt box "line"
+                line       |> DynObj.setValueOpt box "line"
                     
                 // out -> 
                 box

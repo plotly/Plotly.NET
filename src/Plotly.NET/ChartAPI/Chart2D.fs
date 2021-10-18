@@ -1395,85 +1395,174 @@ module Chart2D =
                     ?Marker             = Marker           
                 )
 
-        /// Computes a histogram with auto-determined the bin size.
+        
+        /// Visualizes the distribution of the input data as a histogram.
+        [<Extension>]
+        static member Histogram
+            (   
+                [<Optional;DefaultParameterValue(null)>] ?X                 : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Y                 : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Orientation       : StyleParam.Orientation,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float, 
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?HistFunc          : StyleParam.HistFunc,
+                [<Optional;DefaultParameterValue(null)>] ?HistNorm          : StyleParam.HistNorm,
+                [<Optional;DefaultParameterValue(null)>] ?AlignmentGroup    : string,
+                [<Optional;DefaultParameterValue(null)>] ?OffsetGroup       : string,
+                [<Optional;DefaultParameterValue(null)>] ?NBinsX            : int,
+                [<Optional;DefaultParameterValue(null)>] ?NBinsY            : int,
+                [<Optional;DefaultParameterValue(null)>] ?BinGroup          : string,
+                [<Optional;DefaultParameterValue(null)>] ?XBins             : Bins,
+                [<Optional;DefaultParameterValue(null)>] ?YBins             : Bins,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
+                [<Optional;DefaultParameterValue(null)>] ?ErrorX            : Error,
+                [<Optional;DefaultParameterValue(null)>] ?ErrorY            : Error,
+                [<Optional;DefaultParameterValue(null)>] ?Cumulative        : Cumulative,
+                [<Optional;DefaultParameterValue(null)>] ?HoverLabel        : Hoverlabel
+            ) =         
+                Trace2D.initHistogram (
+                    Trace2DStyle.Histogram (
+                        ?X                 = X,
+                        ?Y                 = Y,
+                        ?Text              = Text              ,
+                        ?MultiText         = MultiText         ,
+                        ?Orientation       = Orientation       ,
+                        ?HistFunc          = HistFunc          ,
+                        ?HistNorm          = HistNorm          ,
+                        ?AlignmentGroup    = AlignmentGroup    ,
+                        ?OffsetGroup       = OffsetGroup       ,
+                        ?NBinsX            = NBinsX            ,
+                        ?NBinsY            = NBinsY            ,
+                        ?BinGroup          = BinGroup          ,
+                        ?XBins             = XBins             ,
+                        ?YBins             = YBins             ,
+                        ?Marker            = Marker            ,
+                        ?Line              = Line              ,
+                        ?ErrorX            = ErrorX            ,
+                        ?ErrorY            = ErrorY            ,
+                        ?Cumulative        = Cumulative        ,
+                        ?HoverLabel        = HoverLabel        
+                    )
+                )
+                |> TraceStyle.Marker(?Color=MarkerColor)
+                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)   
+                |> GenericChart.ofTraceObject
+
+        /// Visualizes the distribution of the input data as a histogram, automatically determining if the data is to be used for the x or y dimension based on the `orientation` parameter.
         [<Extension>]
         static member Histogram
             (
-                data,
-                [<Optional;DefaultParameterValue(null)>]  ?Orientation,
-                [<Optional;DefaultParameterValue(null)>]  ?Name,
-                [<Optional;DefaultParameterValue(null)>]  ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>]  ?Opacity,
-                [<Optional;DefaultParameterValue(null)>]  ?Color,
-                [<Optional;DefaultParameterValue(null)>]  ?HistNorm,
-                [<Optional;DefaultParameterValue(null)>]  ?HistFunc,
-                [<Optional;DefaultParameterValue(null)>]  ?nBinsx,
-                [<Optional;DefaultParameterValue(null)>]  ?nBinsy,
-                [<Optional;DefaultParameterValue(null)>]  ?Xbins,
-                [<Optional;DefaultParameterValue(null)>]  ?Ybins,
-                // TODO
-                [<Optional;DefaultParameterValue(null)>]  ?xError,
-                [<Optional;DefaultParameterValue(null)>]  ?yError
+                data: seq<#IConvertible>,
+                orientation : StyleParam.Orientation,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float, 
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?HistFunc          : StyleParam.HistFunc,
+                [<Optional;DefaultParameterValue(null)>] ?HistNorm          : StyleParam.HistNorm,
+                [<Optional;DefaultParameterValue(null)>] ?AlignmentGroup    : string,
+                [<Optional;DefaultParameterValue(null)>] ?OffsetGroup       : string,
+                [<Optional;DefaultParameterValue(null)>] ?NBinsX            : int,
+                [<Optional;DefaultParameterValue(null)>] ?NBinsY            : int,
+                [<Optional;DefaultParameterValue(null)>] ?BinGroup          : string,
+                [<Optional;DefaultParameterValue(null)>] ?XBins             : Bins,
+                [<Optional;DefaultParameterValue(null)>] ?YBins             : Bins,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
+                [<Optional;DefaultParameterValue(null)>] ?ErrorX            : Error,
+                [<Optional;DefaultParameterValue(null)>] ?ErrorY            : Error,
+                [<Optional;DefaultParameterValue(null)>] ?Cumulative        : Cumulative,
+                [<Optional;DefaultParameterValue(null)>] ?HoverLabel        : Hoverlabel
             ) =         
-        
-                Trace2D.initHistogram (
-                    Trace2DStyle.Histogram (
-                        X=data,
-                        ?Orientation=Orientation,
-                        ?HistNorm=HistNorm,
-                        ?HistFunc=HistFunc,
-                        ?nBinsx=nBinsx,
-                        ?nBinsy=nBinsy,
-                        ?xBins=Xbins,
-                        ?yBins=Ybins
-                    )
-                )
-                |> TraceStyle.Marker(?Color=Color)
-                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)   
                 
-                |> GenericChart.ofTraceObject
-        
-        /// Computes the bi-dimensional histogram of two data samples and auto-determines the bin size.
+                let histChart = 
+                    Trace2D.initHistogram (
+                        Trace2DStyle.Histogram (
+                            ?Text              = Text              ,
+                            ?MultiText         = MultiText         ,
+                            Orientation        = orientation       ,
+                            ?HistFunc          = HistFunc          ,
+                            ?HistNorm          = HistNorm          ,
+                            ?AlignmentGroup    = AlignmentGroup    ,
+                            ?OffsetGroup       = OffsetGroup       ,
+                            ?NBinsX            = NBinsX            ,
+                            ?NBinsY            = NBinsY            ,
+                            ?BinGroup          = BinGroup          ,
+                            ?XBins             = XBins             ,
+                            ?YBins             = YBins             ,
+                            ?Marker            = Marker            ,
+                            ?Line              = Line              ,
+                            ?ErrorX            = ErrorX            ,
+                            ?ErrorY            = ErrorY            ,
+                            ?Cumulative        = Cumulative        ,
+                            ?HoverLabel        = HoverLabel        
+                        )
+                    )
+                    |> TraceStyle.Marker(?Color=MarkerColor)
+                    |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)   
+                    |> GenericChart.ofTraceObject
+                
+                match orientation with
+                    | StyleParam.Orientation.Horizontal -> 
+                        histChart
+                        |> GenericChart.mapTrace (Trace2DStyle.Histogram(Y=data))
+                    | StyleParam.Orientation.Vertical -> 
+                        histChart
+                        |> GenericChart.mapTrace (Trace2DStyle.Histogram(X=data))
+                
+        /// Computes the bi-dimensional histogram of two data samples.
         [<Extension>]
-        static member Histogram2d
+        static member Histogram2D
             (
-                x,y,
-                [<Optional;DefaultParameterValue(null)>] ?Z,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?Showscale,
-                [<Optional;DefaultParameterValue(null)>] ?zSmooth,
-                [<Optional;DefaultParameterValue(null)>] ?ColorBar,
-                [<Optional;DefaultParameterValue(null)>] ?zAuto,
-                [<Optional;DefaultParameterValue(null)>] ?zMin,
-                [<Optional;DefaultParameterValue(null)>] ?zMax,
-                [<Optional;DefaultParameterValue(null)>] ?nBinsx,
-                [<Optional;DefaultParameterValue(null)>] ?nBinsy,
-                [<Optional;DefaultParameterValue(null)>] ?xBins,
-                [<Optional;DefaultParameterValue(null)>] ?yBins,
-                [<Optional;DefaultParameterValue(null)>] ?HistNorm,
-                [<Optional;DefaultParameterValue(null)>] ?HistFunc
+                x                 : seq<#IConvertible>,
+                y                 : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Z                 : seq<#seq<#IConvertible>>,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float, 
+                [<Optional;DefaultParameterValue(null)>] ?XGap              : int,
+                [<Optional;DefaultParameterValue(null)>] ?YGap              : int,
+                [<Optional;DefaultParameterValue(null)>] ?HistFunc          : StyleParam.HistFunc,
+                [<Optional;DefaultParameterValue(null)>] ?HistNorm          : StyleParam.HistNorm,
+                [<Optional;DefaultParameterValue(null)>] ?NBinsX            : int,
+                [<Optional;DefaultParameterValue(null)>] ?NBinsY            : int,
+                [<Optional;DefaultParameterValue(null)>] ?AutoBinX          : bool,
+                [<Optional;DefaultParameterValue(null)>] ?AutoBinY          : bool,
+                [<Optional;DefaultParameterValue(null)>] ?XBins             : Bins,
+                [<Optional;DefaultParameterValue(null)>] ?YBins             : Bins,
+                [<Optional;DefaultParameterValue(null)>] ?ColorBar          : ColorBar,
+                [<Optional;DefaultParameterValue(null)>] ?ColorScale        : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?ShowScale         : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ReverseScale      : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ZSmooth           : StyleParam.SmoothAlg
             ) =         
-                Trace2D.initHistogram2d (
-                    Trace2DStyle.Histogram2d (
-                        X=x,
-                        Y=y,
-                        ?Z=Z,
-                        ?Colorscale=Colorscale,
-                        ?Showscale=Showscale,
-                        ?zSmooth=zSmooth,
-                        ?ColorBar=ColorBar,
-                        ?zAuto=zAuto,
-                        ?zMin=zMin,
-                        ?zMax=zMax,
-                        ?nBinsx=nBinsx,
-                        ?nBinsy=nBinsy,
-                        ?xBins=xBins,
-                        ?yBins=yBins,
-                        ?HistNorm=HistNorm,
-                        ?HistFunc=HistFunc 
+                Trace2D.initHistogram2D (
+                    Trace2DStyle.Histogram2D (
+                        X               = x           ,
+                        ?XGap           = XGap        ,
+                        Y               = y           ,
+                        ?YGap           = YGap        ,
+                        ?Z              = Z           ,
+                        ?HistFunc       = HistFunc    ,
+                        ?HistNorm       = HistNorm    ,
+                        ?NBinsX         = NBinsX      ,
+                        ?NBinsY         = NBinsY      ,
+                        ?AutoBinX       = AutoBinX    ,
+                        ?AutoBinY       = AutoBinY    ,
+                        ?XBins          = XBins       ,
+                        ?YBins          = YBins       ,
+                        ?ColorBar       = ColorBar    ,
+                        ?ColorScale     = ColorScale  ,
+                        ?ShowScale      = ShowScale   ,
+                        ?ReverseScale   = ReverseScale,
+                        ?ZSmooth        = ZSmooth     
                     ) 
                 )
                 |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)   
@@ -1483,183 +1572,314 @@ module Chart2D =
         [<Extension>]
         static member BoxPlot
             (
-                [<Optional;DefaultParameterValue(null)>] ?x,
-                [<Optional;DefaultParameterValue(null)>] ?y,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?Color,
-                [<Optional;DefaultParameterValue(null)>] ?Fillcolor,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Whiskerwidth,
-                [<Optional;DefaultParameterValue(null)>] ?Boxpoints,
-                [<Optional;DefaultParameterValue(null)>] ?Boxmean,
-                [<Optional;DefaultParameterValue(null)>] ?Jitter,
-                [<Optional;DefaultParameterValue(null)>] ?Pointpos,
-                [<Optional;DefaultParameterValue(null)>] ?Orientation,
-                [<Optional;DefaultParameterValue(null)>] ?Marker,
-                [<Optional;DefaultParameterValue(null)>] ?Line,
-                [<Optional;DefaultParameterValue(null)>] ?Alignmentgroup,
-                [<Optional;DefaultParameterValue(null)>] ?Offsetgroup,
-                [<Optional;DefaultParameterValue(null)>] ?Notched,
-                [<Optional;DefaultParameterValue(null)>] ?NotchWidth,
-                [<Optional;DefaultParameterValue(null)>] ?QuartileMethod
+                [<Optional;DefaultParameterValue(null)>] ?x             : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?y             : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Name          : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend    : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Text          : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText     : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Fillcolor     : Color,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?OutlierColor  : Color,
+                [<Optional;DefaultParameterValue(null)>] ?OutlierWidth  : int,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity       : float,
+                [<Optional;DefaultParameterValue(null)>] ?WhiskerWidth  : float,
+                [<Optional;DefaultParameterValue(null)>] ?BoxPoints     : StyleParam.BoxPoints,
+                [<Optional;DefaultParameterValue(null)>] ?BoxMean       : StyleParam.BoxMean,
+                [<Optional;DefaultParameterValue(null)>] ?Jitter        : float,
+                [<Optional;DefaultParameterValue(null)>] ?PointPos      : float,
+                [<Optional;DefaultParameterValue(null)>] ?Orientation   : StyleParam.Orientation,
+                [<Optional;DefaultParameterValue(null)>] ?Marker        : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?Line          : Line,
+                [<Optional;DefaultParameterValue(null)>] ?AlignmentGroup: string,
+                [<Optional;DefaultParameterValue(null)>] ?Offsetgroup   : string,
+                [<Optional;DefaultParameterValue(null)>] ?Notched       : bool,
+                [<Optional;DefaultParameterValue(null)>] ?NotchWidth    : float,
+                [<Optional;DefaultParameterValue(null)>] ?QuartileMethod: StyleParam.QuartileMethod
             ) = 
                 Trace2D.initBoxPlot (
                     Trace2DStyle.BoxPlot(
-                        ?X=x, ?Y = y,
-                        ?Whiskerwidth=Whiskerwidth,?Boxpoints=Boxpoints,
-                        ?Boxmean=Boxmean,?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation,?Fillcolor=Fillcolor,
-                        ?Marker=Marker,?Line=Line,?Alignmentgroup=Alignmentgroup,?Offsetgroup=Offsetgroup,?Notched=Notched,?NotchWidth=NotchWidth,?QuartileMethod=QuartileMethod
+                        ?X              = x, 
+                        ?Y              = y,
+                        ?Text           = Text,
+                        ?MultiText      = MultiText,
+                        ?Whiskerwidth   = WhiskerWidth,
+                        ?BoxPoints      = BoxPoints,
+                        ?BoxMean        = BoxMean,
+                        ?Jitter         = Jitter,
+                        ?PointPos       = PointPos,
+                        ?Orientation    = Orientation,
+                        ?FillColor      = Fillcolor,
+                        ?Marker         = Marker,
+                        ?Line           = Line,
+                        ?AlignmentGroup = AlignmentGroup,
+                        ?OffsetGroup    = Offsetgroup,
+                        ?Notched        = Notched,
+                        ?NotchWidth     = NotchWidth,
+                        ?QuartileMethod = QuartileMethod
                     ) 
                 )
                 |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)   
-                |> TraceStyle.Marker(?Color=Color)
+                |> TraceStyle.Marker(?Color=MarkerColor, ?OutlierColor=OutlierColor, ?OutlierWidth=OutlierWidth)
                 |> GenericChart.ofTraceObject
 
 
         /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.       
         [<Extension>]
-        static member BoxPlot(xy,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?Color,
-                [<Optional;DefaultParameterValue(null)>] ?Fillcolor,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Whiskerwidth,
-                [<Optional;DefaultParameterValue(null)>] ?Boxpoints,
-                [<Optional;DefaultParameterValue(null)>] ?Boxmean,
-                [<Optional;DefaultParameterValue(null)>] ?Jitter,
-                [<Optional;DefaultParameterValue(null)>] ?Pointpos,
-                [<Optional;DefaultParameterValue(null)>] ?Orientation,
-                [<Optional;DefaultParameterValue(null)>] ?Marker,
-                [<Optional;DefaultParameterValue(null)>] ?Line,
-                [<Optional;DefaultParameterValue(null)>] ?Alignmentgroup,
-                [<Optional;DefaultParameterValue(null)>] ?Offsetgroup,
-                [<Optional;DefaultParameterValue(null)>] ?Notched,
-                [<Optional;DefaultParameterValue(null)>] ?NotchWidth,
-                [<Optional;DefaultParameterValue(null)>] ?QuartileMethod
-                ) = 
-            let x,y = Seq.unzip xy
-            Chart.BoxPlot(x, y, ?Name=Name,?ShowLegend=ShowLegend,?Color=Color,?Fillcolor=Fillcolor,?Opacity=Opacity,?Whiskerwidth=Whiskerwidth,?Boxpoints=Boxpoints,?Boxmean=Boxmean,?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation,
-                                ?Marker=Marker,?Line=Line,?Alignmentgroup=Alignmentgroup,?Offsetgroup=Offsetgroup,?Notched=Notched,?NotchWidth=NotchWidth,?QuartileMethod=QuartileMethod) 
+        static member BoxPlot
+            (
+                xy: seq<#IConvertible * #IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Name          : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend    : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Text          : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText     : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Fillcolor     : Color,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?OutlierColor  : Color,
+                [<Optional;DefaultParameterValue(null)>] ?OutlierWidth  : int,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity       : float,
+                [<Optional;DefaultParameterValue(null)>] ?WhiskerWidth  : float,
+                [<Optional;DefaultParameterValue(null)>] ?BoxPoints     : StyleParam.BoxPoints,
+                [<Optional;DefaultParameterValue(null)>] ?BoxMean       : StyleParam.BoxMean,
+                [<Optional;DefaultParameterValue(null)>] ?Jitter        : float,
+                [<Optional;DefaultParameterValue(null)>] ?PointPos      : float,
+                [<Optional;DefaultParameterValue(null)>] ?Orientation   : StyleParam.Orientation,
+                [<Optional;DefaultParameterValue(null)>] ?Marker        : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?Line          : Line,
+                [<Optional;DefaultParameterValue(null)>] ?AlignmentGroup: string,
+                [<Optional;DefaultParameterValue(null)>] ?Offsetgroup   : string,
+                [<Optional;DefaultParameterValue(null)>] ?Notched       : bool,
+                [<Optional;DefaultParameterValue(null)>] ?NotchWidth    : float,
+                [<Optional;DefaultParameterValue(null)>] ?QuartileMethod: StyleParam.QuartileMethod
+                
+            ) = 
+                let x,y = Seq.unzip xy
+                Chart.BoxPlot(
+                    x, y, 
+                    ?Name           = Name          ,
+                    ?ShowLegend     = ShowLegend    ,
+                    ?Text           = Text          ,
+                    ?MultiText      = MultiText     ,
+                    ?Fillcolor      = Fillcolor     ,
+                    ?MarkerColor    = MarkerColor   ,
+                    ?OutlierColor   = OutlierColor  ,
+                    ?OutlierWidth   = OutlierWidth  ,
+                    ?Opacity        = Opacity       ,
+                    ?WhiskerWidth   = WhiskerWidth  ,
+                    ?BoxPoints      = BoxPoints     ,
+                    ?BoxMean        = BoxMean       ,
+                    ?Jitter         = Jitter        ,
+                    ?PointPos       = PointPos      ,
+                    ?Orientation    = Orientation   ,
+                    ?Marker         = Marker        ,
+                    ?Line           = Line          ,
+                    ?AlignmentGroup = AlignmentGroup,
+                    ?Offsetgroup    = Offsetgroup   ,
+                    ?Notched        = Notched       ,
+                    ?NotchWidth     = NotchWidth    ,
+                    ?QuartileMethod = QuartileMethod
+                )
+               
 
 
         /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.            
         [<Extension>]
         static member Violin
             (
-                [<Optional;DefaultParameterValue(null)>] ?x,
-                [<Optional;DefaultParameterValue(null)>] ?y,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?Color,
-                [<Optional;DefaultParameterValue(null)>] ?Fillcolor,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Points,
-                [<Optional;DefaultParameterValue(null)>] ?Jitter,
-                [<Optional;DefaultParameterValue(null)>] ?Pointpos,
-                [<Optional;DefaultParameterValue(null)>] ?Orientation,
-                [<Optional;DefaultParameterValue(null)>] ?Width,
-                [<Optional;DefaultParameterValue(null)>] ?Marker,
-                [<Optional;DefaultParameterValue(null)>] ?Line,
-                [<Optional;DefaultParameterValue(null)>] ?Alignmentgroup,
-                [<Optional;DefaultParameterValue(null)>] ?Offsetgroup,
-                [<Optional;DefaultParameterValue(null)>] ?Box,
-                [<Optional;DefaultParameterValue(null)>] ?Bandwidth,
-                [<Optional;DefaultParameterValue(null)>] ?Meanline,
-                [<Optional;DefaultParameterValue(null)>] ?Scalegroup,
-                [<Optional;DefaultParameterValue(null)>] ?Scalemode,
-                [<Optional;DefaultParameterValue(null)>] ?Side,
-                [<Optional;DefaultParameterValue(null)>] ?Span,
-                [<Optional;DefaultParameterValue(null)>] ?SpanMode,
-                [<Optional;DefaultParameterValue(null)>] ?Uirevision
+                [<Optional;DefaultParameterValue(null)>] ?X             : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Y             : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Name          : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend    : bool,
+                [<Optional;DefaultParameterValue(null)>] ?FillColor     : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity       : float,
+                [<Optional;DefaultParameterValue(null)>] ?Points        : StyleParam.JitterPoints,
+                [<Optional;DefaultParameterValue(null)>] ?Jitter        : float,
+                [<Optional;DefaultParameterValue(null)>] ?PointPos      : float,
+                [<Optional;DefaultParameterValue(null)>] ?Orientation   : StyleParam.Orientation,
+                [<Optional;DefaultParameterValue(null)>] ?Width         : float,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?OutlierColor  : Color,
+                [<Optional;DefaultParameterValue(null)>] ?OutlierWidth  : int,
+                [<Optional;DefaultParameterValue(null)>] ?Marker        : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?Line          : Line,
+                [<Optional;DefaultParameterValue(null)>] ?AlignmentGroup: string,
+                [<Optional;DefaultParameterValue(null)>] ?OffsetGroup   : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowBox       : bool,
+                [<Optional;DefaultParameterValue(null)>] ?BoxWidth      : float,
+                [<Optional;DefaultParameterValue(null)>] ?BoxFillColor  : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Box           : Box,
+                [<Optional;DefaultParameterValue(null)>] ?BandWidth     : float,
+                [<Optional;DefaultParameterValue(null)>] ?MeanLine      : MeanLine,
+                [<Optional;DefaultParameterValue(null)>] ?ScaleGroup    : string,
+                [<Optional;DefaultParameterValue(null)>] ?ScaleMode     : StyleParam.ScaleMode,
+                [<Optional;DefaultParameterValue(null)>] ?Side          : StyleParam.ViolinSide,
+                [<Optional;DefaultParameterValue(null)>] ?Span          : StyleParam.Range,
+                [<Optional;DefaultParameterValue(null)>] ?SpanMode      : StyleParam.SpanMode
             ) = 
+
+                let box = 
+                    Box
+                    |> Option.defaultValue (TraceObjects.Box.init())
+                    |> TraceObjects.Box.style (
+                        ?Visible    = ShowBox     ,
+                        ?Width      = BoxWidth    ,
+                        ?FillColor  = BoxFillColor
+                    )
+
                 Trace2D.initViolin (
                     Trace2DStyle.Violin(
-                        ?X=x, ?Y = y,?Points=Points,
-                        ?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation,?Fillcolor=Fillcolor,
-                        ?Width=Width,?Marker=Marker,?Line=Line,?Alignmentgroup=Alignmentgroup,?Offsetgroup=Offsetgroup,?Box=Box,?Bandwidth=Bandwidth,?Meanline=Meanline,
-                        ?Scalegroup=Scalegroup,?Scalemode=Scalemode,?Side=Side,?Span=Span,?SpanMode=SpanMode,?Uirevision=Uirevision
+                       ?X               = X             ,
+                       ?Y               = Y             ,
+                       ?Name            = Name          ,
+                       ?ShowLegend      = ShowLegend    ,
+                       ?FillColor       = FillColor     ,
+                       ?Opacity         = Opacity       ,
+                       ?Points          = Points        ,
+                       ?Jitter          = Jitter        ,
+                       ?PointPos        = PointPos      ,
+                       ?Orientation     = Orientation   ,
+                       ?Width           = Width         ,
+                       ?Marker          = Marker        ,
+                       ?Line            = Line          ,
+                       ?AlignmentGroup  = AlignmentGroup,
+                       ?OffsetGroup     = OffsetGroup   ,
+                       Box              = box           ,
+                       ?BandWidth       = BandWidth     ,
+                       ?MeanLine        = MeanLine      ,
+                       ?ScaleGroup      = ScaleGroup    ,
+                       ?ScaleMode       = ScaleMode     ,
+                       ?Side            = Side          ,
+                       ?Span            = Span          ,
+                       ?SpanMode        = SpanMode      
                     ) 
                 )
-                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)   
-                |> TraceStyle.Marker(?Color=Color)
+                |> TraceStyle.TraceInfo(?Name=Name, ?ShowLegend=ShowLegend, ?Opacity=Opacity)   
+                |> TraceStyle.Marker(?Color=MarkerColor, ?OutlierColor= OutlierColor, ?OutlierWidth= OutlierWidth)
                 |> GenericChart.ofTraceObject
 
 
         /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.       
         [<Extension>]
-        static member Violin(xy,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?Color,
-                [<Optional;DefaultParameterValue(null)>] ?Fillcolor,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Points,
-                [<Optional;DefaultParameterValue(null)>] ?Jitter,
-                [<Optional;DefaultParameterValue(null)>] ?Pointpos,
-                [<Optional;DefaultParameterValue(null)>] ?Orientation,
-                [<Optional;DefaultParameterValue(null)>] ?Width,
-                [<Optional;DefaultParameterValue(null)>] ?Marker,
-                [<Optional;DefaultParameterValue(null)>] ?Line,
-                [<Optional;DefaultParameterValue(null)>] ?Alignmentgroup,
-                [<Optional;DefaultParameterValue(null)>] ?Offsetgroup,
-                [<Optional;DefaultParameterValue(null)>] ?Box,
-                [<Optional;DefaultParameterValue(null)>] ?Bandwidth,
-                [<Optional;DefaultParameterValue(null)>] ?Meanline,
-                [<Optional;DefaultParameterValue(null)>] ?Scalegroup,
-                [<Optional;DefaultParameterValue(null)>] ?Scalemode,
-                [<Optional;DefaultParameterValue(null)>] ?Side,
-                [<Optional;DefaultParameterValue(null)>] ?Span,
-                [<Optional;DefaultParameterValue(null)>] ?SpanMode,
-                [<Optional;DefaultParameterValue(null)>] ?Uirevision        
+        static member Violin
+            (
+                xy: seq<#IConvertible * #IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Name          : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend    : bool,
+                [<Optional;DefaultParameterValue(null)>] ?FillColor     : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity       : float,
+                [<Optional;DefaultParameterValue(null)>] ?Points        : StyleParam.JitterPoints,
+                [<Optional;DefaultParameterValue(null)>] ?Jitter        : float,
+                [<Optional;DefaultParameterValue(null)>] ?PointPos      : float,
+                [<Optional;DefaultParameterValue(null)>] ?Orientation   : StyleParam.Orientation,
+                [<Optional;DefaultParameterValue(null)>] ?Width         : float,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?OutlierColor  : Color,
+                [<Optional;DefaultParameterValue(null)>] ?OutlierWidth  : int,
+                [<Optional;DefaultParameterValue(null)>] ?Marker        : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?Line          : Line,
+                [<Optional;DefaultParameterValue(null)>] ?AlignmentGroup: string,
+                [<Optional;DefaultParameterValue(null)>] ?OffsetGroup   : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowBox       : bool,
+                [<Optional;DefaultParameterValue(null)>] ?BoxWidth      : float,
+                [<Optional;DefaultParameterValue(null)>] ?BoxFillColor  : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Box           : Box,
+                [<Optional;DefaultParameterValue(null)>] ?BandWidth     : float,
+                [<Optional;DefaultParameterValue(null)>] ?MeanLine      : MeanLine,
+                [<Optional;DefaultParameterValue(null)>] ?ScaleGroup    : string,
+                [<Optional;DefaultParameterValue(null)>] ?ScaleMode     : StyleParam.ScaleMode,
+                [<Optional;DefaultParameterValue(null)>] ?Side          : StyleParam.ViolinSide,
+                [<Optional;DefaultParameterValue(null)>] ?Span          : StyleParam.Range,
+                [<Optional;DefaultParameterValue(null)>] ?SpanMode      : StyleParam.SpanMode
             ) = 
             let x,y = Seq.unzip xy
-            Chart.Violin(x, y, ?Name=Name,?ShowLegend=ShowLegend,?Color=Color,?Fillcolor=Fillcolor,?Opacity=Opacity,?Points=Points,?Jitter=Jitter,?Pointpos=Pointpos,?Orientation=Orientation,
-                            ?Width=Width,?Marker=Marker,?Line=Line,?Alignmentgroup=Alignmentgroup,?Offsetgroup=Offsetgroup,?Box=Box,?Bandwidth=Bandwidth,?Meanline=Meanline,
-                            ?Scalegroup=Scalegroup,?Scalemode=Scalemode,?Side=Side,?Span=Span,?SpanMode=SpanMode,?Uirevision=Uirevision
-                ) 
+            Chart.Violin(
+                x, y, 
+                ?Name          = Name          ,
+                ?ShowLegend    = ShowLegend    ,
+                ?FillColor     = FillColor     ,
+                ?Opacity       = Opacity       ,
+                ?Points        = Points        ,
+                ?Jitter        = Jitter        ,
+                ?PointPos      = PointPos      ,
+                ?Orientation   = Orientation   ,
+                ?Width         = Width         ,
+                ?MarkerColor   = MarkerColor   ,
+                ?OutlierColor  = OutlierColor  ,
+                ?OutlierWidth  = OutlierWidth  ,
+                ?Marker        = Marker        ,
+                ?Line          = Line          ,
+                ?AlignmentGroup= AlignmentGroup,
+                ?OffsetGroup   = OffsetGroup   ,
+                ?ShowBox       = ShowBox       ,
+                ?BoxWidth      = BoxWidth      ,
+                ?BoxFillColor  = BoxFillColor  ,
+                ?Box           = Box           ,
+                ?BandWidth     = BandWidth     ,
+                ?MeanLine      = MeanLine      ,
+                ?ScaleGroup    = ScaleGroup    ,
+                ?ScaleMode     = ScaleMode     ,
+                ?Side          = Side          ,
+                ?Span          = Span          ,
+                ?SpanMode      = SpanMode      
+            ) 
 
         
          /// Computes the bi-dimensional histogram of two data samples and auto-determines the bin size.
          [<Extension>]
-         static member Histogram2dContour
+         static member Histogram2DContour
             (
-                x,y,
-                [<Optional;DefaultParameterValue(null)>] ?Z,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?Showscale,
-                [<Optional;DefaultParameterValue(null)>] ?Line,
-                [<Optional;DefaultParameterValue(null)>] ?zSmooth,
-                [<Optional;DefaultParameterValue(null)>] ?ColorBar,
-                [<Optional;DefaultParameterValue(null)>] ?zAuto,
-                [<Optional;DefaultParameterValue(null)>] ?zMin,
-                [<Optional;DefaultParameterValue(null)>] ?zMax,
-                [<Optional;DefaultParameterValue(null)>] ?nBinsx,
-                [<Optional;DefaultParameterValue(null)>] ?nBinsy,
-                [<Optional;DefaultParameterValue(null)>] ?xBins,
-                [<Optional;DefaultParameterValue(null)>] ?yBins,
-                [<Optional;DefaultParameterValue(null)>] ?HistNorm,
-                [<Optional;DefaultParameterValue(null)>] ?HistFunc
-            ) =         
-                Trace2D.initHistogram2dContour (
-                    Trace2DStyle.Histogram2dContour (X=x, Y=y,? Z=Z,?Line=Line,
-                        ?Colorscale=Colorscale,
-                        ?Showscale=Showscale,
-                        ?zSmooth=zSmooth,
-                        ?ColorBar=ColorBar,
-                        ?zAuto=zAuto,
-                        ?zMin=zMin,
-                        ?zMax=zMax,
-                        ?nBinsx=nBinsx,
-                        ?nBinsy=nBinsy,
-                        ?xBins=xBins,
-                        ?yBins=yBins,
-                        ?HistNorm=HistNorm,
-                        ?HistFunc=HistFunc                                
+                x                 : seq<#IConvertible>,
+                y                 : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float, 
+                [<Optional;DefaultParameterValue(null)>] ?Z                 : seq<#seq<#IConvertible>>,
+                [<Optional;DefaultParameterValue(null)>] ?HistFunc          : StyleParam.HistFunc,
+                [<Optional;DefaultParameterValue(null)>] ?HistNorm          : StyleParam.HistNorm,
+                [<Optional;DefaultParameterValue(null)>] ?NBinsX            : int,
+                [<Optional;DefaultParameterValue(null)>] ?NBinsY            : int,
+                [<Optional;DefaultParameterValue(null)>] ?BinGroup          : string,
+                [<Optional;DefaultParameterValue(null)>] ?XBinGroup         : string,
+                [<Optional;DefaultParameterValue(null)>] ?XBins             : Bins,
+                [<Optional;DefaultParameterValue(null)>] ?YBinGroup         : string,
+                [<Optional;DefaultParameterValue(null)>] ?YBins             : Bins,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?LineDash          : StyleParam.DrawingStyle,
+                [<Optional;DefaultParameterValue(null)>] ?LineColor         : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
+                [<Optional;DefaultParameterValue(null)>] ?ColorBar          : ColorBar,
+                [<Optional;DefaultParameterValue(null)>] ?ColorScale        : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?ShowScale         : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ReverseScale      : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Contours          : Contours,
+                [<Optional;DefaultParameterValue(null)>] ?NContours         : int
+            ) = 
+                Trace2D.initHistogram2DContour (
+                    Trace2DStyle.Histogram2DContour (
+                        X               = x,
+                        Y               = y,
+                        ?Z              = Z           ,
+                        ?HistFunc       = HistFunc    ,
+                        ?HistNorm       = HistNorm    ,
+                        ?NBinsX         = NBinsX      ,
+                        ?NBinsY         = NBinsY      ,
+                        ?BinGroup       = BinGroup    ,
+                        ?XBinGroup      = XBinGroup   ,
+                        ?XBins          = XBins       ,
+                        ?YBinGroup      = YBinGroup   ,
+                        ?YBins          = YBins       ,
+                        ?Marker         = Marker      ,
+                        ?Line           = Line        ,
+                        ?ColorBar       = ColorBar    ,
+                        ?ColorScale     = ColorScale  ,
+                        ?ShowScale      = ShowScale   ,
+                        ?ReverseScale   = ReverseScale,
+                        ?Contours       = Contours    ,
+                        ?NContours      = NContours   
                     )
                 )
+                |> TraceStyle.TraceInfo(?Name=Name, ?ShowLegend=ShowLegend, ?Opacity=Opacity)   
+                |> TraceStyle.Line(?Color=LineColor, ?Dash=LineDash)
                 |> GenericChart.ofTraceObject
 
         /// Shows a graphical representation of a 3-dimensional surface by plotting constant z slices, called contours, on a 2-dimensional format.

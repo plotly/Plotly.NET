@@ -296,7 +296,7 @@ type Chart =
     static member withX_Axis(xAxis:LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id : StyleParam.SubPlotId) =
         Chart.withXAxis(xAxis, ?Id = Id)
 
-    // Sets x-Axis of 2d and 3d- Charts
+    // Sets x-Axis of 2D and 3d- Charts
     [<CompiledName("WithXAxis")>]
     static member withXAxis(xAxis:LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId) =
         fun (ch:GenericChart) ->
@@ -358,7 +358,7 @@ type Chart =
                 ?Anchor = Anchor)
 
 
-    // Sets x-Axis of 2d and 3d- Charts
+    // Sets x-Axis of 2D and 3d- Charts
     [<CompiledName("WithXAxisStyle")>]
     static member withXAxisStyle(title,
             [<Optional;DefaultParameterValue(null)>] ?TitleFont,
@@ -396,7 +396,7 @@ type Chart =
     static member withY_Axis(yAxis:LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId) =
         Chart.withYAxis(yAxis, ?Id = Id)
 
-    // Sets y-Axis of 2d and 3d- Charts
+    // Sets y-Axis of 2D and 3d- Charts
     [<CompiledName("WithYAxis")>]
     static member withYAxis(yAxis:LinearAxis,[<Optional;DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId) =
         fun (ch:GenericChart) ->
@@ -559,7 +559,7 @@ type Chart =
             [<Optional;DefaultParameterValue(null)>] ?BGColor) =
         let colorbar = ColorBar.init(Title=title,?Len = Length,?OutlineColor=OutlineColor,?BGColor=BGColor,?BorderColor=BorderColor)
         Chart.withColorBar(colorbar)
-    //// Sets second x-Axis of 2d- Charts
+    //// Sets second x-Axis of 2D- Charts
     //static member withX_Axis2(xAxis2:Axis.LinearAxis) =
     //    (fun (ch:GenericChart) ->
     //            let layout =
@@ -569,14 +569,14 @@ type Chart =
     //            )
 
 
-    // // Sets second x-Axis of 2d- Charts
+    // // Sets second x-Axis of 2D- Charts
     //static member withX_Axis2Style(title,?MinMax,?Showgrid,?Showline) =
     //    let range = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
     //    let xaxis = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,?Showline=Showline,Side=StyleParam.Side.Top)
     //    Chart.withX_Axis2(xaxis)
 
 
-    //// Sets second y-Axis of 2d- Charts
+    //// Sets second y-Axis of 2D- Charts
     //static member withY_Axis2(yAxis2:Axis.LinearAxis) =
     //    (fun (ch:GenericChart) ->
     //            let layout =
@@ -586,7 +586,7 @@ type Chart =
     //            )
 
 
-    // // Sets second x-Axis of 2d- Charts
+    // // Sets second x-Axis of 2D- Charts
     //static member withY_Axis2Style(title,?MinMax,?Showgrid,?Showline) =
     //    let range = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
     //    let yaxis = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,?Showline=Showline,Side=StyleParam.Side.Right)

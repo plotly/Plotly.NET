@@ -47,7 +47,7 @@ data at different values.
 let violin1 =
     Chart.Violin (
         x,y,
-        Points=StyleParam.Jitterpoints.All
+        Points=StyleParam.JitterPoints.All
     )
 
 (*** condition: ipynb ***)
@@ -68,9 +68,9 @@ let violin2 =
     Chart.Violin(
         y,x,
         Jitter=0.1,
-        Points=StyleParam.Jitterpoints.All,
+        Points=StyleParam.JitterPoints.All,
         Orientation=StyleParam.Orientation.Horizontal,
-        Meanline=Meanline.init(Visible=true)
+        MeanLine=MeanLine.init(Visible=true)
     )
 
 (*** condition: ipynb ***)
@@ -90,8 +90,8 @@ let y' =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.
 
 let violin3 =
     [
-        Chart.Violin ("y" ,y,Name="bin1",Jitter=0.1,Points=StyleParam.Jitterpoints.All);
-        Chart.Violin ("y'",y',Name="bin2",Jitter=0.1,Points=StyleParam.Jitterpoints.All);
+        Chart.Violin ("y" ,y,Name="bin1",Jitter=0.1,Points=StyleParam.JitterPoints.All);
+        Chart.Violin ("y'",y',Name="bin2",Jitter=0.1,Points=StyleParam.JitterPoints.All);
     ]
     |> Chart.combine
 

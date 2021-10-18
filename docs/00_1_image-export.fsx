@@ -65,7 +65,7 @@ open Plotly.NET
 open Plotly.NET.ImageExport
 
 let exampleChart = 
-    Chart.Histogram2dContour(
+    Chart.Histogram2DContour(
         [1.;2.;2.;4.;5.],
         [1.;2.;2.;4.;5.]
     )

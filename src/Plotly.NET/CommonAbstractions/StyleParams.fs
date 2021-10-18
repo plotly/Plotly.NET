@@ -224,7 +224,7 @@ module StyleParam =
 //--------------------------
 
     [<RequireQualifiedAccess>]
-    type Boxpoints =
+    type BoxPoints =
         | Outliers
         | All
         | Suspectedoutliers
@@ -236,9 +236,9 @@ module StyleParam =
             | Suspectedoutliers -> "suspectedoutliers"
             | False             -> "false"
 
-        static member convert = Boxpoints.toString >> box
-        override this.ToString() = this |> Boxpoints.toString
-        member this.Convert() = this |> Boxpoints.convert
+        static member convert = BoxPoints.toString >> box
+        override this.ToString() = this |> BoxPoints.toString
+        member this.Convert() = this |> BoxPoints.convert
 
 
 
@@ -247,14 +247,12 @@ module StyleParam =
         | True
         | False
         | SD 
-         
-        static member toString = function
-            | True  -> "true"
-            | False -> "false"
-            | SD    -> "SD"
 
-        static member convert = BoxMean.toString >> box
-        override this.ToString() = this |> BoxMean.toString
+        static member convert = function
+            | True  -> box true
+            | False -> box false
+            | SD    -> box "sd"
+
         member this.Convert() = this |> BoxMean.convert
 
     /// For bar and histogram plots only. This sets how multiple bar objects are plotted together. In other words, this defines how bars at the same location
@@ -1235,7 +1233,7 @@ module StyleParam =
 // #J#
 
     [<RequireQualifiedAccess>]
-    type Jitterpoints = Boxpoints
+    type JitterPoints = BoxPoints
 
 //--------------------------
 // #K#
@@ -1850,6 +1848,33 @@ module StyleParam =
 // #S#
 //--------------------------
 
+    [<RequireQualifiedAccess>]
+    type SpanMode =
+        | Soft | Hard | Manual
+    
+        static member toString = function
+            | Soft  -> "soft" 
+            | Hard  -> "hard" 
+            | Manual-> "manual" 
+
+
+        static member convert = SpanMode.toString >> box
+        override this.ToString() = this |> SpanMode.toString
+        member this.Convert() = this |> SpanMode.convert
+        
+    [<RequireQualifiedAccess>]
+    type ScaleMode =
+        | Width | Count      
+    
+        static member toString = function
+            | Width -> "width" 
+            | Count -> "count" 
+
+
+        static member convert = ScaleMode.toString >> box
+        override this.ToString() = this |> ScaleMode.toString
+        member this.Convert() = this |> ScaleMode.convert
+        
     [<RequireQualifiedAccess>]
     type StackGaps =
         | InferZero | Interpolate      
@@ -2608,6 +2633,19 @@ module StyleParam =
 // #V#
 //--------------------------
 
+    [<RequireQualifiedAccess>]
+    type ViolinSide =
+        | Both | Positive | Negative
+    
+        static member toString = function
+            | Both      -> "both"
+            | Positive  -> "positive"
+            | Negative  -> "negative"
+
+        static member convert = ViolinSide.toString >> box    
+        override this.ToString() = this |> ViolinSide.toString
+        member this.Convert() = this |> ViolinSide.convert
+        
     [<RequireQualifiedAccess>]
     type ViolinMode =
         | Group | Overlay 
