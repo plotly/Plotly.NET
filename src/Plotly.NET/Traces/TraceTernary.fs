@@ -65,7 +65,7 @@ type TraceTernaryStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Sum               : #IConvertible
 
         ) =
-            fun (trace: TraceTernary) ->
+            fun (trace: #Trace) ->
                 
                 Name              |> DynObj.setValueOpt trace "name"
                 Visible           |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
