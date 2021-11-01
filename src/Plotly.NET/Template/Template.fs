@@ -12,7 +12,7 @@ type Template() =
     static member init
         (
             layoutTemplate: Layout   ,
-            [<Optional;DefaultParameterValue(null)>] ?TraceTemplates: #Trace []  
+            [<Optional;DefaultParameterValue(null)>] ?TraceTemplates: seq<#Trace>
         ) =
             Template()
             |> Template.style
@@ -24,11 +24,41 @@ type Template() =
     static member style
         (
             layoutTemplate: Layout   ,
-            [<Optional;DefaultParameterValue(null)>] ?TraceTemplates: #Trace []  
+            [<Optional;DefaultParameterValue(null)>] ?TraceTemplates: seq<#Trace>
         ) =
             (fun (template:Template) -> 
+
+                let traceTemplates =
+                    TraceTemplates
+                    |> Option.map (fun traceTemplates ->
+                        traceTemplates
+                        |> Seq.groupBy (fun t -> t.``type``)
+                        |> (fun groupedTemplates ->
+                            groupedTemplates
+                            |> Seq.map (fun (id, templates) ->
+                                id,
+                                templates 
+                                |> Seq.map (fun t ->
+                                    let tmp = DynamicObj()
+                                    t.CopyDynamicPropertiesTo(tmp)
+                                    tmp
+                                )
+
+                            )
+                        )
+                    )
+                    |> fun traceTemplates ->
+                        let tmp = DynamicObj()
+                        traceTemplates 
+                        |> Option.iter (Seq.iter (fun (id,traceTemplate) ->
+                            traceTemplate  |> DynObj.setValue tmp id
+                            )
+                        )
+                        tmp
+
+
                 layoutTemplate   |> DynObj.setValue template "layout"
-                TraceTemplates   |> DynObj.setValueOpt template "data"
+                traceTemplates   |> DynObj.setValue template "data"
                 
                 template
                 )
