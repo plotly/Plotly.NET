@@ -161,6 +161,30 @@ open FSharpAux
 open System
 open System.IO
 
+let layout =
+    Layout.init (Font = Font.init (Family = StyleParam.FontFamily.Raleway, Size = 14.))
+
+let traceTemplates = [
+    Trace2D.initScatter (
+        Trace2DStyle.Scatter(Marker = Marker.init (Symbol = StyleParam.MarkerSymbol.Diamond, Size = 20))
+    )
+    Trace2D.initScatter (
+        Trace2DStyle.Scatter(Marker = Marker.init (Symbol = StyleParam.MarkerSymbol.ArrowBarLeft, Size = 10))
+    )
+]
+
+let template = Template.init (layout, traceTemplates)
+
+[
+    Chart.Scatter(x = [ 0; 1; 2 ], y = [ 2; 1; 3 ], mode = StyleParam.Mode.Markers)
+    Chart.Scatter(x = [ 0; 1; 2 ], y = [ 1; 2; 4 ], mode = StyleParam.Mode.Markers)
+]
+|> Chart.combine
+|> Chart.withLayout (Layout.init (Title = Title.init ("Figure Title")))
+|> Chart.withTemplate template
+//|> GenericChart.mapTrace (fun t -> t.Remove("marker"); t)
+|> Chart.show
+
 let y=[2.37; 2.16; 4.82; 1.73; 1.04; 0.23; 1.32; 2.91; 0.11; 4.51; 0.51; 3.75; 1.35; 2.98; 4.50; 0.18; 4.66; 1.30; 2.06; 1.19]
 
 [
