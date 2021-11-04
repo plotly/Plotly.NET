@@ -87,6 +87,9 @@
  * [Improve Trace type system](https://github.com/plotly/Plotly.NET/commit/096f4bf7382441b153687835c3d51c9e2e3497ec)
  * [Fix incorrect scale used in image export](https://github.com/plotly/Plotly.NET/commit/893cf02a5700ce562c6d67470883123a2d84c3c1) - thanks [@pirrmann](https://github.com/pirrmann)]
  * [Improve Chart.Grid](https://github.com/plotly/Plotly.NET/pull/212)
+ * [Improve Distribution Charts](https://github.com/plotly/Plotly.NET/pull/220)
+ * [fix data property of chart templates](https://github.com/plotly/Plotly.NET/pull/233)
+ * [fix rangeslider props](https://github.com/plotly/Plotly.NET/commit/c1789c2197ee19524e543e022070a7c60adb9e06)
 
 **Other notable changes**
 
