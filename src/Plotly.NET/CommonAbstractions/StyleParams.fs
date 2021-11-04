@@ -1800,6 +1800,19 @@ module StyleParam =
 // #R#
 //--------------------------
 
+    [<RequireQualifiedAccess>]
+    type RangesliderRangeMode =
+        | Auto | Fixed | Match
+    
+        static member toString = function
+            | Auto      -> "auto"            
+            | Fixed     -> "fixed"            
+            | Match     -> "match"
+
+        static member convert = RangesliderRangeMode.toString >> box
+        override this.ToString() = this |> RangesliderRangeMode.toString
+        member this.Convert() = this |> RangesliderRangeMode.convert
+
     /// If "normal", the range is computed in relation to the extrema of the input data. If "tozero"`, the range extends to 0, regardless of the input data If "nonnegative", the range is non-negative, regardless of the input data.
     [<RequireQualifiedAccess>]
     type RangeMode =
