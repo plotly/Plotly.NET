@@ -1,0 +1,19 @@
+#!markdown
+
+To reproduce the package, run `./Repack.ps1` in powershell. It will clean your cache in `~/.nuget/packages` and pack the library to `Plotly.NET/pkg` folder, which you should specify below (absolute paths only) in `#i` line.
+
+The version of the package is always `0.0.0-dev`.
+
+#!fsharp
+
+// be advised, that you always should set absolute paths for local nuget packages - change this to reflect your own setup
+#i "nuget: C:/Users/schne/source/repos/plotly/Plotly.NET/pkg"
+#r "nuget: Plotly.NET, 0.0.0-dev"
+#r "nuget: Plotly.NET.ImageExport, 0.0.0-dev"
+#r "nuget: Plotly.NET.Interactive, 0.0.0-dev"
+
+#!fsharp
+
+open Plotly.NET
+
+Chart.Point([1,2])
