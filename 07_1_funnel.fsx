@@ -34,29 +34,29 @@ let line = Line.init(Width=2.,Color=Color.fromHex "3E4E88")
 let funnel =
     Chart.Funnel (x,y,Color=Color.fromHex "59D4E8", Line=line, Connector=connector)
     |> Chart.withMarginSize(Left=100)(* output: 
-<div id="e12d7432-4e19-4a2d-a682-f4a76f9be092" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="c9999416-faa9-4f06-b258-933f94823d35" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_e12d74324e194a2da682f4a76f9be092 = function() {
+            var renderPlotly_c9999416faa94f06b258933f94823d35 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"funnel","x":[1200.0,909.4,600.6,300.0,80.0],"y":["Sales person A","Sales person B","Sales person C","Sales person D","Sales person E"],"connector":{"line":{"color":"royalblue","width":3.0,"dash":"dot"}},"marker":{"color":"rgba(89, 212, 232, 1.0)","line":{"color":"rgba(62, 78, 136, 1.0)","width":2.0}}}];
             var layout = {"margin":{"l":100}};
             var config = {};
-            Plotly.newPlot('e12d7432-4e19-4a2d-a682-f4a76f9be092', data, layout, config);
+            Plotly.newPlot('c9999416-faa9-4f06-b258-933f94823d35', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_e12d74324e194a2da682f4a76f9be092();
+                    renderPlotly_c9999416faa94f06b258933f94823d35();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_e12d74324e194a2da682f4a76f9be092();
+                renderPlotly_c9999416faa94f06b258933f94823d35();
             }
 </script>
 *)

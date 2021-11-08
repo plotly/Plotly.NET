@@ -41,7 +41,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.10</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.11</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -256,29 +256,6 @@
   </a>
 </li>             
 <li class="nav-header">
-  Finance Charts
-</li>             
-<li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/07_0_candlestick.html">
-    Candlestick Charts
-  </a>
-</li>             
-<li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/07_1_funnel.html">
-    Funnel Charts
-  </a>
-</li>             
-<li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/07_2_funnel_area.html">
-    FunnelArea Charts
-  </a>
-</li>             
-<li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/07_3_indicator.html">
-    Indicator Charts
-  </a>
-</li>             
-<li class="nav-header">
   Mapbox map charts
 </li>             
 <li class="nav-item">
@@ -299,6 +276,29 @@
 <li class="nav-item">
   <a class="nav-link" href="https://plotly.net/06_3_density-mapbox.html">
     DensityMapbox charts
+  </a>
+</li>             
+<li class="nav-header">
+  Finance Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_0_candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_1_funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_2_funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_3_indicator.html">
+    Indicator Charts
   </a>
 </li>             
 <li class="nav-header">
@@ -413,29 +413,29 @@
 <p>Use <code>Chart.Carpet</code> to define these <code>coordinate traces</code>. All carpets have a mandatory identifier, which will be used by other traces to define which carpet coordinate system to use.</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs9', 9)" onmouseover="showTip(event, 'fs9', 9)" class="id">carpet</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs10', 10)" onmouseover="showTip(event, 'fs10', 10)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 11)" onmouseover="showTip(event, 'fs11', 11)" class="id">Carpet</span><span class="pn">(</span><span class="s">&quot;carpetIdentifier&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs12', 12)" onmouseover="showTip(event, 'fs12', 12)" class="fn">A</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs3', 13)" onmouseover="showTip(event, 'fs3', 13)" class="id">a</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs13', 14)" onmouseover="showTip(event, 'fs13', 14)" class="fn">B</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs4', 15)" onmouseover="showTip(event, 'fs4', 15)" class="id">b</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs14', 16)" onmouseover="showTip(event, 'fs14', 16)" class="fn">Y</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs5', 17)" onmouseover="showTip(event, 'fs5', 17)" class="id">y</span><span class="pn">)</span>
 </code></pre>
-<div id="bd6bf437-9ba1-4a29-9638-3336d5da76dd" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="d3003f0e-1d79-4e6b-aeb4-6c6865a53a18" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_bd6bf4379ba14a2996383336d5da76dd = function() {
+            var renderPlotly_d3003f0e1d794e6baeb46c6865a53a18 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"carpet","y":[2.0,3.5,4.0,3.0,4.5,5.0,5.5,6.5,7.5,8.0,8.5,10.0],"a":[4.0,4.0,4.0,4.5,4.5,4.5,5.0,5.0,5.0,6.0,6.0,6.0],"b":[1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0],"carpet":"carpetIdentifier"}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('bd6bf437-9ba1-4a29-9638-3336d5da76dd', data, layout, config);
+            Plotly.newPlot('d3003f0e-1d79-4e6b-aeb4-6c6865a53a18', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_bd6bf4379ba14a2996383336d5da76dd();
+                    renderPlotly_d3003f0e1d794e6baeb46c6865a53a18();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_bd6bf4379ba14a2996383336d5da76dd();
+                renderPlotly_d3003f0e1d794e6baeb46c6865a53a18();
             }
 </script>
 
@@ -448,29 +448,29 @@
     <span class="pn">]</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs10', 27)" onmouseover="showTip(event, 'fs10', 27)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs19', 28)" onmouseover="showTip(event, 'fs19', 28)" class="id">combine</span>
 </code></pre>
-<div id="223970e2-cd09-415c-b15b-438da6b26283" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="55124fc0-fbb0-4ee7-9743-90a2a3d609f8" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_223970e2cd09415cb15b438da6b26283 = function() {
+            var renderPlotly_55124fc0fbb04ee7974390a2a3d609f8 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"carpet","y":[2.0,3.5,4.0,3.0,4.5,5.0,5.5,6.5,7.5,8.0,8.5,10.0],"a":[4.0,4.0,4.0,4.5,4.5,4.5,5.0,5.0,5.0,6.0,6.0,6.0],"b":[1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0],"carpet":"carpetIdentifier"},{"type":"scattercarpet","name":"Point","mode":"markers","a":[4.0,5.0,5.0,6.0],"b":[1.0,1.0,2.0,3.0],"carpet":"carpetIdentifier","marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('223970e2-cd09-415c-b15b-438da6b26283', data, layout, config);
+            Plotly.newPlot('55124fc0-fbb0-4ee7-9743-90a2a3d609f8', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_223970e2cd09415cb15b438da6b26283();
+                    renderPlotly_55124fc0fbb04ee7974390a2a3d609f8();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_223970e2cd09415cb15b438da6b26283();
+                renderPlotly_55124fc0fbb04ee7974390a2a3d609f8();
             }
 </script>
 
@@ -483,29 +483,29 @@
     <span class="pn">]</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs10', 38)" onmouseover="showTip(event, 'fs10', 38)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs19', 39)" onmouseover="showTip(event, 'fs19', 39)" class="id">combine</span>
 </code></pre>
-<div id="a9fd00d6-e954-4f13-9387-756c850de401" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="7a7b9fd4-c3ac-4cf1-ad74-44b98d905bba" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_a9fd00d6e9544f139387756c850de401 = function() {
+            var renderPlotly_7a7b9fd4c3ac4cf1ad7444b98d905bba = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"carpet","y":[2.0,3.5,4.0,3.0,4.5,5.0,5.5,6.5,7.5,8.0,8.5,10.0],"a":[4.0,4.0,4.0,4.5,4.5,4.5,5.0,5.0,5.0,6.0,6.0,6.0],"b":[1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0],"carpet":"carpetIdentifier"},{"type":"scattercarpet","name":"Line","mode":"lines","a":[4.0,5.0,5.0,6.0],"b":[1.0,1.0,2.0,3.0],"carpet":"carpetIdentifier","marker":{},"line":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('a9fd00d6-e954-4f13-9387-756c850de401', data, layout, config);
+            Plotly.newPlot('7a7b9fd4-c3ac-4cf1-ad74-44b98d905bba', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_a9fd00d6e9544f139387756c850de401();
+                    renderPlotly_7a7b9fd4c3ac4cf1ad7444b98d905bba();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_a9fd00d6e9544f139387756c850de401();
+                renderPlotly_7a7b9fd4c3ac4cf1ad7444b98d905bba();
             }
 </script>
 
@@ -518,29 +518,29 @@
     <span class="pn">]</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs10', 49)" onmouseover="showTip(event, 'fs10', 49)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs19', 50)" onmouseover="showTip(event, 'fs19', 50)" class="id">combine</span>
 </code></pre>
-<div id="5c3acb25-b69d-41f7-a2f5-75fe81fb6a74" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="2ff19ea9-4a24-417f-808e-7a562b1ec3a3" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_5c3acb25b69d41f7a2f575fe81fb6a74 = function() {
+            var renderPlotly_2ff19ea94a24417f808e7a562b1ec3a3 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"carpet","y":[2.0,3.5,4.0,3.0,4.5,5.0,5.5,6.5,7.5,8.0,8.5,10.0],"a":[4.0,4.0,4.0,4.5,4.5,4.5,5.0,5.0,5.0,6.0,6.0,6.0],"b":[1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0],"carpet":"carpetIdentifier"},{"type":"scattercarpet","name":"Spline","mode":"lines","a":[4.0,5.0,5.0,6.0],"b":[1.0,1.0,2.0,3.0],"carpet":"carpetIdentifier","marker":{},"line":{"shape":"spline"}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('5c3acb25-b69d-41f7-a2f5-75fe81fb6a74', data, layout, config);
+            Plotly.newPlot('2ff19ea9-4a24-417f-808e-7a562b1ec3a3', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_5c3acb25b69d41f7a2f575fe81fb6a74();
+                    renderPlotly_2ff19ea94a24417f808e7a562b1ec3a3();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_5c3acb25b69d41f7a2f575fe81fb6a74();
+                renderPlotly_2ff19ea94a24417f808e7a562b1ec3a3();
             }
 </script>
 
@@ -553,29 +553,29 @@
     <span class="pn">]</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs10', 63)" onmouseover="showTip(event, 'fs10', 63)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs19', 64)" onmouseover="showTip(event, 'fs19', 64)" class="id">combine</span>
 </code></pre>
-<div id="1211a88d-4ed5-49b3-8019-963851214766" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="eeb7aea0-350b-4228-9358-364ec7784824" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_1211a88d4ed549b38019963851214766 = function() {
+            var renderPlotly_eeb7aea0350b42289358364ec7784824 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"carpet","y":[2.0,3.5,4.0,3.0,4.5,5.0,5.5,6.5,7.5,8.0,8.5,10.0],"a":[4.0,4.0,4.0,4.5,4.5,4.5,5.0,5.0,5.0,6.0,6.0,6.0],"b":[1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0],"carpet":"carpetIdentifier"},{"type":"scattercarpet","name":"Bubble","mode":"markers","a":[4.0,5.0,5.0,6.0],"b":[1.0,1.0,2.0,3.0],"carpet":"carpetIdentifier","marker":{"size":[5,10,15,20]}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('1211a88d-4ed5-49b3-8019-963851214766', data, layout, config);
+            Plotly.newPlot('eeb7aea0-350b-4228-9358-364ec7784824', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_1211a88d4ed549b38019963851214766();
+                    renderPlotly_eeb7aea0350b42289358364ec7784824();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_1211a88d4ed549b38019963851214766();
+                renderPlotly_eeb7aea0350b42289358364ec7784824();
             }
 </script>
 
@@ -595,14 +595,14 @@
 <div class="fsdocs-tip" id="fs10">type Chart =
   static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:float -&gt; GenericChart + 1 overload
   static member Bar : values:seq&lt;#IConvertible&gt; * ?Keys:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?PatternShape:PatternShape * ?MultiPatternShape:seq&lt;PatternShape&gt; * ?Pattern:Pattern * ?Base:#IConvertible * ?Width:&#39;a3 * ?MultiWidth:seq&lt;&#39;a3&gt; * ?Opacity:float * ?MultiOpacity:seq&lt;float&gt; * ?Text:&#39;a4 * ?MultiText:seq&lt;&#39;a4&gt; * ?TextPosition:TextPosition * ?MultiTextPosition:seq&lt;TextPosition&gt; * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart (requires &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
-  static member BoxPlot : ?x:&#39;a0 * ?y:&#39;a1 * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Fillcolor:Color * ?Opacity:float * ?Whiskerwidth:&#39;a2 * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:&#39;a3 * ?Pointpos:&#39;a4 * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?Alignmentgroup:&#39;a5 * ?Offsetgroup:&#39;a6 * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod -&gt; GenericChart + 1 overload
+  static member BoxPlot : ?x:seq&lt;#IConvertible&gt; * ?y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Text:&#39;a2 * ?MultiText:seq&lt;&#39;a2&gt; * ?Fillcolor:Color * ?MarkerColor:Color * ?OutlierColor:Color * ?OutlierWidth:int * ?Opacity:float * ?WhiskerWidth:float * ?BoxPoints:BoxPoints * ?BoxMean:BoxMean * ?Jitter:float * ?PointPos:float * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?AlignmentGroup:string * ?Offsetgroup:string * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod -&gt; GenericChart (requires &#39;a2 :&gt; IConvertible) + 1 overload
   static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;int&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:Orientation * ?GroupNorm:GroupNorm * ?UseWebGL:bool -&gt; GenericChart + 1 overload
   static member Candlestick : open:seq&lt;#IConvertible&gt; * high:seq&lt;#IConvertible&gt; * low:seq&lt;#IConvertible&gt; * close:seq&lt;#IConvertible&gt; * x:seq&lt;#IConvertible&gt; * ?Increasing:Line * ?Decreasing:Line * ?WhiskerWidth:float * ?Line:Line * ?XCalendar:Calendar -&gt; GenericChart + 1 overload
   static member Column : values:seq&lt;#IConvertible&gt; * ?Keys:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Pattern:Pattern * ?PatternShape:PatternShape * ?MultiPatternShape:seq&lt;PatternShape&gt; * ?Base:#IConvertible * ?Width:&#39;a3 * ?MultiWidth:seq&lt;&#39;a3&gt; * ?Opacity:float * ?MultiOpacity:seq&lt;float&gt; * ?Text:&#39;a4 * ?MultiText:seq&lt;&#39;a4&gt; * ?TextPosition:TextPosition * ?MultiTextPosition:seq&lt;TextPosition&gt; * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart (requires &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
   static member Contour : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;a4 * ?zSmooth:SmoothAlg * ?ColorBar:&#39;a5 -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)
   static member Funnel : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Color:Color * ?Line:Line * ?x0:&#39;a3 * ?dX:float * ?y0:&#39;a4 * ?dY:float * ?Width:float * ?Offset:float * ?Orientation:Orientation * ?Alignmentgroup:string * ?Offsetgroup:string * ?Cliponaxis:bool * ?Connector:FunnelConnector * ?Insidetextfont:Font * ?Outsidetextfont:Font -&gt; GenericChart
   static member Heatmap : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?ColNames:seq&lt;#IConvertible&gt; * ?RowNames:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;a4 * ?Xgap:&#39;a5 * ?Ygap:&#39;a6 * ?zSmooth:SmoothAlg * ?ColorBar:&#39;a7 * ?UseWebGL:bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)
-  static member Histogram : data:seq&lt;#IConvertible&gt; * ?Orientation:Orientation * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Color:Color * ?HistNorm:HistNorm * ?HistFunc:HistFunc * ?nBinsx:int * ?nBinsy:int * ?Xbins:Bins * ?Ybins:Bins * ?xError:&#39;a1 * ?yError:&#39;a2 -&gt; GenericChart
+  static member Histogram : ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Orientation:Orientation * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Text:&#39;a2 * ?MultiText:seq&lt;&#39;a2&gt; * ?HistFunc:HistFunc * ?HistNorm:HistNorm * ?AlignmentGroup:string * ?OffsetGroup:string * ?NBinsX:int * ?NBinsY:int * ?BinGroup:string * ?XBins:Bins * ?YBins:Bins * ?MarkerColor:Color * ?Marker:Marker * ?Line:Line * ?ErrorX:Error * ?ErrorY:Error * ?Cumulative:Cumulative * ?HoverLabel:Hoverlabel -&gt; GenericChart (requires &#39;a2 :&gt; IConvertible) + 1 overload
   ...</div>
 <div class="fsdocs-tip" id="fs11">static member Chart.Carpet : carpetId:string * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?X:seq&lt;#System.IConvertible&gt; * ?MultiX:seq&lt;#seq&lt;&#39;c&gt;&gt; * ?Y:seq&lt;#System.IConvertible&gt; * ?MultiY:seq&lt;#seq&lt;&#39;f&gt;&gt; * ?A:seq&lt;#System.IConvertible&gt; * ?B:seq&lt;#System.IConvertible&gt; * ?AAxis:LayoutObjects.LinearAxis * ?BAxis:LayoutObjects.LinearAxis * ?XAxis:StyleParam.LinearAxisId * ?YAxis:StyleParam.LinearAxisId * ?Color:Color * ?CheaterSlope:float -&gt; GenericChart.GenericChart (requires &#39;c :&gt; System.IConvertible and &#39;f :&gt; System.IConvertible)</div>
 <div class="fsdocs-tip" id="fs12">argument A: seq&lt;float&gt; option<br /><em>&lt;summary&gt;

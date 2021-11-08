@@ -41,7 +41,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.10</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.11</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -256,29 +256,6 @@
   </a>
 </li>             
 <li class="nav-header">
-  Finance Charts
-</li>             
-<li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/07_0_candlestick.html">
-    Candlestick Charts
-  </a>
-</li>             
-<li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/07_1_funnel.html">
-    Funnel Charts
-  </a>
-</li>             
-<li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/07_2_funnel_area.html">
-    FunnelArea Charts
-  </a>
-</li>             
-<li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/07_3_indicator.html">
-    Indicator Charts
-  </a>
-</li>             
-<li class="nav-header">
   Mapbox map charts
 </li>             
 <li class="nav-item">
@@ -299,6 +276,29 @@
 <li class="nav-item">
   <a class="nav-link" href="https://plotly.net/06_3_density-mapbox.html">
     DensityMapbox charts
+  </a>
+</li>             
+<li class="nav-header">
+  Finance Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_0_candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_1_funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_2_funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_3_indicator.html">
+    Indicator Charts
   </a>
 </li>             
 <li class="nav-header">
@@ -403,29 +403,29 @@
 
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs6', 8)" onmouseover="showTip(event, 'fs6', 8)" class="id">table1</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs7', 9)" onmouseover="showTip(event, 'fs7', 9)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="id">Table</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs4', 11)" onmouseover="showTip(event, 'fs4', 11)" class="id">header</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs5', 12)" onmouseover="showTip(event, 'fs5', 12)" class="id">rows</span><span class="pn">)</span>
 </code></pre>
-<div id="0dec0eea-c296-40a9-aeae-2f8c4c018aa2" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="181d24c4-e9bf-4436-8edd-5c27cb29b6bc" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_0dec0eeac29640a9aeae2f8c4c018aa2 = function() {
+            var renderPlotly_181d24c4e9bf44368edd5c27cb29b6bc = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"table","header":{"values":["<b>RowIndex</b>","A","simple","table"]},"cells":{"values":[["0","1"],["I","little"],["am","example"],["a","!"]]}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('0dec0eea-c296-40a9-aeae-2f8c4c018aa2', data, layout, config);
+            Plotly.newPlot('181d24c4-e9bf-4436-8edd-5c27cb29b6bc', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_0dec0eeac29640a9aeae2f8c4c018aa2();
+                    renderPlotly_181d24c4e9bf44368edd5c27cb29b6bc();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_0dec0eeac29640a9aeae2f8c4c018aa2();
+                renderPlotly_181d24c4e9bf44368edd5c27cb29b6bc();
             }
 </script>
 
@@ -465,29 +465,29 @@
         <span class="fn">ColumnOrder</span> <span class="o">=</span> <span class="pn">[</span><span class="n">1</span><span class="pn">;</span><span class="n">2</span><span class="pn">;</span><span class="n">3</span><span class="pn">;</span><span class="n">4</span><span class="pn">]</span>                                  
         <span class="pn">)</span>
 </code></pre>
-<div id="656184c8-567e-4968-86fd-cf7a3d6ff1b8" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="802b85a0-6670-4654-ac68-62da31fbc64b" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_656184c8567e496886fdcf7a3d6ff1b8 = function() {
+            var renderPlotly_802b85a066704654ac6862da31fbc64b = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"table","header":{"values":["<b>RowIndex</b>","A","simple","table"],"align":["center"],"height":30.0,"fill":{"color":"#45546a"},"line":{"color":"black","width":2.0},"font":{"family":"Courier New","size":12.0,"color":"white"}},"cells":{"values":[["0","1"],["I","little"],["am","example"],["a","!"]],"align":["left","center","right"],"fill":{"color":["#deebf7","lightgrey","#deebf7","lightgrey"]}},"columnwidth":[70,50,100,70],"columnorder":[1,2,3,4]}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('656184c8-567e-4968-86fd-cf7a3d6ff1b8', data, layout, config);
+            Plotly.newPlot('802b85a0-6670-4654-ac68-62da31fbc64b', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_656184c8567e496886fdcf7a3d6ff1b8();
+                    renderPlotly_802b85a066704654ac6862da31fbc64b();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_656184c8567e496886fdcf7a3d6ff1b8();
+                renderPlotly_802b85a066704654ac6862da31fbc64b();
             }
 </script>
 
@@ -528,29 +528,29 @@
 
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs43', 98)" onmouseover="showTip(event, 'fs43', 98)" class="id">table3</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs7', 99)" onmouseover="showTip(event, 'fs7', 99)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs8', 100)" onmouseover="showTip(event, 'fs8', 100)" class="id">Table</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs25', 101)" onmouseover="showTip(event, 'fs25', 101)" class="id">header2</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs26', 102)" onmouseover="showTip(event, 'fs26', 102)" class="id">rowvalues</span><span class="pn">,</span><span class="fn">ColorCells</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs37', 103)" onmouseover="showTip(event, 'fs37', 103)" class="id">cellcolor</span><span class="pn">)</span>
 </code></pre>
-<div id="c8bcbd70-fa52-4926-a7bc-40769ca800ea" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="a0310409-53c2-46a5-8b89-eefc97878b1d" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_c8bcbd70fa524926a7bc40769ca800ea = function() {
+            var renderPlotly_a031040953c246a58b89eefc97878b1d = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"table","header":{"values":["Identifier","T0","T1","T2","T3"]},"cells":{"values":[[10004.0,10001.0,10005.0,10006.0,10007.0,10002.0,10003.0],[0.0,0.2,1.0,1.0,2.0,2.1,4.5],[0.1,2.0,1.6,0.8,2.0,2.0,3.0],[0.3,4.0,1.8,1.5,2.1,1.8,2.0],[0.2,5.0,2.2,0.7,1.9,2.1,2.5]],"fill":{"color":[["white","white","white","white","white","white","white"],["rgba(255, 255, 0, 1.0)","rgba(255, 245, 10, 1.0)","rgba(255, 204, 51, 1.0)","rgba(255, 204, 51, 1.0)","rgba(255, 153, 102, 1.0)","rgba(255, 148, 107, 1.0)","rgba(255, 26, 229, 1.0)"],["rgba(255, 250, 5, 1.0)","rgba(255, 153, 102, 1.0)","rgba(255, 174, 81, 1.0)","rgba(255, 215, 40, 1.0)","rgba(255, 153, 102, 1.0)","rgba(255, 153, 102, 1.0)","rgba(255, 102, 153, 1.0)"],["rgba(255, 240, 15, 1.0)","rgba(255, 51, 204, 1.0)","rgba(255, 164, 91, 1.0)","rgba(255, 179, 76, 1.0)","rgba(255, 148, 107, 1.0)","rgba(255, 164, 91, 1.0)","rgba(255, 153, 102, 1.0)"],["rgba(255, 245, 10, 1.0)","rgba(255, 0, 255, 1.0)","rgba(255, 143, 112, 1.0)","rgba(255, 220, 35, 1.0)","rgba(255, 159, 96, 1.0)","rgba(255, 148, 107, 1.0)","rgba(255, 128, 127, 1.0)"]]}}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('c8bcbd70-fa52-4926-a7bc-40769ca800ea', data, layout, config);
+            Plotly.newPlot('a0310409-53c2-46a5-8b89-eefc97878b1d', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_c8bcbd70fa524926a7bc40769ca800ea();
+                    renderPlotly_a031040953c246a58b89eefc97878b1d();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_c8bcbd70fa524926a7bc40769ca800ea();
+                renderPlotly_a031040953c246a58b89eefc97878b1d();
             }
 </script>
 
@@ -620,29 +620,29 @@
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs7', 202)" onmouseover="showTip(event, 'fs7', 202)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs68', 203)" onmouseover="showTip(event, 'fs68', 203)" class="id">withSize</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs65', 204)" onmouseover="showTip(event, 'fs65', 204)" class="id">chartwidth</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs69', 205)" onmouseover="showTip(event, 'fs69', 205)" class="id">nan</span><span class="pn">)</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs7', 206)" onmouseover="showTip(event, 'fs7', 206)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs70', 207)" onmouseover="showTip(event, 'fs70', 207)" class="id">withTitle</span> <span class="s">&quot;Sequence A&quot;</span>
 </code></pre>
-<div id="8c15584b-981d-4896-9c9e-a491812ff79a" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="0dfdc9ae-52d1-49d5-875d-3dd34b8ac181" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_8c15584b981d48969c9ea491812ff79a = function() {
+            var renderPlotly_0dfdc9ae52d149d5875d3dd34b8ac181 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"table","header":{"values":["","","","","","","","","","","|","","","","","","","","","","|","","","","","","","","","","|","","","","","","","","","","|","","","","","","","","","","|","","","","","","","","","","|"],"line":{"color":"white","width":0.0},"font":{"family":"Consolas","size":14.0}},"cells":{"values":[["0","60","120","180"],["A","A","G","A"],["T","C","T","C"],["G","G","C","G"],["A","T","G","T"],["G","C","A","C"],["A","G","T","G"],["C","A","A","A"],["G","T","G","T"],["T","A","A","A"],["C","G","C","G"],["G","A","G","A"],["A","C","T","C"],["G","G","C","C"],["A","T","G","G"],["C","C","A","T"],["T","G","T","A"],["G","A","A","G"],["A","T","G","A"],["T","A","A","C"],["A","G","G","G"],["G","A","A","T"],["A","G","T","C"],["C","T","A","G"],["G","A","G","A"],["T","T","A","T"],["C","A","C","A"],["G","G","G","G"],["A","A","T","A"],["T","C","C","C"],["A","C","G","G"],["G","G","A","T"],["A","T","T","C"],["C","G","A","G"],["G","A","G","A"],["T","T","A","T"],["C","A","C","A"],["G","G","C","G"],["A","A","G","A"],["T","C","T","C"],["A","G","A","C"],["G","T","T","G"],["A","C","A","T"],["C","G","G"],["C","A","A"],["G","G","A"],["A","A","G"],["T","A","A"],["A","G","C"],["G","A","G"],["A","C","T"],["C","G","C"],["T","T","G"],["C","C","A"],["G","G","T"],["T","A","A"],["G","T","G"],["A","A","A"],["T","G","T"],["A","A","A"],["G","C","G"]],"align":["right","center"],"height":20.0,"fill":{"color":[["white","white","white","white","white"],["rgba(80, 80, 255, 1.0)","rgba(80, 80, 255, 1.0)","rgba(0, 192, 0, 1.0)","rgba(80, 80, 255, 1.0)","white"],["rgba(230, 230, 0, 1.0)","rgba(224, 0, 0, 1.0)","rgba(230, 230, 0, 1.0)","rgba(224, 0, 0, 1.0)","white"],["rgba(0, 192, 0, 1.0)","rgba(0, 192, 0, 1.0)","rgba(224, 0, 0, 1.0)","rgba(0, 192, 0, 1.0)","white"],["rgba(80, 80, 255, 1.0)","rgba(230, 230, 0, 1.0)","rgba(0, 192, 0, 1.0)","rgba(230, 230, 0, 1.0)","white"],["rgba(0, 192, 0, 1.0)","rgba(224, 0, 0, 1.0)","rgba(80, 80, 255, 1.0)","rgba(224, 0, 0, 1.0)","white"],["rgba(80, 80, 255, 1.0)","rgba(0, 192, 0, 1.0)","rgba(230, 230, 0, 1.0)","rgba(0, 192, 0, 1.0)","white"],["rgba(224, 0, 0, 1.0)","rgba(80, 80, 255, 1.0)","rgba(80, 80, 255, 1.0)","rgba(80, 80, 255, 1.0)","white"],["rgba(0, 192, 0, 1.0)","rgba(230, 230, 0, 1.0)","rgba(0, 192, 0, 1.0)","rgba(230, 230, 0, 1.0)","white"],["rgba(230, 230, 0, 1.0)","rgba(80, 80, 255, 1.0)","rgba(80, 80, 255, 1.0)","rgba(80, 80, 255, 1.0)","white"],["rgba(224, 0, 0, 1.0)","rgba(0, 192, 0, 1.0)","rgba(224, 0, 0, 1.0)","rgba(0, 192, 0, 1.0)","white"],["rgba(0, 192, 0, 1.0)","rgba(80, 80, 255, 1.0)","rgba(0, 192, 0, 1.0)","rgba(80, 80, 255, 1.0)","white"],["rgba(80, 80, 255, 1.0)","rgba(224, 0, 0, 1.0)","rgba(230, 230, 0, 1.0)","rgba(224, 0, 0, 1.0)","white"],["rgba(0, 192, 0, 1.0)","rgba(0, 192, 0, 1.0)","rgba(224, 0, 0, 1.0)","rgba(224, 0, 0, 1.0)","white"],["rgba(80, 80, 255, 1.0)","rgba(230, 230, 0, 1.0)","rgba(0, 192, 0, 1.0)","rgba(0, 192, 0, 1.0)","white"],["rgba(224, 0, 0, 1.0)","rgba(224, 0, 0, 1.0)","rgba(80, 80, 255, 1.0)","rgba(230, 230, 0, 1.0)","white"],["rgba(230, 230, 0, 1.0)","rgba(0, 192, 0, 1.0)","rgba(230, 230, 0, 1.0)","rgba(80, 80, 255, 1.0)","white"],["rgba(0, 192, 0, 1.0)","rgba(80, 80, 255, 1.0)","rgba(80, 80, 255, 1.0)","rgba(0, 192, 0, 1.0)","white"],["rgba(80, 80, 255, 1.0)","rgba(230, 230, 0, 1.0)","rgba(0, 192, 0, 1.0)","rgba(80, 80, 255, 1.0)","white"],["rgba(230, 230, 0, 1.0)","rgba(80, 80, 255, 1.0)","rgba(80, 80, 255, 1.0)","rgba(224, 0, 0, 1.0)","white"],["rgba(80, 80, 255, 1.0)","rgba(0, 192, 0, 1.0)","rgba(0, 192, 0, 1.0)","rgba(0, 192, 0, 1.0)","white"],["rgba(0, 192, 0, 1.0)","rgba(80, 80, 255, 1.0)","rgba(80, 80, 255, 1.0)","rgba(230, 230, 0, 1.0)","white"],["rgba(80, 80, 255, 1.0)","rgba(0, 192, 0, 1.0)","rgba(230, 230, 0, 1.0)","rgba(224, 0, 0, 1.0)","white"],["rgba(224, 0, 0, 1.0)","rgba(230, 230, 0, 1.0)","rgba(80, 80, 255, 1.0)","rgba(0, 192, 0, 1.0)","white"],["rgba(0, 192, 0, 1.0)","rgba(80, 80, 255, 1.0)","rgba(0, 192, 0, 1.0)","rgba(80, 80, 255, 1.0)","white"],["rgba(230, 230, 0, 1.0)","rgba(230, 230, 0, 1.0)","rgba(80, 80, 255, 1.0)","rgba(230, 230, 0, 1.0)","white"],["rgba(224, 0, 0, 1.0)","rgba(80, 80, 255, 1.0)","rgba(224, 0, 0, 1.0)","rgba(80, 80, 255, 1.0)","white"],["rgba(0, 192, 0, 1.0)","rgba(0, 192, 0, 1.0)","rgba(0, 192, 0, 1.0)","rgba(0, 192, 0, 1.0)","white"],["rgba(80, 80, 255, 1.0)","rgba(80, 80, 255, 1.0)","rgba(230, 230, 0, 1.0)","rgba(80, 80, 255, 1.0)","white"],["rgba(230, 230, 0, 1.0)","rgba(224, 0, 0, 1.0)","rgba(224, 0, 0, 1.0)","rgba(224, 0, 0, 1.0)","white"],["rgba(80, 80, 255, 1.0)","rgba(224, 0, 0, 1.0)","rgba(0, 192, 0, 1.0)","rgba(0, 192, 0, 1.0)","white"],["rgba(0, 192, 0, 1.0)","rgba(0, 192, 0, 1.0)","rgba(80, 80, 255, 1.0)","rgba(230, 230, 0, 1.0)","white"],["rgba(80, 80, 255, 1.0)","rgba(230, 230, 0, 1.0)","rgba(230, 230, 0, 1.0)","rgba(224, 0, 0, 1.0)","white"],["rgba(224, 0, 0, 1.0)","rgba(0, 192, 0, 1.0)","rgba(80, 80, 255, 1.0)","rgba(0, 192, 0, 1.0)","white"],["rgba(0, 192, 0, 1.0)","rgba(80, 80, 255, 1.0)","rgba(0, 192, 0, 1.0)","rgba(80, 80, 255, 1.0)","white"],["rgba(230, 230, 0, 1.0)","rgba(230, 230, 0, 1.0)","rgba(80, 80, 255, 1.0)","rgba(230, 230, 0, 1.0)","white"],["rgba(224, 0, 0, 1.0)","rgba(80, 80, 255, 1.0)","rgba(224, 0, 0, 1.0)","rgba(80, 80, 255, 1.0)","white"],["rgba(0, 192, 0, 1.0)","rgba(0, 192, 0, 1.0)","rgba(224, 0, 0, 1.0)","rgba(0, 192, 0, 1.0)","white"],["rgba(80, 80, 255, 1.0)","rgba(80, 80, 255, 1.0)","rgba(0, 192, 0, 1.0)","rgba(80, 80, 255, 1.0)","white"],["rgba(230, 230, 0, 1.0)","rgba(224, 0, 0, 1.0)","rgba(230, 230, 0, 1.0)","rgba(224, 0, 0, 1.0)","white"],["rgba(80, 80, 255, 1.0)","rgba(0, 192, 0, 1.0)","rgba(80, 80, 255, 1.0)","rgba(224, 0, 0, 1.0)","white"],["rgba(0, 192, 0, 1.0)","rgba(230, 230, 0, 1.0)","rgba(230, 230, 0, 1.0)","rgba(0, 192, 0, 1.0)","white"],["rgba(80, 80, 255, 1.0)","rgba(224, 0, 0, 1.0)","rgba(80, 80, 255, 1.0)","rgba(230, 230, 0, 1.0)","white"],["rgba(224, 0, 0, 1.0)","rgba(0, 192, 0, 1.0)","rgba(0, 192, 0, 1.0)","white"],["rgba(224, 0, 0, 1.0)","rgba(80, 80, 255, 1.0)","rgba(80, 80, 255, 1.0)","white"],["rgba(0, 192, 0, 1.0)","rgba(0, 192, 0, 1.0)","rgba(80, 80, 255, 1.0)","white"],["rgba(80, 80, 255, 1.0)","rgba(80, 80, 255, 1.0)","rgba(0, 192, 0, 1.0)","white"],["rgba(230, 230, 0, 1.0)","rgba(80, 80, 255, 1.0)","rgba(80, 80, 255, 1.0)","white"],["rgba(80, 80, 255, 1.0)","rgba(0, 192, 0, 1.0)","rgba(224, 0, 0, 1.0)","white"],["rgba(0, 192, 0, 1.0)","rgba(80, 80, 255, 1.0)","rgba(0, 192, 0, 1.0)","white"],["rgba(80, 80, 255, 1.0)","rgba(224, 0, 0, 1.0)","rgba(230, 230, 0, 1.0)","white"],["rgba(224, 0, 0, 1.0)","rgba(0, 192, 0, 1.0)","rgba(224, 0, 0, 1.0)","white"],["rgba(230, 230, 0, 1.0)","rgba(230, 230, 0, 1.0)","rgba(0, 192, 0, 1.0)","white"],["rgba(224, 0, 0, 1.0)","rgba(224, 0, 0, 1.0)","rgba(80, 80, 255, 1.0)","white"],["rgba(0, 192, 0, 1.0)","rgba(0, 192, 0, 1.0)","rgba(230, 230, 0, 1.0)","white"],["rgba(230, 230, 0, 1.0)","rgba(80, 80, 255, 1.0)","rgba(80, 80, 255, 1.0)","white"],["rgba(0, 192, 0, 1.0)","rgba(230, 230, 0, 1.0)","rgba(0, 192, 0, 1.0)","white"],["rgba(80, 80, 255, 1.0)","rgba(80, 80, 255, 1.0)","rgba(80, 80, 255, 1.0)","white"],["rgba(230, 230, 0, 1.0)","rgba(0, 192, 0, 1.0)","rgba(230, 230, 0, 1.0)","white"],["rgba(80, 80, 255, 1.0)","rgba(80, 80, 255, 1.0)","rgba(80, 80, 255, 1.0)","white"],["rgba(0, 192, 0, 1.0)","rgba(224, 0, 0, 1.0)","rgba(0, 192, 0, 1.0)","white"]]},"line":{"color":"white","width":0.0},"font":{"family":"Consolas","size":14.0}},"columnwidth":[50,10]}];
             var layout = {"width":650,"height":-2147483648,"title":{"text":"Sequence A"}};
             var config = {};
-            Plotly.newPlot('8c15584b-981d-4896-9c9e-a491812ff79a', data, layout, config);
+            Plotly.newPlot('0dfdc9ae-52d1-49d5-875d-3dd34b8ac181', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_8c15584b981d48969c9ea491812ff79a();
+                    renderPlotly_0dfdc9ae52d149d5875d3dd34b8ac181();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_8c15584b981d48969c9ea491812ff79a();
+                renderPlotly_0dfdc9ae52d149d5875d3dd34b8ac181();
             }
 </script>
 
@@ -661,14 +661,14 @@ from Plotly.NET</div>
 <div class="fsdocs-tip" id="fs7">type Chart =
   static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:float -&gt; GenericChart + 1 overload
   static member Bar : values:seq&lt;#IConvertible&gt; * ?Keys:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?PatternShape:PatternShape * ?MultiPatternShape:seq&lt;PatternShape&gt; * ?Pattern:Pattern * ?Base:#IConvertible * ?Width:&#39;a3 * ?MultiWidth:seq&lt;&#39;a3&gt; * ?Opacity:float * ?MultiOpacity:seq&lt;float&gt; * ?Text:&#39;a4 * ?MultiText:seq&lt;&#39;a4&gt; * ?TextPosition:TextPosition * ?MultiTextPosition:seq&lt;TextPosition&gt; * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart (requires &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
-  static member BoxPlot : ?x:&#39;a0 * ?y:&#39;a1 * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Fillcolor:Color * ?Opacity:float * ?Whiskerwidth:&#39;a2 * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:&#39;a3 * ?Pointpos:&#39;a4 * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?Alignmentgroup:&#39;a5 * ?Offsetgroup:&#39;a6 * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod -&gt; GenericChart + 1 overload
+  static member BoxPlot : ?x:seq&lt;#IConvertible&gt; * ?y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Text:&#39;a2 * ?MultiText:seq&lt;&#39;a2&gt; * ?Fillcolor:Color * ?MarkerColor:Color * ?OutlierColor:Color * ?OutlierWidth:int * ?Opacity:float * ?WhiskerWidth:float * ?BoxPoints:BoxPoints * ?BoxMean:BoxMean * ?Jitter:float * ?PointPos:float * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?AlignmentGroup:string * ?Offsetgroup:string * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod -&gt; GenericChart (requires &#39;a2 :&gt; IConvertible) + 1 overload
   static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;int&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:Orientation * ?GroupNorm:GroupNorm * ?UseWebGL:bool -&gt; GenericChart + 1 overload
   static member Candlestick : open:seq&lt;#IConvertible&gt; * high:seq&lt;#IConvertible&gt; * low:seq&lt;#IConvertible&gt; * close:seq&lt;#IConvertible&gt; * x:seq&lt;#IConvertible&gt; * ?Increasing:Line * ?Decreasing:Line * ?WhiskerWidth:float * ?Line:Line * ?XCalendar:Calendar -&gt; GenericChart + 1 overload
   static member Column : values:seq&lt;#IConvertible&gt; * ?Keys:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Pattern:Pattern * ?PatternShape:PatternShape * ?MultiPatternShape:seq&lt;PatternShape&gt; * ?Base:#IConvertible * ?Width:&#39;a3 * ?MultiWidth:seq&lt;&#39;a3&gt; * ?Opacity:float * ?MultiOpacity:seq&lt;float&gt; * ?Text:&#39;a4 * ?MultiText:seq&lt;&#39;a4&gt; * ?TextPosition:TextPosition * ?MultiTextPosition:seq&lt;TextPosition&gt; * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart (requires &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
   static member Contour : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;a4 * ?zSmooth:SmoothAlg * ?ColorBar:&#39;a5 -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)
   static member Funnel : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Color:Color * ?Line:Line * ?x0:&#39;a3 * ?dX:float * ?y0:&#39;a4 * ?dY:float * ?Width:float * ?Offset:float * ?Orientation:Orientation * ?Alignmentgroup:string * ?Offsetgroup:string * ?Cliponaxis:bool * ?Connector:FunnelConnector * ?Insidetextfont:Font * ?Outsidetextfont:Font -&gt; GenericChart
   static member Heatmap : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?ColNames:seq&lt;#IConvertible&gt; * ?RowNames:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;a4 * ?Xgap:&#39;a5 * ?Ygap:&#39;a6 * ?zSmooth:SmoothAlg * ?ColorBar:&#39;a7 * ?UseWebGL:bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)
-  static member Histogram : data:seq&lt;#IConvertible&gt; * ?Orientation:Orientation * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Color:Color * ?HistNorm:HistNorm * ?HistFunc:HistFunc * ?nBinsx:int * ?nBinsy:int * ?Xbins:Bins * ?Ybins:Bins * ?xError:&#39;a1 * ?yError:&#39;a2 -&gt; GenericChart
+  static member Histogram : ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Orientation:Orientation * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Text:&#39;a2 * ?MultiText:seq&lt;&#39;a2&gt; * ?HistFunc:HistFunc * ?HistNorm:HistNorm * ?AlignmentGroup:string * ?OffsetGroup:string * ?NBinsX:int * ?NBinsY:int * ?BinGroup:string * ?XBins:Bins * ?YBins:Bins * ?MarkerColor:Color * ?Marker:Marker * ?Line:Line * ?ErrorX:Error * ?ErrorY:Error * ?Cumulative:Cumulative * ?HoverLabel:Hoverlabel -&gt; GenericChart (requires &#39;a2 :&gt; IConvertible) + 1 overload
   ...</div>
 <div class="fsdocs-tip" id="fs8">static member Chart.Table : headerValues:seq&lt;#seq&lt;&#39;b&gt;&gt; * cellValues:seq&lt;#seq&lt;&#39;d&gt;&gt; * ?AlignHeader:seq&lt;HorizontalAlign&gt; * ?AlignCells:seq&lt;HorizontalAlign&gt; * ?ColumnWidth:seq&lt;int&gt; * ?ColumnOrder:seq&lt;int&gt; * ?ColorHeader:Color * ?ColorCells:Color * ?FontHeader:Font * ?FontCells:Font * ?HeightHeader:float * ?HeightCells:float * ?LineHeader:Line * ?LineCells:Line -&gt; GenericChart.GenericChart (requires &#39;b :&gt; System.IConvertible and &#39;d :&gt; System.IConvertible)</div>
 <div class="fsdocs-tip" id="fs9">module GenericChart

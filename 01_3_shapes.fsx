@@ -33,29 +33,29 @@ let shapes =
     Chart.Line(x,y',Name="line")    
     |> Chart.withShapes([s1;s2])
 //|> Chart.withShape(Options.Shape(StyleOption.ShapeType.Rectangle,2.,4.,3.,4.,Opacity=0.3,Fillcolor="#d3d3d3"))(* output: 
-<div id="eee02f8f-2f3d-4c12-9f56-893c56963444" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="72e2d51f-dac6-4eab-bd5d-7a800bb305b0" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_eee02f8f2f3d4c129f56893c56963444 = function() {
+            var renderPlotly_72e2d51fdac64eabbd5d7a800bb305b0 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"line":{},"name":"line","marker":{}}];
             var layout = {"shapes":[{"type":"rect","x0":2.0,"x1":4.0,"y0":3.0,"y1":4.0,"opacity":0.3,"fillcolor":"rgba(211, 211, 211, 1.0)"},{"type":"rect","x0":5.0,"x1":7.0,"y0":3.0,"y1":4.0,"opacity":0.3,"fillcolor":"rgba(211, 211, 211, 1.0)"}]};
             var config = {};
-            Plotly.newPlot('eee02f8f-2f3d-4c12-9f56-893c56963444', data, layout, config);
+            Plotly.newPlot('72e2d51f-dac6-4eab-bd5d-7a800bb305b0', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_eee02f8f2f3d4c129f56893c56963444();
+                    renderPlotly_72e2d51fdac64eabbd5d7a800bb305b0();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_eee02f8f2f3d4c129f56893c56963444();
+                renderPlotly_72e2d51fdac64eabbd5d7a800bb305b0();
             }
 </script>
 *)

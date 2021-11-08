@@ -33,29 +33,29 @@ let combinedTernary =
     ]
     
     |> Chart.combine(* output: 
-<div id="3772fbf2-c43f-425b-9f22-520e38ce3e6f" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="93e344dc-b053-49bc-99bf-bce0e01b5c7b" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_3772fbf2c43f425b9f22520e38ce3e6f = function() {
+            var renderPlotly_93e344dcb05349bc99bfbce0e01b5c7b = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatterternary","mode":"markers","a":[1,2,3,4,5,6,7],"b":[7,6,5,4,3,2,1],"c":[2,2,2,2,2,2,2],"marker":{}},{"type":"scatterternary","mode":"lines","a":[1,2,3,4,5,6,7],"b":[2,2,2,2,2,2,2],"sum":10,"line":{},"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('3772fbf2-c43f-425b-9f22-520e38ce3e6f', data, layout, config);
+            Plotly.newPlot('93e344dc-b053-49bc-99bf-bce0e01b5c7b', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_3772fbf2c43f425b9f22520e38ce3e6f();
+                    renderPlotly_93e344dcb05349bc99bfbce0e01b5c7b();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_3772fbf2c43f425b9f22520e38ce3e6f();
+                renderPlotly_93e344dcb05349bc99bfbce0e01b5c7b();
             }
 </script>
 *)
@@ -75,29 +75,29 @@ let styledTernary =
             BAxis = LinearAxis.init(Title = Title.init("B"), Color = Color.fromKeyword ColorKeyword.DarkRed)
         )
     )(* output: 
-<div id="01568d88-8c0e-4260-be09-fa4f65b380bb" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="c30f95fe-bca9-492a-b737-0ae8553562dd" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_01568d888c0e4260be09fa4f65b380bb = function() {
+            var renderPlotly_c30f95febca9492ab7370ae8553562dd = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatterternary","mode":"markers","a":[1,2,3,4,5,6,7],"b":[7,6,5,4,3,2,1],"c":[2,2,2,2,2,2,2],"marker":{}},{"type":"scatterternary","mode":"lines","a":[1,2,3,4,5,6,7],"b":[2,2,2,2,2,2,2],"sum":10,"line":{},"marker":{}}];
             var layout = {"ternary":{"aaxis":{"color":"rgba(153, 50, 204, 1.0)","title":{"text":"A"}},"baxis":{"color":"rgba(139, 0, 0, 1.0)","title":{"text":"B"}}}};
             var config = {};
-            Plotly.newPlot('01568d88-8c0e-4260-be09-fa4f65b380bb', data, layout, config);
+            Plotly.newPlot('c30f95fe-bca9-492a-b737-0ae8553562dd', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_01568d888c0e4260be09fa4f65b380bb();
+                    renderPlotly_c30f95febca9492ab7370ae8553562dd();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_01568d888c0e4260be09fa4f65b380bb();
+                renderPlotly_c30f95febca9492ab7370ae8553562dd();
             }
 </script>
 *)
@@ -111,29 +111,29 @@ let styledTernary2 =
     styledTernary
     |> Chart.withCAxis(LinearAxis.init(Title = Title.init("C"), Color = Color.fromKeyword ColorKeyword.DarkCyan))
     (* output: 
-<div id="15df87ea-8ea8-44b5-b80a-bdaff90806c1" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="38e453d3-d5e0-49e8-83fb-28d35f6a173f" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_15df87ea8ea844b5b80abdaff90806c1 = function() {
+            var renderPlotly_38e453d3d5e049e883fb28d35f6a173f = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatterternary","mode":"markers","a":[1,2,3,4,5,6,7],"b":[7,6,5,4,3,2,1],"c":[2,2,2,2,2,2,2],"marker":{}},{"type":"scatterternary","mode":"lines","a":[1,2,3,4,5,6,7],"b":[2,2,2,2,2,2,2],"sum":10,"line":{},"marker":{}}];
             var layout = {"ternary":{"aaxis":{"color":"rgba(153, 50, 204, 1.0)","title":{"text":"A"}},"baxis":{"color":"rgba(139, 0, 0, 1.0)","title":{"text":"B"}},"caxis":{"color":"rgba(0, 139, 139, 1.0)","title":{"text":"C"}}}};
             var config = {};
-            Plotly.newPlot('15df87ea-8ea8-44b5-b80a-bdaff90806c1', data, layout, config);
+            Plotly.newPlot('38e453d3-d5e0-49e8-83fb-28d35f6a173f', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_15df87ea8ea844b5b80abdaff90806c1();
+                    renderPlotly_38e453d3d5e049e883fb28d35f6a173f();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_15df87ea8ea844b5b80abdaff90806c1();
+                renderPlotly_38e453d3d5e049e883fb28d35f6a173f();
             }
 </script>
 *)

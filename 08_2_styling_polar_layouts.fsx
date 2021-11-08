@@ -31,29 +31,29 @@ let combinedPolar =
     ]
     
     |> Chart.combine(* output: 
-<div id="b40eacbe-db09-443b-8e22-ed1f8f314ceb" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="ca35960d-6628-41ce-a32b-f99c1ec0742b" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_b40eacbedb09443b8e22ed1f8f314ceb = function() {
+            var renderPlotly_ca35960d662841cea32bf99c1ec0742b = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatterpolar","mode":"markers","r":[10000,20000,30000,40000,50000,60000,70000],"theta":[0,45,90,135,200,320,184],"name":"PointPolar","marker":{}},{"type":"scatterpolar","mode":"lines+markers","r":[50000,60000,70000,10000,20000,30000,40000],"theta":[0,45,90,135,200,320,184],"name":"LinePolar","line":{},"marker":{}},{"type":"scatterpolar","mode":"lines+markers","r":[30000,10000,50000,20000,80000,70000,50000],"theta":[0,45,90,135,200,320,184],"name":"SplinePolar","line":{"shape":"spline"},"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('b40eacbe-db09-443b-8e22-ed1f8f314ceb', data, layout, config);
+            Plotly.newPlot('ca35960d-6628-41ce-a32b-f99c1ec0742b', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_b40eacbedb09443b8e22ed1f8f314ceb();
+                    renderPlotly_ca35960d662841cea32bf99c1ec0742b();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_b40eacbedb09443b8e22ed1f8f314ceb();
+                renderPlotly_ca35960d662841cea32bf99c1ec0742b();
             }
 </script>
 *)
@@ -73,29 +73,29 @@ let styledPolar =
             Hole=0.1
         )
     )(* output: 
-<div id="c74fc9b3-467a-459d-9214-639c148f1814" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="73e80e32-53ce-4cb1-ad65-e85afa20bd1e" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_c74fc9b3467a459d9214639c148f1814 = function() {
+            var renderPlotly_73e80e3253ce4cb1ad65e85afa20bd1e = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatterpolar","mode":"markers","r":[10000,20000,30000,40000,50000,60000,70000],"theta":[0,45,90,135,200,320,184],"name":"PointPolar","marker":{}},{"type":"scatterpolar","mode":"lines+markers","r":[50000,60000,70000,10000,20000,30000,40000],"theta":[0,45,90,135,200,320,184],"name":"LinePolar","line":{},"marker":{}},{"type":"scatterpolar","mode":"lines+markers","r":[30000,10000,50000,20000,80000,70000,50000],"theta":[0,45,90,135,200,320,184],"name":"SplinePolar","line":{"shape":"spline"},"marker":{}}];
             var layout = {"polar":{"sector":[0.0,270.0],"hole":0.1}};
             var config = {};
-            Plotly.newPlot('c74fc9b3-467a-459d-9214-639c148f1814', data, layout, config);
+            Plotly.newPlot('73e80e32-53ce-4cb1-ad65-e85afa20bd1e', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_c74fc9b3467a459d9214639c148f1814();
+                    renderPlotly_73e80e3253ce4cb1ad65e85afa20bd1e();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_c74fc9b3467a459d9214639c148f1814();
+                renderPlotly_73e80e3253ce4cb1ad65e85afa20bd1e();
             }
 </script>
 *)
@@ -119,29 +119,29 @@ let styledPolar2 =
             SeparateThousands = true
         )
     )(* output: 
-<div id="885af992-eeb9-43e2-9dfc-6205ae68c938" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="c72b65c4-2f1e-4c8f-abcc-0afbf6c81c9c" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_885af992eeb943e29dfc6205ae68c938 = function() {
+            var renderPlotly_c72b65c42f1e4c8fabcc0afbf6c81c9c = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatterpolar","mode":"markers","r":[10000,20000,30000,40000,50000,60000,70000],"theta":[0,45,90,135,200,320,184],"name":"PointPolar","marker":{}},{"type":"scatterpolar","mode":"lines+markers","r":[50000,60000,70000,10000,20000,30000,40000],"theta":[0,45,90,135,200,320,184],"name":"LinePolar","line":{},"marker":{}},{"type":"scatterpolar","mode":"lines+markers","r":[30000,10000,50000,20000,80000,70000,50000],"theta":[0,45,90,135,200,320,184],"name":"SplinePolar","line":{"shape":"spline"},"marker":{}}];
             var layout = {"polar":{"sector":[0.0,270.0],"hole":0.1,"angularaxis":{"color":"darkblue"},"radialaxis":{"title":{"text":"Hi, i am the radial axis"},"color":"darkblue","separatethousands":true}}};
             var config = {};
-            Plotly.newPlot('885af992-eeb9-43e2-9dfc-6205ae68c938', data, layout, config);
+            Plotly.newPlot('c72b65c4-2f1e-4c8f-abcc-0afbf6c81c9c', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_885af992eeb943e29dfc6205ae68c938();
+                    renderPlotly_c72b65c42f1e4c8fabcc0afbf6c81c9c();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_885af992eeb943e29dfc6205ae68c938();
+                renderPlotly_c72b65c42f1e4c8fabcc0afbf6c81c9c();
             }
 </script>
 *)

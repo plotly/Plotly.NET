@@ -55,29 +55,29 @@ let allIndicatorTypes =
     |> Chart.combine
     |> Chart.withLayoutGridStyle(Rows = 2, Columns = 2)
     |> Chart.withMarginSize(Left = 200)(* output: 
-<div id="ca7f7288-cccc-423f-8cd1-0a362265199d" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="06802cc7-6887-4eee-8283-c4a967d36f7a" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_ca7f7288cccc423f8cd10a362265199d = function() {
+            var renderPlotly_06802cc768874eee8283c4a967d36f7a = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"indicator","title":"Bullet gauge","mode":"number+delta+gauge","value":120.0,"domain":{"row":0,"column":0},"delta":{"reference":90.0},"gauge":{"axis":{"visible":false,"range":[-200.0,200.0]},"shape":"bullet"}},{"type":"indicator","title":"Angular gauge","mode":"number+delta+gauge","value":200.0,"domain":{"row":0,"column":1},"delta":{"reference":160},"gauge":{"axis":{"range":[0.0,250.0]}}},{"type":"indicator","title":"number and delta","mode":"number+delta","value":300.0,"domain":{"row":1,"column":0},"delta":{"reference":90.0},"gauge":{"axis":{}}},{"type":"indicator","title":"delta","mode":"delta","value":40.0,"domain":{"row":1,"column":1},"delta":{"reference":90.0},"gauge":{"axis":{}}}];
             var layout = {"grid":{"rows":2,"columns":2},"margin":{"l":200}};
             var config = {};
-            Plotly.newPlot('ca7f7288-cccc-423f-8cd1-0a362265199d', data, layout, config);
+            Plotly.newPlot('06802cc7-6887-4eee-8283-c4a967d36f7a', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_ca7f7288cccc423f8cd10a362265199d();
+                    renderPlotly_06802cc768874eee8283c4a967d36f7a();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_ca7f7288cccc423f8cd10a362265199d();
+                renderPlotly_06802cc768874eee8283c4a967d36f7a();
             }
 </script>
 *)

@@ -26,31 +26,31 @@ data at different values.
 let violin1 =
     Chart.Violin (
         x,y,
-        Points=StyleParam.Jitterpoints.All
+        Points=StyleParam.JitterPoints.All
     )(* output: 
-<div id="103fd824-95b9-404e-b762-28887a313521" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="4438fb83-be7a-4e8f-9da7-083bac0f42ce" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_103fd82495b9404eb76228887a313521 = function() {
+            var renderPlotly_4438fb83be7a4e8f9da7083bac0f42ce = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
-            var data = [{"type":"violin","y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"points":"all","marker":{}}];
+            var data = [{"type":"violin","x":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"box":{},"points":"all","marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('103fd824-95b9-404e-b762-28887a313521', data, layout, config);
+            Plotly.newPlot('4438fb83-be7a-4e8f-9da7-083bac0f42ce', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_103fd82495b9404eb76228887a313521();
+                    renderPlotly_4438fb83be7a4e8f9da7083bac0f42ce();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_103fd82495b9404eb76228887a313521();
+                renderPlotly_4438fb83be7a4e8f9da7083bac0f42ce();
             }
 </script>
 *)
@@ -64,33 +64,33 @@ let violin2 =
     Chart.Violin(
         y,x,
         Jitter=0.1,
-        Points=StyleParam.Jitterpoints.All,
+        Points=StyleParam.JitterPoints.All,
         Orientation=StyleParam.Orientation.Horizontal,
-        Meanline=Meanline.init(Visible=true)
+        MeanLine=MeanLine.init(Visible=true)
     )(* output: 
-<div id="31655238-f6e3-43f8-a789-49d2c0023d3f" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="8ae9b92a-d9f6-4967-b863-9aeb78992e16" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_31655238f6e343f8a78949d2c0023d3f = function() {
+            var renderPlotly_8ae9b92ad9f64967b8639aeb78992e16 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
-            var data = [{"type":"violin","y":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"x":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"points":"all","jitter":0.1,"orientation":"h","meanline":{"visible":true},"marker":{}}];
+            var data = [{"type":"violin","x":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"y":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"orientation":"h","box":{},"jitter":0.1,"meanline":{"visible":true},"points":"all","marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('31655238-f6e3-43f8-a789-49d2c0023d3f', data, layout, config);
+            Plotly.newPlot('8ae9b92a-d9f6-4967-b863-9aeb78992e16', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_31655238f6e343f8a78949d2c0023d3f();
+                    renderPlotly_8ae9b92ad9f64967b8639aeb78992e16();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_31655238f6e343f8a78949d2c0023d3f();
+                renderPlotly_8ae9b92ad9f64967b8639aeb78992e16();
             }
 </script>
 *)
@@ -102,33 +102,33 @@ let y' =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.
 
 let violin3 =
     [
-        Chart.Violin ("y" ,y,Name="bin1",Jitter=0.1,Points=StyleParam.Jitterpoints.All);
-        Chart.Violin ("y'",y',Name="bin2",Jitter=0.1,Points=StyleParam.Jitterpoints.All);
+        Chart.Violin ("y" ,y,Name="bin1",Jitter=0.1,Points=StyleParam.JitterPoints.All);
+        Chart.Violin ("y'",y',Name="bin2",Jitter=0.1,Points=StyleParam.JitterPoints.All);
     ]
     |> Chart.combine(* output: 
-<div id="8993ae89-2c59-4aa8-9e15-c1a6ab16c2c8" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="e7a1aa4e-b292-4810-a50b-91fb0f512fbf" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_8993ae892c594aa89e15c1a6ab16c2c8 = function() {
+            var renderPlotly_e7a1aa4eb2924810a50b91fb0f512fbf = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
-            var data = [{"type":"violin","y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":"y","points":"all","jitter":0.1,"name":"bin1","marker":{}},{"type":"violin","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":"y'","points":"all","jitter":0.1,"name":"bin2","marker":{}}];
+            var data = [{"type":"violin","name":"bin1","x":"y","y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"box":{},"jitter":0.1,"points":"all","marker":{}},{"type":"violin","name":"bin2","x":"y'","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"box":{},"jitter":0.1,"points":"all","marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('8993ae89-2c59-4aa8-9e15-c1a6ab16c2c8', data, layout, config);
+            Plotly.newPlot('e7a1aa4e-b292-4810-a50b-91fb0f512fbf', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_8993ae892c594aa89e15c1a6ab16c2c8();
+                    renderPlotly_e7a1aa4eb2924810a50b91fb0f512fbf();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_8993ae892c594aa89e15c1a6ab16c2c8();
+                renderPlotly_e7a1aa4eb2924810a50b91fb0f512fbf();
             }
 </script>
 *)

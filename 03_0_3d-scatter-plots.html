@@ -41,7 +41,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.10</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.11</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -256,29 +256,6 @@
   </a>
 </li>             
 <li class="nav-header">
-  Finance Charts
-</li>             
-<li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/07_0_candlestick.html">
-    Candlestick Charts
-  </a>
-</li>             
-<li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/07_1_funnel.html">
-    Funnel Charts
-  </a>
-</li>             
-<li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/07_2_funnel_area.html">
-    FunnelArea Charts
-  </a>
-</li>             
-<li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/07_3_indicator.html">
-    Indicator Charts
-  </a>
-</li>             
-<li class="nav-header">
   Mapbox map charts
 </li>             
 <li class="nav-item">
@@ -299,6 +276,29 @@
 <li class="nav-item">
   <a class="nav-link" href="https://plotly.net/06_3_density-mapbox.html">
     DensityMapbox charts
+  </a>
+</li>             
+<li class="nav-header">
+  Finance Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_0_candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_1_funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_2_funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_3_indicator.html">
+    Indicator Charts
   </a>
 </li>             
 <li class="nav-header">
@@ -403,29 +403,29 @@
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs4', 19)" onmouseover="showTip(event, 'fs4', 19)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 20)" onmouseover="showTip(event, 'fs13', 20)" class="id">withZAxisStyle</span><span class="pn">(</span><span class="s">&quot;my z-axis&quot;</span><span class="pn">)</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs4', 21)" onmouseover="showTip(event, 'fs4', 21)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 22)" onmouseover="showTip(event, 'fs14', 22)" class="id">withSize</span><span class="pn">(</span><span class="n">800.</span><span class="pn">,</span><span class="n">800.</span><span class="pn">)</span>
 </code></pre>
-<div id="eddbdb63-0895-4a62-839d-d33ffa07a6d5" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="37d093b8-58e6-4a4e-a51c-aeb9e9eec7cb" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_eddbdb6308954a62839dd33ffa07a6d5 = function() {
+            var renderPlotly_37d093b858e64a4ea51caeb9e9eec7cb = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter3d","mode":"markers+text","x":[1,6,7],"y":[3,5,9],"z":[2,4,8],"line":{},"marker":{},"text":["A","B","C"],"textposition":"bottom center"}];
             var layout = {"scene":{"xaxis":{"title":{"text":"my x-axis"}},"yaxis":{"title":{"text":"my y-axis"}},"zaxis":{"title":{"text":"my z-axis"}}},"width":800,"height":800};
             var config = {};
-            Plotly.newPlot('eddbdb63-0895-4a62-839d-d33ffa07a6d5', data, layout, config);
+            Plotly.newPlot('37d093b8-58e6-4a4e-a51c-aeb9e9eec7cb', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_eddbdb6308954a62839dd33ffa07a6d5();
+                    renderPlotly_37d093b858e64a4ea51caeb9e9eec7cb();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_eddbdb6308954a62839dd33ffa07a6d5();
+                renderPlotly_37d093b858e64a4ea51caeb9e9eec7cb();
             }
 </script>
 
@@ -438,29 +438,29 @@
         <span class="fn">ShowMarkers</span> <span class="o">=</span> <span class="k">true</span>
     <span class="pn">)</span>
 </code></pre>
-<div id="546a719e-3b01-4f26-b457-0d7db9cef135" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="67763056-86ec-4205-8e97-dbaf17c26bca" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_546a719e3b014f26b4570d7db9cef135 = function() {
+            var renderPlotly_6776305686ec42058e97dbaf17c26bca = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter3d","mode":"lines+markers+text","x":[1,6,7],"y":[3,5,9],"z":[2,4,8],"line":{},"marker":{},"text":["A","B","C"],"textposition":"bottom center"}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('546a719e-3b01-4f26-b457-0d7db9cef135', data, layout, config);
+            Plotly.newPlot('67763056-86ec-4205-8e97-dbaf17c26bca', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_546a719e3b014f26b4570d7db9cef135();
+                    renderPlotly_6776305686ec42058e97dbaf17c26bca();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_546a719e3b014f26b4570d7db9cef135();
+                renderPlotly_6776305686ec42058e97dbaf17c26bca();
             }
 </script>
 
@@ -473,29 +473,29 @@
         <span class="fn">TextPosition</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 38)" onmouseover="showTip(event, 'fs6', 38)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 39)" onmouseover="showTip(event, 'fs7', 39)" class="rt">TextPosition</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs8', 40)" onmouseover="showTip(event, 'fs8', 40)" class="id">BottomCenter</span>
     <span class="pn">)</span>
 </code></pre>
-<div id="29c9c7aa-9f38-4395-81b8-cc77e4141ac6" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="7cbcb875-7704-4a63-89c0-7db8d0950e3a" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_29c9c7aa9f38439581b8cc77e4141ac6 = function() {
+            var renderPlotly_7cbcb87577044a6389c07db8d0950e3a = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter3d","mode":"markers+text","x":[1,6,7],"y":[3,5,9],"z":[2,4,8],"marker":{"size":[10,20,30]},"text":["A","B","C"],"textposition":"bottom center"}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('29c9c7aa-9f38-4395-81b8-cc77e4141ac6', data, layout, config);
+            Plotly.newPlot('7cbcb875-7704-4a63-89c0-7db8d0950e3a', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_29c9c7aa9f38439581b8cc77e4141ac6();
+                    renderPlotly_7cbcb87577044a6389c07db8d0950e3a();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_29c9c7aa9f38439581b8cc77e4141ac6();
+                renderPlotly_7cbcb87577044a6389c07db8d0950e3a();
             }
 </script>
 
@@ -509,14 +509,14 @@
 <div class="fsdocs-tip" id="fs4">type Chart =
   static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:float -&gt; GenericChart + 1 overload
   static member Bar : values:seq&lt;#IConvertible&gt; * ?Keys:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?PatternShape:PatternShape * ?MultiPatternShape:seq&lt;PatternShape&gt; * ?Pattern:Pattern * ?Base:#IConvertible * ?Width:&#39;a3 * ?MultiWidth:seq&lt;&#39;a3&gt; * ?Opacity:float * ?MultiOpacity:seq&lt;float&gt; * ?Text:&#39;a4 * ?MultiText:seq&lt;&#39;a4&gt; * ?TextPosition:TextPosition * ?MultiTextPosition:seq&lt;TextPosition&gt; * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart (requires &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
-  static member BoxPlot : ?x:&#39;a0 * ?y:&#39;a1 * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Fillcolor:Color * ?Opacity:float * ?Whiskerwidth:&#39;a2 * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:&#39;a3 * ?Pointpos:&#39;a4 * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?Alignmentgroup:&#39;a5 * ?Offsetgroup:&#39;a6 * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod -&gt; GenericChart + 1 overload
+  static member BoxPlot : ?x:seq&lt;#IConvertible&gt; * ?y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Text:&#39;a2 * ?MultiText:seq&lt;&#39;a2&gt; * ?Fillcolor:Color * ?MarkerColor:Color * ?OutlierColor:Color * ?OutlierWidth:int * ?Opacity:float * ?WhiskerWidth:float * ?BoxPoints:BoxPoints * ?BoxMean:BoxMean * ?Jitter:float * ?PointPos:float * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?AlignmentGroup:string * ?Offsetgroup:string * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod -&gt; GenericChart (requires &#39;a2 :&gt; IConvertible) + 1 overload
   static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;int&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:Orientation * ?GroupNorm:GroupNorm * ?UseWebGL:bool -&gt; GenericChart + 1 overload
   static member Candlestick : open:seq&lt;#IConvertible&gt; * high:seq&lt;#IConvertible&gt; * low:seq&lt;#IConvertible&gt; * close:seq&lt;#IConvertible&gt; * x:seq&lt;#IConvertible&gt; * ?Increasing:Line * ?Decreasing:Line * ?WhiskerWidth:float * ?Line:Line * ?XCalendar:Calendar -&gt; GenericChart + 1 overload
   static member Column : values:seq&lt;#IConvertible&gt; * ?Keys:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Pattern:Pattern * ?PatternShape:PatternShape * ?MultiPatternShape:seq&lt;PatternShape&gt; * ?Base:#IConvertible * ?Width:&#39;a3 * ?MultiWidth:seq&lt;&#39;a3&gt; * ?Opacity:float * ?MultiOpacity:seq&lt;float&gt; * ?Text:&#39;a4 * ?MultiText:seq&lt;&#39;a4&gt; * ?TextPosition:TextPosition * ?MultiTextPosition:seq&lt;TextPosition&gt; * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart (requires &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
   static member Contour : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;a4 * ?zSmooth:SmoothAlg * ?ColorBar:&#39;a5 -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)
   static member Funnel : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Color:Color * ?Line:Line * ?x0:&#39;a3 * ?dX:float * ?y0:&#39;a4 * ?dY:float * ?Width:float * ?Offset:float * ?Orientation:Orientation * ?Alignmentgroup:string * ?Offsetgroup:string * ?Cliponaxis:bool * ?Connector:FunnelConnector * ?Insidetextfont:Font * ?Outsidetextfont:Font -&gt; GenericChart
   static member Heatmap : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?ColNames:seq&lt;#IConvertible&gt; * ?RowNames:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;a4 * ?Xgap:&#39;a5 * ?Ygap:&#39;a6 * ?zSmooth:SmoothAlg * ?ColorBar:&#39;a7 * ?UseWebGL:bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)
-  static member Histogram : data:seq&lt;#IConvertible&gt; * ?Orientation:Orientation * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Color:Color * ?HistNorm:HistNorm * ?HistFunc:HistFunc * ?nBinsx:int * ?nBinsy:int * ?Xbins:Bins * ?Ybins:Bins * ?xError:&#39;a1 * ?yError:&#39;a2 -&gt; GenericChart
+  static member Histogram : ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Orientation:Orientation * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Text:&#39;a2 * ?MultiText:seq&lt;&#39;a2&gt; * ?HistFunc:HistFunc * ?HistNorm:HistNorm * ?AlignmentGroup:string * ?OffsetGroup:string * ?NBinsX:int * ?NBinsY:int * ?BinGroup:string * ?XBins:Bins * ?YBins:Bins * ?MarkerColor:Color * ?Marker:Marker * ?Line:Line * ?ErrorX:Error * ?ErrorY:Error * ?Cumulative:Cumulative * ?HoverLabel:Hoverlabel -&gt; GenericChart (requires &#39;a2 :&gt; IConvertible) + 1 overload
   ...</div>
 <div class="fsdocs-tip" id="fs5">static member Chart.Point3d : xyz:seq&lt;#System.IConvertible * #System.IConvertible * #System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font -&gt; GenericChart.GenericChart<br />static member Chart.Point3d : x:seq&lt;#System.IConvertible&gt; * y:seq&lt;#System.IConvertible&gt; * z:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font -&gt; GenericChart.GenericChart</div>
 <div class="fsdocs-tip" id="fs6">module StyleParam

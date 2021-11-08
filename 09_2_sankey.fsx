@@ -37,29 +37,29 @@ let sankey1 =
         [link1;link2;link3;link4;link5]
     )
     |> Chart.withTitle "Sankey Sample"(* output: 
-<div id="95de3298-24bd-4530-affe-dea0c9aa33c0" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="1279ae60-4b6a-4d07-8eb4-ad7515fc371c" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_95de329824bd4530affedea0c9aa33c0 = function() {
+            var renderPlotly_1279ae604b6a4d078eb4ad7515fc371c = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"sankey","node":{"label":["a","b","c","d","e"],"color":["Black","Red","Purple","Green","Orange"]},"link":{"source":[0,1,0,3,2],"target":[1,2,4,4,4],"value":[1.0,2.0,1.3,1.5,0.5]}}];
             var layout = {"title":{"text":"Sankey Sample"}};
             var config = {};
-            Plotly.newPlot('95de3298-24bd-4530-affe-dea0c9aa33c0', data, layout, config);
+            Plotly.newPlot('1279ae60-4b6a-4d07-8eb4-ad7515fc371c', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_95de329824bd4530affedea0c9aa33c0();
+                    renderPlotly_1279ae604b6a4d078eb4ad7515fc371c();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_95de329824bd4530affedea0c9aa33c0();
+                renderPlotly_1279ae604b6a4d078eb4ad7515fc371c();
             }
 </script>
 *)

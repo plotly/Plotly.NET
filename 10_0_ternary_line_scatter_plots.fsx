@@ -39,29 +39,29 @@ use `Chart.PointTernary` to create a ternary plot that displays points on a tern
 
 *)
 let ternaryPoint = Chart.PointTernary(a,b,c)(* output: 
-<div id="28e235e5-d42b-4d64-bd0d-7d1eda96bcf3" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="ba9546f1-be77-43d8-a684-14a01a372a4a" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_28e235e5d42b4d64bd0d7d1eda96bcf3 = function() {
+            var renderPlotly_ba9546f1be7743d8a68414a01a372a4a = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatterternary","mode":"markers","a":[1,2,3,4,5,6,7],"b":[7,6,5,4,3,2,1],"c":[2,2,2,2,2,2,2],"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('28e235e5-d42b-4d64-bd0d-7d1eda96bcf3', data, layout, config);
+            Plotly.newPlot('ba9546f1-be77-43d8-a684-14a01a372a4a', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_28e235e5d42b4d64bd0d7d1eda96bcf3();
+                    renderPlotly_ba9546f1be7743d8a68414a01a372a4a();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_28e235e5d42b4d64bd0d7d1eda96bcf3();
+                renderPlotly_ba9546f1be7743d8a68414a01a372a4a();
             }
 </script>
 *)
@@ -78,29 +78,29 @@ You can also for example change the line style using `Chart.withLineStyle`
 let lineTernary = 
     Chart.LineTernary(a,b,Sum = 10)
     |> Chart.withLineStyle(Color=Color.fromString "purple",Dash=StyleParam.DrawingStyle.DashDot)(* output: 
-<div id="729e3462-0dc1-40e2-b9b1-02b9262c83e7" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="8a0519e0-9a78-40b1-8343-e327414a99eb" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_729e34620dc140e2b9b102b9262c83e7 = function() {
+            var renderPlotly_8a0519e09a7840b18343e327414a99eb = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatterternary","mode":"lines","a":[1,2,3,4,5,6,7],"b":[7,6,5,4,3,2,1],"sum":10,"line":{"color":"purple","dash":"dashdot"},"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('729e3462-0dc1-40e2-b9b1-02b9262c83e7', data, layout, config);
+            Plotly.newPlot('8a0519e0-9a78-40b1-8343-e327414a99eb', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_729e34620dc140e2b9b102b9262c83e7();
+                    renderPlotly_8a0519e09a7840b18343e327414a99eb();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_729e34620dc140e2b9b102b9262c83e7();
+                renderPlotly_8a0519e09a7840b18343e327414a99eb();
             }
 </script>
 *)

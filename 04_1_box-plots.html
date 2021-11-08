@@ -41,7 +41,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.10</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.11</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -256,29 +256,6 @@
   </a>
 </li>             
 <li class="nav-header">
-  Finance Charts
-</li>             
-<li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/07_0_candlestick.html">
-    Candlestick Charts
-  </a>
-</li>             
-<li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/07_1_funnel.html">
-    Funnel Charts
-  </a>
-</li>             
-<li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/07_2_funnel_area.html">
-    FunnelArea Charts
-  </a>
-</li>             
-<li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/07_3_indicator.html">
-    Indicator Charts
-  </a>
-</li>             
-<li class="nav-header">
   Mapbox map charts
 </li>             
 <li class="nav-item">
@@ -299,6 +276,29 @@
 <li class="nav-item">
   <a class="nav-link" href="https://plotly.net/06_3_density-mapbox.html">
     DensityMapbox charts
+  </a>
+</li>             
+<li class="nav-header">
+  Finance Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_0_candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_1_funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_2_funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_3_indicator.html">
+    Indicator Charts
   </a>
 </li>             
 <li class="nav-header">
@@ -400,61 +400,61 @@ Box plots may also have lines extending vertically from the boxes (whiskers) ind
 and lower quartiles, hence the terms box-and-whisker plot and box-and-whisker diagram.
 Outliers may be plotted as individual points.</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="id">box1</span> <span class="o">=</span>
-    <span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 7)" onmouseover="showTip(event, 'fs7', 7)" class="id">BoxPlot</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs4', 8)" onmouseover="showTip(event, 'fs4', 8)" class="id">x</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs3', 9)" onmouseover="showTip(event, 'fs3', 9)" class="id">y</span><span class="pn">,</span><span class="fn">Jitter</span><span class="o">=</span><span class="n">0.1</span><span class="pn">,</span><span class="fn">Boxpoints</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs9', 11)" onmouseover="showTip(event, 'fs9', 11)" class="rt">Boxpoints</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 12)" onmouseover="showTip(event, 'fs10', 12)" class="id">All</span><span class="pn">)</span>
+    <span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 7)" onmouseover="showTip(event, 'fs7', 7)" class="id">BoxPlot</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs4', 8)" onmouseover="showTip(event, 'fs4', 8)" class="id">x</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs3', 9)" onmouseover="showTip(event, 'fs3', 9)" class="id">y</span><span class="pn">,</span><span class="fn">Jitter</span><span class="o">=</span><span class="n">0.1</span><span class="pn">,</span><span class="fn">BoxPoints</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs9', 11)" onmouseover="showTip(event, 'fs9', 11)" class="rt">BoxPoints</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 12)" onmouseover="showTip(event, 'fs10', 12)" class="id">All</span><span class="pn">)</span>
 </code></pre>
-<div id="251b2da1-ab05-448e-a46a-5ed218cbd5c9" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="213039d1-7e32-4a25-bc39-f50769229d64" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_251b2da1ab05448ea46a5ed218cbd5c9 = function() {
+            var renderPlotly_213039d17e324a25bc39f50769229d64 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
-            var data = [{"type":"box","y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"boxpoints":"all","jitter":0.1,"marker":{}}];
+            var data = [{"type":"box","x":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"boxpoints":"all","jitter":0.1,"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('251b2da1-ab05-448e-a46a-5ed218cbd5c9', data, layout, config);
+            Plotly.newPlot('213039d1-7e32-4a25-bc39-f50769229d64', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_251b2da1ab05448ea46a5ed218cbd5c9();
+                    renderPlotly_213039d17e324a25bc39f50769229d64();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_251b2da1ab05448ea46a5ed218cbd5c9();
+                renderPlotly_213039d17e324a25bc39f50769229d64();
             }
 </script>
 
 <p>By swapping x and y plus using <code>StyleParam.Orientation.Horizontal</code> we can flip the chart horizontaly.</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs13', 16)" onmouseover="showTip(event, 'fs13', 16)" class="id">box2</span> <span class="o">=</span>
-    <span onmouseout="hideTip(event, 'fs6', 17)" onmouseover="showTip(event, 'fs6', 17)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 18)" onmouseover="showTip(event, 'fs7', 18)" class="id">BoxPlot</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs3', 19)" onmouseover="showTip(event, 'fs3', 19)" class="id">y</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs4', 20)" onmouseover="showTip(event, 'fs4', 20)" class="id">x</span><span class="pn">,</span><span class="fn">Jitter</span><span class="o">=</span><span class="n">0.1</span><span class="pn">,</span><span class="fn">Boxpoints</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs8', 21)" onmouseover="showTip(event, 'fs8', 21)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs9', 22)" onmouseover="showTip(event, 'fs9', 22)" class="rt">Boxpoints</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 23)" onmouseover="showTip(event, 'fs10', 23)" class="id">All</span><span class="pn">,</span><span class="fn">Orientation</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs8', 24)" onmouseover="showTip(event, 'fs8', 24)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 25)" onmouseover="showTip(event, 'fs14', 25)" class="rt">Orientation</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs15', 26)" onmouseover="showTip(event, 'fs15', 26)" class="id">Horizontal</span><span class="pn">)</span>
+    <span onmouseout="hideTip(event, 'fs6', 17)" onmouseover="showTip(event, 'fs6', 17)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 18)" onmouseover="showTip(event, 'fs7', 18)" class="id">BoxPlot</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs3', 19)" onmouseover="showTip(event, 'fs3', 19)" class="id">y</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs4', 20)" onmouseover="showTip(event, 'fs4', 20)" class="id">x</span><span class="pn">,</span><span class="fn">Jitter</span><span class="o">=</span><span class="n">0.1</span><span class="pn">,</span><span class="fn">BoxPoints</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs8', 21)" onmouseover="showTip(event, 'fs8', 21)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs9', 22)" onmouseover="showTip(event, 'fs9', 22)" class="rt">BoxPoints</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 23)" onmouseover="showTip(event, 'fs10', 23)" class="id">All</span><span class="pn">,</span><span class="fn">Orientation</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs8', 24)" onmouseover="showTip(event, 'fs8', 24)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 25)" onmouseover="showTip(event, 'fs14', 25)" class="rt">Orientation</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs15', 26)" onmouseover="showTip(event, 'fs15', 26)" class="id">Horizontal</span><span class="pn">)</span>
 </code></pre>
-<div id="73bb7c1b-2979-441c-bc64-0893cb7d624f" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="fb7e641d-a1d5-4aeb-8d8c-64cde7f5f40f" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_73bb7c1b2979441cbc640893cb7d624f = function() {
+            var renderPlotly_fb7e641da1d54aeb8d8c64cde7f5f40f = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
-            var data = [{"type":"box","y":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"x":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"boxpoints":"all","jitter":0.1,"orientation":"h","marker":{}}];
+            var data = [{"type":"box","x":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"y":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"orientation":"h","boxpoints":"all","jitter":0.1,"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('73bb7c1b-2979-441c-bc64-0893cb7d624f', data, layout, config);
+            Plotly.newPlot('fb7e641d-a1d5-4aeb-8d8c-64cde7f5f40f', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_73bb7c1b2979441cbc640893cb7d624f();
+                    renderPlotly_fb7e641da1d54aeb8d8c64cde7f5f40f();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_73bb7c1b2979441cbc640893cb7d624f();
+                renderPlotly_fb7e641da1d54aeb8d8c64cde7f5f40f();
             }
 </script>
 
@@ -463,34 +463,34 @@ Outliers may be plotted as individual points.</p>
 
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs17', 31)" onmouseover="showTip(event, 'fs17', 31)" class="id">box3</span> <span class="o">=</span>
     <span class="pn">[</span>
-        <span onmouseout="hideTip(event, 'fs6', 32)" onmouseover="showTip(event, 'fs6', 32)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 33)" onmouseover="showTip(event, 'fs7', 33)" class="id">BoxPlot</span><span class="pn">(</span><span class="s">&quot;y&quot;</span> <span class="pn">,</span><span onmouseout="hideTip(event, 'fs3', 34)" onmouseover="showTip(event, 'fs3', 34)" class="id">y</span><span class="pn">,</span><span class="fn">Name</span><span class="o">=</span><span class="s">&quot;bin1&quot;</span><span class="pn">,</span><span class="fn">Jitter</span><span class="o">=</span><span class="n">0.1</span><span class="pn">,</span><span class="fn">Boxpoints</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs8', 35)" onmouseover="showTip(event, 'fs8', 35)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs9', 36)" onmouseover="showTip(event, 'fs9', 36)" class="rt">Boxpoints</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 37)" onmouseover="showTip(event, 'fs10', 37)" class="id">All</span><span class="pn">)</span><span class="pn">;</span>
-        <span onmouseout="hideTip(event, 'fs6', 38)" onmouseover="showTip(event, 'fs6', 38)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 39)" onmouseover="showTip(event, 'fs7', 39)" class="id">BoxPlot</span><span class="pn">(</span><span class="s">&quot;y&#39;&quot;</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs16', 40)" onmouseover="showTip(event, 'fs16', 40)" class="id">y&#39;</span><span class="pn">,</span><span class="fn">Name</span><span class="o">=</span><span class="s">&quot;bin2&quot;</span><span class="pn">,</span><span class="fn">Jitter</span><span class="o">=</span><span class="n">0.1</span><span class="pn">,</span><span class="fn">Boxpoints</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs8', 41)" onmouseover="showTip(event, 'fs8', 41)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs9', 42)" onmouseover="showTip(event, 'fs9', 42)" class="rt">Boxpoints</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 43)" onmouseover="showTip(event, 'fs10', 43)" class="id">All</span><span class="pn">)</span><span class="pn">;</span>
+        <span onmouseout="hideTip(event, 'fs6', 32)" onmouseover="showTip(event, 'fs6', 32)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 33)" onmouseover="showTip(event, 'fs7', 33)" class="id">BoxPlot</span><span class="pn">(</span><span class="s">&quot;y&quot;</span> <span class="pn">,</span><span onmouseout="hideTip(event, 'fs3', 34)" onmouseover="showTip(event, 'fs3', 34)" class="id">y</span><span class="pn">,</span><span class="fn">Name</span><span class="o">=</span><span class="s">&quot;bin1&quot;</span><span class="pn">,</span><span class="fn">Jitter</span><span class="o">=</span><span class="n">0.1</span><span class="pn">,</span><span class="fn">BoxPoints</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs8', 35)" onmouseover="showTip(event, 'fs8', 35)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs9', 36)" onmouseover="showTip(event, 'fs9', 36)" class="rt">BoxPoints</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 37)" onmouseover="showTip(event, 'fs10', 37)" class="id">All</span><span class="pn">)</span><span class="pn">;</span>
+        <span onmouseout="hideTip(event, 'fs6', 38)" onmouseover="showTip(event, 'fs6', 38)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 39)" onmouseover="showTip(event, 'fs7', 39)" class="id">BoxPlot</span><span class="pn">(</span><span class="s">&quot;y&#39;&quot;</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs16', 40)" onmouseover="showTip(event, 'fs16', 40)" class="id">y&#39;</span><span class="pn">,</span><span class="fn">Name</span><span class="o">=</span><span class="s">&quot;bin2&quot;</span><span class="pn">,</span><span class="fn">Jitter</span><span class="o">=</span><span class="n">0.1</span><span class="pn">,</span><span class="fn">BoxPoints</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs8', 41)" onmouseover="showTip(event, 'fs8', 41)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs9', 42)" onmouseover="showTip(event, 'fs9', 42)" class="rt">BoxPoints</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 43)" onmouseover="showTip(event, 'fs10', 43)" class="id">All</span><span class="pn">)</span><span class="pn">;</span>
     <span class="pn">]</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 44)" onmouseover="showTip(event, 'fs6', 44)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 45)" onmouseover="showTip(event, 'fs18', 45)" class="id">combine</span>
 </code></pre>
-<div id="ec8d8e35-5bc4-4f86-9bd6-6500efc482f7" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="f912d15e-7d9c-47d2-baf8-af2df66614df" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_ec8d8e355bc44f869bd66500efc482f7 = function() {
+            var renderPlotly_f912d15e7d9c47d2baf8af2df66614df = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
-            var data = [{"type":"box","y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":"y","boxpoints":"all","jitter":0.1,"name":"bin1","marker":{}},{"type":"box","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"x":"y'","boxpoints":"all","jitter":0.1,"name":"bin2","marker":{}}];
+            var data = [{"type":"box","x":"y","y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"boxpoints":"all","jitter":0.1,"name":"bin1","marker":{}},{"type":"box","x":"y'","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"boxpoints":"all","jitter":0.1,"name":"bin2","marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('ec8d8e35-5bc4-4f86-9bd6-6500efc482f7', data, layout, config);
+            Plotly.newPlot('f912d15e-7d9c-47d2-baf8-af2df66614df', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_ec8d8e355bc44f869bd66500efc482f7();
+                    renderPlotly_f912d15e7d9c47d2baf8af2df66614df();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_ec8d8e355bc44f869bd66500efc482f7();
+                renderPlotly_f912d15e7d9c47d2baf8af2df66614df();
             }
 </script>
 
@@ -506,29 +506,29 @@ Outliers may be plotted as individual points.</p>
 <div class="fsdocs-tip" id="fs6">type Chart =
   static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:float -&gt; GenericChart + 1 overload
   static member Bar : values:seq&lt;#IConvertible&gt; * ?Keys:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?PatternShape:PatternShape * ?MultiPatternShape:seq&lt;PatternShape&gt; * ?Pattern:Pattern * ?Base:#IConvertible * ?Width:&#39;a3 * ?MultiWidth:seq&lt;&#39;a3&gt; * ?Opacity:float * ?MultiOpacity:seq&lt;float&gt; * ?Text:&#39;a4 * ?MultiText:seq&lt;&#39;a4&gt; * ?TextPosition:TextPosition * ?MultiTextPosition:seq&lt;TextPosition&gt; * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart (requires &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
-  static member BoxPlot : ?x:&#39;a * ?y:&#39;b * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Fillcolor:Color * ?Opacity:float * ?Whiskerwidth:&#39;c * ?Boxpoints:Boxpoints * ?Boxmean:BoxMean * ?Jitter:&#39;d * ?Pointpos:&#39;e * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?Alignmentgroup:&#39;f * ?Offsetgroup:&#39;g * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod -&gt; GenericChart + 1 overload
+  static member BoxPlot : ?x:seq&lt;#IConvertible&gt; * ?y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Text:&#39;c * ?MultiText:seq&lt;&#39;c&gt; * ?Fillcolor:Color * ?MarkerColor:Color * ?OutlierColor:Color * ?OutlierWidth:int * ?Opacity:float * ?WhiskerWidth:float * ?BoxPoints:BoxPoints * ?BoxMean:BoxMean * ?Jitter:float * ?PointPos:float * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?AlignmentGroup:string * ?Offsetgroup:string * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod -&gt; GenericChart (requires &#39;c :&gt; IConvertible) + 1 overload
   static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;int&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:Orientation * ?GroupNorm:GroupNorm * ?UseWebGL:bool -&gt; GenericChart + 1 overload
   static member Candlestick : open:seq&lt;#IConvertible&gt; * high:seq&lt;#IConvertible&gt; * low:seq&lt;#IConvertible&gt; * close:seq&lt;#IConvertible&gt; * x:seq&lt;#IConvertible&gt; * ?Increasing:Line * ?Decreasing:Line * ?WhiskerWidth:float * ?Line:Line * ?XCalendar:Calendar -&gt; GenericChart + 1 overload
   static member Column : values:seq&lt;#IConvertible&gt; * ?Keys:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Pattern:Pattern * ?PatternShape:PatternShape * ?MultiPatternShape:seq&lt;PatternShape&gt; * ?Base:#IConvertible * ?Width:&#39;a3 * ?MultiWidth:seq&lt;&#39;a3&gt; * ?Opacity:float * ?MultiOpacity:seq&lt;float&gt; * ?Text:&#39;a4 * ?MultiText:seq&lt;&#39;a4&gt; * ?TextPosition:TextPosition * ?MultiTextPosition:seq&lt;TextPosition&gt; * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart (requires &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
   static member Contour : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;a4 * ?zSmooth:SmoothAlg * ?ColorBar:&#39;a5 -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)
   static member Funnel : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Color:Color * ?Line:Line * ?x0:&#39;a3 * ?dX:float * ?y0:&#39;a4 * ?dY:float * ?Width:float * ?Offset:float * ?Orientation:Orientation * ?Alignmentgroup:string * ?Offsetgroup:string * ?Cliponaxis:bool * ?Connector:FunnelConnector * ?Insidetextfont:Font * ?Outsidetextfont:Font -&gt; GenericChart
   static member Heatmap : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?ColNames:seq&lt;#IConvertible&gt; * ?RowNames:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;a4 * ?Xgap:&#39;a5 * ?Ygap:&#39;a6 * ?zSmooth:SmoothAlg * ?ColorBar:&#39;a7 * ?UseWebGL:bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)
-  static member Histogram : data:seq&lt;#IConvertible&gt; * ?Orientation:Orientation * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Color:Color * ?HistNorm:HistNorm * ?HistFunc:HistFunc * ?nBinsx:int * ?nBinsy:int * ?Xbins:Bins * ?Ybins:Bins * ?xError:&#39;a1 * ?yError:&#39;a2 -&gt; GenericChart
+  static member Histogram : ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Orientation:Orientation * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Text:&#39;a2 * ?MultiText:seq&lt;&#39;a2&gt; * ?HistFunc:HistFunc * ?HistNorm:HistNorm * ?AlignmentGroup:string * ?OffsetGroup:string * ?NBinsX:int * ?NBinsY:int * ?BinGroup:string * ?XBins:Bins * ?YBins:Bins * ?MarkerColor:Color * ?Marker:Marker * ?Line:Line * ?ErrorX:Error * ?ErrorY:Error * ?Cumulative:Cumulative * ?HoverLabel:Hoverlabel -&gt; GenericChart (requires &#39;a2 :&gt; IConvertible) + 1 overload
   ...</div>
-<div class="fsdocs-tip" id="fs7">static member Chart.BoxPlot : xy:seq&lt;&#39;a0 * &#39;a1&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Fillcolor:Color * ?Opacity:float * ?Whiskerwidth:&#39;a2 * ?Boxpoints:StyleParam.Boxpoints * ?Boxmean:StyleParam.BoxMean * ?Jitter:&#39;a3 * ?Pointpos:&#39;a4 * ?Orientation:StyleParam.Orientation * ?Marker:TraceObjects.Marker * ?Line:Line * ?Alignmentgroup:&#39;a5 * ?Offsetgroup:&#39;a6 * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:StyleParam.QuartileMethod -&gt; GenericChart.GenericChart<br />static member Chart.BoxPlot : ?x:&#39;a * ?y:&#39;b * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Fillcolor:Color * ?Opacity:float * ?Whiskerwidth:&#39;c * ?Boxpoints:StyleParam.Boxpoints * ?Boxmean:StyleParam.BoxMean * ?Jitter:&#39;d * ?Pointpos:&#39;e * ?Orientation:StyleParam.Orientation * ?Marker:TraceObjects.Marker * ?Line:Line * ?Alignmentgroup:&#39;f * ?Offsetgroup:&#39;g * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:StyleParam.QuartileMethod -&gt; GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs7">static member Chart.BoxPlot : xy:seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Text:&#39;a2 * ?MultiText:seq&lt;&#39;a2&gt; * ?Fillcolor:Color * ?MarkerColor:Color * ?OutlierColor:Color * ?OutlierWidth:int * ?Opacity:float * ?WhiskerWidth:float * ?BoxPoints:StyleParam.BoxPoints * ?BoxMean:StyleParam.BoxMean * ?Jitter:float * ?PointPos:float * ?Orientation:StyleParam.Orientation * ?Marker:TraceObjects.Marker * ?Line:Line * ?AlignmentGroup:string * ?Offsetgroup:string * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:StyleParam.QuartileMethod -&gt; GenericChart.GenericChart (requires &#39;a2 :&gt; System.IConvertible)<br />static member Chart.BoxPlot : ?x:seq&lt;#System.IConvertible&gt; * ?y:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Text:&#39;c * ?MultiText:seq&lt;&#39;c&gt; * ?Fillcolor:Color * ?MarkerColor:Color * ?OutlierColor:Color * ?OutlierWidth:int * ?Opacity:float * ?WhiskerWidth:float * ?BoxPoints:StyleParam.BoxPoints * ?BoxMean:StyleParam.BoxMean * ?Jitter:float * ?PointPos:float * ?Orientation:StyleParam.Orientation * ?Marker:TraceObjects.Marker * ?Line:Line * ?AlignmentGroup:string * ?Offsetgroup:string * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:StyleParam.QuartileMethod -&gt; GenericChart.GenericChart (requires &#39;c :&gt; System.IConvertible)</div>
 <div class="fsdocs-tip" id="fs8">module StyleParam
 
 from Plotly.NET</div>
-<div class="fsdocs-tip" id="fs9">type Boxpoints =
+<div class="fsdocs-tip" id="fs9">type BoxPoints =
   | Outliers
   | All
   | Suspectedoutliers
   | False
     member Convert : unit -&gt; obj
     override ToString : unit -&gt; string
-    static member convert : (Boxpoints -&gt; obj)
-    static member toString : (Boxpoints -&gt; string)</div>
-<div class="fsdocs-tip" id="fs10">union case StyleParam.Boxpoints.All: StyleParam.Boxpoints</div>
+    static member convert : (BoxPoints -&gt; obj)
+    static member toString : (BoxPoints -&gt; string)</div>
+<div class="fsdocs-tip" id="fs10">union case StyleParam.BoxPoints.All: StyleParam.BoxPoints</div>
 <div class="fsdocs-tip" id="fs11">module GenericChart
 
 from Plotly.NET<br /><em>&lt;summary&gt;
