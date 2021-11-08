@@ -20,12 +20,4 @@ type FormatterKernelExtension() =
     interface IKernelExtension with
         member _.OnLoadAsync _ =
             registerFormatter ()
-
-            if isNull KernelInvocationContext.Current |> not then
-                let message =
-                    "Added Kernel Extension including formatters for Plotly.NET charts."
-
-                KernelInvocationContext.Current.Display(message, "text/markdown")
-                |> ignore
-
             Task.CompletedTask
