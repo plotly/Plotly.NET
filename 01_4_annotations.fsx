@@ -32,29 +32,29 @@ let a2 = Annotation.init (X=5.,Y=7.,Text="I am another annotation!",BGColor= Col
 let annotations =
     Chart.Line(x,y',Name="line")    
     |> Chart.withAnnotations([a1;a2])(* output: 
-<div id="c22f059b-4f62-4fdc-9dcd-b04bf8e70b3d" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="d836b4d1-47f7-43c6-a75f-072a47bde726" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_c22f059b4f624fdc9dcdb04bf8e70b3d = function() {
+            var renderPlotly_d836b4d147f743c6a75f072a47bde726 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"line":{},"name":"line","marker":{}}];
             var layout = {"annotations":[{"x":2.0,"y":4.0,"text":"Hi there!"},{"x":5.0,"y":7.0,"bgcolor":"white","bordercolor":"black","text":"I am another annotation!"}]};
             var config = {};
-            Plotly.newPlot('c22f059b-4f62-4fdc-9dcd-b04bf8e70b3d', data, layout, config);
+            Plotly.newPlot('d836b4d1-47f7-43c6-a75f-072a47bde726', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_c22f059b4f624fdc9dcdb04bf8e70b3d();
+                    renderPlotly_d836b4d147f743c6a75f072a47bde726();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_c22f059b4f624fdc9dcdb04bf8e70b3d();
+                renderPlotly_d836b4d147f743c6a75f072a47bde726();
             }
 </script>
 *)

@@ -25,29 +25,29 @@ When creating pie charts, it is usually desirable to provide both labels and val
 *)
 let pie1 =
     Chart.Pie(values,labels)(* output: 
-<div id="95d33635-71ce-40c2-aecc-ec76dcc9bf0c" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="25b20509-580f-4ae5-871c-c8499f6a5454" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_95d3363571ce40c2aeccec76dcc9bf0c = function() {
+            var renderPlotly_25b20509580f4ae5871cc8499f6a5454 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"pie","values":[19,26,55],"labels":["Residential","Non-Residential","Utility"],"marker":{},"text":["Residential","Non-Residential","Utility"]}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('95d33635-71ce-40c2-aecc-ec76dcc9bf0c', data, layout, config);
+            Plotly.newPlot('25b20509-580f-4ae5-871c-c8499f6a5454', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_95d3363571ce40c2aeccec76dcc9bf0c();
+                    renderPlotly_25b20509580f4ae5871cc8499f6a5454();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_95d3363571ce40c2aeccec76dcc9bf0c();
+                renderPlotly_25b20509580f4ae5871cc8499f6a5454();
             }
 </script>
 *)
@@ -58,29 +58,29 @@ let doughnut1 =
         Hole=0.3,
         TextLabels=labels
     )(* output: 
-<div id="33bc2e22-8f29-4823-b80d-d424790983bd" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="3badaf32-e076-49fd-8511-d33f99261843" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_33bc2e228f294823b80dd424790983bd = function() {
+            var renderPlotly_3badaf32e07649fd8511d33f99261843 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"pie","values":[19,26,55],"labels":["Residential","Non-Residential","Utility"],"text":["Residential","Non-Residential","Utility"],"hole":0.3,"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('33bc2e22-8f29-4823-b80d-d424790983bd', data, layout, config);
+            Plotly.newPlot('3badaf32-e076-49fd-8511-d33f99261843', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_33bc2e228f294823b80dd424790983bd();
+                    renderPlotly_3badaf32e07649fd8511d33f99261843();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_33bc2e228f294823b80dd424790983bd();
+                renderPlotly_3badaf32e07649fd8511d33f99261843();
             }
 </script>
 *)
@@ -91,29 +91,29 @@ let sunburst1 =
         Values=[5.;0.;3.;2.;3.],
         Text=["At";"Bt";"Ct";"Dt";"Et"]
     )(* output: 
-<div id="ab0d19e0-b061-42a0-8600-604d89c0ef77" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="a10283ed-2969-4374-b935-aadc41d6544a" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_ab0d19e0b06142a08600604d89c0ef77 = function() {
+            var renderPlotly_a10283ed29694374b935aadc41d6544a = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"sunburst","labels":["A","B","C","D","E"],"parents":["","","B","B",""],"values":[5.0,0.0,3.0,2.0,3.0],"text":["At","Bt","Ct","Dt","Et"],"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('ab0d19e0-b061-42a0-8600-604d89c0ef77', data, layout, config);
+            Plotly.newPlot('a10283ed-2969-4374-b935-aadc41d6544a', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_ab0d19e0b06142a08600604d89c0ef77();
+                    renderPlotly_a10283ed29694374b935aadc41d6544a();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_ab0d19e0b06142a08600604d89c0ef77();
+                renderPlotly_a10283ed29694374b935aadc41d6544a();
             }
 </script>
 *)

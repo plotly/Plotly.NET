@@ -46,29 +46,29 @@ let windrose1 =
             CategoryArray = (["East"; "N-E"; "North"; "N-W"; "West"; "S-W"; "South"; "S-E";]) // set the order of the categorical axis
         )
     )(* output: 
-<div id="0194cea1-6382-43a3-84c4-d2a22e933c3a" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="ddb1b6ca-f6a2-4248-85ef-fd7b22edfa8a" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_0194cea1638243a384c4d2a22e933c3a = function() {
+            var renderPlotly_ddb1b6caf6a2424885effd7b22edfa8a = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"barpolar","r":[77.5,72.5,70.0,45.0,22.5,42.5,40.0,62.5],"theta":["North","N-E","East","S-E","South","S-W","West","N-W"],"name":"11-14 m/s","line":{},"marker":{}},{"type":"barpolar","r":[57.5,50.0,45.0,35.0,20.0,22.5,37.5,55.0],"theta":["North","N-E","East","S-E","South","S-W","West","N-W"],"name":"8-11 m/s","line":{},"marker":{}},{"type":"barpolar","r":[40.0,30.0,30.0,35.0,7.5,7.5,32.5,40.0],"theta":["North","N-E","East","S-E","South","S-W","West","N-W"],"name":"5-8 m/s","line":{},"marker":{}},{"type":"barpolar","r":[20.0,7.5,15.0,22.5,2.5,2.5,12.5,22.5],"theta":["North","N-E","East","S-E","South","S-W","West","N-W"],"name":"< 5 m/s","line":{},"marker":{}}];
             var layout = {"polar":{"angularaxis":{"categoryorder":"array","categoryarray":["East","N-E","North","N-W","West","S-W","South","S-E"]}}};
             var config = {};
-            Plotly.newPlot('0194cea1-6382-43a3-84c4-d2a22e933c3a', data, layout, config);
+            Plotly.newPlot('ddb1b6ca-f6a2-4248-85ef-fd7b22edfa8a', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_0194cea1638243a384c4d2a22e933c3a();
+                    renderPlotly_ddb1b6caf6a2424885effd7b22edfa8a();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_0194cea1638243a384c4d2a22e933c3a();
+                renderPlotly_ddb1b6caf6a2424885effd7b22edfa8a();
             }
 </script>
 *)

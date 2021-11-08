@@ -41,7 +41,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.11</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.12</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -409,29 +409,29 @@ for example the range of all predictions from different models, scattering aroun
         <span onmouseout="hideTip(event, 'fs20', 34)" onmouseover="showTip(event, 'fs20', 34)" class="fn">Color</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs20', 35)" onmouseover="showTip(event, 'fs20', 35)" class="m">Color</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs21', 36)" onmouseover="showTip(event, 'fs21', 36)" class="id">fromString</span> <span class="s">&quot;grey&quot;</span><span class="pn">,</span>
         <span class="fn">RangeColor</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs20', 37)" onmouseover="showTip(event, 'fs20', 37)" class="m">Color</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs21', 38)" onmouseover="showTip(event, 'fs21', 38)" class="id">fromString</span> <span class="s">&quot;lightblue&quot;</span><span class="pn">)</span>
 </code></pre>
-<div id="034485fd-2bec-48f6-9b98-6672e1c55a4c" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="dd5a395e-3187-452a-922c-b0bf97ed0e91" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_034485fd2bec48f69b986672e1c55a4c = function() {
+            var renderPlotly_dd5a395e3187452a922cb0bf97ed0e91 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
-            var data = [{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[1.9909688872243132,1.3105014352176811,4.2852834562236835,0.5839659786242833,2.9891802770966573,1.889018601453406,1.6559584989007368,1.2349310325155645,2.8759178567565593,0.2521837783289066],"fillcolor":"lightblue","name":"lower","showlegend":false,"line":{"width":0.0},"marker":{"color":"lightblue"}},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.4082358942405486,1.9062380620307466,5.30000968757086,1.674078618257343,3.2759714891556517,2.8176311055746073,2.726323683385888,1.517952979550675,4.440717603052369,1.5407339476704291],"fill":"tonexty","fillcolor":"lightblue","name":"upper","showlegend":false,"line":{"width":0.0},"marker":{"color":"lightblue"}},{"type":"scatter","mode":"lines+markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"fillcolor":"grey","line":{"color":"grey"},"marker":{"color":"grey"}}];
+            var data = [{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[1.4875775829365372,1.4928734111566437,4.222722942113282,0.5777493804123949,2.3101297250530353,2.2180128403557524,1.9615623086977574,1.3853135662550635,2.8783294048059402,0.9960747179556986],"fillcolor":"lightblue","name":"lower","showlegend":false,"line":{"width":0.0},"marker":{"color":"lightblue"}},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.601990897488776,2.0176240869414173,5.070581679265286,1.6582913311004133,3.2621668452686476,3.075838633149787,2.842965542032833,1.6878441750015338,4.176340071333731,1.3464254393924147],"fill":"tonexty","fillcolor":"lightblue","name":"upper","showlegend":false,"line":{"width":0.0},"marker":{"color":"lightblue"}},{"type":"scatter","mode":"lines+markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"fillcolor":"grey","line":{"color":"grey"},"marker":{"color":"grey"}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('034485fd-2bec-48f6-9b98-6672e1c55a4c', data, layout, config);
+            Plotly.newPlot('dd5a395e-3187-452a-922c-b0bf97ed0e91', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_034485fd2bec48f69b986672e1c55a4c();
+                    renderPlotly_dd5a395e3187452a922cb0bf97ed0e91();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_034485fd2bec48f69b986672e1c55a4c();
+                renderPlotly_dd5a395e3187452a922cb0bf97ed0e91();
             }
 </script>
 

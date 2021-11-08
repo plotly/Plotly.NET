@@ -41,7 +41,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.11</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.12</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -403,29 +403,29 @@
         <span onmouseout="hideTip(event, 'fs12', 12)" onmouseover="showTip(event, 'fs12', 12)" class="fn">w</span> <span class="o">=</span> <span class="pn">[</span><span class="n">4</span><span class="pn">;</span> <span class="n">4</span><span class="pn">;</span> <span class="n">1</span><span class="pn">]</span>
     <span class="pn">)</span>
 </code></pre>
-<div id="339d9168-7890-434f-a093-db700e8e0e0e" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="02d50c06-a43c-446c-92fe-478abf7773dc" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_339d91687890434fa093db700e8e0e0e = function() {
+            var renderPlotly_02d50c06a43c446c92fe478abf7773dc = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"cone","x":[1,1,1],"y":[1,2,3],"z":[1,1,1],"u":[1,2,3],"v":[1,1,2],"w":[4,4,1]}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('339d9168-7890-434f-a093-db700e8e0e0e', data, layout, config);
+            Plotly.newPlot('02d50c06-a43c-446c-92fe-478abf7773dc', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_339d91687890434fa093db700e8e0e0e();
+                    renderPlotly_02d50c06a43c446c92fe478abf7773dc();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_339d91687890434fa093db700e8e0e0e();
+                renderPlotly_02d50c06a43c446c92fe478abf7773dc();
             }
 </script>
 

@@ -42,29 +42,29 @@ let mb =
 let baseLayerOnly = 
     Chart.PointMapbox([],[]) // deliberately empty chart to show the base map only
     |> Chart.withMapbox mb // add the mapBox(* output: 
-<div id="e865368c-54ef-4d0d-9766-3f3e59652ac6" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="61326bc1-58c5-4d28-8213-a280d8cb185c" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_e865368c54ef4d0d97663f3e59652ac6 = function() {
+            var renderPlotly_61326bc158c54d288213a280d8cb185c = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scattermapbox","mode":"markers","lon":[],"lat":[],"line":{},"marker":{}}];
             var layout = {"mapbox":{"style":"open-street-map"}};
             var config = {};
-            Plotly.newPlot('e865368c-54ef-4d0d-9766-3f3e59652ac6', data, layout, config);
+            Plotly.newPlot('61326bc1-58c5-4d28-8213-a280d8cb185c', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_e865368c54ef4d0d97663f3e59652ac6();
+                    renderPlotly_61326bc158c54d288213a280d8cb185c();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_e865368c54ef4d0d97663f3e59652ac6();
+                renderPlotly_61326bc158c54d288213a280d8cb185c();
             }
 </script>
 *)

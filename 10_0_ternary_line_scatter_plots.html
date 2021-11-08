@@ -41,7 +41,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.11</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.12</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -410,29 +410,29 @@ In population genetics, a triangle plot of genotype frequencies is called a de F
 <p>use <code>Chart.PointTernary</code> to create a ternary plot that displays points on a ternary coordinate system:</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs8', 9)" onmouseover="showTip(event, 'fs8', 9)" class="id">ternaryPoint</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs9', 10)" onmouseover="showTip(event, 'fs9', 10)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 11)" onmouseover="showTip(event, 'fs10', 11)" class="id">PointTernary</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs3', 12)" onmouseover="showTip(event, 'fs3', 12)" class="id">a</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs4', 13)" onmouseover="showTip(event, 'fs4', 13)" class="id">b</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs7', 14)" onmouseover="showTip(event, 'fs7', 14)" class="id">c</span><span class="pn">)</span>
 </code></pre>
-<div id="0df20261-0b27-4b30-b681-449c73a8d5a2" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="8d8d73c1-3693-4197-a847-e31965e7876a" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_0df202610b274b30b681449c73a8d5a2 = function() {
+            var renderPlotly_8d8d73c136934197a847e31965e7876a = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatterternary","mode":"markers","a":[1,2,3,4,5,6,7],"b":[7,6,5,4,3,2,1],"c":[2,2,2,2,2,2,2],"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('0df20261-0b27-4b30-b681-449c73a8d5a2', data, layout, config);
+            Plotly.newPlot('8d8d73c1-3693-4197-a847-e31965e7876a', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_0df202610b274b30b681449c73a8d5a2();
+                    renderPlotly_8d8d73c136934197a847e31965e7876a();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_0df202610b274b30b681449c73a8d5a2();
+                renderPlotly_8d8d73c136934197a847e31965e7876a();
             }
 </script>
 
@@ -444,29 +444,29 @@ In population genetics, a triangle plot of genotype frequencies is called a de F
     <span onmouseout="hideTip(event, 'fs9', 19)" onmouseover="showTip(event, 'fs9', 19)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 20)" onmouseover="showTip(event, 'fs14', 20)" class="id">LineTernary</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs3', 21)" onmouseover="showTip(event, 'fs3', 21)" class="id">a</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs4', 22)" onmouseover="showTip(event, 'fs4', 22)" class="id">b</span><span class="pn">,</span><span class="fn">Sum</span> <span class="o">=</span> <span class="n">10</span><span class="pn">)</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs9', 23)" onmouseover="showTip(event, 'fs9', 23)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs15', 24)" onmouseover="showTip(event, 'fs15', 24)" class="id">withLineStyle</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs16', 25)" onmouseover="showTip(event, 'fs16', 25)" class="fn">Color</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs16', 26)" onmouseover="showTip(event, 'fs16', 26)" class="m">Color</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 27)" onmouseover="showTip(event, 'fs17', 27)" class="id">fromString</span> <span class="s">&quot;purple&quot;</span><span class="pn">,</span><span class="fn">Dash</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs18', 28)" onmouseover="showTip(event, 'fs18', 28)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs19', 29)" onmouseover="showTip(event, 'fs19', 29)" class="rt">DrawingStyle</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 30)" onmouseover="showTip(event, 'fs20', 30)" class="id">DashDot</span><span class="pn">)</span>
 </code></pre>
-<div id="7db06f47-5a64-4fce-b057-b43f355490d1" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="da93d73e-0ec9-4506-be77-9866c72e8880" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_7db06f475a644fceb057b43f355490d1 = function() {
+            var renderPlotly_da93d73e0ec94506be779866c72e8880 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatterternary","mode":"lines","a":[1,2,3,4,5,6,7],"b":[7,6,5,4,3,2,1],"sum":10,"line":{"color":"purple","dash":"dashdot"},"marker":{}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('7db06f47-5a64-4fce-b057-b43f355490d1', data, layout, config);
+            Plotly.newPlot('da93d73e-0ec9-4506-be77-9866c72e8880', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_7db06f475a644fceb057b43f355490d1();
+                    renderPlotly_da93d73e0ec94506be779866c72e8880();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_7db06f475a644fceb057b43f355490d1();
+                renderPlotly_da93d73e0ec94506be779866c72e8880();
             }
 </script>
 

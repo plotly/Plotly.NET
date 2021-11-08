@@ -29,29 +29,29 @@ let parcats =
         Color = Color.fromColorScaleValues [0.;1.;0.;1.;0.;0.;0.],
         Colorscale = StyleParam.Colorscale.Blackbody
     )(* output: 
-<div id="2345acf5-14b7-4219-b9a3-ff3780cee425" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="4008dac2-625a-4c82-a1bc-dd8ad44a333d" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_2345acf514b74219b9a3ff3780cee425 = function() {
+            var renderPlotly_4008dac2625a4c82a1bcdd8ad44a333d = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"parcats","dimensions":[{"values":["Cat1","Cat1","Cat1","Cat1","Cat2","Cat2","Cat3"],"label":"A"},{"values":[0,1,0,1,0,0,0],"label":"B","ticktext":["YES","NO"]}],"color":[0.0,1.0,0.0,1.0,0.0,0.0,0.0],"line":{"colorscale":"Blackbody"}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('2345acf5-14b7-4219-b9a3-ff3780cee425', data, layout, config);
+            Plotly.newPlot('4008dac2-625a-4c82-a1bc-dd8ad44a333d', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_2345acf514b74219b9a3ff3780cee425();
+                    renderPlotly_4008dac2625a4c82a1bcdd8ad44a333d();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_2345acf514b74219b9a3ff3780cee425();
+                renderPlotly_4008dac2625a4c82a1bcdd8ad44a333d();
             }
 </script>
 *)

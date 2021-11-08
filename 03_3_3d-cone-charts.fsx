@@ -24,29 +24,29 @@ let cone =
         v = [1; 1; 2],
         w = [4; 4; 1]
     )(* output: 
-<div id="94cecc65-8ebc-44e2-a5e0-56c88073cec8" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="6a8f37c0-180c-4312-889b-15e74e910ad1" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_94cecc658ebc44e2a5e056c88073cec8 = function() {
+            var renderPlotly_6a8f37c0180c4312889b15e74e910ad1 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"cone","x":[1,1,1],"y":[1,2,3],"z":[1,1,1],"u":[1,2,3],"v":[1,1,2],"w":[4,4,1]}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('94cecc65-8ebc-44e2-a5e0-56c88073cec8', data, layout, config);
+            Plotly.newPlot('6a8f37c0-180c-4312-889b-15e74e910ad1', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_94cecc658ebc44e2a5e056c88073cec8();
+                    renderPlotly_6a8f37c0180c4312889b15e74e910ad1();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_94cecc658ebc44e2a5e056c88073cec8();
+                renderPlotly_6a8f37c0180c4312889b15e74e910ad1();
             }
 </script>
 *)
