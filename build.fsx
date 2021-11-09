@@ -348,7 +348,7 @@ module ReleaseTasks =
     open PackageTasks
     open DocumentationTasks
 
-    let createTag = BuildTask.create "CreateTag" [clean; build; copyBinaries; runTests; pack] {
+    let createTag = BuildTask.create "CreateTag" [clean.IfNeeded; build.IfNeeded; copyBinaries.IfNeeded; runTests.IfNeeded; pack.IfNeeded] {
         if promptYesNo (sprintf "tagging branch with %s OK?" stableVersionTag ) then
             Git.Branches.tag "" stableVersionTag
             Git.Branches.pushTag "" projectRepo stableVersionTag
@@ -356,7 +356,7 @@ module ReleaseTasks =
             failwith "aborted"
     }
 
-    let createPrereleaseTag = BuildTask.create "CreatePrereleaseTag" [setPrereleaseTag; clean; build; copyBinaries; runTests; packPrerelease] {
+    let createPrereleaseTag = BuildTask.create "CreatePrereleaseTag" [setPrereleaseTag; clean.IfNeeded; build.IfNeeded; copyBinaries.IfNeeded; runTests.IfNeeded; packPrerelease.IfNeeded] {
         if promptYesNo (sprintf "tagging branch with %s OK?" prereleaseTag ) then 
             Git.Branches.tag "" prereleaseTag
             Git.Branches.pushTag "" projectRepo prereleaseTag
