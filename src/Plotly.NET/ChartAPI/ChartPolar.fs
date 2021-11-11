@@ -18,31 +18,34 @@ module ChartPolar =
     [<Extension>]
     type Chart =
         [<Extension>]
-        static member internal renderScatterPolarTrace (useWebGL:bool) (style: TracePolar -> TracePolar) =
+        static member internal renderScatterPolarTrace (useDefaults:bool) (useWebGL:bool) (style: TracePolar -> TracePolar) =
             if useWebGL then
                 TracePolar.initScatterPolarGL style
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
             else
                 TracePolar.initScatterPolar style
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
         /// Uses points, line or both depending on the mode to represent data points in a polar chart
         [<Extension>]
         static member ScatterPolar
             (
                 r, theta, mode,
-                [<Optional;DefaultParameterValue(null)>]  ?Name,
-                [<Optional;DefaultParameterValue(null)>]  ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>]  ?MarkerSymbol,
-                [<Optional;DefaultParameterValue(null)>]  ?Color,
-                [<Optional;DefaultParameterValue(null)>]  ?Opacity,
-                [<Optional;DefaultParameterValue(null)>]  ?Labels,
-                [<Optional;DefaultParameterValue(null)>]  ?TextPosition,
-                [<Optional;DefaultParameterValue(null)>]  ?TextFont,
-                [<Optional;DefaultParameterValue(null)>]  ?Dash,
-                [<Optional;DefaultParameterValue(null)>]  ?Width,
-                [<Optional;DefaultParameterValue(null)>]  ?UseWebGL
+                [<Optional;DefaultParameterValue(null)>] ?Name,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
+                [<Optional;DefaultParameterValue(null)>] ?Color,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity,
+                [<Optional;DefaultParameterValue(null)>] ?Labels,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?TextFont,
+                [<Optional;DefaultParameterValue(null)>] ?Dash,
+                [<Optional;DefaultParameterValue(null)>] ?Width,
+                [<Optional;DefaultParameterValue(null)>] ?UseWebGL,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
+
+                let useDefaults = defaultArg UseDefaults true
 
                 let style = 
                     TracePolarStyle.ScatterPolar(
@@ -57,7 +60,7 @@ module ChartPolar =
         
                 let useWebGL = defaultArg UseWebGL false
 
-                Chart.renderScatterPolarTrace useWebGL style
+                Chart.renderScatterPolarTrace useDefaults useWebGL style
 
          /// Uses points, line or both depending on the mode to represent data points in a polar chart
         [<Extension>]
@@ -74,7 +77,8 @@ module ChartPolar =
                 [<Optional;DefaultParameterValue(null)>] ?TextFont,
                 [<Optional;DefaultParameterValue(null)>] ?Dash,
                 [<Optional;DefaultParameterValue(null)>] ?Width,
-                [<Optional;DefaultParameterValue(null)>] ?UseWebGL
+                [<Optional;DefaultParameterValue(null)>] ?UseWebGL,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
 
                 let r,t = Seq.unzip rtheta
@@ -91,7 +95,8 @@ module ChartPolar =
                     ?TextFont=TextFont,
                     ?Dash=Dash,
                     ?Width=Width,
-                    ?UseWebGL = UseWebGL
+                    ?UseWebGL = UseWebGL,
+                    ?UseDefaults = UseDefaults
                 )
 
         /// 
@@ -107,8 +112,11 @@ module ChartPolar =
                 [<Optional;DefaultParameterValue(null)>] ?Labels,
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont,
-                [<Optional;DefaultParameterValue(null)>] ?UseWebGL
+                [<Optional;DefaultParameterValue(null)>] ?UseWebGL,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
+
+                let useDefaults = defaultArg UseDefaults true
 
                 let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
             
@@ -124,7 +132,7 @@ module ChartPolar =
 
                 let useWebGL = defaultArg UseWebGL false
             
-                Chart.renderScatterPolarTrace useWebGL style
+                Chart.renderScatterPolarTrace useDefaults useWebGL style
 
         /// 
         [<Extension>]
@@ -139,8 +147,10 @@ module ChartPolar =
                 [<Optional;DefaultParameterValue(null)>] ?Labels,
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont,
-                [<Optional;DefaultParameterValue(null)>] ?UseWebGL
+                [<Optional;DefaultParameterValue(null)>] ?UseWebGL,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
+
                 let r,t = Seq.unzip rTheta
 
                 Chart.PointPolar(
@@ -153,7 +163,8 @@ module ChartPolar =
                     ?Labels         = Labels,
                     ?TextPosition   = TextPosition,
                     ?TextFont       = TextFont,
-                    ?UseWebGL       = UseWebGL
+                    ?UseWebGL       = UseWebGL,
+                    ?UseDefaults    = UseDefaults
                 )
             
         ///
@@ -172,8 +183,11 @@ module ChartPolar =
                 [<Optional;DefaultParameterValue(null)>] ?TextFont,
                 [<Optional;DefaultParameterValue(null)>] ?Dash,
                 [<Optional;DefaultParameterValue(null)>] ?Width,
-                [<Optional;DefaultParameterValue(null)>] ?UseWebGL
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?UseWebGL,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
                 let changeMode = 
                     let isShowMarker =
                         match ShowMarkers with
@@ -195,7 +209,7 @@ module ChartPolar =
 
                 let useWebGL = defaultArg UseWebGL false
             
-                Chart.renderScatterPolarTrace useWebGL style
+                Chart.renderScatterPolarTrace useDefaults useWebGL style
 
         ///
         [<Extension>]
@@ -213,25 +227,28 @@ module ChartPolar =
                 [<Optional;DefaultParameterValue(null)>] ?TextFont,
                 [<Optional;DefaultParameterValue(null)>] ?Dash,
                 [<Optional;DefaultParameterValue(null)>] ?Width,
-                [<Optional;DefaultParameterValue(null)>] ?UseWebGL
-            ) =
-                 let r,t = Seq.unzip rTheta
+                [<Optional;DefaultParameterValue(null)>] ?UseWebGL,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
 
-                 Chart.LinePolar(
-                    r, t,
-                    ?Name           = Name,
-                    ?ShowLegend     = ShowLegend,
-                    ?ShowMarkers    = ShowMarkers,
-                    ?MarkerSymbol   = MarkerSymbol,
-                    ?Color          = Color,
-                    ?Opacity        = Opacity,
-                    ?Labels         = Labels,
-                    ?TextPosition   = TextPosition,
-                    ?TextFont       = TextFont,
-                    ?Dash           = Dash,
-                    ?Width          = Width,
-                    ?UseWebGL       = UseWebGL
-                 )
+                let r,t = Seq.unzip rTheta
+
+                Chart.LinePolar(
+                   r, t,
+                   ?Name           = Name,
+                   ?ShowLegend     = ShowLegend,
+                   ?ShowMarkers    = ShowMarkers,
+                   ?MarkerSymbol   = MarkerSymbol,
+                   ?Color          = Color,
+                   ?Opacity        = Opacity,
+                   ?Labels         = Labels,
+                   ?TextPosition   = TextPosition,
+                   ?TextFont       = TextFont,
+                   ?Dash           = Dash,
+                   ?Width          = Width,
+                   ?UseWebGL       = UseWebGL,
+                   ?UseDefaults    = UseDefaults
+                )
 
         ///
         [<Extension>]
@@ -250,8 +267,11 @@ module ChartPolar =
                 [<Optional;DefaultParameterValue(null)>] ?Smoothing,
                 [<Optional;DefaultParameterValue(null)>] ?Dash,
                 [<Optional;DefaultParameterValue(null)>] ?Width,
-                [<Optional;DefaultParameterValue(null)>] ?UseWebGL
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?UseWebGL,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
                 let changeMode = 
                     let isShowMarker =
                         match ShowMarkers with
@@ -273,7 +293,7 @@ module ChartPolar =
 
                 let useWebGL = defaultArg UseWebGL false
             
-                Chart.renderScatterPolarTrace useWebGL style
+                Chart.renderScatterPolarTrace useDefaults useWebGL style
         ///
         [<Extension>]
         static member SplinePolar 
@@ -291,11 +311,13 @@ module ChartPolar =
                 [<Optional;DefaultParameterValue(null)>] ?Smoothing,
                 [<Optional;DefaultParameterValue(null)>] ?Dash,
                 [<Optional;DefaultParameterValue(null)>] ?Width,
-                [<Optional;DefaultParameterValue(null)>] ?UseWebGL
-            ) =
-                 let r,t = Seq.unzip rTheta
+                [<Optional;DefaultParameterValue(null)>] ?UseWebGL,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
 
-                 Chart.SplinePolar(
+                let r,t = Seq.unzip rTheta
+
+                Chart.SplinePolar(
                     r, t,
                     ?Name           = Name,
                     ?ShowLegend     = ShowLegend,
@@ -309,8 +331,9 @@ module ChartPolar =
                     ?Smoothing      = Smoothing,
                     ?Dash           = Dash,
                     ?Width          = Width,
-                    ?UseWebGL       = UseWebGL
-                 )
+                    ?UseWebGL       = UseWebGL,
+                    ?UseDefaults    = UseDefaults
+                )
 
         /// 
         [<Extension>]
@@ -325,8 +348,11 @@ module ChartPolar =
                 [<Optional;DefaultParameterValue(null)>] ?Labels,
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont,
-                [<Optional;DefaultParameterValue(null)>] ?UseWebGL
+                [<Optional;DefaultParameterValue(null)>] ?UseWebGL,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
+
+                let useDefaults = defaultArg UseDefaults true
 
                 let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
             
@@ -342,7 +368,7 @@ module ChartPolar =
 
                 let useWebGL = defaultArg UseWebGL false
             
-                Chart.renderScatterPolarTrace useWebGL style
+                Chart.renderScatterPolarTrace useDefaults useWebGL style
 
         /// 
         [<Extension>]
@@ -357,8 +383,10 @@ module ChartPolar =
                 [<Optional;DefaultParameterValue(null)>] ?Labels,
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont,
-                [<Optional;DefaultParameterValue(null)>] ?UseWebGL
+                [<Optional;DefaultParameterValue(null)>] ?UseWebGL,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
+
                 let r,t,sizes = Seq.unzip3 rThetaSizes
 
                 Chart.BubblePolar(
@@ -371,7 +399,8 @@ module ChartPolar =
                     ?Labels         = Labels,
                     ?TextPosition   = TextPosition,
                     ?TextFont       = TextFont,
-                    ?UseWebGL       = UseWebGL
+                    ?UseWebGL       = UseWebGL,
+                    ?UseDefaults    = UseDefaults
                 )
 
         /// 
@@ -387,8 +416,11 @@ module ChartPolar =
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont,
                 [<Optional;DefaultParameterValue(null)>] ?Dash,
-                [<Optional;DefaultParameterValue(null)>] ?LineWidth
+                [<Optional;DefaultParameterValue(null)>] ?LineWidth,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
+
+                let useDefaults = defaultArg UseDefaults true
                 TracePolar.initBarPolar(
                     TracePolarStyle.BarPolar(
                         R = r, Theta = theta
@@ -398,4 +430,4 @@ module ChartPolar =
                 |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=LineWidth)
                 |> TraceStyle.Marker(?Color=Color)
                 |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-                |> GenericChart.ofTraceObject 
+                |> GenericChart.ofTraceObject useDefaults

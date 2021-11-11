@@ -8,10 +8,12 @@ type Title() =
 
     static member init
         (    
-            [<Optional;DefaultParameterValue(null)>] ?Text       : string,
-            [<Optional;DefaultParameterValue(null)>] ?Font       : Font,
-            [<Optional;DefaultParameterValue(null)>] ?Standoff   : int,
-            [<Optional;DefaultParameterValue(null)>] ?Side       : StyleParam.Side
+            [<Optional;DefaultParameterValue(null)>] ?Text      : string,
+            [<Optional;DefaultParameterValue(null)>] ?Font      : Font,
+            [<Optional;DefaultParameterValue(null)>] ?Standoff  : int,
+            [<Optional;DefaultParameterValue(null)>] ?Side      : StyleParam.Side,
+            [<Optional;DefaultParameterValue(null)>] ?X         : float,
+            [<Optional;DefaultParameterValue(null)>] ?Y         : float
         ) =    
             Title()
             |> Title.style
@@ -19,7 +21,9 @@ type Title() =
                     ?Text       = Text,
                     ?Font       = Font,
                     ?Standoff   = Standoff,
-                    ?Side       = Side
+                    ?Side       = Side,
+                    ?X          = X,
+                    ?Y          = Y
                 )
 
     static member style
@@ -27,7 +31,9 @@ type Title() =
             [<Optional;DefaultParameterValue(null)>] ?Text       : string,
             [<Optional;DefaultParameterValue(null)>] ?Font       : Font,
             [<Optional;DefaultParameterValue(null)>] ?Standoff   : int,
-            [<Optional;DefaultParameterValue(null)>] ?Side       : StyleParam.Side
+            [<Optional;DefaultParameterValue(null)>] ?Side       : StyleParam.Side,
+            [<Optional;DefaultParameterValue(null)>] ?X          : float,
+            [<Optional;DefaultParameterValue(null)>] ?Y          : float
         ) =
             (fun (title:Title) -> 
 
@@ -35,6 +41,8 @@ type Title() =
                 Font    |> DynObj.setValueOpt title "font"
                 Standoff|> DynObj.setValueOpt title "standoff"
                 Side    |> DynObj.setValueOpt title "side"
+                X       |> DynObj.setValueOpt title "x"
+                Y       |> DynObj.setValueOpt title "y"
 
                 title
             )

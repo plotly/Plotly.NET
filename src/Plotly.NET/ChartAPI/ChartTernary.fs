@@ -34,9 +34,12 @@ module ChartTernary =
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition  : StyleParam.TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont      : Font,
                 [<Optional;DefaultParameterValue(null)>] ?Dash          : StyleParam.DrawingStyle,
-                [<Optional;DefaultParameterValue(null)>] ?Width         : float 
+                [<Optional;DefaultParameterValue(null)>] ?Width         : float ,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
 
-            ) =
+                let useDefaults = defaultArg UseDefaults true
+
                 TraceTernary.initScatterTernary(
                     TraceTernaryStyle.ScatterTernary(
                         ?A      = A,
@@ -50,7 +53,7 @@ module ChartTernary =
                 |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
                 |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
                 |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
         static member ScatterTernary
             (
@@ -66,8 +69,10 @@ module ChartTernary =
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition  : StyleParam.TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont      : Font,
                 [<Optional;DefaultParameterValue(null)>] ?Dash          : StyleParam.DrawingStyle,
-                [<Optional;DefaultParameterValue(null)>] ?Width         : float 
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?Width         : float ,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
                 let a,b,c = Seq.unzip3 abc
                 Chart.ScatterTernary(
                     A             = a           ,
@@ -84,7 +89,8 @@ module ChartTernary =
                     ?TextPosition = TextPosition,
                     ?TextFont     = TextFont    ,
                     ?Dash         = Dash        ,
-                    ?Width        = Width       
+                    ?Width        = Width       ,
+                    ?UseDefaults  = UseDefaults
                 )
 
         static member PointTernary
@@ -100,8 +106,11 @@ module ChartTernary =
                 [<Optional;DefaultParameterValue(null)>] ?Color         : Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity       : float,
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition  : StyleParam.TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont      : Font
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?TextFont      : Font,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
 
                 let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
 
@@ -117,7 +126,7 @@ module ChartTernary =
                 |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
                 |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
                 |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
         static member PointTernary
             (
@@ -129,9 +138,11 @@ module ChartTernary =
                 [<Optional;DefaultParameterValue(null)>] ?Color         : Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity       : float,
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition  : StyleParam.TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont      : Font
+                [<Optional;DefaultParameterValue(null)>] ?TextFont      : Font,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
 
-            ) =
+                let useDefaults = defaultArg UseDefaults true
                 let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
                 let a,b,c = Seq.unzip3 abc
 
@@ -146,7 +157,7 @@ module ChartTernary =
                 |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
                 |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
                 |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
         static member LineTernary
             (
@@ -164,8 +175,11 @@ module ChartTernary =
                 [<Optional;DefaultParameterValue(null)>] ?Color         : Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity       : float,
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition  : StyleParam.TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont      : Font
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?TextFont      : Font,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
 
                 let changeMode = 
                     let isShowMarker =
@@ -188,7 +202,7 @@ module ChartTernary =
                 |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
                 |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
                 |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
         static member LineTernary
             (
@@ -203,8 +217,11 @@ module ChartTernary =
                 [<Optional;DefaultParameterValue(null)>] ?Color         : Color,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity       : float,
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition  : StyleParam.TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont      : Font
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?TextFont      : Font,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
                 let a,b,c = Seq.unzip3 abc
 
                 let changeMode = 
@@ -227,4 +244,4 @@ module ChartTernary =
                 |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
                 |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
                 |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults

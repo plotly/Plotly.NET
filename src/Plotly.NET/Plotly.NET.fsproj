@@ -113,11 +113,14 @@
     <Compile Include="Traces\TraceDomain.fs" />
     <Compile Include="Traces\TraceID.fs" />
     <Folder Include="Layout\ObjectAbstractions\2D\" />
-    <Folder Include="Template\ObjectAbstractions\" />
-    <Compile Include="Template\Template.fs" />
     <Compile Include="Config\ObjectAbstractions\ToImageButtonOptions.fs" />
     <Compile Include="Config\Config.fs" />
+    <Folder Include="DisplayOptions\ObjectAbstractions\" />
     <Compile Include="DisplayOptions\DisplayOptions.fs" />
+    <Folder Include="Templates\ObjectAbstractions\" />
+    <Compile Include="Templates\Template.fs" />
+    <Compile Include="Templates\PlotlyTheme.fs" />
+    <Compile Include="Templates\Defaults.fs" />
     <Compile Include="ChartAPI\GenericChart.fs" />
     <Compile Include="ChartAPI\Chart.fs" />
     <Compile Include="ChartAPI\Chart2D.fs" />
@@ -136,7 +139,6 @@
     <PackageReference Include="DynamicObj" Version="0.2.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DisplayOptions\ObjectAbstractions\" />
     <Folder Include="Layout\ObjectAbstractions\Carpet\" />
   </ItemGroup>
 </Project>

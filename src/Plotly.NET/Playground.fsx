@@ -108,10 +108,6 @@
 #load "TraceDomain.fs"
 #load "TraceID.fs"
 
-#I "Template"
-
-#load "Template.fs"
-
 #I "Config/ObjectAbstractions"
 
 #load "ToImageButtonOptions.fs"
@@ -123,6 +119,12 @@
 #I "DisplayOptions"
 
 #load "DisplayOptions.fs"
+
+#I "Templates"
+
+#load "Template.fs"
+#load "PlotlyTheme.fs"
+#load "Defaults.fs"
 
 #I "ChartAPI"
 
@@ -160,6 +162,9 @@ open FSharpAux
 
 open System
 open System.IO
+
+Chart.Contour([[1;2];[3;4]])
+|> Chart.show
 
 let layout =
     Layout.init (Font = Font.init (Family = StyleParam.FontFamily.Raleway, Size = 14.))

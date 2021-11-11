@@ -37,8 +37,11 @@ module ChartCarpet =
                 [<Optional;DefaultParameterValue(null)>] ?XAxis             : StyleParam.LinearAxisId,
                 [<Optional;DefaultParameterValue(null)>] ?YAxis             : StyleParam.LinearAxisId,
                 [<Optional;DefaultParameterValue(null)>] ?Color             : Color,
-                [<Optional;DefaultParameterValue(null)>] ?CheaterSlope      : float
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?CheaterSlope      : float,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
                 TraceCarpet.initCarpet(
                     TraceCarpetStyle.Carpet(
                         Carpet          = StyleParam.SubPlotId.Carpet carpetId,
@@ -59,7 +62,7 @@ module ChartCarpet =
                         ?CheaterSlope   = CheaterSlope
                     )
                 )
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
         [<Extension>]
         static member ScatterCarpet
@@ -85,8 +88,11 @@ module ChartCarpet =
                 [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
                 [<Optional;DefaultParameterValue(null)>] ?Dash              : StyleParam.DrawingStyle,
                 [<Optional;DefaultParameterValue(null)>] ?Width             : float ,
-                [<Optional;DefaultParameterValue(null)>] ?Line              : Line
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
                 TraceCarpet.initScatterCarpet(
                     TraceCarpetStyle.ScatterCarpet(
                         A                   = a,
@@ -120,7 +126,7 @@ module ChartCarpet =
                     )
 
                 )
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
         [<Extension>]
         static member ScatterCarpet
@@ -145,8 +151,10 @@ module ChartCarpet =
                 [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
                 [<Optional;DefaultParameterValue(null)>] ?Dash              : StyleParam.DrawingStyle,
                 [<Optional;DefaultParameterValue(null)>] ?Width             : float ,
-                [<Optional;DefaultParameterValue(null)>] ?Line              : Line
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
                 let a,b = Seq.unzip ab
 
                 Chart.ScatterCarpet(
@@ -168,7 +176,8 @@ module ChartCarpet =
                     ?Marker             = Marker           ,
                     ?Dash               = Dash             ,
                     ?Width              = Width            ,
-                    ?Line               = Line             
+                    ?Line               = Line             ,
+                    ?UseDefaults        = UseDefaults
                 )
 
 
@@ -192,8 +201,11 @@ module ChartCarpet =
                 [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
                 [<Optional;DefaultParameterValue(null)>] ?Size              : int,
                 [<Optional;DefaultParameterValue(null)>] ?MultiSize         : seq<int>,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
 
                 let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
 
@@ -223,7 +235,7 @@ module ChartCarpet =
                         ?MultiSize      = MultiSize
                     )
                 )
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
         [<Extension>]
         static member PointCarpet
@@ -244,8 +256,9 @@ module ChartCarpet =
                 [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
                 [<Optional;DefaultParameterValue(null)>] ?Size              : int,
                 [<Optional;DefaultParameterValue(null)>] ?MultiSize         : seq<int>,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
 
                 let a,b = Seq.unzip ab
 
@@ -265,7 +278,8 @@ module ChartCarpet =
                     ?TextFont          = TextFont          ,
                     ?Size              = Size              ,
                     ?MultiSize         = MultiSize         ,
-                    ?Marker            = Marker            
+                    ?Marker            = Marker            ,
+                    ?UseDefaults       = UseDefaults
                 )
 
         [<Extension>]
@@ -292,8 +306,11 @@ module ChartCarpet =
                 [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
                 [<Optional;DefaultParameterValue(null)>] ?Size              : int,
                 [<Optional;DefaultParameterValue(null)>] ?MultiSize         : seq<int>,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
 
                 let changeMode = 
                     let isShowMarker =
@@ -335,7 +352,7 @@ module ChartCarpet =
                         ?Color  = Color
                     )
                 )
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
         [<Extension>]
         static member LineCarpet
@@ -360,8 +377,9 @@ module ChartCarpet =
                 [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
                 [<Optional;DefaultParameterValue(null)>] ?Size              : int,
                 [<Optional;DefaultParameterValue(null)>] ?MultiSize         : seq<int>,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
 
                 let a,b = Seq.unzip ab
 
@@ -385,7 +403,8 @@ module ChartCarpet =
                     ?TextFont          = TextFont          ,
                     ?Size              = Size              ,
                     ?MultiSize         = MultiSize         ,
-                    ?Marker            = Marker            
+                    ?Marker            = Marker            ,
+                    ?UseDefaults       = UseDefaults
                 )
 
         [<Extension>]
@@ -413,8 +432,11 @@ module ChartCarpet =
                 [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
                 [<Optional;DefaultParameterValue(null)>] ?Size              : int,
                 [<Optional;DefaultParameterValue(null)>] ?MultiSize         : seq<int>,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
 
                 let changeMode = 
                     let isShowMarker =
@@ -458,7 +480,7 @@ module ChartCarpet =
                         ?Smoothing  = Smoothing
                     )
                 )
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
         [<Extension>]
         static member SplineCarpet
@@ -484,8 +506,9 @@ module ChartCarpet =
                 [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
                 [<Optional;DefaultParameterValue(null)>] ?Size              : int,
                 [<Optional;DefaultParameterValue(null)>] ?MultiSize         : seq<int>,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
 
                 let a,b = Seq.unzip ab
 
@@ -510,7 +533,8 @@ module ChartCarpet =
                     ?TextFont          = TextFont          ,
                     ?Size              = Size              ,
                     ?MultiSize         = MultiSize         ,
-                    ?Marker            = Marker            
+                    ?Marker            = Marker            ,
+                    ?UseDefaults       = UseDefaults
                 )
 
         static member BubbleCarpet 
@@ -531,8 +555,10 @@ module ChartCarpet =
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
                 Chart.PointCarpet(
                     a,b,carpetAnchorId,
                     MultiSize = sizes,
@@ -548,7 +574,8 @@ module ChartCarpet =
                     ?TextPosition       = TextPosition     ,
                     ?MultiTextPosition  = MultiTextPosition,
                     ?TextFont           = TextFont         ,
-                    ?Marker             = Marker           
+                    ?Marker             = Marker           ,
+                    ?UseDefaults        = UseDefaults
                 )
 
         static member BubbleCarpet 
@@ -567,8 +594,9 @@ module ChartCarpet =
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
                 
                 let a,b,sizes = Seq.unzip3 absizes
                 
@@ -587,7 +615,8 @@ module ChartCarpet =
                     ?TextPosition       = TextPosition     ,
                     ?MultiTextPosition  = MultiTextPosition,
                     ?TextFont           = TextFont         ,
-                    ?Marker             = Marker           
+                    ?Marker             = Marker           ,
+                    ?UseDefaults        = UseDefaults
                 )
 
         static member ContourCarpet 
@@ -607,8 +636,12 @@ module ChartCarpet =
                 [<Optional;DefaultParameterValue(null)>] ?Line      : Line,
                 [<Optional;DefaultParameterValue(null)>] ?ColorScale: StyleParam.Colorscale,
                 [<Optional;DefaultParameterValue(null)>] ?ShowScale : bool,
-                [<Optional;DefaultParameterValue(null)>] ?Contours  : Contours
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?Contours  : Contours,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
+
                 TraceCarpet.initContourCarpet(
                     TraceCarpetStyle.ContourCarpet (
                         Carpet = StyleParam.SubPlotId.Carpet carpetAnchorId,
@@ -631,7 +664,7 @@ module ChartCarpet =
                         ?Color      = LineColor         
                     )
                 )
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
                 
                 
         static member ContourCarpet 
@@ -649,8 +682,11 @@ module ChartCarpet =
                 [<Optional;DefaultParameterValue(null)>] ?Line      : Line,
                 [<Optional;DefaultParameterValue(null)>] ?ColorScale: StyleParam.Colorscale,
                 [<Optional;DefaultParameterValue(null)>] ?ShowScale : bool,
-                [<Optional;DefaultParameterValue(null)>] ?Contours  : Contours
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?Contours  : Contours,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
                 
                 let a,b,z = Seq.unzip3 abz
 
@@ -676,6 +712,6 @@ module ChartCarpet =
                         ?Color      = LineColor         
                     )
                 )
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
                 
                 
