@@ -284,7 +284,7 @@ module ChartTemplates =
                     XAxis = LinearAxis.init(
                         BackgroundColor = Color.fromHex "#E5ECF6",
                         GridColor = Color.fromKeyword White,
-                        GridWidth = 2,
+                        GridWidth = 2.,
                         LineColor = Color.fromKeyword White,
                         ShowBackground = true,
                         Ticks = StyleParam.TickOptions.Empty,
@@ -293,7 +293,7 @@ module ChartTemplates =
                     YAxis = LinearAxis.init(
                         BackgroundColor = Color.fromHex "#E5ECF6",
                         GridColor = Color.fromKeyword White,
-                        GridWidth = 2,
+                        GridWidth = 2.,
                         LineColor = Color.fromKeyword White,
                         ShowBackground = true,
                         Ticks = StyleParam.TickOptions.Empty,
@@ -302,7 +302,7 @@ module ChartTemplates =
                     ZAxis = LinearAxis.init(
                         BackgroundColor = Color.fromHex "#E5ECF6",
                         GridColor = Color.fromKeyword White,
-                        GridWidth = 2,
+                        GridWidth = 2.,
                         LineColor = Color.fromKeyword White,
                         ShowBackground = true,
                         Ticks = StyleParam.TickOptions.Empty,
@@ -340,7 +340,7 @@ module ChartTemplates =
                     Ticks = StyleParam.TickOptions.Empty,
                     Title = Title.init(Standoff = 15),
                     ZeroLineColor = Color.fromKeyword White,
-                    ZeroLineWidth = 2
+                    ZeroLineWidth = 2.
                 )
             )            
             |> Layout.UpdateLinearAxisById(
@@ -352,7 +352,7 @@ module ChartTemplates =
                     Ticks = StyleParam.TickOptions.Empty,
                     Title = Title.init(Standoff = 15),
                     ZeroLineColor = Color.fromKeyword White,
-                    ZeroLineWidth = 2
+                    ZeroLineWidth = 2.
                 )
             )
             |> fun l ->
