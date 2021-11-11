@@ -24,12 +24,12 @@ let candles =
     |]
     |> Array.map (fun (d,o,h,l,c)->System.DateTime.Parse d, StockData.Create(o,h,l,c))
 
-let candles1Chart = Chart.Candlestick candles
+let candles1Chart = Chart.Candlestick(candles, UseDefaults = false)
 
 
 let candles2Chart = 
     let rangeslider = RangeSlider.init(Visible=false)
-    Chart.Candlestick candles
+    Chart.Candlestick(candles, UseDefaults = false)
     |> Chart.withXAxisRangeSlider rangeslider
 
 [<Tests>]
@@ -64,7 +64,7 @@ let funnelChart =
     // Customize the outline of the funnel bars
     let line = Line.init(Width=2.,Color=Color.fromString "3E4E88")
     
-    Chart.Funnel (x,y,Color=Color.fromString "59D4E8", Line=line, Connector=connector)
+    Chart.Funnel (x,y,Color=Color.fromString "59D4E8", Line=line, Connector=connector, UseDefaults = false)
     |> Chart.withMarginSize(Left=100)
 
 [<Tests>]
@@ -86,7 +86,7 @@ let funnelArea =
     let values = [|5; 4; 3; 2; 1|]
     let text = [|"The 1st"; "The 2nd"; "The 3rd"; "The 4th"; "The 5th"|]
     let line = Line.init (Color=Color.fromString "purple", Width=3.)
-    Chart.FunnelArea(Values=values, Text=text, Line=line)
+    Chart.FunnelArea(Values=values, Text=text, Line=line, UseDefaults = false)
 
 [<Tests>]
 let ``Funnel area charts`` =
@@ -108,7 +108,8 @@ let indicators =
             200., StyleParam.IndicatorMode.NumberDeltaGauge,
             Delta   = IndicatorDelta.init(Reference=160),
             Range   = StyleParam.Range.MinMax(0., 250.),
-            Domain  = Domain.init(Row = 0, Column = 0)
+            Domain  = Domain.init(Row = 0, Column = 0), 
+            UseDefaults = false
         )
         Chart.Indicator(
             120, StyleParam.IndicatorMode.NumberDeltaGauge,
@@ -116,17 +117,20 @@ let indicators =
             Range = StyleParam.Range.MinMax(-200., 200.),
             GaugeShape = StyleParam.IndicatorGaugeShape.Bullet,
             ShowGaugeAxis = false,
-            Domain  = Domain.init(Row = 0, Column = 1)
+            Domain  = Domain.init(Row = 0, Column = 1), 
+            UseDefaults = false
         )
         Chart.Indicator(
             "300", StyleParam.IndicatorMode.NumberDelta,
             DeltaReference = 90.,
-            Domain  = Domain.init(Row = 1, Column = 0)
+            Domain  = Domain.init(Row = 1, Column = 0), 
+            UseDefaults = false
         )        
         Chart.Indicator(
             40., StyleParam.IndicatorMode.Delta,
             DeltaReference = 90.,
-            Domain  = Domain.init(Row = 1, Column = 1)
+            Domain  = Domain.init(Row = 1, Column = 1), 
+            UseDefaults = false
         )
     ]
     |> Chart.combine

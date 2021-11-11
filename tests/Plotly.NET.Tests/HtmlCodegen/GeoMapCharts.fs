@@ -11,7 +11,7 @@ open System
 open TestUtils.HtmlCodegen
 
 let basemapChart =
-    Chart.PointGeo([]) // deliberately empty chart to show the base map only
+    Chart.PointGeo([], UseDefaults = false) // deliberately empty chart to show the base map only
     |> Chart.withMarginSize(0, 0, 0, 0)
 
 let moreFeaturesBasemapChart =
@@ -29,7 +29,7 @@ let moreFeaturesBasemapChart =
             ShowRivers=true, 
             RiverColor=Color.fromString "Blue"
         )
-    Chart.PointGeo([])
+    Chart.PointGeo([], UseDefaults = false)
     |> Chart.withGeo myGeo
     |> Chart.withMarginSize(0, 0, 0, 0)
 
@@ -41,7 +41,7 @@ let cultureMapChart =
             ShowCountries=true, 
             CountryColor=Color.fromString "RebeccaPurple"
         )
-    Chart.PointGeo([])
+    Chart.PointGeo([], UseDefaults = false)
     |> Chart.withGeo countryGeo
     |> Chart.withMarginSize(0, 0, 0, 0)
 
@@ -93,7 +93,8 @@ let pointGeoChart =
         lon,
         lat,
         Labels=cityNames,
-        TextPosition=StyleParam.TextPosition.TopCenter
+        TextPosition=StyleParam.TextPosition.TopCenter, 
+        UseDefaults = false
     )
     |> Chart.withGeoStyle(
         Scope=StyleParam.GeoScope.NorthAmerica, 
@@ -135,7 +136,8 @@ let flightsMapChart =
         Chart.LineGeo(
             [startCoords; endCoords],
             Opacity = opacityVals.[i],
-            Color = Color.fromString  "red"
+            Color = Color.fromString  "red",
+            UseDefaults = false
         )
     )
     |> Chart.combine
@@ -226,13 +228,15 @@ let locations,z =
 let choroplethMap1Chart =
     Chart.ChoroplethMap(
         locations,z,
-        Locationmode=StyleParam.LocationFormat.CountryNames
+        Locationmode=StyleParam.LocationFormat.CountryNames, 
+        UseDefaults = false
     )
     
 let choroplethMap2Chart =
     Chart.ChoroplethMap(
         locations,z,
-        Locationmode=StyleParam.LocationFormat.CountryNames
+        Locationmode=StyleParam.LocationFormat.CountryNames, 
+        UseDefaults = false
     )
     |> Chart.withGeoStyle(
         Projection=GeoProjection.init(projectionType=StyleParam.GeoProjectionType.Mollweide),

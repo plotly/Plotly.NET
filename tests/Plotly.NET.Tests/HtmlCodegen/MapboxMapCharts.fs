@@ -15,7 +15,7 @@ let baseLayerOnlyChart =
         Mapbox.init(
             Style = StyleParam.MapboxStyle.OpenStreetMap
         )
-    Chart.PointMapbox([],[]) // deliberately empty chart to show the base map only
+    Chart.PointMapbox([],[], UseDefaults = false) // deliberately empty chart to show the base map only
     |> Chart.withMapbox mb // add the mapBox
 
 [<Tests>]
@@ -49,7 +49,8 @@ let pointMapboxChart =
     Chart.PointMapbox(
         lon,lat,
         Labels = cityNames,
-        TextPosition = StyleParam.TextPosition.TopCenter
+        TextPosition = StyleParam.TextPosition.TopCenter, 
+        UseDefaults = false
     )
     |> Chart.withMapbox(
         Mapbox.init(
@@ -88,7 +89,8 @@ let flightsChart =
         Chart.LineMapbox(
             [startCoords; endCoords],
             Opacity = opacityVals.[i],
-            Color = Color.fromString "red"
+            Color = Color.fromString "red",
+            UseDefaults = false
         )
     )
     |> Chart.combine
@@ -196,7 +198,8 @@ let densityMapboxChart =
         lat,
         Z = magnitudes,
         Radius=8.,
-        Colorscale=StyleParam.Colorscale.Viridis
+        Colorscale=StyleParam.Colorscale.Viridis,
+        UseDefaults = false
     )
     |> Chart.withMapbox(
         Mapbox.init(

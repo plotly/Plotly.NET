@@ -15,10 +15,10 @@ let radial  = [ 1; 2; 3; 4; 5; 6; 7;]
 let theta  = [0; 45; 90; 135; 200; 320; 184;]
 
 
-let pointPolar = Chart.PointPolar(radial,theta)
+let pointPolar = Chart.PointPolar(radial,theta, UseDefaults = false)
 
 let linePolar = 
-    Chart.LinePolar(radial,theta)
+    Chart.LinePolar(radial,theta, UseDefaults = false)
     |> Chart.withLineStyle(Color=Color.fromString "purple",Dash=StyleParam.DrawingStyle.DashDot)
 
 let splinePolar = 
@@ -27,7 +27,8 @@ let splinePolar =
         theta,
         Labels=["one";"two";"three";"four";"five";"six";"seven"],
         TextPosition=StyleParam.TextPosition.TopCenter,
-        ShowMarkers=true
+        ShowMarkers=true, 
+        UseDefaults = false
     )
 
 [<Tests>]

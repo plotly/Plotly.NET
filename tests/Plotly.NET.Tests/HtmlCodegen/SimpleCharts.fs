@@ -16,18 +16,17 @@ let withLineStyleChart =
         x,y,
         Name="line",
         ShowMarkers=true,
-        MarkerSymbol=StyleParam.MarkerSymbol.Square)    
+        MarkerSymbol=StyleParam.MarkerSymbol.Square,
+        UseDefaults = false)    
     |> Chart.withLineStyle(Width=2.,Dash=StyleParam.DrawingStyle.Dot)
 
 
-let chartLineChart =
-    [ for x in 1.0 .. 100.0 -> (x, x ** 2.0) ]
-    |> Chart.Line
+let chartLineChart = Chart.Line([ for x in 1.0 .. 100.0 -> (x, x ** 2.0) ], UseDefaults = false)
 
 let splineChart =
     let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
     let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
-    Chart.Spline(x, y, Name="spline")   
+    Chart.Spline(x, y, Name="spline", UseDefaults = false)   
 
 let textLabelChart =
     let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
@@ -37,7 +36,8 @@ let textLabelChart =
         x,y,
         Name="points",
         Labels=labels,
-        TextPosition=StyleParam.TextPosition.TopRight
+        TextPosition=StyleParam.TextPosition.TopRight, 
+        UseDefaults = false
     )
 
 
@@ -78,19 +78,19 @@ let ``Line and scatter plots`` =
 let columnChart =
     let values = [20; 14; 23;]
     let keys   = ["Product A"; "Product B"; "Product C";]
-    Chart.Column(values, keys)
+    Chart.Column(values, keys, UseDefaults = false)
 
 let barChart =
     let values = [20; 14; 23;]
     let keys   = ["Product A"; "Product B"; "Product C";]
-    Chart.Bar(values, keys)
+    Chart.Bar(values, keys, UseDefaults = false)
 
 let stackedBarChart =
     let values = [20; 14; 23;]
     let keys   = ["Product A"; "Product B"; "Product C";]
     [
-        Chart.StackedBar(values, keys, Name="old");
-        Chart.StackedBar([8; 21; 13;], keys, Name="new")
+        Chart.StackedBar(values, keys, Name="old", UseDefaults = false);
+        Chart.StackedBar([8; 21; 13;], keys, Name="new", UseDefaults = false)
     ]
     |> Chart.combine
 
@@ -98,8 +98,8 @@ let stackedColumnChart =
     let values = [20; 14; 23;]
     let keys   = ["Product A"; "Product B"; "Product C";]
     [
-        Chart.StackedColumn(values,keys,Name="old");
-        Chart.StackedColumn([8; 21; 13;],keys,Name="new")
+        Chart.StackedColumn(values,keys,Name="old", UseDefaults = false);
+        Chart.StackedColumn([8; 21; 13;],keys,Name="new", UseDefaults = false)
     ]
     |> Chart.combine
 
@@ -142,19 +142,19 @@ let ``Bar and column charts`` =
 let simpleAreaChart =
     let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
     let y  = [5.; 2.5; 5.; 7.5; 5.; 2.5; 7.5; 4.5; 5.5; 5.]
-    Chart.Area(x,y)
+    Chart.Area(x,y, UseDefaults = false)
 
 let withSplineChart =
     let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
     let y  = [5.; 2.5; 5.; 7.5; 5.; 2.5; 7.5; 4.5; 5.5; 5.]
-    Chart.SplineArea(x,y)
+    Chart.SplineArea(x,y, UseDefaults = false)
 
 let stackedAreaChart =
     let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
     let y  = [5.; 2.5; 5.; 7.5; 5.; 2.5; 7.5; 4.5; 5.5; 5.]
     [
-        Chart.StackedArea(x,y)
-        Chart.StackedArea(x,y |> Seq.rev)
+        Chart.StackedArea(x,y, UseDefaults = false)
+        Chart.StackedArea(x,y |> Seq.rev, UseDefaults = false)
     ]
     |> Chart.combine
 
@@ -197,7 +197,8 @@ let rangePlotsChart =
         x,y,yUpper,yLower,
         StyleParam.Mode.Lines_Markers,
         Color=Color.fromString "grey",
-        RangeColor=Color.fromString "lightblue")
+        RangeColor=Color.fromString "lightblue", 
+        UseDefaults = false)
 
 [<Tests>]
 let ``Range plot`` =
@@ -215,7 +216,7 @@ let bubbleCharts =
     let x = [2; 4; 6;]
     let y = [4; 1; 6;]
     let size = [19; 26; 55;]
-    Chart.Bubble(x, y, size)
+    Chart.Bubble(x, y, size, UseDefaults = false)
 
 [<Tests>]
 let ``Bubble charts`` =
@@ -232,7 +233,7 @@ let ``Bubble charts`` =
 let pieChart =
     let values = [19; 26; 55;]
     let labels = ["Residential"; "Non-Residential"; "Utility"]
-    Chart.Pie(values, labels)
+    Chart.Pie(values, labels, UseDefaults = false)
 
 let doughnutChart =
     let values = [19; 26; 55;]
@@ -241,7 +242,8 @@ let doughnutChart =
         values,
         labels,
         Hole=0.3,
-        TextLabels=labels
+        TextLabels=labels, 
+        UseDefaults = false
     )
 
 let sunburstChart =
@@ -251,7 +253,8 @@ let sunburstChart =
         ["A";"B";"C";"D";"E"],
         ["";"";"B";"B";""],
         Values=[5.;0.;3.;2.;3.],
-        Text=["At";"Bt";"Ct";"Dt";"Et"]
+        Text=["At";"Bt";"Ct";"Dt";"Et"], 
+        UseDefaults = false
     )
 
 [<Tests>]
@@ -288,7 +291,7 @@ let table1Chart =
          ["0";"I"     ;"am"     ;"a"]        
          ["1";"little";"example";"!"]       
         ]
-    Chart.Table(header, rows)
+    Chart.Table(header, rows, UseDefaults = false)
 
 let tableStyledChart =
     let header = ["<b>RowIndex</b>";"A";"simple";"table"]
@@ -308,7 +311,8 @@ let tableStyledChart =
         HeightHeader= 30.,
         LineHeader  = Line.init(2.,Color.fromString "black"),                     
         ColumnWidth = [70; 50; 100; 70],      
-        ColumnOrder = [1; 2; 3; 4]                                  
+        ColumnOrder = [1; 2; 3; 4], 
+        UseDefaults = false
     )
 
 let tableColorDependentChart =
@@ -346,7 +350,7 @@ let tableColorDependentChart =
         |> Seq.map Color.fromColors
         |> Color.fromColors
 
-    Chart.Table(header2,rowvalues,ColorCells=cellcolor)
+    Chart.Table(header2,rowvalues,ColorCells=cellcolor, UseDefaults = false)
 
 let sequencePresentationTableChart =
     let sequence =
@@ -408,7 +412,8 @@ let sequencePresentationTableChart =
         FontCells   = font,
         ColumnWidth = [50;10],
         AlignCells  = [HorizontalAlign.Right;HorizontalAlign.Center],
-        ColorCells  = cellcolors
+        ColorCells  = cellcolors, 
+        UseDefaults = false
         )
     |> Chart.withSize(Width=chartwidth)
     |> Chart.withTitle "Sequence A"
@@ -464,7 +469,8 @@ let heatmap1Chart =
     Chart.Heatmap(
         matrix,colnames,rownames,
         Colorscale=colorscaleValue,
-        Showscale=true
+        Showscale=true, 
+        UseDefaults = false
     )
     |> Chart.withSize(700,500)
     |> Chart.withMarginSize(Left=200.)
@@ -484,7 +490,8 @@ let heatmapStyledChart =
     Chart.Heatmap(
         matrix,colnames,rownames,
         Colorscale=colorscaleValue,
-        Showscale=true
+        Showscale=true, 
+        UseDefaults = false
     )
     |> Chart.withSize(700.,500.)
     |> Chart.withMarginSize(Left=200.)
@@ -524,11 +531,11 @@ let colors = [
 ]
 
 let imageRawChart = 
-    Chart.Image(Z=colors)
+    Chart.Image(Z=colors, UseDefaults = false)
     |> Chart.withTitle "Image chart from raw color component arrays"
 
 let imageRawHSLChart = 
-    Chart.Image(Z=colors, ColorModel=StyleParam.ColorModel.HSL)
+    Chart.Image(Z=colors, ColorModel=StyleParam.ColorModel.HSL, UseDefaults = false)
     |> Chart.withTitle "HSL color model"
 
 let argbs = [
@@ -538,7 +545,7 @@ let argbs = [
 ]
 
 let imageARGBChart = 
-    Chart.Image(argbs)
+    Chart.Image(argbs, UseDefaults = false)
     |> Chart.withTitle "ARGB image chart"
 
 open System.IO
@@ -552,7 +559,8 @@ let base64String =
 
 let logoImageChart = 
     Chart.Image(
-        Source=($"data:image/jpg;base64,{base64String}")
+        Source=($"data:image/jpg;base64,{base64String}"),
+        UseDefaults = false
     )
     |> Chart.withTitle "This is Plotly.NET:"
 

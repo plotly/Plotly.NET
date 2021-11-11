@@ -10,7 +10,7 @@ open System
 open TestUtils.HtmlCodegen
 
 let pointTernary =
-    Chart.PointTernary([1,2,3])
+    Chart.PointTernary([1,2,3], UseDefaults = false)
     |> Chart.withAAxis(LinearAxis.init(Title = Title.init("A"), Color = Color.fromKeyword ColorKeyword.DarkOrchid))
     |> Chart.withBAxis(LinearAxis.init(Title = Title.init("B"), Color = Color.fromKeyword ColorKeyword.DarkRed))
     |> Chart.withCAxis(LinearAxis.init(Title = Title.init("C"), Color = Color.fromKeyword ColorKeyword.DarkCyan))
@@ -21,7 +21,8 @@ let lineTernary =
         B = ([10; 20; 30; 40; 50; 60; 70; 80;] |> List.rev),
         Sum = 100,
         ShowMarkers = true,
-        Dash = StyleParam.DrawingStyle.DashDot
+        Dash = StyleParam.DrawingStyle.DashDot, 
+        UseDefaults = false
     )
     |> Chart.withTernary(
         Ternary.init(
