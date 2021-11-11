@@ -18,7 +18,8 @@ type Line () =
             [<Optional;DefaultParameterValue(null)>] ?Smoothing,
             [<Optional;DefaultParameterValue(null)>] ?Colorscale,
             [<Optional;DefaultParameterValue(null)>] ?OutlierColor,
-            [<Optional;DefaultParameterValue(null)>] ?OutlierWidth
+            [<Optional;DefaultParameterValue(null)>] ?OutlierWidth,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar
 
         ) =
             Line () 
@@ -31,7 +32,8 @@ type Line () =
                     ?Dash       = Dash      ,
                     ?Colorscale = Colorscale,
                     ?OutlierColor = OutlierColor,
-                    ?OutlierWidth = OutlierWidth
+                    ?OutlierWidth = OutlierWidth,
+                    ?ColorBar = ColorBar
                 )
 
 
@@ -53,7 +55,8 @@ type Line () =
             [<Optional;DefaultParameterValue(null)>] ?CMin              : float,
             [<Optional;DefaultParameterValue(null)>] ?ColorAxis         : StyleParam.SubPlotId,
             [<Optional;DefaultParameterValue(null)>] ?Colorscale        : StyleParam.Colorscale,
-            [<Optional;DefaultParameterValue(null)>] ?ReverseScale      : bool
+            [<Optional;DefaultParameterValue(null)>] ?ReverseScale      : bool,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar          : #DynamicObj
 
         ) =
             (fun (line:Line) -> 
@@ -73,6 +76,7 @@ type Line () =
                 ColorAxis           |> DynObj.setValueOptBy line "coloraxis" StyleParam.SubPlotId.convert
                 Colorscale          |> DynObj.setValueOptBy line "colorscale" StyleParam.Colorscale.convert
                 ReverseScale        |> DynObj.setValueOpt line "reversescale"
+                ColorBar            |> DynObj.setValueOpt line "colorbar"
 
                 // out -> 
                 line

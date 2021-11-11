@@ -119,7 +119,7 @@ module ChartMap =
 
                 TraceGeo.initScatterGeo(
                     TraceGeoStyle.ScatterGeo(
-                        mode            = mode          ,
+                        Mode            = mode          ,
                         Longitudes      = longitudes    ,
                         Latitudes       = latitudes     ,
                         ?GeoJson        = GeoJson      ,
@@ -197,7 +197,7 @@ module ChartMap =
 
                 TraceGeo.initScatterGeo(
                     TraceGeoStyle.ScatterGeo(
-                        mode            = mode          ,
+                        Mode            = mode          ,
                         Longitudes      = longitudes    ,
                         Latitudes       = latitudes     ,
                         ?GeoJson        = GeoJson      ,
@@ -273,7 +273,7 @@ module ChartMap =
 
                 TraceGeo.initScatterGeo(
                     TraceGeoStyle.ScatterGeo(
-                        mode            = mode          ,
+                        Mode            = mode          ,
                         ?Locations      = locations     ,
                         ?GeoJson        = GeoJson       ,
                         ?FeatureIdKey   = FeatureIdKey ,
@@ -343,7 +343,7 @@ module ChartMap =
 
                 TraceGeo.initScatterGeo(
                     TraceGeoStyle.ScatterGeo(
-                        mode            = changeMode StyleParam.Mode.Markers ,
+                        Mode            = changeMode StyleParam.Mode.Markers ,
                         Longitudes      = longitudes    ,
                         Latitudes       = latitudes     ,
                         ?GeoJson        = GeoJson      ,
@@ -412,7 +412,7 @@ module ChartMap =
 
                 TraceGeo.initScatterGeo(
                     TraceGeoStyle.ScatterGeo(
-                        mode            = changeMode StyleParam.Mode.Markers ,
+                        Mode            = changeMode StyleParam.Mode.Markers ,
                         Longitudes      = longitudes    ,
                         Latitudes       = latitudes     ,
                         ?GeoJson        = GeoJson      ,
@@ -480,7 +480,7 @@ module ChartMap =
 
                 TraceGeo.initScatterGeo(
                     TraceGeoStyle.ScatterGeo(
-                        mode        = changeMode StyleParam.Mode.Markers ,
+                        Mode        = changeMode StyleParam.Mode.Markers ,
                         ?Locations  = locations     ,
                         ?GeoJson    = GeoJson       ,
                         ?Connectgaps= Connectgaps   ,
@@ -563,7 +563,7 @@ module ChartMap =
 
                 TraceGeo.initScatterGeo(
                     TraceGeoStyle.ScatterGeo(
-                        mode            = changeMode StyleParam.Mode.Lines,
+                        Mode            = changeMode StyleParam.Mode.Lines,
                         Longitudes      = longitudes    ,
                         Latitudes       = latitudes     ,
                         ?GeoJson        = GeoJson      ,
@@ -643,7 +643,7 @@ module ChartMap =
 
                 TraceGeo.initScatterGeo(
                     TraceGeoStyle.ScatterGeo(
-                        mode            = changeMode StyleParam.Mode.Lines,
+                        Mode            = changeMode StyleParam.Mode.Lines,
                         Longitudes      = longitudes    ,
                         Latitudes       = latitudes     ,
                         ?GeoJson        = GeoJson      ,
@@ -722,7 +722,7 @@ module ChartMap =
 
                 TraceGeo.initScatterGeo(
                     TraceGeoStyle.ScatterGeo(
-                        mode            = changeMode StyleParam.Mode.Lines,
+                        Mode            = changeMode StyleParam.Mode.Lines,
                         Locations       = locations    ,
                         ?GeoJson        = GeoJson      ,
                         ?FeatureIdKey   = FeatureIdKey ,
@@ -765,7 +765,8 @@ module ChartMap =
         [<Extension>]
         static member ScatterMapbox
             (
-                longitudes, latitudes, mode,
+                longitudes, latitudes, 
+                mode,
                 [<Optional;DefaultParameterValue(null)>] ?Name                          ,
                 [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
                 [<Optional;DefaultParameterValue(null)>] ?Color                         ,
@@ -785,7 +786,7 @@ module ChartMap =
 
                 TraceMapbox.initScatterMapbox(
                     TraceMapboxStyle.ScatterMapbox(
-                        mode            = mode          ,
+                        Mode            = mode          ,
                         Longitudes      = longitudes    ,
                         Latitudes       = latitudes     ,
                         ?Below          = Below         ,
