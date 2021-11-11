@@ -67,17 +67,21 @@ Chart Templates consist of a `Layout` object and a collection of `Trace` objects
 
 open Plotly.NET.TraceObjects
 
-let myTemplate = 
-    Template.init(
-        layoutTemplate = Layout.init(
-            Title = Title.init("I will always be there now!")
-        ),
-        TraceTemplates = [
-            Trace2D.initScatter(Trace2DStyle.Scatter(
-                Marker = Marker.init(Symbol = StyleParam.MarkerSymbol.ArrowLeft, Size = 20)
-            ))
-        ]
+let layoutTemplate = 
+    Layout.init(
+        Title = Title.init("I will always be there now!")
     )
+
+let traceTemplates = 
+    [
+        Trace2D.initScatter(
+            Trace2DStyle.Scatter(
+                Marker = Marker.init(Symbol = StyleParam.MarkerSymbol.ArrowLeft, Size = 20)
+            )
+        )
+    ]
+
+let myTemplate = Template.init(layoutTemplate, traceTemplates)
 
 let myTemplateExampleChart =
     Chart.Point([1,2])
