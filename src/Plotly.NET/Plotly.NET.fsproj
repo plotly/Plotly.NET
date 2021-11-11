@@ -119,7 +119,7 @@
     <Compile Include="DisplayOptions\DisplayOptions.fs" />
     <Folder Include="Templates\ObjectAbstractions\" />
     <Compile Include="Templates\Template.fs" />
-    <Compile Include="Templates\PlotlyTheme.fs" />
+    <Compile Include="Templates\ChartTemplates.fs" />
     <Compile Include="Templates\Defaults.fs" />
     <Compile Include="ChartAPI\GenericChart.fs" />
     <Compile Include="ChartAPI\Chart.fs" />

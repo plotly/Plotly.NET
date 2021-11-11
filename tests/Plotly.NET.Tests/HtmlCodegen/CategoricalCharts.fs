@@ -64,7 +64,7 @@ let parcoordsChart =
     dyn?line <- Line.init(Color =Color.fromString "blue")
 
     dyn
-    |> GenericChart.ofTraceObject
+    |> GenericChart.ofTraceObject true
 
 [<Tests>]
 let ``Parallel coordinates charts`` =

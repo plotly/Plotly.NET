@@ -123,7 +123,7 @@
 #I "Templates"
 
 #load "Template.fs"
-#load "PlotlyTheme.fs"
+#load "ChartTemplates.fs"
 #load "Defaults.fs"
 
 #I "ChartAPI"
@@ -163,7 +163,7 @@ open FSharpAux
 open System
 open System.IO
 
-Chart.Contour([[1;2];[3;4]])
+Chart.Line([1,2; 3,4])
 |> Chart.show
 
 let layout =

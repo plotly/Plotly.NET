@@ -218,7 +218,7 @@ let meshChart =
             mesh3d?contour <- Contours.initXyz(Show=true)
             mesh3d
             )
-    |> GenericChart.ofTraceObject
+    |> GenericChart.ofTraceObject true
 
 [<Tests>]
 let ``Mesh charts`` =
