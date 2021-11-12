@@ -18,11 +18,12 @@ type Ternary() =
     /// <param name="Sum">The number each triplet should sum to, and the maximum range of each axis</param>
     static member init
         (    
-            ?AAxis      : LinearAxis,
-            ?BAxis      : LinearAxis,
-            ?CAxis      : LinearAxis,
-            ?Domain     : Domain,
-            ?Sum        : #IConvertible
+            [<Optional;DefaultParameterValue(null)>] ?AAxis      : LinearAxis,
+            [<Optional;DefaultParameterValue(null)>] ?BAxis      : LinearAxis,
+            [<Optional;DefaultParameterValue(null)>] ?CAxis      : LinearAxis,
+            [<Optional;DefaultParameterValue(null)>] ?Domain     : Domain,
+            [<Optional;DefaultParameterValue(null)>] ?Sum        : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?BGColor    : Color
         ) =    
             Ternary()
             |> Ternary.style
@@ -31,7 +32,8 @@ type Ternary() =
                     ?BAxis  = BAxis ,
                     ?CAxis  = CAxis ,
                     ?Domain = Domain,
-                    ?Sum    = Sum   
+                    ?Sum    = Sum   ,
+                    ?BGColor= BGColor
                 )
 
     /// <summary>
@@ -44,11 +46,12 @@ type Ternary() =
     /// <param name="Sum">The number each triplet should sum to, and the maximum range of each axis</param>
     static member style
         (    
-            ?AAxis      : LinearAxis,
-            ?BAxis      : LinearAxis,
-            ?CAxis      : LinearAxis,
-            ?Domain     : Domain,
-            ?Sum        : #IConvertible
+            [<Optional;DefaultParameterValue(null)>] ?AAxis      : LinearAxis,
+            [<Optional;DefaultParameterValue(null)>] ?BAxis      : LinearAxis,
+            [<Optional;DefaultParameterValue(null)>] ?CAxis      : LinearAxis,
+            [<Optional;DefaultParameterValue(null)>] ?Domain     : Domain,
+            [<Optional;DefaultParameterValue(null)>] ?Sum        : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?BGColor    : Color
         ) =
             (fun (ternary:Ternary) -> 
                
@@ -57,6 +60,7 @@ type Ternary() =
                 CAxis  |> DynObj.setValueOpt ternary "caxis"
                 Domain |> DynObj.setValueOpt ternary "domain"
                 Sum    |> DynObj.setValueOpt ternary "sum"
+                BGColor|> DynObj.setValueOpt ternary "bgcolor"
 
                 ternary
             )

@@ -19,7 +19,8 @@ let parallelCategoriesChart =
     Chart.ParallelCategories(
         dims,
         Color=Color.fromColorScaleValues [0.;1.;0.;1.;0.;0.;0.],
-        Colorscale = StyleParam.Colorscale.Blackbody
+        Colorscale = StyleParam.Colorscale.Blackbody, 
+        UseDefaults = false
     )
 
 [<Tests>]
@@ -43,7 +44,7 @@ let parcoords1Chart =
             "C",[2.;4.;3.1;5.]
             "D",[4.;2.;2.;4.;]
         ]
-    Chart.ParallelCoord(data,Color=Color.fromString "blue")
+    Chart.ParallelCoord(data,Color=Color.fromString "blue", UseDefaults = false)
 
 let parcoordsChart = 
     let v = [|
@@ -64,7 +65,7 @@ let parcoordsChart =
     dyn?line <- Line.init(Color =Color.fromString "blue")
 
     dyn
-    |> GenericChart.ofTraceObject
+    |> GenericChart.ofTraceObject false
 
 [<Tests>]
 let ``Parallel coordinates charts`` =
@@ -102,7 +103,8 @@ let sankey1 =
     let link5 = Link.Create(n3,n5,value=0.5)
     Chart.Sankey(
         [n1;n2;n3;n4;n5],
-        [link1;link2;link3;link4;link5]
+        [link1;link2;link3;link4;link5], 
+        UseDefaults = false
     )
     |> Chart.withTitle "Sankey Sample"
 
@@ -130,7 +132,8 @@ let icicleChart =
         ColorScale = StyleParam.Colorscale.Viridis,
         TilingOrientation = StyleParam.Orientation.Vertical,
         TilingFlip = StyleParam.TilingFlip.Y,
-        PathBarEdgeShape = StyleParam.PathbarEdgeShape.BackSlash
+        PathBarEdgeShape = StyleParam.PathbarEdgeShape.BackSlash, 
+        UseDefaults = false
     )
 
 [<Tests>]

@@ -16,21 +16,21 @@ module Chart2D =
     [<Extension>]
     type Chart =
         [<Extension>]
-        static member internal renderScatterTrace (useWebGL:bool) (style: Trace2D -> Trace2D) =
+        static member internal renderScatterTrace (useDefaults:bool) (useWebGL:bool) (style: Trace2D -> Trace2D) =
             if useWebGL then
                 Trace2D.initScatterGL style
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
             else
                 Trace2D.initScatter style
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
         [<Extension>]
-        static member internal renderHeatmapTrace (useWebGL:bool) (style: Trace2D -> Trace2D) =
+        static member internal renderHeatmapTrace (useDefaults:bool) (useWebGL:bool) (style: Trace2D -> Trace2D) =
             if useWebGL then
                 Trace2D.initHeatmapGL style
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
             else
                 Trace2D.initHeatmap style
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
         /// <summary>Creates a Scatter chart. Scatter charts are the basis of Point, Line, and Bubble Charts in Plotly, and can be customized as such. We also provide abstractions for those: Chart.Line, Chart.Point, Chart.Bubble</summary>
         /// <param name="x">Sets the x coordinates of the plotted data.</param>
@@ -51,7 +51,9 @@ module Chart2D =
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         [<Extension>]
-        static member Scatter(x, y, mode,
+        static member Scatter
+            (
+                x, y, mode,
                 [<Optional;DefaultParameterValue(null)>] ?Name          ,
                 [<Optional;DefaultParameterValue(null)>] ?ShowLegend    ,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol  ,
@@ -65,8 +67,11 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?StackGroup    ,
                 [<Optional;DefaultParameterValue(null)>] ?Orientation   ,
                 [<Optional;DefaultParameterValue(null)>] ?GroupNorm     ,
-                [<Optional;DefaultParameterValue(false)>]?UseWebGL : bool
+                [<Optional;DefaultParameterValue(false)>]?UseWebGL : bool,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
+
+            let useDefaults = defaultArg UseDefaults true
 
             let style = 
                 Trace2DStyle.Scatter(
@@ -84,7 +89,7 @@ module Chart2D =
 
             let useWebGL = defaultArg UseWebGL false
 
-            Chart.renderScatterTrace useWebGL style
+            Chart.renderScatterTrace useDefaults useWebGL style
 
 
         /// <summary>Creates a Scatter chart. Scatter charts are the basis of Point, Line, and Bubble Charts in Plotly, and can be customized as such. We also provide abstractions for those: Chart.Line, Chart.Point, Chart.Bubble</summary>
@@ -119,7 +124,10 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?StackGroup    ,
                 [<Optional;DefaultParameterValue(null)>] ?Orientation   ,
                 [<Optional;DefaultParameterValue(null)>] ?GroupNorm     ,
-                [<Optional;DefaultParameterValue(false)>]?UseWebGL   : bool) = 
+                [<Optional;DefaultParameterValue(false)>]?UseWebGL   : bool,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
             let x,y = Seq.unzip xy 
             Chart.Scatter(x, y, mode,
                 ?Name           = Name          ,
@@ -135,7 +143,8 @@ module Chart2D =
                 ?StackGroup     = StackGroup    ,
                 ?Orientation    = Orientation   ,
                 ?GroupNorm      = GroupNorm     ,
-                ?UseWebGL       = UseWebGL   
+                ?UseWebGL       = UseWebGL      ,
+                ?UseDefaults    = UseDefaults
                 )
 
 
@@ -168,8 +177,11 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?StackGroup    ,
                 [<Optional;DefaultParameterValue(null)>] ?Orientation   ,
                 [<Optional;DefaultParameterValue(null)>] ?GroupNorm     ,
-                [<Optional;DefaultParameterValue(false)>]?UseWebGL   : bool
+                [<Optional;DefaultParameterValue(false)>]?UseWebGL   : bool,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
+
+            let useDefaults = defaultArg UseDefaults true
             // if text position or font is set, then show labels (not only when hovering)
             let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
             let useWebGL = defaultArg UseWebGL false
@@ -186,7 +198,7 @@ module Chart2D =
                 >> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
                 >> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
 
-            Chart.renderScatterTrace useWebGL style
+            Chart.renderScatterTrace useDefaults useWebGL style
 
         /// <summary>Creates a Point chart, which uses Points in a 2D space to visualize data. </summary>
         /// <param name="xy">Sets the x,y coordinates of the plotted data.</param>
@@ -215,7 +227,8 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?StackGroup    ,
                 [<Optional;DefaultParameterValue(null)>] ?Orientation   ,
                 [<Optional;DefaultParameterValue(null)>] ?GroupNorm     ,
-                [<Optional;DefaultParameterValue(false)>]?UseWebGL   : bool
+                [<Optional;DefaultParameterValue(false)>]?UseWebGL   : bool,
+                [<Optional;DefaultParameterValue(false)>]?UseDefaults   : bool
             ) = 
             let x,y = Seq.unzip xy 
             Chart.Point(x, y, 
@@ -230,7 +243,8 @@ module Chart2D =
                 ?StackGroup     = StackGroup,
                 ?Orientation    = Orientation,
                 ?GroupNorm      = GroupNorm, 
-                ?UseWebGL       = UseWebGL   
+                ?UseWebGL       = UseWebGL   ,
+                ?UseDefaults    = UseDefaults
                 )
 
 
@@ -268,8 +282,12 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?StackGroup    ,
                 [<Optional;DefaultParameterValue(null)>] ?Orientation   ,
                 [<Optional;DefaultParameterValue(null)>] ?GroupNorm     ,
-                [<Optional;DefaultParameterValue(false)>]?UseWebGL   : bool
+                [<Optional;DefaultParameterValue(false)>]?UseWebGL   : bool,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
+
+            let useDefaults = defaultArg UseDefaults true
+
             // if text position or font is set than show labels (not only when hovering)
             let changeMode = 
                 let isShowMarker =
@@ -295,7 +313,7 @@ module Chart2D =
 
             let useWebGL = defaultArg UseWebGL false
 
-            Chart.renderScatterTrace useWebGL style
+            Chart.renderScatterTrace useDefaults useWebGL style
 
 
         /// <summary>Creates a Line chart, which uses a Line plotted between the given datums in a 2D space to visualize typically an evolution of Y depending on X.</summary>
@@ -331,7 +349,8 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?StackGroup    ,
                 [<Optional;DefaultParameterValue(null)>] ?Orientation   ,
                 [<Optional;DefaultParameterValue(null)>] ?GroupNorm     ,
-                [<Optional;DefaultParameterValue(false)>]?UseWebGL   : bool
+                [<Optional;DefaultParameterValue(false)>]?UseWebGL   : bool,
+                [<Optional;DefaultParameterValue(false)>]?UseDefaults   : bool
             ) = 
             let x,y = Seq.unzip xy 
             Chart.Line(
@@ -350,7 +369,8 @@ module Chart2D =
                 ?StackGroup     = StackGroup,   
                 ?Orientation    = Orientation,
                 ?GroupNorm      = GroupNorm,  
-                ?UseWebGL       = UseWebGL   
+                ?UseWebGL       = UseWebGL,
+                ?UseDefaults    = UseDefaults
                 )
 
 
@@ -391,8 +411,11 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?StackGroup    ,
                 [<Optional;DefaultParameterValue(null)>] ?Orientation   ,
                 [<Optional;DefaultParameterValue(null)>] ?GroupNorm     ,
-                [<Optional;DefaultParameterValue(false)>]?UseWebGL   : bool
+                [<Optional;DefaultParameterValue(false)>]?UseWebGL   : bool,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
+
+            let useDefaults = defaultArg UseDefaults true
 
             let changeMode = 
                 let isShowMarker =
@@ -416,7 +439,7 @@ module Chart2D =
                 >> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
 
             let useWebGL = defaultArg UseWebGL false
-            Chart.renderScatterTrace useWebGL style
+            Chart.renderScatterTrace useDefaults useWebGL style
 
 
         /// <summary>Creates a Spline chart. A spline chart is a line chart in which data points are connected by smoothed curves: this modification is aimed to improve the design of a chart.
@@ -455,7 +478,8 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?StackGroup    ,
                 [<Optional;DefaultParameterValue(null)>] ?Orientation   ,
                 [<Optional;DefaultParameterValue(null)>] ?GroupNorm     ,
-                [<Optional;DefaultParameterValue(false)>]?UseWebGL   : bool
+                [<Optional;DefaultParameterValue(false)>]?UseWebGL   : bool,
+                [<Optional;DefaultParameterValue(false)>]?UseDefaults   : bool
             ) = 
             let x,y = Seq.unzip xy 
             Chart.Spline(x, y, 
@@ -474,7 +498,8 @@ module Chart2D =
                 ?StackGroup     = StackGroup,
                 ?Orientation    = Orientation,
                 ?GroupNorm      = GroupNorm,  
-                ?UseWebGL       = UseWebGL   
+                ?UseWebGL       = UseWebGL,
+                ?UseDefaults    = UseDefaults
             ) 
 
 
@@ -507,8 +532,11 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?StackGroup    ,
                 [<Optional;DefaultParameterValue(null)>] ?Orientation   ,
                 [<Optional;DefaultParameterValue(null)>] ?GroupNorm     ,
-                [<Optional;DefaultParameterValue(false)>]?UseWebGL   : bool
+                [<Optional;DefaultParameterValue(false)>]?UseWebGL   : bool,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
+
+            let useDefaults = defaultArg UseDefaults true
             // if text position or font is set than show labels (not only when hovering)
             let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
         
@@ -525,7 +553,7 @@ module Chart2D =
                 >> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
 
             let useWebGL = defaultArg UseWebGL false
-            Chart.renderScatterTrace useWebGL style
+            Chart.renderScatterTrace useDefaults useWebGL style
 
         /// <summary>Creates a bubble chart. A bubble chart is a variation of the Point chart, where the data points get an additional scale by being rendered as bubbles of different sizes.</summary>
         /// <param name="xysizes">Sets the x coordinates, y coordinates, and bubble sizes of the plotted data.</param>
@@ -553,7 +581,8 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?StackGroup    ,
                 [<Optional;DefaultParameterValue(null)>] ?Orientation   ,
                 [<Optional;DefaultParameterValue(null)>] ?GroupNorm     ,
-                [<Optional;DefaultParameterValue(false)>]?UseWebGL   : bool
+                [<Optional;DefaultParameterValue(false)>]?UseWebGL   : bool,
+                [<Optional;DefaultParameterValue(false)>]?UseDefaults   : bool
             ) = 
             let x,y,sizes = Seq.unzip3 xysizes 
             Chart.Bubble(
@@ -569,7 +598,8 @@ module Chart2D =
                 ?StackGroup     = StackGroup, 
                 ?Orientation    = Orientation,
                 ?GroupNorm      = GroupNorm, 
-                ?UseWebGL       = UseWebGL   
+                ?UseWebGL       = UseWebGL   ,
+                ?UseDefaults    = UseDefaults
             )
 
         /// Displays a range of data by plotting two Y values per data point, with each Y value being drawn as a line 
@@ -586,7 +616,11 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont,
                 [<Optional;DefaultParameterValue("lower" )>] ?LowerName: string,
-                [<Optional;DefaultParameterValue("upper" )>] ?UpperName: string) =            
+                [<Optional;DefaultParameterValue("upper" )>] ?UpperName: string,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+            let useDefaults = defaultArg UseDefaults true
             
             let upperName = defaultArg UpperName "upper" 
             let lowerName = defaultArg LowerName "lower" 
@@ -624,7 +658,7 @@ module Chart2D =
                 |> TraceStyle.Marker(Color=if RangeColor.IsSome then RangeColor.Value else (Plotly.NET.Color.fromString "rgba(0,0,0,0.5)"))             
                 |> TraceStyle.TextLabel(?Text=UpperLabels,?Textposition=TextPosition,?Textfont=TextFont)
 
-            GenericChart.MultiChart ([lower;upper;trace],Layout(),Config(), DisplayOptions())
+            GenericChart.ofTraceObjects useDefaults [lower;upper;trace]
 
         /// Displays a range of data by plotting two Y values per data point, with each Y value being drawn as a line 
         [<Extension>]
@@ -640,9 +674,26 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont,
                 [<Optional;DefaultParameterValue(null)>] ?LowerName,
-                [<Optional;DefaultParameterValue(null)>] ?UpperName) =  
+                [<Optional;DefaultParameterValue(null)>] ?UpperName,
+                [<Optional;DefaultParameterValue(null)>] ?UseDefaults:bool
+            ) =  
             let x,y = Seq.unzip xy
-            Chart.Range(x, y, upper, lower, mode, ?Name=Name,?ShowMarkers=ShowMarkers,?ShowLegend=ShowLegend,?Color=Color,?RangeColor=RangeColor,?Labels=Labels,?UpperLabels=UpperLabels,?LowerLabels=LowerLabels,?TextPosition=TextPosition,?TextFont=TextFont,?LowerName=LowerName,?UpperName=UpperName)
+            Chart.Range(
+                x, y, upper, lower, mode, 
+                ?Name=Name,
+                ?ShowMarkers=ShowMarkers,
+                ?ShowLegend=ShowLegend,
+                ?Color=Color,
+                ?RangeColor=RangeColor,
+                ?Labels=Labels,
+                ?UpperLabels=UpperLabels,
+                ?LowerLabels=LowerLabels,
+                ?TextPosition=TextPosition,
+                ?TextFont=TextFont,
+                ?LowerName=LowerName,
+                ?UpperName=UpperName,
+                ?UseDefaults = UseDefaults
+            )
 
 
         /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
@@ -658,7 +709,11 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont,
                 [<Optional;DefaultParameterValue(null)>] ?Dash,
-                [<Optional;DefaultParameterValue(null)>] ?Width) = 
+                [<Optional;DefaultParameterValue(null)>] ?Width,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+            let useDefaults = defaultArg UseDefaults true
             // if text position or font is set than show labels (not only when hovering)
             let changeMode = 
                 let isShowMarker =
@@ -674,7 +729,7 @@ module Chart2D =
             |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
             |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
             |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-            |> GenericChart.ofTraceObject 
+            |> GenericChart.ofTraceObject useDefaults
 
 
         /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
@@ -690,9 +745,12 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont,
                 [<Optional;DefaultParameterValue(null)>] ?Dash,
-                [<Optional;DefaultParameterValue(null)>] ?Width) = 
+                [<Optional;DefaultParameterValue(null)>] ?Width,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
             let x,y = Seq.unzip xy
-            Chart.Area(x, y, ?Name=Name,?ShowMarkers=ShowMarkers,?ShowLegend=ShowLegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width) 
+            Chart.Area(x, y, ?Name=Name,?ShowMarkers=ShowMarkers,?ShowLegend=ShowLegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width, ?UseDefaults=UseDefaults) 
 
 
         /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
@@ -709,7 +767,11 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?TextFont,
                 [<Optional;DefaultParameterValue(null)>] ?Dash,
                 [<Optional;DefaultParameterValue(null)>] ?Width,
-                [<Optional;DefaultParameterValue(null)>] ?Smoothing) = 
+                [<Optional;DefaultParameterValue(null)>] ?Smoothing,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+            let useDefaults = defaultArg UseDefaults true
             // if text position or font is set than show labels (not only when hovering)
             let changeMode = 
                 let isShowMarker =
@@ -725,8 +787,7 @@ module Chart2D =
             |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width, Shape=StyleParam.Shape.Spline, ?Smoothing=Smoothing)
             |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
             |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-            |> GenericChart.ofTraceObject 
-
+            |> GenericChart.ofTraceObject useDefaults
 
         /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
         [<Extension>]
@@ -742,9 +803,12 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?TextFont,
                 [<Optional;DefaultParameterValue(null)>] ?Dash,
                 [<Optional;DefaultParameterValue(null)>] ?Width,
-                [<Optional;DefaultParameterValue(null)>] ?Smoothing) = 
+                [<Optional;DefaultParameterValue(null)>] ?Smoothing,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
             let x,y = Seq.unzip xy
-            Chart.SplineArea(x, y, ?Name=Name,?ShowMarkers=ShowMarkers,?ShowLegend=ShowLegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width,?Smoothing=Smoothing) 
+            Chart.SplineArea(x, y, ?Name=Name,?ShowMarkers=ShowMarkers,?ShowLegend=ShowLegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width,?Smoothing=Smoothing,?UseDefaults = UseDefaults) 
 
         /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
         [<Extension>]
@@ -758,7 +822,11 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont,
                 [<Optional;DefaultParameterValue(null)>] ?Dash,
-                [<Optional;DefaultParameterValue(null)>] ?Width) = 
+                [<Optional;DefaultParameterValue(null)>] ?Width,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+            let useDefaults = defaultArg UseDefaults true
             Trace2D.initScatter (
                     Trace2DStyle.Scatter(X = x,Y = y, Mode=StyleParam.Mode.Lines) )               
             |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
@@ -766,7 +834,7 @@ module Chart2D =
             |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
             |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
             |> TraceStyle.SetStackGroup "static"
-            |> GenericChart.ofTraceObject 
+            |> GenericChart.ofTraceObject useDefaults
 
         /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
         [<Extension>]
@@ -780,9 +848,12 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont,
                 [<Optional;DefaultParameterValue(null)>] ?Dash,
-                [<Optional;DefaultParameterValue(null)>] ?Width) = 
+                [<Optional;DefaultParameterValue(null)>] ?Width,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
             let x,y = Seq.unzip xy
-            Chart.StackedArea(x, y, ?Name=Name,?ShowLegend=ShowLegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width) 
+            Chart.StackedArea(x, y, ?Name=Name,?ShowLegend=ShowLegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width, ?UseDefaults = UseDefaults) 
 
         
         /// Creates a Funnel chart.
@@ -836,7 +907,9 @@ module Chart2D =
         ///
         /// Outsidetextfont: Sets the font used for `text` lying outside the bar.
         [<Extension>]
-        static member Funnel (x, y,
+        static member Funnel 
+            (
+                x, y,
                 [<Optional;DefaultParameterValue(null)>] ?Name                          ,
                 [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
@@ -857,8 +930,11 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?Cliponaxis                    ,
                 [<Optional;DefaultParameterValue(null)>] ?Connector                     ,
                 [<Optional;DefaultParameterValue(null)>] ?Insidetextfont                ,
-                [<Optional;DefaultParameterValue(null)>] ?Outsidetextfont
+                [<Optional;DefaultParameterValue(null)>] ?Outsidetextfont,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
+
+                let useDefaults = defaultArg UseDefaults true
 
                 Trace2D.initFunnel(
                     Trace2DStyle.Funnel(
@@ -882,7 +958,7 @@ module Chart2D =
                 |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
                 |> TraceStyle.Marker(?Color=Color,?Outline=Line)
                 |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
         /// Creates a waterfall chart. Waterfall charts are special bar charts that help visualizing the cumulative effect of sequentially introduced positive or negative values
         ///
@@ -919,8 +995,12 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>]?Connector      : WaterfallConnector    ,
                 [<Optional;DefaultParameterValue(null)>]?AlignmentGroup : string,
                 [<Optional;DefaultParameterValue(null)>]?OffsetGroup    : string,
-                [<Optional;DefaultParameterValue(null)>]?Offset
-            ) =
+                [<Optional;DefaultParameterValue(null)>]?Offset,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
+
                 Trace2D.initWaterfall(
                     Trace2DStyle.Waterfall(x,y,
                         ?Base           = Base          ,
@@ -933,7 +1013,7 @@ module Chart2D =
                         ?Offset         = Offset        
                     )
                 )
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
 
         /// Creates a waterfall chart. Waterfall charts are special bar charts that help visualizing the cumulative effect of sequentially introduced positive or negative values
@@ -965,8 +1045,12 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>]?Connector      : WaterfallConnector    ,
                 [<Optional;DefaultParameterValue(null)>]?AlignmentGroup : string,
                 [<Optional;DefaultParameterValue(null)>]?OffsetGroup    : string,
-                [<Optional;DefaultParameterValue(null)>]?Offset
-            ) =
+                [<Optional;DefaultParameterValue(null)>]?Offset,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
+
                 let x,y,measure = Seq.unzip3 xyMeasure
                 Trace2D.initWaterfall(
                     Trace2DStyle.Waterfall(x,y,
@@ -980,7 +1064,7 @@ module Chart2D =
                         ?Offset         = Offset        
                     )
                 )
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
         /// Illustrates comparisons among individual items
         [<Extension>]
@@ -1004,8 +1088,11 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
+
+                let useDefaults = defaultArg UseDefaults true
 
                 let pattern = 
                     Pattern
@@ -1043,7 +1130,7 @@ module Chart2D =
                         Marker              = marker            
                     )
                 )
-                |> GenericChart.ofTraceObject  
+                |> GenericChart.ofTraceObject useDefaults
 
         /// Illustrates comparisons among individual items
         [<Extension>]
@@ -1066,8 +1153,10 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
+
                 let keys,values = Seq.unzip keysValues
                 Chart.Bar(
                     values,
@@ -1088,7 +1177,8 @@ module Chart2D =
                     ?TextPosition       = TextPosition     ,
                     ?MultiTextPosition  = MultiTextPosition,
                     ?TextFont           = TextFont         ,
-                    ?Marker             = Marker           
+                    ?Marker             = Marker           ,
+                    ?UseDefaults        = UseDefaults
                 )
 
 
@@ -1114,9 +1204,9 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker
-
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
 
                 Chart.Bar(
                     values,
@@ -1137,7 +1227,8 @@ module Chart2D =
                     ?TextPosition       = TextPosition     ,
                     ?MultiTextPosition  = MultiTextPosition,
                     ?TextFont           = TextFont         ,
-                    ?Marker             = Marker           
+                    ?Marker             = Marker           ,
+                    ?UseDefaults        = UseDefaults
                 )
                 |> GenericChart.mapLayout (Layout.style (BarMode=StyleParam.BarMode.Stack))
 
@@ -1163,9 +1254,10 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
-                
+
                 let keys,values = Seq.unzip keysValues
                 Chart.StackedBar(
                     values,
@@ -1186,7 +1278,8 @@ module Chart2D =
                     ?TextPosition       = TextPosition     ,
                     ?MultiTextPosition  = MultiTextPosition,
                     ?TextFont           = TextFont         ,
-                    ?Marker             = Marker           
+                    ?Marker             = Marker           ,
+                    ?UseDefaults        = UseDefaults
                 )
                 
         /// Illustrates comparisons among individual items
@@ -1211,8 +1304,11 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
+
+                let useDefaults = defaultArg UseDefaults true
 
                 let pattern = 
                     Pattern
@@ -1249,7 +1345,7 @@ module Chart2D =
                         Marker              = marker            
                     )
                 )
-                |> GenericChart.ofTraceObject  
+                |> GenericChart.ofTraceObject useDefaults
 
         /// Illustrates comparisons among individual items
         [<Extension>]
@@ -1272,8 +1368,10 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
+
                 let keys,values = Seq.unzip keysValues
                 Chart.Column(
                     values,
@@ -1294,7 +1392,8 @@ module Chart2D =
                     ?TextPosition       = TextPosition     ,
                     ?MultiTextPosition  = MultiTextPosition,
                     ?TextFont           = TextFont         ,
-                    ?Marker             = Marker           
+                    ?Marker             = Marker           ,
+                    ?UseDefaults        = UseDefaults   
                 )
 
 
@@ -1320,9 +1419,9 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker
-
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
 
                 Chart.Column(
                     values,
@@ -1343,7 +1442,8 @@ module Chart2D =
                     ?TextPosition       = TextPosition     ,
                     ?MultiTextPosition  = MultiTextPosition,
                     ?TextFont           = TextFont         ,
-                    ?Marker             = Marker           
+                    ?Marker             = Marker           ,
+                    ?UseDefaults        = UseDefaults
                 )
                 |> GenericChart.mapLayout (Layout.style (BarMode=StyleParam.BarMode.Stack))
 
@@ -1369,7 +1469,8 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
                 
                 let keys,values = Seq.unzip keysValues
@@ -1392,7 +1493,8 @@ module Chart2D =
                     ?TextPosition       = TextPosition     ,
                     ?MultiTextPosition  = MultiTextPosition,
                     ?TextFont           = TextFont         ,
-                    ?Marker             = Marker           
+                    ?Marker             = Marker           ,
+                    ?UseDefaults        = UseDefaults
                 )
 
         
@@ -1423,8 +1525,12 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?ErrorX            : Error,
                 [<Optional;DefaultParameterValue(null)>] ?ErrorY            : Error,
                 [<Optional;DefaultParameterValue(null)>] ?Cumulative        : Cumulative,
-                [<Optional;DefaultParameterValue(null)>] ?HoverLabel        : Hoverlabel
-            ) =         
+                [<Optional;DefaultParameterValue(null)>] ?HoverLabel        : Hoverlabel,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
+ 
                 Trace2D.initHistogram (
                     Trace2DStyle.Histogram (
                         ?X                 = X,
@@ -1451,7 +1557,7 @@ module Chart2D =
                 )
                 |> TraceStyle.Marker(?Color=MarkerColor)
                 |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)   
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
         /// Visualizes the distribution of the input data as a histogram, automatically determining if the data is to be used for the x or y dimension based on the `orientation` parameter.
         [<Extension>]
@@ -1479,9 +1585,12 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?ErrorX            : Error,
                 [<Optional;DefaultParameterValue(null)>] ?ErrorY            : Error,
                 [<Optional;DefaultParameterValue(null)>] ?Cumulative        : Cumulative,
-                [<Optional;DefaultParameterValue(null)>] ?HoverLabel        : Hoverlabel
-            ) =         
-                
+                [<Optional;DefaultParameterValue(null)>] ?HoverLabel        : Hoverlabel,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
+
                 let histChart = 
                     Trace2D.initHistogram (
                         Trace2DStyle.Histogram (
@@ -1507,7 +1616,7 @@ module Chart2D =
                     )
                     |> TraceStyle.Marker(?Color=MarkerColor)
                     |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)   
-                    |> GenericChart.ofTraceObject
+                    |> GenericChart.ofTraceObject useDefaults
                 
                 match orientation with
                     | StyleParam.Orientation.Horizontal -> 
@@ -1541,8 +1650,12 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?ColorScale        : StyleParam.Colorscale,
                 [<Optional;DefaultParameterValue(null)>] ?ShowScale         : bool,
                 [<Optional;DefaultParameterValue(null)>] ?ReverseScale      : bool,
-                [<Optional;DefaultParameterValue(null)>] ?ZSmooth           : StyleParam.SmoothAlg
-            ) =         
+                [<Optional;DefaultParameterValue(null)>] ?ZSmooth           : StyleParam.SmoothAlg,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
+
                 Trace2D.initHistogram2D (
                     Trace2DStyle.Histogram2D (
                         X               = x           ,
@@ -1566,7 +1679,7 @@ module Chart2D =
                     ) 
                 )
                 |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)   
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
         /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.            
         [<Extension>]
@@ -1595,8 +1708,12 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?Offsetgroup   : string,
                 [<Optional;DefaultParameterValue(null)>] ?Notched       : bool,
                 [<Optional;DefaultParameterValue(null)>] ?NotchWidth    : float,
-                [<Optional;DefaultParameterValue(null)>] ?QuartileMethod: StyleParam.QuartileMethod
+                [<Optional;DefaultParameterValue(null)>] ?QuartileMethod: StyleParam.QuartileMethod,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
+
+                let useDefaults = defaultArg UseDefaults true
+
                 Trace2D.initBoxPlot (
                     Trace2DStyle.BoxPlot(
                         ?X              = x, 
@@ -1621,7 +1738,7 @@ module Chart2D =
                 )
                 |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)   
                 |> TraceStyle.Marker(?Color=MarkerColor, ?OutlierColor=OutlierColor, ?OutlierWidth=OutlierWidth)
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
 
         /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.       
@@ -1650,9 +1767,10 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?Offsetgroup   : string,
                 [<Optional;DefaultParameterValue(null)>] ?Notched       : bool,
                 [<Optional;DefaultParameterValue(null)>] ?NotchWidth    : float,
-                [<Optional;DefaultParameterValue(null)>] ?QuartileMethod: StyleParam.QuartileMethod
-                
+                [<Optional;DefaultParameterValue(null)>] ?QuartileMethod: StyleParam.QuartileMethod,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
+
                 let x,y = Seq.unzip xy
                 Chart.BoxPlot(
                     x, y, 
@@ -1677,7 +1795,8 @@ module Chart2D =
                     ?Offsetgroup    = Offsetgroup   ,
                     ?Notched        = Notched       ,
                     ?NotchWidth     = NotchWidth    ,
-                    ?QuartileMethod = QuartileMethod
+                    ?QuartileMethod = QuartileMethod,
+                    ?UseDefaults    = UseDefaults
                 )
                
 
@@ -1714,8 +1833,11 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?ScaleMode     : StyleParam.ScaleMode,
                 [<Optional;DefaultParameterValue(null)>] ?Side          : StyleParam.ViolinSide,
                 [<Optional;DefaultParameterValue(null)>] ?Span          : StyleParam.Range,
-                [<Optional;DefaultParameterValue(null)>] ?SpanMode      : StyleParam.SpanMode
+                [<Optional;DefaultParameterValue(null)>] ?SpanMode      : StyleParam.SpanMode,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
+
+                let useDefaults = defaultArg UseDefaults true
 
                 let box = 
                     Box
@@ -1755,7 +1877,7 @@ module Chart2D =
                 )
                 |> TraceStyle.TraceInfo(?Name=Name, ?ShowLegend=ShowLegend, ?Opacity=Opacity)   
                 |> TraceStyle.Marker(?Color=MarkerColor, ?OutlierColor= OutlierColor, ?OutlierWidth= OutlierWidth)
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
 
         /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.       
@@ -1789,39 +1911,42 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?ScaleMode     : StyleParam.ScaleMode,
                 [<Optional;DefaultParameterValue(null)>] ?Side          : StyleParam.ViolinSide,
                 [<Optional;DefaultParameterValue(null)>] ?Span          : StyleParam.Range,
-                [<Optional;DefaultParameterValue(null)>] ?SpanMode      : StyleParam.SpanMode
+                [<Optional;DefaultParameterValue(null)>] ?SpanMode      : StyleParam.SpanMode,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
-            let x,y = Seq.unzip xy
-            Chart.Violin(
-                x, y, 
-                ?Name          = Name          ,
-                ?ShowLegend    = ShowLegend    ,
-                ?FillColor     = FillColor     ,
-                ?Opacity       = Opacity       ,
-                ?Points        = Points        ,
-                ?Jitter        = Jitter        ,
-                ?PointPos      = PointPos      ,
-                ?Orientation   = Orientation   ,
-                ?Width         = Width         ,
-                ?MarkerColor   = MarkerColor   ,
-                ?OutlierColor  = OutlierColor  ,
-                ?OutlierWidth  = OutlierWidth  ,
-                ?Marker        = Marker        ,
-                ?Line          = Line          ,
-                ?AlignmentGroup= AlignmentGroup,
-                ?OffsetGroup   = OffsetGroup   ,
-                ?ShowBox       = ShowBox       ,
-                ?BoxWidth      = BoxWidth      ,
-                ?BoxFillColor  = BoxFillColor  ,
-                ?Box           = Box           ,
-                ?BandWidth     = BandWidth     ,
-                ?MeanLine      = MeanLine      ,
-                ?ScaleGroup    = ScaleGroup    ,
-                ?ScaleMode     = ScaleMode     ,
-                ?Side          = Side          ,
-                ?Span          = Span          ,
-                ?SpanMode      = SpanMode      
-            ) 
+
+                let x,y = Seq.unzip xy
+                Chart.Violin(
+                    x, y, 
+                    ?Name          = Name          ,
+                    ?ShowLegend    = ShowLegend    ,
+                    ?FillColor     = FillColor     ,
+                    ?Opacity       = Opacity       ,
+                    ?Points        = Points        ,
+                    ?Jitter        = Jitter        ,
+                    ?PointPos      = PointPos      ,
+                    ?Orientation   = Orientation   ,
+                    ?Width         = Width         ,
+                    ?MarkerColor   = MarkerColor   ,
+                    ?OutlierColor  = OutlierColor  ,
+                    ?OutlierWidth  = OutlierWidth  ,
+                    ?Marker        = Marker        ,
+                    ?Line          = Line          ,
+                    ?AlignmentGroup= AlignmentGroup,
+                    ?OffsetGroup   = OffsetGroup   ,
+                    ?ShowBox       = ShowBox       ,
+                    ?BoxWidth      = BoxWidth      ,
+                    ?BoxFillColor  = BoxFillColor  ,
+                    ?Box           = Box           ,
+                    ?BandWidth     = BandWidth     ,
+                    ?MeanLine      = MeanLine      ,
+                    ?ScaleGroup    = ScaleGroup    ,
+                    ?ScaleMode     = ScaleMode     ,
+                    ?Side          = Side          ,
+                    ?Span          = Span          ,
+                    ?SpanMode      = SpanMode      ,
+                    ?UseDefaults   = UseDefaults
+                ) 
 
         
          /// Computes the bi-dimensional histogram of two data samples and auto-determines the bin size.
@@ -1852,35 +1977,38 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?ShowScale         : bool,
                 [<Optional;DefaultParameterValue(null)>] ?ReverseScale      : bool,
                 [<Optional;DefaultParameterValue(null)>] ?Contours          : Contours,
-                [<Optional;DefaultParameterValue(null)>] ?NContours         : int
+                [<Optional;DefaultParameterValue(null)>] ?NContours         : int,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
             ) = 
-                Trace2D.initHistogram2DContour (
-                    Trace2DStyle.Histogram2DContour (
-                        X               = x,
-                        Y               = y,
-                        ?Z              = Z           ,
-                        ?HistFunc       = HistFunc    ,
-                        ?HistNorm       = HistNorm    ,
-                        ?NBinsX         = NBinsX      ,
-                        ?NBinsY         = NBinsY      ,
-                        ?BinGroup       = BinGroup    ,
-                        ?XBinGroup      = XBinGroup   ,
-                        ?XBins          = XBins       ,
-                        ?YBinGroup      = YBinGroup   ,
-                        ?YBins          = YBins       ,
-                        ?Marker         = Marker      ,
-                        ?Line           = Line        ,
-                        ?ColorBar       = ColorBar    ,
-                        ?ColorScale     = ColorScale  ,
-                        ?ShowScale      = ShowScale   ,
-                        ?ReverseScale   = ReverseScale,
-                        ?Contours       = Contours    ,
-                        ?NContours      = NContours   
-                    )
+            let useDefaults = defaultArg UseDefaults true
+
+            Trace2D.initHistogram2DContour (
+                Trace2DStyle.Histogram2DContour (
+                    X               = x,
+                    Y               = y,
+                    ?Z              = Z           ,
+                    ?HistFunc       = HistFunc    ,
+                    ?HistNorm       = HistNorm    ,
+                    ?NBinsX         = NBinsX      ,
+                    ?NBinsY         = NBinsY      ,
+                    ?BinGroup       = BinGroup    ,
+                    ?XBinGroup      = XBinGroup   ,
+                    ?XBins          = XBins       ,
+                    ?YBinGroup      = YBinGroup   ,
+                    ?YBins          = YBins       ,
+                    ?Marker         = Marker      ,
+                    ?Line           = Line        ,
+                    ?ColorBar       = ColorBar    ,
+                    ?ColorScale     = ColorScale  ,
+                    ?ShowScale      = ShowScale   ,
+                    ?ReverseScale   = ReverseScale,
+                    ?Contours       = Contours    ,
+                    ?NContours      = NContours   
                 )
-                |> TraceStyle.TraceInfo(?Name=Name, ?ShowLegend=ShowLegend, ?Opacity=Opacity)   
-                |> TraceStyle.Line(?Color=LineColor, ?Dash=LineDash)
-                |> GenericChart.ofTraceObject
+            )
+            |> TraceStyle.TraceInfo(?Name=Name, ?ShowLegend=ShowLegend, ?Opacity=Opacity)   
+            |> TraceStyle.Line(?Color=LineColor, ?Dash=LineDash)
+            |> GenericChart.ofTraceObject useDefaults
 
         /// Shows a graphical representation of a 3-dimensional surface by plotting constant z slices, called contours, on a 2-dimensional format.
         /// That is, given a value for z, lines are drawn for connecting the (x,y) coordinates where that z value occurs.
@@ -1897,8 +2025,12 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?Ygap,
                 [<Optional;DefaultParameterValue(null)>] ?zSmooth,
                 [<Optional;DefaultParameterValue(null)>] ?ColorBar,
-                [<Optional;DefaultParameterValue(false)>]?UseWebGL : bool)
-                = 
+                [<Optional;DefaultParameterValue(false)>]?UseWebGL : bool,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+            let useDefaults = defaultArg UseDefaults true
+
             let style =
                 Trace2DStyle.Heatmap(
                     Z=data,
@@ -1915,7 +2047,7 @@ module Chart2D =
 
             let useWebGL = defaultArg UseWebGL false
 
-            Chart.renderHeatmapTrace useWebGL style
+            Chart.renderHeatmapTrace useDefaults useWebGL style
 
 
         [<Extension>]
@@ -1932,8 +2064,11 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?ColorModel        : StyleParam.ColorModel,
                 [<Optional;DefaultParameterValue(null)>] ?ZMax              : StyleParam.ColorComponentBound,
                 [<Optional;DefaultParameterValue(null)>] ?ZMin              : StyleParam.ColorComponentBound,
-                [<Optional;DefaultParameterValue(null)>] ?ZSmooth           : StyleParam.SmoothAlg
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?ZSmooth           : StyleParam.SmoothAlg,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
 
                 Trace2D.initImage (
                     Trace2DStyle.Image (
@@ -1951,7 +2086,7 @@ module Chart2D =
                         ?ZSmooth           = ZSmooth           
                     )
                 )
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
         [<Extension>]
         static member Image
@@ -1965,8 +2100,11 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?Y                 : seq<#IConvertible>,
                 [<Optional;DefaultParameterValue(null)>] ?ZMax              : StyleParam.ColorComponentBound,
                 [<Optional;DefaultParameterValue(null)>] ?ZMin              : StyleParam.ColorComponentBound,
-                [<Optional;DefaultParameterValue(null)>] ?ZSmooth           : StyleParam.SmoothAlg
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?ZSmooth           : StyleParam.SmoothAlg,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
                 
                 let z' =
                     z
@@ -1988,28 +2126,33 @@ module Chart2D =
                         ?ZSmooth           = ZSmooth           
                     )
                 )
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
         /// Shows a graphical representation of data where the individual values contained in a matrix are represented as colors.
         [<Extension>]
         static member Contour(data:seq<#seq<#IConvertible>>,
-                [<Optional;DefaultParameterValue(null)>]  ?X,
-                [<Optional;DefaultParameterValue(null)>]  ?Y,
-                [<Optional;DefaultParameterValue(null)>]  ?Name,
-                [<Optional;DefaultParameterValue(null)>]  ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>]  ?Opacity,
-                [<Optional;DefaultParameterValue(null)>]  ?Colorscale,
-                [<Optional;DefaultParameterValue(null)>]  ?Showscale,
-                [<Optional;DefaultParameterValue(null)>]  ?zSmooth,
-                [<Optional;DefaultParameterValue(null)>]  ?ColorBar) = 
-            Trace2D.initContour (
-                Trace2DStyle.Contour(
-                    Z=data,?X=X, ?Y=Y,
-                    ?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?ColorBar=ColorBar
+                [<Optional;DefaultParameterValue(null)>] ?X,
+                [<Optional;DefaultParameterValue(null)>] ?Y,
+                [<Optional;DefaultParameterValue(null)>] ?Name,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity,
+                [<Optional;DefaultParameterValue(null)>] ?Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?Showscale,
+                [<Optional;DefaultParameterValue(null)>] ?zSmooth,
+                [<Optional;DefaultParameterValue(null)>] ?ColorBar,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
+
+                Trace2D.initContour (
+                    Trace2DStyle.Contour(
+                        Z=data,?X=X, ?Y=Y,
+                        ?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?ColorBar=ColorBar
+                    )
                 )
-            )
-            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)   
-            |> GenericChart.ofTraceObject
+                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)   
+                |> GenericChart.ofTraceObject useDefaults
 
         /// Creates an OHLC (open-high-low-close) chart. OHLC charts are typically used to illustrate movements in the price of a financial instrument over time.
         ///
@@ -2044,8 +2187,12 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>]?Decreasing     : Line,
                 [<Optional;DefaultParameterValue(null)>]?Tickwidth      : float,
                 [<Optional;DefaultParameterValue(null)>]?Line           : Line,
-                [<Optional;DefaultParameterValue(null)>]?XCalendar      : StyleParam.Calendar
-            ) =
+                [<Optional;DefaultParameterValue(null)>]?XCalendar      : StyleParam.Calendar,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
+    
                 Trace2D.initOHLC(
                     Trace2DStyle.OHLC(
                         ``open``        = ``open``    ,
@@ -2060,7 +2207,7 @@ module Chart2D =
                         ?XCalendar      = XCalendar   
                     )
                 )
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
         /// Creates an OHLC (open-high-low-close) chart. OHLC charts are typically used to illustrate movements in the price of a financial instrument over time.
         ///
@@ -2079,12 +2226,16 @@ module Chart2D =
         static member OHLC
             (
                 stockTimeSeries: seq<System.DateTime*StockData>, 
-                [<Optional;DefaultParameterValue(null)>]?Increasing     : Line,
-                [<Optional;DefaultParameterValue(null)>]?Decreasing     : Line,
-                [<Optional;DefaultParameterValue(null)>]?Tickwidth      : float,
-                [<Optional;DefaultParameterValue(null)>]?Line           : Line,
-                [<Optional;DefaultParameterValue(null)>]?XCalendar      : StyleParam.Calendar
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?Increasing     : Line,
+                [<Optional;DefaultParameterValue(null)>] ?Decreasing     : Line,
+                [<Optional;DefaultParameterValue(null)>] ?Tickwidth      : float,
+                [<Optional;DefaultParameterValue(null)>] ?Line           : Line,
+                [<Optional;DefaultParameterValue(null)>] ?XCalendar      : StyleParam.Calendar,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
+
                 Trace2D.initOHLC(
                     Trace2DStyle.OHLC(
                         ``open``        = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.Open)))    ,
@@ -2099,7 +2250,7 @@ module Chart2D =
                         ?XCalendar      = XCalendar   
                     )
                 )
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
         /// Creates a candlestick chart. A candlestick cart is a style of financial chart used to describe price movements of a 
         /// security, derivative, or currency. Each "candlestick" typically shows one day, thus a one-month chart may show the 20 
@@ -2136,8 +2287,12 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>]?Decreasing     : Line,
                 [<Optional;DefaultParameterValue(null)>]?WhiskerWidth   : float,
                 [<Optional;DefaultParameterValue(null)>]?Line           : Line,
-                [<Optional;DefaultParameterValue(null)>]?XCalendar      : StyleParam.Calendar
-            ) =
+                [<Optional;DefaultParameterValue(null)>]?XCalendar      : StyleParam.Calendar,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
+
                 Trace2D.initCandlestick(
                     Trace2DStyle.Candlestick(
                         ``open``        = ``open``    ,
@@ -2152,7 +2307,7 @@ module Chart2D =
                         ?XCalendar      = XCalendar   
                     )
                 )
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
         /// Creates an OHLC (open-high-low-close) chart. OHLC charts are typically used to illustrate movements in the price of a financial instrument over time.
         ///
@@ -2175,8 +2330,12 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>]?Decreasing     : Line,
                 [<Optional;DefaultParameterValue(null)>]?WhiskerWidth   : float,
                 [<Optional;DefaultParameterValue(null)>]?Line           : Line,
-                [<Optional;DefaultParameterValue(null)>]?XCalendar      : StyleParam.Calendar
-            ) =
+                [<Optional;DefaultParameterValue(null)>]?XCalendar      : StyleParam.Calendar,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
+
                 Trace2D.initCandlestick(
                     Trace2DStyle.Candlestick(
                         ``open``        = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.Open)))    ,
@@ -2191,7 +2350,7 @@ module Chart2D =
                         ?XCalendar      = XCalendar   
                     )
                 )
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
 
 
@@ -2209,8 +2368,11 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?Domain,
                 [<Optional;DefaultParameterValue(null)>] ?Labelfont,
                 [<Optional;DefaultParameterValue(null)>] ?Tickfont,
-                [<Optional;DefaultParameterValue(null)>] ?Rangefont
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?Rangefont,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
 
                 let dims' = 
                     dims |> Seq.map (fun (k,vals) -> 
@@ -2222,7 +2384,7 @@ module Chart2D =
                     Trace2DStyle.Splom (Dimensions=dims')             
                     )
                 |> TraceStyle.Line(?Width=Width,?Color=Color,?Dash=Dash,?Colorscale=Colorscale)
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
 
         /// Computes the Splom plot
@@ -2237,12 +2399,16 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?Domain,
                 [<Optional;DefaultParameterValue(null)>] ?Labelfont,
                 [<Optional;DefaultParameterValue(null)>] ?Tickfont,
-                [<Optional;DefaultParameterValue(null)>] ?Rangefont
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?Rangefont,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
+
                 Trace2D.initSplom (
                     Trace2DStyle.Splom (
                         Dimensions=dims
                     )             
                 )
                 |> TraceStyle.Line(?Width=Width,?Color=Color,?Dash=Dash,?Colorscale=Colorscale)
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults

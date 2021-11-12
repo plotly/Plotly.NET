@@ -12,7 +12,7 @@ let axisStylingChart =
     let x = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
     let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     let plot1 =
-        Chart.Point(x,y)
+        Chart.Point(x,y, UseDefaults = false)
         |> Chart.withXAxisStyle ("X axis title quack quack", MinMax = (-1.,10.))
         |> Chart.withYAxisStyle ("Y axis title boo foo", MinMax = (-1.,10.))
     plot1
@@ -42,11 +42,11 @@ let multipleAxesChart =
     let y' = y |> List.map (fun y -> y * 2.) |> List.rev
 
     let anchoredAt1 =
-        Chart.Line (x,y,Name="anchor 1")
+        Chart.Line (x,y,Name="anchor 1", UseDefaults = false)
             |> Chart.withAxisAnchor(Y=1)
     
     let anchoredAt2 =
-         Chart.Line (x,y',Name="anchor 2")
+         Chart.Line (x,y',Name="anchor 2", UseDefaults = false)
             |> Chart.withAxisAnchor(Y=2)
     
     let twoYAxes1 = 
@@ -83,7 +83,7 @@ let errorBarsChart =
     let y' = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     let xError = [|0.2;0.3;0.2;0.1;0.2;0.4;0.2;0.08;0.2;0.1;|]
     let yError = [|0.3;0.2;0.1;0.4;0.2;0.4;0.1;0.18;0.02;0.2;|]
-    Chart.Point(x,y',Name="points with errors")    
+    Chart.Point(x,y',Name="points with errors", UseDefaults = false)    
     |> Chart.withXErrorStyle (Array=xError,Symmetric=true)
     |> Chart.withYErrorStyle (Array=yError, Arrayminus = xError)
 
@@ -114,8 +114,8 @@ let combinedChart =
     let x = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
     let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     [
-        Chart.Line(x, y, Name="first")
-        Chart.Line(y, x, Name="second")
+        Chart.Line(x, y, Name="first", UseDefaults = false)
+        Chart.Line(y, x, Name="second", UseDefaults = false)
     ]
     |> Chart.combine
 
@@ -123,16 +123,16 @@ let subPlotChart =
     let x = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
     let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     [
-        Chart.Point(x, y, Name="1,1")
+        Chart.Point(x, y, Name="1,1", UseDefaults = false)
         |> Chart.withXAxisStyle "x1"
         |> Chart.withYAxisStyle "y1"    
-        Chart.Line(x, y, Name="1,2")
+        Chart.Line(x, y, Name="1,2", UseDefaults = false)
         |> Chart.withXAxisStyle "x2"
         |> Chart.withYAxisStyle "y2"
-        Chart.Spline(x, y, Name="2,1")
+        Chart.Spline(x, y, Name="2,1", UseDefaults = false)
         |> Chart.withXAxisStyle "x3"
         |> Chart.withYAxisStyle "y3"    
-        Chart.Point(x, y, Name="2,2")
+        Chart.Point(x, y, Name="2,2", UseDefaults = false)
         |> Chart.withXAxisStyle "x4"
         |> Chart.withYAxisStyle "y4"
     ]
@@ -143,13 +143,13 @@ let singleStackChart =
     let x = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
     let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     [
-        Chart.Point(x,y) 
+        Chart.Point(x,y, UseDefaults = false) 
         |> Chart.withYAxisStyle("This title must")
     
-        Chart.Line(x,y) 
+        Chart.Line(x,y, UseDefaults = false) 
         |> Chart.withYAxisStyle("be set on the",ZeroLine=false)
         
-        Chart.Spline(x,y) 
+        Chart.Spline(x,y, UseDefaults = false) 
         |> Chart.withYAxisStyle("respective subplots",ZeroLine=false)
     ]
     |> Chart.SingleStack(Pattern = StyleParam.LayoutGridPattern.Coupled)
@@ -160,16 +160,16 @@ let singleStackChart =
 
 let multiTraceGrid = 
     [
-        Chart.Point([1,2; 2,3])
-        Chart.PointTernary([1,2,3; 2,3,4])
-        Chart.Heatmap([[1; 2];[3; 4]], Showscale=false)
-        Chart.Point3d([1,3,2])
-        Chart.PointMapbox([1,2]) |> Chart.withMapbox(Mapbox.init(Style = StyleParam.MapboxStyle.OpenStreetMap))
+        Chart.Point([1,2; 2,3], UseDefaults = false)
+        Chart.PointTernary([1,2,3; 2,3,4], UseDefaults = false)
+        Chart.Heatmap([[1; 2];[3; 4]], Showscale=false, UseDefaults = false)
+        Chart.Point3d([1,3,2], UseDefaults = false)
+        Chart.PointMapbox([1,2], UseDefaults = false) |> Chart.withMapbox(Mapbox.init(Style = StyleParam.MapboxStyle.OpenStreetMap))
         [
             // you can use nested combined charts, but they have to have the same trace type (Cartesian2D in this case)
             let y =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
-            Chart.BoxPlot("y" ,y,Name="bin1",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All);
-            Chart.BoxPlot("y'",y,Name="bin2",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All);
+            Chart.BoxPlot("y" ,y,Name="bin1",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All, UseDefaults = false);
+            Chart.BoxPlot("y'",y,Name="bin2",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All, UseDefaults = false);
         ]
         |> Chart.combine
     ]
@@ -179,16 +179,16 @@ let multiTraceGrid =
 
 let multiTraceSingleStack = 
     [
-        Chart.Point([1,2; 2,3])
-        Chart.PointTernary([1,2,3; 2,3,4])
-        Chart.Heatmap([[1; 2];[3; 4]], Showscale=false)
-        Chart.Point3d([1,3,2])
-        Chart.PointMapbox([1,2]) |> Chart.withMapbox(Mapbox.init(Style = StyleParam.MapboxStyle.OpenStreetMap))
+        Chart.Point([1,2; 2,3], UseDefaults = false)
+        Chart.PointTernary([1,2,3; 2,3,4], UseDefaults = false)
+        Chart.Heatmap([[1; 2];[3; 4]], Showscale=false, UseDefaults = false)
+        Chart.Point3d([1,3,2], UseDefaults = false)
+        Chart.PointMapbox([1,2], UseDefaults = false) |> Chart.withMapbox(Mapbox.init(Style = StyleParam.MapboxStyle.OpenStreetMap))
         [
             // you can use nested combined charts, but they have to have the same trace type (Cartesian2D in this case)
             let y =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
-            Chart.BoxPlot("y" ,y,Name="bin1",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All);
-            Chart.BoxPlot("y'",y,Name="bin2",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All);
+            Chart.BoxPlot("y" ,y,Name="bin1",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All, UseDefaults = false);
+            Chart.BoxPlot("y'",y,Name="bin2",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All, UseDefaults = false);
         ]
         |> Chart.combine
     ]
@@ -243,7 +243,7 @@ let shapesChart =
     let y' = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     let s1 = Shape.init (StyleParam.ShapeType.Rectangle,2.,4.,3.,4.,Opacity=0.3,Fillcolor=Color.fromHex "#d3d3d3")
     let s2 = Shape.init (StyleParam.ShapeType.Rectangle,5.,7.,3.,4.,Opacity=0.3,Fillcolor=Color.fromHex "#d3d3d3")
-    Chart.Line(x,y',Name="line")    
+    Chart.Line(x,y',Name="line", UseDefaults = false)    
     |> Chart.withShapes([s1;s2])
 
 
@@ -264,7 +264,7 @@ let displayOptionsChartDescriptionChart =
     let x = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
     let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     let description1 = ChartDescription.create "Hello" "F#"
-    Chart.Point(x,y,Name="desc1")    
+    Chart.Point(x,y,Name="desc1", UseDefaults = false)    
     |> Chart.withDescription(description1)
 
 let additionalHeadTagsChart =
@@ -287,15 +287,15 @@ let additionalHeadTagsChart =
       ChartDescription.create 
           """<h1 class="title">I am heading</h1>""" 
          bulmaHero
-    Chart.Point(x,y,Name="desc3")    
+    Chart.Point(x,y,Name="desc3", UseDefaults = false)    
     |> Chart.withDescription description3
     // Add reference to the bulma css framework
     |> Chart.withAdditionalHeadTags ["""<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">"""]
 
 let mathtexChart =
     [
-        Chart.Point([(1.,2.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$")
-        Chart.Point([(2.,4.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$")
+        Chart.Point([(1.,2.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$", UseDefaults = false)
+        Chart.Point([(2.,4.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$", UseDefaults = false)
     ]
     |> Chart.combine
     |> Chart.withTitle @"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$"

@@ -91,7 +91,7 @@ type TraceGeoStyle() =
 
     static member ScatterGeo 
         (
-            mode       : StyleParam.Mode,
+            [<Optional;DefaultParameterValue(null)>] ?Mode       : StyleParam.Mode,
             [<Optional;DefaultParameterValue(null)>] ?Longitudes : #IConvertible seq,
             [<Optional;DefaultParameterValue(null)>] ?Latitudes  : #IConvertible seq,
             [<Optional;DefaultParameterValue(null)>] ?Locations  : seq<string>,
@@ -99,11 +99,12 @@ type TraceGeoStyle() =
             [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey:string,
             [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool,
             [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill,
-            [<Optional;DefaultParameterValue(null)>] ?Fillcolor   : Color
+            [<Optional;DefaultParameterValue(null)>] ?Fillcolor   : Color,
+            [<Optional;DefaultParameterValue(null)>] ?Marker     : Marker
         ) =
             (fun (trace: #Trace) -> 
             
-                mode        |> StyleParam.Mode.convert |> DynObj.setValue trace "mode"
+                Mode        |> DynObj.setValueOptBy trace "mode" StyleParam.Mode.convert 
                 Longitudes  |> DynObj.setValueOpt   trace "lon"
                 Latitudes   |> DynObj.setValueOpt   trace "lat"
                 Locations   |> DynObj.setValueOpt   trace "locations"
@@ -112,6 +113,7 @@ type TraceGeoStyle() =
                 Connectgaps |> DynObj.setValueOpt   trace "connectgaps"
                 Fill        |> DynObj.setValueOptBy trace "fill" StyleParam.Fill.convert
                 Fillcolor   |> DynObj.setValueOpt   trace "fillcolor"
+                Marker      |> DynObj.setValueOpt   trace "marker"
 
                 trace
 

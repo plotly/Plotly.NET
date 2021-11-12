@@ -34,7 +34,7 @@ namespace Plotly.NET.Tests.CSharp
             trace.SetValue("name", "Hello from C#");
 
             GenericChart
-                .ofTraceObject(trace)
+                .ofTraceObject(true,trace)
                 .WithLayout(layout)
                 .Show();
         }

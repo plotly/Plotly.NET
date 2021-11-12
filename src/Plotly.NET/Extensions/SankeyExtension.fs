@@ -191,22 +191,25 @@ module SankeyExtension =
                 [<Optional;DefaultParameterValue(null)>] ?nodeLineWidth:float,
                 [<Optional;DefaultParameterValue(null)>] ?linkColor:obj, 
                 [<Optional;DefaultParameterValue(null)>] ?linkLineColor: obj,
-                [<Optional;DefaultParameterValue(null)>] ?linkLineWidth:float
-            ) =
-            TraceDomain.initSankey(TraceDomainStyle.Sankey
-                (
-                    nodes, 
-                    links, 
-                    ?nodePadding=nodePadding,
-                    ?nodeThickness=nodeThickness,
-                    ?nodeColor=nodeColor,
-                    ?nodeLineColor=nodeLineColor,
-                    ?nodeLineWidth=nodeLineWidth,
-                    ?linkColor=linkColor,
-                    ?linkLineColor=linkLineColor,
-                    ?linkLineWidth=linkLineWidth
-                ))
-            |> GenericChart.ofTraceObject
+                [<Optional;DefaultParameterValue(null)>] ?linkLineWidth:float,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
+                TraceDomain.initSankey(TraceDomainStyle.Sankey
+                    (
+                        nodes, 
+                        links, 
+                        ?nodePadding=nodePadding,
+                        ?nodeThickness=nodeThickness,
+                        ?nodeColor=nodeColor,
+                        ?nodeLineColor=nodeLineColor,
+                        ?nodeLineWidth=nodeLineWidth,
+                        ?linkColor=linkColor,
+                        ?linkLineColor=linkLineColor,
+                        ?linkLineWidth=linkLineWidth
+                    ))
+                |> GenericChart.ofTraceObject useDefaults
    
 
     (*

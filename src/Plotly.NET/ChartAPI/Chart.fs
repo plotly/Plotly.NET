@@ -59,7 +59,7 @@ type Chart =
         
         let trace = Trace2D.initScatter(id)
         trace.Remove("type") |> ignore
-        GenericChart.ofTraceObject trace
+        GenericChart.ofTraceObject false trace
         |> GenericChart.mapLayout ( fun l ->
             l
             |> Layout.AddLinearAxis(StyleParam.SubPlotId.XAxis 1,hiddenAxis())
@@ -976,10 +976,9 @@ type Chart =
     static member withTemplate(template: Template) =
         (fun (ch:GenericChart) ->
             ch
-            |> GenericChart.mapLayout (fun l ->
-                template |> DynObj.setValue l "template"
-                l
-                )
+            |> GenericChart.mapLayout (
+                Layout.style(Template = (template :> DynamicObj))
+            )
         )
 
     // TODO: Include withLegend & withLegendStyle

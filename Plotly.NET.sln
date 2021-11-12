@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29709.97
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "project", "project", "{BF60BC93-E09B-4E5F-9D85-95A519479D54}"
 	ProjectSection(SolutionItems) = preProject
@@ -44,6 +44,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{7B09CC0A-F
 		docs\00_1_image-export.fsx = docs\00_1_image-export.fsx
 		docs\00_2_display-options.fsx = docs\00_2_display-options.fsx
 		docs\00_3_chart-config.fsx = docs\00_3_chart-config.fsx
+		docs\00_4_templates.fsx = docs\00_4_templates.fsx
+		docs\00_5_defaults.fsx = docs\00_5_defaults.fsx
 		docs\01_0_axis-styling.fsx = docs\01_0_axis-styling.fsx
 		docs\01_1_errorbars.fsx = docs\01_1_errorbars.fsx
 		docs\01_2_multiple-charts.fsx = docs\01_2_multiple-charts.fsx

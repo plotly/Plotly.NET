@@ -86,7 +86,7 @@ let parcoords =
     dyn?line <- Line.init(Color=Color.fromString "blue")
 
     dyn
-    |> GenericChart.ofTraceObject
+    |> GenericChart.ofTraceObject true
 
 (*** condition: ipynb ***)
 #if IPYNB

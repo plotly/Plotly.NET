@@ -87,6 +87,8 @@ type LinearAxis () =
     /// <param name="RangeSlider">Sets a range slider for this axis</param>
     /// <param name="RangeSelector">Sets a range selector for this axis. This object contains toggable presets for the rangeslider.</param>
     /// <param name="Calendar">Sets the calendar system to use for `range` and `tick0` if this is a date axis. This does not set the calendar for interpreting data on this axis, that's specified in the trace or via the global `layout.calendar`</param>
+    /// <param name="BackgroundColor">Sets the background color of this axis' wall. (Only has an effect on 3D scenes)</param>
+    /// <param name="ShowBackground">Sets whether or not this axis' wall has a background color. (Only has an effect on 3D scenes)</param>
     static member init
         (
             [<Optional;DefaultParameterValue(null)>] ?Visible            : bool,
@@ -163,7 +165,9 @@ type LinearAxis () =
             [<Optional;DefaultParameterValue(null)>] ?UIRevision         : #IConvertible,
             [<Optional;DefaultParameterValue(null)>] ?RangeSlider        : RangeSlider,
             [<Optional;DefaultParameterValue(null)>] ?RangeSelector      : RangeSelector,
-            [<Optional;DefaultParameterValue(null)>] ?Calendar           : StyleParam.Calendar
+            [<Optional;DefaultParameterValue(null)>] ?Calendar           : StyleParam.Calendar,
+            [<Optional;DefaultParameterValue(null)>] ?BackgroundColor    : Color,
+            [<Optional;DefaultParameterValue(null)>] ?ShowBackground     : bool
 
         ) =
             LinearAxis() 
@@ -243,7 +247,9 @@ type LinearAxis () =
                     ?UIRevision         = UIRevision         ,
                     ?RangeSlider        = RangeSlider        ,
                     ?RangeSelector      = RangeSelector      ,
-                    ?Calendar           = Calendar           
+                    ?Calendar           = Calendar           ,
+                    ?BackgroundColor    = BackgroundColor    ,
+                    ?ShowBackground     = ShowBackground     
                 )
 
     /// <summary>
@@ -923,7 +929,10 @@ type LinearAxis () =
             [<Optional;DefaultParameterValue(null)>] ?Smoothing         : float,
             [<Optional;DefaultParameterValue(null)>] ?StartLine         : bool,
             [<Optional;DefaultParameterValue(null)>] ?StartLineColor    : Color,
-            [<Optional;DefaultParameterValue(null)>] ?StartLineWidth    : int
+            [<Optional;DefaultParameterValue(null)>] ?StartLineWidth    : int,
+            //exclusive for 3D scenes
+            [<Optional;DefaultParameterValue(null)>] ?BackgroundColor    : Color,
+            [<Optional;DefaultParameterValue(null)>] ?ShowBackground     : bool
 
         ) =
             (fun (axis:LinearAxis) -> 
@@ -1019,6 +1028,9 @@ type LinearAxis () =
                 StartLine           |> DynObj.setValueOpt axis   "startline" 
                 StartLineColor      |> DynObj.setValueOpt axis   "startlinecolor" 
                 StartLineWidth      |> DynObj.setValueOpt axis   "startlinewidth" 
+                BackgroundColor     |> DynObj.setValueOpt axis   "backgroundcolor"
+                ShowBackground      |> DynObj.setValueOpt axis   "showbackground"
+
 
                 axis
             )

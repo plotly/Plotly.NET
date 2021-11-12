@@ -33,14 +33,18 @@ module Chart3D =
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont,
                 [<Optional;DefaultParameterValue(null)>] ?Dash,
-                [<Optional;DefaultParameterValue(null)>] ?Width
+                [<Optional;DefaultParameterValue(null)>] ?Width,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
+
+                let useDefaults = defaultArg UseDefaults true
+                
                 Trace3D.initScatter3d (Trace3DStyle.Scatter3d(X = x,Y = y,Z=z, Mode=mode) )              
                 |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
                 |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
                 |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
                 |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-                |> GenericChart.ofTraceObject 
+                |> GenericChart.ofTraceObject useDefaults
       
 
         /// Uses points, line or both depending on the mode to represent 3d-data points
@@ -55,9 +59,13 @@ module Chart3D =
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont,
                 [<Optional;DefaultParameterValue(null)>] ?Dash,
-                [<Optional;DefaultParameterValue(null)>] ?Width) = 
-            let x,y,z = Seq.unzip3 xyz
-            Chart.Scatter3d(x, y, z, mode, ?Name=Name,?ShowLegend=ShowLegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width) 
+                [<Optional;DefaultParameterValue(null)>] ?Width,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
+                let x,y,z = Seq.unzip3 xyz
+                Chart.Scatter3d(x, y, z, mode, ?Name=Name,?ShowLegend=ShowLegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width, ?UseDefaults=UseDefaults) 
 
         ///
         [<Extension>]
@@ -71,8 +79,10 @@ module Chart3D =
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
                 [<Optional;DefaultParameterValue(null)>] ?Labels,
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?TextFont,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
                 // if text position or font is set, then show labels (not only when hovering)
                 let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
 
@@ -88,7 +98,8 @@ module Chart3D =
                     ?Opacity        = Opacity,
                     ?Labels         = Labels,
                     ?TextPosition   = TextPosition,
-                    ?TextFont       = TextFont
+                    ?TextFont       = TextFont,
+                    ?UseDefaults    = UseDefaults
                 )
         
         ///
@@ -103,8 +114,10 @@ module Chart3D =
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
                 [<Optional;DefaultParameterValue(null)>] ?Labels,
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?TextFont,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
                 let x, y, z = Seq.unzip3 xyz
 
                 Chart.Point3d(
@@ -116,7 +129,8 @@ module Chart3D =
                     ?Opacity        = Opacity,
                     ?Labels         = Labels,
                     ?TextPosition   = TextPosition,
-                    ?TextFont       = TextFont
+                    ?TextFont       = TextFont,
+                    ?UseDefaults    = UseDefaults
                 )
 
 
@@ -135,7 +149,8 @@ module Chart3D =
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont,
                 [<Optional;DefaultParameterValue(null)>] ?Dash,
-                [<Optional;DefaultParameterValue(null)>] ?Width
+                [<Optional;DefaultParameterValue(null)>] ?Width,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
                 let changeMode = 
                     let isShowMarker =
@@ -159,7 +174,8 @@ module Chart3D =
                     ?TextPosition   = TextPosition,
                     ?TextFont       = TextFont    ,
                     ?Dash           = Dash        ,
-                    ?Width          = Width       
+                    ?Width          = Width       ,
+                    ?UseDefaults    = UseDefaults
                 )
         
         /// Uses points, line or both depending on the mode to represent 3d-data points
@@ -177,8 +193,10 @@ module Chart3D =
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont,
                 [<Optional;DefaultParameterValue(null)>] ?Dash,
-                [<Optional;DefaultParameterValue(null)>] ?Width
+                [<Optional;DefaultParameterValue(null)>] ?Width,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
+
                 let x, y, z = Seq.unzip3 xyz
 
                 Chart.Line3d(
@@ -193,7 +211,8 @@ module Chart3D =
                     ?TextPosition   = TextPosition,
                     ?TextFont       = TextFont    ,
                     ?Dash           = Dash        ,
-                    ?Width          = Width       
+                    ?Width          = Width       ,
+                    ?UseDefaults    = UseDefaults
                 )
 
         ///
@@ -208,8 +227,11 @@ module Chart3D =
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
                 [<Optional;DefaultParameterValue(null)>] ?Labels,
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?TextFont,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
                 let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
         
                 Trace3D.initScatter3d (
@@ -223,7 +245,7 @@ module Chart3D =
                 |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
                 |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol, MultiSize=sizes)
                 |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
     
         ///
         [<Extension>]
@@ -237,8 +259,10 @@ module Chart3D =
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
                 [<Optional;DefaultParameterValue(null)>] ?Labels,
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?TextFont,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
                 let x, y, z = Seq.unzip3 xyz
 
                 Chart.Bubble3d(
@@ -250,7 +274,8 @@ module Chart3D =
                     ?Opacity        = Opacity,
                     ?Labels         = Labels,
                     ?TextPosition   = TextPosition,
-                    ?TextFont       = TextFont
+                    ?TextFont       = TextFont,
+                    ?UseDefaults    = UseDefaults
                 )
 
 
@@ -267,21 +292,25 @@ module Chart3D =
                 [<Optional;DefaultParameterValue(null)>] ?Contours,
                 [<Optional;DefaultParameterValue(null)>] ?ColorScale,
                 [<Optional;DefaultParameterValue(null)>] ?ShowScale,
-                [<Optional;DefaultParameterValue(null)>] ?ColorBar
+                [<Optional;DefaultParameterValue(null)>] ?ColorBar,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
-            Trace3D.initSurface (
-                Trace3DStyle.Surface(
-                    ?X=X, 
-                    ?Y=Y,
-                    Z=zData,
-                    ?Contours=Contours,
-                    ?ColorScale=ColorScale,
-                    ?ShowScale=ShowScale,
-                    ?ColorBar=ColorBar 
-                )
-            )              
-            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
-            |> GenericChart.ofTraceObject 
+
+                let useDefaults = defaultArg UseDefaults true
+
+                Trace3D.initSurface (
+                    Trace3DStyle.Surface(
+                        ?X=X, 
+                        ?Y=Y,
+                        Z=zData,
+                        ?Contours=Contours,
+                        ?ColorScale=ColorScale,
+                        ?ShowScale=ShowScale,
+                        ?ColorBar=ColorBar 
+                    )
+                )              
+                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
+                |> GenericChart.ofTraceObject useDefaults
 
 
         /// Uses points, line or both depending on the mode to represent 3d-data points
@@ -296,24 +325,32 @@ module Chart3D =
                 [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
-                [<Optional;DefaultParameterValue(null)>] ?Contours,
+                [<Optional;DefaultParameterValue(null)>] ?Contour,
                 [<Optional;DefaultParameterValue(null)>] ?ColorScale,
                 [<Optional;DefaultParameterValue(null)>] ?ShowScale,
-                [<Optional;DefaultParameterValue(null)>] ?ColorBar
+                [<Optional;DefaultParameterValue(null)>] ?ColorBar,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
-            Trace3D.initMesh3d (
-                Trace3DStyle.Mesh3d(
-                    X   = x,
-                    Y   = y,
-                    Z   = z,
-                    ?I  = I,
-                    ?J  = J,
-                    ?K  = K,
-                    ?Color = Color
-                ) 
-            )              
-            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
-            |> GenericChart.ofTraceObject 
+
+                let useDefaults = defaultArg UseDefaults true
+
+                Trace3D.initMesh3d (
+                    Trace3DStyle.Mesh3d(
+                        X   = x,
+                        Y   = y,
+                        Z   = z,
+                        ?I  = I,
+                        ?J  = J,
+                        ?K  = K,
+                        ?Color = Color,
+                        ?Contour = Contour,
+                        ?ColorScale  = ColorScale,
+                        ?ShowScale   = ShowScale,
+                        ?ColorBar    = ColorBar
+                    ) 
+                )              
+                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
+                |> GenericChart.ofTraceObject useDefaults
 
         [<Extension>]
         static member Cone 
@@ -324,8 +361,11 @@ module Chart3D =
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
                 [<Optional;DefaultParameterValue(null)>] ?ColorScale,
                 [<Optional;DefaultParameterValue(null)>] ?ShowScale,
-                [<Optional;DefaultParameterValue(null)>] ?ColorBar
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?ColorBar,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
 
                 Trace3D.initCone(
                     Trace3DStyle.Cone(
@@ -344,7 +384,7 @@ module Chart3D =
                     )
                 )
                 |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
-                |> GenericChart.ofTraceObject 
+                |> GenericChart.ofTraceObject useDefaults
 
         [<Extension>]
         static member Cone 
@@ -355,8 +395,11 @@ module Chart3D =
                 [<Optional;DefaultParameterValue(null)>] ?Opacity,
                 [<Optional;DefaultParameterValue(null)>] ?ColorScale,
                 [<Optional;DefaultParameterValue(null)>] ?ShowScale,
-                [<Optional;DefaultParameterValue(null)>] ?ColorBar
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?ColorBar,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
                 let x, y, z = Seq.unzip3 coneXYZ
                 let u, v, w = Seq.unzip3 coneUVW
 
@@ -367,7 +410,8 @@ module Chart3D =
                     ?Opacity    = Opacity       ,
                     ?ColorScale = ColorScale    ,
                     ?ShowScale  = ShowScale     ,
-                    ?ColorBar   = ColorBar
+                    ?ColorBar   = ColorBar      ,
+                    ?UseDefaults= UseDefaults
                 )
 
 
@@ -382,9 +426,11 @@ module Chart3D =
                 [<Optional;DefaultParameterValue(null)>] ?ShowScale,
                 [<Optional;DefaultParameterValue(null)>] ?ColorBar,
                 [<Optional;DefaultParameterValue(null)>] ?MaxDisplayed: int,
-                [<Optional;DefaultParameterValue(null)>] ?Starts: StreamTubeStarts
+                [<Optional;DefaultParameterValue(null)>] ?Starts: StreamTubeStarts,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
 
-            ) =
+                let useDefaults = defaultArg UseDefaults true
 
                 Trace3D.initStreamTube(
                     Trace3DStyle.StreamTube(
@@ -405,7 +451,7 @@ module Chart3D =
                     )
                 )
                 |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
-                |> GenericChart.ofTraceObject 
+                |> GenericChart.ofTraceObject useDefaults
 
 
         [<Extension>]
@@ -419,8 +465,11 @@ module Chart3D =
                 [<Optional;DefaultParameterValue(null)>] ?ShowScale,
                 [<Optional;DefaultParameterValue(null)>] ?ColorBar,
                 [<Optional;DefaultParameterValue(null)>] ?MaxDisplayed: int,
-                [<Optional;DefaultParameterValue(null)>] ?Starts: StreamTubeStarts
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?Starts: StreamTubeStarts,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
                 let x, y, z = Seq.unzip3 streamTubeXYZ
                 let u, v, w = Seq.unzip3 streamTubeUVW
 
@@ -433,7 +482,8 @@ module Chart3D =
                     ?ShowScale      = ShowScale     ,
                     ?ColorBar       = ColorBar      ,
                     ?MaxDisplayed   = MaxDisplayed  ,
-                    ?Starts         = Starts
+                    ?Starts         = Starts        ,
+                    ?UseDefaults    = UseDefaults
                 )
         
         
@@ -451,8 +501,11 @@ module Chart3D =
                 [<Optional;DefaultParameterValue(null)>] ?IsoMax,
                 [<Optional;DefaultParameterValue(null)>] ?Caps : Caps,
                 [<Optional;DefaultParameterValue(null)>] ?Slices : Slices,
-                [<Optional;DefaultParameterValue(null)>] ?Surface : Surface
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?Surface : Surface,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
                 Trace3D.initVolume(
                     Trace3DStyle.Volume(
                         X = x,
@@ -473,7 +526,7 @@ module Chart3D =
                     )
                 )
                 |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
-                |> GenericChart.ofTraceObject 
+                |> GenericChart.ofTraceObject useDefaults
 
                 
         [<Extension>]
@@ -490,8 +543,11 @@ module Chart3D =
                 [<Optional;DefaultParameterValue(null)>] ?IsoMax,
                 [<Optional;DefaultParameterValue(null)>] ?Caps : Caps,
                 [<Optional;DefaultParameterValue(null)>] ?Slices : Slices,
-                [<Optional;DefaultParameterValue(null)>] ?Surface : Surface
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?Surface : Surface,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
                 Trace3D.initIsoSurface(
                     Trace3DStyle.IsoSurface(
                         X = x,
@@ -512,5 +568,5 @@ module Chart3D =
                     )
                 )
                 |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
-                |> GenericChart.ofTraceObject 
+                |> GenericChart.ofTraceObject useDefaults
         

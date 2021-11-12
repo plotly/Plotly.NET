@@ -277,7 +277,7 @@ let trace =
     tmp?name <- "Hello from F#"
     tmp
 
-GenericChart.ofTraceObject(trace)
+GenericChart.ofTraceObject true trace
 |> GenericChart.setLayout layout
 
 (**

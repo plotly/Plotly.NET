@@ -11,7 +11,7 @@ open TestUtils.HtmlCodegen
 let simpleChart =
     let xData = [0. .. 10.]
     let yData = [0. .. 10.]
-    Chart.Point(xData, yData)
+    Chart.Point(xData, yData, UseDefaults = false)
     |> Chart.withTitle "Hello world!"
     |> Chart.withXAxisStyle ("xAxis", ShowGrid=false)
     |> Chart.withYAxisStyle ("yAxis", ShowGrid=false)

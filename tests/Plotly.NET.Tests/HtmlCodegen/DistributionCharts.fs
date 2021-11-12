@@ -12,8 +12,7 @@ open TestUtils.HtmlCodegen
 let histoChart =
     let rnd = System.Random(5)
     let x = [for i=0 to 500 do yield rnd.NextDouble() ]
-    x
-    |> Chart.Histogram
+    Chart.Histogram(x, UseDefaults = false)
     |> Chart.withSize(500, 500)
 
 [<Tests>]
@@ -36,19 +35,19 @@ let ``Histogram charts`` =
 let box1Chart =
     let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     let x = ["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"bin1"]
-    Chart.BoxPlot(x,y,Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All)
+    Chart.BoxPlot(x,y,Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All, UseDefaults = false)
 
 let box2Chart =
     let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     let x = ["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"bin1"]
-    Chart.BoxPlot(y,x,Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All,Orientation=StyleParam.Orientation.Horizontal)
+    Chart.BoxPlot(y,x,Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All,Orientation=StyleParam.Orientation.Horizontal, UseDefaults = false)
 
 let box3Chart =
     let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     let y' =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     [
-        Chart.BoxPlot("y" ,y,Name="bin1",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All);
-        Chart.BoxPlot("y'",y',Name="bin2",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All);
+        Chart.BoxPlot("y" ,y,Name="bin1",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All, UseDefaults = false);
+        Chart.BoxPlot("y'",y',Name="bin2",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All, UseDefaults = false);
     ]
     |> Chart.combine
 
@@ -84,7 +83,8 @@ let violin1Chart =
     let x = ["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"bin1"]
     Chart.Violin (
         x,y,
-        Points=StyleParam.JitterPoints.All
+        Points=StyleParam.JitterPoints.All, 
+        UseDefaults = false
     )
 
 let violin2Chart =
@@ -95,15 +95,16 @@ let violin2Chart =
         Jitter=0.1,
         Points=StyleParam.JitterPoints.All,
         Orientation=StyleParam.Orientation.Horizontal,
-        MeanLine=MeanLine.init(Visible=true)
+        MeanLine=MeanLine.init(Visible=true), 
+        UseDefaults = false
     )
 
 let violin3Chart =
     let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     let y' =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     [
-        Chart.Violin ("y" ,y,Name="bin1",Jitter=0.1,Points=StyleParam.JitterPoints.All);
-        Chart.Violin ("y'",y',Name="bin2",Jitter=0.1,Points=StyleParam.JitterPoints.All);
+        Chart.Violin ("y" ,y,Name="bin1",Jitter=0.1,Points=StyleParam.JitterPoints.All, UseDefaults = false);
+        Chart.Violin ("y'",y',Name="bin2",Jitter=0.1,Points=StyleParam.JitterPoints.All, UseDefaults = false);
     ]
     |> Chart.combine
 
@@ -154,8 +155,7 @@ let contourChart =
             )
         )
 
-    z
-    |> Chart.Contour
+    Chart.Contour(z, UseDefaults = false)
     |> Chart.withSize(600.,600.)
 
 [<Tests>]
@@ -193,8 +193,8 @@ let histogramContourChart =
     let x = Array.init n (fun i -> ((step i)**3.) + (0.3 * (normal (rnd) 0. 2.) ))
     let y = Array.init n (fun i -> ((step i)**6.) + (0.3 * (normal (rnd) 0. 2.) ))
     [
-        Chart.Histogram2DContour (x,y,Line=Line.init(Width=0.))
-        Chart.Point(x,y,Opacity=0.3)
+        Chart.Histogram2DContour (x,y,Line=Line.init(Width=0.), UseDefaults = false)
+        Chart.Point(x,y,Opacity=0.3, UseDefaults = false)
     ]
     |> Chart.combine
 
@@ -220,7 +220,7 @@ let histogram2DChart =
     //---------------------- generate data distributed in x and y direction ---------------------- 
     let x = Array.init n (fun i -> ((step i)**3.) + (0.3 * (normal (rnd) 0. 2.) ))
     let y = Array.init n (fun i -> ((step i)**6.) + (0.3 * (normal (rnd) 0. 2.) ))
-    Chart.Histogram2D (x,y)
+    Chart.Histogram2D (x,y, UseDefaults = false)
 
 [<Tests>]
 let ``Histogram 2D charts`` =
@@ -250,7 +250,7 @@ let scatterplotMatrixChart =
             "C",[|2.;4.;3.1;5.|]
             "D",[|4.;2.;2.;4.;|]
         ]
-    Chart.Splom(data, Color=Color.fromString "blue")
+    Chart.Splom(data, Color=Color.fromString "blue", UseDefaults = false)
 
 [<Tests>]
 let ``Scatterplot matrix charts`` =

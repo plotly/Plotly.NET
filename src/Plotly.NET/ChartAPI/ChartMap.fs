@@ -20,7 +20,9 @@ module ChartMap =
 
         /// Computes the choropleth map plot
         [<Extension>]
-        static member ChoroplethMap(locations,z,
+        static member ChoroplethMap
+            (
+                locations,z,
                 [<Optional;DefaultParameterValue(null)>] ?Text,
                 [<Optional;DefaultParameterValue(null)>] ?Locationmode,
                 [<Optional;DefaultParameterValue(null)>] ?Autocolorscale,
@@ -30,25 +32,29 @@ module ChartMap =
                 [<Optional;DefaultParameterValue(null)>] ?GeoJson,
                 [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey: string,
                 [<Optional;DefaultParameterValue(null)>] ?Zmin,
-                [<Optional;DefaultParameterValue(null)>] ?Zmax) =
+                [<Optional;DefaultParameterValue(null)>] ?Zmax,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
 
-            TraceGeo.initChoroplethMap (
-                TraceGeoStyle.ChoroplethMap(
-                    Locations=locations,
-                    Z=z,
-                    ?Text=Text,
-                    ?Locationmode=Locationmode,
-                    ?Autocolorscale=Autocolorscale,
-                    ?Colorscale=Colorscale,
-                    ?ColorBar=ColorBar,
-                    ?Marker=Marker,
-                    ?Zmin=Zmin,
-                    ?Zmax=Zmax,
-                    ?GeoJson=GeoJson,
-                    ?FeatureIdKey=FeatureIdKey
-                )              
-            )
-            |> GenericChart.ofTraceObject        
+                let useDefaults = defaultArg UseDefaults true
+
+                TraceGeo.initChoroplethMap (
+                    TraceGeoStyle.ChoroplethMap(
+                        Locations=locations,
+                        Z=z,
+                        ?Text=Text,
+                        ?Locationmode=Locationmode,
+                        ?Autocolorscale=Autocolorscale,
+                        ?Colorscale=Colorscale,
+                        ?ColorBar=ColorBar,
+                        ?Marker=Marker,
+                        ?Zmin=Zmin,
+                        ?Zmax=Zmax,
+                        ?GeoJson=GeoJson,
+                        ?FeatureIdKey=FeatureIdKey
+                    )              
+                )
+                |> GenericChart.ofTraceObject useDefaults
 
 
         /// Creates a ScatterGeo chart, where data is visualized on a geographic map.
@@ -88,7 +94,9 @@ module ChartMap =
         ///
         /// Fillcolor   : Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
         [<Extension>]
-        static member ScatterGeo(longitudes, latitudes, mode,
+        static member ScatterGeo
+            (
+                longitudes, latitudes, mode,
                 [<Optional;DefaultParameterValue(null)>] ?Name                          ,
                 [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
                 [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol                  ,
@@ -103,26 +111,29 @@ module ChartMap =
                 [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey: string          ,
                 [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
                 [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
-                [<Optional;DefaultParameterValue(null)>] ?Fillcolor   
+                [<Optional;DefaultParameterValue(null)>] ?Fillcolor,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
 
-            TraceGeo.initScatterGeo(
-                TraceGeoStyle.ScatterGeo(
-                    mode            = mode          ,
-                    Longitudes      = longitudes    ,
-                    Latitudes       = latitudes     ,
-                    ?GeoJson        = GeoJson      ,
-                    ?FeatureIdKey   = FeatureIdKey ,
-                    ?Connectgaps    = Connectgaps  ,
-                    ?Fill           = Fill         ,
-                    ?Fillcolor      = Fillcolor    
-                )               
-            )
-            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
-            |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
-            |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
-            |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-            |> GenericChart.ofTraceObject
+                let useDefaults = defaultArg UseDefaults true
+
+                TraceGeo.initScatterGeo(
+                    TraceGeoStyle.ScatterGeo(
+                        Mode            = mode          ,
+                        Longitudes      = longitudes    ,
+                        Latitudes       = latitudes     ,
+                        ?GeoJson        = GeoJson      ,
+                        ?FeatureIdKey   = FeatureIdKey ,
+                        ?Connectgaps    = Connectgaps  ,
+                        ?Fill           = Fill         ,
+                        ?Fillcolor      = Fillcolor    
+                    )               
+                )
+                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
+                |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
+                |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
+                |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+                |> GenericChart.ofTraceObject useDefaults
 
 
         /// Creates a ScatterGeo chart, where data is visualized on a geographic map.
@@ -177,27 +188,30 @@ module ChartMap =
                 [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey: string          ,
                 [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
                 [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
-                [<Optional;DefaultParameterValue(null)>] ?Fillcolor   
+                [<Optional;DefaultParameterValue(null)>] ?Fillcolor,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
-            let longitudes, latitudes = Seq.unzip lonlat
 
-            TraceGeo.initScatterGeo(
-                TraceGeoStyle.ScatterGeo(
-                    mode            = mode          ,
-                    Longitudes      = longitudes    ,
-                    Latitudes       = latitudes     ,
-                    ?GeoJson        = GeoJson      ,
-                    ?FeatureIdKey   = FeatureIdKey ,
-                    ?Connectgaps    = Connectgaps  ,
-                    ?Fill           = Fill         ,
-                    ?Fillcolor      = Fillcolor    
-                )               
-            )
-            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
-            |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
-            |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
-            |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-            |> GenericChart.ofTraceObject
+                let useDefaults = defaultArg UseDefaults true
+                let longitudes, latitudes = Seq.unzip lonlat
+
+                TraceGeo.initScatterGeo(
+                    TraceGeoStyle.ScatterGeo(
+                        Mode            = mode          ,
+                        Longitudes      = longitudes    ,
+                        Latitudes       = latitudes     ,
+                        ?GeoJson        = GeoJson      ,
+                        ?FeatureIdKey   = FeatureIdKey ,
+                        ?Connectgaps    = Connectgaps  ,
+                        ?Fill           = Fill         ,
+                        ?Fillcolor      = Fillcolor    
+                    )               
+                )
+                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
+                |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
+                |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
+                |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+                |> GenericChart.ofTraceObject useDefaults
 
         /// Creates a ScatterGeo chart, where data is visualized on a geographic map.
         /// ScatterGeo charts are the basis of GeoPoint, GeoLine, and GeoBubble Charts, and can be customized as such. We also provide abstractions for those: Chart.GeoPoint, Chart.GeoLine, Chart.GeoBubble
@@ -251,25 +265,28 @@ module ChartMap =
                 [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey: string          ,
                 [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
                 [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
-                [<Optional;DefaultParameterValue(null)>] ?Fillcolor   
+                [<Optional;DefaultParameterValue(null)>] ?Fillcolor   ,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
 
-            TraceGeo.initScatterGeo(
-                TraceGeoStyle.ScatterGeo(
-                    mode            = mode          ,
-                    ?Locations      = locations     ,
-                    ?GeoJson        = GeoJson       ,
-                    ?FeatureIdKey   = FeatureIdKey ,
-                    ?Connectgaps    = Connectgaps   ,
-                    ?Fill           = Fill          ,
-                    ?Fillcolor      = Fillcolor    
-                )               
-            )
-            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
-            |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
-            |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
-            |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-            |> GenericChart.ofTraceObject
+                let useDefaults = defaultArg UseDefaults true
+
+                TraceGeo.initScatterGeo(
+                    TraceGeoStyle.ScatterGeo(
+                        Mode            = mode          ,
+                        ?Locations      = locations     ,
+                        ?GeoJson        = GeoJson       ,
+                        ?FeatureIdKey   = FeatureIdKey ,
+                        ?Connectgaps    = Connectgaps   ,
+                        ?Fill           = Fill          ,
+                        ?Fillcolor      = Fillcolor    
+                    )               
+                )
+                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
+                |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
+                |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
+                |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+                |> GenericChart.ofTraceObject useDefaults
 
         /// Creates a PointGeo chart, where data is visualized as points on a geographic map.
         ///
@@ -316,27 +333,30 @@ module ChartMap =
                 [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey: string          ,
                 [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
                 [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
-                [<Optional;DefaultParameterValue(null)>] ?Fillcolor   
+                [<Optional;DefaultParameterValue(null)>] ?Fillcolor   ,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
 
-            let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
+                let useDefaults = defaultArg UseDefaults true
 
-            TraceGeo.initScatterGeo(
-                TraceGeoStyle.ScatterGeo(
-                    mode            = changeMode StyleParam.Mode.Markers ,
-                    Longitudes      = longitudes    ,
-                    Latitudes       = latitudes     ,
-                    ?GeoJson        = GeoJson      ,
-                    ?FeatureIdKey   = FeatureIdKey ,
-                    ?Connectgaps    = Connectgaps  ,
-                    ?Fill           = Fill         ,
-                    ?Fillcolor      = Fillcolor    
-                )               
-            )
-            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
-            |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
-            |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-            |> GenericChart.ofTraceObject
+                let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
+
+                TraceGeo.initScatterGeo(
+                    TraceGeoStyle.ScatterGeo(
+                        Mode            = changeMode StyleParam.Mode.Markers ,
+                        Longitudes      = longitudes    ,
+                        Latitudes       = latitudes     ,
+                        ?GeoJson        = GeoJson      ,
+                        ?FeatureIdKey   = FeatureIdKey ,
+                        ?Connectgaps    = Connectgaps  ,
+                        ?Fill           = Fill         ,
+                        ?Fillcolor      = Fillcolor    
+                    )               
+                )
+                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
+                |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
+                |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+                |> GenericChart.ofTraceObject useDefaults
 
         /// Creates a PointGeo chart, where data is visualized as points on a geographic map.
         ///
@@ -381,28 +401,31 @@ module ChartMap =
                 [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey: string          ,
                 [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
                 [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
-                [<Optional;DefaultParameterValue(null)>] ?Fillcolor    
+                [<Optional;DefaultParameterValue(null)>] ?Fillcolor,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
 
-            let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
-            let longitudes, latitudes = Seq.unzip lonlat
+                let useDefaults = defaultArg UseDefaults true
 
-            TraceGeo.initScatterGeo(
-                TraceGeoStyle.ScatterGeo(
-                    mode            = changeMode StyleParam.Mode.Markers ,
-                    Longitudes      = longitudes    ,
-                    Latitudes       = latitudes     ,
-                    ?GeoJson        = GeoJson      ,
-                    ?FeatureIdKey   = FeatureIdKey ,
-                    ?Connectgaps    = Connectgaps  ,
-                    ?Fill           = Fill         ,
-                    ?Fillcolor      = Fillcolor    
-                )               
-            )
-            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
-            |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
-            |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-            |> GenericChart.ofTraceObject
+                let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
+                let longitudes, latitudes = Seq.unzip lonlat
+
+                TraceGeo.initScatterGeo(
+                    TraceGeoStyle.ScatterGeo(
+                        Mode            = changeMode StyleParam.Mode.Markers ,
+                        Longitudes      = longitudes    ,
+                        Latitudes       = latitudes     ,
+                        ?GeoJson        = GeoJson      ,
+                        ?FeatureIdKey   = FeatureIdKey ,
+                        ?Connectgaps    = Connectgaps  ,
+                        ?Fill           = Fill         ,
+                        ?Fillcolor      = Fillcolor    
+                    )               
+                )
+                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
+                |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
+                |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+                |> GenericChart.ofTraceObject useDefaults
 
         /// Creates a PointGeo chart, where data is visualized as points on a geographic map.
         ///
@@ -447,25 +470,28 @@ module ChartMap =
                 [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey: string          ,
                 [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
                 [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
-                [<Optional;DefaultParameterValue(null)>] ?Fillcolor    
+                [<Optional;DefaultParameterValue(null)>] ?Fillcolor    ,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
-        
-            let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
 
-            TraceGeo.initScatterGeo(
-                TraceGeoStyle.ScatterGeo(
-                    mode        = changeMode StyleParam.Mode.Markers ,
-                    ?Locations  = locations     ,
-                    ?GeoJson    = GeoJson       ,
-                    ?Connectgaps= Connectgaps   ,
-                    ?Fill       = Fill          ,
-                    ?Fillcolor  = Fillcolor    
-                )               
-            )
-            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
-            |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
-            |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-            |> GenericChart.ofTraceObject
+                let useDefaults = defaultArg UseDefaults true
+        
+                let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
+
+                TraceGeo.initScatterGeo(
+                    TraceGeoStyle.ScatterGeo(
+                        Mode        = changeMode StyleParam.Mode.Markers ,
+                        ?Locations  = locations     ,
+                        ?GeoJson    = GeoJson       ,
+                        ?Connectgaps= Connectgaps   ,
+                        ?Fill       = Fill          ,
+                        ?Fillcolor  = Fillcolor    
+                    )               
+                )
+                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
+                |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
+                |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+                |> GenericChart.ofTraceObject useDefaults
 
         /// Creates a LineGeo chart, where data is visualized as coordinates connected via lines on a geographic map.
         ///
@@ -521,33 +547,36 @@ module ChartMap =
                 [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey: string          ,
                 [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
                 [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
-                [<Optional;DefaultParameterValue(null)>] ?Fillcolor    
+                [<Optional;DefaultParameterValue(null)>] ?Fillcolor,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
 
-            let changeMode = 
-                let isShowMarker =
-                    match ShowMarkers with
-                    | Some isShow -> isShow
-                    | Option.None        -> false
-                StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
-                >> StyleParam.ModeUtils.showMarker (isShowMarker)
+                let useDefaults = defaultArg UseDefaults true
+            
+                let changeMode = 
+                    let isShowMarker =
+                        match ShowMarkers with
+                        | Some isShow -> isShow
+                        | Option.None        -> false
+                    StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
+                    >> StyleParam.ModeUtils.showMarker (isShowMarker)
 
-            TraceGeo.initScatterGeo(
-                TraceGeoStyle.ScatterGeo(
-                    mode            = changeMode StyleParam.Mode.Lines,
-                    Longitudes      = longitudes    ,
-                    Latitudes       = latitudes     ,
-                    ?GeoJson        = GeoJson      ,
-                    ?FeatureIdKey   = FeatureIdKey ,
-                    ?Connectgaps    = Connectgaps  ,
-                    ?Fill           = Fill         ,
-                    ?Fillcolor      = Fillcolor    
-                )               
-            )
-            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
-            |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
-            |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-            |> GenericChart.ofTraceObject
+                TraceGeo.initScatterGeo(
+                    TraceGeoStyle.ScatterGeo(
+                        Mode            = changeMode StyleParam.Mode.Lines,
+                        Longitudes      = longitudes    ,
+                        Latitudes       = latitudes     ,
+                        ?GeoJson        = GeoJson      ,
+                        ?FeatureIdKey   = FeatureIdKey ,
+                        ?Connectgaps    = Connectgaps  ,
+                        ?Fill           = Fill         ,
+                        ?Fillcolor      = Fillcolor    
+                    )               
+                )
+                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
+                |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
+                |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+                |> GenericChart.ofTraceObject useDefaults
 
         /// Creates a LineGeo chart, where data is visualized as coordinates connected via lines on a geographic map.
         ///
@@ -597,34 +626,37 @@ module ChartMap =
                 [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey: string          ,
                 [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
                 [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
-                [<Optional;DefaultParameterValue(null)>] ?Fillcolor    
+                [<Optional;DefaultParameterValue(null)>] ?Fillcolor,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
 
-            let changeMode = 
-                let isShowMarker =
-                    match ShowMarkers with
-                    | Some isShow -> isShow
-                    | Option.None        -> false
-                StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
-                >> StyleParam.ModeUtils.showMarker (isShowMarker)
-            let longitudes, latitudes = Seq.unzip lonlat
+                let useDefaults = defaultArg UseDefaults true
 
-            TraceGeo.initScatterGeo(
-                TraceGeoStyle.ScatterGeo(
-                    mode            = changeMode StyleParam.Mode.Lines,
-                    Longitudes      = longitudes    ,
-                    Latitudes       = latitudes     ,
-                    ?GeoJson        = GeoJson      ,
-                    ?FeatureIdKey   = FeatureIdKey ,
-                    ?Connectgaps    = Connectgaps  ,
-                    ?Fill           = Fill         ,
-                    ?Fillcolor      = Fillcolor    
-                )               
-            )
-            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
-            |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
-            |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-            |> GenericChart.ofTraceObject
+                let changeMode = 
+                    let isShowMarker =
+                        match ShowMarkers with
+                        | Some isShow -> isShow
+                        | Option.None        -> false
+                    StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
+                    >> StyleParam.ModeUtils.showMarker (isShowMarker)
+                let longitudes, latitudes = Seq.unzip lonlat
+
+                TraceGeo.initScatterGeo(
+                    TraceGeoStyle.ScatterGeo(
+                        Mode            = changeMode StyleParam.Mode.Lines,
+                        Longitudes      = longitudes    ,
+                        Latitudes       = latitudes     ,
+                        ?GeoJson        = GeoJson      ,
+                        ?FeatureIdKey   = FeatureIdKey ,
+                        ?Connectgaps    = Connectgaps  ,
+                        ?Fill           = Fill         ,
+                        ?Fillcolor      = Fillcolor    
+                    )               
+                )
+                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
+                |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
+                |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+                |> GenericChart.ofTraceObject useDefaults
 
         /// Creates a LineGeo chart, where data is visualized as coordinates connected via lines on a geographic map.
         ///
@@ -674,32 +706,35 @@ module ChartMap =
                 [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey: string          ,
                 [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
                 [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
-                [<Optional;DefaultParameterValue(null)>] ?Fillcolor    
+                [<Optional;DefaultParameterValue(null)>] ?Fillcolor,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
 
-            let changeMode = 
-                let isShowMarker =
-                    match ShowMarkers with
-                    | Some isShow -> isShow
-                    | Option.None        -> false
-                StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
-                >> StyleParam.ModeUtils.showMarker (isShowMarker)
+                let useDefaults = defaultArg UseDefaults true
 
-            TraceGeo.initScatterGeo(
-                TraceGeoStyle.ScatterGeo(
-                    mode            = changeMode StyleParam.Mode.Lines,
-                    Locations       = locations    ,
-                    ?GeoJson        = GeoJson      ,
-                    ?FeatureIdKey   = FeatureIdKey ,
-                    ?Connectgaps    = Connectgaps  ,
-                    ?Fill           = Fill         ,
-                    ?Fillcolor      = Fillcolor    
-                )               
-            )
-            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
-            |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
-            |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-            |> GenericChart.ofTraceObject
+                let changeMode = 
+                    let isShowMarker =
+                        match ShowMarkers with
+                        | Some isShow -> isShow
+                        | Option.None        -> false
+                    StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
+                    >> StyleParam.ModeUtils.showMarker (isShowMarker)
+
+                TraceGeo.initScatterGeo(
+                    TraceGeoStyle.ScatterGeo(
+                        Mode            = changeMode StyleParam.Mode.Lines,
+                        Locations       = locations    ,
+                        ?GeoJson        = GeoJson      ,
+                        ?FeatureIdKey   = FeatureIdKey ,
+                        ?Connectgaps    = Connectgaps  ,
+                        ?Fill           = Fill         ,
+                        ?Fillcolor      = Fillcolor    
+                    )               
+                )
+                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
+                |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
+                |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+                |> GenericChart.ofTraceObject useDefaults
 
 
 
@@ -728,37 +763,43 @@ module ChartMap =
         /// <param name="Fill">Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.</param>
         /// <param name="Fillcolor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
         [<Extension>]
-        static member ScatterMapbox(longitudes, latitudes, mode,
-            [<Optional;DefaultParameterValue(null)>] ?Name                          ,
-            [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
-            [<Optional;DefaultParameterValue(null)>] ?Color                         ,
-            [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
-            [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
-            [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
-            [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
-            [<Optional;DefaultParameterValue(null)>] ?Width : float                 ,
-            [<Optional;DefaultParameterValue(null)>] ?Below : string                ,
-            [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
-            [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
-            [<Optional;DefaultParameterValue(null)>] ?Fillcolor   
+        static member ScatterMapbox
+            (
+                longitudes, latitudes, 
+                mode,
+                [<Optional;DefaultParameterValue(null)>] ?Name                          ,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
+                [<Optional;DefaultParameterValue(null)>] ?Color                         ,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
+                [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
+                [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
+                [<Optional;DefaultParameterValue(null)>] ?Width : float                 ,
+                [<Optional;DefaultParameterValue(null)>] ?Below : string                ,
+                [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
+                [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
+                [<Optional;DefaultParameterValue(null)>] ?Fillcolor,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
 
-            TraceMapbox.initScatterMapbox(
-                TraceMapboxStyle.ScatterMapbox(
-                    mode            = mode          ,
-                    Longitudes      = longitudes    ,
-                    Latitudes       = latitudes     ,
-                    ?Below          = Below         ,
-                    ?Connectgaps    = Connectgaps  ,
-                    ?Fill           = Fill         ,
-                    ?Fillcolor      = Fillcolor    
-                )               
-            )
-            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
-            |> TraceStyle.Line(?Color=Color,?Width=Width)
-            |> TraceStyle.Marker(?Color=Color)
-            |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-            |> GenericChart.ofTraceObject 
+                let useDefaults = defaultArg UseDefaults true
+
+                TraceMapbox.initScatterMapbox(
+                    TraceMapboxStyle.ScatterMapbox(
+                        Mode            = mode          ,
+                        Longitudes      = longitudes    ,
+                        Latitudes       = latitudes     ,
+                        ?Below          = Below         ,
+                        ?Connectgaps    = Connectgaps  ,
+                        ?Fill           = Fill         ,
+                        ?Fillcolor      = Fillcolor    
+                    )               
+                )
+                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
+                |> TraceStyle.Line(?Color=Color,?Width=Width)
+                |> TraceStyle.Marker(?Color=Color)
+                |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+                |> GenericChart.ofTraceObject useDefaults
 
         /// <summary>
         /// Creates a ScatterMapbox chart, where data is visualized by (longitude,latitude) pairs on a geographic map using mapbox.
@@ -784,19 +825,22 @@ module ChartMap =
         /// <param name="Fill">Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.</param>
         /// <param name="Fillcolor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
         [<Extension>]
-        static member ScatterMapbox(lonlat, mode,
-            [<Optional;DefaultParameterValue(null)>] ?Name                          ,
-            [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
-            [<Optional;DefaultParameterValue(null)>] ?Color                         ,
-            [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
-            [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
-            [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
-            [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
-            [<Optional;DefaultParameterValue(null)>] ?Width : float                 ,
-            [<Optional;DefaultParameterValue(null)>] ?Below : string                ,
-            [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
-            [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
-            [<Optional;DefaultParameterValue(null)>] ?Fillcolor   
+        static member ScatterMapbox
+            (
+                lonlat, mode,
+                [<Optional;DefaultParameterValue(null)>] ?Name                          ,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
+                [<Optional;DefaultParameterValue(null)>] ?Color                         ,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
+                [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
+                [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
+                [<Optional;DefaultParameterValue(null)>] ?Width : float                 ,
+                [<Optional;DefaultParameterValue(null)>] ?Below : string                ,
+                [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
+                [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
+                [<Optional;DefaultParameterValue(null)>] ?Fillcolor ,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
 
                 let longitudes, latitudes = Seq.unzip lonlat
@@ -805,18 +849,19 @@ module ChartMap =
                     longitudes, 
                     latitudes, 
                     mode,
-                    ?Name        =  Name       ,
-                    ?ShowLegend  =  ShowLegend ,
-                    ?Color       =  Color      ,
-                    ?Opacity     =  Opacity    ,
-                    ?Labels      =  Labels     ,
-                    ?TextPosition=  TextPosition,
-                    ?TextFont    =  TextFont   ,
-                    ?Width       =  Width      ,
-                    ?Below       =  Below      ,
-                    ?Connectgaps =  Connectgaps,
-                    ?Fill        =  Fill       ,
-                    ?Fillcolor   =  Fillcolor  
+                    ?Name           = Name       ,
+                    ?ShowLegend     = ShowLegend ,
+                    ?Color          = Color      ,
+                    ?Opacity        = Opacity    ,
+                    ?Labels         = Labels     ,
+                    ?TextPosition   = TextPosition,
+                    ?TextFont       = TextFont   ,
+                    ?Width          = Width      ,
+                    ?Below          = Below      ,
+                    ?Connectgaps    = Connectgaps,
+                    ?Fill           = Fill       ,
+                    ?Fillcolor      = Fillcolor  ,
+                    ?UseDefaults    = UseDefaults
                 )                  
                            
         /// <summary>
@@ -841,27 +886,30 @@ module ChartMap =
         /// <param name="Fill">Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.</param>
         /// <param name="Fillcolor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
         [<Extension>]
-        static member PointMapbox(longitudes,latitudes,
-            [<Optional;DefaultParameterValue(null)>] ?Name                          ,
-            [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
-            [<Optional;DefaultParameterValue(null)>] ?Color                         ,
-            [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
-            [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
-            [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
-            [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
-            [<Optional;DefaultParameterValue(null)>] ?Width : float                 ,
-            [<Optional;DefaultParameterValue(null)>] ?Below : string                ,
-            [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
-            [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
-            [<Optional;DefaultParameterValue(null)>] ?Fillcolor   
+        static member PointMapbox
+            (
+                longitudes,latitudes,
+                [<Optional;DefaultParameterValue(null)>] ?Name                          ,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
+                [<Optional;DefaultParameterValue(null)>] ?Color                         ,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
+                [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
+                [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
+                [<Optional;DefaultParameterValue(null)>] ?Width : float                 ,
+                [<Optional;DefaultParameterValue(null)>] ?Below : string                ,
+                [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
+                [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
+                [<Optional;DefaultParameterValue(null)>] ?Fillcolor   ,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
-            
+
                 let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
 
                 Chart.ScatterMapbox(
                     longitudes, 
                     latitudes, 
-                    mode = changeMode StyleParam.Mode.Markers ,
+                    changeMode StyleParam.Mode.Markers ,
                     ?Name        =  Name       ,
                     ?ShowLegend  =  ShowLegend ,
                     ?Color       =  Color      ,
@@ -873,7 +921,8 @@ module ChartMap =
                     ?Below       =  Below      ,
                     ?Connectgaps =  Connectgaps,
                     ?Fill        =  Fill       ,
-                    ?Fillcolor   =  Fillcolor  
+                    ?Fillcolor   =  Fillcolor  ,
+                    ?UseDefaults = UseDefaults
                 )                  
                                                       
         /// <summary>
@@ -897,21 +946,24 @@ module ChartMap =
         /// <param name="Fill">Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.</param>
         /// <param name="Fillcolor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
         [<Extension>]
-        static member PointMapbox(lonlat,
-            [<Optional;DefaultParameterValue(null)>] ?Name                          ,
-            [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
-            [<Optional;DefaultParameterValue(null)>] ?Color                         ,
-            [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
-            [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
-            [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
-            [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
-            [<Optional;DefaultParameterValue(null)>] ?Width : float                 ,
-            [<Optional;DefaultParameterValue(null)>] ?Below : string                ,
-            [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
-            [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
-            [<Optional;DefaultParameterValue(null)>] ?Fillcolor   
+        static member PointMapbox
+            (
+                lonlat,
+                [<Optional;DefaultParameterValue(null)>] ?Name                          ,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
+                [<Optional;DefaultParameterValue(null)>] ?Color                         ,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
+                [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
+                [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
+                [<Optional;DefaultParameterValue(null)>] ?Width : float                 ,
+                [<Optional;DefaultParameterValue(null)>] ?Below : string                ,
+                [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
+                [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
+                [<Optional;DefaultParameterValue(null)>] ?Fillcolor,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
-            
+
                 let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
                 let longitudes, latitudes = Seq.unzip lonlat
 
@@ -930,7 +982,8 @@ module ChartMap =
                     ?Below       =  Below      ,
                     ?Connectgaps =  Connectgaps,
                     ?Fill        =  Fill       ,
-                    ?Fillcolor   =  Fillcolor  
+                    ?Fillcolor   =  Fillcolor  ,
+                    ?UseDefaults = UseDefaults
                 )                                             
         /// <summary>
         /// Creates a LineMapbox chart, where data is visualized by (longitude,latitude) pairs connected by a line on a geographic map using mapbox.
@@ -955,23 +1008,25 @@ module ChartMap =
         /// <param name="Fill">Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.</param>
         /// <param name="Fillcolor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
         [<Extension>]
-        static member LineMapbox(longitudes,latitudes,
-            [<Optional;DefaultParameterValue(null)>] ?Name                          ,
-            [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
-            [<Optional;DefaultParameterValue(null)>] ?ShowMarkers                   ,
-            [<Optional;DefaultParameterValue(null)>] ?Color                         ,
-            [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
-            [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
-            [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
-            [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
-            [<Optional;DefaultParameterValue(null)>] ?Width : float                 ,
-            [<Optional;DefaultParameterValue(null)>] ?Below : string                ,
-            [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
-            [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
-            [<Optional;DefaultParameterValue(null)>] ?Fillcolor   
+        static member LineMapbox
+            (
+                longitudes,latitudes,
+                [<Optional;DefaultParameterValue(null)>] ?Name                          ,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
+                [<Optional;DefaultParameterValue(null)>] ?ShowMarkers                   ,
+                [<Optional;DefaultParameterValue(null)>] ?Color                         ,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
+                [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
+                [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
+                [<Optional;DefaultParameterValue(null)>] ?Width : float                 ,
+                [<Optional;DefaultParameterValue(null)>] ?Below : string                ,
+                [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
+                [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
+                [<Optional;DefaultParameterValue(null)>] ?Fillcolor   ,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
-            
-            
+
                 let changeMode = 
                     let isShowMarker =
                         match ShowMarkers with
@@ -983,7 +1038,7 @@ module ChartMap =
                 Chart.ScatterMapbox(
                     longitudes, 
                     latitudes, 
-                    mode = changeMode StyleParam.Mode.Lines ,
+                    changeMode StyleParam.Mode.Lines ,
                     ?Name        =  Name       ,
                     ?ShowLegend  =  ShowLegend ,
                     ?Color       =  Color      ,
@@ -995,7 +1050,8 @@ module ChartMap =
                     ?Below       =  Below      ,
                     ?Connectgaps =  Connectgaps,
                     ?Fill        =  Fill       ,
-                    ?Fillcolor   =  Fillcolor  
+                    ?Fillcolor   =  Fillcolor  ,
+                    ?UseDefaults = UseDefaults
                 )                  
                                                       
         /// <summary>
@@ -1020,22 +1076,25 @@ module ChartMap =
         /// <param name="Fill">Sets the area to fill with a solid color. Use with `fillcolor` if not "none". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.</param>
         /// <param name="Fillcolor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
         [<Extension>]
-        static member LineMapbox(lonlat,
-            [<Optional;DefaultParameterValue(null)>] ?Name                          ,
-            [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
-            [<Optional;DefaultParameterValue(null)>] ?ShowMarkers                   ,
-            [<Optional;DefaultParameterValue(null)>] ?Color                         ,
-            [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
-            [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
-            [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
-            [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
-            [<Optional;DefaultParameterValue(null)>] ?Width : float                 ,
-            [<Optional;DefaultParameterValue(null)>] ?Below : string                ,
-            [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
-            [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
-            [<Optional;DefaultParameterValue(null)>] ?Fillcolor   
+        static member LineMapbox
+            (
+                lonlat,
+                [<Optional;DefaultParameterValue(null)>] ?Name                          ,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
+                [<Optional;DefaultParameterValue(null)>] ?ShowMarkers                   ,
+                [<Optional;DefaultParameterValue(null)>] ?Color                         ,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
+                [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
+                [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
+                [<Optional;DefaultParameterValue(null)>] ?Width : float                 ,
+                [<Optional;DefaultParameterValue(null)>] ?Below : string                ,
+                [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
+                [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
+                [<Optional;DefaultParameterValue(null)>] ?Fillcolor,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
-            
+
                 let changeMode = 
                     let isShowMarker =
                         match ShowMarkers with
@@ -1060,7 +1119,8 @@ module ChartMap =
                     ?Below       =  Below      ,
                     ?Connectgaps =  Connectgaps,
                     ?Fill        =  Fill       ,
-                    ?Fillcolor   =  Fillcolor  
+                    ?Fillcolor   =  Fillcolor  ,
+                    ?UseDefaults = UseDefaults
                 )                  
 
         /// <summary>
@@ -1085,17 +1145,22 @@ module ChartMap =
         /// <param name="ZMid">Sets the mid-point of the color domain by scaling `zmin` and/or `zmax` to be equidistant to this point. Value should have the same units as in `z`. Has no effect when `zauto` is `false`.</param>
         /// <param name="ZMax">Sets the upper bound of the color domain. Value should have the same units as in `z` and if set, `zmin` must be set as well.</param>
         [<Extension>]
-        static member ChoroplethMapbox(locations,z,geoJson,
-            [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey,
-            [<Optional;DefaultParameterValue(null)>] ?Text,
-            [<Optional;DefaultParameterValue(null)>] ?Below,
-            [<Optional;DefaultParameterValue(null)>] ?Colorscale,
-            [<Optional;DefaultParameterValue(null)>] ?ColorBar,
-            [<Optional;DefaultParameterValue(null)>] ?ZAuto,
-            [<Optional;DefaultParameterValue(null)>] ?ZMin,
-            [<Optional;DefaultParameterValue(null)>] ?ZMid,
-            [<Optional;DefaultParameterValue(null)>] ?ZMax
-            ) =
+        static member ChoroplethMapbox
+            (
+                locations,z,geoJson,
+                [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey,
+                [<Optional;DefaultParameterValue(null)>] ?Text,
+                [<Optional;DefaultParameterValue(null)>] ?Below,
+                [<Optional;DefaultParameterValue(null)>] ?Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?ColorBar,
+                [<Optional;DefaultParameterValue(null)>] ?ZAuto,
+                [<Optional;DefaultParameterValue(null)>] ?ZMin,
+                [<Optional;DefaultParameterValue(null)>] ?ZMid,
+                [<Optional;DefaultParameterValue(null)>] ?ZMax,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
             
                 TraceMapbox.initChoroplethMapbox (
                     TraceMapboxStyle.ChoroplethMapbox (
@@ -1113,7 +1178,7 @@ module ChartMap =
                         ?ZMax           = ZMax
                     )
                 )
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
             
         /// <summary>
         /// Creates a DensityMapbox Chart that draws a bivariate kernel density estimation with a Gaussian kernel from `lon` and `lat` coordinates and optional `z` values using a colorscale.
@@ -1133,20 +1198,26 @@ module ChartMap =
         /// <param name="ZMid">Sets the mid-point of the color domain by scaling `zmin` and/or `zmax` to be equidistant to this point. Value should have the same units as in `z`. Has no effect when `zauto` is `false`.</param>
         /// <param name="ZMax">Sets the upper bound of the color domain. Value should have the same units as in `z` and if set, `zmin` must be set as well.</param>
         [<Extension>]
-        static member DensityMapbox (lon,lat,
-            [<Optional;DefaultParameterValue(null)>] ?Z,
-            [<Optional;DefaultParameterValue(null)>] ?Radius,
-            [<Optional;DefaultParameterValue(null)>] ?Opacity,
-            [<Optional;DefaultParameterValue(null)>] ?Text,
-            [<Optional;DefaultParameterValue(null)>] ?Below,
-            [<Optional;DefaultParameterValue(null)>] ?Colorscale,
-            [<Optional;DefaultParameterValue(null)>] ?ColorBar,
-            [<Optional;DefaultParameterValue(null)>] ?Showscale ,
-            [<Optional;DefaultParameterValue(null)>] ?ZAuto,
-            [<Optional;DefaultParameterValue(null)>] ?ZMin,
-            [<Optional;DefaultParameterValue(null)>] ?ZMid,
-            [<Optional;DefaultParameterValue(null)>] ?ZMax
-            ) =
+        static member DensityMapbox 
+            (
+                lon,lat,
+                [<Optional;DefaultParameterValue(null)>] ?Z,
+                [<Optional;DefaultParameterValue(null)>] ?Radius,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity,
+                [<Optional;DefaultParameterValue(null)>] ?Text,
+                [<Optional;DefaultParameterValue(null)>] ?Below,
+                [<Optional;DefaultParameterValue(null)>] ?Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?ColorBar,
+                [<Optional;DefaultParameterValue(null)>] ?Showscale ,
+                [<Optional;DefaultParameterValue(null)>] ?ZAuto,
+                [<Optional;DefaultParameterValue(null)>] ?ZMin,
+                [<Optional;DefaultParameterValue(null)>] ?ZMid,
+                [<Optional;DefaultParameterValue(null)>] ?ZMax,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
+
                 TraceMapbox.initDensityMapbox(
                     TraceMapboxStyle.DensityMapbox(
                         Longitudes  = lon,
@@ -1165,7 +1236,7 @@ module ChartMap =
                         ?ZMax       = ZMax
                     )
                 )
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
     
         /// <summary>
         /// Creates a DensityMapbox Chart that draws a bivariate kernel density estimation with a Gaussian kernel from `lon` and `lat` coordinates and optional `z` values using a colorscale.
@@ -1184,19 +1255,22 @@ module ChartMap =
         /// <param name="ZMid">Sets the mid-point of the color domain by scaling `zmin` and/or `zmax` to be equidistant to this point. Value should have the same units as in `z`. Has no effect when `zauto` is `false`.</param>
         /// <param name="ZMax">Sets the upper bound of the color domain. Value should have the same units as in `z` and if set, `zmin` must be set as well.</param>
         [<Extension>]
-        static member DensityMapbox (lonlat,
-            [<Optional;DefaultParameterValue(null)>] ?Z,
-            [<Optional;DefaultParameterValue(null)>] ?Radius,
-            [<Optional;DefaultParameterValue(null)>] ?Opacity,
-            [<Optional;DefaultParameterValue(null)>] ?Text,
-            [<Optional;DefaultParameterValue(null)>] ?Below,
-            [<Optional;DefaultParameterValue(null)>] ?Colorscale,
-            [<Optional;DefaultParameterValue(null)>] ?ColorBar,
-            [<Optional;DefaultParameterValue(null)>] ?Showscale ,
-            [<Optional;DefaultParameterValue(null)>] ?ZAuto,
-            [<Optional;DefaultParameterValue(null)>] ?ZMin,
-            [<Optional;DefaultParameterValue(null)>] ?ZMid,
-            [<Optional;DefaultParameterValue(null)>] ?ZMax
+        static member DensityMapbox 
+            (
+                lonlat,
+                [<Optional;DefaultParameterValue(null)>] ?Z,
+                [<Optional;DefaultParameterValue(null)>] ?Radius,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity,
+                [<Optional;DefaultParameterValue(null)>] ?Text,
+                [<Optional;DefaultParameterValue(null)>] ?Below,
+                [<Optional;DefaultParameterValue(null)>] ?Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?ColorBar,
+                [<Optional;DefaultParameterValue(null)>] ?Showscale ,
+                [<Optional;DefaultParameterValue(null)>] ?ZAuto,
+                [<Optional;DefaultParameterValue(null)>] ?ZMin,
+                [<Optional;DefaultParameterValue(null)>] ?ZMid,
+                [<Optional;DefaultParameterValue(null)>] ?ZMax,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
 
                 let longitudes, latitudes = Seq.unzip lonlat
@@ -1215,5 +1289,6 @@ module ChartMap =
                     ?ZAuto      = ZAuto,
                     ?ZMin       = ZMin,
                     ?ZMid       = ZMid,
-                    ?ZMax       = ZMax      
+                    ?ZMax       = ZMax,
+                    ?UseDefaults= UseDefaults
                 )

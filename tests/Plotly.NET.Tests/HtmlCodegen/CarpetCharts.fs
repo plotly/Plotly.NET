@@ -15,11 +15,11 @@ let y = [2.; 3.5; 4.; 3.; 4.5; 5.; 5.5; 6.5; 7.5; 8.; 8.5; 10.]
 
 let carpets = 
     [
-        Chart.Carpet("carpet1",A = a, B = b, Y = y)
-        Chart.Carpet("carpet2",A = (a |> List.rev) , B = (b |> List.rev), Y = (y |> List.map (fun x -> x + 10.)))
-        Chart.Carpet("carpet3",A = a, B = b, Y = (y |> List.map (fun x -> x + 20.)))
-        Chart.Carpet("carpet4",A = (a |> List.rev) , B = (b |> List.rev), Y = (y |> List.map (fun x -> x + 30.)))
-        Chart.Carpet("carpet5",A = a, B = b, Y = (y |> List.map (fun x -> x + 40.)))
+        Chart.Carpet("carpet1",A = a, B = b, Y = y, UseDefaults = false)
+        Chart.Carpet("carpet2",A = (a |> List.rev) , B = (b |> List.rev), Y = (y |> List.map (fun x -> x + 10.)), UseDefaults = false)
+        Chart.Carpet("carpet3",A = a, B = b, Y = (y |> List.map (fun x -> x + 20.)), UseDefaults = false)
+        Chart.Carpet("carpet4",A = (a |> List.rev) , B = (b |> List.rev), Y = (y |> List.map (fun x -> x + 30.)), UseDefaults = false)
+        Chart.Carpet("carpet5",A = a, B = b, Y = (y |> List.map (fun x -> x + 40.)), UseDefaults = false)
     ]
 
 let aData = [4.; 5.; 5.; 6.]
@@ -41,12 +41,13 @@ let carpetCharts =
                 StyleParam.MarkerSymbol.Hexagon2
             ],
             MultiSize = sizes,
-            Color = Color.fromColors ([Red; Blue; Green; Yellow] |> List.map Color.fromKeyword)
+            Color = Color.fromColors ([Red; Blue; Green; Yellow] |> List.map Color.fromKeyword), 
+            UseDefaults = false
         )
-        Chart.PointCarpet(aData,bData,"carpet2",Name = "Point")
-        Chart.LineCarpet(aData,bData,"carpet3",Name = "Line")
-        Chart.SplineCarpet(aData,bData,"carpet4",Name = "Spline")
-        Chart.BubbleCarpet((Seq.zip3 aData bData sizes),"carpet5",Name = "Bubble")
+        Chart.PointCarpet(aData,bData,"carpet2",Name = "Point", UseDefaults = false)
+        Chart.LineCarpet(aData,bData,"carpet3",Name = "Line", UseDefaults = false)
+        Chart.SplineCarpet(aData,bData,"carpet4",Name = "Spline", UseDefaults = false)
+        Chart.BubbleCarpet((Seq.zip3 aData bData sizes),"carpet5",Name = "Bubble", UseDefaults = false)
     ]
 
 let scatter = Chart.combine [carpets.[0]; carpetCharts.[0]]
@@ -117,13 +118,15 @@ let contour =
                 Smoothing = 0.,
                 MinorGridCount = 9,
                 AxisType = StyleParam.AxisType.Linear
-            )
+            ), 
+            UseDefaults = false
         )    
         Chart.ContourCarpet(
             "contour",
             [1.; 1.96; 2.56; 3.0625; 4.; 5.0625; 1.; 7.5625; 9.; 12.25; 15.21; 14.0625],
             A = [0; 1; 2; 3; 0; 1; 2; 3; 0; 1; 2; 3],
-            B = [4; 4; 4; 4; 5; 5; 5; 5; 6; 6; 6; 6]
+            B = [4; 4; 4; 4; 5; 5; 5; 5; 6; 6; 6; 6], 
+            UseDefaults = false
         )
     ]
     |> Chart.combine

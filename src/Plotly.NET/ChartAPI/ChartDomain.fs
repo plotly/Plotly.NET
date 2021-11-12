@@ -32,8 +32,11 @@ module ChartDomain =
                 [<Optional;DefaultParameterValue(null)>] ?ShowLegend    : bool,
                 [<Optional;DefaultParameterValue(null)>] ?SectionColors : seq<Color>,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity       : float,
-                [<Optional;DefaultParameterValue(null)>] ?Sort          : bool
-            ) =         
+                [<Optional;DefaultParameterValue(null)>] ?Sort          : bool,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
                 TraceDomain.initPie(
                     TraceDomainStyle.Pie(
                         Values          = values,
@@ -50,7 +53,7 @@ module ChartDomain =
                 )
                 |> TraceStyle.Marker(?Colors=SectionColors)
                 |> TraceStyle.TextLabel(?Text=(if TextLabels.IsSome then TextLabels else Labels),?Textposition=TextPosition)
-                |> GenericChart.ofTraceObject 
+                |> GenericChart.ofTraceObject useDefaults
 
         /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data.
         [<Extension>]
@@ -65,8 +68,10 @@ module ChartDomain =
                 [<Optional;DefaultParameterValue(null)>] ?ShowLegend    : bool,
                 [<Optional;DefaultParameterValue(null)>] ?SectionColors : seq<Color>,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity       : float,
-                [<Optional;DefaultParameterValue(null)>] ?Sort          : bool
+                [<Optional;DefaultParameterValue(null)>] ?Sort          : bool,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
+
                 let values,labels = Seq.unzip valuesLabels 
                 Chart.Pie(
                     values,
@@ -79,7 +84,8 @@ module ChartDomain =
                     ?ShowLegend    = ShowLegend   ,
                     ?SectionColors = SectionColors,
                     ?Opacity       = Opacity      ,
-                    ?Sort           = Sort
+                    ?Sort          = Sort         ,
+                    ?UseDefaults   = UseDefaults
                 )
 
 
@@ -87,19 +93,22 @@ module ChartDomain =
         [<Extension>]
         static member Doughnut
             (
-               values        : seq<#IConvertible>,
-               [<Optional;DefaultParameterValue(null)>] ?Labels        : seq<#IConvertible>,
-               [<Optional;DefaultParameterValue(null)>] ?Hole          : float,
-               [<Optional;DefaultParameterValue(null)>] ?Name          : string,
-               [<Optional;DefaultParameterValue(null)>] ?TextLabels    : seq<#IConvertible>,
-               [<Optional;DefaultParameterValue(null)>] ?TextPosition  : StyleParam.TextPosition,
-               [<Optional;DefaultParameterValue(null)>] ?Direction     : StyleParam.Direction,
-               [<Optional;DefaultParameterValue(null)>] ?Pull          : float,
-               [<Optional;DefaultParameterValue(null)>] ?ShowLegend    : bool,
-               [<Optional;DefaultParameterValue(null)>] ?SectionColors : seq<Color>,
-               [<Optional;DefaultParameterValue(null)>] ?Opacity       : float,
-               [<Optional;DefaultParameterValue(null)>] ?Sort          : bool
-            ) =         
+                values        : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Labels        : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Hole          : float,
+                [<Optional;DefaultParameterValue(null)>] ?Name          : string,
+                [<Optional;DefaultParameterValue(null)>] ?TextLabels    : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition  : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?Direction     : StyleParam.Direction,
+                [<Optional;DefaultParameterValue(null)>] ?Pull          : float,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend    : bool,
+                [<Optional;DefaultParameterValue(null)>] ?SectionColors : seq<Color>,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity       : float,
+                [<Optional;DefaultParameterValue(null)>] ?Sort          : bool,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults  : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
                 let hole' = Option.defaultValue 0.4 Hole
                 TraceDomain.initPie(
                     TraceDomainStyle.Pie(
@@ -118,7 +127,7 @@ module ChartDomain =
                 )
                 |> TraceStyle.Marker(?Colors=SectionColors)
                 |> TraceStyle.TextLabel(?Text=(if TextLabels.IsSome then TextLabels else Labels),?Textposition=TextPosition)
-                |> GenericChart.ofTraceObject 
+                |> GenericChart.ofTraceObject useDefaults
 
 
         /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data as a whole.
@@ -135,7 +144,8 @@ module ChartDomain =
                 [<Optional;DefaultParameterValue(null)>] ?ShowLegend    : bool,
                 [<Optional;DefaultParameterValue(null)>] ?SectionColors : seq<Color>,
                 [<Optional;DefaultParameterValue(null)>] ?Opacity       : float,
-                [<Optional;DefaultParameterValue(null)>] ?Sort          : bool
+                [<Optional;DefaultParameterValue(null)>] ?Sort          : bool,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
                 let values,labels = Seq.unzip valuesLabels 
                 Chart.Doughnut(
@@ -150,7 +160,8 @@ module ChartDomain =
                     ?SectionColors = SectionColors,
                     ?Opacity       = Opacity      ,
                     ?Hole          = Hole          ,
-                    ?Sort          = Sort
+                    ?Sort          = Sort,
+                    ?UseDefaults   = UseDefaults
                 )
 
             
@@ -218,26 +229,29 @@ module ChartDomain =
                 [<Optional;DefaultParameterValue(null)>] ?Aspectratio   ,
                 [<Optional;DefaultParameterValue(null)>] ?Baseratio     ,
                 [<Optional;DefaultParameterValue(null)>] ?Insidetextfont,
-                [<Optional;DefaultParameterValue(null)>] ?Scalegroup
+                [<Optional;DefaultParameterValue(null)>] ?Scalegroup,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
 
-            TraceDomain.initFunnelArea(
-                TraceDomainStyle.FunnelArea(
-                    ?Values         = Values        ,
-                    ?Labels         = Labels        ,
-                    ?dLabel         = dLabel        ,
-                    ?Label0         = Label0        ,
-                    ?Aspectratio    = Aspectratio   ,
-                    ?Baseratio      = Baseratio     ,
-                    ?Insidetextfont = Insidetextfont,
-                    ?Scalegroup     = Scalegroup
+                let useDefaults = defaultArg UseDefaults true
+
+                TraceDomain.initFunnelArea(
+                    TraceDomainStyle.FunnelArea(
+                        ?Values         = Values        ,
+                        ?Labels         = Labels        ,
+                        ?dLabel         = dLabel        ,
+                        ?Label0         = Label0        ,
+                        ?Aspectratio    = Aspectratio   ,
+                        ?Baseratio      = Baseratio     ,
+                        ?Insidetextfont = Insidetextfont,
+                        ?Scalegroup     = Scalegroup
+                    )
                 )
-            )
-            |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
-            |> TraceStyle.Marker(?Color=Color,?Outline=Line)
-            |> TraceStyle.Domain(?X=X,?Y=Y,?Row=Row,?Column=Column)
-            |> TraceStyle.TextLabel(?Text=Text,?Textposition=TextPosition)
-            |> GenericChart.ofTraceObject
+                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
+                |> TraceStyle.Marker(?Color=Color,?Outline=Line)
+                |> TraceStyle.Domain(?X=X,?Y=Y,?Row=Row,?Column=Column)
+                |> TraceStyle.TextLabel(?Text=Text,?Textposition=TextPosition)
+                |> GenericChart.ofTraceObject useDefaults
 
 
         /// Creates a sunburst chart. Visualize hierarchical data spanning outward radially from root to leaves.
@@ -265,30 +279,36 @@ module ChartDomain =
         ///
         ///Colors: Sets the color of each sector of this trace. If not specified, the default trace color set is used to pick the sector colors.
         [<Extension>]
-        static member Sunburst(labels,parents,
-            [<Optional;DefaultParameterValue(null)>]?Ids,
-            [<Optional;DefaultParameterValue(null)>]?Values,
-            [<Optional;DefaultParameterValue(null)>]?Text,
-            [<Optional;DefaultParameterValue(null)>]?Branchvalues,
-            [<Optional;DefaultParameterValue(null)>]?Level,
-            [<Optional;DefaultParameterValue(null)>]?Maxdepth,
-            [<Optional;DefaultParameterValue(null)>]?Color,
-            [<Optional;DefaultParameterValue(null)>]?ColorBar:ColorBar
-            ) =
-            TraceDomain.initSunburst(
-                TraceDomainStyle.Sunburst(
-                    labels          = labels,
-                    parents         = parents,
-                    ?Ids            = Ids,
-                    ?Values         = Values,
-                    ?Text           = Text,
-                    ?Branchvalues   = Branchvalues,
-                    ?Level          = Level,
-                    ?Maxdepth       = Maxdepth
+        static member Sunburst
+            (
+                labels,parents,
+                [<Optional;DefaultParameterValue(null)>]?Ids,
+                [<Optional;DefaultParameterValue(null)>]?Values,
+                [<Optional;DefaultParameterValue(null)>]?Text,
+                [<Optional;DefaultParameterValue(null)>]?Branchvalues,
+                [<Optional;DefaultParameterValue(null)>]?Level,
+                [<Optional;DefaultParameterValue(null)>]?Maxdepth,
+                [<Optional;DefaultParameterValue(null)>]?Color,
+                [<Optional;DefaultParameterValue(null)>]?ColorBar: ColorBar,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
+                TraceDomain.initSunburst(
+                    TraceDomainStyle.Sunburst(
+                        labels          = labels,
+                        parents         = parents,
+                        ?Ids            = Ids,
+                        ?Values         = Values,
+                        ?Text           = Text,
+                        ?Branchvalues   = Branchvalues,
+                        ?Level          = Level,
+                        ?Maxdepth       = Maxdepth
+                    )
                 )
-            )
-            |> TraceStyle.Marker(?Color=Color,?ColorBar=ColorBar)
-            |> GenericChart.ofTraceObject
+                |> TraceStyle.Marker(?Color=Color,?ColorBar=ColorBar)
+                |> GenericChart.ofTraceObject useDefaults
+
 
 
         /// Creates a treemap chart. Treemap charts visualize hierarchical data using nested rectangles. Same as Sunburst the hierarchy is defined by labels and parents attributes. Click on one sector to zoom in/out, which also displays a pathbar in the upper-left corner of your treemap. To zoom out you can use the path bar as well.
@@ -315,18 +335,23 @@ module ChartDomain =
         ///
         ///Colors: Sets the color of each sector of this trace. If not specified, the default trace color set is used to pick the sector colors.
         [<Extension>]
-        static member Treemap(labels,parents,
-            [<Optional;DefaultParameterValue(null)>]?Ids,
-            [<Optional;DefaultParameterValue(null)>]?Values,
-            [<Optional;DefaultParameterValue(null)>]?Text,
-            [<Optional;DefaultParameterValue(null)>]?Branchvalues,
-            [<Optional;DefaultParameterValue(null)>]?Tiling,
-            [<Optional;DefaultParameterValue(null)>]?PathBar,
-            [<Optional;DefaultParameterValue(null)>]?Level,
-            [<Optional;DefaultParameterValue(null)>]?Maxdepth,
-            [<Optional;DefaultParameterValue(null)>]?Color,
-            [<Optional;DefaultParameterValue(null)>]?ColorBar:ColorBar
-            ) =
+        static member Treemap
+            (
+                labels,parents,
+                [<Optional;DefaultParameterValue(null)>]?Ids,
+                [<Optional;DefaultParameterValue(null)>]?Values,
+                [<Optional;DefaultParameterValue(null)>]?Text,
+                [<Optional;DefaultParameterValue(null)>]?Branchvalues,
+                [<Optional;DefaultParameterValue(null)>]?Tiling,
+                [<Optional;DefaultParameterValue(null)>]?PathBar,
+                [<Optional;DefaultParameterValue(null)>]?Level,
+                [<Optional;DefaultParameterValue(null)>]?Maxdepth,
+                [<Optional;DefaultParameterValue(null)>]?Color,
+                [<Optional;DefaultParameterValue(null)>]?ColorBar:ColorBar,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+            let useDefaults = defaultArg UseDefaults true
             TraceDomain.initTreemap(
                 TraceDomainStyle.Treemap(
                     labels          = labels,
@@ -342,7 +367,7 @@ module ChartDomain =
                 )
             )
             |> TraceStyle.Marker(?Color=Color,?ColorBar=ColorBar)
-            |> GenericChart.ofTraceObject
+            |> GenericChart.ofTraceObject useDefaults
 
 
         /// Computes the parallel coordinates plot
@@ -359,8 +384,11 @@ module ChartDomain =
                 [<Optional;DefaultParameterValue(null)>] ?Domain,
                 [<Optional;DefaultParameterValue(null)>] ?Labelfont,
                 [<Optional;DefaultParameterValue(null)>] ?Tickfont,
-                [<Optional;DefaultParameterValue(null)>] ?Rangefont
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?Rangefont,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
 
                 let dims' = 
                     dims 
@@ -378,7 +406,7 @@ module ChartDomain =
                     )             
                 )
                 |> TraceStyle.Line(?Width=Width,?Color=Color,?Dash=Dash,?Colorscale=Colorscale)
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
 
         /// Computes the parallel coordinates plot
@@ -393,8 +421,11 @@ module ChartDomain =
                 [<Optional;DefaultParameterValue(null)>] ?Domain,
                 [<Optional;DefaultParameterValue(null)>] ?Labelfont,
                 [<Optional;DefaultParameterValue(null)>] ?Tickfont,
-                [<Optional;DefaultParameterValue(null)>] ?Rangefont
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?Rangefont,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
 
                 TraceDomain.initParallelCoord (
                     TraceDomainStyle.ParallelCoord (
@@ -406,7 +437,7 @@ module ChartDomain =
                     )             
                 )
                 |> TraceStyle.Line(?Width=Width,?Color=Color,?Dash=Dash,?Colorscale=Colorscale)
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
         ///Parallel categories diagram for multidimensional categorical data.
         [<Extension>]
@@ -422,8 +453,11 @@ module ChartDomain =
                 [<Optional;DefaultParameterValue(null)>] ?Domain,
                 [<Optional;DefaultParameterValue(null)>] ?Labelfont,
                 [<Optional;DefaultParameterValue(null)>] ?Tickfont,
-                [<Optional;DefaultParameterValue(null)>] ?Rangefont
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?Rangefont,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
                 let dims' = 
                     dims 
                     |> Seq.map (fun (k,vals) -> 
@@ -440,7 +474,7 @@ module ChartDomain =
                     )
                 )
                 |> TraceStyle.Line(?Width=Width,?Color=Color,?Dash=Dash,?Colorscale=Colorscale)
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
         ///
         [<Extension>]
@@ -454,8 +488,11 @@ module ChartDomain =
                 [<Optional;DefaultParameterValue(null)>] ?Domain,
                 [<Optional;DefaultParameterValue(null)>] ?Labelfont,
                 [<Optional;DefaultParameterValue(null)>] ?Tickfont,
-                [<Optional;DefaultParameterValue(null)>] ?Rangefont
-            ) =
+                [<Optional;DefaultParameterValue(null)>] ?Rangefont,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
                 TraceDomain.initParallelCategories(
                     TraceDomainStyle.ParallelCategories(
                         Dimensions=dims,
@@ -467,7 +504,7 @@ module ChartDomain =
                     )             
                 )
                 |> TraceStyle.Line(?Width=Width,?Dash=Dash,?Colorscale=Colorscale)
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
 
         /// creates table out of header sequence and row sequences
@@ -486,8 +523,11 @@ module ChartDomain =
                 [<Optional;DefaultParameterValue(null)>] ?HeightHeader, 
                 [<Optional;DefaultParameterValue(null)>] ?HeightCells, 
                 [<Optional;DefaultParameterValue(null)>] ?LineHeader, 
-                [<Optional;DefaultParameterValue(null)>] ?LineCells
+                [<Optional;DefaultParameterValue(null)>] ?LineCells,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
+
+                let useDefaults = defaultArg UseDefaults true
 
                 TraceDomain.initTable (
 
@@ -508,28 +548,31 @@ module ChartDomain =
                         ?ColumnOrder = ColumnOrder
                         )
                     )
-                |> GenericChart.ofTraceObject 
+                |> GenericChart.ofTraceObject useDefaults
 
         /// creates table out of header sequence and row sequences
         [<Extension>]
         static member Indicator
             (
-               value      : IConvertible,
-               mode       : StyleParam.IndicatorMode,
-               [<Optional;DefaultParameterValue(null)>] ?Range          : StyleParam.Range,
-               [<Optional;DefaultParameterValue(null)>] ?Name           : string,
-               [<Optional;DefaultParameterValue(null)>] ?Title          : string,
-               [<Optional;DefaultParameterValue(null)>] ?ShowLegend     : bool,
-               [<Optional;DefaultParameterValue(null)>] ?Domain         : Domain,
-               [<Optional;DefaultParameterValue(null)>] ?Align          : StyleParam.IndicatorAlignment,
-               [<Optional;DefaultParameterValue(null)>] ?DeltaReference : #IConvertible,
-               [<Optional;DefaultParameterValue(null)>] ?Delta          : IndicatorDelta,
-               [<Optional;DefaultParameterValue(null)>] ?Number         : IndicatorNumber,
-               [<Optional;DefaultParameterValue(null)>] ?GaugeShape     : StyleParam.IndicatorGaugeShape,
-               [<Optional;DefaultParameterValue(null)>] ?Gauge          : IndicatorGauge,
-               [<Optional;DefaultParameterValue(null)>] ?ShowGaugeAxis  : bool,
-               [<Optional;DefaultParameterValue(null)>] ?GaugeAxis      : LinearAxis
+                value      : IConvertible,
+                mode       : StyleParam.IndicatorMode,
+                [<Optional;DefaultParameterValue(null)>] ?Range          : StyleParam.Range,
+                [<Optional;DefaultParameterValue(null)>] ?Name           : string,
+                [<Optional;DefaultParameterValue(null)>] ?Title          : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend     : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Domain         : Domain,
+                [<Optional;DefaultParameterValue(null)>] ?Align          : StyleParam.IndicatorAlignment,
+                [<Optional;DefaultParameterValue(null)>] ?DeltaReference : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?Delta          : IndicatorDelta,
+                [<Optional;DefaultParameterValue(null)>] ?Number         : IndicatorNumber,
+                [<Optional;DefaultParameterValue(null)>] ?GaugeShape     : StyleParam.IndicatorGaugeShape,
+                [<Optional;DefaultParameterValue(null)>] ?Gauge          : IndicatorGauge,
+                [<Optional;DefaultParameterValue(null)>] ?ShowGaugeAxis  : bool,
+                [<Optional;DefaultParameterValue(null)>] ?GaugeAxis      : LinearAxis,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
+
+                let useDefaults = defaultArg UseDefaults true
                 let axis = 
                     GaugeAxis
                     |> Option.defaultValue(LinearAxis.init())
@@ -559,36 +602,39 @@ module ChartDomain =
                         Gauge       = gauge     
                     )
                 )
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
         /// creates table out of header sequence and row sequences
         [<Extension>]
         static member Icicle
             (
                labels   : seq<#IConvertible>,
-               parents  : seq<#IConvertible>,
-               [<Optional;DefaultParameterValue(null)>] ?Name               : string,
-               [<Optional;DefaultParameterValue(null)>] ?ShowLegend         : bool,
-               [<Optional;DefaultParameterValue(null)>] ?Values             : seq<#IConvertible>,
-               [<Optional;DefaultParameterValue(null)>] ?Opacity            : float,
-               [<Optional;DefaultParameterValue(null)>] ?MultiOpacity       : seq<float>,
-               [<Optional;DefaultParameterValue(null)>] ?Color              : Color,
-               [<Optional;DefaultParameterValue(null)>] ?ColorScale         : StyleParam.Colorscale,
-               [<Optional;DefaultParameterValue(null)>] ?ShowScale          : bool,
-               [<Optional;DefaultParameterValue(null)>] ?Marker             : Marker,
-               [<Optional;DefaultParameterValue(null)>] ?Text               : #IConvertible,
-               [<Optional;DefaultParameterValue(null)>] ?MultiText          : seq<#IConvertible>,
-               [<Optional;DefaultParameterValue(null)>] ?TextPosition       : StyleParam.TextPosition,
-               [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition  : seq<StyleParam.TextPosition>,
-               [<Optional;DefaultParameterValue(null)>] ?Domain             : Domain,
-               [<Optional;DefaultParameterValue(null)>] ?BranchValues       : StyleParam.BranchValues,
-               [<Optional;DefaultParameterValue(null)>] ?Count              : StyleParam.IcicleCount,
-               [<Optional;DefaultParameterValue(null)>] ?TilingOrientation  : StyleParam.Orientation,
-               [<Optional;DefaultParameterValue(null)>] ?TilingFlip         : StyleParam.TilingFlip,
-               [<Optional;DefaultParameterValue(null)>] ?Tiling             : IcicleTiling,
-               [<Optional;DefaultParameterValue(null)>] ?PathBarEdgeShape   : StyleParam.PathbarEdgeShape,
-               [<Optional;DefaultParameterValue(null)>] ?PathBar            : Pathbar
+                parents  : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Name               : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend         : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Values             : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity            : float,
+                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity       : seq<float>,
+                [<Optional;DefaultParameterValue(null)>] ?Color              : Color,
+                [<Optional;DefaultParameterValue(null)>] ?ColorScale         : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?ShowScale          : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Marker             : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?Text               : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText          : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition       : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition  : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?Domain             : Domain,
+                [<Optional;DefaultParameterValue(null)>] ?BranchValues       : StyleParam.BranchValues,
+                [<Optional;DefaultParameterValue(null)>] ?Count              : StyleParam.IcicleCount,
+                [<Optional;DefaultParameterValue(null)>] ?TilingOrientation  : StyleParam.Orientation,
+                [<Optional;DefaultParameterValue(null)>] ?TilingFlip         : StyleParam.TilingFlip,
+                [<Optional;DefaultParameterValue(null)>] ?Tiling             : IcicleTiling,
+                [<Optional;DefaultParameterValue(null)>] ?PathBarEdgeShape   : StyleParam.PathbarEdgeShape,
+                [<Optional;DefaultParameterValue(null)>] ?PathBar            : Pathbar,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
+
+                let useDefaults = defaultArg UseDefaults true
 
                 let tiling = 
                     Tiling
@@ -626,34 +672,35 @@ module ChartDomain =
                         ?ShowScale      = ShowScale
                     )
                 )
-                |> GenericChart.ofTraceObject
+                |> GenericChart.ofTraceObject useDefaults
 
         /// creates table out of header sequence and row sequences
         [<Extension>]
         static member Icicle
             (
-               labelsParents: seq<#IConvertible * #IConvertible>,
-               [<Optional;DefaultParameterValue(null)>] ?Name               : string,
-               [<Optional;DefaultParameterValue(null)>] ?ShowLegend         : bool,
-               [<Optional;DefaultParameterValue(null)>] ?Values             : seq<#IConvertible>,
-               [<Optional;DefaultParameterValue(null)>] ?Opacity            : float,
-               [<Optional;DefaultParameterValue(null)>] ?MultiOpacity       : seq<float>,
-               [<Optional;DefaultParameterValue(null)>] ?Color              : Color,
-               [<Optional;DefaultParameterValue(null)>] ?ColorScale         : StyleParam.Colorscale,
-               [<Optional;DefaultParameterValue(null)>] ?ShowScale          : bool,
-               [<Optional;DefaultParameterValue(null)>] ?Marker             : Marker,
-               [<Optional;DefaultParameterValue(null)>] ?Text               : #IConvertible,
-               [<Optional;DefaultParameterValue(null)>] ?MultiText          : seq<#IConvertible>,
-               [<Optional;DefaultParameterValue(null)>] ?TextPosition       : StyleParam.TextPosition,
-               [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition  : seq<StyleParam.TextPosition>,
-               [<Optional;DefaultParameterValue(null)>] ?Domain             : Domain,
-               [<Optional;DefaultParameterValue(null)>] ?BranchValues       : StyleParam.BranchValues,
-               [<Optional;DefaultParameterValue(null)>] ?Count              : StyleParam.IcicleCount,
-               [<Optional;DefaultParameterValue(null)>] ?TilingOrientation  : StyleParam.Orientation,
-               [<Optional;DefaultParameterValue(null)>] ?TilingFlip         : StyleParam.TilingFlip,
-               [<Optional;DefaultParameterValue(null)>] ?Tiling             : IcicleTiling,
-               [<Optional;DefaultParameterValue(null)>] ?PathBarEdgeShape   : StyleParam.PathbarEdgeShape,
-               [<Optional;DefaultParameterValue(null)>] ?PathBar            : Pathbar
+                labelsParents: seq<#IConvertible * #IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Name               : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend         : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Values             : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity            : float,
+                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity       : seq<float>,
+                [<Optional;DefaultParameterValue(null)>] ?Color              : Color,
+                [<Optional;DefaultParameterValue(null)>] ?ColorScale         : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?ShowScale          : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Marker             : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?Text               : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText          : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition       : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition  : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?Domain             : Domain,
+                [<Optional;DefaultParameterValue(null)>] ?BranchValues       : StyleParam.BranchValues,
+                [<Optional;DefaultParameterValue(null)>] ?Count              : StyleParam.IcicleCount,
+                [<Optional;DefaultParameterValue(null)>] ?TilingOrientation  : StyleParam.Orientation,
+                [<Optional;DefaultParameterValue(null)>] ?TilingFlip         : StyleParam.TilingFlip,
+                [<Optional;DefaultParameterValue(null)>] ?Tiling             : IcicleTiling,
+                [<Optional;DefaultParameterValue(null)>] ?PathBarEdgeShape   : StyleParam.PathbarEdgeShape,
+                [<Optional;DefaultParameterValue(null)>] ?PathBar            : Pathbar,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
             ) = 
 
                 let labels, parents = Seq.unzip labelsParents
@@ -680,5 +727,6 @@ module ChartDomain =
                     ?TilingFlip         = TilingFlip         ,
                     ?Tiling             = Tiling             ,
                     ?PathBarEdgeShape   = PathBarEdgeShape   ,
-                    ?PathBar            = PathBar            
+                    ?PathBar            = PathBar            ,
+                    ?UseDefaults        = UseDefaults
                 )

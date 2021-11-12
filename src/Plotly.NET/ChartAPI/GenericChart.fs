@@ -58,7 +58,7 @@ module HTML =
   //</script>"""
     let chart =
         let newScript = new System.Text.StringBuilder()
-        newScript.AppendLine("""<div id="[ID]" style="width: [WIDTH]px; height: [HEIGHT]px;"><!-- Plotly chart will be drawn inside this DIV --></div>""") |> ignore
+        newScript.AppendLine("""<div id="[ID]"><!-- Plotly chart will be drawn inside this DIV --></div>""") |> ignore
         newScript.AppendLine("<script type=\"text/javascript\">") |> ignore
         newScript.AppendLine(@"
             var renderPlotly_[SCRIPTID] = function() {
@@ -87,7 +87,7 @@ module HTML =
 
 
     let staticChart =
-        """<div id="[ID]" style="width: [WIDTH]px; height: [HEIGHT]px;display: none;"><!-- Plotly chart will be drawn inside this DIV --></div>
+        """<div id="[ID]" style="display: none;"><!-- Plotly chart will be drawn inside this DIV --></div>
 
   <img id="jpg-export"></img>
 
@@ -178,12 +178,9 @@ module GenericChart =
     /// Returns a tuple containing the width and height of a GenericChart's layout if the property is set, otherwise returns None
     let tryGetLayoutSize gChart =
         let layout = getLayout gChart
-        let width,height =
-            layout.TryGetTypedValue<float> "width",
-            layout.TryGetTypedValue<float> "height"
-        match (width,height) with
-        |(Some w, Some h) -> Some (w,h)
-        |_ -> None
+
+        layout.TryGetTypedValue<int> "width",
+        layout.TryGetTypedValue<int> "height"
 
     let getConfig gChart =
         match gChart with
@@ -266,10 +263,11 @@ module GenericChart =
         let displayOpts = getDisplayOptions gChart
 
         let dims = tryGetLayoutSize gChart
-        let width,height =
-            match dims with
-            |Some (w,h) -> w,h
-            |None -> 600., 600.
+
+        let width,height =  
+            let w,h = tryGetLayoutSize gChart
+            w |> Option.defaultValue 600,
+            h |> Option.defaultValue 600
 
 
         HTML.chart
@@ -383,13 +381,37 @@ module GenericChart =
         | Chart (trace,_,_,_)       -> predicate trace
         | MultiChart (traces,_,_,_) -> traces |> List.exists predicate
 
-    /// Converts from a trace object and a layout object into GenericChart
-    let ofTraceObject trace = //layout =
-        GenericChart.Chart(trace, Layout(), Config(), DisplayOptions())
+    /// Converts from a trace object and a layout object into GenericChart. If useDefaults = true, also sets the default Chart properties found in `Defaults`
+    let ofTraceObject (useDefaults:bool) trace = //layout =
+        if useDefaults then 
+            GenericChart.Chart(
+                trace, 
+                Layout.init(
+                    Width = Defaults.DefaultWidth, 
+                    Height = Defaults.DefaultHeight, 
+                    Template = (Defaults.DefaultTemplate :> DynamicObj)
+                ), 
+                Defaults.DefaultConfig, 
+                Defaults.DefaultDisplayOptions
+            )
+        else 
+            GenericChart.Chart(trace, Layout(), Config(), DisplayOptions())
 
-    /// Converts from a list of trace objects and a layout object into GenericChart
-    let ofTraceObjects traces = // layout =
-        GenericChart.MultiChart(traces, Layout(), Config(), DisplayOptions())
+    /// Converts from a list of trace objects and a layout object into GenericChart. If useDefaults = true, also sets the default Chart properties found in `Defaults`
+    let ofTraceObjects (useDefaults:bool) traces = // layout =
+        if useDefaults then 
+            GenericChart.MultiChart(
+                traces, 
+                Layout.init(
+                    Width = Defaults.DefaultWidth, 
+                    Height = Defaults.DefaultHeight, 
+                    Template = (Defaults.DefaultTemplate :> DynamicObj)
+                ), 
+                Defaults.DefaultConfig, 
+                Defaults.DefaultDisplayOptions
+            )
+        else 
+            GenericChart.MultiChart(traces, Layout(), Config(), DisplayOptions())
 
     ///
     let mapLayout f gChart =
