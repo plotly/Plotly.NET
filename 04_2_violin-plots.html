@@ -41,7 +41,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.12</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.13</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -83,6 +83,16 @@
 <li class="nav-item">
   <a class="nav-link" href="https://plotly.net/00_3_chart-config.html">
     Chart config
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/00_4_templates.html">
+    Chart Templates
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/00_5_defaults.html">
+    Global default values
   </a>
 </li>             
 <li class="nav-header">
@@ -404,29 +414,29 @@ data at different values.</p>
         <span class="fn">Points</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs9', 11)" onmouseover="showTip(event, 'fs9', 11)" class="rt">JitterPoints</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 12)" onmouseover="showTip(event, 'fs10', 12)" class="id">All</span>
     <span class="pn">)</span>
 </code></pre>
-<div id="872fb17d-1d82-4716-9951-3dd869208309" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="3c49067e-be20-4883-9cf5-b43b40b125cd"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_872fb17d1d82471699513dd869208309 = function() {
+            var renderPlotly_3c49067ebe2048839cf5b43b40b125cd = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"violin","x":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"box":{},"points":"all","marker":{}}];
-            var layout = {};
-            var config = {};
-            Plotly.newPlot('872fb17d-1d82-4716-9951-3dd869208309', data, layout, config);
+            var layout = {"width":600,"height":600,"template":{"layout":{"paper_bgcolor":"white","plot_bgcolor":"white","xaxis":{"ticks":"inside","mirror":"all","showline":true,"zeroline":true},"yaxis":{"ticks":"inside","mirror":"all","showline":true,"zeroline":true}},"data":{}}};
+            var config = {"responsive":true};
+            Plotly.newPlot('3c49067e-be20-4883-9cf5-b43b40b125cd', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_872fb17d1d82471699513dd869208309();
+                    renderPlotly_3c49067ebe2048839cf5b43b40b125cd();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_872fb17d1d82471699513dd869208309();
+                renderPlotly_3c49067ebe2048839cf5b43b40b125cd();
             }
 </script>
 
@@ -442,29 +452,29 @@ data at different values.</p>
         <span onmouseout="hideTip(event, 'fs18', 30)" onmouseover="showTip(event, 'fs18', 30)" class="fn">MeanLine</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs18', 31)" onmouseover="showTip(event, 'fs18', 31)" class="rt">MeanLine</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs19', 32)" onmouseover="showTip(event, 'fs19', 32)" class="id">init</span><span class="pn">(</span><span class="fn">Visible</span><span class="o">=</span><span class="k">true</span><span class="pn">)</span>
     <span class="pn">)</span>
 </code></pre>
-<div id="2fbb6f5c-eac1-410d-9511-bf0ac12abbaf" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="b6791e64-3964-4b98-8c32-245e396e2178"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_2fbb6f5ceac1410d9511bf0ac12abbaf = function() {
+            var renderPlotly_b6791e6439644b988c32245e396e2178 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"violin","x":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"y":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"orientation":"h","box":{},"jitter":0.1,"meanline":{"visible":true},"points":"all","marker":{}}];
-            var layout = {};
-            var config = {};
-            Plotly.newPlot('2fbb6f5c-eac1-410d-9511-bf0ac12abbaf', data, layout, config);
+            var layout = {"width":600,"height":600,"template":{"layout":{"paper_bgcolor":"white","plot_bgcolor":"white","xaxis":{"ticks":"inside","mirror":"all","showline":true,"zeroline":true},"yaxis":{"ticks":"inside","mirror":"all","showline":true,"zeroline":true}},"data":{}}};
+            var config = {"responsive":true};
+            Plotly.newPlot('b6791e64-3964-4b98-8c32-245e396e2178', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_2fbb6f5ceac1410d9511bf0ac12abbaf();
+                    renderPlotly_b6791e6439644b988c32245e396e2178();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_2fbb6f5ceac1410d9511bf0ac12abbaf();
+                renderPlotly_b6791e6439644b988c32245e396e2178();
             }
 </script>
 
@@ -478,29 +488,29 @@ data at different values.</p>
     <span class="pn">]</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 50)" onmouseover="showTip(event, 'fs6', 50)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs22', 51)" onmouseover="showTip(event, 'fs22', 51)" class="id">combine</span>
 </code></pre>
-<div id="16c77663-048a-47bd-a465-0129e12b72cc" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="29cdc309-813c-4e7a-8fbd-27ed7b837ca6"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_16c77663048a47bda4650129e12b72cc = function() {
+            var renderPlotly_29cdc309813c4e7a8fbd27ed7b837ca6 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"violin","name":"bin1","x":"y","y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"box":{},"jitter":0.1,"points":"all","marker":{}},{"type":"violin","name":"bin2","x":"y'","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"box":{},"jitter":0.1,"points":"all","marker":{}}];
-            var layout = {};
-            var config = {};
-            Plotly.newPlot('16c77663-048a-47bd-a465-0129e12b72cc', data, layout, config);
+            var layout = {"width":600,"height":600,"template":{"layout":{"paper_bgcolor":"white","plot_bgcolor":"white","xaxis":{"ticks":"inside","mirror":"all","showline":true,"zeroline":true},"yaxis":{"ticks":"inside","mirror":"all","showline":true,"zeroline":true}},"data":{}}};
+            var config = {"responsive":true};
+            Plotly.newPlot('29cdc309-813c-4e7a-8fbd-27ed7b837ca6', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_16c77663048a47bda4650129e12b72cc();
+                    renderPlotly_29cdc309813c4e7a8fbd27ed7b837ca6();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_16c77663048a47bda4650129e12b72cc();
+                renderPlotly_29cdc309813c4e7a8fbd27ed7b837ca6();
             }
 </script>
 
@@ -514,18 +524,18 @@ data at different values.</p>
 <div class="fsdocs-tip" id="fs4">val x : string list</div>
 <div class="fsdocs-tip" id="fs5">val violin1 : GenericChart.GenericChart</div>
 <div class="fsdocs-tip" id="fs6">type Chart =
-  static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:float -&gt; GenericChart + 1 overload
-  static member Bar : values:seq&lt;#IConvertible&gt; * ?Keys:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?PatternShape:PatternShape * ?MultiPatternShape:seq&lt;PatternShape&gt; * ?Pattern:Pattern * ?Base:#IConvertible * ?Width:&#39;a3 * ?MultiWidth:seq&lt;&#39;a3&gt; * ?Opacity:float * ?MultiOpacity:seq&lt;float&gt; * ?Text:&#39;a4 * ?MultiText:seq&lt;&#39;a4&gt; * ?TextPosition:TextPosition * ?MultiTextPosition:seq&lt;TextPosition&gt; * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart (requires &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
-  static member BoxPlot : ?x:seq&lt;#IConvertible&gt; * ?y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Text:&#39;a2 * ?MultiText:seq&lt;&#39;a2&gt; * ?Fillcolor:Color * ?MarkerColor:Color * ?OutlierColor:Color * ?OutlierWidth:int * ?Opacity:float * ?WhiskerWidth:float * ?BoxPoints:BoxPoints * ?BoxMean:BoxMean * ?Jitter:float * ?PointPos:float * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?AlignmentGroup:string * ?Offsetgroup:string * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod -&gt; GenericChart (requires &#39;a2 :&gt; IConvertible) + 1 overload
-  static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;int&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:Orientation * ?GroupNorm:GroupNorm * ?UseWebGL:bool -&gt; GenericChart + 1 overload
-  static member Candlestick : open:seq&lt;#IConvertible&gt; * high:seq&lt;#IConvertible&gt; * low:seq&lt;#IConvertible&gt; * close:seq&lt;#IConvertible&gt; * x:seq&lt;#IConvertible&gt; * ?Increasing:Line * ?Decreasing:Line * ?WhiskerWidth:float * ?Line:Line * ?XCalendar:Calendar -&gt; GenericChart + 1 overload
-  static member Column : values:seq&lt;#IConvertible&gt; * ?Keys:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Pattern:Pattern * ?PatternShape:PatternShape * ?MultiPatternShape:seq&lt;PatternShape&gt; * ?Base:#IConvertible * ?Width:&#39;a3 * ?MultiWidth:seq&lt;&#39;a3&gt; * ?Opacity:float * ?MultiOpacity:seq&lt;float&gt; * ?Text:&#39;a4 * ?MultiText:seq&lt;&#39;a4&gt; * ?TextPosition:TextPosition * ?MultiTextPosition:seq&lt;TextPosition&gt; * ?TextFont:Font * ?Marker:Marker -&gt; GenericChart (requires &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
-  static member Contour : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;a4 * ?zSmooth:SmoothAlg * ?ColorBar:&#39;a5 -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)
-  static member Funnel : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Color:Color * ?Line:Line * ?x0:&#39;a3 * ?dX:float * ?y0:&#39;a4 * ?dY:float * ?Width:float * ?Offset:float * ?Orientation:Orientation * ?Alignmentgroup:string * ?Offsetgroup:string * ?Cliponaxis:bool * ?Connector:FunnelConnector * ?Insidetextfont:Font * ?Outsidetextfont:Font -&gt; GenericChart
-  static member Heatmap : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?ColNames:seq&lt;#IConvertible&gt; * ?RowNames:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;a4 * ?Xgap:&#39;a5 * ?Ygap:&#39;a6 * ?zSmooth:SmoothAlg * ?ColorBar:&#39;a7 * ?UseWebGL:bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)
-  static member Histogram : ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Orientation:Orientation * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Text:&#39;a2 * ?MultiText:seq&lt;&#39;a2&gt; * ?HistFunc:HistFunc * ?HistNorm:HistNorm * ?AlignmentGroup:string * ?OffsetGroup:string * ?NBinsX:int * ?NBinsY:int * ?BinGroup:string * ?XBins:Bins * ?YBins:Bins * ?MarkerColor:Color * ?Marker:Marker * ?Line:Line * ?ErrorX:Error * ?ErrorY:Error * ?Cumulative:Cumulative * ?HoverLabel:Hoverlabel -&gt; GenericChart (requires &#39;a2 :&gt; IConvertible) + 1 overload
+  static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:float * ?UseDefaults:bool -&gt; GenericChart + 1 overload
+  static member Bar : values:seq&lt;#IConvertible&gt; * ?Keys:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?PatternShape:PatternShape * ?MultiPatternShape:seq&lt;PatternShape&gt; * ?Pattern:Pattern * ?Base:#IConvertible * ?Width:&#39;a3 * ?MultiWidth:seq&lt;&#39;a3&gt; * ?Opacity:float * ?MultiOpacity:seq&lt;float&gt; * ?Text:&#39;a4 * ?MultiText:seq&lt;&#39;a4&gt; * ?TextPosition:TextPosition * ?MultiTextPosition:seq&lt;TextPosition&gt; * ?TextFont:Font * ?Marker:Marker * ?UseDefaults:bool -&gt; GenericChart (requires &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
+  static member BoxPlot : ?x:seq&lt;#IConvertible&gt; * ?y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Text:&#39;a2 * ?MultiText:seq&lt;&#39;a2&gt; * ?Fillcolor:Color * ?MarkerColor:Color * ?OutlierColor:Color * ?OutlierWidth:int * ?Opacity:float * ?WhiskerWidth:float * ?BoxPoints:BoxPoints * ?BoxMean:BoxMean * ?Jitter:float * ?PointPos:float * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?AlignmentGroup:string * ?Offsetgroup:string * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod * ?UseDefaults:bool -&gt; GenericChart (requires &#39;a2 :&gt; IConvertible) + 1 overload
+  static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;int&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:Orientation * ?GroupNorm:GroupNorm * ?UseWebGL:bool * ?UseDefaults:bool -&gt; GenericChart + 1 overload
+  static member Candlestick : open:seq&lt;#IConvertible&gt; * high:seq&lt;#IConvertible&gt; * low:seq&lt;#IConvertible&gt; * close:seq&lt;#IConvertible&gt; * x:seq&lt;#IConvertible&gt; * ?Increasing:Line * ?Decreasing:Line * ?WhiskerWidth:float * ?Line:Line * ?XCalendar:Calendar * ?UseDefaults:bool -&gt; GenericChart + 1 overload
+  static member Column : values:seq&lt;#IConvertible&gt; * ?Keys:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Pattern:Pattern * ?PatternShape:PatternShape * ?MultiPatternShape:seq&lt;PatternShape&gt; * ?Base:#IConvertible * ?Width:&#39;a3 * ?MultiWidth:seq&lt;&#39;a3&gt; * ?Opacity:float * ?MultiOpacity:seq&lt;float&gt; * ?Text:&#39;a4 * ?MultiText:seq&lt;&#39;a4&gt; * ?TextPosition:TextPosition * ?MultiTextPosition:seq&lt;TextPosition&gt; * ?TextFont:Font * ?Marker:Marker * ?UseDefaults:bool -&gt; GenericChart (requires &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
+  static member Contour : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;a4 * ?zSmooth:SmoothAlg * ?ColorBar:&#39;a5 * ?UseDefaults:bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)
+  static member Funnel : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Color:Color * ?Line:Line * ?x0:&#39;a3 * ?dX:float * ?y0:&#39;a4 * ?dY:float * ?Width:float * ?Offset:float * ?Orientation:Orientation * ?Alignmentgroup:string * ?Offsetgroup:string * ?Cliponaxis:bool * ?Connector:FunnelConnector * ?Insidetextfont:Font * ?Outsidetextfont:Font * ?UseDefaults:bool -&gt; GenericChart
+  static member Heatmap : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?ColNames:seq&lt;#IConvertible&gt; * ?RowNames:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;a4 * ?Xgap:&#39;a5 * ?Ygap:&#39;a6 * ?zSmooth:SmoothAlg * ?ColorBar:&#39;a7 * ?UseWebGL:bool * ?UseDefaults:bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)
+  static member Histogram : ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Orientation:Orientation * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Text:&#39;a2 * ?MultiText:seq&lt;&#39;a2&gt; * ?HistFunc:HistFunc * ?HistNorm:HistNorm * ?AlignmentGroup:string * ?OffsetGroup:string * ?NBinsX:int * ?NBinsY:int * ?BinGroup:string * ?XBins:Bins * ?YBins:Bins * ?MarkerColor:Color * ?Marker:Marker * ?Line:Line * ?ErrorX:Error * ?ErrorY:Error * ?Cumulative:Cumulative * ?HoverLabel:Hoverlabel * ?UseDefaults:bool -&gt; GenericChart (requires &#39;a2 :&gt; IConvertible) + 1 overload
   ...</div>
-<div class="fsdocs-tip" id="fs7">static member Chart.Violin : xy:seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?FillColor:Color * ?Opacity:float * ?Points:StyleParam.JitterPoints * ?Jitter:float * ?PointPos:float * ?Orientation:StyleParam.Orientation * ?Width:float * ?MarkerColor:Color * ?OutlierColor:Color * ?OutlierWidth:int * ?Marker:TraceObjects.Marker * ?Line:Line * ?AlignmentGroup:string * ?OffsetGroup:string * ?ShowBox:bool * ?BoxWidth:float * ?BoxFillColor:Color * ?Box:TraceObjects.Box * ?BandWidth:float * ?MeanLine:TraceObjects.MeanLine * ?ScaleGroup:string * ?ScaleMode:StyleParam.ScaleMode * ?Side:StyleParam.ViolinSide * ?Span:StyleParam.Range * ?SpanMode:StyleParam.SpanMode -&gt; GenericChart.GenericChart<br />static member Chart.Violin : ?X:seq&lt;#System.IConvertible&gt; * ?Y:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?FillColor:Color * ?Opacity:float * ?Points:StyleParam.JitterPoints * ?Jitter:float * ?PointPos:float * ?Orientation:StyleParam.Orientation * ?Width:float * ?MarkerColor:Color * ?OutlierColor:Color * ?OutlierWidth:int * ?Marker:TraceObjects.Marker * ?Line:Line * ?AlignmentGroup:string * ?OffsetGroup:string * ?ShowBox:bool * ?BoxWidth:float * ?BoxFillColor:Color * ?Box:TraceObjects.Box * ?BandWidth:float * ?MeanLine:TraceObjects.MeanLine * ?ScaleGroup:string * ?ScaleMode:StyleParam.ScaleMode * ?Side:StyleParam.ViolinSide * ?Span:StyleParam.Range * ?SpanMode:StyleParam.SpanMode -&gt; GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs7">static member Chart.Violin : xy:seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?FillColor:Color * ?Opacity:float * ?Points:StyleParam.JitterPoints * ?Jitter:float * ?PointPos:float * ?Orientation:StyleParam.Orientation * ?Width:float * ?MarkerColor:Color * ?OutlierColor:Color * ?OutlierWidth:int * ?Marker:TraceObjects.Marker * ?Line:Line * ?AlignmentGroup:string * ?OffsetGroup:string * ?ShowBox:bool * ?BoxWidth:float * ?BoxFillColor:Color * ?Box:TraceObjects.Box * ?BandWidth:float * ?MeanLine:TraceObjects.MeanLine * ?ScaleGroup:string * ?ScaleMode:StyleParam.ScaleMode * ?Side:StyleParam.ViolinSide * ?Span:StyleParam.Range * ?SpanMode:StyleParam.SpanMode * ?UseDefaults:bool -&gt; GenericChart.GenericChart<br />static member Chart.Violin : ?X:seq&lt;#System.IConvertible&gt; * ?Y:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?FillColor:Color * ?Opacity:float * ?Points:StyleParam.JitterPoints * ?Jitter:float * ?PointPos:float * ?Orientation:StyleParam.Orientation * ?Width:float * ?MarkerColor:Color * ?OutlierColor:Color * ?OutlierWidth:int * ?Marker:TraceObjects.Marker * ?Line:Line * ?AlignmentGroup:string * ?OffsetGroup:string * ?ShowBox:bool * ?BoxWidth:float * ?BoxFillColor:Color * ?Box:TraceObjects.Box * ?BandWidth:float * ?MeanLine:TraceObjects.MeanLine * ?ScaleGroup:string * ?ScaleMode:StyleParam.ScaleMode * ?Side:StyleParam.ViolinSide * ?Span:StyleParam.Range * ?SpanMode:StyleParam.SpanMode * ?UseDefaults:bool -&gt; GenericChart.GenericChart</div>
 <div class="fsdocs-tip" id="fs8">module StyleParam
 
 from Plotly.NET</div>
@@ -541,7 +551,7 @@ from Plotly.NET<br /><em>&lt;summary&gt;
 &lt;/summary&gt;</em></div>
 <div class="fsdocs-tip" id="fs13">namespace Plotly.NET.TraceObjects</div>
 <div class="fsdocs-tip" id="fs14">val violin2 : GenericChart.GenericChart</div>
-<div class="fsdocs-tip" id="fs15">static member Chart.Violin : xy:seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?FillColor:Color * ?Opacity:float * ?Points:StyleParam.JitterPoints * ?Jitter:float * ?PointPos:float * ?Orientation:StyleParam.Orientation * ?Width:float * ?MarkerColor:Color * ?OutlierColor:Color * ?OutlierWidth:int * ?Marker:Marker * ?Line:Line * ?AlignmentGroup:string * ?OffsetGroup:string * ?ShowBox:bool * ?BoxWidth:float * ?BoxFillColor:Color * ?Box:Box * ?BandWidth:float * ?MeanLine:MeanLine * ?ScaleGroup:string * ?ScaleMode:StyleParam.ScaleMode * ?Side:StyleParam.ViolinSide * ?Span:StyleParam.Range * ?SpanMode:StyleParam.SpanMode -&gt; GenericChart.GenericChart<br />static member Chart.Violin : ?X:seq&lt;#System.IConvertible&gt; * ?Y:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?FillColor:Color * ?Opacity:float * ?Points:StyleParam.JitterPoints * ?Jitter:float * ?PointPos:float * ?Orientation:StyleParam.Orientation * ?Width:float * ?MarkerColor:Color * ?OutlierColor:Color * ?OutlierWidth:int * ?Marker:Marker * ?Line:Line * ?AlignmentGroup:string * ?OffsetGroup:string * ?ShowBox:bool * ?BoxWidth:float * ?BoxFillColor:Color * ?Box:Box * ?BandWidth:float * ?MeanLine:MeanLine * ?ScaleGroup:string * ?ScaleMode:StyleParam.ScaleMode * ?Side:StyleParam.ViolinSide * ?Span:StyleParam.Range * ?SpanMode:StyleParam.SpanMode -&gt; GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs15">static member Chart.Violin : xy:seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?FillColor:Color * ?Opacity:float * ?Points:StyleParam.JitterPoints * ?Jitter:float * ?PointPos:float * ?Orientation:StyleParam.Orientation * ?Width:float * ?MarkerColor:Color * ?OutlierColor:Color * ?OutlierWidth:int * ?Marker:Marker * ?Line:Line * ?AlignmentGroup:string * ?OffsetGroup:string * ?ShowBox:bool * ?BoxWidth:float * ?BoxFillColor:Color * ?Box:Box * ?BandWidth:float * ?MeanLine:MeanLine * ?ScaleGroup:string * ?ScaleMode:StyleParam.ScaleMode * ?Side:StyleParam.ViolinSide * ?Span:StyleParam.Range * ?SpanMode:StyleParam.SpanMode * ?UseDefaults:bool -&gt; GenericChart.GenericChart<br />static member Chart.Violin : ?X:seq&lt;#System.IConvertible&gt; * ?Y:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?FillColor:Color * ?Opacity:float * ?Points:StyleParam.JitterPoints * ?Jitter:float * ?PointPos:float * ?Orientation:StyleParam.Orientation * ?Width:float * ?MarkerColor:Color * ?OutlierColor:Color * ?OutlierWidth:int * ?Marker:Marker * ?Line:Line * ?AlignmentGroup:string * ?OffsetGroup:string * ?ShowBox:bool * ?BoxWidth:float * ?BoxFillColor:Color * ?Box:Box * ?BandWidth:float * ?MeanLine:MeanLine * ?ScaleGroup:string * ?ScaleMode:StyleParam.ScaleMode * ?Side:StyleParam.ViolinSide * ?Span:StyleParam.Range * ?SpanMode:StyleParam.SpanMode * ?UseDefaults:bool -&gt; GenericChart.GenericChart</div>
 <div class="fsdocs-tip" id="fs16">type Orientation =
   | Horizontal
   | Vertical

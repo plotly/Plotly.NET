@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Chart Templates</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Timo Mühlhaus, Kevin Schneider, F# open source contributors">
+    
+    <!--Opengraph properties (https://ogp.me/)-->
+    <meta property="og:title" content="Chart Templates" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Plotly.NET" />
+    
+    <link rel="shortcut icon" type="image/x-icon" href="https://plotly.net//img/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script> -->
+
+    <link type="text/css" rel="stylesheet" href="https://plotly.net/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="https://plotly.net/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="https://plotly.net/content/fsdocs-tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head> 
+
+<body>
+    <div class="columns is-fullheight m-0">
+        <div id="fsdocs-menu" class="column is-2 is-paddingless">
+            <aside class="menu">
+                <div class="container is-paddingless is-marginless has-background-dark">
+                    <a href="https://plotly.net/">
+                        <figure class="image is-128x128 container">
+                            <img src="https://plotly.net/img/logo.png">
+                        </figure>
+                    </a>
+                    <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.13</h5>
+                </div>
+                <div class="content">
+                    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+                    <div id="header">
+                        <div class="searchbox" id="fsdocs-searchbox">
+                            <label for="search-by">
+                                <i class="fas fa-search"></i>
+                            </label>
+                            <input data-search-input="" id="search-by" type="search" placeholder="Search..." class="input"/>
+                            <span data-search-clear="">
+                                <i class="fas fa-times"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- END SEARCH BOX: this adds support for the search box -->
+                    <ul class="navbar-nav">
+                        <li class="nav-header">Links</li>
+                        <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License (MIT)</a></li>
+                        <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release Notes</a></li>
+                        <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source Repository</a></li>
+                        <li class="nav-header">
+  General
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/00_0_basics.html">
+    Basics
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/00_1_image-export.html">
+    Static image export
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/00_2_display-options.html">
+    Display Options
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/00_3_chart-config.html">
+    Chart config
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/00_4_templates.html">
+    Chart Templates
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/00_5_defaults.html">
+    Global default values
+  </a>
+</li>             
+<li class="nav-header">
+  Chart Layout
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/01_0_axis-styling.html">
+    Axis styling
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/01_1_errorbars.html">
+    Error bars
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/01_2_multiple-charts.html">
+    Multicharts and subplots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/01_3_shapes.html">
+    Shapes
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/01_4_annotations.html">
+    Annotations
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/01_5_layout_images.html">
+    Layout images
+  </a>
+</li>             
+<li class="nav-header">
+  Simple Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/02_0_line-scatter-plots.html">
+    Line and scatter plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/02_1_bar-and-column-charts.html">
+    Bar and column charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/02_2_area-plots.html">
+    Area charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/02_3_range-plots.html">
+    Range plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/02_4_bubble-charts.html">
+    Bubble charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/02_5_pie-doughnut-charts.html">
+    Pie and doughnut Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/02_6_table.html">
+    Tables
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/02_7_heatmaps.html">
+    Heatmaps
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/02_8_Images.html">
+    Images
+  </a>
+</li>             
+<li class="nav-header">
+  3D Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/03_0_3d-scatter-plots.html">
+    3D point and line charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/03_1_3d-surface-plots.html">
+    3D surface plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/03_2_3d-mesh-plots.html">
+    3D Mesh plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/03_3_3d-cone-charts.html">
+    3D Cone plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/03_4_3d-streamtube-plots.html">
+    3D streamtube plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/03_5_3d-volume-plots.html">
+    3D Volume plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/03_6_3d-isosurface-plots .html">
+    3D IsoSurface plots
+  </a>
+</li>             
+<li class="nav-header">
+  Distribution Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/04_0_histograms.html">
+    Histograms
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/04_1_box-plots.html">
+    BoxPlots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/04_2_violin-plots.html">
+    Violin plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/04_4_2d-histograms.html">
+    2D Histograms
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/04_3_contour-plots.html">
+    Contour plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/04_5_splom.html">
+    Scatterplot matrix
+  </a>
+</li>             
+<li class="nav-header">
+  Geo map charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/05_0_geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/05_1_geo-plots.html">
+    Scatter and line plots on Geo maps
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/05_2_choropleth-map.html">
+    Choropleth maps
+  </a>
+</li>             
+<li class="nav-header">
+  Mapbox map charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/06_0_geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/06_1_mapbox-plots.html">
+    Scatter and line plots on Mapbox maps
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/06_2_choropleth-mapbox.html">
+    ChoroplethMapbox
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/06_3_density-mapbox.html">
+    DensityMapbox charts
+  </a>
+</li>             
+<li class="nav-header">
+  Finance Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_0_candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_1_funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_2_funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_3_indicator.html">
+    Indicator Charts
+  </a>
+</li>             
+<li class="nav-header">
+  Polar Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/08_0_polar_line-scatter-plots.html">
+    Polar line and scatter plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/08_1_polar_bar_charts.html">
+    Polar bar charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/08_2_styling_polar_layouts.html">
+    Styling polar layouts
+  </a>
+</li>             
+<li class="nav-header">
+  Categorical Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/09_0_parallel-categories.html">
+    Parallel categories
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/09_1_parallel-coords.html">
+    Parallel coordinates
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/09_2_sankey.html">
+    Sankey Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/09_3_icicle.html">
+    Icicle Charts
+  </a>
+</li>             
+<li class="nav-header">
+  Ternary Plots
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/10_0_ternary_line_scatter_plots.html">
+    Ternary line and scatter plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/10_1_styling_ternary_layouts.html">
+    Styling ternary layouts
+  </a>
+</li>             
+<li class="nav-header">
+  Carpet Plots
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/11_1_carpet_line_scatter_plots.html">
+    Carpet line and scatter plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/11_2_contourcarpet_plots.html">
+    Contour carpet plots
+  </a>
+</li>
+                        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+        <div class="column is-10 is-paddingless">
+            <div class="section pt-4">
+                <div class="container" id="fsdocs-content">
+                    
+<h1><a name="Chart-Templates" class="anchor" href="#Chart-Templates">Chart Templates</a></h1>
+<p><a href="https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=00_4_templates.ipynb"><img src="https://plotly.net/img/badge-binder.svg" alt="Binder" /></a>&emsp;
+<a href="https://plotly.net/00_4_templates.fsx"><img src="https://plotly.net/img/badge-script.svg" alt="Script" /></a>&emsp;
+<a href="https://plotly.net/00_4_templates.ipynb"><img src="https://plotly.net/img/badge-notebook.svg" alt="Notebook" /></a></p>
+<h2><a name="Using-premade-templates" class="anchor" href="#Using-premade-templates">Using premade templates</a></h2>
+<p>premade templates can be accessed via the <code>ChartTemplates</code> module. In fact, the <code>ChartTemplates.plotly</code> template is always active by default (see <a href="./005_defaults.html">global defaults</a>)</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">Plotly</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">NET</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="id">lightMirrored</span> <span class="o">=</span> 
+    <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="id">Point</span><span class="pn">(</span><span class="pn">[</span><span class="n">1</span><span class="pn">,</span><span class="n">2</span><span class="pn">]</span><span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 7)" onmouseover="showTip(event, 'fs6', 7)" class="id">withTemplate</span> <span onmouseout="hideTip(event, 'fs7', 8)" onmouseover="showTip(event, 'fs7', 8)" class="m">ChartTemplates</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs8', 9)" onmouseover="showTip(event, 'fs8', 9)" class="id">lightMirrored</span>
+</code></pre>
+<div id="ff902cc6-7987-498f-a291-3c3611ae9f15"><!-- Plotly chart will be drawn inside this DIV --></div>
+<script type="text/javascript">
+
+            var renderPlotly_ff902cc67987498fa2913c3611ae9f15 = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
+            fsharpPlotlyRequire(['plotly'], function(Plotly) {
+
+            var data = [{"type":"scatter","mode":"markers","x":[1],"y":[2],"marker":{}}];
+            var layout = {"width":600,"height":600,"template":{"layout":{"paper_bgcolor":"white","plot_bgcolor":"white","xaxis":{"ticks":"inside","mirror":"all","showline":true,"zeroline":true},"yaxis":{"ticks":"inside","mirror":"all","showline":true,"zeroline":true}},"data":{}}};
+            var config = {"responsive":true};
+            Plotly.newPlot('ff902cc6-7987-498f-a291-3c3611ae9f15', data, layout, config);
+});
+            };
+            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
+                var script = document.createElement("script");
+                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
+                script.onload = function(){
+                    renderPlotly_ff902cc67987498fa2913c3611ae9f15();
+                };
+                document.getElementsByTagName("head")[0].appendChild(script);
+            }
+            else {
+                renderPlotly_ff902cc67987498fa2913c3611ae9f15();
+            }
+</script>
+
+<p>here are then contents of the template <code>plotly</code> which is used by default for all charts:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs11', 13)" onmouseover="showTip(event, 'fs11', 13)" class="id">DynamicObj</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code></code></pre></td></tr></table>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 14)" onmouseover="showTip(event, 'fs7', 14)" class="m">ChartTemplates</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 15)" onmouseover="showTip(event, 'fs12', 15)" class="id">plotly</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs13', 16)" onmouseover="showTip(event, 'fs13', 16)" class="m">DynObj</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 17)" onmouseover="showTip(event, 'fs14', 17)" class="id">print</span>
+</code></pre>
+<h2><a name="Creating-custom-templates" class="anchor" href="#Creating-custom-templates">Creating custom templates</a></h2>
+<p>Chart Templates consist of a <code>Layout</code> object and a collection of <code>Trace</code> objects. Both are used to set default values for all possible styling options:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 18)" onmouseover="showTip(event, 'fs1', 18)" class="id">Plotly</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 19)" onmouseover="showTip(event, 'fs2', 19)" class="id">NET</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs15', 20)" onmouseover="showTip(event, 'fs15', 20)" class="id">TraceObjects</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs16', 21)" onmouseover="showTip(event, 'fs16', 21)" class="id">layoutTemplate</span> <span class="o">=</span> 
+    <span onmouseout="hideTip(event, 'fs17', 22)" onmouseover="showTip(event, 'fs17', 22)" class="rt">Layout</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 23)" onmouseover="showTip(event, 'fs18', 23)" class="id">init</span><span class="pn">(</span>
+        <span onmouseout="hideTip(event, 'fs19', 24)" onmouseover="showTip(event, 'fs19', 24)" class="fn">Title</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs19', 25)" onmouseover="showTip(event, 'fs19', 25)" class="rt">Title</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 26)" onmouseover="showTip(event, 'fs20', 26)" class="id">init</span><span class="pn">(</span><span class="s">&quot;I will always be there now!&quot;</span><span class="pn">)</span>
+    <span class="pn">)</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs21', 27)" onmouseover="showTip(event, 'fs21', 27)" class="id">traceTemplates</span> <span class="o">=</span> 
+    <span class="pn">[</span>
+        <span onmouseout="hideTip(event, 'fs22', 28)" onmouseover="showTip(event, 'fs22', 28)" class="rt">Trace2D</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs23', 29)" onmouseover="showTip(event, 'fs23', 29)" class="id">initScatter</span><span class="pn">(</span>
+            <span onmouseout="hideTip(event, 'fs24', 30)" onmouseover="showTip(event, 'fs24', 30)" class="rt">Trace2DStyle</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 31)" onmouseover="showTip(event, 'fs25', 31)" class="id">Scatter</span><span class="pn">(</span>
+                <span onmouseout="hideTip(event, 'fs26', 32)" onmouseover="showTip(event, 'fs26', 32)" class="fn">Marker</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs26', 33)" onmouseover="showTip(event, 'fs26', 33)" class="rt">Marker</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs27', 34)" onmouseover="showTip(event, 'fs27', 34)" class="id">init</span><span class="pn">(</span><span class="fn">Symbol</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs28', 35)" onmouseover="showTip(event, 'fs28', 35)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs29', 36)" onmouseover="showTip(event, 'fs29', 36)" class="rt">MarkerSymbol</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 37)" onmouseover="showTip(event, 'fs30', 37)" class="id">ArrowLeft</span><span class="pn">,</span> <span class="fn">Size</span> <span class="o">=</span> <span class="n">20</span><span class="pn">)</span>
+            <span class="pn">)</span>
+        <span class="pn">)</span>
+    <span class="pn">]</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs31', 38)" onmouseover="showTip(event, 'fs31', 38)" class="id">myTemplate</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs32', 39)" onmouseover="showTip(event, 'fs32', 39)" class="rt">Template</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs33', 40)" onmouseover="showTip(event, 'fs33', 40)" class="id">init</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs16', 41)" onmouseover="showTip(event, 'fs16', 41)" class="id">layoutTemplate</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs21', 42)" onmouseover="showTip(event, 'fs21', 42)" class="id">traceTemplates</span><span class="pn">)</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs34', 43)" onmouseover="showTip(event, 'fs34', 43)" class="id">myTemplateExampleChart</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs4', 44)" onmouseover="showTip(event, 'fs4', 44)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 45)" onmouseover="showTip(event, 'fs5', 45)" class="id">Point</span><span class="pn">(</span><span class="pn">[</span><span class="n">1</span><span class="pn">,</span><span class="n">2</span><span class="pn">]</span><span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs4', 46)" onmouseover="showTip(event, 'fs4', 46)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 47)" onmouseover="showTip(event, 'fs6', 47)" class="id">withTemplate</span> <span onmouseout="hideTip(event, 'fs31', 48)" onmouseover="showTip(event, 'fs31', 48)" class="id">myTemplate</span>
+</code></pre>
+<div id="79e6ac3b-7952-436d-8277-30deb1e4d89c"><!-- Plotly chart will be drawn inside this DIV --></div>
+<script type="text/javascript">
+
+            var renderPlotly_79e6ac3b7952436d827730deb1e4d89c = function() {
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
+            fsharpPlotlyRequire(['plotly'], function(Plotly) {
+
+            var data = [{"type":"scatter","mode":"markers","x":[1],"y":[2],"marker":{}}];
+            var layout = {"width":600,"height":600,"template":{"layout":{"title":{"text":"I will always be there now!"}},"data":{"scatter":[{"marker":{"size":20,"symbol":"47"}}]}}};
+            var config = {"responsive":true};
+            Plotly.newPlot('79e6ac3b-7952-436d-8277-30deb1e4d89c', data, layout, config);
+});
+            };
+            if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
+                var script = document.createElement("script");
+                script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
+                script.onload = function(){
+                    renderPlotly_79e6ac3b7952436d827730deb1e4d89c();
+                };
+                document.getElementsByTagName("head")[0].appendChild(script);
+            }
+            else {
+                renderPlotly_79e6ac3b7952436d827730deb1e4d89c();
+            }
+</script>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="fsdocs-tip" id="fs1">namespace Plotly</div>
+<div class="fsdocs-tip" id="fs2">namespace Plotly.NET</div>
+<div class="fsdocs-tip" id="fs3">val lightMirrored : GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs4">type Chart =
+  static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:float * ?UseDefaults:bool -&gt; GenericChart + 1 overload
+  static member Bar : values:seq&lt;#IConvertible&gt; * ?Keys:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?PatternShape:PatternShape * ?MultiPatternShape:seq&lt;PatternShape&gt; * ?Pattern:Pattern * ?Base:#IConvertible * ?Width:&#39;a3 * ?MultiWidth:seq&lt;&#39;a3&gt; * ?Opacity:float * ?MultiOpacity:seq&lt;float&gt; * ?Text:&#39;a4 * ?MultiText:seq&lt;&#39;a4&gt; * ?TextPosition:TextPosition * ?MultiTextPosition:seq&lt;TextPosition&gt; * ?TextFont:Font * ?Marker:Marker * ?UseDefaults:bool -&gt; GenericChart (requires &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
+  static member BoxPlot : ?x:seq&lt;#IConvertible&gt; * ?y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Text:&#39;a2 * ?MultiText:seq&lt;&#39;a2&gt; * ?Fillcolor:Color * ?MarkerColor:Color * ?OutlierColor:Color * ?OutlierWidth:int * ?Opacity:float * ?WhiskerWidth:float * ?BoxPoints:BoxPoints * ?BoxMean:BoxMean * ?Jitter:float * ?PointPos:float * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?AlignmentGroup:string * ?Offsetgroup:string * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod * ?UseDefaults:bool -&gt; GenericChart (requires &#39;a2 :&gt; IConvertible) + 1 overload
+  static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;int&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:Orientation * ?GroupNorm:GroupNorm * ?UseWebGL:bool * ?UseDefaults:bool -&gt; GenericChart + 1 overload
+  static member Candlestick : open:seq&lt;#IConvertible&gt; * high:seq&lt;#IConvertible&gt; * low:seq&lt;#IConvertible&gt; * close:seq&lt;#IConvertible&gt; * x:seq&lt;#IConvertible&gt; * ?Increasing:Line * ?Decreasing:Line * ?WhiskerWidth:float * ?Line:Line * ?XCalendar:Calendar * ?UseDefaults:bool -&gt; GenericChart + 1 overload
+  static member Column : values:seq&lt;#IConvertible&gt; * ?Keys:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Pattern:Pattern * ?PatternShape:PatternShape * ?MultiPatternShape:seq&lt;PatternShape&gt; * ?Base:#IConvertible * ?Width:&#39;a3 * ?MultiWidth:seq&lt;&#39;a3&gt; * ?Opacity:float * ?MultiOpacity:seq&lt;float&gt; * ?Text:&#39;a4 * ?MultiText:seq&lt;&#39;a4&gt; * ?TextPosition:TextPosition * ?MultiTextPosition:seq&lt;TextPosition&gt; * ?TextFont:Font * ?Marker:Marker * ?UseDefaults:bool -&gt; GenericChart (requires &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
+  static member Contour : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;a4 * ?zSmooth:SmoothAlg * ?ColorBar:&#39;a5 * ?UseDefaults:bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)
+  static member Funnel : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Color:Color * ?Line:Line * ?x0:&#39;a3 * ?dX:float * ?y0:&#39;a4 * ?dY:float * ?Width:float * ?Offset:float * ?Orientation:Orientation * ?Alignmentgroup:string * ?Offsetgroup:string * ?Cliponaxis:bool * ?Connector:FunnelConnector * ?Insidetextfont:Font * ?Outsidetextfont:Font * ?UseDefaults:bool -&gt; GenericChart
+  static member Heatmap : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?ColNames:seq&lt;#IConvertible&gt; * ?RowNames:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;a4 * ?Xgap:&#39;a5 * ?Ygap:&#39;a6 * ?zSmooth:SmoothAlg * ?ColorBar:&#39;a7 * ?UseWebGL:bool * ?UseDefaults:bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)
+  static member Histogram : ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Orientation:Orientation * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Text:&#39;a2 * ?MultiText:seq&lt;&#39;a2&gt; * ?HistFunc:HistFunc * ?HistNorm:HistNorm * ?AlignmentGroup:string * ?OffsetGroup:string * ?NBinsX:int * ?NBinsY:int * ?BinGroup:string * ?XBins:Bins * ?YBins:Bins * ?MarkerColor:Color * ?Marker:Marker * ?Line:Line * ?ErrorX:Error * ?ErrorY:Error * ?Cumulative:Cumulative * ?HoverLabel:Hoverlabel * ?UseDefaults:bool -&gt; GenericChart (requires &#39;a2 :&gt; IConvertible) + 1 overload
+  ...</div>
+<div class="fsdocs-tip" id="fs5">static member Chart.Point : xy:seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:StyleParam.Orientation * ?GroupNorm:StyleParam.GroupNorm * ?UseWebGL:bool * ?UseDefaults:bool -&gt; GenericChart.GenericChart<br />static member Chart.Point : x:seq&lt;#System.IConvertible&gt; * y:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:StyleParam.Orientation * ?GroupNorm:StyleParam.GroupNorm * ?UseWebGL:bool * ?UseDefaults:bool -&gt; GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs6">static member Chart.withTemplate : template:Template -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
+<div class="fsdocs-tip" id="fs7">module ChartTemplates
+
+from Plotly.NET</div>
+<div class="fsdocs-tip" id="fs8">val lightMirrored : Template</div>
+<div class="fsdocs-tip" id="fs9">module GenericChart
+
+from Plotly.NET<br /><em>&lt;summary&gt;
+ Module to represent a GenericChart
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs10">val toChartHTML : gChart:GenericChart.GenericChart -&gt; string<br /><em>&lt;summary&gt;
+ Converts a GenericChart to it HTML representation. The div layer has a default size of 600 if not specified otherwise.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs11">namespace DynamicObj</div>
+<div class="fsdocs-tip" id="fs12">val plotly : Template<br /><em>&lt;summary&gt;
+ the default template, as used in the python lib by default.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs13">module DynObj
+
+from DynamicObj</div>
+<div class="fsdocs-tip" id="fs14">val print : d:DynamicObj -&gt; unit</div>
+<div class="fsdocs-tip" id="fs15">namespace Plotly.NET.TraceObjects</div>
+<div class="fsdocs-tip" id="fs16">val layoutTemplate : Layout</div>
+<div class="fsdocs-tip" id="fs17">Multiple items<br />type Layout =
+  inherit DynamicObj
+  new : unit -&gt; Layout
+  static member AddGeo : id:SubPlotId * geo:Geo -&gt; (Layout -&gt; Layout)
+  static member AddLinearAxis : id:SubPlotId * axis:LinearAxis -&gt; (Layout -&gt; Layout)
+  static member AddMapbox : id:SubPlotId * mapbox:Mapbox -&gt; (Layout -&gt; Layout)
+  static member GetLayoutGrid : grid:LayoutGrid -&gt; (Layout -&gt; Layout)
+  static member SetLayoutGrid : grid:LayoutGrid -&gt; (Layout -&gt; Layout)
+  static member UpdateGeoById : id:SubPlotId * geo:Geo -&gt; (Layout -&gt; Layout)
+  static member UpdateLinearAxisById : id:SubPlotId * axis:LinearAxis -&gt; (Layout -&gt; Layout)
+  static member UpdateMapboxById : id:SubPlotId * mapbox:Mapbox -&gt; (Layout -&gt; Layout)
+  ...<br /><em>&lt;summary&gt;
+ Layout 
+&lt;/summary&gt;</em><br /><br />--------------------<br />new : unit -&gt; Layout</div>
+<div class="fsdocs-tip" id="fs18">static member Layout.init : ?Title:Title * ?ShowLegend:bool * ?Legend:LayoutObjects.Legend * ?Margin:LayoutObjects.Margin * ?AutoSize:bool * ?Width:int * ?Height:int * ?Font:Font * ?UniformText:LayoutObjects.UniformText * ?Separators:string * ?PaperBGColor:Color * ?PlotBGColor:Color * ?AutoTypeNumbers:StyleParam.AutoTypeNumbers * ?Colorscale:LayoutObjects.DefaultColorScales * ?Colorway:Color * ?ModeBar:LayoutObjects.ModeBar * ?HoverMode:StyleParam.HoverMode * ?ClickMode:StyleParam.ClickMode * ?DragMode:StyleParam.DragMode * ?SelectDirection:StyleParam.SelectDirection * ?HoverDistance:int * ?SpikeDistance:int * ?Hoverlabel:LayoutObjects.Hoverlabel * ?Transition:LayoutObjects.Transition * ?DataRevision:string * ?UIRevision:string * ?EditRevision:string * ?SelectRevision:string * ?Template:DynamicObj * ?Meta:string * ?Computed:string * ?Grid:LayoutObjects.LayoutGrid * ?Calendar:StyleParam.Calendar * ?NewShape:LayoutObjects.Shape * ?ActiveShape:LayoutObjects.ActiveShape * ?HideSources:bool * ?BarGap:float * ?BarGroupGap:float * ?BarMode:StyleParam.BarMode * ?BarNorm:StyleParam.BarNorm * ?ExtendPieColors:bool * ?HiddenLabels:seq&lt;#System.IConvertible&gt; * ?PieColorWay:Color * ?BoxGap:float * ?BoxGroupGap:float * ?BoxMode:StyleParam.BoxMode * ?ViolinGap:float * ?ViolinGroupGap:float * ?ViolinMode:StyleParam.ViolinMode * ?WaterfallGap:float * ?WaterfallGroupGap:float * ?WaterfallMode:StyleParam.WaterfallMode * ?FunnelGap:float * ?FunnelGroupGap:float * ?FunnelMode:StyleParam.FunnelMode * ?ExtendFunnelAreaColors:bool * ?FunnelAreaColorWay:Color * ?ExtendSunBurstColors:bool * ?SunBurstColorWay:Color * ?ExtendTreeMapColors:bool * ?TreeMapColorWay:Color * ?ExtendIcicleColors:bool * ?IcicleColorWay:Color * ?Annotations:seq&lt;LayoutObjects.Annotation&gt; * ?Shapes:seq&lt;LayoutObjects.Shape&gt; * ?Images:seq&lt;LayoutObjects.LayoutImage&gt; -&gt; Layout</div>
+<div class="fsdocs-tip" id="fs19">Multiple items<br />type Title =
+  inherit DynamicObj
+  new : unit -&gt; Title
+  static member init : ?Text:string * ?Font:Font * ?Standoff:int * ?Side:Side * ?X:float * ?Y:float -&gt; Title
+  static member style : ?Text:string * ?Font:Font * ?Standoff:int * ?Side:Side * ?X:float * ?Y:float -&gt; (Title -&gt; Title)<br /><br />--------------------<br />new : unit -&gt; Title</div>
+<div class="fsdocs-tip" id="fs20">static member Title.init : ?Text:string * ?Font:Font * ?Standoff:int * ?Side:StyleParam.Side * ?X:float * ?Y:float -&gt; Title</div>
+<div class="fsdocs-tip" id="fs21">val traceTemplates : Trace2D list</div>
+<div class="fsdocs-tip" id="fs22">Multiple items<br />type Trace2D =
+  inherit Trace
+  new : traceTypeName:string -&gt; Trace2D
+  static member initBar : applyStyle:(Trace2D -&gt; Trace2D) -&gt; Trace2D
+  static member initBoxPlot : applyStyle:(Trace2D -&gt; Trace2D) -&gt; Trace2D
+  static member initCandlestick : applyStyle:(Trace2D -&gt; Trace2D) -&gt; Trace2D
+  static member initContour : applyStyle:(Trace2D -&gt; Trace2D) -&gt; Trace2D
+  static member initFunnel : applyStyle:(Trace2D -&gt; Trace2D) -&gt; Trace2D
+  static member initHeatmap : applyStyle:(Trace2D -&gt; Trace2D) -&gt; Trace2D
+  static member initHeatmapGL : applyStyle:(Trace2D -&gt; Trace2D) -&gt; Trace2D
+  static member initHistogram : applyStyle:(Trace2D -&gt; Trace2D) -&gt; Trace2D
+  ...<br /><em>&lt;summary&gt;
+ The most commonly-used kind of subplot is a two-dimensional Cartesian subplot. Traces compatible with these subplots 
+ support xaxis and yaxis attributes whose values must refer to corresponding objects in the layout portion of the figure. 
+ For example, if xaxis=&quot;x&quot;, and yaxis=&quot;y&quot; (which is the default) then this trace is drawn on the subplot at the intersection 
+ of the axes configured under layout.xaxis and layout.yaxis, but if xaxis=&quot;x2&quot; and yaxis=&quot;y3&quot; then the trace is drawn at the 
+ intersection of the axes configured under layout.xaxis2 and layout.yaxis3. Note that attributes such as layout.xaxis and 
+ layout.xaxis2 etc do not have to be explicitly defined, in which case default values will be inferred. Multiple traces of 
+ different types can be drawn on the same subplot.
+
+ X- and Y-axes support the type attribute, which enables them to represent continuous values (type=&quot;linear&quot;, type=&quot;log&quot;), 
+ temporal values (type=&quot;date&quot;) or categorical values (type=&quot;category&quot;, type=&quot;multicategory). Axes can also be overlaid on 
+ top of one another to create dual-axis or multiple-axis charts. 2-d cartesian subplots lend themselves very well to creating 
+ &quot;small multiples&quot; figures, also known as facet or trellis plots.
+
+ The following trace types are compatible with 2D-cartesian subplots via the xaxis and yaxis attributes:
+
+ - scatter-like trace types: scatter and scattergl can be used to draw scatter plots, line plots and curves, time-series plots, 
+ bubble charts, dot plots and filled areas and also support error bars
+
+ - bar, funnel, waterfall: bar-like trace types which can also be used to draw timelines and Gantt charts
+
+ - histogram: an aggregating bar-like trace type
+
+ - box and violin: 1-dimensional distribution-like trace types
+
+ - histogram2D and histogram2Dcontour: 2-dimensional distribution-like density trace types
+
+ - image, heatmap and contour: matrix trace types
+
+ - ohlc and candlestick: stock-like trace types
+
+ - splom: multi-dimensional scatter plots which implicitly refer to many 2-d cartesian subplots at once.
+&lt;/summary&gt;</em><br /><br />--------------------<br />new : traceTypeName:string -&gt; Trace2D</div>
+<div class="fsdocs-tip" id="fs23">static member Trace2D.initScatter : applyStyle:(Trace2D -&gt; Trace2D) -&gt; Trace2D</div>
+<div class="fsdocs-tip" id="fs24">Multiple items<br />type Trace2DStyle =
+  new : unit -&gt; Trace2DStyle
+  static member Bar : ?Name:string * ?Visible:Visible * ?ShowLegend:bool * ?LegendRank:int * ?LegendGroup:string * ?LegendGroupTitle:Title * ?Opacity:float * ?Ids:seq&lt;#IConvertible&gt; * ?X:seq&lt;#IConvertible&gt; * ?X0:#IConvertible * ?DX:#IConvertible * ?Y:seq&lt;#IConvertible&gt; * ?Y0:#IConvertible * ?DY:#IConvertible * ?Base:#IConvertible * ?Width:&#39;i * ?MultiWidth:seq&lt;&#39;i&gt; * ?Offset:&#39;j * ?MultiOffset:seq&lt;&#39;j&gt; * ?Text:&#39;k * ?MultiText:seq&lt;&#39;k&gt; * ?TextPosition:TextPosition * ?MultiTextPosition:seq&lt;TextPosition&gt; * ?TextTemplate:string * ?MultiTextTemplate:seq&lt;string&gt; * ?HoverText:string * ?MultiHoverText:seq&lt;string&gt; * ?HoverInfo:HoverInfo * ?HoverTemplate:string * ?MultiHoverTemplate:seq&lt;string&gt; * ?XHoverFormat:string * ?YHoverFormat:string * ?Meta:string * ?CustomData:seq&lt;#IConvertible&gt; * ?XAxis:LinearAxisId * ?YAxis:LinearAxisId * ?Orientation:Orientation * ?AlignmentGroup:string * ?OffsetGroup:string * ?XPeriod:#IConvertible * ?XPeriodAlignment:PeriodAlignment * ?XPeriod0:#IConvertible * ?YPeriod:#IConvertible * ?YPeriodAlignment:PeriodAlignment * ?YPeriod0:#IConvertible * ?Marker:Marker * ?TextAngle:float * ?TextFont:Font * ?ErrorX:Error * ?ErrorY:Error * ?SelectedPoints:seq&lt;#IConvertible&gt; * ?Selected:Selection * ?Unselected:Selection * ?ClipOnAxis:bool * ?Constraintext:ConstrainText * ?HoverLabel:Hoverlabel * ?InsideTextAnchor:InsideTextAnchor * ?InsideTextFont:Font * ?OutsideTextFont:Font * ?XCalendar:Calendar * ?YCalendar:Calendar * ?UIRevision:string -&gt; (&#39;T -&gt; &#39;T) (requires &#39;i :&gt; IConvertible and &#39;j :&gt; IConvertible and &#39;k :&gt; IConvertible and &#39;T :&gt; Trace)
+  static member BoxPlot : ?Name:string * ?Visible:Visible * ?ShowLegend:bool * ?LegendRank:int * ?LegendGroup:string * ?LegendGroupTitle:Title * ?Opacity:float * ?Ids:seq&lt;#IConvertible&gt; * ?X:seq&lt;#IConvertible&gt; * ?X0:#IConvertible * ?DX:#IConvertible * ?Y:seq&lt;#IConvertible&gt; * ?Y0:#IConvertible * ?DY:#IConvertible * ?Width:float * ?Text:&#39;h * ?MultiText:seq&lt;&#39;h&gt; * ?HoverText:string * ?MultiHoverText:seq&lt;string&gt; * ?HoverInfo:HoverInfo * ?HoverTemplate:string * ?MultiHoverTemplate:seq&lt;string&gt; * ?XHoverFormat:string * ?YHoverFormat:string * ?Meta:string * ?CustomData:seq&lt;#IConvertible&gt; * ?XAxis:LinearAxisId * ?YAxis:LinearAxisId * ?Orientation:Orientation * ?AlignmentGroup:string * ?OffsetGroup:string * ?XPeriod:#IConvertible * ?XPeriodAlignment:PeriodAlignment * ?XPeriod0:#IConvertible * ?YPeriod:#IConvertible * ?YPeriodAlignment:PeriodAlignment * ?YPeriod0:#IConvertible * ?Marker:Marker * ?Line:Line * ?BoxMean:BoxMean * ?BoxPoints:BoxPoints * ?Notched:bool * ?NotchWidth:float * ?Whiskerwidth:float * ?Q1:seq&lt;IConvertible&gt; * ?Median:seq&lt;IConvertible&gt; * ?Q3:seq&lt;IConvertible&gt; * ?LowerFence:seq&lt;IConvertible&gt; * ?UpperFence:seq&lt;IConvertible&gt; * ?NotchSpan:seq&lt;IConvertible&gt; * ?Mean:seq&lt;IConvertible&gt; * ?SD:seq&lt;IConvertible&gt; * ?QuartileMethod:QuartileMethod * ?SelectedPoints:seq&lt;#IConvertible&gt; * ?Selected:Selection * ?Unselected:Selection * ?FillColor:Color * ?HoverLabel:Hoverlabel * ?HoverOn:HoverOn * ?PointPos:float * ?Jitter:float * ?XCalendar:Calendar * ?YCalendar:Calendar * ?UIRevision:string -&gt; (&#39;T -&gt; &#39;T) (requires &#39;h :&gt; IConvertible and &#39;T :&gt; Trace)
+  static member Candlestick : open:seq&lt;#IConvertible&gt; * high:seq&lt;#IConvertible&gt; * low:seq&lt;#IConvertible&gt; * close:seq&lt;#IConvertible&gt; * x:seq&lt;#IConvertible&gt; * ?Increasing:Line * ?Decreasing:Line * ?WhiskerWidth:float * ?Line:Line * ?XCalendar:Calendar -&gt; (&#39;T -&gt; &#39;T) (requires &#39;T :&gt; Trace)
+  static member Contour : ?Z:seq&lt;#seq&lt;&#39;b&gt;&gt; * ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?X0:&#39;e * ?dX:&#39;f * ?Y0:&#39;g * ?dY:&#39;h * ?xType:&#39;i * ?yType:&#39;j * ?xAxis:&#39;k * ?yAxis:&#39;l * ?Zsrc:&#39;m * ?Xsrc:&#39;n * ?Ysrc:&#39;o * ?Xgap:&#39;p * ?Ygap:&#39;q * ?Transpose:&#39;r * ?zAuto:&#39;s * ?zMin:&#39;t * ?zMax:&#39;a1 * ?Colorscale:Colorscale * ?Autocolorscale:&#39;a2 * ?Reversescale:&#39;a3 * ?Showscale:&#39;a4 * ?zSmooth:SmoothAlg * ?ColorBar:&#39;a5 -&gt; (&#39;T -&gt; &#39;T) (requires &#39;b :&gt; IConvertible and &#39;T :&gt; Trace)
+  static member Funnel : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?x0:&#39;c * ?dX:float * ?y0:&#39;d * ?dY:float * ?Width:float * ?Offset:float * ?Orientation:Orientation * ?Alignmentgroup:string * ?Offsetgroup:string * ?Cliponaxis:bool * ?Connector:FunnelConnector * ?Insidetextfont:Font * ?Outsidetextfont:Font -&gt; (&#39;T -&gt; &#39;T) (requires &#39;T :&gt; Trace)
+  static member Heatmap : ?Z:seq&lt;#seq&lt;&#39;b&gt;&gt; * ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?X0:&#39;e * ?dX:&#39;f * ?Y0:&#39;g * ?dY:&#39;h * ?xType:&#39;i * ?yType:&#39;j * ?xAxis:&#39;k * ?yAxis:&#39;l * ?Zsrc:&#39;m * ?Xsrc:&#39;n * ?Ysrc:&#39;o * ?Xgap:&#39;p * ?Ygap:&#39;q * ?Transpose:&#39;r * ?zAuto:&#39;s * ?zMin:&#39;t * ?zMax:&#39;a1 * ?Colorscale:Colorscale * ?Autocolorscale:&#39;a2 * ?Reversescale:&#39;a3 * ?Showscale:&#39;a4 * ?zSmooth:SmoothAlg * ?ColorBar:&#39;a5 -&gt; (&#39;T -&gt; &#39;T) (requires &#39;b :&gt; IConvertible and &#39;T :&gt; Trace)
+  static member Histogram : ?Name:string * ?Visible:Visible * ?ShowLegend:bool * ?LegendRank:int * ?LegendGroup:string * ?LegendGroupTitle:Title * ?Opacity:float * ?Ids:seq&lt;#IConvertible&gt; * ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Text:&#39;d * ?MultiText:seq&lt;&#39;d&gt; * ?HoverText:string * ?MultiHoverText:seq&lt;string&gt; * ?HoverInfo:HoverInfo * ?HoverTemplate:string * ?MultiHoverTemplate:seq&lt;string&gt; * ?XHoverFormat:string * ?YHoverFormat:string * ?Meta:string * ?CustomData:seq&lt;#IConvertible&gt; * ?XAxis:LinearAxisId * ?YAxis:LinearAxisId * ?Orientation:Orientation * ?HistFunc:HistFunc * ?HistNorm:HistNorm * ?AlignmentGroup:string * ?OffsetGroup:string * ?NBinsX:int * ?NBinsY:int * ?AutoBinX:bool * ?AutoBinY:bool * ?BinGroup:string * ?XBins:Bins * ?YBins:Bins * ?Marker:Marker * ?Line:Line * ?ErrorX:Error * ?ErrorY:Error * ?SelectedPoints:seq&lt;#IConvertible&gt; * ?Selected:Selection * ?Unselected:Selection * ?Cumulative:Cumulative * ?HoverLabel:Hoverlabel * ?XCalendar:Calendar * ?YCalendar:Calendar * ?UIRevision:string -&gt; (&#39;T -&gt; &#39;T) (requires &#39;d :&gt; IConvertible and &#39;T :&gt; Trace)
+  static member Histogram2D : ?Name:string * ?Visible:Visible * ?ShowLegend:bool * ?LegendRank:int * ?LegendGroup:string * ?LegendGroupTitle:Title * ?Opacity:float * ?Ids:seq&lt;#IConvertible&gt; * ?X:seq&lt;#IConvertible&gt; * ?XGap:int * ?Y:seq&lt;#IConvertible&gt; * ?YGap:int * ?Z:seq&lt;#seq&lt;&#39;e&gt;&gt; * ?HoverInfo:HoverInfo * ?HoverTemplate:string * ?MultiHoverTemplate:seq&lt;string&gt; * ?XHoverFormat:string * ?YHoverFormat:string * ?Meta:string * ?CustomData:seq&lt;#IConvertible&gt; * ?XAxis:LinearAxisId * ?YAxis:LinearAxisId * ?ColorAxis:SubPlotId * ?HistFunc:HistFunc * ?HistNorm:HistNorm * ?NBinsX:int * ?NBinsY:int * ?AutoBinX:bool * ?AutoBinY:bool * ?XBins:Bins * ?YBins:Bins * ?Marker:Marker * ?ColorBar:ColorBar * ?AutoColorScale:bool * ?ColorScale:Colorscale * ?ShowScale:bool * ?ReverseScale:bool * ?ZAuto:bool * ?ZHoverFormat:string * ?Zmin:float * ?Zmid:float * ?Zmax:float * ?ZSmooth:SmoothAlg * ?HoverLabel:Hoverlabel * ?XCalendar:Calendar * ?YCalendar:Calendar * ?UIRevision:string -&gt; (&#39;T -&gt; &#39;T) (requires &#39;e :&gt; IConvertible and &#39;T :&gt; Trace)
+  static member Histogram2DContour : ?Name:string * ?Visible:Visible * ?ShowLegend:bool * ?LegendRank:int * ?LegendGroup:string * ?LegendGroupTitle:Title * ?Opacity:float * ?Ids:seq&lt;#IConvertible&gt; * ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Z:seq&lt;#seq&lt;&#39;e&gt;&gt; * ?HoverInfo:HoverInfo * ?HoverTemplate:string * ?MultiHoverTemplate:seq&lt;string&gt; * ?XHoverFormat:string * ?YHoverFormat:string * ?Meta:string * ?CustomData:seq&lt;#IConvertible&gt; * ?XAxis:LinearAxisId * ?YAxis:LinearAxisId * ?ColorAxis:SubPlotId * ?HistFunc:HistFunc * ?HistNorm:HistNorm * ?NBinsX:int * ?NBinsY:int * ?AutoBinX:bool * ?AutoBinY:bool * ?BinGroup:string * ?XBinGroup:string * ?XBins:Bins * ?YBinGroup:string * ?YBins:Bins * ?Marker:Marker * ?Line:Line * ?ColorBar:ColorBar * ?AutoColorScale:bool * ?ColorScale:Colorscale * ?ShowScale:bool * ?ReverseScale:bool * ?ZAuto:bool * ?ZHoverFormat:string * ?Zmin:float * ?Zmid:float * ?Zmax:float * ?AutoContour:bool * ?Contours:Contours * ?HoverLabel:Hoverlabel * ?NContours:int * ?XCalendar:Calendar * ?YCalendar:Calendar * ?UIRevision:string -&gt; (&#39;T -&gt; &#39;T) (requires &#39;e :&gt; IConvertible and &#39;T :&gt; Trace)
+  ...<br /><br />--------------------<br />new : unit -&gt; Trace2DStyle</div>
+<div class="fsdocs-tip" id="fs25">static member Trace2DStyle.Scatter : ?Name:string * ?Visible:StyleParam.Visible * ?ShowLegend:bool * ?LegendRank:int * ?LegendGroup:string * ?LegendGroupTitle:Title * ?Opacity:float * ?Mode:StyleParam.Mode * ?Ids:seq&lt;#System.IConvertible&gt; * ?X:seq&lt;#System.IConvertible&gt; * ?X0:#System.IConvertible * ?DX:#System.IConvertible * ?Y:seq&lt;#System.IConvertible&gt; * ?Y0:#System.IConvertible * ?DY:#System.IConvertible * ?Text:&#39;h * ?MultiText:seq&lt;&#39;h&gt; * ?TextPosition:StyleParam.TextPosition * ?MultiTextPosition:seq&lt;StyleParam.TextPosition&gt; * ?TextTemplate:string * ?MultiTextTemplate:seq&lt;string&gt; * ?HoverText:string * ?MultiHoverText:seq&lt;string&gt; * ?HoverInfo:StyleParam.HoverInfo * ?HoverTemplate:string * ?MultiHoverTemplate:seq&lt;string&gt; * ?XHoverFormat:string * ?YHoverFormat:string * ?Meta:string * ?CustomData:seq&lt;#System.IConvertible&gt; * ?XAxis:StyleParam.LinearAxisId * ?YAxis:StyleParam.LinearAxisId * ?Orientation:StyleParam.Orientation * ?GroupNorm:StyleParam.GroupNorm * ?StackGroup:string * ?XPeriod:#System.IConvertible * ?XPeriodAlignment:StyleParam.PeriodAlignment * ?XPeriod0:#System.IConvertible * ?YPeriod:#System.IConvertible * ?YPeriodAlignment:StyleParam.PeriodAlignment * ?YPeriod0:#System.IConvertible * ?Marker:Marker * ?Line:Line * ?TextFont:Font * ?ErrorX:Error * ?ErrorY:Error * ?SelectedPoints:seq&lt;#System.IConvertible&gt; * ?Selected:Selection * ?Unselected:Selection * ?ClipOnAxis:bool * ?ConnectGaps:bool * ?Fill:StyleParam.Fill * ?FillColor:Color * ?HoverLabel:LayoutObjects.Hoverlabel * ?HoverOn:StyleParam.HoverOn * ?StackGaps:StyleParam.StackGaps * ?XCalendar:StyleParam.Calendar * ?YCalendar:StyleParam.Calendar * ?UIRevision:string -&gt; (&#39;T -&gt; &#39;T) (requires &#39;h :&gt; System.IConvertible and &#39;T :&gt; Trace)</div>
+<div class="fsdocs-tip" id="fs26">Multiple items<br />type Marker =
+  inherit DynamicObj
+  new : unit -&gt; Marker
+  static member init : ?AutoColorScale:bool * ?CAuto:bool * ?CMax:float * ?CMid:float * ?CMin:float * ?Color:Color * ?Colors:seq&lt;Color&gt; * ?ColorAxis:SubPlotId * ?ColorBar:ColorBar * ?Colorscale:Colorscale * ?Gradient:Gradient * ?Outline:Line * ?Size:int * ?MultiSize:seq&lt;int&gt; * ?Opacity:float * ?Pattern:Pattern * ?MultiOpacity:seq&lt;float&gt; * ?Symbol:MarkerSymbol * ?MultiSymbol:seq&lt;MarkerSymbol&gt; * ?OutlierColor:Color * ?OutlierWidth:int * ?Maxdisplayed:int * ?ReverseScale:bool * ?ShowScale:bool * ?SizeMin:int * ?SizeMode:MarkerSizeMode * ?SizeRef:int -&gt; Marker
+  static member style : ?AutoColorScale:bool * ?CAuto:bool * ?CMax:float * ?CMid:float * ?CMin:float * ?Color:Color * ?Colors:seq&lt;Color&gt; * ?ColorAxis:SubPlotId * ?ColorBar:ColorBar * ?Colorscale:Colorscale * ?Gradient:Gradient * ?Outline:Line * ?Size:int * ?MultiSize:seq&lt;int&gt; * ?Opacity:float * ?MultiOpacity:seq&lt;float&gt; * ?Pattern:Pattern * ?Symbol:MarkerSymbol * ?MultiSymbol:seq&lt;MarkerSymbol&gt; * ?OutlierColor:Color * ?OutlierWidth:int * ?Maxdisplayed:int * ?ReverseScale:bool * ?ShowScale:bool * ?SizeMin:int * ?SizeMode:MarkerSizeMode * ?SizeRef:int -&gt; (Marker -&gt; Marker)<br /><em>&lt;summary&gt;
+ Marker type inherits from dynamic object
+&lt;/summary&gt;</em><br /><br />--------------------<br />new : unit -&gt; Marker</div>
+<div class="fsdocs-tip" id="fs27">static member Marker.init : ?AutoColorScale:bool * ?CAuto:bool * ?CMax:float * ?CMid:float * ?CMin:float * ?Color:Color * ?Colors:seq&lt;Color&gt; * ?ColorAxis:StyleParam.SubPlotId * ?ColorBar:LayoutObjects.ColorBar * ?Colorscale:StyleParam.Colorscale * ?Gradient:Gradient * ?Outline:Line * ?Size:int * ?MultiSize:seq&lt;int&gt; * ?Opacity:float * ?Pattern:Pattern * ?MultiOpacity:seq&lt;float&gt; * ?Symbol:StyleParam.MarkerSymbol * ?MultiSymbol:seq&lt;StyleParam.MarkerSymbol&gt; * ?OutlierColor:Color * ?OutlierWidth:int * ?Maxdisplayed:int * ?ReverseScale:bool * ?ShowScale:bool * ?SizeMin:int * ?SizeMode:StyleParam.MarkerSizeMode * ?SizeRef:int -&gt; Marker</div>
+<div class="fsdocs-tip" id="fs28">module StyleParam
+
+from Plotly.NET</div>
+<div class="fsdocs-tip" id="fs29">type MarkerSymbol =
+  | Modified of MarkerSymbol * SymbolStyle
+  | Circle
+  | Square
+  | Diamond
+  | Cross
+  | X
+  | TriangleUp
+  | TriangleDown
+  | TriangleLeft
+  | TriangleRight
+  ...
+    member Convert : unit -&gt; obj
+    override ToString : unit -&gt; string
+    static member convert : (MarkerSymbol -&gt; obj)
+    static member toInteger : (MarkerSymbol -&gt; int)</div>
+<div class="fsdocs-tip" id="fs30">union case StyleParam.MarkerSymbol.ArrowLeft: StyleParam.MarkerSymbol</div>
+<div class="fsdocs-tip" id="fs31">val myTemplate : Template</div>
+<div class="fsdocs-tip" id="fs32">Multiple items<br />type Template =
+  inherit DynamicObj
+  new : unit -&gt; Template
+  static member init : layoutTemplate:Layout * ?TraceTemplates:seq&lt;#Trace&gt; -&gt; Template
+  static member mapLayoutTemplate : styleF:(Layout -&gt; Layout) -&gt; template:Template -&gt; Template
+  static member mapTraceTemplates : styleF:(#Trace [] -&gt; #Trace []) -&gt; template:Template -&gt; Template
+  static member style : layoutTemplate:Layout * ?TraceTemplates:seq&lt;#Trace&gt; -&gt; (Template -&gt; Template)
+  static member withColorWay : colorway:Color -&gt; template:Template -&gt; Template<br /><br />--------------------<br />new : unit -&gt; Template</div>
+<div class="fsdocs-tip" id="fs33">static member Template.init : layoutTemplate:Layout * ?TraceTemplates:seq&lt;#Trace&gt; -&gt; Template</div>
+<div class="fsdocs-tip" id="fs34">val myTemplateExampleChart : GenericChart.GenericChart</div>
+
+    </div>
+
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <script type="text/javascript">var fsdocs_search_baseurl = 'https://plotly.net/'</script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+    <script type="text/javascript" src="https://plotly.net/content/fsdocs-search.js"></script>
+    <!-- END SEARCH BOX: this adds support for the search box -->
+</body>
+
+</html>

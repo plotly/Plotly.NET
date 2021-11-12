@@ -39,29 +39,29 @@ use `Chart.PointTernary` to create a ternary plot that displays points on a tern
 
 *)
 let ternaryPoint = Chart.PointTernary(a,b,c)(* output: 
-<div id="ee37189b-b40d-42f8-ae6f-19b7a634bb31" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="6b64d0b0-db29-4e8c-9c1b-318b89a1af00"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_ee37189bb40d42f8ae6f19b7a634bb31 = function() {
+            var renderPlotly_6b64d0b0db294e8c9c1b318b89a1af00 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatterternary","mode":"markers","a":[1,2,3,4,5,6,7],"b":[7,6,5,4,3,2,1],"c":[2,2,2,2,2,2,2],"marker":{}}];
-            var layout = {};
-            var config = {};
-            Plotly.newPlot('ee37189b-b40d-42f8-ae6f-19b7a634bb31', data, layout, config);
+            var layout = {"width":600,"height":600,"template":{"layout":{"paper_bgcolor":"white","plot_bgcolor":"white","xaxis":{"ticks":"inside","mirror":"all","showline":true,"zeroline":true},"yaxis":{"ticks":"inside","mirror":"all","showline":true,"zeroline":true}},"data":{}}};
+            var config = {"responsive":true};
+            Plotly.newPlot('6b64d0b0-db29-4e8c-9c1b-318b89a1af00', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_ee37189bb40d42f8ae6f19b7a634bb31();
+                    renderPlotly_6b64d0b0db294e8c9c1b318b89a1af00();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_ee37189bb40d42f8ae6f19b7a634bb31();
+                renderPlotly_6b64d0b0db294e8c9c1b318b89a1af00();
             }
 </script>
 *)
@@ -78,29 +78,29 @@ You can also for example change the line style using `Chart.withLineStyle`
 let lineTernary = 
     Chart.LineTernary(a,b,Sum = 10)
     |> Chart.withLineStyle(Color=Color.fromString "purple",Dash=StyleParam.DrawingStyle.DashDot)(* output: 
-<div id="20f243bb-32a6-463b-add6-ad837eafeacd" style="width: 600px; height: 600px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="bb1e87c6-cf18-4e4c-820e-6d4bac2d3eaf"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_20f243bb32a6463badd6ad837eafeacd = function() {
+            var renderPlotly_bb1e87c6cf184e4c820e6d4bac2d3eaf = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.4.2.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatterternary","mode":"lines","a":[1,2,3,4,5,6,7],"b":[7,6,5,4,3,2,1],"sum":10,"line":{"color":"purple","dash":"dashdot"},"marker":{}}];
-            var layout = {};
-            var config = {};
-            Plotly.newPlot('20f243bb-32a6-463b-add6-ad837eafeacd', data, layout, config);
+            var layout = {"width":600,"height":600,"template":{"layout":{"paper_bgcolor":"white","plot_bgcolor":"white","xaxis":{"ticks":"inside","mirror":"all","showline":true,"zeroline":true},"yaxis":{"ticks":"inside","mirror":"all","showline":true,"zeroline":true}},"data":{}}};
+            var config = {"responsive":true};
+            Plotly.newPlot('bb1e87c6-cf18-4e4c-820e-6d4bac2d3eaf', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_20f243bb32a6463badd6ad837eafeacd();
+                    renderPlotly_bb1e87c6cf184e4c820e6d4bac2d3eaf();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_20f243bb32a6463badd6ad837eafeacd();
+                renderPlotly_bb1e87c6cf184e4c820e6d4bac2d3eaf();
             }
 </script>
 *)
