@@ -24,6 +24,7 @@
  * [Greatly improve C# interop](https://github.com/plotly/Plotly.NET/commit/c1ed1be0234a4fcfab921acb43f1c0cf128cc233)
  * [Add the Plotly.NET.ImageExport project](https://github.com/plotly/Plotly.NET/pull/94) - Render Plotly.NET charts as static images
  * [Use a statically typed color representation that is compatible with all ways plotly uses colors](https://github.com/plotly/Plotly.NET/commit/19763db129b9160906964d9831ff3f67279926cc) - thanks [@muehlhaus](https://github.com/muehlhaus)
+ * [Add a Templating and global default system](https://github.com/plotly/Plotly.NET/pull/237)
 
 **Plotly.NET now has 100% trace coverage! New Charts:**
 
