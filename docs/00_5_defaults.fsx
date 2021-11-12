@@ -69,6 +69,11 @@ after
 after |> GenericChart.toChartHTML
 (***include-it-raw***)
 
+(**
+To use the default template again:
+*)
+
+Defaults.DefaultTemplate <- ChartTemplates.plotly
 
 (**
 ## Ignoring global defaults
