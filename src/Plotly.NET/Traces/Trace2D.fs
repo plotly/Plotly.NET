@@ -443,41 +443,116 @@ type Trace2DStyle() =
     
     static member Funnel
         (
-            x               : seq<#IConvertible>,
-            y               : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?x0,
-            [<Optional;DefaultParameterValue(null)>] ?dX             : float,
-            [<Optional;DefaultParameterValue(null)>] ?y0,
-            [<Optional;DefaultParameterValue(null)>] ?dY             : float,
-            [<Optional;DefaultParameterValue(null)>] ?Width          : float,
-            [<Optional;DefaultParameterValue(null)>] ?Offset         : float,
-            [<Optional;DefaultParameterValue(null)>] ?Orientation    : StyleParam.Orientation,
-            [<Optional;DefaultParameterValue(null)>] ?Alignmentgroup : string,
-            [<Optional;DefaultParameterValue(null)>] ?Offsetgroup    : string,
-            [<Optional;DefaultParameterValue(null)>] ?Cliponaxis     : bool,
-            [<Optional;DefaultParameterValue(null)>] ?Connector      : FunnelConnector,
-            [<Optional;DefaultParameterValue(null)>] ?Insidetextfont : Font,
-            [<Optional;DefaultParameterValue(null)>] ?Outsidetextfont: Font
+            [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+            [<Optional;DefaultParameterValue(null)>] ?Visible           : StyleParam.Visible,
+            [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+            [<Optional;DefaultParameterValue(null)>] ?LegendRank        : int,
+            [<Optional;DefaultParameterValue(null)>] ?LegendGroup       : string,
+            [<Optional;DefaultParameterValue(null)>] ?LegendGroupTitle  : Title,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+            [<Optional;DefaultParameterValue(null)>] ?Ids               : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?X                 : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?X0                : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?DX                : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?Y                 : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Y0                : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?DY                : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?Width             : float,
+            [<Optional;DefaultParameterValue(null)>] ?Offset            : float,
+            [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
+            [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
+            [<Optional;DefaultParameterValue(null)>] ?TextTemplate      : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiTextTemplate : seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverText         : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiHoverText    : seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverInfo         : StyleParam.HoverInfo,
+            [<Optional;DefaultParameterValue(null)>] ?HoverTemplate     : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiHoverTemplate: seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?XHoverFormat      : string,
+            [<Optional;DefaultParameterValue(null)>] ?YHoverFormat      : string,
+            [<Optional;DefaultParameterValue(null)>] ?Meta              : string,
+            [<Optional;DefaultParameterValue(null)>] ?CustomData        : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?XAxis             : StyleParam.LinearAxisId,
+            [<Optional;DefaultParameterValue(null)>] ?YAxis             : StyleParam.LinearAxisId,
+            [<Optional;DefaultParameterValue(null)>] ?Orientation       : StyleParam.Orientation,
+            [<Optional;DefaultParameterValue(null)>] ?AlignmentGroup    : string,
+            [<Optional;DefaultParameterValue(null)>] ?OffsetGroup       : string,
+            [<Optional;DefaultParameterValue(null)>] ?XPeriod           : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?XPeriodAlignment  : StyleParam.PeriodAlignment,            
+            [<Optional;DefaultParameterValue(null)>] ?XPeriod0          : #IConvertible,            
+            [<Optional;DefaultParameterValue(null)>] ?YPeriod           : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?YPeriodAlignment  : StyleParam.PeriodAlignment,
+            [<Optional;DefaultParameterValue(null)>] ?YPeriod0          : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+            [<Optional;DefaultParameterValue(null)>] ?TextAngle         : float,
+            [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
+            [<Optional;DefaultParameterValue(null)>] ?TextInfo          : StyleParam.TextInfo,
+            [<Optional;DefaultParameterValue(null)>] ?SelectedPoints    : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?ClipOnAxis        : bool,
+            [<Optional;DefaultParameterValue(null)>] ?Connector         : FunnelConnector,
+            [<Optional;DefaultParameterValue(null)>] ?Constraintext     : StyleParam.ConstrainText,
+            [<Optional;DefaultParameterValue(null)>] ?HoverLabel        : Hoverlabel,
+            [<Optional;DefaultParameterValue(null)>] ?InsideTextAnchor  : StyleParam.InsideTextAnchor,
+            [<Optional;DefaultParameterValue(null)>] ?InsideTextFont    : Font,
+            [<Optional;DefaultParameterValue(null)>] ?OutsideTextFont   : Font,
+            [<Optional;DefaultParameterValue(null)>] ?UIRevision        : string
         ) = 
-            (fun (trace:('T :> Trace)) -> 
-                
-                x               |> DynObj.setValue      trace "x"
-                y               |> DynObj.setValue      trace "y"
-                x0              |> DynObj.setValueOpt   trace "x0"
-                dX              |> DynObj.setValueOpt   trace "dx"
-                y0              |> DynObj.setValueOpt   trace "y0"
-                dY              |> DynObj.setValueOpt   trace "dy"
-                Width           |> DynObj.setValueOpt   trace "width"
-                Offset          |> DynObj.setValueOpt   trace "offset"
-                Orientation     |> DynObj.setValueOptBy trace "orientation" StyleParam.Orientation.convert
-                Alignmentgroup  |> DynObj.setValueOpt   trace "alignmentgroup"
-                Offsetgroup     |> DynObj.setValueOpt   trace "offsetgroup"
-                Cliponaxis      |> DynObj.setValueOpt   trace "cliponaxis"
-                Connector       |> DynObj.setValueOpt   trace "connector"
-                Insidetextfont  |> DynObj.setValueOpt   trace "insidetextfont"
-                Outsidetextfont |> DynObj.setValueOpt   trace "outsidetextfont"
+            (fun (funnel: #Trace) -> 
 
-                trace
+                Name                                |> DynObj.setValueOpt funnel "name"
+                Visible                             |> DynObj.setValueOptBy funnel "visible" StyleParam.Visible.convert
+                ShowLegend                          |> DynObj.setValueOpt funnel "showlegend"
+                LegendRank                          |> DynObj.setValueOpt funnel "legendrank"
+                LegendGroup                         |> DynObj.setValueOpt funnel "legendgroup"
+                LegendGroupTitle                    |> DynObj.setValueOpt funnel "legendgrouptitle"
+                Opacity                             |> DynObj.setValueOpt funnel "opacity"
+                Ids                                 |> DynObj.setValueOpt funnel "ids"
+                X                                   |> DynObj.setValueOpt funnel "x"
+                X0                                  |> DynObj.setValueOpt funnel "x0"
+                DX                                  |> DynObj.setValueOpt funnel "dx"
+                Y                                   |> DynObj.setValueOpt funnel "y"
+                Y0                                  |> DynObj.setValueOpt funnel "y0"
+                DY                                  |> DynObj.setValueOpt funnel "dy"
+                Width                               |> DynObj.setValueOpt funnel "width"
+                Offset                              |> DynObj.setValueOpt funnel "offset"
+                (Text, MultiText)                   |> DynObj.setSingleOrMultiOpt funnel "text"
+                (TextPosition, MultiTextPosition)   |> DynObj.setSingleOrMultiOptBy funnel "textposition" StyleParam.TextPosition.convert
+                (TextTemplate, MultiTextTemplate)   |> DynObj.setSingleOrMultiOpt funnel "texttemplate"
+                (HoverText, MultiHoverText)         |> DynObj.setSingleOrMultiOpt funnel "hovertext"
+                HoverInfo                           |> DynObj.setValueOptBy funnel "hoverinfo"  StyleParam.HoverInfo.convert
+                (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt funnel "hovertemplate"
+                XHoverFormat                        |> DynObj.setValueOpt funnel "xhoverformat"
+                YHoverFormat                        |> DynObj.setValueOpt funnel "yhoverformat"
+                Meta                                |> DynObj.setValueOpt funnel "meta"
+                CustomData                          |> DynObj.setValueOpt funnel "customdata"
+                XAxis                               |> DynObj.setValueOptBy funnel "xaxis" StyleParam.LinearAxisId.convert
+                YAxis                               |> DynObj.setValueOptBy funnel "yaxis"  StyleParam.LinearAxisId.convert
+                Orientation                         |> DynObj.setValueOptBy funnel "orientation" StyleParam.Orientation.convert
+                AlignmentGroup                      |> DynObj.setValueOpt funnel "alignmentgroup"
+                OffsetGroup                         |> DynObj.setValueOpt funnel "offsetgroup"
+                XPeriod                             |> DynObj.setValueOpt funnel "xperiod"
+                XPeriodAlignment                    |> DynObj.setValueOptBy funnel "xperiodalignment" StyleParam.PeriodAlignment.convert
+                XPeriod0                            |> DynObj.setValueOpt funnel "xperiod0"
+                YPeriod                             |> DynObj.setValueOpt funnel "yperiod"
+                YPeriodAlignment                    |> DynObj.setValueOptBy funnel "yperiodalignment" StyleParam.PeriodAlignment.convert
+                YPeriod0                            |> DynObj.setValueOpt funnel "yperiod0"
+                Marker                              |> DynObj.setValueOpt funnel "marker"
+                TextAngle                           |> DynObj.setValueOpt funnel "textangle"
+                TextFont                            |> DynObj.setValueOpt funnel "textfont"
+                TextInfo                            |> DynObj.setValueOptBy funnel "textinfo" StyleParam.TextInfo.convert
+                SelectedPoints                      |> DynObj.setValueOpt funnel "selectedpoints"
+                ClipOnAxis                          |> DynObj.setValueOpt funnel "cliponaxis"
+                Connector                           |> DynObj.setValueOpt funnel "connector"
+                Constraintext                       |> DynObj.setValueOptBy funnel "constraintext" StyleParam.ConstrainText.convert
+                HoverLabel                          |> DynObj.setValueOpt funnel "hoverlabel"
+                InsideTextAnchor                    |> DynObj.setValueOptBy funnel "insidetextanchor" StyleParam.InsideTextAnchor.convert
+                InsideTextFont                      |> DynObj.setValueOpt funnel "insidetextfont"
+                OutsideTextFont                     |> DynObj.setValueOpt funnel "outsidetextfont"
+                UIRevision                          |> DynObj.setValueOpt funnel "uirevision"
+
+                funnel
 
             )
     

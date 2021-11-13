@@ -909,56 +909,145 @@ module Chart2D =
         [<Extension>]
         static member Funnel 
             (
-                x, y,
-                [<Optional;DefaultParameterValue(null)>] ?Name                          ,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
-                [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
-                [<Optional;DefaultParameterValue(null)>] ?Color                         ,
-                [<Optional;DefaultParameterValue(null)>] ?Line                          ,
-                [<Optional;DefaultParameterValue(null)>] ?x0                            ,
-                [<Optional;DefaultParameterValue(null)>] ?dX                            ,
-                [<Optional;DefaultParameterValue(null)>] ?y0                            ,
-                [<Optional;DefaultParameterValue(null)>] ?dY                            ,
-                [<Optional;DefaultParameterValue(null)>] ?Width                         ,
-                [<Optional;DefaultParameterValue(null)>] ?Offset                        ,
-                [<Optional;DefaultParameterValue(null)>] ?Orientation                   ,
-                [<Optional;DefaultParameterValue(null)>] ?Alignmentgroup                ,
-                [<Optional;DefaultParameterValue(null)>] ?Offsetgroup                   ,
-                [<Optional;DefaultParameterValue(null)>] ?Cliponaxis                    ,
-                [<Optional;DefaultParameterValue(null)>] ?Connector                     ,
-                [<Optional;DefaultParameterValue(null)>] ?Insidetextfont                ,
-                [<Optional;DefaultParameterValue(null)>] ?Outsidetextfont,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                x: seq<#IConvertible>,
+                y: seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?Width             : float,
+                [<Optional;DefaultParameterValue(null)>] ?Offset            : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?Orientation       : StyleParam.Orientation,
+                [<Optional;DefaultParameterValue(null)>] ?AlignmentGroup    : string,
+                [<Optional;DefaultParameterValue(null)>] ?OffsetGroup       : string,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline     : Line,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?TextInfo          : StyleParam.TextInfo,
+                [<Optional;DefaultParameterValue(null)>] ?ConnectorLineColor: Color,
+                [<Optional;DefaultParameterValue(null)>] ?ConnectorLineStyle: StyleParam.DrawingStyle,
+                [<Optional;DefaultParameterValue(null)>] ?ConnectorFillColor: Color,
+                [<Optional;DefaultParameterValue(null)>] ?ConnectorLine     : Line,
+                [<Optional;DefaultParameterValue(null)>] ?Connector         : FunnelConnector,
+                [<Optional;DefaultParameterValue(null)>] ?InsideTextFont    : Font,
+                [<Optional;DefaultParameterValue(null)>] ?OutsideTextFont   : Font,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
             ) = 
-
+                
                 let useDefaults = defaultArg UseDefaults true
+                
+                let marker =
+                    Marker 
+                    |> Option.defaultValue (TraceObjects.Marker.init())
+                    |> TraceObjects.Marker.style(
+                        ?Color          = MarkerColor,
+                        ?Outline        = MarkerOutline
+                    )                
+
+                let connectorLine =
+                    ConnectorLine 
+                    |> Option.map (
+                        Plotly.NET.Line.style(
+                            ?Color  = ConnectorLineColor,
+                            ?Dash   = ConnectorLineStyle
+                        )
+                    )
+
+                let connector =
+                    Connector 
+                    |> Option.defaultValue (TraceObjects.FunnelConnector.init())
+                    |> TraceObjects.FunnelConnector.style(
+                        ?Fillcolor  = ConnectorFillColor,
+                        ?Line       = connectorLine
+                    )
 
                 Trace2D.initFunnel(
                     Trace2DStyle.Funnel(
-                        x               = x               ,
-                        y               = y               ,
-                        ?x0              = x0             ,
-                        ?dX              = dX             ,
-                        ?y0              = y0             ,
-                        ?dY              = dY             ,
-                        ?Width           = Width          ,
-                        ?Offset          = Offset         ,
-                        ?Orientation     = Orientation    ,
-                        ?Alignmentgroup  = Alignmentgroup ,
-                        ?Offsetgroup     = Offsetgroup    ,
-                        ?Cliponaxis      = Cliponaxis     ,
-                        ?Connector       = Connector      ,
-                        ?Insidetextfont  = Insidetextfont ,
-                        ?Outsidetextfont = Outsidetextfont
+                        ?Name               = Name             ,
+                        ?ShowLegend         = ShowLegend       ,
+                        ?Opacity            = Opacity          ,
+                        X                   = x                ,
+                        Y                   = y                ,
+                        ?Width              = Width            ,
+                        ?Offset             = Offset           ,
+                        ?Text               = Text             ,
+                        ?MultiText          = MultiText        ,
+                        ?TextPosition       = TextPosition     ,
+                        ?MultiTextPosition  = MultiTextPosition,
+                        ?Orientation        = Orientation      ,
+                        ?AlignmentGroup     = AlignmentGroup   ,
+                        ?OffsetGroup        = OffsetGroup      ,
+                        Marker              = marker           ,
+                        ?TextInfo           = TextInfo         ,
+                        Connector           = connector        ,
+                        ?InsideTextFont     = InsideTextFont   ,
+                        ?OutsideTextFont    = OutsideTextFont  
+                        
                     )
                 )
-                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
-                |> TraceStyle.Marker(?Color=Color,?Outline=Line)
-                |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
                 |> GenericChart.ofTraceObject useDefaults
+
+        static member StackedFunnel 
+            (
+                x: seq<#IConvertible>,
+                y: seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?Width             : float,
+                [<Optional;DefaultParameterValue(null)>] ?Offset            : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?Orientation       : StyleParam.Orientation,
+                [<Optional;DefaultParameterValue(null)>] ?AlignmentGroup    : string,
+                [<Optional;DefaultParameterValue(null)>] ?OffsetGroup       : string,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline     : Line,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?TextInfo          : StyleParam.TextInfo,
+                [<Optional;DefaultParameterValue(null)>] ?ConnectorLineColor: Color,
+                [<Optional;DefaultParameterValue(null)>] ?ConnectorLineStyle: StyleParam.DrawingStyle,
+                [<Optional;DefaultParameterValue(null)>] ?ConnectorFillColor: Color,
+                [<Optional;DefaultParameterValue(null)>] ?ConnectorLine     : Line,
+                [<Optional;DefaultParameterValue(null)>] ?Connector         : FunnelConnector,
+                [<Optional;DefaultParameterValue(null)>] ?InsideTextFont    : Font,
+                [<Optional;DefaultParameterValue(null)>] ?OutsideTextFont   : Font,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
+            ) = 
+                Chart.Funnel(
+                    x,y,
+                    ?Name               = Name              ,
+                    ?ShowLegend         = ShowLegend        ,
+                    ?Opacity            = Opacity           ,
+                    ?Width              = Width             ,
+                    ?Offset             = Offset            ,
+                    ?Text               = Text              ,
+                    ?MultiText          = MultiText         ,
+                    ?TextPosition       = TextPosition      ,
+                    ?MultiTextPosition  = MultiTextPosition ,
+                    ?Orientation        = Orientation       ,
+                    ?AlignmentGroup     = AlignmentGroup    ,
+                    ?OffsetGroup        = OffsetGroup       ,
+                    ?MarkerColor        = MarkerColor       ,
+                    ?MarkerOutline      = MarkerOutline     ,
+                    ?Marker             = Marker            ,
+                    ?TextInfo           = TextInfo          ,
+                    ?ConnectorLineColor = ConnectorLineColor,
+                    ?ConnectorLineStyle = ConnectorLineStyle,
+                    ?ConnectorFillColor = ConnectorFillColor,
+                    ?ConnectorLine      = ConnectorLine     ,
+                    ?Connector          = Connector         ,
+                    ?InsideTextFont     = InsideTextFont    ,
+                    ?OutsideTextFont    = OutsideTextFont   ,
+                    ?UseDefaults        = UseDefaults
+
+                )
+                |> GenericChart.mapLayout (Layout.style (FunnelMode = StyleParam.FunnelMode.Stack))
 
         /// Creates a waterfall chart. Waterfall charts are special bar charts that help visualizing the cumulative effect of sequentially introduced positive or negative values
         ///

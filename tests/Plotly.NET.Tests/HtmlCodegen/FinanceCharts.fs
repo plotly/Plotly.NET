@@ -64,14 +64,14 @@ let funnelChart =
     // Customize the outline of the funnel bars
     let line = Line.init(Width=2.,Color=Color.fromString "3E4E88")
     
-    Chart.Funnel (x,y,Color=Color.fromString "59D4E8", Line=line, Connector=connector, UseDefaults = false)
+    Chart.Funnel (x,y,MarkerColor=Color.fromString "59D4E8", MarkerOutline=line, Connector=connector, UseDefaults = false)
     |> Chart.withMarginSize(Left=100)
 
 [<Tests>]
 let ``Funnel charts`` =
     testList "FinanceCharts.Funnel charts" [
         testCase "Funnel data" ( fun () ->
-            "var data = [{\"type\":\"funnel\",\"x\":[1200.0,909.4,600.6,300.0,80.0],\"y\":[\"Sales person A\",\"Sales person B\",\"Sales person C\",\"Sales person D\",\"Sales person E\"],\"connector\":{\"line\":{\"color\":\"royalblue\",\"width\":3.0,\"dash\":\"dot\"}},\"marker\":{\"color\":\"59D4E8\",\"line\":{\"color\":\"3E4E88\",\"width\":2.0}}}];"
+            """var data = [{"type":"funnel","x":[1200.0,909.4,600.6,300.0,80.0],"y":["Sales person A","Sales person B","Sales person C","Sales person D","Sales person E"],"marker":{"color":"59D4E8","line":{"color":"3E4E88","width":2.0}},"connector":{"line":{"color":"royalblue","width":3.0,"dash":"dot"}}}];"""
             |> chartGeneratedContains funnelChart
         );
         testCase "Funnel layout" ( fun () ->
