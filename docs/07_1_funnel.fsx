@@ -53,7 +53,7 @@ let line = Line.init(Width=2.,Color=Color.fromHex "3E4E88")
 
 // create a funnel chart using custom connectors and outlines
 let funnel =
-    Chart.Funnel (x,y,Color=Color.fromHex "59D4E8", Line=line, Connector=connector)
+    Chart.Funnel (x,y,MarkerColor=Color.fromHex "59D4E8", MarkerOutline=line, Connector=connector)
     |> Chart.withMarginSize(Left=100)
 
 (*** condition: ipynb ***)
