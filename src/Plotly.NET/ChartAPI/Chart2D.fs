@@ -1050,110 +1050,185 @@ module Chart2D =
                 |> GenericChart.mapLayout (Layout.style (FunnelMode = StyleParam.FunnelMode.Stack))
 
         /// Creates a waterfall chart. Waterfall charts are special bar charts that help visualizing the cumulative effect of sequentially introduced positive or negative values
-        ///
-        /// Parameters:
-        ///
-        /// x               : Sets the x coordinates.
-        ///
-        /// y               : Sets the y coordinates.
-        ///
-        /// Base            : Sets where the bar base is drawn (in position axis units).
-        ///
-        /// Width           : Sets the bar width (in position axis units).
-        ///
-        /// Measure         : An array containing types of values. By default the values are considered as 'relative'. However; it is possible to use 'total' to compute the sums. Also 'absolute' could be applied to reset the computed total or to declare an initial value where needed.
-        ///
-        /// Orientation     : Sets the orientation of the bars. With "v" ("h"), the value of the each bar spans along the vertical (horizontal).
-        ///
-        /// Connector       : Sets the styling of the connector lines
-        ///
-        /// AlignmentGroup  : Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.
-        ///
-        /// OffsetGroup     : Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.
-        ///
-        /// Offset          : Shifts the position where the bar is drawn (in position axis units). In "group" barmode, traces that set "offset" will be excluded and drawn in "overlay" mode instead.
         [<Extension>]
         static member Waterfall 
             (
-                x               : #IConvertible seq,
-                y               : #IConvertible seq,
-                [<Optional;DefaultParameterValue(null)>]?Base           : IConvertible  ,
-                [<Optional;DefaultParameterValue(null)>]?Width          : float         ,
-                [<Optional;DefaultParameterValue(null)>]?Measure        : StyleParam.WaterfallMeasure seq,
-                [<Optional;DefaultParameterValue(null)>]?Orientation    : StyleParam.Orientation,
-                [<Optional;DefaultParameterValue(null)>]?Connector      : WaterfallConnector    ,
-                [<Optional;DefaultParameterValue(null)>]?AlignmentGroup : string,
-                [<Optional;DefaultParameterValue(null)>]?OffsetGroup    : string,
-                [<Optional;DefaultParameterValue(null)>]?Offset,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                x: seq<#IConvertible>,
+                y: seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?IncreasingColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Increasing        : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?DecreasingColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Decreasing        : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?TotalsColor       : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Totals            : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?Base              : float,
+                [<Optional;DefaultParameterValue(null)>] ?Width             : float,
+                [<Optional;DefaultParameterValue(null)>] ?MultiWidth        : seq<float>,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?Connector         : WaterfallConnector,
+                [<Optional;DefaultParameterValue(null)>] ?Measure           : StyleParam.WaterfallMeasure seq,
+                [<Optional;DefaultParameterValue(null)>] ?AlignmentGroup    : string,
+                [<Optional;DefaultParameterValue(null)>] ?OffsetGroup       : string,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
             ) = 
 
                 let useDefaults = defaultArg UseDefaults true
 
+                let increasing  = Increasing |> Option.defaultValue (FinanceMarker.init()) |> FinanceMarker.style(?MarkerColor = IncreasingColor)
+                let decreasing  = Decreasing |> Option.defaultValue (FinanceMarker.init()) |> FinanceMarker.style(?MarkerColor = DecreasingColor)
+                let totals      = Totals     |> Option.defaultValue (FinanceMarker.init()) |> FinanceMarker.style(?MarkerColor = TotalsColor)
+
                 Trace2D.initWaterfall(
-                    Trace2DStyle.Waterfall(x,y,
-                        ?Base           = Base          ,
-                        ?Width          = Width         ,
-                        ?Measure        = Measure       ,
-                        ?Orientation    = Orientation   ,
-                        ?Connector      = Connector     ,
-                        ?AlignmentGroup = AlignmentGroup,
-                        ?OffsetGroup    = OffsetGroup   ,
-                        ?Offset         = Offset        
+                    Trace2DStyle.Waterfall(
+                        X = x,
+                        Y = y,
+                        ?Name              = Name              ,
+                        ?ShowLegend        = ShowLegend        ,
+                        Increasing         = increasing        ,
+                        Decreasing         = decreasing        ,
+                        Totals             = totals            ,
+                        ?Base              = Base              ,
+                        ?Width             = Width             ,
+                        ?MultiWidth        = MultiWidth        ,
+                        ?Opacity           = Opacity           ,
+                        ?Text              = Text              ,
+                        ?MultiText         = MultiText         ,
+                        ?TextPosition      = TextPosition      ,
+                        ?MultiTextPosition = MultiTextPosition ,
+                        ?TextFont          = TextFont          ,
+                        ?Connector         = Connector         ,
+                        ?Measure           = Measure           ,
+                        ?AlignmentGroup    = AlignmentGroup    ,
+                        ?OffsetGroup       = OffsetGroup       
                     )
                 )
                 |> GenericChart.ofTraceObject useDefaults
 
 
         /// Creates a waterfall chart. Waterfall charts are special bar charts that help visualizing the cumulative effect of sequentially introduced positive or negative values
-        ///
-        /// Parameters:
-        ///
-        /// xyMeasures      : triple sequence containing x coordinates, y coordinates, and the type of measure used for each bar.
-        ///
-        /// Base            : Sets where the bar base is drawn (in position axis units).
-        ///
-        /// Width           : Sets the bar width (in position axis units).
-        ///
-        /// Orientation     : Sets the orientation of the bars. With "v" ("h"), the value of the each bar spans along the vertical (horizontal).
-        ///
-        /// Connector       : Sets the styling of the connector lines
-        ///
-        /// AlignmentGroup  : Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.
-        ///
-        /// OffsetGroup     : Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.
-        ///
-        /// Offset          : Shifts the position where the bar is drawn (in position axis units). In "group" barmode, traces that set "offset" will be excluded and drawn in "overlay" mode instead.
         [<Extension>]
         static member Waterfall 
             (
-                xyMeasure: (#IConvertible*#IConvertible*StyleParam.WaterfallMeasure) seq,
-                [<Optional;DefaultParameterValue(null)>]?Base           : IConvertible  ,
-                [<Optional;DefaultParameterValue(null)>]?Width          : float         ,
-                [<Optional;DefaultParameterValue(null)>]?Orientation    : StyleParam.Orientation,
-                [<Optional;DefaultParameterValue(null)>]?Connector      : WaterfallConnector    ,
-                [<Optional;DefaultParameterValue(null)>]?AlignmentGroup : string,
-                [<Optional;DefaultParameterValue(null)>]?OffsetGroup    : string,
-                [<Optional;DefaultParameterValue(null)>]?Offset,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                xy: seq<#IConvertible*#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?IncreasingColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Increasing        : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?DecreasingColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Decreasing        : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?TotalsColor       : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Totals            : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?Base              : float,
+                [<Optional;DefaultParameterValue(null)>] ?Width             : float,
+                [<Optional;DefaultParameterValue(null)>] ?MultiWidth        : seq<float>,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?Connector         : WaterfallConnector,
+                [<Optional;DefaultParameterValue(null)>] ?Measure           : StyleParam.WaterfallMeasure seq,
+                [<Optional;DefaultParameterValue(null)>] ?AlignmentGroup    : string,
+                [<Optional;DefaultParameterValue(null)>] ?OffsetGroup       : string,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
             ) = 
 
-                let useDefaults = defaultArg UseDefaults true
+                let x,y = Seq.unzip xy
 
-                let x,y,measure = Seq.unzip3 xyMeasure
-                Trace2D.initWaterfall(
-                    Trace2DStyle.Waterfall(x,y,
-                        ?Base           = Base          ,
-                        ?Width          = Width         ,
-                        ?Measure        = Some measure  ,
-                        ?Orientation    = Orientation   ,
-                        ?Connector      = Connector     ,
-                        ?AlignmentGroup = AlignmentGroup,
-                        ?OffsetGroup    = OffsetGroup   ,
-                        ?Offset         = Offset        
-                    )
+                Chart.Waterfall(
+                    x,y,
+                    ?Name             = Name             ,
+                    ?ShowLegend       = ShowLegend       ,
+                    ?IncreasingColor  = IncreasingColor  ,
+                    ?Increasing       = Increasing       ,
+                    ?DecreasingColor  = DecreasingColor  ,
+                    ?Decreasing       = Decreasing       ,
+                    ?TotalsColor      = TotalsColor      ,
+                    ?Totals           = Totals           ,
+                    ?Base             = Base             ,
+                    ?Width            = Width            ,
+                    ?MultiWidth       = MultiWidth       ,
+                    ?Opacity          = Opacity          ,
+                    ?Text             = Text             ,
+                    ?MultiText        = MultiText        ,
+                    ?TextPosition     = TextPosition     ,
+                    ?MultiTextPosition= MultiTextPosition,
+                    ?TextFont         = TextFont         ,
+                    ?Marker           = Marker           ,
+                    ?Connector        = Connector        ,
+                    ?Measure          = Measure          ,
+                    ?AlignmentGroup   = AlignmentGroup   ,
+                    ?OffsetGroup      = OffsetGroup      ,
+                    ?UseDefaults      = UseDefaults      
                 )
-                |> GenericChart.ofTraceObject useDefaults
+
+        /// Creates a waterfall chart. Waterfall charts are special bar charts that help visualizing the cumulative effect of sequentially introduced positive or negative values
+        [<Extension>]
+        static member Waterfall 
+            (
+                xymeasures: seq<#IConvertible*#IConvertible*StyleParam.WaterfallMeasure>,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?IncreasingColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Increasing        : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?DecreasingColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Decreasing        : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?TotalsColor       : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Totals            : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?Base              : float,
+                [<Optional;DefaultParameterValue(null)>] ?Width             : float,
+                [<Optional;DefaultParameterValue(null)>] ?MultiWidth        : seq<float>,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?Connector         : WaterfallConnector,
+                [<Optional;DefaultParameterValue(null)>] ?AlignmentGroup    : string,
+                [<Optional;DefaultParameterValue(null)>] ?OffsetGroup       : string,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
+            ) = 
+
+                let x,y,measure = Seq.unzip3 xymeasures
+
+                Chart.Waterfall(
+                    x,y,
+                    ?Name             = Name             ,
+                    ?ShowLegend       = ShowLegend       ,
+                    ?IncreasingColor  = IncreasingColor  ,
+                    ?Increasing       = Increasing       ,
+                    ?DecreasingColor  = DecreasingColor  ,
+                    ?Decreasing       = Decreasing       ,
+                    ?TotalsColor      = TotalsColor      ,
+                    ?Totals           = Totals           ,
+                    ?Base             = Base             ,
+                    ?Width            = Width            ,
+                    ?MultiWidth       = MultiWidth       ,
+                    ?Opacity          = Opacity          ,
+                    ?Text             = Text             ,
+                    ?MultiText        = MultiText        ,
+                    ?TextPosition     = TextPosition     ,
+                    ?MultiTextPosition= MultiTextPosition,
+                    ?TextFont         = TextFont         ,
+                    ?Marker           = Marker           ,
+                    ?Connector        = Connector        ,
+                    Measure           = measure          ,
+                    ?AlignmentGroup   = AlignmentGroup   ,
+                    ?OffsetGroup      = OffsetGroup      ,
+                    ?UseDefaults      = UseDefaults      
+                )
 
         /// Illustrates comparisons among individual items
         [<Extension>]

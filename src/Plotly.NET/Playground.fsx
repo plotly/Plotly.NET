@@ -101,6 +101,7 @@
 #load "Table.fs"
 #load "Indicator.fs"
 #load "Icicle.fs"
+#load "FinanceMarker.fs"
 
 #I "Traces"
 
@@ -169,6 +170,20 @@ open FSharpAux
 
 open System
 open System.IO
+
+Chart.Waterfall(
+    x = ["Sales"; "Consulting"; "Net revenue"; "Purchases"; "Other expenses"; "Profit before tax"],
+    y = [60; 80; 0; -40; -20; 0],
+    Measure = [
+        StyleParam.WaterfallMeasure.Relative
+        StyleParam.WaterfallMeasure.Relative
+        StyleParam.WaterfallMeasure.Total
+        StyleParam.WaterfallMeasure.Relative
+        StyleParam.WaterfallMeasure.Relative
+        StyleParam.WaterfallMeasure.Total
+    ]
+)
+|> Chart.show
 
 Chart.Line([1,2; 3,4])
 |> Chart.show
