@@ -162,7 +162,7 @@ let multiTraceGrid =
     [
         Chart.Point([1,2; 2,3], UseDefaults = false)
         Chart.PointTernary([1,2,3; 2,3,4], UseDefaults = false)
-        Chart.Heatmap([[1; 2];[3; 4]], Showscale=false, UseDefaults = false)
+        Chart.Heatmap([[1; 2];[3; 4]], ShowScale=false, UseDefaults = false)
         Chart.Point3d([1,3,2], UseDefaults = false)
         Chart.PointMapbox([1,2], UseDefaults = false) |> Chart.withMapbox(Mapbox.init(Style = StyleParam.MapboxStyle.OpenStreetMap))
         [
@@ -181,7 +181,7 @@ let multiTraceSingleStack =
     [
         Chart.Point([1,2; 2,3], UseDefaults = false)
         Chart.PointTernary([1,2,3; 2,3,4], UseDefaults = false)
-        Chart.Heatmap([[1; 2];[3; 4]], Showscale=false, UseDefaults = false)
+        Chart.Heatmap([[1; 2];[3; 4]], ShowScale=false, UseDefaults = false)
         Chart.Point3d([1,3,2], UseDefaults = false)
         Chart.PointMapbox([1,2], UseDefaults = false) |> Chart.withMapbox(Mapbox.init(Style = StyleParam.MapboxStyle.OpenStreetMap))
         [

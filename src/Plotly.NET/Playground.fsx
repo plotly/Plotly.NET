@@ -184,7 +184,8 @@ Chart.AnnotatedHeatmap(
     ],
     X = ["C1";"C2";"C3"],
     Y = ["R1";"R2";"R3"],
-    ReverseYAxis = true
+    ReverseYAxis = true,
+    UseDefaults = false
 )
 |> Chart.show
 
@@ -783,7 +784,7 @@ let seq2 = [1 ..4 ] |> Seq.map(fun _-> z1) |> Seq.toArray
 let marker = Marker.init(Size= 25,Colorscale=StyleParam.Colorscale.Viridis, ShowScale=false);
 
 let heatmap1=
-           Chart.Heatmap(data=seq1)
+           Chart.Heatmap(zData=seq1)
            |> Chart.withMarker(marker)
            |> Chart.withColorAxisAnchor(1)
 
@@ -800,7 +801,7 @@ let heatmap2=
 [
     Chart.Point([1,2; 2,3])
     Chart.PointTernary([1,2,3; 2,3,4])
-    Chart.Heatmap([[1; 2];[3; 4]], Showscale=false)
+    Chart.Heatmap([[1; 2];[3; 4]], ShowScale=false)
     Chart.Point3d([1,3,2])
     Chart.PointMapbox([1,2]) |> Chart.withMapbox(Mapbox.init(Style = StyleParam.MapboxStyle.OpenStreetMap))
     [
