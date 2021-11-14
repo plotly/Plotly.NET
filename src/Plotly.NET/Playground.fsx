@@ -171,6 +171,23 @@ open FSharpAux
 open System
 open System.IO
 
+Chart.AnnotatedHeatmap(
+    zData = [
+        [1..5]
+        [6..10]
+        [11..15]
+    ],
+    annotationText = [
+        ["1,1";"1,2";"1,3"]
+        ["2,1";"2,2";"2,3"]
+        ["3,1";"3,2";"3,3"]
+    ],
+    X = ["C1";"C2";"C3"],
+    Y = ["R1";"R2";"R3"],
+    ReverseYAxis = true
+)
+|> Chart.show
+
 Chart.Waterfall(
     x = ["Sales"; "Consulting"; "Net revenue"; "Purchases"; "Other expenses"; "Profit before tax"],
     y = [60; 80; 0; -40; -20; 0],

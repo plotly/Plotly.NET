@@ -1290,62 +1290,121 @@ type Trace2DStyle() =
     // Applies the styles of heatmap to TraceObjects 
     static member Heatmap
         (                
-            [<Optional;DefaultParameterValue(null)>] ?Z : seq<#seq<#IConvertible>>,
-            [<Optional;DefaultParameterValue(null)>] ?X : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?Y : seq<#IConvertible>,            
-            [<Optional;DefaultParameterValue(null)>] ?X0             ,
-            [<Optional;DefaultParameterValue(null)>] ?dX             ,
-            [<Optional;DefaultParameterValue(null)>] ?Y0             ,
-            [<Optional;DefaultParameterValue(null)>] ?dY             ,
-            [<Optional;DefaultParameterValue(null)>] ?xType          ,
-            [<Optional;DefaultParameterValue(null)>] ?yType          ,
-            [<Optional;DefaultParameterValue(null)>] ?xAxis          ,
-            [<Optional;DefaultParameterValue(null)>] ?yAxis          ,
-            [<Optional;DefaultParameterValue(null)>] ?Zsrc           ,
-            [<Optional;DefaultParameterValue(null)>] ?Xsrc           ,
-            [<Optional;DefaultParameterValue(null)>] ?Ysrc           ,
-            [<Optional;DefaultParameterValue(null)>] ?Xgap           ,         
-            [<Optional;DefaultParameterValue(null)>] ?Ygap           ,
-            [<Optional;DefaultParameterValue(null)>] ?Transpose      ,
-            [<Optional;DefaultParameterValue(null)>] ?zAuto          ,
-            [<Optional;DefaultParameterValue(null)>] ?zMin           ,
-            [<Optional;DefaultParameterValue(null)>] ?zMax           ,
-            [<Optional;DefaultParameterValue(null)>] ?Colorscale     ,
-            [<Optional;DefaultParameterValue(null)>] ?Autocolorscale ,
-            [<Optional;DefaultParameterValue(null)>] ?Reversescale   ,
-            [<Optional;DefaultParameterValue(null)>] ?Showscale      ,
-            [<Optional;DefaultParameterValue(null)>] ?zSmooth        ,
-            [<Optional;DefaultParameterValue(null)>] ?ColorBar
+            [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+            [<Optional;DefaultParameterValue(null)>] ?Visible           : StyleParam.Visible,
+            [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+            [<Optional;DefaultParameterValue(null)>] ?LegendRank        : int,
+            [<Optional;DefaultParameterValue(null)>] ?LegendGroup       : string,
+            [<Optional;DefaultParameterValue(null)>] ?LegendGroupTitle  : Title,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+            [<Optional;DefaultParameterValue(null)>] ?Ids               : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?X                 : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?X0                : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?DX                : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?XType             : StyleParam.CoordinateType,
+            [<Optional;DefaultParameterValue(null)>] ?XGap              : int,
+            [<Optional;DefaultParameterValue(null)>] ?Y                 : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Y0                : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?DY                : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?YType             : StyleParam.CoordinateType,
+            [<Optional;DefaultParameterValue(null)>] ?YGap              : int,
+            [<Optional;DefaultParameterValue(null)>] ?Z                 : seq<#seq<#IConvertible>>,
+            [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverText         : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiHoverText    : seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverInfo         : StyleParam.HoverInfo,
+            [<Optional;DefaultParameterValue(null)>] ?HoverTemplate     : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiHoverTemplate: seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?XHoverFormat      : string,
+            [<Optional;DefaultParameterValue(null)>] ?YHoverFormat      : string,
+            [<Optional;DefaultParameterValue(null)>] ?Meta              : string,
+            [<Optional;DefaultParameterValue(null)>] ?CustomData        : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?XAxis             : StyleParam.LinearAxisId,
+            [<Optional;DefaultParameterValue(null)>] ?YAxis             : StyleParam.LinearAxisId,
+            [<Optional;DefaultParameterValue(null)>] ?ColorAxis         : StyleParam.SubPlotId,
+            [<Optional;DefaultParameterValue(null)>] ?XPeriod           : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?XPeriodAlignment  : StyleParam.PeriodAlignment,            
+            [<Optional;DefaultParameterValue(null)>] ?XPeriod0          : #IConvertible,            
+            [<Optional;DefaultParameterValue(null)>] ?YPeriod           : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?YPeriodAlignment  : StyleParam.PeriodAlignment,
+            [<Optional;DefaultParameterValue(null)>] ?YPeriod0          : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?ColorBar          : ColorBar,
+            [<Optional;DefaultParameterValue(null)>] ?AutoColorScale    : bool,
+            [<Optional;DefaultParameterValue(null)>] ?ColorScale        : StyleParam.Colorscale,
+            [<Optional;DefaultParameterValue(null)>] ?ShowScale         : bool,
+            [<Optional;DefaultParameterValue(null)>] ?ReverseScale      : bool,
+            [<Optional;DefaultParameterValue(null)>] ?ZAuto             : bool,
+            [<Optional;DefaultParameterValue(null)>] ?ZHoverFormat      : string,
+            [<Optional;DefaultParameterValue(null)>] ?ZMax              : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?ZMid              : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?ZMin              : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?ZSmooth           : StyleParam.SmoothAlg,
+            [<Optional;DefaultParameterValue(null)>] ?HoverLabel        : Hoverlabel,
+            [<Optional;DefaultParameterValue(null)>] ?HoverOnGaps       : bool,
+            [<Optional;DefaultParameterValue(null)>] ?Transpose         : bool,
+            [<Optional;DefaultParameterValue(null)>] ?XCalendar         : StyleParam.Calendar,
+            [<Optional;DefaultParameterValue(null)>] ?YCalendar         : StyleParam.Calendar,
+            [<Optional;DefaultParameterValue(null)>] ?UIRevision        : string
+
         ) =
             (fun (heatmap:('T :> Trace)) -> 
             
-                Z              |> DynObj.setValueOpt heatmap "z"         
-                X              |> DynObj.setValueOpt heatmap "x"               
-                Y              |> DynObj.setValueOpt heatmap "y"
-                X0             |> DynObj.setValueOpt heatmap "x0"             
-                dX             |> DynObj.setValueOpt heatmap "dx"             
-                Y0             |> DynObj.setValueOpt heatmap "y0"            
-                dY             |> DynObj.setValueOpt heatmap "dy"            
-                xType          |> DynObj.setValueOpt heatmap "xtype"         
-                yType          |> DynObj.setValueOpt heatmap "ytype"                          
-                xAxis          |> DynObj.setValueOpt heatmap "xaxis"         
-                yAxis          |> DynObj.setValueOpt heatmap "yaxis"         
-                Zsrc           |> DynObj.setValueOpt heatmap "zsrc"       
-                Xsrc           |> DynObj.setValueOpt heatmap "xsrc"       
-                Ysrc           |> DynObj.setValueOpt heatmap "ysrc"  
-
-                Xgap           |> DynObj.setValueOpt heatmap "xgap"       
-                Ygap           |> DynObj.setValueOpt heatmap "ygap"  
-                Transpose      |> DynObj.setValueOpt heatmap "transpose" 
-                zAuto          |> DynObj.setValueOpt heatmap "zauto"     
-                zMin           |> DynObj.setValueOpt heatmap "zmin"      
-                zMax           |> DynObj.setValueOpt heatmap "zmax"      
-                Colorscale     |> DynObj.setValueOptBy heatmap "colorscale" StyleParam.Colorscale.convert 
-                Autocolorscale |> DynObj.setValueOpt heatmap "autocolorscale"
-                Reversescale   |> DynObj.setValueOpt heatmap "reversescale"  
-                Showscale      |> DynObj.setValueOpt heatmap "showscale"     
-                zSmooth        |> DynObj.setValueOptBy heatmap "zsmooth" StyleParam.SmoothAlg.convert   
-                ColorBar       |> DynObj.setValueOpt heatmap "colorbar"    
+                Name                                |> DynObj.setValueOpt heatmap "name" 
+                Visible                             |> DynObj.setValueOptBy heatmap "visible" StyleParam.Visible.convert
+                ShowLegend                          |> DynObj.setValueOpt heatmap "showlegend" 
+                LegendRank                          |> DynObj.setValueOpt heatmap "legendrank" 
+                LegendGroup                         |> DynObj.setValueOpt heatmap "legendgroup" 
+                LegendGroupTitle                    |> DynObj.setValueOpt heatmap "legendgrouptitle" 
+                Opacity                             |> DynObj.setValueOpt heatmap "opacity" 
+                Ids                                 |> DynObj.setValueOpt heatmap "ids" 
+                X                                   |> DynObj.setValueOpt heatmap "x" 
+                X0                                  |> DynObj.setValueOpt heatmap "x0" 
+                DX                                  |> DynObj.setValueOpt heatmap "dx" 
+                XType                               |> DynObj.setValueOptBy heatmap "xtype" StyleParam.CoordinateType.convert
+                XGap                                |> DynObj.setValueOpt heatmap "xgap"
+                Y                                   |> DynObj.setValueOpt heatmap "y"
+                Y0                                  |> DynObj.setValueOpt heatmap "y0"
+                DY                                  |> DynObj.setValueOpt heatmap "dy"
+                YType                               |> DynObj.setValueOptBy heatmap "ytype" StyleParam.CoordinateType.convert
+                YGap                                |> DynObj.setValueOpt heatmap "ygap" 
+                Z                                   |> DynObj.setValueOpt heatmap "z" 
+                Text                                |> DynObj.setValueOpt heatmap "text" 
+                (Text, MultiText)                   |> DynObj.setSingleOrMultiOpt heatmap "text"
+                (HoverText, MultiHoverText)         |> DynObj.setSingleOrMultiOpt heatmap "hovertext"
+                HoverInfo                           |> DynObj.setValueOptBy heatmap "hoverinfo" StyleParam.HoverInfo.convert
+                (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt heatmap "hovertemplate"
+                XHoverFormat                        |> DynObj.setValueOpt heatmap "xhoverformat" 
+                YHoverFormat                        |> DynObj.setValueOpt heatmap "yhoverformat" 
+                Meta                                |> DynObj.setValueOpt heatmap "meta" 
+                CustomData                          |> DynObj.setValueOpt heatmap "customdata" 
+                XAxis                               |> DynObj.setValueOptBy heatmap "xaxis" StyleParam.LinearAxisId.convert
+                YAxis                               |> DynObj.setValueOptBy heatmap "yaxis" StyleParam.LinearAxisId.convert
+                ColorAxis                           |> DynObj.setValueOptBy heatmap "coloraxis" StyleParam.SubPlotId.convert
+                XPeriod                             |> DynObj.setValueOpt heatmap "xperiod" 
+                XPeriodAlignment                    |> DynObj.setValueOptBy heatmap "xperiodalignment" StyleParam.PeriodAlignment.convert
+                XPeriod0                            |> DynObj.setValueOpt heatmap "xperiod0"             
+                YPeriod                             |> DynObj.setValueOpt heatmap "yperiod" 
+                YPeriodAlignment                    |> DynObj.setValueOptBy heatmap "yperiodalignment" StyleParam.PeriodAlignment.convert
+                YPeriod0                            |> DynObj.setValueOpt heatmap "yperiod0" 
+                ColorBar                            |> DynObj.setValueOpt heatmap "colorbar" 
+                AutoColorScale                      |> DynObj.setValueOpt heatmap "autocolorscale" 
+                ColorScale                          |> DynObj.setValueOptBy heatmap "colorscale" StyleParam.Colorscale.convert
+                ShowScale                           |> DynObj.setValueOpt heatmap "showscale" 
+                ReverseScale                        |> DynObj.setValueOpt heatmap "reversescale" 
+                ZAuto                               |> DynObj.setValueOpt heatmap "zauto" 
+                ZHoverFormat                        |> DynObj.setValueOpt heatmap "zhoverformat" 
+                ZMax                                |> DynObj.setValueOpt heatmap "zmax" 
+                ZMid                                |> DynObj.setValueOpt heatmap "zmid" 
+                ZMin                                |> DynObj.setValueOpt heatmap "zmin" 
+                ZSmooth                             |> DynObj.setValueOptBy heatmap "zsmooth" StyleParam.SmoothAlg.convert
+                HoverLabel                          |> DynObj.setValueOpt heatmap "hoverlabel"
+                HoverOnGaps                         |> DynObj.setValueOpt heatmap "hoverongaps"
+                Transpose                           |> DynObj.setValueOpt heatmap "transpose"
+                XCalendar                           |> DynObj.setValueOptBy heatmap "xcalendar" StyleParam.Calendar.convert
+                YCalendar                           |> DynObj.setValueOptBy heatmap "ycalendar" StyleParam.Calendar.convert
+                UIRevision                          |> DynObj.setValueOpt heatmap "uirevision" 
+                
 
                 // out ->
                 heatmap 

@@ -2178,41 +2178,195 @@ module Chart2D =
         /// Shows a graphical representation of a 3-dimensional surface by plotting constant z slices, called contours, on a 2-dimensional format.
         /// That is, given a value for z, lines are drawn for connecting the (x,y) coordinates where that z value occurs.
         [<Extension>]
-        static member Heatmap(data:seq<#seq<#IConvertible>>,
-                [<Optional;DefaultParameterValue(null)>] ?ColNames,
-                [<Optional;DefaultParameterValue(null)>] ?RowNames,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?Showscale,
-                [<Optional;DefaultParameterValue(null)>] ?Xgap,
-                [<Optional;DefaultParameterValue(null)>] ?Ygap,
-                [<Optional;DefaultParameterValue(null)>] ?zSmooth,
-                [<Optional;DefaultParameterValue(null)>] ?ColorBar,
-                [<Optional;DefaultParameterValue(false)>]?UseWebGL : bool,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+        static member Heatmap
+            (
+                zData: seq<#seq<#IConvertible>>,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?X                 : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?XGap              : int,
+                [<Optional;DefaultParameterValue(null)>] ?Y                 : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?YGap              : int,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?ColorBar          : ColorBar,
+                [<Optional;DefaultParameterValue(null)>] ?ColorScale        : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?ShowScale         : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ReverseScale      : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ZSmooth           : StyleParam.SmoothAlg,
+                [<Optional;DefaultParameterValue(null)>] ?Transpose         : bool,
+                [<Optional;DefaultParameterValue(false)>]?UseWebGL          : bool,
+                [<Optional;DefaultParameterValue(false)>]?ReverseYAxis      : bool,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
             ) = 
 
             let useDefaults = defaultArg UseDefaults true
+            let reverseYAxis= defaultArg ReverseYAxis false
 
             let style =
                 Trace2DStyle.Heatmap(
-                    Z=data,
-                    ?X=ColNames, 
-                    ?Y=RowNames,
-                    ?Xgap=Xgap,
-                    ?Ygap=Ygap,
-                    ?Colorscale=Colorscale,
-                    ?Showscale=Showscale,
-                    ?zSmooth=zSmooth,
-                    ?ColorBar=ColorBar
+                    Z               = zData       ,
+                    ?Name           = Name        ,
+                    ?ShowLegend     = ShowLegend  ,
+                    ?Opacity        = Opacity     ,
+                    ?X              = X           ,
+                    ?XGap           = XGap        ,
+                    ?Y              = Y           ,
+                    ?YGap           = YGap        ,
+                    ?Text           = Text        ,
+                    ?MultiText      = MultiText   ,
+                    ?ColorBar       = ColorBar    ,
+                    ?ColorScale     = ColorScale  ,
+                    ?ShowScale      = ShowScale   ,
+                    ?ReverseScale   = ReverseScale,
+                    ?ZSmooth        = ZSmooth     ,
+                    ?Transpose      = Transpose   
                 )
-                >> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
 
             let useWebGL = defaultArg UseWebGL false
 
             Chart.renderHeatmapTrace useDefaults useWebGL style
+            |> fun c -> 
+                if reverseYAxis then 
+                    c
+                    |> Chart.withYAxis(LinearAxis.init(AutoRange=StyleParam.AutoRange.Reversed))
+                else
+                    c
+
+        /// Shows a graphical representation of a 3-dimensional surface by plotting constant z slices, called contours, on a 2-dimensional format.
+        /// That is, given a value for z, lines are drawn for connecting the (x,y) coordinates where that z value occurs.
+        [<Extension>]
+        static member Heatmap
+            (
+                zData: seq<#seq<#IConvertible>>,
+                colNames: seq<string>,
+                rowNames: seq<string>,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?XGap              : int,
+                [<Optional;DefaultParameterValue(null)>] ?YGap              : int,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?ColorBar          : ColorBar,
+                [<Optional;DefaultParameterValue(null)>] ?ColorScale        : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?ShowScale         : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ReverseScale      : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ZSmooth           : StyleParam.SmoothAlg,
+                [<Optional;DefaultParameterValue(null)>] ?Transpose         : bool,
+                [<Optional;DefaultParameterValue(false)>]?UseWebGL          : bool,
+                [<Optional;DefaultParameterValue(false)>]?ReverseYAxis      : bool,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
+            ) = 
+
+            let useDefaults = defaultArg UseDefaults true
+            let reverseYAxis= defaultArg ReverseYAxis false
+
+            let style =
+                Trace2DStyle.Heatmap(
+                    Z               = zData       ,
+                    ?Name           = Name        ,
+                    ?ShowLegend     = ShowLegend  ,
+                    ?Opacity        = Opacity     ,
+                    X               = (colNames |> Seq.map (fun x -> x :> IConvertible)),
+                    ?XGap           = XGap        ,
+                    Y               = (rowNames |> Seq.map (fun x -> x :> IConvertible)),
+                    ?YGap           = YGap        ,
+                    ?Text           = Text        ,
+                    ?MultiText      = MultiText   ,
+                    ?ColorBar       = ColorBar    ,
+                    ?ColorScale     = ColorScale  ,
+                    ?ShowScale      = ShowScale   ,
+                    ?ReverseScale   = ReverseScale,
+                    ?ZSmooth        = ZSmooth     ,
+                    ?Transpose      = Transpose   
+                )
+
+            let useWebGL = defaultArg UseWebGL false
+
+            Chart.renderHeatmapTrace useDefaults useWebGL style
+            |> fun c -> 
+                if reverseYAxis then 
+                    c
+                    |> Chart.withYAxis(LinearAxis.init(AutoRange=StyleParam.AutoRange.Reversed))
+                else
+                    c
+            
+        /// Shows a graphical representation of a 3-dimensional surface by plotting constant z slices, called contours, on a 2-dimensional format.
+        /// That is, given a value for z, lines are drawn for connecting the (x,y) coordinates where that z value occurs.
+        [<Extension>]
+        static member AnnotatedHeatmap
+            (
+                zData: seq<#seq<#IConvertible>>,
+                annotationText: seq<#seq<string>>,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?X                 : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?XGap              : int,
+                [<Optional;DefaultParameterValue(null)>] ?Y                 : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?YGap              : int,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?ColorBar          : ColorBar,
+                [<Optional;DefaultParameterValue(null)>] ?ColorScale        : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?ShowScale         : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ReverseScale      : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ZSmooth           : StyleParam.SmoothAlg,
+                [<Optional;DefaultParameterValue(null)>] ?Transpose         : bool,
+                [<Optional;DefaultParameterValue(false)>]?UseWebGL          : bool,
+                [<Optional;DefaultParameterValue(false)>]?ReverseYAxis      : bool,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
+            ) = 
+
+            let useDefaults = defaultArg UseDefaults true
+            let reverseYAxis= defaultArg ReverseYAxis false
+
+            let dims = Seq.length zData
+            let dims2 = Seq.length annotationText
+
+            if dims <> dims2 then failwith "incompatible dims"
+
+            let style =
+                Trace2DStyle.Heatmap(
+                    Z               = zData       ,
+                    ?Name           = Name        ,
+                    ?ShowLegend     = ShowLegend  ,
+                    ?Opacity        = Opacity     ,
+                    ?X              = X           ,
+                    ?XGap           = XGap        ,
+                    ?Y              = Y           ,
+                    ?YGap           = YGap        ,
+                    ?Text           = Text        ,
+                    ?MultiText      = MultiText   ,
+                    ?ColorBar       = ColorBar    ,
+                    ?ColorScale     = ColorScale  ,
+                    ?ShowScale      = ShowScale   ,
+                    ?ReverseScale   = ReverseScale,
+                    ?ZSmooth        = ZSmooth     ,
+                    ?Transpose      = Transpose   
+                )
+
+            let useWebGL = defaultArg UseWebGL false
+
+            Chart.renderHeatmapTrace useDefaults useWebGL style
+            |> fun c -> 
+                if reverseYAxis then 
+                    c
+                    |> Chart.withYAxis(LinearAxis.init(AutoRange=StyleParam.AutoRange.Reversed))
+                else
+                    c
+            |> Chart.withAnnotations (
+                annotationText
+                |> Seq.mapi (fun y inner ->
+                    inner
+                    |> Seq.mapi (fun x text ->
+                        Annotation.init(x,y,Text=(string text),ShowArrow=false)
+                    )
+                )
+                |> Seq.concat
+            )
 
 
         [<Extension>]
