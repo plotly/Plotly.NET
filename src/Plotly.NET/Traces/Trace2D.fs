@@ -77,11 +77,11 @@ type Trace2D(traceTypeName) =
 
     ///initializes a trace of type "histogram2D" applying the given trace styling function
     static member initHistogram2D (applyStyle: Trace2D -> Trace2D) = 
-        Trace2D("histogram2D") |> applyStyle
+        Trace2D("histogram2d") |> applyStyle
 
     ///initializes a trace of type "histogram2Dcontour" applying the given trace styling function
     static member initHistogram2DContour (applyStyle: Trace2D -> Trace2D) = 
-        Trace2D("histogram2Dcontour") |> applyStyle
+        Trace2D("histogram2dcontour") |> applyStyle
 
     ///initializes a trace of type "image" applying the given trace styling function
     static member initImage (applyStyle: Trace2D -> Trace2D) = 
