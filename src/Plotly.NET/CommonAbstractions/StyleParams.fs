@@ -2740,10 +2740,11 @@ module StyleParam =
     ///How to compute differences between bars in Waterfall Charts
     [<RequireQualifiedAccess>]
     type WaterfallMeasure =
-        |Relative | Total
+        | Relative | Total | Absolute
         static member toString = function
             | Relative  -> "relative"
             | Total     -> "total"
+            | Absolute  -> "absolute"
 
         static member convert = WaterfallMeasure.toString >> box
         override this.ToString() = this |> WaterfallMeasure.toString

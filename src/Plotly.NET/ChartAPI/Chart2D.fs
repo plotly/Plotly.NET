@@ -1072,11 +1072,11 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
                 [<Optional;DefaultParameterValue(null)>] ?Connector         : WaterfallConnector,
                 [<Optional;DefaultParameterValue(null)>] ?Measure           : StyleParam.WaterfallMeasure seq,
                 [<Optional;DefaultParameterValue(null)>] ?AlignmentGroup    : string,
                 [<Optional;DefaultParameterValue(null)>] ?OffsetGroup       : string,
+                [<Optional;DefaultParameterValue(true)>] ?Orientation       : StyleParam.Orientation,
                 [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
             ) = 
 
@@ -1107,7 +1107,8 @@ module Chart2D =
                         ?Connector         = Connector         ,
                         ?Measure           = Measure           ,
                         ?AlignmentGroup    = AlignmentGroup    ,
-                        ?OffsetGroup       = OffsetGroup       
+                        ?OffsetGroup       = OffsetGroup       ,
+                        ?Orientation       = Orientation
                     )
                 )
                 |> GenericChart.ofTraceObject useDefaults
@@ -1135,11 +1136,11 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
                 [<Optional;DefaultParameterValue(null)>] ?Connector         : WaterfallConnector,
                 [<Optional;DefaultParameterValue(null)>] ?Measure           : StyleParam.WaterfallMeasure seq,
                 [<Optional;DefaultParameterValue(null)>] ?AlignmentGroup    : string,
                 [<Optional;DefaultParameterValue(null)>] ?OffsetGroup       : string,
+                [<Optional;DefaultParameterValue(true)>] ?Orientation       : StyleParam.Orientation,
                 [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
             ) = 
 
@@ -1164,11 +1165,11 @@ module Chart2D =
                     ?TextPosition     = TextPosition     ,
                     ?MultiTextPosition= MultiTextPosition,
                     ?TextFont         = TextFont         ,
-                    ?Marker           = Marker           ,
                     ?Connector        = Connector        ,
                     ?Measure          = Measure          ,
                     ?AlignmentGroup   = AlignmentGroup   ,
                     ?OffsetGroup      = OffsetGroup      ,
+                    ?Orientation      = Orientation      ,
                     ?UseDefaults      = UseDefaults      
                 )
 
@@ -1194,10 +1195,10 @@ module Chart2D =
                 [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
                 [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
                 [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
                 [<Optional;DefaultParameterValue(null)>] ?Connector         : WaterfallConnector,
                 [<Optional;DefaultParameterValue(null)>] ?AlignmentGroup    : string,
                 [<Optional;DefaultParameterValue(null)>] ?OffsetGroup       : string,
+                [<Optional;DefaultParameterValue(true)>] ?Orientation       : StyleParam.Orientation,
                 [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
             ) = 
 
@@ -1222,11 +1223,11 @@ module Chart2D =
                     ?TextPosition     = TextPosition     ,
                     ?MultiTextPosition= MultiTextPosition,
                     ?TextFont         = TextFont         ,
-                    ?Marker           = Marker           ,
                     ?Connector        = Connector        ,
                     Measure           = measure          ,
                     ?AlignmentGroup   = AlignmentGroup   ,
                     ?OffsetGroup      = OffsetGroup      ,
+                    ?Orientation      = Orientation      ,
                     ?UseDefaults      = UseDefaults      
                 )
 

@@ -185,6 +185,19 @@ Chart.Waterfall(
 )
 |> Chart.show
 
+Chart.Waterfall(
+    xymeasures = [
+         60 , "Sales"             , StyleParam.WaterfallMeasure.Relative
+         80 , "Consulting"        , StyleParam.WaterfallMeasure.Relative
+         0  , "Net revenue"       , StyleParam.WaterfallMeasure.Total
+         -40, "Purchases"         , StyleParam.WaterfallMeasure.Relative
+         -20, "Other expenses"    , StyleParam.WaterfallMeasure.Relative
+         0  , "Profit before tax" , StyleParam.WaterfallMeasure.Total
+    ],
+    Orientation = StyleParam.Orientation.Horizontal
+)
+|> Chart.show
+
 Chart.Line([1,2; 3,4])
 |> Chart.show
 
@@ -371,11 +384,11 @@ Chart.Icicle(
 |> Chart.combine
 |> Chart.show
 
-let a = [4.; 4.; 4.; 4.5; 4.5; 4.5; 5.; 5.; 5.; 6.; 6.; 6.]
-let b = [1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.]
-let y = [2.; 3.5; 4.; 3.; 4.5; 5.; 5.5; 6.5; 7.5; 8.; 8.5; 10.]
 
 let carpets = 
+    let a = [4.; 4.; 4.; 4.5; 4.5; 4.5; 5.; 5.; 5.; 6.; 6.; 6.]
+    let b = [1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.]
+    let y = [2.; 3.5; 4.; 3.; 4.5; 5.; 5.5; 6.5; 7.5; 8.; 8.5; 10.]
     [
         Chart.Carpet("carpet1",A = a, B = b, Y = y)
         Chart.Carpet("carpet2",A = (a |> List.rev) , B = (b |> List.rev), Y = (y |> List.map (fun x -> x + 10.)))
@@ -384,11 +397,11 @@ let carpets =
         Chart.Carpet("carpet5",A = a, B = b, Y = (y |> List.map (fun x -> x + 40.)))
     ]
 
-let aData = [4.; 5.; 5.; 6.]
-let bData = [1.; 1.; 2.; 3.]
-let sizes = [5; 10; 15; 20]
 
 let carpetCharts =
+    let aData = [4.; 5.; 5.; 6.]
+    let bData = [1.; 1.; 2.; 3.]
+    let sizes = [5; 10; 15; 20]
     [
         Chart.ScatterCarpet(
             aData,bData,
