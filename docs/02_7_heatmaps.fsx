@@ -43,18 +43,20 @@ let matrix =
 let rownames = ["p3";"p2";"p1"]
 let colnames = ["Tp0";"Tp30";"Tp60";"Tp160"]
 
-let colorscaleValue = 
-    StyleParam.Colorscale.Custom [(0.0,"#3D9970");(1.0,"#001f3f")]
+(**
 
-// Generating the Heatmap 
+A heatmap chart can be created using the `Chart.Heatmap` functions.
+
+When creating heatmap charts, it is usually desirable to provide the values in matrix form, rownames and colnames.
+
+A heatmap needs at least 2 dimensional data that represents the z dimension. the X and Y dimension sizes can be inferred from the z data:
+*)
+
+// Generating the Heatmap with only z Data
 let heat1 =
     Chart.Heatmap(
-        matrix,colnames,rownames,
-        Colorscale=colorscaleValue,
-        Showscale=true
+        matrix
     )
-    |> Chart.withSize(700.,500.)
-    |> Chart.withMarginSize(Left=200.)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -66,21 +68,19 @@ heat1 |> GenericChart.toChartHTML
 (***include-it-raw***)
 
 (**
-A heatmap chart can be created using the `Chart.HeatMap` functions.
-When creating heatmap charts, it is usually desirable to provide the values in matrix form, rownames and colnames.
+## Inverting the Y Axis
+
+Per default, the y axis starts at the origin of the X/Y plane. 
+If it is however desired to represent a 2D matrix exactly how it is notated, invert the YAxis by setting `ReverseYAxis`.
 *)
 
-(**
-## Styling Colorbars
-
-All charts that contain colorbars can be styled by the `Chart.withColorBarStyle` function.
-Here is an example that adds a title to the colorbar:
-*)
-
+// Addning row/column names and inverting the Y axis:
 let heat2 =
-    heat1
-    |> Chart.withColorBarStyle(
-        Title.init("Im the ColorBar")
+    Chart.Heatmap(
+        matrix,
+        colnames,
+        rownames,
+        ReverseYAxis = true
     )
 
 (*** condition: ipynb ***)
@@ -90,4 +90,63 @@ heat2
 
 (***hide***)
 heat2 |> GenericChart.toChartHTML
+(***include-it-raw***)
+
+(**
+## Styling Colorbars and using custom color scales
+
+The colorscale can be set via the `ColorScale` argument.
+All charts that contain colorbars can be styled by the `Chart.withColorBarStyle` function.
+Here is an example that adds a title to the colorbar:
+*)
+
+let heat3 =
+    Chart.Heatmap(
+        matrix,
+        ColorScale = StyleParam.Colorscale.Viridis
+    )
+    |> Chart.withColorBarStyle(
+        Title.init("Im the ColorBar")
+    )
+
+(*** condition: ipynb ***)
+#if IPYNB
+heat3
+#endif // IPYNB
+
+(***hide***)
+heat3 |> GenericChart.toChartHTML
+(***include-it-raw***)
+
+
+(**
+## Annotated Heatmaps
+ 
+use `Chart.AnnotatedHeatmap` to add an annotation text to each z value:
+*)
+
+let heat4 =
+    Chart.AnnotatedHeatmap(
+        zData = [
+            [1..5]
+            [6..10]
+            [11..15]
+        ],
+        annotationText = [
+            ["1,1";"1,2";"1,3"]
+            ["2,1";"2,2";"2,3"]
+            ["3,1";"3,2";"3,3"]
+        ],
+        X = ["C1";"C2";"C3"],
+        Y = ["R1";"R2";"R3"],
+        ReverseYAxis = true
+    )
+
+(*** condition: ipynb ***)
+#if IPYNB
+heat4
+#endif // IPYNB
+
+(***hide***)
+heat4 |> GenericChart.toChartHTML
 (***include-it-raw***)
