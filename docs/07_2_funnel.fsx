@@ -3,7 +3,7 @@
 title: Funnel Charts
 category: Finance Charts
 categoryindex: 7
-index: 2
+index: 3
 ---
 *)
 

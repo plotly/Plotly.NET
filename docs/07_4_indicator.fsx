@@ -3,7 +3,7 @@
 title: Indicator Charts
 category: Finance Charts
 categoryindex: 7
-index: 4
+index: 5
 ---
 *)
 

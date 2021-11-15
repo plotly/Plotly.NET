@@ -3,7 +3,7 @@
 title: Waterfall Charts
 category: Finance Charts
 categoryindex: 7
-index: 5
+index: 6
 ---
 *)
 

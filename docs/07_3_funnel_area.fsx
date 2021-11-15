@@ -3,7 +3,7 @@
 title: FunnelArea Charts
 category: Finance Charts
 categoryindex: 7
-index: 3
+index: 4
 ---
 *)
 
