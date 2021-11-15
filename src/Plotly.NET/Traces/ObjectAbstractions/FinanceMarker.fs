@@ -13,14 +13,16 @@ type FinanceMarker () =
         (
             [<Optional;DefaultParameterValue(null)>] ?MarkerColor: Color,
             [<Optional;DefaultParameterValue(null)>] ?LineColor: Color,
-            [<Optional;DefaultParameterValue(null)>] ?LineWidth: float
+            [<Optional;DefaultParameterValue(null)>] ?LineWidth: float,
+            [<Optional;DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle
         ) =
             FinanceMarker () 
             |> FinanceMarker.style
                 (
-                    ?MarkerColor = MarkerColor,
-                    ?LineColor   = LineColor  ,
-                    ?LineWidth   = LineWidth  
+                    ?MarkerColor= MarkerColor,
+                    ?LineColor  = LineColor  ,
+                    ?LineWidth  = LineWidth  ,
+                    ?LineDash   = LineDash
                     
                 )
 
@@ -28,11 +30,12 @@ type FinanceMarker () =
         (
             [<Optional;DefaultParameterValue(null)>] ?MarkerColor: Color,
             [<Optional;DefaultParameterValue(null)>] ?LineColor: Color,
-            [<Optional;DefaultParameterValue(null)>] ?LineWidth: float
+            [<Optional;DefaultParameterValue(null)>] ?LineWidth: float,
+            [<Optional;DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle
         ) =
             (fun (financeMarker: FinanceMarker) -> 
                 let marker = Marker.init(?Color = MarkerColor)
-                let line = Line.init(?Color = LineColor, ?Width = LineWidth)
+                let line = Line.init(?Color = LineColor, ?Width = LineWidth, ?Dash = LineDash)
 
                 marker  |> DynObj.setValue financeMarker "marker"
                 line    |> DynObj.setValue financeMarker "line"

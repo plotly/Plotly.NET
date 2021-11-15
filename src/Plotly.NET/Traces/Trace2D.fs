@@ -706,21 +706,6 @@ type Trace2DStyle() =
             )
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-            
-
-
     // Applies the styles of histogram to TraceObjects
     static member Histogram
         (            
@@ -1634,32 +1619,87 @@ type Trace2DStyle() =
     /// ?XCalendar  : Sets the calendar system to use with `x` date data.
     static member OHLC
         (
-            ``open``        : #IConvertible seq,
-            high            : #IConvertible seq,
-            low             : #IConvertible seq,
-            close           : #IConvertible seq,
-            x               : #IConvertible seq,
-            [<Optional;DefaultParameterValue(null)>] ?Increasing     : Line,
-            [<Optional;DefaultParameterValue(null)>] ?Decreasing     : Line,
-            [<Optional;DefaultParameterValue(null)>] ?Line           : Line,
-            [<Optional;DefaultParameterValue(null)>] ?Tickwidth      : float,
-            [<Optional;DefaultParameterValue(null)>] ?XCalendar      : StyleParam.Calendar
+            [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+            [<Optional;DefaultParameterValue(null)>] ?Visible           : StyleParam.Visible,
+            [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+            [<Optional;DefaultParameterValue(null)>] ?LegendRank        : int,
+            [<Optional;DefaultParameterValue(null)>] ?LegendGroup       : string,
+            [<Optional;DefaultParameterValue(null)>] ?LegendGroupTitle  : Title,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+            [<Optional;DefaultParameterValue(null)>] ?Ids               : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?X                 : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Close             : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Open              : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?High              : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Low               : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverText         : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiHoverText    : seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverInfo         : StyleParam.HoverInfo,
+            [<Optional;DefaultParameterValue(null)>] ?XHoverFormat      : string,
+            [<Optional;DefaultParameterValue(null)>] ?YHoverFormat      : string,
+            [<Optional;DefaultParameterValue(null)>] ?Meta              : string,
+            [<Optional;DefaultParameterValue(null)>] ?CustomData        : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?XAxis             : StyleParam.LinearAxisId,
+            [<Optional;DefaultParameterValue(null)>] ?YAxis             : StyleParam.LinearAxisId,
+            [<Optional;DefaultParameterValue(null)>] ?XPeriod           : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?XPeriodAlignment  : StyleParam.PeriodAlignment,            
+            [<Optional;DefaultParameterValue(null)>] ?XPeriod0          : #IConvertible,            
+            [<Optional;DefaultParameterValue(null)>] ?YPeriod           : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?YPeriodAlignment  : StyleParam.PeriodAlignment,
+            [<Optional;DefaultParameterValue(null)>] ?YPeriod0          : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
+            [<Optional;DefaultParameterValue(null)>] ?SelectedPoints    : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Increasing        : FinanceMarker,
+            [<Optional;DefaultParameterValue(null)>] ?Decreasing        : FinanceMarker,
+            [<Optional;DefaultParameterValue(null)>] ?HoverLabel        : Hoverlabel,
+            [<Optional;DefaultParameterValue(null)>] ?TickWidth         : float,
+            [<Optional;DefaultParameterValue(null)>] ?XCalendar         : StyleParam.Calendar,
+            [<Optional;DefaultParameterValue(null)>] ?YCalendar         : StyleParam.Calendar,
+            [<Optional;DefaultParameterValue(null)>] ?UIRevision        : string
+           
         ) =
-            (fun (trace:('T :> Trace)) ->
-                DynObj.setValue     trace "open"        ``open``
-                DynObj.setValue     trace "high"        high
-                DynObj.setValue     trace "low"         low
-                DynObj.setValue     trace "close"       close
-                DynObj.setValue     trace "x"           x
-                DynObj.setValue     trace "xaxis"       "x"
-                DynObj.setValue     trace "yaxis"       "y"
-                DynObj.setValueOpt  trace "increasing"  Increasing
-                DynObj.setValueOpt  trace "decreasing"  Decreasing
-                DynObj.setValueOpt  trace "tickwidth"   Tickwidth
-                DynObj.setValueOpt  trace "line"        Line
-                DynObj.setValueOpt  trace "xcalendar"   XCalendar
-                    
-                trace
+            (fun (ohlc:('T :> Trace)) ->
+                
+                Name                                |> DynObj.setValueOpt ohlc "name"
+                Visible                             |> DynObj.setValueOptBy ohlc "visible" StyleParam.Visible.convert
+                ShowLegend                          |> DynObj.setValueOpt ohlc "showlegend"
+                LegendRank                          |> DynObj.setValueOpt ohlc "legendrank"
+                LegendGroup                         |> DynObj.setValueOpt ohlc "legendgroup"
+                LegendGroupTitle                    |> DynObj.setValueOpt ohlc "legendgrouptitle"
+                Opacity                             |> DynObj.setValueOpt ohlc "opacity"
+                Ids                                 |> DynObj.setValueOpt ohlc "ids"
+                X                                   |> DynObj.setValueOpt ohlc "x"
+                Close                               |> DynObj.setValueOpt ohlc "close"
+                Open                                |> DynObj.setValueOpt ohlc "open"
+                High                                |> DynObj.setValueOpt ohlc "high"
+                Low                                 |> DynObj.setValueOpt ohlc "low"
+                (Text, MultiText)                   |> DynObj.setSingleOrMultiOpt ohlc "text"
+                (HoverText, MultiHoverText)         |> DynObj.setSingleOrMultiOpt ohlc "hovertext"
+                HoverInfo                           |> DynObj.setValueOptBy ohlc "hoverinfo" StyleParam.HoverInfo.convert
+                XHoverFormat                        |> DynObj.setValueOpt ohlc "xhoverformat"
+                YHoverFormat                        |> DynObj.setValueOpt ohlc "yhoverformat"
+                Meta                                |> DynObj.setValueOpt ohlc "meta"
+                CustomData                          |> DynObj.setValueOpt ohlc "customdata"
+                XAxis                               |> DynObj.setValueOptBy ohlc "xaxis" StyleParam.LinearAxisId.convert
+                YAxis                               |> DynObj.setValueOptBy ohlc "yaxis" StyleParam.LinearAxisId.convert
+                XPeriod                             |> DynObj.setValueOpt ohlc "xperiod"               
+                XPeriodAlignment                    |> DynObj.setValueOptBy ohlc "xperiodalignment" StyleParam.PeriodAlignment.convert
+                XPeriod0                            |> DynObj.setValueOpt ohlc "xperiod0"                
+                YPeriod                             |> DynObj.setValueOpt ohlc "yperiod"               
+                YPeriodAlignment                    |> DynObj.setValueOptBy ohlc "yperiodalignment" StyleParam.PeriodAlignment.convert
+                YPeriod0                            |> DynObj.setValueOpt ohlc "yperiod0"              
+                Line                                |> DynObj.setValueOpt ohlc "line"              
+                Increasing                          |> DynObj.setValueOpt ohlc "increasing"
+                Decreasing                          |> DynObj.setValueOpt ohlc "decreasing"
+                HoverLabel                          |> DynObj.setValueOpt ohlc "hoverlabel"
+                TickWidth                           |> DynObj.setValueOpt ohlc "tickwidth"
+                XCalendar                           |> DynObj.setValueOptBy ohlc "xcalendar" StyleParam.Calendar.convert
+                YCalendar                           |> DynObj.setValueOptBy ohlc "ycalendar" StyleParam.Calendar.convert
+                UIRevision                          |> DynObj.setValueOpt ohlc "uirevision"
+
+                ohlc
             )
 
 

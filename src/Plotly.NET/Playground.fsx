@@ -176,6 +176,42 @@ open Plotly.NET
 open System
 open Plotly.NET 
 
+#r "nuget: FSharp.Data"
+#r "nuget: Deedle"
+
+open FSharp.Data
+open Deedle
+
+let data = 
+    Http.RequestString @"https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv"
+    |> fun csv -> Frame.ReadCsvString(csv,true,separators=",")
+
+let openData : seq<float> = data.["AAPL.Open"] |> Series.values
+let highData : seq<float> = data.["AAPL.High"] |> Series.values
+let lowData : seq<float> = data.["AAPL.Low"] |> Series.values
+let closeData : seq<float> = data.["AAPL.Close"] |> Series.values
+let dateData = data |> Frame.getCol "Date" |> Series.values |> Seq.map System.DateTime.Parse
+
+Chart.OHLC(
+    openData |> Seq.take 30,
+    highData |> Seq.take 30,
+    lowData |> Seq.take 30,
+    closeData |> Seq.take 30,
+    dateData |> Seq.take 30
+)
+|> Chart.show
+
+Chart.OHLC(
+    openData,
+    highData,
+    lowData,
+    closeData,
+    dateData,
+    IncreasingColor = Color.fromKeyword Cyan,
+    DecreasingColor = Color.fromKeyword Gray
+)
+|> Chart.show
+
 // Generate linearly spaced vector
 let linspace (min,max,n) = 
     if n <= 2 then failwithf "n needs to be larger then 2"

@@ -2551,28 +2551,40 @@ module Chart2D =
                 low             : #IConvertible seq,
                 close           : #IConvertible seq,
                 x               : #IConvertible seq,
-                [<Optional;DefaultParameterValue(null)>]?Increasing     : Line,
-                [<Optional;DefaultParameterValue(null)>]?Decreasing     : Line,
-                [<Optional;DefaultParameterValue(null)>]?Tickwidth      : float,
-                [<Optional;DefaultParameterValue(null)>]?Line           : Line,
-                [<Optional;DefaultParameterValue(null)>]?XCalendar      : StyleParam.Calendar,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
+                [<Optional;DefaultParameterValue(null)>] ?IncreasingColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Increasing        : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?DecreasingColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Decreasing        : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?TickWidth         : float,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
             ) = 
 
                 let useDefaults = defaultArg UseDefaults true
-    
+                let increasing  = Increasing |> Option.defaultValue (FinanceMarker.init()) |> FinanceMarker.style(?LineColor = IncreasingColor)
+                let decreasing  = Decreasing |> Option.defaultValue (FinanceMarker.init()) |> FinanceMarker.style(?LineColor = DecreasingColor)
+
                 Trace2D.initOHLC(
                     Trace2DStyle.OHLC(
-                        ``open``        = ``open``    ,
-                        high            = high        ,
-                        low             = low         ,
-                        close           = close       ,
-                        x               = x           ,
-                        ?Increasing     = Increasing  ,
-                        ?Decreasing     = Decreasing  ,
-                        ?Tickwidth      = Tickwidth   ,
-                        ?Line           = Line        ,
-                        ?XCalendar      = XCalendar   
+                        Open        = ``open``,
+                        High        = high,
+                        Low         = low,
+                        Close       = close,
+                        X           = x,
+                        ?Name       = Name      ,
+                        ?ShowLegend = ShowLegend,
+                        ?Opacity    = Opacity   ,
+                        ?Text       = Text      ,
+                        ?MultiText  = MultiText ,
+                        ?Line       = Line      ,
+                        Increasing  = increasing,
+                        Decreasing  = decreasing,
+                        ?TickWidth  = TickWidth
                     )
                 )
                 |> GenericChart.ofTraceObject useDefaults
@@ -2594,31 +2606,43 @@ module Chart2D =
         static member OHLC
             (
                 stockTimeSeries: seq<System.DateTime*StockData>, 
-                [<Optional;DefaultParameterValue(null)>] ?Increasing     : Line,
-                [<Optional;DefaultParameterValue(null)>] ?Decreasing     : Line,
-                [<Optional;DefaultParameterValue(null)>] ?Tickwidth      : float,
-                [<Optional;DefaultParameterValue(null)>] ?Line           : Line,
-                [<Optional;DefaultParameterValue(null)>] ?XCalendar      : StyleParam.Calendar,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
+                [<Optional;DefaultParameterValue(null)>] ?IncreasingColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Increasing        : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?DecreasingColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Decreasing        : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?TickWidth         : float,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
             ) = 
 
                 let useDefaults = defaultArg UseDefaults true
 
-                Trace2D.initOHLC(
-                    Trace2DStyle.OHLC(
-                        ``open``        = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.Open)))    ,
-                        high            = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.High)))        ,
-                        low             = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.Low)))         ,
-                        close           = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.Close)))       ,
-                        x               = (stockTimeSeries |> Seq.map fst)            ,
-                        ?Increasing     = Increasing  ,
-                        ?Decreasing     = Decreasing  ,
-                        ?Tickwidth      = Tickwidth   ,
-                        ?Line           = Line        ,
-                        ?XCalendar      = XCalendar   
-                    )
+                Chart.OHLC(
+                    ``open``        = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.Open)))    ,
+                    high            = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.High)))        ,
+                    low             = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.Low)))         ,
+                    close           = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.Close)))       ,
+                    x               = (stockTimeSeries |> Seq.map fst),
+                    ?Name           = Name           ,
+                    ?ShowLegend     = ShowLegend     ,
+                    ?Opacity        = Opacity        ,
+                    ?Text           = Text           ,
+                    ?MultiText      = MultiText      ,
+                    ?Line           = Line           ,
+                    ?IncreasingColor= IncreasingColor,
+                    ?Increasing     = Increasing     ,
+                    ?DecreasingColor= DecreasingColor,
+                    ?Decreasing     = Decreasing     ,
+                    ?TickWidth      = TickWidth      ,
+                    ?UseDefaults    = UseDefaults    
                 )
-                |> GenericChart.ofTraceObject useDefaults
+                
+
 
         /// Creates a candlestick chart. A candlestick cart is a style of financial chart used to describe price movements of a 
         /// security, derivative, or currency. Each "candlestick" typically shows one day, thus a one-month chart may show the 20 
