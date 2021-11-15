@@ -2447,30 +2447,79 @@ module Chart2D =
                 )
                 |> GenericChart.ofTraceObject useDefaults
 
-        /// Shows a graphical representation of data where the individual values contained in a matrix are represented as colors.
+        /// Shows a graphical representation of a 3-dimensional surface by plotting constant z slices, called contours, on a 2-dimensional format
         [<Extension>]
-        static member Contour(data:seq<#seq<#IConvertible>>,
-                [<Optional;DefaultParameterValue(null)>] ?X,
-                [<Optional;DefaultParameterValue(null)>] ?Y,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?Showscale,
-                [<Optional;DefaultParameterValue(null)>] ?zSmooth,
-                [<Optional;DefaultParameterValue(null)>] ?ColorBar,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+        static member Contour
+            (
+                zData: seq<#seq<#IConvertible>>,
+                [<Optional;DefaultParameterValue(null)>] ?Name                  : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend            : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity               : float,
+                [<Optional;DefaultParameterValue(null)>] ?X                     : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Y                     : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Text                  : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText             : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?ColorBar              : ColorBar,
+                [<Optional;DefaultParameterValue(null)>] ?ColorScale            : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?ShowScale             : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ReverseScale          : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Transpose             : bool,
+                [<Optional;DefaultParameterValue(null)>] ?LineColor             : Color,
+                [<Optional;DefaultParameterValue(null)>] ?LineDash              : StyleParam.DrawingStyle,
+                [<Optional;DefaultParameterValue(null)>] ?Line                  : Line,
+                [<Optional;DefaultParameterValue(null)>] ?ContoursColoring      : StyleParam.ContourColoring,
+                [<Optional;DefaultParameterValue(null)>] ?ContoursOperation     : StyleParam.ConstraintOperation,
+                [<Optional;DefaultParameterValue(null)>] ?ContoursType          : StyleParam.ContourType,
+                [<Optional;DefaultParameterValue(null)>] ?ShowContourLabels     : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ContourLabelFont      : Font,
+                [<Optional;DefaultParameterValue(null)>] ?Contours              : Contours,
+                [<Optional;DefaultParameterValue(null)>] ?FillColor             : Color,
+                [<Optional;DefaultParameterValue(null)>] ?NContours             : int,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults           : bool
             ) = 
 
                 let useDefaults = defaultArg UseDefaults true
 
+                let contours =
+                    Contours
+                    |> Option.defaultValue (TraceObjects.Contours.init())
+                    |> TraceObjects.Contours.style(
+                        ?Coloring    = ContoursColoring ,
+                        ?Operation   = ContoursOperation,
+                        ?Type        = ContoursType     ,
+                        ?ShowLabels  = ShowContourLabels,
+                        ?LabelFont   = ContourLabelFont
+                    )
+
+                let line = 
+                    Line
+                    |> Option.defaultValue (Plotly.NET.Line.init())
+                    |> Plotly.NET.Line.style(
+                        ?Color   = LineColor,
+                        ?Dash    = LineDash 
+                    )
+
                 Trace2D.initContour (
                     Trace2DStyle.Contour(
-                        Z=data,?X=X, ?Y=Y,
-                        ?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?ColorBar=ColorBar
+                        Z               = zData       ,
+                        ?Name           = Name        ,
+                        ?ShowLegend     = ShowLegend  ,
+                        ?Opacity        = Opacity     ,
+                        ?X              = X           ,
+                        ?Y              = Y           ,
+                        ?Text           = Text        ,
+                        ?MultiText      = MultiText   ,
+                        ?ColorBar       = ColorBar    ,
+                        ?ColorScale     = ColorScale  ,
+                        ?ShowScale      = ShowScale   ,
+                        ?ReverseScale   = ReverseScale,
+                        ?Transpose      = Transpose   ,
+                        ?FillColor      = FillColor   ,
+                        ?NContours      = NContours   ,
+                        Contours        = contours    ,
+                        Line            = line
                     )
                 )
-                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)   
                 |> GenericChart.ofTraceObject useDefaults
 
         /// Creates an OHLC (open-high-low-close) chart. OHLC charts are typically used to illustrate movements in the price of a financial instrument over time.

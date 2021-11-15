@@ -316,6 +316,87 @@ module StyleParam =
     
         
     [<RequireQualifiedAccess>]
+    type ConstraintOperation =
+        /// "="
+        | Equal
+        /// "<"
+        | LesserThan
+        /// "<="
+        | LesserThanOrEqual
+        /// ">"
+        | GreaterThan
+        /// ">="
+        | GreaterThanOrEqual
+        /// "[]"
+        | InsideInclusiveInterval
+        /// "[)"
+        | InsideLeftInclusiveInterval
+        /// "(]"
+        | InsideRightInclusiveInterval
+        /// "()"
+        | InsideExclusiveInterval
+        /// "]["
+        | OutsideInclusiveInterval
+        /// ")("
+        | OutsideLeftInclusiveInterval
+        /// "]("
+        | OutsideRightInclusiveInterval
+        /// "]("
+        | OutsideExclusiveInterval
+
+        static member toString = function
+            
+           
+            | Equal                             -> "="
+            | LesserThan                        -> "<"
+            | LesserThanOrEqual                 -> "<="
+            | GreaterThan                       -> ">"
+            | GreaterThanOrEqual                -> ">="
+            | InsideInclusiveInterval           -> "[]"
+            | InsideLeftInclusiveInterval       -> "[)"
+            | InsideRightInclusiveInterval      -> "(]"
+            | InsideExclusiveInterval           -> "()"
+            | OutsideInclusiveInterval          -> "]["
+            | OutsideLeftInclusiveInterval      -> ")("
+            | OutsideRightInclusiveInterval     -> "]("
+            | OutsideExclusiveInterval          -> "]("
+
+
+        static member convert = ConstraintOperation.toString >> box
+        override this.ToString() = this |> ConstraintOperation.toString
+        member this.Convert() = this |> ConstraintOperation.convert        
+                
+    [<RequireQualifiedAccess>]
+    type ContourType =
+        | Levels      
+        | Constraint
+
+        static member toString = function
+            | Levels -> "levels" 
+            | Constraint -> "constraint" 
+
+        static member convert = ContourType.toString >> box
+        override this.ToString() = this |> ContourType.toString
+        member this.Convert() = this |> ContourType.convert        
+                                               
+    [<RequireQualifiedAccess>]
+    type ContourColoring =
+        | Fill      
+        | Heatmap
+        | Lines
+        | NoColoring
+
+        static member toString = function
+            | Fill          -> "fill"
+            | Heatmap       -> "heatmap"
+            | Lines         -> "lines"
+            | NoColoring    -> "none"
+
+        static member convert = ContourColoring.toString >> box
+        override this.ToString() = this |> ContourColoring.toString
+        member this.Convert() = this |> ContourColoring.convert        
+                               
+    [<RequireQualifiedAccess>]
     type CoordinateType =
         | Array      
         | Scaled
