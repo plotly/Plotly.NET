@@ -36,7 +36,7 @@ type TraceStyle() =
         ) =
             (fun (trace:('T :> Trace)) ->  
                 Name        |> DynObj.setValueOpt trace "name"
-                Visible     |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.toString
+                Visible     |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.toObject
                 ShowLegend  |> DynObj.setValueOpt trace "showlegend"
                 LegendGroup |> DynObj.setValueOpt trace "legendgroup"  
                 Opacity     |> DynObj.setValueOpt trace "opacity"

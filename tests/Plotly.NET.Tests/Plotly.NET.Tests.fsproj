@@ -9,6 +9,7 @@
   <ItemGroup>
     <Compile Include="TestUtils.fs" />
     <Compile Include="CommonAbstractions\Colors.fs" />
+    <Compile Include="LayoutObjects\Slider.fs" />
     <Compile Include="LayoutObjects\LinearAxis.fs" />
     <Compile Include="Traces\TraceID.fs" />
     <Compile Include="HtmlCodegen\SimpleTests.fs" />

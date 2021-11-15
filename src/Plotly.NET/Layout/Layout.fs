@@ -77,7 +77,8 @@ type Layout() =
             [<Optional;DefaultParameterValue(null)>] ?IcicleColorWay         : Color,
             [<Optional;DefaultParameterValue(null)>] ?Annotations            : seq<Annotation>,
             [<Optional;DefaultParameterValue(null)>] ?Shapes                 : seq<Shape>,
-            [<Optional;DefaultParameterValue(null)>] ?Images                 : seq<LayoutImage>
+            [<Optional;DefaultParameterValue(null)>] ?Images                 : seq<LayoutImage>,
+            [<Optional;DefaultParameterValue(null)>] ?Sliders                : seq<Slider>
         ) =
             Layout()
             |> Layout.style
@@ -147,7 +148,8 @@ type Layout() =
                    ?IcicleColorWay         = IcicleColorWay         ,
                    ?Annotations            = Annotations            ,
                    ?Shapes                 = Shapes                 ,
-                   ?Images                 = Images
+                   ?Images                 = Images                 ,
+                   ?Sliders                = Sliders
                 )
 
     // Applies the styles to Layout()
@@ -218,7 +220,8 @@ type Layout() =
             [<Optional;DefaultParameterValue(null)>] ?IcicleColorWay         : Color,
             [<Optional;DefaultParameterValue(null)>] ?Annotations            : seq<Annotation>,
             [<Optional;DefaultParameterValue(null)>] ?Shapes                 : seq<Shape>,
-            [<Optional;DefaultParameterValue(null)>] ?Images                 : seq<LayoutImage>
+            [<Optional;DefaultParameterValue(null)>] ?Images                 : seq<LayoutImage>,
+            [<Optional;DefaultParameterValue(null)>] ?Sliders                : seq<Slider>
         ) =
             (fun (layout:Layout) -> 
                 
@@ -288,6 +291,7 @@ type Layout() =
                 Annotations            |> DynObj.setValueOpt layout "annotations"
                 Shapes                 |> DynObj.setValueOpt layout "shapes"
                 Images                 |> DynObj.setValueOpt layout "images"
+                Sliders                |> DynObj.setValueOpt layout "sliders"
 
                 layout
             )

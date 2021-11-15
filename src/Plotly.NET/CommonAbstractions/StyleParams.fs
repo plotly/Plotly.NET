@@ -1401,6 +1401,25 @@ module StyleParam =
 //--------------------------
 // #M#
 //--------------------------
+
+    [<RequireQualifiedAccess>]
+    type Method =
+        | Restyle
+        | Relayout
+        | Animate
+        | Update
+        | Skip
+
+        static member toString = function
+            | Restyle   -> "restyle"             
+            | Relayout  -> "relayout"            
+            | Animate   -> "animate"    
+            | Update    -> "update"    
+            | Skip      -> "skip"    
+
+        static member convert = Method.toString >> box
+        override this.ToString() = this |> Method.toString
+        member this.Convert() = this |> Method.convert
     
     [<RequireQualifiedAccess>]
     type ModeBarButton = 
@@ -2676,12 +2695,17 @@ module StyleParam =
     type Visible =
         | True | False | LegendOnly
     
+        static member toObject = function
+            | True -> box(true)
+            | False -> box(false)
+            | LegendOnly -> box("legendonly")
+
         static member toString = function
             | True       -> "true"            
             | False      -> "false"            
             | LegendOnly -> "legendonly"
 
-        static member convert = Visible.toString >> box
+        static member convert = Visible.toObject >> box
         override this.ToString() = this |> Visible.toString
         member this.Convert() = this |> Visible.convert
 

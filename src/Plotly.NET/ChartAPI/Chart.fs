@@ -854,7 +854,7 @@ type Chart =
                 )
             let updatedLayout = layout |> Layout.SetLayoutGrid updatedGrid
             GenericChart.setLayout updatedLayout ch) 
-
+            
     [<CompiledName("WithConfig")>]
     static member withConfig (config:Config) =
         (fun (ch:GenericChart) ->
@@ -1711,3 +1711,20 @@ type Chart =
         ) =
 
             Chart.withLayoutImages([image], ?Append = Append)
+
+    [<CompiledName("WithSliders")>]
+    static member withSliders
+        (
+            sliders:seq<Slider>
+        ) =
+            fun (ch:GenericChart) ->
+                ch
+                |> GenericChart.mapLayout
+                    (Layout.style (Sliders = sliders))
+
+    [<CompiledName("WithSlider")>]
+    static member withSlider
+        (
+            slider:Slider
+        ) =
+            Chart.withSliders([slider])
