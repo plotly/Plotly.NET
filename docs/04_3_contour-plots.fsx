@@ -60,7 +60,6 @@ let z =
 A contour plot is a graphical technique for representing a 3-dimensional surface by plotting
 constant z slices, called contours, on a 2-dimensional format. That is, given a value for z,
 lines are drawn for connecting the (x,y) coordinates where that z value occurs.
-The contour plot is an alternative to a 3-D surface plot.
 
 The contour plot is an alternative to a 3-D surface plot.
 
@@ -79,3 +78,28 @@ contour1
 (***hide***)
 contour1 |> GenericChart.toChartHTML
 (***include-it-raw***)
+
+(**
+## Smooth Contour Coloring
+
+to apply heatmap gradient coloring between each contour level, set the `ContourColoring` to `heatmap`:
+*)
+
+Chart.Contour(
+    z,
+    ContoursColoring = StyleParam.ContourColoring.Heatmap
+)
+
+(**
+## Contour Line Labels
+
+Use `ContourLabelFont` to set a contour label font, and display the labels with `ShowContourLabels`:
+
+*)
+
+Chart.Contour(
+    z,
+    ContoursColoring = StyleParam.ContourColoring.Heatmap,
+    ShowContourLabels = true,
+    ContourLabelFont = Font.init(Size = 12, Color = Color.fromKeyword White)
+)
