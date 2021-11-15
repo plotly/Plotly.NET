@@ -101,5 +101,5 @@ Chart.Contour(
     z,
     ContoursColoring = StyleParam.ContourColoring.Heatmap,
     ShowContourLabels = true,
-    ContourLabelFont = Font.init(Size = 12, Color = Color.fromKeyword White)
+    ContourLabelFont = Font.init(Size = 12., Color = Color.fromKeyword White)
 )
