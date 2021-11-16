@@ -2701,63 +2701,106 @@ module Chart2D =
                     ?UseDefaults    = UseDefaults    
                 )
 
-
-
-        /// Computes the parallel coordinates plot
+        /// Computes a scatter plot matrix (SPLOM)
         [<Extension>]
         static member Splom
             (
-                dims:seq<'key*#seq<'values>>,
-                [<Optional;DefaultParameterValue(null)>] ?Range,
-                [<Optional;DefaultParameterValue(null)>] ?Constraintrange,
-                [<Optional;DefaultParameterValue(null)>] ?Color,
-                [<Optional;DefaultParameterValue(null)>] ?Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?Width,
-                [<Optional;DefaultParameterValue(null)>] ?Dash,
-                [<Optional;DefaultParameterValue(null)>] ?Domain,
-                [<Optional;DefaultParameterValue(null)>] ?Labelfont,
-                [<Optional;DefaultParameterValue(null)>] ?Tickfont,
-                [<Optional;DefaultParameterValue(null)>] ?Rangefont,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                dimensions: seq<Dimension>,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale  : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline     : Line,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol      : StyleParam.MarkerSymbol,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol : seq<StyleParam.MarkerSymbol>,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?ShowDiagonal      : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Diagonal          : SplomDiagonal,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLowerHalf     : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ShowUpperHalf     : bool,
+                [<Optional;DefaultParameterValue(null)>] ?UseDefaults       : bool
             ) = 
 
                 let useDefaults = defaultArg UseDefaults true
 
-                let dims' = 
-                    dims |> Seq.map (fun (k,vals) -> 
-                        Dimensions.init(vals)
-                        |> Dimensions.style(vals,?Range=Range,?Constraintrange=Constraintrange,Label=k)
-                        )
-
-                Trace2D.initSplom (
-                    Trace2DStyle.Splom (Dimensions=dims')             
+                let marker =
+                    Marker
+                    |> Option.defaultValue(TraceObjects.Marker.init())
+                    |> TraceObjects.Marker.style(
+                        ?Color = MarkerColor, 
+                        ?Outline = MarkerOutline,
+                        ?Symbol = MarkerSymbol,
+                        ?MultiSymbol = MultiMarkerSymbol,
+                        ?Colorscale = MarkerColorScale
                     )
-                |> TraceStyle.Line(?Width=Width,?Color=Color,?Dash=Dash,?Colorscale=Colorscale)
-                |> GenericChart.ofTraceObject useDefaults
 
+                let diagonal = 
+                    Diagonal
+                    |> Option.defaultValue(TraceObjects.SplomDiagonal.init())
+                    |> TraceObjects.SplomDiagonal.style(?Visible = ShowDiagonal)
+
+                Trace2D.initSplom(
+                    Trace2DStyle.Splom(
+                        Dimensions      = dimensions   ,
+                        ?Name           = Name         ,
+                        ?ShowLegend     = ShowLegend   ,
+                        ?Opacity        = Opacity      ,
+                        ?Text           = Text         ,
+                        ?MultiText      = MultiText    ,
+                        Marker          = marker       ,
+                        Diagonal        = diagonal     ,
+                        ?ShowLowerHalf  = ShowLowerHalf,
+                        ?ShowUpperHalf  = ShowUpperHalf
+                    )
+                )
+                |> GenericChart.ofTraceObject useDefaults
 
         /// Computes the Splom plot
         [<Extension>]
         static member Splom
             (
-                dims:seq<Dimensions>,
-                [<Optional;DefaultParameterValue(null)>] ?Color,
-                [<Optional;DefaultParameterValue(null)>] ?Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?Width,
-                [<Optional;DefaultParameterValue(null)>] ?Dash,
-                [<Optional;DefaultParameterValue(null)>] ?Domain,
-                [<Optional;DefaultParameterValue(null)>] ?Labelfont,
-                [<Optional;DefaultParameterValue(null)>] ?Tickfont,
-                [<Optional;DefaultParameterValue(null)>] ?Rangefont,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                keyValues:seq<string*#seq<#IConvertible>>,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale  : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline     : Line,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol      : StyleParam.MarkerSymbol,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol : seq<StyleParam.MarkerSymbol>,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?ShowDiagonal      : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Diagonal          : SplomDiagonal,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLowerHalf     : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ShowUpperHalf     : bool,
+                [<Optional;DefaultParameterValue(null)>] ?UseDefaults       : bool
             ) = 
 
-                let useDefaults = defaultArg UseDefaults true
+                let dims = 
+                    keyValues
+                    |> Seq.map (fun (key,vals) -> Dimension.initSplom(Label = key, Values = vals))
 
-                Trace2D.initSplom (
-                    Trace2DStyle.Splom (
-                        Dimensions=dims
-                    )             
+                Chart.Splom(
+                    dims,
+                    ?Name               = Name             ,
+                    ?ShowLegend         = ShowLegend       ,
+                    ?Opacity            = Opacity          ,
+                    ?Text               = Text             ,
+                    ?MultiText          = MultiText        ,
+                    ?MarkerColor        = MarkerColor      ,
+                    ?MarkerColorScale   = MarkerColorScale ,
+                    ?MarkerOutline      = MarkerOutline    ,
+                    ?MarkerSymbol       = MarkerSymbol     ,
+                    ?MultiMarkerSymbol  = MultiMarkerSymbol,
+                    ?Marker             = Marker           ,
+                    ?ShowDiagonal       = ShowDiagonal     ,
+                    ?Diagonal           = Diagonal         ,
+                    ?ShowLowerHalf      = ShowLowerHalf    ,
+                    ?ShowUpperHalf      = ShowUpperHalf    ,
+                    ?UseDefaults        = UseDefaults      
                 )
-                |> TraceStyle.Line(?Width=Width,?Color=Color,?Dash=Dash,?Colorscale=Colorscale)
-                |> GenericChart.ofTraceObject useDefaults

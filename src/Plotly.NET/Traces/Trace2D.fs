@@ -1766,11 +1766,68 @@ type Trace2DStyle() =
     // Applies the styles of Splom plot to TraceObjects 
     static member Splom
         (   
-            [<Optional;DefaultParameterValue(null)>] ?Dimensions : seq<Dimensions>
+            [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+            [<Optional;DefaultParameterValue(null)>] ?Visible           : StyleParam.Visible,
+            [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+            [<Optional;DefaultParameterValue(null)>] ?LegendRank        : int,
+            [<Optional;DefaultParameterValue(null)>] ?LegendGroup       : string,
+            [<Optional;DefaultParameterValue(null)>] ?LegendGroupTitle  : Title,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+            [<Optional;DefaultParameterValue(null)>] ?Ids               : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Dimensions        : seq<Dimension>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverText         : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiHoverText    : seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverInfo         : StyleParam.HoverInfo,
+            [<Optional;DefaultParameterValue(null)>] ?HoverTemplate     : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiHoverTemplate: seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?XHoverFormat      : string,
+            [<Optional;DefaultParameterValue(null)>] ?YHoverFormat      : string,
+            [<Optional;DefaultParameterValue(null)>] ?Meta              : string,
+            [<Optional;DefaultParameterValue(null)>] ?CustomData        : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+            [<Optional;DefaultParameterValue(null)>] ?Diagonal          : SplomDiagonal,
+            [<Optional;DefaultParameterValue(null)>] ?XAxes             : seq<StyleParam.LinearAxisId>,
+            [<Optional;DefaultParameterValue(null)>] ?YAxes             : seq<StyleParam.LinearAxisId>,
+            [<Optional;DefaultParameterValue(null)>] ?ShowLowerHalf     : bool,
+            [<Optional;DefaultParameterValue(null)>] ?ShowUpperHalf     : bool,
+            [<Optional;DefaultParameterValue(null)>] ?SelectedPoints    : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Selected          : Selection,
+            [<Optional;DefaultParameterValue(null)>] ?Unselected        : Selection,
+            [<Optional;DefaultParameterValue(null)>] ?HoverLabel        : Hoverlabel,
+            [<Optional;DefaultParameterValue(null)>] ?UIRevision        : string
         ) =
             (fun (trace:('T :> Trace)) ->
-                Dimensions   |> DynObj.setValueOpt trace "dimensions"
-                        
-                // out ->
+
+                Name                                |> DynObj.setValueOpt trace "name"
+                Visible                             |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+                ShowLegend                          |> DynObj.setValueOpt trace "showlegend"
+                LegendRank                          |> DynObj.setValueOpt trace "legendrank"
+                LegendGroup                         |> DynObj.setValueOpt trace "legendgroup"
+                LegendGroupTitle                    |> DynObj.setValueOpt trace "legendgrouptitle"
+                Opacity                             |> DynObj.setValueOpt trace "opacity"
+                Ids                                 |> DynObj.setValueOpt trace "ids"
+                (Text, MultiText)                   |> DynObj.setSingleOrMultiOpt trace "text"
+                Dimensions                          |> DynObj.setValueOpt trace "dimensions"
+                (HoverText, MultiHoverText)         |> DynObj.setSingleOrMultiOpt trace "hovertext"
+                HoverInfo                           |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
+                (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
+                XHoverFormat                        |> DynObj.setValueOpt trace "xhoverformat"
+                YHoverFormat                        |> DynObj.setValueOpt trace "yhoverformat"
+                Meta                                |> DynObj.setValueOpt trace "meta"
+                CustomData                          |> DynObj.setValueOpt trace "customdata"
+                Marker                              |> DynObj.setValueOpt trace "marker"
+                Diagonal                            |> DynObj.setValueOpt trace "diagonal" 
+                XAxes                               |> DynObj.setValueOptBy trace "xaxis" (Seq.map StyleParam.LinearAxisId.convert)
+                YAxes                               |> DynObj.setValueOptBy trace "yaxis" (Seq.map StyleParam.LinearAxisId.convert)
+                ShowLowerHalf                       |> DynObj.setValueOpt trace "showlowerhalf"
+                ShowUpperHalf                       |> DynObj.setValueOpt trace "showupperhalf"
+                SelectedPoints                      |> DynObj.setValueOpt trace "selectedpoints"
+                Selected                            |> DynObj.setValueOpt trace "selected"
+                Unselected                          |> DynObj.setValueOpt trace "unselected"
+                HoverLabel                          |> DynObj.setValueOpt trace "hoverlabel"
+                UIRevision                          |> DynObj.setValueOpt trace "uirevision"
+                
                 trace
             )

@@ -250,13 +250,13 @@ let scatterplotMatrixChart =
             "C",[|2.;4.;3.1;5.|]
             "D",[|4.;2.;2.;4.;|]
         ]
-    Chart.Splom(data, Color=Color.fromString "blue", UseDefaults = false)
+    Chart.Splom(data, MarkerColor=Color.fromString "blue", UseDefaults = false)
 
 [<Tests>]
 let ``Scatterplot matrix charts`` =
     testList "DistributionCharts.Scatterplot matrix charts" [
         testCase "Scatterplot data" ( fun () ->
-            "var data = [{\"type\":\"splom\",\"dimensions\":[{\"values\":[1.0,4.0,3.4,0.7],\"label\":\"A\"},{\"values\":[3.0,1.5,1.7,2.3],\"label\":\"B\"},{\"values\":[2.0,4.0,3.1,5.0],\"label\":\"C\"},{\"values\":[4.0,2.0,2.0,4.0],\"label\":\"D\"}],\"line\":{\"color\":\"blue\"}}];"
+            """var data = [{"type":"splom","dimensions":[{"label":"A","values":[1.0,4.0,3.4,0.7],"axis":{}},{"label":"B","values":[3.0,1.5,1.7,2.3],"axis":{}},{"label":"C","values":[2.0,4.0,3.1,5.0],"axis":{}},{"label":"D","values":[4.0,2.0,2.0,4.0],"axis":{}}],"marker":{"color":"blue"},"diagonal":{}}];"""
             |> chartGeneratedContains scatterplotMatrixChart
         );
         testCase "Scatterplot layout" ( fun () ->
