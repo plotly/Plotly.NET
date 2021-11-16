@@ -42,6 +42,7 @@
     <Compile Include="CommonAbstractions\Font.fs" />
     <Compile Include="CommonAbstractions\Title.fs" />
     <Compile Include="CommonAbstractions\Line.fs" />
+    <Compile Include="Layout\ObjectAbstractions\Common\Padding.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\LayoutImage.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\Button.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\RangeSelector.fs" />
@@ -63,6 +64,9 @@
     <Compile Include="Layout\ObjectAbstractions\Common\Rangebreak.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\LinearAxis.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\ColorAxis.fs" />
+    <Compile Include="Layout\ObjectAbstractions\Common\Slider\SliderCurrentValue.fs" />
+    <Compile Include="Layout\ObjectAbstractions\Common\Slider\SliderStep.fs" />
+    <Compile Include="Layout\ObjectAbstractions\Common\Slider\Slider.fs" />
     <Compile Include="Layout\ObjectAbstractions\Map\GeoProjection.fs" />
     <Compile Include="Layout\ObjectAbstractions\Map\Geo.fs" />
     <Compile Include="Layout\ObjectAbstractions\Map\MapboxLayerSymbol.fs" />

@@ -39,6 +39,7 @@
 #load "Rangebreak.fs"
 #load "LinearAxis.fs"
 #load "ColorAxis.fs"
+#load "Padding.fs"
 
 #I "Layout/ObjectAbstractions/Map"
 
@@ -63,6 +64,12 @@
 #I "Layout/ObjectAbstractions/Ternary"
 
 #load "Ternary.fs"
+
+#I "Layout/ObjectAbstractions/Common/Slider"
+
+#load "SliderCurrentValue.fs"
+#load "SliderStep.fs"
+#load "Slider.fs"
 
 #load "Layout/Layout.fs"
 

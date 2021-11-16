@@ -715,3 +715,13 @@ module GenericChartExtensions =
         [<Extension>]
         member this.WithLayoutImages(images:seq<LayoutImage>, [<Optional;DefaultParameterValue(true)>]?Append:bool) =
             this |> Chart.withLayoutImages(images, ?Append = Append)
+
+        [<CompiledName("WithSlider")>]
+        [<Extension>]
+        member this.WithSlider(slider:Slider) =
+            this |> Chart.withSlider(slider)
+        
+        [<CompiledName("WithSliders")>]
+        [<Extension>]
+        member this.WithSliders(sliders:seq<Slider>) =
+            this |> Chart.withSliders sliders
