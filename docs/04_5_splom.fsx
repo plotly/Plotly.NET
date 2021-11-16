@@ -59,7 +59,7 @@ let colors =
         match x with
         | "Iris-setosa" -> 0.
         | "Iris-versicolor" -> 0.5
-        | _ -> 1
+        | _ -> 1.
     )
     |> Color.fromColorScaleValues
 
