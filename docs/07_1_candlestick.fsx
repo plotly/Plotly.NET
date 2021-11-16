@@ -60,7 +60,17 @@ is a group of high, open, close and low values over a period of time, e.g. 1 min
 The x-axis is usually dateime values and y is a sequence of candle structures.
 *)
 
-let candles1 = Chart.Candlestick candles
+open Plotly.NET
+open Plotly.NET.TraceObjects
+
+let candles1 = 
+    Chart.Candlestick(
+        openData |> Seq.take 30,
+        highData |> Seq.take 30,
+        lowData |> Seq.take 30,
+        closeData |> Seq.take 30,
+        dateData |> Seq.take 30
+    )
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -72,16 +82,15 @@ candles1 |> GenericChart.toChartHTML
 (***include-it-raw***)
 
 (**
-If you want to hide the rangeslider, use `withXAxisRangeSlider` and hide it:
+## Changing the increasing/decresing colors
 *)
 
-open Plotly.NET.LayoutObjects
-
-let rangeslider = RangeSlider.init(Visible=false)
-
 let candles2 = 
-    Chart.Candlestick candles
-    |> Chart.withXAxisRangeSlider rangeslider
+    Chart.Candlestick(
+        candles,
+        IncreasingColor = Color.fromKeyword Cyan,
+        DecreasingColor = Color.fromKeyword Gray
+    )
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -90,5 +99,27 @@ candles2
 
 (***hide***)
 candles2 |> GenericChart.toChartHTML
+(***include-it-raw***)
+
+(**
+## Removing the rangeslider
+
+If you want to hide the rangeslider, use `withXAxisRangeSlider` and hide it:
+*)
+open Plotly.NET.LayoutObjects
+
+let rangeslider = RangeSlider.init(Visible=false)
+
+let candles3 = 
+    candles2
+    |> Chart.withXAxisRangeSlider rangeslider
+
+(*** condition: ipynb ***)
+#if IPYNB
+candles3
+#endif // IPYNB
+
+(***hide***)
+candles3 |> GenericChart.toChartHTML
 (***include-it-raw***)
 

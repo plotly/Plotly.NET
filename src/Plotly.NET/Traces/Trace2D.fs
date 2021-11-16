@@ -1586,7 +1586,6 @@ type Trace2DStyle() =
                 NContours                           |> DynObj.setValueOpt contour "ncontours" 
                 Transpose                           |> DynObj.setValueOpt contour "transpose" 
                 XCalendar                           |> DynObj.setValueOptBy contour "xcalendar" StyleParam.Calendar.convert
-                YCalendar                           |> DynObj.setValueOptBy contour "ycalendar" StyleParam.Calendar.convert
                 UIRevision                          |> DynObj.setValueOpt contour "uirevision" 
 
 
@@ -1597,26 +1596,6 @@ type Trace2DStyle() =
             
         
     /// Applies the styles of ohlc plot to TraceObjects 
-    ///
-    /// ``open``    : Sets the open values.
-    ///
-    /// high        : Sets the high values.
-    ///
-    /// low         : Sets the low values.
-    ///
-    /// close       : Sets the close values.
-    ///
-    /// x           : Sets the x coordinates. If absent, linear coordinate will be generated.
-    ///
-    /// ?Increasing : Sets the Line style of the Increasing part of the chart
-    ///
-    /// ?Decreasing : Sets the Line style of the Decreasing part of the chart
-    ///
-    /// ?Line       : Sets the Line style of both the Decreasing and Increasing part of the chart
-    ///
-    /// ?Tickwidth  : Sets the width of the open/close tick marks relative to the "x" minimal interval.
-    ///
-    /// ?XCalendar  : Sets the calendar system to use with `x` date data.
     static member OHLC
         (
             [<Optional;DefaultParameterValue(null)>] ?Name              : string,
@@ -1656,7 +1635,6 @@ type Trace2DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?HoverLabel        : Hoverlabel,
             [<Optional;DefaultParameterValue(null)>] ?TickWidth         : float,
             [<Optional;DefaultParameterValue(null)>] ?XCalendar         : StyleParam.Calendar,
-            [<Optional;DefaultParameterValue(null)>] ?YCalendar         : StyleParam.Calendar,
             [<Optional;DefaultParameterValue(null)>] ?UIRevision        : string
            
         ) =
@@ -1696,7 +1674,6 @@ type Trace2DStyle() =
                 HoverLabel                          |> DynObj.setValueOpt ohlc "hoverlabel"
                 TickWidth                           |> DynObj.setValueOpt ohlc "tickwidth"
                 XCalendar                           |> DynObj.setValueOptBy ohlc "xcalendar" StyleParam.Calendar.convert
-                YCalendar                           |> DynObj.setValueOptBy ohlc "ycalendar" StyleParam.Calendar.convert
                 UIRevision                          |> DynObj.setValueOpt ohlc "uirevision"
 
                 ohlc
@@ -1704,52 +1681,84 @@ type Trace2DStyle() =
 
 
     /// Applies the styles of candlestick plot to TraceObjects 
-    ///
-    /// ``open``        : Sets the open values.
-    ///
-    /// high            : Sets the high values.
-    ///
-    /// low             : Sets the low values.
-    ///
-    /// close           : Sets the close values.
-    ///
-    /// x               : Sets the x coordinates. If absent, linear coordinate will be generated.
-    ///
-    /// ?Increasing     : Sets the Line style of the Increasing part of the chart
-    ///
-    /// ?Decreasing     : Sets the Line style of the Decreasing part of the chart
-    ///
-    /// ?Line           : Sets the Line style of both the Decreasing and Increasing part of the chart
-    ///
-    /// ?WhiskerWidth   : Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).
-    ///
-    /// ?XCalendar      : Sets the calendar system to use with `x` date data.
     static member Candlestick
         (
-            ``open``        : #IConvertible seq,
-            high            : #IConvertible seq,
-            low             : #IConvertible seq,
-            close           : #IConvertible seq,
-            x               : #IConvertible seq,
-            [<Optional;DefaultParameterValue(null)>] ?Increasing     : Line,
-            [<Optional;DefaultParameterValue(null)>] ?Decreasing     : Line,
-            [<Optional;DefaultParameterValue(null)>] ?WhiskerWidth   : float,
-            [<Optional;DefaultParameterValue(null)>] ?Line           : Line,
-            [<Optional;DefaultParameterValue(null)>] ?XCalendar      : StyleParam.Calendar
+            [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+            [<Optional;DefaultParameterValue(null)>] ?Visible           : StyleParam.Visible,
+            [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+            [<Optional;DefaultParameterValue(null)>] ?LegendRank        : int,
+            [<Optional;DefaultParameterValue(null)>] ?LegendGroup       : string,
+            [<Optional;DefaultParameterValue(null)>] ?LegendGroupTitle  : Title,
+            [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+            [<Optional;DefaultParameterValue(null)>] ?Ids               : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?X                 : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Close             : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Open              : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?High              : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Low               : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverText         : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiHoverText    : seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverInfo         : StyleParam.HoverInfo,
+            [<Optional;DefaultParameterValue(null)>] ?XHoverFormat      : string,
+            [<Optional;DefaultParameterValue(null)>] ?YHoverFormat      : string,
+            [<Optional;DefaultParameterValue(null)>] ?Meta              : string,
+            [<Optional;DefaultParameterValue(null)>] ?CustomData        : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?XAxis             : StyleParam.LinearAxisId,
+            [<Optional;DefaultParameterValue(null)>] ?YAxis             : StyleParam.LinearAxisId,
+            [<Optional;DefaultParameterValue(null)>] ?XPeriod           : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?XPeriodAlignment  : StyleParam.PeriodAlignment,            
+            [<Optional;DefaultParameterValue(null)>] ?XPeriod0          : #IConvertible,            
+            [<Optional;DefaultParameterValue(null)>] ?YPeriod           : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?YPeriodAlignment  : StyleParam.PeriodAlignment,
+            [<Optional;DefaultParameterValue(null)>] ?YPeriod0          : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
+            [<Optional;DefaultParameterValue(null)>] ?WhiskerWidth      : float,
+            [<Optional;DefaultParameterValue(null)>] ?SelectedPoints    : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Increasing        : FinanceMarker,
+            [<Optional;DefaultParameterValue(null)>] ?Decreasing        : FinanceMarker,
+            [<Optional;DefaultParameterValue(null)>] ?HoverLabel        : Hoverlabel,
+            [<Optional;DefaultParameterValue(null)>] ?XCalendar         : StyleParam.Calendar,
+            [<Optional;DefaultParameterValue(null)>] ?UIRevision        : string
         ) =
             (fun (trace:('T :> Trace)) ->
-                DynObj.setValue     trace "open"        ``open``
-                DynObj.setValue     trace "high"        high
-                DynObj.setValue     trace "low"         low
-                DynObj.setValue     trace "close"       close
-                DynObj.setValue     trace "x"           x
-                DynObj.setValue     trace "xaxis"       "x"
-                DynObj.setValue     trace "yaxis"       "y"
-                DynObj.setValueOpt  trace "increasing"  Increasing
-                DynObj.setValueOpt  trace "decreasing"  Decreasing
-                DynObj.setValueOpt  trace "whiskerwidth"WhiskerWidth
-                DynObj.setValueOpt  trace "line"        Line
-                DynObj.setValueOpt  trace "xcalendar"   XCalendar
+                
+                Name                                |> DynObj.setValueOpt trace "name"
+                Visible                             |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+                ShowLegend                          |> DynObj.setValueOpt trace "showlegend"
+                LegendRank                          |> DynObj.setValueOpt trace "legendrank"
+                LegendGroup                         |> DynObj.setValueOpt trace "legendgroup"
+                LegendGroupTitle                    |> DynObj.setValueOpt trace "legendgrouptitle"
+                Opacity                             |> DynObj.setValueOpt trace "opacity"
+                Ids                                 |> DynObj.setValueOpt trace "ids"
+                X                                   |> DynObj.setValueOpt trace "x"
+                Close                               |> DynObj.setValueOpt trace "close"
+                Open                                |> DynObj.setValueOpt trace "open"
+                High                                |> DynObj.setValueOpt trace "high"
+                Low                                 |> DynObj.setValueOpt trace "low"
+                (Text, MultiText)                   |> DynObj.setSingleOrMultiOpt trace "text"
+                (HoverText, MultiHoverText)         |> DynObj.setSingleOrMultiOpt trace "hovertext"
+                HoverInfo                           |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
+                XHoverFormat                        |> DynObj.setValueOpt trace "xhoverformat"
+                YHoverFormat                        |> DynObj.setValueOpt trace "yhoverformat"
+                Meta                                |> DynObj.setValueOpt trace "meta"
+                CustomData                          |> DynObj.setValueOpt trace "customdata"
+                XAxis                               |> DynObj.setValueOptBy trace "xaxis" StyleParam.LinearAxisId.convert
+                YAxis                               |> DynObj.setValueOptBy trace "yaxis" StyleParam.LinearAxisId.convert
+                XPeriod                             |> DynObj.setValueOpt trace "xperiod"               
+                XPeriodAlignment                    |> DynObj.setValueOptBy trace "xperiodalignment" StyleParam.PeriodAlignment.convert
+                XPeriod0                            |> DynObj.setValueOpt trace "xperiod0"                
+                YPeriod                             |> DynObj.setValueOpt trace "yperiod"               
+                YPeriodAlignment                    |> DynObj.setValueOptBy trace "yperiodalignment" StyleParam.PeriodAlignment.convert
+                YPeriod0                            |> DynObj.setValueOpt trace "yperiod0"              
+                Line                                |> DynObj.setValueOpt trace "line"              
+                WhiskerWidth                        |> DynObj.setValueOpt trace "whiskerwidth"
+                Increasing                          |> DynObj.setValueOpt trace "increasing"
+                Decreasing                          |> DynObj.setValueOpt trace "decreasing"
+                HoverLabel                          |> DynObj.setValueOpt trace "hoverlabel"
+                XCalendar                           |> DynObj.setValueOptBy trace "xcalendar" StyleParam.Calendar.convert
+                UIRevision                          |> DynObj.setValueOpt trace "uirevision"
 
                 trace
             )

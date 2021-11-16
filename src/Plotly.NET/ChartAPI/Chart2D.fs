@@ -2523,26 +2523,6 @@ module Chart2D =
                 |> GenericChart.ofTraceObject useDefaults
 
         /// Creates an OHLC (open-high-low-close) chart. OHLC charts are typically used to illustrate movements in the price of a financial instrument over time.
-        ///
-        /// ``open``    : Sets the open values.
-        ///
-        /// high        : Sets the high values.
-        ///
-        /// low         : Sets the low values.
-        ///
-        /// close       : Sets the close values.
-        ///
-        /// x           : Sets the x coordinates. If absent, linear coordinate will be generated.
-        ///
-        /// ?Increasing : Sets the Line style of the Increasing part of the chart
-        ///
-        /// ?Decreasing : Sets the Line style of the Decreasing part of the chart
-        ///
-        /// ?Line       : Sets the Line style of both the Decreasing and Increasing part of the chart
-        ///
-        /// ?Tickwidth  : Sets the width of the open/close tick marks relative to the "x" minimal interval.
-        ///
-        /// ?XCalendar  : Sets the calendar system to use with `x` date data.
         [<Extension>]
         static member OHLC
             (
@@ -2590,18 +2570,6 @@ module Chart2D =
                 |> GenericChart.ofTraceObject useDefaults
 
         /// Creates an OHLC (open-high-low-close) chart. OHLC charts are typically used to illustrate movements in the price of a financial instrument over time.
-        ///
-        /// stockTimeSeries : tuple list of time * stock (OHLC) data
-        ///
-        /// ?Increasing     : Sets the Line style of the Increasing part of the chart
-        ///
-        /// ?Decreasing     : Sets the Line style of the Decreasing part of the chart
-        ///
-        /// ?Line           : Sets the Line style of both the Decreasing and Increasing part of the chart
-        ///
-        /// ?Tickwidth      : Sets the width of the open/close tick marks relative to the "x" minimal interval.
-        ///
-        /// ?XCalendar      : Sets the calendar system to use with `x` date data.
         [<Extension>]
         static member OHLC
             (
@@ -2647,27 +2615,6 @@ module Chart2D =
         /// Creates a candlestick chart. A candlestick cart is a style of financial chart used to describe price movements of a 
         /// security, derivative, or currency. Each "candlestick" typically shows one day, thus a one-month chart may show the 20 
         /// trading days as 20 candlesticks. Candlestick charts can also be built using intervals shorter or longer than one day.
-        ///
-        /// ``open``        : Sets the open values.
-        ///
-        /// high            : Sets the high values.
-        ///
-        /// low             : Sets the low values.
-        ///
-        /// close           : Sets the close values.
-        ///
-        /// x               : Sets the x coordinates. If absent, linear coordinate will be generated.
-        ///
-        /// ?Increasing     : Sets the Line style of the Increasing part of the chart
-        ///
-        /// ?Decreasing     : Sets the Line style of the Decreasing part of the chart
-        ///
-        /// ?Line           : Sets the Line style of both the Decreasing and Increasing part of the chart
-        ///
-        /// ?WhiskerWidth   :  Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).
-        ///
-        /// ?XCalendar      : Sets the calendar system to use with `x` date data.
-        [<Extension>]
         static member Candlestick
             (
                 ``open``        : #IConvertible seq,
@@ -2675,74 +2622,84 @@ module Chart2D =
                 low             : #IConvertible seq,
                 close           : #IConvertible seq,
                 x               : #IConvertible seq,
-                [<Optional;DefaultParameterValue(null)>]?Increasing     : Line,
-                [<Optional;DefaultParameterValue(null)>]?Decreasing     : Line,
-                [<Optional;DefaultParameterValue(null)>]?WhiskerWidth   : float,
-                [<Optional;DefaultParameterValue(null)>]?Line           : Line,
-                [<Optional;DefaultParameterValue(null)>]?XCalendar      : StyleParam.Calendar,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
+                [<Optional;DefaultParameterValue(null)>] ?IncreasingColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Increasing        : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?DecreasingColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Decreasing        : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?WhiskerWidth      : float,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
             ) = 
 
                 let useDefaults = defaultArg UseDefaults true
+                let increasing  = Increasing |> Option.defaultValue (FinanceMarker.init()) |> FinanceMarker.style(?LineColor = IncreasingColor)
+                let decreasing  = Decreasing |> Option.defaultValue (FinanceMarker.init()) |> FinanceMarker.style(?LineColor = DecreasingColor)
 
                 Trace2D.initCandlestick(
                     Trace2DStyle.Candlestick(
-                        ``open``        = ``open``    ,
-                        high            = high        ,
-                        low             = low         ,
-                        close           = close       ,
-                        x               = x           ,
-                        ?Increasing     = Increasing  ,
-                        ?Decreasing     = Decreasing  ,
-                        ?WhiskerWidth   = WhiskerWidth,
-                        ?Line           = Line        ,
-                        ?XCalendar      = XCalendar   
+                        Open        = ``open``,
+                        High        = high,
+                        Low         = low,
+                        Close       = close,
+                        X           = x,
+                        ?Name       = Name      ,
+                        ?ShowLegend = ShowLegend,
+                        ?Opacity    = Opacity   ,
+                        ?Text       = Text      ,
+                        ?MultiText  = MultiText ,
+                        ?Line       = Line      ,
+                        Increasing  = increasing,
+                        Decreasing  = decreasing,
+                        ?WhiskerWidth  = WhiskerWidth
                     )
                 )
                 |> GenericChart.ofTraceObject useDefaults
 
         /// Creates an OHLC (open-high-low-close) chart. OHLC charts are typically used to illustrate movements in the price of a financial instrument over time.
-        ///
-        /// stockTimeSeries : tuple list of time * stock (OHLC) data
-        ///
-        /// ?Increasing     : Sets the Line style of the Increasing part of the chart
-        ///
-        /// ?Decreasing     : Sets the Line style of the Decreasing part of the chart
-        ///
-        /// ?Line           : Sets the Line style of both the Decreasing and Increasing part of the chart
-        ///
-        /// ?Tickwidth      : Sets the width of the open/close tick marks relative to the "x" minimal interval.
-        ///
-        /// ?XCalendar      : Sets the calendar system to use with `x` date data.
         [<Extension>]
         static member Candlestick
             (
                 stockTimeSeries: seq<System.DateTime*StockData>, 
-                [<Optional;DefaultParameterValue(null)>]?Increasing     : Line,
-                [<Optional;DefaultParameterValue(null)>]?Decreasing     : Line,
-                [<Optional;DefaultParameterValue(null)>]?WhiskerWidth   : float,
-                [<Optional;DefaultParameterValue(null)>]?Line           : Line,
-                [<Optional;DefaultParameterValue(null)>]?XCalendar      : StyleParam.Calendar,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
+                [<Optional;DefaultParameterValue(null)>] ?IncreasingColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Increasing        : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?DecreasingColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Decreasing        : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?WhiskerWidth      : float,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
             ) = 
 
                 let useDefaults = defaultArg UseDefaults true
 
-                Trace2D.initCandlestick(
-                    Trace2DStyle.Candlestick(
-                        ``open``        = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.Open)))    ,
-                        high            = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.High)))        ,
-                        low             = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.Low)))         ,
-                        close           = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.Close)))       ,
-                        x               = (stockTimeSeries |> Seq.map fst)            ,
-                        ?Increasing     = Increasing  ,
-                        ?Decreasing     = Decreasing  ,
-                        ?WhiskerWidth   = WhiskerWidth,
-                        ?Line           = Line        ,
-                        ?XCalendar      = XCalendar   
-                    )
+                Chart.Candlestick(
+                    ``open``        = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.Open)))    ,
+                    high            = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.High)))        ,
+                    low             = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.Low)))         ,
+                    close           = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.Close)))       ,
+                    x               = (stockTimeSeries |> Seq.map fst),
+                    ?Name           = Name           ,
+                    ?ShowLegend     = ShowLegend     ,
+                    ?Opacity        = Opacity        ,
+                    ?Text           = Text           ,
+                    ?MultiText      = MultiText      ,
+                    ?Line           = Line           ,
+                    ?IncreasingColor= IncreasingColor,
+                    ?Increasing     = Increasing     ,
+                    ?DecreasingColor= DecreasingColor,
+                    ?Decreasing     = Decreasing     ,
+                    ?WhiskerWidth   = WhiskerWidth   ,
+                    ?UseDefaults    = UseDefaults    
                 )
-                |> GenericChart.ofTraceObject useDefaults
 
 
 

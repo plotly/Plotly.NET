@@ -192,7 +192,7 @@ let lowData : seq<float> = data.["AAPL.Low"] |> Series.values
 let closeData : seq<float> = data.["AAPL.Close"] |> Series.values
 let dateData = data |> Frame.getCol "Date" |> Series.values |> Seq.map System.DateTime.Parse
 
-Chart.OHLC(
+Chart.Candlestick(
     openData |> Seq.take 30,
     highData |> Seq.take 30,
     lowData |> Seq.take 30,
@@ -201,7 +201,7 @@ Chart.OHLC(
 )
 |> Chart.show
 
-Chart.OHLC(
+Chart.Candlestick(
     openData,
     highData,
     lowData,
