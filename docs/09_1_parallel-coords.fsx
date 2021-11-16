@@ -53,7 +53,7 @@ the position of the vertex on the i-th axis corresponds to the i-th coordinate o
 *)
 
 let parcoords1 =
-    Chart.ParallelCoord(data,Color=Color.fromString "blue")
+    Chart.ParallelCoord(data,Color=Color.fromString "blue", UseDefaults = false)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -67,26 +67,38 @@ parcoords1 |> GenericChart.toChartHTML
 open Plotly.NET.TraceObjects
 
 // Dynamic object version
+
 let parcoords = 
     let v = [|
-        Dimensions.init([|1.;4.;|],  
-            StyleParam.Range.MinMax (1.,5.),StyleParam.Range.MinMax (1.,2.),Label="A");
-        Dimensions.init([|3.;1.5;|], 
-            StyleParam.Range.MinMax (1.,5.),Label="B",Tickvals=[|1.5;3.;4.;5.;|]);
-        Dimensions.init([|2.;4.;|],  
-            StyleParam.Range.MinMax (1.,5.),Label="C",Tickvals=[|1.;2.;4.;5.;|],
-                TickText=[|"txt 1";"txt 2";"txt 4";"txt 5";|]);
-        Dimensions.init([|4.;2.;|],  
-            StyleParam.Range.MinMax (1.,5.),Label="D");
+        Dimension.initParallel(
+            Values = [|1.;4.;|],  
+            Range = StyleParam.Range.MinMax (1.,5.),
+            ConstraintRange = StyleParam.Range.MinMax (1.,2.),
+            Label="A");
+        Dimension.initParallel(
+            Values = [|3.;1.5;|], 
+            Range = StyleParam.Range.MinMax (1.,5.),
+            Label="B",
+            Tickvals=[|1.5;3.;4.;5.;|]);
+        Dimension.initParallel(
+            Values = [|2.;4.;|],  
+            Range = StyleParam.Range.MinMax (1.,5.),
+            Label= "C",
+            Tickvals=[|1.;2.;4.;5.;|],
+            TickText=[|"txt 1";"txt 2";"txt 4";"txt 5";|]);
+        Dimension.initParallel(
+            Values = [|4.;2.;|],  
+            Range = StyleParam.Range.MinMax (1.,5.),
+            Label="D");
     |]
 
     let dyn = Trace("parcoords")
 
     dyn?dimensions <- v
-    dyn?line <- Line.init(Color=Color.fromString "blue")
+    dyn?line <- Line.init(Color =Color.fromString "blue")
 
     dyn
-    |> GenericChart.ofTraceObject true
+    |> GenericChart.ofTraceObject false
 
 (*** condition: ipynb ***)
 #if IPYNB
