@@ -64,6 +64,7 @@
     * ContourCarpet
  * [Add indicator charts](https://github.com/plotly/Plotly.NET/pull/207)
  * [Add icicle charts](https://github.com/plotly/Plotly.NET/pull/210)
+ * [Add Chart.AnnotatedHeatmap](https://github.com/plotly/Plotly.NET/pull/234)
 
 **Minor Additions/fixes:**
 
@@ -91,6 +92,9 @@
  * [Improve Distribution Charts](https://github.com/plotly/Plotly.NET/pull/220)
  * [fix data property of chart templates](https://github.com/plotly/Plotly.NET/pull/233)
  * [fix rangeslider props](https://github.com/plotly/Plotly.NET/commit/c1789c2197ee19524e543e022070a7c60adb9e06)
+ * Full trace style args for 2D traces: [#234](https://github.com/plotly/Plotly.NET/pull/234), [#220](https://github.com/plotly/Plotly.NET/pull/220)
+ * [Add Layout Slider](https://github.com/plotly/Plotly.NET/pull/232), thanks [@amakhno](https://github.com/amakhno)!
+
 
 **Other notable changes**
 
