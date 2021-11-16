@@ -468,8 +468,8 @@ let heatmap1Chart =
     
     Chart.Heatmap(
         matrix,colnames,rownames,
-        Colorscale=colorscaleValue,
-        Showscale=true, 
+        ColorScale=colorscaleValue,
+        ShowScale=true, 
         UseDefaults = false
     )
     |> Chart.withSize(700,500)
@@ -489,8 +489,8 @@ let heatmapStyledChart =
     
     Chart.Heatmap(
         matrix,colnames,rownames,
-        Colorscale=colorscaleValue,
-        Showscale=true, 
+        ColorScale=colorscaleValue,
+        ShowScale=true, 
         UseDefaults = false
     )
     |> Chart.withSize(700.,500.)
@@ -501,12 +501,29 @@ let heatmapStyledChart =
         )
     )
 
+let annotatedheatmap = 
+    Chart.AnnotatedHeatmap(
+        zData = [
+            [1..5]
+            [6..10]
+            [11..15]
+        ],
+        annotationText = [
+            ["1,1";"1,2";"1,3"]
+            ["2,1";"2,2";"2,3"]
+            ["3,1";"3,2";"3,3"]
+        ],
+        X = ["C1";"C2";"C3"],
+        Y = ["R1";"R2";"R3"],
+        ReverseYAxis = true,
+        UseDefaults = false
+    )
 
 [<Tests>]
 let ``Heatmap charts`` =
     testList "SimpleCharts.Heatmap charts" [
         testCase "Heatmap data" ( fun () ->
-            "var data = [{\"type\":\"heatmap\",\"z\":[[1.0,1.5,0.7,2.7],[2.0,0.5,1.2,1.4],[0.1,2.6,2.4,3.0]],\"x\":[\"Tp0\",\"Tp30\",\"Tp60\",\"Tp160\"],\"y\":[\"p3\",\"p2\",\"p1\"],\"colorscale\":[[0.0,\"#3D9970\"],[1.0,\"#001f3f\"]],\"showscale\":true}];"
+            """var data = [{"type":"heatmap","x":["Tp0","Tp30","Tp60","Tp160"],"y":["p3","p2","p1"],"z":[[1.0,1.5,0.7,2.7],[2.0,0.5,1.2,1.4],[0.1,2.6,2.4,3.0]],"colorscale":[[0.0,"#3D9970"],[1.0,"#001f3f"]],"showscale":true}];"""
             |> chartGeneratedContains heatmap1Chart
         );
         testCase "Heatmap layout" ( fun () ->
@@ -514,12 +531,20 @@ let ``Heatmap charts`` =
             |> chartGeneratedContains heatmap1Chart
         );
         testCase "Heatmap styled data" ( fun () ->
-            """var data = [{"type":"heatmap","z":[[1.0,1.5,0.7,2.7],[2.0,0.5,1.2,1.4],[0.1,2.6,2.4,3.0]],"x":["Tp0","Tp30","Tp60","Tp160"],"y":["p3","p2","p1"],"colorscale":[[0.0,"#3D9970"],[1.0,"#001f3f"]],"showscale":true,"colorbar":{"title":{"text":"Im the Colorbar"}}}]"""
+            """var data = [{"type":"heatmap","x":["Tp0","Tp30","Tp60","Tp160"],"y":["p3","p2","p1"],"z":[[1.0,1.5,0.7,2.7],[2.0,0.5,1.2,1.4],[0.1,2.6,2.4,3.0]],"colorscale":[[0.0,"#3D9970"],[1.0,"#001f3f"]],"showscale":true,"colorbar":{"title":{"text":"Im the Colorbar"}}}];"""
             |> chartGeneratedContains heatmapStyledChart
         );
         testCase "Heatmap styled layout" ( fun () ->
             "var layout = {\"width\":700,\"height\":500,\"margin\":{\"l\":200.0}};"
             |> chartGeneratedContains heatmapStyledChart
+        );
+        testCase "Annotated heatmap data" ( fun () ->
+            """var data = [{"type":"heatmap","x":["C1","C2","C3"],"y":["R1","R2","R3"],"z":[[1,2,3,4,5],[6,7,8,9,10],[11,12,13,14,15]]}];"""
+            |> chartGeneratedContains annotatedheatmap
+        );
+        testCase "Annotated heatmap layout" ( fun () ->
+            """var layout = {"yaxis":{"autorange":"reversed"},"annotations":[{"x":0,"y":0,"showarrow":false,"text":"1,1"},{"x":1,"y":0,"showarrow":false,"text":"1,2"},{"x":2,"y":0,"showarrow":false,"text":"1,3"},{"x":0,"y":1,"showarrow":false,"text":"2,1"},{"x":1,"y":1,"showarrow":false,"text":"2,2"},{"x":2,"y":1,"showarrow":false,"text":"2,3"},{"x":0,"y":2,"showarrow":false,"text":"3,1"},{"x":1,"y":2,"showarrow":false,"text":"3,2"},{"x":2,"y":2,"showarrow":false,"text":"3,3"}]};"""
+            |> chartGeneratedContains annotatedheatmap
         );
     ]
 

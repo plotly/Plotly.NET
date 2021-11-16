@@ -106,6 +106,8 @@
     <Compile Include="Traces\ObjectAbstractions\Table.fs" />
     <Compile Include="Traces\ObjectAbstractions\Indicator.fs" />
     <Compile Include="Traces\ObjectAbstractions\Icicle.fs" />
+    <Compile Include="Traces\ObjectAbstractions\FinanceMarker.fs" />
+    <Compile Include="Traces\ObjectAbstractions\SplomDiagonal.fs" />
     <Compile Include="Traces\Trace.fs" />
     <Compile Include="Traces\Trace2D.fs" />
     <Compile Include="Traces\Trace3D.fs" />

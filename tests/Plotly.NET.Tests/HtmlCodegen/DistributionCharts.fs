@@ -226,14 +226,14 @@ let histogram2DChart =
 let ``Histogram 2D charts`` =
     testList "DistributionCharts.Histogram charts" [
         testCase "Histo contour data" ( fun () ->
-            "var data = [{\"type\":\"histogram2Dcontour\",\"x\":[-1.566002360265054,-1.833996340961623,-1.0330391275776571,-0.8476993487909306,-0.8471270832604864,-1.021055309868153,-0.5368298779218124,-0.9982579324563884,-0.6367576994858231,-1.433590036163408,-1.3735531103452598"
+            "var data = [{\"type\":\"histogram2dcontour\",\"x\":[-1.566002360265054,-1.833996340961623,-1.0330391275776571,-0.8476993487909306,-0.8471270832604864,-1.021055309868153,-0.5368298779218124,-0.9982579324563884,-0.6367576994858231,-1.433590036163408,-1.3735531103452598"
             |> chartGeneratedContains histogramContourChart
         );
         testCase "Histo contour layout" ( fun () ->
             emptyLayout histogramContourChart
         );
         testCase "Histo 2D data" ( fun () ->
-            "var data = [{\"type\":\"histogram2D\",\"x\":[-1.566002360265054,-1.833996340961623,-1.0330391275776571,-0.8476993487909306,-0.8471270832604864,-1.021055309868153,-0.5368298779218124,-0.9982579324563884,-0.6367576994858231,-1.433590036163408,-1.3735531103452598"
+            "var data = [{\"type\":\"histogram2d\",\"x\":[-1.566002360265054,-1.833996340961623,-1.0330391275776571,-0.8476993487909306,-0.8471270832604864,-1.021055309868153,-0.5368298779218124,-0.9982579324563884,-0.6367576994858231,-1.433590036163408,-1.3735531103452598"
             |> chartGeneratedContains histogram2DChart
         );
         testCase "Histo 2D layout" ( fun () ->
@@ -250,13 +250,13 @@ let scatterplotMatrixChart =
             "C",[|2.;4.;3.1;5.|]
             "D",[|4.;2.;2.;4.;|]
         ]
-    Chart.Splom(data, Color=Color.fromString "blue", UseDefaults = false)
+    Chart.Splom(data, MarkerColor=Color.fromString "blue", UseDefaults = false)
 
 [<Tests>]
 let ``Scatterplot matrix charts`` =
     testList "DistributionCharts.Scatterplot matrix charts" [
         testCase "Scatterplot data" ( fun () ->
-            "var data = [{\"type\":\"splom\",\"dimensions\":[{\"values\":[1.0,4.0,3.4,0.7],\"label\":\"A\"},{\"values\":[3.0,1.5,1.7,2.3],\"label\":\"B\"},{\"values\":[2.0,4.0,3.1,5.0],\"label\":\"C\"},{\"values\":[4.0,2.0,2.0,4.0],\"label\":\"D\"}],\"line\":{\"color\":\"blue\"}}];"
+            """var data = [{"type":"splom","dimensions":[{"label":"A","values":[1.0,4.0,3.4,0.7],"axis":{}},{"label":"B","values":[3.0,1.5,1.7,2.3],"axis":{}},{"label":"C","values":[2.0,4.0,3.1,5.0],"axis":{}},{"label":"D","values":[4.0,2.0,2.0,4.0],"axis":{}}],"marker":{"color":"blue"},"diagonal":{}}];"""
             |> chartGeneratedContains scatterplotMatrixChart
         );
         testCase "Scatterplot layout" ( fun () ->

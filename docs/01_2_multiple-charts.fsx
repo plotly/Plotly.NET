@@ -254,7 +254,7 @@ let multipleTraceTypesGrid =
     [
         Chart.Point([1,2; 2,3])
         Chart.PointTernary([1,2,3; 2,3,4])
-        Chart.Heatmap([[1; 2];[3; 4]], Showscale=false)
+        Chart.Heatmap([[1; 2];[3; 4]], ShowScale=false)
         Chart.Point3d([1,3,2])
         Chart.PointMapbox([1,2]) |> Chart.withMapbox(Mapbox.init(Style = StyleParam.MapboxStyle.OpenStreetMap))
         [

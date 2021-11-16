@@ -12,8 +12,8 @@ open TestUtils.HtmlCodegen
 let parallelCategoriesChart =
     let dims =
         [
-            Dimensions.init(["Cat1";"Cat1";"Cat1";"Cat1";"Cat2";"Cat2";"Cat3"],Label="A")
-            Dimensions.init([0;1;0;1;0;0;0],Label="B",TickText=["YES";"NO"])
+            Dimension.initParallel(Values = ["Cat1";"Cat1";"Cat1";"Cat1";"Cat2";"Cat2";"Cat3"],Label="A")
+            Dimension.initParallel(Values = [0;1;0;1;0;0;0],Label="B",TickText=["YES";"NO"])
         ]
     
     Chart.ParallelCategories(
@@ -27,7 +27,7 @@ let parallelCategoriesChart =
 let ``Parallel categories charts`` =
     testList "CategoricalCharts.Parallel categories charts" [
         testCase "Parallel categories data" ( fun () ->
-            "var data = [{\"type\":\"parcats\",\"dimensions\":[{\"values\":[\"Cat1\",\"Cat1\",\"Cat1\",\"Cat1\",\"Cat2\",\"Cat2\",\"Cat3\"],\"label\":\"A\"},{\"values\":[0,1,0,1,0,0,0],\"label\":\"B\",\"ticktext\":[\"YES\",\"NO\"]}],\"color\":[0.0,1.0,0.0,1.0,0.0,0.0,0.0],\"line\":{\"colorscale\":\"Blackbody\"}}];"
+            """var data = [{"type":"parcats","dimensions":[{"label":"A","values":["Cat1","Cat1","Cat1","Cat1","Cat2","Cat2","Cat3"],"axis":{}},{"label":"B","values":[0,1,0,1,0,0,0],"ticktext":["YES","NO"],"axis":{}}],"color":[0.0,1.0,0.0,1.0,0.0,0.0,0.0],"line":{"colorscale":"Blackbody"}}];"""
             |> chartGeneratedContains parallelCategoriesChart
         );
         testCase "Parallel categories layout" ( fun () ->
@@ -48,15 +48,26 @@ let parcoords1Chart =
 
 let parcoordsChart = 
     let v = [|
-        Dimensions.init([|1.;4.;|],  
-            StyleParam.Range.MinMax (1.,5.),StyleParam.Range.MinMax (1.,2.),Label="A");
-        Dimensions.init([|3.;1.5;|], 
-            StyleParam.Range.MinMax (1.,5.),Label="B",Tickvals=[|1.5;3.;4.;5.;|]);
-        Dimensions.init([|2.;4.;|],  
-            StyleParam.Range.MinMax (1.,5.),Label="C",Tickvals=[|1.;2.;4.;5.;|],
-                TickText=[|"txt 1";"txt 2";"txt 4";"txt 5";|]);
-        Dimensions.init([|4.;2.;|],  
-            StyleParam.Range.MinMax (1.,5.),Label="D");
+        Dimension.initParallel(
+            Values = [|1.;4.;|],  
+            Range = StyleParam.Range.MinMax (1.,5.),
+            ConstraintRange = StyleParam.Range.MinMax (1.,2.),
+            Label="A");
+        Dimension.initParallel(
+            Values = [|3.;1.5;|], 
+            Range = StyleParam.Range.MinMax (1.,5.),
+            Label="B",
+            Tickvals=[|1.5;3.;4.;5.;|]);
+        Dimension.initParallel(
+            Values = [|2.;4.;|],  
+            Range = StyleParam.Range.MinMax (1.,5.),
+            Label= "C",
+            Tickvals=[|1.;2.;4.;5.;|],
+            TickText=[|"txt 1";"txt 2";"txt 4";"txt 5";|]);
+        Dimension.initParallel(
+            Values = [|4.;2.;|],  
+            Range = StyleParam.Range.MinMax (1.,5.),
+            Label="D");
     |]
 
     let dyn = Trace("parcoords")
@@ -71,14 +82,14 @@ let parcoordsChart =
 let ``Parallel coordinates charts`` =
     testList "CategoricalCharts.Parallel coordinates charts" [
         testCase "Parallel coordinates 1 data" ( fun () ->
-            "var data = [{\"type\":\"parcoords\",\"dimensions\":[{\"values\":[1.0,4.0,3.4,0.7],\"label\":\"A\"},{\"values\":[3.0,1.5,1.7,2.3],\"label\":\"B\"},{\"values\":[2.0,4.0,3.1,5.0],\"label\":\"C\"},{\"values\":[4.0,2.0,2.0,4.0],\"label\":\"D\"}],\"line\":{\"color\":\"blue\"}}];"
+            """var data = [{"type":"parcoords","dimensions":[{"label":"A","values":[1.0,4.0,3.4,0.7],"axis":{}},{"label":"B","values":[3.0,1.5,1.7,2.3],"axis":{}},{"label":"C","values":[2.0,4.0,3.1,5.0],"axis":{}},{"label":"D","values":[4.0,2.0,2.0,4.0],"axis":{}}],"line":{"color":"blue"}}];"""
             |> chartGeneratedContains parcoords1Chart
         );
         testCase "Parallel coordinates 1 layout" ( fun () ->
             emptyLayout parcoords1Chart
         );
         testCase "Parallel coordinates data" ( fun () ->
-            "var data = [{\"type\":\"parcoords\",\"dimensions\":[{\"values\":[1.0,4.0],\"range\":[1.0,5.0],\"constraintrange\":[1.0,2.0],\"label\":\"A\"},{\"values\":[3.0,1.5],\"range\":[1.0,5.0],\"label\":\"B\",\"tickvals\":[1.5,3.0,4.0,5.0]},{\"values\":[2.0,4.0],\"range\":[1.0,5.0],\"label\":\"C\",\"tickvals\":[1.0,2.0,4.0,5.0],\"ticktext\":[\"txt 1\",\"txt 2\",\"txt 4\",\"txt 5\"]},{\"values\":[4.0,2.0],\"range\":[1.0,5.0],\"label\":\"D\"}],\"line\":{\"color\":\"blue\"}}];"
+            """var data = [{"type":"parcoords","dimensions":[{"label":"A","values":[1.0,4.0],"constraintrange":[1.0,2.0],"range":[1.0,5.0],"axis":{}},{"label":"B","values":[3.0,1.5],"range":[1.0,5.0],"tickvals":[1.5,3.0,4.0,5.0],"axis":{}},{"label":"C","values":[2.0,4.0],"range":[1.0,5.0],"ticktext":["txt 1","txt 2","txt 4","txt 5"],"tickvals":[1.0,2.0,4.0,5.0],"axis":{}},{"label":"D","values":[4.0,2.0],"range":[1.0,5.0],"axis":{}}],"line":{"color":"blue"}}];"""
             |> chartGeneratedContains parcoordsChart
         );
         testCase "Parallel coordinates layout" ( fun () ->

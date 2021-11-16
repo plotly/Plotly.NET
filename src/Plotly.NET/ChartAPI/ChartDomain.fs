@@ -393,8 +393,12 @@ module ChartDomain =
                 let dims' = 
                     dims 
                     |> Seq.map (fun (k,vals) -> 
-                        Dimensions.init(vals)
-                        |> Dimensions.style(vals,?Range=Range,?Constraintrange=Constraintrange,Label=k)
+                        Dimension.initParallel(
+                            Values          = vals,
+                            ?Range          = Range,
+                            ?ConstraintRange= Constraintrange,
+                            Label           = k
+                        )
                     )
                 TraceDomain.initParallelCoord(
                     TraceDomainStyle.ParallelCoord(
@@ -413,7 +417,7 @@ module ChartDomain =
         [<Extension>]
         static member ParallelCoord
             (
-                dims:seq<Dimensions>,
+                dims:seq<Dimension>,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Colorscale,
                 [<Optional;DefaultParameterValue(null)>] ?Width,
@@ -461,8 +465,12 @@ module ChartDomain =
                 let dims' = 
                     dims 
                     |> Seq.map (fun (k,vals) -> 
-                        Dimensions.init(vals)
-                        |> Dimensions.style(vals,?Range=Range,?Constraintrange=Constraintrange,Label=k)
+                        Dimension.initParallel(
+                            Values          = vals,
+                            ?Range          = Range,
+                            ?ConstraintRange= Constraintrange,
+                            Label           = k
+                        )
                     )
                 TraceDomain.initParallelCategories (
                     TraceDomainStyle.ParallelCategories(
@@ -480,7 +488,7 @@ module ChartDomain =
         [<Extension>]
         static member ParallelCategories
             (
-                dims:seq<Dimensions>,
+                dims:seq<Dimension>,
                 [<Optional;DefaultParameterValue(null)>] ?Color,
                 [<Optional;DefaultParameterValue(null)>] ?Colorscale,
                 [<Optional;DefaultParameterValue(null)>] ?Width,

@@ -269,7 +269,7 @@ type TraceDomainStyle() =
     // Applies the styles of parallel coordinates plot to TraceObjects 
     static member ParallelCoord
         (                
-            [<Optional;DefaultParameterValue(null)>] ?Dimensions : seq<Dimensions>,
+            [<Optional;DefaultParameterValue(null)>] ?Dimensions : seq<Dimension>,
             [<Optional;DefaultParameterValue(null)>] ?Line               ,
             [<Optional;DefaultParameterValue(null)>] ?Domain             ,
             [<Optional;DefaultParameterValue(null)>] ?Labelfont          ,
@@ -291,7 +291,7 @@ type TraceDomainStyle() =
     
     static member ParallelCategories
         (                
-            [<Optional;DefaultParameterValue(null)>] ?Dimensions : seq<Dimensions>,
+            [<Optional;DefaultParameterValue(null)>] ?Dimensions : seq<Dimension>,
             [<Optional;DefaultParameterValue(null)>] ?Line               ,
             [<Optional;DefaultParameterValue(null)>] ?Domain             ,
             [<Optional;DefaultParameterValue(null)>] ?Color : Color,

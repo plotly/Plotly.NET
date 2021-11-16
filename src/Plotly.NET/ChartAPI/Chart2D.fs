@@ -909,162 +909,327 @@ module Chart2D =
         [<Extension>]
         static member Funnel 
             (
-                x, y,
-                [<Optional;DefaultParameterValue(null)>] ?Name                          ,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
-                [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
-                [<Optional;DefaultParameterValue(null)>] ?Color                         ,
-                [<Optional;DefaultParameterValue(null)>] ?Line                          ,
-                [<Optional;DefaultParameterValue(null)>] ?x0                            ,
-                [<Optional;DefaultParameterValue(null)>] ?dX                            ,
-                [<Optional;DefaultParameterValue(null)>] ?y0                            ,
-                [<Optional;DefaultParameterValue(null)>] ?dY                            ,
-                [<Optional;DefaultParameterValue(null)>] ?Width                         ,
-                [<Optional;DefaultParameterValue(null)>] ?Offset                        ,
-                [<Optional;DefaultParameterValue(null)>] ?Orientation                   ,
-                [<Optional;DefaultParameterValue(null)>] ?Alignmentgroup                ,
-                [<Optional;DefaultParameterValue(null)>] ?Offsetgroup                   ,
-                [<Optional;DefaultParameterValue(null)>] ?Cliponaxis                    ,
-                [<Optional;DefaultParameterValue(null)>] ?Connector                     ,
-                [<Optional;DefaultParameterValue(null)>] ?Insidetextfont                ,
-                [<Optional;DefaultParameterValue(null)>] ?Outsidetextfont,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                x: seq<#IConvertible>,
+                y: seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?Width             : float,
+                [<Optional;DefaultParameterValue(null)>] ?Offset            : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?Orientation       : StyleParam.Orientation,
+                [<Optional;DefaultParameterValue(null)>] ?AlignmentGroup    : string,
+                [<Optional;DefaultParameterValue(null)>] ?OffsetGroup       : string,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline     : Line,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?TextInfo          : StyleParam.TextInfo,
+                [<Optional;DefaultParameterValue(null)>] ?ConnectorLineColor: Color,
+                [<Optional;DefaultParameterValue(null)>] ?ConnectorLineStyle: StyleParam.DrawingStyle,
+                [<Optional;DefaultParameterValue(null)>] ?ConnectorFillColor: Color,
+                [<Optional;DefaultParameterValue(null)>] ?ConnectorLine     : Line,
+                [<Optional;DefaultParameterValue(null)>] ?Connector         : FunnelConnector,
+                [<Optional;DefaultParameterValue(null)>] ?InsideTextFont    : Font,
+                [<Optional;DefaultParameterValue(null)>] ?OutsideTextFont   : Font,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
             ) = 
-
+                
                 let useDefaults = defaultArg UseDefaults true
+                
+                let marker =
+                    Marker 
+                    |> Option.defaultValue (TraceObjects.Marker.init())
+                    |> TraceObjects.Marker.style(
+                        ?Color          = MarkerColor,
+                        ?Outline        = MarkerOutline
+                    )                
+
+                let connectorLine =
+                    ConnectorLine 
+                    |> Option.map (
+                        Plotly.NET.Line.style(
+                            ?Color  = ConnectorLineColor,
+                            ?Dash   = ConnectorLineStyle
+                        )
+                    )
+
+                let connector =
+                    Connector 
+                    |> Option.defaultValue (TraceObjects.FunnelConnector.init())
+                    |> TraceObjects.FunnelConnector.style(
+                        ?Fillcolor  = ConnectorFillColor,
+                        ?Line       = connectorLine
+                    )
 
                 Trace2D.initFunnel(
                     Trace2DStyle.Funnel(
-                        x               = x               ,
-                        y               = y               ,
-                        ?x0              = x0             ,
-                        ?dX              = dX             ,
-                        ?y0              = y0             ,
-                        ?dY              = dY             ,
-                        ?Width           = Width          ,
-                        ?Offset          = Offset         ,
-                        ?Orientation     = Orientation    ,
-                        ?Alignmentgroup  = Alignmentgroup ,
-                        ?Offsetgroup     = Offsetgroup    ,
-                        ?Cliponaxis      = Cliponaxis     ,
-                        ?Connector       = Connector      ,
-                        ?Insidetextfont  = Insidetextfont ,
-                        ?Outsidetextfont = Outsidetextfont
+                        ?Name               = Name             ,
+                        ?ShowLegend         = ShowLegend       ,
+                        ?Opacity            = Opacity          ,
+                        X                   = x                ,
+                        Y                   = y                ,
+                        ?Width              = Width            ,
+                        ?Offset             = Offset           ,
+                        ?Text               = Text             ,
+                        ?MultiText          = MultiText        ,
+                        ?TextPosition       = TextPosition     ,
+                        ?MultiTextPosition  = MultiTextPosition,
+                        ?Orientation        = Orientation      ,
+                        ?AlignmentGroup     = AlignmentGroup   ,
+                        ?OffsetGroup        = OffsetGroup      ,
+                        Marker              = marker           ,
+                        ?TextInfo           = TextInfo         ,
+                        Connector           = connector        ,
+                        ?InsideTextFont     = InsideTextFont   ,
+                        ?OutsideTextFont    = OutsideTextFont  
+                        
                     )
                 )
-                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
-                |> TraceStyle.Marker(?Color=Color,?Outline=Line)
-                |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
                 |> GenericChart.ofTraceObject useDefaults
 
+        static member StackedFunnel 
+            (
+                x: seq<#IConvertible>,
+                y: seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?Width             : float,
+                [<Optional;DefaultParameterValue(null)>] ?Offset            : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?Orientation       : StyleParam.Orientation,
+                [<Optional;DefaultParameterValue(null)>] ?AlignmentGroup    : string,
+                [<Optional;DefaultParameterValue(null)>] ?OffsetGroup       : string,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline     : Line,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?TextInfo          : StyleParam.TextInfo,
+                [<Optional;DefaultParameterValue(null)>] ?ConnectorLineColor: Color,
+                [<Optional;DefaultParameterValue(null)>] ?ConnectorLineStyle: StyleParam.DrawingStyle,
+                [<Optional;DefaultParameterValue(null)>] ?ConnectorFillColor: Color,
+                [<Optional;DefaultParameterValue(null)>] ?ConnectorLine     : Line,
+                [<Optional;DefaultParameterValue(null)>] ?Connector         : FunnelConnector,
+                [<Optional;DefaultParameterValue(null)>] ?InsideTextFont    : Font,
+                [<Optional;DefaultParameterValue(null)>] ?OutsideTextFont   : Font,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
+            ) = 
+                Chart.Funnel(
+                    x,y,
+                    ?Name               = Name              ,
+                    ?ShowLegend         = ShowLegend        ,
+                    ?Opacity            = Opacity           ,
+                    ?Width              = Width             ,
+                    ?Offset             = Offset            ,
+                    ?Text               = Text              ,
+                    ?MultiText          = MultiText         ,
+                    ?TextPosition       = TextPosition      ,
+                    ?MultiTextPosition  = MultiTextPosition ,
+                    ?Orientation        = Orientation       ,
+                    ?AlignmentGroup     = AlignmentGroup    ,
+                    ?OffsetGroup        = OffsetGroup       ,
+                    ?MarkerColor        = MarkerColor       ,
+                    ?MarkerOutline      = MarkerOutline     ,
+                    ?Marker             = Marker            ,
+                    ?TextInfo           = TextInfo          ,
+                    ?ConnectorLineColor = ConnectorLineColor,
+                    ?ConnectorLineStyle = ConnectorLineStyle,
+                    ?ConnectorFillColor = ConnectorFillColor,
+                    ?ConnectorLine      = ConnectorLine     ,
+                    ?Connector          = Connector         ,
+                    ?InsideTextFont     = InsideTextFont    ,
+                    ?OutsideTextFont    = OutsideTextFont   ,
+                    ?UseDefaults        = UseDefaults
+
+                )
+                |> GenericChart.mapLayout (Layout.style (FunnelMode = StyleParam.FunnelMode.Stack))
+
         /// Creates a waterfall chart. Waterfall charts are special bar charts that help visualizing the cumulative effect of sequentially introduced positive or negative values
-        ///
-        /// Parameters:
-        ///
-        /// x               : Sets the x coordinates.
-        ///
-        /// y               : Sets the y coordinates.
-        ///
-        /// Base            : Sets where the bar base is drawn (in position axis units).
-        ///
-        /// Width           : Sets the bar width (in position axis units).
-        ///
-        /// Measure         : An array containing types of values. By default the values are considered as 'relative'. However; it is possible to use 'total' to compute the sums. Also 'absolute' could be applied to reset the computed total or to declare an initial value where needed.
-        ///
-        /// Orientation     : Sets the orientation of the bars. With "v" ("h"), the value of the each bar spans along the vertical (horizontal).
-        ///
-        /// Connector       : Sets the styling of the connector lines
-        ///
-        /// AlignmentGroup  : Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.
-        ///
-        /// OffsetGroup     : Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.
-        ///
-        /// Offset          : Shifts the position where the bar is drawn (in position axis units). In "group" barmode, traces that set "offset" will be excluded and drawn in "overlay" mode instead.
         [<Extension>]
         static member Waterfall 
             (
-                x               : #IConvertible seq,
-                y               : #IConvertible seq,
-                [<Optional;DefaultParameterValue(null)>]?Base           : IConvertible  ,
-                [<Optional;DefaultParameterValue(null)>]?Width          : float         ,
-                [<Optional;DefaultParameterValue(null)>]?Measure        : StyleParam.WaterfallMeasure seq,
-                [<Optional;DefaultParameterValue(null)>]?Orientation    : StyleParam.Orientation,
-                [<Optional;DefaultParameterValue(null)>]?Connector      : WaterfallConnector    ,
-                [<Optional;DefaultParameterValue(null)>]?AlignmentGroup : string,
-                [<Optional;DefaultParameterValue(null)>]?OffsetGroup    : string,
-                [<Optional;DefaultParameterValue(null)>]?Offset,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                x: seq<#IConvertible>,
+                y: seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?IncreasingColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Increasing        : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?DecreasingColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Decreasing        : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?TotalsColor       : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Totals            : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?Base              : float,
+                [<Optional;DefaultParameterValue(null)>] ?Width             : float,
+                [<Optional;DefaultParameterValue(null)>] ?MultiWidth        : seq<float>,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
+                [<Optional;DefaultParameterValue(null)>] ?Connector         : WaterfallConnector,
+                [<Optional;DefaultParameterValue(null)>] ?Measure           : StyleParam.WaterfallMeasure seq,
+                [<Optional;DefaultParameterValue(null)>] ?AlignmentGroup    : string,
+                [<Optional;DefaultParameterValue(null)>] ?OffsetGroup       : string,
+                [<Optional;DefaultParameterValue(true)>] ?Orientation       : StyleParam.Orientation,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
             ) = 
 
                 let useDefaults = defaultArg UseDefaults true
 
+                let increasing  = Increasing |> Option.defaultValue (FinanceMarker.init()) |> FinanceMarker.style(?MarkerColor = IncreasingColor)
+                let decreasing  = Decreasing |> Option.defaultValue (FinanceMarker.init()) |> FinanceMarker.style(?MarkerColor = DecreasingColor)
+                let totals      = Totals     |> Option.defaultValue (FinanceMarker.init()) |> FinanceMarker.style(?MarkerColor = TotalsColor)
+
                 Trace2D.initWaterfall(
-                    Trace2DStyle.Waterfall(x,y,
-                        ?Base           = Base          ,
-                        ?Width          = Width         ,
-                        ?Measure        = Measure       ,
-                        ?Orientation    = Orientation   ,
-                        ?Connector      = Connector     ,
-                        ?AlignmentGroup = AlignmentGroup,
-                        ?OffsetGroup    = OffsetGroup   ,
-                        ?Offset         = Offset        
+                    Trace2DStyle.Waterfall(
+                        X = x,
+                        Y = y,
+                        ?Name              = Name              ,
+                        ?ShowLegend        = ShowLegend        ,
+                        Increasing         = increasing        ,
+                        Decreasing         = decreasing        ,
+                        Totals             = totals            ,
+                        ?Base              = Base              ,
+                        ?Width             = Width             ,
+                        ?MultiWidth        = MultiWidth        ,
+                        ?Opacity           = Opacity           ,
+                        ?Text              = Text              ,
+                        ?MultiText         = MultiText         ,
+                        ?TextPosition      = TextPosition      ,
+                        ?MultiTextPosition = MultiTextPosition ,
+                        ?TextFont          = TextFont          ,
+                        ?Connector         = Connector         ,
+                        ?Measure           = Measure           ,
+                        ?AlignmentGroup    = AlignmentGroup    ,
+                        ?OffsetGroup       = OffsetGroup       ,
+                        ?Orientation       = Orientation
                     )
                 )
                 |> GenericChart.ofTraceObject useDefaults
 
 
         /// Creates a waterfall chart. Waterfall charts are special bar charts that help visualizing the cumulative effect of sequentially introduced positive or negative values
-        ///
-        /// Parameters:
-        ///
-        /// xyMeasures      : triple sequence containing x coordinates, y coordinates, and the type of measure used for each bar.
-        ///
-        /// Base            : Sets where the bar base is drawn (in position axis units).
-        ///
-        /// Width           : Sets the bar width (in position axis units).
-        ///
-        /// Orientation     : Sets the orientation of the bars. With "v" ("h"), the value of the each bar spans along the vertical (horizontal).
-        ///
-        /// Connector       : Sets the styling of the connector lines
-        ///
-        /// AlignmentGroup  : Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.
-        ///
-        /// OffsetGroup     : Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.
-        ///
-        /// Offset          : Shifts the position where the bar is drawn (in position axis units). In "group" barmode, traces that set "offset" will be excluded and drawn in "overlay" mode instead.
         [<Extension>]
         static member Waterfall 
             (
-                xyMeasure: (#IConvertible*#IConvertible*StyleParam.WaterfallMeasure) seq,
-                [<Optional;DefaultParameterValue(null)>]?Base           : IConvertible  ,
-                [<Optional;DefaultParameterValue(null)>]?Width          : float         ,
-                [<Optional;DefaultParameterValue(null)>]?Orientation    : StyleParam.Orientation,
-                [<Optional;DefaultParameterValue(null)>]?Connector      : WaterfallConnector    ,
-                [<Optional;DefaultParameterValue(null)>]?AlignmentGroup : string,
-                [<Optional;DefaultParameterValue(null)>]?OffsetGroup    : string,
-                [<Optional;DefaultParameterValue(null)>]?Offset,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                xy: seq<#IConvertible*#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?IncreasingColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Increasing        : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?DecreasingColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Decreasing        : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?TotalsColor       : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Totals            : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?Base              : float,
+                [<Optional;DefaultParameterValue(null)>] ?Width             : float,
+                [<Optional;DefaultParameterValue(null)>] ?MultiWidth        : seq<float>,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
+                [<Optional;DefaultParameterValue(null)>] ?Connector         : WaterfallConnector,
+                [<Optional;DefaultParameterValue(null)>] ?Measure           : StyleParam.WaterfallMeasure seq,
+                [<Optional;DefaultParameterValue(null)>] ?AlignmentGroup    : string,
+                [<Optional;DefaultParameterValue(null)>] ?OffsetGroup       : string,
+                [<Optional;DefaultParameterValue(true)>] ?Orientation       : StyleParam.Orientation,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
             ) = 
 
-                let useDefaults = defaultArg UseDefaults true
+                let x,y = Seq.unzip xy
 
-                let x,y,measure = Seq.unzip3 xyMeasure
-                Trace2D.initWaterfall(
-                    Trace2DStyle.Waterfall(x,y,
-                        ?Base           = Base          ,
-                        ?Width          = Width         ,
-                        ?Measure        = Some measure  ,
-                        ?Orientation    = Orientation   ,
-                        ?Connector      = Connector     ,
-                        ?AlignmentGroup = AlignmentGroup,
-                        ?OffsetGroup    = OffsetGroup   ,
-                        ?Offset         = Offset        
-                    )
+                Chart.Waterfall(
+                    x,y,
+                    ?Name             = Name             ,
+                    ?ShowLegend       = ShowLegend       ,
+                    ?IncreasingColor  = IncreasingColor  ,
+                    ?Increasing       = Increasing       ,
+                    ?DecreasingColor  = DecreasingColor  ,
+                    ?Decreasing       = Decreasing       ,
+                    ?TotalsColor      = TotalsColor      ,
+                    ?Totals           = Totals           ,
+                    ?Base             = Base             ,
+                    ?Width            = Width            ,
+                    ?MultiWidth       = MultiWidth       ,
+                    ?Opacity          = Opacity          ,
+                    ?Text             = Text             ,
+                    ?MultiText        = MultiText        ,
+                    ?TextPosition     = TextPosition     ,
+                    ?MultiTextPosition= MultiTextPosition,
+                    ?TextFont         = TextFont         ,
+                    ?Connector        = Connector        ,
+                    ?Measure          = Measure          ,
+                    ?AlignmentGroup   = AlignmentGroup   ,
+                    ?OffsetGroup      = OffsetGroup      ,
+                    ?Orientation      = Orientation      ,
+                    ?UseDefaults      = UseDefaults      
                 )
-                |> GenericChart.ofTraceObject useDefaults
+
+        /// Creates a waterfall chart. Waterfall charts are special bar charts that help visualizing the cumulative effect of sequentially introduced positive or negative values
+        [<Extension>]
+        static member Waterfall 
+            (
+                xymeasures: seq<#IConvertible*#IConvertible*StyleParam.WaterfallMeasure>,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?IncreasingColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Increasing        : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?DecreasingColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Decreasing        : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?TotalsColor       : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Totals            : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?Base              : float,
+                [<Optional;DefaultParameterValue(null)>] ?Width             : float,
+                [<Optional;DefaultParameterValue(null)>] ?MultiWidth        : seq<float>,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
+                [<Optional;DefaultParameterValue(null)>] ?Connector         : WaterfallConnector,
+                [<Optional;DefaultParameterValue(null)>] ?AlignmentGroup    : string,
+                [<Optional;DefaultParameterValue(null)>] ?OffsetGroup       : string,
+                [<Optional;DefaultParameterValue(true)>] ?Orientation       : StyleParam.Orientation,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
+            ) = 
+
+                let x,y,measure = Seq.unzip3 xymeasures
+
+                Chart.Waterfall(
+                    x,y,
+                    ?Name             = Name             ,
+                    ?ShowLegend       = ShowLegend       ,
+                    ?IncreasingColor  = IncreasingColor  ,
+                    ?Increasing       = Increasing       ,
+                    ?DecreasingColor  = DecreasingColor  ,
+                    ?Decreasing       = Decreasing       ,
+                    ?TotalsColor      = TotalsColor      ,
+                    ?Totals           = Totals           ,
+                    ?Base             = Base             ,
+                    ?Width            = Width            ,
+                    ?MultiWidth       = MultiWidth       ,
+                    ?Opacity          = Opacity          ,
+                    ?Text             = Text             ,
+                    ?MultiText        = MultiText        ,
+                    ?TextPosition     = TextPosition     ,
+                    ?MultiTextPosition= MultiTextPosition,
+                    ?TextFont         = TextFont         ,
+                    ?Connector        = Connector        ,
+                    Measure           = measure          ,
+                    ?AlignmentGroup   = AlignmentGroup   ,
+                    ?OffsetGroup      = OffsetGroup      ,
+                    ?Orientation      = Orientation      ,
+                    ?UseDefaults      = UseDefaults      
+                )
 
         /// Illustrates comparisons among individual items
         [<Extension>]
@@ -2013,41 +2178,195 @@ module Chart2D =
         /// Shows a graphical representation of a 3-dimensional surface by plotting constant z slices, called contours, on a 2-dimensional format.
         /// That is, given a value for z, lines are drawn for connecting the (x,y) coordinates where that z value occurs.
         [<Extension>]
-        static member Heatmap(data:seq<#seq<#IConvertible>>,
-                [<Optional;DefaultParameterValue(null)>] ?ColNames,
-                [<Optional;DefaultParameterValue(null)>] ?RowNames,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?Showscale,
-                [<Optional;DefaultParameterValue(null)>] ?Xgap,
-                [<Optional;DefaultParameterValue(null)>] ?Ygap,
-                [<Optional;DefaultParameterValue(null)>] ?zSmooth,
-                [<Optional;DefaultParameterValue(null)>] ?ColorBar,
-                [<Optional;DefaultParameterValue(false)>]?UseWebGL : bool,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+        static member Heatmap
+            (
+                zData: seq<#seq<#IConvertible>>,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?X                 : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?XGap              : int,
+                [<Optional;DefaultParameterValue(null)>] ?Y                 : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?YGap              : int,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?ColorBar          : ColorBar,
+                [<Optional;DefaultParameterValue(null)>] ?ColorScale        : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?ShowScale         : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ReverseScale      : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ZSmooth           : StyleParam.SmoothAlg,
+                [<Optional;DefaultParameterValue(null)>] ?Transpose         : bool,
+                [<Optional;DefaultParameterValue(false)>]?UseWebGL          : bool,
+                [<Optional;DefaultParameterValue(false)>]?ReverseYAxis      : bool,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
             ) = 
 
             let useDefaults = defaultArg UseDefaults true
+            let reverseYAxis= defaultArg ReverseYAxis false
 
             let style =
                 Trace2DStyle.Heatmap(
-                    Z=data,
-                    ?X=ColNames, 
-                    ?Y=RowNames,
-                    ?Xgap=Xgap,
-                    ?Ygap=Ygap,
-                    ?Colorscale=Colorscale,
-                    ?Showscale=Showscale,
-                    ?zSmooth=zSmooth,
-                    ?ColorBar=ColorBar
+                    Z               = zData       ,
+                    ?Name           = Name        ,
+                    ?ShowLegend     = ShowLegend  ,
+                    ?Opacity        = Opacity     ,
+                    ?X              = X           ,
+                    ?XGap           = XGap        ,
+                    ?Y              = Y           ,
+                    ?YGap           = YGap        ,
+                    ?Text           = Text        ,
+                    ?MultiText      = MultiText   ,
+                    ?ColorBar       = ColorBar    ,
+                    ?ColorScale     = ColorScale  ,
+                    ?ShowScale      = ShowScale   ,
+                    ?ReverseScale   = ReverseScale,
+                    ?ZSmooth        = ZSmooth     ,
+                    ?Transpose      = Transpose   
                 )
-                >> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
 
             let useWebGL = defaultArg UseWebGL false
 
             Chart.renderHeatmapTrace useDefaults useWebGL style
+            |> fun c -> 
+                if reverseYAxis then 
+                    c
+                    |> Chart.withYAxis(LinearAxis.init(AutoRange=StyleParam.AutoRange.Reversed))
+                else
+                    c
+
+        /// Shows a graphical representation of a 3-dimensional surface by plotting constant z slices, called contours, on a 2-dimensional format.
+        /// That is, given a value for z, lines are drawn for connecting the (x,y) coordinates where that z value occurs.
+        [<Extension>]
+        static member Heatmap
+            (
+                zData: seq<#seq<#IConvertible>>,
+                colNames: seq<string>,
+                rowNames: seq<string>,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?XGap              : int,
+                [<Optional;DefaultParameterValue(null)>] ?YGap              : int,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?ColorBar          : ColorBar,
+                [<Optional;DefaultParameterValue(null)>] ?ColorScale        : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?ShowScale         : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ReverseScale      : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ZSmooth           : StyleParam.SmoothAlg,
+                [<Optional;DefaultParameterValue(null)>] ?Transpose         : bool,
+                [<Optional;DefaultParameterValue(false)>]?UseWebGL          : bool,
+                [<Optional;DefaultParameterValue(false)>]?ReverseYAxis      : bool,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
+            ) = 
+
+            let useDefaults = defaultArg UseDefaults true
+            let reverseYAxis= defaultArg ReverseYAxis false
+
+            let style =
+                Trace2DStyle.Heatmap(
+                    Z               = zData       ,
+                    ?Name           = Name        ,
+                    ?ShowLegend     = ShowLegend  ,
+                    ?Opacity        = Opacity     ,
+                    X               = (colNames |> Seq.map (fun x -> x :> IConvertible)),
+                    ?XGap           = XGap        ,
+                    Y               = (rowNames |> Seq.map (fun x -> x :> IConvertible)),
+                    ?YGap           = YGap        ,
+                    ?Text           = Text        ,
+                    ?MultiText      = MultiText   ,
+                    ?ColorBar       = ColorBar    ,
+                    ?ColorScale     = ColorScale  ,
+                    ?ShowScale      = ShowScale   ,
+                    ?ReverseScale   = ReverseScale,
+                    ?ZSmooth        = ZSmooth     ,
+                    ?Transpose      = Transpose   
+                )
+
+            let useWebGL = defaultArg UseWebGL false
+
+            Chart.renderHeatmapTrace useDefaults useWebGL style
+            |> fun c -> 
+                if reverseYAxis then 
+                    c
+                    |> Chart.withYAxis(LinearAxis.init(AutoRange=StyleParam.AutoRange.Reversed))
+                else
+                    c
+            
+        /// Shows a graphical representation of a 3-dimensional surface by plotting constant z slices, called contours, on a 2-dimensional format.
+        /// That is, given a value for z, lines are drawn for connecting the (x,y) coordinates where that z value occurs.
+        [<Extension>]
+        static member AnnotatedHeatmap
+            (
+                zData: seq<#seq<#IConvertible>>,
+                annotationText: seq<#seq<string>>,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?X                 : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?XGap              : int,
+                [<Optional;DefaultParameterValue(null)>] ?Y                 : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?YGap              : int,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?ColorBar          : ColorBar,
+                [<Optional;DefaultParameterValue(null)>] ?ColorScale        : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?ShowScale         : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ReverseScale      : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ZSmooth           : StyleParam.SmoothAlg,
+                [<Optional;DefaultParameterValue(null)>] ?Transpose         : bool,
+                [<Optional;DefaultParameterValue(false)>]?UseWebGL          : bool,
+                [<Optional;DefaultParameterValue(false)>]?ReverseYAxis      : bool,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
+            ) = 
+
+            let useDefaults = defaultArg UseDefaults true
+            let reverseYAxis= defaultArg ReverseYAxis false
+
+            let dims = Seq.length zData
+            let dims2 = Seq.length annotationText
+
+            if dims <> dims2 then failwith "incompatible dims"
+
+            let style =
+                Trace2DStyle.Heatmap(
+                    Z               = zData       ,
+                    ?Name           = Name        ,
+                    ?ShowLegend     = ShowLegend  ,
+                    ?Opacity        = Opacity     ,
+                    ?X              = X           ,
+                    ?XGap           = XGap        ,
+                    ?Y              = Y           ,
+                    ?YGap           = YGap        ,
+                    ?Text           = Text        ,
+                    ?MultiText      = MultiText   ,
+                    ?ColorBar       = ColorBar    ,
+                    ?ColorScale     = ColorScale  ,
+                    ?ShowScale      = ShowScale   ,
+                    ?ReverseScale   = ReverseScale,
+                    ?ZSmooth        = ZSmooth     ,
+                    ?Transpose      = Transpose   
+                )
+
+            let useWebGL = defaultArg UseWebGL false
+
+            Chart.renderHeatmapTrace useDefaults useWebGL style
+            |> fun c -> 
+                if reverseYAxis then 
+                    c
+                    |> Chart.withYAxis(LinearAxis.init(AutoRange=StyleParam.AutoRange.Reversed))
+                else
+                    c
+            |> Chart.withAnnotations (
+                annotationText
+                |> Seq.mapi (fun y inner ->
+                    inner
+                    |> Seq.mapi (fun x text ->
+                        Annotation.init(x,y,Text=(string text),ShowArrow=false)
+                    )
+                )
+                |> Seq.concat
+            )
 
 
         [<Extension>]
@@ -2128,53 +2447,82 @@ module Chart2D =
                 )
                 |> GenericChart.ofTraceObject useDefaults
 
-        /// Shows a graphical representation of data where the individual values contained in a matrix are represented as colors.
+        /// Shows a graphical representation of a 3-dimensional surface by plotting constant z slices, called contours, on a 2-dimensional format
         [<Extension>]
-        static member Contour(data:seq<#seq<#IConvertible>>,
-                [<Optional;DefaultParameterValue(null)>] ?X,
-                [<Optional;DefaultParameterValue(null)>] ?Y,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?Showscale,
-                [<Optional;DefaultParameterValue(null)>] ?zSmooth,
-                [<Optional;DefaultParameterValue(null)>] ?ColorBar,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+        static member Contour
+            (
+                zData: seq<#seq<#IConvertible>>,
+                [<Optional;DefaultParameterValue(null)>] ?Name                  : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend            : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity               : float,
+                [<Optional;DefaultParameterValue(null)>] ?X                     : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Y                     : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Text                  : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText             : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?ColorBar              : ColorBar,
+                [<Optional;DefaultParameterValue(null)>] ?ColorScale            : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?ShowScale             : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ReverseScale          : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Transpose             : bool,
+                [<Optional;DefaultParameterValue(null)>] ?LineColor             : Color,
+                [<Optional;DefaultParameterValue(null)>] ?LineDash              : StyleParam.DrawingStyle,
+                [<Optional;DefaultParameterValue(null)>] ?Line                  : Line,
+                [<Optional;DefaultParameterValue(null)>] ?ContoursColoring      : StyleParam.ContourColoring,
+                [<Optional;DefaultParameterValue(null)>] ?ContoursOperation     : StyleParam.ConstraintOperation,
+                [<Optional;DefaultParameterValue(null)>] ?ContoursType          : StyleParam.ContourType,
+                [<Optional;DefaultParameterValue(null)>] ?ShowContourLabels     : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ContourLabelFont      : Font,
+                [<Optional;DefaultParameterValue(null)>] ?Contours              : Contours,
+                [<Optional;DefaultParameterValue(null)>] ?FillColor             : Color,
+                [<Optional;DefaultParameterValue(null)>] ?NContours             : int,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults           : bool
             ) = 
 
                 let useDefaults = defaultArg UseDefaults true
 
+                let contours =
+                    Contours
+                    |> Option.defaultValue (TraceObjects.Contours.init())
+                    |> TraceObjects.Contours.style(
+                        ?Coloring    = ContoursColoring ,
+                        ?Operation   = ContoursOperation,
+                        ?Type        = ContoursType     ,
+                        ?ShowLabels  = ShowContourLabels,
+                        ?LabelFont   = ContourLabelFont
+                    )
+
+                let line = 
+                    Line
+                    |> Option.defaultValue (Plotly.NET.Line.init())
+                    |> Plotly.NET.Line.style(
+                        ?Color   = LineColor,
+                        ?Dash    = LineDash 
+                    )
+
                 Trace2D.initContour (
                     Trace2DStyle.Contour(
-                        Z=data,?X=X, ?Y=Y,
-                        ?Colorscale=Colorscale,?Showscale=Showscale,?zSmooth=zSmooth,?ColorBar=ColorBar
+                        Z               = zData       ,
+                        ?Name           = Name        ,
+                        ?ShowLegend     = ShowLegend  ,
+                        ?Opacity        = Opacity     ,
+                        ?X              = X           ,
+                        ?Y              = Y           ,
+                        ?Text           = Text        ,
+                        ?MultiText      = MultiText   ,
+                        ?ColorBar       = ColorBar    ,
+                        ?ColorScale     = ColorScale  ,
+                        ?ShowScale      = ShowScale   ,
+                        ?ReverseScale   = ReverseScale,
+                        ?Transpose      = Transpose   ,
+                        ?FillColor      = FillColor   ,
+                        ?NContours      = NContours   ,
+                        Contours        = contours    ,
+                        Line            = line
                     )
                 )
-                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)   
                 |> GenericChart.ofTraceObject useDefaults
 
         /// Creates an OHLC (open-high-low-close) chart. OHLC charts are typically used to illustrate movements in the price of a financial instrument over time.
-        ///
-        /// ``open``    : Sets the open values.
-        ///
-        /// high        : Sets the high values.
-        ///
-        /// low         : Sets the low values.
-        ///
-        /// close       : Sets the close values.
-        ///
-        /// x           : Sets the x coordinates. If absent, linear coordinate will be generated.
-        ///
-        /// ?Increasing : Sets the Line style of the Increasing part of the chart
-        ///
-        /// ?Decreasing : Sets the Line style of the Decreasing part of the chart
-        ///
-        /// ?Line       : Sets the Line style of both the Decreasing and Increasing part of the chart
-        ///
-        /// ?Tickwidth  : Sets the width of the open/close tick marks relative to the "x" minimal interval.
-        ///
-        /// ?XCalendar  : Sets the calendar system to use with `x` date data.
         [<Extension>]
         static member OHLC
             (
@@ -2183,99 +2531,90 @@ module Chart2D =
                 low             : #IConvertible seq,
                 close           : #IConvertible seq,
                 x               : #IConvertible seq,
-                [<Optional;DefaultParameterValue(null)>]?Increasing     : Line,
-                [<Optional;DefaultParameterValue(null)>]?Decreasing     : Line,
-                [<Optional;DefaultParameterValue(null)>]?Tickwidth      : float,
-                [<Optional;DefaultParameterValue(null)>]?Line           : Line,
-                [<Optional;DefaultParameterValue(null)>]?XCalendar      : StyleParam.Calendar,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
+                [<Optional;DefaultParameterValue(null)>] ?IncreasingColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Increasing        : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?DecreasingColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Decreasing        : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?TickWidth         : float,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
             ) = 
 
                 let useDefaults = defaultArg UseDefaults true
-    
+                let increasing  = Increasing |> Option.defaultValue (FinanceMarker.init()) |> FinanceMarker.style(?LineColor = IncreasingColor)
+                let decreasing  = Decreasing |> Option.defaultValue (FinanceMarker.init()) |> FinanceMarker.style(?LineColor = DecreasingColor)
+
                 Trace2D.initOHLC(
                     Trace2DStyle.OHLC(
-                        ``open``        = ``open``    ,
-                        high            = high        ,
-                        low             = low         ,
-                        close           = close       ,
-                        x               = x           ,
-                        ?Increasing     = Increasing  ,
-                        ?Decreasing     = Decreasing  ,
-                        ?Tickwidth      = Tickwidth   ,
-                        ?Line           = Line        ,
-                        ?XCalendar      = XCalendar   
+                        Open        = ``open``,
+                        High        = high,
+                        Low         = low,
+                        Close       = close,
+                        X           = x,
+                        ?Name       = Name      ,
+                        ?ShowLegend = ShowLegend,
+                        ?Opacity    = Opacity   ,
+                        ?Text       = Text      ,
+                        ?MultiText  = MultiText ,
+                        ?Line       = Line      ,
+                        Increasing  = increasing,
+                        Decreasing  = decreasing,
+                        ?TickWidth  = TickWidth
                     )
                 )
                 |> GenericChart.ofTraceObject useDefaults
 
         /// Creates an OHLC (open-high-low-close) chart. OHLC charts are typically used to illustrate movements in the price of a financial instrument over time.
-        ///
-        /// stockTimeSeries : tuple list of time * stock (OHLC) data
-        ///
-        /// ?Increasing     : Sets the Line style of the Increasing part of the chart
-        ///
-        /// ?Decreasing     : Sets the Line style of the Decreasing part of the chart
-        ///
-        /// ?Line           : Sets the Line style of both the Decreasing and Increasing part of the chart
-        ///
-        /// ?Tickwidth      : Sets the width of the open/close tick marks relative to the "x" minimal interval.
-        ///
-        /// ?XCalendar      : Sets the calendar system to use with `x` date data.
         [<Extension>]
         static member OHLC
             (
                 stockTimeSeries: seq<System.DateTime*StockData>, 
-                [<Optional;DefaultParameterValue(null)>] ?Increasing     : Line,
-                [<Optional;DefaultParameterValue(null)>] ?Decreasing     : Line,
-                [<Optional;DefaultParameterValue(null)>] ?Tickwidth      : float,
-                [<Optional;DefaultParameterValue(null)>] ?Line           : Line,
-                [<Optional;DefaultParameterValue(null)>] ?XCalendar      : StyleParam.Calendar,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
+                [<Optional;DefaultParameterValue(null)>] ?IncreasingColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Increasing        : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?DecreasingColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Decreasing        : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?TickWidth         : float,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
             ) = 
 
                 let useDefaults = defaultArg UseDefaults true
 
-                Trace2D.initOHLC(
-                    Trace2DStyle.OHLC(
-                        ``open``        = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.Open)))    ,
-                        high            = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.High)))        ,
-                        low             = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.Low)))         ,
-                        close           = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.Close)))       ,
-                        x               = (stockTimeSeries |> Seq.map fst)            ,
-                        ?Increasing     = Increasing  ,
-                        ?Decreasing     = Decreasing  ,
-                        ?Tickwidth      = Tickwidth   ,
-                        ?Line           = Line        ,
-                        ?XCalendar      = XCalendar   
-                    )
+                Chart.OHLC(
+                    ``open``        = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.Open)))    ,
+                    high            = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.High)))        ,
+                    low             = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.Low)))         ,
+                    close           = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.Close)))       ,
+                    x               = (stockTimeSeries |> Seq.map fst),
+                    ?Name           = Name           ,
+                    ?ShowLegend     = ShowLegend     ,
+                    ?Opacity        = Opacity        ,
+                    ?Text           = Text           ,
+                    ?MultiText      = MultiText      ,
+                    ?Line           = Line           ,
+                    ?IncreasingColor= IncreasingColor,
+                    ?Increasing     = Increasing     ,
+                    ?DecreasingColor= DecreasingColor,
+                    ?Decreasing     = Decreasing     ,
+                    ?TickWidth      = TickWidth      ,
+                    ?UseDefaults    = UseDefaults    
                 )
-                |> GenericChart.ofTraceObject useDefaults
+                
+
 
         /// Creates a candlestick chart. A candlestick cart is a style of financial chart used to describe price movements of a 
         /// security, derivative, or currency. Each "candlestick" typically shows one day, thus a one-month chart may show the 20 
         /// trading days as 20 candlesticks. Candlestick charts can also be built using intervals shorter or longer than one day.
-        ///
-        /// ``open``        : Sets the open values.
-        ///
-        /// high            : Sets the high values.
-        ///
-        /// low             : Sets the low values.
-        ///
-        /// close           : Sets the close values.
-        ///
-        /// x               : Sets the x coordinates. If absent, linear coordinate will be generated.
-        ///
-        /// ?Increasing     : Sets the Line style of the Increasing part of the chart
-        ///
-        /// ?Decreasing     : Sets the Line style of the Decreasing part of the chart
-        ///
-        /// ?Line           : Sets the Line style of both the Decreasing and Increasing part of the chart
-        ///
-        /// ?WhiskerWidth   :  Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).
-        ///
-        /// ?XCalendar      : Sets the calendar system to use with `x` date data.
-        [<Extension>]
         static member Candlestick
             (
                 ``open``        : #IConvertible seq,
@@ -2283,132 +2622,185 @@ module Chart2D =
                 low             : #IConvertible seq,
                 close           : #IConvertible seq,
                 x               : #IConvertible seq,
-                [<Optional;DefaultParameterValue(null)>]?Increasing     : Line,
-                [<Optional;DefaultParameterValue(null)>]?Decreasing     : Line,
-                [<Optional;DefaultParameterValue(null)>]?WhiskerWidth   : float,
-                [<Optional;DefaultParameterValue(null)>]?Line           : Line,
-                [<Optional;DefaultParameterValue(null)>]?XCalendar      : StyleParam.Calendar,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
+                [<Optional;DefaultParameterValue(null)>] ?IncreasingColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Increasing        : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?DecreasingColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Decreasing        : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?WhiskerWidth      : float,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
             ) = 
 
                 let useDefaults = defaultArg UseDefaults true
+                let increasing  = Increasing |> Option.defaultValue (FinanceMarker.init()) |> FinanceMarker.style(?LineColor = IncreasingColor)
+                let decreasing  = Decreasing |> Option.defaultValue (FinanceMarker.init()) |> FinanceMarker.style(?LineColor = DecreasingColor)
 
                 Trace2D.initCandlestick(
                     Trace2DStyle.Candlestick(
-                        ``open``        = ``open``    ,
-                        high            = high        ,
-                        low             = low         ,
-                        close           = close       ,
-                        x               = x           ,
-                        ?Increasing     = Increasing  ,
-                        ?Decreasing     = Decreasing  ,
-                        ?WhiskerWidth   = WhiskerWidth,
-                        ?Line           = Line        ,
-                        ?XCalendar      = XCalendar   
+                        Open        = ``open``,
+                        High        = high,
+                        Low         = low,
+                        Close       = close,
+                        X           = x,
+                        ?Name       = Name      ,
+                        ?ShowLegend = ShowLegend,
+                        ?Opacity    = Opacity   ,
+                        ?Text       = Text      ,
+                        ?MultiText  = MultiText ,
+                        ?Line       = Line      ,
+                        Increasing  = increasing,
+                        Decreasing  = decreasing,
+                        ?WhiskerWidth  = WhiskerWidth
                     )
                 )
                 |> GenericChart.ofTraceObject useDefaults
 
         /// Creates an OHLC (open-high-low-close) chart. OHLC charts are typically used to illustrate movements in the price of a financial instrument over time.
-        ///
-        /// stockTimeSeries : tuple list of time * stock (OHLC) data
-        ///
-        /// ?Increasing     : Sets the Line style of the Increasing part of the chart
-        ///
-        /// ?Decreasing     : Sets the Line style of the Decreasing part of the chart
-        ///
-        /// ?Line           : Sets the Line style of both the Decreasing and Increasing part of the chart
-        ///
-        /// ?Tickwidth      : Sets the width of the open/close tick marks relative to the "x" minimal interval.
-        ///
-        /// ?XCalendar      : Sets the calendar system to use with `x` date data.
         [<Extension>]
         static member Candlestick
             (
                 stockTimeSeries: seq<System.DateTime*StockData>, 
-                [<Optional;DefaultParameterValue(null)>]?Increasing     : Line,
-                [<Optional;DefaultParameterValue(null)>]?Decreasing     : Line,
-                [<Optional;DefaultParameterValue(null)>]?WhiskerWidth   : float,
-                [<Optional;DefaultParameterValue(null)>]?Line           : Line,
-                [<Optional;DefaultParameterValue(null)>]?XCalendar      : StyleParam.Calendar,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
+                [<Optional;DefaultParameterValue(null)>] ?IncreasingColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Increasing        : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?DecreasingColor   : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Decreasing        : FinanceMarker,
+                [<Optional;DefaultParameterValue(null)>] ?WhiskerWidth      : float,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
             ) = 
 
                 let useDefaults = defaultArg UseDefaults true
 
-                Trace2D.initCandlestick(
-                    Trace2DStyle.Candlestick(
-                        ``open``        = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.Open)))    ,
-                        high            = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.High)))        ,
-                        low             = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.Low)))         ,
-                        close           = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.Close)))       ,
-                        x               = (stockTimeSeries |> Seq.map fst)            ,
-                        ?Increasing     = Increasing  ,
-                        ?Decreasing     = Decreasing  ,
-                        ?WhiskerWidth   = WhiskerWidth,
-                        ?Line           = Line        ,
-                        ?XCalendar      = XCalendar   
-                    )
+                Chart.Candlestick(
+                    ``open``        = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.Open)))    ,
+                    high            = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.High)))        ,
+                    low             = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.Low)))         ,
+                    close           = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.Close)))       ,
+                    x               = (stockTimeSeries |> Seq.map fst),
+                    ?Name           = Name           ,
+                    ?ShowLegend     = ShowLegend     ,
+                    ?Opacity        = Opacity        ,
+                    ?Text           = Text           ,
+                    ?MultiText      = MultiText      ,
+                    ?Line           = Line           ,
+                    ?IncreasingColor= IncreasingColor,
+                    ?Increasing     = Increasing     ,
+                    ?DecreasingColor= DecreasingColor,
+                    ?Decreasing     = Decreasing     ,
+                    ?WhiskerWidth   = WhiskerWidth   ,
+                    ?UseDefaults    = UseDefaults    
                 )
-                |> GenericChart.ofTraceObject useDefaults
 
-
-
-        /// Computes the parallel coordinates plot
+        /// Computes a scatter plot matrix (SPLOM)
         [<Extension>]
         static member Splom
             (
-                dims:seq<'key*#seq<'values>>,
-                [<Optional;DefaultParameterValue(null)>] ?Range,
-                [<Optional;DefaultParameterValue(null)>] ?Constraintrange,
-                [<Optional;DefaultParameterValue(null)>] ?Color,
-                [<Optional;DefaultParameterValue(null)>] ?Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?Width,
-                [<Optional;DefaultParameterValue(null)>] ?Dash,
-                [<Optional;DefaultParameterValue(null)>] ?Domain,
-                [<Optional;DefaultParameterValue(null)>] ?Labelfont,
-                [<Optional;DefaultParameterValue(null)>] ?Tickfont,
-                [<Optional;DefaultParameterValue(null)>] ?Rangefont,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                dimensions: seq<Dimension>,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale  : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline     : Line,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol      : StyleParam.MarkerSymbol,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol : seq<StyleParam.MarkerSymbol>,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?ShowDiagonal      : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Diagonal          : SplomDiagonal,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLowerHalf     : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ShowUpperHalf     : bool,
+                [<Optional;DefaultParameterValue(null)>] ?UseDefaults       : bool
             ) = 
 
                 let useDefaults = defaultArg UseDefaults true
 
-                let dims' = 
-                    dims |> Seq.map (fun (k,vals) -> 
-                        Dimensions.init(vals)
-                        |> Dimensions.style(vals,?Range=Range,?Constraintrange=Constraintrange,Label=k)
-                        )
-
-                Trace2D.initSplom (
-                    Trace2DStyle.Splom (Dimensions=dims')             
+                let marker =
+                    Marker
+                    |> Option.defaultValue(TraceObjects.Marker.init())
+                    |> TraceObjects.Marker.style(
+                        ?Color = MarkerColor, 
+                        ?Outline = MarkerOutline,
+                        ?Symbol = MarkerSymbol,
+                        ?MultiSymbol = MultiMarkerSymbol,
+                        ?Colorscale = MarkerColorScale
                     )
-                |> TraceStyle.Line(?Width=Width,?Color=Color,?Dash=Dash,?Colorscale=Colorscale)
-                |> GenericChart.ofTraceObject useDefaults
 
+                let diagonal = 
+                    Diagonal
+                    |> Option.defaultValue(TraceObjects.SplomDiagonal.init())
+                    |> TraceObjects.SplomDiagonal.style(?Visible = ShowDiagonal)
+
+                Trace2D.initSplom(
+                    Trace2DStyle.Splom(
+                        Dimensions      = dimensions   ,
+                        ?Name           = Name         ,
+                        ?ShowLegend     = ShowLegend   ,
+                        ?Opacity        = Opacity      ,
+                        ?Text           = Text         ,
+                        ?MultiText      = MultiText    ,
+                        Marker          = marker       ,
+                        Diagonal        = diagonal     ,
+                        ?ShowLowerHalf  = ShowLowerHalf,
+                        ?ShowUpperHalf  = ShowUpperHalf
+                    )
+                )
+                |> GenericChart.ofTraceObject useDefaults
 
         /// Computes the Splom plot
         [<Extension>]
         static member Splom
             (
-                dims:seq<Dimensions>,
-                [<Optional;DefaultParameterValue(null)>] ?Color,
-                [<Optional;DefaultParameterValue(null)>] ?Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?Width,
-                [<Optional;DefaultParameterValue(null)>] ?Dash,
-                [<Optional;DefaultParameterValue(null)>] ?Domain,
-                [<Optional;DefaultParameterValue(null)>] ?Labelfont,
-                [<Optional;DefaultParameterValue(null)>] ?Tickfont,
-                [<Optional;DefaultParameterValue(null)>] ?Rangefont,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                keyValues:seq<string*#seq<#IConvertible>>,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale  : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline     : Line,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol      : StyleParam.MarkerSymbol,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol : seq<StyleParam.MarkerSymbol>,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?ShowDiagonal      : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Diagonal          : SplomDiagonal,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLowerHalf     : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ShowUpperHalf     : bool,
+                [<Optional;DefaultParameterValue(null)>] ?UseDefaults       : bool
             ) = 
 
-                let useDefaults = defaultArg UseDefaults true
+                let dims = 
+                    keyValues
+                    |> Seq.map (fun (key,vals) -> Dimension.initSplom(Label = key, Values = vals))
 
-                Trace2D.initSplom (
-                    Trace2DStyle.Splom (
-                        Dimensions=dims
-                    )             
+                Chart.Splom(
+                    dims,
+                    ?Name               = Name             ,
+                    ?ShowLegend         = ShowLegend       ,
+                    ?Opacity            = Opacity          ,
+                    ?Text               = Text             ,
+                    ?MultiText          = MultiText        ,
+                    ?MarkerColor        = MarkerColor      ,
+                    ?MarkerColorScale   = MarkerColorScale ,
+                    ?MarkerOutline      = MarkerOutline    ,
+                    ?MarkerSymbol       = MarkerSymbol     ,
+                    ?MultiMarkerSymbol  = MultiMarkerSymbol,
+                    ?Marker             = Marker           ,
+                    ?ShowDiagonal       = ShowDiagonal     ,
+                    ?Diagonal           = Diagonal         ,
+                    ?ShowLowerHalf      = ShowLowerHalf    ,
+                    ?ShowUpperHalf      = ShowUpperHalf    ,
+                    ?UseDefaults        = UseDefaults      
                 )
-                |> TraceStyle.Line(?Width=Width,?Color=Color,?Dash=Dash,?Colorscale=Colorscale)
-                |> GenericChart.ofTraceObject useDefaults
