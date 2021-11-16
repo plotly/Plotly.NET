@@ -126,6 +126,15 @@ let noDiagonal =
     )
     |> Chart.withSize (1000,1000)
 
+(*** condition: ipynb ***)
+#if IPYNB
+noDiagonal
+#endif // IPYNB
+
+(***hide***)
+noDiagonal |> GenericChart.toChartHTML
+(***include-it-raw***)
+
 
 let noLowerHalf =
     Chart.Splom(
@@ -146,3 +155,11 @@ let noLowerHalf =
     )
     |> Chart.withSize (1000,1000)
 
+(*** condition: ipynb ***)
+#if IPYNB
+noLowerHalf
+#endif // IPYNB
+
+(***hide***)
+noLowerHalf |> GenericChart.toChartHTML
+(***include-it-raw***)

@@ -1,6 +1,6 @@
 (**
 ---
-title: Candlestick Charts
+title: OHLC Charts
 category: Finance Charts
 categoryindex: 8
 index: 1
