@@ -41,7 +41,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.14</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.15</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -176,6 +176,11 @@
     Images
   </a>
 </li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/02_9_Sliders.html">
+    Sliders
+  </a>
+</li>             
 <li class="nav-header">
   3D Charts
 </li>             
@@ -233,13 +238,13 @@
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/04_4_2d-histograms.html">
-    2D Histograms
+  <a class="nav-link" href="https://plotly.net/04_3_contour-plots.html">
+    Contour plots
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/04_3_contour-plots.html">
-    Contour plots
+  <a class="nav-link" href="https://plotly.net/04_4_2d-histograms.html">
+    2D Histograms
   </a>
 </li>             
 <li class="nav-item">
@@ -292,23 +297,33 @@
   Finance Charts
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/07_0_candlestick.html">
+  <a class="nav-link" href="https://plotly.net/07_0_ohlc.html">
     Candlestick Charts
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/07_1_funnel.html">
+  <a class="nav-link" href="https://plotly.net/07_1_candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_2_funnel.html">
     Funnel Charts
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/07_2_funnel_area.html">
+  <a class="nav-link" href="https://plotly.net/07_3_funnel_area.html">
     FunnelArea Charts
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://plotly.net/07_3_indicator.html">
+  <a class="nav-link" href="https://plotly.net/07_4_indicator.html">
     Indicator Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/07_5_waterfall.html">
+    Waterfall Charts
   </a>
 </li>             
 <li class="nav-header">
@@ -489,16 +504,16 @@ to add the description to the chart's display options:</p>
 <div class="fsdocs-tip" id="fs7">static member ChartDescription.create : heading:string -&gt; text:string -&gt; ChartDescription</div>
 <div class="fsdocs-tip" id="fs8">val desc1 : unit</div>
 <div class="fsdocs-tip" id="fs9">type Chart =
+  static member AnnotatedHeatmap : zData:seq&lt;#seq&lt;&#39;a1&gt;&gt; * annotationText:seq&lt;#seq&lt;string&gt;&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?X:seq&lt;#IConvertible&gt; * ?XGap:int * ?Y:seq&lt;#IConvertible&gt; * ?YGap:int * ?Text:&#39;a5 * ?MultiText:seq&lt;&#39;a5&gt; * ?ColorBar:ColorBar * ?ColorScale:Colorscale * ?ShowScale:bool * ?ReverseScale:bool * ?ZSmooth:SmoothAlg * ?Transpose:bool * ?UseWebGL:bool * ?ReverseYAxis:bool * ?UseDefaults:bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible and &#39;a5 :&gt; IConvertible)
   static member Area : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowMarkers:bool * ?ShowLegend:bool * ?MarkerSymbol:MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Dash:DrawingStyle * ?Width:float * ?UseDefaults:bool -&gt; GenericChart + 1 overload
   static member Bar : values:seq&lt;#IConvertible&gt; * ?Keys:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?PatternShape:PatternShape * ?MultiPatternShape:seq&lt;PatternShape&gt; * ?Pattern:Pattern * ?Base:#IConvertible * ?Width:&#39;a3 * ?MultiWidth:seq&lt;&#39;a3&gt; * ?Opacity:float * ?MultiOpacity:seq&lt;float&gt; * ?Text:&#39;a4 * ?MultiText:seq&lt;&#39;a4&gt; * ?TextPosition:TextPosition * ?MultiTextPosition:seq&lt;TextPosition&gt; * ?TextFont:Font * ?Marker:Marker * ?UseDefaults:bool -&gt; GenericChart (requires &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
   static member BoxPlot : ?x:seq&lt;#IConvertible&gt; * ?y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Text:&#39;a2 * ?MultiText:seq&lt;&#39;a2&gt; * ?Fillcolor:Color * ?MarkerColor:Color * ?OutlierColor:Color * ?OutlierWidth:int * ?Opacity:float * ?WhiskerWidth:float * ?BoxPoints:BoxPoints * ?BoxMean:BoxMean * ?Jitter:float * ?PointPos:float * ?Orientation:Orientation * ?Marker:Marker * ?Line:Line * ?AlignmentGroup:string * ?Offsetgroup:string * ?Notched:bool * ?NotchWidth:float * ?QuartileMethod:QuartileMethod * ?UseDefaults:bool -&gt; GenericChart (requires &#39;a2 :&gt; IConvertible) + 1 overload
   static member Bubble : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * sizes:seq&lt;int&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:Orientation * ?GroupNorm:GroupNorm * ?UseWebGL:bool * ?UseDefaults:bool -&gt; GenericChart + 1 overload
-  static member Candlestick : open:seq&lt;#IConvertible&gt; * high:seq&lt;#IConvertible&gt; * low:seq&lt;#IConvertible&gt; * close:seq&lt;#IConvertible&gt; * x:seq&lt;#IConvertible&gt; * ?Increasing:Line * ?Decreasing:Line * ?WhiskerWidth:float * ?Line:Line * ?XCalendar:Calendar * ?UseDefaults:bool -&gt; GenericChart + 1 overload
+  static member Candlestick : open:seq&lt;#IConvertible&gt; * high:seq&lt;#IConvertible&gt; * low:seq&lt;#IConvertible&gt; * close:seq&lt;#IConvertible&gt; * x:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Text:&#39;a5 * ?MultiText:seq&lt;&#39;a5&gt; * ?Line:Line * ?IncreasingColor:Color * ?Increasing:FinanceMarker * ?DecreasingColor:Color * ?Decreasing:FinanceMarker * ?WhiskerWidth:float * ?UseDefaults:bool -&gt; GenericChart (requires &#39;a5 :&gt; IConvertible) + 1 overload
   static member Column : values:seq&lt;#IConvertible&gt; * ?Keys:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Color:Color * ?Pattern:Pattern * ?PatternShape:PatternShape * ?MultiPatternShape:seq&lt;PatternShape&gt; * ?Base:#IConvertible * ?Width:&#39;a3 * ?MultiWidth:seq&lt;&#39;a3&gt; * ?Opacity:float * ?MultiOpacity:seq&lt;float&gt; * ?Text:&#39;a4 * ?MultiText:seq&lt;&#39;a4&gt; * ?TextPosition:TextPosition * ?MultiTextPosition:seq&lt;TextPosition&gt; * ?TextFont:Font * ?Marker:Marker * ?UseDefaults:bool -&gt; GenericChart (requires &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
-  static member Contour : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;a4 * ?zSmooth:SmoothAlg * ?ColorBar:&#39;a5 * ?UseDefaults:bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)
-  static member Funnel : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Labels:seq&lt;#IConvertible&gt; * ?TextPosition:TextPosition * ?TextFont:Font * ?Color:Color * ?Line:Line * ?x0:&#39;a3 * ?dX:float * ?y0:&#39;a4 * ?dY:float * ?Width:float * ?Offset:float * ?Orientation:Orientation * ?Alignmentgroup:string * ?Offsetgroup:string * ?Cliponaxis:bool * ?Connector:FunnelConnector * ?Insidetextfont:Font * ?Outsidetextfont:Font * ?UseDefaults:bool -&gt; GenericChart
-  static member Heatmap : data:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?ColNames:seq&lt;#IConvertible&gt; * ?RowNames:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Colorscale:Colorscale * ?Showscale:&#39;a4 * ?Xgap:&#39;a5 * ?Ygap:&#39;a6 * ?zSmooth:SmoothAlg * ?ColorBar:&#39;a7 * ?UseWebGL:bool * ?UseDefaults:bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible)
-  static member Histogram : ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Orientation:Orientation * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Text:&#39;a2 * ?MultiText:seq&lt;&#39;a2&gt; * ?HistFunc:HistFunc * ?HistNorm:HistNorm * ?AlignmentGroup:string * ?OffsetGroup:string * ?NBinsX:int * ?NBinsY:int * ?BinGroup:string * ?XBins:Bins * ?YBins:Bins * ?MarkerColor:Color * ?Marker:Marker * ?Line:Line * ?ErrorX:Error * ?ErrorY:Error * ?Cumulative:Cumulative * ?HoverLabel:Hoverlabel * ?UseDefaults:bool -&gt; GenericChart (requires &#39;a2 :&gt; IConvertible) + 1 overload
+  static member Contour : zData:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?X:seq&lt;#IConvertible&gt; * ?Y:seq&lt;#IConvertible&gt; * ?Text:&#39;a4 * ?MultiText:seq&lt;&#39;a4&gt; * ?ColorBar:ColorBar * ?ColorScale:Colorscale * ?ShowScale:bool * ?ReverseScale:bool * ?Transpose:bool * ?LineColor:Color * ?LineDash:DrawingStyle * ?Line:Line * ?ContoursColoring:ContourColoring * ?ContoursOperation:ConstraintOperation * ?ContoursType:ContourType * ?ShowContourLabels:bool * ?ContourLabelFont:Font * ?Contours:Contours * ?FillColor:Color * ?NContours:int * ?UseDefaults:bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible and &#39;a4 :&gt; IConvertible)
+  static member Funnel : x:seq&lt;#IConvertible&gt; * y:seq&lt;#IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?Width:float * ?Offset:float * ?Text:&#39;a2 * ?MultiText:seq&lt;&#39;a2&gt; * ?TextPosition:TextPosition * ?MultiTextPosition:seq&lt;TextPosition&gt; * ?Orientation:Orientation * ?AlignmentGroup:string * ?OffsetGroup:string * ?MarkerColor:Color * ?MarkerOutline:Line * ?Marker:Marker * ?TextInfo:TextInfo * ?ConnectorLineColor:Color * ?ConnectorLineStyle:DrawingStyle * ?ConnectorFillColor:Color * ?ConnectorLine:Line * ?Connector:FunnelConnector * ?InsideTextFont:Font * ?OutsideTextFont:Font * ?UseDefaults:bool -&gt; GenericChart (requires &#39;a2 :&gt; IConvertible)
+  static member Heatmap : zData:seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?Name:string * ?ShowLegend:bool * ?Opacity:float * ?X:seq&lt;#IConvertible&gt; * ?XGap:int * ?Y:seq&lt;#IConvertible&gt; * ?YGap:int * ?Text:&#39;a4 * ?MultiText:seq&lt;&#39;a4&gt; * ?ColorBar:ColorBar * ?ColorScale:Colorscale * ?ShowScale:bool * ?ReverseScale:bool * ?ZSmooth:SmoothAlg * ?Transpose:bool * ?UseWebGL:bool * ?ReverseYAxis:bool * ?UseDefaults:bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
   ...</div>
 <div class="fsdocs-tip" id="fs10">static member Chart.Point : xy:seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:StyleParam.Orientation * ?GroupNorm:StyleParam.GroupNorm * ?UseWebGL:bool * ?UseDefaults:bool -&gt; GenericChart.GenericChart<br />static member Chart.Point : x:seq&lt;#System.IConvertible&gt; * y:seq&lt;#System.IConvertible&gt; * ?Name:string * ?ShowLegend:bool * ?MarkerSymbol:StyleParam.MarkerSymbol * ?Color:Color * ?Opacity:float * ?Labels:seq&lt;#System.IConvertible&gt; * ?TextPosition:StyleParam.TextPosition * ?TextFont:Font * ?StackGroup:string * ?Orientation:StyleParam.Orientation * ?GroupNorm:StyleParam.GroupNorm * ?UseWebGL:bool * ?UseDefaults:bool -&gt; GenericChart.GenericChart</div>
 <div class="fsdocs-tip" id="fs11">static member Chart.withDescription : description:ChartDescription -&gt; ch:GenericChart.GenericChart -&gt; GenericChart.GenericChart</div>
