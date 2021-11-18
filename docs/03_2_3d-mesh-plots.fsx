@@ -65,7 +65,7 @@ let c = Array.init 50 (fun _ -> rnd.NextDouble())
 open Plotly.NET.TraceObjects
 
 let mesh3d =
-    Trace3D.initMesh3d 
+    Trace3D.initMesh3D 
         (fun mesh3d ->
             mesh3d?x <- a
             mesh3d?y <- b
