@@ -468,90 +468,153 @@ module Chart3D =
                 )
 
 
-        /// Uses points, line or both depending on the mode to represent 3D-data points
+        /// Visualizes a 3D surface
         [<Extension>]
         static member Surface
             (
                 zData,
-                [<Optional;DefaultParameterValue(null)>] ?X,
-                [<Optional;DefaultParameterValue(null)>] ?Y,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Contours,
-                [<Optional;DefaultParameterValue(null)>] ?ColorScale,
-                [<Optional;DefaultParameterValue(null)>] ?ShowScale,
-                [<Optional;DefaultParameterValue(null)>] ?ColorBar,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                [<Optional;DefaultParameterValue(null)>] ?X             : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Y             : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Name          : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend    : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity       : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text          : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText     : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Contours      : Contours,
+                [<Optional;DefaultParameterValue(null)>] ?ColorScale    : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?ShowScale     : bool,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults   : bool
             ) = 
 
                 let useDefaults = defaultArg UseDefaults true
 
                 Trace3D.initSurface (
                     Trace3DStyle.Surface(
-                        ?X=X, 
-                        ?Y=Y,
-                        Z=zData,
-                        ?Contours=Contours,
-                        ?ColorScale=ColorScale,
-                        ?ShowScale=ShowScale,
-                        ?ColorBar=ColorBar 
+                        Z           = zData      ,
+                        ?X          = X          ,
+                        ?Y          = Y          ,
+                        ?Name       = Name       ,
+                        ?ShowLegend = ShowLegend ,
+                        ?Opacity    = Opacity    ,
+                        ?Text       = Text       ,
+                        ?MultiText  = MultiText  ,
+                        ?Contours   = Contours   ,
+                        ?ColorScale = ColorScale ,
+                        ?ShowScale  = ShowScale  
                     )
                 )              
-                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
+
                 |> GenericChart.ofTraceObject useDefaults
 
 
-        /// Uses points, line or both depending on the mode to represent 3D-data points
+        /// Visualizes a 3D mesh.
         [<Extension>]
         static member Mesh3D
             (
-                x, y, z, 
-                [<Optional;DefaultParameterValue(null)>] ?I,
-                [<Optional;DefaultParameterValue(null)>] ?J,
-                [<Optional;DefaultParameterValue(null)>] ?K,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Color,
-                [<Optional;DefaultParameterValue(null)>] ?Contour,
-                [<Optional;DefaultParameterValue(null)>] ?ColorScale,
-                [<Optional;DefaultParameterValue(null)>] ?ShowScale,
-                [<Optional;DefaultParameterValue(null)>] ?ColorBar,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                x: seq<#IConvertible>, 
+                y: seq<#IConvertible>, 
+                z: seq<#IConvertible>, 
+                [<Optional;DefaultParameterValue(null)>] ?I             : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?J             : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?K             : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Name          : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend    : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity       : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text          : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText     : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Color         : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Contour       : Contour,
+                [<Optional;DefaultParameterValue(null)>] ?ColorScale    : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?ShowScale     : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ColorBar      : ColorBar,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults   : bool
             ) = 
 
                 let useDefaults = defaultArg UseDefaults true
 
                 Trace3D.initMesh3D (
                     Trace3DStyle.Mesh3D(
-                        X   = x,
-                        Y   = y,
-                        Z   = z,
-                        ?I  = I,
-                        ?J  = J,
-                        ?K  = K,
-                        ?Color = Color,
-                        ?Contour = Contour,
-                        ?ColorScale  = ColorScale,
-                        ?ShowScale   = ShowScale,
-                        ?ColorBar    = ColorBar
+                        X           = x,
+                        Y           = y,
+                        Z           = z,
+                        ?I          = I         ,
+                        ?J          = J         ,
+                        ?K          = K         ,
+                        ?Name       = Name      ,
+                        ?ShowLegend = ShowLegend,
+                        ?Opacity    = Opacity   ,
+                        ?Text       = Text      ,
+                        ?MultiText  = MultiText ,
+                        ?Color      = Color     ,
+                        ?Contour    = Contour   ,
+                        ?ColorScale = ColorScale,
+                        ?ShowScale  = ShowScale ,
+                        ?ColorBar   = ColorBar  
                     ) 
                 )              
-                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
                 |> GenericChart.ofTraceObject useDefaults
+
+        /// Visualizes a 3D mesh.
+        [<Extension>]
+        static member Mesh3D
+            (
+                xyz: seq<#IConvertible * #IConvertible * #IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?I             : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?J             : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?K             : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Name          : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend    : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity       : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text          : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText     : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Color         : Color,
+                [<Optional;DefaultParameterValue(null)>] ?Contour       : Contour,
+                [<Optional;DefaultParameterValue(null)>] ?ColorScale    : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?ShowScale     : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ColorBar      : ColorBar,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults   : bool
+            ) = 
+
+                let x,y,z = Seq.unzip3 xyz
+
+                Chart.Mesh3D(
+                    x, y, z,
+                    ?I          = I          ,
+                    ?J          = J          ,
+                    ?K          = K          ,
+                    ?Name       = Name       ,
+                    ?ShowLegend = ShowLegend ,
+                    ?Opacity    = Opacity    ,
+                    ?Text       = Text       ,
+                    ?MultiText  = MultiText  ,
+                    ?Color      = Color      ,
+                    ?Contour    = Contour    ,
+                    ?ColorScale = ColorScale ,
+                    ?ShowScale  = ShowScale  ,
+                    ?ColorBar   = ColorBar   ,
+                    ?UseDefaults= UseDefaults
+                )
 
         [<Extension>]
         static member Cone 
             (
-                x, y, z, u, v, w,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?ColorScale,
-                [<Optional;DefaultParameterValue(null)>] ?ShowScale,
-                [<Optional;DefaultParameterValue(null)>] ?ColorBar,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                x: seq<#IConvertible>, 
+                y: seq<#IConvertible>, 
+                z: seq<#IConvertible>, 
+                u: seq<#IConvertible>, 
+                v: seq<#IConvertible>, 
+                w: seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Name          : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend    : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity       : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text          : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText     : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?ColorScale    : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?ShowScale     : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ColorBar      : ColorBar,
+                [<Optional;DefaultParameterValue(null)>] ?SizeMode      : StyleParam.ConeSizeMode,
+                [<Optional;DefaultParameterValue(null)>] ?ConeAnchor    : StyleParam.ConeAnchor,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults   : bool
             ) = 
 
                 let useDefaults = defaultArg UseDefaults true
@@ -564,28 +627,35 @@ module Chart3D =
                         U = u,
                         V = v,
                         W = w,
-                        ?Name       = Name,
-                        ?ShowLegend = ShowLegend,
-                        ?Opacity    = Opacity,
-                        ?ColorScale = ColorScale,
-                        ?ShowScale  = ShowScale,
-                        ?ColorBar   = ColorBar
+                        ?Name           = Name       ,
+                        ?ShowLegend     = ShowLegend ,
+                        ?Opacity        = Opacity    ,
+                        ?Text           = Text       ,
+                        ?MultiText      = MultiText  ,
+                        ?ColorScale     = ColorScale ,
+                        ?ShowScale      = ShowScale  ,
+                        ?ColorBar       = ColorBar   ,
+                        ?SizeMode       = SizeMode   ,
+                        ?Anchor         = ConeAnchor 
                     )
                 )
-                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
                 |> GenericChart.ofTraceObject useDefaults
 
         [<Extension>]
         static member Cone 
             (
                 coneXYZ, coneUVW,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?ColorScale,
-                [<Optional;DefaultParameterValue(null)>] ?ShowScale,
-                [<Optional;DefaultParameterValue(null)>] ?ColorBar,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                [<Optional;DefaultParameterValue(null)>] ?Name          : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend    : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity       : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text          : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText     : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?ColorScale    : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?ShowScale     : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ColorBar      : ColorBar,
+                [<Optional;DefaultParameterValue(null)>] ?SizeMode      : StyleParam.ConeSizeMode,
+                [<Optional;DefaultParameterValue(null)>] ?ConeAnchor    : StyleParam.ConeAnchor,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults   : bool
             ) = 
 
                 let useDefaults = defaultArg UseDefaults true
@@ -594,13 +664,18 @@ module Chart3D =
 
                 Chart.Cone(
                     x, y, z, u, v, w,
-                    ?Name       = Name          ,
-                    ?ShowLegend = ShowLegend    ,
-                    ?Opacity    = Opacity       ,
-                    ?ColorScale = ColorScale    ,
-                    ?ShowScale  = ShowScale     ,
-                    ?ColorBar   = ColorBar      ,
-                    ?UseDefaults= UseDefaults
+                    ?Name           = Name       ,
+                    ?ShowLegend     = ShowLegend ,
+                    ?Opacity        = Opacity    ,
+                    ?Text           = Text       ,
+                    ?MultiText      = MultiText  ,
+                    ?ColorScale     = ColorScale ,
+                    ?ShowScale      = ShowScale  ,
+                    ?ColorBar       = ColorBar   ,
+                    ?SizeMode       = SizeMode   ,
+                    ?ConeAnchor     = ConeAnchor ,
+                    ?UseDefaults    = UseDefaults
+                    
                 )
 
 
@@ -608,15 +683,17 @@ module Chart3D =
         static member StreamTube 
             (
                 x, y, z, u, v, w,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?ColorScale,
-                [<Optional;DefaultParameterValue(null)>] ?ShowScale,
-                [<Optional;DefaultParameterValue(null)>] ?ColorBar,
-                [<Optional;DefaultParameterValue(null)>] ?MaxDisplayed: int,
-                [<Optional;DefaultParameterValue(null)>] ?Starts: StreamTubeStarts,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                [<Optional;DefaultParameterValue(null)>] ?Name          : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend    : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity       : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text          : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText     : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?ColorScale    : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?ShowScale     : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ColorBar      : ColorBar,
+                [<Optional;DefaultParameterValue(null)>] ?MaxDisplayed  : int,
+                [<Optional;DefaultParameterValue(null)>] ?TubeStarts    : StreamTubeStarts,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults   : bool
             ) = 
 
                 let useDefaults = defaultArg UseDefaults true
@@ -629,17 +706,18 @@ module Chart3D =
                         U = u,
                         V = v,
                         W = w,
-                        ?Name           = Name,
-                        ?ShowLegend     = ShowLegend,
-                        ?Opacity        = Opacity,
-                        ?ColorScale     = ColorScale,
-                        ?ShowScale      = ShowScale,
-                        ?ColorBar       = ColorBar,
+                        ?Name           = Name        ,
+                        ?ShowLegend     = ShowLegend  ,
+                        ?Opacity        = Opacity     ,
+                        ?Text           = Text        ,
+                        ?MultiText      = MultiText   ,
+                        ?ColorScale     = ColorScale  ,
+                        ?ShowScale      = ShowScale   ,
+                        ?ColorBar       = ColorBar    ,
                         ?MaxDisplayed   = MaxDisplayed,
-                        ?Starts         = Starts
+                        ?Starts         = TubeStarts  
                     )
                 )
-                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
                 |> GenericChart.ofTraceObject useDefaults
 
 
@@ -647,15 +725,17 @@ module Chart3D =
         static member StreamTube 
             (
                 streamTubeXYZ, streamTubeUVW,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?ColorScale,
-                [<Optional;DefaultParameterValue(null)>] ?ShowScale,
-                [<Optional;DefaultParameterValue(null)>] ?ColorBar,
-                [<Optional;DefaultParameterValue(null)>] ?MaxDisplayed: int,
-                [<Optional;DefaultParameterValue(null)>] ?Starts: StreamTubeStarts,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                [<Optional;DefaultParameterValue(null)>] ?Name          : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend    : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity       : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text          : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText     : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?ColorScale    : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?ShowScale     : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ColorBar      : ColorBar,
+                [<Optional;DefaultParameterValue(null)>] ?MaxDisplayed  : int,
+                [<Optional;DefaultParameterValue(null)>] ?TubeStarts    : StreamTubeStarts,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults   : bool
             ) = 
 
                 let useDefaults = defaultArg UseDefaults true
@@ -664,15 +744,18 @@ module Chart3D =
 
                 Chart.StreamTube(
                     x, y, z, u, v, w,
-                    ?Name           = Name          ,
-                    ?ShowLegend     = ShowLegend    ,
-                    ?Opacity        = Opacity       ,
-                    ?ColorScale     = ColorScale    ,
-                    ?ShowScale      = ShowScale     ,
-                    ?ColorBar       = ColorBar      ,
-                    ?MaxDisplayed   = MaxDisplayed  ,
-                    ?Starts         = Starts        ,
-                    ?UseDefaults    = UseDefaults
+                    ?Name           = Name        ,
+                    ?ShowLegend     = ShowLegend  ,
+                    ?Opacity        = Opacity     ,
+                    ?Text           = Text        ,
+                    ?MultiText      = MultiText   ,
+                    ?ColorScale     = ColorScale  ,
+                    ?ShowScale      = ShowScale   ,
+                    ?ColorBar       = ColorBar    ,
+                    ?MaxDisplayed   = MaxDisplayed,
+                    ?TubeStarts     = TubeStarts  ,
+                    ?UseDefaults    = UseDefaults 
+                    
                 )
         
         
@@ -680,41 +763,45 @@ module Chart3D =
         static member Volume 
             (
                 x,y,z,value,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?ColorScale,
-                [<Optional;DefaultParameterValue(null)>] ?ShowScale,
-                [<Optional;DefaultParameterValue(null)>] ?ColorBar,
-                [<Optional;DefaultParameterValue(null)>] ?IsoMin,
-                [<Optional;DefaultParameterValue(null)>] ?IsoMax,
-                [<Optional;DefaultParameterValue(null)>] ?Caps : Caps,
-                [<Optional;DefaultParameterValue(null)>] ?Slices : Slices,
-                [<Optional;DefaultParameterValue(null)>] ?Surface : Surface,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                [<Optional;DefaultParameterValue(null)>] ?Name          : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend    : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity       : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text          : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText     : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?ColorScale    : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?ShowScale     : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ColorBar      : ColorBar,
+                [<Optional;DefaultParameterValue(null)>] ?IsoMin        : float,
+                [<Optional;DefaultParameterValue(null)>] ?IsoMax        : float,
+                [<Optional;DefaultParameterValue(null)>] ?Caps          : Caps,
+                [<Optional;DefaultParameterValue(null)>] ?Slices        : Slices,
+                [<Optional;DefaultParameterValue(null)>] ?Surface       : Surface,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults   : bool
             ) = 
 
                 let useDefaults = defaultArg UseDefaults true
                 Trace3D.initVolume(
                     Trace3DStyle.Volume(
-                        X = x,
-                        Y = y,
-                        Z = z,
-                        Value = value,
-                        ?Name           = Name,
-                        ?ShowLegend     = ShowLegend,
-                        ?Opacity        = Opacity,
-                        ?ColorScale     = ColorScale,
-                        ?ShowScale      = ShowScale,
-                        ?ColorBar       = ColorBar,
-                        ?IsoMin         = IsoMin,
-                        ?IsoMax         = IsoMax,
-                        ?Caps           = Caps,
-                        ?Slices         = Slices,
-                        ?Surface        = Surface   
+                        X           = x,
+                        Y           = y,
+                        Z           = z,
+                        Value       = value,
+                        ?Name       = Name      ,
+                        ?ShowLegend = ShowLegend,
+                        ?Opacity    = Opacity   ,
+                        ?Text       = Text      ,
+                        ?MultiText  = MultiText ,
+                        ?ColorScale = ColorScale,
+                        ?ShowScale  = ShowScale ,
+                        ?ColorBar   = ColorBar  ,
+                        ?IsoMin     = IsoMin    ,
+                        ?IsoMax     = IsoMax    ,
+                        ?Caps       = Caps      ,
+                        ?Slices     = Slices    ,
+                        ?Surface    = Surface   
                     )
                 )
-                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
+
                 |> GenericChart.ofTraceObject useDefaults
 
                 
@@ -722,40 +809,44 @@ module Chart3D =
         static member IsoSurface 
             (
                 x,y,z,value,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?ColorScale,
-                [<Optional;DefaultParameterValue(null)>] ?ShowScale,
-                [<Optional;DefaultParameterValue(null)>] ?ColorBar,
-                [<Optional;DefaultParameterValue(null)>] ?IsoMin,
-                [<Optional;DefaultParameterValue(null)>] ?IsoMax,
-                [<Optional;DefaultParameterValue(null)>] ?Caps : Caps,
-                [<Optional;DefaultParameterValue(null)>] ?Slices : Slices,
-                [<Optional;DefaultParameterValue(null)>] ?Surface : Surface,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                [<Optional;DefaultParameterValue(null)>] ?Name          : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend    : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity       : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text          : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText     : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?ColorScale    : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?ShowScale     : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ColorBar      : ColorBar,
+                [<Optional;DefaultParameterValue(null)>] ?IsoMin        : float,
+                [<Optional;DefaultParameterValue(null)>] ?IsoMax        : float,
+                [<Optional;DefaultParameterValue(null)>] ?Caps          : Caps,
+                [<Optional;DefaultParameterValue(null)>] ?Slices        : Slices,
+                [<Optional;DefaultParameterValue(null)>] ?Surface       : Surface,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults   : bool
             ) = 
 
                 let useDefaults = defaultArg UseDefaults true
                 Trace3D.initIsoSurface(
                     Trace3DStyle.IsoSurface(
-                        X = x,
-                        Y = y,
-                        Z = z,
-                        Value = value,
-                        ?Name           = Name,
-                        ?ShowLegend     = ShowLegend,
-                        ?Opacity        = Opacity,
-                        ?ColorScale     = ColorScale,
-                        ?ShowScale      = ShowScale,
-                        ?ColorBar       = ColorBar,
-                        ?IsoMin         = IsoMin,
-                        ?IsoMax         = IsoMax,
-                        ?Caps           = Caps,
-                        ?Slices         = Slices,
-                        ?Surface        = Surface   
+                        X           = x,
+                        Y           = y,
+                        Z           = z,
+                        Value       = value,
+                        ?Name       = Name      ,
+                        ?ShowLegend = ShowLegend,
+                        ?Opacity    = Opacity   ,
+                        ?Text       = Text      ,
+                        ?MultiText  = MultiText ,
+                        ?ColorScale = ColorScale,
+                        ?ShowScale  = ShowScale ,
+                        ?ColorBar   = ColorBar  ,
+                        ?IsoMin     = IsoMin    ,
+                        ?IsoMax     = IsoMax    ,
+                        ?Caps       = Caps      ,
+                        ?Slices     = Slices    ,
+                        ?Surface    = Surface   
+                        
                     )
                 )
-                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
                 |> GenericChart.ofTraceObject useDefaults
         
