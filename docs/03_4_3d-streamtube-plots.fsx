@@ -52,13 +52,12 @@ let streamTube =
         u = (tubeData.["u"] |> Series.values),
         v = (tubeData.["v"] |> Series.values),
         w = (tubeData.["w"] |> Series.values),
-        Starts = 
+        TubeStarts = 
             StreamTubeStarts.init(
                 X = Array.init 16 (fun _ -> 80),
                 Y = [20;30;40;50;20;30;40;50;20;30;40;50;20;30;40;50],
                 Z = [0;0;0;0;5;5;5;5;10;10;10;10;15;15;15;15]
-            ),
-        ColorScale = StyleParam.Colorscale.Viridis
+            )
     )
 
     

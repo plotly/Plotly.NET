@@ -70,8 +70,7 @@ let volume =
        Opacity=0.1,
        Surface=(Surface.init(Count=17)),
        IsoMin=0.1,
-       IsoMax=0.8,
-       ColorScale = StyleParam.Colorscale.Viridis
+       IsoMax=0.8
     )
     
 (*** condition: ipynb ***)

@@ -527,6 +527,7 @@ module Chart3D =
                 [<Optional;DefaultParameterValue(null)>] ?ColorScale    : StyleParam.Colorscale,
                 [<Optional;DefaultParameterValue(null)>] ?ShowScale     : bool,
                 [<Optional;DefaultParameterValue(null)>] ?ColorBar      : ColorBar,
+                [<Optional;DefaultParameterValue(null)>] ?FlatShading   : bool,
                 [<Optional;DefaultParameterValue(true)>] ?UseDefaults   : bool
             ) = 
 
@@ -534,22 +535,23 @@ module Chart3D =
 
                 Trace3D.initMesh3D (
                     Trace3DStyle.Mesh3D(
-                        X           = x,
-                        Y           = y,
-                        Z           = z,
-                        ?I          = I         ,
-                        ?J          = J         ,
-                        ?K          = K         ,
-                        ?Name       = Name      ,
-                        ?ShowLegend = ShowLegend,
-                        ?Opacity    = Opacity   ,
-                        ?Text       = Text      ,
-                        ?MultiText  = MultiText ,
-                        ?Color      = Color     ,
-                        ?Contour    = Contour   ,
-                        ?ColorScale = ColorScale,
-                        ?ShowScale  = ShowScale ,
-                        ?ColorBar   = ColorBar  
+                        X               = x,
+                        Y               = y,
+                        Z               = z,
+                        ?I              = I         ,
+                        ?J              = J         ,
+                        ?K              = K         ,
+                        ?Name           = Name      ,
+                        ?ShowLegend     = ShowLegend,
+                        ?Opacity        = Opacity   ,
+                        ?Text           = Text      ,
+                        ?MultiText      = MultiText ,
+                        ?Color          = Color     ,
+                        ?Contour        = Contour   ,
+                        ?ColorScale     = ColorScale,
+                        ?ShowScale      = ShowScale ,
+                        ?ColorBar       = ColorBar  ,
+                        ?FlatShading    = FlatShading
                     ) 
                 )              
                 |> GenericChart.ofTraceObject useDefaults
@@ -572,6 +574,7 @@ module Chart3D =
                 [<Optional;DefaultParameterValue(null)>] ?ColorScale    : StyleParam.Colorscale,
                 [<Optional;DefaultParameterValue(null)>] ?ShowScale     : bool,
                 [<Optional;DefaultParameterValue(null)>] ?ColorBar      : ColorBar,
+                [<Optional;DefaultParameterValue(null)>] ?FlatShading   : bool,
                 [<Optional;DefaultParameterValue(true)>] ?UseDefaults   : bool
             ) = 
 
@@ -592,6 +595,7 @@ module Chart3D =
                     ?ColorScale = ColorScale ,
                     ?ShowScale  = ShowScale  ,
                     ?ColorBar   = ColorBar   ,
+                    ?FlatShading= FlatShading,
                     ?UseDefaults= UseDefaults
                 )
 
