@@ -2056,6 +2056,32 @@ module StyleParam =
         member this.Convert() = this |> SymbolStyle.convert
 
     [<RequireQualifiedAccess>]
+    type MarkerSymbol3D =
+        | Circle     
+        | CircleOpen 
+        | Cross      
+        | Diamond    
+        | DiamondOpen
+        | Square     
+        | SquareOpen 
+        | X          
+        
+        static member toString = function
+            | Circle        -> "circle" 
+            | CircleOpen    -> "circle-open" 
+            | Cross         -> "cross" 
+            | Diamond       -> "diamond" 
+            | DiamondOpen   -> "diamond-open" 
+            | Square        -> "square" 
+            | SquareOpen    -> "square-open" 
+            | X             -> "x"
+        
+        static member convert = MarkerSymbol3D.toString >> box
+        override this.ToString() = this |> MarkerSymbol3D.toString
+        member this.Convert() = this |> MarkerSymbol3D.convert
+
+
+    [<RequireQualifiedAccess>]
     type MarkerSymbol =
         | Modified of MarkerSymbol * SymbolStyle
         | Circle           

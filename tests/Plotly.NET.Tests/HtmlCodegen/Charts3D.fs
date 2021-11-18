@@ -32,7 +32,7 @@ let scatterChart =
     let y = [19; 26; 55;]
     let z = [19; 26; 55;]
 
-    Chart.Scatter3d(x,y,z,StyleParam.Mode.Markers, UseDefaults = false)
+    Chart.Scatter3D(x,y,z,StyleParam.Mode.Markers, UseDefaults = false)
     |> Chart.withXAxisStyle("my x-axis", Id=StyleParam.SubPlotId.Scene 1)
     |> Chart.withYAxisStyle("my y-axis", Id=StyleParam.SubPlotId.Scene 1)
     |> Chart.withZAxisStyle("my z-axis")
@@ -42,7 +42,7 @@ let scatterChart =
 let ``3D Scatter charts`` =
     testList "Charts3D.3D Scatter charts" [
         testCase "3D Scatter charts data" ( fun () ->
-            """var data = [{"type":"scatter3d","mode":"markers","x":[19,26,55],"y":[19,26,55],"z":[19,26,55],"line":{},"marker":{}}]"""
+            """var data = [{"type":"scatter3d","mode":"markers","x":[19,26,55],"y":[19,26,55],"z":[19,26,55],"marker":{},"line":{}}];"""
             |> chartGeneratedContains scatterChart
         );
         testCase "3D Scatter charts layout" ( fun () ->
@@ -56,7 +56,7 @@ let pointChart =
     let y = [19; 26; 55;]
     let z = [19; 26; 55;]
 
-    Chart.Point3d(x,y,z, UseDefaults = false)
+    Chart.Point3D(x,y,z, UseDefaults = false)
     |> Chart.withXAxisStyle("my x-axis", Id=StyleParam.SubPlotId.Scene 1)
     |> Chart.withYAxisStyle("my y-axis", Id=StyleParam.SubPlotId.Scene 1)
     |> Chart.withZAxisStyle("my z-axis")
@@ -66,7 +66,7 @@ let pointChart =
 let ``3D Point charts`` =
     testList "Charts3D.3D Point charts" [
         testCase "3D Point charts data" ( fun () ->
-            """var data = [{"type":"scatter3d","mode":"markers","x":[19,26,55],"y":[19,26,55],"z":[19,26,55],"line":{},"marker":{}}]"""
+            """var data = [{"type":"scatter3d","mode":"markers","x":[19,26,55],"y":[19,26,55],"z":[19,26,55],"marker":{},"line":{}}];"""
             |> chartGeneratedContains pointChart
         );
         testCase "3D Point charts layout" ( fun () ->
@@ -91,7 +91,7 @@ let lineChart =
         )
         |> List.unzip3
 
-    Chart.Line3d(x, y, z, ShowMarkers=true, UseDefaults = false)
+    Chart.Line3D(x, y, z, ShowMarkers=true, UseDefaults = false)
     |> Chart.withXAxisStyle("x-axis", Id=StyleParam.SubPlotId.Scene 1)
     |> Chart.withYAxisStyle("y-axis", Id=StyleParam.SubPlotId.Scene 1)
     |> Chart.withZAxisStyle("z-axis")
@@ -101,7 +101,7 @@ let lineChart =
 let ``Line charts`` =
     testList "Charts3D.Line charts" [
         testCase "Line data" ( fun () ->
-            """var data = [{"type":"scatter3d","mode":"lines+markers","x":[10.0,8.765,5.376,0.699,-4.079,-7.762,-9.458,-8.797,-6.02,-1.898,2.489,6.042,7.925,7.774,5.766,2.536,-1.014,-3.973,-5.664,-5.8,-4.534,-2.366,0.02,1.974,3.058,3.146,2.427,1.303,0.232,-0.428,-0.537],"y":[0.0,4.788,8.373,9.863,8.912,5.799,1.348,-3.295,-6.971,-8.802,-8.415,-6.015,-2.306,1.713,5.025,6.863,6.893,5.27,2.562,-0.437,-2.939,-4.377,-4.536,-3.576,-1.944,-0.209,1.124,1.76,1.684,1.127,0.46],"z":[0.0,0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0,8.5,9.0,9.5,10.0,10.5,11.0,11.5,12.0,12.5,13.0,13.5,14.0,14.5,15.0],"line":{},"marker":{}}];"""
+            """var data = [{"type":"scatter3d","mode":"lines+markers","x":[10.0,8.765,5.376,0.699,-4.079,-7.762,-9.458,-8.797,-6.02,-1.898,2.489,6.042,7.925,7.774,5.766,2.536,-1.014,-3.973,-5.664,-5.8,-4.534,-2.366,0.02,1.974,3.058,3.146,2.427,1.303,0.232,-0.428,-0.537],"y":[0.0,4.788,8.373,9.863,8.912,5.799,1.348,-3.295,-6.971,-8.802,-8.415,-6.015,-2.306,1.713,5.025,6.863,6.893,5.27,2.562,-0.437,-2.939,-4.377,-4.536,-3.576,-1.944,-0.209,1.124,1.76,1.684,1.127,0.46],"z":[0.0,0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0,8.5,9.0,9.5,10.0,10.5,11.0,11.5,12.0,12.5,13.0,13.5,14.0,14.5,15.0],"marker":{},"line":{}}];"""
             |> chartGeneratedContains lineChart
         );
         testCase "Line layout" ( fun () ->
@@ -111,10 +111,10 @@ let ``Line charts`` =
     ]
 
 let bubbleChart =
-    Chart.Bubble3d(
+    Chart.Bubble3D(
         [1,3,2; 6,5,4; 7,9,8],
         [20; 40; 30],
-        Labels = ["A"; "B"; "C"],
+        MultiText = ["A"; "B"; "C"],
         TextPosition = StyleParam.TextPosition.TopLeft, 
         UseDefaults = false 
     )
@@ -122,11 +122,12 @@ let bubbleChart =
     |> Chart.withYAxisStyle("y-axis", Id=StyleParam.SubPlotId.Scene 1)
     |> Chart.withZAxisStyle("z-axis")
 
+
 [<Tests>]
 let ``Bubble charts`` =
     testList "Charts3D.Bubble charts" [
         testCase "Bubble data" ( fun () ->
-            """var data = [{"type":"scatter3d","mode":"markers+text","x":[1,6,7],"y":[3,5,9],"z":[2,4,8],"marker":{"size":[20,40,30]},"text":["A","B","C"],"textposition":"top left"}];"""
+            """var data = [{"type":"scatter3d","mode":"markers+text","x":[1,6,7],"y":[3,5,9],"z":[2,4,8],"text":["A","B","C"],"textposition":"top left","marker":{"size":[20,40,30]}}];"""
             |> chartGeneratedContains bubbleChart
         );
         testCase "Bubble layout" ( fun () ->
@@ -209,7 +210,7 @@ let meshChart =
     let b = Array.init 50 (fun _ -> rnd.NextDouble())
     let c = Array.init 50 (fun _ -> rnd.NextDouble())
     
-    Trace3D.initMesh3d 
+    Trace3D.initMesh3D 
         (fun mesh3d ->
             mesh3d?x <- a
             mesh3d?y <- b

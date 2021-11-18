@@ -183,6 +183,16 @@ open Plotly.NET
 open FSharp.Data
 open Deedle
 
+Chart.Bubble3D(
+    [for i in 0..10 do yield (i,i,i)],
+    [0 .. 10 .. 100],
+    MarkerColor = Color.fromColorScaleValues [0..10],
+    MarkerSymbol = StyleParam.MarkerSymbol3D.Diamond
+)
+
+|> Chart.show
+
+
 let data = 
     Http.RequestString @"https://raw.githubusercontent.com/plotly/datasets/master/iris-data.csv"
     |> fun csv -> Frame.ReadCsvString(csv,true,separators=",")

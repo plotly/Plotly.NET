@@ -21,265 +21,454 @@ module Chart3D =
 
         /// Uses points, line or both depending on the mode to represent 3d-data points
         [<Extension>]
-        static member Scatter3d
+        static member Scatter3D
             (
-                x, y, z, mode,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
-                [<Optional;DefaultParameterValue(null)>] ?Color,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Labels,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont,
-                [<Optional;DefaultParameterValue(null)>] ?Dash,
-                [<Optional;DefaultParameterValue(null)>] ?Width,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                x: seq<#IConvertible>,
+                y: seq<#IConvertible>,
+                z: seq<#IConvertible>,
+                mode: StyleParam.Mode,
+                [<Optional;DefaultParameterValue(null)>] ?Name               : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend         : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity            : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text               : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText          : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition       : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition  : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor        : Color,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale   : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline      : Line,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol       : StyleParam.MarkerSymbol3D,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol  : seq<StyleParam.MarkerSymbol3D>,
+                [<Optional;DefaultParameterValue(null)>] ?Marker             : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?LineColor          : Color,
+                [<Optional;DefaultParameterValue(null)>] ?LineColorScale     : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?LineWidth          : float,
+                [<Optional;DefaultParameterValue(null)>] ?LineDash           : StyleParam.DrawingStyle,
+                [<Optional;DefaultParameterValue(null)>] ?Line               : Line,
+                [<Optional;DefaultParameterValue(null)>] ?Projection         : Projection,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults        : bool
             ) = 
 
                 let useDefaults = defaultArg UseDefaults true
-                
-                Trace3D.initScatter3d (Trace3DStyle.Scatter3d(X = x,Y = y,Z=z, Mode=mode) )              
-                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
-                |> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
-                |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
-                |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+
+                let marker =
+                    Marker 
+                    |> Option.defaultValue (TraceObjects.Marker.init())
+                    |> TraceObjects.Marker.style(
+                        ?Color          = MarkerColor,
+                        ?Outline        = MarkerOutline,
+                        ?Symbol3D       = MarkerSymbol,
+                        ?MultiSymbol3D  = MultiMarkerSymbol,
+                        ?Colorscale     = MarkerColorScale
+                    )                
+
+                let line =
+                    Line 
+                    |> Option.defaultValue (Plotly.NET.Line.init())
+                    |> Plotly.NET.Line.style(
+                        ?Color      = LineColor,
+                        ?Dash       = LineDash,
+                        ?Colorscale = LineColorScale,
+                        ?Width      = LineWidth
+                    )
+
+                Trace3D.initScatter3D(
+                    Trace3DStyle.Scatter3D(
+                        X = x,
+                        Y = y,
+                        Z = z,
+                        Mode = mode,
+                        ?Name               = Name             ,
+                        ?ShowLegend         = ShowLegend       ,
+                        ?Opacity            = Opacity          ,
+                        ?Text               = Text             ,
+                        ?MultiText          = MultiText        ,
+                        ?TextPosition       = TextPosition     ,
+                        ?MultiTextPosition  = MultiTextPosition,
+                        ?Projection         = Projection       ,
+                        Marker              = marker           ,
+                        Line                = line
+                    )
+                )
+               
                 |> GenericChart.ofTraceObject useDefaults
       
 
         /// Uses points, line or both depending on the mode to represent 3d-data points
         [<Extension>]
-        static member Scatter3d(xyz, mode, 
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
-                [<Optional;DefaultParameterValue(null)>] ?Color,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Labels,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont,
-                [<Optional;DefaultParameterValue(null)>] ?Dash,
-                [<Optional;DefaultParameterValue(null)>] ?Width,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+        static member Scatter3D
+            (
+                xyz: seq<#IConvertible * #IConvertible * #IConvertible>, 
+                mode: StyleParam.Mode,
+                [<Optional;DefaultParameterValue(null)>] ?Name               : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend         : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity            : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text               : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText          : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition       : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition  : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor        : Color,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale   : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline      : Line,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol       : StyleParam.MarkerSymbol3D,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol  : seq<StyleParam.MarkerSymbol3D>,
+                [<Optional;DefaultParameterValue(null)>] ?Marker             : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?LineColor          : Color,
+                [<Optional;DefaultParameterValue(null)>] ?LineColorScale     : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?LineWidth          : float,
+                [<Optional;DefaultParameterValue(null)>] ?LineDash           : StyleParam.DrawingStyle,
+                [<Optional;DefaultParameterValue(null)>] ?Line               : Line,
+                [<Optional;DefaultParameterValue(null)>] ?Projection         : Projection,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults        : bool
             ) = 
 
                 let useDefaults = defaultArg UseDefaults true
                 let x,y,z = Seq.unzip3 xyz
-                Chart.Scatter3d(x, y, z, mode, ?Name=Name,?ShowLegend=ShowLegend,?MarkerSymbol=MarkerSymbol,?Color=Color,?Opacity=Opacity,?Labels=Labels,?TextPosition=TextPosition,?TextFont=TextFont,?Dash=Dash,?Width=Width, ?UseDefaults=UseDefaults) 
+                Chart.Scatter3D(
+                    x, y, z, mode,
+                    ?Name               = Name             ,
+                    ?ShowLegend         = ShowLegend       ,
+                    ?Opacity            = Opacity          ,
+                    ?Text               = Text             ,
+                    ?MultiText          = MultiText        ,
+                    ?TextPosition       = TextPosition     ,
+                    ?MultiTextPosition  = MultiTextPosition,
+                    ?MarkerColor        = MarkerColor      ,
+                    ?MarkerColorScale   = MarkerColorScale ,
+                    ?MarkerOutline      = MarkerOutline    ,
+                    ?MarkerSymbol       = MarkerSymbol     ,
+                    ?MultiMarkerSymbol  = MultiMarkerSymbol,
+                    ?Marker             = Marker           ,
+                    ?LineColor          = LineColor        ,
+                    ?LineColorScale     = LineColorScale   ,
+                    ?LineWidth          = LineWidth        ,
+                    ?LineDash           = LineDash         ,
+                    ?Line               = Line             ,
+                    ?Projection         = Projection       ,
+                    ?UseDefaults        = UseDefaults      
+                ) 
 
         ///
         [<Extension>]
-        static member Point3d 
+        static member Point3D
             (
-                x, y, z,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
-                [<Optional;DefaultParameterValue(null)>] ?Color,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Labels,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                x: seq<#IConvertible>,
+                y: seq<#IConvertible>,
+                z: seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Name               : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend         : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity            : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text               : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText          : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition       : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition  : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor        : Color,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale   : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline      : Line,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol       : StyleParam.MarkerSymbol3D,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol  : seq<StyleParam.MarkerSymbol3D>,
+                [<Optional;DefaultParameterValue(null)>] ?Marker             : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?Projection         : Projection,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults        : bool
             ) = 
 
                 // if text position or font is set, then show labels (not only when hovering)
-                let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
+                let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
 
-                Chart.Scatter3d(
+                Chart.Scatter3D(
                     x = x, 
                     y = y, 
                     z = z,
-                    mode            = changeMode StyleParam.Mode.Markers,
-                    ?Name           = Name,
-                    ?ShowLegend     = ShowLegend,
-                    ?MarkerSymbol   = MarkerSymbol,
-                    ?Color          = Color,
-                    ?Opacity        = Opacity,
-                    ?Labels         = Labels,
-                    ?TextPosition   = TextPosition,
-                    ?TextFont       = TextFont,
-                    ?UseDefaults    = UseDefaults
+                    mode                = changeMode StyleParam.Mode.Markers,
+                    ?Name               = Name             ,
+                    ?ShowLegend         = ShowLegend       ,
+                    ?Opacity            = Opacity          ,
+                    ?Text               = Text             ,
+                    ?MultiText          = MultiText        ,
+                    ?TextPosition       = TextPosition     ,
+                    ?MultiTextPosition  = MultiTextPosition,
+                    ?MarkerColor        = MarkerColor      ,
+                    ?MarkerColorScale   = MarkerColorScale ,
+                    ?MarkerOutline      = MarkerOutline    ,
+                    ?MarkerSymbol       = MarkerSymbol     ,
+                    ?MultiMarkerSymbol  = MultiMarkerSymbol,
+                    ?Marker             = Marker           ,
+                    ?Projection         = Projection       ,
+                    ?UseDefaults        = UseDefaults      
                 )
         
         ///
         [<Extension>]
-        static member Point3d 
+        static member Point3D 
             (
-                xyz,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
-                [<Optional;DefaultParameterValue(null)>] ?Color,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Labels,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+               xyz: seq<#IConvertible * #IConvertible * #IConvertible>, 
+               [<Optional;DefaultParameterValue(null)>] ?Name               : string,
+               [<Optional;DefaultParameterValue(null)>] ?ShowLegend         : bool,
+               [<Optional;DefaultParameterValue(null)>] ?Opacity            : float,
+               [<Optional;DefaultParameterValue(null)>] ?Text               : #IConvertible,
+               [<Optional;DefaultParameterValue(null)>] ?MultiText          : seq<#IConvertible>,
+               [<Optional;DefaultParameterValue(null)>] ?TextPosition       : StyleParam.TextPosition,
+               [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition  : seq<StyleParam.TextPosition>,
+               [<Optional;DefaultParameterValue(null)>] ?MarkerColor        : Color,
+               [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale   : StyleParam.Colorscale,
+               [<Optional;DefaultParameterValue(null)>] ?MarkerOutline      : Line,
+               [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol       : StyleParam.MarkerSymbol3D,
+               [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol  : seq<StyleParam.MarkerSymbol3D>,
+               [<Optional;DefaultParameterValue(null)>] ?Marker             : Marker,
+               [<Optional;DefaultParameterValue(null)>] ?Projection         : Projection,
+               [<Optional;DefaultParameterValue(true)>] ?UseDefaults        : bool
             ) = 
 
                 let x, y, z = Seq.unzip3 xyz
 
-                Chart.Point3d(
+                Chart.Point3D(
                     x, y, z,
-                    ?Name           = Name,
-                    ?ShowLegend     = ShowLegend,
-                    ?MarkerSymbol   = MarkerSymbol,
-                    ?Color          = Color,
-                    ?Opacity        = Opacity,
-                    ?Labels         = Labels,
-                    ?TextPosition   = TextPosition,
-                    ?TextFont       = TextFont,
-                    ?UseDefaults    = UseDefaults
+                    ?Name               = Name             ,
+                    ?ShowLegend         = ShowLegend       ,
+                    ?Opacity            = Opacity          ,
+                    ?Text               = Text             ,
+                    ?MultiText          = MultiText        ,
+                    ?TextPosition       = TextPosition     ,
+                    ?MultiTextPosition  = MultiTextPosition,
+                    ?MarkerColor        = MarkerColor      ,
+                    ?MarkerColorScale   = MarkerColorScale ,
+                    ?MarkerOutline      = MarkerOutline    ,
+                    ?MarkerSymbol       = MarkerSymbol     ,
+                    ?MultiMarkerSymbol  = MultiMarkerSymbol,
+                    ?Marker             = Marker           ,
+                    ?Projection         = Projection       ,
+                    ?UseDefaults        = UseDefaults      
                 )
 
 
         /// Uses points, line or both depending on the mode to represent 3d-data points
         [<Extension>]
-        static member Line3d
+        static member Line3D
             (
-                x, y, z,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
-                [<Optional;DefaultParameterValue(null)>] ?Color,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Labels,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont,
-                [<Optional;DefaultParameterValue(null)>] ?Dash,
-                [<Optional;DefaultParameterValue(null)>] ?Width,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                x: seq<#IConvertible>,
+                y: seq<#IConvertible>,
+                z: seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?ShowMarkers        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Name               : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend         : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity            : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text               : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText          : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition       : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition  : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor        : Color,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale   : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline      : Line,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol       : StyleParam.MarkerSymbol3D,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol  : seq<StyleParam.MarkerSymbol3D>,
+                [<Optional;DefaultParameterValue(null)>] ?Marker             : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?LineColor          : Color,
+                [<Optional;DefaultParameterValue(null)>] ?LineColorScale     : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?LineWidth          : float,
+                [<Optional;DefaultParameterValue(null)>] ?LineDash           : StyleParam.DrawingStyle,
+                [<Optional;DefaultParameterValue(null)>] ?Line               : Line,
+                [<Optional;DefaultParameterValue(null)>] ?Projection         : Projection,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults        : bool
             ) = 
                 let changeMode = 
                     let isShowMarker =
                         match ShowMarkers with
                         | Some isShow -> isShow
                         | Option.None        -> false
-                    StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
+                    StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)                       
                     >> StyleParam.ModeUtils.showMarker (isShowMarker)
 
-                Chart.Scatter3d(
+                Chart.Scatter3D(
                     x = x,
                     y = y,
                     z = z,
                     mode = changeMode StyleParam.Mode.Lines,
-                    ?Name           = Name        ,
-                    ?ShowLegend     = ShowLegend  ,
-                    ?MarkerSymbol   = MarkerSymbol,
-                    ?Color          = Color       ,
-                    ?Opacity        = Opacity     ,
-                    ?Labels         = Labels      ,
-                    ?TextPosition   = TextPosition,
-                    ?TextFont       = TextFont    ,
-                    ?Dash           = Dash        ,
-                    ?Width          = Width       ,
-                    ?UseDefaults    = UseDefaults
+                    ?Name               = Name             ,
+                    ?ShowLegend         = ShowLegend       ,
+                    ?Opacity            = Opacity          ,
+                    ?Text               = Text             ,
+                    ?MultiText          = MultiText        ,
+                    ?TextPosition       = TextPosition     ,
+                    ?MultiTextPosition  = MultiTextPosition,
+                    ?MarkerColor        = MarkerColor      ,
+                    ?MarkerColorScale   = MarkerColorScale ,
+                    ?MarkerOutline      = MarkerOutline    ,
+                    ?MarkerSymbol       = MarkerSymbol     ,
+                    ?MultiMarkerSymbol  = MultiMarkerSymbol,
+                    ?Marker             = Marker           ,
+                    ?LineColor          = LineColor        ,
+                    ?LineColorScale     = LineColorScale   ,
+                    ?LineWidth          = LineWidth        ,
+                    ?LineDash           = LineDash         ,
+                    ?Line               = Line             ,
+                    ?Projection         = Projection       ,
+                    ?UseDefaults        = UseDefaults      
+                    
                 )
         
-        /// Uses points, line or both depending on the mode to represent 3d-data points
+        /// Uses points, line or both depending on the mode to represent 3D-data points
         [<Extension>]
-        static member Line3d
+        static member Line3D
             (
-                xyz,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
-                [<Optional;DefaultParameterValue(null)>] ?Color,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Labels,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont,
-                [<Optional;DefaultParameterValue(null)>] ?Dash,
-                [<Optional;DefaultParameterValue(null)>] ?Width,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                xyz: seq<#IConvertible * #IConvertible * #IConvertible>, 
+                [<Optional;DefaultParameterValue(null)>] ?ShowMarkers        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Name               : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend         : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity            : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text               : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText          : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition       : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition  : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor        : Color,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale   : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline      : Line,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol       : StyleParam.MarkerSymbol3D,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol  : seq<StyleParam.MarkerSymbol3D>,
+                [<Optional;DefaultParameterValue(null)>] ?Marker             : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?LineColor          : Color,
+                [<Optional;DefaultParameterValue(null)>] ?LineColorScale     : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?LineWidth          : float,
+                [<Optional;DefaultParameterValue(null)>] ?LineDash           : StyleParam.DrawingStyle,
+                [<Optional;DefaultParameterValue(null)>] ?Line               : Line,
+                [<Optional;DefaultParameterValue(null)>] ?Projection         : Projection,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults        : bool
             ) = 
 
                 let x, y, z = Seq.unzip3 xyz
 
-                Chart.Line3d(
+                Chart.Line3D(
                     x, y, z,
-                    ?Name           = Name        ,
-                    ?ShowMarkers    = ShowMarkers ,
-                    ?ShowLegend     = ShowLegend  ,
-                    ?MarkerSymbol   = MarkerSymbol,
-                    ?Color          = Color       ,
-                    ?Opacity        = Opacity     ,
-                    ?Labels         = Labels      ,
-                    ?TextPosition   = TextPosition,
-                    ?TextFont       = TextFont    ,
-                    ?Dash           = Dash        ,
-                    ?Width          = Width       ,
-                    ?UseDefaults    = UseDefaults
+                    ?ShowMarkers        = ShowMarkers      ,
+                    ?Name               = Name             ,
+                    ?ShowLegend         = ShowLegend       ,
+                    ?Opacity            = Opacity          ,
+                    ?Text               = Text             ,
+                    ?MultiText          = MultiText        ,
+                    ?TextPosition       = TextPosition     ,
+                    ?MultiTextPosition  = MultiTextPosition,
+                    ?MarkerColor        = MarkerColor      ,
+                    ?MarkerColorScale   = MarkerColorScale ,
+                    ?MarkerOutline      = MarkerOutline    ,
+                    ?MarkerSymbol       = MarkerSymbol     ,
+                    ?MultiMarkerSymbol  = MultiMarkerSymbol,
+                    ?Marker             = Marker           ,
+                    ?LineColor          = LineColor        ,
+                    ?LineColorScale     = LineColorScale   ,
+                    ?LineWidth          = LineWidth        ,
+                    ?LineDash           = LineDash         ,
+                    ?Line               = Line             ,
+                    ?Projection         = Projection       ,
+                    ?UseDefaults        = UseDefaults      
                 )
 
         ///
         [<Extension>]
-        static member Bubble3d 
+        static member Bubble3D 
             (
-                x, y, z, sizes,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
-                [<Optional;DefaultParameterValue(null)>] ?Color,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Labels,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                x: seq<#IConvertible>,
+                y: seq<#IConvertible>,
+                z: seq<#IConvertible>,
+                sizes: seq<int>,
+                [<Optional;DefaultParameterValue(null)>] ?Name               : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend         : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity            : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text               : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText          : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition       : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition  : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor        : Color,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale   : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline      : Line,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol       : StyleParam.MarkerSymbol3D,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol  : seq<StyleParam.MarkerSymbol3D>,
+                [<Optional;DefaultParameterValue(null)>] ?Marker             : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?Projection         : Projection,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults        : bool
             ) = 
 
                 let useDefaults = defaultArg UseDefaults true
-                let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
+                let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
         
-                Trace3D.initScatter3d (
-                    Trace3DStyle.Scatter3d(
+                let marker =
+                    Marker 
+                    |> Option.defaultValue (TraceObjects.Marker.init())
+                    |> TraceObjects.Marker.style(
+                        ?Color          = MarkerColor,
+                        ?Outline        = MarkerOutline,
+                        ?Symbol3D       = MarkerSymbol,
+                        ?MultiSymbol3D  = MultiMarkerSymbol,
+                        ?Colorscale     = MarkerColorScale,
+                        MultiSize       = sizes
+                    )                
+
+                Trace3D.initScatter3D(
+                    Trace3DStyle.Scatter3D(
                         X = x,
-                        Y = y, 
+                        Y = y,
                         Z = z,
-                        Mode=changeMode StyleParam.Mode.Markers
+                        Mode = changeMode StyleParam.Mode.Markers,
+                        ?Name               = Name             ,
+                        ?ShowLegend         = ShowLegend       ,
+                        ?Opacity            = Opacity          ,
+                        ?Text               = Text             ,
+                        ?MultiText          = MultiText        ,
+                        ?TextPosition       = TextPosition     ,
+                        ?MultiTextPosition  = MultiTextPosition,
+                        ?Projection         = Projection       ,
+                        Marker              = marker           
                     )
                 )
-                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
-                |> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol, MultiSize=sizes)
-                |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+               
                 |> GenericChart.ofTraceObject useDefaults
+
+
     
         ///
         [<Extension>]
-        static member Bubble3d 
+        static member Bubble3D 
             (
                 xyz, sizes,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
-                [<Optional;DefaultParameterValue(null)>] ?Color,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Labels,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                [<Optional;DefaultParameterValue(null)>] ?Name               : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend         : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity            : float,
+                [<Optional;DefaultParameterValue(null)>] ?Text               : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText          : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition       : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition  : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor        : Color,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale   : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline      : Line,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol       : StyleParam.MarkerSymbol3D,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol  : seq<StyleParam.MarkerSymbol3D>,
+                [<Optional;DefaultParameterValue(null)>] ?Marker             : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?Projection         : Projection,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults        : bool
             ) = 
 
                 let x, y, z = Seq.unzip3 xyz
 
-                Chart.Bubble3d(
+                Chart.Bubble3D(
                     x, y, z, sizes,
-                    ?Name           = Name,
-                    ?ShowLegend     = ShowLegend,
-                    ?MarkerSymbol   = MarkerSymbol,
-                    ?Color          = Color,
-                    ?Opacity        = Opacity,
-                    ?Labels         = Labels,
-                    ?TextPosition   = TextPosition,
-                    ?TextFont       = TextFont,
-                    ?UseDefaults    = UseDefaults
+                    ?Name               = Name             ,
+                    ?ShowLegend         = ShowLegend       ,
+                    ?Opacity            = Opacity          ,
+                    ?Text               = Text             ,
+                    ?MultiText          = MultiText        ,
+                    ?TextPosition       = TextPosition     ,
+                    ?MultiTextPosition  = MultiTextPosition,
+                    ?MarkerColor        = MarkerColor      ,
+                    ?MarkerColorScale   = MarkerColorScale ,
+                    ?MarkerOutline      = MarkerOutline    ,
+                    ?MarkerSymbol       = MarkerSymbol     ,
+                    ?MultiMarkerSymbol  = MultiMarkerSymbol,
+                    ?Marker             = Marker           ,
+                    ?Projection         = Projection       ,
+                    ?UseDefaults        = UseDefaults      
+                    
                 )
 
 
-        /// Uses points, line or both depending on the mode to represent 3d-data points
+        /// Uses points, line or both depending on the mode to represent 3D-data points
         [<Extension>]
         static member Surface
             (
@@ -313,9 +502,9 @@ module Chart3D =
                 |> GenericChart.ofTraceObject useDefaults
 
 
-        /// Uses points, line or both depending on the mode to represent 3d-data points
+        /// Uses points, line or both depending on the mode to represent 3D-data points
         [<Extension>]
-        static member Mesh3d
+        static member Mesh3D
             (
                 x, y, z, 
                 [<Optional;DefaultParameterValue(null)>] ?I,
@@ -334,8 +523,8 @@ module Chart3D =
 
                 let useDefaults = defaultArg UseDefaults true
 
-                Trace3D.initMesh3d (
-                    Trace3DStyle.Mesh3d(
+                Trace3D.initMesh3D (
+                    Trace3DStyle.Mesh3D(
                         X   = x,
                         Y   = y,
                         Z   = z,

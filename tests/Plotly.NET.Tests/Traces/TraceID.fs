@@ -9,7 +9,7 @@ open Plotly.NET.GenericChart
 let allTraceTypesChart =
     [
         Chart.Point([])
-        Chart.Point3d([])
+        Chart.Point3D([])
         Chart.PointPolar([])
         Chart.ChoroplethMap([],[])
         Chart.ChoroplethMapbox([],[],obj)

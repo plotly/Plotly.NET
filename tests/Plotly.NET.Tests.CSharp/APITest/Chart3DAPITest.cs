@@ -15,6 +15,6 @@ namespace Plotly.NET.Tests.CSharp.APITest
         private static readonly Tuple<int, int, int>[] xyz = x.Zip(y).Zip(z).Select(c => new Tuple<int, int, int>(c.Item1.First, c.Item1.Second, c.Item2)).ToArray();
 
         [Fact] public void Scatter3d1()
-            => Chart3D.Chart.Scatter3d<int, int, int, int>(x, y, z, StyleParam.Mode.Lines);
+            => Chart3D.Chart.Scatter3D<int, int, int, int>(x, y, z, StyleParam.Mode.Lines);
     }
 }
