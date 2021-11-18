@@ -237,47 +237,47 @@ type ColorBar () =
                 
             (fun (colorBar:ColorBar) ->            
 
-                BGColor             |> DynObj.setValueOpt colorBar "bgcolor"
-                BorderColor         |> DynObj.setValueOpt colorBar "bordercolor"
-                BorderWidth         |> DynObj.setValueOpt colorBar "borderwidth"
-                DTick               |> DynObj.setValueOpt colorBar "dtick"
-                ExponentFormat      |> DynObj.setValueOpt colorBar "exponentformat"
-                Len                 |> DynObj.setValueOpt colorBar "len"
-                LenMode             |> DynObj.setValueOpt colorBar "lenmode"
-                MinExponent         |> DynObj.setValueOpt colorBar "min3xponent"
-                NTicks              |> DynObj.setValueOpt colorBar "nticks"
-                OutlineColor        |> DynObj.setValueOpt colorBar "outlinecolor"
-                OutlineWidth        |> DynObj.setValueOpt colorBar "outlinewidth"
-                SeparateThousands   |> DynObj.setValueOpt colorBar "separatethousands"
-                ShowExponent        |> DynObj.setValueOpt colorBar "showexponent"
-                ShowTickLabels      |> DynObj.setValueOpt colorBar "showticklabels"
-                ShowTickPrefix      |> DynObj.setValueOpt colorBar "showtickprefix"
-                ShowTickSuffix      |> DynObj.setValueOpt colorBar "showticksuffix"
-                Thickness           |> DynObj.setValueOpt colorBar "thickness"
-                ThicknessMode       |> DynObj.setValueOpt colorBar "thicknessmode"
-                Tick0               |> DynObj.setValueOpt colorBar "tick0"
-                TickAngle           |> DynObj.setValueOpt colorBar "tickangle"
-                TickColor           |> DynObj.setValueOpt colorBar "tickcolor"
-                TickFont            |> DynObj.setValueOpt colorBar "tickfont"
-                TickFormat          |> DynObj.setValueOpt colorBar "tickformat"
-                TickFormatStops     |> DynObj.setValueOpt colorBar "tickformatstops"
-                TickLabelOverflow   |> DynObj.setValueOpt colorBar "ticklabeloverflow"
-                TickLabelPosition   |> DynObj.setValueOpt colorBar "ticklabelposition"
-                TickLen             |> DynObj.setValueOpt colorBar "ticklen"
-                TickMode            |> DynObj.setValueOpt colorBar "tickmode"
-                TickPrefix          |> DynObj.setValueOpt colorBar "tickprefix"
-                Ticks               |> DynObj.setValueOpt colorBar "ticks"
-                TickSuffix          |> DynObj.setValueOpt colorBar "ticksuffix"
-                TickText            |> DynObj.setValueOpt colorBar "ticktext"
-                TickVals            |> DynObj.setValueOpt colorBar "tickvals"
-                TickWidth           |> DynObj.setValueOpt colorBar "tickwidth"
-                Title               |> DynObj.setValueOpt colorBar "title"
-                X                   |> DynObj.setValueOpt colorBar "x"
-                XAnchor             |> DynObj.setValueOpt colorBar "xanchor"
-                XPad                |> DynObj.setValueOpt colorBar "xpad"
-                Y                   |> DynObj.setValueOpt colorBar "y"
-                YAnchor             |> DynObj.setValueOpt colorBar "yanchor"
-                YPad                |> DynObj.setValueOpt colorBar "ypad"
+                BGColor             |> DynObj.setValueOpt colorBar "bgcolor"            
+                BorderColor         |> DynObj.setValueOpt colorBar "bordercolor"        
+                BorderWidth         |> DynObj.setValueOpt colorBar "borderwidth"        
+                DTick               |> DynObj.setValueOpt colorBar "dtick"              
+                ExponentFormat      |> DynObj.setValueOptBy colorBar "exponentformat"     StyleParam.ExponentFormat.convert
+                Len                 |> DynObj.setValueOpt colorBar "len"                
+                LenMode             |> DynObj.setValueOptBy colorBar "lenmode"            StyleParam.UnitMode.convert
+                MinExponent         |> DynObj.setValueOpt colorBar "min3xponent"        
+                NTicks              |> DynObj.setValueOpt colorBar "nticks"             
+                OutlineColor        |> DynObj.setValueOpt colorBar "outlinecolor"       
+                OutlineWidth        |> DynObj.setValueOpt colorBar "outlinewidth"       
+                SeparateThousands   |> DynObj.setValueOpt colorBar "separatethousands"  
+                ShowExponent        |> DynObj.setValueOptBy colorBar "showexponent"       StyleParam.ShowExponent.convert
+                ShowTickLabels      |> DynObj.setValueOpt colorBar "showticklabels"     
+                ShowTickPrefix      |> DynObj.setValueOptBy colorBar "showtickprefix"     StyleParam.ShowTickOption.convert
+                ShowTickSuffix      |> DynObj.setValueOptBy colorBar "showticksuffix"     StyleParam.ShowTickOption.convert
+                Thickness           |> DynObj.setValueOpt colorBar "thickness"          
+                ThicknessMode       |> DynObj.setValueOptBy colorBar "thicknessmode"      StyleParam.UnitMode.convert
+                Tick0               |> DynObj.setValueOpt colorBar "tick0"              
+                TickAngle           |> DynObj.setValueOpt colorBar "tickangle"          
+                TickColor           |> DynObj.setValueOpt colorBar "tickcolor"          
+                TickFont            |> DynObj.setValueOpt colorBar "tickfont"           
+                TickFormat          |> DynObj.setValueOpt colorBar "tickformat"         
+                TickFormatStops     |> DynObj.setValueOpt colorBar "tickformatstops"    
+                TickLabelOverflow   |> DynObj.setValueOptBy colorBar "ticklabeloverflow"  StyleParam.TickLabelOverflow.convert
+                TickLabelPosition   |> DynObj.setValueOptBy colorBar "ticklabelposition"  StyleParam.TickLabelPosition.convert
+                TickLen             |> DynObj.setValueOpt colorBar "ticklen"            
+                TickMode            |> DynObj.setValueOptBy colorBar "tickmode"           StyleParam.TickMode.convert
+                TickPrefix          |> DynObj.setValueOpt colorBar "tickprefix"         
+                Ticks               |> DynObj.setValueOptBy colorBar "ticks"              StyleParam.TickOptions.convert
+                TickSuffix          |> DynObj.setValueOpt colorBar "ticksuffix"         
+                TickText            |> DynObj.setValueOpt colorBar "ticktext"           
+                TickVals            |> DynObj.setValueOpt colorBar "tickvals"           
+                TickWidth           |> DynObj.setValueOpt colorBar "tickwidth"          
+                Title               |> DynObj.setValueOpt colorBar "title"              
+                X                   |> DynObj.setValueOpt colorBar "x"                  
+                XAnchor             |> DynObj.setValueOptBy colorBar "xanchor"            StyleParam.HorizontalAlign.convert
+                XPad                |> DynObj.setValueOpt colorBar "xpad"               
+                Y                   |> DynObj.setValueOpt colorBar "y"                  
+                YAnchor             |> DynObj.setValueOptBy colorBar "yanchor"            StyleParam.VerticalAlign.convert
+                YPad                |> DynObj.setValueOpt colorBar "ypad"               
 
                 colorBar
             )
