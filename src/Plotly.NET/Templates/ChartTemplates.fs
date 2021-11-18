@@ -504,7 +504,7 @@ module ChartTemplates =
                 ]
             ))
             
-            Trace3D.initMesh3d(Trace3DStyle.Mesh3d(
+            Trace3D.initMesh3D(Trace3DStyle.Mesh3D(
                 ColorBar = ColorBar.init(
                     OutlineWidth = 0., Ticks = StyleParam.TickOptions.Empty
                 )
@@ -531,7 +531,7 @@ module ChartTemplates =
                 )
             ))
 
-            Trace3D.initScatter3d(Trace3DStyle.Scatter3d(
+            Trace3D.initScatter3D(Trace3DStyle.Scatter3D(
                 Line = Line.init(
                     ColorBar = ColorBar.init(
                         OutlineWidth = 0., Ticks = StyleParam.TickOptions.Empty

@@ -73,8 +73,7 @@ let isoSurface =
             X = (CapFill.init(Show=false)),
             Y = (CapFill.init(Show=false))
         ),
-        Surface = Surface.init(Count=5),
-        ColorScale = StyleParam.Colorscale.Viridis
+        Surface = Surface.init(Count=5)
     )
 
 (*** condition: ipynb ***)

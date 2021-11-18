@@ -22,7 +22,7 @@ type Trace3D (traceTypeName) =
     inherit Trace (traceTypeName)
 
     ///initializes a trace of type "scatter3d" applying the givin trace styling function
-    static member initScatter3d (applyStyle:Trace3D -> Trace3D) = 
+    static member initScatter3D (applyStyle:Trace3D -> Trace3D) = 
         Trace3D("scatter3d") |> applyStyle
 
     ///initializes a trace of type "surface" applying the givin trace styling function
@@ -30,7 +30,7 @@ type Trace3D (traceTypeName) =
         Trace3D("surface") |> applyStyle
 
     ///initializes a trace of type "mesh3d" applying the givin trace styling function
-    static member initMesh3d (applyStyle:Trace3D -> Trace3D) = 
+    static member initMesh3D (applyStyle:Trace3D -> Trace3D) = 
         Trace3D("mesh3d") |> applyStyle
 
     ///initializes a trace of type "cone" applying the givin trace styling function
@@ -84,14 +84,18 @@ type Trace3DStyle() =
     /// <param name="Z">Sets the z coordinates.</param>
     /// <param name="SurfaceColor">Sets the surface fill color.</param>
     /// <param name="Text">Sets text elements associated with each (x,y,z) triplet. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y,z) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+    /// <param name="MultiText">Sets text elements associated with each (x,y,z) triplet. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y,z) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
     /// <param name="TextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
+    /// <param name="MultiTextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
     /// <param name="TextTemplate">Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.</param>
+    /// <param name="MultiTextTemplate">Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.</param>
     /// <param name="HoverText">Sets text elements associated with each (x,y,z) triplet. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y,z) coordinates. To be seen, trace `hoverinfo` must contain a "text" flag.</param>
+    /// <param name="MultiHoverText">Sets text elements associated with each (x,y,z) triplet. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y,z) coordinates. To be seen, trace `hoverinfo` must contain a "text" flag.</param>
     /// <param name="HoverInfo">Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.</param>
     /// <param name="HoverTemplate">Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, "xother" will be added to those with different x positions from the first point. An underscore before or after "(x|y)other" will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `&lt;extra&gt;` is displayed in the secondary box, for example "&lt;extra&gt;{fullData.name}&lt;/extra&gt;". To hide the secondary box completely, use an empty tag `&lt;extra&gt;&lt;/extra&gt;`.</param>
+    /// <param name="MultiHoverTemplate">Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, "xother" will be added to those with different x positions from the first point. An underscore before or after "(x|y)other" will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `&lt;extra&gt;` is displayed in the secondary box, for example "&lt;extra&gt;{fullData.name}&lt;/extra&gt;". To hide the secondary box completely, use an empty tag `&lt;extra&gt;&lt;/extra&gt;`.</param>
     /// <param name="XHoverFormat">Sets the hover text formatting rulefor `x` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"By default the values are formatted using `xaxis.hoverformat`.</param>
     /// <param name="YHoverFormat">Sets the hover text formatting rulefor `y` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"By default the values are formatted using `yaxis.hoverformat`.</param>
-    /// <param name="ZHoverFormat">Sets the hover text formatting rulefor `z` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"By default the values are formatted using `zaxis.hoverformat`.</param>
     /// <param name="Meta">Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.</param>
     /// <param name="CustomData">Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, "scatter" traces also appends customdata items in the markers DOM elements</param>
     /// <param name="Scene">Sets a reference between this trace's 3D coordinate system and a 3D scene. If "scene" (the default value), the (x,y,z) coordinates refer to `layout.scene`. If "scene2", the (x,y,z) coordinates refer to `layout.scene2`, and so on.</param>
@@ -101,6 +105,7 @@ type Trace3DStyle() =
     /// <param name="ErrorX">Sets the x Error of this trace.</param>
     /// <param name="ErrorY">Sets the y Error of this trace.</param>
     /// <param name="ErrorZ">Sets the z Error of this trace.</param>
+    /// <param name="ZHoverFormat">Sets the hover text formatting rulefor `z` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"By default the values are formatted using `zaxis.hoverformat`.</param>
     /// <param name="ConnectGaps">Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.</param>
     /// <param name="Hoverlabel">Sets the hoverlabel of this trace.</param>
     /// <param name="Projection">Sets the projection of this trace.</param>
@@ -109,7 +114,7 @@ type Trace3DStyle() =
     /// <param name="YCalendar">Sets the calendar system to use with `y` date data.</param>
     /// <param name="ZCalendar">Sets the calendar system to use with `z` date data.</param>
     /// <param name="UIRevision">Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.</param>
-    static member Scatter3d
+    static member Scatter3D
         (   
             [<Optional;DefaultParameterValue(null)>] ?Name               : string,
             [<Optional;DefaultParameterValue(null)>] ?Visible            : StyleParam.Visible,
@@ -124,15 +129,19 @@ type Trace3DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Y                  : seq<#IConvertible>,
             [<Optional;DefaultParameterValue(null)>] ?Z                  : seq<#IConvertible>,
             [<Optional;DefaultParameterValue(null)>] ?SurfaceColor       : Color,
-            [<Optional;DefaultParameterValue(null)>] ?Text               : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?Text               : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?MultiText          : seq<#IConvertible>,
             [<Optional;DefaultParameterValue(null)>] ?TextPosition       : StyleParam.TextPosition,
+            [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition  : seq<StyleParam.TextPosition>,
             [<Optional;DefaultParameterValue(null)>] ?TextTemplate       : string,
-            [<Optional;DefaultParameterValue(null)>] ?HoverText          : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?HoverInfo          : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiTextTemplate  : seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverText          : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiHoverText     : seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverInfo          : StyleParam.HoverInfo,
             [<Optional;DefaultParameterValue(null)>] ?HoverTemplate      : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiHoverTemplate : seq<string>,
             [<Optional;DefaultParameterValue(null)>] ?XHoverFormat       : string,
             [<Optional;DefaultParameterValue(null)>] ?YHoverFormat       : string,
-            [<Optional;DefaultParameterValue(null)>] ?ZHoverFormat       : string,
             [<Optional;DefaultParameterValue(null)>] ?Meta               : string,
             [<Optional;DefaultParameterValue(null)>] ?CustomData         : seq<#IConvertible>,
             [<Optional;DefaultParameterValue(null)>] ?Scene              : StyleParam.SubPlotId,
@@ -142,6 +151,7 @@ type Trace3DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?ErrorX             : Error,
             [<Optional;DefaultParameterValue(null)>] ?ErrorY             : Error,
             [<Optional;DefaultParameterValue(null)>] ?ErrorZ             : Error,
+            [<Optional;DefaultParameterValue(null)>] ?ZHoverFormat       : string,
             [<Optional;DefaultParameterValue(null)>] ?ConnectGaps        : bool,
             [<Optional;DefaultParameterValue(null)>] ?Hoverlabel         : Hoverlabel,
             [<Optional;DefaultParameterValue(null)>] ?Projection         : Projection,
@@ -154,45 +164,45 @@ type Trace3DStyle() =
 
             (fun (scatter: #Trace) ->
                 
-                Name                |> DynObj.setValueOpt scatter "name"
-                Visible             |> DynObj.setValueOptBy scatter "visible" StyleParam.Visible.convert
-                ShowLegend          |> DynObj.setValueOpt scatter "showlegend"
-                LegendRank          |> DynObj.setValueOpt scatter "legendrank"
-                LegendGroup         |> DynObj.setValueOpt scatter "legendgroup"
-                LegendGroupTitle    |> DynObj.setValueOpt scatter "legendgrouptitle"
-                Mode                |> DynObj.setValueOptBy scatter "mode" StyleParam.Mode.convert
-                Opacity             |> DynObj.setValueOpt scatter "opacity"
-                Ids                 |> DynObj.setValueOpt scatter "ids"
-                X                   |> DynObj.setValueOpt scatter "x"
-                Y                   |> DynObj.setValueOpt scatter "y"
-                Z                   |> DynObj.setValueOpt scatter "z"
-                SurfaceColor        |> DynObj.setValueOpt scatter "surfacecolor"
-                Text                |> DynObj.setValueOpt scatter "text"
-                TextPosition        |> DynObj.setValueOptBy scatter "textposition" StyleParam.TextPosition.convert
-                TextTemplate        |> DynObj.setValueOpt scatter "texttemplate"
-                HoverText           |> DynObj.setValueOpt scatter "hovertext"
-                HoverInfo           |> DynObj.setValueOpt scatter "hoverinfo"
-                HoverTemplate       |> DynObj.setValueOpt scatter "hovertemplate"
-                XHoverFormat        |> DynObj.setValueOpt scatter "xhoverformat"
-                YHoverFormat        |> DynObj.setValueOpt scatter "yhoverformat"
-                ZHoverFormat        |> DynObj.setValueOpt scatter "zhoverformat"
-                Meta                |> DynObj.setValueOpt scatter "meta"
-                CustomData          |> DynObj.setValueOpt scatter "customdata"
-                Scene               |> DynObj.setValueOptBy scatter "scene" StyleParam.SubPlotId.convert
-                Marker              |> DynObj.setValueOpt scatter "marker"
-                Line                |> DynObj.setValueOpt scatter "line"
-                TextFont            |> DynObj.setValueOpt scatter "textfont"
-                ErrorX              |> DynObj.setValueOpt scatter "errorx"
-                ErrorY              |> DynObj.setValueOpt scatter "errory"
-                ErrorZ              |> DynObj.setValueOpt scatter "errorz"
-                ConnectGaps         |> DynObj.setValueOpt scatter "connectgaps"
-                Hoverlabel          |> DynObj.setValueOpt scatter "hoverlabel"
-                Projection          |> DynObj.setValueOpt scatter "projection"
-                Surfaceaxis         |> DynObj.setValueOptBy scatter "surfaceaxis" StyleParam.SurfaceAxis.convert
-                XCalendar           |> DynObj.setValueOptBy scatter "xcalendar" StyleParam.Calendar.convert
-                YCalendar           |> DynObj.setValueOptBy scatter "ycalendar" StyleParam.Calendar.convert
-                ZCalendar           |> DynObj.setValueOptBy scatter "zcalendar" StyleParam.Calendar.convert
-                UIRevision          |> DynObj.setValueOpt scatter "uirevision"
+                Name                                |> DynObj.setValueOpt scatter "name"
+                Visible                             |> DynObj.setValueOptBy scatter "visible" StyleParam.Visible.convert
+                ShowLegend                          |> DynObj.setValueOpt scatter "showlegend"
+                LegendRank                          |> DynObj.setValueOpt scatter "legendrank"
+                LegendGroup                         |> DynObj.setValueOpt scatter "legendgroup"
+                LegendGroupTitle                    |> DynObj.setValueOpt scatter "legendgrouptitle"
+                Mode                                |> DynObj.setValueOptBy scatter "mode" StyleParam.Mode.convert
+                Opacity                             |> DynObj.setValueOpt scatter "opacity"
+                Ids                                 |> DynObj.setValueOpt scatter "ids"
+                X                                   |> DynObj.setValueOpt scatter "x"
+                Y                                   |> DynObj.setValueOpt scatter "y"
+                Z                                   |> DynObj.setValueOpt scatter "z"
+                SurfaceColor                        |> DynObj.setValueOpt scatter "surfacecolor"
+                (Text, MultiText)                   |> DynObj.setSingleOrMultiOpt scatter "text"
+                (TextPosition, MultiTextPosition)   |> DynObj.setSingleOrMultiOptBy scatter "textposition" StyleParam.TextPosition.convert
+                (TextTemplate, MultiTextTemplate)   |> DynObj.setSingleOrMultiOpt scatter "texttemplate"
+                (HoverText, MultiHoverText)         |> DynObj.setSingleOrMultiOpt scatter "hovertext"
+                HoverInfo                           |> DynObj.setValueOptBy scatter "hoverinfo" StyleParam.HoverInfo.convert
+                (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt scatter "hovertemplate"
+                XHoverFormat                        |> DynObj.setValueOpt scatter "xhoverformat"
+                YHoverFormat                        |> DynObj.setValueOpt scatter "yhoverformat"
+                ZHoverFormat                        |> DynObj.setValueOpt scatter "zhoverformat"
+                Meta                                |> DynObj.setValueOpt scatter "meta"
+                CustomData                          |> DynObj.setValueOpt scatter "customdata"
+                Scene                               |> DynObj.setValueOptBy scatter "scene" StyleParam.SubPlotId.convert
+                Marker                              |> DynObj.setValueOpt scatter "marker"
+                Line                                |> DynObj.setValueOpt scatter "line"
+                TextFont                            |> DynObj.setValueOpt scatter "textfont"
+                ErrorX                              |> DynObj.setValueOpt scatter "errorx"
+                ErrorY                              |> DynObj.setValueOpt scatter "errory"
+                ErrorZ                              |> DynObj.setValueOpt scatter "errorz"
+                ConnectGaps                         |> DynObj.setValueOpt scatter "connectgaps"
+                Hoverlabel                          |> DynObj.setValueOpt scatter "hoverlabel"
+                Projection                          |> DynObj.setValueOpt scatter "projection"
+                Surfaceaxis                         |> DynObj.setValueOptBy scatter "surfaceaxis" StyleParam.SurfaceAxis.convert
+                XCalendar                           |> DynObj.setValueOptBy scatter "xcalendar" StyleParam.Calendar.convert
+                YCalendar                           |> DynObj.setValueOptBy scatter "ycalendar" StyleParam.Calendar.convert
+                ZCalendar                           |> DynObj.setValueOptBy scatter "zcalendar" StyleParam.Calendar.convert
+                UIRevision                          |> DynObj.setValueOpt scatter "uirevision"
 
                 scatter
             )
@@ -215,9 +225,12 @@ type Trace3DStyle() =
     /// <param name="Z">Sets the z coordinates.</param>
     /// <param name="SurfaceColor">Sets the surface color values, used for setting a color scale independent of `z`.</param>
     /// <param name="Text">Sets the text elements associated with each z value. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+    /// <param name="MultiText">Sets the text elements associated with each z value. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
     /// <param name="HoverText">Same as `text`.</param>
+    /// <param name="MultiHoverText">Same as `text`.</param>
     /// <param name="HoverInfo">Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.</param>
     /// <param name="HoverTemplate">Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, "xother" will be added to those with different x positions from the first point. An underscore before or after "(x|y)other" will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `&lt;extra&gt;` is displayed in the secondary box, for example "&lt;extra&gt;{fullData.name}&lt;/extra&gt;". To hide the secondary box completely, use an empty tag `&lt;extra&gt;&lt;/extra&gt;`.</param>
+    /// <param name="MultiHoverTemplate">Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, "xother" will be added to those with different x positions from the first point. An underscore before or after "(x|y)other" will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `&lt;extra&gt;` is displayed in the secondary box, for example "&lt;extra&gt;{fullData.name}&lt;/extra&gt;". To hide the secondary box completely, use an empty tag `&lt;extra&gt;&lt;/extra&gt;`.</param>
     /// <param name="XHoverFormat">Sets the hover text formatting rulefor `x` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"By default the values are formatted using `xaxis.hoverformat`.</param>
     /// <param name="YHoverFormat">Sets the hover text formatting rulefor `y` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"By default the values are formatted using `yaxis.hoverformat`.</param>
     /// <param name="ZHoverFormat">Sets the hover text formatting rulefor `z` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"By default the values are formatted using `zaxis.hoverformat`.</param>
@@ -259,13 +272,15 @@ type Trace3DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Y                  : seq<#IConvertible>,
             [<Optional;DefaultParameterValue(null)>] ?Z                  : seq<#seq<#IConvertible>>,
             [<Optional;DefaultParameterValue(null)>] ?SurfaceColor       : Color,
-            [<Optional;DefaultParameterValue(null)>] ?Text               : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?HoverText          : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?HoverInfo          : string,
+            [<Optional;DefaultParameterValue(null)>] ?Text               : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?MultiText          : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverText          : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiHoverText     : seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverInfo          : StyleParam.HoverInfo,
             [<Optional;DefaultParameterValue(null)>] ?HoverTemplate      : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiHoverTemplate : seq<string>,
             [<Optional;DefaultParameterValue(null)>] ?XHoverFormat       : string,
             [<Optional;DefaultParameterValue(null)>] ?YHoverFormat       : string,
-            [<Optional;DefaultParameterValue(null)>] ?ZHoverFormat       : string,
             [<Optional;DefaultParameterValue(null)>] ?Meta               : string,
             [<Optional;DefaultParameterValue(null)>] ?CustomData         : seq<#IConvertible>,
             [<Optional;DefaultParameterValue(null)>] ?Scene              : StyleParam.SubPlotId,
@@ -275,10 +290,11 @@ type Trace3DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?ColorScale         : StyleParam.Colorscale,
             [<Optional;DefaultParameterValue(null)>] ?ShowScale          : bool,
             [<Optional;DefaultParameterValue(null)>] ?ReverseScale       : bool,
+            [<Optional;DefaultParameterValue(null)>] ?ZHoverFormat       : string,
             [<Optional;DefaultParameterValue(null)>] ?CAuto              : bool,
-            [<Optional;DefaultParameterValue(null)>] ?CMin               : float,
-            [<Optional;DefaultParameterValue(null)>] ?CMid               : float,
             [<Optional;DefaultParameterValue(null)>] ?CMax               : float,
+            [<Optional;DefaultParameterValue(null)>] ?CMid               : float,
+            [<Optional;DefaultParameterValue(null)>] ?CMin               : float,
             [<Optional;DefaultParameterValue(null)>] ?ConnectGaps        : bool,
             [<Optional;DefaultParameterValue(null)>] ?Contours           : Contours,
             [<Optional;DefaultParameterValue(null)>] ?HideSurface        : bool,
@@ -293,49 +309,49 @@ type Trace3DStyle() =
         ) =
             (fun (surface: #Trace) -> 
 
-                Name               |> DynObj.setValueOpt surface "name"
-                Visible            |> DynObj.setValueOptBy surface "visible" StyleParam.Visible.convert
-                ShowLegend         |> DynObj.setValueOpt surface "showlegend"
-                LegendRank         |> DynObj.setValueOpt surface "legendrank"
-                LegendGroup        |> DynObj.setValueOpt surface "legendgroup"
-                LegendGroupTitle   |> DynObj.setValueOpt surface "legendgrouptitle"
-                Opacity            |> DynObj.setValueOpt surface "opacity"
-                Ids                |> DynObj.setValueOpt surface "ids"
-                X                  |> DynObj.setValueOpt surface "x"
-                Y                  |> DynObj.setValueOpt surface "y"
-                Z                  |> DynObj.setValueOpt surface "z"
-                SurfaceColor       |> DynObj.setValueOpt surface "surfacecolor"
-                Text               |> DynObj.setValueOpt surface "text"
-                HoverText          |> DynObj.setValueOpt surface "hovertext"
-                HoverInfo          |> DynObj.setValueOpt surface "hoverinfo"
-                HoverTemplate      |> DynObj.setValueOpt surface "hovertemplate"
-                XHoverFormat       |> DynObj.setValueOpt surface "xhoverformat"
-                YHoverFormat       |> DynObj.setValueOpt surface "yhoverformat"
-                ZHoverFormat       |> DynObj.setValueOpt surface "zhoverformat"
-                Meta               |> DynObj.setValueOpt surface "meta"
-                CustomData         |> DynObj.setValueOpt surface "customdata"
-                Scene              |> DynObj.setValueOptBy surface "scene" StyleParam.SubPlotId.convert
-                ColorAxis          |> DynObj.setValueOptBy surface "coloraxis" StyleParam.SubPlotId.convert
-                ColorBar           |> DynObj.setValueOpt surface "colorbar"
-                AutoColorScale     |> DynObj.setValueOpt surface "autocolorscale"
-                ColorScale         |> DynObj.setValueOptBy surface "colorscale" StyleParam.Colorscale.convert
-                ShowScale          |> DynObj.setValueOpt surface "showscale"
-                ReverseScale       |> DynObj.setValueOpt surface "reversescale"
-                CAuto              |> DynObj.setValueOpt surface "cauto"
-                CMin               |> DynObj.setValueOpt surface "cmin"
-                CMid               |> DynObj.setValueOpt surface "cmid"
-                CMax               |> DynObj.setValueOpt surface "cmax"
-                ConnectGaps        |> DynObj.setValueOpt surface "connectgaps"
-                Contours           |> DynObj.setValueOpt surface "contours"
-                HideSurface        |> DynObj.setValueOpt surface "hidesurface"
-                Hoverlabel         |> DynObj.setValueOpt surface "hoverlabel"
-                Lighting           |> DynObj.setValueOpt surface "lighting"
-                LightPosition      |> DynObj.setValueOpt surface "lightposition"
-                OpacityScale       |> DynObj.setValueOpt surface "opacityscale"
-                XCalendar          |> DynObj.setValueOptBy surface "xcalendar" StyleParam.Calendar.convert
-                YCalendar          |> DynObj.setValueOptBy surface "ycalendar" StyleParam.Calendar.convert
-                ZCalendar          |> DynObj.setValueOptBy surface "zcalendar" StyleParam.Calendar.convert
-                UIRevision         |> DynObj.setValueOpt surface "uirevision"
+                Name                                |> DynObj.setValueOpt surface "name"
+                Visible                             |> DynObj.setValueOptBy surface "visible" StyleParam.Visible.convert
+                ShowLegend                          |> DynObj.setValueOpt surface "showlegend"
+                LegendRank                          |> DynObj.setValueOpt surface "legendrank"
+                LegendGroup                         |> DynObj.setValueOpt surface "legendgroup"
+                LegendGroupTitle                    |> DynObj.setValueOpt surface "legendgrouptitle"
+                Opacity                             |> DynObj.setValueOpt surface "opacity"
+                Ids                                 |> DynObj.setValueOpt surface "ids"
+                X                                   |> DynObj.setValueOpt surface "x"
+                Y                                   |> DynObj.setValueOpt surface "y"
+                Z                                   |> DynObj.setValueOpt surface "z"
+                SurfaceColor                        |> DynObj.setValueOpt surface "surfacecolor"
+                (Text, MultiText)                   |> DynObj.setSingleOrMultiOpt surface "text"
+                (HoverText, MultiHoverText)         |> DynObj.setSingleOrMultiOpt surface "hovertext"
+                HoverInfo                           |> DynObj.setValueOptBy surface "hoverinfo" StyleParam.HoverInfo.convert
+                (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt surface "hovertemplate"
+                XHoverFormat                        |> DynObj.setValueOpt surface "xhoverformat"
+                YHoverFormat                        |> DynObj.setValueOpt surface "yhoverformat"
+                ZHoverFormat                        |> DynObj.setValueOpt surface "zhoverformat"
+                Meta                                |> DynObj.setValueOpt surface "meta"
+                CustomData                          |> DynObj.setValueOpt surface "customdata"
+                Scene                               |> DynObj.setValueOptBy surface "scene" StyleParam.SubPlotId.convert
+                ColorAxis                           |> DynObj.setValueOptBy surface "coloraxis" StyleParam.SubPlotId.convert
+                ColorBar                            |> DynObj.setValueOpt surface "colorbar"
+                AutoColorScale                      |> DynObj.setValueOpt surface "autocolorscale"
+                ColorScale                          |> DynObj.setValueOptBy surface "colorscale" StyleParam.Colorscale.convert
+                ShowScale                           |> DynObj.setValueOpt surface "showscale"
+                ReverseScale                        |> DynObj.setValueOpt surface "reversescale"
+                CAuto                               |> DynObj.setValueOpt surface "cauto"
+                CMin                                |> DynObj.setValueOpt surface "cmin"
+                CMid                                |> DynObj.setValueOpt surface "cmid"
+                CMax                                |> DynObj.setValueOpt surface "cmax"
+                ConnectGaps                         |> DynObj.setValueOpt surface "connectgaps"
+                Contours                            |> DynObj.setValueOpt surface "contours"
+                HideSurface                         |> DynObj.setValueOpt surface "hidesurface"
+                Hoverlabel                          |> DynObj.setValueOpt surface "hoverlabel"
+                Lighting                            |> DynObj.setValueOpt surface "lighting"
+                LightPosition                       |> DynObj.setValueOpt surface "lightposition"
+                OpacityScale                        |> DynObj.setValueOpt surface "opacityscale"
+                XCalendar                           |> DynObj.setValueOptBy surface "xcalendar" StyleParam.Calendar.convert
+                YCalendar                           |> DynObj.setValueOptBy surface "ycalendar" StyleParam.Calendar.convert
+                ZCalendar                           |> DynObj.setValueOptBy surface "zcalendar" StyleParam.Calendar.convert
+                UIRevision                          |> DynObj.setValueOpt surface "uirevision"
                     
                 surface 
             )
@@ -363,9 +379,12 @@ type Trace3DStyle() =
     /// <param name="IntensityMode">Determines the source of `intensity` values.</param>
     /// <param name="VertexColor">Sets the color of each vertex Overrides "color". While Red, green and blue colors are in the range of 0 and 255; in the case of having vertex color data in RGBA format, the alpha color should be normalized to be between 0 and 1.</param>
     /// <param name="Text">Sets the text elements associated with the vertices. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+    /// <param name="MultiText">Sets the text elements associated with the vertices. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
     /// <param name="HoverText">Same as `text`.</param>
+    /// <param name="MultiHoverText">Same as `text`.</param>
     /// <param name="HoverInfo">Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.</param>
     /// <param name="HoverTemplate">Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, "xother" will be added to those with different x positions from the first point. An underscore before or after "(x|y)other" will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `&lt;extra&gt;` is displayed in the secondary box, for example "&lt;extra&gt;{fullData.name}&lt;/extra&gt;". To hide the secondary box completely, use an empty tag `&lt;extra&gt;&lt;/extra&gt;`.</param>
+    /// <param name="MultiHoverTemplate">Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, "xother" will be added to those with different x positions from the first point. An underscore before or after "(x|y)other" will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `&lt;extra&gt;` is displayed in the secondary box, for example "&lt;extra&gt;{fullData.name}&lt;/extra&gt;". To hide the secondary box completely, use an empty tag `&lt;extra&gt;&lt;/extra&gt;`.</param>
     /// <param name="XHoverFormat">Sets the hover text formatting rulefor `x` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"By default the values are formatted using `xaxis.hoverformat`.</param>
     /// <param name="YHoverFormat">Sets the hover text formatting rulefor `y` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"By default the values are formatted using `yaxis.hoverformat`.</param>
     /// <param name="ZHoverFormat">Sets the hover text formatting rulefor `z` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"By default the values are formatted using `zaxis.hoverformat`.</param>
@@ -394,7 +413,7 @@ type Trace3DStyle() =
     /// <param name="YCalendar">Sets the calendar system to use with `y` date data.</param>
     /// <param name="ZCalendar">Sets the calendar system to use with `z` date data.</param>
     /// <param name="UIRevision">Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.</param>
-    static member Mesh3d
+    static member Mesh3D
         (   
             [<Optional;DefaultParameterValue(null)>] ?Name               : string,
             [<Optional;DefaultParameterValue(null)>] ?Visible            : StyleParam.Visible,
@@ -414,13 +433,15 @@ type Trace3DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Intensity          : seq<#IConvertible>,
             [<Optional;DefaultParameterValue(null)>] ?IntensityMode      : StyleParam.IntensityMode,
             [<Optional;DefaultParameterValue(null)>] ?VertexColor        : Color,
-            [<Optional;DefaultParameterValue(null)>] ?Text               : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?HoverText          : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?HoverInfo          : string,
+            [<Optional;DefaultParameterValue(null)>] ?Text               : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?MultiText          : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverText          : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiHoverText     : seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverInfo          : StyleParam.HoverInfo,
             [<Optional;DefaultParameterValue(null)>] ?HoverTemplate      : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiHoverTemplate : seq<string>,
             [<Optional;DefaultParameterValue(null)>] ?XHoverFormat       : string,
             [<Optional;DefaultParameterValue(null)>] ?YHoverFormat       : string,
-            [<Optional;DefaultParameterValue(null)>] ?ZHoverFormat       : string,
             [<Optional;DefaultParameterValue(null)>] ?Meta               : string,
             [<Optional;DefaultParameterValue(null)>] ?CustomData         : seq<#IConvertible>,
             [<Optional;DefaultParameterValue(null)>] ?Scene              : StyleParam.SubPlotId,
@@ -431,10 +452,11 @@ type Trace3DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?ColorScale         : StyleParam.Colorscale,
             [<Optional;DefaultParameterValue(null)>] ?ShowScale          : bool,
             [<Optional;DefaultParameterValue(null)>] ?ReverseScale       : bool,
+            [<Optional;DefaultParameterValue(null)>] ?ZHoverFormat       : string,
             [<Optional;DefaultParameterValue(null)>] ?CAuto              : bool,
-            [<Optional;DefaultParameterValue(null)>] ?CMin               : float,
-            [<Optional;DefaultParameterValue(null)>] ?CMid               : float,
             [<Optional;DefaultParameterValue(null)>] ?CMax               : float,
+            [<Optional;DefaultParameterValue(null)>] ?CMid               : float,
+            [<Optional;DefaultParameterValue(null)>] ?CMin               : float,
             [<Optional;DefaultParameterValue(null)>] ?AlphaHull          : float,
             [<Optional;DefaultParameterValue(null)>] ?Delaunayaxis       : StyleParam.Delaunayaxis, 
             [<Optional;DefaultParameterValue(null)>] ?Contour            : Contour,
@@ -450,56 +472,56 @@ type Trace3DStyle() =
 
             fun (mesh3d: #Trace) ->
 
-                    Name               |> DynObj.setValueOpt mesh3d "name"
-                    Visible            |> DynObj.setValueOptBy mesh3d "visible" StyleParam.Visible.convert
-                    ShowLegend         |> DynObj.setValueOpt mesh3d "showlegend"
-                    LegendRank         |> DynObj.setValueOpt mesh3d "legendrank"
-                    LegendGroup        |> DynObj.setValueOpt mesh3d "legendgroup"
-                    LegendGroupTitle   |> DynObj.setValueOpt mesh3d "legendgrouptitle"
-                    Opacity            |> DynObj.setValueOpt mesh3d "opacity"
-                    Ids                |> DynObj.setValueOpt mesh3d "ids"
-                    X                  |> DynObj.setValueOpt mesh3d "x"
-                    Y                  |> DynObj.setValueOpt mesh3d "y"
-                    Z                  |> DynObj.setValueOpt mesh3d "z"
-                    I                  |> DynObj.setValueOpt mesh3d "i"
-                    J                  |> DynObj.setValueOpt mesh3d "j"
-                    K                  |> DynObj.setValueOpt mesh3d "k"
-                    FaceColor          |> DynObj.setValueOpt mesh3d "facecolor"
-                    Intensity          |> DynObj.setValueOpt mesh3d "intensity"
-                    IntensityMode      |> DynObj.setValueOptBy mesh3d "intensitymode" StyleParam.IntensityMode.convert
-                    VertexColor        |> DynObj.setValueOpt mesh3d "vertexcolor"
-                    Text               |> DynObj.setValueOpt mesh3d "text"
-                    HoverText          |> DynObj.setValueOpt mesh3d "hovertext"
-                    HoverInfo          |> DynObj.setValueOpt mesh3d "hoverinfo"
-                    HoverTemplate      |> DynObj.setValueOpt mesh3d "hovertemplate"
-                    XHoverFormat       |> DynObj.setValueOpt mesh3d "xhoverformat"
-                    YHoverFormat       |> DynObj.setValueOpt mesh3d "yhoverformat"
-                    ZHoverFormat       |> DynObj.setValueOpt mesh3d "zhoverformat"
-                    Meta               |> DynObj.setValueOpt mesh3d "meta"
-                    CustomData         |> DynObj.setValueOpt mesh3d "customdata"
-                    Scene              |> DynObj.setValueOptBy mesh3d "scene" StyleParam.SubPlotId.convert
-                    Color              |> DynObj.setValueOpt mesh3d "color"
-                    ColorAxis          |> DynObj.setValueOptBy mesh3d "coloraxis" StyleParam.SubPlotId.convert
-                    ColorBar           |> DynObj.setValueOpt mesh3d "colorbar"
-                    AutoColorScale     |> DynObj.setValueOpt mesh3d "autocolorscale"
-                    ColorScale         |> DynObj.setValueOptBy mesh3d "colorscale" StyleParam.Colorscale.convert
-                    ShowScale          |> DynObj.setValueOpt mesh3d "showscale"
-                    ReverseScale       |> DynObj.setValueOpt mesh3d "reversescale"
-                    CAuto              |> DynObj.setValueOpt mesh3d "cauto"
-                    CMin               |> DynObj.setValueOpt mesh3d "cmin"
-                    CMid               |> DynObj.setValueOpt mesh3d "cmid"
-                    CMax               |> DynObj.setValueOpt mesh3d "cmax"
-                    AlphaHull          |> DynObj.setValueOpt mesh3d "alphahull"
-                    Delaunayaxis       |> DynObj.setValueOptBy mesh3d "delaunayaxis" StyleParam.Delaunayaxis.convert
-                    Contour            |> DynObj.setValueOpt mesh3d "contour"
-                    FlatShading        |> DynObj.setValueOpt mesh3d "flatshading"
-                    Hoverlabel         |> DynObj.setValueOpt mesh3d "hoverlabel"
-                    Lighting           |> DynObj.setValueOpt mesh3d "lighting"
-                    LightPosition      |> DynObj.setValueOpt mesh3d "lightposition"
-                    XCalendar          |> DynObj.setValueOptBy mesh3d "xcalendar" StyleParam.Calendar.convert
-                    YCalendar          |> DynObj.setValueOptBy mesh3d "ycalendar" StyleParam.Calendar.convert
-                    ZCalendar          |> DynObj.setValueOptBy mesh3d "zcalendar" StyleParam.Calendar.convert
-                    UIRevision         |> DynObj.setValueOpt mesh3d "uirevision"
+                    Name                                |> DynObj.setValueOpt mesh3d "name"
+                    Visible                             |> DynObj.setValueOptBy mesh3d "visible" StyleParam.Visible.convert
+                    ShowLegend                          |> DynObj.setValueOpt mesh3d "showlegend"
+                    LegendRank                          |> DynObj.setValueOpt mesh3d "legendrank"
+                    LegendGroup                         |> DynObj.setValueOpt mesh3d "legendgroup"
+                    LegendGroupTitle                    |> DynObj.setValueOpt mesh3d "legendgrouptitle"
+                    Opacity                             |> DynObj.setValueOpt mesh3d "opacity"
+                    Ids                                 |> DynObj.setValueOpt mesh3d "ids"
+                    X                                   |> DynObj.setValueOpt mesh3d "x"
+                    Y                                   |> DynObj.setValueOpt mesh3d "y"
+                    Z                                   |> DynObj.setValueOpt mesh3d "z"
+                    I                                   |> DynObj.setValueOpt mesh3d "i"
+                    J                                   |> DynObj.setValueOpt mesh3d "j"
+                    K                                   |> DynObj.setValueOpt mesh3d "k"
+                    FaceColor                           |> DynObj.setValueOpt mesh3d "facecolor"
+                    Intensity                           |> DynObj.setValueOpt mesh3d "intensity"
+                    IntensityMode                       |> DynObj.setValueOptBy mesh3d "intensitymode" StyleParam.IntensityMode.convert
+                    VertexColor                         |> DynObj.setValueOpt mesh3d "vertexcolor"
+                    (Text, MultiText)                   |> DynObj.setSingleOrMultiOpt mesh3d "text"
+                    (HoverText, MultiHoverText)         |> DynObj.setSingleOrMultiOpt mesh3d "hovertext"
+                    HoverInfo                           |> DynObj.setValueOptBy mesh3d "hoverinfo" StyleParam.HoverInfo.convert
+                    (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt mesh3d "hovertemplate"
+                    XHoverFormat                        |> DynObj.setValueOpt mesh3d "xhoverformat"
+                    YHoverFormat                        |> DynObj.setValueOpt mesh3d "yhoverformat"
+                    ZHoverFormat                        |> DynObj.setValueOpt mesh3d "zhoverformat"
+                    Meta                                |> DynObj.setValueOpt mesh3d "meta"
+                    CustomData                          |> DynObj.setValueOpt mesh3d "customdata"
+                    Scene                               |> DynObj.setValueOptBy mesh3d "scene" StyleParam.SubPlotId.convert
+                    Color                               |> DynObj.setValueOpt mesh3d "color"
+                    ColorAxis                           |> DynObj.setValueOptBy mesh3d "coloraxis" StyleParam.SubPlotId.convert
+                    ColorBar                            |> DynObj.setValueOpt mesh3d "colorbar"
+                    AutoColorScale                      |> DynObj.setValueOpt mesh3d "autocolorscale"
+                    ColorScale                          |> DynObj.setValueOptBy mesh3d "colorscale" StyleParam.Colorscale.convert
+                    ShowScale                           |> DynObj.setValueOpt mesh3d "showscale"
+                    ReverseScale                        |> DynObj.setValueOpt mesh3d "reversescale"
+                    CAuto                               |> DynObj.setValueOpt mesh3d "cauto"
+                    CMin                                |> DynObj.setValueOpt mesh3d "cmin"
+                    CMid                                |> DynObj.setValueOpt mesh3d "cmid"
+                    CMax                                |> DynObj.setValueOpt mesh3d "cmax"
+                    AlphaHull                           |> DynObj.setValueOpt mesh3d "alphahull"
+                    Delaunayaxis                        |> DynObj.setValueOptBy mesh3d "delaunayaxis" StyleParam.Delaunayaxis.convert
+                    Contour                             |> DynObj.setValueOpt mesh3d "contour"
+                    FlatShading                         |> DynObj.setValueOpt mesh3d "flatshading"
+                    Hoverlabel                          |> DynObj.setValueOpt mesh3d "hoverlabel"
+                    Lighting                            |> DynObj.setValueOpt mesh3d "lighting"
+                    LightPosition                       |> DynObj.setValueOpt mesh3d "lightposition"
+                    XCalendar                           |> DynObj.setValueOptBy mesh3d "xcalendar" StyleParam.Calendar.convert
+                    YCalendar                           |> DynObj.setValueOptBy mesh3d "ycalendar" StyleParam.Calendar.convert
+                    ZCalendar                           |> DynObj.setValueOptBy mesh3d "zcalendar" StyleParam.Calendar.convert
+                    UIRevision                          |> DynObj.setValueOpt mesh3d "uirevision"
 
                     mesh3d
                 
@@ -522,9 +544,12 @@ type Trace3DStyle() =
     /// <param name="V">Sets the y components of the vector field.</param>
     /// <param name="W">Sets the z components of the vector field.</param>
     /// <param name="Text">Sets the text elements associated with the cones. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+    /// <param name="MultiText">Sets the text elements associated with the cones. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
     /// <param name="HoverText">Same as `text`.</param>
+    /// <param name="MultiHoverText">Same as `text`.</param>
     /// <param name="HoverInfo">Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.</param>
     /// <param name="HoverTemplate">Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, "xother" will be added to those with different x positions from the first point. An underscore before or after "(x|y)other" will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `&lt;extra&gt;` is displayed in the secondary box, for example "&lt;extra&gt;{fullData.name}&lt;/extra&gt;". To hide the secondary box completely, use an empty tag `&lt;extra&gt;&lt;/extra&gt;`.</param>
+    /// <param name="MultiHoverTemplate">Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, "xother" will be added to those with different x positions from the first point. An underscore before or after "(x|y)other" will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `&lt;extra&gt;` is displayed in the secondary box, for example "&lt;extra&gt;{fullData.name}&lt;/extra&gt;". To hide the secondary box completely, use an empty tag `&lt;extra&gt;&lt;/extra&gt;`.</param>
     /// <param name="XHoverFormat">Sets the hover text formatting rulefor `x` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"By default the values are formatted using `xaxis.hoverformat`.</param>
     /// <param name="YHoverFormat">Sets the hover text formatting rulefor `y` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"By default the values are formatted using `yaxis.hoverformat`.</param>
     /// <param name="ZHoverFormat">Sets the hover text formatting rulefor `z` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"By default the values are formatted using `zaxis.hoverformat`</param>
@@ -567,13 +592,15 @@ type Trace3DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?U                  : seq<#IConvertible>,
             [<Optional;DefaultParameterValue(null)>] ?V                  : seq<#IConvertible>,
             [<Optional;DefaultParameterValue(null)>] ?W                  : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?Text               : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?HoverText          : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?HoverInfo          : string,
+            [<Optional;DefaultParameterValue(null)>] ?Text               : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?MultiText          : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverText          : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiHoverText     : seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverInfo          : StyleParam.HoverInfo,
             [<Optional;DefaultParameterValue(null)>] ?HoverTemplate      : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiHoverTemplate : seq<string>,
             [<Optional;DefaultParameterValue(null)>] ?XHoverFormat       : string,
             [<Optional;DefaultParameterValue(null)>] ?YHoverFormat       : string,
-            [<Optional;DefaultParameterValue(null)>] ?ZHoverFormat       : string,
             [<Optional;DefaultParameterValue(null)>] ?UHoverFormat       : string,
             [<Optional;DefaultParameterValue(null)>] ?VHoverFormat       : string,
             [<Optional;DefaultParameterValue(null)>] ?WHoverFormat       : string,
@@ -586,10 +613,11 @@ type Trace3DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?ColorScale         : StyleParam.Colorscale,
             [<Optional;DefaultParameterValue(null)>] ?ShowScale          : bool,
             [<Optional;DefaultParameterValue(null)>] ?ReverseScale       : bool,
+            [<Optional;DefaultParameterValue(null)>] ?ZHoverFormat       : string,
             [<Optional;DefaultParameterValue(null)>] ?CAuto              : bool,
-            [<Optional;DefaultParameterValue(null)>] ?CMin               : float,
-            [<Optional;DefaultParameterValue(null)>] ?CMid               : float,
             [<Optional;DefaultParameterValue(null)>] ?CMax               : float,
+            [<Optional;DefaultParameterValue(null)>] ?CMid               : float,
+            [<Optional;DefaultParameterValue(null)>] ?CMin               : float,
             [<Optional;DefaultParameterValue(null)>] ?Anchor             : StyleParam.ConeAnchor,
             [<Optional;DefaultParameterValue(null)>] ?HoverLabel         : Hoverlabel,
             [<Optional;DefaultParameterValue(null)>] ?Lighting           : Lighting,
@@ -600,50 +628,50 @@ type Trace3DStyle() =
 
         ) =
             (fun (cone: #Trace) -> 
-                Name                |> DynObj.setValueOpt cone "name"
-                Visible             |> DynObj.setValueOptBy cone "visible" StyleParam.Visible.convert
-                ShowLegend          |> DynObj.setValueOpt cone "showlegend"
-                LegendRank          |> DynObj.setValueOpt cone "legendrank"
-                LegendGroup         |> DynObj.setValueOpt cone "legendgroup"
-                LegendGroupTitle    |> DynObj.setValueOpt cone "legendgrouptitle"
-                Opacity             |> DynObj.setValueOpt cone "opacity"
-                Ids                 |> DynObj.setValueOpt cone "ids"
-                X                   |> DynObj.setValueOpt cone "x"
-                Y                   |> DynObj.setValueOpt cone "y"
-                Z                   |> DynObj.setValueOpt cone "z"
-                U                   |> DynObj.setValueOpt cone "u"
-                V                   |> DynObj.setValueOpt cone "v"
-                W                   |> DynObj.setValueOpt cone "w"
-                Text                |> DynObj.setValueOpt cone "text"
-                HoverText           |> DynObj.setValueOpt cone "hovertext"
-                HoverInfo           |> DynObj.setValueOpt cone "hoverinfo"
-                HoverTemplate       |> DynObj.setValueOpt cone "hovertemplate"
-                XHoverFormat        |> DynObj.setValueOpt cone "xhoverformat"
-                YHoverFormat        |> DynObj.setValueOpt cone "yhoverformat"
-                ZHoverFormat        |> DynObj.setValueOpt cone "zhoverformat"
-                UHoverFormat        |> DynObj.setValueOpt cone "uhoverformat"
-                VHoverFormat        |> DynObj.setValueOpt cone "vhoverformat"
-                WHoverFormat        |> DynObj.setValueOpt cone "whoverformat"
-                Meta                |> DynObj.setValueOpt cone "meta"
-                CustomData          |> DynObj.setValueOpt cone "customdata"
-                Scene               |> DynObj.setValueOptBy cone "scene" StyleParam.SubPlotId.convert
-                ColorAxis           |> DynObj.setValueOptBy cone "scene" StyleParam.SubPlotId.convert
-                ColorBar            |> DynObj.setValueOpt cone "colorbar"
-                AutoColorScale      |> DynObj.setValueOpt cone "autocolorscale"
-                ColorScale          |> DynObj.setValueOptBy cone "colorscale" StyleParam.Colorscale.convert
-                ShowScale           |> DynObj.setValueOpt cone "showscale"
-                ReverseScale        |> DynObj.setValueOpt cone "reversescale"
-                CAuto               |> DynObj.setValueOpt cone "cauto"
-                CMin                |> DynObj.setValueOpt cone "cmin"
-                CMid                |> DynObj.setValueOpt cone "cmid"
-                CMax                |> DynObj.setValueOpt cone "cmax"
-                Anchor              |> DynObj.setValueOptBy cone "anchor" StyleParam.ConeAnchor.convert
-                HoverLabel          |> DynObj.setValueOpt cone "hoverlabel"
-                Lighting            |> DynObj.setValueOpt cone "lighting"
-                LightPosition       |> DynObj.setValueOpt cone "lightposition"
-                SizeMode            |> DynObj.setValueOptBy cone "sizemode" StyleParam.ConeSizeMode.convert
-                SizeRef             |> DynObj.setValueOpt cone "sizeref"
-                UIRevision          |> DynObj.setValueOpt cone "uirevision"
+                Name                                |> DynObj.setValueOpt cone "name"
+                Visible                             |> DynObj.setValueOptBy cone "visible" StyleParam.Visible.convert
+                ShowLegend                          |> DynObj.setValueOpt cone "showlegend"
+                LegendRank                          |> DynObj.setValueOpt cone "legendrank"
+                LegendGroup                         |> DynObj.setValueOpt cone "legendgroup"
+                LegendGroupTitle                    |> DynObj.setValueOpt cone "legendgrouptitle"
+                Opacity                             |> DynObj.setValueOpt cone "opacity"
+                Ids                                 |> DynObj.setValueOpt cone "ids"
+                X                                   |> DynObj.setValueOpt cone "x"
+                Y                                   |> DynObj.setValueOpt cone "y"
+                Z                                   |> DynObj.setValueOpt cone "z"
+                U                                   |> DynObj.setValueOpt cone "u"
+                V                                   |> DynObj.setValueOpt cone "v"
+                W                                   |> DynObj.setValueOpt cone "w"
+                (Text, MultiText)                   |> DynObj.setSingleOrMultiOpt cone "text"
+                (HoverText, MultiHoverText)         |> DynObj.setSingleOrMultiOpt cone "hovertext"
+                HoverInfo                           |> DynObj.setValueOptBy cone "hoverinfo" StyleParam.HoverInfo.convert
+                (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt cone "hovertemplate"
+                XHoverFormat                        |> DynObj.setValueOpt cone "xhoverformat"
+                YHoverFormat                        |> DynObj.setValueOpt cone "yhoverformat"
+                ZHoverFormat                        |> DynObj.setValueOpt cone "zhoverformat"
+                UHoverFormat                        |> DynObj.setValueOpt cone "uhoverformat"
+                VHoverFormat                        |> DynObj.setValueOpt cone "vhoverformat"
+                WHoverFormat                        |> DynObj.setValueOpt cone "whoverformat"
+                Meta                                |> DynObj.setValueOpt cone "meta"
+                CustomData                          |> DynObj.setValueOpt cone "customdata"
+                Scene                               |> DynObj.setValueOptBy cone "scene" StyleParam.SubPlotId.convert
+                ColorAxis                           |> DynObj.setValueOptBy cone "scene" StyleParam.SubPlotId.convert
+                ColorBar                            |> DynObj.setValueOpt cone "colorbar"
+                AutoColorScale                      |> DynObj.setValueOpt cone "autocolorscale"
+                ColorScale                          |> DynObj.setValueOptBy cone "colorscale" StyleParam.Colorscale.convert
+                ShowScale                           |> DynObj.setValueOpt cone "showscale"
+                ReverseScale                        |> DynObj.setValueOpt cone "reversescale"
+                CAuto                               |> DynObj.setValueOpt cone "cauto"
+                CMin                                |> DynObj.setValueOpt cone "cmin"
+                CMid                                |> DynObj.setValueOpt cone "cmid"
+                CMax                                |> DynObj.setValueOpt cone "cmax"
+                Anchor                              |> DynObj.setValueOptBy cone "anchor" StyleParam.ConeAnchor.convert
+                HoverLabel                          |> DynObj.setValueOpt cone "hoverlabel"
+                Lighting                            |> DynObj.setValueOpt cone "lighting"
+                LightPosition                       |> DynObj.setValueOpt cone "lightposition"
+                SizeMode                            |> DynObj.setValueOptBy cone "sizemode" StyleParam.ConeSizeMode.convert
+                SizeRef                             |> DynObj.setValueOpt cone "sizeref"
+                UIRevision                          |> DynObj.setValueOpt cone "uirevision"
 
                 cone
             )
@@ -666,9 +694,12 @@ type Trace3DStyle() =
     /// <param name="V">Sets the y components of the vector field.</param>
     /// <param name="W">Sets the z components of the vector field.</param>
     /// <param name="Text">Sets a text element associated with this trace. If trace `hoverinfo` contains a "text" flag, this text element will be seen in all hover labels. Note that streamtube traces do not support array `text` values.</param>
+    /// <param name="MultiText">Sets a text element associated with this trace. If trace `hoverinfo` contains a "text" flag, this text element will be seen in all hover labels. Note that streamtube traces do not support array `text` values.</param>
     /// <param name="HoverText">Same as `text`.</param>
+    /// <param name="MultiHoverText">Same as `text`.</param>
     /// <param name="HoverInfo">Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.</param>
     /// <param name="HoverTemplate">Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, "xother" will be added to those with different x positions from the first point. An underscore before or after "(x|y)other" will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `&lt;extra&gt;` is displayed in the secondary box, for example "&lt;extra&gt;{fullData.name}&lt;/extra&gt;". To hide the secondary box completely, use an empty tag `&lt;extra&gt;&lt;/extra&gt;`.</param>
+    /// <param name="MultiHoverTemplate">Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, "xother" will be added to those with different x positions from the first point. An underscore before or after "(x|y)other" will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `&lt;extra&gt;` is displayed in the secondary box, for example "&lt;extra&gt;{fullData.name}&lt;/extra&gt;". To hide the secondary box completely, use an empty tag `&lt;extra&gt;&lt;/extra&gt;`.</param>
     /// <param name="XHoverFormat">Sets the hover text formatting rulefor `x` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"By default the values are formatted using `xaxis.hoverformat`.</param>
     /// <param name="YHoverFormat">Sets the hover text formatting rulefor `y` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"By default the values are formatted using `yaxis.hoverformat`.</param>
     /// <param name="ZHoverFormat">Sets the hover text formatting rulefor `z` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"By default the values are formatted using `zaxis.hoverformat`</param>
@@ -711,13 +742,15 @@ type Trace3DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?U                  : seq<#IConvertible>,
             [<Optional;DefaultParameterValue(null)>] ?V                  : seq<#IConvertible>,
             [<Optional;DefaultParameterValue(null)>] ?W                  : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?Text               : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?HoverText          : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?HoverInfo          : string,
+            [<Optional;DefaultParameterValue(null)>] ?Text               : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?MultiText          : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverText          : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiHoverText     : seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverInfo          : StyleParam.HoverInfo,
             [<Optional;DefaultParameterValue(null)>] ?HoverTemplate      : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiHoverTemplate : seq<string>,
             [<Optional;DefaultParameterValue(null)>] ?XHoverFormat       : string,
             [<Optional;DefaultParameterValue(null)>] ?YHoverFormat       : string,
-            [<Optional;DefaultParameterValue(null)>] ?ZHoverFormat       : string,
             [<Optional;DefaultParameterValue(null)>] ?UHoverFormat       : string,
             [<Optional;DefaultParameterValue(null)>] ?VHoverFormat       : string,
             [<Optional;DefaultParameterValue(null)>] ?WHoverFormat       : string,
@@ -730,10 +763,11 @@ type Trace3DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?ColorScale         : StyleParam.Colorscale,
             [<Optional;DefaultParameterValue(null)>] ?ShowScale          : bool,
             [<Optional;DefaultParameterValue(null)>] ?ReverseScale       : bool,
+            [<Optional;DefaultParameterValue(null)>] ?ZHoverFormat       : string,
             [<Optional;DefaultParameterValue(null)>] ?CAuto              : bool,
-            [<Optional;DefaultParameterValue(null)>] ?CMin               : float,
-            [<Optional;DefaultParameterValue(null)>] ?CMid               : float,
             [<Optional;DefaultParameterValue(null)>] ?CMax               : float,
+            [<Optional;DefaultParameterValue(null)>] ?CMid               : float,
+            [<Optional;DefaultParameterValue(null)>] ?CMin               : float,
             [<Optional;DefaultParameterValue(null)>] ?HoverLabel         : Hoverlabel,
             [<Optional;DefaultParameterValue(null)>] ?Lighting           : Lighting,
             [<Optional;DefaultParameterValue(null)>] ?LightPosition      : LightPosition,
@@ -744,50 +778,50 @@ type Trace3DStyle() =
 
         ) =
             (fun (streamTube: #Trace) -> 
-                Name                |> DynObj.setValueOpt streamTube "name"
-                Visible             |> DynObj.setValueOptBy streamTube "visible" StyleParam.Visible.convert
-                ShowLegend          |> DynObj.setValueOpt streamTube "showlegend"
-                LegendRank          |> DynObj.setValueOpt streamTube "legendrank"
-                LegendGroup         |> DynObj.setValueOpt streamTube "legendgroup"
-                LegendGroupTitle    |> DynObj.setValueOpt streamTube "legendgrouptitle"
-                Opacity             |> DynObj.setValueOpt streamTube "opacity"
-                Ids                 |> DynObj.setValueOpt streamTube "ids"
-                X                   |> DynObj.setValueOpt streamTube "x"
-                Y                   |> DynObj.setValueOpt streamTube "y"
-                Z                   |> DynObj.setValueOpt streamTube "z"
-                U                   |> DynObj.setValueOpt streamTube "u"
-                V                   |> DynObj.setValueOpt streamTube "v"
-                W                   |> DynObj.setValueOpt streamTube "w"
-                Text                |> DynObj.setValueOpt streamTube "text"
-                HoverText           |> DynObj.setValueOpt streamTube "hovertext"
-                HoverInfo           |> DynObj.setValueOpt streamTube "hoverinfo"
-                HoverTemplate       |> DynObj.setValueOpt streamTube "hovertemplate"
-                XHoverFormat        |> DynObj.setValueOpt streamTube "xhoverformat"
-                YHoverFormat        |> DynObj.setValueOpt streamTube "yhoverformat"
-                ZHoverFormat        |> DynObj.setValueOpt streamTube "zhoverformat"
-                UHoverFormat        |> DynObj.setValueOpt streamTube "uhoverformat"
-                VHoverFormat        |> DynObj.setValueOpt streamTube "vhoverformat"
-                WHoverFormat        |> DynObj.setValueOpt streamTube "whoverformat"
-                Meta                |> DynObj.setValueOpt streamTube "meta"
-                CustomData          |> DynObj.setValueOpt streamTube "customdata"
-                Scene               |> DynObj.setValueOptBy streamTube "scene" StyleParam.SubPlotId.convert
-                ColorAxis           |> DynObj.setValueOptBy streamTube "scene" StyleParam.SubPlotId.convert
-                ColorBar            |> DynObj.setValueOpt streamTube "colorbar"
-                AutoColorScale      |> DynObj.setValueOpt streamTube "autocolorscale"
-                ColorScale          |> DynObj.setValueOptBy streamTube "colorscale" StyleParam.Colorscale.convert
-                ShowScale           |> DynObj.setValueOpt streamTube "showscale"
-                ReverseScale        |> DynObj.setValueOpt streamTube "reversescale"
-                CAuto               |> DynObj.setValueOpt streamTube "cauto"
-                CMin                |> DynObj.setValueOpt streamTube "cmin"
-                CMid                |> DynObj.setValueOpt streamTube "cmid"
-                CMax                |> DynObj.setValueOpt streamTube "cmax"
-                HoverLabel          |> DynObj.setValueOpt streamTube "hoverlabel"
-                Lighting            |> DynObj.setValueOpt streamTube "lighting"
-                LightPosition       |> DynObj.setValueOpt streamTube "lightposition"
-                MaxDisplayed        |> DynObj.setValueOpt streamTube "maxdisplayed"
-                SizeRef             |> DynObj.setValueOpt streamTube "sizeref"
-                Starts              |> DynObj.setValueOpt streamTube "starts"
-                UIRevision          |> DynObj.setValueOpt streamTube "uirevision"
+                Name                                |> DynObj.setValueOpt streamTube "name"
+                Visible                             |> DynObj.setValueOptBy streamTube "visible" StyleParam.Visible.convert
+                ShowLegend                          |> DynObj.setValueOpt streamTube "showlegend"
+                LegendRank                          |> DynObj.setValueOpt streamTube "legendrank"
+                LegendGroup                         |> DynObj.setValueOpt streamTube "legendgroup"
+                LegendGroupTitle                    |> DynObj.setValueOpt streamTube "legendgrouptitle"
+                Opacity                             |> DynObj.setValueOpt streamTube "opacity"
+                Ids                                 |> DynObj.setValueOpt streamTube "ids"
+                X                                   |> DynObj.setValueOpt streamTube "x"
+                Y                                   |> DynObj.setValueOpt streamTube "y"
+                Z                                   |> DynObj.setValueOpt streamTube "z"
+                U                                   |> DynObj.setValueOpt streamTube "u"
+                V                                   |> DynObj.setValueOpt streamTube "v"
+                W                                   |> DynObj.setValueOpt streamTube "w"
+                (Text, MultiText)                   |> DynObj.setSingleOrMultiOpt streamTube "text"
+                (HoverText, MultiHoverText)         |> DynObj.setSingleOrMultiOpt streamTube "hovertext"
+                HoverInfo                           |> DynObj.setValueOptBy streamTube "hoverinfo" StyleParam.HoverInfo.convert
+                (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt streamTube "hovertemplate"
+                XHoverFormat                        |> DynObj.setValueOpt streamTube "xhoverformat"
+                YHoverFormat                        |> DynObj.setValueOpt streamTube "yhoverformat"
+                ZHoverFormat                        |> DynObj.setValueOpt streamTube "zhoverformat"
+                UHoverFormat                        |> DynObj.setValueOpt streamTube "uhoverformat"
+                VHoverFormat                        |> DynObj.setValueOpt streamTube "vhoverformat"
+                WHoverFormat                        |> DynObj.setValueOpt streamTube "whoverformat"
+                Meta                                |> DynObj.setValueOpt streamTube "meta"
+                CustomData                          |> DynObj.setValueOpt streamTube "customdata"
+                Scene                               |> DynObj.setValueOptBy streamTube "scene" StyleParam.SubPlotId.convert
+                ColorAxis                           |> DynObj.setValueOptBy streamTube "scene" StyleParam.SubPlotId.convert
+                ColorBar                            |> DynObj.setValueOpt streamTube "colorbar"
+                AutoColorScale                      |> DynObj.setValueOpt streamTube "autocolorscale"
+                ColorScale                          |> DynObj.setValueOptBy streamTube "colorscale" StyleParam.Colorscale.convert
+                ShowScale                           |> DynObj.setValueOpt streamTube "showscale"
+                ReverseScale                        |> DynObj.setValueOpt streamTube "reversescale"
+                CAuto                               |> DynObj.setValueOpt streamTube "cauto"
+                CMin                                |> DynObj.setValueOpt streamTube "cmin"
+                CMid                                |> DynObj.setValueOpt streamTube "cmid"
+                CMax                                |> DynObj.setValueOpt streamTube "cmax"
+                HoverLabel                          |> DynObj.setValueOpt streamTube "hoverlabel"
+                Lighting                            |> DynObj.setValueOpt streamTube "lighting"
+                LightPosition                       |> DynObj.setValueOpt streamTube "lightposition"
+                MaxDisplayed                        |> DynObj.setValueOpt streamTube "maxdisplayed"
+                SizeRef                             |> DynObj.setValueOpt streamTube "sizeref"
+                Starts                              |> DynObj.setValueOpt streamTube "starts"
+                UIRevision                          |> DynObj.setValueOpt streamTube "uirevision"
 
                 streamTube
             )
@@ -808,9 +842,12 @@ type Trace3DStyle() =
     /// <param name="Z">Sets the Z coordinates of the vertices on Z axis.</param>
     /// <param name="Value">Sets the 4th dimension (value) of the vertices.</param>
     /// <param name="Text">Sets the text elements associated with the vertices. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+    /// <param name="MultiText">Sets the text elements associated with the vertices. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
     /// <param name="HoverText">Same as `text`.</param>
+    /// <param name="MultiHoverText">Same as `text`.</param>
     /// <param name="HoverInfo">Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.</param>
     /// <param name="HoverTemplate">Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, "xother" will be added to those with different x positions from the first point. An underscore before or after "(x|y)other" will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `&lt;extra&gt;` is displayed in the secondary box, for example "&lt;extra&gt;{fullData.name}&lt;/extra&gt;". To hide the secondary box completely, use an empty tag `&lt;extra&gt;&lt;/extra&gt;`.</param>
+    /// <param name="MultiHoverTemplate">Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, "xother" will be added to those with different x positions from the first point. An underscore before or after "(x|y)other" will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `&lt;extra&gt;` is displayed in the secondary box, for example "&lt;extra&gt;{fullData.name}&lt;/extra&gt;". To hide the secondary box completely, use an empty tag `&lt;extra&gt;&lt;/extra&gt;`.</param>
     /// <param name="XHoverFormat">Sets the hover text formatting rulefor `x` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"By default the values are formatted using `xaxis.hoverformat`.</param>
     /// <param name="YHoverFormat">Sets the hover text formatting rulefor `y` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"By default the values are formatted using `yaxis.hoverformat`.</param>
     /// <param name="ZHoverFormat">Sets the hover text formatting rulefor `z` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"By default the values are formatted using `zaxis.hoverformat`</param>
@@ -855,13 +892,15 @@ type Trace3DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Y                  : seq<#IConvertible>,
             [<Optional;DefaultParameterValue(null)>] ?Z                  : seq<#IConvertible>,
             [<Optional;DefaultParameterValue(null)>] ?Value              : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?Text               : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?HoverText          : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?HoverInfo          : string,
+            [<Optional;DefaultParameterValue(null)>] ?Text               : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?MultiText          : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverText          : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiHoverText     : seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverInfo          : StyleParam.HoverInfo,
             [<Optional;DefaultParameterValue(null)>] ?HoverTemplate      : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiHoverTemplate : seq<string>,
             [<Optional;DefaultParameterValue(null)>] ?XHoverFormat       : string,
             [<Optional;DefaultParameterValue(null)>] ?YHoverFormat       : string,
-            [<Optional;DefaultParameterValue(null)>] ?ZHoverFormat       : string,
             [<Optional;DefaultParameterValue(null)>] ?ValueHoverFormat   : string,
             [<Optional;DefaultParameterValue(null)>] ?Meta               : seq<#IConvertible>,
             [<Optional;DefaultParameterValue(null)>] ?CustomData         : seq<#IConvertible>,
@@ -872,10 +911,11 @@ type Trace3DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?ColorScale         : StyleParam.Colorscale,
             [<Optional;DefaultParameterValue(null)>] ?ShowScale          : bool,
             [<Optional;DefaultParameterValue(null)>] ?ReverseScale       : bool,
+            [<Optional;DefaultParameterValue(null)>] ?ZHoverFormat       : string,
             [<Optional;DefaultParameterValue(null)>] ?CAuto              : bool,
-            [<Optional;DefaultParameterValue(null)>] ?CMin               : float,
-            [<Optional;DefaultParameterValue(null)>] ?CMid               : float,
             [<Optional;DefaultParameterValue(null)>] ?CMax               : float,
+            [<Optional;DefaultParameterValue(null)>] ?CMid               : float,
+            [<Optional;DefaultParameterValue(null)>] ?CMin               : float,
             [<Optional;DefaultParameterValue(null)>] ?Caps               : Caps,
             [<Optional;DefaultParameterValue(null)>] ?Contour            : Contour,
             [<Optional;DefaultParameterValue(null)>] ?FlatShading        : bool,
@@ -892,52 +932,52 @@ type Trace3DStyle() =
         ) =
             fun (volume: #Trace) -> 
 
-                Name                |> DynObj.setValueOpt volume "name"
-                Visible             |> DynObj.setValueOptBy volume "visible" StyleParam.Visible.convert
-                ShowLegend          |> DynObj.setValueOpt volume "showlegend"
-                LegendRank          |> DynObj.setValueOpt volume "legendrank"
-                LegendGroup         |> DynObj.setValueOpt volume "legendgroup"
-                LegendGroupTitle    |> DynObj.setValueOpt volume "legendgrouptitle"
-                Opacity             |> DynObj.setValueOpt volume "opacity"
-                Ids                 |> DynObj.setValueOpt volume "ids"
-                X                   |> DynObj.setValueOpt volume "x"
-                Y                   |> DynObj.setValueOpt volume "y"
-                Z                   |> DynObj.setValueOpt volume "z"
-                Value               |> DynObj.setValueOpt volume "value"
-                Text                |> DynObj.setValueOpt volume "text"
-                HoverText           |> DynObj.setValueOpt volume "hovertext"
-                HoverInfo           |> DynObj.setValueOpt volume "hoverinfo"
-                HoverTemplate       |> DynObj.setValueOpt volume "hovertemplate"
-                XHoverFormat        |> DynObj.setValueOpt volume "xhoverformat"
-                YHoverFormat        |> DynObj.setValueOpt volume "yhoverformat"
-                ZHoverFormat        |> DynObj.setValueOpt volume "zhoverformat"
-                ValueHoverFormat    |> DynObj.setValueOpt volume "valuehoverformat"
-                Meta                |> DynObj.setValueOpt volume "meta"
-                CustomData          |> DynObj.setValueOpt volume "customdata"
-                Scene               |> DynObj.setValueOptBy volume "scene" StyleParam.SubPlotId.convert
-                ColorAxis           |> DynObj.setValueOptBy volume "scene" StyleParam.SubPlotId.convert
-                ColorBar            |> DynObj.setValueOpt volume "colorbar"
-                AutoColorScale      |> DynObj.setValueOpt volume "autocolorscale"
-                ColorScale          |> DynObj.setValueOptBy volume "colorscale" StyleParam.Colorscale.convert
-                ShowScale           |> DynObj.setValueOpt volume "showscale"
-                ReverseScale        |> DynObj.setValueOpt volume "reversescale"
-                CAuto               |> DynObj.setValueOpt volume "cauto"
-                CMin                |> DynObj.setValueOpt volume "cmin"
-                CMid                |> DynObj.setValueOpt volume "cmid"
-                CMax                |> DynObj.setValueOpt volume "cmax"
-                Caps                |> DynObj.setValueOpt volume "caps"
-                Contour             |> DynObj.setValueOpt volume "contour"
-                FlatShading         |> DynObj.setValueOpt volume "flatshading"
-                HoverLabel          |> DynObj.setValueOpt volume "hoverlabel"
-                IsoMax              |> DynObj.setValueOpt volume "isomax"
-                IsoMin              |> DynObj.setValueOpt volume "isomin"
-                Lighting            |> DynObj.setValueOpt volume "lighting"
-                LightPosition       |> DynObj.setValueOpt volume "lightposition"
-                OpacityScale        |> DynObj.setValueOpt volume "opacityscale"
-                Slices              |> DynObj.setValueOpt volume "slices"
-                SpaceFrame          |> DynObj.setValueOpt volume "spaceframe"
-                Surface             |> DynObj.setValueOpt volume "surface"
-                UIRevision          |> DynObj.setValueOpt volume "uirevision"
+                Name                                |> DynObj.setValueOpt volume "name"
+                Visible                             |> DynObj.setValueOptBy volume "visible" StyleParam.Visible.convert
+                ShowLegend                          |> DynObj.setValueOpt volume "showlegend"
+                LegendRank                          |> DynObj.setValueOpt volume "legendrank"
+                LegendGroup                         |> DynObj.setValueOpt volume "legendgroup"
+                LegendGroupTitle                    |> DynObj.setValueOpt volume "legendgrouptitle"
+                Opacity                             |> DynObj.setValueOpt volume "opacity"
+                Ids                                 |> DynObj.setValueOpt volume "ids"
+                X                                   |> DynObj.setValueOpt volume "x"
+                Y                                   |> DynObj.setValueOpt volume "y"
+                Z                                   |> DynObj.setValueOpt volume "z"
+                Value                               |> DynObj.setValueOpt volume "value"
+                (Text, MultiText)                   |> DynObj.setSingleOrMultiOpt volume "text"
+                (HoverText, MultiHoverText)         |> DynObj.setSingleOrMultiOpt volume "hovertext"
+                HoverInfo                           |> DynObj.setValueOptBy volume "hoverinfo" StyleParam.HoverInfo.convert
+                (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt volume "hovertemplate"
+                XHoverFormat                        |> DynObj.setValueOpt volume "xhoverformat"
+                YHoverFormat                        |> DynObj.setValueOpt volume "yhoverformat"
+                ZHoverFormat                        |> DynObj.setValueOpt volume "zhoverformat"
+                ValueHoverFormat                    |> DynObj.setValueOpt volume "valuehoverformat"
+                Meta                                |> DynObj.setValueOpt volume "meta"
+                CustomData                          |> DynObj.setValueOpt volume "customdata"
+                Scene                               |> DynObj.setValueOptBy volume "scene" StyleParam.SubPlotId.convert
+                ColorAxis                           |> DynObj.setValueOptBy volume "scene" StyleParam.SubPlotId.convert
+                ColorBar                            |> DynObj.setValueOpt volume "colorbar"
+                AutoColorScale                      |> DynObj.setValueOpt volume "autocolorscale"
+                ColorScale                          |> DynObj.setValueOptBy volume "colorscale" StyleParam.Colorscale.convert
+                ShowScale                           |> DynObj.setValueOpt volume "showscale"
+                ReverseScale                        |> DynObj.setValueOpt volume "reversescale"
+                CAuto                               |> DynObj.setValueOpt volume "cauto"
+                CMin                                |> DynObj.setValueOpt volume "cmin"
+                CMid                                |> DynObj.setValueOpt volume "cmid"
+                CMax                                |> DynObj.setValueOpt volume "cmax"
+                Caps                                |> DynObj.setValueOpt volume "caps"
+                Contour                             |> DynObj.setValueOpt volume "contour"
+                FlatShading                         |> DynObj.setValueOpt volume "flatshading"
+                HoverLabel                          |> DynObj.setValueOpt volume "hoverlabel"
+                IsoMax                              |> DynObj.setValueOpt volume "isomax"
+                IsoMin                              |> DynObj.setValueOpt volume "isomin"
+                Lighting                            |> DynObj.setValueOpt volume "lighting"
+                LightPosition                       |> DynObj.setValueOpt volume "lightposition"
+                OpacityScale                        |> DynObj.setValueOpt volume "opacityscale"
+                Slices                              |> DynObj.setValueOpt volume "slices"
+                SpaceFrame                          |> DynObj.setValueOpt volume "spaceframe"
+                Surface                             |> DynObj.setValueOpt volume "surface"
+                UIRevision                          |> DynObj.setValueOpt volume "uirevision"
                 
                 volume
                     
@@ -957,9 +997,12 @@ type Trace3DStyle() =
     /// <param name="Z">Sets the Z coordinates of the vertices on Z axis.</param>
     /// <param name="Value">Sets the 4th dimension (value) of the vertices.</param>
     /// <param name="Text">Sets the text elements associated with the vertices. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+    /// <param name="MultiText">Sets the text elements associated with the vertices. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
     /// <param name="HoverText">Same as `text`.</param>
+    /// <param name="MultiHoverText">Same as `text`.</param>
     /// <param name="HoverInfo">Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.</param>
     /// <param name="HoverTemplate">Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, "xother" will be added to those with different x positions from the first point. An underscore before or after "(x|y)other" will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `&lt;extra&gt;` is displayed in the secondary box, for example "&lt;extra&gt;{fullData.name}&lt;/extra&gt;". To hide the secondary box completely, use an empty tag `&lt;extra&gt;&lt;/extra&gt;`.</param>
+    /// <param name="MultiHoverTemplate">Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, "xother" will be added to those with different x positions from the first point. An underscore before or after "(x|y)other" will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `&lt;extra&gt;` is displayed in the secondary box, for example "&lt;extra&gt;{fullData.name}&lt;/extra&gt;". To hide the secondary box completely, use an empty tag `&lt;extra&gt;&lt;/extra&gt;`.</param>
     /// <param name="XHoverFormat">Sets the hover text formatting rulefor `x` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"By default the values are formatted using `xaxis.hoverformat`.</param>
     /// <param name="YHoverFormat">Sets the hover text formatting rulefor `y` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"By default the values are formatted using `yaxis.hoverformat`.</param>
     /// <param name="ZHoverFormat">Sets the hover text formatting rulefor `z` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"By default the values are formatted using `zaxis.hoverformat`</param>
@@ -1004,13 +1047,15 @@ type Trace3DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Y                  : seq<#IConvertible>,
             [<Optional;DefaultParameterValue(null)>] ?Z                  : seq<#IConvertible>,
             [<Optional;DefaultParameterValue(null)>] ?Value              : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?Text               : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?HoverText          : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?HoverInfo          : string,
+            [<Optional;DefaultParameterValue(null)>] ?Text               : #IConvertible,
+            [<Optional;DefaultParameterValue(null)>] ?MultiText          : seq<#IConvertible>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverText          : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiHoverText     : seq<string>,
+            [<Optional;DefaultParameterValue(null)>] ?HoverInfo          : StyleParam.HoverInfo,
             [<Optional;DefaultParameterValue(null)>] ?HoverTemplate      : string,
+            [<Optional;DefaultParameterValue(null)>] ?MultiHoverTemplate : seq<string>,
             [<Optional;DefaultParameterValue(null)>] ?XHoverFormat       : string,
             [<Optional;DefaultParameterValue(null)>] ?YHoverFormat       : string,
-            [<Optional;DefaultParameterValue(null)>] ?ZHoverFormat       : string,
             [<Optional;DefaultParameterValue(null)>] ?ValueHoverFormat   : string,
             [<Optional;DefaultParameterValue(null)>] ?Meta               : seq<#IConvertible>,
             [<Optional;DefaultParameterValue(null)>] ?CustomData         : seq<#IConvertible>,
@@ -1021,10 +1066,11 @@ type Trace3DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?ColorScale         : StyleParam.Colorscale,
             [<Optional;DefaultParameterValue(null)>] ?ShowScale          : bool,
             [<Optional;DefaultParameterValue(null)>] ?ReverseScale       : bool,
+            [<Optional;DefaultParameterValue(null)>] ?ZHoverFormat       : string,
             [<Optional;DefaultParameterValue(null)>] ?CAuto              : bool,
-            [<Optional;DefaultParameterValue(null)>] ?CMin               : float,
-            [<Optional;DefaultParameterValue(null)>] ?CMid               : float,
             [<Optional;DefaultParameterValue(null)>] ?CMax               : float,
+            [<Optional;DefaultParameterValue(null)>] ?CMid               : float,
+            [<Optional;DefaultParameterValue(null)>] ?CMin               : float,
             [<Optional;DefaultParameterValue(null)>] ?Caps               : Caps,
             [<Optional;DefaultParameterValue(null)>] ?Contour            : Contour,
             [<Optional;DefaultParameterValue(null)>] ?FlatShading        : bool,
@@ -1039,53 +1085,53 @@ type Trace3DStyle() =
             [<Optional;DefaultParameterValue(null)>] ?Surface            : Surface,
             [<Optional;DefaultParameterValue(null)>] ?UIRevision         : seq<#IConvertible>
         ) =
-            fun (volume: #Trace) -> 
+            fun (isoSurface: #Trace) -> 
 
-                Name                |> DynObj.setValueOpt volume "name"
-                Visible             |> DynObj.setValueOptBy volume "visible" StyleParam.Visible.convert
-                ShowLegend          |> DynObj.setValueOpt volume "showlegend"
-                LegendRank          |> DynObj.setValueOpt volume "legendrank"
-                LegendGroup         |> DynObj.setValueOpt volume "legendgroup"
-                LegendGroupTitle    |> DynObj.setValueOpt volume "legendgrouptitle"
-                Opacity             |> DynObj.setValueOpt volume "opacity"
-                Ids                 |> DynObj.setValueOpt volume "ids"
-                X                   |> DynObj.setValueOpt volume "x"
-                Y                   |> DynObj.setValueOpt volume "y"
-                Z                   |> DynObj.setValueOpt volume "z"
-                Value               |> DynObj.setValueOpt volume "value"
-                Text                |> DynObj.setValueOpt volume "text"
-                HoverText           |> DynObj.setValueOpt volume "hovertext"
-                HoverInfo           |> DynObj.setValueOpt volume "hoverinfo"
-                HoverTemplate       |> DynObj.setValueOpt volume "hovertemplate"
-                XHoverFormat        |> DynObj.setValueOpt volume "xhoverformat"
-                YHoverFormat        |> DynObj.setValueOpt volume "yhoverformat"
-                ZHoverFormat        |> DynObj.setValueOpt volume "zhoverformat"
-                ValueHoverFormat    |> DynObj.setValueOpt volume "valuehoverformat"
-                Meta                |> DynObj.setValueOpt volume "meta"
-                CustomData          |> DynObj.setValueOpt volume "customdata"
-                Scene               |> DynObj.setValueOptBy volume "scene" StyleParam.SubPlotId.convert
-                ColorAxis           |> DynObj.setValueOptBy volume "scene" StyleParam.SubPlotId.convert
-                ColorBar            |> DynObj.setValueOpt volume "colorbar"
-                AutoColorScale      |> DynObj.setValueOpt volume "autocolorscale"
-                ColorScale          |> DynObj.setValueOptBy volume "colorscale" StyleParam.Colorscale.convert
-                ShowScale           |> DynObj.setValueOpt volume "showscale"
-                ReverseScale        |> DynObj.setValueOpt volume "reversescale"
-                CAuto               |> DynObj.setValueOpt volume "cauto"
-                CMin                |> DynObj.setValueOpt volume "cmin"
-                CMid                |> DynObj.setValueOpt volume "cmid"
-                CMax                |> DynObj.setValueOpt volume "cmax"
-                Caps                |> DynObj.setValueOpt volume "caps"
-                Contour             |> DynObj.setValueOpt volume "contour"
-                FlatShading         |> DynObj.setValueOpt volume "flatshading"
-                HoverLabel          |> DynObj.setValueOpt volume "hoverlabel"
-                IsoMax              |> DynObj.setValueOpt volume "isomax"
-                IsoMin              |> DynObj.setValueOpt volume "isomin"
-                Lighting            |> DynObj.setValueOpt volume "lighting"
-                LightPosition       |> DynObj.setValueOpt volume "lightposition"
-                OpacityScale        |> DynObj.setValueOpt volume "opacityscale"
-                Slices              |> DynObj.setValueOpt volume "slices"
-                SpaceFrame          |> DynObj.setValueOpt volume "spaceframe"
-                Surface             |> DynObj.setValueOpt volume "surface"
-                UIRevision          |> DynObj.setValueOpt volume "uirevision"
+                Name                                |> DynObj.setValueOpt isoSurface "name"
+                Visible                             |> DynObj.setValueOptBy isoSurface "visible" StyleParam.Visible.convert
+                ShowLegend                          |> DynObj.setValueOpt isoSurface "showlegend"
+                LegendRank                          |> DynObj.setValueOpt isoSurface "legendrank"
+                LegendGroup                         |> DynObj.setValueOpt isoSurface "legendgroup"
+                LegendGroupTitle                    |> DynObj.setValueOpt isoSurface "legendgrouptitle"
+                Opacity                             |> DynObj.setValueOpt isoSurface "opacity"
+                Ids                                 |> DynObj.setValueOpt isoSurface "ids"
+                X                                   |> DynObj.setValueOpt isoSurface "x"
+                Y                                   |> DynObj.setValueOpt isoSurface "y"
+                Z                                   |> DynObj.setValueOpt isoSurface "z"
+                Value                               |> DynObj.setValueOpt isoSurface "value"
+                (Text, MultiText)                   |> DynObj.setSingleOrMultiOpt isoSurface "text"
+                (HoverText, MultiHoverText)         |> DynObj.setSingleOrMultiOpt isoSurface "hovertext"
+                HoverInfo                           |> DynObj.setValueOptBy isoSurface "hoverinfo" StyleParam.HoverInfo.convert
+                (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt isoSurface "hovertemplate"
+                XHoverFormat                        |> DynObj.setValueOpt isoSurface "xhoverformat"
+                YHoverFormat                        |> DynObj.setValueOpt isoSurface "yhoverformat"
+                ZHoverFormat                        |> DynObj.setValueOpt isoSurface "zhoverformat"
+                ValueHoverFormat                    |> DynObj.setValueOpt isoSurface "valuehoverformat"
+                Meta                                |> DynObj.setValueOpt isoSurface "meta"
+                CustomData                          |> DynObj.setValueOpt isoSurface "customdata"
+                Scene                               |> DynObj.setValueOptBy isoSurface "scene" StyleParam.SubPlotId.convert
+                ColorAxis                           |> DynObj.setValueOptBy isoSurface "scene" StyleParam.SubPlotId.convert
+                ColorBar                            |> DynObj.setValueOpt isoSurface "colorbar"
+                AutoColorScale                      |> DynObj.setValueOpt isoSurface "autocolorscale"
+                ColorScale                          |> DynObj.setValueOptBy isoSurface "colorscale" StyleParam.Colorscale.convert
+                ShowScale                           |> DynObj.setValueOpt isoSurface "showscale"
+                ReverseScale                        |> DynObj.setValueOpt isoSurface "reversescale"
+                CAuto                               |> DynObj.setValueOpt isoSurface "cauto"
+                CMin                                |> DynObj.setValueOpt isoSurface "cmin"
+                CMid                                |> DynObj.setValueOpt isoSurface "cmid"
+                CMax                                |> DynObj.setValueOpt isoSurface "cmax"
+                Caps                                |> DynObj.setValueOpt isoSurface "caps"
+                Contour                             |> DynObj.setValueOpt isoSurface "contour"
+                FlatShading                         |> DynObj.setValueOpt isoSurface "flatshading"
+                HoverLabel                          |> DynObj.setValueOpt isoSurface "hoverlabel"
+                IsoMax                              |> DynObj.setValueOpt isoSurface "isomax"
+                IsoMin                              |> DynObj.setValueOpt isoSurface "isomin"
+                Lighting                            |> DynObj.setValueOpt isoSurface "lighting"
+                LightPosition                       |> DynObj.setValueOpt isoSurface "lightposition"
+                OpacityScale                        |> DynObj.setValueOpt isoSurface "opacityscale"
+                Slices                              |> DynObj.setValueOpt isoSurface "slices"
+                SpaceFrame                          |> DynObj.setValueOpt isoSurface "spaceframe"
+                Surface                             |> DynObj.setValueOpt isoSurface "surface"
+                UIRevision                          |> DynObj.setValueOpt isoSurface "uirevision"
                 
-                volume
+                isoSurface

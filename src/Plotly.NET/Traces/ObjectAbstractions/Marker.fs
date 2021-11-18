@@ -95,7 +95,9 @@ type Marker () =
             [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
             [<Optional;DefaultParameterValue(null)>] ?Pattern           : Pattern,
             [<Optional;DefaultParameterValue(null)>] ?Symbol            : StyleParam.MarkerSymbol,
-            [<Optional;DefaultParameterValue(null)>] ?MultiSymbol       : seq<StyleParam.MarkerSymbol>,
+            [<Optional;DefaultParameterValue(null)>] ?MultiSymbol       : seq<StyleParam.MarkerSymbol>,            
+            [<Optional;DefaultParameterValue(null)>] ?Symbol3D          : StyleParam.MarkerSymbol3D,
+            [<Optional;DefaultParameterValue(null)>] ?MultiSymbol3D     : seq<StyleParam.MarkerSymbol3D>,
             [<Optional;DefaultParameterValue(null)>] ?OutlierColor      : Color,
             [<Optional;DefaultParameterValue(null)>] ?OutlierWidth      : int,
             [<Optional;DefaultParameterValue(null)>] ?Maxdisplayed      : int,
@@ -123,6 +125,7 @@ type Marker () =
                 (Opacity, MultiOpacity)     |> DynObj.setSingleOrMultiOpt marker "opacity"
                 Pattern                     |> DynObj.setValueOpt marker "pattern"
                 (Symbol, MultiSymbol)       |> DynObj.setSingleOrMultiOptBy marker "symbol" StyleParam.MarkerSymbol.convert
+                (Symbol3D, MultiSymbol3D)   |> DynObj.setSingleOrMultiOptBy marker "symbol" StyleParam.MarkerSymbol3D.convert
                 OutlierColor                |> DynObj.setValueOpt marker "outliercolor"
                 OutlierWidth                |> DynObj.setValueOpt marker "outlierwidth"
                 Maxdisplayed                |> DynObj.setValueOpt marker "maxdisplayed"

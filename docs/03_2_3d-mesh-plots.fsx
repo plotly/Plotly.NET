@@ -65,16 +65,10 @@ let c = Array.init 50 (fun _ -> rnd.NextDouble())
 open Plotly.NET.TraceObjects
 
 let mesh3d =
-    Trace3D.initMesh3d 
-        (fun mesh3d ->
-            mesh3d?x <- a
-            mesh3d?y <- b
-            mesh3d?z <- c
-            mesh3d?flatshading <- true
-            mesh3d?contour <- Contours.initXyz(Show=true)
-            mesh3d
-            )
-    |> GenericChart.ofTraceObject true
+    Chart.Mesh3D(
+        a,b,c,
+        FlatShading = true
+    )
     
 (*** condition: ipynb ***)
 #if IPYNB

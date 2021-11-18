@@ -18,7 +18,7 @@ let main argv =
         let y = [19; 26; 55;]
         let z = [19; 26; 55;]
     
-        Chart.Scatter3d(x,y,z,StyleParam.Mode.Markers)
+        Chart.Scatter3D(x,y,z,StyleParam.Mode.Markers)
         |> Chart.withXAxisStyle("my x-axis", Id=StyleParam.SubPlotId.Scene 1)
         |> Chart.withYAxisStyle("my y-axis", Id=StyleParam.SubPlotId.Scene 1)
         |> Chart.withZAxisStyle("my z-axis")

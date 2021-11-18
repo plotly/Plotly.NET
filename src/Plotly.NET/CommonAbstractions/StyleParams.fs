@@ -367,6 +367,19 @@ module StyleParam =
         member this.Convert() = this |> ConstraintOperation.convert        
                 
     [<RequireQualifiedAccess>]
+    type CameraProjection =
+        | Perspective      
+        | Orthographic
+
+        static member toString = function
+             | Perspective  -> "perspective"
+             | Orthographic -> "orthographic"
+
+        static member convert = CameraProjection.toString >> box
+        override this.ToString() = this |> CameraProjection.toString
+        member this.Convert() = this |> CameraProjection.convert        
+                                                            
+    [<RequireQualifiedAccess>]
     type ContourType =
         | Levels      
         | Constraint
@@ -2054,6 +2067,32 @@ module StyleParam =
         static member convert = SymbolStyle.toString >> box
         override this.ToString() = this |> SymbolStyle.toString
         member this.Convert() = this |> SymbolStyle.convert
+
+    [<RequireQualifiedAccess>]
+    type MarkerSymbol3D =
+        | Circle     
+        | CircleOpen 
+        | Cross      
+        | Diamond    
+        | DiamondOpen
+        | Square     
+        | SquareOpen 
+        | X          
+        
+        static member toString = function
+            | Circle        -> "circle" 
+            | CircleOpen    -> "circle-open" 
+            | Cross         -> "cross" 
+            | Diamond       -> "diamond" 
+            | DiamondOpen   -> "diamond-open" 
+            | Square        -> "square" 
+            | SquareOpen    -> "square-open" 
+            | X             -> "x"
+        
+        static member convert = MarkerSymbol3D.toString >> box
+        override this.ToString() = this |> MarkerSymbol3D.toString
+        member this.Convert() = this |> MarkerSymbol3D.convert
+
 
     [<RequireQualifiedAccess>]
     type MarkerSymbol =
