@@ -32,345 +32,547 @@ module Chart2D =
                 Trace2D.initHeatmap style
                 |> GenericChart.ofTraceObject useDefaults
 
-        /// <summary>Creates a Scatter chart. Scatter charts are the basis of Point, Line, and Bubble Charts in Plotly, and can be customized as such. We also provide abstractions for those: Chart.Line, Chart.Point, Chart.Bubble</summary>
+
+        /// <summary>
+        /// Creates a Scatter chart. Scatter charts are the basis of Point, Line, and Bubble Charts in Plotly, and can be customized as such. We also provide abstractions for those: Chart.Line, Chart.Point, Chart.Bubble
+        /// </summary>
         /// <param name="x">Sets the x coordinates of the plotted data.</param>
         /// <param name="y">Sets the y coordinates of the plotted data.</param>
         /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
-        /// <param name="MarkerSymbol">Sets the type of symbol that datums are displayed as</param>
-        /// <param name="Color">Sets Line/Marker Color</param>
-        /// <param name="Opacity">Sets the Opacity of the trace</param>
-        /// <param name="Labels">Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
-        /// <param name="TextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
-        /// <param name="TextFont">Sets the text font of this trace</param>
-        /// <param name="Dash">Sets the Line Dash style</param>
-        /// <param name="Width">Sets the Line width</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Scatter
             (
-                x, y, mode,
-                [<Optional;DefaultParameterValue(null)>] ?Name          ,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend    ,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol  ,
-                [<Optional;DefaultParameterValue(null)>] ?Color         ,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity       ,
-                [<Optional;DefaultParameterValue(null)>] ?Labels        ,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition  ,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont      ,
-                [<Optional;DefaultParameterValue(null)>] ?Dash          ,
-                [<Optional;DefaultParameterValue(null)>] ?Width : float ,
-                [<Optional;DefaultParameterValue(null)>] ?StackGroup    ,
-                [<Optional;DefaultParameterValue(null)>] ?Orientation   ,
-                [<Optional;DefaultParameterValue(null)>] ?GroupNorm     ,
-                [<Optional;DefaultParameterValue(false)>]?UseWebGL : bool,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                x: seq<#IConvertible>, 
+                y: seq<#IConvertible>, 
+                mode: StyleParam.Mode,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale  : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline     : Line,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol      : StyleParam.MarkerSymbol,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol : seq<StyleParam.MarkerSymbol>,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?LineColor         : Color,
+                [<Optional;DefaultParameterValue(null)>] ?LineColorScale    : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?LineWidth         : float,
+                [<Optional;DefaultParameterValue(null)>] ?LineDash          : StyleParam.DrawingStyle,
+                [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
+                [<Optional;DefaultParameterValue(null)>] ?StackGroup        : string,
+                [<Optional;DefaultParameterValue(null)>] ?Orientation       : StyleParam.Orientation,
+                [<Optional;DefaultParameterValue(null)>] ?GroupNorm         : StyleParam.GroupNorm,
+                [<Optional;DefaultParameterValue(false)>]?UseWebGL          : bool,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
             ) = 
 
-            let useDefaults = defaultArg UseDefaults true
+                let useDefaults = defaultArg UseDefaults true
 
-            let style = 
-                Trace2DStyle.Scatter(
-                    X           = x             ,
-                    Y           = y             ,
-                    Mode        = mode          , 
-                    ?StackGroup = StackGroup    , 
-                    ?Orientation= Orientation   , 
-                    ?GroupNorm  = GroupNorm
-                )               
-                >> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
-                >> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
-                >> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
-                >> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+                let marker =
+                    Marker 
+                    |> Option.defaultValue (TraceObjects.Marker.init())
+                    |> TraceObjects.Marker.style(
+                        ?Color          = MarkerColor,
+                        ?Outline        = MarkerOutline,
+                        ?Symbol         = MarkerSymbol,
+                        ?MultiSymbol    = MultiMarkerSymbol,
+                        ?Colorscale     = MarkerColorScale,
+                        ?MultiOpacity   = MultiOpacity
+                    )                
 
-            let useWebGL = defaultArg UseWebGL false
+                let line =
+                    Line 
+                    |> Option.defaultValue (Plotly.NET.Line.init())
+                    |> Plotly.NET.Line.style(
+                        ?Color      = LineColor,
+                        ?Dash       = LineDash,
+                        ?Colorscale = LineColorScale,
+                        ?Width      = LineWidth
+                    )
 
-            Chart.renderScatterTrace useDefaults useWebGL style
+                let style = 
+                    Trace2DStyle.Scatter(
+                        X                   = x                ,
+                        Y                   = y                ,
+                        Mode                = mode             ,
+                        Marker              = marker           ,
+                        Line                = line             ,
+                        ?Name               = Name             ,
+                        ?ShowLegend         = ShowLegend       ,
+                        ?Opacity            = Opacity          ,
+                        ?Text               = Text             ,
+                        ?MultiText          = MultiText        ,
+                        ?TextPosition       = TextPosition     ,
+                        ?MultiTextPosition  = MultiTextPosition,
+                        ?StackGroup         = StackGroup       , 
+                        ?Orientation        = Orientation      , 
+                        ?GroupNorm          = GroupNorm
+                    )               
+
+                let useWebGL = defaultArg UseWebGL false
+
+                Chart.renderScatterTrace useDefaults useWebGL style
 
 
-        /// <summary>Creates a Scatter chart. Scatter charts are the basis of Point, Line, and Bubble Charts in Plotly, and can be customized as such. We also provide abstractions for those: Chart.Line, Chart.Point, Chart.Bubble</summary>
-        /// <param name="xy">Sets the x,y coordinates of the plotted data.</param>
+        /// <summary>
+        /// Creates a Scatter chart. Scatter charts are the basis of Point, Line, and Bubble Charts in Plotly, and can be customized as such. We also provide abstractions for those: Chart.Line, Chart.Point, Chart.Bubble
+        /// </summary>
+        /// <param name="xy">Sets the x and y coordinates of the plotted data.</param>
         /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
-        /// <param name="MarkerSymbol">Sets the type of symbol that datums are displayed as</param>
-        /// <param name="Color">Sets Line/Marker Color</param>
-        /// <param name="Opacity">Sets the Opacity of the trace</param>
-        /// <param name="Labels">Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
-        /// <param name="TextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
-        /// <param name="TextFont">Sets the text font of this trace</param>
-        /// <param name="Dash">Sets the Line Dash style</param>
-        /// <param name="Width">Sets the Line width</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
-        static member Scatter(xy,mode,
-                [<Optional;DefaultParameterValue(null)>] ?Name          ,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend    ,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol  ,
-                [<Optional;DefaultParameterValue(null)>] ?Color         ,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity       ,
-                [<Optional;DefaultParameterValue(null)>] ?Labels        ,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition  ,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont      ,
-                [<Optional;DefaultParameterValue(null)>] ?Dash          ,
-                [<Optional;DefaultParameterValue(null)>] ?Width         ,
-                [<Optional;DefaultParameterValue(null)>] ?StackGroup    ,
-                [<Optional;DefaultParameterValue(null)>] ?Orientation   ,
-                [<Optional;DefaultParameterValue(null)>] ?GroupNorm     ,
-                [<Optional;DefaultParameterValue(false)>]?UseWebGL   : bool,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+        static member Scatter
+            (
+                xy: seq<#IConvertible * #IConvertible>,
+                mode: StyleParam.Mode,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale  : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline     : Line,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol      : StyleParam.MarkerSymbol,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol : seq<StyleParam.MarkerSymbol>,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?LineColor         : Color,
+                [<Optional;DefaultParameterValue(null)>] ?LineColorScale    : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?LineWidth         : float,
+                [<Optional;DefaultParameterValue(null)>] ?LineDash          : StyleParam.DrawingStyle,
+                [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
+                [<Optional;DefaultParameterValue(null)>] ?StackGroup        : string,
+                [<Optional;DefaultParameterValue(null)>] ?Orientation       : StyleParam.Orientation,
+                [<Optional;DefaultParameterValue(null)>] ?GroupNorm         : StyleParam.GroupNorm,
+                [<Optional;DefaultParameterValue(false)>]?UseWebGL          : bool,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
             ) = 
 
-            let x,y = Seq.unzip xy 
-            Chart.Scatter(x, y, mode,
-                ?Name           = Name          ,
-                ?ShowLegend     = ShowLegend    ,
-                ?MarkerSymbol   = MarkerSymbol  ,
-                ?Color          = Color         ,
-                ?Opacity        = Opacity       ,
-                ?Labels         = Labels        ,
-                ?TextPosition   = TextPosition  ,
-                ?TextFont       = TextFont      ,
-                ?Dash           = Dash          ,
-                ?Width          = Width         ,
-                ?StackGroup     = StackGroup    ,
-                ?Orientation    = Orientation   ,
-                ?GroupNorm      = GroupNorm     ,
-                ?UseWebGL       = UseWebGL      ,
-                ?UseDefaults    = UseDefaults
+                let x,y = Seq.unzip xy 
+                Chart.Scatter(
+                    x, y, mode,
+                    ?Name               = Name             ,
+                    ?ShowLegend         = ShowLegend       ,
+                    ?Opacity            = Opacity          ,
+                    ?MultiOpacity       = MultiOpacity     ,
+                    ?Text               = Text             ,
+                    ?MultiText          = MultiText        ,
+                    ?TextPosition       = TextPosition     ,
+                    ?MultiTextPosition  = MultiTextPosition,
+                    ?MarkerColor        = MarkerColor      ,
+                    ?MarkerColorScale   = MarkerColorScale ,
+                    ?MarkerOutline      = MarkerOutline    ,
+                    ?MarkerSymbol       = MarkerSymbol     ,
+                    ?MultiMarkerSymbol  = MultiMarkerSymbol,
+                    ?Marker             = Marker           ,
+                    ?LineColor          = LineColor        ,
+                    ?LineColorScale     = LineColorScale   ,
+                    ?LineWidth          = LineWidth        ,
+                    ?LineDash           = LineDash         ,
+                    ?Line               = Line             ,
+                    ?StackGroup         = StackGroup       ,
+                    ?Orientation        = Orientation      ,
+                    ?GroupNorm          = GroupNorm        ,
+                    ?UseWebGL           = UseWebGL         ,
+                    ?UseDefaults        = UseDefaults      
+                )
+
+        /// <summary>
+        /// Creates a Point chart, which uses Points in a 2D space to visualize data. 
+        /// </summary>
+        /// <param name="x">Sets the x coordinates of the plotted data.</param>
+        /// <param name="y">Sets the y coordinates of the plotted data.</param>
+        /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
+        /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
+        /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member Point
+            (   
+                x: seq<#IConvertible>, 
+                y: seq<#IConvertible>, 
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale  : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline     : Line,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol      : StyleParam.MarkerSymbol,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol : seq<StyleParam.MarkerSymbol>,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?StackGroup        : string,
+                [<Optional;DefaultParameterValue(null)>] ?Orientation       : StyleParam.Orientation,
+                [<Optional;DefaultParameterValue(null)>] ?GroupNorm         : StyleParam.GroupNorm,
+                [<Optional;DefaultParameterValue(false)>]?UseWebGL          : bool,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
+            ) = 
+
+                let useDefaults = defaultArg UseDefaults true
+                // if text position or font is set, then show labels (not only when hovering)
+                let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+                let useWebGL = defaultArg UseWebGL false
+            
+                Chart.Scatter(
+                    x, y,
+                    mode = changeMode StyleParam.Mode.Markers,
+                    ?Name               = Name             ,
+                    ?ShowLegend         = ShowLegend       ,
+                    ?Opacity            = Opacity          ,
+                    ?MultiOpacity       = MultiOpacity     ,
+                    ?Text               = Text             ,
+                    ?MultiText          = MultiText        ,
+                    ?TextPosition       = TextPosition     ,
+                    ?MultiTextPosition  = MultiTextPosition,
+                    ?MarkerColor        = MarkerColor      ,
+                    ?MarkerColorScale   = MarkerColorScale ,
+                    ?MarkerOutline      = MarkerOutline    ,
+                    ?MarkerSymbol       = MarkerSymbol     ,
+                    ?MultiMarkerSymbol  = MultiMarkerSymbol,
+                    ?Marker             = Marker           ,
+                    ?StackGroup         = StackGroup       ,
+                    ?Orientation        = Orientation      ,
+                    ?GroupNorm          = GroupNorm        ,
+                    ?UseWebGL           = UseWebGL         ,
+                    ?UseDefaults        = UseDefaults      
+                
                 )
 
 
-    
         /// <summary>Creates a Point chart, which uses Points in a 2D space to visualize data. </summary>
-        /// <param name="x">Sets the x coordinates of the plotted data.</param>
-        /// <param name="y">Sets the y coordinates of the plotted data.</param>
+        /// <param name="xy">Sets the x and y coordinates of the plotted data.</param>
+        /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
-        /// <param name="MarkerSymbol">Sets the type of symbol that datums are displayed as</param>
-        /// <param name="Color">Sets Line/Marker Color</param>
-        /// <param name="Opacity">Sets the Opacity of the trace</param>
-        /// <param name="Labels">Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
-        /// <param name="TextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
-        /// <param name="TextFont">Sets the text font of this trace</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
-        static member Point(x, y,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
-                [<Optional;DefaultParameterValue(null)>] ?Color,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Labels,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont,
-                [<Optional;DefaultParameterValue(null)>] ?StackGroup    ,
-                [<Optional;DefaultParameterValue(null)>] ?Orientation   ,
-                [<Optional;DefaultParameterValue(null)>] ?GroupNorm     ,
-                [<Optional;DefaultParameterValue(false)>]?UseWebGL   : bool,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+        static member Point
+            (
+                xy: seq<#IConvertible * #IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale  : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline     : Line,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol      : StyleParam.MarkerSymbol,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol : seq<StyleParam.MarkerSymbol>,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?StackGroup        : string,
+                [<Optional;DefaultParameterValue(null)>] ?Orientation       : StyleParam.Orientation,
+                [<Optional;DefaultParameterValue(null)>] ?GroupNorm         : StyleParam.GroupNorm,
+                [<Optional;DefaultParameterValue(false)>]?UseWebGL          : bool,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
             ) = 
-
-            let useDefaults = defaultArg UseDefaults true
-            // if text position or font is set, then show labels (not only when hovering)
-            let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
-            let useWebGL = defaultArg UseWebGL false
-
-            let style = 
-                Trace2DStyle.Scatter(
-                    X           = x,
-                    Y           = y, 
-                    Mode        = changeMode StyleParam.Mode.Markers, 
-                    ?StackGroup = StackGroup, 
-                    ?Orientation= Orientation, 
-                    ?GroupNorm  = GroupNorm)              
-                >> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
-                >> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
-                >> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-
-            Chart.renderScatterTrace useDefaults useWebGL style
-
-        /// <summary>Creates a Point chart, which uses Points in a 2D space to visualize data. </summary>
-        /// <param name="xy">Sets the x,y coordinates of the plotted data.</param>
-        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
-        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
-        /// <param name="MarkerSymbol">Sets the type of symbol that datums are displayed as</param>
-        /// <param name="Color">Sets Line/Marker Color</param>
-        /// <param name="Opacity">Sets the Opacity of the trace</param>
-        /// <param name="Labels">Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
-        /// <param name="TextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
-        /// <param name="TextFont">Sets the text font of this trace</param>
-        /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
-        /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
-        /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
-        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
-        [<Extension>]
-        static member Point(xy,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
-                [<Optional;DefaultParameterValue(null)>] ?Color,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Labels,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont,
-                [<Optional;DefaultParameterValue(null)>] ?StackGroup    ,
-                [<Optional;DefaultParameterValue(null)>] ?Orientation   ,
-                [<Optional;DefaultParameterValue(null)>] ?GroupNorm     ,
-                [<Optional;DefaultParameterValue(false)>]?UseWebGL   : bool,
-                [<Optional;DefaultParameterValue(false)>]?UseDefaults   : bool
-            ) = 
-            let x,y = Seq.unzip xy 
-            Chart.Point(x, y, 
-                ?Name           = Name,
-                ?ShowLegend     = ShowLegend,
-                ?MarkerSymbol   = MarkerSymbol,
-                ?Color          = Color,
-                ?Opacity        = Opacity,
-                ?Labels         = Labels,
-                ?TextPosition   = TextPosition,
-                ?TextFont       = TextFont,
-                ?StackGroup     = StackGroup,
-                ?Orientation    = Orientation,
-                ?GroupNorm      = GroupNorm, 
-                ?UseWebGL       = UseWebGL   ,
-                ?UseDefaults    = UseDefaults
+                let x,y = Seq.unzip xy 
+                Chart.Point(
+                    x, y, 
+                    ?Name               = Name             ,
+                    ?ShowLegend         = ShowLegend       ,
+                    ?Opacity            = Opacity          ,
+                    ?MultiOpacity       = MultiOpacity     ,
+                    ?Text               = Text             ,
+                    ?MultiText          = MultiText        ,
+                    ?TextPosition       = TextPosition     ,
+                    ?MultiTextPosition  = MultiTextPosition,
+                    ?MarkerColor        = MarkerColor      ,
+                    ?MarkerColorScale   = MarkerColorScale ,
+                    ?MarkerOutline      = MarkerOutline    ,
+                    ?MarkerSymbol       = MarkerSymbol     ,
+                    ?MultiMarkerSymbol  = MultiMarkerSymbol,
+                    ?Marker             = Marker           ,
+                    ?StackGroup         = StackGroup       ,
+                    ?Orientation        = Orientation      ,
+                    ?GroupNorm          = GroupNorm        ,
+                    ?UseWebGL           = UseWebGL         ,
+                    ?UseDefaults        = UseDefaults      
                 )
 
 
         /// <summary> Creates a Line chart, which uses a Line plotted between the given datums in a 2D space to visualize typically an evolution of Y depending on X.</summary>
         /// <param name="x">Sets the x coordinates of the plotted data.</param>
         /// <param name="y">Sets the y coordinates of the plotted data.</param>
-        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
-        /// <param name="MarkerSymbol">Sets the type of symbol that datums are displayed as</param>
-        /// <param name="Color">Sets Line/Marker Color</param>
-        /// <param name="Opacity">Sets the Opacity of the trace</param>
-        /// <param name="Labels">Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
-        /// <param name="TextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
-        /// <param name="TextFont">Sets the text font of this trace</param>
-        /// <param name="Dash">Sets the Line Dash style</param>
-        /// <param name="Width">Sets the Line width</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
-        static member Line(x, y,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
-                [<Optional;DefaultParameterValue(null)>] ?Color,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Labels,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont,
-                [<Optional;DefaultParameterValue(null)>] ?Dash,
-                [<Optional;DefaultParameterValue(null)>] ?Width,
-                [<Optional;DefaultParameterValue(null)>] ?StackGroup    ,
-                [<Optional;DefaultParameterValue(null)>] ?Orientation   ,
-                [<Optional;DefaultParameterValue(null)>] ?GroupNorm     ,
-                [<Optional;DefaultParameterValue(false)>]?UseWebGL   : bool,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+        static member Line
+            (
+                x: seq<#IConvertible>, 
+                y: seq<#IConvertible>, 
+                [<Optional;DefaultParameterValue(null)>] ?ShowMarkers       : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale  : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline     : Line,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol      : StyleParam.MarkerSymbol,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol : seq<StyleParam.MarkerSymbol>,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?LineColor         : Color,
+                [<Optional;DefaultParameterValue(null)>] ?LineColorScale    : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?LineWidth         : float,
+                [<Optional;DefaultParameterValue(null)>] ?LineDash          : StyleParam.DrawingStyle,
+                [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
+                [<Optional;DefaultParameterValue(null)>] ?StackGroup        : string,
+                [<Optional;DefaultParameterValue(null)>] ?Orientation       : StyleParam.Orientation,
+                [<Optional;DefaultParameterValue(null)>] ?GroupNorm         : StyleParam.GroupNorm,
+                [<Optional;DefaultParameterValue(false)>]?UseWebGL          : bool,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
             ) = 
 
-            let useDefaults = defaultArg UseDefaults true
+                let useDefaults = defaultArg UseDefaults true
 
-            // if text position or font is set than show labels (not only when hovering)
-            let changeMode = 
-                let isShowMarker =
-                    match ShowMarkers with
-                    | Some isShow -> isShow
-                    | Option.None        -> false
-                StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
-                >> StyleParam.ModeUtils.showMarker (isShowMarker)
+                // if text position or font is set than show labels (not only when hovering)
+                let changeMode = 
+                    let isShowMarker =
+                        match ShowMarkers with
+                        | Some isShow -> isShow
+                        | Option.None        -> false
+                    StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)                       
+                    >> StyleParam.ModeUtils.showMarker (isShowMarker)
 
-
-            let style = 
-                Trace2DStyle.Scatter(
-                    X           = x,
-                    Y           = y,
-                    Mode        = changeMode StyleParam.Mode.Lines,
-                    ?StackGroup = StackGroup, 
-                    ?Orientation= Orientation, 
-                    ?GroupNorm  = GroupNorm)          
-                >> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width)
-                >> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
-                >> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
-                >> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-
-            let useWebGL = defaultArg UseWebGL false
-
-            Chart.renderScatterTrace useDefaults useWebGL style
+                Chart.Scatter(
+                    x, y,
+                    mode = changeMode StyleParam.Mode.Lines,
+                    ?Name               = Name               ,
+                    ?ShowLegend         = ShowLegend         ,
+                    ?Opacity            = Opacity            ,
+                    ?MultiOpacity       = MultiOpacity       ,
+                    ?Text               = Text               ,
+                    ?MultiText          = MultiText          ,
+                    ?TextPosition       = TextPosition       ,
+                    ?MultiTextPosition  = MultiTextPosition  ,
+                    ?MarkerColor        = MarkerColor        ,
+                    ?MarkerColorScale   = MarkerColorScale   ,
+                    ?MarkerOutline      = MarkerOutline      ,
+                    ?MarkerSymbol       = MarkerSymbol       ,
+                    ?MultiMarkerSymbol  = MultiMarkerSymbol  ,
+                    ?Marker             = Marker             ,
+                    ?LineColor          = LineColor          ,
+                    ?LineColorScale     = LineColorScale     ,
+                    ?LineWidth          = LineWidth          ,
+                    ?LineDash           = LineDash           ,
+                    ?Line               = Line               ,
+                    ?StackGroup         = StackGroup         ,
+                    ?Orientation        = Orientation        ,
+                    ?GroupNorm          = GroupNorm          ,
+                    ?UseWebGL           = UseWebGL           ,
+                    ?UseDefaults        = UseDefaults        
+                
+                )
+            
 
 
         /// <summary>Creates a Line chart, which uses a Line plotted between the given datums in a 2D space to visualize typically an evolution of Y depending on X.</summary>
         /// <param name="xy">Sets the x,y coordinates of the plotted data.</param>
-        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
-        /// <param name="MarkerSymbol">Sets the type of symbol that datums are displayed as</param>
-        /// <param name="Color">Sets Line/Marker Color</param>
-        /// <param name="Opacity">Sets the Opacity of the trace</param>
-        /// <param name="Labels">Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
-        /// <param name="TextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
-        /// <param name="TextFont">Sets the text font of this trace</param>
-        /// <param name="Dash">Sets the Line Dash style</param>
-        /// <param name="Width">Sets the Line width</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
-        static member Line(xy,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
-                [<Optional;DefaultParameterValue(null)>] ?Color,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Labels,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont,
-                [<Optional;DefaultParameterValue(null)>] ?Dash,
-                [<Optional;DefaultParameterValue(null)>] ?Width,
-                [<Optional;DefaultParameterValue(null)>] ?StackGroup    ,
-                [<Optional;DefaultParameterValue(null)>] ?Orientation   ,
-                [<Optional;DefaultParameterValue(null)>] ?GroupNorm     ,
-                [<Optional;DefaultParameterValue(false)>]?UseWebGL   : bool,
-                [<Optional;DefaultParameterValue(false)>]?UseDefaults   : bool
+        static member Line
+            (
+                xy: seq<#IConvertible * #IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?ShowMarkers       : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale  : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline     : Line,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol      : StyleParam.MarkerSymbol,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol : seq<StyleParam.MarkerSymbol>,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?LineColor         : Color,
+                [<Optional;DefaultParameterValue(null)>] ?LineColorScale    : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?LineWidth         : float,
+                [<Optional;DefaultParameterValue(null)>] ?LineDash          : StyleParam.DrawingStyle,
+                [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
+                [<Optional;DefaultParameterValue(null)>] ?StackGroup        : string,
+                [<Optional;DefaultParameterValue(null)>] ?Orientation       : StyleParam.Orientation,
+                [<Optional;DefaultParameterValue(null)>] ?GroupNorm         : StyleParam.GroupNorm,
+                [<Optional;DefaultParameterValue(false)>]?UseWebGL          : bool,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
             ) = 
-            let x,y = Seq.unzip xy 
-            Chart.Line(
-                x, y, 
-                ?Name           = Name,
-                ?ShowMarkers    = ShowMarkers,
-                ?ShowLegend     = ShowLegend,
-                ?MarkerSymbol   = MarkerSymbol,
-                ?Color          = Color,
-                ?Opacity        = Opacity,
-                ?Labels         = Labels,
-                ?TextPosition   = TextPosition,
-                ?TextFont       = TextFont,
-                ?Dash           = Dash,
-                ?Width          = Width,
-                ?StackGroup     = StackGroup,   
-                ?Orientation    = Orientation,
-                ?GroupNorm      = GroupNorm,  
-                ?UseWebGL       = UseWebGL,
-                ?UseDefaults    = UseDefaults
+                let x,y = Seq.unzip xy 
+                Chart.Line(
+                    x, y, 
+                    ?ShowMarkers        = ShowMarkers      ,
+                    ?Name               = Name             ,
+                    ?ShowLegend         = ShowLegend       ,
+                    ?Opacity            = Opacity          ,
+                    ?MultiOpacity       = MultiOpacity     ,
+                    ?Text               = Text             ,
+                    ?MultiText          = MultiText        ,
+                    ?TextPosition       = TextPosition     ,
+                    ?MultiTextPosition  = MultiTextPosition,
+                    ?MarkerColor        = MarkerColor      ,
+                    ?MarkerColorScale   = MarkerColorScale ,
+                    ?MarkerOutline      = MarkerOutline    ,
+                    ?MarkerSymbol       = MarkerSymbol     ,
+                    ?MultiMarkerSymbol  = MultiMarkerSymbol,
+                    ?Marker             = Marker           ,
+                    ?LineColor          = LineColor        ,
+                    ?LineColorScale     = LineColorScale   ,
+                    ?LineWidth          = LineWidth        ,
+                    ?LineDash           = LineDash         ,
+                    ?Line               = Line             ,
+                    ?StackGroup         = StackGroup       ,
+                    ?Orientation        = Orientation      ,
+                    ?GroupNorm          = GroupNorm        ,
+                    ?UseWebGL           = UseWebGL         ,
+                    ?UseDefaults        = UseDefaults      
                 )
 
 
@@ -378,129 +580,217 @@ module Chart2D =
         /// Very similar to Line Plots, spline charts are typically used to visualize an evolution of Y depending on X. </summary>
         /// <param name="x">Sets the x coordinates of the plotted data.</param>
         /// <param name="y">Sets the y coordinates of the plotted data.</param>
-        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="Smoothing">Sets the amount of smoothing. "0" corresponds to no smoothing (equivalent to a "linear" shape).  Use values between 0. and 1.3</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
-        /// <param name="MarkerSymbol">Sets the type of symbol that datums are displayed as</param>
-        /// <param name="Color">Sets Line/Marker Color</param>
-        /// <param name="Opacity">Sets the Opacity of the trace</param>
-        /// <param name="Labels">Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
-        /// <param name="TextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
-        /// <param name="TextFont">Sets the text font of this trace</param>
-        /// <param name="Dash">Sets the Line Dash style</param>
-        /// <param name="Width">Sets the Line width</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
-        /// <param name="Smoothing">   : Sets the amount of smoothing. "0" corresponds to no smoothing (equivalent to a "linear" shape).  Use values between 0. and 1.3</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
-        static member Spline(x, y,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
-                [<Optional;DefaultParameterValue(null)>] ?Color,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Labels,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont,
-                [<Optional;DefaultParameterValue(null)>] ?Dash,
-                [<Optional;DefaultParameterValue(null)>] ?Width,
-                [<Optional;DefaultParameterValue(null)>] ?Smoothing: float,
-                [<Optional;DefaultParameterValue(null)>] ?StackGroup    ,
-                [<Optional;DefaultParameterValue(null)>] ?Orientation   ,
-                [<Optional;DefaultParameterValue(null)>] ?GroupNorm     ,
-                [<Optional;DefaultParameterValue(false)>]?UseWebGL   : bool,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+        static member Spline
+            (   
+                x: seq<#IConvertible>, 
+                y: seq<#IConvertible>, 
+                [<Optional;DefaultParameterValue(null)>] ?ShowMarkers       : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Smoothing         : float,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale  : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline     : Line,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol      : StyleParam.MarkerSymbol,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol : seq<StyleParam.MarkerSymbol>,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?LineColor         : Color,
+                [<Optional;DefaultParameterValue(null)>] ?LineColorScale    : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?LineWidth         : float,
+                [<Optional;DefaultParameterValue(null)>] ?LineDash          : StyleParam.DrawingStyle,
+                [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
+                [<Optional;DefaultParameterValue(null)>] ?StackGroup        : string,
+                [<Optional;DefaultParameterValue(null)>] ?Orientation       : StyleParam.Orientation,
+                [<Optional;DefaultParameterValue(null)>] ?GroupNorm         : StyleParam.GroupNorm,
+                [<Optional;DefaultParameterValue(false)>]?UseWebGL          : bool,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
             ) = 
 
-            let useDefaults = defaultArg UseDefaults true
+                // if text position set then show labels (not only when hovering)
+                let changeMode = 
+                    let isShowMarker =
+                        match ShowMarkers with
+                        | Some isShow -> isShow
+                        | Option.None        -> false
+                    StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)                       
+                    >> StyleParam.ModeUtils.showMarker (isShowMarker)
 
-            let changeMode = 
-                let isShowMarker =
-                    match ShowMarkers with
-                    | Some isShow -> isShow
-                    | Option.None        -> false
-                StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
-                >> StyleParam.ModeUtils.showMarker (isShowMarker)
+                let useDefaults = defaultArg UseDefaults true
 
-            let style = 
-                Trace2DStyle.Scatter(
-                    X = x,
-                    Y = y, 
-                    Mode=changeMode StyleParam.Mode.Lines,
-                    ?StackGroup = StackGroup, 
-                    ?Orientation= Orientation, 
-                    ?GroupNorm  = GroupNorm)      
-                >> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
-                >> TraceStyle.Line(?Color=Color,?Dash=Dash,?Width=Width, Shape=StyleParam.Shape.Spline, ?Smoothing=Smoothing)
-                >> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol)
-                >> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+                let marker =
+                    Marker 
+                    |> Option.defaultValue (TraceObjects.Marker.init())
+                    |> TraceObjects.Marker.style(
+                        ?Color          = MarkerColor,
+                        ?Outline        = MarkerOutline,
+                        ?Symbol         = MarkerSymbol,
+                        ?MultiSymbol    = MultiMarkerSymbol,
+                        ?Colorscale     = MarkerColorScale,
+                        ?MultiOpacity   = MultiOpacity
+                    )                
 
-            let useWebGL = defaultArg UseWebGL false
-            Chart.renderScatterTrace useDefaults useWebGL style
+                let line =
+                    Line 
+                    |> Option.defaultValue (Plotly.NET.Line.init())
+                    |> Plotly.NET.Line.style(
+                        ?Color      = LineColor,
+                        ?Dash       = LineDash,
+                        ?Colorscale = LineColorScale,
+                        ?Width      = LineWidth,
+                        Shape       = StyleParam.Shape.Spline,
+                        ?Smoothing  = Smoothing
+
+                    )
+
+                let style = 
+                    Trace2DStyle.Scatter(
+                        X                   = x                ,
+                        Y                   = y                ,
+                        Mode                = changeMode StyleParam.Mode.Lines,
+                        Marker              = marker           ,
+                        Line                = line             ,
+                        ?Name               = Name             ,
+                        ?ShowLegend         = ShowLegend       ,
+                        ?Opacity            = Opacity          ,
+                        ?Text               = Text             ,
+                        ?MultiText          = MultiText        ,
+                        ?TextPosition       = TextPosition     ,
+                        ?MultiTextPosition  = MultiTextPosition,
+                        ?StackGroup         = StackGroup       , 
+                        ?Orientation        = Orientation      , 
+                        ?GroupNorm          = GroupNorm
+                    )               
+
+                let useWebGL = defaultArg UseWebGL false
+
+                Chart.renderScatterTrace useDefaults useWebGL style
 
 
-        /// <summary>Creates a Spline chart. A spline chart is a line chart in which data points are connected by smoothed curves: this modification is aimed to improve the design of a chart.
-        /// Very similar to Line Plots, spline charts are typically used to visualize an evolution of Y depending on X. </summary>
+        /// <summary>
+        /// Creates a Spline chart. A spline chart is a line chart in which data points are connected by smoothed curves: this modification is aimed to improve the design of a chart.
+        /// Very similar to Line Plots, spline charts are typically used to visualize an evolution of Y depending on X. 
+        /// </summary>
         /// <param name="xy">Sets the x,y coordinates of the plotted data.</param>
-        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="Smoothing">Sets the amount of smoothing. "0" corresponds to no smoothing (equivalent to a "linear" shape).  Use values between 0. and 1.3</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
-        /// <param name="MarkerSymbol">Sets the type of symbol that datums are displayed as</param>
-        /// <param name="Color">Sets Line/Marker Color</param>
-        /// <param name="Opacity">Sets the Opacity of the trace</param>
-        /// <param name="Labels">Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
-        /// <param name="TextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
-        /// <param name="TextFont">Sets the text font of this trace</param>
-        /// <param name="Dash">Sets the Line Dash style</param>
-        /// <param name="Width">Sets the Line width</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
-        /// <param name="Smoothing">   : Sets the amount of smoothing. "0" corresponds to no smoothing (equivalent to a "linear" shape).  Use values between 0. and 1.3</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
-        static member Spline(xy,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowMarkers,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
-                [<Optional;DefaultParameterValue(null)>] ?Color,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Labels,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont,
-                [<Optional;DefaultParameterValue(null)>] ?Dash,
-                [<Optional;DefaultParameterValue(null)>] ?Width,
-                [<Optional;DefaultParameterValue(null)>] ?Smoothing,
-                [<Optional;DefaultParameterValue(null)>] ?StackGroup    ,
-                [<Optional;DefaultParameterValue(null)>] ?Orientation   ,
-                [<Optional;DefaultParameterValue(null)>] ?GroupNorm     ,
-                [<Optional;DefaultParameterValue(false)>]?UseWebGL   : bool,
-                [<Optional;DefaultParameterValue(false)>]?UseDefaults   : bool
+        static member Spline
+            (
+                xy: seq<#IConvertible * #IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?ShowMarkers       : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Smoothing         : float,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale  : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline     : Line,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol      : StyleParam.MarkerSymbol,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol : seq<StyleParam.MarkerSymbol>,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?LineColor         : Color,
+                [<Optional;DefaultParameterValue(null)>] ?LineColorScale    : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?LineWidth         : float,
+                [<Optional;DefaultParameterValue(null)>] ?LineDash          : StyleParam.DrawingStyle,
+                [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
+                [<Optional;DefaultParameterValue(null)>] ?StackGroup        : string,
+                [<Optional;DefaultParameterValue(null)>] ?Orientation       : StyleParam.Orientation,
+                [<Optional;DefaultParameterValue(null)>] ?GroupNorm         : StyleParam.GroupNorm,
+                [<Optional;DefaultParameterValue(false)>]?UseWebGL          : bool,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
             ) = 
-            let x,y = Seq.unzip xy 
-            Chart.Spline(x, y, 
-                ?Name           = Name,
-                ?ShowMarkers    = ShowMarkers,
-                ?ShowLegend     = ShowLegend,
-                ?MarkerSymbol   = MarkerSymbol,
-                ?Color          = Color,
-                ?Opacity        = Opacity,
-                ?Labels         = Labels,
-                ?TextPosition   = TextPosition,
-                ?TextFont       = TextFont,
-                ?Dash           = Dash,
-                ?Width          = Width,
-                ?Smoothing      = Smoothing,
-                ?StackGroup     = StackGroup,
-                ?Orientation    = Orientation,
-                ?GroupNorm      = GroupNorm,  
-                ?UseWebGL       = UseWebGL,
-                ?UseDefaults    = UseDefaults
-            ) 
+                let x,y = Seq.unzip xy 
+                Chart.Spline(x, y, 
+                    ?ShowMarkers        = ShowMarkers      ,
+                    ?Smoothing          = Smoothing        ,
+                    ?Name               = Name             ,
+                    ?ShowLegend         = ShowLegend       ,
+                    ?Opacity            = Opacity          ,
+                    ?MultiOpacity       = MultiOpacity     ,
+                    ?Text               = Text             ,
+                    ?MultiText          = MultiText        ,
+                    ?TextPosition       = TextPosition     ,
+                    ?MultiTextPosition  = MultiTextPosition,
+                    ?MarkerColor        = MarkerColor      ,
+                    ?MarkerColorScale   = MarkerColorScale ,
+                    ?MarkerOutline      = MarkerOutline    ,
+                    ?MarkerSymbol       = MarkerSymbol     ,
+                    ?MultiMarkerSymbol  = MultiMarkerSymbol,
+                    ?Marker             = Marker           ,
+                    ?LineColor          = LineColor        ,
+                    ?LineColorScale     = LineColorScale   ,
+                    ?LineWidth          = LineWidth        ,
+                    ?LineDash           = LineDash         ,
+                    ?Line               = Line             ,
+                    ?StackGroup         = StackGroup       ,
+                    ?Orientation        = Orientation      ,
+                    ?GroupNorm          = GroupNorm        ,
+                    ?UseWebGL           = UseWebGL         ,
+                    ?UseDefaults        = UseDefaults      
+                    
+                ) 
 
 
         /// <summary>Creates a bubble chart. A bubble chart is a variation of the Point chart, where the data points get an additional scale by being rendered as bubbles of different sizes.</summary>
@@ -509,98 +799,195 @@ module Chart2D =
         /// <param name="sizes">Sets the bubble size of the plotted data</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
-        /// <param name="MarkerSymbol">Sets the type of symbol that datums are displayed as</param>
-        /// <param name="Color">Sets Line/Marker Color</param>
-        /// <param name="Opacity">Sets the Opacity of the trace</param>
-        /// <param name="Labels">Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
-        /// <param name="TextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
-        /// <param name="TextFont">Sets the text font of this trace</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
-        static member Bubble(x, y,sizes:seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
-                [<Optional;DefaultParameterValue(null)>] ?Color,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Labels,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont,
-                [<Optional;DefaultParameterValue(null)>] ?StackGroup    ,
-                [<Optional;DefaultParameterValue(null)>] ?Orientation   ,
-                [<Optional;DefaultParameterValue(null)>] ?GroupNorm     ,
-                [<Optional;DefaultParameterValue(false)>]?UseWebGL   : bool,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+        static member Bubble
+            (
+                x: seq<#IConvertible>, 
+                y: seq<#IConvertible>, 
+                sizes:seq<int>,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale  : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline     : Line,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol      : StyleParam.MarkerSymbol,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol : seq<StyleParam.MarkerSymbol>,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?LineColor         : Color,
+                [<Optional;DefaultParameterValue(null)>] ?LineColorScale    : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?LineWidth         : float,
+                [<Optional;DefaultParameterValue(null)>] ?LineDash          : StyleParam.DrawingStyle,
+                [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
+                [<Optional;DefaultParameterValue(null)>] ?StackGroup        : string,
+                [<Optional;DefaultParameterValue(null)>] ?Orientation       : StyleParam.Orientation,
+                [<Optional;DefaultParameterValue(null)>] ?GroupNorm         : StyleParam.GroupNorm,
+                [<Optional;DefaultParameterValue(false)>]?UseWebGL          : bool,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
             ) = 
 
             let useDefaults = defaultArg UseDefaults true
+
             // if text position or font is set than show labels (not only when hovering)
-            let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
-        
+            let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+
+            let marker =
+                Marker 
+                |> Option.defaultValue (TraceObjects.Marker.init())
+                |> TraceObjects.Marker.style(
+                    ?Color          = MarkerColor,
+                    ?Outline        = MarkerOutline,
+                    ?Symbol        = MarkerSymbol,
+                    ?MultiSymbol   = MultiMarkerSymbol,
+                    ?Colorscale     = MarkerColorScale,
+                    ?MultiOpacity   = MultiOpacity,
+                    MultiSize       = sizes
+                )                
+
+            let line =
+                Line 
+                |> Option.defaultValue (Plotly.NET.Line.init())
+                |> Plotly.NET.Line.style(
+                    ?Color      = LineColor,
+                    ?Dash       = LineDash,
+                    ?Colorscale = LineColorScale,
+                    ?Width      = LineWidth
+                )
+
             let style = 
                 Trace2DStyle.Scatter(
-                    X = x,
-                    Y = y, 
-                    Mode=changeMode StyleParam.Mode.Markers,
-                    ?StackGroup = StackGroup, 
-                    ?Orientation= Orientation, 
-                    ?GroupNorm  = GroupNorm)                  
-                >> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
-                >> TraceStyle.Marker(?Color=Color,?Symbol=MarkerSymbol, MultiSize=sizes)
-                >> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
+                    X                   = x                ,
+                    Y                   = y                ,
+                    Mode                = changeMode StyleParam.Mode.Markers,
+                    Marker              = marker           ,
+                    Line                = line             ,
+                    ?Name               = Name             ,
+                    ?ShowLegend         = ShowLegend       ,
+                    ?Opacity            = Opacity          ,
+                    ?Text               = Text             ,
+                    ?MultiText          = MultiText        ,
+                    ?TextPosition       = TextPosition     ,
+                    ?MultiTextPosition  = MultiTextPosition,
+                    ?StackGroup         = StackGroup       , 
+                    ?Orientation        = Orientation      , 
+                    ?GroupNorm          = GroupNorm
+                )               
 
             let useWebGL = defaultArg UseWebGL false
+
             Chart.renderScatterTrace useDefaults useWebGL style
 
         /// <summary>Creates a bubble chart. A bubble chart is a variation of the Point chart, where the data points get an additional scale by being rendered as bubbles of different sizes.</summary>
         /// <param name="xysizes">Sets the x coordinates, y coordinates, and bubble sizes of the plotted data.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
-        /// <param name="MarkerSymbol">Sets the type of symbol that datums are displayed as</param>
-        /// <param name="Color">Sets Line/Marker Color</param>
-        /// <param name="Opacity">Sets the Opacity of the trace</param>
-        /// <param name="Labels">Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
-        /// <param name="TextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
-        /// <param name="TextFont">Sets the text font of this trace</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
-        static member Bubble(xysizes,[<Optional;DefaultParameterValue(null)>] ?Name,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol,
-                [<Optional;DefaultParameterValue(null)>] ?Color,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Labels,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont,
-                [<Optional;DefaultParameterValue(null)>] ?StackGroup    ,
-                [<Optional;DefaultParameterValue(null)>] ?Orientation   ,
-                [<Optional;DefaultParameterValue(null)>] ?GroupNorm     ,
-                [<Optional;DefaultParameterValue(false)>]?UseWebGL   : bool,
-                [<Optional;DefaultParameterValue(false)>]?UseDefaults   : bool
+        static member Bubble
+            (
+                xysizes: seq<#IConvertible * #IConvertible * int>,
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
+                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale  : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline     : Line,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol      : StyleParam.MarkerSymbol,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol : seq<StyleParam.MarkerSymbol>,
+                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?LineColor         : Color,
+                [<Optional;DefaultParameterValue(null)>] ?LineColorScale    : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?LineWidth         : float,
+                [<Optional;DefaultParameterValue(null)>] ?LineDash          : StyleParam.DrawingStyle,
+                [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
+                [<Optional;DefaultParameterValue(null)>] ?StackGroup        : string,
+                [<Optional;DefaultParameterValue(null)>] ?Orientation       : StyleParam.Orientation,
+                [<Optional;DefaultParameterValue(null)>] ?GroupNorm         : StyleParam.GroupNorm,
+                [<Optional;DefaultParameterValue(false)>]?UseWebGL          : bool,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
             ) = 
-            let x,y,sizes = Seq.unzip3 xysizes 
-            Chart.Bubble(
-                x, y,sizes,
-                ?Name           = Name,
-                ?ShowLegend     = ShowLegend,
-                ?MarkerSymbol   = MarkerSymbol,
-                ?Color          = Color,
-                ?Opacity        = Opacity,
-                ?Labels         = Labels,
-                ?TextPosition   = TextPosition,
-                ?TextFont       = TextFont,
-                ?StackGroup     = StackGroup, 
-                ?Orientation    = Orientation,
-                ?GroupNorm      = GroupNorm, 
-                ?UseWebGL       = UseWebGL   ,
-                ?UseDefaults    = UseDefaults
-            )
+                let x,y,sizes = Seq.unzip3 xysizes 
+                Chart.Bubble(
+                    x, y,sizes,
+                    ?Name               = Name             ,
+                    ?ShowLegend         = ShowLegend       ,
+                    ?Opacity            = Opacity          ,
+                    ?MultiOpacity       = MultiOpacity     ,
+                    ?Text               = Text             ,
+                    ?MultiText          = MultiText        ,
+                    ?TextPosition       = TextPosition     ,
+                    ?MultiTextPosition  = MultiTextPosition,
+                    ?MarkerColor        = MarkerColor      ,
+                    ?MarkerColorScale   = MarkerColorScale ,
+                    ?MarkerOutline      = MarkerOutline    ,
+                    ?MarkerSymbol       = MarkerSymbol     ,
+                    ?MultiMarkerSymbol  = MultiMarkerSymbol,
+                    ?Marker             = Marker           ,
+                    ?LineColor          = LineColor        ,
+                    ?LineColorScale     = LineColorScale   ,
+                    ?LineWidth          = LineWidth        ,
+                    ?LineDash           = LineDash         ,
+                    ?Line               = Line             ,
+                    ?StackGroup         = StackGroup       ,
+                    ?Orientation        = Orientation      ,
+                    ?GroupNorm          = GroupNorm        ,
+                    ?UseWebGL           = UseWebGL         ,
+                    ?UseDefaults        = UseDefaults      
+                    
+                )
 
         /// Displays a range of data by plotting two Y values per data point, with each Y value being drawn as a line 
         [<Extension>]

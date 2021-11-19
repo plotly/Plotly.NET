@@ -24,7 +24,7 @@ let ``Html layout tests`` =
             |> chartGeneratedContains simpleChart
         );
         testCase "Expecting data" ( fun () ->
-            """var data = [{"type":"scatter","mode":"markers","x":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"marker":{}}];"""
+            """var data = [{"type":"scatter","mode":"markers","x":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"marker":{},"line":{}}];"""
             |> chartGeneratedContains simpleChart
         );
         testCase "Expecting layout info" (fun () ->

@@ -92,7 +92,7 @@ let errorBarsChart =
 let ``Error bars`` =
     testList "ChartLayout.Error bars tests" [
         testCase "Full data test" ( fun () ->
-            """var data = [{"type":"scatter","mode":"markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"name":"points with errors","marker":{},"error_x":{"symmetric":true,"array":[0.2,0.3,0.2,0.1,0.2,0.4,0.2,0.08,0.2,0.1]},"error_y":{"array":[0.3,0.2,0.1,0.4,0.2,0.4,0.1,0.18,0.02,0.2],"arrayminus":[0.2,0.3,0.2,0.1,0.2,0.4,0.2,0.08,0.2,0.1]}}];"""
+            """var data = [{"type":"scatter","name":"points with errors","mode":"markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{},"line":{},"error_x":{"symmetric":true,"array":[0.2,0.3,0.2,0.1,0.2,0.4,0.2,0.08,0.2,0.1]},"error_y":{"array":[0.3,0.2,0.1,0.4,0.2,0.4,0.1,0.18,0.02,0.2],"arrayminus":[0.2,0.3,0.2,0.1,0.2,0.4,0.2,0.08,0.2,0.1]}}];"""
             |> chartGeneratedContains errorBarsChart
         );
         testCase "Expecting name" ( fun () ->
@@ -200,11 +200,11 @@ let multiTraceSingleStack =
 let ``Multicharts and subplots`` =
     testList "ChartLayout.Multicharts and subplots" [
         testCase "Combining" ( fun () ->
-            """var data = [{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"line":{},"name":"first","marker":{}},{"type":"scatter","mode":"lines","x":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"y":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"line":{},"name":"second","marker":{}}];"""
+            """var data = [{"type":"scatter","name":"first","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{},"line":{}},{"type":"scatter","name":"second","mode":"lines","x":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"y":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"marker":{},"line":{}}];"""
             |> chartGeneratedContains combinedChart
         );
         testCase "Subplot grids data" ( fun () ->
-            """var data = [{"type":"scatter","mode":"markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"name":"1,1","marker":{},"xaxis":"x","yaxis":"y"},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"line":{},"name":"1,2","marker":{},"xaxis":"x2","yaxis":"y2"},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"name":"2,1","line":{"shape":"spline"},"marker":{},"xaxis":"x3","yaxis":"y3"},{"type":"scatter","mode":"markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"name":"2,2","marker":{},"xaxis":"x4","yaxis":"y4"}];"""
+            """var data = [{"type":"scatter","name":"1,1","mode":"markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{},"line":{},"xaxis":"x","yaxis":"y"},{"type":"scatter","name":"1,2","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{},"line":{},"xaxis":"x2","yaxis":"y2"},{"type":"scatter","name":"2,1","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{},"line":{"shape":"spline"},"xaxis":"x3","yaxis":"y3"},{"type":"scatter","name":"2,2","mode":"markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{},"line":{},"xaxis":"x4","yaxis":"y4"}];"""
             |> chartGeneratedContains subPlotChart
         );
         testCase "Subplot grids layout" ( fun () ->
@@ -212,7 +212,7 @@ let ``Multicharts and subplots`` =
             |> chartGeneratedContains subPlotChart
         );        
         testCase "MultiTrace Subplot grid data" ( fun () ->
-            """var data = [{"type":"scatter","mode":"markers","x":[1,2],"y":[2,3],"marker":{},"xaxis":"x","yaxis":"y"},{"type":"scatterternary","mode":"markers","a":[1,2],"b":[2,3],"c":[3,4],"marker":{},"subplot":"ternary2"},{"type":"heatmap","z":[[1,2],[3,4]],"showscale":false,"xaxis":"x3","yaxis":"y3"},{"type":"scatter3d","mode":"markers","x":[1],"y":[3],"z":[2],"marker":{},"line":{},"scene":"scene4"},{"type":"scattermapbox","mode":"markers","lon":[1],"lat":[2],"line":{},"marker":{},"subplot":"mapbox5"},{"type":"box","x":"y","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"boxpoints":"all","jitter":0.1,"name":"bin1","marker":{},"xaxis":"x6","yaxis":"y6"},{"type":"box","x":"y'","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"boxpoints":"all","jitter":0.1,"name":"bin2","marker":{},"xaxis":"x6","yaxis":"y6"}];"""
+            """var data = [{"type":"scatter","mode":"markers","x":[1,2],"y":[2,3],"marker":{},"line":{},"xaxis":"x","yaxis":"y"},{"type":"scatterternary","mode":"markers","a":[1,2],"b":[2,3],"c":[3,4],"marker":{},"subplot":"ternary2"},{"type":"heatmap","z":[[1,2],[3,4]],"showscale":false,"xaxis":"x3","yaxis":"y3"},{"type":"scatter3d","mode":"markers","x":[1],"y":[3],"z":[2],"marker":{},"line":{},"scene":"scene4"},{"type":"scattermapbox","mode":"markers","lon":[1],"lat":[2],"line":{},"marker":{},"subplot":"mapbox5"},{"type":"box","x":"y","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"boxpoints":"all","jitter":0.1,"name":"bin1","marker":{},"xaxis":"x6","yaxis":"y6"},{"type":"box","x":"y'","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"boxpoints":"all","jitter":0.1,"name":"bin2","marker":{},"xaxis":"x6","yaxis":"y6"}];"""
             |> chartGeneratedContains multiTraceGrid
         );
         testCase "MultiTrace Subplot grid layout" ( fun () ->
@@ -220,7 +220,7 @@ let ``Multicharts and subplots`` =
             |> chartGeneratedContains multiTraceGrid
         );
         testCase "Single Stack data" ( fun () -> 
-            """var data = [{"type":"scatter","mode":"markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{},"xaxis":"x","yaxis":"y"},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"line":{},"marker":{},"xaxis":"x","yaxis":"y2"},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"line":{"shape":"spline"},"marker":{},"xaxis":"x","yaxis":"y3"}];"""
+            """var data = [{"type":"scatter","mode":"markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{},"line":{},"xaxis":"x","yaxis":"y"},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{},"line":{},"xaxis":"x","yaxis":"y2"},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{},"line":{"shape":"spline"},"xaxis":"x","yaxis":"y3"}];"""
             |> chartGeneratedContains singleStackChart
         );
         testCase "Single Stack layout" ( fun () -> 
@@ -229,7 +229,7 @@ let ``Multicharts and subplots`` =
         );        
         
         testCase "MultiTrace Single Stack data" ( fun () -> 
-            """var data = [{"type":"scatter","mode":"markers","x":[1,2],"y":[2,3],"marker":{},"xaxis":"x","yaxis":"y"},{"type":"scatterternary","mode":"markers","a":[1,2],"b":[2,3],"c":[3,4],"marker":{},"subplot":"ternary2"},{"type":"heatmap","z":[[1,2],[3,4]],"showscale":false,"xaxis":"x3","yaxis":"y3"},{"type":"scatter3d","mode":"markers","x":[1],"y":[3],"z":[2],"marker":{},"line":{},"scene":"scene4"},{"type":"scattermapbox","mode":"markers","lon":[1],"lat":[2],"line":{},"marker":{},"subplot":"mapbox5"},{"type":"box","x":"y","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"boxpoints":"all","jitter":0.1,"name":"bin1","marker":{},"xaxis":"x6","yaxis":"y6"},{"type":"box","x":"y'","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"boxpoints":"all","jitter":0.1,"name":"bin2","marker":{},"xaxis":"x6","yaxis":"y6"}];"""
+            """var data = [{"type":"scatter","mode":"markers","x":[1,2],"y":[2,3],"marker":{},"line":{},"xaxis":"x","yaxis":"y"},{"type":"scatterternary","mode":"markers","a":[1,2],"b":[2,3],"c":[3,4],"marker":{},"subplot":"ternary2"},{"type":"heatmap","z":[[1,2],[3,4]],"showscale":false,"xaxis":"x3","yaxis":"y3"},{"type":"scatter3d","mode":"markers","x":[1],"y":[3],"z":[2],"marker":{},"line":{},"scene":"scene4"},{"type":"scattermapbox","mode":"markers","lon":[1],"lat":[2],"line":{},"marker":{},"subplot":"mapbox5"},{"type":"box","x":"y","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"boxpoints":"all","jitter":0.1,"name":"bin1","marker":{},"xaxis":"x6","yaxis":"y6"},{"type":"box","x":"y'","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"boxpoints":"all","jitter":0.1,"name":"bin2","marker":{},"xaxis":"x6","yaxis":"y6"}];"""
             |> chartGeneratedContains multiTraceSingleStack
         );
         testCase "MultiTrace Single Stack layout" ( fun () -> 
@@ -252,7 +252,7 @@ let shapesChart =
 let ``Shapes`` =
     testList "ChartLayout.Shapes" [
         testCase "Data" ( fun () ->
-            """var data = [{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"line":{},"name":"line","marker":{}}];"""
+            """var data = [{"type":"scatter","name":"line","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{},"line":{}}];"""
             |> chartGeneratedContains shapesChart
         );
         testCase "Layout" ( fun () ->
@@ -267,7 +267,7 @@ let displayOptionsChartDescriptionChart =
     let description1 = ChartDescription.create "Hello" "F#"
     Chart.Point(x,y,Name="desc1", UseDefaults = false)    
     |> Chart.withDescription(description1)
-
+    
 let additionalHeadTagsChart =
     let x = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
     let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
@@ -307,7 +307,7 @@ let mathtexChart =
 let ``Display options`` =
     testList "ChartLayout.Display options" [
         testCase "Chart description data" ( fun () ->
-            """var data = [{"type":"scatter","mode":"markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"name":"desc1","marker":{}}];"""
+            """var data = [{"type":"scatter","name":"desc1","mode":"markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{},"line":{}}];"""
             |> chartGeneratedContains displayOptionsChartDescriptionChart
         );
         testCase "Chart description layout" ( fun () ->
@@ -334,7 +334,7 @@ let ``Display options`` =
             |> substringListIsInChart additionalHeadTagsChart toEmbeddedHTML
         );
         testCase "MathTex data" ( fun () ->
-            """var data = [{"type":"scatter","mode":"markers","x":[1.0],"y":[2.0],"name":"$\\beta_{1c} = 25 \\pm 11 \\text{ km s}^{-1}$","marker":{}},{"type":"scatter","mode":"markers","x":[2.0],"y":[4.0],"name":"$\\beta_{1c} = 25 \\pm 11 \\text{ km s}^{-1}$","marker":{}}];"""
+            """var data = [{"type":"scatter","name":"$\\beta_{1c} = 25 \\pm 11 \\text{ km s}^{-1}$","mode":"markers","x":[1.0],"y":[2.0],"marker":{},"line":{}},{"type":"scatter","name":"$\\beta_{1c} = 25 \\pm 11 \\text{ km s}^{-1}$","mode":"markers","x":[2.0],"y":[4.0],"marker":{},"line":{}}];"""
             |> chartGeneratedContains mathtexChart
         );
         testCase "MathTex layout" ( fun () ->
