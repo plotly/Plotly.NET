@@ -25,10 +25,32 @@ let splinePolar =
     Chart.SplinePolar(
         radial,
         theta,
-        Labels=["one";"two";"three";"four";"five";"six";"seven"],
+        MultiText=["one";"two";"three";"four";"five";"six";"seven"],
         TextPosition=StyleParam.TextPosition.TopCenter,
         ShowMarkers=true, 
         UseDefaults = false
+    )
+
+let barPolar =
+    let r   = [77.5; 72.5; 70.0; 45.0; 22.5; 42.5; 40.0; 62.5]
+    let r2  = [57.5; 50.0; 45.0; 35.0; 20.0; 22.5; 37.5; 55.0]
+    let r3  = [40.0; 30.0; 30.0; 35.0; 7.5; 7.5; 32.5; 40.0]
+    let r4  = [20.0; 7.5; 15.0; 22.5; 2.5; 2.5; 12.5; 22.5]
+    
+    let t = ["North"; "N-E"; "East"; "S-E"; "South"; "S-W"; "West"; "N-W"]
+
+    [
+        Chart.BarPolar (r , t, Name="11-14 m/s" , MarkerPatternShape = StyleParam.PatternShape.Checked        , UseDefaults = false)
+        Chart.BarPolar (r2, t, Name="8-11 m/s"  , MarkerPatternShape = StyleParam.PatternShape.DiagonalChecked, UseDefaults = false)
+        Chart.BarPolar (r3, t, Name="5-8 m/s"   , MarkerPatternShape = StyleParam.PatternShape.VerticalLines  , UseDefaults = false)
+        Chart.BarPolar (r4, t, Name="< 5 m/s"   , MarkerPatternShape = StyleParam.PatternShape.HorizontalLines, UseDefaults = false)
+    ]
+    |> Chart.combine
+    |> Chart.withAngularAxis(
+        AngularAxis.init(
+            CategoryOrder = StyleParam.CategoryOrder.Array,
+            CategoryArray = (["East"; "N-E"; "North"; "N-W"; "West"; "S-W"; "South"; "S-E";]) // set the order of the categorical axis
+        )
     )
 
 [<Tests>]
@@ -42,18 +64,26 @@ let ``Polar charts`` =
             emptyLayout pointPolar
         );        
         testCase "Polar Line data" ( fun () ->
-            """var data = [{"type":"scatterpolar","mode":"lines","r":[1,2,3,4,5,6,7],"theta":[0,45,90,135,200,320,184],"line":{"color":"purple","dash":"dashdot"},"marker":{}}];"""
+            """var data = [{"type":"scatterpolar","mode":"lines","r":[1,2,3,4,5,6,7],"theta":[0,45,90,135,200,320,184],"marker":{},"line":{"color":"purple","dash":"dashdot"}}];"""
             |> chartGeneratedContains linePolar
         );
         testCase "Polar Line layout" ( fun () ->
             emptyLayout linePolar
         );        
         testCase "Polar Spline data" ( fun () ->
-            """var data = [{"type":"scatterpolar","mode":"lines+markers+text","r":[1,2,3,4,5,6,7],"theta":[0,45,90,135,200,320,184],"line":{"shape":"spline"},"marker":{},"text":["one","two","three","four","five","six","seven"],"textposition":"top center"}];"""
+            """var data = [{"type":"scatterpolar","mode":"lines+markers+text","r":[1,2,3,4,5,6,7],"theta":[0,45,90,135,200,320,184],"text":["one","two","three","four","five","six","seven"],"textposition":"top center","marker":{},"line":{"shape":"spline"}}];"""
             |> chartGeneratedContains splinePolar
         );
         testCase "Polar Spline layout" ( fun () ->
             emptyLayout splinePolar
+        );        
+        testCase "Polar Bar data" ( fun () ->
+            """var data = [{"type":"barpolar","name":"11-14 m/s","r":[77.5,72.5,70.0,45.0,22.5,42.5,40.0,62.5],"theta":["North","N-E","East","S-E","South","S-W","West","N-W"],"marker":{"pattern":{"shape":"+"}}},{"type":"barpolar","name":"8-11 m/s","r":[57.5,50.0,45.0,35.0,20.0,22.5,37.5,55.0],"theta":["North","N-E","East","S-E","South","S-W","West","N-W"],"marker":{"pattern":{"shape":"x"}}},{"type":"barpolar","name":"5-8 m/s","r":[40.0,30.0,30.0,35.0,7.5,7.5,32.5,40.0],"theta":["North","N-E","East","S-E","South","S-W","West","N-W"],"marker":{"pattern":{"shape":"|"}}},{"type":"barpolar","name":"< 5 m/s","r":[20.0,7.5,15.0,22.5,2.5,2.5,12.5,22.5],"theta":["North","N-E","East","S-E","South","S-W","West","N-W"],"marker":{"pattern":{"shape":"-"}}}];"""
+            |> chartGeneratedContains barPolar
+        );
+        testCase "Polar Bar layout" ( fun () ->
+            """var layout = {"polar":{"angularaxis":{"categoryorder":"array","categoryarray":["East","N-E","North","N-W","West","S-W","South","S-E"]}}};"""
+            |> chartGeneratedContains barPolar
         );
     ]
 

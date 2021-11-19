@@ -98,7 +98,7 @@ let splinePolar =
     Chart.SplinePolar(
         radial,
         theta,
-        Labels=["one";"two";"three";"four";"five";"six";"seven"],
+        MultiText=["one";"two";"three";"four";"five";"six";"seven"],
         TextPosition=StyleParam.TextPosition.TopCenter,
         ShowMarkers=true
     )

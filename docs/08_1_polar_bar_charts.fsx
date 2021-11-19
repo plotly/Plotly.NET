@@ -53,11 +53,12 @@ of how wind speed and direction are typically distributed at a particular locati
 open Plotly.NET.LayoutObjects
 
 let windrose1 =
+
     [
-        Chart.BarPolar (r , t, Name="11-14 m/s")
-        Chart.BarPolar (r2, t, Name="8-11 m/s")
-        Chart.BarPolar (r3, t, Name="5-8 m/s")
-        Chart.BarPolar (r4, t, Name="< 5 m/s")
+        Chart.BarPolar (r , t, Name="11-14 m/s",  MarkerPatternShape = StyleParam.PatternShape.Checked)
+        Chart.BarPolar (r2, t, Name="8-11 m/s" ,  MarkerPatternShape = StyleParam.PatternShape.DiagonalChecked)
+        Chart.BarPolar (r3, t, Name="5-8 m/s"  ,  MarkerPatternShape = StyleParam.PatternShape.VerticalLines)
+        Chart.BarPolar (r4, t, Name="< 5 m/s"  ,  MarkerPatternShape = StyleParam.PatternShape.HorizontalLines)
     ]
     |> Chart.combine
     |> Chart.withAngularAxis(
