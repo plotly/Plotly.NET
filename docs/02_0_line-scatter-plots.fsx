@@ -136,7 +136,7 @@ let pointsWithLabels =
     Chart.Point(
         x,y,
         Name="points",
-        Labels=labels,
+        MultiText=labels,
         TextPosition=StyleParam.TextPosition.TopRight
     )    
 

@@ -36,6 +36,7 @@ The original exapmle is made with python and can be found [here](https://plotly.
 
 open Plotly.NET 
 open Plotly.NET.LayoutObjects
+open Plotly.NET.TraceObjects
 
 /// Similar to numpy.arrange
 let nparange (start: double) (stop:double) (step: double) =
@@ -54,13 +55,15 @@ let scattersChart =
             // Some plot must be visible here or the chart is empty at the beginning
             let chartVisibility = if step = 0. then StyleParam.Visible.True else StyleParam.Visible.False;
             let go =
-                Chart2D.Chart.Scatter
+                Chart.Scatter
                     (
                         x=x, y=y,
                         mode=StyleParam.Mode.Lines,
                         Name="v = " + string(step),
-                        Color=Color.fromHex("#00CED1"),
-                        Width=6.
+                        Marker = Marker.init(
+                            Color = Color.fromHex("#00CED1"),
+                            Size = 6
+                        )
                     )
                 |> Chart.withTraceName(Visible=chartVisibility)
             go
