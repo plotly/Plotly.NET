@@ -75,7 +75,10 @@ bar |> GenericChart.toChartHTML
 (** 
 
 ## Stacked bar chart or column charts
+
 The following example shows how to create a stacked bar chart by combining bar charts created by combining multiple `Chart.StackedBar` charts: 
+
+Basically those charts are just normal bar/column charts with the Layout property `BarMode` set to `Stack`. You can do this yourself by changing the Chart layout.
 
 ### Stacked bar Charts
 *)
