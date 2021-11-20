@@ -11,7 +11,7 @@ open System
 open TestUtils.HtmlCodegen
 
 let basemapChart =
-    Chart.PointGeo([], UseDefaults = false) // deliberately empty chart to show the base map only
+    Chart.PointGeo(locations = [], UseDefaults = false) // deliberately empty chart to show the base map only
     |> Chart.withMarginSize(0, 0, 0, 0)
 
 let moreFeaturesBasemapChart =
@@ -29,7 +29,7 @@ let moreFeaturesBasemapChart =
             ShowRivers=true, 
             RiverColor=Color.fromString "Blue"
         )
-    Chart.PointGeo([], UseDefaults = false)
+    Chart.PointGeo(locations = [], UseDefaults = false)
     |> Chart.withGeo myGeo
     |> Chart.withMarginSize(0, 0, 0, 0)
 
@@ -41,7 +41,7 @@ let cultureMapChart =
             ShowCountries=true, 
             CountryColor=Color.fromString "RebeccaPurple"
         )
-    Chart.PointGeo([], UseDefaults = false)
+    Chart.PointGeo(locations = [], UseDefaults = false)
     |> Chart.withGeo countryGeo
     |> Chart.withMarginSize(0, 0, 0, 0)
 
@@ -92,7 +92,7 @@ let pointGeoChart =
     Chart.PointGeo(
         lon,
         lat,
-        Labels=cityNames,
+        MultiText=cityNames,
         TextPosition=StyleParam.TextPosition.TopCenter, 
         UseDefaults = false
     )
@@ -136,7 +136,7 @@ let flightsMapChart =
         Chart.LineGeo(
             [startCoords; endCoords],
             Opacity = opacityVals.[i],
-            Color = Color.fromString  "red",
+            MarkerColor = Color.fromString  "red",
             UseDefaults = false
         )
     )
