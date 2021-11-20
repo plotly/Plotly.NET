@@ -23,35 +23,39 @@ module ChartMap =
         static member ChoroplethMap
             (
                 locations,z,
-                [<Optional;DefaultParameterValue(null)>] ?Text,
-                [<Optional;DefaultParameterValue(null)>] ?Locationmode,
-                [<Optional;DefaultParameterValue(null)>] ?Autocolorscale,
-                [<Optional;DefaultParameterValue(null)>] ?Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?ColorBar,
-                [<Optional;DefaultParameterValue(null)>] ?Marker,
-                [<Optional;DefaultParameterValue(null)>] ?GeoJson,
-                [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey: string,
-                [<Optional;DefaultParameterValue(null)>] ?Zmin,
-                [<Optional;DefaultParameterValue(null)>] ?Zmax,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
+                [<Optional;DefaultParameterValue(null)>] ?GeoJson           : obj,
+                [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey      : string,
+                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?ColorBar          : ColorBar,
+                [<Optional;DefaultParameterValue(null)>] ?AutoColorScale    : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ColorScale        : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?ShowScale         : bool,
+                [<Optional;DefaultParameterValue(null)>] ?ReverseScale      : bool,
+                [<Optional;DefaultParameterValue(null)>] ?LocationMode      : StyleParam.LocationFormat,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
             ) = 
 
                 let useDefaults = defaultArg UseDefaults true
 
                 TraceGeo.initChoroplethMap (
                     TraceGeoStyle.ChoroplethMap(
-                        Locations=locations,
-                        Z=z,
-                        ?Text=Text,
-                        ?Locationmode=Locationmode,
-                        ?Autocolorscale=Autocolorscale,
-                        ?Colorscale=Colorscale,
-                        ?ColorBar=ColorBar,
-                        ?Marker=Marker,
-                        ?Zmin=Zmin,
-                        ?Zmax=Zmax,
-                        ?GeoJson=GeoJson,
-                        ?FeatureIdKey=FeatureIdKey
+                        Locations       = locations     ,
+                        Z               = z             ,
+                        ?Name           = Name          ,
+                        ?ShowLegend     = ShowLegend    ,
+                        ?GeoJson        = GeoJson       ,
+                        ?FeatureIdKey   = FeatureIdKey  ,
+                        ?Text           = Text          ,
+                        ?MultiText      = MultiText     ,
+                        ?ColorBar       = ColorBar      ,
+                        ?AutoColorScale = AutoColorScale,
+                        ?ColorScale     = ColorScale    ,
+                        ?ShowScale      = ShowScale     ,
+                        ?ReverseScale   = ReverseScale  ,
+                        ?LocationMode   = LocationMode  
                     )              
                 )
                 |> GenericChart.ofTraceObject useDefaults

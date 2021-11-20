@@ -58,7 +58,7 @@ let pointGeo =
     Chart.PointGeo(
         lon,
         lat,
-        Labels=cityNames,
+        MultiText=cityNames,
         TextPosition=StyleParam.TextPosition.TopCenter
     )
     |> Chart.withGeoStyle(
@@ -106,7 +106,7 @@ let flights =
         Chart.LineGeo(
             [startCoords; endCoords],
             Opacity = opacityVals.[i],
-            Color = Color.fromString "red"
+            MarkerColor = Color.fromString "red"
         )
     )
     |> Chart.combine
