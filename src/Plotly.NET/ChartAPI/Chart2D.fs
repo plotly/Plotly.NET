@@ -1623,43 +1623,46 @@ module Chart2D =
         static member Bar
             (
                 values: seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?Keys              : seq<#IConvertible>, 
-                [<Optional;DefaultParameterValue(null)>] ?Name              : string         ,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
-                [<Optional;DefaultParameterValue(null)>] ?Color             : Color             ,
-                [<Optional;DefaultParameterValue(null)>] ?PatternShape      : StyleParam.PatternShape,
-                [<Optional;DefaultParameterValue(null)>] ?MultiPatternShape : seq<StyleParam.PatternShape>,
-                [<Optional;DefaultParameterValue(null)>] ?Pattern           : Pattern,
-                [<Optional;DefaultParameterValue(null)>] ?Base              : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?Width             : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?MultiWidth        : seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
-                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
-                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                [<Optional;DefaultParameterValue(null)>] ?Keys                      : seq<#IConvertible>, 
+                [<Optional;DefaultParameterValue(null)>] ?Name                      : string         ,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity                   : float,
+                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity              : seq<float>,
+                [<Optional;DefaultParameterValue(null)>] ?Text                      : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText                 : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor               : Color             ,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale          : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline             : Line,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerPatternShape        : StyleParam.PatternShape,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerPatternShape   : seq<StyleParam.PatternShape>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerPattern             : Pattern,
+                [<Optional;DefaultParameterValue(null)>] ?Marker                    : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?Base                      : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?Width                     : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiWidth                : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition              : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition         : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults               : bool
             ) = 
 
                 let useDefaults = defaultArg UseDefaults true
-
+                
                 let pattern = 
-                    Pattern
+                    MarkerPattern
                     |> Option.defaultValue (TraceObjects.Pattern.init())
                     |> TraceObjects.Pattern.style(
-                        ?Shape = PatternShape,
-                        ?MultiShape = MultiPatternShape
+                        ?Shape = MarkerPatternShape,
+                        ?MultiShape = MultiMarkerPatternShape
                     )
                 let marker =
                     Marker 
                     |> Option.defaultValue (TraceObjects.Marker.init())
                     |> TraceObjects.Marker.style(
-                        ?Color          = Color,
-                        Pattern        = pattern,
-                        ?MultiOpacity = MultiOpacity
+                        ?Color          = MarkerColor,
+                        Pattern         = pattern,
+                        ?MultiOpacity   = MultiOpacity,
+                        ?Colorscale     = MarkerColorScale,
+                        ?Outline        = MarkerOutline
                     )
 
 
@@ -1668,17 +1671,16 @@ module Chart2D =
                         X                   = values,
                         ?Y                  = Keys,
                         Orientation         = StyleParam.Orientation.Horizontal,
-                        ?Name               = Name              ,
-                        ?ShowLegend         = ShowLegend        ,
-                        ?Base               = Base              ,
-                        ?Width              = Width             ,
-                        ?MultiWidth         = MultiWidth        ,
-                        ?Opacity            = Opacity           ,
-                        ?Text               = Text              ,
-                        ?MultiText          = MultiText         ,
-                        ?TextPosition       = TextPosition      ,
-                        ?MultiTextPosition  = MultiTextPosition ,
-                        ?TextFont           = TextFont          ,
+                        ?Name               = Name             ,
+                        ?ShowLegend         = ShowLegend       ,
+                        ?Opacity            = Opacity          ,
+                        ?Text               = Text             ,
+                        ?MultiText          = MultiText        ,
+                        ?Base               = Base             ,
+                        ?Width              = Width            ,
+                        ?MultiWidth         = MultiWidth       ,
+                        ?TextPosition       = TextPosition     ,
+                        ?MultiTextPosition  = MultiTextPosition,
                         Marker              = marker            
                     )
                 )
@@ -1689,48 +1691,50 @@ module Chart2D =
         static member Bar
             (
                 keysValues: seq<#IConvertible * #IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?Name              : string         ,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
-                [<Optional;DefaultParameterValue(null)>] ?Color             : Color             ,
-                [<Optional;DefaultParameterValue(null)>] ?PatternShape      : StyleParam.PatternShape,
-                [<Optional;DefaultParameterValue(null)>] ?MultiPatternShape : seq<StyleParam.PatternShape>,
-                [<Optional;DefaultParameterValue(null)>] ?Pattern           : Pattern,
-                [<Optional;DefaultParameterValue(null)>] ?Base              : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?Width             : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?MultiWidth        : seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
-                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
-                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                [<Optional;DefaultParameterValue(null)>] ?Name                      : string         ,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity                   : float,
+                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity              : seq<float>,
+                [<Optional;DefaultParameterValue(null)>] ?Text                      : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText                 : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor               : Color             ,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale          : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline             : Line,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerPatternShape        : StyleParam.PatternShape,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerPatternShape   : seq<StyleParam.PatternShape>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerPattern             : Pattern,
+                [<Optional;DefaultParameterValue(null)>] ?Marker                    : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?Base                      : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?Width                     : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiWidth                : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition              : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition         : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults               : bool
             ) = 
 
                 let keys,values = Seq.unzip keysValues
                 Chart.Bar(
                     values,
                     keys,
-                    ?Name               = Name             ,
-                    ?ShowLegend         = ShowLegend       ,
-                    ?Color              = Color            ,
-                    ?PatternShape       = PatternShape     ,
-                    ?MultiPatternShape  = MultiPatternShape,
-                    ?Pattern            = Pattern          ,
-                    ?Base               = Base             ,
-                    ?Width              = Width            ,
-                    ?MultiWidth         = MultiWidth       ,
-                    ?Opacity            = Opacity          ,
-                    ?MultiOpacity       = MultiOpacity     ,
-                    ?Text               = Text             ,
-                    ?MultiText          = MultiText        ,
-                    ?TextPosition       = TextPosition     ,
-                    ?MultiTextPosition  = MultiTextPosition,
-                    ?TextFont           = TextFont         ,
-                    ?Marker             = Marker           ,
-                    ?UseDefaults        = UseDefaults
+                    ?Name                       = Name                   ,
+                    ?ShowLegend                 = ShowLegend             ,
+                    ?Opacity                    = Opacity                ,
+                    ?MultiOpacity               = MultiOpacity           ,
+                    ?Text                       = Text                   ,
+                    ?MultiText                  = MultiText              ,
+                    ?MarkerColor                = MarkerColor            ,
+                    ?MarkerColorScale           = MarkerColorScale       ,
+                    ?MarkerOutline              = MarkerOutline          ,
+                    ?MarkerPatternShape         = MarkerPatternShape     ,
+                    ?MultiMarkerPatternShape    = MultiMarkerPatternShape,
+                    ?MarkerPattern              = MarkerPattern          ,
+                    ?Marker                     = Marker                 ,
+                    ?Base                       = Base                   ,
+                    ?Width                      = Width                  ,
+                    ?MultiWidth                 = MultiWidth             ,
+                    ?TextPosition               = TextPosition           ,
+                    ?MultiTextPosition          = MultiTextPosition      ,
+                    ?UseDefaults                = UseDefaults            
                 )
 
 
@@ -1739,48 +1743,50 @@ module Chart2D =
         static member StackedBar
             (
                 values: seq<#IConvertible>, 
-                [<Optional;DefaultParameterValue(null)>] ?Keys              : seq<#IConvertible>, 
-                [<Optional;DefaultParameterValue(null)>] ?Name              : string         ,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
-                [<Optional;DefaultParameterValue(null)>] ?Color             : Color             ,
-                [<Optional;DefaultParameterValue(null)>] ?PatternShape      : StyleParam.PatternShape,
-                [<Optional;DefaultParameterValue(null)>] ?MultiPatternShape : seq<StyleParam.PatternShape>,
-                [<Optional;DefaultParameterValue(null)>] ?Pattern           : Pattern,
-                [<Optional;DefaultParameterValue(null)>] ?Base              : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?Width             : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?MultiWidth        : seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
-                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
-                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                [<Optional;DefaultParameterValue(null)>] ?Keys                      : seq<#IConvertible>, 
+                [<Optional;DefaultParameterValue(null)>] ?Name                      : string         ,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity                   : float,
+                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity              : seq<float>,
+                [<Optional;DefaultParameterValue(null)>] ?Text                      : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText                 : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor               : Color             ,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale          : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline             : Line,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerPatternShape        : StyleParam.PatternShape,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerPatternShape   : seq<StyleParam.PatternShape>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerPattern             : Pattern,
+                [<Optional;DefaultParameterValue(null)>] ?Marker                    : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?Base                      : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?Width                     : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiWidth                : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition              : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition         : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults               : bool
             ) = 
 
                 Chart.Bar(
                     values,
-                    ?Keys               = Keys,
-                    ?Name               = Name             ,
-                    ?ShowLegend         = ShowLegend       ,
-                    ?Color              = Color            ,
-                    ?PatternShape       = PatternShape     ,
-                    ?MultiPatternShape  = MultiPatternShape,
-                    ?Pattern            = Pattern          ,
-                    ?Base               = Base             ,
-                    ?Width              = Width            ,
-                    ?MultiWidth         = MultiWidth       ,
-                    ?Opacity            = Opacity          ,
-                    ?MultiOpacity       = MultiOpacity     ,
-                    ?Text               = Text             ,
-                    ?MultiText          = MultiText        ,
-                    ?TextPosition       = TextPosition     ,
-                    ?MultiTextPosition  = MultiTextPosition,
-                    ?TextFont           = TextFont         ,
-                    ?Marker             = Marker           ,
-                    ?UseDefaults        = UseDefaults
+                    ?Keys                       = Keys,
+                    ?Name                       = Name                   ,
+                    ?ShowLegend                 = ShowLegend             ,
+                    ?Opacity                    = Opacity                ,
+                    ?MultiOpacity               = MultiOpacity           ,
+                    ?Text                       = Text                   ,
+                    ?MultiText                  = MultiText              ,
+                    ?MarkerColor                = MarkerColor            ,
+                    ?MarkerColorScale           = MarkerColorScale       ,
+                    ?MarkerOutline              = MarkerOutline          ,
+                    ?MarkerPatternShape         = MarkerPatternShape     ,
+                    ?MultiMarkerPatternShape    = MultiMarkerPatternShape,
+                    ?MarkerPattern              = MarkerPattern          ,
+                    ?Marker                     = Marker                 ,
+                    ?Base                       = Base                   ,
+                    ?Width                      = Width                  ,
+                    ?MultiWidth                 = MultiWidth             ,
+                    ?TextPosition               = TextPosition           ,
+                    ?MultiTextPosition          = MultiTextPosition      ,
+                    ?UseDefaults                = UseDefaults            
                 )
                 |> GenericChart.mapLayout (Layout.style (BarMode=StyleParam.BarMode.Stack))
 
@@ -1790,48 +1796,51 @@ module Chart2D =
         static member StackedBar
             (
                 keysValues: seq<#IConvertible * #IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?Name              : string         ,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
-                [<Optional;DefaultParameterValue(null)>] ?Color             : Color             ,
-                [<Optional;DefaultParameterValue(null)>] ?PatternShape      : StyleParam.PatternShape,
-                [<Optional;DefaultParameterValue(null)>] ?MultiPatternShape : seq<StyleParam.PatternShape>,
-                [<Optional;DefaultParameterValue(null)>] ?Pattern           : Pattern,
-                [<Optional;DefaultParameterValue(null)>] ?Base              : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?Width             : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?MultiWidth        : seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
-                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
-                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                [<Optional;DefaultParameterValue(null)>] ?Keys                      : seq<#IConvertible>, 
+                [<Optional;DefaultParameterValue(null)>] ?Name                      : string         ,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity                   : float,
+                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity              : seq<float>,
+                [<Optional;DefaultParameterValue(null)>] ?Text                      : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText                 : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor               : Color             ,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale          : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline             : Line,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerPatternShape        : StyleParam.PatternShape,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerPatternShape   : seq<StyleParam.PatternShape>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerPattern             : Pattern,
+                [<Optional;DefaultParameterValue(null)>] ?Marker                    : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?Base                      : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?Width                     : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiWidth                : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition              : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition         : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults               : bool
             ) = 
 
                 let keys,values = Seq.unzip keysValues
                 Chart.StackedBar(
                     values,
                     keys,
-                    ?Name               = Name             ,
-                    ?ShowLegend         = ShowLegend       ,
-                    ?Color              = Color            ,
-                    ?Pattern            = Pattern          ,
-                    ?PatternShape       = PatternShape     ,
-                    ?MultiPatternShape  = MultiPatternShape,
-                    ?Base               = Base             ,
-                    ?Width              = Width            ,
-                    ?MultiWidth         = MultiWidth       ,
-                    ?Opacity            = Opacity          ,
-                    ?MultiOpacity       = MultiOpacity     ,
-                    ?Text               = Text             ,
-                    ?MultiText          = MultiText        ,
-                    ?TextPosition       = TextPosition     ,
-                    ?MultiTextPosition  = MultiTextPosition,
-                    ?TextFont           = TextFont         ,
-                    ?Marker             = Marker           ,
-                    ?UseDefaults        = UseDefaults
+                    ?Name                       = Name                   ,
+                    ?ShowLegend                 = ShowLegend             ,
+                    ?Opacity                    = Opacity                ,
+                    ?MultiOpacity               = MultiOpacity           ,
+                    ?Text                       = Text                   ,
+                    ?MultiText                  = MultiText              ,
+                    ?MarkerColor                = MarkerColor            ,
+                    ?MarkerColorScale           = MarkerColorScale       ,
+                    ?MarkerOutline              = MarkerOutline          ,
+                    ?MarkerPatternShape         = MarkerPatternShape     ,
+                    ?MultiMarkerPatternShape    = MultiMarkerPatternShape,
+                    ?MarkerPattern              = MarkerPattern          ,
+                    ?Marker                     = Marker                 ,
+                    ?Base                       = Base                   ,
+                    ?Width                      = Width                  ,
+                    ?MultiWidth                 = MultiWidth             ,
+                    ?TextPosition               = TextPosition           ,
+                    ?MultiTextPosition          = MultiTextPosition      ,
+                    ?UseDefaults                = UseDefaults            
                 )
                 
         /// Illustrates comparisons among individual items
@@ -1839,113 +1848,119 @@ module Chart2D =
         static member Column
             (
                 values: seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?Keys              : seq<#IConvertible>, 
-                [<Optional;DefaultParameterValue(null)>] ?Name              : string         ,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
-                [<Optional;DefaultParameterValue(null)>] ?Color             : Color             ,
-                [<Optional;DefaultParameterValue(null)>] ?Pattern           : Pattern,
-                [<Optional;DefaultParameterValue(null)>] ?PatternShape      : StyleParam.PatternShape,
-                [<Optional;DefaultParameterValue(null)>] ?MultiPatternShape : seq<StyleParam.PatternShape>,
-                [<Optional;DefaultParameterValue(null)>] ?Base              : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?Width             : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?MultiWidth        : seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
-                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
-                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                [<Optional;DefaultParameterValue(null)>] ?Keys                      : seq<#IConvertible>, 
+                [<Optional;DefaultParameterValue(null)>] ?Name                      : string         ,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity                   : float,
+                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity              : seq<float>,
+                [<Optional;DefaultParameterValue(null)>] ?Text                      : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText                 : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor               : Color             ,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale          : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline             : Line,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerPatternShape        : StyleParam.PatternShape,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerPatternShape   : seq<StyleParam.PatternShape>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerPattern             : Pattern,
+                [<Optional;DefaultParameterValue(null)>] ?Marker                    : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?Base                      : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?Width                     : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiWidth                : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition              : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition         : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults               : bool
             ) = 
 
                 let useDefaults = defaultArg UseDefaults true
-
+                
                 let pattern = 
-                    Pattern
+                    MarkerPattern
                     |> Option.defaultValue (TraceObjects.Pattern.init())
                     |> TraceObjects.Pattern.style(
-                        ?Shape = PatternShape,
-                        ?MultiShape = MultiPatternShape
+                        ?Shape = MarkerPatternShape,
+                        ?MultiShape = MultiMarkerPatternShape
                     )
                 let marker =
                     Marker 
                     |> Option.defaultValue (TraceObjects.Marker.init())
                     |> TraceObjects.Marker.style(
-                        ?Color          = Color,
-                        Pattern        = pattern,
-                        ?MultiOpacity = MultiOpacity
+                        ?Color          = MarkerColor,
+                        Pattern         = pattern,
+                        ?MultiOpacity   = MultiOpacity,
+                        ?Colorscale     = MarkerColorScale,
+                        ?Outline        = MarkerOutline
                     )
+
 
                 Trace2D.initBar (
                     Trace2DStyle.Bar(
                         Y                   = values,
                         ?X                  = Keys,
                         Orientation         = StyleParam.Orientation.Vertical,
-                        ?Name               = Name              ,
-                        ?ShowLegend         = ShowLegend        ,
-                        ?Base               = Base              ,
-                        ?Width              = Width             ,
-                        ?MultiWidth         = MultiWidth        ,
-                        ?Opacity            = Opacity           ,
-                        ?Text               = Text              ,
-                        ?MultiText          = MultiText         ,
-                        ?TextPosition       = TextPosition      ,
-                        ?MultiTextPosition  = MultiTextPosition ,
-                        ?TextFont           = TextFont          ,
+                        ?Name               = Name             ,
+                        ?ShowLegend         = ShowLegend       ,
+                        ?Opacity            = Opacity          ,
+                        ?Text               = Text             ,
+                        ?MultiText          = MultiText        ,
+                        ?Base               = Base             ,
+                        ?Width              = Width            ,
+                        ?MultiWidth         = MultiWidth       ,
+                        ?TextPosition       = TextPosition     ,
+                        ?MultiTextPosition  = MultiTextPosition,
                         Marker              = marker            
                     )
                 )
                 |> GenericChart.ofTraceObject useDefaults
+
 
         /// Illustrates comparisons among individual items
         [<Extension>]
         static member Column
             (
                 keysValues: seq<#IConvertible * #IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?Name              : string         ,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
-                [<Optional;DefaultParameterValue(null)>] ?Color             : Color             ,
-                [<Optional;DefaultParameterValue(null)>] ?PatternShape      : StyleParam.PatternShape,
-                [<Optional;DefaultParameterValue(null)>] ?MultiPatternShape : seq<StyleParam.PatternShape>,
-                [<Optional;DefaultParameterValue(null)>] ?Pattern           : Pattern,
-                [<Optional;DefaultParameterValue(null)>] ?Base              : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?Width             : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?MultiWidth        : seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
-                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
-                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                [<Optional;DefaultParameterValue(null)>] ?Name                      : string         ,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity                   : float,
+                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity              : seq<float>,
+                [<Optional;DefaultParameterValue(null)>] ?Text                      : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText                 : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor               : Color             ,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale          : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline             : Line,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerPatternShape        : StyleParam.PatternShape,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerPatternShape   : seq<StyleParam.PatternShape>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerPattern             : Pattern,
+                [<Optional;DefaultParameterValue(null)>] ?Marker                    : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?Base                      : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?Width                     : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiWidth                : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition              : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition         : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults               : bool
             ) = 
 
                 let keys,values = Seq.unzip keysValues
                 Chart.Column(
                     values,
                     keys,
-                    ?Name               = Name             ,
-                    ?ShowLegend         = ShowLegend       ,
-                    ?Color              = Color            ,
-                    ?Pattern            = Pattern          ,
-                    ?PatternShape       = PatternShape     ,
-                    ?MultiPatternShape  = MultiPatternShape,
-                    ?Base               = Base             ,
-                    ?Width              = Width            ,
-                    ?MultiWidth         = MultiWidth       ,
-                    ?Opacity            = Opacity          ,
-                    ?MultiOpacity       = MultiOpacity     ,
-                    ?Text               = Text             ,
-                    ?MultiText          = MultiText        ,
-                    ?TextPosition       = TextPosition     ,
-                    ?MultiTextPosition  = MultiTextPosition,
-                    ?TextFont           = TextFont         ,
-                    ?Marker             = Marker           ,
-                    ?UseDefaults        = UseDefaults   
+                    ?Name                       = Name                   ,
+                    ?ShowLegend                 = ShowLegend             ,
+                    ?Opacity                    = Opacity                ,
+                    ?MultiOpacity               = MultiOpacity           ,
+                    ?Text                       = Text                   ,
+                    ?MultiText                  = MultiText              ,
+                    ?MarkerColor                = MarkerColor            ,
+                    ?MarkerColorScale           = MarkerColorScale       ,
+                    ?MarkerOutline              = MarkerOutline          ,
+                    ?MarkerPatternShape         = MarkerPatternShape     ,
+                    ?MultiMarkerPatternShape    = MultiMarkerPatternShape,
+                    ?MarkerPattern              = MarkerPattern          ,
+                    ?Marker                     = Marker                 ,
+                    ?Base                       = Base                   ,
+                    ?Width                      = Width                  ,
+                    ?MultiWidth                 = MultiWidth             ,
+                    ?TextPosition               = TextPosition           ,
+                    ?MultiTextPosition          = MultiTextPosition      ,
+                    ?UseDefaults                = UseDefaults            
                 )
 
 
@@ -1954,48 +1969,50 @@ module Chart2D =
         static member StackedColumn
             (
                 values: seq<#IConvertible>, 
-                [<Optional;DefaultParameterValue(null)>] ?Keys              : seq<#IConvertible>, 
-                [<Optional;DefaultParameterValue(null)>] ?Name              : string         ,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
-                [<Optional;DefaultParameterValue(null)>] ?Color             : Color             ,
-                [<Optional;DefaultParameterValue(null)>] ?PatternShape      : StyleParam.PatternShape,
-                [<Optional;DefaultParameterValue(null)>] ?MultiPatternShape : seq<StyleParam.PatternShape>,
-                [<Optional;DefaultParameterValue(null)>] ?Pattern           : Pattern,
-                [<Optional;DefaultParameterValue(null)>] ?Base              : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?Width             : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?MultiWidth        : seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
-                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
-                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                [<Optional;DefaultParameterValue(null)>] ?Keys                      : seq<#IConvertible>, 
+                [<Optional;DefaultParameterValue(null)>] ?Name                      : string         ,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity                   : float,
+                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity              : seq<float>,
+                [<Optional;DefaultParameterValue(null)>] ?Text                      : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText                 : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor               : Color             ,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale          : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline             : Line,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerPatternShape        : StyleParam.PatternShape,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerPatternShape   : seq<StyleParam.PatternShape>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerPattern             : Pattern,
+                [<Optional;DefaultParameterValue(null)>] ?Marker                    : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?Base                      : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?Width                     : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiWidth                : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition              : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition         : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults               : bool
             ) = 
 
                 Chart.Column(
                     values,
-                    ?Keys               = Keys,
-                    ?Name               = Name             ,
-                    ?ShowLegend         = ShowLegend       ,
-                    ?Color              = Color            ,
-                    ?PatternShape       = PatternShape     ,
-                    ?MultiPatternShape  = MultiPatternShape,
-                    ?Pattern            = Pattern          ,
-                    ?Base               = Base             ,
-                    ?Width              = Width            ,
-                    ?MultiWidth         = MultiWidth       ,
-                    ?Opacity            = Opacity          ,
-                    ?MultiOpacity       = MultiOpacity     ,
-                    ?Text               = Text             ,
-                    ?MultiText          = MultiText        ,
-                    ?TextPosition       = TextPosition     ,
-                    ?MultiTextPosition  = MultiTextPosition,
-                    ?TextFont           = TextFont         ,
-                    ?Marker             = Marker           ,
-                    ?UseDefaults        = UseDefaults
+                    ?Keys                       = Keys,
+                    ?Name                       = Name                   ,
+                    ?ShowLegend                 = ShowLegend             ,
+                    ?Opacity                    = Opacity                ,
+                    ?MultiOpacity               = MultiOpacity           ,
+                    ?Text                       = Text                   ,
+                    ?MultiText                  = MultiText              ,
+                    ?MarkerColor                = MarkerColor            ,
+                    ?MarkerColorScale           = MarkerColorScale       ,
+                    ?MarkerOutline              = MarkerOutline          ,
+                    ?MarkerPatternShape         = MarkerPatternShape     ,
+                    ?MultiMarkerPatternShape    = MultiMarkerPatternShape,
+                    ?MarkerPattern              = MarkerPattern          ,
+                    ?Marker                     = Marker                 ,
+                    ?Base                       = Base                   ,
+                    ?Width                      = Width                  ,
+                    ?MultiWidth                 = MultiWidth             ,
+                    ?TextPosition               = TextPosition           ,
+                    ?MultiTextPosition          = MultiTextPosition      ,
+                    ?UseDefaults                = UseDefaults            
                 )
                 |> GenericChart.mapLayout (Layout.style (BarMode=StyleParam.BarMode.Stack))
 
@@ -2005,48 +2022,50 @@ module Chart2D =
         static member StackedColumn
             (
                 keysValues: seq<#IConvertible * #IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?Name              : string         ,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
-                [<Optional;DefaultParameterValue(null)>] ?Color             : Color             ,
-                [<Optional;DefaultParameterValue(null)>] ?Pattern           : Pattern,
-                [<Optional;DefaultParameterValue(null)>] ?PatternShape      : StyleParam.PatternShape,
-                [<Optional;DefaultParameterValue(null)>] ?MultiPatternShape : seq<StyleParam.PatternShape>,
-                [<Optional;DefaultParameterValue(null)>] ?Base              : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?Width             : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?MultiWidth        : seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
-                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
-                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
+                [<Optional;DefaultParameterValue(null)>] ?Name                      : string         ,
+                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                : bool,
+                [<Optional;DefaultParameterValue(null)>] ?Opacity                   : float,
+                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity              : seq<float>,
+                [<Optional;DefaultParameterValue(null)>] ?Text                      : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiText                 : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColor               : Color             ,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale          : StyleParam.Colorscale,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline             : Line,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerPatternShape        : StyleParam.PatternShape,
+                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerPatternShape   : seq<StyleParam.PatternShape>,
+                [<Optional;DefaultParameterValue(null)>] ?MarkerPattern             : Pattern,
+                [<Optional;DefaultParameterValue(null)>] ?Marker                    : Marker,
+                [<Optional;DefaultParameterValue(null)>] ?Base                      : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?Width                     : #IConvertible,
+                [<Optional;DefaultParameterValue(null)>] ?MultiWidth                : seq<#IConvertible>,
+                [<Optional;DefaultParameterValue(null)>] ?TextPosition              : StyleParam.TextPosition,
+                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition         : seq<StyleParam.TextPosition>,
+                [<Optional;DefaultParameterValue(true)>] ?UseDefaults               : bool
             ) = 
                 
                 let keys,values = Seq.unzip keysValues
                 Chart.StackedColumn(
                     values,
                     keys,
-                    ?Name               = Name             ,
-                    ?ShowLegend         = ShowLegend       ,
-                    ?Color              = Color            ,
-                    ?PatternShape       = PatternShape     ,
-                    ?MultiPatternShape  = MultiPatternShape,
-                    ?Pattern            = Pattern          ,
-                    ?Base               = Base             ,
-                    ?Width              = Width            ,
-                    ?MultiWidth         = MultiWidth       ,
-                    ?Opacity            = Opacity          ,
-                    ?MultiOpacity       = MultiOpacity     ,
-                    ?Text               = Text             ,
-                    ?MultiText          = MultiText        ,
-                    ?TextPosition       = TextPosition     ,
-                    ?MultiTextPosition  = MultiTextPosition,
-                    ?TextFont           = TextFont         ,
-                    ?Marker             = Marker           ,
-                    ?UseDefaults        = UseDefaults
+                    ?Name                       = Name                   ,
+                    ?ShowLegend                 = ShowLegend             ,
+                    ?Opacity                    = Opacity                ,
+                    ?MultiOpacity               = MultiOpacity           ,
+                    ?Text                       = Text                   ,
+                    ?MultiText                  = MultiText              ,
+                    ?MarkerColor                = MarkerColor            ,
+                    ?MarkerColorScale           = MarkerColorScale       ,
+                    ?MarkerOutline              = MarkerOutline          ,
+                    ?MarkerPatternShape         = MarkerPatternShape     ,
+                    ?MultiMarkerPatternShape    = MultiMarkerPatternShape,
+                    ?MarkerPattern              = MarkerPattern          ,
+                    ?Marker                     = Marker                 ,
+                    ?Base                       = Base                   ,
+                    ?Width                      = Width                  ,
+                    ?MultiWidth                 = MultiWidth             ,
+                    ?TextPosition               = TextPosition           ,
+                    ?MultiTextPosition          = MultiTextPosition      ,
+                    ?UseDefaults                = UseDefaults            
                 )
 
         
