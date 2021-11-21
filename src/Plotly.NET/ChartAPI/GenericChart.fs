@@ -212,16 +212,85 @@ module GenericChart =
     //         let l' = getLayouts gChart
     //         MultiChart (traces, Some (layouts@l'))
 
+    open Plotly.NET.LayoutObjects
     // Combines two GenericChart
+
     let combine(gCharts:seq<GenericChart>) =
+        // temporary hard fix for some props, see https://github.com/CSBiology/DynamicObj/issues/11
+        let combineOptSeqs (first:seq<'A> option) (second:seq<'A> option) =
+            match first, second with
+            | Some f, Some s -> Some (Seq.append f s)
+            | Some f, None -> Some f
+            | None, Some s -> Some s
+            | _ -> None
         let combineLayouts (first:Layout) (second:Layout) =
-            DynObj.combine first second |> unbox
+
+            let annotations = 
+                combineOptSeqs 
+                    (first.TryGetTypedValue<seq<Annotation>>("annotations"))
+                    (second.TryGetTypedValue<seq<Annotation>>("annotations"))
+
+            let shapes = 
+                combineOptSeqs
+                    (first.TryGetTypedValue<seq<Shape>>("shapes"))
+                    (second.TryGetTypedValue<seq<Shape>>("shapes"))
+
+            let images = 
+                combineOptSeqs
+                    (first.TryGetTypedValue<seq<LayoutImage>>("images"))
+                    (second.TryGetTypedValue<seq<LayoutImage>>("images"))
+
+            let sliders = 
+                combineOptSeqs
+                    (first.TryGetTypedValue<seq<Slider>>("sliders"))
+                    (second.TryGetTypedValue<seq<Slider>>("sliders"))
+
+            let hiddenLabels = 
+                combineOptSeqs
+                    (first.TryGetTypedValue<seq<string>>("hiddenlabels"))
+                    (second.TryGetTypedValue<seq<string>>("hiddenlabels"))
+
+            DynObj.combine first second 
+            |> unbox
+            |> Layout.style(
+                ?Annotations = annotations,
+                ?Shapes = shapes,
+                ?Images = images,
+                ?Sliders = sliders,
+                ?HiddenLabels = hiddenLabels
+            )
 
         let combineConfigs (first:Config) (second:Config) =
-            DynObj.combine first second |> unbox
+
+            let editableAnnotations = 
+                combineOptSeqs 
+                    (first.TryGetTypedValue<seq<StyleParam.AnnotationEditOptions>>("editable"))
+                    (second.TryGetTypedValue<seq<StyleParam.AnnotationEditOptions>>("editable"))
+
+            let modeBarButtonsToAdd = 
+                combineOptSeqs
+                    (first.TryGetTypedValue<seq<StyleParam.ModeBarButton>>("modeBarButtonsToAdd"))
+                    (second.TryGetTypedValue<seq<StyleParam.ModeBarButton>>("modeBarButtonsToAdd"))
+
+            DynObj.combine first second 
+            |> unbox
+            |> Config.style(
+                ?EditableAnnotations = editableAnnotations,
+                ?ModeBarButtonsToAdd = modeBarButtonsToAdd
+            )
 
         let combineDisplayOptions (first:DisplayOptions) (second:DisplayOptions) =
-            DynObj.combine first second |> unbox
+
+            let additionalHeadTags =
+                combineOptSeqs 
+                    (first.TryGetTypedValue<seq<string>>("AdditionalHeadTags"))
+                    (second.TryGetTypedValue<seq<string>>("AdditionalHeadTags"))
+
+            DynObj.combine first second 
+            |> unbox
+            |> DisplayOptions.style(
+                ?AdditionalHeadTags = additionalHeadTags
+            )
 
         gCharts
         |> Seq.reduce (fun acc elem ->
