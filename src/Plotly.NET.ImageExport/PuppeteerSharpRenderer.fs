@@ -72,7 +72,7 @@ type PuppeteerSharpRenderer() =
     /// Initalizes headless browser
     let fetchAndLaunchBrowserAsync() =
         async {
-            let browserFetcher = BrowserFetcher()
+            use browserFetcher = new BrowserFetcher()
 
             let! revision = browserFetcher.DownloadAsync() |> Async.AwaitTask 
 
@@ -92,7 +92,7 @@ type PuppeteerSharpRenderer() =
 
     /// skips the data type part of the given URI
     let skipDataTypeString (base64:string) =
-        let imgBase64StartIdx =base64.IndexOf(",", StringComparison.Ordinal) + 1
+        let imgBase64StartIdx = base64.IndexOf(",", StringComparison.Ordinal) + 1
         base64.Substring(imgBase64StartIdx)
 
     /// converst a base64 encoded string URI to a byte array

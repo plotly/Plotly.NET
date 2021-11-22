@@ -25,7 +25,6 @@
     <Compile Include="HtmlCodegen\TernaryCharts.fs" />
     <Compile Include="HtmlCodegen\CarpetCharts.fs" />
     <Compile Include="HtmlCodegen\CategoricalCharts.fs" />
-    <Compile Include="ImageExport.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>
 
@@ -39,6 +38,5 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Plotly.NET\Plotly.NET.fsproj" />
-    <ProjectReference Include="..\..\src\Plotly.NET.ImageExport\Plotly.NET.ImageExport.fsproj" />
   </ItemGroup>
 </Project>

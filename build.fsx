@@ -82,6 +82,7 @@ module ProjectInfo =
 
     let testProjects = [
         "tests/Plotly.NET.Tests/Plotly.NET.Tests.fsproj"
+        "tests/Plotly.NET.ImageExport.Tests/Plotly.NET.ImageExport.Tests.fsproj"
         "tests/Plotly.NET.Tests.CSharp/Plotly.NET.Tests.CSharp.csproj"
     ]
 
