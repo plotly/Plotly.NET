@@ -50,7 +50,7 @@ In the default plotly template, a map frame and physical features such as a coas
 open Plotly.NET
 
 let baseMapOnly = 
-    Chart.PointGeo([]) // deliberately empty chart to show the base map only
+    Chart.PointGeo(locations = []) // deliberately empty chart to show the base map only
     |> Chart.withMarginSize(0,0,0,0)
 
 (*** condition: ipynb ***)
@@ -84,7 +84,7 @@ let myGeo =
     )
 
 let moreFeaturesBaseMap =
-    Chart.PointGeo([])
+    Chart.PointGeo(locations = [])
     |> Chart.withGeo myGeo
     |> Chart.withMarginSize(0,0,0,0)
 
@@ -119,7 +119,7 @@ let countryGeo =
 
 
 let countryBaseMap =
-    Chart.PointGeo([])
+    Chart.PointGeo(locations = [])
     |> Chart.withGeo countryGeo
     |> Chart.withMarginSize(0,0,0,0)
 

@@ -95,7 +95,7 @@ patterns across the displayed location.
 let choroplethMap1 =
     Chart.ChoroplethMap(
         locations,z,
-        Locationmode=StyleParam.LocationFormat.CountryNames
+        LocationMode=StyleParam.LocationFormat.CountryNames
     )
 
 (*** condition: ipynb ***)
@@ -118,7 +118,7 @@ open Plotly.NET.LayoutObjects
 let choroplethMap2 =
     Chart.ChoroplethMap(
         locations,z,
-        Locationmode=StyleParam.LocationFormat.CountryNames
+        LocationMode=StyleParam.LocationFormat.CountryNames
     )
     |> Chart.withGeoStyle(
         Projection=GeoProjection.init(projectionType=StyleParam.GeoProjectionType.Mollweide),
@@ -235,7 +235,7 @@ let choroplethGeoJSON =
     Chart.ChoroplethMap(
         locations = locationsGeoJSON,
         z = zGeoJSON,
-        Locationmode=StyleParam.LocationFormat.GeoJson_Id,
+        LocationMode=StyleParam.LocationFormat.GeoJson_Id,
         GeoJson = geoJson,
         FeatureIdKey="id"
     )

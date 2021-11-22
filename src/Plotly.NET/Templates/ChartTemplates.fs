@@ -396,12 +396,23 @@ module ChartTemplates =
                 )
             ))
 
-            TraceGeo.initChoroplethMap(TraceGeoStyle.ChoroplethMap(
-                ColorBar = ColorBar.init(
-                    OutlineWidth = 0., Ticks = StyleParam.TickOptions.Empty
+            TraceGeo.initChoroplethMap(
+                TraceGeoStyle.ChoroplethMap(
+                    ColorBar = ColorBar.init(OutlineWidth = 0., Ticks = StyleParam.TickOptions.Empty),
+                    ColorScale = StyleParam.Colorscale.Custom [
+                        0.0                , "#0d0887"
+                        0.1111111111111111 , "#46039f"
+                        0.2222222222222222 , "#7201a8"
+                        0.3333333333333333 , "#9c179e"
+                        0.4444444444444444 , "#bd3786"
+                        0.5555555555555556 , "#d8576b"
+                        0.6666666666666666 , "#ed7953"
+                        0.7777777777777778 , "#fb9f3a"
+                        0.8888888888888888 , "#fdca26"
+                        1.0                , "#f0f921"
+                    ]
                 )
-            ))
-
+            )
             Trace2D.initContour(Trace2DStyle.Contour(
                 ColorBar = ColorBar.init(
                     OutlineWidth = 0., Ticks = StyleParam.TickOptions.Empty

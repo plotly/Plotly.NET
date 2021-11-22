@@ -11,7 +11,7 @@ open System
 open TestUtils.HtmlCodegen
 
 let basemapChart =
-    Chart.PointGeo([], UseDefaults = false) // deliberately empty chart to show the base map only
+    Chart.PointGeo(locations = [], UseDefaults = false) // deliberately empty chart to show the base map only
     |> Chart.withMarginSize(0, 0, 0, 0)
 
 let moreFeaturesBasemapChart =
@@ -29,7 +29,7 @@ let moreFeaturesBasemapChart =
             ShowRivers=true, 
             RiverColor=Color.fromString "Blue"
         )
-    Chart.PointGeo([], UseDefaults = false)
+    Chart.PointGeo(locations = [], UseDefaults = false)
     |> Chart.withGeo myGeo
     |> Chart.withMarginSize(0, 0, 0, 0)
 
@@ -41,7 +41,7 @@ let cultureMapChart =
             ShowCountries=true, 
             CountryColor=Color.fromString "RebeccaPurple"
         )
-    Chart.PointGeo([], UseDefaults = false)
+    Chart.PointGeo(locations = [], UseDefaults = false)
     |> Chart.withGeo countryGeo
     |> Chart.withMarginSize(0, 0, 0, 0)
 
@@ -49,7 +49,7 @@ let cultureMapChart =
 let ``Geo charts`` =
     testList "GeoMapCharts.Geo charts" [
         testCase "Basemap data" ( fun () ->
-            "var data = [{\"type\":\"scattergeo\",\"mode\":\"markers\",\"lon\":[],\"lat\":[],\"marker\":{}}];"
+            """var data = [{"type":"scattergeo","mode":"markers","locations":[],"marker":{},"line":{}}];"""
             |> chartGeneratedContains basemapChart
         );
         testCase "Basemap layout" ( fun () ->
@@ -57,7 +57,7 @@ let ``Geo charts`` =
             |> chartGeneratedContains basemapChart
         );
         testCase "More features map data" ( fun () ->
-            "var data = [{\"type\":\"scattergeo\",\"mode\":\"markers\",\"lon\":[],\"lat\":[],\"marker\":{}}];"
+            """var data = [{"type":"scattergeo","mode":"markers","locations":[],"marker":{},"line":{}}];"""
             |> chartGeneratedContains moreFeaturesBasemapChart
         );
         testCase "More features map layout" ( fun () ->
@@ -65,7 +65,7 @@ let ``Geo charts`` =
             |> chartGeneratedContains moreFeaturesBasemapChart
         );
         testCase "Cultural map data" ( fun () ->
-            "var data = [{\"type\":\"scattergeo\",\"mode\":\"markers\",\"lon\":[],\"lat\":[],\"marker\":{}}];"
+            """var data = [{"type":"scattergeo","mode":"markers","locations":[],"marker":{},"line":{}}];"""
             |> chartGeneratedContains cultureMapChart
         );
         testCase "Cultural map layout" ( fun () ->
@@ -92,7 +92,7 @@ let pointGeoChart =
     Chart.PointGeo(
         lon,
         lat,
-        Labels=cityNames,
+        MultiText=cityNames,
         TextPosition=StyleParam.TextPosition.TopCenter, 
         UseDefaults = false
     )
@@ -136,7 +136,7 @@ let flightsMapChart =
         Chart.LineGeo(
             [startCoords; endCoords],
             Opacity = opacityVals.[i],
-            Color = Color.fromString  "red",
+            MarkerColor = Color.fromString  "red",
             UseDefaults = false
         )
     )
@@ -156,7 +156,7 @@ let flightsMapChart =
 let ``Scatter and line plots on Geo maps charts`` =
     testList "GeoMapCharts.Scatter and line plots on Geo maps charts" [
         testCase "Point geo data" ( fun () ->
-            "var data = [{\"type\":\"scattergeo\",\"mode\":\"markers+text\",\"lon\":[-73.57,-79.24,-123.06,-114.1,-113.28,-75.43,-63.57,-123.21,-97.13,-104.6],\"lat\":[45.5,43.4,49.13,51.1,53.34,45.24,44.64,48.25,49.89,50.45],\"marker\":{},\"text\":[\"Montreal\",\"Toronto\",\"Vancouver\",\"Calgary\",\"Edmonton\",\"Ottawa\",\"Halifax\",\"Victoria\",\"Winnepeg\",\"Regina\"],\"textposition\":\"top center\"}];"
+            """var data = [{"type":"scattergeo","mode":"markers+text","lat":[45.5,43.4,49.13,51.1,53.34,45.24,44.64,48.25,49.89,50.45],"lon":[-73.57,-79.24,-123.06,-114.1,-113.28,-75.43,-63.57,-123.21,-97.13,-104.6],"text":["Montreal","Toronto","Vancouver","Calgary","Edmonton","Ottawa","Halifax","Victoria","Winnepeg","Regina"],"textposition":"top center","marker":{},"line":{}}];"""
             |> chartGeneratedContains pointGeoChart
         );
         testCase "Point geo layout" ( fun () ->
@@ -164,7 +164,7 @@ let ``Scatter and line plots on Geo maps charts`` =
             |> chartGeneratedContains pointGeoChart
         );
         testCase "Flight map data" ( fun () ->
-            "var data = [{\"type\":\"scattergeo\",\"mode\":\"lines\",\"lon\":[-97.0372,-106.6091944],\"lat\":[32.89595056,35.04022222],\"opacity\":1.0,\"marker\":{\"color\":\"red\"}},{\"type\":\"scattergeo\",\"mode\":\"lines\",\"lon\":[-87.90446417,-97.66987194],\"lat\":[41.979595,30.19453278],\"opacity\":0.3738738738738739,\"marker\":{\"color\":\"red\"}},{\"type\":\"scattergeo\",\"mode\":\"lines\",\"lon\":[-97.0372,-72.68322833],\"lat\":[32.89595056,41.93887417],\"opacity\":0.36486486486486486,\"marker\":{\"color\":\"red\"}},{\"type\":\"scattergeo\",\"mode\":\"lines\",\"lon\":[-66.00183333,-72.68322833],\"lat\":[18.43941667,41.93887417],\"opacity\":0.12612612612612611,\"marker\":{\"color\":\"red\"}},{\"type\":\"scattergeo\",\"mode\":\"lines\",\"lon\":[-97.0372,-86.75354972],\"lat\":[32.89595056,33.56294306],\"opacity\":0.3783783783783784,\"marker\":{\"color\":\"red\"}},{\"type\":\"scattergeo\",\"mode\":\"lines\",\"lon\":[-80.29055556,-86.67818222],\"lat\":[25.79325,36.12447667],\"opacity\":0.12612612612612611,\"marker\":{\"color\":\"red\"}},{\"type\":\"scattergeo\",\"mode\":\"lines\",\"lon\":[-97.0372,-71.00517917],\"lat\":[32.89595056,42.3643475],\"opacity\":0.9504504504504504,\"marker\":{\"color\":\"red\"}},{\"type\":\"scattergeo\",\"mode\":\"lines\",\"lon\":[-80.29055556,-71.00517917],\"lat\":[25.79325,42.3643475],\"opacity\":0.8828828828828829,\"marker\":{\"color\":\"red\"}},{\"type\":\"scattergeo\",\"mode\":\"lines\",\"lon\":[-87.90446417,-71.00517917],\"lat\":[41.979595,42.3643475],\"opacity\":0.9684684684684685,\"marker\":{\"color\":\"red\"}},{\"type\":\"scattergeo\",\"mode\":\"lines\",\"lon\":[-66.00183333,-71.00517917],\"lat\":[18.43941667,42.3643475],\"opacity\":0.12612612612612611,\"marker\":{\"color\":\"red\"}},{\"type\":\"scattergeo\",\"mode\":\"lines\",\"lon\":[-64.97336111,-71.00517917],\"lat\":[18.33730556,42.3643475],\"opacity\":0.0990990990990991,\"marker\":{\"color\":\"red\"}},{\"type\":\"scattergeo\",\"mode\":\"lines\",\"lon\":[-80.29055556,-76.66819833],\"lat\":[25.79325,39.17540167],\"opacity\":0.25225225225225223,\"marker\":{\"color\":\"red\"}}];"
+            """var data = [{"type":"scattergeo","opacity":1.0,"mode":"lines","lat":[32.89595056,35.04022222],"lon":[-97.0372,-106.6091944],"marker":{"color":"red"},"line":{}},{"type":"scattergeo","opacity":0.3738738738738739,"mode":"lines","lat":[41.979595,30.19453278],"lon":[-87.90446417,-97.66987194],"marker":{"color":"red"},"line":{}},{"type":"scattergeo","opacity":0.36486486486486486,"mode":"lines","lat":[32.89595056,41.93887417],"lon":[-97.0372,-72.68322833],"marker":{"color":"red"},"line":{}},{"type":"scattergeo","opacity":0.12612612612612611,"mode":"lines","lat":[18.43941667,41.93887417],"lon":[-66.00183333,-72.68322833],"marker":{"color":"red"},"line":{}},{"type":"scattergeo","opacity":0.3783783783783784,"mode":"lines","lat":[32.89595056,33.56294306],"lon":[-97.0372,-86.75354972],"marker":{"color":"red"},"line":{}},{"type":"scattergeo","opacity":0.12612612612612611,"mode":"lines","lat":[25.79325,36.12447667],"lon":[-80.29055556,-86.67818222],"marker":{"color":"red"},"line":{}},{"type":"scattergeo","opacity":0.9504504504504504,"mode":"lines","lat":[32.89595056,42.3643475],"lon":[-97.0372,-71.00517917],"marker":{"color":"red"},"line":{}},{"type":"scattergeo","opacity":0.8828828828828829,"mode":"lines","lat":[25.79325,42.3643475],"lon":[-80.29055556,-71.00517917],"marker":{"color":"red"},"line":{}},{"type":"scattergeo","opacity":0.9684684684684685,"mode":"lines","lat":[41.979595,42.3643475],"lon":[-87.90446417,-71.00517917],"marker":{"color":"red"},"line":{}},{"type":"scattergeo","opacity":0.12612612612612611,"mode":"lines","lat":[18.43941667,42.3643475],"lon":[-66.00183333,-71.00517917],"marker":{"color":"red"},"line":{}},{"type":"scattergeo","opacity":0.0990990990990991,"mode":"lines","lat":[18.33730556,42.3643475],"lon":[-64.97336111,-71.00517917],"marker":{"color":"red"},"line":{}},{"type":"scattergeo","opacity":0.25225225225225223,"mode":"lines","lat":[25.79325,39.17540167],"lon":[-80.29055556,-76.66819833],"marker":{"color":"red"},"line":{}}];"""
             |> chartGeneratedContains flightsMapChart
         );
         testCase "Flight map layout" ( fun () ->
@@ -228,14 +228,14 @@ let locations,z =
 let choroplethMap1Chart =
     Chart.ChoroplethMap(
         locations,z,
-        Locationmode=StyleParam.LocationFormat.CountryNames, 
+        LocationMode=StyleParam.LocationFormat.CountryNames,
         UseDefaults = false
     )
-    
+
 let choroplethMap2Chart =
     Chart.ChoroplethMap(
         locations,z,
-        Locationmode=StyleParam.LocationFormat.CountryNames, 
+        LocationMode=StyleParam.LocationFormat.CountryNames, 
         UseDefaults = false
     )
     |> Chart.withGeoStyle(
@@ -253,14 +253,14 @@ let choroplethMap2Chart =
 let ``Choropleth maps charts`` =
     testList "GeoMapCharts.Choropleth maps charts" [
         testCase "Choropleth map 1 data" ( fun () ->
-            "var data = [{\"type\":\"choropleth\",\"locations\":[\"Belarus\",\"Moldova\",\"Lithuania\",\"Russia\",\"Romania\",\"Ukraine\",\"Andorra\",\"Hungary\",\"Czech Republic\",\"Slovakia\",\"Portugal\",\"Serbia\",\"Grenada\",\"Poland\",\"Latvia\",\"Finland\",\"South Korea\",\"France\",\"Australia\",\"Croatia\",\"Ireland\",\"Luxembourg\",\"Germany\",\"Slovenia\",\"United Kingdom\",\"Denmark\",\"Bulgaria\",\"Spain\",\"Belgium\",\"South Africa\",\"New Zealand\",\"Gabon\",\"Namibia\",\"Switzerland\",\"Saint Lucia\",\"Austria\",\"Estonia\",\"Greece\",\"Kazakhstan\",\"Canada\",\"Nigeria\",\"Netherlands\",\"Uganda\",\"Rwanda\",\"Chile\",\"Argentina\",\"Burundi\",\"United States\",\"Cyprus\",\"Sweden\",\"Venezuela\",\"Paraguay\",\"Brazil\",\"Sierra Leone\",\"Montenegro\",\"Belize\",\"Cameroon\",\"Botswana\",\"Saint Kitts and Nevis\",\"Guyana\",\"Peru\",\"Panama\",\"Niue\",\"Palau\",\"Norway\",\"Tanzania\",\"Georgia\",\"Uruguay\",\"Angola\",\"Laos\",\"Japan\",\"Mexico\",\"Ecuador\",\"Dominica\",\"Iceland\",\"Thailand\",\"Bosnia and Herzegovina\",\"Sao Tome and Principe\",\"Malta\",\"Albania\",\"Bahamas\",\"Dominican Republic\",\"Mongolia\",\"Cape Verde\",\"Barbados\",\"Burkina Faso\",\"Italy\",\"Trinidad and Tobago\",\"China\",\"Macedonia\",\"Saint Vincent and the Grenadines\",\"Equatorial Guinea\",\"Suriname\",\"Vietnam\",\"Lesotho\",\"Haiti\",\"Cook Islands\",\"Colombia\",\"Ivory Coast\",\"Bolivia\",\"Swaziland\",\"Zimbabwe\",\"Seychelles\",\"Cambodia\",\"Puerto Rico\",\"Netherlands Antilles\",\"Philippines\",\"Costa Rica\",\"Armenia\",\"Cuba\",\"Nicaragua\",\"Jamaica\",\"Ghana\",\"Liberia\",\"Uzbekistan\",\"Chad\",\"United Arab Emirates\",\"Kyrgyzstan\",\"India\",\"Turkmenistan\",\"Kenya\",\"Ethiopia\",\"Honduras\",\"Guinea-Bissau\",\"Zambia\",\"Republic of the Congo\",\"Guatemala\",\"Central African Republic\",\"North Korea\",\"Sri Lanka\",\"Mauritius\",\"Samoa\",\"Democratic Republic of the Congo\",\"Nauru\",\"Gambia\",\"Federated States of Micronesia\",\"El Salvador\",\"Fiji\",\"Papua New Guinea\",\"Kiribati\",\"Tajikistan\",\"Israel\",\"Sudan\",\"Malawi\",\"Lebanon\",\"Azerbaijan\",\"Mozambique\",\"Togo\",\"Nepal\",\"Brunei\",\"Benin\",\"Singapore\",\"Turkey\",\"Madagascar\",\"Solomon Islands\",\"Tonga\",\"Tunisia\",\"Tuvalu\",\"Qatar\",\"Vanuatu\",\"Djibouti\",\"Malaysia\",\"Syria\",\"Maldives\",\"Mali\",\"Eritrea\",\"Algeria\",\"Iran\",\"Oman\",\"Brunei\",\"Morocco\",\"Jordan\",\"Bhutan\",\"Guinea\",\"Burma\",\"Afghanistan\",\"Senegal\",\"Indonesia\",\"Timor-Leste\",\"Iraq\",\"Somalia\",\"Egypt\",\"Niger\",\"Yemen\",\"Comoros\",\"Saudi Arabia\",\"Bangladesh\",\"Kuwait\",\"Libya\",\"Mauritania\",\"Pakistan\"],\"z\":[17.5,16.8,15.4,15.1,14.4,13.9,13.8,13.3,13.0,13.0,12.9,12.6,12.5,12.5,12.3,12.3,12.3,12.2,12.2,12.2,11.9,11.9,11.8,11.6,11.6,11.4,11.4,11.2,11.0,11.0,10.9,10.9,10.8,10.7,10.4,10.3,10.3,10.3,10.3,10.2,10.1,9.9,9.8,9.8,9.6,9.3,9.3,9.2,9.2,9.2,8.9,8.8,8.7,8.7,8.7,8.5,8.4,8.4,8.2,8.1,8.1,8.0,8.0,7.9,7.7,7.7,7.7,7.6,7.5,7.3,7.2,7.2,7.2,7.1,7.1,7.1,7.1,7.1,7.0,7.0,6.9,6.9,6.9,6.9,6.8,6.8,6.7,6.7,6.7,6.7,6.6,6.6,6.6,6.6,6.5,6.4,6.4,6.2,6.0,5.9,5.7,5.7,5.6,5.5,5.4,5.4,5.4,5.4,5.3,5.2,5.0,4.9,4.8,4.7,4.6,4.4,4.3,4.3,4.3,4.3,4.3,4.2,4.0,4.0,4.0,3.9,3.8,3.8,3.7,3.7,3.6,3.6,3.6,3.5,3.4,3.3,3.2,3.0,3.0,3.0,2.8,2.8,2.7,2.5,2.4,2.3,2.3,2.3,2.2,2.1,2.1,2.0,2.0,1.8,1.7,1.6,1.5,1.5,1.5,1.4,1.3,1.3,1.2,1.2,1.1,1.1,1.0,1.0,0.9,0.9,0.9,0.7,0.7,0.7,0.7,0.7,0.6,0.6,0.6,0.5,0.5,0.4,0.3,0.3,0.2,0.2,0.2,0.1,0.1,0.1,0.1],\"locationmode\":\"country names\"}];"
+            """var data = [{"type":"choropleth","z":[17.5,16.8,15.4,15.1,14.4,13.9,13.8,13.3,13.0,13.0,12.9,12.6,12.5,12.5,12.3,12.3,12.3,12.2,12.2,12.2,11.9,11.9,11.8,11.6,11.6,11.4,11.4,11.2,11.0,11.0,10.9,10.9,10.8,10.7,10.4,10.3,10.3,10.3,10.3,10.2,10.1,9.9,9.8,9.8,9.6,9.3,9.3,9.2,9.2,9.2,8.9,8.8,8.7,8.7,8.7,8.5,8.4,8.4,8.2,8.1,8.1,8.0,8.0,7.9,7.7,7.7,7.7,7.6,7.5,7.3,7.2,7.2,7.2,7.1,7.1,7.1,7.1,7.1,7.0,7.0,6.9,6.9,6.9,6.9,6.8,6.8,6.7,6.7,6.7,6.7,6.6,6.6,6.6,6.6,6.5,6.4,6.4,6.2,6.0,5.9,5.7,5.7,5.6,5.5,5.4,5.4,5.4,5.4,5.3,5.2,5.0,4.9,4.8,4.7,4.6,4.4,4.3,4.3,4.3,4.3,4.3,4.2,4.0,4.0,4.0,3.9,3.8,3.8,3.7,3.7,3.6,3.6,3.6,3.5,3.4,3.3,3.2,3.0,3.0,3.0,2.8,2.8,2.7,2.5,2.4,2.3,2.3,2.3,2.2,2.1,2.1,2.0,2.0,1.8,1.7,1.6,1.5,1.5,1.5,1.4,1.3,1.3,1.2,1.2,1.1,1.1,1.0,1.0,0.9,0.9,0.9,0.7,0.7,0.7,0.7,0.7,0.6,0.6,0.6,0.5,0.5,0.4,0.3,0.3,0.2,0.2,0.2,0.1,0.1,0.1,0.1],"locations":["Belarus","Moldova","Lithuania","Russia","Romania","Ukraine","Andorra","Hungary","Czech Republic","Slovakia","Portugal","Serbia","Grenada","Poland","Latvia","Finland","South Korea","France","Australia","Croatia","Ireland","Luxembourg","Germany","Slovenia","United Kingdom","Denmark","Bulgaria","Spain","Belgium","South Africa","New Zealand","Gabon","Namibia","Switzerland","Saint Lucia","Austria","Estonia","Greece","Kazakhstan","Canada","Nigeria","Netherlands","Uganda","Rwanda","Chile","Argentina","Burundi","United States","Cyprus","Sweden","Venezuela","Paraguay","Brazil","Sierra Leone","Montenegro","Belize","Cameroon","Botswana","Saint Kitts and Nevis","Guyana","Peru","Panama","Niue","Palau","Norway","Tanzania","Georgia","Uruguay","Angola","Laos","Japan","Mexico","Ecuador","Dominica","Iceland","Thailand","Bosnia and Herzegovina","Sao Tome and Principe","Malta","Albania","Bahamas","Dominican Republic","Mongolia","Cape Verde","Barbados","Burkina Faso","Italy","Trinidad and Tobago","China","Macedonia","Saint Vincent and the Grenadines","Equatorial Guinea","Suriname","Vietnam","Lesotho","Haiti","Cook Islands","Colombia","Ivory Coast","Bolivia","Swaziland","Zimbabwe","Seychelles","Cambodia","Puerto Rico","Netherlands Antilles","Philippines","Costa Rica","Armenia","Cuba","Nicaragua","Jamaica","Ghana","Liberia","Uzbekistan","Chad","United Arab Emirates","Kyrgyzstan","India","Turkmenistan","Kenya","Ethiopia","Honduras","Guinea-Bissau","Zambia","Republic of the Congo","Guatemala","Central African Republic","North Korea","Sri Lanka","Mauritius","Samoa","Democratic Republic of the Congo","Nauru","Gambia","Federated States of Micronesia","El Salvador","Fiji","Papua New Guinea","Kiribati","Tajikistan","Israel","Sudan","Malawi","Lebanon","Azerbaijan","Mozambique","Togo","Nepal","Brunei","Benin","Singapore","Turkey","Madagascar","Solomon Islands","Tonga","Tunisia","Tuvalu","Qatar","Vanuatu","Djibouti","Malaysia","Syria","Maldives","Mali","Eritrea","Algeria","Iran","Oman","Brunei","Morocco","Jordan","Bhutan","Guinea","Burma","Afghanistan","Senegal","Indonesia","Timor-Leste","Iraq","Somalia","Egypt","Niger","Yemen","Comoros","Saudi Arabia","Bangladesh","Kuwait","Libya","Mauritania","Pakistan"],"locationmode":"country names"}];"""
             |> chartGeneratedContains choroplethMap1Chart
         );
         testCase "Choropleth map 1 layout" ( fun () ->
             emptyLayout choroplethMap1Chart
         );
         testCase "Choropleth map 2 data" ( fun () ->
-            "var data = [{\"type\":\"choropleth\",\"locations\":[\"Belarus\",\"Moldova\",\"Lithuania\",\"Russia\",\"Romania\",\"Ukraine\",\"Andorra\",\"Hungary\",\"Czech Republic\",\"Slovakia\",\"Portugal\",\"Serbia\",\"Grenada\",\"Poland\",\"Latvia\",\"Finland\",\"South Korea\",\"France\",\"Australia\",\"Croatia\",\"Ireland\",\"Luxembourg\",\"Germany\",\"Slovenia\",\"United Kingdom\",\"Denmark\",\"Bulgaria\",\"Spain\",\"Belgium\",\"South Africa\",\"New Zealand\",\"Gabon\",\"Namibia\",\"Switzerland\",\"Saint Lucia\",\"Austria\",\"Estonia\",\"Greece\",\"Kazakhstan\",\"Canada\",\"Nigeria\",\"Netherlands\",\"Uganda\",\"Rwanda\",\"Chile\",\"Argentina\",\"Burundi\",\"United States\",\"Cyprus\",\"Sweden\",\"Venezuela\",\"Paraguay\",\"Brazil\",\"Sierra Leone\",\"Montenegro\",\"Belize\",\"Cameroon\",\"Botswana\",\"Saint Kitts and Nevis\",\"Guyana\",\"Peru\",\"Panama\",\"Niue\",\"Palau\",\"Norway\",\"Tanzania\",\"Georgia\",\"Uruguay\",\"Angola\",\"Laos"
+            """var data = [{"type":"choropleth","z":[17.5,16.8,15.4,15.1,14.4,13.9,13.8,13.3,13.0,13.0,12.9,12.6,12.5,12.5,12.3,12.3,12.3,12.2,12.2,12.2,11.9,11.9,11.8,11.6,11.6,11.4,11.4,11.2,11.0,11.0,10.9,10.9,10.8,10.7,10.4,10.3,10.3,10.3,10.3,10.2,10.1,9.9,9.8,9.8,9.6,9.3,9.3,9.2,9.2,9.2,8.9,8.8,8.7,8.7,8.7,8.5,8.4,8.4,8.2,8.1,8.1,8.0,8.0,7.9,7.7,7.7,7.7,7.6,7.5,7.3,7.2,7.2,7.2,7.1,7.1,7.1,7.1,7.1,7.0,7.0,6.9,6.9,6.9,6.9,6.8,6.8,6.7,6.7,6.7,6.7,6.6,6.6,6.6,6.6,6.5,6.4,6.4,6.2,6.0,5.9,5.7,5.7,5.6,5.5,5.4,5.4,5.4,5.4,5.3,5.2,5.0,4.9,4.8,4.7,4.6,4.4,4.3,4.3,4.3,4.3,4.3,4.2,4.0,4.0,4.0,3.9,3.8,3.8,3.7,3.7,3.6,3.6,3.6,3.5,3.4,3.3,3.2,3.0,3.0,3.0,2.8,2.8,2.7,2.5,2.4,2.3,2.3,2.3,2.2,2.1,2.1,2.0,2.0,1.8,1.7,1.6,1.5,1.5,1.5,1.4,1.3,1.3,1.2,1.2,1.1,1.1,1.0,1.0,0.9,0.9,0.9,0.7,0.7,0.7,0.7,0.7,0.6,0.6,0.6,0.5,0.5,0.4,0.3,0.3,0.2,0.2,0.2,0.1,0.1,0.1,0.1],"locations":["Belarus","Moldova","Lithuania","Russia","Romania","Ukraine","Andorra","Hungary","Czech Republic","Slovakia","Portugal","Serbia","Grenada","Poland","Latvia","Finland","South Korea","France","Australia","Croatia","Ireland","Luxembourg","Germany","Slovenia","United Kingdom","Denmark","Bulgaria","Spain","Belgium","South Africa","New Zealand","Gabon","Namibia","Switzerland","Saint Lucia","Austria","Estonia","Greece","Kazakhstan","Canada","Nigeria","Netherlands","Uganda","Rwanda","Chile","Argentina","Burundi","United States","Cyprus","Sweden","Venezuela","Paraguay","Brazil","Sierra Leone","Montenegro","Belize","Cameroon","Botswana","Saint Kitts and Nevis","Guyana","Peru","Panama","Niue","Palau","Norway","Tanzania","Georgia","Uruguay","Angola","Laos","Japan","Mexico","Ecuador","Dominica","Iceland","Thailand","Bosnia and Herzegovina","Sao Tome and Principe","Malta","Albania","Bahamas","Dominican Republic","Mongolia","Cape Verde","Barbados","Burkina Faso","Italy","Trinidad and Tobago","China","Macedonia","Saint Vincent and the Grenadines","Equatorial Guinea","Suriname","Vietnam","Lesotho","Haiti","Cook Islands","Colombia","Ivory Coast","Bolivia","Swaziland","Zimbabwe","Seychelles","Cambodia","Puerto Rico","Netherlands Antilles","Philippines","Costa Rica","Armenia","Cuba","Nicaragua","Jamaica","Ghana","Liberia","Uzbekistan","Chad","United Arab Emirates","Kyrgyzstan","India","Turkmenistan","Kenya","Ethiopia","Honduras","Guinea-Bissau","Zambia","Republic of the Congo","Guatemala","Central African Republic","North Korea","Sri Lanka","Mauritius","Samoa","Democratic Republic of the Congo","Nauru","Gambia","Federated States of Micronesia","El Salvador","Fiji","Papua New Guinea","Kiribati","Tajikistan","Israel","Sudan","Malawi","Lebanon","Azerbaijan","Mozambique","Togo","Nepal","Brunei","Benin","Singapore","Turkey","Madagascar","Solomon Islands","Tonga","Tunisia","Tuvalu","Qatar","Vanuatu","Djibouti","Malaysia","Syria","Maldives","Mali","Eritrea","Algeria","Iran","Oman","Brunei","Morocco","Jordan","Bhutan","Guinea","Burma","Afghanistan","Senegal","Indonesia","Timor-Leste","Iraq","Somalia","Egypt","Niger","Yemen","Comoros","Saudi Arabia","Bangladesh","Kuwait","Libya","Mauritania","Pakistan"],"locationmode":"country names","colorbar":{"len":0.5,"title":{"text":"Alcohol consumption[l/y]"}}}];"""
             |> chartGeneratedContains choroplethMap2Chart
         );
         testCase "Choropleth map 2 layout" ( fun () ->
