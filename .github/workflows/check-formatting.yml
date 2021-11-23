@@ -1,0 +1,25 @@
+name: Check formatting
+
+on:
+  push:
+    branches: [ dev ]
+  pull_request:
+    branches: [ dev ]
+
+jobs:
+  check-formatting:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup .NET 5
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '5.0.302'
+      
+    - name: Check source document formatting
+      run: |
+        dotnet tool restore
+        dotnet fake build -t CheckFormat

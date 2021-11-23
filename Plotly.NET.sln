@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31702.278
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "project", "project", "{BF60BC93-E09B-4E5F-9D85-95A519479D54}"
 	ProjectSection(SolutionItems) = preProject
@@ -33,6 +33,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".ci", ".ci", "{2461AFBF-6E1
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\build-and-deploy-docs.yml = .github\workflows\build-and-deploy-docs.yml
 		.github\workflows\build-and-test.yml = .github\workflows\build-and-test.yml
+		.github\workflows\check-formatting.yml = .github\workflows\check-formatting.yml
 		.github\workflows\verify-docs.yml = .github\workflows\verify-docs.yml
 	EndProjectSection
 EndProject
