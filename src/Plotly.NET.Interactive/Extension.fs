@@ -9,13 +9,13 @@ open Plotly.NET.GenericChart
 type FormatterKernelExtension() =
 
     let registerFormatter () =
-        Formatter.Register<GenericChart>
-            (
-                Action<_,_>(fun chart (writer: IO.TextWriter) ->
+        Formatter.Register<GenericChart>(
+            Action<_, _>
+                (fun chart (writer: IO.TextWriter) ->
                     let html = toChartHTML chart
-                    writer.Write(html)
-            ),
-            HtmlFormatter.MimeType)
+                    writer.Write(html)),
+            HtmlFormatter.MimeType
+        )
 
     interface IKernelExtension with
         member _.OnLoadAsync _ =

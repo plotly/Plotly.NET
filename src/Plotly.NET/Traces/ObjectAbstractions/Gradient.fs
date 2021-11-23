@@ -6,34 +6,28 @@ open DynamicObj
 open System
 open System.Runtime.InteropServices
 
-type Gradient () =
-    inherit DynamicObj () 
+type Gradient() =
+    inherit DynamicObj()
 
-    static member init 
+    static member init
         (
-            [<Optional;DefaultParameterValue(null)>] ?Color     : Color,
-            [<Optional;DefaultParameterValue(null)>] ?Type      : StyleParam.GradientType,
-            [<Optional;DefaultParameterValue(null)>] ?MultiTypes: seq<StyleParam.GradientType>
+            [<Optional; DefaultParameterValue(null)>] ?Color: Color,
+            [<Optional; DefaultParameterValue(null)>] ?Type: StyleParam.GradientType,
+            [<Optional; DefaultParameterValue(null)>] ?MultiTypes: seq<StyleParam.GradientType>
         ) =
-            Gradient()
-            |> Gradient.style
-                (
-                    ?Color      = Color,
-                    ?Type       = Type,
-                    ?MultiTypes = MultiTypes
-                )
+        Gradient() |> Gradient.style (?Color = Color, ?Type = Type, ?MultiTypes = MultiTypes)
 
     static member style
         (
-            [<Optional;DefaultParameterValue(null)>] ?Color     : Color,
-            [<Optional;DefaultParameterValue(null)>] ?Type      : StyleParam.GradientType,
-            [<Optional;DefaultParameterValue(null)>] ?MultiTypes: seq<StyleParam.GradientType>
+            [<Optional; DefaultParameterValue(null)>] ?Color: Color,
+            [<Optional; DefaultParameterValue(null)>] ?Type: StyleParam.GradientType,
+            [<Optional; DefaultParameterValue(null)>] ?MultiTypes: seq<StyleParam.GradientType>
         ) =
 
-            fun (gradient: Gradient) ->
-                
-                (Type,MultiTypes)   |> DynObj.setSingleOrMultiOpt gradient "type"
+        fun (gradient: Gradient) ->
 
-                Color               |> DynObj.setValueOpt gradient "color"
-               
-                gradient
+            (Type, MultiTypes) |> DynObj.setSingleOrMultiOpt gradient "type"
+
+            Color |> DynObj.setValueOpt gradient "color"
+
+            gradient

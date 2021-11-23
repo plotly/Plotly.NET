@@ -22,43 +22,44 @@ module ChartMap =
         [<Extension>]
         static member ChoroplethMap
             (
-                locations,z,
-                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
-                [<Optional;DefaultParameterValue(null)>] ?GeoJson           : obj,
-                [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey      : string,
-                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?ColorBar          : ColorBar,
-                [<Optional;DefaultParameterValue(null)>] ?AutoColorScale    : bool,
-                [<Optional;DefaultParameterValue(null)>] ?ColorScale        : StyleParam.Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?ShowScale         : bool,
-                [<Optional;DefaultParameterValue(null)>] ?ReverseScale      : bool,
-                [<Optional;DefaultParameterValue(null)>] ?LocationMode      : StyleParam.LocationFormat,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
-            ) = 
+                locations,
+                z,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?GeoJson: obj,
+                [<Optional; DefaultParameterValue(null)>] ?FeatureIdKey: string,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
+                [<Optional; DefaultParameterValue(null)>] ?AutoColorScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?ShowScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ReverseScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?LocationMode: StyleParam.LocationFormat,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+            ) =
 
-                let useDefaults = defaultArg UseDefaults true
+            let useDefaults = defaultArg UseDefaults true
 
-                TraceGeo.initChoroplethMap (
-                    TraceGeoStyle.ChoroplethMap(
-                        Locations       = locations     ,
-                        Z               = z             ,
-                        ?Name           = Name          ,
-                        ?ShowLegend     = ShowLegend    ,
-                        ?GeoJson        = GeoJson       ,
-                        ?FeatureIdKey   = FeatureIdKey  ,
-                        ?Text           = Text          ,
-                        ?MultiText      = MultiText     ,
-                        ?ColorBar       = ColorBar      ,
-                        ?AutoColorScale = AutoColorScale,
-                        ?ColorScale     = ColorScale    ,
-                        ?ShowScale      = ShowScale     ,
-                        ?ReverseScale   = ReverseScale  ,
-                        ?LocationMode   = LocationMode  
-                    )              
+            TraceGeo.initChoroplethMap (
+                TraceGeoStyle.ChoroplethMap(
+                    Locations = locations,
+                    Z = z,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?GeoJson = GeoJson,
+                    ?FeatureIdKey = FeatureIdKey,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?ColorBar = ColorBar,
+                    ?AutoColorScale = AutoColorScale,
+                    ?ColorScale = ColorScale,
+                    ?ShowScale = ShowScale,
+                    ?ReverseScale = ReverseScale,
+                    ?LocationMode = LocationMode
                 )
-                |> GenericChart.ofTraceObject useDefaults
+            )
+            |> GenericChart.ofTraceObject useDefaults
 
 
         /// Creates a ScatterGeo chart, where data is visualized on a geographic map.
@@ -66,570 +67,580 @@ module ChartMap =
         [<Extension>]
         static member ScatterGeo
             (
-                longitudes: seq<#IConvertible>, 
-                latitudes: seq<#IConvertible>, 
+                longitudes: seq<#IConvertible>,
+                latitudes: seq<#IConvertible>,
                 mode: StyleParam.Mode,
-                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
-                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
-                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale  : StyleParam.Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline     : Line,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol      : StyleParam.MarkerSymbol,
-                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol : seq<StyleParam.MarkerSymbol>,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
-                [<Optional;DefaultParameterValue(null)>] ?LineColor         : Color,
-                [<Optional;DefaultParameterValue(null)>] ?LineColorScale    : StyleParam.Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?LineWidth         : float,
-                [<Optional;DefaultParameterValue(null)>] ?LineDash          : StyleParam.DrawingStyle,
-                [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
-                [<Optional;DefaultParameterValue(null)>] ?LocationMode      : StyleParam.LocationFormat,
-                [<Optional;DefaultParameterValue(null)>] ?GeoJson           : obj                  ,
-                [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey      : string          ,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
-            ) = 
- 
-                let useDefaults = defaultArg UseDefaults true
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?MultiOpacity: seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol: StyleParam.MarkerSymbol,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?LineColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
+                [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?LocationMode: StyleParam.LocationFormat,
+                [<Optional; DefaultParameterValue(null)>] ?GeoJson: obj,
+                [<Optional; DefaultParameterValue(null)>] ?FeatureIdKey: string,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+            ) =
 
-                let marker =
-                    Marker 
-                    |> Option.defaultValue (TraceObjects.Marker.init())
-                    |> TraceObjects.Marker.style(
-                        ?Color          = MarkerColor,
-                        ?Outline        = MarkerOutline,
-                        ?Symbol         = MarkerSymbol,
-                        ?MultiSymbol    = MultiMarkerSymbol,
-                        ?Colorscale     = MarkerColorScale,
-                        ?MultiOpacity   = MultiOpacity
-                    )                
+            let useDefaults = defaultArg UseDefaults true
 
-                let line =
-                    Line 
-                    |> Option.defaultValue (Plotly.NET.Line.init())
-                    |> Plotly.NET.Line.style(
-                        ?Color      = LineColor,
-                        ?Dash       = LineDash,
-                        ?Colorscale = LineColorScale,
-                        ?Width      = LineWidth
-                    )
-
-
-                TraceGeo.initScatterGeo(
-                    TraceGeoStyle.ScatterGeo(
-                        Lon                 = longitudes,
-                        Lat                 = latitudes,
-                        Mode                = mode,
-                        Marker              = marker,
-                        Line                = line,
-                        ?Name               = Name             ,
-                        ?ShowLegend         = ShowLegend       ,
-                        ?Opacity            = Opacity          ,
-                        ?Text               = Text             ,
-                        ?MultiText          = MultiText        ,
-                        ?TextPosition       = TextPosition     ,
-                        ?MultiTextPosition  = MultiTextPosition,
-                        ?LocationMode       = LocationMode ,
-                        ?GeoJson            = GeoJson      ,
-                        ?FeatureIdKey       = FeatureIdKey 
-                        
-                    )               
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (
+                    ?Color = MarkerColor,
+                    ?Outline = MarkerOutline,
+                    ?Symbol = MarkerSymbol,
+                    ?MultiSymbol = MultiMarkerSymbol,
+                    ?Colorscale = MarkerColorScale,
+                    ?MultiOpacity = MultiOpacity
                 )
 
-                |> GenericChart.ofTraceObject useDefaults
+            let line =
+                Line
+                |> Option.defaultValue (Plotly.NET.Line.init ())
+                |> Plotly.NET.Line.style (
+                    ?Color = LineColor,
+                    ?Dash = LineDash,
+                    ?Colorscale = LineColorScale,
+                    ?Width = LineWidth
+                )
+
+
+            TraceGeo.initScatterGeo (
+                TraceGeoStyle.ScatterGeo(
+                    Lon = longitudes,
+                    Lat = latitudes,
+                    Mode = mode,
+                    Marker = marker,
+                    Line = line,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?TextPosition = TextPosition,
+                    ?MultiTextPosition = MultiTextPosition,
+                    ?LocationMode = LocationMode,
+                    ?GeoJson = GeoJson,
+                    ?FeatureIdKey = FeatureIdKey
+
+                )
+            )
+
+            |> GenericChart.ofTraceObject useDefaults
 
 
         /// Creates a ScatterGeo chart, where data is visualized on a geographic map.
         /// ScatterGeo charts are the basis of GeoPoint, GeoLine, and GeoBubble Charts, and can be customized as such. We also provide abstractions for those: Chart.GeoPoint, Chart.GeoLine, Chart.GeoBubble
-        
+
         [<Extension>]
         static member ScatterGeo
             (
-                lonlat: seq<#IConvertible * #IConvertible>, 
+                lonlat: seq<#IConvertible * #IConvertible>,
                 mode: StyleParam.Mode,
-                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
-                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
-                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale  : StyleParam.Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline     : Line,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol      : StyleParam.MarkerSymbol,
-                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol : seq<StyleParam.MarkerSymbol>,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
-                [<Optional;DefaultParameterValue(null)>] ?LineColor         : Color,
-                [<Optional;DefaultParameterValue(null)>] ?LineColorScale    : StyleParam.Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?LineWidth         : float,
-                [<Optional;DefaultParameterValue(null)>] ?LineDash          : StyleParam.DrawingStyle,
-                [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
-                [<Optional;DefaultParameterValue(null)>] ?LocationMode      : StyleParam.LocationFormat,
-                [<Optional;DefaultParameterValue(null)>] ?GeoJson           : obj                  ,
-                [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey      : string          ,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
-            ) = 
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?MultiOpacity: seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol: StyleParam.MarkerSymbol,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?LineColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
+                [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?LocationMode: StyleParam.LocationFormat,
+                [<Optional; DefaultParameterValue(null)>] ?GeoJson: obj,
+                [<Optional; DefaultParameterValue(null)>] ?FeatureIdKey: string,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+            ) =
 
-                let longitudes, latitudes = Seq.unzip lonlat
+            let longitudes, latitudes = Seq.unzip lonlat
 
-                Chart.ScatterGeo(
-                    longitudes, latitudes, mode,
-                    ?Name               = Name              ,
-                    ?ShowLegend         = ShowLegend        ,
-                    ?Opacity            = Opacity           ,
-                    ?MultiOpacity       = MultiOpacity      ,
-                    ?Text               = Text              ,
-                    ?MultiText          = MultiText         ,
-                    ?TextPosition       = TextPosition      ,
-                    ?MultiTextPosition  = MultiTextPosition ,
-                    ?MarkerColor        = MarkerColor       ,
-                    ?MarkerColorScale   = MarkerColorScale  ,
-                    ?MarkerOutline      = MarkerOutline     ,
-                    ?MarkerSymbol       = MarkerSymbol      ,
-                    ?MultiMarkerSymbol  = MultiMarkerSymbol ,
-                    ?Marker             = Marker            ,
-                    ?LineColor          = LineColor         ,
-                    ?LineColorScale     = LineColorScale    ,
-                    ?LineWidth          = LineWidth         ,
-                    ?LineDash           = LineDash          ,
-                    ?Line               = Line              ,
-                    ?LocationMode       = LocationMode      ,
-                    ?GeoJson            = GeoJson           ,
-                    ?FeatureIdKey       = FeatureIdKey      ,
-                    ?UseDefaults        = UseDefaults       
-                )
+            Chart.ScatterGeo(
+                longitudes,
+                latitudes,
+                mode,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?LineColor = LineColor,
+                ?LineColorScale = LineColorScale,
+                ?LineWidth = LineWidth,
+                ?LineDash = LineDash,
+                ?Line = Line,
+                ?LocationMode = LocationMode,
+                ?GeoJson = GeoJson,
+                ?FeatureIdKey = FeatureIdKey,
+                ?UseDefaults = UseDefaults
+            )
 
         /// Creates a ScatterGeo chart, where data is visualized on a geographic map.
         /// ScatterGeo charts are the basis of GeoPoint, GeoLine, and GeoBubble Charts, and can be customized as such. We also provide abstractions for those: Chart.GeoPoint, Chart.GeoLine, Chart.GeoBubble
         [<Extension>]
         static member ScatterGeo
             (
-                locations: seq<string>, 
+                locations: seq<string>,
                 mode: StyleParam.Mode,
-                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
-                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
-                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale  : StyleParam.Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline     : Line,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol      : StyleParam.MarkerSymbol,
-                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol : seq<StyleParam.MarkerSymbol>,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
-                [<Optional;DefaultParameterValue(null)>] ?LineColor         : Color,
-                [<Optional;DefaultParameterValue(null)>] ?LineColorScale    : StyleParam.Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?LineWidth         : float,
-                [<Optional;DefaultParameterValue(null)>] ?LineDash          : StyleParam.DrawingStyle,
-                [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
-                [<Optional;DefaultParameterValue(null)>] ?LocationMode      : StyleParam.LocationFormat,
-                [<Optional;DefaultParameterValue(null)>] ?GeoJson           : obj                  ,
-                [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey      : string          ,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
-            ) = 
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?MultiOpacity: seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol: StyleParam.MarkerSymbol,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?LineColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
+                [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?LocationMode: StyleParam.LocationFormat,
+                [<Optional; DefaultParameterValue(null)>] ?GeoJson: obj,
+                [<Optional; DefaultParameterValue(null)>] ?FeatureIdKey: string,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+            ) =
 
-                let useDefaults = defaultArg UseDefaults true
-                
-                let marker =
-                    Marker 
-                    |> Option.defaultValue (TraceObjects.Marker.init())
-                    |> TraceObjects.Marker.style(
-                        ?Color          = MarkerColor,
-                        ?Outline        = MarkerOutline,
-                        ?Symbol         = MarkerSymbol,
-                        ?MultiSymbol    = MultiMarkerSymbol,
-                        ?Colorscale     = MarkerColorScale,
-                        ?MultiOpacity   = MultiOpacity
-                    )                
-                
-                let line =
-                    Line 
-                    |> Option.defaultValue (Plotly.NET.Line.init())
-                    |> Plotly.NET.Line.style(
-                        ?Color      = LineColor,
-                        ?Dash       = LineDash,
-                        ?Colorscale = LineColorScale,
-                        ?Width      = LineWidth
-                    )
-                
-                
-                TraceGeo.initScatterGeo(
-                    TraceGeoStyle.ScatterGeo(
-                        Locations           = locations,
-                        Mode                = mode,
-                        Marker              = marker,
-                        Line                = line,
-                        ?Name               = Name             ,
-                        ?ShowLegend         = ShowLegend       ,
-                        ?Opacity            = Opacity          ,
-                        ?Text               = Text             ,
-                        ?MultiText          = MultiText        ,
-                        ?TextPosition       = TextPosition     ,
-                        ?MultiTextPosition  = MultiTextPosition,
-                        ?LocationMode       = LocationMode ,
-                        ?GeoJson            = GeoJson      ,
-                        ?FeatureIdKey       = FeatureIdKey 
-                                        
-                    )               
+            let useDefaults = defaultArg UseDefaults true
+
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (
+                    ?Color = MarkerColor,
+                    ?Outline = MarkerOutline,
+                    ?Symbol = MarkerSymbol,
+                    ?MultiSymbol = MultiMarkerSymbol,
+                    ?Colorscale = MarkerColorScale,
+                    ?MultiOpacity = MultiOpacity
                 )
-                
-                |> GenericChart.ofTraceObject useDefaults
+
+            let line =
+                Line
+                |> Option.defaultValue (Plotly.NET.Line.init ())
+                |> Plotly.NET.Line.style (
+                    ?Color = LineColor,
+                    ?Dash = LineDash,
+                    ?Colorscale = LineColorScale,
+                    ?Width = LineWidth
+                )
+
+
+            TraceGeo.initScatterGeo (
+                TraceGeoStyle.ScatterGeo(
+                    Locations = locations,
+                    Mode = mode,
+                    Marker = marker,
+                    Line = line,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?TextPosition = TextPosition,
+                    ?MultiTextPosition = MultiTextPosition,
+                    ?LocationMode = LocationMode,
+                    ?GeoJson = GeoJson,
+                    ?FeatureIdKey = FeatureIdKey
+
+                )
+            )
+
+            |> GenericChart.ofTraceObject useDefaults
 
         /// Creates a PointGeo chart, where data is visualized as points on a geographic map.
         [<Extension>]
         static member PointGeo
             (
-                longitudes  : seq<#IConvertible>, 
-                latitudes   : seq<#IConvertible>, 
-                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
-                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
-                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale  : StyleParam.Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline     : Line,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol      : StyleParam.MarkerSymbol,
-                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol : seq<StyleParam.MarkerSymbol>,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
-                [<Optional;DefaultParameterValue(null)>] ?LocationMode      : StyleParam.LocationFormat,
-                [<Optional;DefaultParameterValue(null)>] ?GeoJson           : obj                  ,
-                [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey      : string          ,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
-            ) = 
+                longitudes: seq<#IConvertible>,
+                latitudes: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?MultiOpacity: seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol: StyleParam.MarkerSymbol,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?LocationMode: StyleParam.LocationFormat,
+                [<Optional; DefaultParameterValue(null)>] ?GeoJson: obj,
+                [<Optional; DefaultParameterValue(null)>] ?FeatureIdKey: string,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+            ) =
 
-                let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+            let changeMode =
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
 
-                Chart.ScatterGeo(
-                    longitudes, latitudes,
-                    mode = changeMode StyleParam.Mode.Markers,
-                    ?Name               = Name             ,
-                    ?ShowLegend         = ShowLegend       ,
-                    ?Opacity            = Opacity          ,
-                    ?MultiOpacity       = MultiOpacity     ,
-                    ?Text               = Text             ,
-                    ?MultiText          = MultiText        ,
-                    ?TextPosition       = TextPosition     ,
-                    ?MultiTextPosition  = MultiTextPosition,
-                    ?MarkerColor        = MarkerColor      ,
-                    ?MarkerColorScale   = MarkerColorScale ,
-                    ?MarkerOutline      = MarkerOutline    ,
-                    ?MarkerSymbol       = MarkerSymbol     ,
-                    ?MultiMarkerSymbol  = MultiMarkerSymbol,
-                    ?Marker             = Marker           ,
-                    ?LocationMode       = LocationMode     ,
-                    ?GeoJson            = GeoJson          ,
-                    ?FeatureIdKey       = FeatureIdKey     ,
-                    ?UseDefaults        = UseDefaults      
+            Chart.ScatterGeo(
+                longitudes,
+                latitudes,
+                mode = changeMode StyleParam.Mode.Markers,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?LocationMode = LocationMode,
+                ?GeoJson = GeoJson,
+                ?FeatureIdKey = FeatureIdKey,
+                ?UseDefaults = UseDefaults
 
-                )
+            )
 
         /// Creates a PointGeo chart, where data is visualized as points on a geographic map.
         [<Extension>]
         static member PointGeo
             (
                 lonlat: seq<#IConvertible * #IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
-                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
-                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale  : StyleParam.Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline     : Line,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol      : StyleParam.MarkerSymbol,
-                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol : seq<StyleParam.MarkerSymbol>,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
-                [<Optional;DefaultParameterValue(null)>] ?LocationMode      : StyleParam.LocationFormat,
-                [<Optional;DefaultParameterValue(null)>] ?GeoJson           : obj                  ,
-                [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey      : string          ,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
-            ) = 
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?MultiOpacity: seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol: StyleParam.MarkerSymbol,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?LocationMode: StyleParam.LocationFormat,
+                [<Optional; DefaultParameterValue(null)>] ?GeoJson: obj,
+                [<Optional; DefaultParameterValue(null)>] ?FeatureIdKey: string,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+            ) =
 
-                let longitudes, latitudes = Seq.unzip lonlat
+            let longitudes, latitudes = Seq.unzip lonlat
 
-                Chart.PointGeo(
-                    longitudes, latitudes,
-                    ?Name               = Name             ,
-                    ?ShowLegend         = ShowLegend       ,
-                    ?Opacity            = Opacity          ,
-                    ?MultiOpacity       = MultiOpacity     ,
-                    ?Text               = Text             ,
-                    ?MultiText          = MultiText        ,
-                    ?TextPosition       = TextPosition     ,
-                    ?MultiTextPosition  = MultiTextPosition,
-                    ?MarkerColor        = MarkerColor      ,
-                    ?MarkerColorScale   = MarkerColorScale ,
-                    ?MarkerOutline      = MarkerOutline    ,
-                    ?MarkerSymbol       = MarkerSymbol     ,
-                    ?MultiMarkerSymbol  = MultiMarkerSymbol,
-                    ?Marker             = Marker           ,
-                    ?LocationMode       = LocationMode     ,
-                    ?GeoJson            = GeoJson          ,
-                    ?FeatureIdKey       = FeatureIdKey     ,
-                    ?UseDefaults        = UseDefaults      
-                )
+            Chart.PointGeo(
+                longitudes,
+                latitudes,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?LocationMode = LocationMode,
+                ?GeoJson = GeoJson,
+                ?FeatureIdKey = FeatureIdKey,
+                ?UseDefaults = UseDefaults
+            )
 
         /// Creates a PointGeo chart, where data is visualized as points on a geographic map.
         [<Extension>]
         static member PointGeo
             (
-                locations: seq<string>, 
-                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
-                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
-                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale  : StyleParam.Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline     : Line,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol      : StyleParam.MarkerSymbol,
-                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol : seq<StyleParam.MarkerSymbol>,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
-                [<Optional;DefaultParameterValue(null)>] ?LocationMode      : StyleParam.LocationFormat,
-                [<Optional;DefaultParameterValue(null)>] ?GeoJson           : obj                  ,
-                [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey      : string          ,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
-            ) = 
-                let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+                locations: seq<string>,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?MultiOpacity: seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol: StyleParam.MarkerSymbol,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?LocationMode: StyleParam.LocationFormat,
+                [<Optional; DefaultParameterValue(null)>] ?GeoJson: obj,
+                [<Optional; DefaultParameterValue(null)>] ?FeatureIdKey: string,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+            ) =
+            let changeMode =
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
 
-                Chart.ScatterGeo(
-                    locations,
-                    mode = changeMode StyleParam.Mode.Markers,
-                    ?Name               = Name             ,
-                    ?ShowLegend         = ShowLegend       ,
-                    ?Opacity            = Opacity          ,
-                    ?MultiOpacity       = MultiOpacity     ,
-                    ?Text               = Text             ,
-                    ?MultiText          = MultiText        ,
-                    ?TextPosition       = TextPosition     ,
-                    ?MultiTextPosition  = MultiTextPosition,
-                    ?MarkerColor        = MarkerColor      ,
-                    ?MarkerColorScale   = MarkerColorScale ,
-                    ?MarkerOutline      = MarkerOutline    ,
-                    ?MarkerSymbol       = MarkerSymbol     ,
-                    ?MultiMarkerSymbol  = MultiMarkerSymbol,
-                    ?Marker             = Marker           ,
-                    ?LocationMode       = LocationMode     ,
-                    ?GeoJson            = GeoJson          ,
-                    ?FeatureIdKey       = FeatureIdKey     ,
-                    ?UseDefaults        = UseDefaults      
-                )
+            Chart.ScatterGeo(
+                locations,
+                mode = changeMode StyleParam.Mode.Markers,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?LocationMode = LocationMode,
+                ?GeoJson = GeoJson,
+                ?FeatureIdKey = FeatureIdKey,
+                ?UseDefaults = UseDefaults
+            )
 
         /// Creates a LineGeo chart, where data is visualized as coordinates connected via lines on a geographic map.
         [<Extension>]
         static member LineGeo
             (
-                longitudes: seq<#IConvertible>, 
-                latitudes: seq<#IConvertible>, 
-                [<Optional;DefaultParameterValue(null)>] ?ShowMarkers       : bool,
-                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
-                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
-                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale  : StyleParam.Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline     : Line,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol      : StyleParam.MarkerSymbol,
-                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol : seq<StyleParam.MarkerSymbol>,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
-                [<Optional;DefaultParameterValue(null)>] ?LineColor         : Color,
-                [<Optional;DefaultParameterValue(null)>] ?LineColorScale    : StyleParam.Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?LineWidth         : float,
-                [<Optional;DefaultParameterValue(null)>] ?LineDash          : StyleParam.DrawingStyle,
-                [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
-                [<Optional;DefaultParameterValue(null)>] ?LocationMode      : StyleParam.LocationFormat,
-                [<Optional;DefaultParameterValue(null)>] ?GeoJson           : obj                  ,
-                [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey      : string          ,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
-            ) = 
+                longitudes: seq<#IConvertible>,
+                latitudes: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?ShowMarkers: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?MultiOpacity: seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol: StyleParam.MarkerSymbol,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?LineColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
+                [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?LocationMode: StyleParam.LocationFormat,
+                [<Optional; DefaultParameterValue(null)>] ?GeoJson: obj,
+                [<Optional; DefaultParameterValue(null)>] ?FeatureIdKey: string,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+            ) =
 
-                let changeMode = 
-                    let isShowMarker =
-                        match ShowMarkers with
-                        | Some isShow -> isShow
-                        | Option.None        -> false
-                    StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)                       
-                    >> StyleParam.ModeUtils.showMarker (isShowMarker)
+            let changeMode =
+                let isShowMarker =
+                    match ShowMarkers with
+                    | Some isShow -> isShow
+                    | Option.None -> false
 
-                Chart.ScatterGeo(
-                    longitudes, latitudes,
-                    mode = changeMode StyleParam.Mode.Lines,
-                    ?Name               = Name             ,
-                    ?ShowLegend         = ShowLegend       ,
-                    ?Opacity            = Opacity          ,
-                    ?MultiOpacity       = MultiOpacity     ,
-                    ?Text               = Text             ,
-                    ?MultiText          = MultiText        ,
-                    ?TextPosition       = TextPosition     ,
-                    ?MultiTextPosition  = MultiTextPosition,
-                    ?MarkerColor        = MarkerColor      ,
-                    ?MarkerColorScale   = MarkerColorScale ,
-                    ?MarkerOutline      = MarkerOutline    ,
-                    ?MarkerSymbol       = MarkerSymbol     ,
-                    ?MultiMarkerSymbol  = MultiMarkerSymbol,
-                    ?Marker             = Marker           ,
-                    ?LineColor          = LineColor        ,
-                    ?LineColorScale     = LineColorScale   ,
-                    ?LineWidth          = LineWidth        ,
-                    ?LineDash           = LineDash         ,
-                    ?Line               = Line             ,
-                    ?LocationMode       = LocationMode     ,
-                    ?GeoJson            = GeoJson          ,
-                    ?FeatureIdKey       = FeatureIdKey     ,
-                    ?UseDefaults        = UseDefaults      
-                )
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+                >> StyleParam.ModeUtils.showMarker (isShowMarker)
+
+            Chart.ScatterGeo(
+                longitudes,
+                latitudes,
+                mode = changeMode StyleParam.Mode.Lines,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?LineColor = LineColor,
+                ?LineColorScale = LineColorScale,
+                ?LineWidth = LineWidth,
+                ?LineDash = LineDash,
+                ?Line = Line,
+                ?LocationMode = LocationMode,
+                ?GeoJson = GeoJson,
+                ?FeatureIdKey = FeatureIdKey,
+                ?UseDefaults = UseDefaults
+            )
 
         /// Creates a LineGeo chart, where data is visualized as coordinates connected via lines on a geographic map.
         [<Extension>]
         static member LineGeo
             (
                 lonlat: seq<#IConvertible * #IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?ShowMarkers       : bool,
-                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
-                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
-                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale  : StyleParam.Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline     : Line,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol      : StyleParam.MarkerSymbol,
-                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol : seq<StyleParam.MarkerSymbol>,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
-                [<Optional;DefaultParameterValue(null)>] ?LineColor         : Color,
-                [<Optional;DefaultParameterValue(null)>] ?LineColorScale    : StyleParam.Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?LineWidth         : float,
-                [<Optional;DefaultParameterValue(null)>] ?LineDash          : StyleParam.DrawingStyle,
-                [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
-                [<Optional;DefaultParameterValue(null)>] ?LocationMode      : StyleParam.LocationFormat,
-                [<Optional;DefaultParameterValue(null)>] ?GeoJson           : obj                  ,
-                [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey      : string          ,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
-            ) = 
+                [<Optional; DefaultParameterValue(null)>] ?ShowMarkers: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?MultiOpacity: seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol: StyleParam.MarkerSymbol,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?LineColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
+                [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?LocationMode: StyleParam.LocationFormat,
+                [<Optional; DefaultParameterValue(null)>] ?GeoJson: obj,
+                [<Optional; DefaultParameterValue(null)>] ?FeatureIdKey: string,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+            ) =
 
-                let longitudes, latitudes = Seq.unzip lonlat
-                
-                Chart.LineGeo(
-                    longitudes, latitudes,
-                    ?ShowMarkers        = ShowMarkers       ,
-                    ?Name               = Name              ,
-                    ?ShowLegend         = ShowLegend        ,
-                    ?Opacity            = Opacity           ,
-                    ?MultiOpacity       = MultiOpacity      ,
-                    ?Text               = Text              ,
-                    ?MultiText          = MultiText         ,
-                    ?TextPosition       = TextPosition      ,
-                    ?MultiTextPosition  = MultiTextPosition ,
-                    ?MarkerColor        = MarkerColor       ,
-                    ?MarkerColorScale   = MarkerColorScale  ,
-                    ?MarkerOutline      = MarkerOutline     ,
-                    ?MarkerSymbol       = MarkerSymbol      ,
-                    ?MultiMarkerSymbol  = MultiMarkerSymbol ,
-                    ?Marker             = Marker            ,
-                    ?LineColor          = LineColor         ,
-                    ?LineColorScale     = LineColorScale    ,
-                    ?LineWidth          = LineWidth         ,
-                    ?LineDash           = LineDash          ,
-                    ?Line               = Line              ,
-                    ?LocationMode       = LocationMode      ,
-                    ?GeoJson            = GeoJson           ,
-                    ?FeatureIdKey       = FeatureIdKey      ,
-                    ?UseDefaults        = UseDefaults       
-                    
-                )
+            let longitudes, latitudes = Seq.unzip lonlat
+
+            Chart.LineGeo(
+                longitudes,
+                latitudes,
+                ?ShowMarkers = ShowMarkers,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?LineColor = LineColor,
+                ?LineColorScale = LineColorScale,
+                ?LineWidth = LineWidth,
+                ?LineDash = LineDash,
+                ?Line = Line,
+                ?LocationMode = LocationMode,
+                ?GeoJson = GeoJson,
+                ?FeatureIdKey = FeatureIdKey,
+                ?UseDefaults = UseDefaults
+
+            )
 
         /// Creates a LineGeo chart, where data is visualized as coordinates connected via lines on a geographic map.
         [<Extension>]
         static member LineGeo
             (
                 locations: seq<string>,
-                [<Optional;DefaultParameterValue(null)>] ?ShowMarkers       : bool,
-                [<Optional;DefaultParameterValue(null)>] ?Name              : string,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
-                [<Optional;DefaultParameterValue(null)>] ?MultiOpacity      : seq<float>,
-                [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
-                [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
-                [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerColor       : Color,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerColorScale  : StyleParam.Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerOutline     : Line,
-                [<Optional;DefaultParameterValue(null)>] ?MarkerSymbol      : StyleParam.MarkerSymbol,
-                [<Optional;DefaultParameterValue(null)>] ?MultiMarkerSymbol : seq<StyleParam.MarkerSymbol>,
-                [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
-                [<Optional;DefaultParameterValue(null)>] ?LineColor         : Color,
-                [<Optional;DefaultParameterValue(null)>] ?LineColorScale    : StyleParam.Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?LineWidth         : float,
-                [<Optional;DefaultParameterValue(null)>] ?LineDash          : StyleParam.DrawingStyle,
-                [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
-                [<Optional;DefaultParameterValue(null)>] ?LocationMode      : StyleParam.LocationFormat,
-                [<Optional;DefaultParameterValue(null)>] ?GeoJson           : obj                  ,
-                [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey      : string          ,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults       : bool
-            ) = 
+                [<Optional; DefaultParameterValue(null)>] ?ShowMarkers: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?MultiOpacity: seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol: StyleParam.MarkerSymbol,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?LineColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
+                [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?LocationMode: StyleParam.LocationFormat,
+                [<Optional; DefaultParameterValue(null)>] ?GeoJson: obj,
+                [<Optional; DefaultParameterValue(null)>] ?FeatureIdKey: string,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+            ) =
 
-                let changeMode = 
-                    let isShowMarker =
-                        match ShowMarkers with
-                        | Some isShow -> isShow
-                        | Option.None        -> false
-                    StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)                       
-                    >> StyleParam.ModeUtils.showMarker (isShowMarker)
+            let changeMode =
+                let isShowMarker =
+                    match ShowMarkers with
+                    | Some isShow -> isShow
+                    | Option.None -> false
 
-                Chart.ScatterGeo(
-                    locations,
-                    mode = changeMode StyleParam.Mode.Lines,
-                    ?Name               = Name             ,
-                    ?ShowLegend         = ShowLegend       ,
-                    ?Opacity            = Opacity          ,
-                    ?MultiOpacity       = MultiOpacity     ,
-                    ?Text               = Text             ,
-                    ?MultiText          = MultiText        ,
-                    ?TextPosition       = TextPosition     ,
-                    ?MultiTextPosition  = MultiTextPosition,
-                    ?MarkerColor        = MarkerColor      ,
-                    ?MarkerColorScale   = MarkerColorScale ,
-                    ?MarkerOutline      = MarkerOutline    ,
-                    ?MarkerSymbol       = MarkerSymbol     ,
-                    ?MultiMarkerSymbol  = MultiMarkerSymbol,
-                    ?Marker             = Marker           ,
-                    ?LineColor          = LineColor        ,
-                    ?LineColorScale     = LineColorScale   ,
-                    ?LineWidth          = LineWidth        ,
-                    ?LineDash           = LineDash         ,
-                    ?Line               = Line             ,
-                    ?LocationMode       = LocationMode     ,
-                    ?GeoJson            = GeoJson          ,
-                    ?FeatureIdKey       = FeatureIdKey     ,
-                    ?UseDefaults        = UseDefaults      
-                )
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+                >> StyleParam.ModeUtils.showMarker (isShowMarker)
+
+            Chart.ScatterGeo(
+                locations,
+                mode = changeMode StyleParam.Mode.Lines,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?LineColor = LineColor,
+                ?LineColorScale = LineColorScale,
+                ?LineWidth = LineWidth,
+                ?LineDash = LineDash,
+                ?Line = Line,
+                ?LocationMode = LocationMode,
+                ?GeoJson = GeoJson,
+                ?FeatureIdKey = FeatureIdKey,
+                ?UseDefaults = UseDefaults
+            )
 
         /// <summary>
         /// Creates a ScatterMapbox chart, where data is visualized by (longitude,latitude) pairs on a geographic map using mapbox.
@@ -658,41 +669,42 @@ module ChartMap =
         [<Extension>]
         static member ScatterMapbox
             (
-                longitudes, latitudes, 
+                longitudes,
+                latitudes,
                 mode,
-                [<Optional;DefaultParameterValue(null)>] ?Name                          ,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
-                [<Optional;DefaultParameterValue(null)>] ?Color                         ,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
-                [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
-                [<Optional;DefaultParameterValue(null)>] ?Width : float                 ,
-                [<Optional;DefaultParameterValue(null)>] ?Below : string                ,
-                [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
-                [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
-                [<Optional;DefaultParameterValue(null)>] ?Fillcolor,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
-            ) = 
+                [<Optional; DefaultParameterValue(null)>] ?Name,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend,
+                [<Optional; DefaultParameterValue(null)>] ?Color,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity,
+                [<Optional; DefaultParameterValue(null)>] ?Labels,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?TextFont,
+                [<Optional; DefaultParameterValue(null)>] ?Width: float,
+                [<Optional; DefaultParameterValue(null)>] ?Below: string,
+                [<Optional; DefaultParameterValue(null)>] ?Connectgaps: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Fill: StyleParam.Fill,
+                [<Optional; DefaultParameterValue(null)>] ?Fillcolor,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+            ) =
 
-                let useDefaults = defaultArg UseDefaults true
+            let useDefaults = defaultArg UseDefaults true
 
-                TraceMapbox.initScatterMapbox(
-                    TraceMapboxStyle.ScatterMapbox(
-                        Mode            = mode          ,
-                        Longitudes      = longitudes    ,
-                        Latitudes       = latitudes     ,
-                        ?Below          = Below         ,
-                        ?Connectgaps    = Connectgaps  ,
-                        ?Fill           = Fill         ,
-                        ?Fillcolor      = Fillcolor    
-                    )               
+            TraceMapbox.initScatterMapbox (
+                TraceMapboxStyle.ScatterMapbox(
+                    Mode = mode,
+                    Longitudes = longitudes,
+                    Latitudes = latitudes,
+                    ?Below = Below,
+                    ?Connectgaps = Connectgaps,
+                    ?Fill = Fill,
+                    ?Fillcolor = Fillcolor
                 )
-                |> TraceStyle.TraceInfo(?Name=Name,?ShowLegend=ShowLegend,?Opacity=Opacity)
-                |> TraceStyle.Line(?Color=Color,?Width=Width)
-                |> TraceStyle.Marker(?Color=Color)
-                |> TraceStyle.TextLabel(?Text=Labels,?Textposition=TextPosition,?Textfont=TextFont)
-                |> GenericChart.ofTraceObject useDefaults
+            )
+            |> TraceStyle.TraceInfo(?Name = Name, ?ShowLegend = ShowLegend, ?Opacity = Opacity)
+            |> TraceStyle.Line(?Color = Color, ?Width = Width)
+            |> TraceStyle.Marker(?Color = Color)
+            |> TraceStyle.TextLabel(?Text = Labels, ?Textposition = TextPosition, ?Textfont = TextFont)
+            |> GenericChart.ofTraceObject useDefaults
 
         /// <summary>
         /// Creates a ScatterMapbox chart, where data is visualized by (longitude,latitude) pairs on a geographic map using mapbox.
@@ -720,43 +732,44 @@ module ChartMap =
         [<Extension>]
         static member ScatterMapbox
             (
-                lonlat, mode,
-                [<Optional;DefaultParameterValue(null)>] ?Name                          ,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
-                [<Optional;DefaultParameterValue(null)>] ?Color                         ,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
-                [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
-                [<Optional;DefaultParameterValue(null)>] ?Width : float                 ,
-                [<Optional;DefaultParameterValue(null)>] ?Below : string                ,
-                [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
-                [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
-                [<Optional;DefaultParameterValue(null)>] ?Fillcolor ,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
-            ) = 
+                lonlat,
+                mode,
+                [<Optional; DefaultParameterValue(null)>] ?Name,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend,
+                [<Optional; DefaultParameterValue(null)>] ?Color,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity,
+                [<Optional; DefaultParameterValue(null)>] ?Labels,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?TextFont,
+                [<Optional; DefaultParameterValue(null)>] ?Width: float,
+                [<Optional; DefaultParameterValue(null)>] ?Below: string,
+                [<Optional; DefaultParameterValue(null)>] ?Connectgaps: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Fill: StyleParam.Fill,
+                [<Optional; DefaultParameterValue(null)>] ?Fillcolor,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+            ) =
 
-                let longitudes, latitudes = Seq.unzip lonlat
+            let longitudes, latitudes = Seq.unzip lonlat
 
-                Chart.ScatterMapbox(
-                    longitudes, 
-                    latitudes, 
-                    mode,
-                    ?Name           = Name       ,
-                    ?ShowLegend     = ShowLegend ,
-                    ?Color          = Color      ,
-                    ?Opacity        = Opacity    ,
-                    ?Labels         = Labels     ,
-                    ?TextPosition   = TextPosition,
-                    ?TextFont       = TextFont   ,
-                    ?Width          = Width      ,
-                    ?Below          = Below      ,
-                    ?Connectgaps    = Connectgaps,
-                    ?Fill           = Fill       ,
-                    ?Fillcolor      = Fillcolor  ,
-                    ?UseDefaults    = UseDefaults
-                )                  
-                           
+            Chart.ScatterMapbox(
+                longitudes,
+                latitudes,
+                mode,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Color = Color,
+                ?Opacity = Opacity,
+                ?Labels = Labels,
+                ?TextPosition = TextPosition,
+                ?TextFont = TextFont,
+                ?Width = Width,
+                ?Below = Below,
+                ?Connectgaps = Connectgaps,
+                ?Fill = Fill,
+                ?Fillcolor = Fillcolor,
+                ?UseDefaults = UseDefaults
+            )
+
         /// <summary>
         /// Creates a PointMapbox chart, where data is visualized by (longitude,latitude) pairs as Points on a geographic map using mapbox.
         ///
@@ -781,43 +794,45 @@ module ChartMap =
         [<Extension>]
         static member PointMapbox
             (
-                longitudes,latitudes,
-                [<Optional;DefaultParameterValue(null)>] ?Name                          ,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
-                [<Optional;DefaultParameterValue(null)>] ?Color                         ,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
-                [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
-                [<Optional;DefaultParameterValue(null)>] ?Width : float                 ,
-                [<Optional;DefaultParameterValue(null)>] ?Below : string                ,
-                [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
-                [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
-                [<Optional;DefaultParameterValue(null)>] ?Fillcolor   ,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
-            ) = 
+                longitudes,
+                latitudes,
+                [<Optional; DefaultParameterValue(null)>] ?Name,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend,
+                [<Optional; DefaultParameterValue(null)>] ?Color,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity,
+                [<Optional; DefaultParameterValue(null)>] ?Labels,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?TextFont,
+                [<Optional; DefaultParameterValue(null)>] ?Width: float,
+                [<Optional; DefaultParameterValue(null)>] ?Below: string,
+                [<Optional; DefaultParameterValue(null)>] ?Connectgaps: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Fill: StyleParam.Fill,
+                [<Optional; DefaultParameterValue(null)>] ?Fillcolor,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+            ) =
 
-                let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
+            let changeMode =
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
 
-                Chart.ScatterMapbox(
-                    longitudes, 
-                    latitudes, 
-                    changeMode StyleParam.Mode.Markers ,
-                    ?Name        =  Name       ,
-                    ?ShowLegend  =  ShowLegend ,
-                    ?Color       =  Color      ,
-                    ?Opacity     =  Opacity    ,
-                    ?Labels      =  Labels     ,
-                    ?TextPosition=  TextPosition,
-                    ?TextFont    =  TextFont   ,
-                    ?Width       =  Width      ,
-                    ?Below       =  Below      ,
-                    ?Connectgaps =  Connectgaps,
-                    ?Fill        =  Fill       ,
-                    ?Fillcolor   =  Fillcolor  ,
-                    ?UseDefaults = UseDefaults
-                )                  
-                                                      
+            Chart.ScatterMapbox(
+                longitudes,
+                latitudes,
+                changeMode StyleParam.Mode.Markers,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Color = Color,
+                ?Opacity = Opacity,
+                ?Labels = Labels,
+                ?TextPosition = TextPosition,
+                ?TextFont = TextFont,
+                ?Width = Width,
+                ?Below = Below,
+                ?Connectgaps = Connectgaps,
+                ?Fill = Fill,
+                ?Fillcolor = Fillcolor,
+                ?UseDefaults = UseDefaults
+            )
+
         /// <summary>
         /// Creates a PointMapbox chart, where data is visualized by (longitude,latitude) pairs as Points on a geographic map using mapbox.
         ///
@@ -842,42 +857,44 @@ module ChartMap =
         static member PointMapbox
             (
                 lonlat,
-                [<Optional;DefaultParameterValue(null)>] ?Name                          ,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
-                [<Optional;DefaultParameterValue(null)>] ?Color                         ,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
-                [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
-                [<Optional;DefaultParameterValue(null)>] ?Width : float                 ,
-                [<Optional;DefaultParameterValue(null)>] ?Below : string                ,
-                [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
-                [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
-                [<Optional;DefaultParameterValue(null)>] ?Fillcolor,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
-            ) = 
+                [<Optional; DefaultParameterValue(null)>] ?Name,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend,
+                [<Optional; DefaultParameterValue(null)>] ?Color,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity,
+                [<Optional; DefaultParameterValue(null)>] ?Labels,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?TextFont,
+                [<Optional; DefaultParameterValue(null)>] ?Width: float,
+                [<Optional; DefaultParameterValue(null)>] ?Below: string,
+                [<Optional; DefaultParameterValue(null)>] ?Connectgaps: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Fill: StyleParam.Fill,
+                [<Optional; DefaultParameterValue(null)>] ?Fillcolor,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+            ) =
 
-                let changeMode = StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
-                let longitudes, latitudes = Seq.unzip lonlat
+            let changeMode =
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
 
-                Chart.ScatterMapbox(
-                    longitudes, 
-                    latitudes, 
-                    mode = changeMode StyleParam.Mode.Markers ,
-                    ?Name        =  Name       ,
-                    ?ShowLegend  =  ShowLegend ,
-                    ?Color       =  Color      ,
-                    ?Opacity     =  Opacity    ,
-                    ?Labels      =  Labels     ,
-                    ?TextPosition=  TextPosition,
-                    ?TextFont    =  TextFont   ,
-                    ?Width       =  Width      ,
-                    ?Below       =  Below      ,
-                    ?Connectgaps =  Connectgaps,
-                    ?Fill        =  Fill       ,
-                    ?Fillcolor   =  Fillcolor  ,
-                    ?UseDefaults = UseDefaults
-                )                                             
+            let longitudes, latitudes = Seq.unzip lonlat
+
+            Chart.ScatterMapbox(
+                longitudes,
+                latitudes,
+                mode = changeMode StyleParam.Mode.Markers,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Color = Color,
+                ?Opacity = Opacity,
+                ?Labels = Labels,
+                ?TextPosition = TextPosition,
+                ?TextFont = TextFont,
+                ?Width = Width,
+                ?Below = Below,
+                ?Connectgaps = Connectgaps,
+                ?Fill = Fill,
+                ?Fillcolor = Fillcolor,
+                ?UseDefaults = UseDefaults
+            )
         /// <summary>
         /// Creates a LineMapbox chart, where data is visualized by (longitude,latitude) pairs connected by a line on a geographic map using mapbox.
         ///
@@ -903,50 +920,52 @@ module ChartMap =
         [<Extension>]
         static member LineMapbox
             (
-                longitudes,latitudes,
-                [<Optional;DefaultParameterValue(null)>] ?Name                          ,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
-                [<Optional;DefaultParameterValue(null)>] ?ShowMarkers                   ,
-                [<Optional;DefaultParameterValue(null)>] ?Color                         ,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
-                [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
-                [<Optional;DefaultParameterValue(null)>] ?Width : float                 ,
-                [<Optional;DefaultParameterValue(null)>] ?Below : string                ,
-                [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
-                [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
-                [<Optional;DefaultParameterValue(null)>] ?Fillcolor   ,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
-            ) = 
+                longitudes,
+                latitudes,
+                [<Optional; DefaultParameterValue(null)>] ?Name,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend,
+                [<Optional; DefaultParameterValue(null)>] ?ShowMarkers,
+                [<Optional; DefaultParameterValue(null)>] ?Color,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity,
+                [<Optional; DefaultParameterValue(null)>] ?Labels,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?TextFont,
+                [<Optional; DefaultParameterValue(null)>] ?Width: float,
+                [<Optional; DefaultParameterValue(null)>] ?Below: string,
+                [<Optional; DefaultParameterValue(null)>] ?Connectgaps: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Fill: StyleParam.Fill,
+                [<Optional; DefaultParameterValue(null)>] ?Fillcolor,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+            ) =
 
-                let changeMode = 
-                    let isShowMarker =
-                        match ShowMarkers with
-                        | Some isShow -> isShow
-                        | Option.None        -> false
-                    StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
-                    >> StyleParam.ModeUtils.showMarker (isShowMarker)
+            let changeMode =
+                let isShowMarker =
+                    match ShowMarkers with
+                    | Some isShow -> isShow
+                    | Option.None -> false
 
-                Chart.ScatterMapbox(
-                    longitudes, 
-                    latitudes, 
-                    changeMode StyleParam.Mode.Lines ,
-                    ?Name        =  Name       ,
-                    ?ShowLegend  =  ShowLegend ,
-                    ?Color       =  Color      ,
-                    ?Opacity     =  Opacity    ,
-                    ?Labels      =  Labels     ,
-                    ?TextPosition=  TextPosition,
-                    ?TextFont    =  TextFont   ,
-                    ?Width       =  Width      ,
-                    ?Below       =  Below      ,
-                    ?Connectgaps =  Connectgaps,
-                    ?Fill        =  Fill       ,
-                    ?Fillcolor   =  Fillcolor  ,
-                    ?UseDefaults = UseDefaults
-                )                  
-                                                      
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
+                >> StyleParam.ModeUtils.showMarker (isShowMarker)
+
+            Chart.ScatterMapbox(
+                longitudes,
+                latitudes,
+                changeMode StyleParam.Mode.Lines,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Color = Color,
+                ?Opacity = Opacity,
+                ?Labels = Labels,
+                ?TextPosition = TextPosition,
+                ?TextFont = TextFont,
+                ?Width = Width,
+                ?Below = Below,
+                ?Connectgaps = Connectgaps,
+                ?Fill = Fill,
+                ?Fillcolor = Fillcolor,
+                ?UseDefaults = UseDefaults
+            )
+
         /// <summary>
         /// Creates a LineMapbox chart, where data is visualized by (longitude,latitude) pairs connected by a line on a geographic map using mapbox.
         ///
@@ -972,55 +991,57 @@ module ChartMap =
         static member LineMapbox
             (
                 lonlat,
-                [<Optional;DefaultParameterValue(null)>] ?Name                          ,
-                [<Optional;DefaultParameterValue(null)>] ?ShowLegend                    ,
-                [<Optional;DefaultParameterValue(null)>] ?ShowMarkers                   ,
-                [<Optional;DefaultParameterValue(null)>] ?Color                         ,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity                       ,
-                [<Optional;DefaultParameterValue(null)>] ?Labels                        ,
-                [<Optional;DefaultParameterValue(null)>] ?TextPosition                  ,
-                [<Optional;DefaultParameterValue(null)>] ?TextFont                      ,
-                [<Optional;DefaultParameterValue(null)>] ?Width : float                 ,
-                [<Optional;DefaultParameterValue(null)>] ?Below : string                ,
-                [<Optional;DefaultParameterValue(null)>] ?Connectgaps : bool            ,
-                [<Optional;DefaultParameterValue(null)>] ?Fill        : StyleParam.Fill ,
-                [<Optional;DefaultParameterValue(null)>] ?Fillcolor,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
-            ) = 
+                [<Optional; DefaultParameterValue(null)>] ?Name,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend,
+                [<Optional; DefaultParameterValue(null)>] ?ShowMarkers,
+                [<Optional; DefaultParameterValue(null)>] ?Color,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity,
+                [<Optional; DefaultParameterValue(null)>] ?Labels,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?TextFont,
+                [<Optional; DefaultParameterValue(null)>] ?Width: float,
+                [<Optional; DefaultParameterValue(null)>] ?Below: string,
+                [<Optional; DefaultParameterValue(null)>] ?Connectgaps: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Fill: StyleParam.Fill,
+                [<Optional; DefaultParameterValue(null)>] ?Fillcolor,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+            ) =
 
-                let changeMode = 
-                    let isShowMarker =
-                        match ShowMarkers with
-                        | Some isShow -> isShow
-                        | Option.None        -> false
-                    StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)                       
-                    >> StyleParam.ModeUtils.showMarker (isShowMarker)
-                let longitudes, latitudes = Seq.unzip lonlat
+            let changeMode =
+                let isShowMarker =
+                    match ShowMarkers with
+                    | Some isShow -> isShow
+                    | Option.None -> false
 
-                Chart.ScatterMapbox(
-                    longitudes, 
-                    latitudes, 
-                    mode = changeMode StyleParam.Mode.Lines ,
-                    ?Name        =  Name       ,
-                    ?ShowLegend  =  ShowLegend ,
-                    ?Color       =  Color      ,
-                    ?Opacity     =  Opacity    ,
-                    ?Labels      =  Labels     ,
-                    ?TextPosition=  TextPosition,
-                    ?TextFont    =  TextFont   ,
-                    ?Width       =  Width      ,
-                    ?Below       =  Below      ,
-                    ?Connectgaps =  Connectgaps,
-                    ?Fill        =  Fill       ,
-                    ?Fillcolor   =  Fillcolor  ,
-                    ?UseDefaults = UseDefaults
-                )                  
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
+                >> StyleParam.ModeUtils.showMarker (isShowMarker)
+
+            let longitudes, latitudes = Seq.unzip lonlat
+
+            Chart.ScatterMapbox(
+                longitudes,
+                latitudes,
+                mode = changeMode StyleParam.Mode.Lines,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Color = Color,
+                ?Opacity = Opacity,
+                ?Labels = Labels,
+                ?TextPosition = TextPosition,
+                ?TextFont = TextFont,
+                ?Width = Width,
+                ?Below = Below,
+                ?Connectgaps = Connectgaps,
+                ?Fill = Fill,
+                ?Fillcolor = Fillcolor,
+                ?UseDefaults = UseDefaults
+            )
 
         /// <summary>
-        /// Creates a ChoroplethMapbox Chart. 
+        /// Creates a ChoroplethMapbox Chart.
         ///
-        /// Choropleth Maps display divided geographical areas or regions that are coloured, shaded or patterned in relation to 
-        /// a data variable. This provides a way to visualise values over a geographical area, which can show variation or 
+        /// Choropleth Maps display divided geographical areas or regions that are coloured, shaded or patterned in relation to
+        /// a data variable. This provides a way to visualise values over a geographical area, which can show variation or
         /// patterns across the displayed location.
         ///
         /// GeoJSON features to be filled are set in `geojson` The data that describes the choropleth value-to-color mapping is set in `locations` and `z`.
@@ -1040,39 +1061,41 @@ module ChartMap =
         [<Extension>]
         static member ChoroplethMapbox
             (
-                locations,z,geoJson,
-                [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey,
-                [<Optional;DefaultParameterValue(null)>] ?Text,
-                [<Optional;DefaultParameterValue(null)>] ?Below,
-                [<Optional;DefaultParameterValue(null)>] ?Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?ColorBar,
-                [<Optional;DefaultParameterValue(null)>] ?ZAuto,
-                [<Optional;DefaultParameterValue(null)>] ?ZMin,
-                [<Optional;DefaultParameterValue(null)>] ?ZMid,
-                [<Optional;DefaultParameterValue(null)>] ?ZMax,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
-            ) = 
+                locations,
+                z,
+                geoJson,
+                [<Optional; DefaultParameterValue(null)>] ?FeatureIdKey,
+                [<Optional; DefaultParameterValue(null)>] ?Text,
+                [<Optional; DefaultParameterValue(null)>] ?Below,
+                [<Optional; DefaultParameterValue(null)>] ?Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?ColorBar,
+                [<Optional; DefaultParameterValue(null)>] ?ZAuto,
+                [<Optional; DefaultParameterValue(null)>] ?ZMin,
+                [<Optional; DefaultParameterValue(null)>] ?ZMid,
+                [<Optional; DefaultParameterValue(null)>] ?ZMax,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+            ) =
 
-                let useDefaults = defaultArg UseDefaults true
-            
-                TraceMapbox.initChoroplethMapbox (
-                    TraceMapboxStyle.ChoroplethMapbox (
-                        Z               = z,
-                        Locations       = locations,
-                        GeoJson         = geoJson,
-                        ?FeatureIdKey   = FeatureIdKey,
-                        ?Text           = Text,
-                        ?Below          = Below,
-                        ?Colorscale     = Colorscale,
-                        ?ColorBar       = ColorBar,
-                        ?ZAuto          = ZAuto,
-                        ?ZMin           = ZMin,
-                        ?ZMid           = ZMid,
-                        ?ZMax           = ZMax
-                    )
+            let useDefaults = defaultArg UseDefaults true
+
+            TraceMapbox.initChoroplethMapbox (
+                TraceMapboxStyle.ChoroplethMapbox(
+                    Z = z,
+                    Locations = locations,
+                    GeoJson = geoJson,
+                    ?FeatureIdKey = FeatureIdKey,
+                    ?Text = Text,
+                    ?Below = Below,
+                    ?Colorscale = Colorscale,
+                    ?ColorBar = ColorBar,
+                    ?ZAuto = ZAuto,
+                    ?ZMin = ZMin,
+                    ?ZMid = ZMid,
+                    ?ZMax = ZMax
                 )
-                |> GenericChart.ofTraceObject useDefaults
-            
+            )
+            |> GenericChart.ofTraceObject useDefaults
+
         /// <summary>
         /// Creates a DensityMapbox Chart that draws a bivariate kernel density estimation with a Gaussian kernel from `lon` and `lat` coordinates and optional `z` values using a colorscale.
         /// </summary>
@@ -1091,46 +1114,47 @@ module ChartMap =
         /// <param name="ZMid">Sets the mid-point of the color domain by scaling `zmin` and/or `zmax` to be equidistant to this point. Value should have the same units as in `z`. Has no effect when `zauto` is `false`.</param>
         /// <param name="ZMax">Sets the upper bound of the color domain. Value should have the same units as in `z` and if set, `zmin` must be set as well.</param>
         [<Extension>]
-        static member DensityMapbox 
+        static member DensityMapbox
             (
-                lon,lat,
-                [<Optional;DefaultParameterValue(null)>] ?Z,
-                [<Optional;DefaultParameterValue(null)>] ?Radius,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Text,
-                [<Optional;DefaultParameterValue(null)>] ?Below,
-                [<Optional;DefaultParameterValue(null)>] ?Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?ColorBar,
-                [<Optional;DefaultParameterValue(null)>] ?Showscale ,
-                [<Optional;DefaultParameterValue(null)>] ?ZAuto,
-                [<Optional;DefaultParameterValue(null)>] ?ZMin,
-                [<Optional;DefaultParameterValue(null)>] ?ZMid,
-                [<Optional;DefaultParameterValue(null)>] ?ZMax,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
-            ) = 
+                lon,
+                lat,
+                [<Optional; DefaultParameterValue(null)>] ?Z,
+                [<Optional; DefaultParameterValue(null)>] ?Radius,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity,
+                [<Optional; DefaultParameterValue(null)>] ?Text,
+                [<Optional; DefaultParameterValue(null)>] ?Below,
+                [<Optional; DefaultParameterValue(null)>] ?Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?ColorBar,
+                [<Optional; DefaultParameterValue(null)>] ?Showscale,
+                [<Optional; DefaultParameterValue(null)>] ?ZAuto,
+                [<Optional; DefaultParameterValue(null)>] ?ZMin,
+                [<Optional; DefaultParameterValue(null)>] ?ZMid,
+                [<Optional; DefaultParameterValue(null)>] ?ZMax,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+            ) =
 
-                let useDefaults = defaultArg UseDefaults true
+            let useDefaults = defaultArg UseDefaults true
 
-                TraceMapbox.initDensityMapbox(
-                    TraceMapboxStyle.DensityMapbox(
-                        Longitudes  = lon,
-                        Latitudes   = lat,
-                        ?Z          = Z,
-                        ?Radius     = Radius,
-                        ?Opacity    = Opacity,
-                        ?Text       = Text,
-                        ?Below      = Below,
-                        ?Colorscale = Colorscale,
-                        ?ColorBar   = ColorBar,
-                        ?Showscale  = Showscale,
-                        ?ZAuto      = ZAuto,
-                        ?ZMin       = ZMin,
-                        ?ZMid       = ZMid,
-                        ?ZMax       = ZMax
-                    )
+            TraceMapbox.initDensityMapbox (
+                TraceMapboxStyle.DensityMapbox(
+                    Longitudes = lon,
+                    Latitudes = lat,
+                    ?Z = Z,
+                    ?Radius = Radius,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?Below = Below,
+                    ?Colorscale = Colorscale,
+                    ?ColorBar = ColorBar,
+                    ?Showscale = Showscale,
+                    ?ZAuto = ZAuto,
+                    ?ZMin = ZMin,
+                    ?ZMid = ZMid,
+                    ?ZMax = ZMax
                 )
-                |> GenericChart.ofTraceObject useDefaults
-    
+            )
+            |> GenericChart.ofTraceObject useDefaults
+
         /// <summary>
         /// Creates a DensityMapbox Chart that draws a bivariate kernel density estimation with a Gaussian kernel from `lon` and `lat` coordinates and optional `z` values using a colorscale.
         /// </summary>
@@ -1148,40 +1172,40 @@ module ChartMap =
         /// <param name="ZMid">Sets the mid-point of the color domain by scaling `zmin` and/or `zmax` to be equidistant to this point. Value should have the same units as in `z`. Has no effect when `zauto` is `false`.</param>
         /// <param name="ZMax">Sets the upper bound of the color domain. Value should have the same units as in `z` and if set, `zmin` must be set as well.</param>
         [<Extension>]
-        static member DensityMapbox 
+        static member DensityMapbox
             (
                 lonlat,
-                [<Optional;DefaultParameterValue(null)>] ?Z,
-                [<Optional;DefaultParameterValue(null)>] ?Radius,
-                [<Optional;DefaultParameterValue(null)>] ?Opacity,
-                [<Optional;DefaultParameterValue(null)>] ?Text,
-                [<Optional;DefaultParameterValue(null)>] ?Below,
-                [<Optional;DefaultParameterValue(null)>] ?Colorscale,
-                [<Optional;DefaultParameterValue(null)>] ?ColorBar,
-                [<Optional;DefaultParameterValue(null)>] ?Showscale ,
-                [<Optional;DefaultParameterValue(null)>] ?ZAuto,
-                [<Optional;DefaultParameterValue(null)>] ?ZMin,
-                [<Optional;DefaultParameterValue(null)>] ?ZMid,
-                [<Optional;DefaultParameterValue(null)>] ?ZMax,
-                [<Optional;DefaultParameterValue(true)>] ?UseDefaults : bool
-            ) = 
+                [<Optional; DefaultParameterValue(null)>] ?Z,
+                [<Optional; DefaultParameterValue(null)>] ?Radius,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity,
+                [<Optional; DefaultParameterValue(null)>] ?Text,
+                [<Optional; DefaultParameterValue(null)>] ?Below,
+                [<Optional; DefaultParameterValue(null)>] ?Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?ColorBar,
+                [<Optional; DefaultParameterValue(null)>] ?Showscale,
+                [<Optional; DefaultParameterValue(null)>] ?ZAuto,
+                [<Optional; DefaultParameterValue(null)>] ?ZMin,
+                [<Optional; DefaultParameterValue(null)>] ?ZMid,
+                [<Optional; DefaultParameterValue(null)>] ?ZMax,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+            ) =
 
-                let longitudes, latitudes = Seq.unzip lonlat
-            
-                Chart.DensityMapbox(
-                    longitudes,
-                    latitudes,
-                    ?Z          = Z,
-                    ?Radius     = Radius,
-                    ?Opacity    = Opacity,
-                    ?Text       = Text,
-                    ?Below      = Below,
-                    ?Colorscale = Colorscale,
-                    ?ColorBar   = ColorBar, 
-                    ?Showscale  = Showscale,
-                    ?ZAuto      = ZAuto,
-                    ?ZMin       = ZMin,
-                    ?ZMid       = ZMid,
-                    ?ZMax       = ZMax,
-                    ?UseDefaults= UseDefaults
-                )
+            let longitudes, latitudes = Seq.unzip lonlat
+
+            Chart.DensityMapbox(
+                longitudes,
+                latitudes,
+                ?Z = Z,
+                ?Radius = Radius,
+                ?Opacity = Opacity,
+                ?Text = Text,
+                ?Below = Below,
+                ?Colorscale = Colorscale,
+                ?ColorBar = ColorBar,
+                ?Showscale = Showscale,
+                ?ZAuto = ZAuto,
+                ?ZMin = ZMin,
+                ?ZMid = ZMid,
+                ?ZMax = ZMax,
+                ?UseDefaults = UseDefaults
+            )

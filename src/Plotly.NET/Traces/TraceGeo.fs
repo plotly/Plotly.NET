@@ -7,49 +7,43 @@ open System
 open System.Runtime.InteropServices
 
 
-//Figures can include two different types of map subplots: geo subplots for outline maps and mapbox subplots for tile maps. 
-///The following trace types support attributes named geo or mapbox, whose values must refer to corresponding objects in the layout 
-///i.e. geo="geo2" etc. Note that attributes such as layout.geo2 and layout.mapbox etc do not have to be explicitly defined, in which 
+//Figures can include two different types of map subplots: geo subplots for outline maps and mapbox subplots for tile maps.
+///The following trace types support attributes named geo or mapbox, whose values must refer to corresponding objects in the layout
+///i.e. geo="geo2" etc. Note that attributes such as layout.geo2 and layout.mapbox etc do not have to be explicitly defined, in which
 ///case default values will be inferred. Multiple traces of a compatible type can be placed on the same subplot.
 ///
 /// The following trace types are compatible with geo subplots via the geo attribute:
-/// 
+///
 /// - scattergeo, which can be used to draw individual markers, line and curves and filled areas on outline maps
-/// 
+///
 /// - choropleth: colored polygons on outline maps
-/// 
+///
 /// The following trace types are compatible with mapbox subplots via the mapbox attribute:
-/// 
+///
 /// - scattermapbox, which can be used to draw individual markers, lines and curves and filled areas on tile maps
-/// 
+///
 /// - choroplethmapbox: colored polygons on tile maps
-/// 
+///
 /// - densitymapbox: density heatmaps on tile maps
 
 type TraceGeo(traceTypeName) =
 
-    inherit Trace (traceTypeName)
+    inherit Trace(traceTypeName)
 
     ///initializes a trace of type "scattergeo" applying the given trace styling function
-    static member initScatterGeo (applyStyle: TraceGeo -> TraceGeo) = 
-        TraceGeo("scattergeo") |> applyStyle
+    static member initScatterGeo(applyStyle: TraceGeo -> TraceGeo) = TraceGeo("scattergeo") |> applyStyle
 
     ///initializes a trace of type "choropleth" applying the given trace styling function
-    static member initChoroplethMap (applyStyle: TraceGeo -> TraceGeo) = 
-        TraceGeo("choropleth") |> applyStyle
+    static member initChoroplethMap(applyStyle: TraceGeo -> TraceGeo) = TraceGeo("choropleth") |> applyStyle
 
-type TraceGeoStyle() = 
+type TraceGeoStyle() =
 
-    static member SetGeo
-        (
-            [<Optional;DefaultParameterValue(null)>] ?GeoId:StyleParam.SubPlotId
-        ) =  
-            (fun (trace:TraceGeo) ->
+    static member SetGeo([<Optional; DefaultParameterValue(null)>] ?GeoId: StyleParam.SubPlotId) =
+        (fun (trace: TraceGeo) ->
 
-                GeoId |> DynObj.setValueOptBy trace "geo" StyleParam.SubPlotId.toString
+            GeoId |> DynObj.setValueOptBy trace "geo" StyleParam.SubPlotId.toString
 
-                trace
-            )
+            trace)
 
     /// <summary>
     /// Creates a function that applies the styles of a choropleth map to a Trace object
@@ -93,86 +87,85 @@ type TraceGeoStyle() =
     /// <param name="LocationMode">Determines the set of locations used to match entries in `locations` to regions on the map. Values "ISO-3", "USA-states", "country names" correspond to features on the base map and value "geojson-id" corresponds to features from a custom GeoJSON linked to the `geojson` attribute.</param>
     /// <param name="UIRevision">Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.</param>
     static member ChoroplethMap
-        (                
-            [<Optional;DefaultParameterValue(null)>] ?Name              : string,
-            [<Optional;DefaultParameterValue(null)>] ?Visible           : StyleParam.Visible,
-            [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
-            [<Optional;DefaultParameterValue(null)>] ?LegendRank        : int,
-            [<Optional;DefaultParameterValue(null)>] ?LegendGroup       : string,
-            [<Optional;DefaultParameterValue(null)>] ?LegendGroupTitle  : Title,
-            [<Optional;DefaultParameterValue(null)>] ?Ids               : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?Z                 : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?GeoJson           : obj,
-            [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey      : string,
-            [<Optional;DefaultParameterValue(null)>] ?Locations         : seq<string>,
-            [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
-            [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?HoverText         : string,
-            [<Optional;DefaultParameterValue(null)>] ?MultiHoverText    : seq<string>,
-            [<Optional;DefaultParameterValue(null)>] ?HoverInfo         : StyleParam.HoverInfo,
-            [<Optional;DefaultParameterValue(null)>] ?HoverTemplate     : string,
-            [<Optional;DefaultParameterValue(null)>] ?MultiHoverTemplate: seq<string>,
-            [<Optional;DefaultParameterValue(null)>] ?Meta              : string,
-            [<Optional;DefaultParameterValue(null)>] ?CustomData        : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?Geo               : StyleParam.SubPlotId,
-            [<Optional;DefaultParameterValue(null)>] ?ColorAxis         : StyleParam.SubPlotId,
-            [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
-            [<Optional;DefaultParameterValue(null)>] ?ColorBar          : ColorBar,
-            [<Optional;DefaultParameterValue(null)>] ?AutoColorScale    : bool,
-            [<Optional;DefaultParameterValue(null)>] ?ColorScale        : StyleParam.Colorscale,
-            [<Optional;DefaultParameterValue(null)>] ?ShowScale         : bool,
-            [<Optional;DefaultParameterValue(null)>] ?ReverseScale      : bool,
-            [<Optional;DefaultParameterValue(null)>] ?ZAuto             : bool,
-            [<Optional;DefaultParameterValue(null)>] ?Zmin              : float,
-            [<Optional;DefaultParameterValue(null)>] ?Zmid              : float,
-            [<Optional;DefaultParameterValue(null)>] ?Zmax              : float,
-            [<Optional;DefaultParameterValue(null)>] ?SelectedPoints    : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?Selected          : Selection,
-            [<Optional;DefaultParameterValue(null)>] ?Unselected        : Selection,
-            [<Optional;DefaultParameterValue(null)>] ?HoverLabel        : Hoverlabel,
-            [<Optional;DefaultParameterValue(null)>] ?LocationMode      : StyleParam.LocationFormat,
-            [<Optional;DefaultParameterValue(null)>] ?UIRevision        : string
+        (
+            [<Optional; DefaultParameterValue(null)>] ?Name: string,
+            [<Optional; DefaultParameterValue(null)>] ?Visible: StyleParam.Visible,
+            [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+            [<Optional; DefaultParameterValue(null)>] ?LegendRank: int,
+            [<Optional; DefaultParameterValue(null)>] ?LegendGroup: string,
+            [<Optional; DefaultParameterValue(null)>] ?LegendGroupTitle: Title,
+            [<Optional; DefaultParameterValue(null)>] ?Ids: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Z: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?GeoJson: obj,
+            [<Optional; DefaultParameterValue(null)>] ?FeatureIdKey: string,
+            [<Optional; DefaultParameterValue(null)>] ?Locations: seq<string>,
+            [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?HoverText: string,
+            [<Optional; DefaultParameterValue(null)>] ?MultiHoverText: seq<string>,
+            [<Optional; DefaultParameterValue(null)>] ?HoverInfo: StyleParam.HoverInfo,
+            [<Optional; DefaultParameterValue(null)>] ?HoverTemplate: string,
+            [<Optional; DefaultParameterValue(null)>] ?MultiHoverTemplate: seq<string>,
+            [<Optional; DefaultParameterValue(null)>] ?Meta: string,
+            [<Optional; DefaultParameterValue(null)>] ?CustomData: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Geo: StyleParam.SubPlotId,
+            [<Optional; DefaultParameterValue(null)>] ?ColorAxis: StyleParam.SubPlotId,
+            [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+            [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
+            [<Optional; DefaultParameterValue(null)>] ?AutoColorScale: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ColorScale: StyleParam.Colorscale,
+            [<Optional; DefaultParameterValue(null)>] ?ShowScale: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ReverseScale: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ZAuto: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Zmin: float,
+            [<Optional; DefaultParameterValue(null)>] ?Zmid: float,
+            [<Optional; DefaultParameterValue(null)>] ?Zmax: float,
+            [<Optional; DefaultParameterValue(null)>] ?SelectedPoints: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Selected: Selection,
+            [<Optional; DefaultParameterValue(null)>] ?Unselected: Selection,
+            [<Optional; DefaultParameterValue(null)>] ?HoverLabel: Hoverlabel,
+            [<Optional; DefaultParameterValue(null)>] ?LocationMode: StyleParam.LocationFormat,
+            [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
         ) =
-            (fun (trace: #Trace) -> 
-                
-                Name                                |> DynObj.setValueOpt trace "name"
-                Visible                             |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
-                ShowLegend                          |> DynObj.setValueOpt trace "showlegend"
-                LegendRank                          |> DynObj.setValueOpt trace "legendrank"
-                LegendGroup                         |> DynObj.setValueOpt trace "legendgroup"
-                LegendGroupTitle                    |> DynObj.setValueOpt trace "legendgrouptitle"
-                Ids                                 |> DynObj.setValueOpt trace "ids"
-                Z                                   |> DynObj.setValueOpt trace "z"
-                GeoJson                             |> DynObj.setValueOpt trace "geojson"
-                FeatureIdKey                        |> DynObj.setValueOpt trace "featureidkey"
-                Locations                           |> DynObj.setValueOpt trace "locations"
-                (Text, MultiText)                   |> DynObj.setSingleOrMultiOpt trace "text"
-                (HoverText, MultiHoverText)         |> DynObj.setSingleOrMultiOpt trace "hovertext"
-                HoverInfo                           |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
-                (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
-                Meta                                |> DynObj.setValueOpt trace "meta"
-                CustomData                          |> DynObj.setValueOpt trace "customdata"
-                Geo                                 |> DynObj.setValueOptBy trace "geo" StyleParam.SubPlotId.convert
-                ColorAxis                           |> DynObj.setValueOptBy trace "coloraxis" StyleParam.SubPlotId.convert
-                Marker                              |> DynObj.setValueOpt trace "marker"
-                ColorBar                            |> DynObj.setValueOpt trace "colorbar"
-                AutoColorScale                      |> DynObj.setValueOpt trace "autocolorscale"
-                ColorScale                          |> DynObj.setValueOptBy trace "colorscale" StyleParam.Colorscale.convert
-                ShowScale                           |> DynObj.setValueOpt trace "showscale"
-                ReverseScale                        |> DynObj.setValueOpt trace "reversescale"
-                ZAuto                               |> DynObj.setValueOpt trace "zauto"
-                Zmin                                |> DynObj.setValueOpt trace "zmin"
-                Zmid                                |> DynObj.setValueOpt trace "zmid"
-                Zmax                                |> DynObj.setValueOpt trace "zmax"
-                SelectedPoints                      |> DynObj.setValueOpt trace "selectedpoints"
-                Selected                            |> DynObj.setValueOpt trace "selected"
-                Unselected                          |> DynObj.setValueOpt trace "unselected"
-                HoverLabel                          |> DynObj.setValueOpt trace "hoverlabel"
-                LocationMode                        |> DynObj.setValueOptBy trace "locationmode" StyleParam.LocationFormat.convert
-                UIRevision                          |> DynObj.setValueOpt trace "uirevision"
-                    
-                trace 
-            ) 
+        (fun (trace: #Trace) ->
+
+            Name |> DynObj.setValueOpt trace "name"
+            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+            ShowLegend |> DynObj.setValueOpt trace "showlegend"
+            LegendRank |> DynObj.setValueOpt trace "legendrank"
+            LegendGroup |> DynObj.setValueOpt trace "legendgroup"
+            LegendGroupTitle |> DynObj.setValueOpt trace "legendgrouptitle"
+            Ids |> DynObj.setValueOpt trace "ids"
+            Z |> DynObj.setValueOpt trace "z"
+            GeoJson |> DynObj.setValueOpt trace "geojson"
+            FeatureIdKey |> DynObj.setValueOpt trace "featureidkey"
+            Locations |> DynObj.setValueOpt trace "locations"
+            (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
+            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
+            HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
+            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
+            Meta |> DynObj.setValueOpt trace "meta"
+            CustomData |> DynObj.setValueOpt trace "customdata"
+            Geo |> DynObj.setValueOptBy trace "geo" StyleParam.SubPlotId.convert
+            ColorAxis |> DynObj.setValueOptBy trace "coloraxis" StyleParam.SubPlotId.convert
+            Marker |> DynObj.setValueOpt trace "marker"
+            ColorBar |> DynObj.setValueOpt trace "colorbar"
+            AutoColorScale |> DynObj.setValueOpt trace "autocolorscale"
+            ColorScale |> DynObj.setValueOptBy trace "colorscale" StyleParam.Colorscale.convert
+            ShowScale |> DynObj.setValueOpt trace "showscale"
+            ReverseScale |> DynObj.setValueOpt trace "reversescale"
+            ZAuto |> DynObj.setValueOpt trace "zauto"
+            Zmin |> DynObj.setValueOpt trace "zmin"
+            Zmid |> DynObj.setValueOpt trace "zmid"
+            Zmax |> DynObj.setValueOpt trace "zmax"
+            SelectedPoints |> DynObj.setValueOpt trace "selectedpoints"
+            Selected |> DynObj.setValueOpt trace "selected"
+            Unselected |> DynObj.setValueOpt trace "unselected"
+            HoverLabel |> DynObj.setValueOpt trace "hoverlabel"
+            LocationMode |> DynObj.setValueOptBy trace "locationmode" StyleParam.LocationFormat.convert
+            UIRevision |> DynObj.setValueOpt trace "uirevision"
+
+            trace)
 
     /// <summary>
     /// Creates a function that applies the styles of a scattergeo plot to a Trace object
@@ -217,87 +210,90 @@ type TraceGeoStyle() =
     /// <param name="HoverLabel">Sets the style of the hoverlabels of this trace.</param>
     /// <param name="LocationMode">Determines the set of locations used to match entries in `locations` to regions on the map. Values "ISO-3", "USA-states", "country names" correspond to features on the base map and value "geojson-id" corresponds to features from a custom GeoJSON linked to the `geojson` attribute.</param>
     /// <param name="UIRevision">Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.</param>
-    static member ScatterGeo 
+    static member ScatterGeo
         (
-            [<Optional;DefaultParameterValue(null)>] ?Name              : string,
-            [<Optional;DefaultParameterValue(null)>] ?Visible           : StyleParam.Visible,
-            [<Optional;DefaultParameterValue(null)>] ?ShowLegend        : bool,
-            [<Optional;DefaultParameterValue(null)>] ?LegendRank        : int,
-            [<Optional;DefaultParameterValue(null)>] ?LegendGroup       : string,
-            [<Optional;DefaultParameterValue(null)>] ?LegendGroupTitle  : Title,
-            [<Optional;DefaultParameterValue(null)>] ?Opacity           : float,
-            [<Optional;DefaultParameterValue(null)>] ?Mode              : StyleParam.Mode,         
-            [<Optional;DefaultParameterValue(null)>] ?Ids               : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?Lat               : #IConvertible seq,
-            [<Optional;DefaultParameterValue(null)>] ?GeoJson           : obj,
-            [<Optional;DefaultParameterValue(null)>] ?FeatureIdKey      : string,
-            [<Optional;DefaultParameterValue(null)>] ?Locations         : seq<string>,
-            [<Optional;DefaultParameterValue(null)>] ?Lon               : #IConvertible seq,
-            [<Optional;DefaultParameterValue(null)>] ?Text              : #IConvertible,
-            [<Optional;DefaultParameterValue(null)>] ?MultiText         : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?TextPosition      : StyleParam.TextPosition,
-            [<Optional;DefaultParameterValue(null)>] ?MultiTextPosition : seq<StyleParam.TextPosition>,
-            [<Optional;DefaultParameterValue(null)>] ?TextTemplate      : string,
-            [<Optional;DefaultParameterValue(null)>] ?MultiTextTemplate : seq<string>,
-            [<Optional;DefaultParameterValue(null)>] ?HoverText         : string,
-            [<Optional;DefaultParameterValue(null)>] ?MultiHoverText    : seq<string>,
-            [<Optional;DefaultParameterValue(null)>] ?HoverInfo         : StyleParam.HoverInfo,
-            [<Optional;DefaultParameterValue(null)>] ?HoverTemplate     : string,
-            [<Optional;DefaultParameterValue(null)>] ?MultiHoverTemplate: seq<string>,
-            [<Optional;DefaultParameterValue(null)>] ?Meta              : string,
-            [<Optional;DefaultParameterValue(null)>] ?CustomData        : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?Geo               : StyleParam.SubPlotId,
-            [<Optional;DefaultParameterValue(null)>] ?Marker            : Marker,
-            [<Optional;DefaultParameterValue(null)>] ?Line              : Line,
-            [<Optional;DefaultParameterValue(null)>] ?TextFont          : Font,
-            [<Optional;DefaultParameterValue(null)>] ?SelectedPoints    : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?Selected          : Selection,
-            [<Optional;DefaultParameterValue(null)>] ?Unselected        : Selection,
-            [<Optional;DefaultParameterValue(null)>] ?ConnectGaps       : bool,
-            [<Optional;DefaultParameterValue(null)>] ?Fill              : StyleParam.Fill,
-            [<Optional;DefaultParameterValue(null)>] ?FillColor         : Color,
-            [<Optional;DefaultParameterValue(null)>] ?HoverLabel        : Hoverlabel,
-            [<Optional;DefaultParameterValue(null)>] ?LocationMode      : StyleParam.LocationFormat,
-            [<Optional;DefaultParameterValue(null)>] ?UIRevision        : string
+            [<Optional; DefaultParameterValue(null)>] ?Name: string,
+            [<Optional; DefaultParameterValue(null)>] ?Visible: StyleParam.Visible,
+            [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+            [<Optional; DefaultParameterValue(null)>] ?LegendRank: int,
+            [<Optional; DefaultParameterValue(null)>] ?LegendGroup: string,
+            [<Optional; DefaultParameterValue(null)>] ?LegendGroupTitle: Title,
+            [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+            [<Optional; DefaultParameterValue(null)>] ?Mode: StyleParam.Mode,
+            [<Optional; DefaultParameterValue(null)>] ?Ids: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Lat: #IConvertible seq,
+            [<Optional; DefaultParameterValue(null)>] ?GeoJson: obj,
+            [<Optional; DefaultParameterValue(null)>] ?FeatureIdKey: string,
+            [<Optional; DefaultParameterValue(null)>] ?Locations: seq<string>,
+            [<Optional; DefaultParameterValue(null)>] ?Lon: #IConvertible seq,
+            [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+            [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+            [<Optional; DefaultParameterValue(null)>] ?TextTemplate: string,
+            [<Optional; DefaultParameterValue(null)>] ?MultiTextTemplate: seq<string>,
+            [<Optional; DefaultParameterValue(null)>] ?HoverText: string,
+            [<Optional; DefaultParameterValue(null)>] ?MultiHoverText: seq<string>,
+            [<Optional; DefaultParameterValue(null)>] ?HoverInfo: StyleParam.HoverInfo,
+            [<Optional; DefaultParameterValue(null)>] ?HoverTemplate: string,
+            [<Optional; DefaultParameterValue(null)>] ?MultiHoverTemplate: seq<string>,
+            [<Optional; DefaultParameterValue(null)>] ?Meta: string,
+            [<Optional; DefaultParameterValue(null)>] ?CustomData: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Geo: StyleParam.SubPlotId,
+            [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+            [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+            [<Optional; DefaultParameterValue(null)>] ?TextFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?SelectedPoints: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Selected: Selection,
+            [<Optional; DefaultParameterValue(null)>] ?Unselected: Selection,
+            [<Optional; DefaultParameterValue(null)>] ?ConnectGaps: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Fill: StyleParam.Fill,
+            [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?HoverLabel: Hoverlabel,
+            [<Optional; DefaultParameterValue(null)>] ?LocationMode: StyleParam.LocationFormat,
+            [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
         ) =
-            (fun (trace: #Trace) -> 
-                
-                Name                                |> DynObj.setValueOpt trace "name"
-                Visible                             |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
-                ShowLegend                          |> DynObj.setValueOpt trace "showlegend"
-                LegendRank                          |> DynObj.setValueOpt trace "legendrank"
-                LegendGroup                         |> DynObj.setValueOpt trace "legendgroup"
-                LegendGroupTitle                    |> DynObj.setValueOpt trace "legendgrouptitle"
-                Opacity                             |> DynObj.setValueOpt trace "opacity"
-                Mode                                |> DynObj.setValueOptBy trace "mode" StyleParam.Mode.convert
-                Ids                                 |> DynObj.setValueOpt trace "ids"
-                Lat                                 |> DynObj.setValueOpt trace "lat"
-                GeoJson                             |> DynObj.setValueOpt trace "geojson"
-                FeatureIdKey                        |> DynObj.setValueOpt trace "featureidkey"
-                Locations                           |> DynObj.setValueOpt trace "locations"
-                Lon                                 |> DynObj.setValueOpt trace "lon"
-                (Text, MultiText)                   |> DynObj.setSingleOrMultiOpt trace "text"
-                (TextPosition, MultiTextPosition)   |> DynObj.setSingleOrMultiOptBy trace "textposition" StyleParam.TextPosition.convert
-                (TextTemplate, MultiTextTemplate)   |> DynObj.setSingleOrMultiOpt trace "texttemplate"
-                (HoverText, MultiHoverText)         |> DynObj.setSingleOrMultiOpt trace "hovertext"
-                HoverInfo                           |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
-                (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
-                Meta                                |> DynObj.setValueOpt trace "meta"
-                CustomData                          |> DynObj.setValueOpt trace "customdata"
-                Geo                                 |> DynObj.setValueOptBy trace "geo" StyleParam.SubPlotId.convert
-                Marker                              |> DynObj.setValueOpt trace "marker"
-                Line                                |> DynObj.setValueOpt trace "line"
-                TextFont                            |> DynObj.setValueOpt trace "textfont"
-                SelectedPoints                      |> DynObj.setValueOpt trace "selectedpoints"
-                Selected                            |> DynObj.setValueOpt trace "selected"
-                Unselected                          |> DynObj.setValueOpt trace "unselected"
-                ConnectGaps                         |> DynObj.setValueOpt trace "connectgaps"
-                Fill                                |> DynObj.setValueOptBy trace "fill" StyleParam.Fill.convert
-                FillColor                           |> DynObj.setValueOpt trace "fillcolor"
-                HoverLabel                          |> DynObj.setValueOpt trace "hoverlabel"
-                LocationMode                        |> DynObj.setValueOptBy trace "locationmode" StyleParam.LocationFormat.convert
-                UIRevision                          |> DynObj.setValueOpt trace "uirevision"
+        (fun (trace: #Trace) ->
 
-                trace
+            Name |> DynObj.setValueOpt trace "name"
+            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+            ShowLegend |> DynObj.setValueOpt trace "showlegend"
+            LegendRank |> DynObj.setValueOpt trace "legendrank"
+            LegendGroup |> DynObj.setValueOpt trace "legendgroup"
+            LegendGroupTitle |> DynObj.setValueOpt trace "legendgrouptitle"
+            Opacity |> DynObj.setValueOpt trace "opacity"
+            Mode |> DynObj.setValueOptBy trace "mode" StyleParam.Mode.convert
+            Ids |> DynObj.setValueOpt trace "ids"
+            Lat |> DynObj.setValueOpt trace "lat"
+            GeoJson |> DynObj.setValueOpt trace "geojson"
+            FeatureIdKey |> DynObj.setValueOpt trace "featureidkey"
+            Locations |> DynObj.setValueOpt trace "locations"
+            Lon |> DynObj.setValueOpt trace "lon"
+            (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
+
+            (TextPosition, MultiTextPosition)
+            |> DynObj.setSingleOrMultiOptBy trace "textposition" StyleParam.TextPosition.convert
+
+            (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt trace "texttemplate"
+            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
+            HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
+            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
+            Meta |> DynObj.setValueOpt trace "meta"
+            CustomData |> DynObj.setValueOpt trace "customdata"
+            Geo |> DynObj.setValueOptBy trace "geo" StyleParam.SubPlotId.convert
+            Marker |> DynObj.setValueOpt trace "marker"
+            Line |> DynObj.setValueOpt trace "line"
+            TextFont |> DynObj.setValueOpt trace "textfont"
+            SelectedPoints |> DynObj.setValueOpt trace "selectedpoints"
+            Selected |> DynObj.setValueOpt trace "selected"
+            Unselected |> DynObj.setValueOpt trace "unselected"
+            ConnectGaps |> DynObj.setValueOpt trace "connectgaps"
+            Fill |> DynObj.setValueOptBy trace "fill" StyleParam.Fill.convert
+            FillColor |> DynObj.setValueOpt trace "fillcolor"
+            HoverLabel |> DynObj.setValueOpt trace "hoverlabel"
+            LocationMode |> DynObj.setValueOptBy trace "locationmode" StyleParam.LocationFormat.convert
+            UIRevision |> DynObj.setValueOpt trace "uirevision"
+
+            trace
 
             )

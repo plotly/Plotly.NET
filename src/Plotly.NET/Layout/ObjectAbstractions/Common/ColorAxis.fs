@@ -22,30 +22,29 @@ type ColorAxis() =
     /// <param name="ReverseScale">Determines whether or not a colorbar is displayed for this trace.</param>
     static member init
         (
-            [<Optional;DefaultParameterValue(null)>] ?AutoColorScale     : bool,
-            [<Optional;DefaultParameterValue(null)>] ?CAuto              : float,
-            [<Optional;DefaultParameterValue(null)>] ?CMin               : float,
-            [<Optional;DefaultParameterValue(null)>] ?CMid               : float,
-            [<Optional;DefaultParameterValue(null)>] ?CMax               : float,
-            [<Optional;DefaultParameterValue(null)>] ?ColorBar           : ColorBar,
-            [<Optional;DefaultParameterValue(null)>] ?ColorScale         : StyleParam.Colorscale,
-            [<Optional;DefaultParameterValue(null)>] ?ShowScale          : bool,
-            [<Optional;DefaultParameterValue(null)>] ?ReverseScale       : bool
+            [<Optional; DefaultParameterValue(null)>] ?AutoColorScale: bool,
+            [<Optional; DefaultParameterValue(null)>] ?CAuto: float,
+            [<Optional; DefaultParameterValue(null)>] ?CMin: float,
+            [<Optional; DefaultParameterValue(null)>] ?CMid: float,
+            [<Optional; DefaultParameterValue(null)>] ?CMax: float,
+            [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
+            [<Optional; DefaultParameterValue(null)>] ?ColorScale: StyleParam.Colorscale,
+            [<Optional; DefaultParameterValue(null)>] ?ShowScale: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ReverseScale: bool
         ) =
-            
-            ColorAxis()
-            |> ColorAxis.style
-                (
-                    ?AutoColorScale = AutoColorScale,
-                    ?CAuto          = CAuto         ,
-                    ?CMin           = CMin          ,
-                    ?CMid           = CMid          ,
-                    ?CMax           = CMax          ,
-                    ?ColorBar       = ColorBar      ,
-                    ?ColorScale     = ColorScale    ,
-                    ?ShowScale      = ShowScale     ,
-                    ?ReverseScale   = ReverseScale  
-                )
+
+        ColorAxis()
+        |> ColorAxis.style (
+            ?AutoColorScale = AutoColorScale,
+            ?CAuto = CAuto,
+            ?CMin = CMin,
+            ?CMid = CMid,
+            ?CMax = CMax,
+            ?ColorBar = ColorBar,
+            ?ColorScale = ColorScale,
+            ?ShowScale = ShowScale,
+            ?ReverseScale = ReverseScale
+        )
     /// <summary>
     /// Creates a function that applies the given style parameters to a ColorAxis object
     /// </summary>
@@ -60,26 +59,26 @@ type ColorAxis() =
     /// <param name="ReverseScale">Determines whether or not a colorbar is displayed for this trace.</param>
     static member style
         (
-            [<Optional;DefaultParameterValue(null)>] ?AutoColorScale     : bool,
-            [<Optional;DefaultParameterValue(null)>] ?CAuto              : float,
-            [<Optional;DefaultParameterValue(null)>] ?CMin               : float,
-            [<Optional;DefaultParameterValue(null)>] ?CMid               : float,
-            [<Optional;DefaultParameterValue(null)>] ?CMax               : float,
-            [<Optional;DefaultParameterValue(null)>] ?ColorBar           : ColorBar,
-            [<Optional;DefaultParameterValue(null)>] ?ColorScale         : StyleParam.Colorscale,
-            [<Optional;DefaultParameterValue(null)>] ?ShowScale          : bool,
-            [<Optional;DefaultParameterValue(null)>] ?ReverseScale       : bool
+            [<Optional; DefaultParameterValue(null)>] ?AutoColorScale: bool,
+            [<Optional; DefaultParameterValue(null)>] ?CAuto: float,
+            [<Optional; DefaultParameterValue(null)>] ?CMin: float,
+            [<Optional; DefaultParameterValue(null)>] ?CMid: float,
+            [<Optional; DefaultParameterValue(null)>] ?CMax: float,
+            [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
+            [<Optional; DefaultParameterValue(null)>] ?ColorScale: StyleParam.Colorscale,
+            [<Optional; DefaultParameterValue(null)>] ?ShowScale: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ReverseScale: bool
         ) =
-            fun (ca:ColorAxis) ->
+        fun (ca: ColorAxis) ->
 
-                AutoColorScale  |> DynObj.setValueOpt ca "autocolorscale"
-                CAuto           |> DynObj.setValueOpt ca "cauto"
-                CMin            |> DynObj.setValueOpt ca "cmin"
-                CMid            |> DynObj.setValueOpt ca "cmid"
-                CMax            |> DynObj.setValueOpt ca "cmax"
-                ColorBar        |> DynObj.setValueOpt ca "colorbar"
-                ColorScale      |> DynObj.setValueOptBy ca "colorscale" StyleParam.Colorscale.convert
-                ShowScale       |> DynObj.setValueOpt ca "showscale" 
-                ReverseScale    |> DynObj.setValueOpt ca "reversescale"
+            AutoColorScale |> DynObj.setValueOpt ca "autocolorscale"
+            CAuto |> DynObj.setValueOpt ca "cauto"
+            CMin |> DynObj.setValueOpt ca "cmin"
+            CMid |> DynObj.setValueOpt ca "cmid"
+            CMax |> DynObj.setValueOpt ca "cmax"
+            ColorBar |> DynObj.setValueOpt ca "colorbar"
+            ColorScale |> DynObj.setValueOptBy ca "colorscale" StyleParam.Colorscale.convert
+            ShowScale |> DynObj.setValueOpt ca "showscale"
+            ReverseScale |> DynObj.setValueOpt ca "reversescale"
 
-                ca
+            ca

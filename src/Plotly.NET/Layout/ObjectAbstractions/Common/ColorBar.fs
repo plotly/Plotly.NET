@@ -6,9 +6,9 @@ open System
 open System.Runtime.InteropServices
 
 /// The ColorBar object to be used with ColorAxes.
-type ColorBar () =
-    inherit DynamicObj ()
-       
+type ColorBar() =
+    inherit DynamicObj()
+
     /// <summary>
     /// Initializes a ColorBar object.
     /// </summary>
@@ -54,95 +54,93 @@ type ColorBar () =
     /// <param name="YAnchor">Sets this color bar's vertical position anchor This anchor binds the `y` position to the "top", "middle" or "bottom" of the color bar.</param>
     /// <param name="YPad">Sets the amount of padding (in px) along the y direction.</param>
     static member init
-        (   
-            [<Optional;DefaultParameterValue(null)>] ?BGColor            : Color,        
-            [<Optional;DefaultParameterValue(null)>] ?BorderColor        : Color,    
-            [<Optional;DefaultParameterValue(null)>] ?BorderWidth        : float,    
-            [<Optional;DefaultParameterValue(null)>] ?DTick              : IConvertible,          
-            [<Optional;DefaultParameterValue(null)>] ?ExponentFormat     : StyleParam.ExponentFormat, 
-            [<Optional;DefaultParameterValue(null)>] ?Len                : float,            
-            [<Optional;DefaultParameterValue(null)>] ?LenMode            : StyleParam.UnitMode,        
-            [<Optional;DefaultParameterValue(null)>] ?MinExponent        : float,
-            [<Optional;DefaultParameterValue(null)>] ?NTicks             : int,         
-            [<Optional;DefaultParameterValue(null)>] ?OutlineColor       : Color,   
-            [<Optional;DefaultParameterValue(null)>] ?OutlineWidth       : float,   
-            [<Optional;DefaultParameterValue(null)>] ?SeparateThousands  : bool,
-            [<Optional;DefaultParameterValue(null)>] ?ShowExponent       : StyleParam.ShowExponent,   
-            [<Optional;DefaultParameterValue(null)>] ?ShowTickLabels     : bool, 
-            [<Optional;DefaultParameterValue(null)>] ?ShowTickPrefix     : StyleParam.ShowTickOption, 
-            [<Optional;DefaultParameterValue(null)>] ?ShowTickSuffix     : StyleParam.ShowTickOption,
-            [<Optional;DefaultParameterValue(null)>] ?Thickness          : float,      
-            [<Optional;DefaultParameterValue(null)>] ?ThicknessMode      : StyleParam.UnitMode,  
-            [<Optional;DefaultParameterValue(null)>] ?Tick0              : IConvertible,          
-            [<Optional;DefaultParameterValue(null)>] ?TickAngle          : int,      
-            [<Optional;DefaultParameterValue(null)>] ?TickColor          : Color,      
-            [<Optional;DefaultParameterValue(null)>] ?TickFont           : Font,       
-            [<Optional;DefaultParameterValue(null)>] ?TickFormat         : string,     
-            [<Optional;DefaultParameterValue(null)>] ?TickFormatStops    : seq<TickFormatStop>,
-            [<Optional;DefaultParameterValue(null)>] ?TickLabelOverflow  : StyleParam.TickLabelOverflow,
-            [<Optional;DefaultParameterValue(null)>] ?TickLabelPosition  : StyleParam.TickLabelPosition,
-            [<Optional;DefaultParameterValue(null)>] ?TickLen            : float,        
-            [<Optional;DefaultParameterValue(null)>] ?TickMode           : StyleParam.TickMode,       
-            [<Optional;DefaultParameterValue(null)>] ?TickPrefix         : string,     
-            [<Optional;DefaultParameterValue(null)>] ?Ticks              : StyleParam.TickOptions,          
-            [<Optional;DefaultParameterValue(null)>] ?TickSuffix         : string,     
-            [<Optional;DefaultParameterValue(null)>] ?TickText           : seq<#IConvertible>,       
-            [<Optional;DefaultParameterValue(null)>] ?TickVals           : seq<#IConvertible>,       
-            [<Optional;DefaultParameterValue(null)>] ?TickWidth          : float,      
-            [<Optional;DefaultParameterValue(null)>] ?Title              : Title,          
-            [<Optional;DefaultParameterValue(null)>] ?X                  : float,              
-            [<Optional;DefaultParameterValue(null)>] ?XAnchor            : StyleParam.HorizontalAlign,
-            [<Optional;DefaultParameterValue(null)>] ?XPad               : float,           
-            [<Optional;DefaultParameterValue(null)>] ?Y                  : float,              
-            [<Optional;DefaultParameterValue(null)>] ?YAnchor            : StyleParam.VerticalAlign,        
-            [<Optional;DefaultParameterValue(null)>] ?YPad               : float           
-
-        ) = 
-            ColorBar()
-            |> ColorBar.style
-                (   
-                    ?BGColor            = BGColor            ,
-                    ?BorderColor        = BorderColor        ,
-                    ?BorderWidth        = BorderWidth        ,
-                    ?DTick              = DTick              ,
-                    ?ExponentFormat     = ExponentFormat     ,
-                    ?Len                = Len                ,
-                    ?LenMode            = LenMode            ,
-                    ?MinExponent        = MinExponent        ,
-                    ?NTicks             = NTicks             ,
-                    ?OutlineColor       = OutlineColor       ,
-                    ?OutlineWidth       = OutlineWidth       ,
-                    ?SeparateThousands  = SeparateThousands  ,
-                    ?ShowExponent       = ShowExponent       ,
-                    ?ShowTickLabels     = ShowTickLabels     ,
-                    ?ShowTickPrefix     = ShowTickPrefix     ,
-                    ?ShowTickSuffix     = ShowTickSuffix     ,
-                    ?Thickness          = Thickness          ,
-                    ?ThicknessMode      = ThicknessMode      ,
-                    ?Tick0              = Tick0              ,
-                    ?TickAngle          = TickAngle          ,
-                    ?TickColor          = TickColor          ,
-                    ?TickFont           = TickFont           ,
-                    ?TickFormat         = TickFormat         ,
-                    ?TickFormatStops    = TickFormatStops    ,
-                    ?TickLabelOverflow  = TickLabelOverflow  ,
-                    ?TickLabelPosition  = TickLabelPosition  ,
-                    ?TickLen            = TickLen            ,
-                    ?TickMode           = TickMode           ,
-                    ?TickPrefix         = TickPrefix         ,
-                    ?Ticks              = Ticks              ,
-                    ?TickSuffix         = TickSuffix         ,
-                    ?TickText           = TickText           ,
-                    ?TickVals           = TickVals           ,
-                    ?TickWidth          = TickWidth          ,
-                    ?Title              = Title              ,
-                    ?X                  = X                  ,
-                    ?XAnchor            = XAnchor            ,
-                    ?XPad               = XPad               ,
-                    ?Y                  = Y                  ,
-                    ?YAnchor            = YAnchor            ,
-                    ?YPad               = YPad               
-                )
+        (
+            [<Optional; DefaultParameterValue(null)>] ?BGColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?BorderColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?BorderWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?DTick: IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?ExponentFormat: StyleParam.ExponentFormat,
+            [<Optional; DefaultParameterValue(null)>] ?Len: float,
+            [<Optional; DefaultParameterValue(null)>] ?LenMode: StyleParam.UnitMode,
+            [<Optional; DefaultParameterValue(null)>] ?MinExponent: float,
+            [<Optional; DefaultParameterValue(null)>] ?NTicks: int,
+            [<Optional; DefaultParameterValue(null)>] ?OutlineColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?OutlineWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?SeparateThousands: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ShowExponent: StyleParam.ShowExponent,
+            [<Optional; DefaultParameterValue(null)>] ?ShowTickLabels: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ShowTickPrefix: StyleParam.ShowTickOption,
+            [<Optional; DefaultParameterValue(null)>] ?ShowTickSuffix: StyleParam.ShowTickOption,
+            [<Optional; DefaultParameterValue(null)>] ?Thickness: float,
+            [<Optional; DefaultParameterValue(null)>] ?ThicknessMode: StyleParam.UnitMode,
+            [<Optional; DefaultParameterValue(null)>] ?Tick0: IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?TickAngle: int,
+            [<Optional; DefaultParameterValue(null)>] ?TickColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?TickFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?TickFormat: string,
+            [<Optional; DefaultParameterValue(null)>] ?TickFormatStops: seq<TickFormatStop>,
+            [<Optional; DefaultParameterValue(null)>] ?TickLabelOverflow: StyleParam.TickLabelOverflow,
+            [<Optional; DefaultParameterValue(null)>] ?TickLabelPosition: StyleParam.TickLabelPosition,
+            [<Optional; DefaultParameterValue(null)>] ?TickLen: float,
+            [<Optional; DefaultParameterValue(null)>] ?TickMode: StyleParam.TickMode,
+            [<Optional; DefaultParameterValue(null)>] ?TickPrefix: string,
+            [<Optional; DefaultParameterValue(null)>] ?Ticks: StyleParam.TickOptions,
+            [<Optional; DefaultParameterValue(null)>] ?TickSuffix: string,
+            [<Optional; DefaultParameterValue(null)>] ?TickText: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?TickVals: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?TickWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?Title: Title,
+            [<Optional; DefaultParameterValue(null)>] ?X: float,
+            [<Optional; DefaultParameterValue(null)>] ?XAnchor: StyleParam.HorizontalAlign,
+            [<Optional; DefaultParameterValue(null)>] ?XPad: float,
+            [<Optional; DefaultParameterValue(null)>] ?Y: float,
+            [<Optional; DefaultParameterValue(null)>] ?YAnchor: StyleParam.VerticalAlign,
+            [<Optional; DefaultParameterValue(null)>] ?YPad: float
+        ) =
+        ColorBar()
+        |> ColorBar.style (
+            ?BGColor = BGColor,
+            ?BorderColor = BorderColor,
+            ?BorderWidth = BorderWidth,
+            ?DTick = DTick,
+            ?ExponentFormat = ExponentFormat,
+            ?Len = Len,
+            ?LenMode = LenMode,
+            ?MinExponent = MinExponent,
+            ?NTicks = NTicks,
+            ?OutlineColor = OutlineColor,
+            ?OutlineWidth = OutlineWidth,
+            ?SeparateThousands = SeparateThousands,
+            ?ShowExponent = ShowExponent,
+            ?ShowTickLabels = ShowTickLabels,
+            ?ShowTickPrefix = ShowTickPrefix,
+            ?ShowTickSuffix = ShowTickSuffix,
+            ?Thickness = Thickness,
+            ?ThicknessMode = ThicknessMode,
+            ?Tick0 = Tick0,
+            ?TickAngle = TickAngle,
+            ?TickColor = TickColor,
+            ?TickFont = TickFont,
+            ?TickFormat = TickFormat,
+            ?TickFormatStops = TickFormatStops,
+            ?TickLabelOverflow = TickLabelOverflow,
+            ?TickLabelPosition = TickLabelPosition,
+            ?TickLen = TickLen,
+            ?TickMode = TickMode,
+            ?TickPrefix = TickPrefix,
+            ?Ticks = Ticks,
+            ?TickSuffix = TickSuffix,
+            ?TickText = TickText,
+            ?TickVals = TickVals,
+            ?TickWidth = TickWidth,
+            ?Title = Title,
+            ?X = X,
+            ?XAnchor = XAnchor,
+            ?XPad = XPad,
+            ?Y = Y,
+            ?YAnchor = YAnchor,
+            ?YPad = YPad
+        )
 
 
     /// <summary>
@@ -190,94 +188,92 @@ type ColorBar () =
     /// <param name="YAnchor">Sets this color bar's vertical position anchor This anchor binds the `y` position to the "top", "middle" or "bottom" of the color bar.</param>
     /// <param name="YPad">Sets the amount of padding (in px) along the y direction.</param>
     static member style
-        (   
-            [<Optional;DefaultParameterValue(null)>] ?BGColor            : Color,        
-            [<Optional;DefaultParameterValue(null)>] ?BorderColor        : Color,    
-            [<Optional;DefaultParameterValue(null)>] ?BorderWidth        : float,    
-            [<Optional;DefaultParameterValue(null)>] ?DTick              : IConvertible,          
-            [<Optional;DefaultParameterValue(null)>] ?ExponentFormat     : StyleParam.ExponentFormat, 
-            [<Optional;DefaultParameterValue(null)>] ?Len                : float,            
-            [<Optional;DefaultParameterValue(null)>] ?LenMode            : StyleParam.UnitMode,        
-            [<Optional;DefaultParameterValue(null)>] ?MinExponent        : float,
-            [<Optional;DefaultParameterValue(null)>] ?NTicks             : int,         
-            [<Optional;DefaultParameterValue(null)>] ?OutlineColor       : Color,   
-            [<Optional;DefaultParameterValue(null)>] ?OutlineWidth       : float,   
-            [<Optional;DefaultParameterValue(null)>] ?SeparateThousands  : bool,
-            [<Optional;DefaultParameterValue(null)>] ?ShowExponent       : StyleParam.ShowExponent,   
-            [<Optional;DefaultParameterValue(null)>] ?ShowTickLabels     : bool, 
-            [<Optional;DefaultParameterValue(null)>] ?ShowTickPrefix     : StyleParam.ShowTickOption, 
-            [<Optional;DefaultParameterValue(null)>] ?ShowTickSuffix     : StyleParam.ShowTickOption,
-            [<Optional;DefaultParameterValue(null)>] ?Thickness          : float,      
-            [<Optional;DefaultParameterValue(null)>] ?ThicknessMode      : StyleParam.UnitMode,  
-            [<Optional;DefaultParameterValue(null)>] ?Tick0              : IConvertible,          
-            [<Optional;DefaultParameterValue(null)>] ?TickAngle          : int,      
-            [<Optional;DefaultParameterValue(null)>] ?TickColor          : Color,      
-            [<Optional;DefaultParameterValue(null)>] ?TickFont           : Font,       
-            [<Optional;DefaultParameterValue(null)>] ?TickFormat         : string,     
-            [<Optional;DefaultParameterValue(null)>] ?TickFormatStops    : seq<TickFormatStop>,
-            [<Optional;DefaultParameterValue(null)>] ?TickLabelOverflow  : StyleParam.TickLabelOverflow,
-            [<Optional;DefaultParameterValue(null)>] ?TickLabelPosition  : StyleParam.TickLabelPosition,
-            [<Optional;DefaultParameterValue(null)>] ?TickLen            : float,        
-            [<Optional;DefaultParameterValue(null)>] ?TickMode           : StyleParam.TickMode,       
-            [<Optional;DefaultParameterValue(null)>] ?TickPrefix         : string,     
-            [<Optional;DefaultParameterValue(null)>] ?Ticks              : StyleParam.TickOptions,          
-            [<Optional;DefaultParameterValue(null)>] ?TickSuffix         : string,     
-            [<Optional;DefaultParameterValue(null)>] ?TickText           : seq<#IConvertible>,       
-            [<Optional;DefaultParameterValue(null)>] ?TickVals           : seq<#IConvertible>,       
-            [<Optional;DefaultParameterValue(null)>] ?TickWidth          : float,      
-            [<Optional;DefaultParameterValue(null)>] ?Title              : Title,          
-            [<Optional;DefaultParameterValue(null)>] ?X                  : float,              
-            [<Optional;DefaultParameterValue(null)>] ?XAnchor            : StyleParam.HorizontalAlign,
-            [<Optional;DefaultParameterValue(null)>] ?XPad               : float,           
-            [<Optional;DefaultParameterValue(null)>] ?Y                  : float,              
-            [<Optional;DefaultParameterValue(null)>] ?YAnchor            : StyleParam.VerticalAlign,        
-            [<Optional;DefaultParameterValue(null)>] ?YPad               : float           
-
+        (
+            [<Optional; DefaultParameterValue(null)>] ?BGColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?BorderColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?BorderWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?DTick: IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?ExponentFormat: StyleParam.ExponentFormat,
+            [<Optional; DefaultParameterValue(null)>] ?Len: float,
+            [<Optional; DefaultParameterValue(null)>] ?LenMode: StyleParam.UnitMode,
+            [<Optional; DefaultParameterValue(null)>] ?MinExponent: float,
+            [<Optional; DefaultParameterValue(null)>] ?NTicks: int,
+            [<Optional; DefaultParameterValue(null)>] ?OutlineColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?OutlineWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?SeparateThousands: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ShowExponent: StyleParam.ShowExponent,
+            [<Optional; DefaultParameterValue(null)>] ?ShowTickLabels: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ShowTickPrefix: StyleParam.ShowTickOption,
+            [<Optional; DefaultParameterValue(null)>] ?ShowTickSuffix: StyleParam.ShowTickOption,
+            [<Optional; DefaultParameterValue(null)>] ?Thickness: float,
+            [<Optional; DefaultParameterValue(null)>] ?ThicknessMode: StyleParam.UnitMode,
+            [<Optional; DefaultParameterValue(null)>] ?Tick0: IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?TickAngle: int,
+            [<Optional; DefaultParameterValue(null)>] ?TickColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?TickFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?TickFormat: string,
+            [<Optional; DefaultParameterValue(null)>] ?TickFormatStops: seq<TickFormatStop>,
+            [<Optional; DefaultParameterValue(null)>] ?TickLabelOverflow: StyleParam.TickLabelOverflow,
+            [<Optional; DefaultParameterValue(null)>] ?TickLabelPosition: StyleParam.TickLabelPosition,
+            [<Optional; DefaultParameterValue(null)>] ?TickLen: float,
+            [<Optional; DefaultParameterValue(null)>] ?TickMode: StyleParam.TickMode,
+            [<Optional; DefaultParameterValue(null)>] ?TickPrefix: string,
+            [<Optional; DefaultParameterValue(null)>] ?Ticks: StyleParam.TickOptions,
+            [<Optional; DefaultParameterValue(null)>] ?TickSuffix: string,
+            [<Optional; DefaultParameterValue(null)>] ?TickText: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?TickVals: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?TickWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?Title: Title,
+            [<Optional; DefaultParameterValue(null)>] ?X: float,
+            [<Optional; DefaultParameterValue(null)>] ?XAnchor: StyleParam.HorizontalAlign,
+            [<Optional; DefaultParameterValue(null)>] ?XPad: float,
+            [<Optional; DefaultParameterValue(null)>] ?Y: float,
+            [<Optional; DefaultParameterValue(null)>] ?YAnchor: StyleParam.VerticalAlign,
+            [<Optional; DefaultParameterValue(null)>] ?YPad: float
         ) =
-                
-            (fun (colorBar:ColorBar) ->            
 
-                BGColor             |> DynObj.setValueOpt colorBar "bgcolor"            
-                BorderColor         |> DynObj.setValueOpt colorBar "bordercolor"        
-                BorderWidth         |> DynObj.setValueOpt colorBar "borderwidth"        
-                DTick               |> DynObj.setValueOpt colorBar "dtick"              
-                ExponentFormat      |> DynObj.setValueOptBy colorBar "exponentformat"     StyleParam.ExponentFormat.convert
-                Len                 |> DynObj.setValueOpt colorBar "len"                
-                LenMode             |> DynObj.setValueOptBy colorBar "lenmode"            StyleParam.UnitMode.convert
-                MinExponent         |> DynObj.setValueOpt colorBar "min3xponent"        
-                NTicks              |> DynObj.setValueOpt colorBar "nticks"             
-                OutlineColor        |> DynObj.setValueOpt colorBar "outlinecolor"       
-                OutlineWidth        |> DynObj.setValueOpt colorBar "outlinewidth"       
-                SeparateThousands   |> DynObj.setValueOpt colorBar "separatethousands"  
-                ShowExponent        |> DynObj.setValueOptBy colorBar "showexponent"       StyleParam.ShowExponent.convert
-                ShowTickLabels      |> DynObj.setValueOpt colorBar "showticklabels"     
-                ShowTickPrefix      |> DynObj.setValueOptBy colorBar "showtickprefix"     StyleParam.ShowTickOption.convert
-                ShowTickSuffix      |> DynObj.setValueOptBy colorBar "showticksuffix"     StyleParam.ShowTickOption.convert
-                Thickness           |> DynObj.setValueOpt colorBar "thickness"          
-                ThicknessMode       |> DynObj.setValueOptBy colorBar "thicknessmode"      StyleParam.UnitMode.convert
-                Tick0               |> DynObj.setValueOpt colorBar "tick0"              
-                TickAngle           |> DynObj.setValueOpt colorBar "tickangle"          
-                TickColor           |> DynObj.setValueOpt colorBar "tickcolor"          
-                TickFont            |> DynObj.setValueOpt colorBar "tickfont"           
-                TickFormat          |> DynObj.setValueOpt colorBar "tickformat"         
-                TickFormatStops     |> DynObj.setValueOpt colorBar "tickformatstops"    
-                TickLabelOverflow   |> DynObj.setValueOptBy colorBar "ticklabeloverflow"  StyleParam.TickLabelOverflow.convert
-                TickLabelPosition   |> DynObj.setValueOptBy colorBar "ticklabelposition"  StyleParam.TickLabelPosition.convert
-                TickLen             |> DynObj.setValueOpt colorBar "ticklen"            
-                TickMode            |> DynObj.setValueOptBy colorBar "tickmode"           StyleParam.TickMode.convert
-                TickPrefix          |> DynObj.setValueOpt colorBar "tickprefix"         
-                Ticks               |> DynObj.setValueOptBy colorBar "ticks"              StyleParam.TickOptions.convert
-                TickSuffix          |> DynObj.setValueOpt colorBar "ticksuffix"         
-                TickText            |> DynObj.setValueOpt colorBar "ticktext"           
-                TickVals            |> DynObj.setValueOpt colorBar "tickvals"           
-                TickWidth           |> DynObj.setValueOpt colorBar "tickwidth"          
-                Title               |> DynObj.setValueOpt colorBar "title"              
-                X                   |> DynObj.setValueOpt colorBar "x"                  
-                XAnchor             |> DynObj.setValueOptBy colorBar "xanchor"            StyleParam.HorizontalAlign.convert
-                XPad                |> DynObj.setValueOpt colorBar "xpad"               
-                Y                   |> DynObj.setValueOpt colorBar "y"                  
-                YAnchor             |> DynObj.setValueOptBy colorBar "yanchor"            StyleParam.VerticalAlign.convert
-                YPad                |> DynObj.setValueOpt colorBar "ypad"               
+        (fun (colorBar: ColorBar) ->
 
-                colorBar
-            )
+            BGColor |> DynObj.setValueOpt colorBar "bgcolor"
+            BorderColor |> DynObj.setValueOpt colorBar "bordercolor"
+            BorderWidth |> DynObj.setValueOpt colorBar "borderwidth"
+            DTick |> DynObj.setValueOpt colorBar "dtick"
+            ExponentFormat |> DynObj.setValueOptBy colorBar "exponentformat" StyleParam.ExponentFormat.convert
+            Len |> DynObj.setValueOpt colorBar "len"
+            LenMode |> DynObj.setValueOptBy colorBar "lenmode" StyleParam.UnitMode.convert
+            MinExponent |> DynObj.setValueOpt colorBar "min3xponent"
+            NTicks |> DynObj.setValueOpt colorBar "nticks"
+            OutlineColor |> DynObj.setValueOpt colorBar "outlinecolor"
+            OutlineWidth |> DynObj.setValueOpt colorBar "outlinewidth"
+            SeparateThousands |> DynObj.setValueOpt colorBar "separatethousands"
+            ShowExponent |> DynObj.setValueOptBy colorBar "showexponent" StyleParam.ShowExponent.convert
+            ShowTickLabels |> DynObj.setValueOpt colorBar "showticklabels"
+            ShowTickPrefix |> DynObj.setValueOptBy colorBar "showtickprefix" StyleParam.ShowTickOption.convert
+            ShowTickSuffix |> DynObj.setValueOptBy colorBar "showticksuffix" StyleParam.ShowTickOption.convert
+            Thickness |> DynObj.setValueOpt colorBar "thickness"
+            ThicknessMode |> DynObj.setValueOptBy colorBar "thicknessmode" StyleParam.UnitMode.convert
+            Tick0 |> DynObj.setValueOpt colorBar "tick0"
+            TickAngle |> DynObj.setValueOpt colorBar "tickangle"
+            TickColor |> DynObj.setValueOpt colorBar "tickcolor"
+            TickFont |> DynObj.setValueOpt colorBar "tickfont"
+            TickFormat |> DynObj.setValueOpt colorBar "tickformat"
+            TickFormatStops |> DynObj.setValueOpt colorBar "tickformatstops"
+            TickLabelOverflow |> DynObj.setValueOptBy colorBar "ticklabeloverflow" StyleParam.TickLabelOverflow.convert
+            TickLabelPosition |> DynObj.setValueOptBy colorBar "ticklabelposition" StyleParam.TickLabelPosition.convert
+            TickLen |> DynObj.setValueOpt colorBar "ticklen"
+            TickMode |> DynObj.setValueOptBy colorBar "tickmode" StyleParam.TickMode.convert
+            TickPrefix |> DynObj.setValueOpt colorBar "tickprefix"
+            Ticks |> DynObj.setValueOptBy colorBar "ticks" StyleParam.TickOptions.convert
+            TickSuffix |> DynObj.setValueOpt colorBar "ticksuffix"
+            TickText |> DynObj.setValueOpt colorBar "ticktext"
+            TickVals |> DynObj.setValueOpt colorBar "tickvals"
+            TickWidth |> DynObj.setValueOpt colorBar "tickwidth"
+            Title |> DynObj.setValueOpt colorBar "title"
+            X |> DynObj.setValueOpt colorBar "x"
+            XAnchor |> DynObj.setValueOptBy colorBar "xanchor" StyleParam.HorizontalAlign.convert
+            XPad |> DynObj.setValueOpt colorBar "xpad"
+            Y |> DynObj.setValueOpt colorBar "y"
+            YAnchor |> DynObj.setValueOptBy colorBar "yanchor" StyleParam.VerticalAlign.convert
+            YPad |> DynObj.setValueOpt colorBar "ypad"
+
+            colorBar)

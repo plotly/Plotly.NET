@@ -15,35 +15,29 @@ open System.Runtime.InteropServices
 /// Visible       : Wether or not connectors are visible
 ///
 /// ConnectorMode : Sets the shape of connector lines.
-type WaterfallConnector () =
-    inherit DynamicObj ()
+type WaterfallConnector() =
+    inherit DynamicObj()
 
-    static member init 
+    static member init
         (
-            [<Optional;DefaultParameterValue(null)>] ?Line           : Line,
-            [<Optional;DefaultParameterValue(null)>] ?Visible        : bool,
-            [<Optional;DefaultParameterValue(null)>] ?ConnectorMode  : StyleParam.ConnectorMode
-        ) = 
+            [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+            [<Optional; DefaultParameterValue(null)>] ?Visible: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ConnectorMode: StyleParam.ConnectorMode
+        ) =
 
-        WaterfallConnector() 
-        |> WaterfallConnector.style 
-            (
-                ?Line          = Line         ,
-                ?Visible       = Visible      ,
-                ?ConnectorMode = ConnectorMode
-            )
+        WaterfallConnector()
+        |> WaterfallConnector.style (?Line = Line, ?Visible = Visible, ?ConnectorMode = ConnectorMode)
 
-    static member style 
+    static member style
         (
-            [<Optional;DefaultParameterValue(null)>] ?Line           : Line,
-            [<Optional;DefaultParameterValue(null)>] ?Visible        : bool,
-            [<Optional;DefaultParameterValue(null)>] ?ConnectorMode  : StyleParam.ConnectorMode
-        ) = 
-            (fun (connector:WaterfallConnector) -> 
-                
-                Line          |> DynObj.setValueOpt   connector "line"
-                Visible       |> DynObj.setValueOpt   connector "visible"
-                ConnectorMode |> DynObj.setValueOptBy connector "mode" StyleParam.ConnectorMode.convert
+            [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+            [<Optional; DefaultParameterValue(null)>] ?Visible: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ConnectorMode: StyleParam.ConnectorMode
+        ) =
+        (fun (connector: WaterfallConnector) ->
 
-                connector
-            )
+            Line |> DynObj.setValueOpt connector "line"
+            Visible |> DynObj.setValueOpt connector "visible"
+            ConnectorMode |> DynObj.setValueOptBy connector "mode" StyleParam.ConnectorMode.convert
+
+            connector)

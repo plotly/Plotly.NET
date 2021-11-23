@@ -6,26 +6,16 @@ open DynamicObj
 open System
 open System.Runtime.InteropServices
 
-type SplomDiagonal () =
-    inherit DynamicObj () 
+type SplomDiagonal() =
+    inherit DynamicObj()
 
-    static member init 
-        (
-            [<Optional;DefaultParameterValue(null)>] ?Visible      : bool
-        ) =
-            SplomDiagonal()
-            |> SplomDiagonal.style
-                (
-                    ?Visible = Visible
-                )
+    static member init([<Optional; DefaultParameterValue(null)>] ?Visible: bool) =
+        SplomDiagonal() |> SplomDiagonal.style (?Visible = Visible)
 
-    static member style
-        (
-            [<Optional;DefaultParameterValue(null)>] ?Visible      : bool
-        ) =
+    static member style([<Optional; DefaultParameterValue(null)>] ?Visible: bool) =
 
-            fun (splomDiagonal: SplomDiagonal) ->
-                
-                Visible |> DynObj.setValueOpt splomDiagonal "visible"
+        fun (splomDiagonal: SplomDiagonal) ->
 
-                splomDiagonal
+            Visible |> DynObj.setValueOpt splomDiagonal "visible"
+
+            splomDiagonal

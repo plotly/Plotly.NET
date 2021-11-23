@@ -5,5 +5,5 @@ open DynamicObj
 open System
 open System.Runtime.InteropServices
 
-type AspectRatio() = 
-    inherit DynamicObj ()
+type AspectRatio() =
+    inherit DynamicObj()

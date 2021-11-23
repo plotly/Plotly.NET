@@ -5,8 +5,7 @@ type ExportEngine =
     /// <summary>Using this engine will use PuppeteerSharp with a Chromium headless browser to render GenericCharts from Plotly.NET.</summary>
     | PuppeteerSharp
 
-    static member getEngine (engineType: ExportEngine) =
+    static member getEngine(engineType: ExportEngine) =
         match engineType with
         ///<summary>This engine uses PuppeteerSharp to render GenericCharts as static images using a chromium headless browser.</summary>
-        | PuppeteerSharp ->
-            PuppeteerSharpRenderer() :> IGenericChartRenderer
+        | PuppeteerSharp -> PuppeteerSharpRenderer() :> IGenericChartRenderer

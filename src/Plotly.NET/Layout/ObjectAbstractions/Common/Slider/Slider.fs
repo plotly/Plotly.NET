@@ -7,7 +7,7 @@ open DynamicObj
 /// The layout object for custom slider implementation
 /// </summary>
 type Slider() =
-    inherit DynamicObj ()
+    inherit DynamicObj()
 
     /// <summary>
     /// Initializes the slider with style parameters
@@ -63,107 +63,106 @@ type Slider() =
     /// </param>
     static member init
         (
-            ?Active : int,
-            ?ActiveBgColor : Color,
-            ?BgColor : Color,
-            ?BorderColor : Color,
-            ?BorderWidth : int,
-            ?CurrentValue : SliderCurrentValue,
-            ?Font : Font,
-            ?Len : float,
-            ?LenMode : StyleParam.UnitMode,
-            ?MinorTickLen : int,
-            ?Name : string,
-            ?Padding : Padding,
-            ?Steps : seq<SliderStep>,
-            ?TemplateItemName : string,
-            ?TickColor : Color,
-            ?TickLen : int,
-            ?TickWidth : int,
-            ?Transition : Transition,
-            ?Visible : bool,
-            ?X : int,
-            ?XAnchor : StyleParam.XAnchorPosition,
-            ?Y : int,
-            ?YAnchor : StyleParam.YAnchorPosition
+            ?Active: int,
+            ?ActiveBgColor: Color,
+            ?BgColor: Color,
+            ?BorderColor: Color,
+            ?BorderWidth: int,
+            ?CurrentValue: SliderCurrentValue,
+            ?Font: Font,
+            ?Len: float,
+            ?LenMode: StyleParam.UnitMode,
+            ?MinorTickLen: int,
+            ?Name: string,
+            ?Padding: Padding,
+            ?Steps: seq<SliderStep>,
+            ?TemplateItemName: string,
+            ?TickColor: Color,
+            ?TickLen: int,
+            ?TickWidth: int,
+            ?Transition: Transition,
+            ?Visible: bool,
+            ?X: int,
+            ?XAnchor: StyleParam.XAnchorPosition,
+            ?Y: int,
+            ?YAnchor: StyleParam.YAnchorPosition
         ) =
-        Slider() |> Slider.style
-            (
-                ?Active=Active,
-                ?ActiveBgColor=ActiveBgColor,
-                ?BgColor=BgColor,
-                ?BorderColor=BorderColor,
-                ?BorderWidth=BorderWidth,
-                ?CurrentValue=CurrentValue,
-                ?Font=Font,
-                ?Len=Len,
-                ?LenMode=LenMode,
-                ?MinorTickLen=MinorTickLen,
-                ?Name=Name,
-                ?Padding=Padding,
-                ?Steps=Steps,
-                ?TemplateItemName=TemplateItemName,
-                ?TickColor=TickColor,
-                ?TickLen=TickLen,
-                ?TickWidth=TickWidth,
-                ?Transition=Transition,
-                ?Visible=Visible,
-                ?X=X,
-                ?XAnchor=XAnchor,
-                ?Y=Y,
-                ?YAnchor=YAnchor
-            )
+        Slider()
+        |> Slider.style (
+            ?Active = Active,
+            ?ActiveBgColor = ActiveBgColor,
+            ?BgColor = BgColor,
+            ?BorderColor = BorderColor,
+            ?BorderWidth = BorderWidth,
+            ?CurrentValue = CurrentValue,
+            ?Font = Font,
+            ?Len = Len,
+            ?LenMode = LenMode,
+            ?MinorTickLen = MinorTickLen,
+            ?Name = Name,
+            ?Padding = Padding,
+            ?Steps = Steps,
+            ?TemplateItemName = TemplateItemName,
+            ?TickColor = TickColor,
+            ?TickLen = TickLen,
+            ?TickWidth = TickWidth,
+            ?Transition = Transition,
+            ?Visible = Visible,
+            ?X = X,
+            ?XAnchor = XAnchor,
+            ?Y = Y,
+            ?YAnchor = YAnchor
+        )
 
     static member style
         (
-            ?Active : int,
-            ?ActiveBgColor : Color,
-            ?BgColor : Color,
-            ?BorderColor : Color,
-            ?BorderWidth : int,
-            ?CurrentValue : SliderCurrentValue,
-            ?Font : Font,
-            ?Len : float,
-            ?LenMode : StyleParam.UnitMode,
-            ?MinorTickLen : int,
-            ?Name : string,
-            ?Padding : Padding,
-            ?Steps : seq<SliderStep>,            
-            ?TemplateItemName : string,
-            ?TickColor : Color,
-            ?TickLen : int,
-            ?TickWidth : int,
-            ?Transition : Transition,
-            ?Visible : bool,
-            ?X : int,
-            ?XAnchor : StyleParam.XAnchorPosition,
-            ?Y : int,
-            ?YAnchor : StyleParam.YAnchorPosition
+            ?Active: int,
+            ?ActiveBgColor: Color,
+            ?BgColor: Color,
+            ?BorderColor: Color,
+            ?BorderWidth: int,
+            ?CurrentValue: SliderCurrentValue,
+            ?Font: Font,
+            ?Len: float,
+            ?LenMode: StyleParam.UnitMode,
+            ?MinorTickLen: int,
+            ?Name: string,
+            ?Padding: Padding,
+            ?Steps: seq<SliderStep>,
+            ?TemplateItemName: string,
+            ?TickColor: Color,
+            ?TickLen: int,
+            ?TickWidth: int,
+            ?Transition: Transition,
+            ?Visible: bool,
+            ?X: int,
+            ?XAnchor: StyleParam.XAnchorPosition,
+            ?Y: int,
+            ?YAnchor: StyleParam.YAnchorPosition
         ) =
-            (fun (slider : Slider) ->
-                Active           |> DynObj.setValueOpt   slider "active"
-                ActiveBgColor    |> DynObj.setValueOpt   slider "activebgcolor"
-                BgColor          |> DynObj.setValueOpt   slider "bgcolor"
-                BorderColor      |> DynObj.setValueOpt   slider "bordercolor"
-                BorderWidth      |> DynObj.setValueOpt   slider "borderwidth"
-                CurrentValue     |> DynObj.setValueOpt   slider "currentvalue"
-                Font             |> DynObj.setValueOpt   slider "font"
-                Len              |> DynObj.setValueOpt   slider "len"
-                LenMode          |> DynObj.setValueOptBy slider "lenmode"          StyleParam.UnitMode.convert
-                MinorTickLen     |> DynObj.setValueOpt   slider "minorticklen"
-                Name             |> DynObj.setValueOpt   slider "name"
-                Padding          |> DynObj.setValueOpt   slider "pad"
-                Steps            |> DynObj.setValueOpt   slider "steps"
-                TemplateItemName |> DynObj.setValueOpt   slider "templateitemname"
-                TickColor        |> DynObj.setValueOpt   slider "tickcolor"
-                TickLen          |> DynObj.setValueOpt   slider "ticklen"
-                TickWidth        |> DynObj.setValueOpt   slider "tickwidth"
-                Transition       |> DynObj.setValueOpt   slider "transition"
-                Visible          |> DynObj.setValueOpt   slider "visible"
-                X                |> DynObj.setValueOpt   slider "x"
-                XAnchor          |> DynObj.setValueOptBy slider "xanchor"          StyleParam.XAnchorPosition.convert
-                Y                |> DynObj.setValueOpt   slider "y"
-                YAnchor          |> DynObj.setValueOptBy slider "yanchor"          StyleParam.YAnchorPosition.convert
+        (fun (slider: Slider) ->
+            Active |> DynObj.setValueOpt slider "active"
+            ActiveBgColor |> DynObj.setValueOpt slider "activebgcolor"
+            BgColor |> DynObj.setValueOpt slider "bgcolor"
+            BorderColor |> DynObj.setValueOpt slider "bordercolor"
+            BorderWidth |> DynObj.setValueOpt slider "borderwidth"
+            CurrentValue |> DynObj.setValueOpt slider "currentvalue"
+            Font |> DynObj.setValueOpt slider "font"
+            Len |> DynObj.setValueOpt slider "len"
+            LenMode |> DynObj.setValueOptBy slider "lenmode" StyleParam.UnitMode.convert
+            MinorTickLen |> DynObj.setValueOpt slider "minorticklen"
+            Name |> DynObj.setValueOpt slider "name"
+            Padding |> DynObj.setValueOpt slider "pad"
+            Steps |> DynObj.setValueOpt slider "steps"
+            TemplateItemName |> DynObj.setValueOpt slider "templateitemname"
+            TickColor |> DynObj.setValueOpt slider "tickcolor"
+            TickLen |> DynObj.setValueOpt slider "ticklen"
+            TickWidth |> DynObj.setValueOpt slider "tickwidth"
+            Transition |> DynObj.setValueOpt slider "transition"
+            Visible |> DynObj.setValueOpt slider "visible"
+            X |> DynObj.setValueOpt slider "x"
+            XAnchor |> DynObj.setValueOptBy slider "xanchor" StyleParam.XAnchorPosition.convert
+            Y |> DynObj.setValueOpt slider "y"
+            YAnchor |> DynObj.setValueOptBy slider "yanchor" StyleParam.YAnchorPosition.convert
 
-                slider
-            )
+            slider)

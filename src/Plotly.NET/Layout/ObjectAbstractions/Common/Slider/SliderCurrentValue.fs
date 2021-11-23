@@ -4,7 +4,7 @@ open Plotly.NET
 open DynamicObj
 
 type SliderCurrentValue() =
-    inherit DynamicObj ()
+    inherit DynamicObj()
 
     /// <summary>
     /// Object containing the current slider value style
@@ -17,42 +17,43 @@ type SliderCurrentValue() =
     /// <param name="XAnchor">The alignment of the value readout relative to the length of the slider</param>
     static member init
         (
-            ?Font : Font,
-            ?Offset : int,
-            ?Prefix : string,
-            ?Suffix : string,
-            ?Visible : bool,
-            ?XAnchor : StyleParam.XAnchorPosition
-
-        ) = SliderCurrentValue() |> SliderCurrentValue.style
-                (
-                    ?Font=Font,
-                    ?Offset=Offset,
-                    ?Prefix=Prefix,
-                    ?Suffix=Suffix,
-                    ?Visible=Visible,
-                    ?XAnchor=XAnchor
-                )
+            ?Font: Font,
+            ?Offset: int,
+            ?Prefix: string,
+            ?Suffix: string,
+            ?Visible: bool,
+            ?XAnchor: StyleParam.XAnchorPosition
+        ) =
+        SliderCurrentValue()
+        |> SliderCurrentValue.style (
+            ?Font = Font,
+            ?Offset = Offset,
+            ?Prefix = Prefix,
+            ?Suffix = Suffix,
+            ?Visible = Visible,
+            ?XAnchor = XAnchor
+        )
 
     static member style
         (
-            ?Font : Font,
-            ?Offset : int,
-            ?Prefix : string,
-            ?Suffix : string,
-            ?Visible : bool,
-            ?XAnchor : StyleParam.XAnchorPosition
-        ) = (fun (currentValue : SliderCurrentValue) -> 
-                let autoValueIsProvided = XAnchor |>
-                                            Option.exists (fun xAnchor -> xAnchor = StyleParam.XAnchorPosition.Auto)
-                if autoValueIsProvided
-                    then printf "The value '%s' is not supported by CurrentValue" (StyleParam.XAnchorPosition.Auto |> string)
+            ?Font: Font,
+            ?Offset: int,
+            ?Prefix: string,
+            ?Suffix: string,
+            ?Visible: bool,
+            ?XAnchor: StyleParam.XAnchorPosition
+        ) =
+        (fun (currentValue: SliderCurrentValue) ->
+            let autoValueIsProvided =
+                XAnchor |> Option.exists (fun xAnchor -> xAnchor = StyleParam.XAnchorPosition.Auto)
 
-                Font    |> DynObj.setValueOpt currentValue "font"
-                Offset  |> DynObj.setValueOpt currentValue "offset"
-                Prefix  |> DynObj.setValueOpt currentValue "prefix"
-                Suffix  |> DynObj.setValueOpt currentValue "suffix"
-                Visible |> DynObj.setValueOpt currentValue "visible"
-                XAnchor |> DynObj.setValueOptBy currentValue "xanchor" StyleParam.XAnchorPosition.convert
-                currentValue
-            )
+            if autoValueIsProvided then
+                printf "The value '%s' is not supported by CurrentValue" (StyleParam.XAnchorPosition.Auto |> string)
+
+            Font |> DynObj.setValueOpt currentValue "font"
+            Offset |> DynObj.setValueOpt currentValue "offset"
+            Prefix |> DynObj.setValueOpt currentValue "prefix"
+            Suffix |> DynObj.setValueOpt currentValue "suffix"
+            Visible |> DynObj.setValueOpt currentValue "visible"
+            XAnchor |> DynObj.setValueOptBy currentValue "xanchor" StyleParam.XAnchorPosition.convert
+            currentValue)

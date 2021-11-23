@@ -15,35 +15,28 @@ open System.Runtime.InteropServices
 /// Visible       : Wether or not connectors are visible
 ///
 /// ConnectorMode : Sets the shape of connector lines.
-type FunnelConnector () =
-    inherit DynamicObj ()
+type FunnelConnector() =
+    inherit DynamicObj()
 
-    static member init 
+    static member init
         (
-            [<Optional;DefaultParameterValue(null)>] ?Fillcolor      : Color,
-            [<Optional;DefaultParameterValue(null)>] ?Line           : Line,
-            [<Optional;DefaultParameterValue(null)>] ?Visible        : bool
-        ) = 
+            [<Optional; DefaultParameterValue(null)>] ?Fillcolor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+            [<Optional; DefaultParameterValue(null)>] ?Visible: bool
+        ) =
 
-        FunnelConnector() 
-        |> FunnelConnector.style 
-            (
-                ?Fillcolor     = Fillcolor,
-                ?Line          = Line     ,
-                ?Visible       = Visible
-            )
+        FunnelConnector() |> FunnelConnector.style (?Fillcolor = Fillcolor, ?Line = Line, ?Visible = Visible)
 
-    static member style 
+    static member style
         (
-            [<Optional;DefaultParameterValue(null)>] ?Fillcolor      : Color,
-            [<Optional;DefaultParameterValue(null)>] ?Line           : Line,
-            [<Optional;DefaultParameterValue(null)>] ?Visible        : bool
-        ) = 
-            (fun (connector:FunnelConnector) -> 
-                
-                Fillcolor     |> DynObj.setValueOpt connector "fillcolor"
-                Line          |> DynObj.setValueOpt connector "line"
-                Visible       |> DynObj.setValueOpt connector "visible"
+            [<Optional; DefaultParameterValue(null)>] ?Fillcolor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+            [<Optional; DefaultParameterValue(null)>] ?Visible: bool
+        ) =
+        (fun (connector: FunnelConnector) ->
 
-                connector
-            )
+            Fillcolor |> DynObj.setValueOpt connector "fillcolor"
+            Line |> DynObj.setValueOpt connector "line"
+            Visible |> DynObj.setValueOpt connector "visible"
+
+            connector)

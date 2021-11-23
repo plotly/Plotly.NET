@@ -6,9 +6,9 @@ open System
 open System.Runtime.InteropServices
 
 /// <summary>Determines the style of the map shown in geo traces</summary>
-type Geo() = 
+type Geo() =
 
-    inherit DynamicObj ()
+    inherit DynamicObj()
 
     /// <summary>Initialize a Geo object that determines the style of the map shown in geo traces</summary>
     /// <param name="FitBounds">Determines if and how this subplot's view settings are auto-computed to fit trace data</param>
@@ -43,75 +43,73 @@ type Geo() =
     /// <param name="LatAxis">Sets the latitudinal axis for this geo trace</param>
     /// <param name="LonAxis">Sets the longitudinal axis for this geo trace</param>
     static member init
-        (   
-           [<Optional;DefaultParameterValue(null)>] ?FitBounds: StyleParam.GeoFitBounds,
-           [<Optional;DefaultParameterValue(null)>] ?Resolution: StyleParam.GeoResolution,
-           [<Optional;DefaultParameterValue(null)>] ?Scope: StyleParam.GeoScope,
-           [<Optional;DefaultParameterValue(null)>] ?Projection: GeoProjection,
-           [<Optional;DefaultParameterValue(null)>] ?Center: (float*float),
-           [<Optional;DefaultParameterValue(null)>] ?Visible: bool,
-           [<Optional;DefaultParameterValue(null)>] ?Domain: Domain,
-           [<Optional;DefaultParameterValue(null)>] ?ShowCoastLines: bool,
-           [<Optional;DefaultParameterValue(null)>] ?CoastLineColor: Color,
-           [<Optional;DefaultParameterValue(null)>] ?CoastLineWidth: float,
-           [<Optional;DefaultParameterValue(null)>] ?ShowLand: bool,
-           [<Optional;DefaultParameterValue(null)>] ?LandColor: Color,
-           [<Optional;DefaultParameterValue(null)>] ?ShowOcean: bool,
-           [<Optional;DefaultParameterValue(null)>] ?OceanColor: Color,
-           [<Optional;DefaultParameterValue(null)>] ?ShowLakes: bool,
-           [<Optional;DefaultParameterValue(null)>] ?LakeColor: Color,
-           [<Optional;DefaultParameterValue(null)>] ?ShowRivers: bool,
-           [<Optional;DefaultParameterValue(null)>] ?RiverColor: Color,
-           [<Optional;DefaultParameterValue(null)>] ?RiverWidth: float,
-           [<Optional;DefaultParameterValue(null)>] ?ShowCountries: bool,
-           [<Optional;DefaultParameterValue(null)>] ?CountryColor: Color,
-           [<Optional;DefaultParameterValue(null)>] ?CountryWidth: float,
-           [<Optional;DefaultParameterValue(null)>] ?ShowSubunits: bool,
-           [<Optional;DefaultParameterValue(null)>] ?SubunitColor: Color,
-           [<Optional;DefaultParameterValue(null)>] ?SubunitWidth: float,
-           [<Optional;DefaultParameterValue(null)>] ?ShowFrame: bool,
-           [<Optional;DefaultParameterValue(null)>] ?FrameColor: Color,
-           [<Optional;DefaultParameterValue(null)>] ?FrameWidth: float,
-           [<Optional;DefaultParameterValue(null)>] ?BgColor: Color,
-           [<Optional;DefaultParameterValue(null)>] ?LatAxis: LinearAxis,
-           [<Optional;DefaultParameterValue(null)>] ?LonAxis: LinearAxis
-
+        (
+            [<Optional; DefaultParameterValue(null)>] ?FitBounds: StyleParam.GeoFitBounds,
+            [<Optional; DefaultParameterValue(null)>] ?Resolution: StyleParam.GeoResolution,
+            [<Optional; DefaultParameterValue(null)>] ?Scope: StyleParam.GeoScope,
+            [<Optional; DefaultParameterValue(null)>] ?Projection: GeoProjection,
+            [<Optional; DefaultParameterValue(null)>] ?Center: (float * float),
+            [<Optional; DefaultParameterValue(null)>] ?Visible: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
+            [<Optional; DefaultParameterValue(null)>] ?ShowCoastLines: bool,
+            [<Optional; DefaultParameterValue(null)>] ?CoastLineColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?CoastLineWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?ShowLand: bool,
+            [<Optional; DefaultParameterValue(null)>] ?LandColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?ShowOcean: bool,
+            [<Optional; DefaultParameterValue(null)>] ?OceanColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?ShowLakes: bool,
+            [<Optional; DefaultParameterValue(null)>] ?LakeColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?ShowRivers: bool,
+            [<Optional; DefaultParameterValue(null)>] ?RiverColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?RiverWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?ShowCountries: bool,
+            [<Optional; DefaultParameterValue(null)>] ?CountryColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?CountryWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?ShowSubunits: bool,
+            [<Optional; DefaultParameterValue(null)>] ?SubunitColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?SubunitWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?ShowFrame: bool,
+            [<Optional; DefaultParameterValue(null)>] ?FrameColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?FrameWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?BgColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?LatAxis: LinearAxis,
+            [<Optional; DefaultParameterValue(null)>] ?LonAxis: LinearAxis
         ) =
-            Geo()
-            |> Geo.style
-                (
-                    ?FitBounds      = FitBounds     ,
-                    ?Resolution     = Resolution    ,
-                    ?Scope          = Scope         ,
-                    ?Projection     = Projection    ,
-                    ?Center         = Center        ,
-                    ?Visible        = Visible       ,
-                    ?Domain         = Domain        ,
-                    ?ShowCoastLines = ShowCoastLines,
-                    ?CoastLineColor = CoastLineColor,
-                    ?CoastLineWidth = CoastLineWidth,
-                    ?ShowLand       = ShowLand      ,
-                    ?LandColor      = LandColor     ,
-                    ?ShowOcean      = ShowOcean     ,
-                    ?OceanColor     = OceanColor    ,
-                    ?ShowLakes      = ShowLakes     ,
-                    ?LakeColor      = LakeColor     ,
-                    ?ShowRivers     = ShowRivers    ,
-                    ?RiverColor     = RiverColor    ,
-                    ?RiverWidth     = RiverWidth    ,
-                    ?ShowCountries  = ShowCountries ,
-                    ?CountryColor   = CountryColor  ,
-                    ?CountryWidth   = CountryWidth  ,
-                    ?ShowSubunits   = ShowSubunits  ,
-                    ?SubunitColor   = SubunitColor  ,
-                    ?SubunitWidth   = SubunitWidth  ,
-                    ?ShowFrame      = ShowFrame     ,
-                    ?FrameColor     = FrameColor    ,
-                    ?FrameWidth     = FrameWidth    ,
-                    ?BgColor        = BgColor       ,
-                    ?LatAxis        = LatAxis       ,
-                    ?LonAxis        = LonAxis       
-                )
+        Geo()
+        |> Geo.style (
+            ?FitBounds = FitBounds,
+            ?Resolution = Resolution,
+            ?Scope = Scope,
+            ?Projection = Projection,
+            ?Center = Center,
+            ?Visible = Visible,
+            ?Domain = Domain,
+            ?ShowCoastLines = ShowCoastLines,
+            ?CoastLineColor = CoastLineColor,
+            ?CoastLineWidth = CoastLineWidth,
+            ?ShowLand = ShowLand,
+            ?LandColor = LandColor,
+            ?ShowOcean = ShowOcean,
+            ?OceanColor = OceanColor,
+            ?ShowLakes = ShowLakes,
+            ?LakeColor = LakeColor,
+            ?ShowRivers = ShowRivers,
+            ?RiverColor = RiverColor,
+            ?RiverWidth = RiverWidth,
+            ?ShowCountries = ShowCountries,
+            ?CountryColor = CountryColor,
+            ?CountryWidth = CountryWidth,
+            ?ShowSubunits = ShowSubunits,
+            ?SubunitColor = SubunitColor,
+            ?SubunitWidth = SubunitWidth,
+            ?ShowFrame = ShowFrame,
+            ?FrameColor = FrameColor,
+            ?FrameWidth = FrameWidth,
+            ?BgColor = BgColor,
+            ?LatAxis = LatAxis,
+            ?LonAxis = LonAxis
+        )
 
     /// <summary>Create a function that applies the given style parameters to a Geo object.</summary>
     /// <param name="FitBounds">Determines if and how this subplot's view settings are auto-computed to fit trace data</param>
@@ -146,81 +144,80 @@ type Geo() =
     /// <param name="LatAxis">Sets the latitudinal axis for this geo trace</param>
     /// <param name="LonAxis">Sets the longitudinal axis for this geo trace</param>
     static member style
-        (   
-            [<Optional;DefaultParameterValue(null)>] ?FitBounds: StyleParam.GeoFitBounds,
-            [<Optional;DefaultParameterValue(null)>] ?Resolution: StyleParam.GeoResolution,
-            [<Optional;DefaultParameterValue(null)>] ?Scope: StyleParam.GeoScope,
-            [<Optional;DefaultParameterValue(null)>] ?Projection: GeoProjection,
-            [<Optional;DefaultParameterValue(null)>] ?Center: (float*float),
-            [<Optional;DefaultParameterValue(null)>] ?Visible: bool,
-            [<Optional;DefaultParameterValue(null)>] ?Domain: Domain,
-            [<Optional;DefaultParameterValue(null)>] ?ShowCoastLines: bool,
-            [<Optional;DefaultParameterValue(null)>] ?CoastLineColor: Color,
-            [<Optional;DefaultParameterValue(null)>] ?CoastLineWidth: float,
-            [<Optional;DefaultParameterValue(null)>] ?ShowLand: bool,
-            [<Optional;DefaultParameterValue(null)>] ?LandColor: Color,
-            [<Optional;DefaultParameterValue(null)>] ?ShowOcean: bool,
-            [<Optional;DefaultParameterValue(null)>] ?OceanColor: Color,
-            [<Optional;DefaultParameterValue(null)>] ?ShowLakes: bool,
-            [<Optional;DefaultParameterValue(null)>] ?LakeColor: Color,
-            [<Optional;DefaultParameterValue(null)>] ?ShowRivers: bool,
-            [<Optional;DefaultParameterValue(null)>] ?RiverColor: Color,
-            [<Optional;DefaultParameterValue(null)>] ?RiverWidth: float,
-            [<Optional;DefaultParameterValue(null)>] ?ShowCountries: bool,
-            [<Optional;DefaultParameterValue(null)>] ?CountryColor: Color,
-            [<Optional;DefaultParameterValue(null)>] ?CountryWidth: float,
-            [<Optional;DefaultParameterValue(null)>] ?ShowSubunits: bool,
-            [<Optional;DefaultParameterValue(null)>] ?SubunitColor: Color,
-            [<Optional;DefaultParameterValue(null)>] ?SubunitWidth: float,
-            [<Optional;DefaultParameterValue(null)>] ?ShowFrame: bool,
-            [<Optional;DefaultParameterValue(null)>] ?FrameColor: Color,
-            [<Optional;DefaultParameterValue(null)>] ?FrameWidth: float,
-            [<Optional;DefaultParameterValue(null)>] ?BgColor: Color,
-            [<Optional;DefaultParameterValue(null)>] ?LatAxis: LinearAxis,
-            [<Optional;DefaultParameterValue(null)>] ?LonAxis: LinearAxis
+        (
+            [<Optional; DefaultParameterValue(null)>] ?FitBounds: StyleParam.GeoFitBounds,
+            [<Optional; DefaultParameterValue(null)>] ?Resolution: StyleParam.GeoResolution,
+            [<Optional; DefaultParameterValue(null)>] ?Scope: StyleParam.GeoScope,
+            [<Optional; DefaultParameterValue(null)>] ?Projection: GeoProjection,
+            [<Optional; DefaultParameterValue(null)>] ?Center: (float * float),
+            [<Optional; DefaultParameterValue(null)>] ?Visible: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
+            [<Optional; DefaultParameterValue(null)>] ?ShowCoastLines: bool,
+            [<Optional; DefaultParameterValue(null)>] ?CoastLineColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?CoastLineWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?ShowLand: bool,
+            [<Optional; DefaultParameterValue(null)>] ?LandColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?ShowOcean: bool,
+            [<Optional; DefaultParameterValue(null)>] ?OceanColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?ShowLakes: bool,
+            [<Optional; DefaultParameterValue(null)>] ?LakeColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?ShowRivers: bool,
+            [<Optional; DefaultParameterValue(null)>] ?RiverColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?RiverWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?ShowCountries: bool,
+            [<Optional; DefaultParameterValue(null)>] ?CountryColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?CountryWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?ShowSubunits: bool,
+            [<Optional; DefaultParameterValue(null)>] ?SubunitColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?SubunitWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?ShowFrame: bool,
+            [<Optional; DefaultParameterValue(null)>] ?FrameColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?FrameWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?BgColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?LatAxis: LinearAxis,
+            [<Optional; DefaultParameterValue(null)>] ?LonAxis: LinearAxis
         ) =
-            (fun (geo:Geo) -> 
-                
-                Domain         |> DynObj.setValueOpt    geo "domain"
-                FitBounds      |> DynObj.setValueOptBy  geo "fitbounds" StyleParam.GeoFitBounds.convert
-                Resolution     |> DynObj.setValueOptBy  geo "resolution"StyleParam.GeoResolution.convert
-                Scope          |> DynObj.setValueOptBy  geo "scope"     StyleParam.GeoScope.convert
-                Projection     |> DynObj.setValueOpt    geo "projection"
-                
-                Center         
-                |> Option.map (fun (lon,lat) -> 
+        (fun (geo: Geo) ->
+
+            Domain |> DynObj.setValueOpt geo "domain"
+            FitBounds |> DynObj.setValueOptBy geo "fitbounds" StyleParam.GeoFitBounds.convert
+            Resolution |> DynObj.setValueOptBy geo "resolution" StyleParam.GeoResolution.convert
+            Scope |> DynObj.setValueOptBy geo "scope" StyleParam.GeoScope.convert
+            Projection |> DynObj.setValueOpt geo "projection"
+
+            Center
+            |> Option.map
+                (fun (lon, lat) ->
                     let t = DynamicObj()
                     t?lon <- lon
                     t?lat <- lat
-                    t
-                )
-                |> DynObj.setValueOpt geo "center"
+                    t)
+            |> DynObj.setValueOpt geo "center"
 
-                Visible         |> DynObj.setValueOpt    geo "visible"
-                ShowCoastLines  |> DynObj.setValueOpt    geo "showcoastline"
-                CoastLineColor  |> DynObj.setValueOpt    geo "coastlinecolor"
-                CoastLineWidth  |> DynObj.setValueOpt    geo "coastlinewidth"
-                ShowLand        |> DynObj.setValueOpt    geo "showland"
-                LandColor       |> DynObj.setValueOpt    geo "landcolor"
-                ShowOcean       |> DynObj.setValueOpt    geo "showocean"
-                OceanColor      |> DynObj.setValueOpt    geo "oceancolor"
-                ShowLakes       |> DynObj.setValueOpt    geo "showlakes"
-                LakeColor       |> DynObj.setValueOpt    geo "lakecolor"
-                ShowRivers      |> DynObj.setValueOpt    geo "showrivers"
-                RiverColor      |> DynObj.setValueOpt    geo "rivercolor"
-                RiverWidth      |> DynObj.setValueOpt    geo "riverwidth"
-                ShowCountries   |> DynObj.setValueOpt    geo "showcountries"
-                CountryColor    |> DynObj.setValueOpt    geo "countrycolor"
-                CountryWidth    |> DynObj.setValueOpt    geo "countrywidth"
-                ShowSubunits    |> DynObj.setValueOpt    geo "showsubunits"
-                SubunitColor    |> DynObj.setValueOpt    geo "subunitcolor"
-                SubunitWidth    |> DynObj.setValueOpt    geo "subunitwidth"
-                ShowFrame       |> DynObj.setValueOpt    geo "showframe"
-                FrameColor      |> DynObj.setValueOpt    geo "framecolor"
-                FrameWidth      |> DynObj.setValueOpt    geo "framewidth"
-                BgColor         |> DynObj.setValueOpt    geo "bgcolor"
-                LatAxis         |> DynObj.setValueOpt    geo "lataxis"
-                LonAxis         |> DynObj.setValueOpt    geo "lonaxis"
+            Visible |> DynObj.setValueOpt geo "visible"
+            ShowCoastLines |> DynObj.setValueOpt geo "showcoastline"
+            CoastLineColor |> DynObj.setValueOpt geo "coastlinecolor"
+            CoastLineWidth |> DynObj.setValueOpt geo "coastlinewidth"
+            ShowLand |> DynObj.setValueOpt geo "showland"
+            LandColor |> DynObj.setValueOpt geo "landcolor"
+            ShowOcean |> DynObj.setValueOpt geo "showocean"
+            OceanColor |> DynObj.setValueOpt geo "oceancolor"
+            ShowLakes |> DynObj.setValueOpt geo "showlakes"
+            LakeColor |> DynObj.setValueOpt geo "lakecolor"
+            ShowRivers |> DynObj.setValueOpt geo "showrivers"
+            RiverColor |> DynObj.setValueOpt geo "rivercolor"
+            RiverWidth |> DynObj.setValueOpt geo "riverwidth"
+            ShowCountries |> DynObj.setValueOpt geo "showcountries"
+            CountryColor |> DynObj.setValueOpt geo "countrycolor"
+            CountryWidth |> DynObj.setValueOpt geo "countrywidth"
+            ShowSubunits |> DynObj.setValueOpt geo "showsubunits"
+            SubunitColor |> DynObj.setValueOpt geo "subunitcolor"
+            SubunitWidth |> DynObj.setValueOpt geo "subunitwidth"
+            ShowFrame |> DynObj.setValueOpt geo "showframe"
+            FrameColor |> DynObj.setValueOpt geo "framecolor"
+            FrameWidth |> DynObj.setValueOpt geo "framewidth"
+            BgColor |> DynObj.setValueOpt geo "bgcolor"
+            LatAxis |> DynObj.setValueOpt geo "lataxis"
+            LonAxis |> DynObj.setValueOpt geo "lonaxis"
 
-                geo
-            ) 
+            geo)

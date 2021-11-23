@@ -6,8 +6,8 @@ open System
 open System.Runtime.InteropServices
 
 /// A plot grid that can contain subplots with shared axes.
-type LayoutGrid () =
-    inherit DynamicObj ()
+type LayoutGrid() =
+    inherit DynamicObj()
 
     /// <summary>Initializes a LayoutGrid object</summary>
     /// <param name ="Rows">The number of rows in the grid. If you provide a 2D `subplots` array or a `yaxes` array, its length is used as the default. But it's also possible to have a different length, if you want to leave a row at the end for non-cartesian subplots.</param>
@@ -24,37 +24,36 @@ type LayoutGrid () =
     /// <param name ="YSide">Sets where the y axis labels and titles go. "left" means the very left edge of the grid. "left plot" is the leftmost plot that each y axis is used in. "right" and "right plot" are similar.</param>
 
     static member init
-        (   
-            [<Optional;DefaultParameterValue(null)>] ?Rows       : int,
-            [<Optional;DefaultParameterValue(null)>] ?Columns    : int,
-            [<Optional;DefaultParameterValue(null)>] ?SubPlots   : (StyleParam.LinearAxisId * StyleParam.LinearAxisId) [] [],
-            [<Optional;DefaultParameterValue(null)>] ?XAxes      : StyleParam.LinearAxisId [],
-            [<Optional;DefaultParameterValue(null)>] ?YAxes      : StyleParam.LinearAxisId [],
-            [<Optional;DefaultParameterValue(null)>] ?RowOrder   : StyleParam.LayoutGridRowOrder,
-            [<Optional;DefaultParameterValue(null)>] ?Pattern    : StyleParam.LayoutGridPattern,
-            [<Optional;DefaultParameterValue(null)>] ?XGap       : float,
-            [<Optional;DefaultParameterValue(null)>] ?YGap       : float,
-            [<Optional;DefaultParameterValue(null)>] ?Domain     : Domain,
-            [<Optional;DefaultParameterValue(null)>] ?XSide      : StyleParam.LayoutGridXSide,
-            [<Optional;DefaultParameterValue(null)>] ?YSide      : StyleParam.LayoutGridYSide
+        (
+            [<Optional; DefaultParameterValue(null)>] ?Rows: int,
+            [<Optional; DefaultParameterValue(null)>] ?Columns: int,
+            [<Optional; DefaultParameterValue(null)>] ?SubPlots: (StyleParam.LinearAxisId * StyleParam.LinearAxisId) [] [],
+            [<Optional; DefaultParameterValue(null)>] ?XAxes: StyleParam.LinearAxisId [],
+            [<Optional; DefaultParameterValue(null)>] ?YAxes: StyleParam.LinearAxisId [],
+            [<Optional; DefaultParameterValue(null)>] ?RowOrder: StyleParam.LayoutGridRowOrder,
+            [<Optional; DefaultParameterValue(null)>] ?Pattern: StyleParam.LayoutGridPattern,
+            [<Optional; DefaultParameterValue(null)>] ?XGap: float,
+            [<Optional; DefaultParameterValue(null)>] ?YGap: float,
+            [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
+            [<Optional; DefaultParameterValue(null)>] ?XSide: StyleParam.LayoutGridXSide,
+            [<Optional; DefaultParameterValue(null)>] ?YSide: StyleParam.LayoutGridYSide
         ) =
-        LayoutGrid () 
-        |> LayoutGrid.style
-            (
-                ?SubPlots    = SubPlots,
-                ?XAxes       = XAxes   ,
-                ?YAxes       = YAxes   ,
-                ?Rows        = Rows    ,
-                ?Columns     = Columns ,
-                ?RowOrder    = RowOrder,
-                ?Pattern     = Pattern ,
-                ?XGap        = XGap    ,
-                ?YGap        = YGap    ,
-                ?Domain      = Domain  ,
-                ?XSide       = XSide   ,
-                ?YSide       = YSide   
+        LayoutGrid()
+        |> LayoutGrid.style (
+            ?SubPlots = SubPlots,
+            ?XAxes = XAxes,
+            ?YAxes = YAxes,
+            ?Rows = Rows,
+            ?Columns = Columns,
+            ?RowOrder = RowOrder,
+            ?Pattern = Pattern,
+            ?XGap = XGap,
+            ?YGap = YGap,
+            ?Domain = Domain,
+            ?XSide = XSide,
+            ?YSide = YSide
 
-            )
+        )
 
     /// <summary>Returns a function that applies the given styles to a LayoutGrid.</summary>
     /// <param name ="Rows">The number of rows in the grid. If you provide a 2D `subplots` array or a `yaxes` array, its length is used as the default. But it's also possible to have a different length, if you want to leave a row at the end for non-cartesian subplots.</param>
@@ -71,33 +70,40 @@ type LayoutGrid () =
     /// <param name ="YSide">Sets where the y axis labels and titles go. "left" means the very left edge of the grid. "left plot" is the leftmost plot that each y axis is used in. "right" and "right plot" are similar.</param>
 
     static member style
-        (   
-            [<Optional;DefaultParameterValue(null)>] ?Rows       : int,
-            [<Optional;DefaultParameterValue(null)>] ?Columns    : int,
-            [<Optional;DefaultParameterValue(null)>] ?SubPlots   : (StyleParam.LinearAxisId * StyleParam.LinearAxisId) [] [],
-            [<Optional;DefaultParameterValue(null)>] ?XAxes      : StyleParam.LinearAxisId [],
-            [<Optional;DefaultParameterValue(null)>] ?YAxes      : StyleParam.LinearAxisId [],
-            [<Optional;DefaultParameterValue(null)>] ?RowOrder   : StyleParam.LayoutGridRowOrder,
-            [<Optional;DefaultParameterValue(null)>] ?Pattern    : StyleParam.LayoutGridPattern,
-            [<Optional;DefaultParameterValue(null)>] ?XGap       : float,
-            [<Optional;DefaultParameterValue(null)>] ?YGap       : float,
-            [<Optional;DefaultParameterValue(null)>] ?Domain     : Domain,
-            [<Optional;DefaultParameterValue(null)>] ?XSide      : StyleParam.LayoutGridXSide,
-            [<Optional;DefaultParameterValue(null)>] ?YSide      : StyleParam.LayoutGridYSide
+        (
+            [<Optional; DefaultParameterValue(null)>] ?Rows: int,
+            [<Optional; DefaultParameterValue(null)>] ?Columns: int,
+            [<Optional; DefaultParameterValue(null)>] ?SubPlots: (StyleParam.LinearAxisId * StyleParam.LinearAxisId) [] [],
+            [<Optional; DefaultParameterValue(null)>] ?XAxes: StyleParam.LinearAxisId [],
+            [<Optional; DefaultParameterValue(null)>] ?YAxes: StyleParam.LinearAxisId [],
+            [<Optional; DefaultParameterValue(null)>] ?RowOrder: StyleParam.LayoutGridRowOrder,
+            [<Optional; DefaultParameterValue(null)>] ?Pattern: StyleParam.LayoutGridPattern,
+            [<Optional; DefaultParameterValue(null)>] ?XGap: float,
+            [<Optional; DefaultParameterValue(null)>] ?YGap: float,
+            [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
+            [<Optional; DefaultParameterValue(null)>] ?XSide: StyleParam.LayoutGridXSide,
+            [<Optional; DefaultParameterValue(null)>] ?YSide: StyleParam.LayoutGridYSide
         ) =
-            (fun (layoutGrid: LayoutGrid) -> 
-                SubPlots |> DynObj.setValueOptBy layoutGrid "subplots" (Array.map (Array.map ( fun (x,y) -> $"{StyleParam.LinearAxisId.toString x}{StyleParam.LinearAxisId.toString y}")))
-                XAxes    |> DynObj.setValueOptBy layoutGrid "xaxes"    (Array.map StyleParam.LinearAxisId.toString)
-                YAxes    |> DynObj.setValueOptBy layoutGrid "yaxes"    (Array.map StyleParam.LinearAxisId.toString)
-                Rows     |> DynObj.setValueOpt   layoutGrid "rows"    
-                Columns  |> DynObj.setValueOpt   layoutGrid "columns" 
-                RowOrder |> DynObj.setValueOptBy layoutGrid "roworder" StyleParam.LayoutGridRowOrder.toString
-                Pattern  |> DynObj.setValueOptBy layoutGrid "pattern"  StyleParam.LayoutGridPattern.toString
-                XGap     |> DynObj.setValueOpt   layoutGrid "xgap"    
-                YGap     |> DynObj.setValueOpt   layoutGrid "ygap"    
-                Domain   |> DynObj.setValueOpt   layoutGrid "domain"   
-                XSide    |> DynObj.setValueOptBy layoutGrid "xside"   StyleParam.LayoutGridXSide.toString
-                YSide    |> DynObj.setValueOptBy layoutGrid "yside"   StyleParam.LayoutGridYSide.toString
-
+        (fun (layoutGrid: LayoutGrid) ->
+            SubPlots
+            |> DynObj.setValueOptBy
                 layoutGrid
-            )
+                "subplots"
+                (Array.map (
+                    Array.map
+                        (fun (x, y) -> $"{StyleParam.LinearAxisId.toString x}{StyleParam.LinearAxisId.toString y}")
+                ))
+
+            XAxes |> DynObj.setValueOptBy layoutGrid "xaxes" (Array.map StyleParam.LinearAxisId.toString)
+            YAxes |> DynObj.setValueOptBy layoutGrid "yaxes" (Array.map StyleParam.LinearAxisId.toString)
+            Rows |> DynObj.setValueOpt layoutGrid "rows"
+            Columns |> DynObj.setValueOpt layoutGrid "columns"
+            RowOrder |> DynObj.setValueOptBy layoutGrid "roworder" StyleParam.LayoutGridRowOrder.toString
+            Pattern |> DynObj.setValueOptBy layoutGrid "pattern" StyleParam.LayoutGridPattern.toString
+            XGap |> DynObj.setValueOpt layoutGrid "xgap"
+            YGap |> DynObj.setValueOpt layoutGrid "ygap"
+            Domain |> DynObj.setValueOpt layoutGrid "domain"
+            XSide |> DynObj.setValueOptBy layoutGrid "xside" StyleParam.LayoutGridXSide.toString
+            YSide |> DynObj.setValueOptBy layoutGrid "yside" StyleParam.LayoutGridYSide.toString
+
+            layoutGrid)

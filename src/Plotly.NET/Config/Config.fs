@@ -333,71 +333,75 @@ open System.Runtime.InteropServices
 //        ].join(' ')
 //    }
 //};
-/// Config 
-type Config() = 
-    inherit DynamicObj ()
+/// Config
+type Config() =
+    inherit DynamicObj()
 
     /// Init Legend type
-    static member init 
+    static member init
         (
-            [<Optional;DefaultParameterValue(null)>] ?StaticPlot             : bool,
-            [<Optional;DefaultParameterValue(null)>] ?Autosizable            : bool,
-            [<Optional;DefaultParameterValue(null)>] ?Responsive             : bool,
-            [<Optional;DefaultParameterValue(null)>] ?ShowEditInChartStudio  : bool,
-            [<Optional;DefaultParameterValue(null)>] ?ToImageButtonOptions   : ToImageButtonOptions,
-            [<Optional;DefaultParameterValue(null)>] ?Editable               : bool,
-            [<Optional;DefaultParameterValue(null)>] ?EditableAnnotations    : seq<StyleParam.AnnotationEditOptions>,
-            [<Optional;DefaultParameterValue(null)>] ?ModeBarButtonsToAdd    : seq<StyleParam.ModeBarButton>
-        ) = 
-            Config()
-            |> Config.style
-                (
-                    ?StaticPlot             = StaticPlot,
-                    ?Autosizable            = Autosizable,
-                    ?Responsive             = Responsive,
-                    ?ToImageButtonOptions   = ToImageButtonOptions,
-                    ?ShowEditInChartStudio  = ShowEditInChartStudio,
-                    ?Editable               = Editable,
-                    ?EditableAnnotations    = EditableAnnotations,
-                    ?ModeBarButtonsToAdd    = ModeBarButtonsToAdd
-                )
+            [<Optional; DefaultParameterValue(null)>] ?StaticPlot: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Autosizable: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Responsive: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ShowEditInChartStudio: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ToImageButtonOptions: ToImageButtonOptions,
+            [<Optional; DefaultParameterValue(null)>] ?Editable: bool,
+            [<Optional; DefaultParameterValue(null)>] ?EditableAnnotations: seq<StyleParam.AnnotationEditOptions>,
+            [<Optional; DefaultParameterValue(null)>] ?ModeBarButtonsToAdd: seq<StyleParam.ModeBarButton>
+        ) =
+        Config()
+        |> Config.style (
+            ?StaticPlot = StaticPlot,
+            ?Autosizable = Autosizable,
+            ?Responsive = Responsive,
+            ?ToImageButtonOptions = ToImageButtonOptions,
+            ?ShowEditInChartStudio = ShowEditInChartStudio,
+            ?Editable = Editable,
+            ?EditableAnnotations = EditableAnnotations,
+            ?ModeBarButtonsToAdd = ModeBarButtonsToAdd
+        )
 
 
     // Applies the styles to Config()
     static member style
-        (   
-//          'Statically override options for toImage modebar button',
-//            'allowed keys are format, filename, width, height, scale',
-            [<Optional;DefaultParameterValue(null)>] ?StaticPlot             : bool,
-            [<Optional;DefaultParameterValue(null)>] ?Autosizable            : bool,
-            [<Optional;DefaultParameterValue(null)>] ?Responsive             : bool,
-            [<Optional;DefaultParameterValue(null)>] ?ToImageButtonOptions   : ToImageButtonOptions,
-            [<Optional;DefaultParameterValue(null)>] ?ShowEditInChartStudio  : bool,
-            [<Optional;DefaultParameterValue(null)>] ?Editable               : bool,
-            [<Optional;DefaultParameterValue(null)>] ?EditableAnnotations    : seq<StyleParam.AnnotationEditOptions>,
-            [<Optional;DefaultParameterValue(null)>] ?ModeBarButtonsToAdd    : seq<StyleParam.ModeBarButton>
-
+        (
+            [<Optional; DefaultParameterValue(null)>] ?StaticPlot: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Autosizable: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Responsive: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ToImageButtonOptions: ToImageButtonOptions,
+            [<Optional; DefaultParameterValue(null)>] ?ShowEditInChartStudio: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Editable: bool,
+            [<Optional; DefaultParameterValue(null)>] ?EditableAnnotations: seq<StyleParam.AnnotationEditOptions>,
+            [<Optional; DefaultParameterValue(null)>] ?ModeBarButtonsToAdd: seq<StyleParam.ModeBarButton>
         ) =
-            fun (config:Config) ->
-                StaticPlot              |> DynObj.setValueOpt config "staticPlot" 
-                Autosizable             |> DynObj.setValueOpt config "autosizable" 
-                Responsive              |> DynObj.setValueOpt config "responsive"
-                ToImageButtonOptions    |> DynObj.setValueOpt config "toImageButtonOptions"
-                ShowEditInChartStudio   |> DynObj.setValueOpt config "showEditInChartStudio"
-                Editable                |> DynObj.setValueOpt config "editable"
-                ModeBarButtonsToAdd     |> DynObj.setValueOptBy config "modeBarButtonsToAdd" (fun x -> x |> Seq.map StyleParam.ModeBarButton.convert)
-                EditableAnnotations
-                |> Option.map 
-                    (fun edits ->
-                        let ed = DynamicObj()
-                        edits 
-                        |> Seq.iter 
-                            (fun edit -> 
-                                let fieldName = StyleParam.AnnotationEditOptions.toString edit
-                                ed?(fieldName) <- true
-                            )
-                        ed
-                    )
-                |> DynObj.setValueOpt config "edits"
+        fun (config: Config) ->
+            StaticPlot |> DynObj.setValueOpt config "staticPlot"
+            Autosizable |> DynObj.setValueOpt config "autosizable"
+            Responsive |> DynObj.setValueOpt config "responsive"
+            ToImageButtonOptions |> DynObj.setValueOpt config "toImageButtonOptions"
+            ShowEditInChartStudio |> DynObj.setValueOpt config "showEditInChartStudio"
+            Editable |> DynObj.setValueOpt config "editable"
 
+            ModeBarButtonsToAdd
+            |> DynObj.setValueOptBy
                 config
+                "modeBarButtonsToAdd"
+                (fun x -> x |> Seq.map StyleParam.ModeBarButton.convert)
+
+            EditableAnnotations
+            |> Option.map
+                (fun edits ->
+                    let ed = DynamicObj()
+
+                    edits
+                    |> Seq.iter
+                        (fun edit ->
+                            let fieldName =
+                                StyleParam.AnnotationEditOptions.toString edit
+
+                            ed?fieldName <- true)
+
+                    ed)
+            |> DynObj.setValueOpt config "edits"
+
+            config

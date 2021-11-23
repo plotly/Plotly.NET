@@ -6,26 +6,25 @@ open DynamicObj
 open System
 open System.Runtime.InteropServices
 
-type StockData = 
+type StockData =
     {
-        Open           : float
-        High           : float
-        Low            : float
-        Close          : float
+        Open: float
+        High: float
+        Low: float
+        Close: float
     }
-    with
-    static member Create(o,h,l,c) = 
+    static member Create(o, h, l, c) =
         {
-            High           = h
-            Low            = l
-            Close          = c
-            Open           = o
+            High = h
+            Low = l
+            Close = c
+            Open = o
         }
 
     static member create o h l c =
         {
-            High           = h
-            Low            = l
-            Close          = c
-            Open           = o
+            High = h
+            Low = l
+            Close = c
+            Open = o
         }

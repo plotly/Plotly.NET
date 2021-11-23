@@ -6,49 +6,42 @@ open System
 open System.Runtime.InteropServices
 
 /// <summary>Determines Map rotation in GeoProjections</summary>
-type GeoProjectionRotation () = 
-    inherit DynamicObj ()
+type GeoProjectionRotation() =
+    inherit DynamicObj()
 
     /// <summary>Initialize a GeoProjectionRotation object that determines Map rotation in GeoProjections</summary>
     /// <param name="Longitude">Rotates the map along parallels (in degrees East). Defaults to the center of the `lonaxis.range` values.</param>
     /// <param name="Latitude">Rotates the map along meridians (in degrees North).</param>
     /// <param name="Roll">Roll the map (in degrees) For example, a roll of "180" makes the map appear upside down.</param>
     static member init
-        (   
-            [<Optional;DefaultParameterValue(null)>] ?Longitude  :float,
-            [<Optional;DefaultParameterValue(null)>] ?Latitude   :float,
-            [<Optional;DefaultParameterValue(null)>] ?Roll       :int
-
+        (
+            [<Optional; DefaultParameterValue(null)>] ?Longitude: float,
+            [<Optional; DefaultParameterValue(null)>] ?Latitude: float,
+            [<Optional; DefaultParameterValue(null)>] ?Roll: int
         ) =
-            GeoProjectionRotation()
-            |> GeoProjectionRotation.style
-                (
-                    ?Longitude  = Longitude,
-                    ?Latitude   = Latitude ,
-                    ?Roll       = Roll     
-                )
+        GeoProjectionRotation()
+        |> GeoProjectionRotation.style (?Longitude = Longitude, ?Latitude = Latitude, ?Roll = Roll)
 
     /// <summary>Create a function that applies the given style parameters to a GeoProjectionRotation object</summary>
     /// <param name="Longitude">Rotates the map along parallels (in degrees East). Defaults to the center of the `lonaxis.range` values.</param>
     /// <param name="Latitude">Rotates the map along meridians (in degrees North).</param>
     /// <param name="Roll">Roll the map (in degrees) For example, a roll of "180" makes the map appear upside down.</param>
     static member style
-        (   
-            [<Optional;DefaultParameterValue(null)>] ?Longitude  :float,
-            [<Optional;DefaultParameterValue(null)>] ?Latitude   :float,
-            [<Optional;DefaultParameterValue(null)>] ?Roll       :int
+        (
+            [<Optional; DefaultParameterValue(null)>] ?Longitude: float,
+            [<Optional; DefaultParameterValue(null)>] ?Latitude: float,
+            [<Optional; DefaultParameterValue(null)>] ?Roll: int
         ) =
-            (fun (rotation:GeoProjectionRotation) -> 
-                Longitude |> DynObj.setValueOpt rotation "lon"
-                Latitude  |> DynObj.setValueOpt rotation "lat"
-                Roll      |> DynObj.setValueOpt rotation "roll"
+        (fun (rotation: GeoProjectionRotation) ->
+            Longitude |> DynObj.setValueOpt rotation "lon"
+            Latitude |> DynObj.setValueOpt rotation "lat"
+            Roll |> DynObj.setValueOpt rotation "roll"
 
-                rotation
-            ) 
+            rotation)
 
 /// <summary>Determines the map projection in geo traces.</summary>
-type GeoProjection() = 
-    inherit DynamicObj ()
+type GeoProjection() =
+    inherit DynamicObj()
 
     /// <summary>Initialize a GeoProjection object that determines the map projection in geo traces.</summary>
     /// <param name="projectionType">Sets the type of projection</param>
@@ -56,21 +49,19 @@ type GeoProjection() =
     /// <param name="Parallels">For conic projection types only. Sets the parallels (tangent, secant) where the cone intersects the sphere.</param>
     /// <param name="Scale">Zooms in or out on the map view. A scale of "1" corresponds to the largest zoom level that fits the map's lon and lat ranges.</param>
     static member init
-        (   
-            projectionType  : StyleParam.GeoProjectionType  ,
-            [<Optional;DefaultParameterValue(null)>] ?Rotation       : GeoProjectionRotation         ,
-            [<Optional;DefaultParameterValue(null)>] ?Parallels      : (float*float)                 ,
-            [<Optional;DefaultParameterValue(null)>] ?Scale          : float
-
+        (
+            projectionType: StyleParam.GeoProjectionType,
+            [<Optional; DefaultParameterValue(null)>] ?Rotation: GeoProjectionRotation,
+            [<Optional; DefaultParameterValue(null)>] ?Parallels: (float * float),
+            [<Optional; DefaultParameterValue(null)>] ?Scale: float
         ) =
-            GeoProjection()
-            |> GeoProjection.style
-                (
-                    projectionType  = projectionType,
-                    ?Rotation       = Rotation      ,
-                    ?Parallels      = Parallels     ,
-                    ?Scale          = Scale        
-                )
+        GeoProjection()
+        |> GeoProjection.style (
+            projectionType = projectionType,
+            ?Rotation = Rotation,
+            ?Parallels = Parallels,
+            ?Scale = Scale
+        )
 
     /// <summary>Create a function that applies the given style parameters to a GeoProjection object.</summary>
     /// <param name="projectionType">Sets the type of projection</param>
@@ -78,24 +69,19 @@ type GeoProjection() =
     /// <param name="Parallels">For conic projection types only. Sets the parallels (tangent, secant) where the cone intersects the sphere.</param>
     /// <param name="Scale">Zooms in or out on the map view. A scale of "1" corresponds to the largest zoom level that fits the map's lon and lat ranges.</param>
     static member style
-        (   
-            projectionType  : StyleParam.GeoProjectionType  ,
-            [<Optional;DefaultParameterValue(null)>] ?Rotation       : GeoProjectionRotation         ,
-            [<Optional;DefaultParameterValue(null)>] ?Parallels      : (float*float)                 ,
-            [<Optional;DefaultParameterValue(null)>] ?Scale          : float
+        (
+            projectionType: StyleParam.GeoProjectionType,
+            [<Optional; DefaultParameterValue(null)>] ?Rotation: GeoProjectionRotation,
+            [<Optional; DefaultParameterValue(null)>] ?Parallels: (float * float),
+            [<Optional; DefaultParameterValue(null)>] ?Scale: float
         ) =
-            (fun (projection:GeoProjection) -> 
-                
-                projectionType  
-                |> StyleParam.GeoProjectionType.convert 
-                |> DynObj.setValue projection "type"
+        (fun (projection: GeoProjection) ->
 
-                Parallels       
-                |> Option.map (fun (a,b) -> sprintf "[%f,%f]" a b) 
-                |> DynObj.setValueOpt projection "parallels"
+            projectionType |> StyleParam.GeoProjectionType.convert |> DynObj.setValue projection "type"
 
-                Rotation        |> DynObj.setValueOpt   projection "rotation"
-                Scale           |> DynObj.setValueOpt   projection "scale"
+            Parallels |> Option.map (fun (a, b) -> sprintf "[%f,%f]" a b) |> DynObj.setValueOpt projection "parallels"
 
-                projection
-            ) 
+            Rotation |> DynObj.setValueOpt projection "rotation"
+            Scale |> DynObj.setValueOpt projection "scale"
+
+            projection)

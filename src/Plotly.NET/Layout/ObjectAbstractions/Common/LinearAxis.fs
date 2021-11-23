@@ -6,8 +6,8 @@ open System
 open System.Runtime.InteropServices
 
 /// <summary>Linear axes can be used as x and y scales on 2D plots, and as x,y, and z scales on 3D plots.</summary>
-type LinearAxis () =
-    inherit DynamicObj ()
+type LinearAxis() =
+    inherit DynamicObj()
 
     /// <summary>
     /// Initialize a LinearAxis object that can be used as a positional scale for Y, X or Z coordinates.
@@ -91,166 +91,164 @@ type LinearAxis () =
     /// <param name="ShowBackground">Sets whether or not this axis' wall has a background color. (Only has an effect on 3D scenes)</param>
     static member init
         (
-            [<Optional;DefaultParameterValue(null)>] ?Visible            : bool,
-            [<Optional;DefaultParameterValue(null)>] ?Color              : Color,
-            [<Optional;DefaultParameterValue(null)>] ?Title              : Title,            
-            [<Optional;DefaultParameterValue(null)>] ?AxisType           : StyleParam.AxisType, 
-            [<Optional;DefaultParameterValue(null)>] ?AutoTypeNumbers    : StyleParam.AutoTypeNumbers,
-            [<Optional;DefaultParameterValue(null)>] ?AutoRange          : StyleParam.AutoRange,        
-            [<Optional;DefaultParameterValue(null)>] ?RangeMode          : StyleParam.RangeMode,        
-            [<Optional;DefaultParameterValue(null)>] ?Range              : StyleParam.Range,            
-            [<Optional;DefaultParameterValue(null)>] ?FixedRange         : bool,       
-            [<Optional;DefaultParameterValue(null)>] ?ScaleAnchor        : StyleParam.LinearAxisId,
-            [<Optional;DefaultParameterValue(null)>] ?ScaleRatio         : float,
-            [<Optional;DefaultParameterValue(null)>] ?Constrain          : StyleParam.AxisConstraint,
-            [<Optional;DefaultParameterValue(null)>] ?ConstrainToward    : StyleParam.AxisConstraintDirection,
-            [<Optional;DefaultParameterValue(null)>] ?Matches            : StyleParam.LinearAxisId,
-            [<Optional;DefaultParameterValue(null)>] ?Rangebreaks        : seq<Rangebreak>,
-            [<Optional;DefaultParameterValue(null)>] ?TickMode           : StyleParam.TickMode,         
-            [<Optional;DefaultParameterValue(null)>] ?NTicks             : int,           
-            [<Optional;DefaultParameterValue(null)>] ?Tick0              : #IConvertible,            
-            [<Optional;DefaultParameterValue(null)>] ?DTick              : #IConvertible,            
-            [<Optional;DefaultParameterValue(null)>] ?TickVals           : seq<#IConvertible>,         
-            [<Optional;DefaultParameterValue(null)>] ?TickText           : seq<#IConvertible>,         
-            [<Optional;DefaultParameterValue(null)>] ?Ticks              : StyleParam.TickOptions,            
-            [<Optional;DefaultParameterValue(null)>] ?TicksOn            : StyleParam.CategoryTickAnchor,
-            [<Optional;DefaultParameterValue(null)>] ?TickLabelMode      : StyleParam.TickLabelMode,
-            [<Optional;DefaultParameterValue(null)>] ?TickLabelPosition  : StyleParam.TickLabelPosition,
-            [<Optional;DefaultParameterValue(null)>] ?TickLabelOverflow  : StyleParam.TickLabelOverflow,
-            [<Optional;DefaultParameterValue(null)>] ?Mirror             : StyleParam.Mirror,           
-            [<Optional;DefaultParameterValue(null)>] ?TickLen            : int,
-            [<Optional;DefaultParameterValue(null)>] ?TickWidth          : int,        
-            [<Optional;DefaultParameterValue(null)>] ?TickColor          : Color,        
-            [<Optional;DefaultParameterValue(null)>] ?ShowTickLabels     : bool,   
-            [<Optional;DefaultParameterValue(null)>] ?AutoMargin         : bool,
-            [<Optional;DefaultParameterValue(null)>] ?ShowSpikes         : bool,       
-            [<Optional;DefaultParameterValue(null)>] ?SpikeColor         : Color,       
-            [<Optional;DefaultParameterValue(null)>] ?SpikeThickness     : int,   
-            [<Optional;DefaultParameterValue(null)>] ?SpikeDash          : StyleParam.DrawingStyle,
-            [<Optional;DefaultParameterValue(null)>] ?SpikeMode          : StyleParam.SpikeMode,
-            [<Optional;DefaultParameterValue(null)>] ?SpikeSnap          : StyleParam.SpikeSnap,
-            [<Optional;DefaultParameterValue(null)>] ?TickFont           : Font,         
-            [<Optional;DefaultParameterValue(null)>] ?TickAngle          : int,        
-            [<Optional;DefaultParameterValue(null)>] ?ShowTickPrefix     : StyleParam.ShowTickOption,   
-            [<Optional;DefaultParameterValue(null)>] ?TickPrefix         : string,
-            [<Optional;DefaultParameterValue(null)>] ?ShowTickSuffix     : StyleParam.ShowTickOption,
-            [<Optional;DefaultParameterValue(null)>] ?TickSuffix         : string,
-            [<Optional;DefaultParameterValue(null)>] ?ShowExponent       : StyleParam.ShowExponent,
-            [<Optional;DefaultParameterValue(null)>] ?ExponentFormat     : StyleParam.ExponentFormat,
-            [<Optional;DefaultParameterValue(null)>] ?MinExponent        : float,
-            [<Optional;DefaultParameterValue(null)>] ?SeparateThousands  : bool,
-            [<Optional;DefaultParameterValue(null)>] ?TickFormat         : string,       
-            [<Optional;DefaultParameterValue(null)>] ?TickFormatStops    : seq<TickFormatStop>,
-            [<Optional;DefaultParameterValue(null)>] ?HoverFormat        : string,
-            [<Optional;DefaultParameterValue(null)>] ?ShowLine           : bool,         
-            [<Optional;DefaultParameterValue(null)>] ?LineColor          : Color,        
-            [<Optional;DefaultParameterValue(null)>] ?LineWidth          : float,        
-            [<Optional;DefaultParameterValue(null)>] ?ShowGrid           : bool,         
-            [<Optional;DefaultParameterValue(null)>] ?GridColor          : Color,        
-            [<Optional;DefaultParameterValue(null)>] ?GridWidth          : float,        
-            [<Optional;DefaultParameterValue(null)>] ?ZeroLine           : bool,         
-            [<Optional;DefaultParameterValue(null)>] ?ZeroLineColor      : Color,    
-            [<Optional;DefaultParameterValue(null)>] ?ZeroLineWidth      : float,    
-            [<Optional;DefaultParameterValue(null)>] ?ShowDividers       : bool,
-            [<Optional;DefaultParameterValue(null)>] ?DividerColor       : Color,
-            [<Optional;DefaultParameterValue(null)>] ?DividerWidth       : int,
-            [<Optional;DefaultParameterValue(null)>] ?Anchor             : StyleParam.LinearAxisId,
-            [<Optional;DefaultParameterValue(null)>] ?Side               : StyleParam.Side,
-            [<Optional;DefaultParameterValue(null)>] ?Overlaying         : StyleParam.LinearAxisId,
-            [<Optional;DefaultParameterValue(null)>] ?Layer              : StyleParam.Layer,
-            [<Optional;DefaultParameterValue(null)>] ?Domain             : StyleParam.Range,
-            [<Optional;DefaultParameterValue(null)>] ?Position           : float,         
-            [<Optional;DefaultParameterValue(null)>] ?CategoryOrder      : StyleParam.CategoryOrder,
-            [<Optional;DefaultParameterValue(null)>] ?CategoryArray      : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?UIRevision         : #IConvertible,
-            [<Optional;DefaultParameterValue(null)>] ?RangeSlider        : RangeSlider,
-            [<Optional;DefaultParameterValue(null)>] ?RangeSelector      : RangeSelector,
-            [<Optional;DefaultParameterValue(null)>] ?Calendar           : StyleParam.Calendar,
-            [<Optional;DefaultParameterValue(null)>] ?BackgroundColor    : Color,
-            [<Optional;DefaultParameterValue(null)>] ?ShowBackground     : bool
-
+            [<Optional; DefaultParameterValue(null)>] ?Visible: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Color: Color,
+            [<Optional; DefaultParameterValue(null)>] ?Title: Title,
+            [<Optional; DefaultParameterValue(null)>] ?AxisType: StyleParam.AxisType,
+            [<Optional; DefaultParameterValue(null)>] ?AutoTypeNumbers: StyleParam.AutoTypeNumbers,
+            [<Optional; DefaultParameterValue(null)>] ?AutoRange: StyleParam.AutoRange,
+            [<Optional; DefaultParameterValue(null)>] ?RangeMode: StyleParam.RangeMode,
+            [<Optional; DefaultParameterValue(null)>] ?Range: StyleParam.Range,
+            [<Optional; DefaultParameterValue(null)>] ?FixedRange: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ScaleAnchor: StyleParam.LinearAxisId,
+            [<Optional; DefaultParameterValue(null)>] ?ScaleRatio: float,
+            [<Optional; DefaultParameterValue(null)>] ?Constrain: StyleParam.AxisConstraint,
+            [<Optional; DefaultParameterValue(null)>] ?ConstrainToward: StyleParam.AxisConstraintDirection,
+            [<Optional; DefaultParameterValue(null)>] ?Matches: StyleParam.LinearAxisId,
+            [<Optional; DefaultParameterValue(null)>] ?Rangebreaks: seq<Rangebreak>,
+            [<Optional; DefaultParameterValue(null)>] ?TickMode: StyleParam.TickMode,
+            [<Optional; DefaultParameterValue(null)>] ?NTicks: int,
+            [<Optional; DefaultParameterValue(null)>] ?Tick0: #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?DTick: #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?TickVals: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?TickText: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Ticks: StyleParam.TickOptions,
+            [<Optional; DefaultParameterValue(null)>] ?TicksOn: StyleParam.CategoryTickAnchor,
+            [<Optional; DefaultParameterValue(null)>] ?TickLabelMode: StyleParam.TickLabelMode,
+            [<Optional; DefaultParameterValue(null)>] ?TickLabelPosition: StyleParam.TickLabelPosition,
+            [<Optional; DefaultParameterValue(null)>] ?TickLabelOverflow: StyleParam.TickLabelOverflow,
+            [<Optional; DefaultParameterValue(null)>] ?Mirror: StyleParam.Mirror,
+            [<Optional; DefaultParameterValue(null)>] ?TickLen: int,
+            [<Optional; DefaultParameterValue(null)>] ?TickWidth: int,
+            [<Optional; DefaultParameterValue(null)>] ?TickColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?ShowTickLabels: bool,
+            [<Optional; DefaultParameterValue(null)>] ?AutoMargin: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ShowSpikes: bool,
+            [<Optional; DefaultParameterValue(null)>] ?SpikeColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?SpikeThickness: int,
+            [<Optional; DefaultParameterValue(null)>] ?SpikeDash: StyleParam.DrawingStyle,
+            [<Optional; DefaultParameterValue(null)>] ?SpikeMode: StyleParam.SpikeMode,
+            [<Optional; DefaultParameterValue(null)>] ?SpikeSnap: StyleParam.SpikeSnap,
+            [<Optional; DefaultParameterValue(null)>] ?TickFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?TickAngle: int,
+            [<Optional; DefaultParameterValue(null)>] ?ShowTickPrefix: StyleParam.ShowTickOption,
+            [<Optional; DefaultParameterValue(null)>] ?TickPrefix: string,
+            [<Optional; DefaultParameterValue(null)>] ?ShowTickSuffix: StyleParam.ShowTickOption,
+            [<Optional; DefaultParameterValue(null)>] ?TickSuffix: string,
+            [<Optional; DefaultParameterValue(null)>] ?ShowExponent: StyleParam.ShowExponent,
+            [<Optional; DefaultParameterValue(null)>] ?ExponentFormat: StyleParam.ExponentFormat,
+            [<Optional; DefaultParameterValue(null)>] ?MinExponent: float,
+            [<Optional; DefaultParameterValue(null)>] ?SeparateThousands: bool,
+            [<Optional; DefaultParameterValue(null)>] ?TickFormat: string,
+            [<Optional; DefaultParameterValue(null)>] ?TickFormatStops: seq<TickFormatStop>,
+            [<Optional; DefaultParameterValue(null)>] ?HoverFormat: string,
+            [<Optional; DefaultParameterValue(null)>] ?ShowLine: bool,
+            [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?ShowGrid: bool,
+            [<Optional; DefaultParameterValue(null)>] ?GridColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?GridWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?ZeroLine: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ZeroLineColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?ZeroLineWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?ShowDividers: bool,
+            [<Optional; DefaultParameterValue(null)>] ?DividerColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?DividerWidth: int,
+            [<Optional; DefaultParameterValue(null)>] ?Anchor: StyleParam.LinearAxisId,
+            [<Optional; DefaultParameterValue(null)>] ?Side: StyleParam.Side,
+            [<Optional; DefaultParameterValue(null)>] ?Overlaying: StyleParam.LinearAxisId,
+            [<Optional; DefaultParameterValue(null)>] ?Layer: StyleParam.Layer,
+            [<Optional; DefaultParameterValue(null)>] ?Domain: StyleParam.Range,
+            [<Optional; DefaultParameterValue(null)>] ?Position: float,
+            [<Optional; DefaultParameterValue(null)>] ?CategoryOrder: StyleParam.CategoryOrder,
+            [<Optional; DefaultParameterValue(null)>] ?CategoryArray: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?UIRevision: #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?RangeSlider: RangeSlider,
+            [<Optional; DefaultParameterValue(null)>] ?RangeSelector: RangeSelector,
+            [<Optional; DefaultParameterValue(null)>] ?Calendar: StyleParam.Calendar,
+            [<Optional; DefaultParameterValue(null)>] ?BackgroundColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?ShowBackground: bool
         ) =
-            LinearAxis() 
-            |> LinearAxis.style
-                (
-                    ?Visible            = Visible            ,
-                    ?Color              = Color              ,
-                    ?Title              = Title              ,
-                    ?AxisType           = AxisType           ,
-                    ?AutoTypeNumbers    = AutoTypeNumbers    ,
-                    ?AutoRange          = AutoRange          ,
-                    ?RangeMode          = RangeMode          ,
-                    ?Range              = Range              ,
-                    ?FixedRange         = FixedRange         ,
-                    ?ScaleAnchor        = ScaleAnchor        ,
-                    ?ScaleRatio         = ScaleRatio         ,
-                    ?Constrain          = Constrain          ,
-                    ?ConstrainToward    = ConstrainToward    ,
-                    ?Matches            = Matches            ,
-                    ?Rangebreaks        = Rangebreaks        ,
-                    ?TickMode           = TickMode           ,
-                    ?NTicks             = NTicks             ,
-                    ?Tick0              = Tick0              ,
-                    ?DTick              = DTick              ,
-                    ?TickVals           = TickVals           ,
-                    ?TickText           = TickText           ,
-                    ?Ticks              = Ticks              ,
-                    ?TicksOn            = TicksOn            ,
-                    ?TickLabelMode      = TickLabelMode      ,
-                    ?TickLabelPosition  = TickLabelPosition  ,
-                    ?TickLabelOverflow  = TickLabelOverflow  ,
-                    ?Mirror             = Mirror             ,
-                    ?TickLen            = TickLen            ,
-                    ?TickWidth          = TickWidth          ,
-                    ?TickColor          = TickColor          ,
-                    ?ShowTickLabels     = ShowTickLabels     ,
-                    ?AutoMargin         = AutoMargin         ,
-                    ?ShowSpikes         = ShowSpikes         ,
-                    ?SpikeColor         = SpikeColor         ,
-                    ?SpikeThickness     = SpikeThickness     ,
-                    ?SpikeDash          = SpikeDash          ,
-                    ?SpikeMode          = SpikeMode          ,
-                    ?SpikeSnap          = SpikeSnap          ,
-                    ?TickFont           = TickFont           ,
-                    ?TickAngle          = TickAngle          ,
-                    ?ShowTickPrefix     = ShowTickPrefix     ,
-                    ?TickPrefix         = TickPrefix         ,
-                    ?ShowTickSuffix     = ShowTickSuffix     ,
-                    ?TickSuffix         = TickSuffix         ,
-                    ?ShowExponent       = ShowExponent       ,
-                    ?ExponentFormat     = ExponentFormat     ,
-                    ?MinExponent        = MinExponent        ,
-                    ?SeparateThousands  = SeparateThousands  ,
-                    ?TickFormat         = TickFormat         ,
-                    ?TickFormatStops    = TickFormatStops    ,
-                    ?HoverFormat        = HoverFormat        ,
-                    ?ShowLine           = ShowLine           ,
-                    ?LineColor          = LineColor          ,
-                    ?LineWidth          = LineWidth          ,
-                    ?ShowGrid           = ShowGrid           ,
-                    ?GridColor          = GridColor          ,
-                    ?GridWidth          = GridWidth          ,
-                    ?ZeroLine           = ZeroLine           ,
-                    ?ZeroLineColor      = ZeroLineColor      ,
-                    ?ZeroLineWidth      = ZeroLineWidth      ,
-                    ?ShowDividers       = ShowDividers       ,
-                    ?DividerColor       = DividerColor       ,
-                    ?DividerWidth       = DividerWidth       ,
-                    ?Anchor             = Anchor             ,
-                    ?Side               = Side               ,
-                    ?Overlaying         = Overlaying         ,
-                    ?Layer              = Layer              ,
-                    ?Domain             = Domain             ,
-                    ?Position           = Position           ,
-                    ?CategoryOrder      = CategoryOrder      ,
-                    ?CategoryArray      = CategoryArray      ,
-                    ?UIRevision         = UIRevision         ,
-                    ?RangeSlider        = RangeSlider        ,
-                    ?RangeSelector      = RangeSelector      ,
-                    ?Calendar           = Calendar           ,
-                    ?BackgroundColor    = BackgroundColor    ,
-                    ?ShowBackground     = ShowBackground     
-                )
+        LinearAxis()
+        |> LinearAxis.style (
+            ?Visible = Visible,
+            ?Color = Color,
+            ?Title = Title,
+            ?AxisType = AxisType,
+            ?AutoTypeNumbers = AutoTypeNumbers,
+            ?AutoRange = AutoRange,
+            ?RangeMode = RangeMode,
+            ?Range = Range,
+            ?FixedRange = FixedRange,
+            ?ScaleAnchor = ScaleAnchor,
+            ?ScaleRatio = ScaleRatio,
+            ?Constrain = Constrain,
+            ?ConstrainToward = ConstrainToward,
+            ?Matches = Matches,
+            ?Rangebreaks = Rangebreaks,
+            ?TickMode = TickMode,
+            ?NTicks = NTicks,
+            ?Tick0 = Tick0,
+            ?DTick = DTick,
+            ?TickVals = TickVals,
+            ?TickText = TickText,
+            ?Ticks = Ticks,
+            ?TicksOn = TicksOn,
+            ?TickLabelMode = TickLabelMode,
+            ?TickLabelPosition = TickLabelPosition,
+            ?TickLabelOverflow = TickLabelOverflow,
+            ?Mirror = Mirror,
+            ?TickLen = TickLen,
+            ?TickWidth = TickWidth,
+            ?TickColor = TickColor,
+            ?ShowTickLabels = ShowTickLabels,
+            ?AutoMargin = AutoMargin,
+            ?ShowSpikes = ShowSpikes,
+            ?SpikeColor = SpikeColor,
+            ?SpikeThickness = SpikeThickness,
+            ?SpikeDash = SpikeDash,
+            ?SpikeMode = SpikeMode,
+            ?SpikeSnap = SpikeSnap,
+            ?TickFont = TickFont,
+            ?TickAngle = TickAngle,
+            ?ShowTickPrefix = ShowTickPrefix,
+            ?TickPrefix = TickPrefix,
+            ?ShowTickSuffix = ShowTickSuffix,
+            ?TickSuffix = TickSuffix,
+            ?ShowExponent = ShowExponent,
+            ?ExponentFormat = ExponentFormat,
+            ?MinExponent = MinExponent,
+            ?SeparateThousands = SeparateThousands,
+            ?TickFormat = TickFormat,
+            ?TickFormatStops = TickFormatStops,
+            ?HoverFormat = HoverFormat,
+            ?ShowLine = ShowLine,
+            ?LineColor = LineColor,
+            ?LineWidth = LineWidth,
+            ?ShowGrid = ShowGrid,
+            ?GridColor = GridColor,
+            ?GridWidth = GridWidth,
+            ?ZeroLine = ZeroLine,
+            ?ZeroLineColor = ZeroLineColor,
+            ?ZeroLineWidth = ZeroLineWidth,
+            ?ShowDividers = ShowDividers,
+            ?DividerColor = DividerColor,
+            ?DividerWidth = DividerWidth,
+            ?Anchor = Anchor,
+            ?Side = Side,
+            ?Overlaying = Overlaying,
+            ?Layer = Layer,
+            ?Domain = Domain,
+            ?Position = Position,
+            ?CategoryOrder = CategoryOrder,
+            ?CategoryArray = CategoryArray,
+            ?UIRevision = UIRevision,
+            ?RangeSlider = RangeSlider,
+            ?RangeSelector = RangeSelector,
+            ?Calendar = Calendar,
+            ?BackgroundColor = BackgroundColor,
+            ?ShowBackground = ShowBackground
+        )
 
     /// <summary>
     /// Initialize a categorical LinearAxis object that can be used as a positional scale for Y, X or Z coordinates.
@@ -331,160 +329,159 @@ type LinearAxis () =
     /// <param name="Calendar">Sets the calendar system to use for `range` and `tick0` if this is a date axis. This does not set the calendar for interpreting data on this axis, that's specified in the trace or via the global `layout.calendar`</param>
     static member initCategorical
         (
-            categoryOrder       : StyleParam.CategoryOrder,
-            [<Optional;DefaultParameterValue(null)>] ?Visible            : bool,
-            [<Optional;DefaultParameterValue(null)>] ?Color              : Color,
-            [<Optional;DefaultParameterValue(null)>] ?Title              : Title,            
-            [<Optional;DefaultParameterValue(null)>] ?AutoTypeNumbers    : StyleParam.AutoTypeNumbers,
-            [<Optional;DefaultParameterValue(null)>] ?AutoRange          : StyleParam.AutoRange,        
-            [<Optional;DefaultParameterValue(null)>] ?RangeMode          : StyleParam.RangeMode,        
-            [<Optional;DefaultParameterValue(null)>] ?Range              : StyleParam.Range,            
-            [<Optional;DefaultParameterValue(null)>] ?FixedRange         : bool,       
-            [<Optional;DefaultParameterValue(null)>] ?ScaleAnchor        : StyleParam.LinearAxisId,
-            [<Optional;DefaultParameterValue(null)>] ?ScaleRatio         : float,
-            [<Optional;DefaultParameterValue(null)>] ?Constrain          : StyleParam.AxisConstraint,
-            [<Optional;DefaultParameterValue(null)>] ?ConstrainToward    : StyleParam.AxisConstraintDirection,
-            [<Optional;DefaultParameterValue(null)>] ?Matches            : StyleParam.LinearAxisId,
-            [<Optional;DefaultParameterValue(null)>] ?Rangebreaks        : seq<Rangebreak>,
-            [<Optional;DefaultParameterValue(null)>] ?TickMode           : StyleParam.TickMode,         
-            [<Optional;DefaultParameterValue(null)>] ?NTicks             : int,           
-            [<Optional;DefaultParameterValue(null)>] ?Tick0              : #IConvertible,            
-            [<Optional;DefaultParameterValue(null)>] ?DTick              : #IConvertible,            
-            [<Optional;DefaultParameterValue(null)>] ?TickVals           : seq<#IConvertible>,         
-            [<Optional;DefaultParameterValue(null)>] ?TickText           : seq<#IConvertible>,         
-            [<Optional;DefaultParameterValue(null)>] ?Ticks              : StyleParam.TickOptions,            
-            [<Optional;DefaultParameterValue(null)>] ?TicksOn            : StyleParam.CategoryTickAnchor,
-            [<Optional;DefaultParameterValue(null)>] ?TickLabelMode      : StyleParam.TickLabelMode,
-            [<Optional;DefaultParameterValue(null)>] ?TickLabelPosition  : StyleParam.TickLabelPosition,
-            [<Optional;DefaultParameterValue(null)>] ?TickLabelOverflow  : StyleParam.TickLabelOverflow,
-            [<Optional;DefaultParameterValue(null)>] ?Mirror             : StyleParam.Mirror,           
-            [<Optional;DefaultParameterValue(null)>] ?TickLen            : int,
-            [<Optional;DefaultParameterValue(null)>] ?TickWidth          : int,        
-            [<Optional;DefaultParameterValue(null)>] ?TickColor          : Color,        
-            [<Optional;DefaultParameterValue(null)>] ?ShowTickLabels     : bool,   
-            [<Optional;DefaultParameterValue(null)>] ?AutoMargin         : bool,
-            [<Optional;DefaultParameterValue(null)>] ?ShowSpikes         : bool,       
-            [<Optional;DefaultParameterValue(null)>] ?SpikeColor         : Color,       
-            [<Optional;DefaultParameterValue(null)>] ?SpikeThickness     : int,   
-            [<Optional;DefaultParameterValue(null)>] ?SpikeDash          : StyleParam.DrawingStyle,
-            [<Optional;DefaultParameterValue(null)>] ?SpikeMode          : StyleParam.SpikeMode,
-            [<Optional;DefaultParameterValue(null)>] ?SpikeSnap          : StyleParam.SpikeSnap,
-            [<Optional;DefaultParameterValue(null)>] ?TickFont           : Font,         
-            [<Optional;DefaultParameterValue(null)>] ?TickAngle          : int,        
-            [<Optional;DefaultParameterValue(null)>] ?ShowTickPrefix     : StyleParam.ShowTickOption,   
-            [<Optional;DefaultParameterValue(null)>] ?TickPrefix         : string,
-            [<Optional;DefaultParameterValue(null)>] ?ShowTickSuffix     : StyleParam.ShowTickOption,
-            [<Optional;DefaultParameterValue(null)>] ?TickSuffix         : string,
-            [<Optional;DefaultParameterValue(null)>] ?ShowExponent       : StyleParam.ShowExponent,
-            [<Optional;DefaultParameterValue(null)>] ?ExponentFormat     : StyleParam.ExponentFormat,
-            [<Optional;DefaultParameterValue(null)>] ?MinExponent        : float,
-            [<Optional;DefaultParameterValue(null)>] ?SeparateThousands  : bool,
-            [<Optional;DefaultParameterValue(null)>] ?TickFormat         : string,       
-            [<Optional;DefaultParameterValue(null)>] ?TickFormatStops    : seq<TickFormatStop>,
-            [<Optional;DefaultParameterValue(null)>] ?HoverFormat        : string,
-            [<Optional;DefaultParameterValue(null)>] ?ShowLine           : bool,         
-            [<Optional;DefaultParameterValue(null)>] ?LineColor          : Color,        
-            [<Optional;DefaultParameterValue(null)>] ?LineWidth          : float,        
-            [<Optional;DefaultParameterValue(null)>] ?ShowGrid           : bool,         
-            [<Optional;DefaultParameterValue(null)>] ?GridColor          : Color,        
-            [<Optional;DefaultParameterValue(null)>] ?GridWidth          : float,        
-            [<Optional;DefaultParameterValue(null)>] ?ZeroLine           : bool,         
-            [<Optional;DefaultParameterValue(null)>] ?ZeroLineColor      : Color,    
-            [<Optional;DefaultParameterValue(null)>] ?ZeroLineWidth      : float,    
-            [<Optional;DefaultParameterValue(null)>] ?ShowDividers       : bool,
-            [<Optional;DefaultParameterValue(null)>] ?DividerColor       : Color,
-            [<Optional;DefaultParameterValue(null)>] ?DividerWidth       : int,
-            [<Optional;DefaultParameterValue(null)>] ?Anchor             : StyleParam.LinearAxisId,
-            [<Optional;DefaultParameterValue(null)>] ?Side               : StyleParam.Side,
-            [<Optional;DefaultParameterValue(null)>] ?Overlaying         : StyleParam.LinearAxisId,
-            [<Optional;DefaultParameterValue(null)>] ?Layer              : StyleParam.Layer,
-            [<Optional;DefaultParameterValue(null)>] ?Domain             : StyleParam.Range,
-            [<Optional;DefaultParameterValue(null)>] ?Position           : float,         
-            [<Optional;DefaultParameterValue(null)>] ?CategoryArray      : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?UIRevision         : #IConvertible,
-            [<Optional;DefaultParameterValue(null)>] ?RangeSlider        : RangeSlider,
-            [<Optional;DefaultParameterValue(null)>] ?RangeSelector      : RangeSelector,
-            [<Optional;DefaultParameterValue(null)>] ?Calendar           : StyleParam.Calendar
+            categoryOrder: StyleParam.CategoryOrder,
+            [<Optional; DefaultParameterValue(null)>] ?Visible: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Color: Color,
+            [<Optional; DefaultParameterValue(null)>] ?Title: Title,
+            [<Optional; DefaultParameterValue(null)>] ?AutoTypeNumbers: StyleParam.AutoTypeNumbers,
+            [<Optional; DefaultParameterValue(null)>] ?AutoRange: StyleParam.AutoRange,
+            [<Optional; DefaultParameterValue(null)>] ?RangeMode: StyleParam.RangeMode,
+            [<Optional; DefaultParameterValue(null)>] ?Range: StyleParam.Range,
+            [<Optional; DefaultParameterValue(null)>] ?FixedRange: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ScaleAnchor: StyleParam.LinearAxisId,
+            [<Optional; DefaultParameterValue(null)>] ?ScaleRatio: float,
+            [<Optional; DefaultParameterValue(null)>] ?Constrain: StyleParam.AxisConstraint,
+            [<Optional; DefaultParameterValue(null)>] ?ConstrainToward: StyleParam.AxisConstraintDirection,
+            [<Optional; DefaultParameterValue(null)>] ?Matches: StyleParam.LinearAxisId,
+            [<Optional; DefaultParameterValue(null)>] ?Rangebreaks: seq<Rangebreak>,
+            [<Optional; DefaultParameterValue(null)>] ?TickMode: StyleParam.TickMode,
+            [<Optional; DefaultParameterValue(null)>] ?NTicks: int,
+            [<Optional; DefaultParameterValue(null)>] ?Tick0: #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?DTick: #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?TickVals: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?TickText: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Ticks: StyleParam.TickOptions,
+            [<Optional; DefaultParameterValue(null)>] ?TicksOn: StyleParam.CategoryTickAnchor,
+            [<Optional; DefaultParameterValue(null)>] ?TickLabelMode: StyleParam.TickLabelMode,
+            [<Optional; DefaultParameterValue(null)>] ?TickLabelPosition: StyleParam.TickLabelPosition,
+            [<Optional; DefaultParameterValue(null)>] ?TickLabelOverflow: StyleParam.TickLabelOverflow,
+            [<Optional; DefaultParameterValue(null)>] ?Mirror: StyleParam.Mirror,
+            [<Optional; DefaultParameterValue(null)>] ?TickLen: int,
+            [<Optional; DefaultParameterValue(null)>] ?TickWidth: int,
+            [<Optional; DefaultParameterValue(null)>] ?TickColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?ShowTickLabels: bool,
+            [<Optional; DefaultParameterValue(null)>] ?AutoMargin: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ShowSpikes: bool,
+            [<Optional; DefaultParameterValue(null)>] ?SpikeColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?SpikeThickness: int,
+            [<Optional; DefaultParameterValue(null)>] ?SpikeDash: StyleParam.DrawingStyle,
+            [<Optional; DefaultParameterValue(null)>] ?SpikeMode: StyleParam.SpikeMode,
+            [<Optional; DefaultParameterValue(null)>] ?SpikeSnap: StyleParam.SpikeSnap,
+            [<Optional; DefaultParameterValue(null)>] ?TickFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?TickAngle: int,
+            [<Optional; DefaultParameterValue(null)>] ?ShowTickPrefix: StyleParam.ShowTickOption,
+            [<Optional; DefaultParameterValue(null)>] ?TickPrefix: string,
+            [<Optional; DefaultParameterValue(null)>] ?ShowTickSuffix: StyleParam.ShowTickOption,
+            [<Optional; DefaultParameterValue(null)>] ?TickSuffix: string,
+            [<Optional; DefaultParameterValue(null)>] ?ShowExponent: StyleParam.ShowExponent,
+            [<Optional; DefaultParameterValue(null)>] ?ExponentFormat: StyleParam.ExponentFormat,
+            [<Optional; DefaultParameterValue(null)>] ?MinExponent: float,
+            [<Optional; DefaultParameterValue(null)>] ?SeparateThousands: bool,
+            [<Optional; DefaultParameterValue(null)>] ?TickFormat: string,
+            [<Optional; DefaultParameterValue(null)>] ?TickFormatStops: seq<TickFormatStop>,
+            [<Optional; DefaultParameterValue(null)>] ?HoverFormat: string,
+            [<Optional; DefaultParameterValue(null)>] ?ShowLine: bool,
+            [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?ShowGrid: bool,
+            [<Optional; DefaultParameterValue(null)>] ?GridColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?GridWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?ZeroLine: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ZeroLineColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?ZeroLineWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?ShowDividers: bool,
+            [<Optional; DefaultParameterValue(null)>] ?DividerColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?DividerWidth: int,
+            [<Optional; DefaultParameterValue(null)>] ?Anchor: StyleParam.LinearAxisId,
+            [<Optional; DefaultParameterValue(null)>] ?Side: StyleParam.Side,
+            [<Optional; DefaultParameterValue(null)>] ?Overlaying: StyleParam.LinearAxisId,
+            [<Optional; DefaultParameterValue(null)>] ?Layer: StyleParam.Layer,
+            [<Optional; DefaultParameterValue(null)>] ?Domain: StyleParam.Range,
+            [<Optional; DefaultParameterValue(null)>] ?Position: float,
+            [<Optional; DefaultParameterValue(null)>] ?CategoryArray: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?UIRevision: #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?RangeSlider: RangeSlider,
+            [<Optional; DefaultParameterValue(null)>] ?RangeSelector: RangeSelector,
+            [<Optional; DefaultParameterValue(null)>] ?Calendar: StyleParam.Calendar
         ) =
-            LinearAxis() 
-            |> LinearAxis.style
-                (
-                    CategoryOrder       = categoryOrder,
-                    AxisType            = StyleParam.AxisType.Category,
-                    ?Visible            = Visible            ,
-                    ?Color              = Color              ,
-                    ?Title              = Title              ,
-                    ?AutoTypeNumbers    = AutoTypeNumbers    ,
-                    ?AutoRange          = AutoRange          ,
-                    ?RangeMode          = RangeMode          ,
-                    ?Range              = Range              ,
-                    ?FixedRange         = FixedRange         ,
-                    ?ScaleAnchor        = ScaleAnchor        ,
-                    ?ScaleRatio         = ScaleRatio         ,
-                    ?Constrain          = Constrain          ,
-                    ?ConstrainToward    = ConstrainToward    ,
-                    ?Matches            = Matches            ,
-                    ?Rangebreaks        = Rangebreaks        ,
-                    ?TickMode           = TickMode           ,
-                    ?NTicks             = NTicks             ,
-                    ?Tick0              = Tick0              ,
-                    ?DTick              = DTick              ,
-                    ?TickVals           = TickVals           ,
-                    ?TickText           = TickText           ,
-                    ?Ticks              = Ticks              ,
-                    ?TicksOn            = TicksOn            ,
-                    ?TickLabelMode      = TickLabelMode      ,
-                    ?TickLabelPosition  = TickLabelPosition  ,
-                    ?TickLabelOverflow  = TickLabelOverflow  ,
-                    ?Mirror             = Mirror             ,
-                    ?TickLen            = TickLen            ,
-                    ?TickWidth          = TickWidth          ,
-                    ?TickColor          = TickColor          ,
-                    ?ShowTickLabels     = ShowTickLabels     ,
-                    ?AutoMargin         = AutoMargin         ,
-                    ?ShowSpikes         = ShowSpikes         ,
-                    ?SpikeColor         = SpikeColor         ,
-                    ?SpikeThickness     = SpikeThickness     ,
-                    ?SpikeDash          = SpikeDash          ,
-                    ?SpikeMode          = SpikeMode          ,
-                    ?SpikeSnap          = SpikeSnap          ,
-                    ?TickFont           = TickFont           ,
-                    ?TickAngle          = TickAngle          ,
-                    ?ShowTickPrefix     = ShowTickPrefix     ,
-                    ?TickPrefix         = TickPrefix         ,
-                    ?ShowTickSuffix     = ShowTickSuffix     ,
-                    ?TickSuffix         = TickSuffix         ,
-                    ?ShowExponent       = ShowExponent       ,
-                    ?ExponentFormat     = ExponentFormat     ,
-                    ?MinExponent        = MinExponent        ,
-                    ?SeparateThousands  = SeparateThousands  ,
-                    ?TickFormat         = TickFormat         ,
-                    ?TickFormatStops    = TickFormatStops    ,
-                    ?HoverFormat        = HoverFormat        ,
-                    ?ShowLine           = ShowLine           ,
-                    ?LineColor          = LineColor          ,
-                    ?LineWidth          = LineWidth          ,
-                    ?ShowGrid           = ShowGrid           ,
-                    ?GridColor          = GridColor          ,
-                    ?GridWidth          = GridWidth          ,
-                    ?ZeroLine           = ZeroLine           ,
-                    ?ZeroLineColor      = ZeroLineColor      ,
-                    ?ZeroLineWidth      = ZeroLineWidth      ,
-                    ?ShowDividers       = ShowDividers       ,
-                    ?DividerColor       = DividerColor       ,
-                    ?DividerWidth       = DividerWidth       ,
-                    ?Anchor             = Anchor             ,
-                    ?Side               = Side               ,
-                    ?Overlaying         = Overlaying         ,
-                    ?Layer              = Layer              ,
-                    ?Domain             = Domain             ,
-                    ?Position           = Position           ,
-                    ?CategoryArray      = CategoryArray      ,
-                    ?UIRevision         = UIRevision         ,
-                    ?RangeSlider        = RangeSlider        ,
-                    ?RangeSelector      = RangeSelector      ,
-                    ?Calendar           = Calendar           
-                )
+        LinearAxis()
+        |> LinearAxis.style (
+            CategoryOrder = categoryOrder,
+            AxisType = StyleParam.AxisType.Category,
+            ?Visible = Visible,
+            ?Color = Color,
+            ?Title = Title,
+            ?AutoTypeNumbers = AutoTypeNumbers,
+            ?AutoRange = AutoRange,
+            ?RangeMode = RangeMode,
+            ?Range = Range,
+            ?FixedRange = FixedRange,
+            ?ScaleAnchor = ScaleAnchor,
+            ?ScaleRatio = ScaleRatio,
+            ?Constrain = Constrain,
+            ?ConstrainToward = ConstrainToward,
+            ?Matches = Matches,
+            ?Rangebreaks = Rangebreaks,
+            ?TickMode = TickMode,
+            ?NTicks = NTicks,
+            ?Tick0 = Tick0,
+            ?DTick = DTick,
+            ?TickVals = TickVals,
+            ?TickText = TickText,
+            ?Ticks = Ticks,
+            ?TicksOn = TicksOn,
+            ?TickLabelMode = TickLabelMode,
+            ?TickLabelPosition = TickLabelPosition,
+            ?TickLabelOverflow = TickLabelOverflow,
+            ?Mirror = Mirror,
+            ?TickLen = TickLen,
+            ?TickWidth = TickWidth,
+            ?TickColor = TickColor,
+            ?ShowTickLabels = ShowTickLabels,
+            ?AutoMargin = AutoMargin,
+            ?ShowSpikes = ShowSpikes,
+            ?SpikeColor = SpikeColor,
+            ?SpikeThickness = SpikeThickness,
+            ?SpikeDash = SpikeDash,
+            ?SpikeMode = SpikeMode,
+            ?SpikeSnap = SpikeSnap,
+            ?TickFont = TickFont,
+            ?TickAngle = TickAngle,
+            ?ShowTickPrefix = ShowTickPrefix,
+            ?TickPrefix = TickPrefix,
+            ?ShowTickSuffix = ShowTickSuffix,
+            ?TickSuffix = TickSuffix,
+            ?ShowExponent = ShowExponent,
+            ?ExponentFormat = ExponentFormat,
+            ?MinExponent = MinExponent,
+            ?SeparateThousands = SeparateThousands,
+            ?TickFormat = TickFormat,
+            ?TickFormatStops = TickFormatStops,
+            ?HoverFormat = HoverFormat,
+            ?ShowLine = ShowLine,
+            ?LineColor = LineColor,
+            ?LineWidth = LineWidth,
+            ?ShowGrid = ShowGrid,
+            ?GridColor = GridColor,
+            ?GridWidth = GridWidth,
+            ?ZeroLine = ZeroLine,
+            ?ZeroLineColor = ZeroLineColor,
+            ?ZeroLineWidth = ZeroLineWidth,
+            ?ShowDividers = ShowDividers,
+            ?DividerColor = DividerColor,
+            ?DividerWidth = DividerWidth,
+            ?Anchor = Anchor,
+            ?Side = Side,
+            ?Overlaying = Overlaying,
+            ?Layer = Layer,
+            ?Domain = Domain,
+            ?Position = Position,
+            ?CategoryArray = CategoryArray,
+            ?UIRevision = UIRevision,
+            ?RangeSlider = RangeSlider,
+            ?RangeSelector = RangeSelector,
+            ?Calendar = Calendar
+        )
     /// <summary>
     /// Initialize a LinearAxis object that can be used as a positional scale for carpet plots.
     /// </summary>
@@ -543,117 +540,115 @@ type LinearAxis () =
     /// <param name="StartLineWidth">Sets the width (in px) of the start line.</param>
     static member initCarpet
         (
-            [<Optional;DefaultParameterValue(null)>] ?Color             : Color,
-            [<Optional;DefaultParameterValue(null)>] ?Title             : Title,            
-            [<Optional;DefaultParameterValue(null)>] ?AxisType          : StyleParam.AxisType, 
-            [<Optional;DefaultParameterValue(null)>] ?AutoTypeNumbers   : StyleParam.AutoTypeNumbers,
-            [<Optional;DefaultParameterValue(null)>] ?AutoRange         : StyleParam.AutoRange,        
-            [<Optional;DefaultParameterValue(null)>] ?RangeMode         : StyleParam.RangeMode,        
-            [<Optional;DefaultParameterValue(null)>] ?Range             : StyleParam.Range,            
-            [<Optional;DefaultParameterValue(null)>] ?FixedRange        : bool,       
-            [<Optional;DefaultParameterValue(null)>] ?TickMode          : StyleParam.TickMode,         
-            [<Optional;DefaultParameterValue(null)>] ?NTicks            : int,           
-            [<Optional;DefaultParameterValue(null)>] ?Tick0             : #IConvertible,            
-            [<Optional;DefaultParameterValue(null)>] ?DTick             : #IConvertible,            
-            [<Optional;DefaultParameterValue(null)>] ?TickVals          : seq<#IConvertible>,         
-            [<Optional;DefaultParameterValue(null)>] ?TickText          : seq<#IConvertible>,         
-            [<Optional;DefaultParameterValue(null)>] ?Ticks             : StyleParam.TickOptions,            
-            [<Optional;DefaultParameterValue(null)>] ?ShowTickLabels    : bool,   
-            [<Optional;DefaultParameterValue(null)>] ?TickFont          : Font,         
-            [<Optional;DefaultParameterValue(null)>] ?TickAngle         : int,        
-            [<Optional;DefaultParameterValue(null)>] ?ShowTickPrefix    : StyleParam.ShowTickOption,   
-            [<Optional;DefaultParameterValue(null)>] ?TickPrefix        : string,
-            [<Optional;DefaultParameterValue(null)>] ?ShowTickSuffix    : StyleParam.ShowTickOption,
-            [<Optional;DefaultParameterValue(null)>] ?TickSuffix        : string,
-            [<Optional;DefaultParameterValue(null)>] ?ShowExponent      : StyleParam.ShowExponent,
-            [<Optional;DefaultParameterValue(null)>] ?ExponentFormat    : StyleParam.ExponentFormat,
-            [<Optional;DefaultParameterValue(null)>] ?MinExponent       : float,
-            [<Optional;DefaultParameterValue(null)>] ?SeparateThousands : bool,
-            [<Optional;DefaultParameterValue(null)>] ?TickFormat        : string,       
-            [<Optional;DefaultParameterValue(null)>] ?TickFormatStops   : seq<TickFormatStop>,
-            [<Optional;DefaultParameterValue(null)>] ?ShowLine          : bool,         
-            [<Optional;DefaultParameterValue(null)>] ?LineColor         : Color,        
-            [<Optional;DefaultParameterValue(null)>] ?LineWidth         : float,        
-            [<Optional;DefaultParameterValue(null)>] ?ShowGrid          : bool,         
-            [<Optional;DefaultParameterValue(null)>] ?GridColor         : Color,        
-            [<Optional;DefaultParameterValue(null)>] ?GridWidth         : float,        
-            [<Optional;DefaultParameterValue(null)>] ?CategoryOrder     : StyleParam.CategoryOrder,
-            [<Optional;DefaultParameterValue(null)>] ?CategoryArray     : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?ArrayDTick        : int,
-            [<Optional;DefaultParameterValue(null)>] ?ArrayTick0        : int,
-            [<Optional;DefaultParameterValue(null)>] ?CheaterType       : StyleParam.CheaterType,
-            [<Optional;DefaultParameterValue(null)>] ?EndLine           : bool,
-            [<Optional;DefaultParameterValue(null)>] ?EndLineColor      : Color,
-            [<Optional;DefaultParameterValue(null)>] ?EndLineWidth      : int,
-            [<Optional;DefaultParameterValue(null)>] ?LabelPadding      : int,
-            [<Optional;DefaultParameterValue(null)>] ?LabelPrefix       : string,
-            [<Optional;DefaultParameterValue(null)>] ?LabelSuffix       : string,
-            [<Optional;DefaultParameterValue(null)>] ?MinorGridColor    : Color,
-            [<Optional;DefaultParameterValue(null)>] ?MinorGridCount    : int,
-            [<Optional;DefaultParameterValue(null)>] ?MinorGridWidth    : int,
-            [<Optional;DefaultParameterValue(null)>] ?Smoothing         : float,
-            [<Optional;DefaultParameterValue(null)>] ?StartLine         : bool,
-            [<Optional;DefaultParameterValue(null)>] ?StartLineColor    : Color,
-            [<Optional;DefaultParameterValue(null)>] ?StartLineWidth    : int
-
+            [<Optional; DefaultParameterValue(null)>] ?Color: Color,
+            [<Optional; DefaultParameterValue(null)>] ?Title: Title,
+            [<Optional; DefaultParameterValue(null)>] ?AxisType: StyleParam.AxisType,
+            [<Optional; DefaultParameterValue(null)>] ?AutoTypeNumbers: StyleParam.AutoTypeNumbers,
+            [<Optional; DefaultParameterValue(null)>] ?AutoRange: StyleParam.AutoRange,
+            [<Optional; DefaultParameterValue(null)>] ?RangeMode: StyleParam.RangeMode,
+            [<Optional; DefaultParameterValue(null)>] ?Range: StyleParam.Range,
+            [<Optional; DefaultParameterValue(null)>] ?FixedRange: bool,
+            [<Optional; DefaultParameterValue(null)>] ?TickMode: StyleParam.TickMode,
+            [<Optional; DefaultParameterValue(null)>] ?NTicks: int,
+            [<Optional; DefaultParameterValue(null)>] ?Tick0: #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?DTick: #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?TickVals: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?TickText: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Ticks: StyleParam.TickOptions,
+            [<Optional; DefaultParameterValue(null)>] ?ShowTickLabels: bool,
+            [<Optional; DefaultParameterValue(null)>] ?TickFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?TickAngle: int,
+            [<Optional; DefaultParameterValue(null)>] ?ShowTickPrefix: StyleParam.ShowTickOption,
+            [<Optional; DefaultParameterValue(null)>] ?TickPrefix: string,
+            [<Optional; DefaultParameterValue(null)>] ?ShowTickSuffix: StyleParam.ShowTickOption,
+            [<Optional; DefaultParameterValue(null)>] ?TickSuffix: string,
+            [<Optional; DefaultParameterValue(null)>] ?ShowExponent: StyleParam.ShowExponent,
+            [<Optional; DefaultParameterValue(null)>] ?ExponentFormat: StyleParam.ExponentFormat,
+            [<Optional; DefaultParameterValue(null)>] ?MinExponent: float,
+            [<Optional; DefaultParameterValue(null)>] ?SeparateThousands: bool,
+            [<Optional; DefaultParameterValue(null)>] ?TickFormat: string,
+            [<Optional; DefaultParameterValue(null)>] ?TickFormatStops: seq<TickFormatStop>,
+            [<Optional; DefaultParameterValue(null)>] ?ShowLine: bool,
+            [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?ShowGrid: bool,
+            [<Optional; DefaultParameterValue(null)>] ?GridColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?GridWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?CategoryOrder: StyleParam.CategoryOrder,
+            [<Optional; DefaultParameterValue(null)>] ?CategoryArray: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?ArrayDTick: int,
+            [<Optional; DefaultParameterValue(null)>] ?ArrayTick0: int,
+            [<Optional; DefaultParameterValue(null)>] ?CheaterType: StyleParam.CheaterType,
+            [<Optional; DefaultParameterValue(null)>] ?EndLine: bool,
+            [<Optional; DefaultParameterValue(null)>] ?EndLineColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?EndLineWidth: int,
+            [<Optional; DefaultParameterValue(null)>] ?LabelPadding: int,
+            [<Optional; DefaultParameterValue(null)>] ?LabelPrefix: string,
+            [<Optional; DefaultParameterValue(null)>] ?LabelSuffix: string,
+            [<Optional; DefaultParameterValue(null)>] ?MinorGridColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?MinorGridCount: int,
+            [<Optional; DefaultParameterValue(null)>] ?MinorGridWidth: int,
+            [<Optional; DefaultParameterValue(null)>] ?Smoothing: float,
+            [<Optional; DefaultParameterValue(null)>] ?StartLine: bool,
+            [<Optional; DefaultParameterValue(null)>] ?StartLineColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?StartLineWidth: int
         ) =
-            LinearAxis() 
-            |> LinearAxis.style
-                (
-                    ?Color             = Color             ,
-                    ?Title             = Title             ,
-                    ?AxisType          = AxisType          ,
-                    ?AutoTypeNumbers   = AutoTypeNumbers   ,
-                    ?AutoRange         = AutoRange         ,
-                    ?RangeMode         = RangeMode         ,
-                    ?Range             = Range             ,
-                    ?FixedRange        = FixedRange        ,
-                    ?TickMode          = TickMode          ,
-                    ?NTicks            = NTicks            ,
-                    ?Tick0             = Tick0             ,
-                    ?DTick             = DTick             ,
-                    ?TickVals          = TickVals          ,
-                    ?TickText          = TickText          ,
-                    ?Ticks             = Ticks             ,
-                    ?ShowTickLabels    = ShowTickLabels    ,
-                    ?TickFont          = TickFont          ,
-                    ?TickAngle         = TickAngle         ,
-                    ?ShowTickPrefix    = ShowTickPrefix    ,
-                    ?TickPrefix        = TickPrefix        ,
-                    ?ShowTickSuffix    = ShowTickSuffix    ,
-                    ?TickSuffix        = TickSuffix        ,
-                    ?ShowExponent      = ShowExponent      ,
-                    ?ExponentFormat    = ExponentFormat    ,
-                    ?MinExponent       = MinExponent       ,
-                    ?SeparateThousands = SeparateThousands ,
-                    ?TickFormat        = TickFormat        ,
-                    ?TickFormatStops   = TickFormatStops   ,
-                    ?ShowLine          = ShowLine          ,
-                    ?LineColor         = LineColor         ,
-                    ?LineWidth         = LineWidth         ,
-                    ?ShowGrid          = ShowGrid          ,
-                    ?GridColor         = GridColor         ,
-                    ?GridWidth         = GridWidth         ,
-                    ?CategoryOrder     = CategoryOrder     ,
-                    ?CategoryArray     = CategoryArray     ,
-                    ?ArrayDTick        = ArrayDTick        ,
-                    ?ArrayTick0        = ArrayTick0        ,
-                    ?CheaterType       = CheaterType       ,
-                    ?EndLine           = EndLine           ,
-                    ?EndLineColor      = EndLineColor      ,
-                    ?EndLineWidth      = EndLineWidth      ,
-                    ?LabelPadding      = LabelPadding      ,
-                    ?LabelPrefix       = LabelPrefix       ,
-                    ?LabelSuffix       = LabelSuffix       ,
-                    ?MinorGridColor    = MinorGridColor    ,
-                    ?MinorGridCount    = MinorGridCount    ,
-                    ?MinorGridWidth    = MinorGridWidth    ,
-                    ?Smoothing         = Smoothing         ,
-                    ?StartLine         = StartLine         ,
-                    ?StartLineColor    = StartLineColor    ,
-                    ?StartLineWidth    = StartLineWidth    
-                )
-    
+        LinearAxis()
+        |> LinearAxis.style (
+            ?Color = Color,
+            ?Title = Title,
+            ?AxisType = AxisType,
+            ?AutoTypeNumbers = AutoTypeNumbers,
+            ?AutoRange = AutoRange,
+            ?RangeMode = RangeMode,
+            ?Range = Range,
+            ?FixedRange = FixedRange,
+            ?TickMode = TickMode,
+            ?NTicks = NTicks,
+            ?Tick0 = Tick0,
+            ?DTick = DTick,
+            ?TickVals = TickVals,
+            ?TickText = TickText,
+            ?Ticks = Ticks,
+            ?ShowTickLabels = ShowTickLabels,
+            ?TickFont = TickFont,
+            ?TickAngle = TickAngle,
+            ?ShowTickPrefix = ShowTickPrefix,
+            ?TickPrefix = TickPrefix,
+            ?ShowTickSuffix = ShowTickSuffix,
+            ?TickSuffix = TickSuffix,
+            ?ShowExponent = ShowExponent,
+            ?ExponentFormat = ExponentFormat,
+            ?MinExponent = MinExponent,
+            ?SeparateThousands = SeparateThousands,
+            ?TickFormat = TickFormat,
+            ?TickFormatStops = TickFormatStops,
+            ?ShowLine = ShowLine,
+            ?LineColor = LineColor,
+            ?LineWidth = LineWidth,
+            ?ShowGrid = ShowGrid,
+            ?GridColor = GridColor,
+            ?GridWidth = GridWidth,
+            ?CategoryOrder = CategoryOrder,
+            ?CategoryArray = CategoryArray,
+            ?ArrayDTick = ArrayDTick,
+            ?ArrayTick0 = ArrayTick0,
+            ?CheaterType = CheaterType,
+            ?EndLine = EndLine,
+            ?EndLineColor = EndLineColor,
+            ?EndLineWidth = EndLineWidth,
+            ?LabelPadding = LabelPadding,
+            ?LabelPrefix = LabelPrefix,
+            ?LabelSuffix = LabelSuffix,
+            ?MinorGridColor = MinorGridColor,
+            ?MinorGridCount = MinorGridCount,
+            ?MinorGridWidth = MinorGridWidth,
+            ?Smoothing = Smoothing,
+            ?StartLine = StartLine,
+            ?StartLineColor = StartLineColor,
+            ?StartLineWidth = StartLineWidth
+        )
+
     /// <summary>
     /// Initialize a LinearAxis object that can be used as a positional scale for indicator gauges.
     /// </summary>
@@ -684,62 +679,60 @@ type LinearAxis () =
     /// <param name="Visible">A single toggle to hide the axis while preserving interaction like dragging. Default is true when a cheater plot is present on the axis, otherwise false</param>
     static member initIndicatorGauge
         (
-            [<Optional;DefaultParameterValue(null)>] ?DTick             : #IConvertible,            
-            [<Optional;DefaultParameterValue(null)>] ?ExponentFormat    : StyleParam.ExponentFormat,
-            [<Optional;DefaultParameterValue(null)>] ?MinExponent       : float,
-            [<Optional;DefaultParameterValue(null)>] ?NTicks            : int,           
-            [<Optional;DefaultParameterValue(null)>] ?Range             : StyleParam.Range,            
-            [<Optional;DefaultParameterValue(null)>] ?SeparateThousands : bool,
-            [<Optional;DefaultParameterValue(null)>] ?ShowExponent      : StyleParam.ShowExponent,
-            [<Optional;DefaultParameterValue(null)>] ?ShowTickLabels    : bool,   
-            [<Optional;DefaultParameterValue(null)>] ?ShowTickPrefix    : StyleParam.ShowTickOption,   
-            [<Optional;DefaultParameterValue(null)>] ?ShowTickSuffix    : StyleParam.ShowTickOption,
-            [<Optional;DefaultParameterValue(null)>] ?Tick0             : #IConvertible,            
-            [<Optional;DefaultParameterValue(null)>] ?TickAngle         : int,        
-            [<Optional;DefaultParameterValue(null)>] ?TickColor         : Color,        
-            [<Optional;DefaultParameterValue(null)>] ?TickFont          : Font,         
-            [<Optional;DefaultParameterValue(null)>] ?TickFormat        : string,       
-            [<Optional;DefaultParameterValue(null)>] ?TickFormatStops   : seq<TickFormatStop>,
-            [<Optional;DefaultParameterValue(null)>] ?TickLen           : int,
-            [<Optional;DefaultParameterValue(null)>] ?TickMode          : StyleParam.TickMode,         
-            [<Optional;DefaultParameterValue(null)>] ?TickPrefix        : string,
-            [<Optional;DefaultParameterValue(null)>] ?Ticks             : StyleParam.TickOptions,            
-            [<Optional;DefaultParameterValue(null)>] ?TickSuffix        : string,
-            [<Optional;DefaultParameterValue(null)>] ?TickText          : seq<#IConvertible>,         
-            [<Optional;DefaultParameterValue(null)>] ?TickVals          : seq<#IConvertible>,         
-            [<Optional;DefaultParameterValue(null)>] ?TickWidth         : int,         
-            [<Optional;DefaultParameterValue(null)>] ?Visible           : bool
-
+            [<Optional; DefaultParameterValue(null)>] ?DTick: #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?ExponentFormat: StyleParam.ExponentFormat,
+            [<Optional; DefaultParameterValue(null)>] ?MinExponent: float,
+            [<Optional; DefaultParameterValue(null)>] ?NTicks: int,
+            [<Optional; DefaultParameterValue(null)>] ?Range: StyleParam.Range,
+            [<Optional; DefaultParameterValue(null)>] ?SeparateThousands: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ShowExponent: StyleParam.ShowExponent,
+            [<Optional; DefaultParameterValue(null)>] ?ShowTickLabels: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ShowTickPrefix: StyleParam.ShowTickOption,
+            [<Optional; DefaultParameterValue(null)>] ?ShowTickSuffix: StyleParam.ShowTickOption,
+            [<Optional; DefaultParameterValue(null)>] ?Tick0: #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?TickAngle: int,
+            [<Optional; DefaultParameterValue(null)>] ?TickColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?TickFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?TickFormat: string,
+            [<Optional; DefaultParameterValue(null)>] ?TickFormatStops: seq<TickFormatStop>,
+            [<Optional; DefaultParameterValue(null)>] ?TickLen: int,
+            [<Optional; DefaultParameterValue(null)>] ?TickMode: StyleParam.TickMode,
+            [<Optional; DefaultParameterValue(null)>] ?TickPrefix: string,
+            [<Optional; DefaultParameterValue(null)>] ?Ticks: StyleParam.TickOptions,
+            [<Optional; DefaultParameterValue(null)>] ?TickSuffix: string,
+            [<Optional; DefaultParameterValue(null)>] ?TickText: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?TickVals: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?TickWidth: int,
+            [<Optional; DefaultParameterValue(null)>] ?Visible: bool
         ) =
-            LinearAxis() 
-            |> LinearAxis.style
-                (
-                    ?DTick             = DTick             ,
-                    ?ExponentFormat    = ExponentFormat    ,
-                    ?MinExponent       = MinExponent       ,
-                    ?NTicks            = NTicks            ,
-                    ?Range             = Range             ,
-                    ?SeparateThousands = SeparateThousands ,
-                    ?ShowExponent      = ShowExponent      ,
-                    ?ShowTickLabels    = ShowTickLabels    ,
-                    ?ShowTickPrefix    = ShowTickPrefix    ,
-                    ?ShowTickSuffix    = ShowTickSuffix    ,
-                    ?Tick0             = Tick0             ,
-                    ?TickAngle         = TickAngle         ,
-                    ?TickColor         = TickColor         ,
-                    ?TickFont          = TickFont          ,
-                    ?TickFormat        = TickFormat        ,
-                    ?TickFormatStops   = TickFormatStops   ,
-                    ?TickLen           = TickLen           ,
-                    ?TickMode          = TickMode          ,
-                    ?TickPrefix        = TickPrefix        ,
-                    ?Ticks             = Ticks             ,
-                    ?TickSuffix        = TickSuffix        ,
-                    ?TickText          = TickText          ,
-                    ?TickVals          = TickVals          ,
-                    ?TickWidth         = TickWidth         ,
-                    ?Visible           = Visible           
-                )
+        LinearAxis()
+        |> LinearAxis.style (
+            ?DTick = DTick,
+            ?ExponentFormat = ExponentFormat,
+            ?MinExponent = MinExponent,
+            ?NTicks = NTicks,
+            ?Range = Range,
+            ?SeparateThousands = SeparateThousands,
+            ?ShowExponent = ShowExponent,
+            ?ShowTickLabels = ShowTickLabels,
+            ?ShowTickPrefix = ShowTickPrefix,
+            ?ShowTickSuffix = ShowTickSuffix,
+            ?Tick0 = Tick0,
+            ?TickAngle = TickAngle,
+            ?TickColor = TickColor,
+            ?TickFont = TickFont,
+            ?TickFormat = TickFormat,
+            ?TickFormatStops = TickFormatStops,
+            ?TickLen = TickLen,
+            ?TickMode = TickMode,
+            ?TickPrefix = TickPrefix,
+            ?Ticks = Ticks,
+            ?TickSuffix = TickSuffix,
+            ?TickText = TickText,
+            ?TickVals = TickVals,
+            ?TickWidth = TickWidth,
+            ?Visible = Visible
+        )
     /// <summary>
     /// Create a function that applies the given style parameters to a LinearAxis object
     /// </summary>
@@ -835,202 +828,198 @@ type LinearAxis () =
     /// <param name="StartLine">Determines whether or not a line is drawn at along the starting value of this axis. If "true", the start line is drawn on top of the grid lines.</param>
     /// <param name="StartLineColor">Sets the line color of the start line.</param>
     /// <param name="StartLineWidth">Sets the width (in px) of the start line.</param>
-    
+
     static member style
         (
-            [<Optional;DefaultParameterValue(null)>] ?Visible           : bool,
-            [<Optional;DefaultParameterValue(null)>] ?Color             : Color,
-            [<Optional;DefaultParameterValue(null)>] ?Title             : Title,            
-            [<Optional;DefaultParameterValue(null)>] ?AxisType          : StyleParam.AxisType, 
-            [<Optional;DefaultParameterValue(null)>] ?AutoTypeNumbers   : StyleParam.AutoTypeNumbers,
-            [<Optional;DefaultParameterValue(null)>] ?AutoRange         : StyleParam.AutoRange,        
-            [<Optional;DefaultParameterValue(null)>] ?RangeMode         : StyleParam.RangeMode,        
-            [<Optional;DefaultParameterValue(null)>] ?Range             : StyleParam.Range,            
-            [<Optional;DefaultParameterValue(null)>] ?FixedRange        : bool,       
-            [<Optional;DefaultParameterValue(null)>] ?ScaleAnchor       : StyleParam.LinearAxisId,
-            [<Optional;DefaultParameterValue(null)>] ?ScaleRatio        : float,
-            [<Optional;DefaultParameterValue(null)>] ?Constrain         : StyleParam.AxisConstraint,
-            [<Optional;DefaultParameterValue(null)>] ?ConstrainToward   : StyleParam.AxisConstraintDirection,
-            [<Optional;DefaultParameterValue(null)>] ?Matches           : StyleParam.LinearAxisId,
-            [<Optional;DefaultParameterValue(null)>] ?Rangebreaks       : seq<Rangebreak>,
-            [<Optional;DefaultParameterValue(null)>] ?TickMode          : StyleParam.TickMode,         
-            [<Optional;DefaultParameterValue(null)>] ?NTicks            : int,           
-            [<Optional;DefaultParameterValue(null)>] ?Tick0             : #IConvertible,            
-            [<Optional;DefaultParameterValue(null)>] ?DTick             : #IConvertible,            
-            [<Optional;DefaultParameterValue(null)>] ?TickVals          : seq<#IConvertible>,         
-            [<Optional;DefaultParameterValue(null)>] ?TickText          : seq<#IConvertible>,         
-            [<Optional;DefaultParameterValue(null)>] ?Ticks             : StyleParam.TickOptions,            
-            [<Optional;DefaultParameterValue(null)>] ?TicksOn           : StyleParam.CategoryTickAnchor,
-            [<Optional;DefaultParameterValue(null)>] ?TickLabelMode     : StyleParam.TickLabelMode,
-            [<Optional;DefaultParameterValue(null)>] ?TickLabelPosition : StyleParam.TickLabelPosition,
-            [<Optional;DefaultParameterValue(null)>] ?TickLabelOverflow : StyleParam.TickLabelOverflow,
-            [<Optional;DefaultParameterValue(null)>] ?Mirror            : StyleParam.Mirror,           
-            [<Optional;DefaultParameterValue(null)>] ?TickLen           : int,
-            [<Optional;DefaultParameterValue(null)>] ?TickWidth         : int,        
-            [<Optional;DefaultParameterValue(null)>] ?TickColor         : Color,        
-            [<Optional;DefaultParameterValue(null)>] ?ShowTickLabels    : bool,   
-            [<Optional;DefaultParameterValue(null)>] ?AutoMargin        : bool,
-            [<Optional;DefaultParameterValue(null)>] ?ShowSpikes        : bool,       
-            [<Optional;DefaultParameterValue(null)>] ?SpikeColor        : Color,       
-            [<Optional;DefaultParameterValue(null)>] ?SpikeThickness    : int,   
-            [<Optional;DefaultParameterValue(null)>] ?SpikeDash         : StyleParam.DrawingStyle,
-            [<Optional;DefaultParameterValue(null)>] ?SpikeMode         : StyleParam.SpikeMode,
-            [<Optional;DefaultParameterValue(null)>] ?SpikeSnap         : StyleParam.SpikeSnap,
-            [<Optional;DefaultParameterValue(null)>] ?TickFont          : Font,         
-            [<Optional;DefaultParameterValue(null)>] ?TickAngle         : int,        
-            [<Optional;DefaultParameterValue(null)>] ?ShowTickPrefix    : StyleParam.ShowTickOption,   
-            [<Optional;DefaultParameterValue(null)>] ?TickPrefix        : string,
-            [<Optional;DefaultParameterValue(null)>] ?ShowTickSuffix    : StyleParam.ShowTickOption,
-            [<Optional;DefaultParameterValue(null)>] ?TickSuffix        : string,
-            [<Optional;DefaultParameterValue(null)>] ?ShowExponent      : StyleParam.ShowExponent,
-            [<Optional;DefaultParameterValue(null)>] ?ExponentFormat    : StyleParam.ExponentFormat,
-            [<Optional;DefaultParameterValue(null)>] ?MinExponent       : float,
-            [<Optional;DefaultParameterValue(null)>] ?SeparateThousands : bool,
-            [<Optional;DefaultParameterValue(null)>] ?TickFormat        : string,       
-            [<Optional;DefaultParameterValue(null)>] ?TickFormatStops   : seq<TickFormatStop>,
-            [<Optional;DefaultParameterValue(null)>] ?HoverFormat       : string,
-            [<Optional;DefaultParameterValue(null)>] ?ShowLine          : bool,         
-            [<Optional;DefaultParameterValue(null)>] ?LineColor         : Color,        
-            [<Optional;DefaultParameterValue(null)>] ?LineWidth         : float,        
-            [<Optional;DefaultParameterValue(null)>] ?ShowGrid          : bool,         
-            [<Optional;DefaultParameterValue(null)>] ?GridColor         : Color,        
-            [<Optional;DefaultParameterValue(null)>] ?GridWidth         : float,        
-            [<Optional;DefaultParameterValue(null)>] ?ZeroLine          : bool,         
-            [<Optional;DefaultParameterValue(null)>] ?ZeroLineColor     : Color,    
-            [<Optional;DefaultParameterValue(null)>] ?ZeroLineWidth     : float,    
-            [<Optional;DefaultParameterValue(null)>] ?ShowDividers      : bool,
-            [<Optional;DefaultParameterValue(null)>] ?DividerColor      : Color,
-            [<Optional;DefaultParameterValue(null)>] ?DividerWidth      : int,
-            [<Optional;DefaultParameterValue(null)>] ?Anchor            : StyleParam.LinearAxisId,
-            [<Optional;DefaultParameterValue(null)>] ?Side              : StyleParam.Side,
-            [<Optional;DefaultParameterValue(null)>] ?Overlaying        : StyleParam.LinearAxisId,
-            [<Optional;DefaultParameterValue(null)>] ?Layer             : StyleParam.Layer,
-            [<Optional;DefaultParameterValue(null)>] ?Domain            : StyleParam.Range,
-            [<Optional;DefaultParameterValue(null)>] ?Position          : float,         
-            [<Optional;DefaultParameterValue(null)>] ?CategoryOrder     : StyleParam.CategoryOrder,
-            [<Optional;DefaultParameterValue(null)>] ?CategoryArray     : seq<#IConvertible>,
-            [<Optional;DefaultParameterValue(null)>] ?UIRevision        : #IConvertible,
-            [<Optional;DefaultParameterValue(null)>] ?RangeSlider       : RangeSlider,
-            [<Optional;DefaultParameterValue(null)>] ?RangeSelector     : RangeSelector,
-            [<Optional;DefaultParameterValue(null)>] ?Calendar          : StyleParam.Calendar,
-            // exclusive for carpet traces
-            [<Optional;DefaultParameterValue(null)>] ?ArrayDTick        : int,
-            [<Optional;DefaultParameterValue(null)>] ?ArrayTick0        : int,
-            [<Optional;DefaultParameterValue(null)>] ?CheaterType       : StyleParam.CheaterType,
-            [<Optional;DefaultParameterValue(null)>] ?EndLine           : bool,
-            [<Optional;DefaultParameterValue(null)>] ?EndLineColor      : Color,
-            [<Optional;DefaultParameterValue(null)>] ?EndLineWidth      : int,
-            [<Optional;DefaultParameterValue(null)>] ?LabelPadding      : int,
-            [<Optional;DefaultParameterValue(null)>] ?LabelPrefix       : string,
-            [<Optional;DefaultParameterValue(null)>] ?LabelSuffix       : string,
-            [<Optional;DefaultParameterValue(null)>] ?MinorGridColor    : Color,
-            [<Optional;DefaultParameterValue(null)>] ?MinorGridCount    : int,
-            [<Optional;DefaultParameterValue(null)>] ?MinorGridWidth    : int,
-            [<Optional;DefaultParameterValue(null)>] ?Smoothing         : float,
-            [<Optional;DefaultParameterValue(null)>] ?StartLine         : bool,
-            [<Optional;DefaultParameterValue(null)>] ?StartLineColor    : Color,
-            [<Optional;DefaultParameterValue(null)>] ?StartLineWidth    : int,
-            //exclusive for 3D scenes
-            [<Optional;DefaultParameterValue(null)>] ?BackgroundColor    : Color,
-            [<Optional;DefaultParameterValue(null)>] ?ShowBackground     : bool
-
+            [<Optional; DefaultParameterValue(null)>] ?Visible: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Color: Color,
+            [<Optional; DefaultParameterValue(null)>] ?Title: Title,
+            [<Optional; DefaultParameterValue(null)>] ?AxisType: StyleParam.AxisType,
+            [<Optional; DefaultParameterValue(null)>] ?AutoTypeNumbers: StyleParam.AutoTypeNumbers,
+            [<Optional; DefaultParameterValue(null)>] ?AutoRange: StyleParam.AutoRange,
+            [<Optional; DefaultParameterValue(null)>] ?RangeMode: StyleParam.RangeMode,
+            [<Optional; DefaultParameterValue(null)>] ?Range: StyleParam.Range,
+            [<Optional; DefaultParameterValue(null)>] ?FixedRange: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ScaleAnchor: StyleParam.LinearAxisId,
+            [<Optional; DefaultParameterValue(null)>] ?ScaleRatio: float,
+            [<Optional; DefaultParameterValue(null)>] ?Constrain: StyleParam.AxisConstraint,
+            [<Optional; DefaultParameterValue(null)>] ?ConstrainToward: StyleParam.AxisConstraintDirection,
+            [<Optional; DefaultParameterValue(null)>] ?Matches: StyleParam.LinearAxisId,
+            [<Optional; DefaultParameterValue(null)>] ?Rangebreaks: seq<Rangebreak>,
+            [<Optional; DefaultParameterValue(null)>] ?TickMode: StyleParam.TickMode,
+            [<Optional; DefaultParameterValue(null)>] ?NTicks: int,
+            [<Optional; DefaultParameterValue(null)>] ?Tick0: #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?DTick: #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?TickVals: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?TickText: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Ticks: StyleParam.TickOptions,
+            [<Optional; DefaultParameterValue(null)>] ?TicksOn: StyleParam.CategoryTickAnchor,
+            [<Optional; DefaultParameterValue(null)>] ?TickLabelMode: StyleParam.TickLabelMode,
+            [<Optional; DefaultParameterValue(null)>] ?TickLabelPosition: StyleParam.TickLabelPosition,
+            [<Optional; DefaultParameterValue(null)>] ?TickLabelOverflow: StyleParam.TickLabelOverflow,
+            [<Optional; DefaultParameterValue(null)>] ?Mirror: StyleParam.Mirror,
+            [<Optional; DefaultParameterValue(null)>] ?TickLen: int,
+            [<Optional; DefaultParameterValue(null)>] ?TickWidth: int,
+            [<Optional; DefaultParameterValue(null)>] ?TickColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?ShowTickLabels: bool,
+            [<Optional; DefaultParameterValue(null)>] ?AutoMargin: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ShowSpikes: bool,
+            [<Optional; DefaultParameterValue(null)>] ?SpikeColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?SpikeThickness: int,
+            [<Optional; DefaultParameterValue(null)>] ?SpikeDash: StyleParam.DrawingStyle,
+            [<Optional; DefaultParameterValue(null)>] ?SpikeMode: StyleParam.SpikeMode,
+            [<Optional; DefaultParameterValue(null)>] ?SpikeSnap: StyleParam.SpikeSnap,
+            [<Optional; DefaultParameterValue(null)>] ?TickFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?TickAngle: int,
+            [<Optional; DefaultParameterValue(null)>] ?ShowTickPrefix: StyleParam.ShowTickOption,
+            [<Optional; DefaultParameterValue(null)>] ?TickPrefix: string,
+            [<Optional; DefaultParameterValue(null)>] ?ShowTickSuffix: StyleParam.ShowTickOption,
+            [<Optional; DefaultParameterValue(null)>] ?TickSuffix: string,
+            [<Optional; DefaultParameterValue(null)>] ?ShowExponent: StyleParam.ShowExponent,
+            [<Optional; DefaultParameterValue(null)>] ?ExponentFormat: StyleParam.ExponentFormat,
+            [<Optional; DefaultParameterValue(null)>] ?MinExponent: float,
+            [<Optional; DefaultParameterValue(null)>] ?SeparateThousands: bool,
+            [<Optional; DefaultParameterValue(null)>] ?TickFormat: string,
+            [<Optional; DefaultParameterValue(null)>] ?TickFormatStops: seq<TickFormatStop>,
+            [<Optional; DefaultParameterValue(null)>] ?HoverFormat: string,
+            [<Optional; DefaultParameterValue(null)>] ?ShowLine: bool,
+            [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?ShowGrid: bool,
+            [<Optional; DefaultParameterValue(null)>] ?GridColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?GridWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?ZeroLine: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ZeroLineColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?ZeroLineWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?ShowDividers: bool,
+            [<Optional; DefaultParameterValue(null)>] ?DividerColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?DividerWidth: int,
+            [<Optional; DefaultParameterValue(null)>] ?Anchor: StyleParam.LinearAxisId,
+            [<Optional; DefaultParameterValue(null)>] ?Side: StyleParam.Side,
+            [<Optional; DefaultParameterValue(null)>] ?Overlaying: StyleParam.LinearAxisId,
+            [<Optional; DefaultParameterValue(null)>] ?Layer: StyleParam.Layer,
+            [<Optional; DefaultParameterValue(null)>] ?Domain: StyleParam.Range,
+            [<Optional; DefaultParameterValue(null)>] ?Position: float,
+            [<Optional; DefaultParameterValue(null)>] ?CategoryOrder: StyleParam.CategoryOrder,
+            [<Optional; DefaultParameterValue(null)>] ?CategoryArray: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?UIRevision: #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?RangeSlider: RangeSlider,
+            [<Optional; DefaultParameterValue(null)>] ?RangeSelector: RangeSelector,
+            [<Optional; DefaultParameterValue(null)>] ?Calendar: StyleParam.Calendar,
+            [<Optional; DefaultParameterValue(null)>] ?ArrayDTick: int,
+            [<Optional; DefaultParameterValue(null)>] ?ArrayTick0: int,
+            [<Optional; DefaultParameterValue(null)>] ?CheaterType: StyleParam.CheaterType,
+            [<Optional; DefaultParameterValue(null)>] ?EndLine: bool,
+            [<Optional; DefaultParameterValue(null)>] ?EndLineColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?EndLineWidth: int,
+            [<Optional; DefaultParameterValue(null)>] ?LabelPadding: int,
+            [<Optional; DefaultParameterValue(null)>] ?LabelPrefix: string,
+            [<Optional; DefaultParameterValue(null)>] ?LabelSuffix: string,
+            [<Optional; DefaultParameterValue(null)>] ?MinorGridColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?MinorGridCount: int,
+            [<Optional; DefaultParameterValue(null)>] ?MinorGridWidth: int,
+            [<Optional; DefaultParameterValue(null)>] ?Smoothing: float,
+            [<Optional; DefaultParameterValue(null)>] ?StartLine: bool,
+            [<Optional; DefaultParameterValue(null)>] ?StartLineColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?StartLineWidth: int,
+            [<Optional; DefaultParameterValue(null)>] ?BackgroundColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?ShowBackground: bool
         ) =
-            (fun (axis:LinearAxis) -> 
-                
-                Visible             |> DynObj.setValueOpt axis   "visible" 
-                Color               |> DynObj.setValueOpt axis   "color" 
-                Title               |> DynObj.setValueOpt axis   "title" 
-                AxisType            |> DynObj.setValueOptBy axis "type" StyleParam.AxisType.convert
-                AutoTypeNumbers     |> DynObj.setValueOptBy axis "autotypenumbers" StyleParam.AutoTypeNumbers.convert
-                AutoRange           |> DynObj.setValueOptBy axis "autorange" StyleParam.AutoRange.convert
-                RangeMode           |> DynObj.setValueOptBy axis "rangemode" StyleParam.RangeMode.convert
-                Range               |> DynObj.setValueOptBy axis "range" StyleParam.Range.convert
-                FixedRange          |> DynObj.setValueOpt axis   "fixedrange" 
-                ScaleAnchor         |> DynObj.setValueOptBy axis "scaleanchor" StyleParam.LinearAxisId.convert
-                ScaleRatio          |> DynObj.setValueOpt axis   "scaleratio" 
-                Constrain           |> DynObj.setValueOptBy axis "constrain" StyleParam.AxisConstraint.convert
-                ConstrainToward     |> DynObj.setValueOptBy axis "constraintoward" StyleParam.AxisConstraintDirection.convert
-                Matches             |> DynObj.setValueOptBy axis "matches" StyleParam.LinearAxisId.convert
-                Rangebreaks         |> DynObj.setValueOpt axis   "rangebreaks" 
-                TickMode            |> DynObj.setValueOptBy axis "tickmode" StyleParam.TickMode.convert
-                NTicks              |> DynObj.setValueOpt axis   "nticks" 
-                Tick0               |> DynObj.setValueOpt axis   "tick0" 
-                DTick               |> DynObj.setValueOpt axis   "dtick" 
-                TickVals            |> DynObj.setValueOpt axis   "tickvals" 
-                TickText            |> DynObj.setValueOpt axis   "ticktext" 
-                Ticks               |> DynObj.setValueOptBy axis "ticks" StyleParam.TickOptions.convert
-                TicksOn             |> DynObj.setValueOptBy axis "tickson" StyleParam.CategoryTickAnchor.convert
-                TickLabelMode       |> DynObj.setValueOptBy axis "ticklabelmode" StyleParam.TickLabelMode.convert
-                TickLabelPosition   |> DynObj.setValueOptBy axis "ticklabelposition" StyleParam.TickLabelPosition.convert
-                TickLabelOverflow   |> DynObj.setValueOptBy axis "ticklabeloverflow" StyleParam.TickLabelOverflow.convert
-                Mirror              |> DynObj.setValueOptBy axis "mirror" StyleParam.Mirror.convert
-                TickLen             |> DynObj.setValueOpt axis   "ticklen" 
-                TickWidth           |> DynObj.setValueOpt axis   "tickwidth" 
-                TickColor           |> DynObj.setValueOpt axis   "tickcolor" 
-                ShowTickLabels      |> DynObj.setValueOpt axis   "showticklabels" 
-                AutoMargin          |> DynObj.setValueOpt axis   "automargin" 
-                ShowSpikes          |> DynObj.setValueOpt axis   "showspikes" 
-                SpikeColor          |> DynObj.setValueOpt axis   "spikecolor" 
-                SpikeThickness      |> DynObj.setValueOpt axis   "spikethickness" 
-                SpikeDash           |> DynObj.setValueOptBy axis "spikedash" StyleParam.DrawingStyle.convert
-                SpikeMode           |> DynObj.setValueOptBy axis "spikemode" StyleParam.SpikeMode.convert
-                SpikeSnap           |> DynObj.setValueOptBy axis "spikesnap" StyleParam.SpikeSnap.convert
-                TickFont            |> DynObj.setValueOpt axis   "tickfont" 
-                TickAngle           |> DynObj.setValueOpt axis   "tickangle" 
-                ShowTickPrefix      |> DynObj.setValueOptBy axis "showtickprefix" StyleParam.ShowTickOption.convert
-                TickPrefix          |> DynObj.setValueOpt axis   "tickprefix" 
-                ShowTickSuffix      |> DynObj.setValueOptBy axis "showticksuffix" StyleParam.ShowTickOption.convert
-                TickSuffix          |> DynObj.setValueOpt axis   "ticksuffix" 
-                ShowExponent        |> DynObj.setValueOptBy axis "showexponent" StyleParam.ShowExponent.convert
-                ExponentFormat      |> DynObj.setValueOptBy axis "exponentformat" StyleParam.ExponentFormat.convert
-                MinExponent         |> DynObj.setValueOpt axis   "minexponent" 
-                SeparateThousands   |> DynObj.setValueOpt axis   "separatethousands" 
-                TickFormat          |> DynObj.setValueOpt axis   "tickformat" 
-                TickFormatStops     |> DynObj.setValueOpt axis   "tickformatstops"
-                HoverFormat         |> DynObj.setValueOpt axis   "hoverformat" 
-                ShowLine            |> DynObj.setValueOpt axis   "showline" 
-                LineColor           |> DynObj.setValueOpt axis   "linecolor" 
-                LineWidth           |> DynObj.setValueOpt axis   "linewidth" 
-                ShowGrid            |> DynObj.setValueOpt axis   "showgrid" 
-                GridColor           |> DynObj.setValueOpt axis   "gridcolor" 
-                GridWidth           |> DynObj.setValueOpt axis   "gridwidth" 
-                ZeroLine            |> DynObj.setValueOpt axis   "zeroline" 
-                ZeroLineColor       |> DynObj.setValueOpt axis   "zerolinecolor" 
-                ZeroLineWidth       |> DynObj.setValueOpt axis   "zerolinewidth" 
-                ShowDividers        |> DynObj.setValueOpt axis   "showdividers" 
-                DividerColor        |> DynObj.setValueOpt axis   "dividercolor" 
-                DividerWidth        |> DynObj.setValueOpt axis   "dividerwidth" 
-                Anchor              |> DynObj.setValueOptBy axis "anchor" StyleParam.LinearAxisId.convert
-                Side                |> DynObj.setValueOptBy axis "side" StyleParam.Side.convert
-                Overlaying          |> DynObj.setValueOptBy axis "overlaying" StyleParam.LinearAxisId.convert
-                Layer               |> DynObj.setValueOptBy axis "layer" StyleParam.Layer.convert
-                Domain              |> DynObj.setValueOptBy axis "domain" StyleParam.Range.convert
-                Position            |> DynObj.setValueOpt axis   "position" 
-                CategoryOrder       |> DynObj.setValueOptBy axis "categoryorder" StyleParam.CategoryOrder.convert
-                CategoryArray       |> DynObj.setValueOpt axis   "categoryarray" 
-                UIRevision          |> DynObj.setValueOpt axis   "uirevision" 
-                RangeSlider         |> DynObj.setValueOpt axis   "rangeslider" 
-                RangeSelector       |> DynObj.setValueOpt axis   "rangeselector" 
-                Calendar            |> DynObj.setValueOptBy axis "calendar" StyleParam.Calendar.convert
-                ArrayDTick          |> DynObj.setValueOpt axis   "arraydtick" 
-                ArrayTick0          |> DynObj.setValueOpt axis   "arraytick0" 
-                CheaterType         |> DynObj.setValueOptBy axis   "cheatertype" StyleParam.CheaterType.convert
-                EndLine             |> DynObj.setValueOpt axis   "endline" 
-                EndLineColor        |> DynObj.setValueOpt axis   "endlinecolor" 
-                EndLineWidth        |> DynObj.setValueOpt axis   "endlinewidth" 
-                LabelPadding        |> DynObj.setValueOpt axis   "labelpadding" 
-                LabelPrefix         |> DynObj.setValueOpt axis   "labelprefix" 
-                LabelSuffix         |> DynObj.setValueOpt axis   "labelsuffix" 
-                MinorGridColor      |> DynObj.setValueOpt axis   "minorgridcolor" 
-                MinorGridCount      |> DynObj.setValueOpt axis   "minorgridcount" 
-                MinorGridWidth      |> DynObj.setValueOpt axis   "minorgridwidth" 
-                Smoothing           |> DynObj.setValueOpt axis   "smoothing" 
-                StartLine           |> DynObj.setValueOpt axis   "startline" 
-                StartLineColor      |> DynObj.setValueOpt axis   "startlinecolor" 
-                StartLineWidth      |> DynObj.setValueOpt axis   "startlinewidth" 
-                BackgroundColor     |> DynObj.setValueOpt axis   "backgroundcolor"
-                ShowBackground      |> DynObj.setValueOpt axis   "showbackground"
+        (fun (axis: LinearAxis) ->
+
+            Visible |> DynObj.setValueOpt axis "visible"
+            Color |> DynObj.setValueOpt axis "color"
+            Title |> DynObj.setValueOpt axis "title"
+            AxisType |> DynObj.setValueOptBy axis "type" StyleParam.AxisType.convert
+            AutoTypeNumbers |> DynObj.setValueOptBy axis "autotypenumbers" StyleParam.AutoTypeNumbers.convert
+            AutoRange |> DynObj.setValueOptBy axis "autorange" StyleParam.AutoRange.convert
+            RangeMode |> DynObj.setValueOptBy axis "rangemode" StyleParam.RangeMode.convert
+            Range |> DynObj.setValueOptBy axis "range" StyleParam.Range.convert
+            FixedRange |> DynObj.setValueOpt axis "fixedrange"
+            ScaleAnchor |> DynObj.setValueOptBy axis "scaleanchor" StyleParam.LinearAxisId.convert
+            ScaleRatio |> DynObj.setValueOpt axis "scaleratio"
+            Constrain |> DynObj.setValueOptBy axis "constrain" StyleParam.AxisConstraint.convert
+            ConstrainToward |> DynObj.setValueOptBy axis "constraintoward" StyleParam.AxisConstraintDirection.convert
+            Matches |> DynObj.setValueOptBy axis "matches" StyleParam.LinearAxisId.convert
+            Rangebreaks |> DynObj.setValueOpt axis "rangebreaks"
+            TickMode |> DynObj.setValueOptBy axis "tickmode" StyleParam.TickMode.convert
+            NTicks |> DynObj.setValueOpt axis "nticks"
+            Tick0 |> DynObj.setValueOpt axis "tick0"
+            DTick |> DynObj.setValueOpt axis "dtick"
+            TickVals |> DynObj.setValueOpt axis "tickvals"
+            TickText |> DynObj.setValueOpt axis "ticktext"
+            Ticks |> DynObj.setValueOptBy axis "ticks" StyleParam.TickOptions.convert
+            TicksOn |> DynObj.setValueOptBy axis "tickson" StyleParam.CategoryTickAnchor.convert
+            TickLabelMode |> DynObj.setValueOptBy axis "ticklabelmode" StyleParam.TickLabelMode.convert
+            TickLabelPosition |> DynObj.setValueOptBy axis "ticklabelposition" StyleParam.TickLabelPosition.convert
+            TickLabelOverflow |> DynObj.setValueOptBy axis "ticklabeloverflow" StyleParam.TickLabelOverflow.convert
+            Mirror |> DynObj.setValueOptBy axis "mirror" StyleParam.Mirror.convert
+            TickLen |> DynObj.setValueOpt axis "ticklen"
+            TickWidth |> DynObj.setValueOpt axis "tickwidth"
+            TickColor |> DynObj.setValueOpt axis "tickcolor"
+            ShowTickLabels |> DynObj.setValueOpt axis "showticklabels"
+            AutoMargin |> DynObj.setValueOpt axis "automargin"
+            ShowSpikes |> DynObj.setValueOpt axis "showspikes"
+            SpikeColor |> DynObj.setValueOpt axis "spikecolor"
+            SpikeThickness |> DynObj.setValueOpt axis "spikethickness"
+            SpikeDash |> DynObj.setValueOptBy axis "spikedash" StyleParam.DrawingStyle.convert
+            SpikeMode |> DynObj.setValueOptBy axis "spikemode" StyleParam.SpikeMode.convert
+            SpikeSnap |> DynObj.setValueOptBy axis "spikesnap" StyleParam.SpikeSnap.convert
+            TickFont |> DynObj.setValueOpt axis "tickfont"
+            TickAngle |> DynObj.setValueOpt axis "tickangle"
+            ShowTickPrefix |> DynObj.setValueOptBy axis "showtickprefix" StyleParam.ShowTickOption.convert
+            TickPrefix |> DynObj.setValueOpt axis "tickprefix"
+            ShowTickSuffix |> DynObj.setValueOptBy axis "showticksuffix" StyleParam.ShowTickOption.convert
+            TickSuffix |> DynObj.setValueOpt axis "ticksuffix"
+            ShowExponent |> DynObj.setValueOptBy axis "showexponent" StyleParam.ShowExponent.convert
+            ExponentFormat |> DynObj.setValueOptBy axis "exponentformat" StyleParam.ExponentFormat.convert
+            MinExponent |> DynObj.setValueOpt axis "minexponent"
+            SeparateThousands |> DynObj.setValueOpt axis "separatethousands"
+            TickFormat |> DynObj.setValueOpt axis "tickformat"
+            TickFormatStops |> DynObj.setValueOpt axis "tickformatstops"
+            HoverFormat |> DynObj.setValueOpt axis "hoverformat"
+            ShowLine |> DynObj.setValueOpt axis "showline"
+            LineColor |> DynObj.setValueOpt axis "linecolor"
+            LineWidth |> DynObj.setValueOpt axis "linewidth"
+            ShowGrid |> DynObj.setValueOpt axis "showgrid"
+            GridColor |> DynObj.setValueOpt axis "gridcolor"
+            GridWidth |> DynObj.setValueOpt axis "gridwidth"
+            ZeroLine |> DynObj.setValueOpt axis "zeroline"
+            ZeroLineColor |> DynObj.setValueOpt axis "zerolinecolor"
+            ZeroLineWidth |> DynObj.setValueOpt axis "zerolinewidth"
+            ShowDividers |> DynObj.setValueOpt axis "showdividers"
+            DividerColor |> DynObj.setValueOpt axis "dividercolor"
+            DividerWidth |> DynObj.setValueOpt axis "dividerwidth"
+            Anchor |> DynObj.setValueOptBy axis "anchor" StyleParam.LinearAxisId.convert
+            Side |> DynObj.setValueOptBy axis "side" StyleParam.Side.convert
+            Overlaying |> DynObj.setValueOptBy axis "overlaying" StyleParam.LinearAxisId.convert
+            Layer |> DynObj.setValueOptBy axis "layer" StyleParam.Layer.convert
+            Domain |> DynObj.setValueOptBy axis "domain" StyleParam.Range.convert
+            Position |> DynObj.setValueOpt axis "position"
+            CategoryOrder |> DynObj.setValueOptBy axis "categoryorder" StyleParam.CategoryOrder.convert
+            CategoryArray |> DynObj.setValueOpt axis "categoryarray"
+            UIRevision |> DynObj.setValueOpt axis "uirevision"
+            RangeSlider |> DynObj.setValueOpt axis "rangeslider"
+            RangeSelector |> DynObj.setValueOpt axis "rangeselector"
+            Calendar |> DynObj.setValueOptBy axis "calendar" StyleParam.Calendar.convert
+            ArrayDTick |> DynObj.setValueOpt axis "arraydtick"
+            ArrayTick0 |> DynObj.setValueOpt axis "arraytick0"
+            CheaterType |> DynObj.setValueOptBy axis "cheatertype" StyleParam.CheaterType.convert
+            EndLine |> DynObj.setValueOpt axis "endline"
+            EndLineColor |> DynObj.setValueOpt axis "endlinecolor"
+            EndLineWidth |> DynObj.setValueOpt axis "endlinewidth"
+            LabelPadding |> DynObj.setValueOpt axis "labelpadding"
+            LabelPrefix |> DynObj.setValueOpt axis "labelprefix"
+            LabelSuffix |> DynObj.setValueOpt axis "labelsuffix"
+            MinorGridColor |> DynObj.setValueOpt axis "minorgridcolor"
+            MinorGridCount |> DynObj.setValueOpt axis "minorgridcount"
+            MinorGridWidth |> DynObj.setValueOpt axis "minorgridwidth"
+            Smoothing |> DynObj.setValueOpt axis "smoothing"
+            StartLine |> DynObj.setValueOpt axis "startline"
+            StartLineColor |> DynObj.setValueOpt axis "startlinecolor"
+            StartLineWidth |> DynObj.setValueOpt axis "startlinewidth"
+            BackgroundColor |> DynObj.setValueOpt axis "backgroundcolor"
+            ShowBackground |> DynObj.setValueOpt axis "showbackground"
 
 
-                axis
-            )
+            axis)

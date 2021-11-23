@@ -6,30 +6,25 @@ open DynamicObj
 open System
 open System.Runtime.InteropServices
 
-type Spaceframe () =
-    inherit DynamicObj () 
+type Spaceframe() =
+    inherit DynamicObj()
 
-    static member init 
+    static member init
         (
-            [<Optional;DefaultParameterValue(null)>] ?Fill: float,
-            [<Optional;DefaultParameterValue(null)>] ?Show: bool
+            [<Optional; DefaultParameterValue(null)>] ?Fill: float,
+            [<Optional; DefaultParameterValue(null)>] ?Show: bool
         ) =
-            Spaceframe()
-            |> Spaceframe.style
-                (
-                    ?Fill       = Fill,
-                    ?Show       = Show
-                )
+        Spaceframe() |> Spaceframe.style (?Fill = Fill, ?Show = Show)
 
     static member style
         (
-            [<Optional;DefaultParameterValue(null)>] ?Fill: float,
-            [<Optional;DefaultParameterValue(null)>] ?Show: bool
+            [<Optional; DefaultParameterValue(null)>] ?Fill: float,
+            [<Optional; DefaultParameterValue(null)>] ?Show: bool
         ) =
 
-            fun (spaceframe: Spaceframe) ->
-                
-                Fill        |> DynObj.setValueOpt spaceframe "fill"
-                Show        |> DynObj.setValueOpt spaceframe "show"
+        fun (spaceframe: Spaceframe) ->
 
-                spaceframe
+            Fill |> DynObj.setValueOpt spaceframe "fill"
+            Show |> DynObj.setValueOpt spaceframe "show"
+
+            spaceframe

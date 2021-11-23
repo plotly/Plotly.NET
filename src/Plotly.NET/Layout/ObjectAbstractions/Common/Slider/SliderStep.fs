@@ -7,10 +7,10 @@ open DynamicObj
 /// The object including the slider steps style and update parameters
 /// </summary>
 type SliderStep() =
-    inherit DynamicObj ()
+    inherit DynamicObj()
 
     /// <summary>
-    /// Initializes the slider with style parameters 
+    /// Initializes the slider with style parameters
     /// </summary>
     /// <param name="Args">Sets the arguments values to be passed to the Plotly method set in `method` on slide</param>
     /// <param name="Execute">
@@ -42,54 +42,50 @@ type SliderStep() =
     /// <param name="Visible">Determines whether or not this step is included in the slider</param>
     static member init
         (
-            ?Args : seq<(string * obj)>,
-            ?Execute : bool,
-            ?Label : string,
-            ?Method : StyleParam.Method,
-            ?Name : string,
-            ?TemplateItemName : string,
-            ?Value : string,
-            ?Visible : bool            
+            ?Args: seq<(string * obj)>,
+            ?Execute: bool,
+            ?Label: string,
+            ?Method: StyleParam.Method,
+            ?Name: string,
+            ?TemplateItemName: string,
+            ?Value: string,
+            ?Visible: bool
         ) =
-            SliderStep() |> SliderStep.style
-                (
-                    ?Args=Args,
-                    ?Execute=Execute,
-                    ?Label=Label,
-                    ?Method=Method,
-                    ?Name=Name,
-                    ?TemplateItemName=TemplateItemName,
-                    ?Value=Value,
-                    ?Visible=Visible
-                )
+        SliderStep()
+        |> SliderStep.style (
+            ?Args = Args,
+            ?Execute = Execute,
+            ?Label = Label,
+            ?Method = Method,
+            ?Name = Name,
+            ?TemplateItemName = TemplateItemName,
+            ?Value = Value,
+            ?Visible = Visible
+        )
 
     static member style
         (
-            ?Args : seq<(string * obj)>,
-            ?Execute : bool,
-            ?Label : string,
-            ?Method : StyleParam.Method,
-            ?Name : string,
-            ?TemplateItemName : string,
-            ?Value : string,
-            ?Visible : bool    
+            ?Args: seq<(string * obj)>,
+            ?Execute: bool,
+            ?Label: string,
+            ?Method: StyleParam.Method,
+            ?Name: string,
+            ?TemplateItemName: string,
+            ?Value: string,
+            ?Visible: bool
         ) =
-            (fun (step : SliderStep) ->
-                // A bit strange, that we create a dictionary for an every
-                // object, but this is that way the Plotly works
-                let argsAsDictionaries =
-                    Args
-                    |> Option.map (fun args ->
-                        args
-                        |> Seq.map (fun arg -> [arg] |> dict)
-                    )
-                argsAsDictionaries |> DynObj.setValueOpt   step "args"
-                Execute            |> DynObj.setValueOpt   step "execute"
-                Label              |> DynObj.setValueOpt   step "label"
-                Method             |> DynObj.setValueOptBy step "method" StyleParam.Method.convert
-                Name               |> DynObj.setValueOpt   step "name"
-                TemplateItemName   |> DynObj.setValueOpt   step "templateitemname"
-                Value              |> DynObj.setValueOpt   step "value"
-                Visible            |> DynObj.setValueOpt   step "visible"
-                step
-            )
+        (fun (step: SliderStep) ->
+            // A bit strange, that we create a dictionary for an every
+            // object, but this is that way the Plotly works
+            let argsAsDictionaries =
+                Args |> Option.map (fun args -> args |> Seq.map (fun arg -> [ arg ] |> dict))
+
+            argsAsDictionaries |> DynObj.setValueOpt step "args"
+            Execute |> DynObj.setValueOpt step "execute"
+            Label |> DynObj.setValueOpt step "label"
+            Method |> DynObj.setValueOptBy step "method" StyleParam.Method.convert
+            Name |> DynObj.setValueOpt step "name"
+            TemplateItemName |> DynObj.setValueOpt step "templateitemname"
+            Value |> DynObj.setValueOpt step "value"
+            Visible |> DynObj.setValueOpt step "visible"
+            step)

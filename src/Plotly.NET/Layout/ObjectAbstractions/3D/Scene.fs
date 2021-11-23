@@ -5,9 +5,9 @@ open DynamicObj
 open System
 open System.Runtime.InteropServices
 
-/// Scene 
-type Scene() = 
-    inherit DynamicObj ()
+/// Scene
+type Scene() =
+    inherit DynamicObj()
 
     /// <summary>
     /// Initialize a categorical Scene object that can be used as a laxout anchor for a 3D coordinate system.
@@ -25,36 +25,35 @@ type Scene() =
     /// <param name="YAxis">Sets this scene's yaxis</param>
     /// <param name="ZAxis">Sets this scene's zaxis</param>
     static member init
-        (   
-            [<Optional;DefaultParameterValue(null)>] ?Annotations    : seq<Annotation>,
-            [<Optional;DefaultParameterValue(null)>] ?AspectMode     : StyleParam.AspectMode,
-            [<Optional;DefaultParameterValue(null)>] ?AspectRatio    : AspectRatio,
-            [<Optional;DefaultParameterValue(null)>] ?BGColor        : Color,
-            [<Optional;DefaultParameterValue(null)>] ?Camera         : Camera,
-            [<Optional;DefaultParameterValue(null)>] ?Domain         : Domain,           
-            [<Optional;DefaultParameterValue(null)>] ?DragMode       : StyleParam.DragMode,
-            [<Optional;DefaultParameterValue(null)>] ?HoverMode      : StyleParam.HoverMode,
-            [<Optional;DefaultParameterValue(null)>] ?UIRevision     : string,
-            [<Optional;DefaultParameterValue(null)>] ?XAxis          : LinearAxis,
-            [<Optional;DefaultParameterValue(null)>] ?YAxis          : LinearAxis,
-            [<Optional;DefaultParameterValue(null)>] ?ZAxis          : LinearAxis
+        (
+            [<Optional; DefaultParameterValue(null)>] ?Annotations: seq<Annotation>,
+            [<Optional; DefaultParameterValue(null)>] ?AspectMode: StyleParam.AspectMode,
+            [<Optional; DefaultParameterValue(null)>] ?AspectRatio: AspectRatio,
+            [<Optional; DefaultParameterValue(null)>] ?BGColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?Camera: Camera,
+            [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
+            [<Optional; DefaultParameterValue(null)>] ?DragMode: StyleParam.DragMode,
+            [<Optional; DefaultParameterValue(null)>] ?HoverMode: StyleParam.HoverMode,
+            [<Optional; DefaultParameterValue(null)>] ?UIRevision: string,
+            [<Optional; DefaultParameterValue(null)>] ?XAxis: LinearAxis,
+            [<Optional; DefaultParameterValue(null)>] ?YAxis: LinearAxis,
+            [<Optional; DefaultParameterValue(null)>] ?ZAxis: LinearAxis
         ) =
-            Scene ()
-            |> Scene.style
-                (
-                    ?Annotations    = Annotations ,
-                    ?AspectMode     = AspectMode  ,
-                    ?AspectRatio    = AspectRatio ,
-                    ?BGColor        = BGColor     ,
-                    ?Camera         = Camera      ,
-                    ?Domain         = Domain      ,
-                    ?DragMode       = DragMode    ,
-                    ?HoverMode      = HoverMode   ,
-                    ?UIRevision     = UIRevision  ,
-                    ?XAxis          = XAxis       ,
-                    ?YAxis          = YAxis       ,
-                    ?ZAxis          = ZAxis       
-                )
+        Scene()
+        |> Scene.style (
+            ?Annotations = Annotations,
+            ?AspectMode = AspectMode,
+            ?AspectRatio = AspectRatio,
+            ?BGColor = BGColor,
+            ?Camera = Camera,
+            ?Domain = Domain,
+            ?DragMode = DragMode,
+            ?HoverMode = HoverMode,
+            ?UIRevision = UIRevision,
+            ?XAxis = XAxis,
+            ?YAxis = YAxis,
+            ?ZAxis = ZAxis
+        )
 
     /// <summary>
     /// Creates a function that applies the given style parameters to a Scene object
@@ -72,35 +71,33 @@ type Scene() =
     /// <param name="YAxis">Sets this scene's yaxis</param>
     /// <param name="ZAxis">Sets this scene's zaxis</param>
     static member style
-        (   
-            [<Optional;DefaultParameterValue(null)>] ?Annotations    : seq<Annotation>,
-            [<Optional;DefaultParameterValue(null)>] ?AspectMode     : StyleParam.AspectMode,
-            [<Optional;DefaultParameterValue(null)>] ?AspectRatio    : AspectRatio,
-            [<Optional;DefaultParameterValue(null)>] ?BGColor        : Color,
-            [<Optional;DefaultParameterValue(null)>] ?Camera         : Camera,
-            [<Optional;DefaultParameterValue(null)>] ?Domain         : Domain,           
-            [<Optional;DefaultParameterValue(null)>] ?DragMode       : StyleParam.DragMode,
-            [<Optional;DefaultParameterValue(null)>] ?HoverMode      : StyleParam.HoverMode,
-            [<Optional;DefaultParameterValue(null)>] ?UIRevision     : string,
-            [<Optional;DefaultParameterValue(null)>] ?XAxis          : LinearAxis,
-            [<Optional;DefaultParameterValue(null)>] ?YAxis          : LinearAxis,
-            [<Optional;DefaultParameterValue(null)>] ?ZAxis          : LinearAxis
+        (
+            [<Optional; DefaultParameterValue(null)>] ?Annotations: seq<Annotation>,
+            [<Optional; DefaultParameterValue(null)>] ?AspectMode: StyleParam.AspectMode,
+            [<Optional; DefaultParameterValue(null)>] ?AspectRatio: AspectRatio,
+            [<Optional; DefaultParameterValue(null)>] ?BGColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?Camera: Camera,
+            [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
+            [<Optional; DefaultParameterValue(null)>] ?DragMode: StyleParam.DragMode,
+            [<Optional; DefaultParameterValue(null)>] ?HoverMode: StyleParam.HoverMode,
+            [<Optional; DefaultParameterValue(null)>] ?UIRevision: string,
+            [<Optional; DefaultParameterValue(null)>] ?XAxis: LinearAxis,
+            [<Optional; DefaultParameterValue(null)>] ?YAxis: LinearAxis,
+            [<Optional; DefaultParameterValue(null)>] ?ZAxis: LinearAxis
         ) =
-            (fun (scene:Scene) -> 
+        (fun (scene: Scene) ->
 
-                Annotations |> DynObj.setValueOpt  scene "annotations"
-                AspectMode  |> DynObj.setValueOptBy  scene "aspectmode" StyleParam.AspectMode.convert
-                AspectRatio |> DynObj.setValueOpt  scene "aspectratio"
-                BGColor     |> DynObj.setValueOpt  scene "bgcolor"
-                Camera      |> DynObj.setValueOpt  scene "camera"
-                Domain      |> DynObj.setValueOpt  scene "domain"
-                DragMode    |> DynObj.setValueOptBy  scene "dragmode" StyleParam.DragMode.convert
-                HoverMode   |> DynObj.setValueOptBy  scene "hovermode" StyleParam.HoverMode.convert
-                UIRevision  |> DynObj.setValueOpt  scene "uirevision"
-                XAxis       |> DynObj.setValueOpt  scene "xaxis"
-                YAxis       |> DynObj.setValueOpt  scene "yaxis"
-                ZAxis       |> DynObj.setValueOpt  scene "zaxis"
+            Annotations |> DynObj.setValueOpt scene "annotations"
+            AspectMode |> DynObj.setValueOptBy scene "aspectmode" StyleParam.AspectMode.convert
+            AspectRatio |> DynObj.setValueOpt scene "aspectratio"
+            BGColor |> DynObj.setValueOpt scene "bgcolor"
+            Camera |> DynObj.setValueOpt scene "camera"
+            Domain |> DynObj.setValueOpt scene "domain"
+            DragMode |> DynObj.setValueOptBy scene "dragmode" StyleParam.DragMode.convert
+            HoverMode |> DynObj.setValueOptBy scene "hovermode" StyleParam.HoverMode.convert
+            UIRevision |> DynObj.setValueOpt scene "uirevision"
+            XAxis |> DynObj.setValueOpt scene "xaxis"
+            YAxis |> DynObj.setValueOpt scene "yaxis"
+            ZAxis |> DynObj.setValueOpt scene "zaxis"
 
-                scene
-            ) 
-
+            scene)

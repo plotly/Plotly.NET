@@ -22,13 +22,13 @@ module GenericChartExtensions =
         [<Extension>]
         member this.ToBase64JPGStringAsync
             (
-                [<Optional;DefaultParameterValue(null)>] ?EngineType: ExportEngine,
-                [<Optional;DefaultParameterValue(null)>] ?Width : int,
-                [<Optional;DefaultParameterValue(null)>] ?Height : int
-            ) = 
-            
-                this |> Chart.toBase64JPGStringAsync(?EngineType=EngineType, ?Width=Width, ?Height=Height)
-                
+                [<Optional; DefaultParameterValue(null)>] ?EngineType: ExportEngine,
+                [<Optional; DefaultParameterValue(null)>] ?Width: int,
+                [<Optional; DefaultParameterValue(null)>] ?Height: int
+            ) =
+
+            this |> Chart.toBase64JPGStringAsync (?EngineType = EngineType, ?Width = Width, ?Height = Height)
+
         /// <summary>
         /// Converts the GenericChart to a base64 encoded JPG string
         /// </summary>
@@ -37,14 +37,14 @@ module GenericChartExtensions =
         /// <param name="Height"></param>
         [<CompiledName("ToBase64JPGString")>]
         [<Extension>]
-        member this.ToBase64JPGString 
+        member this.ToBase64JPGString
             (
-                [<Optional;DefaultParameterValue(null)>] ?EngineType: ExportEngine,
-                [<Optional;DefaultParameterValue(null)>] ?Width : int,
-                [<Optional;DefaultParameterValue(null)>] ?Height : int
-            ) = 
-            
-                this |> Chart.toBase64JPGString(?EngineType=EngineType, ?Width=Width, ?Height=Height)
+                [<Optional; DefaultParameterValue(null)>] ?EngineType: ExportEngine,
+                [<Optional; DefaultParameterValue(null)>] ?Width: int,
+                [<Optional; DefaultParameterValue(null)>] ?Height: int
+            ) =
+
+            this |> Chart.toBase64JPGString (?EngineType = EngineType, ?Width = Width, ?Height = Height)
 
         /// <summary>
         /// Saves the GenericChart as JPG image (async)
@@ -57,13 +57,13 @@ module GenericChartExtensions =
         [<Extension>]
         member this.SaveJPGAsync
             (
-                path:string,
-                [<Optional;DefaultParameterValue(null)>] ?EngineType: ExportEngine,
-                [<Optional;DefaultParameterValue(null)>] ?Width : int,
-                [<Optional;DefaultParameterValue(null)>] ?Height : int
+                path: string,
+                [<Optional; DefaultParameterValue(null)>] ?EngineType: ExportEngine,
+                [<Optional; DefaultParameterValue(null)>] ?Width: int,
+                [<Optional; DefaultParameterValue(null)>] ?Height: int
             ) =
-                this |> Chart.saveJPGAsync(path, ?EngineType=EngineType, ?Width=Width, ?Height=Height)
-        
+            this |> Chart.saveJPGAsync (path, ?EngineType = EngineType, ?Width = Width, ?Height = Height)
+
         /// <summary>
         /// Saves the GenericChart as JPG image
         /// </summary>
@@ -73,14 +73,14 @@ module GenericChartExtensions =
         /// <param name="Height">height of the resulting image</param>
         [<CompiledName("SaveJPG")>]
         [<Extension>]
-        member this.SaveJPG 
+        member this.SaveJPG
             (
-                path:string,
-                [<Optional;DefaultParameterValue(null)>] ?EngineType: ExportEngine,
-                [<Optional;DefaultParameterValue(null)>] ?Width : int,
-                [<Optional;DefaultParameterValue(null)>] ?Height : int
+                path: string,
+                [<Optional; DefaultParameterValue(null)>] ?EngineType: ExportEngine,
+                [<Optional; DefaultParameterValue(null)>] ?Width: int,
+                [<Optional; DefaultParameterValue(null)>] ?Height: int
             ) =
-                this |> Chart.saveJPG(path, ?EngineType=EngineType, ?Width=Width, ?Height=Height)
+            this |> Chart.saveJPG (path, ?EngineType = EngineType, ?Width = Width, ?Height = Height)
 
         /// <summary>
         /// Converts the GenericChart to a base64 encoded PNG string (async)
@@ -92,13 +92,13 @@ module GenericChartExtensions =
         [<Extension>]
         member this.ToBase64PNGStringAsync
             (
-                [<Optional;DefaultParameterValue(null)>] ?EngineType: ExportEngine,
-                [<Optional;DefaultParameterValue(null)>] ?Width : int,
-                [<Optional;DefaultParameterValue(null)>] ?Height : int
-            ) = 
-            
-                this |> Chart.toBase64PNGStringAsync(?EngineType = EngineType, ?Width=Width, ?Height=Height)
-                
+                [<Optional; DefaultParameterValue(null)>] ?EngineType: ExportEngine,
+                [<Optional; DefaultParameterValue(null)>] ?Width: int,
+                [<Optional; DefaultParameterValue(null)>] ?Height: int
+            ) =
+
+            this |> Chart.toBase64PNGStringAsync (?EngineType = EngineType, ?Width = Width, ?Height = Height)
+
         /// <summary>
         /// Converts the GenericChart to a base64 encoded PNG string
         /// </summary>
@@ -107,15 +107,15 @@ module GenericChartExtensions =
         /// <param name="Height"></param>
         [<CompiledName("ToBase64PNGString")>]
         [<Extension>]
-        member this.ToBase64PNGString 
+        member this.ToBase64PNGString
             (
-                [<Optional;DefaultParameterValue(null)>] ?EngineType: ExportEngine,
-                [<Optional;DefaultParameterValue(null)>] ?Width : int,
-                [<Optional;DefaultParameterValue(null)>] ?Height : int
-            ) = 
-            
-                this |> Chart.toBase64PNGString(?EngineType = EngineType, ?Width=Width, ?Height=Height)
-        
+                [<Optional; DefaultParameterValue(null)>] ?EngineType: ExportEngine,
+                [<Optional; DefaultParameterValue(null)>] ?Width: int,
+                [<Optional; DefaultParameterValue(null)>] ?Height: int
+            ) =
+
+            this |> Chart.toBase64PNGString (?EngineType = EngineType, ?Width = Width, ?Height = Height)
+
         /// <summary>
         /// Saves the GenericChart as PNG image (async)
         /// </summary>
@@ -127,13 +127,13 @@ module GenericChartExtensions =
         [<Extension>]
         member this.SavePNGAsync
             (
-                path:string,
-                [<Optional;DefaultParameterValue(null)>] ?EngineType: ExportEngine,
-                [<Optional;DefaultParameterValue(null)>] ?Width : int,
-                [<Optional;DefaultParameterValue(null)>] ?Height : int
+                path: string,
+                [<Optional; DefaultParameterValue(null)>] ?EngineType: ExportEngine,
+                [<Optional; DefaultParameterValue(null)>] ?Width: int,
+                [<Optional; DefaultParameterValue(null)>] ?Height: int
             ) =
-                this |> Chart.savePNG(path, ?EngineType=EngineType, ?Width=Width, ?Height=Height)
-        
+            this |> Chart.savePNG (path, ?EngineType = EngineType, ?Width = Width, ?Height = Height)
+
         /// <summary>
         /// Saves the GenericChart as PNG image
         /// </summary>
@@ -145,12 +145,12 @@ module GenericChartExtensions =
         [<Extension>]
         member this.SavePNG
             (
-                path:string,
-                [<Optional;DefaultParameterValue(null)>] ?EngineType: ExportEngine,
-                [<Optional;DefaultParameterValue(null)>] ?Width : int,
-                [<Optional;DefaultParameterValue(null)>] ?Height : int
+                path: string,
+                [<Optional; DefaultParameterValue(null)>] ?EngineType: ExportEngine,
+                [<Optional; DefaultParameterValue(null)>] ?Width: int,
+                [<Optional; DefaultParameterValue(null)>] ?Height: int
             ) =
-                this |> Chart.savePNG(path, ?EngineType=EngineType, ?Width=Width, ?Height=Height)
+            this |> Chart.savePNG (path, ?EngineType = EngineType, ?Width = Width, ?Height = Height)
 
         /// <summary>
         /// Converts the GenericChart to a SVG string (async)
@@ -162,12 +162,12 @@ module GenericChartExtensions =
         [<Extension>]
         member this.ToSVGStringAsync
             (
-                [<Optional;DefaultParameterValue(null)>] ?EngineType: ExportEngine,
-                [<Optional;DefaultParameterValue(null)>] ?Width : int,
-                [<Optional;DefaultParameterValue(null)>] ?Height : int
-            ) = 
-            
-                this |> Chart.toSVGStringAsync(?EngineType=EngineType, ?Width=Width, ?Height=Height)
+                [<Optional; DefaultParameterValue(null)>] ?EngineType: ExportEngine,
+                [<Optional; DefaultParameterValue(null)>] ?Width: int,
+                [<Optional; DefaultParameterValue(null)>] ?Height: int
+            ) =
+
+            this |> Chart.toSVGStringAsync (?EngineType = EngineType, ?Width = Width, ?Height = Height)
 
         /// <summary>
         /// Converts the GenericChart to a SVG string
@@ -179,13 +179,13 @@ module GenericChartExtensions =
         [<Extension>]
         member this.ToSVGString
             (
-                [<Optional;DefaultParameterValue(null)>] ?EngineType: ExportEngine,
-                [<Optional;DefaultParameterValue(null)>] ?Width : int,
-                [<Optional;DefaultParameterValue(null)>] ?Height : int
-            ) = 
-            
-                this |> Chart.toSVGString(?EngineType=EngineType, ?Width=Width, ?Height=Height)
-        
+                [<Optional; DefaultParameterValue(null)>] ?EngineType: ExportEngine,
+                [<Optional; DefaultParameterValue(null)>] ?Width: int,
+                [<Optional; DefaultParameterValue(null)>] ?Height: int
+            ) =
+
+            this |> Chart.toSVGString (?EngineType = EngineType, ?Width = Width, ?Height = Height)
+
         /// <summary>
         /// Saves the GenericChart as SVG image (async)
         /// </summary>
@@ -197,12 +197,12 @@ module GenericChartExtensions =
         [<Extension>]
         member this.SaveSVGAsync
             (
-                path:string,
-                [<Optional;DefaultParameterValue(null)>] ?EngineType: ExportEngine,
-                [<Optional;DefaultParameterValue(null)>] ?Width : int,
-                [<Optional;DefaultParameterValue(null)>] ?Height : int
+                path: string,
+                [<Optional; DefaultParameterValue(null)>] ?EngineType: ExportEngine,
+                [<Optional; DefaultParameterValue(null)>] ?Width: int,
+                [<Optional; DefaultParameterValue(null)>] ?Height: int
             ) =
-                this |> Chart.saveSVGAsync(path, ?EngineType=EngineType, ?Width=Width, ?Height=Height)
+            this |> Chart.saveSVGAsync (path, ?EngineType = EngineType, ?Width = Width, ?Height = Height)
 
         /// <summary>
         /// Saves the GenericChart as SVG image
@@ -215,10 +215,9 @@ module GenericChartExtensions =
         [<Extension>]
         member this.SaveSVG
             (
-                path:string,
-                [<Optional;DefaultParameterValue(null)>] ?EngineType: ExportEngine,
-                [<Optional;DefaultParameterValue(null)>] ?Width : int,
-                [<Optional;DefaultParameterValue(null)>] ?Height : int
+                path: string,
+                [<Optional; DefaultParameterValue(null)>] ?EngineType: ExportEngine,
+                [<Optional; DefaultParameterValue(null)>] ?Width: int,
+                [<Optional; DefaultParameterValue(null)>] ?Height: int
             ) =
-                this |> Chart.saveSVG(path, ?EngineType=EngineType, ?Width=Width, ?Height=Height)
-                
+            this |> Chart.saveSVG (path, ?EngineType = EngineType, ?Width = Width, ?Height = Height)

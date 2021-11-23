@@ -8,7 +8,7 @@ open System.Runtime.InteropServices
 
 /// An object to set the Lighting of a 3D Scene
 type Lighting() =
-    inherit DynamicObj ()
+    inherit DynamicObj()
 
     /// <summary>
     /// Initialize a Lighting object
@@ -22,25 +22,24 @@ type Lighting() =
     /// <param name="VertexNormalEpsilon">Epsilon for vertex normals calculation avoids math issues arising from degenerate geometry.</param>
     static member init
         (
-            [<Optional;DefaultParameterValue(null)>] ?Ambient            : float,
-            [<Optional;DefaultParameterValue(null)>] ?Diffuse            : float,
-            [<Optional;DefaultParameterValue(null)>] ?FaceNormalEpsilon  : float,
-            [<Optional;DefaultParameterValue(null)>] ?Fresnel            : float,
-            [<Optional;DefaultParameterValue(null)>] ?Roughness          : float,
-            [<Optional;DefaultParameterValue(null)>] ?Specular           : float,
-            [<Optional;DefaultParameterValue(null)>] ?VertexNormalEpsilon: float
+            [<Optional; DefaultParameterValue(null)>] ?Ambient: float,
+            [<Optional; DefaultParameterValue(null)>] ?Diffuse: float,
+            [<Optional; DefaultParameterValue(null)>] ?FaceNormalEpsilon: float,
+            [<Optional; DefaultParameterValue(null)>] ?Fresnel: float,
+            [<Optional; DefaultParameterValue(null)>] ?Roughness: float,
+            [<Optional; DefaultParameterValue(null)>] ?Specular: float,
+            [<Optional; DefaultParameterValue(null)>] ?VertexNormalEpsilon: float
         ) =
-            Lighting()
-            |> Lighting.style
-                (
-                    ?Ambient            = Ambient            ,
-                    ?Diffuse            = Diffuse            ,
-                    ?FaceNormalEpsilon  = FaceNormalEpsilon  ,
-                    ?Fresnel            = Fresnel            ,
-                    ?Roughness          = Roughness          ,
-                    ?Specular           = Specular           ,
-                    ?VertexNormalEpsilon= VertexNormalEpsilon
-                )
+        Lighting()
+        |> Lighting.style (
+            ?Ambient = Ambient,
+            ?Diffuse = Diffuse,
+            ?FaceNormalEpsilon = FaceNormalEpsilon,
+            ?Fresnel = Fresnel,
+            ?Roughness = Roughness,
+            ?Specular = Specular,
+            ?VertexNormalEpsilon = VertexNormalEpsilon
+        )
 
     /// <summary>
     /// Creates a function that applies the given style parameters to a Lighting object
@@ -52,30 +51,30 @@ type Lighting() =
     /// <param name="Roughness">Alters specular reflection; the rougher the surface, the wider and less contrasty the shine.</param>
     /// <param name="Specular">Represents the level that incident rays are reflected in a single direction, causing shine.</param>
     /// <param name="VertexNormalEpsilon">Epsilon for vertex normals calculation avoids math issues arising from degenerate geometry.</param>
-    static member style 
+    static member style
         (
-            [<Optional;DefaultParameterValue(null)>] ?Ambient            : float,
-            [<Optional;DefaultParameterValue(null)>] ?Diffuse            : float,
-            [<Optional;DefaultParameterValue(null)>] ?FaceNormalEpsilon  : float,
-            [<Optional;DefaultParameterValue(null)>] ?Fresnel            : float,
-            [<Optional;DefaultParameterValue(null)>] ?Roughness          : float,
-            [<Optional;DefaultParameterValue(null)>] ?Specular           : float,
-            [<Optional;DefaultParameterValue(null)>] ?VertexNormalEpsilon : float
+            [<Optional; DefaultParameterValue(null)>] ?Ambient: float,
+            [<Optional; DefaultParameterValue(null)>] ?Diffuse: float,
+            [<Optional; DefaultParameterValue(null)>] ?FaceNormalEpsilon: float,
+            [<Optional; DefaultParameterValue(null)>] ?Fresnel: float,
+            [<Optional; DefaultParameterValue(null)>] ?Roughness: float,
+            [<Optional; DefaultParameterValue(null)>] ?Specular: float,
+            [<Optional; DefaultParameterValue(null)>] ?VertexNormalEpsilon: float
         ) =
-            fun (l:Lighting) ->
+        fun (l: Lighting) ->
 
-                Ambient             |> DynObj.setValueOpt l "ambient"
-                Diffuse             |> DynObj.setValueOpt l "diffuse"
-                FaceNormalEpsilon   |> DynObj.setValueOpt l "facenormalepsilon"
-                Fresnel             |> DynObj.setValueOpt l "fresnel"
-                Roughness           |> DynObj.setValueOpt l "roughness"
-                Specular            |> DynObj.setValueOpt l "specular"
-                VertexNormalEpsilon |> DynObj.setValueOpt l "vertexnormalepsilon"
+            Ambient |> DynObj.setValueOpt l "ambient"
+            Diffuse |> DynObj.setValueOpt l "diffuse"
+            FaceNormalEpsilon |> DynObj.setValueOpt l "facenormalepsilon"
+            Fresnel |> DynObj.setValueOpt l "fresnel"
+            Roughness |> DynObj.setValueOpt l "roughness"
+            Specular |> DynObj.setValueOpt l "specular"
+            VertexNormalEpsilon |> DynObj.setValueOpt l "vertexnormalepsilon"
 
-                l
+            l
 
 type LightPosition() =
-    inherit DynamicObj ()
+    inherit DynamicObj()
 
     /// <summary>
     /// Initialize a LightPosition object
@@ -83,19 +82,13 @@ type LightPosition() =
     /// <param name="X"></param>
     /// <param name="Y"></param>
     /// <param name="Z"></param>
-    static member init   
+    static member init
         (
-            [<Optional;DefaultParameterValue(null)>] ?X: float,
-            [<Optional;DefaultParameterValue(null)>] ?Y: float,
-            [<Optional;DefaultParameterValue(null)>] ?Z: float
+            [<Optional; DefaultParameterValue(null)>] ?X: float,
+            [<Optional; DefaultParameterValue(null)>] ?Y: float,
+            [<Optional; DefaultParameterValue(null)>] ?Z: float
         ) =
-            LightPosition()
-            |> LightPosition.style
-                (
-                    ?X= X,
-                    ?Y= Y,
-                    ?Z= Z
-                )
+        LightPosition() |> LightPosition.style (?X = X, ?Y = Y, ?Z = Z)
 
     /// <summary>
     /// Creates a function that applies the given style parameters to a LightPosition object
@@ -105,14 +98,14 @@ type LightPosition() =
     /// <param name="Z"></param>
     static member style
         (
-            [<Optional;DefaultParameterValue(null)>] ?X: float,
-            [<Optional;DefaultParameterValue(null)>] ?Y: float,
-            [<Optional;DefaultParameterValue(null)>] ?Z: float
+            [<Optional; DefaultParameterValue(null)>] ?X: float,
+            [<Optional; DefaultParameterValue(null)>] ?Y: float,
+            [<Optional; DefaultParameterValue(null)>] ?Z: float
         ) =
-            fun (lp: LightPosition) ->
-                
-                X |> DynObj.setValueOpt lp "x"
-                Y |> DynObj.setValueOpt lp "y"
-                Z |> DynObj.setValueOpt lp "z"
+        fun (lp: LightPosition) ->
 
-                lp
+            X |> DynObj.setValueOpt lp "x"
+            Y |> DynObj.setValueOpt lp "y"
+            Z |> DynObj.setValueOpt lp "z"
+
+            lp
