@@ -1045,7 +1045,7 @@ module ChartMap =
         /// GeoJSON features to be filled are set in `geojson` The data that describes the choropleth value-to-color mapping is set in `locations` and `z`.
         /// </summary>
         [<Extension>]
-        static member ChoroplethMap
+        static member ChoroplethMapbox
             (
                 locations,
                 z,
@@ -1096,7 +1096,7 @@ module ChartMap =
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
                 [<Optional; DefaultParameterValue(null)>] ?Z: seq<#IConvertible>,
-                [<Optional; DefaultParameterValue(null)>] ?Radius: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?Radius: int,
                 [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
                 [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
@@ -1139,7 +1139,7 @@ module ChartMap =
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
                 [<Optional; DefaultParameterValue(null)>] ?Z: seq<#IConvertible>,
-                [<Optional; DefaultParameterValue(null)>] ?Radius: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?Radius: int,
                 [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
                 [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,

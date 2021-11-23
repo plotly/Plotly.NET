@@ -224,7 +224,7 @@ type TraceMapboxStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
             [<Optional; DefaultParameterValue(null)>] ?Ids: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?Z: seq<#IConvertible>,
-            [<Optional; DefaultParameterValue(null)>] ?Radius: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Radius: int,
             [<Optional; DefaultParameterValue(null)>] ?Lat: #IConvertible seq,
             [<Optional; DefaultParameterValue(null)>] ?Lon: #IConvertible seq,
             [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
