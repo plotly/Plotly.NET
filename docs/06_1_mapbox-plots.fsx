@@ -56,7 +56,7 @@ open Plotly.NET.LayoutObjects
 let pointMapbox = 
     Chart.PointMapbox(
         lon,lat,
-        Labels = cityNames,
+        MultiText = cityNames,
         TextPosition = StyleParam.TextPosition.TopCenter
     )
     |> Chart.withMapbox(
@@ -103,7 +103,7 @@ let flights =
         Chart.LineMapbox(
             [startCoords; endCoords],
             Opacity = opacityVals.[i],
-            Color = Color.fromString "red"
+            LineColor = Color.fromString "red"
         )
     )
     |> Chart.combine
