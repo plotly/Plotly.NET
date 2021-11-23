@@ -21,8 +21,8 @@ let baseLayerOnlyChart =
 [<Tests>]
 let ``Mapbox charts`` =
     testList "MapboxMapCharts.Mapbox charts" [
-        testCase "Base layour only data" ( fun () ->
-            "var data = [{\"type\":\"scattermapbox\",\"mode\":\"markers\",\"lon\":[],\"lat\":[],\"line\":{},\"marker\":{}}];"
+        testCase "Base layout only data" ( fun () ->
+            """var data = [{"type":"scattermapbox","mode":"markers","lat":[],"lon":[],"marker":{},"line":{}}];"""
             |> chartGeneratedContains baseLayerOnlyChart
         );
         testCase "Base layour only layout" ( fun () ->
@@ -48,7 +48,7 @@ let pointMapboxChart =
     ]
     Chart.PointMapbox(
         lon,lat,
-        Labels = cityNames,
+        MultiText = cityNames,
         TextPosition = StyleParam.TextPosition.TopCenter, 
         UseDefaults = false
     )
@@ -89,7 +89,7 @@ let flightsChart =
         Chart.LineMapbox(
             [startCoords; endCoords],
             Opacity = opacityVals.[i],
-            Color = Color.fromString "red",
+            LineColor = Color.fromString "red",
             UseDefaults = false
         )
     )
@@ -103,12 +103,12 @@ let flightsChart =
     )
     |> Chart.withMarginSize(0,0,50,0)
     |> Chart.withTitle "Feb. 2011 American Airline flights"
-
+    
 [<Tests>]
 let ``Scatter and line plots on Mapbox maps charts`` =
     testList "MapboxMapCharts.Scatter and line plots on Mapbox maps charts" [
         testCase "Point mapbox data" ( fun () ->
-            "var data = [{\"type\":\"scattermapbox\",\"mode\":\"markers+text\",\"lon\":[-73.57,-79.24,-123.06,-114.1,-113.28,-75.43,-63.57,-123.21,-97.13,-104.6],\"lat\":[45.5,43.4,49.13,51.1,53.34,45.24,44.64,48.25,49.89,50.45],\"line\":{},\"marker\":{},\"text\":[\"Montreal\",\"Toronto\",\"Vancouver\",\"Calgary\",\"Edmonton\",\"Ottawa\",\"Halifax\",\"Victoria\",\"Winnepeg\",\"Regina\"],\"textposition\":\"top center\"}];"
+            """var data = [{"type":"scattermapbox","mode":"markers+text","lat":[45.5,43.4,49.13,51.1,53.34,45.24,44.64,48.25,49.89,50.45],"lon":[-73.57,-79.24,-123.06,-114.1,-113.28,-75.43,-63.57,-123.21,-97.13,-104.6],"text":["Montreal","Toronto","Vancouver","Calgary","Edmonton","Ottawa","Halifax","Victoria","Winnepeg","Regina"],"textposition":"top center","marker":{},"line":{}}];"""
             |> chartGeneratedContains pointMapboxChart
         );
         testCase "Point mapbox layout" ( fun () ->
@@ -116,7 +116,7 @@ let ``Scatter and line plots on Mapbox maps charts`` =
             |> chartGeneratedContains pointMapboxChart
         );
         testCase "Flights mapbox data" ( fun () ->
-            "var data = [{\"type\":\"scattermapbox\",\"mode\":\"lines\",\"lon\":[-97.0372,-106.6091944],\"lat\":[32.89595056,35.04022222],\"opacity\":1.0,\"line\":{\"color\":\"red\"},\"marker\":{\"color\":\"red\"}},{\"type\":\"scattermapbox\",\"mode\":\"lines\",\"lon\":[-87.90446417,-97.66987194],\"lat\":[41.979595,30.19453278],\"opacity\":0.3738738738738739,\"line\":{\"color\":\"red\"},\"marker\":{\"color\":\"red\"}},{\"type\":\"scattermapbox\",\"mode\":\"lines\",\"lon\":[-97.0372,-72.68322833],\"lat\":[32.89595056,41.93887417],\"opacity\":0.36486486486486486,\"line\":{\"color\":\"red\"},\"marker\":{\"color\":\"red\"}},{\"type\":\"scattermapbox\",\"mode\":\"lines\",\"lon\":[-66.00183333,-72.68322833],\"lat\":[18.43941667,41.93887417],\"opacity\":0.12612612612612611,\"line\":{\"color\":\"red\"},\"marker\":{\"color\":\"red\"}},{\"type\":\"scattermapbox\",\"mode\":\"lines\",\"lon\":[-97.0372,-86.75354972],\"lat\":[32.89595056,33.56294306],\"opacity\":0.3783783783783784,\"line\":{\"color\":\"red\"},\"marker\":{\"color\":\"red\"}},{\"type\":\"scattermapbox\",\"mode\":\"lines\",\"lon\":[-80.29055556,-86.67818222],\"lat\":[25.79325,36.12447667],\"opacity\":0.12612612612612611,\"line\":{\"color\":\"red\"},\"marker\":{\"color\":\"red\"}},{\"type\":\"scattermapbox\",\"mode\":\"lines\",\"lon\":[-97.0372,-71.00517917],\"lat\":[32.89595056,42.3643475],\"opacity\":0.9504504504504504,\"line\":{\"color\":\"red\"},\"marker\":{\"color\":\"red\"}},{\"type\":\"scattermapbox\",\"mode\":\"lines\",\"lon\":[-80.29055556,-71.00517917],\"lat\":[25.79325,42.3643475],\"opacity\":0.8828828828828829,\"line\":{\"color\":\"red\"},\"marker\":{\"color\":\"red\"}}];"
+            """var data = [{"type":"scattermapbox","opacity":1.0,"mode":"lines","lat":[32.89595056,35.04022222],"lon":[-97.0372,-106.6091944],"marker":{},"line":{"color":"red"}},{"type":"scattermapbox","opacity":0.3738738738738739,"mode":"lines","lat":[41.979595,30.19453278],"lon":[-87.90446417,-97.66987194],"marker":{},"line":{"color":"red"}},{"type":"scattermapbox","opacity":0.36486486486486486,"mode":"lines","lat":[32.89595056,41.93887417],"lon":[-97.0372,-72.68322833],"marker":{},"line":{"color":"red"}},{"type":"scattermapbox","opacity":0.12612612612612611,"mode":"lines","lat":[18.43941667,41.93887417],"lon":[-66.00183333,-72.68322833],"marker":{},"line":{"color":"red"}},{"type":"scattermapbox","opacity":0.3783783783783784,"mode":"lines","lat":[32.89595056,33.56294306],"lon":[-97.0372,-86.75354972],"marker":{},"line":{"color":"red"}},{"type":"scattermapbox","opacity":0.12612612612612611,"mode":"lines","lat":[25.79325,36.12447667],"lon":[-80.29055556,-86.67818222],"marker":{},"line":{"color":"red"}},{"type":"scattermapbox","opacity":0.9504504504504504,"mode":"lines","lat":[32.89595056,42.3643475],"lon":[-97.0372,-71.00517917],"marker":{},"line":{"color":"red"}},{"type":"scattermapbox","opacity":0.8828828828828829,"mode":"lines","lat":[25.79325,42.3643475],"lon":[-80.29055556,-71.00517917],"marker":{},"line":{"color":"red"}}];"""
             |> chartGeneratedContains flightsChart
         );
         testCase "Flights mapbox layout" ( fun () ->
@@ -197,8 +197,8 @@ let densityMapboxChart =
         lon,
         lat,
         Z = magnitudes,
-        Radius=8.,
-        Colorscale=StyleParam.Colorscale.Viridis,
+        Radius=8,
+        ColorScale=StyleParam.Colorscale.Viridis,
         UseDefaults = false
     )
     |> Chart.withMapbox(
@@ -212,7 +212,7 @@ let densityMapboxChart =
 let ``DensityMapbox charts`` =
     testList "MapboxMapCharts.DensityMapbox charts charts" [
         testCase "Density Mapbox data" ( fun () ->
-            "var data = [{\"type\":\"densitymapbox\",\"z\":[6.0,5.8,6.2,5.8,5.8,6.7,5.9,6.0,6.0,5.8,5.9,8.2,5.5,5.6,6.0,6.1,8.7,6.0,5.7,5.8,5.9,5.9,5.7,5.7,5.7,5.6,7.3,6.5,5.6,6.4,5.8,5.8,5.8,5.7,5.7,6.3,5.7,6.0,5.6,6.4,6.2,5.6,5.7,5.7,6.3,5.8,5.7,5.7,5.8,5.9,5.6,6.0,5.8,5.8,5.9,5.7,5.7,5.6,5.6],\"radius\":8.0,\"lon\":[145.616,127.352,-173.972,-23.557,126.427,166.62900000000002,87.867,166.21200000000002,-27.043000000000003,178.487,108.988,125.952,161.703,-177.864,73.251,139.741,178.715,175.055,172.007,175.74599999999998,177.84799999999998,173.975,173.058,172.588,174.368,173.96900000000002,179.605,171.97400000000002,174.696,171.09099999999998,170.87400000000002,175.045,-44.922,174.206,174.84099999999998,174.321,173.84,174.56599999999997,176.558,-162.00799999999998,175.505,172.918,175.213,174.116,-161.859,176.46900000000002,173.393,175.41099999999997,179.092,165.426,169.386,171.90400000000002,172.752,179.325,125.951,142.095,176.446,143.08100000000002,94.186],\"lat\":[19.246,1.863,-20.579,-59.076,11.938,-13.405,27.357,-13.309,-56.452,-24.563,-6.807,-2.608,54.636,-18.697,37.523,-51.84,51.251000000000005,51.639,52.528,51.626000000000005,51.037,51.73,51.775,52.611,51.831,51.948,51.443000000000005,52.773,51.772,52.975,52.99,51.536,13.245,51.812,51.762,52.438,51.946000000000005,51.738,51.486999999999995,53.008,52.184,52.076,51.744,52.056999999999995,53.191,51.447,51.258,52.031000000000006,51.294,55.223,-18.718,52.815,52.188,51.00899999999999,3.026,38.908,51.694,21.526999999999997,25.011],\"colorscale\":\"Viridis\"}];"
+            """var data = [{"type":"densitymapbox","z":[6.0,5.8,6.2,5.8,5.8,6.7,5.9,6.0,6.0,5.8,5.9,8.2,5.5,5.6,6.0,6.1,8.7,6.0,5.7,5.8,5.9,5.9,5.7,5.7,5.7,5.6,7.3,6.5,5.6,6.4,5.8,5.8,5.8,5.7,5.7,6.3,5.7,6.0,5.6,6.4,6.2,5.6,5.7,5.7,6.3,5.8,5.7,5.7,5.8,5.9,5.6,6.0,5.8,5.8,5.9,5.7,5.7,5.6,5.6],"radius":8,"lat":[19.246,1.863,-20.579,-59.076,11.938,-13.405,27.357,-13.309,-56.452,-24.563,-6.807,-2.608,54.636,-18.697,37.523,-51.84,51.251000000000005,51.639,52.528,51.626000000000005,51.037,51.73,51.775,52.611,51.831,51.948,51.443000000000005,52.773,51.772,52.975,52.99,51.536,13.245,51.812,51.762,52.438,51.946000000000005,51.738,51.486999999999995,53.008,52.184,52.076,51.744,52.056999999999995,53.191,51.447,51.258,52.031000000000006,51.294,55.223,-18.718,52.815,52.188,51.00899999999999,3.026,38.908,51.694,21.526999999999997,25.011],"lon":[145.616,127.352,-173.972,-23.557,126.427,166.62900000000002,87.867,166.21200000000002,-27.043000000000003,178.487,108.988,125.952,161.703,-177.864,73.251,139.741,178.715,175.055,172.007,175.74599999999998,177.84799999999998,173.975,173.058,172.588,174.368,173.96900000000002,179.605,171.97400000000002,174.696,171.09099999999998,170.87400000000002,175.045,-44.922,174.206,174.84099999999998,174.321,173.84,174.56599999999997,176.558,-162.00799999999998,175.505,172.918,175.213,174.116,-161.859,176.46900000000002,173.393,175.41099999999997,179.092,165.426,169.386,171.90400000000002,172.752,179.325,125.951,142.095,176.446,143.08100000000002,94.186],"colorscale":"Viridis"}];"""
             |> chartGeneratedContains densityMapboxChart
         );
         testCase "Density Mapbox layout" ( fun () ->
