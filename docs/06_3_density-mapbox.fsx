@@ -57,8 +57,8 @@ let densityMapbox =
         lon,
         lat,
         Z = magnitudes,
-        Radius=8.,
-        Colorscale=StyleParam.Colorscale.Viridis
+        Radius=8,
+        ColorScale=StyleParam.Colorscale.Viridis
     )
     |> Chart.withMapbox(
         Mapbox.init(
