@@ -85,10 +85,20 @@ contour1 |> GenericChart.toChartHTML
 to apply heatmap gradient coloring between each contour level, set the `ContourColoring` to `heatmap`:
 *)
 
-Chart.Contour(
-    z,
-    ContoursColoring = StyleParam.ContourColoring.Heatmap
-)
+let contour2 =
+    Chart.Contour(
+        z,
+        ContoursColoring = StyleParam.ContourColoring.Heatmap
+    )
+
+(*** condition: ipynb ***)
+#if IPYNB
+contour2
+#endif // IPYNB
+
+(***hide***)
+contour2 |> GenericChart.toChartHTML
+(***include-it-raw***)
 
 (**
 ## Contour Line Labels
@@ -97,9 +107,19 @@ Use `ContourLabelFont` to set a contour label font, and display the labels with 
 
 *)
 
-Chart.Contour(
-    z,
-    ContoursColoring = StyleParam.ContourColoring.Heatmap,
-    ShowContourLabels = true,
-    ContourLabelFont = Font.init(Size = 12., Color = Color.fromKeyword White)
-)
+let contour3 =
+    Chart.Contour(
+        z,
+        ContoursColoring = StyleParam.ContourColoring.Heatmap,
+        ShowContourLabels = true,
+        ContourLabelFont = Font.init(Size = 12., Color = Color.fromKeyword White)
+    )
+
+(*** condition: ipynb ***)
+#if IPYNB
+contour3
+#endif // IPYNB
+
+(***hide***)
+contour3 |> GenericChart.toChartHTML
+(***include-it-raw***)
