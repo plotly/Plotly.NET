@@ -21,7 +21,7 @@ let lineTernary =
         B = ([10; 20; 30; 40; 50; 60; 70; 80;] |> List.rev),
         Sum = 100,
         ShowMarkers = true,
-        Dash = StyleParam.DrawingStyle.DashDot, 
+        LineDash = StyleParam.DrawingStyle.DashDot, 
         UseDefaults = false
     )
     |> Chart.withTernary(
@@ -34,9 +34,9 @@ let lineTernary =
 
 [<Tests>]
 let ``Ternary Point charts`` =
-    testList "TernaryCharts.Line charts" [
+    testList "TernaryCharts.Point charts" [
         testCase "Point data" ( fun () ->
-            """var data = [{"type":"scatterternary","mode":"markers","a":[1],"b":[2],"c":[3],"marker":{}}];"""
+            """var data = [{"type":"scatterternary","mode":"markers","a":[1],"b":[2],"c":[3],"marker":{},"line":{}}];"""
             |> chartGeneratedContains pointTernary
         )
         testCase "Point layout" ( fun () ->
@@ -49,7 +49,7 @@ let ``Ternary Point charts`` =
 let ``Ternary Line charts`` =
     testList "TernaryCharts.Line charts" [
         testCase "Line data" ( fun () ->
-            """var data = [{"type":"scatterternary","mode":"lines+markers","a":[10,20,30,40,50,60,70,80],"b":[80,70,60,50,40,30,20,10],"sum":100,"line":{"dash":"dashdot"},"marker":{}}];"""
+            """var data = [{"type":"scatterternary","mode":"lines+markers","a":[10,20,30,40,50,60,70,80],"b":[80,70,60,50,40,30,20,10],"marker":{},"line":{"dash":"dashdot"},"sum":100}];"""
             |> chartGeneratedContains lineTernary
         )
         testCase "Line layout" ( fun () ->

@@ -37,12 +37,17 @@ type TraceTernaryStyle() =
             [<Optional; DefaultParameterValue(null)>] ?A: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?B: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?C: seq<#IConvertible>,
-            [<Optional; DefaultParameterValue(null)>] ?Text: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+            [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
             [<Optional; DefaultParameterValue(null)>] ?TextTemplate: string,
+            [<Optional; DefaultParameterValue(null)>] ?MultiTextTemplate: seq<string>,
             [<Optional; DefaultParameterValue(null)>] ?HoverText: string,
+            [<Optional; DefaultParameterValue(null)>] ?MultiHoverText: seq<string>,
             [<Optional; DefaultParameterValue(null)>] ?HoverInfo: StyleParam.HoverInfo,
             [<Optional; DefaultParameterValue(null)>] ?HoverTemplate: string,
+            [<Optional; DefaultParameterValue(null)>] ?MultiHoverTemplate: seq<string>,
             [<Optional; DefaultParameterValue(null)>] ?Meta: string,
             [<Optional; DefaultParameterValue(null)>] ?CustomData: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?SubPlot: StyleParam.SubPlotId,
@@ -58,7 +63,8 @@ type TraceTernaryStyle() =
             [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?HoverLabel: Hoverlabel,
             [<Optional; DefaultParameterValue(null)>] ?HoverOn: StyleParam.HoverOn,
-            [<Optional; DefaultParameterValue(null)>] ?Sum: #IConvertible
+            [<Optional; DefaultParameterValue(null)>] ?Sum: #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
         ) =
         fun (trace: #Trace) ->
 
@@ -74,12 +80,15 @@ type TraceTernaryStyle() =
             A |> DynObj.setValueOpt trace "a"
             B |> DynObj.setValueOpt trace "b"
             C |> DynObj.setValueOpt trace "c"
-            Text |> DynObj.setValueOpt trace "text"
-            TextPosition |> DynObj.setValueOptBy trace "textposition" StyleParam.TextPosition.convert
-            TextTemplate |> DynObj.setValueOpt trace "texttemplate"
-            HoverText |> DynObj.setValueOpt trace "hovertext"
+            (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
+
+            (TextPosition, MultiTextPosition)
+            |> DynObj.setSingleOrMultiOptBy trace "textposition" StyleParam.TextPosition.convert
+
+            (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt trace "texttemplate"
+            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
             HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
-            HoverTemplate |> DynObj.setValueOpt trace "hovertemplate"
+            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
             Meta |> DynObj.setValueOpt trace "meta"
             CustomData |> DynObj.setValueOpt trace "customdata"
             SubPlot |> DynObj.setValueOptBy trace "subplot" StyleParam.SubPlotId.convert
@@ -96,5 +105,6 @@ type TraceTernaryStyle() =
             HoverLabel |> DynObj.setValueOpt trace "hoverlabel"
             HoverOn |> DynObj.setValueOptBy trace "hoveron" StyleParam.HoverOn.convert
             Sum |> DynObj.setValueOpt trace "sum"
+            UIRevision |> DynObj.setValueOpt trace "uirevision"
 
             trace
