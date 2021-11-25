@@ -77,6 +77,7 @@ module ChartDomain =
                     ?MultiText          = MultiText,
                     ?TextPosition       = TextPosition,
                     ?MultiTextPosition  = MultiTextPosition,
+                    Marker              = marker,
                     ?TextInfo           = TextInfo,
                     ?Direction          = Direction,
                     ?Hole               = Hole,
@@ -208,7 +209,6 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
-                [<Optional; DefaultParameterValue(null)>] ?Labels: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?Pull: float,
                 [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
                 [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
@@ -259,47 +259,113 @@ module ChartDomain =
         [<Extension>]
         static member FunnelArea
             (
-                [<Optional; DefaultParameterValue(null)>] ?Values,
-                [<Optional; DefaultParameterValue(null)>] ?Labels,
-                [<Optional; DefaultParameterValue(null)>] ?dLabel,
-                [<Optional; DefaultParameterValue(null)>] ?Label0,
-                [<Optional; DefaultParameterValue(null)>] ?Name,
-                [<Optional; DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional; DefaultParameterValue(null)>] ?Opacity,
-                [<Optional; DefaultParameterValue(null)>] ?Color,
-                [<Optional; DefaultParameterValue(null)>] ?Line,
-                [<Optional; DefaultParameterValue(null)>] ?Text,
-                [<Optional; DefaultParameterValue(null)>] ?TextPosition,
-                [<Optional; DefaultParameterValue(null)>] ?X,
-                [<Optional; DefaultParameterValue(null)>] ?Y,
-                [<Optional; DefaultParameterValue(null)>] ?Row,
-                [<Optional; DefaultParameterValue(null)>] ?Column,
-                [<Optional; DefaultParameterValue(null)>] ?Aspectratio,
-                [<Optional; DefaultParameterValue(null)>] ?Baseratio,
-                [<Optional; DefaultParameterValue(null)>] ?Insidetextfont,
-                [<Optional; DefaultParameterValue(null)>] ?Scalegroup,
-                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+                values: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?Labels: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionColors: seq<Color>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineMultiWidth: seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?TextInfo: StyleParam.TextInfo,
+                [<Optional; DefaultParameterValue(null)>] ?AspectRatio: float,
+                [<Optional; DefaultParameterValue(null)>] ?BaseRatio: float,
+                [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
 
+            
             let useDefaults = defaultArg UseDefaults true
+
+            let outline = 
+                SectionOutline
+                |> Option.defaultValue (Line.init ())
+                |> Line.style (
+                    ?Color = SectionOutlineColor,
+                    ?Width = SectionOutlineWidth,
+                    ?MultiWidth = SectionOutlineMultiWidth
+                )
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (
+                    ?Colors = SectionColors,
+                    Outline = outline
+                )
+
 
             TraceDomain.initFunnelArea (
                 TraceDomainStyle.FunnelArea(
-                    ?Values = Values,
-                    ?Labels = Labels,
-                    ?dLabel = dLabel,
-                    ?Label0 = Label0,
-                    ?Aspectratio = Aspectratio,
-                    ?Baseratio = Baseratio,
-                    ?Insidetextfont = Insidetextfont,
-                    ?Scalegroup = Scalegroup
+                    Values              = values,
+                    ?Name               = Name,
+                    ?ShowLegend         = ShowLegend,
+                    ?Opacity            = Opacity,
+                    ?Labels             = Labels,
+                    ?Text               = Text,
+                    ?MultiText          = MultiText,
+                    ?TextPosition       = TextPosition,
+                    ?MultiTextPosition  = MultiTextPosition,
+                    Marker              = marker,
+                    ?TextInfo           = TextInfo,
+                    ?AspectRatio        = AspectRatio,
+                    ?BaseRatio          = BaseRatio
                 )
             )
-            |> TraceStyle.TraceInfo(?Name = Name, ?ShowLegend = ShowLegend, ?Opacity = Opacity)
-            |> TraceStyle.Marker(?Color = Color, ?Outline = Line)
-            |> TraceStyle.Domain(?X = X, ?Y = Y, ?Row = Row, ?Column = Column)
-            |> TraceStyle.TextLabel(?Text = Text, ?Textposition = TextPosition)
             |> GenericChart.ofTraceObject useDefaults
+
+        /// Creates a FunnelArea chart.
+        [<Extension>]
+        static member FunnelArea
+            (   
+                valuesLabels: seq<#IConvertible * #IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?Name                     : string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend               : bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity                  : float,
+                [<Optional; DefaultParameterValue(null)>] ?Text                     : #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText                : seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition             : StyleParam.TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition        : seq<StyleParam.TextPosition>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionColors            : seq<Color>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineColor      : Color,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineWidth      : float,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineMultiWidth : seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutline           : Line,
+                [<Optional; DefaultParameterValue(null)>] ?Marker                   : Marker,
+                [<Optional; DefaultParameterValue(null)>] ?TextInfo                 : StyleParam.TextInfo,
+                [<Optional; DefaultParameterValue(null)>] ?AspectRatio              : float,
+                [<Optional; DefaultParameterValue(null)>] ?BaseRatio                : float,
+                [<Optional; DefaultParameterValue(null)>] ?UseDefaults              : bool
+            ) =
+                let values, labels = Seq.unzip valuesLabels
+
+                Chart.FunnelArea(
+                    values,
+                    Labels = labels,
+                    ?Name                    = Name                    ,
+                    ?ShowLegend              = ShowLegend              ,
+                    ?Opacity                 = Opacity                 ,
+                    ?Text                    = Text                    ,
+                    ?MultiText               = MultiText               ,
+                    ?TextPosition            = TextPosition            ,
+                    ?MultiTextPosition       = MultiTextPosition       ,
+                    ?SectionColors           = SectionColors           ,
+                    ?SectionOutlineColor     = SectionOutlineColor     ,
+                    ?SectionOutlineWidth     = SectionOutlineWidth     ,
+                    ?SectionOutlineMultiWidth= SectionOutlineMultiWidth,
+                    ?SectionOutline          = SectionOutline          ,
+                    ?Marker                  = Marker                  ,
+                    ?TextInfo                = TextInfo                ,
+                    ?AspectRatio             = AspectRatio             ,
+                    ?BaseRatio               = BaseRatio               ,
+                    ?UseDefaults             = UseDefaults             
+                )
+
 
 
         /// Creates a sunburst chart. Visualize hierarchical data spanning outward radially from root to leaves.
