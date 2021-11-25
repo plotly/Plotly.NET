@@ -6,7 +6,8 @@ open DynamicObj
 open System
 open System.Runtime.InteropServices
 
-type Root() =
+
+type SunburstRoot() =
     inherit DynamicObj()
 
     static member init
@@ -14,19 +15,19 @@ type Root() =
             [<Optional; DefaultParameterValue(null)>] ?Color: Color
         ) =
 
-        Root() |> Root.style (?Color = Color)
+        SunburstRoot() |> SunburstRoot.style (?Color = Color)
 
     static member style
         (
             [<Optional; DefaultParameterValue(null)>] ?Color: Color
         ) =
-        (fun (root: Root) ->
+        (fun (root: SunburstRoot) ->
 
             Color |> DynObj.setValueOpt root "color"
 
             root)
             
-type Leaf() =
+type SunburstLeaf() =
     inherit DynamicObj()
 
     static member init
@@ -34,13 +35,13 @@ type Leaf() =
             [<Optional; DefaultParameterValue(null)>] ?Opacity: float
         ) =
 
-        Leaf() |> Leaf.style (?Opacity = Opacity)
+        SunburstLeaf() |> SunburstLeaf.style (?Opacity = Opacity)
 
     static member style
         (
             [<Optional; DefaultParameterValue(null)>] ?Opacity: float
         ) =
-        (fun (leaf: Leaf) ->
+        (fun (leaf: SunburstLeaf) ->
 
             Opacity |> DynObj.setValueOpt leaf "opacity"
 

@@ -254,8 +254,8 @@ type TraceDomainStyle() =
             [<Optional; DefaultParameterValue(null)>] ?InsideTextFont: Font,
             [<Optional; DefaultParameterValue(null)>] ?InsideTextOrientation: StyleParam.InsideTextOrientation,
             [<Optional; DefaultParameterValue(null)>] ?OutsideTextFont: Font,
-            [<Optional; DefaultParameterValue(null)>] ?Root     : Root,
-            [<Optional; DefaultParameterValue(null)>] ?Leaf     : Leaf,
+            [<Optional; DefaultParameterValue(null)>] ?Root     : SunburstRoot,
+            [<Optional; DefaultParameterValue(null)>] ?Leaf     : SunburstLeaf,
             [<Optional; DefaultParameterValue(null)>] ?Level        : string,
             [<Optional; DefaultParameterValue(null)>] ?MaxDepth: int,
             [<Optional; DefaultParameterValue(null)>] ?Rotation: int,
@@ -342,7 +342,7 @@ type TraceDomainStyle() =
             [<Optional; DefaultParameterValue(null)>] ?HoverLabel: Hoverlabel,
             [<Optional; DefaultParameterValue(null)>] ?InsideTextFont: Font,
             [<Optional; DefaultParameterValue(null)>] ?OutsideTextFont: Font,
-            [<Optional; DefaultParameterValue(null)>] ?Root     : Root,
+            [<Optional; DefaultParameterValue(null)>] ?Root     : TreemapRoot,
             [<Optional; DefaultParameterValue(null)>] ?Level        : string,
             [<Optional; DefaultParameterValue(null)>] ?MaxDepth: int,
             [<Optional; DefaultParameterValue(null)>] ?Rotation: int,
@@ -532,17 +532,41 @@ type TraceDomainStyle() =
     // Applies the styles of table plot to TraceObjects
     static member Table
         (
-            header: TableHeader,
-            cells: TableCells,
-            [<Optional; DefaultParameterValue(null)>] ?ColumnWidth: seq<int>,
-            [<Optional; DefaultParameterValue(null)>] ?ColumnOrder: seq<int>
+            [<Optional; DefaultParameterValue(null)>] ?Name: string,
+            [<Optional; DefaultParameterValue(null)>] ?Visible: StyleParam.Visible,
+            [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+            [<Optional; DefaultParameterValue(null)>] ?LegendGroup: string,
+            [<Optional; DefaultParameterValue(null)>] ?LegendGroupTitle: Title,
+            [<Optional; DefaultParameterValue(null)>] ?Ids: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?ColumnOrder: seq<int>,
+            [<Optional; DefaultParameterValue(null)>] ?ColumnWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?MultiColumnWidth: seq<float>,
+            [<Optional; DefaultParameterValue(null)>] ?Meta: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?CustomData: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
+            [<Optional; DefaultParameterValue(null)>] ?Cells: TableCells,
+            [<Optional; DefaultParameterValue(null)>] ?Header: TableHeader,
+            [<Optional; DefaultParameterValue(null)>] ?HoverLabel: Hoverlabel,
+            [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
         ) =
         (fun (trace: ('T :> Trace)) ->
-            header |> DynObj.setValue trace "header"
-            cells |> DynObj.setValue trace "cells"
-            ColumnWidth |> DynObj.setValueOpt trace "columnwidth"
+
+            Name |> DynObj.setValueOpt trace "name"
+            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+            ShowLegend |> DynObj.setValueOpt trace "showlegend"
+            LegendGroup |> DynObj.setValueOpt trace "legendgroup"
+            LegendGroupTitle |> DynObj.setValueOpt trace "legendgrouptitle"
+            Ids |> DynObj.setValueOpt trace "ids"
             ColumnOrder |> DynObj.setValueOpt trace "columnorder"
-            // out ->
+            (ColumnWidth , MultiColumnWidth) |> DynObj.setSingleOrMultiOpt trace "columnwidth"
+            Meta |> DynObj.setValueOpt trace "meta"
+            CustomData |> DynObj.setValueOpt trace "customdata"
+            Domain |> DynObj.setValueOpt trace "domain"
+            Cells |> DynObj.setValueOpt trace "cells"
+            Header |> DynObj.setValueOpt trace "header"
+            HoverLabel  |> DynObj.setValueOpt trace "hoverlabel"
+            UIRevision |> DynObj.setValueOpt trace "uirevision"
+
             trace)
 
     static member Indicator

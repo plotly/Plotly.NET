@@ -93,7 +93,8 @@
     <Compile Include="Traces\ObjectAbstractions\Selection.fs" />
     <Compile Include="Traces\ObjectAbstractions\StockData.fs" />
     <Compile Include="Traces\ObjectAbstractions\Pathbar.fs" />
-    <Compile Include="Traces\ObjectAbstractions\TreemapTiling.fs" />
+    <Compile Include="Traces\ObjectAbstractions\Treemap.fs" />
+    <Compile Include="Traces\ObjectAbstractions\Sunburst.fs" />
     <Compile Include="Traces\ObjectAbstractions\Contours.fs" />
     <Compile Include="Traces\ObjectAbstractions\Dimensions.fs" />
     <Compile Include="Traces\ObjectAbstractions\WaterfallConnector.fs" />
@@ -108,7 +109,6 @@
     <Compile Include="Traces\ObjectAbstractions\Icicle.fs" />
     <Compile Include="Traces\ObjectAbstractions\FinanceMarker.fs" />
     <Compile Include="Traces\ObjectAbstractions\SplomDiagonal.fs" />
-    <Compile Include="Traces\ObjectAbstractions\Tree.fs" />
     <Compile Include="Traces\ObjectAbstractions\Sankey.fs" />
     <Compile Include="Traces\Trace.fs" />
     <Compile Include="Traces\Trace2D.fs" />
