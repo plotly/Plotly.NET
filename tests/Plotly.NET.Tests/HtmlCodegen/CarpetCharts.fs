@@ -40,8 +40,7 @@ let carpetCharts =
                 StyleParam.MarkerSymbol.DiamondX
                 StyleParam.MarkerSymbol.Hexagon2
             ],
-            MultiSize = sizes,
-            Color = Color.fromColors ([Red; Blue; Green; Yellow] |> List.map Color.fromKeyword), 
+            MarkerColor = Color.fromColors ([Red; Blue; Green; Yellow] |> List.map Color.fromKeyword), 
             UseDefaults = false
         )
         Chart.PointCarpet(aData,bData,"carpet2",Name = "Point", UseDefaults = false)
@@ -61,35 +60,35 @@ let bubble  = Chart.combine [carpets.[4]; carpetCharts.[4]]
 let ``ScatterCarpet and derived Charts`` =
     testList "CarpetCharts.ScatterCarpet and derived Charts" [
         testCase "ScatterCarpet data" ( fun () ->
-            """var data = [{"type":"carpet","y":[2.0,3.5,4.0,3.0,4.5,5.0,5.5,6.5,7.5,8.0,8.5,10.0],"a":[4.0,4.0,4.0,4.5,4.5,4.5,5.0,5.0,5.0,6.0,6.0,6.0],"b":[1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0],"carpet":"carpet1"},{"type":"scattercarpet","name":"Scatter","mode":"lines+markers","a":[4.0,5.0,5.0,6.0],"b":[1.0,1.0,2.0,3.0],"carpet":"carpet1","marker":{"color":["rgba(255, 0, 0, 1.0)","rgba(0, 0, 255, 1.0)","rgba(0, 128, 0, 1.0)","rgba(255, 255, 0, 1.0)"],"size":[5,10,15,20],"symbol":["46","12","32","15"]},"line":{"color":["rgba(255, 0, 0, 1.0)","rgba(0, 0, 255, 1.0)","rgba(0, 128, 0, 1.0)","rgba(255, 255, 0, 1.0)"]}}];"""
+            """var data = [{"type":"carpet","y":[2.0,3.5,4.0,3.0,4.5,5.0,5.5,6.5,7.5,8.0,8.5,10.0],"a":[4.0,4.0,4.0,4.5,4.5,4.5,5.0,5.0,5.0,6.0,6.0,6.0],"b":[1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0],"carpet":"carpet1"},{"type":"scattercarpet","name":"Scatter","mode":"lines+markers","a":[4.0,5.0,5.0,6.0],"b":[1.0,1.0,2.0,3.0],"marker":{"color":["rgba(255, 0, 0, 1.0)","rgba(0, 0, 255, 1.0)","rgba(0, 128, 0, 1.0)","rgba(255, 255, 0, 1.0)"],"symbol":["46","12","32","15"]},"line":{},"carpet":"carpet1"}];"""
             |> chartGeneratedContains scatter
         );
         testCase "ScatterCarpet layout" ( fun () ->
             emptyLayout scatter
         );
         testCase "PointCarpet data" ( fun () ->
-            """var data = [{"type":"carpet","y":[12.0,13.5,14.0,13.0,14.5,15.0,15.5,16.5,17.5,18.0,18.5,20.0],"a":[6.0,6.0,6.0,5.0,5.0,5.0,4.5,4.5,4.5,4.0,4.0,4.0],"b":[3.0,2.0,1.0,3.0,2.0,1.0,3.0,2.0,1.0,3.0,2.0,1.0],"carpet":"carpet2"},{"type":"scattercarpet","name":"Point","mode":"markers","a":[4.0,5.0,5.0,6.0],"b":[1.0,1.0,2.0,3.0],"carpet":"carpet2","marker":{}}];"""
+            """var data = [{"type":"carpet","y":[12.0,13.5,14.0,13.0,14.5,15.0,15.5,16.5,17.5,18.0,18.5,20.0],"a":[6.0,6.0,6.0,5.0,5.0,5.0,4.5,4.5,4.5,4.0,4.0,4.0],"b":[3.0,2.0,1.0,3.0,2.0,1.0,3.0,2.0,1.0,3.0,2.0,1.0],"carpet":"carpet2"},{"type":"scattercarpet","name":"Point","mode":"markers","a":[4.0,5.0,5.0,6.0],"b":[1.0,1.0,2.0,3.0],"marker":{},"line":{},"carpet":"carpet2"}];"""
             |> chartGeneratedContains point
         );
         testCase "PointCarpet layout" ( fun () ->
             emptyLayout point
         );
         testCase "LineCarpet data" ( fun () ->
-            """var data = [{"type":"carpet","y":[22.0,23.5,24.0,23.0,24.5,25.0,25.5,26.5,27.5,28.0,28.5,30.0],"a":[4.0,4.0,4.0,4.5,4.5,4.5,5.0,5.0,5.0,6.0,6.0,6.0],"b":[1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0],"carpet":"carpet3"},{"type":"scattercarpet","name":"Line","mode":"lines","a":[4.0,5.0,5.0,6.0],"b":[1.0,1.0,2.0,3.0],"carpet":"carpet3","marker":{},"line":{}}];"""
+            """var data = [{"type":"carpet","y":[22.0,23.5,24.0,23.0,24.5,25.0,25.5,26.5,27.5,28.0,28.5,30.0],"a":[4.0,4.0,4.0,4.5,4.5,4.5,5.0,5.0,5.0,6.0,6.0,6.0],"b":[1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0],"carpet":"carpet3"},{"type":"scattercarpet","name":"Line","mode":"lines","a":[4.0,5.0,5.0,6.0],"b":[1.0,1.0,2.0,3.0],"marker":{},"line":{},"carpet":"carpet3"}];"""
             |> chartGeneratedContains line
         );
         testCase "LineCarpet layout" ( fun () ->
             emptyLayout line
         );
         testCase "SplineCarpet data" ( fun () ->
-            """var data = [{"type":"carpet","y":[32.0,33.5,34.0,33.0,34.5,35.0,35.5,36.5,37.5,38.0,38.5,40.0],"a":[6.0,6.0,6.0,5.0,5.0,5.0,4.5,4.5,4.5,4.0,4.0,4.0],"b":[3.0,2.0,1.0,3.0,2.0,1.0,3.0,2.0,1.0,3.0,2.0,1.0],"carpet":"carpet4"},{"type":"scattercarpet","name":"Spline","mode":"lines","a":[4.0,5.0,5.0,6.0],"b":[1.0,1.0,2.0,3.0],"carpet":"carpet4","marker":{},"line":{"shape":"spline"}}];"""
+            """var data = [{"type":"carpet","y":[32.0,33.5,34.0,33.0,34.5,35.0,35.5,36.5,37.5,38.0,38.5,40.0],"a":[6.0,6.0,6.0,5.0,5.0,5.0,4.5,4.5,4.5,4.0,4.0,4.0],"b":[3.0,2.0,1.0,3.0,2.0,1.0,3.0,2.0,1.0,3.0,2.0,1.0],"carpet":"carpet4"},{"type":"scattercarpet","name":"Spline","mode":"lines","a":[4.0,5.0,5.0,6.0],"b":[1.0,1.0,2.0,3.0],"marker":{},"line":{"shape":"spline"},"carpet":"carpet4"}];"""
             |> chartGeneratedContains spline
         );
         testCase "SplineCarpet layout" ( fun () ->
             emptyLayout spline
         );
         testCase "BubbleCarpet data" ( fun () ->
-            """var data = [{"type":"carpet","y":[42.0,43.5,44.0,43.0,44.5,45.0,45.5,46.5,47.5,48.0,48.5,50.0],"a":[4.0,4.0,4.0,4.5,4.5,4.5,5.0,5.0,5.0,6.0,6.0,6.0],"b":[1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0],"carpet":"carpet5"},{"type":"scattercarpet","name":"Bubble","mode":"markers","a":[4.0,5.0,5.0,6.0],"b":[1.0,1.0,2.0,3.0],"carpet":"carpet5","marker":{"size":[5,10,15,20]}}];"""
+            """var data = [{"type":"carpet","y":[42.0,43.5,44.0,43.0,44.5,45.0,45.5,46.5,47.5,48.0,48.5,50.0],"a":[4.0,4.0,4.0,4.5,4.5,4.5,5.0,5.0,5.0,6.0,6.0,6.0],"b":[1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0,1.0,2.0,3.0],"carpet":"carpet5"},{"type":"scattercarpet","name":"Bubble","mode":"markers","a":[4.0,5.0,5.0,6.0],"b":[1.0,1.0,2.0,3.0],"marker":{"size":[5,10,15,20]},"line":{},"carpet":"carpet5"}];"""
             |> chartGeneratedContains bubble
         );
         testCase "BubbleCarpet layout" ( fun () ->
