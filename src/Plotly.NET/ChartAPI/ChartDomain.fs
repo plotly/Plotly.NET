@@ -23,43 +23,67 @@ module ChartDomain =
         static member Pie
             (
                 values: seq<#IConvertible>,
-                [<Optional; DefaultParameterValue(null)>] ?Labels: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
-                [<Optional; DefaultParameterValue(null)>] ?TextLabels: seq<#IConvertible>,
-                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
-                [<Optional; DefaultParameterValue(null)>] ?Direction: StyleParam.Direction,
-                [<Optional; DefaultParameterValue(null)>] ?Pull: float,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
-                [<Optional; DefaultParameterValue(null)>] ?SectionColors: seq<Color>,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?Labels: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?Pull: float,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionColors: seq<Color>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineMultiWidth: seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?TextInfo: StyleParam.TextInfo,
+                [<Optional; DefaultParameterValue(null)>] ?Direction: StyleParam.Direction,
+                [<Optional; DefaultParameterValue(null)>] ?Hole: float,
+                [<Optional; DefaultParameterValue(null)>] ?Rotation: float,
                 [<Optional; DefaultParameterValue(null)>] ?Sort: bool,
-                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+                [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
 
             let useDefaults = defaultArg UseDefaults true
 
+            let outline = 
+                SectionOutline
+                |> Option.defaultValue (Line.init ())
+                |> Line.style (
+                    ?Color = SectionOutlineColor,
+                    ?Width = SectionOutlineWidth,
+                    ?MultiWidth = SectionOutlineMultiWidth
+                )
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (
+                    ?Colors = SectionColors,
+                    Outline = outline
+                )
+
+
             TraceDomain.initPie (
                 TraceDomainStyle.Pie(
                     Values = values,
-                    ?Labels = Labels,
-                    ?Name = Name,
-                    ?Text = TextLabels,
-                    ?TextPosition = TextPosition,
-                    ?Direction = Direction,
-                    ?Pull = Pull,
-                    ?ShowLegend = ShowLegend,
-                    ?Opacity = Opacity,
-                    ?Sort = Sort
+                    ?Name               = Name,
+                    ?ShowLegend         = ShowLegend,
+                    ?Opacity            = Opacity,
+                    ?Labels             = Labels,
+                    ?Pull               = Pull,
+                    ?Text               = Text,
+                    ?MultiText          = MultiText,
+                    ?TextPosition       = TextPosition,
+                    ?MultiTextPosition  = MultiTextPosition,
+                    ?TextInfo           = TextInfo,
+                    ?Direction          = Direction,
+                    ?Hole               = Hole,
+                    ?Rotation           = Rotation,
+                    ?Sort               = Sort
+                    
                 )
-            )
-            |> TraceStyle.Marker(?Colors = SectionColors)
-            |> TraceStyle.TextLabel(
-                ?Text =
-                    (if TextLabels.IsSome then
-                         TextLabels
-                     else
-                         Labels),
-                ?Textposition = TextPosition
             )
             |> GenericChart.ofTraceObject useDefaults
 
@@ -69,15 +93,25 @@ module ChartDomain =
             (
                 valuesLabels: seq<#IConvertible * #IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
-                [<Optional; DefaultParameterValue(null)>] ?TextLabels: seq<#IConvertible>,
-                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
-                [<Optional; DefaultParameterValue(null)>] ?Direction: StyleParam.Direction,
-                [<Optional; DefaultParameterValue(null)>] ?Pull: float,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
-                [<Optional; DefaultParameterValue(null)>] ?SectionColors: seq<Color>,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?Pull: float,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionColors: seq<Color>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineMultiWidth: seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?TextInfo: StyleParam.TextInfo,
+                [<Optional; DefaultParameterValue(null)>] ?Direction: StyleParam.Direction,
+                [<Optional; DefaultParameterValue(null)>] ?Hole: float,
+                [<Optional; DefaultParameterValue(null)>] ?Rotation: float,
                 [<Optional; DefaultParameterValue(null)>] ?Sort: bool,
-                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+                [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
 
             let values, labels = Seq.unzip valuesLabels
@@ -85,16 +119,26 @@ module ChartDomain =
             Chart.Pie(
                 values,
                 Labels = labels,
-                ?Name = Name,
-                ?TextLabels = TextLabels,
-                ?TextPosition = TextPosition,
-                ?Direction = Direction,
-                ?Pull = Pull,
-                ?ShowLegend = ShowLegend,
-                ?SectionColors = SectionColors,
-                ?Opacity = Opacity,
-                ?Sort = Sort,
-                ?UseDefaults = UseDefaults
+                ?Name                       = Name,
+                ?ShowLegend                 = ShowLegend,
+                ?Opacity                    = Opacity,
+                ?Pull                       = Pull,
+                ?Text                       = Text,
+                ?MultiText                  = MultiText,
+                ?TextPosition               = TextPosition,
+                ?MultiTextPosition          = MultiTextPosition,
+                ?SectionColors              = SectionColors,
+                ?SectionOutlineColor        = SectionOutlineColor,
+                ?SectionOutlineWidth        = SectionOutlineWidth,
+                ?SectionOutlineMultiWidth   = SectionOutlineMultiWidth,
+                ?SectionOutline             = SectionOutline,
+                ?Marker                     = Marker,
+                ?TextInfo                   = TextInfo,
+                ?Direction                  = Direction,
+                ?Hole                       = Hole,
+                ?Rotation                   = Rotation,
+                ?Sort                       = Sort,
+                ?UseDefaults                = UseDefaults
             )
 
 
@@ -103,48 +147,56 @@ module ChartDomain =
         static member Doughnut
             (
                 values: seq<#IConvertible>,
-                [<Optional; DefaultParameterValue(null)>] ?Labels: seq<#IConvertible>,
-                [<Optional; DefaultParameterValue(null)>] ?Hole: float,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
-                [<Optional; DefaultParameterValue(null)>] ?TextLabels: seq<#IConvertible>,
-                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
-                [<Optional; DefaultParameterValue(null)>] ?Direction: StyleParam.Direction,
-                [<Optional; DefaultParameterValue(null)>] ?Pull: float,
+                [<Optional; DefaultParameterValue(null)>] ?Hole: float,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
-                [<Optional; DefaultParameterValue(null)>] ?SectionColors: seq<Color>,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?Labels: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?Pull: float,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionColors: seq<Color>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineMultiWidth: seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?TextInfo: StyleParam.TextInfo,
+                [<Optional; DefaultParameterValue(null)>] ?Direction: StyleParam.Direction,
+                [<Optional; DefaultParameterValue(null)>] ?Rotation: float,
                 [<Optional; DefaultParameterValue(null)>] ?Sort: bool,
-                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+                [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
 
             let useDefaults = defaultArg UseDefaults true
-            let hole' = Option.defaultValue 0.4 Hole
+            let hole = Option.defaultValue 0.4 Hole
 
-            TraceDomain.initPie (
-                TraceDomainStyle.Pie(
-                    Values = values,
-                    ?Labels = Labels,
-                    ?Name = Name,
-                    ?Text = TextLabels,
-                    ?TextPosition = TextPosition,
-                    ?Direction = Direction,
-                    ?Pull = Pull,
-                    ?ShowLegend = ShowLegend,
-                    ?Opacity = Opacity,
-                    Hole = hole',
-                    ?Sort = Sort
-                )
+            Chart.Pie(
+                values,
+                Hole                        = hole,
+                ?Labels                     = Labels,
+                ?Name                       = Name,
+                ?ShowLegend                 = ShowLegend,
+                ?Opacity                    = Opacity,
+                ?Pull                       = Pull,
+                ?Text                       = Text,
+                ?MultiText                  = MultiText,
+                ?TextPosition               = TextPosition,
+                ?MultiTextPosition          = MultiTextPosition,
+                ?SectionColors              = SectionColors,
+                ?SectionOutlineColor        = SectionOutlineColor,
+                ?SectionOutlineWidth        = SectionOutlineWidth,
+                ?SectionOutlineMultiWidth   = SectionOutlineMultiWidth,
+                ?SectionOutline             = SectionOutline,
+                ?Marker                     = Marker,
+                ?TextInfo                   = TextInfo,
+                ?Direction                  = Direction,
+                ?Rotation                   = Rotation,
+                ?Sort                       = Sort,
+                ?UseDefaults                = UseDefaults
             )
-            |> TraceStyle.Marker(?Colors = SectionColors)
-            |> TraceStyle.TextLabel(
-                ?Text =
-                    (if TextLabels.IsSome then
-                         TextLabels
-                     else
-                         Labels),
-                ?Textposition = TextPosition
-            )
-            |> GenericChart.ofTraceObject useDefaults
 
 
         /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data as a whole.
@@ -154,78 +206,56 @@ module ChartDomain =
                 valuesLabels: seq<#IConvertible * #IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?Hole: float,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
-                [<Optional; DefaultParameterValue(null)>] ?TextLabels: seq<#IConvertible>,
-                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
-                [<Optional; DefaultParameterValue(null)>] ?Direction: StyleParam.Direction,
-                [<Optional; DefaultParameterValue(null)>] ?Pull: float,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
-                [<Optional; DefaultParameterValue(null)>] ?SectionColors: seq<Color>,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?Labels: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?Pull: float,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionColors: seq<Color>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineMultiWidth: seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?TextInfo: StyleParam.TextInfo,
+                [<Optional; DefaultParameterValue(null)>] ?Direction: StyleParam.Direction,
+                [<Optional; DefaultParameterValue(null)>] ?Rotation: float,
                 [<Optional; DefaultParameterValue(null)>] ?Sort: bool,
-                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+                [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
             let values, labels = Seq.unzip valuesLabels
 
             Chart.Doughnut(
                 values,
                 Labels = labels,
-                ?Name = Name,
-                ?TextLabels = TextLabels,
-                ?TextPosition = TextPosition,
-                ?Direction = Direction,
-                ?Pull = Pull,
-                ?ShowLegend = ShowLegend,
-                ?SectionColors = SectionColors,
-                ?Opacity = Opacity,
-                ?Hole = Hole,
-                ?Sort = Sort,
-                ?UseDefaults = UseDefaults
+                ?Hole                       = Hole,
+                ?Name                       = Name,
+                ?ShowLegend                 = ShowLegend,
+                ?Opacity                    = Opacity,
+                ?Pull                       = Pull,
+                ?Text                       = Text,
+                ?MultiText                  = MultiText,
+                ?TextPosition               = TextPosition,
+                ?MultiTextPosition          = MultiTextPosition,
+                ?SectionColors              = SectionColors,
+                ?SectionOutlineColor        = SectionOutlineColor,
+                ?SectionOutlineWidth        = SectionOutlineWidth,
+                ?SectionOutlineMultiWidth   = SectionOutlineMultiWidth,
+                ?SectionOutline             = SectionOutline,
+                ?Marker                     = Marker,
+                ?TextInfo                   = TextInfo,
+                ?Direction                  = Direction,
+                ?Rotation                   = Rotation,
+                ?Sort                       = Sort,
+                ?UseDefaults                = UseDefaults
             )
 
 
 
         /// Creates a FunnelArea chart.
-        /// FunnelArea charts visualize stages in a process using area-encoded trapezoids. This trace can be used to show data in a part-to-whole representation similar to a "pie" trace, wherein each item appears in a single stage. See also the "funnel" trace type for a different approach to visualizing funnel data.
-        ///
-        /// Parameters:
-        ///
-        /// Values        : Sets the values of the sectors. If omitted, we count occurrences of each label.
-        ///
-        /// Labels        : Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
-        ///
-        /// dLabel        : Sets the label step. See `label0` for more info.
-        ///
-        /// Label0        : Alternate to `labels`. Builds a numeric set of labels. Use with `dlabel` where `label0` is the starting label and `dlabel` the step.
-        ///
-        /// Name          : Sets the trace name. The trace name appear as the legend item and on hover.
-        ///
-        /// ShowLegend    : Determines whether or not an item corresponding to this trace is shown in the legend.
-        ///
-        /// Opacity       : Sets the opacity of the trace.
-        ///
-        /// Color         : Sets Marker Color
-        ///
-        /// Line          : Line type
-        ///
-        /// Text          : Sets text elements associated with each sector. If trace `textinfo` contains a "text" flag, these elements will be seen on the chart. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.
-        ///
-        /// TextPosition  : Specifies the location of the `textinfo`.
-        ///
-        /// X             : Sets the horizontal domain of this funnelarea trace (in plot fraction).
-        ///
-        /// Y             : Sets the vertical domain of this funnelarea trace (in plot fraction).
-        ///
-        /// Row           : If there is a layout grid, use the domain for this row in the grid for this funnelarea trace .
-        ///
-        /// Column        : If there is a layout grid, use the domain for this column in the grid for this funnelarea trace .
-        ///
-        /// Aspectratio   : Sets the ratio between height and width
-        ///
-        /// Baseratio     : Sets the ratio between bottom length and maximum top length.
-        ///
-        /// Insidetextfont: Sets the font used for `textinfo` lying inside the sector.
-        ///
-        /// Scalegroup    : If there are multiple funnelareas that should be sized according to their totals, link them by providing a non-empty group id here shared by every trace in the same group.
         [<Extension>]
         static member FunnelArea
             (
