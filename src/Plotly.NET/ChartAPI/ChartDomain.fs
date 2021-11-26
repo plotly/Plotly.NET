@@ -48,7 +48,7 @@ module ChartDomain =
 
             let useDefaults = defaultArg UseDefaults true
 
-            let outline = 
+            let outline =
                 SectionOutline
                 |> Option.defaultValue (Line.init ())
                 |> Line.style (
@@ -56,34 +56,32 @@ module ChartDomain =
                     ?Width = SectionOutlineWidth,
                     ?MultiWidth = SectionOutlineMultiWidth
                 )
+
             let marker =
                 Marker
                 |> Option.defaultValue (TraceObjects.Marker.init ())
-                |> TraceObjects.Marker.style (
-                    ?Colors = SectionColors,
-                    Outline = outline
-                )
+                |> TraceObjects.Marker.style (?Colors = SectionColors, Outline = outline)
 
 
             TraceDomain.initPie (
                 TraceDomainStyle.Pie(
                     Values = values,
-                    ?Name               = Name,
-                    ?ShowLegend         = ShowLegend,
-                    ?Opacity            = Opacity,
-                    ?Labels             = Labels,
-                    ?Pull               = Pull,
-                    ?Text               = Text,
-                    ?MultiText          = MultiText,
-                    ?TextPosition       = TextPosition,
-                    ?MultiTextPosition  = MultiTextPosition,
-                    Marker              = marker,
-                    ?TextInfo           = TextInfo,
-                    ?Direction          = Direction,
-                    ?Hole               = Hole,
-                    ?Rotation           = Rotation,
-                    ?Sort               = Sort
-                    
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Labels = Labels,
+                    ?Pull = Pull,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?TextPosition = TextPosition,
+                    ?MultiTextPosition = MultiTextPosition,
+                    Marker = marker,
+                    ?TextInfo = TextInfo,
+                    ?Direction = Direction,
+                    ?Hole = Hole,
+                    ?Rotation = Rotation,
+                    ?Sort = Sort
+
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
@@ -120,26 +118,26 @@ module ChartDomain =
             Chart.Pie(
                 values,
                 Labels = labels,
-                ?Name                       = Name,
-                ?ShowLegend                 = ShowLegend,
-                ?Opacity                    = Opacity,
-                ?Pull                       = Pull,
-                ?Text                       = Text,
-                ?MultiText                  = MultiText,
-                ?TextPosition               = TextPosition,
-                ?MultiTextPosition          = MultiTextPosition,
-                ?SectionColors              = SectionColors,
-                ?SectionOutlineColor        = SectionOutlineColor,
-                ?SectionOutlineWidth        = SectionOutlineWidth,
-                ?SectionOutlineMultiWidth   = SectionOutlineMultiWidth,
-                ?SectionOutline             = SectionOutline,
-                ?Marker                     = Marker,
-                ?TextInfo                   = TextInfo,
-                ?Direction                  = Direction,
-                ?Hole                       = Hole,
-                ?Rotation                   = Rotation,
-                ?Sort                       = Sort,
-                ?UseDefaults                = UseDefaults
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?Pull = Pull,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?SectionColors = SectionColors,
+                ?SectionOutlineColor = SectionOutlineColor,
+                ?SectionOutlineWidth = SectionOutlineWidth,
+                ?SectionOutlineMultiWidth = SectionOutlineMultiWidth,
+                ?SectionOutline = SectionOutline,
+                ?Marker = Marker,
+                ?TextInfo = TextInfo,
+                ?Direction = Direction,
+                ?Hole = Hole,
+                ?Rotation = Rotation,
+                ?Sort = Sort,
+                ?UseDefaults = UseDefaults
             )
 
 
@@ -176,27 +174,27 @@ module ChartDomain =
 
             Chart.Pie(
                 values,
-                Hole                        = hole,
-                ?Labels                     = Labels,
-                ?Name                       = Name,
-                ?ShowLegend                 = ShowLegend,
-                ?Opacity                    = Opacity,
-                ?Pull                       = Pull,
-                ?Text                       = Text,
-                ?MultiText                  = MultiText,
-                ?TextPosition               = TextPosition,
-                ?MultiTextPosition          = MultiTextPosition,
-                ?SectionColors              = SectionColors,
-                ?SectionOutlineColor        = SectionOutlineColor,
-                ?SectionOutlineWidth        = SectionOutlineWidth,
-                ?SectionOutlineMultiWidth   = SectionOutlineMultiWidth,
-                ?SectionOutline             = SectionOutline,
-                ?Marker                     = Marker,
-                ?TextInfo                   = TextInfo,
-                ?Direction                  = Direction,
-                ?Rotation                   = Rotation,
-                ?Sort                       = Sort,
-                ?UseDefaults                = UseDefaults
+                Hole = hole,
+                ?Labels = Labels,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?Pull = Pull,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?SectionColors = SectionColors,
+                ?SectionOutlineColor = SectionOutlineColor,
+                ?SectionOutlineWidth = SectionOutlineWidth,
+                ?SectionOutlineMultiWidth = SectionOutlineMultiWidth,
+                ?SectionOutline = SectionOutline,
+                ?Marker = Marker,
+                ?TextInfo = TextInfo,
+                ?Direction = Direction,
+                ?Rotation = Rotation,
+                ?Sort = Sort,
+                ?UseDefaults = UseDefaults
             )
 
 
@@ -231,26 +229,26 @@ module ChartDomain =
             Chart.Doughnut(
                 values,
                 Labels = labels,
-                ?Hole                       = Hole,
-                ?Name                       = Name,
-                ?ShowLegend                 = ShowLegend,
-                ?Opacity                    = Opacity,
-                ?Pull                       = Pull,
-                ?Text                       = Text,
-                ?MultiText                  = MultiText,
-                ?TextPosition               = TextPosition,
-                ?MultiTextPosition          = MultiTextPosition,
-                ?SectionColors              = SectionColors,
-                ?SectionOutlineColor        = SectionOutlineColor,
-                ?SectionOutlineWidth        = SectionOutlineWidth,
-                ?SectionOutlineMultiWidth   = SectionOutlineMultiWidth,
-                ?SectionOutline             = SectionOutline,
-                ?Marker                     = Marker,
-                ?TextInfo                   = TextInfo,
-                ?Direction                  = Direction,
-                ?Rotation                   = Rotation,
-                ?Sort                       = Sort,
-                ?UseDefaults                = UseDefaults
+                ?Hole = Hole,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?Pull = Pull,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?SectionColors = SectionColors,
+                ?SectionOutlineColor = SectionOutlineColor,
+                ?SectionOutlineWidth = SectionOutlineWidth,
+                ?SectionOutlineMultiWidth = SectionOutlineMultiWidth,
+                ?SectionOutline = SectionOutline,
+                ?Marker = Marker,
+                ?TextInfo = TextInfo,
+                ?Direction = Direction,
+                ?Rotation = Rotation,
+                ?Sort = Sort,
+                ?UseDefaults = UseDefaults
             )
 
 
@@ -280,10 +278,10 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
 
-            
+
             let useDefaults = defaultArg UseDefaults true
 
-            let outline = 
+            let outline =
                 SectionOutline
                 |> Option.defaultValue (Line.init ())
                 |> Line.style (
@@ -291,30 +289,28 @@ module ChartDomain =
                     ?Width = SectionOutlineWidth,
                     ?MultiWidth = SectionOutlineMultiWidth
                 )
+
             let marker =
                 Marker
                 |> Option.defaultValue (TraceObjects.Marker.init ())
-                |> TraceObjects.Marker.style (
-                    ?Colors = SectionColors,
-                    Outline = outline
-                )
+                |> TraceObjects.Marker.style (?Colors = SectionColors, Outline = outline)
 
 
             TraceDomain.initFunnelArea (
                 TraceDomainStyle.FunnelArea(
-                    Values              = values,
-                    ?Name               = Name,
-                    ?ShowLegend         = ShowLegend,
-                    ?Opacity            = Opacity,
-                    ?Labels             = Labels,
-                    ?Text               = Text,
-                    ?MultiText          = MultiText,
-                    ?TextPosition       = TextPosition,
-                    ?MultiTextPosition  = MultiTextPosition,
-                    Marker              = marker,
-                    ?TextInfo           = TextInfo,
-                    ?AspectRatio        = AspectRatio,
-                    ?BaseRatio          = BaseRatio
+                    Values = values,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Labels = Labels,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?TextPosition = TextPosition,
+                    ?MultiTextPosition = MultiTextPosition,
+                    Marker = marker,
+                    ?TextInfo = TextInfo,
+                    ?AspectRatio = AspectRatio,
+                    ?BaseRatio = BaseRatio
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
@@ -322,49 +318,49 @@ module ChartDomain =
         /// Creates a FunnelArea chart.
         [<Extension>]
         static member FunnelArea
-            (   
+            (
                 valuesLabels: seq<#IConvertible * #IConvertible>,
-                [<Optional; DefaultParameterValue(null)>] ?Name                     : string,
-                [<Optional; DefaultParameterValue(null)>] ?ShowLegend               : bool,
-                [<Optional; DefaultParameterValue(null)>] ?Opacity                  : float,
-                [<Optional; DefaultParameterValue(null)>] ?Text                     : #IConvertible,
-                [<Optional; DefaultParameterValue(null)>] ?MultiText                : seq<#IConvertible>,
-                [<Optional; DefaultParameterValue(null)>] ?TextPosition             : StyleParam.TextPosition,
-                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition        : seq<StyleParam.TextPosition>,
-                [<Optional; DefaultParameterValue(null)>] ?SectionColors            : seq<Color>,
-                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineColor      : Color,
-                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineWidth      : float,
-                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineMultiWidth : seq<float>,
-                [<Optional; DefaultParameterValue(null)>] ?SectionOutline           : Line,
-                [<Optional; DefaultParameterValue(null)>] ?Marker                   : Marker,
-                [<Optional; DefaultParameterValue(null)>] ?TextInfo                 : StyleParam.TextInfo,
-                [<Optional; DefaultParameterValue(null)>] ?AspectRatio              : float,
-                [<Optional; DefaultParameterValue(null)>] ?BaseRatio                : float,
-                [<Optional; DefaultParameterValue(null)>] ?UseDefaults              : bool
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionColors: seq<Color>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineMultiWidth: seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?TextInfo: StyleParam.TextInfo,
+                [<Optional; DefaultParameterValue(null)>] ?AspectRatio: float,
+                [<Optional; DefaultParameterValue(null)>] ?BaseRatio: float,
+                [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
-                let values, labels = Seq.unzip valuesLabels
+            let values, labels = Seq.unzip valuesLabels
 
-                Chart.FunnelArea(
-                    values,
-                    Labels = labels,
-                    ?Name                    = Name                    ,
-                    ?ShowLegend              = ShowLegend              ,
-                    ?Opacity                 = Opacity                 ,
-                    ?Text                    = Text                    ,
-                    ?MultiText               = MultiText               ,
-                    ?TextPosition            = TextPosition            ,
-                    ?MultiTextPosition       = MultiTextPosition       ,
-                    ?SectionColors           = SectionColors           ,
-                    ?SectionOutlineColor     = SectionOutlineColor     ,
-                    ?SectionOutlineWidth     = SectionOutlineWidth     ,
-                    ?SectionOutlineMultiWidth= SectionOutlineMultiWidth,
-                    ?SectionOutline          = SectionOutline          ,
-                    ?Marker                  = Marker                  ,
-                    ?TextInfo                = TextInfo                ,
-                    ?AspectRatio             = AspectRatio             ,
-                    ?BaseRatio               = BaseRatio               ,
-                    ?UseDefaults             = UseDefaults             
-                )
+            Chart.FunnelArea(
+                values,
+                Labels = labels,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?SectionColors = SectionColors,
+                ?SectionOutlineColor = SectionOutlineColor,
+                ?SectionOutlineWidth = SectionOutlineWidth,
+                ?SectionOutlineMultiWidth = SectionOutlineMultiWidth,
+                ?SectionOutline = SectionOutline,
+                ?Marker = Marker,
+                ?TextInfo = TextInfo,
+                ?AspectRatio = AspectRatio,
+                ?BaseRatio = BaseRatio,
+                ?UseDefaults = UseDefaults
+            )
 
 
         /// Creates a sunburst chart. Visualize hierarchical data spanning outward radially from root to leaves.
@@ -390,19 +386,19 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
                 [<Optional; DefaultParameterValue(null)>] ?TextInfo: StyleParam.TextInfo,
                 [<Optional; DefaultParameterValue(null)>] ?BranchValues: StyleParam.BranchValues,
-                [<Optional; DefaultParameterValue(null)>] ?Count        : string,
-                [<Optional; DefaultParameterValue(null)>] ?Root         : SunburstRoot,
-                [<Optional; DefaultParameterValue(null)>] ?Leaf         : SunburstLeaf,
-                [<Optional; DefaultParameterValue(null)>] ?Level        : string,
-                [<Optional; DefaultParameterValue(null)>] ?MaxDepth : int,
+                [<Optional; DefaultParameterValue(null)>] ?Count: string,
+                [<Optional; DefaultParameterValue(null)>] ?Root: SunburstRoot,
+                [<Optional; DefaultParameterValue(null)>] ?Leaf: SunburstLeaf,
+                [<Optional; DefaultParameterValue(null)>] ?Level: string,
+                [<Optional; DefaultParameterValue(null)>] ?MaxDepth: int,
                 [<Optional; DefaultParameterValue(null)>] ?Rotation: int,
                 [<Optional; DefaultParameterValue(null)>] ?Sort: bool,
                 [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
 
             let useDefaults = defaultArg UseDefaults true
-            
-            let outline = 
+
+            let outline =
                 SectionOutline
                 |> Option.defaultValue (Line.init ())
                 |> Line.style (
@@ -410,6 +406,7 @@ module ChartDomain =
                     ?Width = SectionOutlineWidth,
                     ?MultiWidth = SectionOutlineMultiWidth
                 )
+
             let marker =
                 Marker
                 |> Option.defaultValue (TraceObjects.Marker.init ())
@@ -427,57 +424,57 @@ module ChartDomain =
                     Parents = parents,
                     Marker = marker,
                     ?Values = Values,
-                    ?Name               = Name,
-                    ?ShowLegend         = ShowLegend,
-                    ?Opacity            = Opacity,
-                    ?Text               = Text,
-                    ?MultiText          = MultiText,
-                    ?TextInfo           = TextInfo,
-                    ?Rotation           = Rotation,
-                    ?Sort               = Sort,
-                    ?BranchValues       = BranchValues,
-                    ?Count              = Count       ,
-                    ?Root               = Root        ,
-                    ?Leaf               = Leaf        ,
-                    ?Level              = Level       ,
-                    ?MaxDepth           = MaxDepth
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?TextInfo = TextInfo,
+                    ?Rotation = Rotation,
+                    ?Sort = Sort,
+                    ?BranchValues = BranchValues,
+                    ?Count = Count,
+                    ?Root = Root,
+                    ?Leaf = Leaf,
+                    ?Level = Level,
+                    ?MaxDepth = MaxDepth
 
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
 
 
-        
+
         /// Creates a sunburst chart. Visualize hierarchical data spanning outward radially from root to leaves.
         [<Extension>]
         static member Sunburst
             (
                 labelsparents: seq<#IConvertible * #IConvertible>,
-                [<Optional; DefaultParameterValue(null)>] ?Values                   : seq<#IConvertible>,
-                [<Optional; DefaultParameterValue(null)>] ?Name                     : string,
-                [<Optional; DefaultParameterValue(null)>] ?ShowLegend               : bool,
-                [<Optional; DefaultParameterValue(null)>] ?Opacity                  : float,
-                [<Optional; DefaultParameterValue(null)>] ?Text                     : #IConvertible,
-                [<Optional; DefaultParameterValue(null)>] ?MultiText                : seq<#IConvertible>,
-                [<Optional; DefaultParameterValue(null)>] ?SectionColors            : seq<Color>,
-                [<Optional; DefaultParameterValue(null)>] ?SectionColorScale        : StyleParam.Colorscale,
-                [<Optional; DefaultParameterValue(null)>] ?ShowSectionColorScale    : bool,
-                [<Optional; DefaultParameterValue(null)>] ?ReverseSectionColorScale : bool,
-                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineColor      : Color,
-                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineWidth      : float,
-                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineMultiWidth : seq<float>,
-                [<Optional; DefaultParameterValue(null)>] ?SectionOutline           : Line,
-                [<Optional; DefaultParameterValue(null)>] ?Marker                   : Marker,
-                [<Optional; DefaultParameterValue(null)>] ?TextInfo                 : StyleParam.TextInfo,
-                [<Optional; DefaultParameterValue(null)>] ?BranchValues             : StyleParam.BranchValues,
-                [<Optional; DefaultParameterValue(null)>] ?Count                    : string,
-                [<Optional; DefaultParameterValue(null)>] ?Root                     : SunburstRoot,
-                [<Optional; DefaultParameterValue(null)>] ?Leaf                     : SunburstLeaf,
-                [<Optional; DefaultParameterValue(null)>] ?Level                    : string,
-                [<Optional; DefaultParameterValue(null)>] ?MaxDepth                 : int,
-                [<Optional; DefaultParameterValue(null)>] ?Rotation                 : int,
-                [<Optional; DefaultParameterValue(null)>] ?Sort                     : bool,
-                [<Optional; DefaultParameterValue(null)>] ?UseDefaults              : bool
+                [<Optional; DefaultParameterValue(null)>] ?Values: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionColors: seq<Color>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?ShowSectionColorScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ReverseSectionColorScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineMultiWidth: seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?TextInfo: StyleParam.TextInfo,
+                [<Optional; DefaultParameterValue(null)>] ?BranchValues: StyleParam.BranchValues,
+                [<Optional; DefaultParameterValue(null)>] ?Count: string,
+                [<Optional; DefaultParameterValue(null)>] ?Root: SunburstRoot,
+                [<Optional; DefaultParameterValue(null)>] ?Leaf: SunburstLeaf,
+                [<Optional; DefaultParameterValue(null)>] ?Level: string,
+                [<Optional; DefaultParameterValue(null)>] ?MaxDepth: int,
+                [<Optional; DefaultParameterValue(null)>] ?Rotation: int,
+                [<Optional; DefaultParameterValue(null)>] ?Sort: bool,
+                [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
 
             let labels, parents = Seq.unzip labelsparents
@@ -485,31 +482,31 @@ module ChartDomain =
             Chart.Sunburst(
                 labels,
                 parents,
-                ?Values                   = Values                   ,
-                ?Name                     = Name                     ,
-                ?ShowLegend               = ShowLegend               ,
-                ?Opacity                  = Opacity                  ,
-                ?Text                     = Text                     ,
-                ?MultiText                = MultiText                ,
-                ?SectionColors            = SectionColors            ,
-                ?SectionColorScale        = SectionColorScale        ,
-                ?ShowSectionColorScale    = ShowSectionColorScale    ,
-                ?ReverseSectionColorScale = ReverseSectionColorScale ,
-                ?SectionOutlineColor      = SectionOutlineColor      ,
-                ?SectionOutlineWidth      = SectionOutlineWidth      ,
-                ?SectionOutlineMultiWidth = SectionOutlineMultiWidth ,
-                ?SectionOutline           = SectionOutline           ,
-                ?Marker                   = Marker                   ,
-                ?TextInfo                 = TextInfo                 ,
-                ?BranchValues             = BranchValues             ,
-                ?Count                    = Count                    ,
-                ?Root                     = Root                     ,
-                ?Leaf                     = Leaf                     ,
-                ?Level                    = Level                    ,
-                ?MaxDepth                 = MaxDepth                 ,
-                ?Rotation                 = Rotation                 ,
-                ?Sort                     = Sort                     ,
-                ?UseDefaults              = UseDefaults              
+                ?Values = Values,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?SectionColors = SectionColors,
+                ?SectionColorScale = SectionColorScale,
+                ?ShowSectionColorScale = ShowSectionColorScale,
+                ?ReverseSectionColorScale = ReverseSectionColorScale,
+                ?SectionOutlineColor = SectionOutlineColor,
+                ?SectionOutlineWidth = SectionOutlineWidth,
+                ?SectionOutlineMultiWidth = SectionOutlineMultiWidth,
+                ?SectionOutline = SectionOutline,
+                ?Marker = Marker,
+                ?TextInfo = TextInfo,
+                ?BranchValues = BranchValues,
+                ?Count = Count,
+                ?Root = Root,
+                ?Leaf = Leaf,
+                ?Level = Level,
+                ?MaxDepth = MaxDepth,
+                ?Rotation = Rotation,
+                ?Sort = Sort,
+                ?UseDefaults = UseDefaults
             )
 
 
@@ -517,41 +514,41 @@ module ChartDomain =
         [<Extension>]
         static member Treemap
             (
-                labels : seq<#IConvertible>,
-                parents : seq<#IConvertible>,
-                [<Optional; DefaultParameterValue(null)>] ?Values                   : seq<#IConvertible>,
-                [<Optional; DefaultParameterValue(null)>] ?Name                     : string,
-                [<Optional; DefaultParameterValue(null)>] ?Visible                  : StyleParam.Visible,
-                [<Optional; DefaultParameterValue(null)>] ?ShowLegend               : bool,
-                [<Optional; DefaultParameterValue(null)>] ?Opacity                  : float,
-                [<Optional; DefaultParameterValue(null)>] ?Text                     : #IConvertible,
-                [<Optional; DefaultParameterValue(null)>] ?MultiText                : seq<#IConvertible>,
-                [<Optional; DefaultParameterValue(null)>] ?TextPosition             : StyleParam.TextPosition,
-                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition        : seq<StyleParam.TextPosition>,
-                [<Optional; DefaultParameterValue(null)>] ?SectionColors            : seq<Color>,
-                [<Optional; DefaultParameterValue(null)>] ?SectionColorScale        : StyleParam.Colorscale,
-                [<Optional; DefaultParameterValue(null)>] ?ShowSectionColorScale    : bool,
-                [<Optional; DefaultParameterValue(null)>] ?ReverseSectionColorScale : bool,
-                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineColor      : Color,
-                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineWidth      : float,
-                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineMultiWidth : seq<float>,
-                [<Optional; DefaultParameterValue(null)>] ?SectionOutline           : Line,
-                [<Optional; DefaultParameterValue(null)>] ?Marker                   : Marker,
-                [<Optional; DefaultParameterValue(null)>] ?TextInfo                 : StyleParam.TextInfo,
-                [<Optional; DefaultParameterValue(null)>] ?BranchValues             : StyleParam.BranchValues,
-                [<Optional; DefaultParameterValue(null)>] ?Count                    : string,
-                [<Optional; DefaultParameterValue(null)>] ?Tiling                   : TreemapTiling,
-                [<Optional; DefaultParameterValue(null)>] ?PathBar                  : Pathbar,
-                [<Optional; DefaultParameterValue(null)>] ?Root                     : TreemapRoot,
-                [<Optional; DefaultParameterValue(null)>] ?Level                    : string,
-                [<Optional; DefaultParameterValue(null)>] ?MaxDepth                 : int,
-                [<Optional; DefaultParameterValue(null)>] ?Rotation                 : int,
-                [<Optional; DefaultParameterValue(null)>] ?UseDefaults              : bool
+                labels: seq<#IConvertible>,
+                parents: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?Values: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?Visible: StyleParam.Visible,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionColors: seq<Color>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?ShowSectionColorScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ReverseSectionColorScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineMultiWidth: seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?TextInfo: StyleParam.TextInfo,
+                [<Optional; DefaultParameterValue(null)>] ?BranchValues: StyleParam.BranchValues,
+                [<Optional; DefaultParameterValue(null)>] ?Count: string,
+                [<Optional; DefaultParameterValue(null)>] ?Tiling: TreemapTiling,
+                [<Optional; DefaultParameterValue(null)>] ?PathBar: Pathbar,
+                [<Optional; DefaultParameterValue(null)>] ?Root: TreemapRoot,
+                [<Optional; DefaultParameterValue(null)>] ?Level: string,
+                [<Optional; DefaultParameterValue(null)>] ?MaxDepth: int,
+                [<Optional; DefaultParameterValue(null)>] ?Rotation: int,
+                [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
 
             let useDefaults = defaultArg UseDefaults true
-            
-            let outline = 
+
+            let outline =
                 SectionOutline
                 |> Option.defaultValue (Line.init ())
                 |> Line.style (
@@ -559,6 +556,7 @@ module ChartDomain =
                     ?Width = SectionOutlineWidth,
                     ?MultiWidth = SectionOutlineMultiWidth
                 )
+
             let marker =
                 Marker
                 |> Option.defaultValue (TraceObjects.Marker.init ())
@@ -576,95 +574,95 @@ module ChartDomain =
                     Parents = parents,
                     Marker = marker,
                     ?Values = Values,
-                    ?Name               = Name             ,
-                    ?Visible            = Visible          ,
-                    ?ShowLegend         = ShowLegend       ,
-                    ?Opacity            = Opacity          ,
-                    ?Text               = Text             ,
-                    ?MultiText          = MultiText        ,
-                    ?TextPosition       = TextPosition     ,
-                    ?MultiTextPosition  = MultiTextPosition,
-                    ?TextInfo           = TextInfo    ,
-                    ?BranchValues       = BranchValues,
-                    ?Count              = Count       ,
-                    ?Tiling             = Tiling      ,
-                    ?PathBar            = PathBar     ,
-                    ?Root               = Root        ,
-                    ?Level              = Level       ,
-                    ?MaxDepth           = MaxDepth    ,
-                    ?Rotation           = Rotation    
+                    ?Name = Name,
+                    ?Visible = Visible,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?TextPosition = TextPosition,
+                    ?MultiTextPosition = MultiTextPosition,
+                    ?TextInfo = TextInfo,
+                    ?BranchValues = BranchValues,
+                    ?Count = Count,
+                    ?Tiling = Tiling,
+                    ?PathBar = PathBar,
+                    ?Root = Root,
+                    ?Level = Level,
+                    ?MaxDepth = MaxDepth,
+                    ?Rotation = Rotation
                 )
             )
-            |> GenericChart.ofTraceObject useDefaults        
-            
+            |> GenericChart.ofTraceObject useDefaults
+
         /// Creates a treemap chart. Treemap charts visualize hierarchical data using nested rectangles. Same as Sunburst the hierarchy is defined by labels and parents attributes. Click on one sector to zoom in/out, which also displays a pathbar in the upper-left corner of your treemap. To zoom out you can use the path bar as well.
         [<Extension>]
         static member Treemap
             (
                 labelsparents: seq<#IConvertible * #IConvertible>,
-                [<Optional; DefaultParameterValue(null)>] ?Values                   : seq<#IConvertible>,
-                [<Optional; DefaultParameterValue(null)>] ?Name                     : string,
-                [<Optional; DefaultParameterValue(null)>] ?Visible                  : StyleParam.Visible,
-                [<Optional; DefaultParameterValue(null)>] ?ShowLegend               : bool,
-                [<Optional; DefaultParameterValue(null)>] ?Opacity                  : float,
-                [<Optional; DefaultParameterValue(null)>] ?Text                     : #IConvertible,
-                [<Optional; DefaultParameterValue(null)>] ?MultiText                : seq<#IConvertible>,
-                [<Optional; DefaultParameterValue(null)>] ?TextPosition             : StyleParam.TextPosition,
-                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition        : seq<StyleParam.TextPosition>,
-                [<Optional; DefaultParameterValue(null)>] ?SectionColors            : seq<Color>,
-                [<Optional; DefaultParameterValue(null)>] ?SectionColorScale        : StyleParam.Colorscale,
-                [<Optional; DefaultParameterValue(null)>] ?ShowSectionColorScale    : bool,
-                [<Optional; DefaultParameterValue(null)>] ?ReverseSectionColorScale : bool,
-                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineColor      : Color,
-                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineWidth      : float,
-                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineMultiWidth : seq<float>,
-                [<Optional; DefaultParameterValue(null)>] ?SectionOutline           : Line,
-                [<Optional; DefaultParameterValue(null)>] ?Marker                   : Marker,
-                [<Optional; DefaultParameterValue(null)>] ?TextInfo                 : StyleParam.TextInfo,
-                [<Optional; DefaultParameterValue(null)>] ?BranchValues             : StyleParam.BranchValues,
-                [<Optional; DefaultParameterValue(null)>] ?Count                    : string,
-                [<Optional; DefaultParameterValue(null)>] ?Tiling                   : TreemapTiling,
-                [<Optional; DefaultParameterValue(null)>] ?PathBar                  : Pathbar,
-                [<Optional; DefaultParameterValue(null)>] ?Root                     : TreemapRoot,
-                [<Optional; DefaultParameterValue(null)>] ?Level                    : string,
-                [<Optional; DefaultParameterValue(null)>] ?MaxDepth                 : int,
-                [<Optional; DefaultParameterValue(null)>] ?Rotation                 : int,
-                [<Optional; DefaultParameterValue(null)>] ?UseDefaults              : bool
+                [<Optional; DefaultParameterValue(null)>] ?Values: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?Visible: StyleParam.Visible,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionColors: seq<Color>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?ShowSectionColorScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ReverseSectionColorScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineMultiWidth: seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?TextInfo: StyleParam.TextInfo,
+                [<Optional; DefaultParameterValue(null)>] ?BranchValues: StyleParam.BranchValues,
+                [<Optional; DefaultParameterValue(null)>] ?Count: string,
+                [<Optional; DefaultParameterValue(null)>] ?Tiling: TreemapTiling,
+                [<Optional; DefaultParameterValue(null)>] ?PathBar: Pathbar,
+                [<Optional; DefaultParameterValue(null)>] ?Root: TreemapRoot,
+                [<Optional; DefaultParameterValue(null)>] ?Level: string,
+                [<Optional; DefaultParameterValue(null)>] ?MaxDepth: int,
+                [<Optional; DefaultParameterValue(null)>] ?Rotation: int,
+                [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
 
             let labels, parents = Seq.unzip labelsparents
 
             Chart.Treemap(
-                labels, 
+                labels,
                 parents,
-                ?Values                     = Values                   ,
-                ?Name                       = Name                     ,
-                ?Visible                    = Visible                  ,
-                ?ShowLegend                 = ShowLegend               ,
-                ?Opacity                    = Opacity                  ,
-                ?Text                       = Text                     ,
-                ?MultiText                  = MultiText                ,
-                ?TextPosition               = TextPosition             ,
-                ?MultiTextPosition          = MultiTextPosition        ,
-                ?SectionColors              = SectionColors            ,
-                ?SectionColorScale          = SectionColorScale        ,
-                ?ShowSectionColorScale      = ShowSectionColorScale    ,
-                ?ReverseSectionColorScale   = ReverseSectionColorScale ,
-                ?SectionOutlineColor        = SectionOutlineColor      ,
-                ?SectionOutlineWidth        = SectionOutlineWidth      ,
-                ?SectionOutlineMultiWidth   = SectionOutlineMultiWidth ,
-                ?SectionOutline             = SectionOutline           ,
-                ?Marker                     = Marker                   ,
-                ?TextInfo                   = TextInfo                 ,
-                ?BranchValues               = BranchValues             ,
-                ?Count                      = Count                    ,
-                ?Tiling                     = Tiling                   ,
-                ?PathBar                    = PathBar                  ,
-                ?Root                       = Root                     ,
-                ?Level                      = Level                    ,
-                ?MaxDepth                   = MaxDepth                 ,
-                ?Rotation                   = Rotation                 ,
-                ?UseDefaults                = UseDefaults              
+                ?Values = Values,
+                ?Name = Name,
+                ?Visible = Visible,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?SectionColors = SectionColors,
+                ?SectionColorScale = SectionColorScale,
+                ?ShowSectionColorScale = ShowSectionColorScale,
+                ?ReverseSectionColorScale = ReverseSectionColorScale,
+                ?SectionOutlineColor = SectionOutlineColor,
+                ?SectionOutlineWidth = SectionOutlineWidth,
+                ?SectionOutlineMultiWidth = SectionOutlineMultiWidth,
+                ?SectionOutline = SectionOutline,
+                ?Marker = Marker,
+                ?TextInfo = TextInfo,
+                ?BranchValues = BranchValues,
+                ?Count = Count,
+                ?Tiling = Tiling,
+                ?PathBar = PathBar,
+                ?Root = Root,
+                ?Level = Level,
+                ?MaxDepth = MaxDepth,
+                ?Rotation = Rotation,
+                ?UseDefaults = UseDefaults
             )
 
 
@@ -673,23 +671,23 @@ module ChartDomain =
         static member ParallelCoord
             (
                 dimensions: seq<Dimension>,
-                [<Optional; DefaultParameterValue(null)>] ?Name                     : string,
-                [<Optional; DefaultParameterValue(null)>] ?ShowLegend               : bool,
-                [<Optional; DefaultParameterValue(null)>] ?LineColor                : Color,
-                [<Optional; DefaultParameterValue(null)>] ?LineColorScale           : StyleParam.Colorscale,
-                [<Optional; DefaultParameterValue(null)>] ?ShowLineColorScale       : bool,
-                [<Optional; DefaultParameterValue(null)>] ?ReverseLineColorScale    : bool,
-                [<Optional; DefaultParameterValue(null)>] ?Line                     : Line,
-                [<Optional; DefaultParameterValue(null)>] ?LabelAngle               : int,
-                [<Optional; DefaultParameterValue(null)>] ?LabelFont                : Font,
-                [<Optional; DefaultParameterValue(null)>] ?LabelSide                : StyleParam.Side,
-                [<Optional; DefaultParameterValue(null)>] ?RangeFont                : Font,
-                [<Optional; DefaultParameterValue(null)>] ?TickFont                 : Font,
-                [<Optional; DefaultParameterValue(null)>] ?UseDefaults              : bool
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?LineColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLineColorScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ReverseLineColorScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?LabelAngle: int,
+                [<Optional; DefaultParameterValue(null)>] ?LabelFont: Font,
+                [<Optional; DefaultParameterValue(null)>] ?LabelSide: StyleParam.Side,
+                [<Optional; DefaultParameterValue(null)>] ?RangeFont: Font,
+                [<Optional; DefaultParameterValue(null)>] ?TickFont: Font,
+                [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
             let useDefaults = defaultArg UseDefaults true
 
-            let line = 
+            let line =
                 Line
                 |> Option.defaultValue (Plotly.NET.Line.init ())
                 |> Plotly.NET.Line.style (
@@ -701,15 +699,15 @@ module ChartDomain =
 
             TraceDomain.initParallelCoord (
                 TraceDomainStyle.ParallelCoord(
-                    Dimensions  = dimensions,
-                    Line        = line,
-                    ?Name       = Name      ,
+                    Dimensions = dimensions,
+                    Line = line,
+                    ?Name = Name,
                     ?ShowLegend = ShowLegend,
                     ?LabelAngle = LabelAngle,
-                    ?LabelFont  = LabelFont ,
-                    ?LabelSide  = LabelSide ,
-                    ?RangeFont  = RangeFont ,
-                    ?TickFont   = TickFont  
+                    ?LabelFont = LabelFont,
+                    ?LabelSide = LabelSide,
+                    ?RangeFont = RangeFont,
+                    ?TickFont = TickFont
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
@@ -718,20 +716,20 @@ module ChartDomain =
         [<Extension>]
         static member ParallelCoord
             (
-                keyValues: seq<string*seq<#IConvertible>>,
-                [<Optional; DefaultParameterValue(null)>] ?Name                     : string,
-                [<Optional; DefaultParameterValue(null)>] ?ShowLegend               : bool,
-                [<Optional; DefaultParameterValue(null)>] ?LineColor                : Color,
-                [<Optional; DefaultParameterValue(null)>] ?LineColorScale           : StyleParam.Colorscale,
-                [<Optional; DefaultParameterValue(null)>] ?ShowLineColorScale       : bool,
-                [<Optional; DefaultParameterValue(null)>] ?ReverseLineColorScale    : bool,
-                [<Optional; DefaultParameterValue(null)>] ?Line                     : Line,
-                [<Optional; DefaultParameterValue(null)>] ?LabelAngle               : int,
-                [<Optional; DefaultParameterValue(null)>] ?LabelFont                : Font,
-                [<Optional; DefaultParameterValue(null)>] ?LabelSide                : StyleParam.Side,
-                [<Optional; DefaultParameterValue(null)>] ?RangeFont                : Font,
-                [<Optional; DefaultParameterValue(null)>] ?TickFont                 : Font,
-                [<Optional; DefaultParameterValue(null)>] ?UseDefaults              : bool
+                keyValues: seq<string * seq<#IConvertible>>,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?LineColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLineColorScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ReverseLineColorScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?LabelAngle: int,
+                [<Optional; DefaultParameterValue(null)>] ?LabelFont: Font,
+                [<Optional; DefaultParameterValue(null)>] ?LabelSide: StyleParam.Side,
+                [<Optional; DefaultParameterValue(null)>] ?RangeFont: Font,
+                [<Optional; DefaultParameterValue(null)>] ?TickFont: Font,
+                [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
 
             let dims =
@@ -739,19 +737,19 @@ module ChartDomain =
 
             Chart.ParallelCoord(
                 dimensions = dims,
-                ?Name                   = Name                 ,
-                ?ShowLegend             = ShowLegend           ,
-                ?LineColor              = LineColor            ,
-                ?LineColorScale         = LineColorScale       ,
-                ?ShowLineColorScale     = ShowLineColorScale   ,
-                ?ReverseLineColorScale  = ReverseLineColorScale,
-                ?Line                   = Line                 ,
-                ?LabelAngle             = LabelAngle           ,
-                ?LabelFont              = LabelFont            ,
-                ?LabelSide              = LabelSide            ,
-                ?RangeFont              = RangeFont            ,
-                ?TickFont               = TickFont             ,
-                ?UseDefaults            = UseDefaults          
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?LineColor = LineColor,
+                ?LineColorScale = LineColorScale,
+                ?ShowLineColorScale = ShowLineColorScale,
+                ?ReverseLineColorScale = ReverseLineColorScale,
+                ?Line = Line,
+                ?LabelAngle = LabelAngle,
+                ?LabelFont = LabelFont,
+                ?LabelSide = LabelSide,
+                ?RangeFont = RangeFont,
+                ?TickFont = TickFont,
+                ?UseDefaults = UseDefaults
             )
 
         /// Computes the parallel categories plot
@@ -759,26 +757,26 @@ module ChartDomain =
         static member ParallelCategories
             (
                 dimensions: seq<Dimension>,
-                [<Optional; DefaultParameterValue(null)>] ?Name                     : string,
-                [<Optional; DefaultParameterValue(null)>] ?ShowLegend               : bool,
-                [<Optional; DefaultParameterValue(null)>] ?Counts                   : int,
-                [<Optional; DefaultParameterValue(null)>] ?LineColor                : Color,
-                [<Optional; DefaultParameterValue(null)>] ?LineShape                : StyleParam.Shape,
-                [<Optional; DefaultParameterValue(null)>] ?LineColorScale           : StyleParam.Colorscale,
-                [<Optional; DefaultParameterValue(null)>] ?ShowLineColorScale       : bool,
-                [<Optional; DefaultParameterValue(null)>] ?ReverseLineColorScale    : bool,
-                [<Optional; DefaultParameterValue(null)>] ?Line                     : Line,
-                [<Optional; DefaultParameterValue(null)>] ?Arrangement              : StyleParam.CategoryArrangement,
-                [<Optional; DefaultParameterValue(null)>] ?BundleColors             : bool,
-                [<Optional; DefaultParameterValue(null)>] ?SortPaths                : StyleParam.SortAlgorithm,
-                [<Optional; DefaultParameterValue(null)>] ?LabelFont                : Font,
-                [<Optional; DefaultParameterValue(null)>] ?TickFont                 : Font,
-                [<Optional; DefaultParameterValue(null)>] ?UseDefaults              : bool
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Counts: int,
+                [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?LineShape: StyleParam.Shape,
+                [<Optional; DefaultParameterValue(null)>] ?LineColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLineColorScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ReverseLineColorScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?Arrangement: StyleParam.CategoryArrangement,
+                [<Optional; DefaultParameterValue(null)>] ?BundleColors: bool,
+                [<Optional; DefaultParameterValue(null)>] ?SortPaths: StyleParam.SortAlgorithm,
+                [<Optional; DefaultParameterValue(null)>] ?LabelFont: Font,
+                [<Optional; DefaultParameterValue(null)>] ?TickFont: Font,
+                [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
 
             let useDefaults = defaultArg UseDefaults true
-            
-            let line = 
+
+            let line =
                 Line
                 |> Option.defaultValue (Plotly.NET.Line.init ())
                 |> Plotly.NET.Line.style (
@@ -793,46 +791,46 @@ module ChartDomain =
                 TraceDomainStyle.ParallelCategories(
                     Dimensions = dimensions,
                     Line = line,
-                    ?Name          = Name         ,
-                    ?ShowLegend    = ShowLegend   ,
-                    ?Counts        = Counts       ,
-                    ?Arrangement   = Arrangement  ,
-                    ?BundleColors  = BundleColors ,
-                    ?SortPaths     = SortPaths    ,
-                    ?LabelFont     = LabelFont    ,
-                    ?TickFont      = TickFont    
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Counts = Counts,
+                    ?Arrangement = Arrangement,
+                    ?BundleColors = BundleColors,
+                    ?SortPaths = SortPaths,
+                    ?LabelFont = LabelFont,
+                    ?TickFont = TickFont
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
-            
+
         /// Computes the parallel categories plot
         [<Extension>]
         static member ParallelCategories
             (
-                keyValues: seq<string*seq<#IConvertible>>,
-                [<Optional; DefaultParameterValue(null)>] ?Name                     : string,
-                [<Optional; DefaultParameterValue(null)>] ?ShowLegend               : bool,
-                [<Optional; DefaultParameterValue(null)>] ?Counts                   : int,
-                [<Optional; DefaultParameterValue(null)>] ?LineColor                : Color,
-                [<Optional; DefaultParameterValue(null)>] ?LineShape                : StyleParam.Shape,
-                [<Optional; DefaultParameterValue(null)>] ?LineColorScale           : StyleParam.Colorscale,
-                [<Optional; DefaultParameterValue(null)>] ?ShowLineColorScale       : bool,
-                [<Optional; DefaultParameterValue(null)>] ?ReverseLineColorScale    : bool,
-                [<Optional; DefaultParameterValue(null)>] ?Line                     : Line,
-                [<Optional; DefaultParameterValue(null)>] ?Arrangement              : StyleParam.CategoryArrangement,
-                [<Optional; DefaultParameterValue(null)>] ?BundleColors             : bool,
-                [<Optional; DefaultParameterValue(null)>] ?SortPaths                : StyleParam.SortAlgorithm,
-                [<Optional; DefaultParameterValue(null)>] ?LabelFont                : Font,
-                [<Optional; DefaultParameterValue(null)>] ?TickFont                 : Font,
-                [<Optional; DefaultParameterValue(null)>] ?UseDefaults              : bool
+                keyValues: seq<string * seq<#IConvertible>>,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Counts: int,
+                [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?LineShape: StyleParam.Shape,
+                [<Optional; DefaultParameterValue(null)>] ?LineColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLineColorScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ReverseLineColorScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?Arrangement: StyleParam.CategoryArrangement,
+                [<Optional; DefaultParameterValue(null)>] ?BundleColors: bool,
+                [<Optional; DefaultParameterValue(null)>] ?SortPaths: StyleParam.SortAlgorithm,
+                [<Optional; DefaultParameterValue(null)>] ?LabelFont: Font,
+                [<Optional; DefaultParameterValue(null)>] ?TickFont: Font,
+                [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
 
             let useDefaults = defaultArg UseDefaults true
-            
+
             let dims =
                 keyValues |> Seq.map (fun (key, vals) -> Dimension.initParallel (Label = key, Values = vals))
 
-            let line = 
+            let line =
                 Line
                 |> Option.defaultValue (Plotly.NET.Line.init ())
                 |> Plotly.NET.Line.style (
@@ -847,14 +845,14 @@ module ChartDomain =
                 TraceDomainStyle.ParallelCategories(
                     Dimensions = dims,
                     Line = line,
-                    ?Name          = Name         ,
-                    ?ShowLegend    = ShowLegend   ,
-                    ?Counts        = Counts       ,
-                    ?Arrangement   = Arrangement  ,
-                    ?BundleColors  = BundleColors ,
-                    ?SortPaths     = SortPaths    ,
-                    ?LabelFont     = LabelFont    ,
-                    ?TickFont      = TickFont    
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Counts = Counts,
+                    ?Arrangement = Arrangement,
+                    ?BundleColors = BundleColors,
+                    ?SortPaths = SortPaths,
+                    ?LabelFont = LabelFont,
+                    ?TickFont = TickFont
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
@@ -865,77 +863,77 @@ module ChartDomain =
             (
                 header: TableHeader,
                 cells: TableCells,
-                [<Optional; DefaultParameterValue(null)>] ?Name             : string,
-                [<Optional; DefaultParameterValue(null)>] ?ShowLegend       : bool,
-                [<Optional; DefaultParameterValue(null)>] ?ColumnOrder      : seq<int>,
-                [<Optional; DefaultParameterValue(null)>] ?ColumnWidth      : float,
-                [<Optional; DefaultParameterValue(null)>] ?MultiColumnWidth : seq<float>,
-                [<Optional; DefaultParameterValue(true)>] ?UseDefaults      : bool
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ColumnOrder: seq<int>,
+                [<Optional; DefaultParameterValue(null)>] ?ColumnWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?MultiColumnWidth: seq<float>,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
             let useDefaults = defaultArg UseDefaults true
 
             TraceDomain.initTable (
                 TraceDomainStyle.Table(
-                    Header              = header,
-                    Cells               = cells,
-                    ?Name               = Name            ,
-                    ?ShowLegend         = ShowLegend      ,
-                    ?ColumnOrder        = ColumnOrder     ,
-                    ?ColumnWidth        = ColumnWidth     ,
-                    ?MultiColumnWidth   = MultiColumnWidth
-                    
+                    Header = header,
+                    Cells = cells,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?ColumnOrder = ColumnOrder,
+                    ?ColumnWidth = ColumnWidth,
+                    ?MultiColumnWidth = MultiColumnWidth
+
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
 
-        
+
         /// creates table chart
         [<Extension>]
         static member Table
             (
                 headerValues: seq<#seq<#IConvertible>>,
                 cellsValues: seq<#seq<#IConvertible>>,
-                [<Optional; DefaultParameterValue(null)>] ?HeaderAlign                  : StyleParam.HorizontalAlign,
-                [<Optional; DefaultParameterValue(null)>] ?HeaderMultiAlign             : seq<StyleParam.HorizontalAlign>,
-                [<Optional; DefaultParameterValue(null)>] ?HeaderFillColor              : Color,
-                [<Optional; DefaultParameterValue(null)>] ?HeaderHeight                 : int,
-                [<Optional; DefaultParameterValue(null)>] ?HeaderOutlineColor           : Color,
-                [<Optional; DefaultParameterValue(null)>] ?HeaderOutlineWidth           : float,
-                [<Optional; DefaultParameterValue(null)>] ?HeaderOutlineMultiWidth      : seq<float>,
-                [<Optional; DefaultParameterValue(null)>] ?HeaderOutline                : Line,
-                [<Optional; DefaultParameterValue(null)>] ?CellsAlign                    : StyleParam.HorizontalAlign,
-                [<Optional; DefaultParameterValue(null)>] ?CellsMultiAlign               : seq<StyleParam.HorizontalAlign>,
-                [<Optional; DefaultParameterValue(null)>] ?CellsFillColor                : Color,
-                [<Optional; DefaultParameterValue(null)>] ?CellsHeight                   : int,
-                [<Optional; DefaultParameterValue(null)>] ?CellsOutlineColor             : Color,
-                [<Optional; DefaultParameterValue(null)>] ?CellsOutlineWidth             : float,
-                [<Optional; DefaultParameterValue(null)>] ?CellsOutlineMultiWidth        : seq<float>,
-                [<Optional; DefaultParameterValue(null)>] ?CellsOutline                  : Line,
-                [<Optional; DefaultParameterValue(null)>] ?Name                         : string,
-                [<Optional; DefaultParameterValue(null)>] ?ShowLegend                   : bool,
-                [<Optional; DefaultParameterValue(null)>] ?ColumnOrder                  : seq<int>,
-                [<Optional; DefaultParameterValue(null)>] ?ColumnWidth                  : float,
-                [<Optional; DefaultParameterValue(null)>] ?MultiColumnWidth             : seq<float>,
-                [<Optional; DefaultParameterValue(true)>] ?UseDefaults                  : bool
+                [<Optional; DefaultParameterValue(null)>] ?HeaderAlign: StyleParam.HorizontalAlign,
+                [<Optional; DefaultParameterValue(null)>] ?HeaderMultiAlign: seq<StyleParam.HorizontalAlign>,
+                [<Optional; DefaultParameterValue(null)>] ?HeaderFillColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?HeaderHeight: int,
+                [<Optional; DefaultParameterValue(null)>] ?HeaderOutlineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?HeaderOutlineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?HeaderOutlineMultiWidth: seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?HeaderOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?CellsAlign: StyleParam.HorizontalAlign,
+                [<Optional; DefaultParameterValue(null)>] ?CellsMultiAlign: seq<StyleParam.HorizontalAlign>,
+                [<Optional; DefaultParameterValue(null)>] ?CellsFillColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?CellsHeight: int,
+                [<Optional; DefaultParameterValue(null)>] ?CellsOutlineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?CellsOutlineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?CellsOutlineMultiWidth: seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?CellsOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ColumnOrder: seq<int>,
+                [<Optional; DefaultParameterValue(null)>] ?ColumnWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?MultiColumnWidth: seq<float>,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
             let useDefaults = defaultArg UseDefaults true
-            
+
             let headerFill =
-                TableFill.init(?Color = HeaderFillColor)
-                
-            let headerOutline = 
+                TableFill.init (?Color = HeaderFillColor)
+
+            let headerOutline =
                 HeaderOutline
                 |> Option.defaultValue (Plotly.NET.Line.init ())
                 |> Plotly.NET.Line.style (
-                    ?Color      = HeaderOutlineColor,
-                    ?Width      = HeaderOutlineWidth,
+                    ?Color = HeaderOutlineColor,
+                    ?Width = HeaderOutlineWidth,
                     ?MultiWidth = HeaderOutlineMultiWidth
                 )
 
-            let header = 
-                TableHeader.init(
+            let header =
+                TableHeader.init (
                     Values = headerValues,
                     Fill = headerFill,
                     Line = headerOutline,
@@ -944,20 +942,19 @@ module ChartDomain =
                     ?Height = HeaderHeight
                 )
 
-            let cellsFill =
-                TableFill.init(?Color = CellsFillColor)
-                
-            let cellsOutline = 
+            let cellsFill = TableFill.init (?Color = CellsFillColor)
+
+            let cellsOutline =
                 CellsOutline
                 |> Option.defaultValue (Plotly.NET.Line.init ())
                 |> Plotly.NET.Line.style (
-                    ?Color      = CellsOutlineColor,
-                    ?Width      = CellsOutlineWidth,
+                    ?Color = CellsOutlineColor,
+                    ?Width = CellsOutlineWidth,
                     ?MultiWidth = CellsOutlineMultiWidth
                 )
 
-            let cells = 
-                TableCells.init(
+            let cells =
+                TableCells.init (
                     Values = cellsValues,
                     Fill = cellsFill,
                     Line = cellsOutline,
@@ -969,12 +966,12 @@ module ChartDomain =
             Chart.Table(
                 header,
                 cells,
-                ?Name            = Name            ,
-                ?ShowLegend      = ShowLegend      ,
-                ?ColumnOrder     = ColumnOrder     ,
-                ?ColumnWidth     = ColumnWidth     ,
-                ?MultiColumnWidth= MultiColumnWidth,
-                ?UseDefaults     = UseDefaults     
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?ColumnOrder = ColumnOrder,
+                ?ColumnWidth = ColumnWidth,
+                ?MultiColumnWidth = MultiColumnWidth,
+                ?UseDefaults = UseDefaults
 
             )
 

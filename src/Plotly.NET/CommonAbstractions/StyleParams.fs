@@ -408,9 +408,9 @@ module StyleParam =
         static member toString =
             function
             | Perpendicular -> "perpendicular"
-            | FreeForm      -> "freeform"
-            | Fixed         -> "fixed"
-            | Snap          -> "snap"
+            | FreeForm -> "freeform"
+            | Fixed -> "fixed"
+            | Snap -> "snap"
 
         static member convert = CategoryArrangement.toString >> box
         override this.ToString() = this |> CategoryArrangement.toString
@@ -481,6 +481,7 @@ module StyleParam =
         static member convert = CameraProjection.toString >> box
         override this.ToString() = this |> CameraProjection.toString
         member this.Convert() = this |> CameraProjection.convert
+
     [<RequireQualifiedAccess>]
     type ContourType =
         | Levels
@@ -2295,12 +2296,12 @@ module StyleParam =
         static member toString =
             function
             | Forward -> "forward"
-            | Backward-> "backward"
+            | Backward -> "backward"
 
         static member convert = SortAlgorithm.toString >> box
         override this.ToString() = this |> SortAlgorithm.toString
         member this.Convert() = this |> SortAlgorithm.convert
-        
+
     [<RequireQualifiedAccess>]
     type SpanMode =
         | Soft
