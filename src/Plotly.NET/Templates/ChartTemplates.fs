@@ -646,6 +646,19 @@ module ChartTemplates =
                                                            1.0, "#f0f921" ]
                     )
                 )
+
+                TraceDomain.initTable(
+                    TraceDomainStyle.Table(
+                        Cells = TableCells.init(
+                            Fill = TableFill.init(Color = Color.fromHex "#EBF0F8"),
+                            Line = Line.init(Color = Color.fromKeyword White)
+                        ),
+                        Header = TableCells.init(
+                            Fill = TableFill.init(Color = Color.fromHex "#C8D4E3"),
+                            Line = Line.init(Color = Color.fromKeyword White)
+                        )
+                    )
+                )
             ]
 
         Template.init (layoutTempplate, traceTemplates) |> Template.withColorWay ColorWays.plotly

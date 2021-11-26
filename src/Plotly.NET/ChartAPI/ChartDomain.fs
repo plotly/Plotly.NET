@@ -742,7 +742,7 @@ module ChartDomain =
         [<Extension>]
         static member ParallelCoord
             (
-                keyValues: seq<string * seq<#IConvertible>>,
+                keyValues: seq<string * #seq<#IConvertible>>,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
@@ -827,13 +827,14 @@ module ChartDomain =
                     ?TickFont = TickFont
                 )
             )
+
             |> GenericChart.ofTraceObject useDefaults
 
         /// Computes the parallel categories plot
         [<Extension>]
         static member ParallelCategories
             (
-                keyValues: seq<string * seq<#IConvertible>>,
+                keyValues: seq<string * #seq<#IConvertible>>,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Counts: int,
@@ -920,6 +921,7 @@ module ChartDomain =
             (
                 headerValues: seq<#seq<#IConvertible>>,
                 cellsValues: seq<#seq<#IConvertible>>,
+                [<Optional; DefaultParameterValue(true)>] ?TransposeCells: bool,
                 [<Optional; DefaultParameterValue(null)>] ?HeaderAlign: StyleParam.HorizontalAlign,
                 [<Optional; DefaultParameterValue(null)>] ?HeaderMultiAlign: seq<StyleParam.HorizontalAlign>,
                 [<Optional; DefaultParameterValue(null)>] ?HeaderFillColor: Color,
@@ -945,6 +947,17 @@ module ChartDomain =
             ) =
 
             let useDefaults = defaultArg UseDefaults true
+
+            let transpose = defaultArg TransposeCells true
+
+            let cellsValues =
+                if transpose then
+                    cellsValues 
+                    |> Seq.map Seq.cast<IConvertible>
+                    |> Seq.transpose
+                else 
+                    cellsValues
+                    |> Seq.map Seq.cast<IConvertible>
 
             let headerFill =
                 TableFill.init (?Color = HeaderFillColor)
