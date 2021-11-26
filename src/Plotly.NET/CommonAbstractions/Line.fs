@@ -27,6 +27,7 @@ type Line() =
             [<Optional; DefaultParameterValue(null)>] ?ColorAxis            : StyleParam.SubPlotId,
             [<Optional; DefaultParameterValue(null)>] ?Colorscale           : StyleParam.Colorscale,
             [<Optional; DefaultParameterValue(null)>] ?ReverseScale     :     bool,
+            [<Optional; DefaultParameterValue(null)>] ?ShowScale: bool,
             [<Optional; DefaultParameterValue(null)>] ?ColorBar         : #DynamicObj
         ) =
         Line()
@@ -47,6 +48,7 @@ type Line() =
             ?ColorAxis      = ColorAxis     ,
             ?Colorscale     = Colorscale    ,
             ?ReverseScale   = ReverseScale  ,
+            ?ShowScale      = ShowScale  ,
             ?ColorBar       = ColorBar      
             
         )
@@ -71,6 +73,7 @@ type Line() =
             [<Optional; DefaultParameterValue(null)>] ?ColorAxis: StyleParam.SubPlotId,
             [<Optional; DefaultParameterValue(null)>] ?Colorscale: StyleParam.Colorscale,
             [<Optional; DefaultParameterValue(null)>] ?ReverseScale: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ShowScale: bool,
             [<Optional; DefaultParameterValue(null)>] ?ColorBar: #DynamicObj
         ) =
         (fun (line: Line) ->
@@ -90,6 +93,7 @@ type Line() =
             ColorAxis |> DynObj.setValueOptBy line "coloraxis" StyleParam.SubPlotId.convert
             Colorscale |> DynObj.setValueOptBy line "colorscale" StyleParam.Colorscale.convert
             ReverseScale |> DynObj.setValueOpt line "reversescale"
+            ShowScale |> DynObj.setValueOpt line "showscale"
             ColorBar |> DynObj.setValueOpt line "colorbar"
 
             // out ->

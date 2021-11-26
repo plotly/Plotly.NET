@@ -30,6 +30,7 @@ module Chart2D =
                 Trace2D.initHeatmap style |> GenericChart.ofTraceObject useDefaults
 
 
+
         /// <summary>
         /// Creates a Scatter chart. Scatter charts are the basis of Point, Line, and Bubble Charts in Plotly, and can be customized as such. We also provide abstractions for those: Chart.Line, Chart.Point, Chart.Bubble
         /// </summary>

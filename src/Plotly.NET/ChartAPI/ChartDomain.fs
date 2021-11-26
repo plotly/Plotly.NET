@@ -672,150 +672,192 @@ module ChartDomain =
         [<Extension>]
         static member ParallelCoord
             (
-                dims: seq<'key * #seq<'values>>,
-                [<Optional; DefaultParameterValue(null)>] ?Range,
-                [<Optional; DefaultParameterValue(null)>] ?Constraintrange,
-                [<Optional; DefaultParameterValue(null)>] ?Color,
-                [<Optional; DefaultParameterValue(null)>] ?Colorscale,
-                [<Optional; DefaultParameterValue(null)>] ?Width,
-                [<Optional; DefaultParameterValue(null)>] ?Dash,
-                [<Optional; DefaultParameterValue(null)>] ?Domain,
-                [<Optional; DefaultParameterValue(null)>] ?Labelfont,
-                [<Optional; DefaultParameterValue(null)>] ?Tickfont,
-                [<Optional; DefaultParameterValue(null)>] ?Rangefont,
-                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+                dimensions: seq<Dimension>,
+                [<Optional; DefaultParameterValue(null)>] ?Name                     : string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend               : bool,
+                [<Optional; DefaultParameterValue(null)>] ?LineColor                : Color,
+                [<Optional; DefaultParameterValue(null)>] ?LineColorScale           : StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLineColorScale       : bool,
+                [<Optional; DefaultParameterValue(null)>] ?ReverseLineColorScale    : bool,
+                [<Optional; DefaultParameterValue(null)>] ?Line                     : Line,
+                [<Optional; DefaultParameterValue(null)>] ?LabelAngle               : int,
+                [<Optional; DefaultParameterValue(null)>] ?LabelFont                : Font,
+                [<Optional; DefaultParameterValue(null)>] ?LabelSide                : StyleParam.Side,
+                [<Optional; DefaultParameterValue(null)>] ?RangeFont                : Font,
+                [<Optional; DefaultParameterValue(null)>] ?TickFont                 : Font,
+                [<Optional; DefaultParameterValue(null)>] ?UseDefaults              : bool
             ) =
-
             let useDefaults = defaultArg UseDefaults true
 
-            let dims' =
-                dims
-                |> Seq.map
-                    (fun (k, vals) ->
-                        Dimension.initParallel (
-                            Values = vals,
-                            ?Range = Range,
-                            ?ConstraintRange = Constraintrange,
-                            Label = k
-                        ))
+            let line = 
+                Line
+                |> Option.defaultValue (Plotly.NET.Line.init ())
+                |> Plotly.NET.Line.style (
+                    ?Color = LineColor,
+                    ?Colorscale = LineColorScale,
+                    ?ShowScale = ShowLineColorScale,
+                    ?ReverseScale = ReverseLineColorScale
+                )
 
             TraceDomain.initParallelCoord (
                 TraceDomainStyle.ParallelCoord(
-                    Dimensions = dims',
-                    ?Domain = Domain,
-                    ?Labelfont = Labelfont,
-                    ?Tickfont = Tickfont,
-                    ?Rangefont = Rangefont
+                    Dimensions  = dimensions,
+                    Line        = line,
+                    ?Name       = Name      ,
+                    ?ShowLegend = ShowLegend,
+                    ?LabelAngle = LabelAngle,
+                    ?LabelFont  = LabelFont ,
+                    ?LabelSide  = LabelSide ,
+                    ?RangeFont  = RangeFont ,
+                    ?TickFont   = TickFont  
                 )
             )
-            |> TraceStyle.Line(?Width = Width, ?Color = Color, ?Dash = Dash, ?Colorscale = Colorscale)
             |> GenericChart.ofTraceObject useDefaults
-
 
         /// Computes the parallel coordinates plot
         [<Extension>]
         static member ParallelCoord
             (
-                dims: seq<Dimension>,
-                [<Optional; DefaultParameterValue(null)>] ?Color,
-                [<Optional; DefaultParameterValue(null)>] ?Colorscale,
-                [<Optional; DefaultParameterValue(null)>] ?Width,
-                [<Optional; DefaultParameterValue(null)>] ?Dash,
-                [<Optional; DefaultParameterValue(null)>] ?Domain,
-                [<Optional; DefaultParameterValue(null)>] ?Labelfont,
-                [<Optional; DefaultParameterValue(null)>] ?Tickfont,
-                [<Optional; DefaultParameterValue(null)>] ?Rangefont,
-                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+                keyValues: seq<string*seq<#IConvertible>>,
+                [<Optional; DefaultParameterValue(null)>] ?Name                     : string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend               : bool,
+                [<Optional; DefaultParameterValue(null)>] ?LineColor                : Color,
+                [<Optional; DefaultParameterValue(null)>] ?LineColorScale           : StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLineColorScale       : bool,
+                [<Optional; DefaultParameterValue(null)>] ?ReverseLineColorScale    : bool,
+                [<Optional; DefaultParameterValue(null)>] ?Line                     : Line,
+                [<Optional; DefaultParameterValue(null)>] ?LabelAngle               : int,
+                [<Optional; DefaultParameterValue(null)>] ?LabelFont                : Font,
+                [<Optional; DefaultParameterValue(null)>] ?LabelSide                : StyleParam.Side,
+                [<Optional; DefaultParameterValue(null)>] ?RangeFont                : Font,
+                [<Optional; DefaultParameterValue(null)>] ?TickFont                 : Font,
+                [<Optional; DefaultParameterValue(null)>] ?UseDefaults              : bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let dims =
+                keyValues |> Seq.map (fun (key, vals) -> Dimension.initParallel (Label = key, Values = vals))
 
-            TraceDomain.initParallelCoord (
-                TraceDomainStyle.ParallelCoord(
-                    Dimensions = dims,
-                    ?Domain = Domain,
-                    ?Labelfont = Labelfont,
-                    ?Tickfont = Tickfont,
-                    ?Rangefont = Rangefont
-                )
+            Chart.ParallelCoord(
+                dimensions = dims,
+                ?Name                   = Name                 ,
+                ?ShowLegend             = ShowLegend           ,
+                ?LineColor              = LineColor            ,
+                ?LineColorScale         = LineColorScale       ,
+                ?ShowLineColorScale     = ShowLineColorScale   ,
+                ?ReverseLineColorScale  = ReverseLineColorScale,
+                ?Line                   = Line                 ,
+                ?LabelAngle             = LabelAngle           ,
+                ?LabelFont              = LabelFont            ,
+                ?LabelSide              = LabelSide            ,
+                ?RangeFont              = RangeFont            ,
+                ?TickFont               = TickFont             ,
+                ?UseDefaults            = UseDefaults          
             )
-            |> TraceStyle.Line(?Width = Width, ?Color = Color, ?Dash = Dash, ?Colorscale = Colorscale)
-            |> GenericChart.ofTraceObject useDefaults
 
-        ///Parallel categories diagram for multidimensional categorical data.
+        /// Computes the parallel categories plot
         [<Extension>]
         static member ParallelCategories
             (
-                dims: seq<'key * #seq<'values>>,
-                [<Optional; DefaultParameterValue(null)>] ?Range,
-                [<Optional; DefaultParameterValue(null)>] ?Constraintrange,
-                [<Optional; DefaultParameterValue(null)>] ?Color,
-                [<Optional; DefaultParameterValue(null)>] ?Colorscale,
-                [<Optional; DefaultParameterValue(null)>] ?Width,
-                [<Optional; DefaultParameterValue(null)>] ?Dash,
-                [<Optional; DefaultParameterValue(null)>] ?Domain,
-                [<Optional; DefaultParameterValue(null)>] ?Labelfont,
-                [<Optional; DefaultParameterValue(null)>] ?Tickfont,
-                [<Optional; DefaultParameterValue(null)>] ?Rangefont,
-                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+                dimensions: seq<Dimension>,
+                [<Optional; DefaultParameterValue(null)>] ?Name                     : string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend               : bool,
+                [<Optional; DefaultParameterValue(null)>] ?Counts                   : int,
+                [<Optional; DefaultParameterValue(null)>] ?LineColor                : Color,
+                [<Optional; DefaultParameterValue(null)>] ?LineShape                : StyleParam.Shape,
+                [<Optional; DefaultParameterValue(null)>] ?LineColorScale           : StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLineColorScale       : bool,
+                [<Optional; DefaultParameterValue(null)>] ?ReverseLineColorScale    : bool,
+                [<Optional; DefaultParameterValue(null)>] ?Line                     : Line,
+                [<Optional; DefaultParameterValue(null)>] ?Arrangement              : StyleParam.CategoryArrangement,
+                [<Optional; DefaultParameterValue(null)>] ?BundleColors             : bool,
+                [<Optional; DefaultParameterValue(null)>] ?SortPaths                : StyleParam.SortAlgorithm,
+                [<Optional; DefaultParameterValue(null)>] ?LabelFont                : Font,
+                [<Optional; DefaultParameterValue(null)>] ?TickFont                 : Font,
+                [<Optional; DefaultParameterValue(null)>] ?UseDefaults              : bool
             ) =
 
             let useDefaults = defaultArg UseDefaults true
-
-            let dims' =
-                dims
-                |> Seq.map
-                    (fun (k, vals) ->
-                        Dimension.initParallel (
-                            Values = vals,
-                            ?Range = Range,
-                            ?ConstraintRange = Constraintrange,
-                            Label = k
-                        ))
+            
+            let line = 
+                Line
+                |> Option.defaultValue (Plotly.NET.Line.init ())
+                |> Plotly.NET.Line.style (
+                    ?Color = LineColor,
+                    ?Shape = LineShape,
+                    ?Colorscale = LineColorScale,
+                    ?ShowScale = ShowLineColorScale,
+                    ?ReverseScale = ReverseLineColorScale
+                )
 
             TraceDomain.initParallelCategories (
                 TraceDomainStyle.ParallelCategories(
-                    Dimensions = dims',
-                    ?Domain = Domain,
-                    ?Labelfont = Labelfont,
-                    ?Tickfont = Tickfont,
-                    ?Rangefont = Rangefont
+                    Dimensions = dimensions,
+                    Line = line,
+                    ?Name          = Name         ,
+                    ?ShowLegend    = ShowLegend   ,
+                    ?Counts        = Counts       ,
+                    ?Arrangement   = Arrangement  ,
+                    ?BundleColors  = BundleColors ,
+                    ?SortPaths     = SortPaths    ,
+                    ?LabelFont     = LabelFont    ,
+                    ?TickFont      = TickFont    
                 )
             )
-            |> TraceStyle.Line(?Width = Width, ?Color = Color, ?Dash = Dash, ?Colorscale = Colorscale)
             |> GenericChart.ofTraceObject useDefaults
-
-        ///
+            
+        /// Computes the parallel categories plot
         [<Extension>]
         static member ParallelCategories
             (
-                dims: seq<Dimension>,
-                [<Optional; DefaultParameterValue(null)>] ?Color,
-                [<Optional; DefaultParameterValue(null)>] ?Colorscale,
-                [<Optional; DefaultParameterValue(null)>] ?Width,
-                [<Optional; DefaultParameterValue(null)>] ?Dash,
-                [<Optional; DefaultParameterValue(null)>] ?Domain,
-                [<Optional; DefaultParameterValue(null)>] ?Labelfont,
-                [<Optional; DefaultParameterValue(null)>] ?Tickfont,
-                [<Optional; DefaultParameterValue(null)>] ?Rangefont,
-                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+                keyValues: seq<string*seq<#IConvertible>>,
+                [<Optional; DefaultParameterValue(null)>] ?Name                     : string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend               : bool,
+                [<Optional; DefaultParameterValue(null)>] ?Counts                   : int,
+                [<Optional; DefaultParameterValue(null)>] ?LineColor                : Color,
+                [<Optional; DefaultParameterValue(null)>] ?LineShape                : StyleParam.Shape,
+                [<Optional; DefaultParameterValue(null)>] ?LineColorScale           : StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLineColorScale       : bool,
+                [<Optional; DefaultParameterValue(null)>] ?ReverseLineColorScale    : bool,
+                [<Optional; DefaultParameterValue(null)>] ?Line                     : Line,
+                [<Optional; DefaultParameterValue(null)>] ?Arrangement              : StyleParam.CategoryArrangement,
+                [<Optional; DefaultParameterValue(null)>] ?BundleColors             : bool,
+                [<Optional; DefaultParameterValue(null)>] ?SortPaths                : StyleParam.SortAlgorithm,
+                [<Optional; DefaultParameterValue(null)>] ?LabelFont                : Font,
+                [<Optional; DefaultParameterValue(null)>] ?TickFont                 : Font,
+                [<Optional; DefaultParameterValue(null)>] ?UseDefaults              : bool
             ) =
 
             let useDefaults = defaultArg UseDefaults true
+            
+            let dims =
+                keyValues |> Seq.map (fun (key, vals) -> Dimension.initParallel (Label = key, Values = vals))
+
+            let line = 
+                Line
+                |> Option.defaultValue (Plotly.NET.Line.init ())
+                |> Plotly.NET.Line.style (
+                    ?Color = LineColor,
+                    ?Shape = LineShape,
+                    ?Colorscale = LineColorScale,
+                    ?ShowScale = ShowLineColorScale,
+                    ?ReverseScale = ReverseLineColorScale
+                )
 
             TraceDomain.initParallelCategories (
                 TraceDomainStyle.ParallelCategories(
                     Dimensions = dims,
-                    ?Domain = Domain,
-                    ?Color = Color,
-                    ?Labelfont = Labelfont,
-                    ?Tickfont = Tickfont,
-                    ?Rangefont = Rangefont
+                    Line = line,
+                    ?Name          = Name         ,
+                    ?ShowLegend    = ShowLegend   ,
+                    ?Counts        = Counts       ,
+                    ?Arrangement   = Arrangement  ,
+                    ?BundleColors  = BundleColors ,
+                    ?SortPaths     = SortPaths    ,
+                    ?LabelFont     = LabelFont    ,
+                    ?TickFont      = TickFont    
                 )
             )
-            |> TraceStyle.Line(?Width = Width, ?Dash = Dash, ?Colorscale = Colorscale)
             |> GenericChart.ofTraceObject useDefaults
-
 
         /// creates table out of header sequence and row sequences
         [<Extension>]
