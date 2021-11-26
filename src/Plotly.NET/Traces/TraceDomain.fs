@@ -65,6 +65,7 @@ type TraceDomainStyle() =
             [<Optional; DefaultParameterValue(null)>] ?DLabel: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?Label0: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?Pull: float,
+            [<Optional; DefaultParameterValue(null)>] ?MultiPull: seq<float>,
             [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
@@ -108,7 +109,7 @@ type TraceDomainStyle() =
             Labels |> DynObj.setValueOpt trace "labels"
             DLabel |> DynObj.setValueOpt trace "dlabel"
             Label0 |> DynObj.setValueOpt trace "label0"
-            Pull |> DynObj.setValueOpt trace "pull"
+            (Pull, MultiPull) |> DynObj.setSingleOrMultiOpt trace "pull"
             (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
 
             (TextPosition, MultiTextPosition)
@@ -345,7 +346,6 @@ type TraceDomainStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Root: TreemapRoot,
             [<Optional; DefaultParameterValue(null)>] ?Level: string,
             [<Optional; DefaultParameterValue(null)>] ?MaxDepth: int,
-            [<Optional; DefaultParameterValue(null)>] ?Rotation: int,
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
         ) =
         (fun (trace: ('T :> Trace)) ->
@@ -386,7 +386,6 @@ type TraceDomainStyle() =
             Root |> DynObj.setValueOpt trace "root"
             Level |> DynObj.setValueOpt trace "level"
             MaxDepth |> DynObj.setValueOpt trace "maxdepth"
-            Rotation |> DynObj.setValueOpt trace "rotation"
             UIRevision |> DynObj.setValueOpt trace "uirevision"
 
             trace)

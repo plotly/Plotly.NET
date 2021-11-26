@@ -10,10 +10,7 @@ open System.Runtime.InteropServices
 type TableFill() =
     inherit DynamicObj()
 
-    static member init(
-        [<Optional; DefaultParameterValue(null)>] ?Color: Color
-    ) =
-
+    static member init([<Optional; DefaultParameterValue(null)>] ?Color: Color) =
         TableFill() 
         |> TableFill.style (?Color = Color)
 

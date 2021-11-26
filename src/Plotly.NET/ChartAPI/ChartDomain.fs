@@ -28,6 +28,7 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
                 [<Optional; DefaultParameterValue(null)>] ?Labels: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?Pull: float,
+                [<Optional; DefaultParameterValue(null)>] ?MultiPull: seq<float>,
                 [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
                 [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
@@ -71,6 +72,7 @@ module ChartDomain =
                     ?Opacity = Opacity,
                     ?Labels = Labels,
                     ?Pull = Pull,
+                    ?MultiPull = MultiPull,
                     ?Text = Text,
                     ?MultiText = MultiText,
                     ?TextPosition = TextPosition,
@@ -95,6 +97,7 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
                 [<Optional; DefaultParameterValue(null)>] ?Pull: float,
+                [<Optional; DefaultParameterValue(null)>] ?MultiPull: seq<float>,
                 [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
                 [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
@@ -122,6 +125,7 @@ module ChartDomain =
                 ?ShowLegend = ShowLegend,
                 ?Opacity = Opacity,
                 ?Pull = Pull,
+                ?MultiPull = MultiPull,
                 ?Text = Text,
                 ?MultiText = MultiText,
                 ?TextPosition = TextPosition,
@@ -152,6 +156,7 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
                 [<Optional; DefaultParameterValue(null)>] ?Labels: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?Pull: float,
+                [<Optional; DefaultParameterValue(null)>] ?MultiPull: seq<float>,
                 [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
                 [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
@@ -179,6 +184,7 @@ module ChartDomain =
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
                 ?Opacity = Opacity,
+                ?MultiPull = MultiPull,
                 ?Pull = Pull,
                 ?Text = Text,
                 ?MultiText = MultiText,
@@ -208,6 +214,7 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
                 [<Optional; DefaultParameterValue(null)>] ?Pull: float,
+                [<Optional; DefaultParameterValue(null)>] ?MultiPull: seq<float>,
                 [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
                 [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
@@ -234,6 +241,7 @@ module ChartDomain =
                 ?ShowLegend = ShowLegend,
                 ?Opacity = Opacity,
                 ?Pull = Pull,
+                ?MultiPull = MultiPull,
                 ?Text = Text,
                 ?MultiText = MultiText,
                 ?TextPosition = TextPosition,
@@ -370,6 +378,7 @@ module ChartDomain =
                 labels: seq<#IConvertible>,
                 parents: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?Values: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?Ids: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
@@ -424,6 +433,7 @@ module ChartDomain =
                     Parents = parents,
                     Marker = marker,
                     ?Values = Values,
+                    ?Ids = Ids,
                     ?Name = Name,
                     ?ShowLegend = ShowLegend,
                     ?Opacity = Opacity,
@@ -451,6 +461,7 @@ module ChartDomain =
             (
                 labelsparents: seq<#IConvertible * #IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?Values: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?Ids: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
@@ -483,6 +494,7 @@ module ChartDomain =
                 labels,
                 parents,
                 ?Values = Values,
+                ?Ids = Ids,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
                 ?Opacity = Opacity,
@@ -517,6 +529,7 @@ module ChartDomain =
                 labels: seq<#IConvertible>,
                 parents: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?Values: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?Ids: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
                 [<Optional; DefaultParameterValue(null)>] ?Visible: StyleParam.Visible,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
@@ -542,7 +555,6 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?Root: TreemapRoot,
                 [<Optional; DefaultParameterValue(null)>] ?Level: string,
                 [<Optional; DefaultParameterValue(null)>] ?MaxDepth: int,
-                [<Optional; DefaultParameterValue(null)>] ?Rotation: int,
                 [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
 
@@ -574,6 +586,7 @@ module ChartDomain =
                     Parents = parents,
                     Marker = marker,
                     ?Values = Values,
+                    ?Ids = Ids,
                     ?Name = Name,
                     ?Visible = Visible,
                     ?ShowLegend = ShowLegend,
@@ -589,8 +602,7 @@ module ChartDomain =
                     ?PathBar = PathBar,
                     ?Root = Root,
                     ?Level = Level,
-                    ?MaxDepth = MaxDepth,
-                    ?Rotation = Rotation
+                    ?MaxDepth = MaxDepth
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
@@ -601,6 +613,7 @@ module ChartDomain =
             (
                 labelsparents: seq<#IConvertible * #IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?Values: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?Ids: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
                 [<Optional; DefaultParameterValue(null)>] ?Visible: StyleParam.Visible,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
@@ -626,7 +639,6 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?Root: TreemapRoot,
                 [<Optional; DefaultParameterValue(null)>] ?Level: string,
                 [<Optional; DefaultParameterValue(null)>] ?MaxDepth: int,
-                [<Optional; DefaultParameterValue(null)>] ?Rotation: int,
                 [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
 
@@ -636,6 +648,7 @@ module ChartDomain =
                 labels,
                 parents,
                 ?Values = Values,
+                ?Ids = Ids,
                 ?Name = Name,
                 ?Visible = Visible,
                 ?ShowLegend = ShowLegend,
@@ -661,7 +674,6 @@ module ChartDomain =
                 ?Root = Root,
                 ?Level = Level,
                 ?MaxDepth = MaxDepth,
-                ?Rotation = Rotation,
                 ?UseDefaults = UseDefaults
             )
 
