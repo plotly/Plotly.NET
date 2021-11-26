@@ -859,65 +859,124 @@ module ChartDomain =
             )
             |> GenericChart.ofTraceObject useDefaults
 
-        /// creates table out of header sequence and row sequences
+        /// creates table chart
         [<Extension>]
         static member Table
             (
-                headerValues,
-                cellValues,
-                [<Optional; DefaultParameterValue(null)>] ?AlignHeader,
-                [<Optional; DefaultParameterValue(null)>] ?AlignCells,
-                [<Optional; DefaultParameterValue(null)>] ?ColumnWidth,
-                [<Optional; DefaultParameterValue(null)>] ?ColumnOrder,
-                [<Optional; DefaultParameterValue(null)>] ?ColorHeader,
-                [<Optional; DefaultParameterValue(null)>] ?ColorCells,
-                [<Optional; DefaultParameterValue(null)>] ?FontHeader,
-                [<Optional; DefaultParameterValue(null)>] ?FontCells,
-                [<Optional; DefaultParameterValue(null)>] ?HeightHeader,
-                [<Optional; DefaultParameterValue(null)>] ?HeightCells,
-                [<Optional; DefaultParameterValue(null)>] ?LineHeader,
-                [<Optional; DefaultParameterValue(null)>] ?LineCells,
-                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+                header: TableHeader,
+                cells: TableCells,
+                [<Optional; DefaultParameterValue(null)>] ?Name             : string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend       : bool,
+                [<Optional; DefaultParameterValue(null)>] ?ColumnOrder      : seq<int>,
+                [<Optional; DefaultParameterValue(null)>] ?ColumnWidth      : float,
+                [<Optional; DefaultParameterValue(null)>] ?MultiColumnWidth : seq<float>,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults      : bool
             ) =
 
             let useDefaults = defaultArg UseDefaults true
 
             TraceDomain.initTable (
-
-                let CellFilling =
-                    match ColorCells with
-                    | Some color -> Some(CellColor.init (?Color = ColorCells))
-                    | Option.None -> Option.None
-
-                let HeaderFilling =
-                    match ColorHeader with
-                    | Some color -> Some(CellColor.init (?Color = ColorHeader))
-                    | Option.None -> Option.None
-
                 TraceDomainStyle.Table(
-                    header =
-                        TableHeader.init (
-                            headerValues |> Seq.map seq,
-                            ?Align = AlignHeader,
-                            ?Fill = HeaderFilling,
-                            ?Font = FontHeader,
-                            ?Height = HeightHeader,
-                            ?Line = LineHeader
-                        ),
-                    cells =
-                        TableCells.init (
-                            cellValues |> Seq.transpose,
-                            ?Align = AlignCells,
-                            ?Fill = CellFilling,
-                            ?Font = FontCells,
-                            ?Height = HeightCells,
-                            ?Line = LineCells
-                        ),
-                    ?ColumnWidth = ColumnWidth,
-                    ?ColumnOrder = ColumnOrder
+                    Header              = header,
+                    Cells               = cells,
+                    ?Name               = Name            ,
+                    ?ShowLegend         = ShowLegend      ,
+                    ?ColumnOrder        = ColumnOrder     ,
+                    ?ColumnWidth        = ColumnWidth     ,
+                    ?MultiColumnWidth   = MultiColumnWidth
+                    
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
+
+        
+        /// creates table chart
+        [<Extension>]
+        static member Table
+            (
+                headerValues: seq<#seq<#IConvertible>>,
+                cellsValues: seq<#seq<#IConvertible>>,
+                [<Optional; DefaultParameterValue(null)>] ?HeaderAlign                  : StyleParam.HorizontalAlign,
+                [<Optional; DefaultParameterValue(null)>] ?HeaderMultiAlign             : seq<StyleParam.HorizontalAlign>,
+                [<Optional; DefaultParameterValue(null)>] ?HeaderFillColor              : Color,
+                [<Optional; DefaultParameterValue(null)>] ?HeaderHeight                 : int,
+                [<Optional; DefaultParameterValue(null)>] ?HeaderOutlineColor           : Color,
+                [<Optional; DefaultParameterValue(null)>] ?HeaderOutlineWidth           : float,
+                [<Optional; DefaultParameterValue(null)>] ?HeaderOutlineMultiWidth      : seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?HeaderOutline                : Line,
+                [<Optional; DefaultParameterValue(null)>] ?CellsAlign                    : StyleParam.HorizontalAlign,
+                [<Optional; DefaultParameterValue(null)>] ?CellsMultiAlign               : seq<StyleParam.HorizontalAlign>,
+                [<Optional; DefaultParameterValue(null)>] ?CellsFillColor                : Color,
+                [<Optional; DefaultParameterValue(null)>] ?CellsHeight                   : int,
+                [<Optional; DefaultParameterValue(null)>] ?CellsOutlineColor             : Color,
+                [<Optional; DefaultParameterValue(null)>] ?CellsOutlineWidth             : float,
+                [<Optional; DefaultParameterValue(null)>] ?CellsOutlineMultiWidth        : seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?CellsOutline                  : Line,
+                [<Optional; DefaultParameterValue(null)>] ?Name                         : string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend                   : bool,
+                [<Optional; DefaultParameterValue(null)>] ?ColumnOrder                  : seq<int>,
+                [<Optional; DefaultParameterValue(null)>] ?ColumnWidth                  : float,
+                [<Optional; DefaultParameterValue(null)>] ?MultiColumnWidth             : seq<float>,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults                  : bool
+            ) =
+
+            let useDefaults = defaultArg UseDefaults true
+            
+            let headerFill =
+                TableFill.init(?Color = HeaderFillColor)
+                
+            let headerOutline = 
+                HeaderOutline
+                |> Option.defaultValue (Plotly.NET.Line.init ())
+                |> Plotly.NET.Line.style (
+                    ?Color      = HeaderOutlineColor,
+                    ?Width      = HeaderOutlineWidth,
+                    ?MultiWidth = HeaderOutlineMultiWidth
+                )
+
+            let header = 
+                TableHeader.init(
+                    Values = headerValues,
+                    Fill = headerFill,
+                    Line = headerOutline,
+                    ?Align = HeaderAlign,
+                    ?MultiAlign = HeaderMultiAlign,
+                    ?Height = HeaderHeight
+                )
+
+            let cellsFill =
+                TableFill.init(?Color = CellsFillColor)
+                
+            let cellsOutline = 
+                CellsOutline
+                |> Option.defaultValue (Plotly.NET.Line.init ())
+                |> Plotly.NET.Line.style (
+                    ?Color      = CellsOutlineColor,
+                    ?Width      = CellsOutlineWidth,
+                    ?MultiWidth = CellsOutlineMultiWidth
+                )
+
+            let cells = 
+                TableCells.init(
+                    Values = cellsValues,
+                    Fill = cellsFill,
+                    Line = cellsOutline,
+                    ?Align = CellsAlign,
+                    ?MultiAlign = CellsMultiAlign,
+                    ?Height = CellsHeight
+                )
+
+            Chart.Table(
+                header,
+                cells,
+                ?Name            = Name            ,
+                ?ShowLegend      = ShowLegend      ,
+                ?ColumnOrder     = ColumnOrder     ,
+                ?ColumnWidth     = ColumnWidth     ,
+                ?MultiColumnWidth= MultiColumnWidth,
+                ?UseDefaults     = UseDefaults     
+
+            )
 
         /// creates table out of header sequence and row sequences
         [<Extension>]
