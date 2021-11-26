@@ -367,125 +367,305 @@ module ChartDomain =
                 )
 
 
-
         /// Creates a sunburst chart. Visualize hierarchical data spanning outward radially from root to leaves.
-        /// Applies the styles of sundburst plot to TraceObjects
-        ///
-        /// Parameters:
-        ///
-        /// labels: Sets the labels of each of the sectors.
-        ///
-        /// parents: Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be "ids" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
-        ///
-        /// Ids: Assigns id labels to each datum. These ids for object constancy of data points during animation.
-        ///
-        /// Values: Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
-        ///
-        /// Text: Sets text elements associated with each sector. If trace `textinfo` contains a "text" flag, these elements will be seen on the chart. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.
-        ///
-        /// Branchvalues: Determines how the items in `values` are summed. When set to "total", items in `values` are taken to be value of all its descendants. When set to "remainder", items in `values` corresponding to the root and the branches sectors are taken to be the extra part not part of the sum of the values at their leaves.
-        ///
-        /// Level: Sets the level from which this trace hierarchy is rendered. Set `level` to `''` to start from the root node in the hierarchy. Must be an "id" if `ids` is filled in, otherwise plotly attempts to find a matching item in `labels`.
-        ///
-        /// Maxdepth: Sets the number of rendered sectors from any given `level`. Set `maxdepth` to "-1" to render all the levels in the hierarchy.
-        ///
-        /// ColorBar: Sets the ColorBar for the chart
-        ///
-        ///Colors: Sets the color of each sector of this trace. If not specified, the default trace color set is used to pick the sector colors.
         [<Extension>]
         static member Sunburst
             (
-                labels,
-                parents,
-                [<Optional; DefaultParameterValue(null)>] ?Ids,
-                [<Optional; DefaultParameterValue(null)>] ?Values,
-                [<Optional; DefaultParameterValue(null)>] ?Text,
-                [<Optional; DefaultParameterValue(null)>] ?Branchvalues,
-                [<Optional; DefaultParameterValue(null)>] ?Level,
-                [<Optional; DefaultParameterValue(null)>] ?Maxdepth,
-                [<Optional; DefaultParameterValue(null)>] ?Color,
-                [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
-                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+                labels: seq<#IConvertible>,
+                parents: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?Values: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionColors: seq<Color>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?ShowSectionColorScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ReverseSectionColorScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineMultiWidth: seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?TextInfo: StyleParam.TextInfo,
+                [<Optional; DefaultParameterValue(null)>] ?BranchValues: StyleParam.BranchValues,
+                [<Optional; DefaultParameterValue(null)>] ?Count        : string,
+                [<Optional; DefaultParameterValue(null)>] ?Root         : SunburstRoot,
+                [<Optional; DefaultParameterValue(null)>] ?Leaf         : SunburstLeaf,
+                [<Optional; DefaultParameterValue(null)>] ?Level        : string,
+                [<Optional; DefaultParameterValue(null)>] ?MaxDepth : int,
+                [<Optional; DefaultParameterValue(null)>] ?Rotation: int,
+                [<Optional; DefaultParameterValue(null)>] ?Sort: bool,
+                [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
 
             let useDefaults = defaultArg UseDefaults true
+            
+            let outline = 
+                SectionOutline
+                |> Option.defaultValue (Line.init ())
+                |> Line.style (
+                    ?Color = SectionOutlineColor,
+                    ?Width = SectionOutlineWidth,
+                    ?MultiWidth = SectionOutlineMultiWidth
+                )
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (
+                    ?Colors = SectionColors,
+                    ?Colorscale = SectionColorScale,
+                    ?ShowScale = ShowSectionColorScale,
+                    ?ReverseScale = ReverseSectionColorScale,
+                    Outline = outline
+                )
 
             TraceDomain.initSunburst (
                 TraceDomainStyle.Sunburst(
-                    labels = labels,
-                    parents = parents,
-                    ?Ids = Ids,
+                    Labels = labels,
+                    Parents = parents,
+                    Marker = marker,
                     ?Values = Values,
-                    ?Text = Text,
-                    ?Branchvalues = Branchvalues,
-                    ?Level = Level,
-                    ?Maxdepth = Maxdepth
+                    ?Name               = Name,
+                    ?ShowLegend         = ShowLegend,
+                    ?Opacity            = Opacity,
+                    ?Text               = Text,
+                    ?MultiText          = MultiText,
+                    ?TextInfo           = TextInfo,
+                    ?Rotation           = Rotation,
+                    ?Sort               = Sort,
+                    ?BranchValues       = BranchValues,
+                    ?Count              = Count       ,
+                    ?Root               = Root        ,
+                    ?Leaf               = Leaf        ,
+                    ?Level              = Level       ,
+                    ?MaxDepth           = MaxDepth
+
                 )
             )
-            |> TraceStyle.Marker(?Color = Color, ?ColorBar = ColorBar)
             |> GenericChart.ofTraceObject useDefaults
 
+
+        
+        /// Creates a sunburst chart. Visualize hierarchical data spanning outward radially from root to leaves.
+        [<Extension>]
+        static member Sunburst
+            (
+                labelsparents: seq<#IConvertible * #IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?Values                   : seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?Name                     : string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend               : bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity                  : float,
+                [<Optional; DefaultParameterValue(null)>] ?Text                     : #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText                : seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionColors            : seq<Color>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionColorScale        : StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?ShowSectionColorScale    : bool,
+                [<Optional; DefaultParameterValue(null)>] ?ReverseSectionColorScale : bool,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineColor      : Color,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineWidth      : float,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineMultiWidth : seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutline           : Line,
+                [<Optional; DefaultParameterValue(null)>] ?Marker                   : Marker,
+                [<Optional; DefaultParameterValue(null)>] ?TextInfo                 : StyleParam.TextInfo,
+                [<Optional; DefaultParameterValue(null)>] ?BranchValues             : StyleParam.BranchValues,
+                [<Optional; DefaultParameterValue(null)>] ?Count                    : string,
+                [<Optional; DefaultParameterValue(null)>] ?Root                     : SunburstRoot,
+                [<Optional; DefaultParameterValue(null)>] ?Leaf                     : SunburstLeaf,
+                [<Optional; DefaultParameterValue(null)>] ?Level                    : string,
+                [<Optional; DefaultParameterValue(null)>] ?MaxDepth                 : int,
+                [<Optional; DefaultParameterValue(null)>] ?Rotation                 : int,
+                [<Optional; DefaultParameterValue(null)>] ?Sort                     : bool,
+                [<Optional; DefaultParameterValue(null)>] ?UseDefaults              : bool
+            ) =
+
+            let labels, parents = Seq.unzip labelsparents
+
+            Chart.Sunburst(
+                labels,
+                parents,
+                ?Values                   = Values                   ,
+                ?Name                     = Name                     ,
+                ?ShowLegend               = ShowLegend               ,
+                ?Opacity                  = Opacity                  ,
+                ?Text                     = Text                     ,
+                ?MultiText                = MultiText                ,
+                ?SectionColors            = SectionColors            ,
+                ?SectionColorScale        = SectionColorScale        ,
+                ?ShowSectionColorScale    = ShowSectionColorScale    ,
+                ?ReverseSectionColorScale = ReverseSectionColorScale ,
+                ?SectionOutlineColor      = SectionOutlineColor      ,
+                ?SectionOutlineWidth      = SectionOutlineWidth      ,
+                ?SectionOutlineMultiWidth = SectionOutlineMultiWidth ,
+                ?SectionOutline           = SectionOutline           ,
+                ?Marker                   = Marker                   ,
+                ?TextInfo                 = TextInfo                 ,
+                ?BranchValues             = BranchValues             ,
+                ?Count                    = Count                    ,
+                ?Root                     = Root                     ,
+                ?Leaf                     = Leaf                     ,
+                ?Level                    = Level                    ,
+                ?MaxDepth                 = MaxDepth                 ,
+                ?Rotation                 = Rotation                 ,
+                ?Sort                     = Sort                     ,
+                ?UseDefaults              = UseDefaults              
+            )
 
 
         /// Creates a treemap chart. Treemap charts visualize hierarchical data using nested rectangles. Same as Sunburst the hierarchy is defined by labels and parents attributes. Click on one sector to zoom in/out, which also displays a pathbar in the upper-left corner of your treemap. To zoom out you can use the path bar as well.
-        ///
-        /// Parameters:
-        ///
-        /// labels: Sets the labels of each of the sectors.
-        ///
-        /// parents: Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be "ids" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
-        ///
-        /// Ids: Assigns id labels to each datum. These ids for object constancy of data points during animation.
-        ///
-        /// Values: Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
-        ///
-        /// Text: Sets text elements associated with each sector. If trace `textinfo` contains a "text" flag, these elements will be seen on the chart. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.
-        ///
-        /// Branchvalues: Determines how the items in `values` are summed. When set to "total", items in `values` are taken to be value of all its descendants. When set to "remainder", items in `values` corresponding to the root and the branches sectors are taken to be the extra part not part of the sum of the values at their leaves.
-        ///
-        /// Level: Sets the level from which this trace hierarchy is rendered. Set `level` to `''` to start from the root node in the hierarchy. Must be an "id" if `ids` is filled in, otherwise plotly attempts to find a matching item in `labels`.
-        ///
-        /// Maxdepth: Sets the number of rendered sectors from any given `level`. Set `maxdepth` to "-1" to render all the levels in the hierarchy.
-        ///
-        /// ColorBar: Sets the ColorBar for the chart
-        ///
-        ///Colors: Sets the color of each sector of this trace. If not specified, the default trace color set is used to pick the sector colors.
         [<Extension>]
         static member Treemap
             (
-                labels,
-                parents,
-                [<Optional; DefaultParameterValue(null)>] ?Ids,
-                [<Optional; DefaultParameterValue(null)>] ?Values,
-                [<Optional; DefaultParameterValue(null)>] ?Text,
-                [<Optional; DefaultParameterValue(null)>] ?Branchvalues,
-                [<Optional; DefaultParameterValue(null)>] ?Tiling,
-                [<Optional; DefaultParameterValue(null)>] ?PathBar,
-                [<Optional; DefaultParameterValue(null)>] ?Level,
-                [<Optional; DefaultParameterValue(null)>] ?Maxdepth,
-                [<Optional; DefaultParameterValue(null)>] ?Color,
-                [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
-                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+                labels : seq<#IConvertible>,
+                parents : seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?Values                   : seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?Name                     : string,
+                [<Optional; DefaultParameterValue(null)>] ?Visible                  : StyleParam.Visible,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend               : bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity                  : float,
+                [<Optional; DefaultParameterValue(null)>] ?Text                     : #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText                : seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition             : StyleParam.TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition        : seq<StyleParam.TextPosition>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionColors            : seq<Color>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionColorScale        : StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?ShowSectionColorScale    : bool,
+                [<Optional; DefaultParameterValue(null)>] ?ReverseSectionColorScale : bool,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineColor      : Color,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineWidth      : float,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineMultiWidth : seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutline           : Line,
+                [<Optional; DefaultParameterValue(null)>] ?Marker                   : Marker,
+                [<Optional; DefaultParameterValue(null)>] ?TextInfo                 : StyleParam.TextInfo,
+                [<Optional; DefaultParameterValue(null)>] ?BranchValues             : StyleParam.BranchValues,
+                [<Optional; DefaultParameterValue(null)>] ?Count                    : string,
+                [<Optional; DefaultParameterValue(null)>] ?Tiling                   : TreemapTiling,
+                [<Optional; DefaultParameterValue(null)>] ?PathBar                  : Pathbar,
+                [<Optional; DefaultParameterValue(null)>] ?Root                     : TreemapRoot,
+                [<Optional; DefaultParameterValue(null)>] ?Level                    : string,
+                [<Optional; DefaultParameterValue(null)>] ?MaxDepth                 : int,
+                [<Optional; DefaultParameterValue(null)>] ?Rotation                 : int,
+                [<Optional; DefaultParameterValue(null)>] ?UseDefaults              : bool
             ) =
 
             let useDefaults = defaultArg UseDefaults true
+            
+            let outline = 
+                SectionOutline
+                |> Option.defaultValue (Line.init ())
+                |> Line.style (
+                    ?Color = SectionOutlineColor,
+                    ?Width = SectionOutlineWidth,
+                    ?MultiWidth = SectionOutlineMultiWidth
+                )
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (
+                    ?Colors = SectionColors,
+                    ?Colorscale = SectionColorScale,
+                    ?ShowScale = ShowSectionColorScale,
+                    ?ReverseScale = ReverseSectionColorScale,
+                    Outline = outline
+                )
 
             TraceDomain.initTreemap (
                 TraceDomainStyle.Treemap(
-                    labels = labels,
-                    parents = parents,
-                    ?Ids = Ids,
+                    Labels = labels,
+                    Parents = parents,
+                    Marker = marker,
                     ?Values = Values,
-                    ?Text = Text,
-                    ?Branchvalues = Branchvalues,
-                    ?Tiling = Tiling,
-                    ?PathBar = PathBar,
-                    ?Level = Level,
-                    ?Maxdepth = Maxdepth
+                    ?Name               = Name             ,
+                    ?Visible            = Visible          ,
+                    ?ShowLegend         = ShowLegend       ,
+                    ?Opacity            = Opacity          ,
+                    ?Text               = Text             ,
+                    ?MultiText          = MultiText        ,
+                    ?TextPosition       = TextPosition     ,
+                    ?MultiTextPosition  = MultiTextPosition,
+                    ?TextInfo           = TextInfo    ,
+                    ?BranchValues       = BranchValues,
+                    ?Count              = Count       ,
+                    ?Tiling             = Tiling      ,
+                    ?PathBar            = PathBar     ,
+                    ?Root               = Root        ,
+                    ?Level              = Level       ,
+                    ?MaxDepth           = MaxDepth    ,
+                    ?Rotation           = Rotation    
                 )
             )
-            |> TraceStyle.Marker(?Color = Color, ?ColorBar = ColorBar)
-            |> GenericChart.ofTraceObject useDefaults
+            |> GenericChart.ofTraceObject useDefaults        
+            
+        /// Creates a treemap chart. Treemap charts visualize hierarchical data using nested rectangles. Same as Sunburst the hierarchy is defined by labels and parents attributes. Click on one sector to zoom in/out, which also displays a pathbar in the upper-left corner of your treemap. To zoom out you can use the path bar as well.
+        [<Extension>]
+        static member Treemap
+            (
+                labelsparents: seq<#IConvertible * #IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?Values                   : seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?Name                     : string,
+                [<Optional; DefaultParameterValue(null)>] ?Visible                  : StyleParam.Visible,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend               : bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity                  : float,
+                [<Optional; DefaultParameterValue(null)>] ?Text                     : #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText                : seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition             : StyleParam.TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition        : seq<StyleParam.TextPosition>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionColors            : seq<Color>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionColorScale        : StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?ShowSectionColorScale    : bool,
+                [<Optional; DefaultParameterValue(null)>] ?ReverseSectionColorScale : bool,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineColor      : Color,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineWidth      : float,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutlineMultiWidth : seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?SectionOutline           : Line,
+                [<Optional; DefaultParameterValue(null)>] ?Marker                   : Marker,
+                [<Optional; DefaultParameterValue(null)>] ?TextInfo                 : StyleParam.TextInfo,
+                [<Optional; DefaultParameterValue(null)>] ?BranchValues             : StyleParam.BranchValues,
+                [<Optional; DefaultParameterValue(null)>] ?Count                    : string,
+                [<Optional; DefaultParameterValue(null)>] ?Tiling                   : TreemapTiling,
+                [<Optional; DefaultParameterValue(null)>] ?PathBar                  : Pathbar,
+                [<Optional; DefaultParameterValue(null)>] ?Root                     : TreemapRoot,
+                [<Optional; DefaultParameterValue(null)>] ?Level                    : string,
+                [<Optional; DefaultParameterValue(null)>] ?MaxDepth                 : int,
+                [<Optional; DefaultParameterValue(null)>] ?Rotation                 : int,
+                [<Optional; DefaultParameterValue(null)>] ?UseDefaults              : bool
+            ) =
+
+            let labels, parents = Seq.unzip labelsparents
+
+            Chart.Treemap(
+                labels, 
+                parents,
+                ?Values                     = Values                   ,
+                ?Name                       = Name                     ,
+                ?Visible                    = Visible                  ,
+                ?ShowLegend                 = ShowLegend               ,
+                ?Opacity                    = Opacity                  ,
+                ?Text                       = Text                     ,
+                ?MultiText                  = MultiText                ,
+                ?TextPosition               = TextPosition             ,
+                ?MultiTextPosition          = MultiTextPosition        ,
+                ?SectionColors              = SectionColors            ,
+                ?SectionColorScale          = SectionColorScale        ,
+                ?ShowSectionColorScale      = ShowSectionColorScale    ,
+                ?ReverseSectionColorScale   = ReverseSectionColorScale ,
+                ?SectionOutlineColor        = SectionOutlineColor      ,
+                ?SectionOutlineWidth        = SectionOutlineWidth      ,
+                ?SectionOutlineMultiWidth   = SectionOutlineMultiWidth ,
+                ?SectionOutline             = SectionOutline           ,
+                ?Marker                     = Marker                   ,
+                ?TextInfo                   = TextInfo                 ,
+                ?BranchValues               = BranchValues             ,
+                ?Count                      = Count                    ,
+                ?Tiling                     = Tiling                   ,
+                ?PathBar                    = PathBar                  ,
+                ?Root                       = Root                     ,
+                ?Level                      = Level                    ,
+                ?MaxDepth                   = MaxDepth                 ,
+                ?Rotation                   = Rotation                 ,
+                ?UseDefaults                = UseDefaults              
+            )
 
 
         /// Computes the parallel coordinates plot
