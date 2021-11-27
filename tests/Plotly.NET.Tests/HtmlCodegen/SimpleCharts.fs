@@ -236,6 +236,36 @@ let pieChart =
     let labels = ["Residential"; "Non-Residential"; "Utility"]
     Chart.Pie(values, Labels = labels, UseDefaults = false)
 
+let pieStyled =
+
+    let values = [19; 26; 55;]
+    let labels = ["Residential"; "Non-Residential"; "Utility"]
+
+    Chart.Pie(
+        values,
+        Labels = labels,
+        SectionColors = [
+            Color.fromKeyword Aqua
+            Color.fromKeyword Salmon
+            Color.fromKeyword Tan
+        ],
+        SectionOutlineColor = Color.fromKeyword Black,
+        SectionOutlineWidth = 2.,
+        MultiText = [
+            "Some"
+            "More"
+            "Stuff"
+        ],
+        MultiTextPosition = [
+            StyleParam.TextPosition.Inside
+            StyleParam.TextPosition.Outside
+            StyleParam.TextPosition.Inside
+        ],
+        Rotation = 45.,
+        MultiPull = [0.; 0.3; 0.],
+        UseDefaults = false
+    )
+
 let doughnutChart =
     let values = [19; 26; 55;]
     let labels = ["Residential"; "Non-Residential"; "Utility"]
@@ -247,40 +277,29 @@ let doughnutChart =
         UseDefaults = false
     )
 
-let sunburstChart =
-    let values = [19; 26; 55;]
-    let labels = ["Residential"; "Non-Residential"; "Utility"]
-    Chart.Sunburst(
-        ["A";"B";"C";"D";"E"],
-        ["";"";"B";"B";""],
-        Values=[5.;0.;3.;2.;3.],
-        MultiText=["At";"Bt";"Ct";"Dt";"Et"], 
-        UseDefaults = false
-    )
-
 [<Tests>]
 let ``Pie and doughnut Charts`` =
     testList "SimpleCharts.Pie and doughnut Charts" [
         testCase "Pie data" ( fun () ->
-            "var data = [{\"type\":\"pie\",\"values\":[19,26,55],\"labels\":[\"Residential\",\"Non-Residential\",\"Utility\"],\"marker\":{},\"text\":[\"Residential\",\"Non-Residential\",\"Utility\"]}];"
-            |> chartGeneratedContains pieChart
+        """var data = [{"type":"pie","values":[19,26,55],"labels":["Residential","Non-Residential","Utility"],"marker":{"line":{}}}];"""
+        |> chartGeneratedContains pieChart
         );
         testCase "Pie layout" ( fun () ->
             emptyLayout pieChart
+        );        
+        testCase "Pie styled data" ( fun () ->
+            """var data = [{"type":"pie","values":[19,26,55],"labels":["Residential","Non-Residential","Utility"],"pull":[0.0,0.3,0.0],"text":["Some","More","Stuff"],"textposition":["inside","outside","inside"],"marker":{"colors":["rgba(0, 255, 255, 1.0)","rgba(250, 128, 114, 1.0)","rgba(210, 180, 140, 1.0)"],"line":{"color":"rgba(0, 0, 0, 1.0)","width":2.0}},"rotation":45.0}];"""
+            |> chartGeneratedContains pieStyled
+        );
+        testCase "Pie styled layout" ( fun () ->
+            emptyLayout pieStyled
         );
         testCase "Doughnut data" ( fun () ->
-            """var data = [{"type":"pie","values":[19,26,55],"labels":["Residential","Non-Residential","Utility"],"text":["Residential","Non-Residential","Utility"],"hole":0.3,"marker":{}}];"""
+            """var data = [{"type":"pie","values":[19,26,55],"labels":["Residential","Non-Residential","Utility"],"text":["Residential","Non-Residential","Utility"],"marker":{"line":{}},"hole":0.3}];"""
             |> chartGeneratedContains doughnutChart
         );
         testCase "Doughnut layout" ( fun () ->
             emptyLayout doughnutChart
-        );
-        testCase "Sunburst data" ( fun () ->
-            "var data = [{\"type\":\"sunburst\",\"labels\":[\"A\",\"B\",\"C\",\"D\",\"E\"],\"parents\":[\"\",\"\",\"B\",\"B\",\"\"],\"values\":[5.0,0.0,3.0,2.0,3.0],\"text\":[\"At\",\"Bt\",\"Ct\",\"Dt\",\"Et\"],\"marker\":{}}];"
-            |> chartGeneratedContains sunburstChart
-        );
-        testCase "Sunburst layout" ( fun () ->
-            emptyLayout sunburstChart
         );
     ]
 
