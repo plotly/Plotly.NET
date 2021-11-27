@@ -35,7 +35,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.15</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.16</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -128,7 +128,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2141', 2141)" onmouseover="showTip(event, '2141', 2141)">
+              <code onmouseout="hideTip(event, '2221', 2221)" onmouseover="showTip(event, '2221', 2221)">
                 <p>
                   <a id="( .ctor )">
                     <a href="#( .ctor )">
@@ -137,7 +137,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2141">
+              <div class="fsdocs-tip" id="2221">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>TableCells<span>()</span></span></code>
@@ -162,7 +162,7 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/ObjectAbstractions/Table.fs#L85-85" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/ObjectAbstractions/Table.fs#L23-23" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
@@ -204,34 +204,34 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2142', 2142)" onmouseover="showTip(event, '2142', 2142)">
+              <code onmouseout="hideTip(event, '2222', 2222)" onmouseover="showTip(event, '2222', 2222)">
                 <p>
                   <a id="init">
                     <a href="#init">
-                      <code><span>TableCells.init&#32;<span><span>(<span>values,&#32;?Align,&#32;?Height,&#32;?Fill,&#32;?Font,&#32;?Line</span>)</span></span></span></code>
+                      <code><span>TableCells.init&#32;<span><span>(<span>?Align,&#32;?MultiAlign,&#32;?Fill,&#32;?Font,&#32;?Format,&#32;?Height,&#32;?Line,&#32;?Prefix,&#32;?MultiPrefix,&#32;?Suffix,&#32;?MultiSuffix,&#32;?Values</span>)</span></span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2142">
+              <div class="fsdocs-tip" id="2222">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>TableCells.init&#32;<span><span>(<span>values,&#32;?Align,&#32;?Height,&#32;?Fill,&#32;?Font,&#32;?Line</span>)</span></span></span></code>
+                  <code><span>TableCells.init&#32;<span><span>(<span>?Align,&#32;?MultiAlign,&#32;?Fill,&#32;?Font,&#32;?Format,&#32;?Height,&#32;?Line,&#32;?Prefix,&#32;?MultiPrefix,&#32;?Suffix,&#32;?MultiSuffix,&#32;?Values</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
                   <ul>
                     <span>
                       <b>
-                        values
+                        ?Align
                       </b>
                       :
-                      <code><span>seq&lt;'e&gt;</span></code>
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-horizontalalign.html">HorizontalAlign</a></code>
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?Align
+                        ?MultiAlign
                       </b>
                       :
                       <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-horizontalalign.html">HorizontalAlign</a>&gt;</span></code>
@@ -239,18 +239,10 @@
                     <br/>
                     <span>
                       <b>
-                        ?Height
-                      </b>
-                      :
-                      <code>float</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
                         ?Fill
                       </b>
                       :
-                      <code><a href="https://plotly.net/reference/plotly-net-traceobjects-cellcolor.html">CellColor</a></code>
+                      <code><a href="https://plotly.net/reference/plotly-net-traceobjects-tablefill.html">TableFill</a></code>
                     </span>
                     <br/>
                     <span>
@@ -263,10 +255,66 @@
                     <br/>
                     <span>
                       <b>
+                        ?Format
+                      </b>
+                      :
+                      <code><span>seq&lt;string&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Height
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
                         ?Line
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Prefix
+                      </b>
+                      :
+                      <code>string</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MultiPrefix
+                      </b>
+                      :
+                      <code><span>seq&lt;string&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Suffix
+                      </b>
+                      :
+                      <code>string</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MultiSuffix
+                      </b>
+                      :
+                      <code><span>seq&lt;string&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Values
+                      </b>
+                      :
+                      <code><span>seq&lt;'a&gt;</span></code>
                     </span>
                     <br/>
                   </ul>
@@ -290,7 +338,7 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/ObjectAbstractions/Table.fs#L89-89" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/ObjectAbstractions/Table.fs#L27-27" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
@@ -303,15 +351,15 @@
             <dl class="fsdocs-params">
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  values
+                  ?Align
                 </span>
                 :
-                <code><span>seq&lt;'e&gt;</span></code>
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-horizontalalign.html">HorizontalAlign</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?Align
+                  ?MultiAlign
                 </span>
                 :
                 <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-horizontalalign.html">HorizontalAlign</a>&gt;</span></code>
@@ -319,18 +367,10 @@
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?Height
-                </span>
-                :
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
                   ?Fill
                 </span>
                 :
-                <code><a href="https://plotly.net/reference/plotly-net-traceobjects-cellcolor.html">CellColor</a></code>
+                <code><a href="https://plotly.net/reference/plotly-net-traceobjects-tablefill.html">TableFill</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -343,10 +383,66 @@
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
+                  ?Format
+                </span>
+                :
+                <code><span>seq&lt;string&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Height
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
                   ?Line
                 </span>
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Prefix
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MultiPrefix
+                </span>
+                :
+                <code><span>seq&lt;string&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Suffix
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MultiSuffix
+                </span>
+                :
+                <code><span>seq&lt;string&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Values
+                </span>
+                :
+                <code><span>seq&lt;'a&gt;</span></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
             </dl>
@@ -364,34 +460,34 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2143', 2143)" onmouseover="showTip(event, '2143', 2143)">
+              <code onmouseout="hideTip(event, '2223', 2223)" onmouseover="showTip(event, '2223', 2223)">
                 <p>
                   <a id="style">
                     <a href="#style">
-                      <code><span>TableCells.style&#32;<span><span>(<span>values,&#32;?Align,&#32;?Height,&#32;?Fill,&#32;?Font,&#32;?Line</span>)</span></span></span></code>
+                      <code><span>TableCells.style&#32;<span><span>(<span>?Align,&#32;?MultiAlign,&#32;?Fill,&#32;?Font,&#32;?Format,&#32;?Height,&#32;?Line,&#32;?Prefix,&#32;?MultiPrefix,&#32;?Suffix,&#32;?MultiSuffix,&#32;?Values</span>)</span></span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2143">
+              <div class="fsdocs-tip" id="2223">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>TableCells.style&#32;<span><span>(<span>values,&#32;?Align,&#32;?Height,&#32;?Fill,&#32;?Font,&#32;?Line</span>)</span></span></span></code>
+                  <code><span>TableCells.style&#32;<span><span>(<span>?Align,&#32;?MultiAlign,&#32;?Fill,&#32;?Font,&#32;?Format,&#32;?Height,&#32;?Line,&#32;?Prefix,&#32;?MultiPrefix,&#32;?Suffix,&#32;?MultiSuffix,&#32;?Values</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
                   <ul>
                     <span>
                       <b>
-                        values
+                        ?Align
                       </b>
                       :
-                      <code><span>seq&lt;'a&gt;</span></code>
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-horizontalalign.html">HorizontalAlign</a></code>
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?Align
+                        ?MultiAlign
                       </b>
                       :
                       <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-horizontalalign.html">HorizontalAlign</a>&gt;</span></code>
@@ -399,18 +495,10 @@
                     <br/>
                     <span>
                       <b>
-                        ?Height
-                      </b>
-                      :
-                      <code>float</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
                         ?Fill
                       </b>
                       :
-                      <code><a href="https://plotly.net/reference/plotly-net-traceobjects-cellcolor.html">CellColor</a></code>
+                      <code><a href="https://plotly.net/reference/plotly-net-traceobjects-tablefill.html">TableFill</a></code>
                     </span>
                     <br/>
                     <span>
@@ -423,10 +511,66 @@
                     <br/>
                     <span>
                       <b>
+                        ?Format
+                      </b>
+                      :
+                      <code><span>seq&lt;string&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Height
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
                         ?Line
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Prefix
+                      </b>
+                      :
+                      <code>string</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MultiPrefix
+                      </b>
+                      :
+                      <code><span>seq&lt;string&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Suffix
+                      </b>
+                      :
+                      <code>string</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MultiSuffix
+                      </b>
+                      :
+                      <code><span>seq&lt;string&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Values
+                      </b>
+                      :
+                      <code><span>seq&lt;'a&gt;</span></code>
                     </span>
                     <br/>
                   </ul>
@@ -450,7 +594,7 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/ObjectAbstractions/Table.fs#L112-112" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/ObjectAbstractions/Table.fs#L59-59" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
@@ -461,15 +605,15 @@
             <dl class="fsdocs-params">
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  values
+                  ?Align
                 </span>
                 :
-                <code><span>seq&lt;'a&gt;</span></code>
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-horizontalalign.html">HorizontalAlign</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?Align
+                  ?MultiAlign
                 </span>
                 :
                 <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-horizontalalign.html">HorizontalAlign</a>&gt;</span></code>
@@ -477,18 +621,10 @@
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?Height
-                </span>
-                :
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
                   ?Fill
                 </span>
                 :
-                <code><a href="https://plotly.net/reference/plotly-net-traceobjects-cellcolor.html">CellColor</a></code>
+                <code><a href="https://plotly.net/reference/plotly-net-traceobjects-tablefill.html">TableFill</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -501,10 +637,66 @@
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
+                  ?Format
+                </span>
+                :
+                <code><span>seq&lt;string&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Height
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
                   ?Line
                 </span>
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Prefix
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MultiPrefix
+                </span>
+                :
+                <code><span>seq&lt;string&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Suffix
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MultiSuffix
+                </span>
+                :
+                <code><span>seq&lt;string&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Values
+                </span>
+                :
+                <code><span>seq&lt;'a&gt;</span></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
             </dl>

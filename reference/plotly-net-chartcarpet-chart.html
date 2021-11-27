@@ -35,7 +35,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.15</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.16</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -130,19 +130,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '197', 197)" onmouseover="showTip(event, '197', 197)">
+              <code onmouseout="hideTip(event, '220', 220)" onmouseover="showTip(event, '220', 220)">
                 <p>
                   <a id="BubbleCarpet">
                     <a href="#BubbleCarpet">
-                      <code><span>Chart.BubbleCarpet<span><span>(<span>absizes,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowLegend,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Color,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?TextFont,&#32;?Marker,&#32;?UseDefaults</span>)</span></span></span></code>
+                      <code><span>Chart.BubbleCarpet<span><span>(<span>absizes,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?MarkerColor,&#32;?MarkerColorScale,&#32;?MarkerOutline,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Marker,&#32;?LineColor,&#32;?LineColorScale,&#32;?LineWidth,&#32;?LineDash,&#32;?Line,&#32;?UseDefaults</span>)</span></span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="197">
+              <div class="fsdocs-tip" id="220">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Chart.BubbleCarpet<span><span>(<span>absizes,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowLegend,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Color,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?TextFont,&#32;?Marker,&#32;?UseDefaults</span>)</span></span></span></code>
+                  <code><span>Chart.BubbleCarpet<span><span>(<span>absizes,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?MarkerColor,&#32;?MarkerColorScale,&#32;?MarkerOutline,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Marker,&#32;?LineColor,&#32;?LineColorScale,&#32;?LineWidth,&#32;?LineDash,&#32;?Line,&#32;?UseDefaults</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -177,30 +177,6 @@
                       </b>
                       :
                       <code>bool</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?MarkerSymbol
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?MultiMarkerSymbol
-                      </b>
-                      :
-                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Color
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
                     </span>
                     <br/>
                     <span>
@@ -253,10 +229,42 @@
                     <br/>
                     <span>
                       <b>
-                        ?TextFont
+                        ?MarkerColor
                       </b>
                       :
-                      <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MarkerColorScale
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MarkerOutline
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MarkerSymbol
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MultiMarkerSymbol
+                      </b>
+                      :
+                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
                     </span>
                     <br/>
                     <span>
@@ -265,6 +273,46 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-traceobjects-marker.html">Marker</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineColor
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineColorScale
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineWidth
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineDash
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Line
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
                     </span>
                     <br/>
                     <span>
@@ -296,7 +344,7 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartCarpet.fs#L581-581" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartCarpet.fs#L639-639" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
@@ -335,30 +383,6 @@
                 </span>
                 :
                 <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MarkerSymbol
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MultiMarkerSymbol
-                </span>
-                :
-                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Color
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -411,10 +435,42 @@
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?TextFont
+                  ?MarkerColor
                 </span>
                 :
-                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MarkerColorScale
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MarkerOutline
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MarkerSymbol
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MultiMarkerSymbol
+                </span>
+                :
+                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -423,6 +479,46 @@
                 </span>
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-traceobjects-marker.html">Marker</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineColor
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineColorScale
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineWidth
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineDash
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Line
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -448,19 +544,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '198', 198)" onmouseover="showTip(event, '198', 198)">
+              <code onmouseout="hideTip(event, '221', 221)" onmouseover="showTip(event, '221', 221)">
                 <p>
                   <a id="BubbleCarpet">
                     <a href="#BubbleCarpet">
-                      <code><span>Chart.BubbleCarpet<span><span>(<span>a,&#32;b,&#32;sizes,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowLegend,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Color,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?TextFont,&#32;?Marker,&#32;?UseDefaults</span>)</span></span></span></code>
+                      <code><span>Chart.BubbleCarpet<span><span>(<span>a,&#32;b,&#32;sizes,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?MarkerColor,&#32;?MarkerColorScale,&#32;?MarkerOutline,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Marker,&#32;?LineColor,&#32;?LineColorScale,&#32;?LineWidth,&#32;?LineDash,&#32;?Line,&#32;?UseDefaults</span>)</span></span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="198">
+              <div class="fsdocs-tip" id="221">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Chart.BubbleCarpet<span><span>(<span>a,&#32;b,&#32;sizes,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowLegend,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Color,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?TextFont,&#32;?Marker,&#32;?UseDefaults</span>)</span></span></span></code>
+                  <code><span>Chart.BubbleCarpet<span><span>(<span>a,&#32;b,&#32;sizes,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?MarkerColor,&#32;?MarkerColorScale,&#32;?MarkerOutline,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Marker,&#32;?LineColor,&#32;?LineColorScale,&#32;?LineWidth,&#32;?LineDash,&#32;?Line,&#32;?UseDefaults</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -515,30 +611,6 @@
                     <br/>
                     <span>
                       <b>
-                        ?MarkerSymbol
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?MultiMarkerSymbol
-                      </b>
-                      :
-                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Color
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
                         ?Opacity
                       </b>
                       :
@@ -587,10 +659,42 @@
                     <br/>
                     <span>
                       <b>
-                        ?TextFont
+                        ?MarkerColor
                       </b>
                       :
-                      <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MarkerColorScale
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MarkerOutline
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MarkerSymbol
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MultiMarkerSymbol
+                      </b>
+                      :
+                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
                     </span>
                     <br/>
                     <span>
@@ -599,6 +703,46 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-traceobjects-marker.html">Marker</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineColor
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineColorScale
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineWidth
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineDash
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Line
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
                     </span>
                     <br/>
                     <span>
@@ -630,7 +774,7 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartCarpet.fs#L540-540" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartCarpet.fs#L564-564" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
@@ -689,30 +833,6 @@
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?MarkerSymbol
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MultiMarkerSymbol
-                </span>
-                :
-                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Color
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
                   ?Opacity
                 </span>
                 :
@@ -761,10 +881,42 @@
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?TextFont
+                  ?MarkerColor
                 </span>
                 :
-                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MarkerColorScale
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MarkerOutline
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MarkerSymbol
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MultiMarkerSymbol
+                </span>
+                :
+                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -773,6 +925,46 @@
                 </span>
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-traceobjects-marker.html">Marker</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineColor
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineColorScale
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineWidth
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineDash
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Line
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -798,7 +990,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '199', 199)" onmouseover="showTip(event, '199', 199)">
+              <code onmouseout="hideTip(event, '222', 222)" onmouseover="showTip(event, '222', 222)">
                 <p>
                   <a id="Carpet">
                     <a href="#Carpet">
@@ -807,7 +999,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="199">
+              <div class="fsdocs-tip" id="222">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Chart.Carpet<span><span>(<span>carpetId,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?X,&#32;?MultiX,&#32;?Y,&#32;?MultiY,&#32;?A,&#32;?B,&#32;?AAxis,&#32;?BAxis,&#32;?XAxis,&#32;?YAxis,&#32;?Color,&#32;?CheaterSlope,&#32;?UseDefaults</span>)</span></span></span></code>
@@ -1134,19 +1326,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '200', 200)" onmouseover="showTip(event, '200', 200)">
+              <code onmouseout="hideTip(event, '223', 223)" onmouseover="showTip(event, '223', 223)">
                 <p>
                   <a id="ContourCarpet">
                     <a href="#ContourCarpet">
-                      <code><span>Chart.ContourCarpet<span><span>(<span>carpetAnchorId,&#32;abz,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?Text,&#32;?MultiText,&#32;?Dash,&#32;?Width,&#32;?LineColor,&#32;?Line,&#32;?ColorScale,&#32;?ShowScale,&#32;?Contours,&#32;?UseDefaults</span>)</span></span></span></code>
+                      <code><span>Chart.ContourCarpet<span><span>(<span>carpetAnchorId,&#32;abz,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?Text,&#32;?MultiText,&#32;?ColorBar,&#32;?ColorScale,&#32;?ShowScale,&#32;?ReverseScale,&#32;?Transpose,&#32;?LineColor,&#32;?LineDash,&#32;?Line,&#32;?ContoursColoring,&#32;?ContoursOperation,&#32;?ContoursType,&#32;?ShowContourLabels,&#32;?ContourLabelFont,&#32;?Contours,&#32;?UseDefaults</span>)</span></span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="200">
+              <div class="fsdocs-tip" id="223">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Chart.ContourCarpet<span><span>(<span>carpetAnchorId,&#32;abz,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?Text,&#32;?MultiText,&#32;?Dash,&#32;?Width,&#32;?LineColor,&#32;?Line,&#32;?ColorScale,&#32;?ShowScale,&#32;?Contours,&#32;?UseDefaults</span>)</span></span></span></code>
+                  <code><span>Chart.ContourCarpet<span><span>(<span>carpetAnchorId,&#32;abz,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?Text,&#32;?MultiText,&#32;?ColorBar,&#32;?ColorScale,&#32;?ShowScale,&#32;?ReverseScale,&#32;?Transpose,&#32;?LineColor,&#32;?LineDash,&#32;?Line,&#32;?ContoursColoring,&#32;?ContoursOperation,&#32;?ContoursType,&#32;?ShowContourLabels,&#32;?ContourLabelFont,&#32;?Contours,&#32;?UseDefaults</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -1209,34 +1401,10 @@
                     <br/>
                     <span>
                       <b>
-                        ?Dash
+                        ?ColorBar
                       </b>
                       :
-                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Width
-                      </b>
-                      :
-                      <code>float</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?LineColor
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Line
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                      <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-colorbar.html">ColorBar</a></code>
                     </span>
                     <br/>
                     <span>
@@ -1253,6 +1421,86 @@
                       </b>
                       :
                       <code>bool</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ReverseScale
+                      </b>
+                      :
+                      <code>bool</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Transpose
+                      </b>
+                      :
+                      <code>bool</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineColor
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineDash
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Line
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ContoursColoring
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-contourcoloring.html">ContourColoring</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ContoursOperation
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-constraintoperation.html">ConstraintOperation</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ContoursType
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-contourtype.html">ContourType</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ShowContourLabels
+                      </b>
+                      :
+                      <code>bool</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ContourLabelFont
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
                     </span>
                     <br/>
                     <span>
@@ -1275,7 +1523,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
+                    <code><a href="https://plotly.net/reference/plotly-net-tracecarpet.html">TraceCarpet</a></code>
                   </span>
                   <br/>
                 </div>
@@ -1292,7 +1540,7 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartCarpet.fs#L670-670" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartCarpet.fs#L739-739" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
@@ -1359,34 +1607,10 @@
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?Dash
+                  ?ColorBar
                 </span>
                 :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Width
-                </span>
-                :
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?LineColor
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Line
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-colorbar.html">ColorBar</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -1403,6 +1627,86 @@
                 </span>
                 :
                 <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ReverseScale
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Transpose
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineColor
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineDash
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Line
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ContoursColoring
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-contourcoloring.html">ContourColoring</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ContoursOperation
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-constraintoperation.html">ConstraintOperation</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ContoursType
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-contourtype.html">ContourType</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ShowContourLabels
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ContourLabelFont
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -1427,7 +1731,7 @@
                 <span class="fsdocs-return-name">
                   Returns: 
                 </span>
-                <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
+                <code><a href="https://plotly.net/reference/plotly-net-tracecarpet.html">TraceCarpet</a></code>
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
@@ -1436,7 +1740,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '201', 201)" onmouseover="showTip(event, '201', 201)">
+              <code onmouseout="hideTip(event, '224', 224)" onmouseover="showTip(event, '224', 224)">
                 <p>
                   <a id="ContourCarpet">
                     <a href="#ContourCarpet">
@@ -1445,7 +1749,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="201">
+              <div class="fsdocs-tip" id="224">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Chart.ContourCarpet<span><span>(<span>carpetAnchorId,&#32;z,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?A,&#32;?B,&#32;?Text,&#32;?MultiText,&#32;?Dash,&#32;?Width,&#32;?LineColor,&#32;?Line,&#32;?ColorScale,&#32;?ShowScale,&#32;?Contours,&#32;?UseDefaults</span>)</span></span></span></code>
@@ -1610,7 +1914,7 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartCarpet.fs#L622-622" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartCarpet.fs#L695-695" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
@@ -1770,19 +2074,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '202', 202)" onmouseover="showTip(event, '202', 202)">
+              <code onmouseout="hideTip(event, '225', 225)" onmouseover="showTip(event, '225', 225)">
                 <p>
                   <a id="LineCarpet">
                     <a href="#LineCarpet">
-                      <code><span>Chart.LineCarpet<span><span>(<span>ab,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowMarkers,&#32;?Dash,&#32;?Width,&#32;?Line,&#32;?ShowLegend,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Color,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?TextFont,&#32;?Size,&#32;?MultiSize,&#32;?Marker,&#32;?UseDefaults</span>)</span></span></span></code>
+                      <code><span>Chart.LineCarpet<span><span>(<span>ab,&#32;carpetAnchorId,&#32;?ShowMarkers,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?MarkerColor,&#32;?MarkerColorScale,&#32;?MarkerOutline,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Marker,&#32;?LineColor,&#32;?LineColorScale,&#32;?LineWidth,&#32;?LineDash,&#32;?Line,&#32;?UseDefaults</span>)</span></span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="202">
+              <div class="fsdocs-tip" id="225">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Chart.LineCarpet<span><span>(<span>ab,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowMarkers,&#32;?Dash,&#32;?Width,&#32;?Line,&#32;?ShowLegend,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Color,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?TextFont,&#32;?Size,&#32;?MultiSize,&#32;?Marker,&#32;?UseDefaults</span>)</span></span></span></code>
+                  <code><span>Chart.LineCarpet<span><span>(<span>ab,&#32;carpetAnchorId,&#32;?ShowMarkers,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?MarkerColor,&#32;?MarkerColorScale,&#32;?MarkerOutline,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Marker,&#32;?LineColor,&#32;?LineColorScale,&#32;?LineWidth,&#32;?LineDash,&#32;?Line,&#32;?UseDefaults</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -1805,14 +2109,6 @@
                     <br/>
                     <span>
                       <b>
-                        ?Name
-                      </b>
-                      :
-                      <code>string</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
                         ?ShowMarkers
                       </b>
                       :
@@ -1821,26 +2117,10 @@
                     <br/>
                     <span>
                       <b>
-                        ?Dash
+                        ?Name
                       </b>
                       :
-                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Width
-                      </b>
-                      :
-                      <code>float</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Line
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                      <code>string</code>
                     </span>
                     <br/>
                     <span>
@@ -1849,30 +2129,6 @@
                       </b>
                       :
                       <code>bool</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?MarkerSymbol
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?MultiMarkerSymbol
-                      </b>
-                      :
-                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Color
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
                     </span>
                     <br/>
                     <span>
@@ -1925,26 +2181,42 @@
                     <br/>
                     <span>
                       <b>
-                        ?TextFont
+                        ?MarkerColor
                       </b>
                       :
-                      <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?Size
+                        ?MarkerColorScale
                       </b>
                       :
-                      <code>int</code>
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?MultiSize
+                        ?MarkerOutline
                       </b>
                       :
-                      <code><span>seq&lt;int&gt;</span></code>
+                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MarkerSymbol
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MultiMarkerSymbol
+                      </b>
+                      :
+                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
                     </span>
                     <br/>
                     <span>
@@ -1953,6 +2225,46 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-traceobjects-marker.html">Marker</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineColor
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineColorScale
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineWidth
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineDash
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Line
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
                     </span>
                     <br/>
                     <span>
@@ -1984,7 +2296,7 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartCarpet.fs#L358-358" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartCarpet.fs#L362-362" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
@@ -2011,14 +2323,6 @@
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?Name
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
                   ?ShowMarkers
                 </span>
                 :
@@ -2027,26 +2331,10 @@
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?Dash
+                  ?Name
                 </span>
                 :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Width
-                </span>
-                :
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Line
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                <code>string</code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -2055,30 +2343,6 @@
                 </span>
                 :
                 <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MarkerSymbol
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MultiMarkerSymbol
-                </span>
-                :
-                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Color
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -2131,26 +2395,42 @@
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?TextFont
+                  ?MarkerColor
                 </span>
                 :
-                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?Size
+                  ?MarkerColorScale
                 </span>
                 :
-                <code>int</code>
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?MultiSize
+                  ?MarkerOutline
                 </span>
                 :
-                <code><span>seq&lt;int&gt;</span></code>
+                <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MarkerSymbol
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MultiMarkerSymbol
+                </span>
+                :
+                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -2159,6 +2439,46 @@
                 </span>
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-traceobjects-marker.html">Marker</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineColor
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineColorScale
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineWidth
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineDash
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Line
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -2184,19 +2504,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '203', 203)" onmouseover="showTip(event, '203', 203)">
+              <code onmouseout="hideTip(event, '226', 226)" onmouseover="showTip(event, '226', 226)">
                 <p>
                   <a id="LineCarpet">
                     <a href="#LineCarpet">
-                      <code><span>Chart.LineCarpet<span><span>(<span>a,&#32;b,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowMarkers,&#32;?Dash,&#32;?Width,&#32;?Line,&#32;?ShowLegend,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Color,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?TextFont,&#32;?Size,&#32;?MultiSize,&#32;?Marker,&#32;?UseDefaults</span>)</span></span></span></code>
+                      <code><span>Chart.LineCarpet<span><span>(<span>a,&#32;b,&#32;carpetAnchorId,&#32;?ShowMarkers,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?MarkerColor,&#32;?MarkerColorScale,&#32;?MarkerOutline,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Marker,&#32;?LineColor,&#32;?LineColorScale,&#32;?LineWidth,&#32;?LineDash,&#32;?Line,&#32;?UseDefaults</span>)</span></span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="203">
+              <div class="fsdocs-tip" id="226">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Chart.LineCarpet<span><span>(<span>a,&#32;b,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowMarkers,&#32;?Dash,&#32;?Width,&#32;?Line,&#32;?ShowLegend,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Color,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?TextFont,&#32;?Size,&#32;?MultiSize,&#32;?Marker,&#32;?UseDefaults</span>)</span></span></span></code>
+                  <code><span>Chart.LineCarpet<span><span>(<span>a,&#32;b,&#32;carpetAnchorId,&#32;?ShowMarkers,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?MarkerColor,&#32;?MarkerColorScale,&#32;?MarkerOutline,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Marker,&#32;?LineColor,&#32;?LineColorScale,&#32;?LineWidth,&#32;?LineDash,&#32;?Line,&#32;?UseDefaults</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -2227,14 +2547,6 @@
                     <br/>
                     <span>
                       <b>
-                        ?Name
-                      </b>
-                      :
-                      <code>string</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
                         ?ShowMarkers
                       </b>
                       :
@@ -2243,26 +2555,10 @@
                     <br/>
                     <span>
                       <b>
-                        ?Dash
+                        ?Name
                       </b>
                       :
-                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Width
-                      </b>
-                      :
-                      <code>float</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Line
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                      <code>string</code>
                     </span>
                     <br/>
                     <span>
@@ -2271,30 +2567,6 @@
                       </b>
                       :
                       <code>bool</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?MarkerSymbol
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?MultiMarkerSymbol
-                      </b>
-                      :
-                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Color
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
                     </span>
                     <br/>
                     <span>
@@ -2347,26 +2619,42 @@
                     <br/>
                     <span>
                       <b>
-                        ?TextFont
+                        ?MarkerColor
                       </b>
                       :
-                      <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?Size
+                        ?MarkerColorScale
                       </b>
                       :
-                      <code>int</code>
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?MultiSize
+                        ?MarkerOutline
                       </b>
                       :
-                      <code><span>seq&lt;int&gt;</span></code>
+                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MarkerSymbol
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MultiMarkerSymbol
+                      </b>
+                      :
+                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
                     </span>
                     <br/>
                     <span>
@@ -2375,6 +2663,46 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-traceobjects-marker.html">Marker</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineColor
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineColorScale
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineWidth
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineDash
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Line
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
                     </span>
                     <br/>
                     <span>
@@ -2406,7 +2734,739 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartCarpet.fs#L286-286" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartCarpet.fs#L296-296" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  a
+                </span>
+                :
+                <code><span>seq&lt;'a&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  b
+                </span>
+                :
+                <code><span>seq&lt;'b&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  carpetAnchorId
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ShowMarkers
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Name
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ShowLegend
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Opacity
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MultiOpacity
+                </span>
+                :
+                <code><span>seq&lt;float&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Text
+                </span>
+                :
+                <code>'c</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MultiText
+                </span>
+                :
+                <code><span>seq&lt;'c&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TextPosition
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MultiTextPosition
+                </span>
+                :
+                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MarkerColor
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MarkerColorScale
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MarkerOutline
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MarkerSymbol
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MultiMarkerSymbol
+                </span>
+                :
+                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Marker
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-traceobjects-marker.html">Marker</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineColor
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineColorScale
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineWidth
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineDash
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Line
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?UseDefaults
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '227', 227)" onmouseover="showTip(event, '227', 227)">
+                <p>
+                  <a id="PointCarpet">
+                    <a href="#PointCarpet">
+                      <code><span>Chart.PointCarpet<span><span>(<span>ab,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?MarkerColor,&#32;?MarkerColorScale,&#32;?MarkerOutline,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Marker,&#32;?UseDefaults</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="227">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Chart.PointCarpet<span><span>(<span>ab,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?MarkerColor,&#32;?MarkerColorScale,&#32;?MarkerOutline,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Marker,&#32;?UseDefaults</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        ab
+                      </b>
+                      :
+                      <code><span>seq&lt;<span>'a&#32;*&#32;'b</span>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        carpetAnchorId
+                      </b>
+                      :
+                      <code>string</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Name
+                      </b>
+                      :
+                      <code>string</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ShowLegend
+                      </b>
+                      :
+                      <code>bool</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Opacity
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MultiOpacity
+                      </b>
+                      :
+                      <code><span>seq&lt;float&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Text
+                      </b>
+                      :
+                      <code>'c</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MultiText
+                      </b>
+                      :
+                      <code><span>seq&lt;'c&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?TextPosition
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MultiTextPosition
+                      </b>
+                      :
+                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MarkerColor
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MarkerColorScale
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MarkerOutline
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MarkerSymbol
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MultiMarkerSymbol
+                      </b>
+                      :
+                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Marker
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-traceobjects-marker.html">Marker</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?UseDefaults
+                      </b>
+                      :
+                      <code>bool</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.ChartCarpet.Chart.PointCarpet``3```')">
+                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ChartCarpet.Chart.PointCarpet``3\'/>')">
+                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartCarpet.fs#L251-251" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ab
+                </span>
+                :
+                <code><span>seq&lt;<span>'a&#32;*&#32;'b</span>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  carpetAnchorId
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Name
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ShowLegend
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Opacity
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MultiOpacity
+                </span>
+                :
+                <code><span>seq&lt;float&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Text
+                </span>
+                :
+                <code>'c</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MultiText
+                </span>
+                :
+                <code><span>seq&lt;'c&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TextPosition
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MultiTextPosition
+                </span>
+                :
+                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MarkerColor
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MarkerColorScale
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MarkerOutline
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MarkerSymbol
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MultiMarkerSymbol
+                </span>
+                :
+                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Marker
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-traceobjects-marker.html">Marker</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?UseDefaults
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '228', 228)" onmouseover="showTip(event, '228', 228)">
+                <p>
+                  <a id="PointCarpet">
+                    <a href="#PointCarpet">
+                      <code><span>Chart.PointCarpet<span><span>(<span>a,&#32;b,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?MarkerColor,&#32;?MarkerColorScale,&#32;?MarkerOutline,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Marker,&#32;?UseDefaults</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="228">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Chart.PointCarpet<span><span>(<span>a,&#32;b,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?MarkerColor,&#32;?MarkerColorScale,&#32;?MarkerOutline,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Marker,&#32;?UseDefaults</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        a
+                      </b>
+                      :
+                      <code><span>seq&lt;'a&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        b
+                      </b>
+                      :
+                      <code><span>seq&lt;'b&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        carpetAnchorId
+                      </b>
+                      :
+                      <code>string</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Name
+                      </b>
+                      :
+                      <code>string</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ShowLegend
+                      </b>
+                      :
+                      <code>bool</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Opacity
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MultiOpacity
+                      </b>
+                      :
+                      <code><span>seq&lt;float&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Text
+                      </b>
+                      :
+                      <code>'c</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MultiText
+                      </b>
+                      :
+                      <code><span>seq&lt;'c&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?TextPosition
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MultiTextPosition
+                      </b>
+                      :
+                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MarkerColor
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MarkerColorScale
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MarkerOutline
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MarkerSymbol
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MultiMarkerSymbol
+                      </b>
+                      :
+                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Marker
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-traceobjects-marker.html">Marker</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?UseDefaults
+                      </b>
+                      :
+                      <code>bool</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.ChartCarpet.Chart.PointCarpet``3```')">
+                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ChartCarpet.Chart.PointCarpet``3\'/>')">
+                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartCarpet.fs#L200-200" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
@@ -2449,7 +3509,7 @@
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?ShowMarkers
+                  ?ShowLegend
                 </span>
                 :
                 <code>bool</code>
@@ -2457,15 +3517,7 @@
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?Dash
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Width
+                  ?Opacity
                 </span>
                 :
                 <code>float</code>
@@ -2473,7 +3525,63 @@
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?Line
+                  ?MultiOpacity
+                </span>
+                :
+                <code><span>seq&lt;float&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Text
+                </span>
+                :
+                <code>'c</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MultiText
+                </span>
+                :
+                <code><span>seq&lt;'c&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TextPosition
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MultiTextPosition
+                </span>
+                :
+                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MarkerColor
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MarkerColorScale
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MarkerOutline
                 </span>
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
@@ -2481,14 +3589,6 @@
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?ShowLegend
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
                   ?MarkerSymbol
                 </span>
                 :
@@ -2501,86 +3601,6 @@
                 </span>
                 :
                 <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Color
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Opacity
-                </span>
-                :
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MultiOpacity
-                </span>
-                :
-                <code><span>seq&lt;float&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Text
-                </span>
-                :
-                <code>'c</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MultiText
-                </span>
-                :
-                <code><span>seq&lt;'c&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?TextPosition
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MultiTextPosition
-                </span>
-                :
-                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?TextFont
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Size
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MultiSize
-                </span>
-                :
-                <code><span>seq&lt;int&gt;</span></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -2614,735 +3634,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '204', 204)" onmouseover="showTip(event, '204', 204)">
-                <p>
-                  <a id="PointCarpet">
-                    <a href="#PointCarpet">
-                      <code><span>Chart.PointCarpet<span><span>(<span>ab,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowLegend,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Color,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?TextFont,&#32;?Size,&#32;?MultiSize,&#32;?Marker,&#32;?UseDefaults</span>)</span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="204">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>Chart.PointCarpet<span><span>(<span>ab,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowLegend,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Color,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?TextFont,&#32;?Size,&#32;?MultiSize,&#32;?Marker,&#32;?UseDefaults</span>)</span></span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        ab
-                      </b>
-                      :
-                      <code><span>seq&lt;<span>'a&#32;*&#32;'b</span>&gt;</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        carpetAnchorId
-                      </b>
-                      :
-                      <code>string</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Name
-                      </b>
-                      :
-                      <code>string</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?ShowLegend
-                      </b>
-                      :
-                      <code>bool</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?MarkerSymbol
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?MultiMarkerSymbol
-                      </b>
-                      :
-                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Color
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Opacity
-                      </b>
-                      :
-                      <code>float</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?MultiOpacity
-                      </b>
-                      :
-                      <code><span>seq&lt;float&gt;</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Text
-                      </b>
-                      :
-                      <code>'c</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?MultiText
-                      </b>
-                      :
-                      <code><span>seq&lt;'c&gt;</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?TextPosition
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?MultiTextPosition
-                      </b>
-                      :
-                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a>&gt;</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?TextFont
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Size
-                      </b>
-                      :
-                      <code>int</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?MultiSize
-                      </b>
-                      :
-                      <code><span>seq&lt;int&gt;</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Marker
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-traceobjects-marker.html">Marker</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?UseDefaults
-                      </b>
-                      :
-                      <code>bool</code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.ChartCarpet.Chart.PointCarpet``3```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ChartCarpet.Chart.PointCarpet``3\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartCarpet.fs#L241-241" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ab
-                </span>
-                :
-                <code><span>seq&lt;<span>'a&#32;*&#32;'b</span>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  carpetAnchorId
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Name
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ShowLegend
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MarkerSymbol
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MultiMarkerSymbol
-                </span>
-                :
-                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Color
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Opacity
-                </span>
-                :
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MultiOpacity
-                </span>
-                :
-                <code><span>seq&lt;float&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Text
-                </span>
-                :
-                <code>'c</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MultiText
-                </span>
-                :
-                <code><span>seq&lt;'c&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?TextPosition
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MultiTextPosition
-                </span>
-                :
-                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?TextFont
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Size
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MultiSize
-                </span>
-                :
-                <code><span>seq&lt;int&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Marker
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-traceobjects-marker.html">Marker</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?UseDefaults
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '205', 205)" onmouseover="showTip(event, '205', 205)">
-                <p>
-                  <a id="PointCarpet">
-                    <a href="#PointCarpet">
-                      <code><span>Chart.PointCarpet<span><span>(<span>a,&#32;b,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowLegend,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Color,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?TextFont,&#32;?Size,&#32;?MultiSize,&#32;?Marker,&#32;?UseDefaults</span>)</span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="205">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>Chart.PointCarpet<span><span>(<span>a,&#32;b,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowLegend,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Color,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?TextFont,&#32;?Size,&#32;?MultiSize,&#32;?Marker,&#32;?UseDefaults</span>)</span></span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        a
-                      </b>
-                      :
-                      <code><span>seq&lt;'a&gt;</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        b
-                      </b>
-                      :
-                      <code><span>seq&lt;'b&gt;</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        carpetAnchorId
-                      </b>
-                      :
-                      <code>string</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Name
-                      </b>
-                      :
-                      <code>string</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?ShowLegend
-                      </b>
-                      :
-                      <code>bool</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?MarkerSymbol
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?MultiMarkerSymbol
-                      </b>
-                      :
-                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Color
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Opacity
-                      </b>
-                      :
-                      <code>float</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?MultiOpacity
-                      </b>
-                      :
-                      <code><span>seq&lt;float&gt;</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Text
-                      </b>
-                      :
-                      <code>'c</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?MultiText
-                      </b>
-                      :
-                      <code><span>seq&lt;'c&gt;</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?TextPosition
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?MultiTextPosition
-                      </b>
-                      :
-                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a>&gt;</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?TextFont
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Size
-                      </b>
-                      :
-                      <code>int</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?MultiSize
-                      </b>
-                      :
-                      <code><span>seq&lt;int&gt;</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Marker
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-traceobjects-marker.html">Marker</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?UseDefaults
-                      </b>
-                      :
-                      <code>bool</code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.ChartCarpet.Chart.PointCarpet``3```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ChartCarpet.Chart.PointCarpet``3\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartCarpet.fs#L185-185" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  a
-                </span>
-                :
-                <code><span>seq&lt;'a&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  b
-                </span>
-                :
-                <code><span>seq&lt;'b&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  carpetAnchorId
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Name
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ShowLegend
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MarkerSymbol
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MultiMarkerSymbol
-                </span>
-                :
-                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Color
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Opacity
-                </span>
-                :
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MultiOpacity
-                </span>
-                :
-                <code><span>seq&lt;float&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Text
-                </span>
-                :
-                <code>'c</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MultiText
-                </span>
-                :
-                <code><span>seq&lt;'c&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?TextPosition
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MultiTextPosition
-                </span>
-                :
-                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?TextFont
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Size
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MultiSize
-                </span>
-                :
-                <code><span>seq&lt;int&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Marker
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-traceobjects-marker.html">Marker</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?UseDefaults
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '206', 206)" onmouseover="showTip(event, '206', 206)">
+              <code onmouseout="hideTip(event, '229', 229)" onmouseover="showTip(event, '229', 229)">
                 <p>
                   <a id="ScatterCarpet">
                     <a href="#ScatterCarpet">
-                      <code><span>Chart.ScatterCarpet<span><span>(<span>ab,&#32;mode,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowLegend,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Color,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?TextFont,&#32;?Size,&#32;?MultiSize,&#32;?Marker,&#32;?Dash,&#32;?Width,&#32;?Line,&#32;?UseDefaults</span>)</span></span></span></code>
+                      <code><span>Chart.ScatterCarpet<span><span>(<span>ab,&#32;mode,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?MarkerColor,&#32;?MarkerColorScale,&#32;?MarkerOutline,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Marker,&#32;?LineColor,&#32;?LineColorScale,&#32;?LineWidth,&#32;?LineDash,&#32;?Line,&#32;?UseDefaults</span>)</span></span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="206">
+              <div class="fsdocs-tip" id="229">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Chart.ScatterCarpet<span><span>(<span>ab,&#32;mode,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowLegend,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Color,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?TextFont,&#32;?Size,&#32;?MultiSize,&#32;?Marker,&#32;?Dash,&#32;?Width,&#32;?Line,&#32;?UseDefaults</span>)</span></span></span></code>
+                  <code><span>Chart.ScatterCarpet<span><span>(<span>ab,&#32;mode,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?MarkerColor,&#32;?MarkerColorScale,&#32;?MarkerOutline,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Marker,&#32;?LineColor,&#32;?LineColorScale,&#32;?LineWidth,&#32;?LineDash,&#32;?Line,&#32;?UseDefaults</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -3389,30 +3693,6 @@
                     <br/>
                     <span>
                       <b>
-                        ?MarkerSymbol
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?MultiMarkerSymbol
-                      </b>
-                      :
-                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Color
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
                         ?Opacity
                       </b>
                       :
@@ -3461,26 +3741,42 @@
                     <br/>
                     <span>
                       <b>
-                        ?TextFont
+                        ?MarkerColor
                       </b>
                       :
-                      <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?Size
+                        ?MarkerColorScale
                       </b>
                       :
-                      <code>int</code>
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?MultiSize
+                        ?MarkerOutline
                       </b>
                       :
-                      <code><span>seq&lt;int&gt;</span></code>
+                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MarkerSymbol
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MultiMarkerSymbol
+                      </b>
+                      :
+                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
                     </span>
                     <br/>
                     <span>
@@ -3493,18 +3789,34 @@
                     <br/>
                     <span>
                       <b>
-                        ?Dash
+                        ?LineColor
                       </b>
                       :
-                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?Width
+                        ?LineColorScale
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineWidth
                       </b>
                       :
                       <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineDash
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
                     </span>
                     <br/>
                     <span>
@@ -3544,7 +3856,7 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartCarpet.fs#L132-132" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartCarpet.fs#L141-141" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
@@ -3595,30 +3907,6 @@
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?MarkerSymbol
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MultiMarkerSymbol
-                </span>
-                :
-                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Color
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
                   ?Opacity
                 </span>
                 :
@@ -3667,26 +3955,42 @@
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?TextFont
+                  ?MarkerColor
                 </span>
                 :
-                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?Size
+                  ?MarkerColorScale
                 </span>
                 :
-                <code>int</code>
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?MultiSize
+                  ?MarkerOutline
                 </span>
                 :
-                <code><span>seq&lt;int&gt;</span></code>
+                <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MarkerSymbol
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MultiMarkerSymbol
+                </span>
+                :
+                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -3699,18 +4003,34 @@
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?Dash
+                  ?LineColor
                 </span>
                 :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?Width
+                  ?LineColorScale
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineWidth
                 </span>
                 :
                 <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineDash
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -3744,19 +4064,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '207', 207)" onmouseover="showTip(event, '207', 207)">
+              <code onmouseout="hideTip(event, '230', 230)" onmouseover="showTip(event, '230', 230)">
                 <p>
                   <a id="ScatterCarpet">
                     <a href="#ScatterCarpet">
-                      <code><span>Chart.ScatterCarpet<span><span>(<span>a,&#32;b,&#32;mode,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowLegend,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Color,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?TextFont,&#32;?Size,&#32;?MultiSize,&#32;?Marker,&#32;?Dash,&#32;?Width,&#32;?Line,&#32;?UseDefaults</span>)</span></span></span></code>
+                      <code><span>Chart.ScatterCarpet<span><span>(<span>a,&#32;b,&#32;mode,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?MarkerColor,&#32;?MarkerColorScale,&#32;?MarkerOutline,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Marker,&#32;?LineColor,&#32;?LineColorScale,&#32;?LineWidth,&#32;?LineDash,&#32;?Line,&#32;?UseDefaults</span>)</span></span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="207">
+              <div class="fsdocs-tip" id="230">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Chart.ScatterCarpet<span><span>(<span>a,&#32;b,&#32;mode,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowLegend,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Color,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?TextFont,&#32;?Size,&#32;?MultiSize,&#32;?Marker,&#32;?Dash,&#32;?Width,&#32;?Line,&#32;?UseDefaults</span>)</span></span></span></code>
+                  <code><span>Chart.ScatterCarpet<span><span>(<span>a,&#32;b,&#32;mode,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?MarkerColor,&#32;?MarkerColorScale,&#32;?MarkerOutline,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Marker,&#32;?LineColor,&#32;?LineColorScale,&#32;?LineWidth,&#32;?LineDash,&#32;?Line,&#32;?UseDefaults</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -3811,30 +4131,6 @@
                     <br/>
                     <span>
                       <b>
-                        ?MarkerSymbol
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?MultiMarkerSymbol
-                      </b>
-                      :
-                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Color
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
                         ?Opacity
                       </b>
                       :
@@ -3883,26 +4179,42 @@
                     <br/>
                     <span>
                       <b>
-                        ?TextFont
+                        ?MarkerColor
                       </b>
                       :
-                      <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?Size
+                        ?MarkerColorScale
                       </b>
                       :
-                      <code>int</code>
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?MultiSize
+                        ?MarkerOutline
                       </b>
                       :
-                      <code><span>seq&lt;int&gt;</span></code>
+                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MarkerSymbol
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MultiMarkerSymbol
+                      </b>
+                      :
+                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
                     </span>
                     <br/>
                     <span>
@@ -3915,18 +4227,34 @@
                     <br/>
                     <span>
                       <b>
-                        ?Dash
+                        ?LineColor
                       </b>
                       :
-                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?Width
+                        ?LineColorScale
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineWidth
                       </b>
                       :
                       <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineDash
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
                     </span>
                     <br/>
                     <span>
@@ -3966,7 +4294,7 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartCarpet.fs#L68-68" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartCarpet.fs#L69-69" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
@@ -4025,30 +4353,6 @@
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?MarkerSymbol
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MultiMarkerSymbol
-                </span>
-                :
-                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Color
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
                   ?Opacity
                 </span>
                 :
@@ -4097,26 +4401,42 @@
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?TextFont
+                  ?MarkerColor
                 </span>
                 :
-                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?Size
+                  ?MarkerColorScale
                 </span>
                 :
-                <code>int</code>
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?MultiSize
+                  ?MarkerOutline
                 </span>
                 :
-                <code><span>seq&lt;int&gt;</span></code>
+                <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MarkerSymbol
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MultiMarkerSymbol
+                </span>
+                :
+                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -4129,18 +4449,34 @@
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?Dash
+                  ?LineColor
                 </span>
                 :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?Width
+                  ?LineColorScale
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineWidth
                 </span>
                 :
                 <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineDash
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -4174,19 +4510,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '208', 208)" onmouseover="showTip(event, '208', 208)">
+              <code onmouseout="hideTip(event, '231', 231)" onmouseover="showTip(event, '231', 231)">
                 <p>
                   <a id="SplineCarpet">
                     <a href="#SplineCarpet">
-                      <code><span>Chart.SplineCarpet<span><span>(<span>ab,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowMarkers,&#32;?Dash,&#32;?Width,&#32;?Smoothing,&#32;?Line,&#32;?ShowLegend,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Color,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?TextFont,&#32;?Size,&#32;?MultiSize,&#32;?Marker,&#32;?UseDefaults</span>)</span></span></span></code>
+                      <code><span>Chart.SplineCarpet<span><span>(<span>ab,&#32;carpetAnchorId,&#32;?ShowMarkers,&#32;?Smoothing,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?MarkerColor,&#32;?MarkerColorScale,&#32;?MarkerOutline,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Marker,&#32;?LineColor,&#32;?LineColorScale,&#32;?LineWidth,&#32;?LineDash,&#32;?Line,&#32;?UseDefaults</span>)</span></span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="208">
+              <div class="fsdocs-tip" id="231">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Chart.SplineCarpet<span><span>(<span>ab,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowMarkers,&#32;?Dash,&#32;?Width,&#32;?Smoothing,&#32;?Line,&#32;?ShowLegend,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Color,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?TextFont,&#32;?Size,&#32;?MultiSize,&#32;?Marker,&#32;?UseDefaults</span>)</span></span></span></code>
+                  <code><span>Chart.SplineCarpet<span><span>(<span>ab,&#32;carpetAnchorId,&#32;?ShowMarkers,&#32;?Smoothing,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?MarkerColor,&#32;?MarkerColorScale,&#32;?MarkerOutline,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Marker,&#32;?LineColor,&#32;?LineColorScale,&#32;?LineWidth,&#32;?LineDash,&#32;?Line,&#32;?UseDefaults</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -4209,34 +4545,10 @@
                     <br/>
                     <span>
                       <b>
-                        ?Name
-                      </b>
-                      :
-                      <code>string</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
                         ?ShowMarkers
                       </b>
                       :
                       <code>bool</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Dash
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Width
-                      </b>
-                      :
-                      <code>float</code>
                     </span>
                     <br/>
                     <span>
@@ -4249,10 +4561,10 @@
                     <br/>
                     <span>
                       <b>
-                        ?Line
+                        ?Name
                       </b>
                       :
-                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                      <code>string</code>
                     </span>
                     <br/>
                     <span>
@@ -4261,30 +4573,6 @@
                       </b>
                       :
                       <code>bool</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?MarkerSymbol
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?MultiMarkerSymbol
-                      </b>
-                      :
-                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Color
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
                     </span>
                     <br/>
                     <span>
@@ -4337,26 +4625,42 @@
                     <br/>
                     <span>
                       <b>
-                        ?TextFont
+                        ?MarkerColor
                       </b>
                       :
-                      <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?Size
+                        ?MarkerColorScale
                       </b>
                       :
-                      <code>int</code>
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?MultiSize
+                        ?MarkerOutline
                       </b>
                       :
-                      <code><span>seq&lt;int&gt;</span></code>
+                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MarkerSymbol
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MultiMarkerSymbol
+                      </b>
+                      :
+                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
                     </span>
                     <br/>
                     <span>
@@ -4365,6 +4669,46 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-traceobjects-marker.html">Marker</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineColor
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineColorScale
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineWidth
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineDash
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Line
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
                     </span>
                     <br/>
                     <span>
@@ -4396,7 +4740,7 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartCarpet.fs#L486-486" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartCarpet.fs#L505-505" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
@@ -4423,34 +4767,10 @@
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?Name
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
                   ?ShowMarkers
                 </span>
                 :
                 <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Dash
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Width
-                </span>
-                :
-                <code>float</code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -4463,10 +4783,10 @@
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?Line
+                  ?Name
                 </span>
                 :
-                <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                <code>string</code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -4475,30 +4795,6 @@
                 </span>
                 :
                 <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MarkerSymbol
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MultiMarkerSymbol
-                </span>
-                :
-                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Color
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -4551,26 +4847,42 @@
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?TextFont
+                  ?MarkerColor
                 </span>
                 :
-                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?Size
+                  ?MarkerColorScale
                 </span>
                 :
-                <code>int</code>
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?MultiSize
+                  ?MarkerOutline
                 </span>
                 :
-                <code><span>seq&lt;int&gt;</span></code>
+                <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MarkerSymbol
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MultiMarkerSymbol
+                </span>
+                :
+                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -4579,6 +4891,46 @@
                 </span>
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-traceobjects-marker.html">Marker</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineColor
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineColorScale
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineWidth
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineDash
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Line
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -4604,19 +4956,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '209', 209)" onmouseover="showTip(event, '209', 209)">
+              <code onmouseout="hideTip(event, '232', 232)" onmouseover="showTip(event, '232', 232)">
                 <p>
                   <a id="SplineCarpet">
                     <a href="#SplineCarpet">
-                      <code><span>Chart.SplineCarpet<span><span>(<span>a,&#32;b,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowMarkers,&#32;?Dash,&#32;?Width,&#32;?Smoothing,&#32;?Line,&#32;?ShowLegend,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Color,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?TextFont,&#32;?Size,&#32;?MultiSize,&#32;?Marker,&#32;?UseDefaults</span>)</span></span></span></code>
+                      <code><span>Chart.SplineCarpet<span><span>(<span>a,&#32;b,&#32;carpetAnchorId,&#32;?ShowMarkers,&#32;?Smoothing,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?MarkerColor,&#32;?MarkerColorScale,&#32;?MarkerOutline,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Marker,&#32;?LineColor,&#32;?LineColorScale,&#32;?LineWidth,&#32;?LineDash,&#32;?Line,&#32;?UseDefaults</span>)</span></span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="209">
+              <div class="fsdocs-tip" id="232">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Chart.SplineCarpet<span><span>(<span>a,&#32;b,&#32;carpetAnchorId,&#32;?Name,&#32;?ShowMarkers,&#32;?Dash,&#32;?Width,&#32;?Smoothing,&#32;?Line,&#32;?ShowLegend,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Color,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?TextFont,&#32;?Size,&#32;?MultiSize,&#32;?Marker,&#32;?UseDefaults</span>)</span></span></span></code>
+                  <code><span>Chart.SplineCarpet<span><span>(<span>a,&#32;b,&#32;carpetAnchorId,&#32;?ShowMarkers,&#32;?Smoothing,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?MarkerColor,&#32;?MarkerColorScale,&#32;?MarkerOutline,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Marker,&#32;?LineColor,&#32;?LineColorScale,&#32;?LineWidth,&#32;?LineDash,&#32;?Line,&#32;?UseDefaults</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -4647,34 +4999,10 @@
                     <br/>
                     <span>
                       <b>
-                        ?Name
-                      </b>
-                      :
-                      <code>string</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
                         ?ShowMarkers
                       </b>
                       :
                       <code>bool</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Dash
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Width
-                      </b>
-                      :
-                      <code>float</code>
                     </span>
                     <br/>
                     <span>
@@ -4687,10 +5015,10 @@
                     <br/>
                     <span>
                       <b>
-                        ?Line
+                        ?Name
                       </b>
                       :
-                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                      <code>string</code>
                     </span>
                     <br/>
                     <span>
@@ -4699,30 +5027,6 @@
                       </b>
                       :
                       <code>bool</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?MarkerSymbol
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?MultiMarkerSymbol
-                      </b>
-                      :
-                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Color
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
                     </span>
                     <br/>
                     <span>
@@ -4775,26 +5079,42 @@
                     <br/>
                     <span>
                       <b>
-                        ?TextFont
+                        ?MarkerColor
                       </b>
                       :
-                      <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?Size
+                        ?MarkerColorScale
                       </b>
                       :
-                      <code>int</code>
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?MultiSize
+                        ?MarkerOutline
                       </b>
                       :
-                      <code><span>seq&lt;int&gt;</span></code>
+                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MarkerSymbol
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MultiMarkerSymbol
+                      </b>
+                      :
+                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
                     </span>
                     <br/>
                     <span>
@@ -4803,6 +5123,46 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-traceobjects-marker.html">Marker</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineColor
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineColorScale
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineWidth
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LineDash
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Line
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
                     </span>
                     <br/>
                     <span>
@@ -4834,7 +5194,7 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartCarpet.fs#L411-411" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartCarpet.fs#L419-419" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
@@ -4869,34 +5229,10 @@
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?Name
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
                   ?ShowMarkers
                 </span>
                 :
                 <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Dash
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Width
-                </span>
-                :
-                <code>float</code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -4909,10 +5245,10 @@
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?Line
+                  ?Name
                 </span>
                 :
-                <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                <code>string</code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -4921,30 +5257,6 @@
                 </span>
                 :
                 <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MarkerSymbol
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MultiMarkerSymbol
-                </span>
-                :
-                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Color
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -4997,26 +5309,42 @@
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?TextFont
+                  ?MarkerColor
                 </span>
                 :
-                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?Size
+                  ?MarkerColorScale
                 </span>
                 :
-                <code>int</code>
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?MultiSize
+                  ?MarkerOutline
                 </span>
                 :
-                <code><span>seq&lt;int&gt;</span></code>
+                <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MarkerSymbol
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MultiMarkerSymbol
+                </span>
+                :
+                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -5025,6 +5353,46 @@
                 </span>
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-traceobjects-marker.html">Marker</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineColor
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineColorScale
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineWidth
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineDash
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Line
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
