@@ -94,6 +94,11 @@
  * [fix rangeslider props](https://github.com/plotly/Plotly.NET/commit/c1789c2197ee19524e543e022070a7c60adb9e06)
  * Full trace style args for 2D traces: [#234](https://github.com/plotly/Plotly.NET/pull/234), [#220](https://github.com/plotly/Plotly.NET/pull/220)
  * [Add Layout Slider](https://github.com/plotly/Plotly.NET/pull/232), thanks [@amakhno](https://github.com/amakhno)!
+ * Full trace style args for 3D traces: [#243](https://github.com/plotly/Plotly.NET/pull/243)
+ * Full trace style args for polar traces: [#244](https://github.com/plotly/Plotly.NET/pull/244)
+ * Full trace style args for geo traces: [#246](https://github.com/plotly/Plotly.NET/pull/246)
+ * Full trace style args for mapbox traces: [#247](https://github.com/plotly/Plotly.NET/pull/247)
+ * Full trace style args for domain traces: [#250](https://github.com/plotly/Plotly.NET/pull/250)
 
 
 **Other notable changes**
