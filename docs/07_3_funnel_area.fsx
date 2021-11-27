@@ -47,7 +47,7 @@ open Plotly.NET
 let line = Line.init (Color=Color.fromString "purple", Width=3.)
 
 let funnelArea = 
-    Chart.FunnelArea(Values=values, Text=text, Line=line)
+    Chart.FunnelArea(values, MultiText=text, SectionOutline=line)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -58,3 +58,38 @@ funnelArea
 funnelArea |> GenericChart.toChartHTML
 (***include-it-raw***)
 
+
+(**
+## More styled example
+
+This example shows the usage of some of the styling possibility using `Chart.FunnelArea`.
+For even more styling control, use the respective TraceStyle function `TraceDomainStyle.FunnelArea`
+*)
+
+let funnelAreaStyled =
+    let values = [|5; 4; 3|]
+    let labels = [|"The 1st"; "The 2nd"; "The 3rd"|]
+
+    Chart.FunnelArea(
+        values,
+        Labels = labels,
+        MultiText = labels,
+        SectionColors = [
+            Color.fromKeyword Aqua
+            Color.fromKeyword Salmon
+            Color.fromKeyword Tan
+        ],
+        SectionOutlineColor = Color.fromKeyword Black,
+        SectionOutlineWidth = 2.,
+        AspectRatio = 0.75,
+        BaseRatio = 0.1
+    )
+
+(*** condition: ipynb ***)
+#if IPYNB
+funnelAreaStyled
+#endif // IPYNB
+    
+(***hide***)
+funnelAreaStyled |> GenericChart.toChartHTML
+(***include-it-raw***)

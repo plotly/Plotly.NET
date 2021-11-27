@@ -5,6 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "project", "project", "{BF60BC93-E09B-4E5F-9D85-95A519479D54}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		.config\dotnet-tools.json = .config\dotnet-tools.json
 		global.json = global.json
 		LICENSE = LICENSE
@@ -97,6 +98,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{7B09CC0A-F
 		docs\09_1_parallel-coords.fsx = docs\09_1_parallel-coords.fsx
 		docs\09_2_sankey.fsx = docs\09_2_sankey.fsx
 		docs\09_3_icicle.fsx = docs\09_3_icicle.fsx
+		docs\09_4_treemap.fsx = docs\09_4_treemap.fsx
+		docs\09_5_sunburst.fsx = docs\09_5_sunburst.fsx
 		docs\10_0_ternary_line_scatter_plots.fsx = docs\10_0_ternary_line_scatter_plots.fsx
 		docs\10_1_styling_ternary_layouts.fsx = docs\10_1_styling_ternary_layouts.fsx
 		docs\11_1_carpet_line_scatter_plots.fsx = docs\11_1_carpet_line_scatter_plots.fsx
@@ -141,11 +144,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plotly.NET.Tests.CSharp", "tests\Plotly.NET.Tests.CSharp\Plotly.NET.Tests.CSharp.csproj", "{26539796-0C9D-4856-8584-B58BE32CC495}"
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Plotly.NET.ImageExport.Tests", "tests\Plotly.NET.ImageExport.Tests\Plotly.NET.ImageExport.Tests.fsproj", "{55A461C3-8018-4020-B16E-D6005BDFCAED}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8E913083-86D3-4C55-B260-2AC4AC21B2D9}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

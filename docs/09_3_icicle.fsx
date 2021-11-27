@@ -42,14 +42,14 @@ open Plotly.NET.TraceObjects
 let character   = ["Eve"; "Cain"; "Seth"; "Enos"; "Noam"; "Abel"; "Awan"; "Enoch"; "Azura"]
 let parent      = [""; "Eve"; "Eve"; "Seth"; "Seth"; "Eve"; "Eve"; "Awan"; "Eve" ]
 
-let icicle = 
+let icicle =
     Chart.Icicle(
         character,
         parent,
-        ShowScale = true,
-        ColorScale = StyleParam.Colorscale.Viridis,
-        TilingOrientation = StyleParam.Orientation.Vertical, // wether the icicles will grow in the vertical (up/down) or horizontal (left/right) direction
-        TilingFlip = StyleParam.TilingFlip.Y, // flip in the Y direction (grow up instead of down)
+        ShowSectionColorScale = true,
+        SectionColorScale = StyleParam.Colorscale.Viridis,
+        TilingOrientation = StyleParam.Orientation.Vertical,
+        TilingFlip = StyleParam.TilingFlip.Y,
         PathBarEdgeShape = StyleParam.PathbarEdgeShape.BackSlash
     )
 
@@ -62,3 +62,46 @@ icicle
 icicle |> GenericChart.toChartHTML
 (***include-it-raw***)
 
+(**
+## More styled example
+
+This example shows the usage of some of the styling possibility using `Chart.Icicle`.
+For even more styling control, use the respective TraceStyle function `TraceDomainStyle.Icicle`
+*)
+
+let icicleStyled = 
+    let labelsParents = [
+        ("A",""), 20
+        ("B",""), 1
+        ("C",""), 2
+        ("D",""), 3
+        ("E",""), 4
+
+        ("AA","A"), 15
+        ("AB","A"), 5
+
+        ("BA","B"), 1
+
+        ("AAA", "AA"), 10
+        ("AAB", "AA"), 5
+    ]
+
+    Chart.Icicle(
+        labelsParents |> Seq.map fst,
+        Values = (labelsParents |> Seq.map snd), 
+        BranchValues = StyleParam.BranchValues.Total, // branch values are the total of their childrens values
+        SectionColorScale = StyleParam.Colorscale.Viridis,
+        ShowSectionColorScale = true,
+        SectionOutlineColor = Color.fromKeyword Black,
+        Tiling = IcicleTiling.init(Flip = StyleParam.TilingFlip.XY),
+        UseDefaults = false
+    )
+
+(*** condition: ipynb ***)
+#if IPYNB
+icicleStyled
+#endif // IPYNB
+    
+(***hide***)
+icicleStyled |> GenericChart.toChartHTML
+(***include-it-raw***)
