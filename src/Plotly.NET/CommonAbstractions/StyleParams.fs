@@ -398,6 +398,23 @@ module StyleParam =
 // #C#
 //--------------------------
 
+    [<RequireQualifiedAccess>]
+    type CategoryArrangement =
+        | Perpendicular
+        | FreeForm
+        | Fixed
+        | Snap
+
+        static member toString =
+            function
+            | Perpendicular -> "perpendicular"
+            | FreeForm -> "freeform"
+            | Fixed -> "fixed"
+            | Snap -> "snap"
+
+        static member convert = CategoryArrangement.toString >> box
+        override this.ToString() = this |> CategoryArrangement.toString
+        member this.Convert() = this |> CategoryArrangement.convert
 
     [<RequireQualifiedAccess>]
     type ConstraintOperation =
@@ -2270,6 +2287,20 @@ module StyleParam =
     //--------------------------
 // #S#
 //--------------------------
+
+    [<RequireQualifiedAccess>]
+    type SortAlgorithm =
+        | Forward
+        | Backward
+
+        static member toString =
+            function
+            | Forward -> "forward"
+            | Backward -> "backward"
+
+        static member convert = SortAlgorithm.toString >> box
+        override this.ToString() = this |> SortAlgorithm.toString
+        member this.Convert() = this |> SortAlgorithm.convert
 
     [<RequireQualifiedAccess>]
     type SpanMode =

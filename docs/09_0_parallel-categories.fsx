@@ -45,8 +45,8 @@ let dims =
 let parcats =
     Chart.ParallelCategories(
         dims,
-        Color = Color.fromColorScaleValues [0.;1.;0.;1.;0.;0.;0.],
-        Colorscale = StyleParam.Colorscale.Blackbody
+        LineColor = Color.fromColorScaleValues [0.;1.;0.;1.;0.;0.;0.],
+        LineColorScale = StyleParam.Colorscale.Blackbody
     )
 
 (*** condition: ipynb ***)
@@ -56,4 +56,35 @@ parcats
 
 (***hide***)
 parcats |> GenericChart.toChartHTML
+(***include-it-raw***)
+
+(**
+## More styled example
+
+This example shows the usage of some of the styling possibility using `Chart.ParallelCategories`.
+For even more styling control, use the respective TraceStyle function `TraceDomainStyle.ParallelCategories`
+*)
+
+let parcatsStyled =
+    let dims =
+        [
+            Dimension.initParallel(Values = ["A";"A";"A";"B";"B";"B";"C";"D"],Label="Lvl1")
+            Dimension.initParallel(Values = ["AA";"AA";"AB";"AB";"AB";"AB";"AB";"AB"],Label="Lvl2")
+            Dimension.initParallel(Values = ["AAA";"AAB";"AAC";"AAC";"AAB";"AAB";"AAA";"AAA"],Label="Lvl3")
+        ]
+
+    Chart.ParallelCategories(
+        dims,
+        LineColor = Color.fromColorScaleValues [0; 1; 2; 2; 1; 1; 0; 0], // These values map to the last category axis, meaning [AAA => 0; AAB = 1; AAC => 2]
+        LineColorScale = StyleParam.Colorscale.Viridis,
+        BundleColors = false
+    )
+
+(*** condition: ipynb ***)
+#if IPYNB
+parcatsStyled
+#endif // IPYNB
+    
+(***hide***)
+parcatsStyled |> GenericChart.toChartHTML
 (***include-it-raw***)

@@ -45,7 +45,7 @@ When creating pie charts, it is usually desirable to provide both labels and val
 *)
 
 let pie1 =
-    Chart.Pie(values,labels)
+    Chart.Pie(values,Labels = labels)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -59,9 +59,9 @@ pie1 |> GenericChart.toChartHTML
 let doughnut1 =
     Chart.Doughnut(
         values,
-        labels,
+        Labels = labels,
         Hole=0.3,
-        TextLabels=labels
+        MultiText = labels
     )
 
 (*** condition: ipynb ***)
@@ -73,19 +73,48 @@ doughnut1
 doughnut1 |> GenericChart.toChartHTML
 (***include-it-raw***)
 
-let sunburst1 =
-    Chart.Sunburst(
-        ["A";"B";"C";"D";"E"],
-        ["";"";"B";"B";""],
-        Values=[5.;0.;3.;2.;3.],
-        Text=["At";"Bt";"Ct";"Dt";"Et"]
+(**
+## More styled example
+
+This example shows the usage of some of the styling possibility using `Chart.Pie`.
+For even more styling control, use the respective TraceStyle function `TraceDomainStyle.Pie`
+*)
+
+
+let pieStyled =
+
+    let values = [19; 26; 55;]
+    let labels = ["Residential"; "Non-Residential"; "Utility"]
+
+    Chart.Pie(
+        values,
+        Labels = labels,
+        SectionColors = [
+            Color.fromKeyword Aqua
+            Color.fromKeyword Salmon
+            Color.fromKeyword Tan
+        ],
+        SectionOutlineColor = Color.fromKeyword Black,
+        SectionOutlineWidth = 2.,
+        MultiText = [
+            "Some"
+            "More"
+            "Stuff"
+        ],
+        MultiTextPosition = [
+            StyleParam.TextPosition.Inside
+            StyleParam.TextPosition.Outside
+            StyleParam.TextPosition.Inside
+        ],
+        Rotation = 45.,
+        MultiPull = [0.; 0.3; 0.]
     )
 
 (*** condition: ipynb ***)
 #if IPYNB
-sunburst1
+pieStyled
 #endif // IPYNB
-
+    
 (***hide***)
-sunburst1 |> GenericChart.toChartHTML
+pieStyled |> GenericChart.toChartHTML
 (***include-it-raw***)

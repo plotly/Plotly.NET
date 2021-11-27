@@ -234,27 +234,46 @@ let ``Bubble charts`` =
 let pieChart =
     let values = [19; 26; 55;]
     let labels = ["Residential"; "Non-Residential"; "Utility"]
-    Chart.Pie(values, labels, UseDefaults = false)
+    Chart.Pie(values, Labels = labels, UseDefaults = false)
+
+let pieStyled =
+
+    let values = [19; 26; 55;]
+    let labels = ["Residential"; "Non-Residential"; "Utility"]
+
+    Chart.Pie(
+        values,
+        Labels = labels,
+        SectionColors = [
+            Color.fromKeyword Aqua
+            Color.fromKeyword Salmon
+            Color.fromKeyword Tan
+        ],
+        SectionOutlineColor = Color.fromKeyword Black,
+        SectionOutlineWidth = 2.,
+        MultiText = [
+            "Some"
+            "More"
+            "Stuff"
+        ],
+        MultiTextPosition = [
+            StyleParam.TextPosition.Inside
+            StyleParam.TextPosition.Outside
+            StyleParam.TextPosition.Inside
+        ],
+        Rotation = 45.,
+        MultiPull = [0.; 0.3; 0.],
+        UseDefaults = false
+    )
 
 let doughnutChart =
     let values = [19; 26; 55;]
     let labels = ["Residential"; "Non-Residential"; "Utility"]
     Chart.Doughnut(
         values,
-        labels,
+        Labels = labels,
         Hole=0.3,
-        TextLabels=labels, 
-        UseDefaults = false
-    )
-
-let sunburstChart =
-    let values = [19; 26; 55;]
-    let labels = ["Residential"; "Non-Residential"; "Utility"]
-    Chart.Sunburst(
-        ["A";"B";"C";"D";"E"],
-        ["";"";"B";"B";""],
-        Values=[5.;0.;3.;2.;3.],
-        Text=["At";"Bt";"Ct";"Dt";"Et"], 
+        MultiText=labels, 
         UseDefaults = false
     )
 
@@ -262,25 +281,25 @@ let sunburstChart =
 let ``Pie and doughnut Charts`` =
     testList "SimpleCharts.Pie and doughnut Charts" [
         testCase "Pie data" ( fun () ->
-            "var data = [{\"type\":\"pie\",\"values\":[19,26,55],\"labels\":[\"Residential\",\"Non-Residential\",\"Utility\"],\"marker\":{},\"text\":[\"Residential\",\"Non-Residential\",\"Utility\"]}];"
-            |> chartGeneratedContains pieChart
+        """var data = [{"type":"pie","values":[19,26,55],"labels":["Residential","Non-Residential","Utility"],"marker":{"line":{}}}];"""
+        |> chartGeneratedContains pieChart
         );
         testCase "Pie layout" ( fun () ->
             emptyLayout pieChart
+        );        
+        testCase "Pie styled data" ( fun () ->
+            """var data = [{"type":"pie","values":[19,26,55],"labels":["Residential","Non-Residential","Utility"],"pull":[0.0,0.3,0.0],"text":["Some","More","Stuff"],"textposition":["inside","outside","inside"],"marker":{"colors":["rgba(0, 255, 255, 1.0)","rgba(250, 128, 114, 1.0)","rgba(210, 180, 140, 1.0)"],"line":{"color":"rgba(0, 0, 0, 1.0)","width":2.0}},"rotation":45.0}];"""
+            |> chartGeneratedContains pieStyled
+        );
+        testCase "Pie styled layout" ( fun () ->
+            emptyLayout pieStyled
         );
         testCase "Doughnut data" ( fun () ->
-            """var data = [{"type":"pie","values":[19,26,55],"labels":["Residential","Non-Residential","Utility"],"text":["Residential","Non-Residential","Utility"],"hole":0.3,"marker":{}}];"""
+            """var data = [{"type":"pie","values":[19,26,55],"labels":["Residential","Non-Residential","Utility"],"text":["Residential","Non-Residential","Utility"],"marker":{"line":{}},"hole":0.3}];"""
             |> chartGeneratedContains doughnutChart
         );
         testCase "Doughnut layout" ( fun () ->
             emptyLayout doughnutChart
-        );
-        testCase "Sunburst data" ( fun () ->
-            "var data = [{\"type\":\"sunburst\",\"labels\":[\"A\",\"B\",\"C\",\"D\",\"E\"],\"parents\":[\"\",\"\",\"B\",\"B\",\"\"],\"values\":[5.0,0.0,3.0,2.0,3.0],\"text\":[\"At\",\"Bt\",\"Ct\",\"Dt\",\"Et\"],\"marker\":{}}];"
-            |> chartGeneratedContains sunburstChart
-        );
-        testCase "Sunburst layout" ( fun () ->
-            emptyLayout sunburstChart
         );
     ]
 
@@ -304,15 +323,15 @@ let tableStyledChart =
     Chart.Table(
         header,
         rows,
-        AlignHeader = [HorizontalAlign.Center],
-        AlignCells  = [HorizontalAlign.Left; HorizontalAlign.Center; HorizontalAlign.Right],
-        ColorHeader = Color.fromString "#45546a",    
-        ColorCells  = Color.fromColors [Color.fromString "#deebf7"; Color.fromString "lightgrey"; Color.fromString "#deebf7"; Color.fromString "lightgrey"],
-        FontHeader  = Font.init(FontFamily.Courier_New, Size=12., Color=Color.fromString "white"),      
-        HeightHeader= 30.,
-        LineHeader  = Line.init(2.,Color.fromString "black"),                     
-        ColumnWidth = [70; 50; 100; 70],      
-        ColumnOrder = [1; 2; 3; 4], 
+        HeaderAlign = HorizontalAlign.Center,
+        CellsMultiAlign  = [HorizontalAlign.Left; HorizontalAlign.Center; HorizontalAlign.Right],
+        HeaderFillColor = Color.fromString "#45546a",
+        CellsFillColor  = Color.fromColors [Color.fromString "#deebf7"; Color.fromString "lightgrey"; Color.fromString "#deebf7"; Color.fromString "lightgrey"],
+        HeaderHeight = 30,
+        HeaderOutlineColor  = Color.fromString "black",                     
+        HeaderOutlineWidth  = 2.,                     
+        MultiColumnWidth = [70.; 50.; 100.; 70.],      
+        ColumnOrder = [1; 2; 3; 4],
         UseDefaults = false
     )
 
@@ -351,7 +370,12 @@ let tableColorDependentChart =
         |> Seq.map Color.fromColors
         |> Color.fromColors
 
-    Chart.Table(header2,rowvalues,ColorCells=cellcolor, UseDefaults = false)
+    Chart.Table(
+        header2,
+        rowvalues,
+        CellsFillColor=cellcolor, 
+        UseDefaults = false
+    )
 
 let sequencePresentationTableChart =
     let sequence =
@@ -399,21 +423,18 @@ let sequencePresentationTableChart =
         |> Seq.map Color.fromColors
         |> Color.fromColors
 
-    let font = Font.init(FontFamily.Consolas,Size=14.)
-    let line = Line.init(0., Color.fromString "white")
+    let line = Line.init(Width = 0., Color = Color.fromString "white")
     let chartwidth = 50 + 10 * elementsPerRow
 
     Chart.Table(
         headers,
         cells,
-        LineCells   = line,
-        LineHeader  = line,
-        HeightCells = 20.,
-        FontHeader  = font,
-        FontCells   = font,
-        ColumnWidth = [50;10],
-        AlignCells  = [HorizontalAlign.Right;HorizontalAlign.Center],
-        ColorCells  = cellcolors, 
+        CellsOutline   = line,
+        HeaderOutline  = line,
+        CellsHeight = 20,
+        MultiColumnWidth = [50.;10.],
+        CellsMultiAlign  = [HorizontalAlign.Right;HorizontalAlign.Center],
+        CellsFillColor  = cellcolors, 
         UseDefaults = false
         )
     |> Chart.withSize(Width=chartwidth)
@@ -424,28 +445,28 @@ let sequencePresentationTableChart =
 let ``Table charts`` =
     testList "SimpleCharts.Table charts" [
         testCase "First table data" ( fun () ->
-            "var data = [{\"type\":\"table\",\"header\":{\"values\":[\"<b>RowIndex</b>\",\"A\",\"simple\",\"table\"]},\"cells\":{\"values\":[[\"0\",\"1\"],[\"I\",\"little\"],[\"am\",\"example\"],[\"a\",\"!\"]]}}];"
+            """var data = [{"type":"table","cells":{"fill":{},"line":{},"values":[["0","1"],["I","little"],["am","example"],["a","!"]]},"header":{"fill":{},"line":{},"values":["<b>RowIndex</b>","A","simple","table"]}}];"""
             |> chartGeneratedContains table1Chart
         );
         testCase "First table layout" ( fun () ->
             emptyLayout table1Chart
         );
         testCase "Styled table data" ( fun () ->
-            "var data = [{\"type\":\"table\",\"header\":{\"values\":[\"<b>RowIndex</b>\",\"A\",\"simple\",\"table\"],\"align\":[\"center\"],\"height\":30.0,\"fill\":{\"color\":\"#45546a\"},\"line\":{\"color\":\"black\",\"width\":2.0},\"font\":{\"family\":\"Courier New\",\"size\":12.0,\"color\":\"white\"}},\"cells\":{\"values\":[[\"0\",\"1\"],[\"I\",\"little\"],[\"am\",\"example\"],[\"a\",\"!\"]],\"align\":[\"left\",\"center\",\"right\"],\"fill\":{\"color\":[\"#deebf7\",\"lightgrey\",\"#deebf7\",\"lightgrey\"]}},\"columnwidth\":[70,50,100,70],\"columnorder\":[1,2,3,4]}];"
+            """var data = [{"type":"table","columnorder":[1,2,3,4],"columnwidth":[70.0,50.0,100.0,70.0],"cells":{"align":["left","center","right"],"fill":{"color":["#deebf7","lightgrey","#deebf7","lightgrey"]},"line":{},"values":[["0","1"],["I","little"],["am","example"],["a","!"]]},"header":{"align":"center","fill":{"color":"#45546a"},"height":30,"line":{"color":"black","width":2.0},"values":["<b>RowIndex</b>","A","simple","table"]}}];"""
             |> chartGeneratedContains tableStyledChart
         );
         testCase "Styled table layout" ( fun () ->
             emptyLayout tableStyledChart
         );
         testCase "Color dependent chart data" ( fun () ->
-            """var data = [{"type":"table","header":{"values":["Identifier","T0","T1","T2","T3"]},"cells":{"values":[[10004.0,10001.0,10005.0,10006.0,10007.0,10002.0,10003.0],[0.0,0.2,1.0,1.0,2.0,2.1,4.5],[0.1,2.0,1.6,0.8,2.0,2.0,3.0],[0.3,4.0,1.8,1.5,2.1,1.8,2.0],[0.2,5.0,2.2,0.7,1.9,2.1,2.5]],"fill":{"color":[["white","white","white","white","white","white","white"],["rgba(255, 255, 0, 1.0)","rgba(255, 245, 10, 1.0)","rgba(255, 204, 51, 1.0)","rgba(255, 204, 51, 1.0)","rgba(255, 153, 102, 1.0)","rgba(255, 148, 107, 1.0)","rgba(255, 26, 229, 1.0)"],["rgba(255, 250, 5, 1.0)","rgba(255, 153, 102, 1.0)","rgba(255, 174, 81, 1.0)","rgba(255, 215, 40, 1.0)","rgba(255, 153, 102, 1.0)","rgba(255, 153, 102, 1.0)","rgba(255, 102, 153, 1.0)"],["rgba(255, 240, 15, 1.0)","rgba(255, 51, 204, 1.0)","rgba(255, 164, 91, 1.0)","rgba(255, 179, 76, 1.0)","rgba(255, 148, 107, 1.0)","rgba(255, 164, 91, 1.0)","rgba(255, 153, 102, 1.0)"],["rgba(255, 245, 10, 1.0)","rgba(255, 0, 255, 1.0)","rgba(255, 143, 112, 1.0)","rgba(255, 220, 35, 1.0)","rgba(255, 159, 96, 1.0)","rgba(255, 148, 107, 1.0)","rgba(255, 128, 127, 1.0)"]]}}}];"""
+            """var data = [{"type":"table","cells":{"fill":{"color":[["white","white","white","white","white","white","white"],["rgba(255, 255, 0, 1.0)","rgba(255, 245, 10, 1.0)","rgba(255, 204, 51, 1.0)","rgba(255, 204, 51, 1.0)","rgba(255, 153, 102, 1.0)","rgba(255, 148, 107, 1.0)","rgba(255, 26, 229, 1.0)"],["rgba(255, 250, 5, 1.0)","rgba(255, 153, 102, 1.0)","rgba(255, 174, 81, 1.0)","rgba(255, 215, 40, 1.0)","rgba(255, 153, 102, 1.0)","rgba(255, 153, 102, 1.0)","rgba(255, 102, 153, 1.0)"],["rgba(255, 240, 15, 1.0)","rgba(255, 51, 204, 1.0)","rgba(255, 164, 91, 1.0)","rgba(255, 179, 76, 1.0)","rgba(255, 148, 107, 1.0)","rgba(255, 164, 91, 1.0)","rgba(255, 153, 102, 1.0)"],["rgba(255, 245, 10, 1.0)","rgba(255, 0, 255, 1.0)","rgba(255, 143, 112, 1.0)","rgba(255, 220, 35, 1.0)","rgba(255, 159, 96, 1.0)","rgba(255, 148, 107, 1.0)","rgba(255, 128, 127, 1.0)"]]},"line":{},"values":[[10004.0,10001.0,10005.0,10006.0,10007.0,10002.0,10003.0],[0.0,0.2,1.0,1.0,2.0,2.1,4.5],[0.1,2.0,1.6,0.8,2.0,2.0,3.0],[0.3,4.0,1.8,1.5,2.1,1.8,2.0],[0.2,5.0,2.2,0.7,1.9,2.1,2.5]]},"header":{"fill":{},"line":{},"values":["Identifier","T0","T1","T2","T3"]}}];"""
             |> chartGeneratedContains tableColorDependentChart
         );
         testCase "Color dependent chart layout" ( fun () ->
             emptyLayout tableColorDependentChart
         );
         testCase "Sequence presentation table data" ( fun () ->
-            "var data = [{\"type\":\"table\",\"header\":{\"values\":[\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"|\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"|\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"|\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"|\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"|\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"|\"],\"line\":{\"color\":\"white\",\"width\":0.0},\"font\":{\"family\":\"Consolas\",\"size\":14.0}},\"cells\":{\"values\":[[\"0\",\"60\",\"120\",\"180\"],[\"A\",\"A\",\"G\",\"A\"],[\"T\",\"C\",\"T\",\"C\"],[\"G\",\"G\",\"C\",\"G\"],[\"A\",\"T\",\"G\",\"T\"],[\"G\",\"C\",\"A\",\"C\"],[\"A\",\"G\",\"T\",\"G\"],[\"C\",\"A\",\"A\",\"A\"],[\"G\",\"T\",\"G\",\"T\"],[\"T\",\"A\",\"A\",\"A\"],[\"C\",\"G\",\"C\",\"G\"],[\"G\",\"A\",\"G\",\"A\"],[\"A\",\"C\",\"T\",\"C\"],[\"G\",\"G\",\"C\",\"C\"],[\"A\",\"T\",\"G\",\"G\"],[\"C\",\"C\",\"A\",\"T\"],[\"T\",\"G\",\"T\",\"A\"],[\"G\",\"A\",\"A\",\"G\"],[\"A\",\"T\",\"G\",\"A\"],[\"T\",\"A\",\"A\",\"C\"],[\"A\",\"G\",\"G\",\"G\"],[\"G\",\"A\",\"A\",\"T\"],[\"A\",\"G\",\"T\",\"C\"],[\"C\",\"T\",\"A\",\"G\"],[\"G\",\"A\",\"G\",\"A\"],[\"T\",\"T\",\"A\",\"T\"],[\"C\",\"A\",\"C\",\"A\"],[\"G\",\"G\",\"G\",\"G\"],[\"A\",\"A\",\"T\",\"A\"],[\"T\",\"C\",\"C\",\"C\"],[\"A\",\"C\",\"G\",\"G\"],[\"G\",\"G\",\"A\",\"T\"],[\"A\",\"T\",\"T\",\"C\"],[\"C\",\"G\",\"A\",\"G\"],[\"G\",\"A\",\"G\",\"A\"],[\"T\",\"T\",\"A\",\"T\"],[\"C\",\"A\",\"C\",\"A\"],[\"G\",\"G\",\"C\",\"G\"],[\"A\",\"A\",\"G\",\"A\"],[\"T\",\"C\",\"T\",\"C\"],[\"A\",\"G\",\"A\",\"C\"],[\"G\",\"T\",\"T\",\"G\"],[\"A\",\"C\",\"A\",\"T\"],[\"C\",\"G\",\"G\"],[\"C\",\"A\",\"A\"],[\"G\",\"G\",\"A\"],[\"A\",\"A\",\"G\"],[\"T\",\"A\",\"A\"],[\"A\",\"G\",\"C\"],[\"G\",\"A\",\"G\"],[\"A\",\"C\",\"T\"],[\"C\",\"G\",\"C\"],[\"T\",\"T\",\"G\"],[\"C\",\"C\",\"A\"],[\"G\",\"G\",\"T\"],[\"T\",\"A\",\"A\"],[\"G\",\"T\",\"G\"],[\"A\",\"A\",\"A\"],[\"T\",\"G\",\"T\"],[\"A\",\"A\",\"A\"],[\"G\",\"C\",\"G\"]],\"align\":[\"right\",\"center\"],\"height\":20.0,\"fill\":{\"color\":[[\"white\",\"white\",\"white\",\"white\",\"white\"],[\"#5050FF\",\"#5050FF\",\"#00C000\",\"#5050FF\",\"white\"],[\"#E6E600\",\"#E00000\",\"#E6E600\",\"#E00000\",\"white\"],[\"#00C000\",\"#00C000\",\"#E00000\",\"#00C000\",\"white\"],[\"#5050FF\",\"#E6E600\",\"#00C000\",\"#E6E600\",\"white\"],[\"#00C000\",\"#E00000\",\"#5050FF\",\"#E00000\",\"white\"],[\"#5050FF\",\"#00C000\",\"#E6E600\",\"#00C000\",\"white\"],[\"#E00000\",\"#5050FF\",\"#5050FF\",\"#5050FF\",\"white\"],[\"#00C000\",\"#E6E600\",\"#00C000\",\"#E6E600\",\"white\"],[\"#E6E600\",\"#5050FF\",\"#5050FF\",\"#5050FF\",\"white\"],[\"#E00000\",\"#00C000\",\"#E00000\",\"#00C000\",\"white\"],[\"#00C000\",\"#5050FF\",\"#00C000\",\"#5050FF\",\"white\"],[\"#5050FF\",\"#E00000\",\"#E6E600\",\"#E00000\",\"white\"],[\"#00C000\",\"#00C000\",\"#E00000\",\"#E00000\",\"white\"],[\"#5050FF\",\"#E6E600\",\"#00C000\",\"#00C000\",\"white\"],[\"#E00000\",\"#E00000\",\"#5050FF\",\"#E6E600\",\"white\"],[\"#E6E600\",\"#00C000\",\"#E6E600\",\"#5050FF\",\"white\"],[\"#00C000\",\"#5050FF\",\"#5050FF\",\"#00C000\",\"white\"],[\"#5050FF\",\"#E6E600\",\"#00C000\",\"#5050FF\",\"white\"],[\"#E6E600\",\"#5050FF\",\"#5050FF\",\"#E00000\",\"white\"],[\"#5050FF\",\"#00C000\",\"#00C000\",\"#00C000\",\"white\"],[\"#00C000\",\"#5050FF\",\"#5050FF\",\"#E6E600\",\"white\"],[\"#5050FF\",\"#00C000\",\"#E6E600\",\"#E00000\",\"white\"],[\"#E00000\",\"#E6E600\",\"#5050FF\",\"#00C000\",\"white\"],[\"#00C000\",\"#5050FF\",\"#00C000\",\"#5050FF\",\"white\"],[\"#E6E600\",\"#E6E600\",\"#5050FF\",\"#E6E600\",\"white\"],[\"#E00000\",\"#5050FF\",\"#E00000\",\"#5050FF\",\"white\"],[\"#00C000\",\"#00C000\",\"#00C000\",\"#00C000\",\"white\"],[\"#5050FF\",\"#5050FF\",\"#E6E600\",\"#5050FF\",\"white\"],[\"#E6E600\",\"#E00000\",\"#E00000\",\"#E00000\",\"white\"],[\"#5050FF\",\"#E00000\",\"#00C000\",\"#00C000\",\"white\"],[\"#00C000\",\"#00C000\",\"#5050FF\",\"#E6E600\",\"white\"],[\"#5050FF\",\"#E6E600\",\"#E6E600\",\"#E00000\",\"white\"],[\"#E00000\",\"#00C000\",\"#5050FF\",\"#00C000\",\"white\"],[\"#00C000\",\"#5050FF\",\"#00C000\",\"#5050FF\",\"white\"],[\"#E6E600\",\"#E6E600\",\"#5050FF\",\"#E6E600\",\"white\"],[\"#E00000\",\"#5050FF\",\"#E00000\",\"#5050FF\",\"white\"],[\"#00C000\",\"#00C000\",\"#E00000\",\"#00C000\",\"white\"],[\"#5050FF\",\"#5050FF\",\"#00C000\",\"#5050FF\",\"white\"],[\"#E6E600\",\"#E00000\",\"#E6E600\",\"#E00000\",\"white\"],[\"#5050FF\",\"#00C000\",\"#5050FF\",\"#E00000\",\"white\"],[\"#00C000\",\"#E6E600\",\"#E6E600\",\"#00C000\",\"white\"],[\"#5050FF\",\"#E00000\",\"#5050FF\",\"#E6E600\",\"white\"],[\"#E00000\",\"#00C000\",\"#00C000\",\"white\"],[\"#E00000\",\"#5050FF\",\"#5050FF\",\"white\"],[\"#00C000\",\"#00C000\",\"#5050FF\",\"white\"],[\"#5050FF\",\"#5050FF\",\"#00C000\",\"white\"],[\"#E6E600\",\"#5050FF\",\"#5050FF\",\"white\"],[\"#5050FF\",\"#00C000\",\"#E00000\",\"white\"],[\"#00C000\",\"#5050FF\",\"#00C000\",\"white\"],[\"#5050FF\",\"#E00000\",\"#E6E600\",\"white\"],[\"#E00000\",\"#00C000\",\"#E00000\",\"white\"],[\"#E6E600\",\"#E6E600\",\"#00C000\",\"white\"],[\"#E00000\",\"#E00000\",\"#5050FF\",\"white\"],[\"#00C000\",\"#00C000\",\"#E6E600\",\"white\"],[\"#E6E600\",\"#5050FF\",\"#5050FF\",\"white\"],[\"#00C000\",\"#E6E600\",\"#00C000\",\"white\"],[\"#5050FF\",\"#5050FF\",\"#5050FF\",\"white\"],[\"#E6E600\",\"#00C000\",\"#E6E600\",\"white\"],[\"#5050FF\",\"#5050FF\",\"#5050FF\",\"white\"],[\"#00C000\",\"#E00000\",\"#00C000\",\"white\"]]},\"line\":{\"color\":\"white\",\"width\":0.0},\"font\":{\"family\":\"Consolas\",\"size\":14.0}},\"columnwidth\":[50,10]}];"
+            """var data = [{"type":"table","columnwidth":[50.0,10.0],"cells":{"align":["right","center"],"fill":{"color":[["white","white","white","white","white"],["#5050FF","#5050FF","#00C000","#5050FF","white"],["#E6E600","#E00000","#E6E600","#E00000","white"],["#00C000","#00C000","#E00000","#00C000","white"],["#5050FF","#E6E600","#00C000","#E6E600","white"],["#00C000","#E00000","#5050FF","#E00000","white"],["#5050FF","#00C000","#E6E600","#00C000","white"],["#E00000","#5050FF","#5050FF","#5050FF","white"],["#00C000","#E6E600","#00C000","#E6E600","white"],["#E6E600","#5050FF","#5050FF","#5050FF","white"],["#E00000","#00C000","#E00000","#00C000","white"],["#00C000","#5050FF","#00C000","#5050FF","white"],["#5050FF","#E00000","#E6E600","#E00000","white"],["#00C000","#00C000","#E00000","#E00000","white"],["#5050FF","#E6E600","#00C000","#00C000","white"],["#E00000","#E00000","#5050FF","#E6E600","white"],["#E6E600","#00C000","#E6E600","#5050FF","white"],["#00C000","#5050FF","#5050FF","#00C000","white"],["#5050FF","#E6E600","#00C000","#5050FF","white"],["#E6E600","#5050FF","#5050FF","#E00000","white"],["#5050FF","#00C000","#00C000","#00C000","white"],["#00C000","#5050FF","#5050FF","#E6E600","white"],["#5050FF","#00C000","#E6E600","#E00000","white"],["#E00000","#E6E600","#5050FF","#00C000","white"],["#00C000","#5050FF","#00C000","#5050FF","white"],["#E6E600","#E6E600","#5050FF","#E6E600","white"],["#E00000","#5050FF","#E00000","#5050FF","white"],["#00C000","#00C000","#00C000","#00C000","white"],["#5050FF","#5050FF","#E6E600","#5050FF","white"],["#E6E600","#E00000","#E00000","#E00000","white"],["#5050FF","#E00000","#00C000","#00C000","white"],["#00C000","#00C000","#5050FF","#E6E600","white"],["#5050FF","#E6E600","#E6E600","#E00000","white"],["#E00000","#00C000","#5050FF","#00C000","white"],["#00C000","#5050FF","#00C000","#5050FF","white"],["#E6E600","#E6E600","#5050FF","#E6E600","white"],["#E00000","#5050FF","#E00000","#5050FF","white"],["#00C000","#00C000","#E00000","#00C000","white"],["#5050FF","#5050FF","#00C000","#5050FF","white"],["#E6E600","#E00000","#E6E600","#E00000","white"],["#5050FF","#00C000","#5050FF","#E00000","white"],["#00C000","#E6E600","#E6E600","#00C000","white"],["#5050FF","#E00000","#5050FF","#E6E600","white"],["#E00000","#00C000","#00C000","white"],["#E00000","#5050FF","#5050FF","white"],["#00C000","#00C000","#5050FF","white"],["#5050FF","#5050FF","#00C000","white"],["#E6E600","#5050FF","#5050FF","white"],["#5050FF","#00C000","#E00000","white"],["#00C000","#5050FF","#00C000","white"],["#5050FF","#E00000","#E6E600","white"],["#E00000","#00C000","#E00000","white"],["#E6E600","#E6E600","#00C000","white"],["#E00000","#E00000","#5050FF","white"],["#00C000","#00C000","#E6E600","white"],["#E6E600","#5050FF","#5050FF","white"],["#00C000","#E6E600","#00C000","white"],["#5050FF","#5050FF","#5050FF","white"],["#E6E600","#00C000","#E6E600","white"],["#5050FF","#5050FF","#5050FF","white"],["#00C000","#E00000","#00C000","white"]]},"height":20,"line":{"color":"white","width":0.0},"values":[["0","60","120","180"],["A","A","G","A"],["T","C","T","C"],["G","G","C","G"],["A","T","G","T"],["G","C","A","C"],["A","G","T","G"],["C","A","A","A"],["G","T","G","T"],["T","A","A","A"],["C","G","C","G"],["G","A","G","A"],["A","C","T","C"],["G","G","C","C"],["A","T","G","G"],["C","C","A","T"],["T","G","T","A"],["G","A","A","G"],["A","T","G","A"],["T","A","A","C"],["A","G","G","G"],["G","A","A","T"],["A","G","T","C"],["C","T","A","G"],["G","A","G","A"],["T","T","A","T"],["C","A","C","A"],["G","G","G","G"],["A","A","T","A"],["T","C","C","C"],["A","C","G","G"],["G","G","A","T"],["A","T","T","C"],["C","G","A","G"],["G","A","G","A"],["T","T","A","T"],["C","A","C","A"],["G","G","C","G"],["A","A","G","A"],["T","C","T","C"],["A","G","A","C"],["G","T","T","G"],["A","C","A","T"],["C","G","G"],["C","A","A"],["G","G","A"],["A","A","G"],["T","A","A"],["A","G","C"],["G","A","G"],["A","C","T"],["C","G","C"],["T","T","G"],["C","C","A"],["G","G","T"],["T","A","A"],["G","T","G"],["A","A","A"],["T","G","T"],["A","A","A"],["G","C","G"]]},"header":{"fill":{},"line":{"color":"white","width":0.0},"values":["","","","","","","","","","","|","","","","","","","","","","|","","","","","","","","","","|","","","","","","","","","","|","","","","","","","","","","|","","","","","","","","","","|"]}}];"""
             |> chartGeneratedContains sequencePresentationTableChart
         );
         testCase "Sequence presentation table  layout" ( fun () ->

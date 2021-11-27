@@ -86,21 +86,48 @@ let funnelArea =
     let values = [|5; 4; 3; 2; 1|]
     let text = [|"The 1st"; "The 2nd"; "The 3rd"; "The 4th"; "The 5th"|]
     let line = Line.init (Color=Color.fromString "purple", Width=3.)
-    Chart.FunnelArea(Values=values, Text=text, Line=line, UseDefaults = false)
+    Chart.FunnelArea(values, MultiText=text, SectionOutline=line, UseDefaults = false)
+
+
+let funnelAreaStyled =
+    let values = [|5; 4; 3|]
+    let labels = [|"The 1st"; "The 2nd"; "The 3rd"|]
+
+    Chart.FunnelArea(
+        values,
+        Labels = labels,
+        MultiText = labels,
+        SectionColors = [
+            Color.fromKeyword Aqua
+            Color.fromKeyword Salmon
+            Color.fromKeyword Tan
+        ],
+        SectionOutlineColor = Color.fromKeyword Black,
+        SectionOutlineWidth = 2.,
+        AspectRatio = 0.75,
+        BaseRatio = 0.1,
+        UseDefaults = false
+    )
+
 
 [<Tests>]
 let ``Funnel area charts`` =
     testList "FinanceCharts.Funnel area charts" [
         testCase "Funnel area data" ( fun () ->
-            "var data = [{\"type\":\"funnelarea\",\"values\":[5,4,3,2,1],\"marker\":{\"line\":{\"color\":\"purple\",\"width\":3.0}},\"domain\":{},\"text\":[\"The 1st\",\"The 2nd\",\"The 3rd\",\"The 4th\",\"The 5th\"]}];"
+            """var data = [{"type":"funnelarea","values":[5,4,3,2,1],"text":["The 1st","The 2nd","The 3rd","The 4th","The 5th"],"marker":{"line":{"color":"purple","width":3.0}}}];"""
             |> chartGeneratedContains funnelArea
         );
         testCase "Funnel area layout" ( fun () ->
             emptyLayout funnelArea
+        );        
+        testCase "Funnel area styled data" ( fun () ->
+            """var data = [{"type":"funnelarea","values":[5,4,3],"labels":["The 1st","The 2nd","The 3rd"],"text":["The 1st","The 2nd","The 3rd"],"marker":{"colors":["rgba(0, 255, 255, 1.0)","rgba(250, 128, 114, 1.0)","rgba(210, 180, 140, 1.0)"],"line":{"color":"rgba(0, 0, 0, 1.0)","width":2.0}},"aspectratio":0.75,"baseratio":0.1}];"""
+            |> chartGeneratedContains funnelAreaStyled
+        );
+        testCase "Funnel area styled layout" ( fun () ->
+            emptyLayout funnelAreaStyled
         );
     ]
-
-
 
 let indicators =
     [

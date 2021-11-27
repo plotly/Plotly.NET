@@ -36,15 +36,15 @@ let's first create some data for the purpose of creating example charts:
 open Plotly.NET 
 open Plotly.NET.StyleParam
   
-let header = ["<b>RowIndex</b>";"A";"simple";"table"]
-let rows = 
-    [
-     ["0";"I"     ;"am"     ;"a"]        
-     ["1";"little";"example";"!"]       
-    ]
 
-
-let table1 = Chart.Table(header, rows)
+let table1 =
+    let header = ["<b>RowIndex</b>";"A";"simple";"table"]
+    let rows = 
+        [
+         ["0";"I"     ;"am"     ;"a"]        
+         ["1";"little";"example";"!"]       
+        ]
+    Chart.Table(header, rows)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -60,39 +60,25 @@ A little bit of styling:
 *)
 
 let table2 =
+    let header = ["<b>RowIndex</b>";"A";"simple";"table"]
+    let rows = 
+          [
+           ["0";"I"     ;"am"     ;"a"]        
+           ["1";"little";"example";"!"]       
+          ]
     Chart.Table(
         header,
         rows,
-        //sets global header alignment
-        AlignHeader = [HorizontalAlign.Center],
-        //sets alignment for each column separately 
-        //(The last alignment is applied to all potential following columns)
-        AlignCells  = [HorizontalAlign.Left;HorizontalAlign.Center;HorizontalAlign.Right],
-        //sets global header color
-        ColorHeader = Color.fromString "#45546a",    
-        //sets specific color to each header column
-        //ColorHeader=["#45546a";"#deebf7";"#45546a";"#deebf7"],    
-        //sets global cell color
-        //ColorRows = "#deebf7",
-        //sets cell column colors
-        ColorCells  = Color.fromColors [
-            Color.fromString "#deebf7"
-            Color.fromString "lightgrey"
-            Color.fromString "#deebf7"
-            Color.fromString "lightgrey"
-        ],
-        //sets cell row colors
-        //ColorCells=[["#deebf7";"lightgrey"]],
-        //sets font of header
-        FontHeader  = Font.init(FontFamily.Courier_New, Size=12., Color=Color.fromString "white"),      
-        //sets the height of the header
-        HeightHeader= 30.,
-        //sets lines of header
-        LineHeader  = Line.init(2.,Color.fromString "black"),                     
-        ColumnWidth = [70;50;100;70],      
-        //defines order of columns
-        ColumnOrder = [1;2;3;4]                                  
-        )
+        HeaderAlign = StyleParam.HorizontalAlign.Center,
+        CellsMultiAlign  = [StyleParam.HorizontalAlign.Left; StyleParam.HorizontalAlign.Center; StyleParam.HorizontalAlign.Right],
+        HeaderFillColor = Color.fromString "#45546a",
+        CellsFillColor  = Color.fromColors [Color.fromString "#deebf7"; Color.fromString "lightgrey"; Color.fromString "#deebf7"; Color.fromString "lightgrey"],
+        HeaderHeight = 30,
+        HeaderOutlineColor  = Color.fromString "black",                     
+        HeaderOutlineWidth  = 2.,                     
+        MultiColumnWidth = [70.; 50.; 100.; 70.],      
+        ColumnOrder = [1; 2; 3; 4]
+    )
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -107,41 +93,46 @@ table2 |> GenericChart.toChartHTML
 Value dependent cell coloring:
 *)
 
-let header2 = ["Identifier";"T0";"T1";"T2";"T3"]
-let rowvalues = 
-    [
-     [10001.;0.2;2.0;4.0;5.0]
-     [10002.;2.1;2.0;1.8;2.1]
-     [10003.;4.5;3.0;2.0;2.5]
-     [10004.;0.0;0.1;0.3;0.2]
-     [10005.;1.0;1.6;1.8;2.2]
-     [10006.;1.0;0.8;1.5;0.7]
-     [10007.;2.0;2.0;2.1;1.9]
-    ]
-    |> Seq.sortBy (fun x -> x.[1])
-
-//map color from value to hex representation
-let mapColor min max value = 
-    let proportion = 
-        (255. * (value - min) / (max - min))
-        |> int
-    Color.fromRGB 255 (255 - proportion) proportion
+let table3 =
+    let header2 = ["Identifier";"T0";"T1";"T2";"T3"]
+    let rowvalues = 
+        [
+         [10001.;0.2;2.0;4.0;5.0]
+         [10002.;2.1;2.0;1.8;2.1]
+         [10003.;4.5;3.0;2.0;2.5]
+         [10004.;0.0;0.1;0.3;0.2]
+         [10005.;1.0;1.6;1.8;2.2]
+         [10006.;1.0;0.8;1.5;0.7]
+         [10007.;2.0;2.0;2.1;1.9]
+        ]
+        |> Seq.sortBy (fun x -> x.[1])
     
-//Assign a color to every cell seperately. Matrix must be transposed for correct orientation.
-let cellcolor = 
-     rowvalues
-     |> Seq.map (fun row ->
-        row 
-        |> Seq.mapi (fun index value -> 
-            if index = 0 then Color.fromString "white"
-            else mapColor 0. 5. value
+    //map color from value to hex representation
+    let mapColor min max value = 
+        let proportion = 
+            (255. * (value - min) / (max - min))
+            |> int
+        Color.fromRGB 255 (255 - proportion) proportion
+        
+    //Assign a color to every cell seperately. Matrix must be transposed for correct orientation.
+    let cellcolor = 
+         rowvalues
+         |> Seq.map (fun row ->
+            row 
+            |> Seq.mapi (fun index value -> 
+                if index = 0 then Color.fromString "white"
+                else mapColor 0. 5. value
+                )
             )
-        )
-    |> Seq.transpose
-    |> Seq.map Color.fromColors
-    |> Color.fromColors
+        |> Seq.transpose
+        |> Seq.map Color.fromColors
+        |> Color.fromColors
 
-let table3 = Chart.Table(header2,rowvalues,ColorCells=cellcolor)
+    Chart.Table(
+        header2,
+        rowvalues,
+        CellsFillColor=cellcolor
+    )
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -158,7 +149,8 @@ Sequence representation:
 
 *)
 
-let sequence =
+let table4 =
+    let sequence =
         [
         "ATGAGACGTCGAGACTGATAGACGTCGATAGACGTCGATAGACCG"
         "ATAGACTCGTGATAGACGTCGATAGACGTCGATAGAGTATAGACC"
@@ -168,59 +160,56 @@ let sequence =
         ]
         |> String.concat ""
 
-let elementsPerRow = 60
+    let elementsPerRow = 60
 
-let headers = 
-    [0..elementsPerRow] 
-    |> Seq.map (fun x -> 
-        if x%10=0 && x <> 0 then "|" 
-        else ""
-        )
-
-let cells = 
-    sequence
-    |> Seq.chunkBySize elementsPerRow
-    |> Seq.mapi (fun i x -> Seq.append [string (i * elementsPerRow)] (Seq.map string x))
-
-let cellcolors =
-    cells
-    |> Seq.map (fun row -> 
-        row 
-        |> Seq.map (fun element -> 
-            match element with
-            //colors taken from DRuMS 
-            //(http://biomodel.uah.es/en/model4/dna/atgc.htm)
-            | "A" -> Color.fromHex "#5050FF" 
-            | "T" -> Color.fromHex "#E6E600"
-            | "G" -> Color.fromHex "#00C000"
-            | "C" -> Color.fromHex "#E00000"
-            | "U" -> Color.fromHex "#B48100"
-            | _   -> Color.fromString "white"
+    let headers = 
+        [0..elementsPerRow] 
+        |> Seq.map (fun x -> 
+            if x%10=0 && x <> 0 then "|" 
+            else ""
             )
-        )
-    |> Seq.transpose
-    |> Seq.map (fun x -> Seq.append x (seq [Color.fromString "white"]))
-    |> Seq.map Color.fromColors
-    |> Color.fromColors
 
-let font = Font.init(FontFamily.Consolas,Size=14.)
-let line = Line.init(0.,Color.fromString "white")
-let chartwidth = 50. + 10. * float elementsPerRow
+    let cells = 
+        sequence
+        |> Seq.chunkBySize elementsPerRow
+        |> Seq.mapi (fun i x -> Seq.append [string (i * elementsPerRow)] (Seq.map string x))
 
-let table4 =
+    let cellcolors =
+        cells
+        |> Seq.map (fun row -> 
+            row 
+            |> Seq.map (fun element -> 
+                match element with
+                //colors taken from DRuMS 
+                //(http://biomodel.uah.es/en/model4/dna/atgc.htm)
+                | "A" -> Color.fromString "#5050FF" 
+                | "T" -> Color.fromString "#E6E600"
+                | "G" -> Color.fromString "#00C000"
+                | "C" -> Color.fromString "#E00000"
+                | "U" -> Color.fromString "#B48100"
+                | _   -> Color.fromString "white"
+                )
+            )
+        |> Seq.transpose
+        |> Seq.map (fun x -> Seq.append x (seq [Color.fromString "white"]))
+        |> Seq.map Color.fromColors
+        |> Color.fromColors
+
+    let line = Line.init(Width = 0., Color = Color.fromString "white")
+    let chartwidth = 50 + 10 * elementsPerRow
+
     Chart.Table(
         headers,
         cells,
-        LineCells   = line,
-        LineHeader  = line,
-        HeightCells = 20.,
-        FontHeader  = font,
-        FontCells   = font,
-        ColumnWidth = [50;10],
-        AlignCells  = [HorizontalAlign.Right;HorizontalAlign.Center],
-        ColorCells  = cellcolors
+        CellsOutline   = line,
+        HeaderOutline  = line,
+        CellsHeight = 20,
+        MultiColumnWidth = [50.;10.],
+        CellsMultiAlign  = [StyleParam.HorizontalAlign.Right;StyleParam.HorizontalAlign.Center],
+        CellsFillColor  = cellcolors, 
+        UseDefaults = false
         )
-    |> Chart.withSize(chartwidth,nan)
+    |> Chart.withSize(Width=chartwidth)
     |> Chart.withTitle "Sequence A"
 
 (*** condition: ipynb ***)

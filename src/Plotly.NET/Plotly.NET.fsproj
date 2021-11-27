@@ -93,7 +93,8 @@
     <Compile Include="Traces\ObjectAbstractions\Selection.fs" />
     <Compile Include="Traces\ObjectAbstractions\StockData.fs" />
     <Compile Include="Traces\ObjectAbstractions\Pathbar.fs" />
-    <Compile Include="Traces\ObjectAbstractions\TreemapTiling.fs" />
+    <Compile Include="Traces\ObjectAbstractions\Treemap.fs" />
+    <Compile Include="Traces\ObjectAbstractions\Sunburst.fs" />
     <Compile Include="Traces\ObjectAbstractions\Contours.fs" />
     <Compile Include="Traces\ObjectAbstractions\Dimensions.fs" />
     <Compile Include="Traces\ObjectAbstractions\WaterfallConnector.fs" />
@@ -108,6 +109,7 @@
     <Compile Include="Traces\ObjectAbstractions\Icicle.fs" />
     <Compile Include="Traces\ObjectAbstractions\FinanceMarker.fs" />
     <Compile Include="Traces\ObjectAbstractions\SplomDiagonal.fs" />
+    <Compile Include="Traces\ObjectAbstractions\Sankey.fs" />
     <Compile Include="Traces\Trace.fs" />
     <Compile Include="Traces\Trace2D.fs" />
     <Compile Include="Traces\Trace3D.fs" />
@@ -118,6 +120,7 @@
     <Compile Include="Traces\TraceCarpet.fs" />
     <Compile Include="Traces\TraceDomain.fs" />
     <Compile Include="Traces\TraceID.fs" />
+    <Folder Include="Extensions\" />
     <Folder Include="Layout\ObjectAbstractions\2D\" />
     <Compile Include="Config\ObjectAbstractions\ToImageButtonOptions.fs" />
     <Compile Include="Config\Config.fs" />
@@ -137,7 +140,6 @@
     <Compile Include="ChartAPI\ChartCarpet.fs" />
     <Compile Include="ChartAPI\ChartDomain.fs" />
     <Compile Include="CSharpLayer\GenericChartExtensions.fs" />
-    <Compile Include="Extensions\SankeyExtension.fs" />
     <None Include="Playground.fsx" />
   </ItemGroup>
   <ItemGroup>

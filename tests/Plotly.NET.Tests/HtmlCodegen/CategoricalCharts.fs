@@ -9,7 +9,7 @@ open System
 
 open TestUtils.HtmlCodegen
 
-let parallelCategoriesChart =
+let parcats =
     let dims =
         [
             Dimension.initParallel(Values = ["Cat1";"Cat1";"Cat1";"Cat1";"Cat2";"Cat2";"Cat3"],Label="A")
@@ -18,8 +18,25 @@ let parallelCategoriesChart =
     
     Chart.ParallelCategories(
         dims,
-        Color=Color.fromColorScaleValues [0.;1.;0.;1.;0.;0.;0.],
-        Colorscale = StyleParam.Colorscale.Blackbody, 
+        LineColor=Color.fromColorScaleValues [0.;1.;0.;1.;0.;0.;0.],
+        LineColorScale = StyleParam.Colorscale.Blackbody, 
+        UseDefaults = false
+    )
+
+
+let parcatsStyled =
+    let dims =
+        [
+            Dimension.initParallel(Values = ["A";"A";"A";"B";"B";"B";"C";"D"],Label="Lvl1")
+            Dimension.initParallel(Values = ["AA";"AA";"AB";"AB";"AB";"AB";"AB";"AB"],Label="Lvl2")
+            Dimension.initParallel(Values = ["AAA";"AAB";"AAC";"AAC";"AAB";"AAB";"AAA";"AAA"],Label="Lvl3")
+        ]
+
+    Chart.ParallelCategories(
+        dims,
+        LineColor = Color.fromColorScaleValues [0; 1; 2; 2; 1; 1; 0; 0], // These values map to the last category axis, meaning [AAA => 0; AAB = 1; AAC => 2]
+        LineColorScale = StyleParam.Colorscale.Viridis,
+        BundleColors = false,
         UseDefaults = false
     )
 
@@ -27,16 +44,23 @@ let parallelCategoriesChart =
 let ``Parallel categories charts`` =
     testList "CategoricalCharts.Parallel categories charts" [
         testCase "Parallel categories data" ( fun () ->
-            """var data = [{"type":"parcats","dimensions":[{"label":"A","values":["Cat1","Cat1","Cat1","Cat1","Cat2","Cat2","Cat3"],"axis":{}},{"label":"B","values":[0,1,0,1,0,0,0],"ticktext":["YES","NO"],"axis":{}}],"color":[0.0,1.0,0.0,1.0,0.0,0.0,0.0],"line":{"colorscale":"Blackbody"}}];"""
-            |> chartGeneratedContains parallelCategoriesChart
+            """var data = [{"type":"parcats","dimensions":[{"label":"A","values":["Cat1","Cat1","Cat1","Cat1","Cat2","Cat2","Cat3"],"axis":{}},{"label":"B","values":[0,1,0,1,0,0,0],"ticktext":["YES","NO"],"axis":{}}],"line":{"color":[0.0,1.0,0.0,1.0,0.0,0.0,0.0],"colorscale":"Blackbody"}}];"""
+            |> chartGeneratedContains parcats
         );
         testCase "Parallel categories layout" ( fun () ->
-            emptyLayout parallelCategoriesChart
+            emptyLayout parcats
+        );        
+        testCase "Parallel categories styled data" ( fun () ->
+            """var data = [{"type":"parcats","dimensions":[{"label":"Lvl1","values":["A","A","A","B","B","B","C","D"],"axis":{}},{"label":"Lvl2","values":["AA","AA","AB","AB","AB","AB","AB","AB"],"axis":{}},{"label":"Lvl3","values":["AAA","AAB","AAC","AAC","AAB","AAB","AAA","AAA"],"axis":{}}],"line":{"color":[0,1,2,2,1,1,0,0],"colorscale":"Viridis"},"bundlecolors":false}];"""
+            |> chartGeneratedContains parcatsStyled
+        );
+        testCase "Parallel categories styled layout" ( fun () ->
+            emptyLayout parcatsStyled
         );
     ]
 
 
-let parcoords1Chart =
+let parcoords =
     let data = 
         [
             "A",[1.;4.;3.4;0.7;]
@@ -44,91 +68,91 @@ let parcoords1Chart =
             "C",[2.;4.;3.1;5.]
             "D",[4.;2.;2.;4.;]
         ]
-    Chart.ParallelCoord(data,Color=Color.fromString "blue", UseDefaults = false)
+    Chart.ParallelCoord(data,LineColor=Color.fromString "blue", UseDefaults = false)
 
-let parcoordsChart = 
-    let v = [|
-        Dimension.initParallel(
-            Values = [|1.;4.;|],  
-            Range = StyleParam.Range.MinMax (1.,5.),
-            ConstraintRange = StyleParam.Range.MinMax (1.,2.),
-            Label="A");
-        Dimension.initParallel(
-            Values = [|3.;1.5;|], 
-            Range = StyleParam.Range.MinMax (1.,5.),
-            Label="B",
-            Tickvals=[|1.5;3.;4.;5.;|]);
-        Dimension.initParallel(
-            Values = [|2.;4.;|],  
-            Range = StyleParam.Range.MinMax (1.,5.),
-            Label= "C",
-            Tickvals=[|1.;2.;4.;5.;|],
-            TickText=[|"txt 1";"txt 2";"txt 4";"txt 5";|]);
-        Dimension.initParallel(
-            Values = [|4.;2.;|],  
-            Range = StyleParam.Range.MinMax (1.,5.),
-            Label="D");
-    |]
+let parcoordsStyled =
 
-    let dyn = Trace("parcoords")
+    let dims = 
+        [
+            Dimension.initParallel(Label = "1", Values = ([1;2;3;4] ), Range = StyleParam.Range.MinMax(0., 8.))
+            Dimension.initParallel(Label = "2", Values = ([1;2;3;4] |> List.rev ), Range = StyleParam.Range.MinMax(0., 8.))
+            Dimension.initParallel(Label = "3", Values = ([1;2;3;4] ), Range = StyleParam.Range.MinMax(0., 8.))
+            Dimension.initParallel(Label = "4", Values = ([1;2;3;4] |> List.rev ), Range = StyleParam.Range.MinMax(0., 8.))
+        ]
 
-    dyn?dimensions <- v
-    dyn?line <- Line.init(Color =Color.fromString "blue")
+    let colors = 
+        [1;2;3;4]
+        |> Color.fromColorScaleValues
 
-    dyn
-    |> GenericChart.ofTraceObject false
+    Chart.ParallelCoord(
+        dims,
+        LineColorScale = StyleParam.Colorscale.Viridis,
+        LineColor = colors,
+        UseDefaults = false
+    )
 
 [<Tests>]
 let ``Parallel coordinates charts`` =
     testList "CategoricalCharts.Parallel coordinates charts" [
-        testCase "Parallel coordinates 1 data" ( fun () ->
-            """var data = [{"type":"parcoords","dimensions":[{"label":"A","values":[1.0,4.0,3.4,0.7],"axis":{}},{"label":"B","values":[3.0,1.5,1.7,2.3],"axis":{}},{"label":"C","values":[2.0,4.0,3.1,5.0],"axis":{}},{"label":"D","values":[4.0,2.0,2.0,4.0],"axis":{}}],"line":{"color":"blue"}}];"""
-            |> chartGeneratedContains parcoords1Chart
-        );
-        testCase "Parallel coordinates 1 layout" ( fun () ->
-            emptyLayout parcoords1Chart
-        );
         testCase "Parallel coordinates data" ( fun () ->
-            """var data = [{"type":"parcoords","dimensions":[{"label":"A","values":[1.0,4.0],"constraintrange":[1.0,2.0],"range":[1.0,5.0],"axis":{}},{"label":"B","values":[3.0,1.5],"range":[1.0,5.0],"tickvals":[1.5,3.0,4.0,5.0],"axis":{}},{"label":"C","values":[2.0,4.0],"range":[1.0,5.0],"ticktext":["txt 1","txt 2","txt 4","txt 5"],"tickvals":[1.0,2.0,4.0,5.0],"axis":{}},{"label":"D","values":[4.0,2.0],"range":[1.0,5.0],"axis":{}}],"line":{"color":"blue"}}];"""
-            |> chartGeneratedContains parcoordsChart
+            """var data = [{"type":"parcoords","dimensions":[{"label":"A","values":[1.0,4.0,3.4,0.7],"axis":{}},{"label":"B","values":[3.0,1.5,1.7,2.3],"axis":{}},{"label":"C","values":[2.0,4.0,3.1,5.0],"axis":{}},{"label":"D","values":[4.0,2.0,2.0,4.0],"axis":{}}],"line":{"color":"blue"}}];"""
+            |> chartGeneratedContains parcoords
         );
         testCase "Parallel coordinates layout" ( fun () ->
-            emptyLayout parcoordsChart
+            emptyLayout parcoords
+        );
+        testCase "Parallel coordinates styled data" ( fun () ->
+            """var data = [{"type":"parcoords","dimensions":[{"label":"1","values":[1,2,3,4],"range":[0.0,8.0],"axis":{}},{"label":"2","values":[4,3,2,1],"range":[0.0,8.0],"axis":{}},{"label":"3","values":[1,2,3,4],"range":[0.0,8.0],"axis":{}},{"label":"4","values":[4,3,2,1],"range":[0.0,8.0],"axis":{}}],"line":{"color":[1,2,3,4],"colorscale":"Viridis"}}];"""
+            |> chartGeneratedContains parcoordsStyled
+        );
+        testCase "Parallel coordinates styled layout" ( fun () ->
+            emptyLayout parcoordsStyled
         );
     ]
 
 
-let sankey1 = 
-    // create nodes
-    let n1 = Node.Create("a",color=Color.fromString "Black")
-    let n2 = Node.Create("b",color=Color.fromString "Red")
-    let n3 = Node.Create("c",color=Color.fromString "Purple")
-    let n4 = Node.Create("d",color=Color.fromString "Green")
-    let n5 = Node.Create("e",color=Color.fromString "Orange")
-    
-    // create links between nodes
-    let link1 = Link.Create(n1,n2,value=1.0)
-    let link2 = Link.Create(n2,n3,value=2.0)
-    let link3 = Link.Create(n1,n5,value=1.3)
-    let link4 = Link.Create(n4,n5,value=1.5)
-    let link5 = Link.Create(n3,n5,value=0.5)
+
+let styledSankey = 
     Chart.Sankey(
-        [n1;n2;n3;n4;n5],
-        [link1;link2;link3;link4;link5], 
+        nodeLabels = ["A1"; "A2"; "B1"; "B2"; "C1"; "C2"; "D1"],
+        linkedNodeIds = [
+            0,2
+            0,3
+            1,3
+            2,4
+            3,4
+            3,5
+            4,6
+            5,6
+        ],
+        NodeOutlineColor = Color.fromKeyword Black,
+        NodeOutlineWidth = 1.,
+        linkValues = [8; 4; 2; 7; 3; 2; 5; 2],
+        LinkColor = Color.fromColors [
+            Color.fromHex "#828BFB"
+            Color.fromHex "#828BFB"
+            Color.fromHex "#F27762"
+            Color.fromHex "#33D6AB"
+            Color.fromHex "#BC82FB"
+            Color.fromHex "#BC82FB"
+            Color.fromHex "#FFB47B"
+            Color.fromHex "#47DCF5"
+        ],
+        LinkOutlineColor = Color.fromKeyword Black,
+        LinkOutlineWidth = 1.,
         UseDefaults = false
     )
-    |> Chart.withTitle "Sankey Sample"
+
 
 [<Tests>]
 let ``Sankey charts`` =
     testList "CategoricalCharts.Sankey charts" [
         testCase "Sankey data" ( fun () ->
-            "var data = [{\"type\":\"sankey\",\"node\":{\"label\":[\"a\",\"b\",\"c\",\"d\",\"e\"],\"color\":[\"Black\",\"Red\",\"Purple\",\"Green\",\"Orange\"]},\"link\":{\"source\":[0,1,0,3,2],\"target\":[1,2,4,4,4],\"value\":[1.0,2.0,1.3,1.5,0.5]}}];"
-            |> chartGeneratedContains sankey1
+            """var data = [{"type":"sankey","node":{"label":["A1","A2","B1","B2","C1","C2","D1"],"line":{"color":"rgba(0, 0, 0, 1.0)","width":1.0}},"link":{"color":["rgba(130, 139, 251, 1.0)","rgba(130, 139, 251, 1.0)","rgba(242, 119, 98, 1.0)","rgba(51, 214, 171, 1.0)","rgba(188, 130, 251, 1.0)","rgba(188, 130, 251, 1.0)","rgba(255, 180, 123, 1.0)","rgba(71, 220, 245, 1.0)"],"line":{"color":"rgba(0, 0, 0, 1.0)","width":1.0},"source":[0,0,1,2,3,3,4,5],"target":[2,3,3,4,4,5,6,6],"value":[8,4,2,7,3,2,5,2]}}];"""
+            |> chartGeneratedContains styledSankey
         )
         testCase "Sankey layout" ( fun () ->
-            "var layout = {\"title\":{\"text\":\"Sankey Sample\"}};"
-            |> chartGeneratedContains sankey1
+            emptyLayout styledSankey
         )
     ]
 
@@ -139,11 +163,39 @@ let icicleChart =
     Chart.Icicle(
         character,
         parent,
-        ShowScale = true,
-        ColorScale = StyleParam.Colorscale.Viridis,
+        ShowSectionColorScale = true,
+        SectionColorScale = StyleParam.Colorscale.Viridis,
         TilingOrientation = StyleParam.Orientation.Vertical,
         TilingFlip = StyleParam.TilingFlip.Y,
         PathBarEdgeShape = StyleParam.PathbarEdgeShape.BackSlash, 
+        UseDefaults = false
+    )
+
+let icicleStyled = 
+    let labelsParents = [
+        ("A",""), 20
+        ("B",""), 1
+        ("C",""), 2
+        ("D",""), 3
+        ("E",""), 4
+
+        ("AA","A"), 15
+        ("AB","A"), 5
+
+        ("BA","B"), 1
+
+        ("AAA", "AA"), 10
+        ("AAB", "AA"), 5
+    ]
+
+    Chart.Icicle(
+        labelsParents |> Seq.map fst,
+        Values = (labelsParents |> Seq.map snd), 
+        BranchValues = StyleParam.BranchValues.Total, // branch values are the total of their childrens values
+        SectionColorScale = StyleParam.Colorscale.Viridis,
+        ShowSectionColorScale = true,
+        SectionOutlineColor = Color.fromKeyword Black,
+        Tiling = IcicleTiling.init(Flip = StyleParam.TilingFlip.XY),
         UseDefaults = false
     )
 
@@ -151,10 +203,117 @@ let icicleChart =
 let ``Icicle charts`` =
     testList "CategoricalCharts.Icicle charts" [
         testCase "Icicle data" ( fun () ->
-            """var data = [{"type":"icicle","parents":["","Eve","Eve","Seth","Seth","Eve","Eve","Awan","Eve"],"labels":["Eve","Cain","Seth","Enos","Noam","Abel","Awan","Enoch","Azura"],"tiling":{"flip":"y","orientation":"v"},"pathbar":{"edgeshape":"\\"},"marker":{"colorscale":"Viridis","showscale":true}}];"""
+            """var data = [{"type":"icicle","parents":["","Eve","Eve","Seth","Seth","Eve","Eve","Awan","Eve"],"labels":["Eve","Cain","Seth","Enos","Noam","Abel","Awan","Enoch","Azura"],"marker":{"colorscale":"Viridis","line":{},"showscale":true},"tiling":{"flip":"y","orientation":"v"},"pathbar":{"edgeshape":"\\"}}];"""
             |> chartGeneratedContains icicleChart
         )
         testCase "Icicle layout" ( fun () ->
             emptyLayout icicleChart
+        )        
+        testCase "Icicle styled data" ( fun () ->
+            """var data = [{"type":"icicle","parents":["","","","","","A","A","B","AA","AA"],"values":[20,1,2,3,4,15,5,1,10,5],"labels":["A","B","C","D","E","AA","AB","BA","AAA","AAB"],"marker":{"colorscale":"Viridis","line":{"color":"rgba(0, 0, 0, 1.0)"},"showscale":true},"branchvalues":"total","tiling":{"flip":"x+y"},"pathbar":{}}];"""
+            |> chartGeneratedContains icicleStyled
         )
+        testCase "Icicle styled layout" ( fun () ->
+            emptyLayout icicleStyled
+        )
+    ]
+
+
+let sunburstChart =
+    let values = [19; 26; 55;]
+    let labels = ["Residential"; "Non-Residential"; "Utility"]
+    Chart.Sunburst(
+        ["A";"B";"C";"D";"E"],
+        ["";"";"B";"B";""],
+        Values=[5.;0.;3.;2.;3.],
+        MultiText=["At";"Bt";"Ct";"Dt";"Et"], 
+        UseDefaults = false
+    )
+
+let sunburstStyled = 
+    let labelsParents = [
+        ("A",""), 20
+        ("B",""), 1
+        ("C",""), 2
+        ("D",""), 3
+        ("E",""), 4
+
+        ("AA","A"), 15
+        ("AB","A"), 5
+
+        ("BA","B"), 1
+
+        ("AAA", "AA"), 10
+        ("AAB", "AA"), 5
+    ]
+
+    Chart.Sunburst(
+        labelsParents |> Seq.map fst,
+        Values = (labelsParents |> Seq.map snd), 
+        BranchValues = StyleParam.BranchValues.Total, // branch values are the total of their childrens values
+        SectionColorScale = StyleParam.Colorscale.Viridis,
+        ShowSectionColorScale = true,
+        SectionOutlineColor = Color.fromKeyword Black,
+        Rotation = 45,
+        UseDefaults = false
+    )
+
+[<Tests>]
+let ``Sunburst charts`` =
+    testList "CategoricalCharts.Sunburst charts" [
+        testCase "Sunburst data" ( fun () ->
+            """var data = [{"type":"sunburst","parents":["","","B","B",""],"values":[5.0,0.0,3.0,2.0,3.0],"labels":["A","B","C","D","E"],"text":["At","Bt","Ct","Dt","Et"],"marker":{"line":{}}}];"""
+            |> chartGeneratedContains sunburstChart
+        );
+        testCase "Sunburst layout" ( fun () ->
+            emptyLayout sunburstChart
+        );       
+        testCase "Sunburst styled data" ( fun () ->
+            """var data = [{"type":"sunburst","parents":["","","","","","A","A","B","AA","AA"],"values":[20,1,2,3,4,15,5,1,10,5],"labels":["A","B","C","D","E","AA","AB","BA","AAA","AAB"],"marker":{"colorscale":"Viridis","line":{"color":"rgba(0, 0, 0, 1.0)"},"showscale":true},"branchvalues":"total","rotation":45}];"""
+            |> chartGeneratedContains sunburstStyled
+        );
+        testCase "Sunburst styled layout" ( fun () ->
+            emptyLayout sunburstStyled
+        );
+    ]
+
+
+let treemapStyled = 
+    let labelsParents = [
+        ("A",""), 20
+        ("B",""), 1
+        ("C",""), 2
+        ("D",""), 3
+        ("E",""), 4
+
+        ("AA","A"), 15
+        ("AB","A"), 5
+
+        ("BA","B"), 1
+
+        ("AAA", "AA"), 10
+        ("AAB", "AA"), 5
+    ]
+
+    Chart.Treemap(
+        labelsParents |> Seq.map fst,
+        Values = (labelsParents |> Seq.map snd), 
+        BranchValues = StyleParam.BranchValues.Total, // branch values are the total of their childrens values
+        SectionColorScale = StyleParam.Colorscale.Viridis,
+        ShowSectionColorScale = true,
+        SectionOutlineColor = Color.fromKeyword Black,
+        Tiling = TreemapTiling.init(Packing = StyleParam.TreemapTilingPacking.SliceDice),
+        UseDefaults = false
+    )
+
+[<Tests>]
+let ``Treemap charts`` =
+    testList "CategoricalCharts.Treemap charts" [
+        testCase "Treemap styled data" ( fun () ->
+            """var data = [{"type":"treemap","parents":["","","","","","A","A","B","AA","AA"],"values":[20,1,2,3,4,15,5,1,10,5],"labels":["A","B","C","D","E","AA","AB","BA","AAA","AAB"],"marker":{"colorscale":"Viridis","line":{"color":"rgba(0, 0, 0, 1.0)"},"showscale":true},"branchvalues":"total","tiling":{"packing":"slice-dice"}}];"""
+            |> chartGeneratedContains treemapStyled
+        );
+        testCase "Treemap styled layout" ( fun () ->
+            emptyLayout treemapStyled
+        );
     ]

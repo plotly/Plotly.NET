@@ -7,64 +7,17 @@ open System
 open System.Runtime.InteropServices
 
 /// CellColor type inherits from dynamic object
-type CellColor() =
+type TableFill() =
     inherit DynamicObj()
 
-    /// Initialized Line object
     static member init([<Optional; DefaultParameterValue(null)>] ?Color: Color) =
-        CellColor() |> CellColor.style (?Color = Color)
-    // Applies the styles to CellColor()
+        TableFill() |> TableFill.style (?Color = Color)
+
     static member style([<Optional; DefaultParameterValue(null)>] ?Color: Color) =
-        (fun (cell: CellColor) ->
-            Color |> DynObj.setValueOpt cell "color"
-            // out ->
-            cell)
+        (fun (fill: TableFill) ->
+            Color |> DynObj.setValueOpt fill "color"
+            fill)
 
-
-/// Header type inherits from dynamic object
-type TableHeader() =
-    inherit DynamicObj()
-
-    /// Initialized Header object
-    static member init
-        (
-            values: seq<#seq<#IConvertible>>,
-            [<Optional; DefaultParameterValue(null)>] ?Align: seq<StyleParam.HorizontalAlign>,
-            [<Optional; DefaultParameterValue(null)>] ?Height: float,
-            [<Optional; DefaultParameterValue(null)>] ?Fill: CellColor,
-            [<Optional; DefaultParameterValue(null)>] ?Font: Font,
-            [<Optional; DefaultParameterValue(null)>] ?Line: Line
-        ) =
-        TableHeader()
-        |> TableHeader.style (
-            values = values,
-            ?Align = Align,
-            ?Height = Height,
-            ?Fill = Fill,
-            ?Font = Font,
-            ?Line = Line
-
-        )
-
-    /// Applies the styles to TableHeader()
-    static member style
-        (
-            values: seq<#seq<#IConvertible>>,
-            [<Optional; DefaultParameterValue(null)>] ?Align: seq<StyleParam.HorizontalAlign>,
-            [<Optional; DefaultParameterValue(null)>] ?Height: float,
-            [<Optional; DefaultParameterValue(null)>] ?Fill: CellColor,
-            [<Optional; DefaultParameterValue(null)>] ?Font: Font,
-            [<Optional; DefaultParameterValue(null)>] ?Line: Line
-        ) =
-        (fun (header: TableHeader) ->
-
-            values |> DynObj.setValue header "values"
-            Align |> DynObj.setValueOptBy header "align" (Seq.map StyleParam.HorizontalAlign.convert)
-            Height |> DynObj.setValueOpt header "height"
-            Fill |> DynObj.setValueOpt header "fill"
-            Line |> DynObj.setValueOpt header "line"
-            Font |> DynObj.setValueOpt header "font"
-            header)
 
 /// Cells type inherits from dynamic object
 type TableCells() =
@@ -73,40 +26,64 @@ type TableCells() =
     /// Initialized Cells object
     static member init
         (
-            values: seq<#seq<#IConvertible>>,
-            ?Align: seq<StyleParam.HorizontalAlign>,
-            ?Height: float,
-            ?Fill: CellColor,
+            ?Align: StyleParam.HorizontalAlign,
+            ?MultiAlign: seq<StyleParam.HorizontalAlign>,
+            ?Fill: TableFill,
             ?Font: Font,
-            ?Line: Line
+            ?Format: seq<string>,
+            ?Height: int,
+            ?Line: Line,
+            ?Prefix: string,
+            ?MultiPrefix: seq<string>,
+            ?Suffix: string,
+            ?MultiSuffix: seq<string>,
+            ?Values: seq<#seq<#IConvertible>>
         ) =
         TableCells()
         |> TableCells.style (
-            values = values,
             ?Align = Align,
-            ?Height = Height,
+            ?MultiAlign = MultiAlign,
             ?Fill = Fill,
             ?Font = Font,
-            ?Line = Line
-
+            ?Format = Format,
+            ?Height = Height,
+            ?Line = Line,
+            ?Prefix = Prefix,
+            ?MultiPrefix = MultiPrefix,
+            ?Suffix = Suffix,
+            ?MultiSuffix = MultiSuffix,
+            ?Values = Values
         )
 
     //Applies the styles to TableCells()
     static member style
         (
-            values: seq<#seq<#IConvertible>>,
-            ?Align: seq<StyleParam.HorizontalAlign>,
-            ?Height: float,
-            ?Fill: CellColor,
-            ?Font: Font,
-            ?Line: Line
+            [<Optional; DefaultParameterValue(null)>] ?Align: StyleParam.HorizontalAlign,
+            [<Optional; DefaultParameterValue(null)>] ?MultiAlign: seq<StyleParam.HorizontalAlign>,
+            [<Optional; DefaultParameterValue(null)>] ?Fill: TableFill,
+            [<Optional; DefaultParameterValue(null)>] ?Font: Font,
+            [<Optional; DefaultParameterValue(null)>] ?Format: seq<string>,
+            [<Optional; DefaultParameterValue(null)>] ?Height: int,
+            [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+            [<Optional; DefaultParameterValue(null)>] ?Prefix: string,
+            [<Optional; DefaultParameterValue(null)>] ?MultiPrefix: seq<string>,
+            [<Optional; DefaultParameterValue(null)>] ?Suffix: string,
+            [<Optional; DefaultParameterValue(null)>] ?MultiSuffix: seq<string>,
+            [<Optional; DefaultParameterValue(null)>] ?Values: seq<#seq<#IConvertible>>
         ) =
         (fun (cells: TableCells) ->
 
-            values |> DynObj.setValue cells "values"
-            Align |> DynObj.setValueOptBy cells "align" (Seq.map StyleParam.HorizontalAlign.convert)
-            Height |> DynObj.setValueOpt cells "height"
+            (Align, MultiAlign) |> DynObj.setSingleOrMultiOptBy cells "align" StyleParam.HorizontalAlign.convert
             Fill |> DynObj.setValueOpt cells "fill"
-            Line |> DynObj.setValueOpt cells "line"
             Font |> DynObj.setValueOpt cells "font"
+            Format |> DynObj.setValueOpt cells "format"
+            Height |> DynObj.setValueOpt cells "height"
+            Line |> DynObj.setValueOpt cells "line"
+            (Prefix, MultiPrefix) |> DynObj.setSingleOrMultiOpt cells "prefix"
+            (Suffix, MultiSuffix) |> DynObj.setSingleOrMultiOpt cells "suffix"
+            Values |> DynObj.setValueOpt cells "values"
+
+
             cells)
+
+type TableHeader = TableCells

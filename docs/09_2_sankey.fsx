@@ -35,29 +35,38 @@ These are usually used to depict flow between nodes or stations.
 To create Sankey, a set of nodes and links between them are required. 
 These are created using the provided Node and Link structures.
 *)
-
-open Plotly.NET 
-
-// create nodes
-let n1 = Node.Create("a",color="Black")
-let n2 = Node.Create("b",color="Red")
-let n3 = Node.Create("c",color="Purple")
-let n4 = Node.Create("d",color="Green")
-let n5 = Node.Create("e",color="Orange")
-
-// create links between nodes
-let link1 = Link.Create(n1,n2,value=1.0)
-let link2 = Link.Create(n2,n3,value=2.0)
-let link3 = Link.Create(n1,n5,value=1.3)
-let link4 = Link.Create(n4,n5,value=1.5)
-let link5 = Link.Create(n3,n5,value=0.5)
+open Plotly.NET
 
 let sankey1 = 
     Chart.Sankey(
-        [n1;n2;n3;n4;n5],
-        [link1;link2;link3;link4;link5]
+        nodeLabels = ["A1"; "A2"; "B1"; "B2"; "C1"; "C2"; "D1"],
+        linkedNodeIds = [ // Edgelist, toupling sourceIndex => targetIndex of the link
+            0,2
+            0,3
+            1,3
+            2,4
+            3,4
+            3,5
+            4,6
+            5,6
+        ],
+        NodeOutlineColor = Color.fromKeyword Black,
+        NodeOutlineWidth = 1.,
+        linkValues = [8; 4; 2; 7; 3; 2; 5; 2],
+        LinkColor = Color.fromColors [
+            Color.fromHex "#828BFB"
+            Color.fromHex "#828BFB"
+            Color.fromHex "#F27762"
+            Color.fromHex "#33D6AB"
+            Color.fromHex "#BC82FB"
+            Color.fromHex "#BC82FB"
+            Color.fromHex "#FFB47B"
+            Color.fromHex "#47DCF5"
+        ],
+        LinkOutlineColor = Color.fromKeyword Black,
+        LinkOutlineWidth = 1.,
+        UseDefaults = false
     )
-    |> Chart.withTitle "Sankey Sample"
 
 (*** condition: ipynb ***)
 #if IPYNB

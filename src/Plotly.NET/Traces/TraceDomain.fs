@@ -65,12 +65,18 @@ type TraceDomainStyle() =
             [<Optional; DefaultParameterValue(null)>] ?DLabel: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?Label0: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?Pull: float,
-            [<Optional; DefaultParameterValue(null)>] ?Text: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?MultiPull: seq<float>,
+            [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
-            [<Optional; DefaultParameterValue(null)>] ?TextTemplate: seq<#IConvertible>,
-            [<Optional; DefaultParameterValue(null)>] ?HoverText: seq<#IConvertible>,
-            [<Optional; DefaultParameterValue(null)>] ?HoverInfo: string,
-            [<Optional; DefaultParameterValue(null)>] ?HoverTemplate: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+            [<Optional; DefaultParameterValue(null)>] ?TextTemplate: string,
+            [<Optional; DefaultParameterValue(null)>] ?MultiTextTemplate: seq<string>,
+            [<Optional; DefaultParameterValue(null)>] ?HoverText: string,
+            [<Optional; DefaultParameterValue(null)>] ?MultiHoverText: seq<string>,
+            [<Optional; DefaultParameterValue(null)>] ?HoverInfo: StyleParam.HoverInfo,
+            [<Optional; DefaultParameterValue(null)>] ?HoverTemplate: string,
+            [<Optional; DefaultParameterValue(null)>] ?MultiHoverTemplate: seq<string>,
             [<Optional; DefaultParameterValue(null)>] ?Meta: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?CustomData: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
@@ -89,228 +95,477 @@ type TraceDomainStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Sort: bool,
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
         ) =
-        (fun (pie: ('T :> Trace)) ->
-
-            Name |> DynObj.setValueOpt pie "name"
-            Title |> DynObj.setValueOpt pie "title"
-            Visible |> DynObj.setValueOptBy pie "visible" StyleParam.Visible.convert
-            ShowLegend |> DynObj.setValueOpt pie "showlegend"
-            LegendGroup |> DynObj.setValueOpt pie "legendgroup"
-            LegendGroupTitle |> DynObj.setValueOpt pie "legendgrouptitle"
-            Opacity |> DynObj.setValueOpt pie "opacity"
-            Ids |> DynObj.setValueOpt pie "ids"
-            Values |> DynObj.setValueOpt pie "values"
-            Labels |> DynObj.setValueOpt pie "labels"
-            DLabel |> DynObj.setValueOpt pie "dlabel"
-            Label0 |> DynObj.setValueOpt pie "label0"
-            Pull |> DynObj.setValueOpt pie "pull"
-            Text |> DynObj.setValueOpt pie "text"
-            TextPosition |> DynObj.setValueOptBy pie "textposition" StyleParam.TextPosition.convert
-            TextTemplate |> DynObj.setValueOpt pie "texttemplate"
-            HoverText |> DynObj.setValueOpt pie "hovertext"
-            HoverInfo |> DynObj.setValueOpt pie "hoverinfo"
-            HoverTemplate |> DynObj.setValueOpt pie "hovertemplate"
-            Meta |> DynObj.setValueOpt pie "meta"
-            CustomData |> DynObj.setValueOpt pie "customdata"
-            Domain |> DynObj.setValueOpt pie "domain"
-            AutoMargin |> DynObj.setValueOpt pie "automargin"
-            Marker |> DynObj.setValueOpt pie "marker"
-            TextFont |> DynObj.setValueOpt pie "textfont"
-            TextInfo |> DynObj.setValueOptBy pie "textinfo" StyleParam.TextInfo.convert
-            Direction |> DynObj.setValueOptBy pie "direction" StyleParam.Direction.convert
-            Hole |> DynObj.setValueOpt pie "hole"
-            HoverLabel |> DynObj.setValueOpt pie "hoverlabel"
-            InsideTextFont |> DynObj.setValueOpt pie "insidetextfont"
-
-            InsideTextOrientation
-            |> DynObj.setValueOptBy pie "insidetextorientation" StyleParam.InsideTextOrientation.convert
-
-            OutsideTextFont |> DynObj.setValueOpt pie "outsidetextfont"
-            Rotation |> DynObj.setValueOpt pie "rotation"
-            ScaleGroup |> DynObj.setValueOpt pie "scalegroup"
-            Sort |> DynObj.setValueOpt pie "sort"
-            UIRevision |> DynObj.setValueOpt pie "uirevision"
-
-            pie)
-
-
-    static member FunnelArea
-        (
-            [<Optional; DefaultParameterValue(null)>] ?Values: seq<#IConvertible>,
-            [<Optional; DefaultParameterValue(null)>] ?Labels: seq<#IConvertible>,
-            [<Optional; DefaultParameterValue(null)>] ?dLabel: float,
-            [<Optional; DefaultParameterValue(null)>] ?Label0: float,
-            [<Optional; DefaultParameterValue(null)>] ?Aspectratio: float,
-            [<Optional; DefaultParameterValue(null)>] ?Baseratio: float,
-            [<Optional; DefaultParameterValue(null)>] ?Insidetextfont: Font,
-            [<Optional; DefaultParameterValue(null)>] ?Scalegroup: string
-        ) =
         (fun (trace: ('T :> Trace)) ->
 
-            Values |> DynObj.setValueOpt trace "values"
-            Labels |> DynObj.setValueOpt trace "labels"
-            dLabel |> DynObj.setValueOpt trace "dlabel"
-            Label0 |> DynObj.setValueOpt trace "label0"
-            Aspectratio |> DynObj.setValueOpt trace "aspectratio"
-            Baseratio |> DynObj.setValueOpt trace "baseratio"
-            Insidetextfont |> DynObj.setValueOpt trace "insidetextfont"
-            Scalegroup |> DynObj.setValueOpt trace "scalegroup"
-
-            trace
-
-            )
-
-    /// Applies the styles of sundburst plot to TraceObjects
-    ///
-    /// Parameters:
-    ///
-    /// labels: Sets the labels of each of the sectors.
-    ///
-    /// parents: Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be "ids" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
-    ///
-    /// Ids: Assigns id labels to each datum. These ids for object constancy of data points during animation.
-    ///
-    /// Values: Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
-    ///
-    /// Text: Sets text elements associated with each sector. If trace `textinfo` contains a "text" flag, these elements will be seen on the chart. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.
-    ///
-    /// Branchvalues: Determines how the items in `values` are summed. When set to "total", items in `values` are taken to be value of all its descendants. When set to "remainder", items in `values` corresponding to the root and the branches sectors are taken to be the extra part not part of the sum of the values at their leaves.
-    ///
-    /// Level: Sets the level from which this trace hierarchy is rendered. Set `level` to `''` to start from the root node in the hierarchy. Must be an "id" if `ids` is filled in, otherwise plotly attempts to find a matching item in `labels`.
-    ///
-    /// Maxdepth: Sets the number of rendered sectors from any given `level`. Set `maxdepth` to "-1" to render all the levels in the hierarchy.
-    static member Sunburst
-        (
-            labels: seq<#IConvertible>,
-            parents: seq<#IConvertible>,
-            [<Optional; DefaultParameterValue(null)>] ?Ids: seq<string>,
-            [<Optional; DefaultParameterValue(null)>] ?Values: seq<float>,
-            [<Optional; DefaultParameterValue(null)>] ?Text: seq<string>,
-            [<Optional; DefaultParameterValue(null)>] ?Branchvalues: StyleParam.BranchValues,
-            [<Optional; DefaultParameterValue(null)>] ?Level,
-            [<Optional; DefaultParameterValue(null)>] ?Maxdepth: int
-        ) =
-        (fun (trace: ('T :> Trace)) ->
-            labels |> DynObj.setValue trace "labels"
-            parents |> DynObj.setValue trace "parents"
+            Name |> DynObj.setValueOpt trace "name"
+            Title |> DynObj.setValueOpt trace "title"
+            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+            ShowLegend |> DynObj.setValueOpt trace "showlegend"
+            LegendGroup |> DynObj.setValueOpt trace "legendgroup"
+            LegendGroupTitle |> DynObj.setValueOpt trace "legendgrouptitle"
+            Opacity |> DynObj.setValueOpt trace "opacity"
             Ids |> DynObj.setValueOpt trace "ids"
             Values |> DynObj.setValueOpt trace "values"
-            Text |> DynObj.setValueOpt trace "text"
-            Branchvalues |> DynObj.setValueOptBy trace "branchvalues" StyleParam.BranchValues.convert
+            Labels |> DynObj.setValueOpt trace "labels"
+            DLabel |> DynObj.setValueOpt trace "dlabel"
+            Label0 |> DynObj.setValueOpt trace "label0"
+            (Pull, MultiPull) |> DynObj.setSingleOrMultiOpt trace "pull"
+            (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
+
+            (TextPosition, MultiTextPosition)
+            |> DynObj.setSingleOrMultiOptBy trace "textposition" StyleParam.TextPosition.convert
+
+            (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt trace "texttemplate"
+            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
+            HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
+            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
+            Meta |> DynObj.setValueOpt trace "meta"
+            CustomData |> DynObj.setValueOpt trace "customdata"
+            Domain |> DynObj.setValueOpt trace "domain"
+            AutoMargin |> DynObj.setValueOpt trace "automargin"
+            Marker |> DynObj.setValueOpt trace "marker"
+            TextFont |> DynObj.setValueOpt trace "textfont"
+            TextInfo |> DynObj.setValueOptBy trace "textinfo" StyleParam.TextInfo.convert
+            Direction |> DynObj.setValueOptBy trace "direction" StyleParam.Direction.convert
+            Hole |> DynObj.setValueOpt trace "hole"
+            HoverLabel |> DynObj.setValueOpt trace "hoverlabel"
+            InsideTextFont |> DynObj.setValueOpt trace "insidetextfont"
+
+            InsideTextOrientation
+            |> DynObj.setValueOptBy trace "insidetextorientation" StyleParam.InsideTextOrientation.convert
+
+            OutsideTextFont |> DynObj.setValueOpt trace "outsidetextfont"
+            Rotation |> DynObj.setValueOpt trace "rotation"
+            ScaleGroup |> DynObj.setValueOpt trace "scalegroup"
+            Sort |> DynObj.setValueOpt trace "sort"
+            UIRevision |> DynObj.setValueOpt trace "uirevision"
+
+            trace)
+
+    /// Applies the styles of funnelarea plot to TraceObjects
+    static member FunnelArea
+        (
+            [<Optional; DefaultParameterValue(null)>] ?Name: string,
+            [<Optional; DefaultParameterValue(null)>] ?Title: Title,
+            [<Optional; DefaultParameterValue(null)>] ?Visible: StyleParam.Visible,
+            [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+            [<Optional; DefaultParameterValue(null)>] ?LegendGroup: string,
+            [<Optional; DefaultParameterValue(null)>] ?LegendGroupTitle: Title,
+            [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+            [<Optional; DefaultParameterValue(null)>] ?Ids: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Values: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Labels: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?DLabel: #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?Label0: #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+            [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+            [<Optional; DefaultParameterValue(null)>] ?TextTemplate: string,
+            [<Optional; DefaultParameterValue(null)>] ?MultiTextTemplate: seq<string>,
+            [<Optional; DefaultParameterValue(null)>] ?HoverText: string,
+            [<Optional; DefaultParameterValue(null)>] ?MultiHoverText: seq<string>,
+            [<Optional; DefaultParameterValue(null)>] ?HoverInfo: StyleParam.HoverInfo,
+            [<Optional; DefaultParameterValue(null)>] ?HoverTemplate: string,
+            [<Optional; DefaultParameterValue(null)>] ?MultiHoverTemplate: seq<string>,
+            [<Optional; DefaultParameterValue(null)>] ?Meta: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?CustomData: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
+            [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+            [<Optional; DefaultParameterValue(null)>] ?TextFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?TextInfo: StyleParam.TextInfo,
+            [<Optional; DefaultParameterValue(null)>] ?AspectRatio: float,
+            [<Optional; DefaultParameterValue(null)>] ?BaseRatio: float,
+            [<Optional; DefaultParameterValue(null)>] ?HoverLabel: Hoverlabel,
+            [<Optional; DefaultParameterValue(null)>] ?InsideTextFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?ScaleGroup: string,
+            [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
+        ) =
+        (fun (trace: ('T :> Trace)) ->
+
+            Name |> DynObj.setValueOpt trace "name"
+            Title |> DynObj.setValueOpt trace "title"
+            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+            ShowLegend |> DynObj.setValueOpt trace "showlegend"
+            LegendGroup |> DynObj.setValueOpt trace "legendgroup"
+            LegendGroupTitle |> DynObj.setValueOpt trace "legendgrouptitle"
+            Opacity |> DynObj.setValueOpt trace "opacity"
+            Ids |> DynObj.setValueOpt trace "ids"
+            Values |> DynObj.setValueOpt trace "values"
+            Labels |> DynObj.setValueOpt trace "labels"
+            DLabel |> DynObj.setValueOpt trace "dlabel"
+            Label0 |> DynObj.setValueOpt trace "label0"
+            (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
+
+            (TextPosition, MultiTextPosition)
+            |> DynObj.setSingleOrMultiOptBy trace "textposition" StyleParam.TextPosition.convert
+
+            (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt trace "texttemplate"
+            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
+            HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
+            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
+            Meta |> DynObj.setValueOpt trace "meta"
+            CustomData |> DynObj.setValueOpt trace "customdata"
+            Domain |> DynObj.setValueOpt trace "domain"
+            Marker |> DynObj.setValueOpt trace "marker"
+            TextFont |> DynObj.setValueOpt trace "textfont"
+            TextInfo |> DynObj.setValueOptBy trace "textinfo" StyleParam.TextInfo.convert
+            AspectRatio |> DynObj.setValueOpt trace "aspectratio"
+            BaseRatio |> DynObj.setValueOpt trace "baseratio"
+            HoverLabel |> DynObj.setValueOpt trace "hoverlabel"
+            InsideTextFont |> DynObj.setValueOpt trace "insidetextfont"
+            ScaleGroup |> DynObj.setValueOpt trace "scalegroup"
+            UIRevision |> DynObj.setValueOpt trace "uirevision"
+
+            trace)
+
+    /// Applies the styles of sunburst plot to TraceObjects
+    static member Sunburst
+        (
+            [<Optional; DefaultParameterValue(null)>] ?Name: string,
+            [<Optional; DefaultParameterValue(null)>] ?Title: Title,
+            [<Optional; DefaultParameterValue(null)>] ?Visible: StyleParam.Visible,
+            [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+            [<Optional; DefaultParameterValue(null)>] ?LegendGroup: string,
+            [<Optional; DefaultParameterValue(null)>] ?LegendGroupTitle: Title,
+            [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+            [<Optional; DefaultParameterValue(null)>] ?Ids: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Parents: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Values: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Labels: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?TextTemplate: string,
+            [<Optional; DefaultParameterValue(null)>] ?MultiTextTemplate: seq<string>,
+            [<Optional; DefaultParameterValue(null)>] ?HoverText: string,
+            [<Optional; DefaultParameterValue(null)>] ?MultiHoverText: seq<string>,
+            [<Optional; DefaultParameterValue(null)>] ?HoverInfo: StyleParam.HoverInfo,
+            [<Optional; DefaultParameterValue(null)>] ?HoverTemplate: string,
+            [<Optional; DefaultParameterValue(null)>] ?MultiHoverTemplate: seq<string>,
+            [<Optional; DefaultParameterValue(null)>] ?Meta: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?CustomData: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
+            [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+            [<Optional; DefaultParameterValue(null)>] ?TextFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?TextInfo: StyleParam.TextInfo,
+            [<Optional; DefaultParameterValue(null)>] ?BranchValues: StyleParam.BranchValues,
+            [<Optional; DefaultParameterValue(null)>] ?Count: string,
+            [<Optional; DefaultParameterValue(null)>] ?HoverLabel: Hoverlabel,
+            [<Optional; DefaultParameterValue(null)>] ?InsideTextFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?InsideTextOrientation: StyleParam.InsideTextOrientation,
+            [<Optional; DefaultParameterValue(null)>] ?OutsideTextFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?Root: SunburstRoot,
+            [<Optional; DefaultParameterValue(null)>] ?Leaf: SunburstLeaf,
+            [<Optional; DefaultParameterValue(null)>] ?Level: string,
+            [<Optional; DefaultParameterValue(null)>] ?MaxDepth: int,
+            [<Optional; DefaultParameterValue(null)>] ?Rotation: int,
+            [<Optional; DefaultParameterValue(null)>] ?Sort: bool,
+            [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
+        ) =
+        (fun (trace: ('T :> Trace)) ->
+
+            Name |> DynObj.setValueOpt trace "name"
+            Title |> DynObj.setValueOpt trace "title"
+            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+            ShowLegend |> DynObj.setValueOpt trace "showlegend"
+            LegendGroup |> DynObj.setValueOpt trace "legendgroup"
+            LegendGroupTitle |> DynObj.setValueOpt trace "legendgrouptitle"
+            Opacity |> DynObj.setValueOpt trace "opacity"
+            Ids |> DynObj.setValueOpt trace "ids"
+            Parents |> DynObj.setValueOpt trace "parents"
+            Values |> DynObj.setValueOpt trace "values"
+            Labels |> DynObj.setValueOpt trace "labels"
+            (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
+            (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt trace "texttemplate"
+            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
+            HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
+            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
+            Meta |> DynObj.setValueOpt trace "meta"
+            CustomData |> DynObj.setValueOpt trace "customdata"
+            Domain |> DynObj.setValueOpt trace "domain"
+            Marker |> DynObj.setValueOpt trace "marker"
+            TextFont |> DynObj.setValueOpt trace "textfont"
+            TextInfo |> DynObj.setValueOptBy trace "textinfo" StyleParam.TextInfo.convert
+            BranchValues |> DynObj.setValueOptBy trace "branchvalues" StyleParam.BranchValues.convert
+            Count |> DynObj.setValueOpt trace "count"
+            HoverLabel |> DynObj.setValueOpt trace "hoverlabel"
+            InsideTextFont |> DynObj.setValueOpt trace "insidetextfont"
+
+            InsideTextOrientation
+            |> DynObj.setValueOptBy trace "insidetextorientation" StyleParam.InsideTextOrientation.convert
+
+            OutsideTextFont |> DynObj.setValueOpt trace "outsidetextfont"
+            Root |> DynObj.setValueOpt trace "root"
+            Leaf |> DynObj.setValueOpt trace "leaf"
             Level |> DynObj.setValueOpt trace "level"
-            Maxdepth |> DynObj.setValueOpt trace "maxdepth"
+            MaxDepth |> DynObj.setValueOpt trace "maxdepth"
+            Rotation |> DynObj.setValueOpt trace "rotation"
+            Sort |> DynObj.setValueOpt trace "sort"
+            UIRevision |> DynObj.setValueOpt trace "uirevision"
+
             trace)
 
     /// Applies the styles of treemap plot to TraceObjects
-    ///
-    /// Parameters:
-    ///
-    /// labels      : Sets the labels of each of the sectors.
-    ///
-    /// parents     : Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be "ids" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
-    ///
-    /// Ids         : Assigns id labels to each datum. These ids for object constancy of data points during animation.
-    ///
-    /// Values      : Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
-    ///
-    /// Text        : Sets text elements associated with each sector. If trace `textinfo` contains a "text" flag, these elements will be seen on the chart. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.
-    ///
-    /// Branchvalues: Determines how the items in `values` are summed. When set to "total", items in `values` are taken to be value of all its descendants. When set to "remainder", items in `values` corresponding to the root and the branches sectors are taken to be the extra part not part of the sum of the values at their leaves.
-    ///
-    /// Tiling      : Sets Tiling algorithm options
-    ///
-    /// PathBar     : Sets the Pathbar used to navigate zooming
-    ///
-    /// Level       : Sets the level from which this trace hierarchy is rendered. Set `level` to `''` to start from the root node in the hierarchy. Must be an "id" if `ids` is filled in, otherwise plotly attempts to find a matching item in `labels`.
-    ///
-    /// Maxdepth    : Sets the number of rendered sectors from any given `level`. Set `maxdepth` to "-1" to render all the levels in the hierarchy.
     static member Treemap
         (
-            labels: seq<#IConvertible>,
-            parents: seq<#IConvertible>,
-            [<Optional; DefaultParameterValue(null)>] ?Ids: seq<string>,
-            [<Optional; DefaultParameterValue(null)>] ?Values: seq<float>,
-            [<Optional; DefaultParameterValue(null)>] ?Text: seq<string>,
-            [<Optional; DefaultParameterValue(null)>] ?Branchvalues: StyleParam.BranchValues,
+            [<Optional; DefaultParameterValue(null)>] ?Name: string,
+            [<Optional; DefaultParameterValue(null)>] ?Title: Title,
+            [<Optional; DefaultParameterValue(null)>] ?Visible: StyleParam.Visible,
+            [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+            [<Optional; DefaultParameterValue(null)>] ?LegendGroup: string,
+            [<Optional; DefaultParameterValue(null)>] ?LegendGroupTitle: Title,
+            [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+            [<Optional; DefaultParameterValue(null)>] ?Ids: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Parents: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Values: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Labels: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+            [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+            [<Optional; DefaultParameterValue(null)>] ?TextTemplate: string,
+            [<Optional; DefaultParameterValue(null)>] ?MultiTextTemplate: seq<string>,
+            [<Optional; DefaultParameterValue(null)>] ?HoverText: string,
+            [<Optional; DefaultParameterValue(null)>] ?MultiHoverText: seq<string>,
+            [<Optional; DefaultParameterValue(null)>] ?HoverInfo: StyleParam.HoverInfo,
+            [<Optional; DefaultParameterValue(null)>] ?HoverTemplate: string,
+            [<Optional; DefaultParameterValue(null)>] ?MultiHoverTemplate: seq<string>,
+            [<Optional; DefaultParameterValue(null)>] ?Meta: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?CustomData: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
+            [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+            [<Optional; DefaultParameterValue(null)>] ?TextFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?TextInfo: StyleParam.TextInfo,
+            [<Optional; DefaultParameterValue(null)>] ?BranchValues: StyleParam.BranchValues,
+            [<Optional; DefaultParameterValue(null)>] ?Count: string,
             [<Optional; DefaultParameterValue(null)>] ?Tiling: TreemapTiling,
             [<Optional; DefaultParameterValue(null)>] ?PathBar: Pathbar,
-            [<Optional; DefaultParameterValue(null)>] ?Level,
-            [<Optional; DefaultParameterValue(null)>] ?Maxdepth: int
+            [<Optional; DefaultParameterValue(null)>] ?HoverLabel: Hoverlabel,
+            [<Optional; DefaultParameterValue(null)>] ?InsideTextFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?OutsideTextFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?Root: TreemapRoot,
+            [<Optional; DefaultParameterValue(null)>] ?Level: string,
+            [<Optional; DefaultParameterValue(null)>] ?MaxDepth: int,
+            [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
         ) =
         (fun (trace: ('T :> Trace)) ->
-            labels |> DynObj.setValue trace "labels"
-            parents |> DynObj.setValue trace "parents"
+
+            Name |> DynObj.setValueOpt trace "name"
+            Title |> DynObj.setValueOpt trace "title"
+            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+            ShowLegend |> DynObj.setValueOpt trace "showlegend"
+            LegendGroup |> DynObj.setValueOpt trace "legendgroup"
+            LegendGroupTitle |> DynObj.setValueOpt trace "legendgrouptitle"
+            Opacity |> DynObj.setValueOpt trace "opacity"
             Ids |> DynObj.setValueOpt trace "ids"
+            Parents |> DynObj.setValueOpt trace "parents"
             Values |> DynObj.setValueOpt trace "values"
-            Text |> DynObj.setValueOpt trace "text"
-            Branchvalues |> DynObj.setValueOptBy trace "branchvalues" StyleParam.BranchValues.convert
+            Labels |> DynObj.setValueOpt trace "labels"
+            (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
+
+            (TextPosition, MultiTextPosition)
+            |> DynObj.setSingleOrMultiOptBy trace "textposition" StyleParam.TextPosition.convert
+
+            (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt trace "texttemplate"
+            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
+            HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
+            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
+            Meta |> DynObj.setValueOpt trace "meta"
+            CustomData |> DynObj.setValueOpt trace "customdata"
+            Domain |> DynObj.setValueOpt trace "domain"
+            Marker |> DynObj.setValueOpt trace "marker"
+            TextFont |> DynObj.setValueOpt trace "textfont"
+            TextInfo |> DynObj.setValueOptBy trace "textinfo" StyleParam.TextInfo.convert
+            BranchValues |> DynObj.setValueOptBy trace "branchvalues" StyleParam.BranchValues.convert
+            Count |> DynObj.setValueOpt trace "count"
             Tiling |> DynObj.setValueOpt trace "tiling"
             PathBar |> DynObj.setValueOpt trace "pathbar"
+            HoverLabel |> DynObj.setValueOpt trace "hoverlabel"
+            InsideTextFont |> DynObj.setValueOpt trace "insidetextfont"
+            OutsideTextFont |> DynObj.setValueOpt trace "outsidetextfont"
+            Root |> DynObj.setValueOpt trace "root"
             Level |> DynObj.setValueOpt trace "level"
-            Maxdepth |> DynObj.setValueOpt trace "maxdepth"
+            MaxDepth |> DynObj.setValueOpt trace "maxdepth"
+            UIRevision |> DynObj.setValueOpt trace "uirevision"
+
             trace)
-
-
 
     // Applies the styles of parallel coordinates plot to TraceObjects
     static member ParallelCoord
         (
+            [<Optional; DefaultParameterValue(null)>] ?Name: string,
+            [<Optional; DefaultParameterValue(null)>] ?Visible: StyleParam.Visible,
+            [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+            [<Optional; DefaultParameterValue(null)>] ?LegendGroup: string,
+            [<Optional; DefaultParameterValue(null)>] ?LegendGroupTitle: Title,
+            [<Optional; DefaultParameterValue(null)>] ?Ids: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?Dimensions: seq<Dimension>,
-            [<Optional; DefaultParameterValue(null)>] ?Line,
-            [<Optional; DefaultParameterValue(null)>] ?Domain,
-            [<Optional; DefaultParameterValue(null)>] ?Labelfont,
-            [<Optional; DefaultParameterValue(null)>] ?Tickfont: Font,
-            [<Optional; DefaultParameterValue(null)>] ?Rangefont: Font
+            [<Optional; DefaultParameterValue(null)>] ?Meta: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?CustomData: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
+            [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+            [<Optional; DefaultParameterValue(null)>] ?LabelAngle: int,
+            [<Optional; DefaultParameterValue(null)>] ?LabelFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?LabelSide: StyleParam.Side,
+            [<Optional; DefaultParameterValue(null)>] ?RangeFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?TickFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
         ) =
-        (fun (parcoords: ('T :> Trace)) ->
+        (fun (trace: ('T :> Trace)) ->
 
-            Dimensions |> DynObj.setValueOpt parcoords "dimensions"
-            Line |> DynObj.setValueOpt parcoords "line"
-            Domain |> DynObj.setValueOpt parcoords "domain"
-            Labelfont |> DynObj.setValueOpt parcoords "labelfont"
-            Tickfont |> DynObj.setValueOpt parcoords "tickfont"
-            Rangefont |> DynObj.setValueOpt parcoords "rangefont"
+            Name |> DynObj.setValueOpt trace "name"
+            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+            ShowLegend |> DynObj.setValueOpt trace "showlegend"
+            LegendGroup |> DynObj.setValueOpt trace "legendgroup"
+            LegendGroupTitle |> DynObj.setValueOpt trace "legendgrouptitle"
+            Ids |> DynObj.setValueOpt trace "ids"
+            Dimensions |> DynObj.setValueOpt trace "dimensions"
+            Meta |> DynObj.setValueOpt trace "meta"
+            CustomData |> DynObj.setValueOpt trace "customdata"
+            Domain |> DynObj.setValueOpt trace "domain"
+            Line |> DynObj.setValueOpt trace "line"
+            LabelAngle |> DynObj.setValueOpt trace "labelangle"
+            LabelFont |> DynObj.setValueOpt trace "labelfont"
+            LabelSide |> DynObj.setValueOpt trace "labelside"
+            RangeFont |> DynObj.setValueOpt trace "rangefont"
+            TickFont |> DynObj.setValueOpt trace "tickfont "
+            UIRevision |> DynObj.setValueOpt trace "uirevision"
 
-            // out ->
-            parcoords)
+            trace)
 
     static member ParallelCategories
         (
+            [<Optional; DefaultParameterValue(null)>] ?Name: string,
+            [<Optional; DefaultParameterValue(null)>] ?Visible: StyleParam.Visible,
+            [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+            [<Optional; DefaultParameterValue(null)>] ?LegendGroup: string,
+            [<Optional; DefaultParameterValue(null)>] ?LegendGroupTitle: Title,
+            [<Optional; DefaultParameterValue(null)>] ?Counts: int,
             [<Optional; DefaultParameterValue(null)>] ?Dimensions: seq<Dimension>,
-            [<Optional; DefaultParameterValue(null)>] ?Line,
-            [<Optional; DefaultParameterValue(null)>] ?Domain,
-            [<Optional; DefaultParameterValue(null)>] ?Color: Color,
-            [<Optional; DefaultParameterValue(null)>] ?Labelfont,
-            [<Optional; DefaultParameterValue(null)>] ?Tickfont: Font,
-            [<Optional; DefaultParameterValue(null)>] ?Rangefont: Font
+            [<Optional; DefaultParameterValue(null)>] ?HoverInfo: StyleParam.HoverInfo,
+            [<Optional; DefaultParameterValue(null)>] ?HoverTemplate: string,
+            [<Optional; DefaultParameterValue(null)>] ?MultiHoverTemplate: seq<string>,
+            [<Optional; DefaultParameterValue(null)>] ?Meta: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
+            [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+            [<Optional; DefaultParameterValue(null)>] ?Arrangement: StyleParam.CategoryArrangement,
+            [<Optional; DefaultParameterValue(null)>] ?BundleColors: bool,
+            [<Optional; DefaultParameterValue(null)>] ?SortPaths: StyleParam.SortAlgorithm,
+            [<Optional; DefaultParameterValue(null)>] ?Hoveron: StyleParam.HoverOn,
+            [<Optional; DefaultParameterValue(null)>] ?LabelFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?TickFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
         ) =
-        (fun (parcats: ('T :> Trace)) ->
+        (fun (trace: ('T :> Trace)) ->
 
-            Dimensions |> DynObj.setValueOpt parcats "dimensions"
-            Line |> DynObj.setValueOpt parcats "line"
-            Domain |> DynObj.setValueOpt parcats "domain"
-            Color |> DynObj.setValueOpt parcats "color"
-            Labelfont |> DynObj.setValueOpt parcats "labelfont"
-            Tickfont |> DynObj.setValueOpt parcats "tickfont"
-            Rangefont |> DynObj.setValueOpt parcats "rangefont"
+            Name |> DynObj.setValueOpt trace "name"
+            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+            ShowLegend |> DynObj.setValueOpt trace "showlegend"
+            LegendGroup |> DynObj.setValueOpt trace "legendgroup"
+            LegendGroupTitle |> DynObj.setValueOpt trace "legendgrouptitle"
+            Counts |> DynObj.setValueOpt trace "counts"
+            Dimensions |> DynObj.setValueOpt trace "dimensions"
+            HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
+            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
+            Meta |> DynObj.setValueOpt trace "meta"
+            Domain |> DynObj.setValueOpt trace "domain"
+            Line |> DynObj.setValueOpt trace "line"
+            Arrangement |> DynObj.setValueOptBy trace "arrangement" StyleParam.CategoryArrangement.convert
+            BundleColors |> DynObj.setValueOpt trace "bundlecolors"
+            SortPaths |> DynObj.setValueOptBy trace "sortpaths" StyleParam.SortAlgorithm.convert
+            Hoveron |> DynObj.setValueOptBy trace "hoveron" StyleParam.HoverOn.convert
+            LabelFont |> DynObj.setValueOpt trace "labelfont"
+            TickFont |> DynObj.setValueOpt trace "tickfont "
+            UIRevision |> DynObj.setValueOpt trace "uirevision"
 
-            // out ->
-            parcats)
+            trace)
+
+    static member Sankey
+        (
+            [<Optional; DefaultParameterValue(null)>] ?Name: string,
+            [<Optional; DefaultParameterValue(null)>] ?Visible: StyleParam.Visible,
+            [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+            [<Optional; DefaultParameterValue(null)>] ?LegendGroup: string,
+            [<Optional; DefaultParameterValue(null)>] ?LegendGroupTitle: Title,
+            [<Optional; DefaultParameterValue(null)>] ?Ids: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?HoverInfo: StyleParam.HoverInfo,
+            [<Optional; DefaultParameterValue(null)>] ?Meta: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?CustomData: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
+            [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
+            [<Optional; DefaultParameterValue(null)>] ?Node: SankeyNodes,
+            [<Optional; DefaultParameterValue(null)>] ?Link: SankeyLinks,
+            [<Optional; DefaultParameterValue(null)>] ?TextFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?SelectedPoints: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Arrangement: StyleParam.CategoryArrangement,
+            [<Optional; DefaultParameterValue(null)>] ?HoverLabel: Hoverlabel,
+            [<Optional; DefaultParameterValue(null)>] ?ValueFormat: string,
+            [<Optional; DefaultParameterValue(null)>] ?ValueSuffix: string,
+            [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
+        ) =
+        (fun (trace: ('T :> Trace)) ->
+
+            Name |> DynObj.setValueOpt trace "name"
+            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+            ShowLegend |> DynObj.setValueOpt trace "showlegend"
+            LegendGroup |> DynObj.setValueOpt trace "legendgroup"
+            LegendGroupTitle |> DynObj.setValueOpt trace "legendgrouptitle"
+            Ids |> DynObj.setValueOpt trace "ids"
+            HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
+            Meta |> DynObj.setValueOpt trace "meta"
+            CustomData |> DynObj.setValueOpt trace "customdata"
+            Domain |> DynObj.setValueOpt trace "domain"
+            Orientation |> DynObj.setValueOptBy trace "orientation" StyleParam.Orientation.convert
+            Node |> DynObj.setValueOpt trace "node"
+            Link |> DynObj.setValueOpt trace "link"
+            TextFont |> DynObj.setValueOpt trace "textfont"
+            SelectedPoints |> DynObj.setValueOpt trace "selectedpoints"
+            Arrangement |> DynObj.setValueOptBy trace "arrangement" StyleParam.CategoryArrangement.convert
+            HoverLabel |> DynObj.setValueOpt trace "hoverlabel"
+            ValueFormat |> DynObj.setValueOpt trace "valueformat"
+            ValueSuffix |> DynObj.setValueOpt trace "valuesuffix"
+            UIRevision |> DynObj.setValueOpt trace "uirevision"
+
+            trace)
 
     // Applies the styles of table plot to TraceObjects
     static member Table
         (
-            header: TableHeader,
-            cells: TableCells,
-            [<Optional; DefaultParameterValue(null)>] ?ColumnWidth: seq<int>,
-            [<Optional; DefaultParameterValue(null)>] ?ColumnOrder: seq<int>
+            [<Optional; DefaultParameterValue(null)>] ?Name: string,
+            [<Optional; DefaultParameterValue(null)>] ?Visible: StyleParam.Visible,
+            [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+            [<Optional; DefaultParameterValue(null)>] ?LegendGroup: string,
+            [<Optional; DefaultParameterValue(null)>] ?LegendGroupTitle: Title,
+            [<Optional; DefaultParameterValue(null)>] ?Ids: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?ColumnOrder: seq<int>,
+            [<Optional; DefaultParameterValue(null)>] ?ColumnWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?MultiColumnWidth: seq<float>,
+            [<Optional; DefaultParameterValue(null)>] ?Meta: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?CustomData: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
+            [<Optional; DefaultParameterValue(null)>] ?Cells: TableCells,
+            [<Optional; DefaultParameterValue(null)>] ?Header: TableHeader,
+            [<Optional; DefaultParameterValue(null)>] ?HoverLabel: Hoverlabel,
+            [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
         ) =
         (fun (trace: ('T :> Trace)) ->
-            header |> DynObj.setValue trace "header"
-            cells |> DynObj.setValue trace "cells"
-            ColumnWidth |> DynObj.setValueOpt trace "columnwidth"
+
+            Name |> DynObj.setValueOpt trace "name"
+            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+            ShowLegend |> DynObj.setValueOpt trace "showlegend"
+            LegendGroup |> DynObj.setValueOpt trace "legendgroup"
+            LegendGroupTitle |> DynObj.setValueOpt trace "legendgrouptitle"
+            Ids |> DynObj.setValueOpt trace "ids"
             ColumnOrder |> DynObj.setValueOpt trace "columnorder"
-            // out ->
+            (ColumnWidth, MultiColumnWidth) |> DynObj.setSingleOrMultiOpt trace "columnwidth"
+            Meta |> DynObj.setValueOpt trace "meta"
+            CustomData |> DynObj.setValueOpt trace "customdata"
+            Domain |> DynObj.setValueOpt trace "domain"
+            Cells |> DynObj.setValueOpt trace "cells"
+            Header |> DynObj.setValueOpt trace "header"
+            HoverLabel |> DynObj.setValueOpt trace "hoverlabel"
+            UIRevision |> DynObj.setValueOpt trace "uirevision"
+
             trace)
 
     static member Indicator
