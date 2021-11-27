@@ -13,7 +13,7 @@ type SankeyNodes() =
         (
             [<Optional; DefaultParameterValue(null)>] ?Color: Color,
             [<Optional; DefaultParameterValue(null)>] ?CustomData: seq<#IConvertible>,
-            [<Optional; DefaultParameterValue(null)>] ?Groups: seq<int>,
+            [<Optional; DefaultParameterValue(null)>] ?Groups: seq<#seq<int>>,
             [<Optional; DefaultParameterValue(null)>] ?HoverInfo: StyleParam.HoverInfo,
             [<Optional; DefaultParameterValue(null)>] ?HoverLabel: Hoverlabel,
             [<Optional; DefaultParameterValue(null)>] ?HoverTemplate: string,
@@ -48,7 +48,7 @@ type SankeyNodes() =
         (
             [<Optional; DefaultParameterValue(null)>] ?Color: Color,
             [<Optional; DefaultParameterValue(null)>] ?CustomData: seq<#IConvertible>,
-            [<Optional; DefaultParameterValue(null)>] ?Groups: seq<int>,
+            [<Optional; DefaultParameterValue(null)>] ?Groups: seq<#seq<int>>,
             [<Optional; DefaultParameterValue(null)>] ?HoverInfo: StyleParam.HoverInfo,
             [<Optional; DefaultParameterValue(null)>] ?HoverLabel: Hoverlabel,
             [<Optional; DefaultParameterValue(null)>] ?HoverTemplate: string,
@@ -136,9 +136,9 @@ type SankeyLinks() =
             [<Optional; DefaultParameterValue(null)>] ?MultiHoverTemplate: seq<string>,
             [<Optional; DefaultParameterValue(null)>] ?Label: seq<string>,
             [<Optional; DefaultParameterValue(null)>] ?Line: Line,
-            [<Optional; DefaultParameterValue(null)>] ?Source: int,
-            [<Optional; DefaultParameterValue(null)>] ?Target: int,
-            [<Optional; DefaultParameterValue(null)>] ?Value: int
+            [<Optional; DefaultParameterValue(null)>] ?Source: seq<int>,
+            [<Optional; DefaultParameterValue(null)>] ?Target: seq<int>,
+            [<Optional; DefaultParameterValue(null)>] ?Value: seq<#IConvertible>
         ) =
 
         SankeyLinks()
@@ -169,9 +169,9 @@ type SankeyLinks() =
             [<Optional; DefaultParameterValue(null)>] ?MultiHoverTemplate: seq<string>,
             [<Optional; DefaultParameterValue(null)>] ?Label: seq<string>,
             [<Optional; DefaultParameterValue(null)>] ?Line: Line,
-            [<Optional; DefaultParameterValue(null)>] ?Source: int,
-            [<Optional; DefaultParameterValue(null)>] ?Target: int,
-            [<Optional; DefaultParameterValue(null)>] ?Value: int
+            [<Optional; DefaultParameterValue(null)>] ?Source: seq<int>,
+            [<Optional; DefaultParameterValue(null)>] ?Target: seq<int>,
+            [<Optional; DefaultParameterValue(null)>] ?Value: seq<#IConvertible>
         ) =
         (fun (sankeyLinks: SankeyLinks) ->
 

@@ -10,37 +10,25 @@ open System.Runtime.InteropServices
 type TreemapRoot() =
     inherit DynamicObj()
 
-    static member init
-        (
-            [<Optional; DefaultParameterValue(null)>] ?Color: Color
-        ) =
+    static member init([<Optional; DefaultParameterValue(null)>] ?Color: Color) =
 
         TreemapRoot() |> TreemapRoot.style (?Color = Color)
 
-    static member style
-        (
-            [<Optional; DefaultParameterValue(null)>] ?Color: Color
-        ) =
+    static member style([<Optional; DefaultParameterValue(null)>] ?Color: Color) =
         (fun (root: TreemapRoot) ->
 
             Color |> DynObj.setValueOpt root "color"
 
             root)
-            
+
 type TreemapLeaf() =
     inherit DynamicObj()
 
-    static member init
-        (
-            [<Optional; DefaultParameterValue(null)>] ?Opacity: float
-        ) =
+    static member init([<Optional; DefaultParameterValue(null)>] ?Opacity: float) =
 
         TreemapLeaf() |> TreemapLeaf.style (?Opacity = Opacity)
 
-    static member style
-        (
-            [<Optional; DefaultParameterValue(null)>] ?Opacity: float
-        ) =
+    static member style([<Optional; DefaultParameterValue(null)>] ?Opacity: float) =
         (fun (leaf: TreemapLeaf) ->
 
             Opacity |> DynObj.setValueOpt leaf "opacity"

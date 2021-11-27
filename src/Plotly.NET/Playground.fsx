@@ -88,7 +88,8 @@
 #load "Selection.fs"
 #load "StockData.fs"
 #load "Pathbar.fs"
-#load "TreemapTiling.fs"
+#load "Treemap.fs"
+#load "Sunburst.fs"
 #load "Contours.fs"
 #load "Dimensions.fs"
 #load "WaterfallConnector.fs"
@@ -103,6 +104,7 @@
 #load "Icicle.fs"
 #load "FinanceMarker.fs"
 #load "SplomDiagonal.fs"
+#load "Sankey.fs"
 
 #I "Traces"
 
@@ -183,151 +185,228 @@ open Plotly.NET
 open FSharp.Data
 open Deedle
 
-//---------------------- Generate linearly spaced vector ----------------------
-let linspace (min,max,n) = 
-    if n <= 2 then failwithf "n needs to be larger then 2"
-    let bw = float (max - min) / (float n - 1.)
-    Array.init n (fun i -> min + (bw * float i))
-    //[|min ..bw ..max|]
+let pieStyled =
 
-//---------------------- Create example data ----------------------
-let size = 100
-let x = linspace(-2. * Math.PI, 2. * Math.PI, size)
-let y = linspace(-2. * Math.PI, 2. * Math.PI, size)
+    let values = [19; 26; 55;]
+    let labels = ["Residential"; "Non-Residential"; "Utility"]
 
-let f x y = - (5. * x / (x**2. + y**2. + 1.) )
-
-let z = 
-    Array.init size (fun i -> 
-        Array.init size (fun j -> 
-            f x.[j] y.[i] 
-        )
+    Chart.Pie(
+        values,
+        Labels = labels,
+        SectionColors = [
+            Color.fromKeyword Aqua
+            Color.fromKeyword Salmon
+            Color.fromKeyword Tan
+        ],
+        SectionOutlineColor = Color.fromKeyword Black,
+        SectionOutlineWidth = 2.,
+        MultiText = [
+            "Some"
+            "More"
+            "Stuff"
+        ],
+        MultiTextPosition = [
+            StyleParam.TextPosition.Inside
+            StyleParam.TextPosition.Outside
+            StyleParam.TextPosition.Inside
+        ],
+        Rotation = 45.,
+        MultiPull = [0.; 0.3; 0.]
     )
+    |> Chart.show
 
-let rnd = System.Random()
-let a = Array.init 50 (fun _ -> rnd.NextDouble())
-let b = Array.init 50 (fun _ -> rnd.NextDouble())
-let c = Array.init 50 (fun _ -> rnd.NextDouble())
+let funnelAreaStyled =
+    let values = [|5; 4; 3|]
+    let labels = [|"The 1st"; "The 2nd"; "The 3rd"|]
 
-open Plotly.NET.TraceObjects
-
-[
-    Chart.Line3D(
-        [1,2,3; 4,5,6],
-        UseDefaults = false
+    Chart.FunnelArea(
+        values,
+        Labels = labels,
+        MultiText = labels,
+        SectionColors = [
+            Color.fromKeyword Aqua
+            Color.fromKeyword Salmon
+            Color.fromKeyword Tan
+        ],
+        SectionOutlineColor = Color.fromKeyword Black,
+        SectionOutlineWidth = 2.,
+        AspectRatio = 0.75,
+        BaseRatio = 0.1
     )
-   
+    |> Chart.show
 
-    Chart.Line3D(
-        [1,2,3; 4,5,6],
-        UseDefaults = false
+let sunburstStyled = 
+    let labelsParents = [
+        ("A",""), 20
+        ("B",""), 1
+        ("C",""), 2
+        ("D",""), 3
+        ("E",""), 4
+
+        ("AA","A"), 15
+        ("AB","A"), 5
+
+        ("BA","B"), 1
+
+        ("AAA", "AA"), 10
+        ("AAB", "AA"), 5
+    ]
+
+    Chart.Sunburst(
+        labelsParents |> Seq.map fst,
+        Values = (labelsParents |> Seq.map snd), 
+        BranchValues = StyleParam.BranchValues.Total, // branch values are the total of their childrens values
+        SectionColorScale = StyleParam.Colorscale.Viridis,
+        ShowSectionColorScale = true,
+        SectionOutlineColor = Color.fromKeyword Black,
+        Rotation = 45
     )
-    
-]
-|> Chart.Grid(2,1)
-|> Chart.withScene(
-    Scene.init(
-        Camera = Camera.init(
-            Projection = StyleParam.CameraProjection.Perspective
-        )
-    ), StyleParam.SubPlotId.Scene 1
-)
-|> Chart.withScene(
-    Scene.init(
-        Camera = Camera.init(
-            Projection = StyleParam.CameraProjection.Orthographic
-        )
-    ), StyleParam.SubPlotId.Scene 2
-)
-|> Chart.withSize (1000,1000)
-|> Chart.show
+    |> Chart.show
 
-Chart.Bubble3D(
-    [for i in 0..10 do yield (i,i,i)],
-    [0 .. 10 .. 100],
-    MarkerColor = Color.fromColorScaleValues [0..10],
-    MarkerSymbol = StyleParam.MarkerSymbol3D.Diamond
-)
+let treemapStyled = 
+    let labelsParents = [
+        ("A",""), 20
+        ("B",""), 1
+        ("C",""), 2
+        ("D",""), 3
+        ("E",""), 4
 
-|> Chart.show
+        ("AA","A"), 15
+        ("AB","A"), 5
 
+        ("BA","B"), 1
 
-let data = 
-    Http.RequestString @"https://raw.githubusercontent.com/plotly/datasets/master/iris-data.csv"
-    |> fun csv -> Frame.ReadCsvString(csv,true,separators=",")
+        ("AAA", "AA"), 10
+        ("AAB", "AA"), 5
+    ]
 
-let sepalLengthData = data.["sepal length"] |> Series.values
-let sepalWidthData = data.["sepal width"]  |> Series.values
-let petalLengthData = data.["petal length"] |> Series.values
-let petalWidthData = data.["petal width"]  |> Series.values
-
-
-let colors = 
-    data
-    |> Frame.getCol "class"
-    |> Series.values
-    |> Seq.cast<string>
-    |> Seq.map (fun x ->
-        match x with
-        | "Iris-setosa" -> 0.
-        | "Iris-versicolor" -> 0.5
-        | _ -> 1
+    Chart.Treemap(
+        labelsParents |> Seq.map fst,
+        Values = (labelsParents |> Seq.map snd), 
+        BranchValues = StyleParam.BranchValues.Total, // branch values are the total of their childrens values
+        SectionColorScale = StyleParam.Colorscale.Viridis,
+        ShowSectionColorScale = true,
+        SectionOutlineColor = Color.fromKeyword Black,
+        Tiling = TreemapTiling.init(Packing = StyleParam.TreemapTilingPacking.SliceDice)
     )
-    |> Color.fromColorScaleValues
+    |> Chart.show
 
-Chart.Splom(
-    [
-        "sepal length" , sepalLengthData
-        "sepal width"  , sepalWidthData
-        "petal length" , petalLengthData
-        "petal width"  , petalWidthData
-    ],
-    MarkerColor = colors
-)
-|> Chart.withLayout(
-    Layout.init(
-        HoverMode = StyleParam.HoverMode.Closest,
-        DragMode = StyleParam.DragMode.Select
+let icicleStyled = 
+    let labelsParents = [
+        ("A",""), 20
+        ("B",""), 1
+        ("C",""), 2
+        ("D",""), 3
+        ("E",""), 4
+
+        ("AA","A"), 15
+        ("AB","A"), 5
+
+        ("BA","B"), 1
+
+        ("AAA", "AA"), 10
+        ("AAB", "AA"), 5
+    ]
+
+    Chart.Icicle(
+        labelsParents |> Seq.map fst,
+        Values = (labelsParents |> Seq.map snd), 
+        BranchValues = StyleParam.BranchValues.Total, // branch values are the total of their childrens values
+        SectionColorScale = StyleParam.Colorscale.Viridis,
+        ShowSectionColorScale = true,
+        SectionOutlineColor = Color.fromKeyword Black,
+        Tiling = IcicleTiling.init(Flip = StyleParam.TilingFlip.XY)
     )
-)
-|> Chart.withSize (1000,1000)
-|> Chart.show
+    |> Chart.show
 
+let parcatsStyled =
+    let dims =
+        [
+            Dimension.initParallel(Values = ["A";"A";"A";"B";"B";"B";"C";"D"],Label="Lvl1")
+            Dimension.initParallel(Values = ["AA";"AA";"AB";"AB";"AB";"AB";"AB";"AB"],Label="Lvl2")
+            Dimension.initParallel(Values = ["AAA";"AAB";"AAC";"AAC";"AAB";"AAB";"AAA";"AAA"],Label="Lvl3")
+        ]
 
-Chart.Splom(
-    [
-        "sepal length" , sepalLengthData
-        "sepal width"  , sepalWidthData
-        "petal length" , petalLengthData
-        "petal width"  , petalWidthData
-    ],
-    MarkerColor = colors,
-    ShowDiagonal = false
-)
-|> Chart.withLayout(
-    Layout.init(
-        HoverMode = StyleParam.HoverMode.Closest,
-        DragMode = StyleParam.DragMode.Select
+    Chart.ParallelCategories(
+        dims,
+        LineColor = Color.fromColorScaleValues [0; 1; 2; 2; 1; 1; 0; 0], // These values map to the last category axis, meaning [AAA => 0; AAB = 1; AAC => 2]
+        LineColorScale = StyleParam.Colorscale.Viridis,
+        BundleColors = false
     )
-)
-|> Chart.withSize (1000,1000)
-|> Chart.show
+    |> Chart.show
 
-Chart.Splom(
-    [
-        "sepal length" , sepalLengthData
-        "sepal width"  , sepalWidthData
-        "petal length" , petalLengthData
-        "petal width"  , petalWidthData
-    ],
-    MarkerColor = colors,
-    ShowLowerHalf = false
-)
-|> Chart.withLayout(
-    Layout.init(
-        HoverMode = StyleParam.HoverMode.Closest,
-        DragMode = StyleParam.DragMode.Select
+let parcoordsStyled =
+
+    let data =
+        "https://raw.githubusercontent.com/bcdunbar/datasets/master/iris.csv"
+        |> Http.RequestString
+        |> Frame.ReadCsvString
+
+    data.Print()
+
+    let dims = 
+        [
+            Dimension.initParallel(Label = "sepal_length", Values = (data |> Frame.getCol "sepal_length" |> Series.values), Range = StyleParam.Range.MinMax(0., 8.))
+            Dimension.initParallel(Label = "sepal_width" , Values = (data |> Frame.getCol "sepal_width"  |> Series.values), Range = StyleParam.Range.MinMax(0., 8.))
+            Dimension.initParallel(Label = "petal_length", Values = (data |> Frame.getCol "petal_length" |> Series.values), Range = StyleParam.Range.MinMax(0., 8.))
+            Dimension.initParallel(Label = "petal_width" , Values = (data |> Frame.getCol "petal_width"  |> Series.values), Range = StyleParam.Range.MinMax(0., 8.))
+        ]
+
+    let colors = 
+        data
+        |> Frame.getCol "species_id"
+        |> Series.values
+        |> Color.fromColorScaleValues
+
+    Chart.ParallelCoord(
+        dims,
+        LineColorScale = StyleParam.Colorscale.Viridis,
+        LineColor = colors
     )
-)
-|> Chart.withSize (1000,1000)
-|> Chart.show
+    |> Chart.show
+
+let tableStyled =
+    let header = ["<b>RowIndex</b>";"A";"simple";"table"]
+    let rows = 
+        [
+             ["0";"I"     ;"am"     ;"a"]        // The Table chart constructor uses rowmajor data per default.
+             ["1";"little";"example";"!"]        // Keep in mind that this is different from the underlying raw trace constructor 
+             ["2";"more";"text";"!"]             // (which uses colum major data just as plotly.js) Set TransposeCells = false to prevent this.
+        ]
+
+    Chart.Table(
+        header, 
+        rows
+    )
+    |> Chart.show
+
+let styledSankey = 
+    Chart.Sankey(
+        nodeLabels = ["A1"; "A2"; "B1"; "B2"; "C1"; "C2"; "D1"],
+        linkedNodeIds = [
+            0,2
+            0,3
+            1,3
+            2,4
+            3,4
+            3,5
+            4,6
+            5,6
+        ],
+        NodeOutlineColor = Color.fromKeyword Black,
+        NodeOutlineWidth = 1.,
+        linkValues = [8; 4; 2; 7; 3; 2; 5; 2],
+        LinkColor = Color.fromColors [
+            Color.fromHex "#828BFB"
+            Color.fromHex "#828BFB"
+            Color.fromHex "#F27762"
+            Color.fromHex "#33D6AB"
+            Color.fromHex "#BC82FB"
+            Color.fromHex "#BC82FB"
+            Color.fromHex "#FFB47B"
+            Color.fromHex "#47DCF5"
+        ],
+        LinkOutlineColor = Color.fromKeyword Black,
+        LinkOutlineWidth = 1.
+    )
+    |> Chart.show

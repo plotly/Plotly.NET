@@ -647,16 +647,18 @@ module ChartTemplates =
                     )
                 )
 
-                TraceDomain.initTable(
+                TraceDomain.initTable (
                     TraceDomainStyle.Table(
-                        Cells = TableCells.init(
-                            Fill = TableFill.init(Color = Color.fromHex "#EBF0F8"),
-                            Line = Line.init(Color = Color.fromKeyword White)
-                        ),
-                        Header = TableCells.init(
-                            Fill = TableFill.init(Color = Color.fromHex "#C8D4E3"),
-                            Line = Line.init(Color = Color.fromKeyword White)
-                        )
+                        Cells =
+                            TableCells.init (
+                                Fill = TableFill.init (Color = Color.fromHex "#EBF0F8"),
+                                Line = Line.init (Color = Color.fromKeyword White)
+                            ),
+                        Header =
+                            TableCells.init (
+                                Fill = TableFill.init (Color = Color.fromHex "#C8D4E3"),
+                                Line = Line.init (Color = Color.fromKeyword White)
+                            )
                     )
                 )
             ]
