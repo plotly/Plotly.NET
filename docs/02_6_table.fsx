@@ -211,7 +211,6 @@ let table4 =
         )
     |> Chart.withSize(Width=chartwidth)
     |> Chart.withTitle "Sequence A"
-    |> Chart.show
 
 (*** condition: ipynb ***)
 #if IPYNB
