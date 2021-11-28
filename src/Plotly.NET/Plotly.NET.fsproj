@@ -64,6 +64,7 @@
     <Compile Include="Layout\ObjectAbstractions\Common\Rangebreak.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\LinearAxis.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\ColorAxis.fs" />
+    <Compile Include="Layout\ObjectAbstractions\Common\UpdateMenu.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\Slider\SliderCurrentValue.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\Slider\SliderStep.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\Slider\Slider.fs" />

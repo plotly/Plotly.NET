@@ -715,10 +715,159 @@ type Chart =
     //    Chart.withY_Axis2(yaxis)
 
 
-    // Set the Layout options of a Chart
+    // Set the Layout of a Chart
     [<CompiledName("WithLayout")>]
     static member withLayout(layout: Layout) =
         (fun (ch: GenericChart) -> GenericChart.addLayout layout ch)
+
+    // Set the Layout style of a Chart
+    [<CompiledName("WithLayoutStyle")>]
+    static member withLayoutStyle
+        (
+            [<Optional; DefaultParameterValue(null)>] ?Title: Title,
+            [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Legend: Legend,
+            [<Optional; DefaultParameterValue(null)>] ?Margin: Margin,
+            [<Optional; DefaultParameterValue(null)>] ?AutoSize: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Width: int,
+            [<Optional; DefaultParameterValue(null)>] ?Height: int,
+            [<Optional; DefaultParameterValue(null)>] ?Font: Font,
+            [<Optional; DefaultParameterValue(null)>] ?UniformText: UniformText,
+            [<Optional; DefaultParameterValue(null)>] ?Separators: string,
+            [<Optional; DefaultParameterValue(null)>] ?PaperBGColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?PlotBGColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?AutoTypeNumbers: StyleParam.AutoTypeNumbers,
+            [<Optional; DefaultParameterValue(null)>] ?Colorscale: DefaultColorScales,
+            [<Optional; DefaultParameterValue(null)>] ?Colorway: Color,
+            [<Optional; DefaultParameterValue(null)>] ?ModeBar: ModeBar,
+            [<Optional; DefaultParameterValue(null)>] ?HoverMode: StyleParam.HoverMode,
+            [<Optional; DefaultParameterValue(null)>] ?ClickMode: StyleParam.ClickMode,
+            [<Optional; DefaultParameterValue(null)>] ?DragMode: StyleParam.DragMode,
+            [<Optional; DefaultParameterValue(null)>] ?SelectDirection: StyleParam.SelectDirection,
+            [<Optional; DefaultParameterValue(null)>] ?HoverDistance: int,
+            [<Optional; DefaultParameterValue(null)>] ?SpikeDistance: int,
+            [<Optional; DefaultParameterValue(null)>] ?Hoverlabel: Hoverlabel,
+            [<Optional; DefaultParameterValue(null)>] ?Transition: Transition,
+            [<Optional; DefaultParameterValue(null)>] ?DataRevision: string,
+            [<Optional; DefaultParameterValue(null)>] ?UIRevision: string,
+            [<Optional; DefaultParameterValue(null)>] ?EditRevision: string,
+            [<Optional; DefaultParameterValue(null)>] ?SelectRevision: string,
+            [<Optional; DefaultParameterValue(null)>] ?Template: DynamicObj,
+            [<Optional; DefaultParameterValue(null)>] ?Meta: string,
+            [<Optional; DefaultParameterValue(null)>] ?Computed: string,
+            [<Optional; DefaultParameterValue(null)>] ?Grid: LayoutGrid,
+            [<Optional; DefaultParameterValue(null)>] ?Calendar: StyleParam.Calendar,
+            [<Optional; DefaultParameterValue(null)>] ?NewShape: Shape,
+            [<Optional; DefaultParameterValue(null)>] ?ActiveShape: ActiveShape,
+            [<Optional; DefaultParameterValue(null)>] ?HideSources: bool,
+            [<Optional; DefaultParameterValue(null)>] ?BarGap: float,
+            [<Optional; DefaultParameterValue(null)>] ?BarGroupGap: float,
+            [<Optional; DefaultParameterValue(null)>] ?BarMode: StyleParam.BarMode,
+            [<Optional; DefaultParameterValue(null)>] ?BarNorm: StyleParam.BarNorm,
+            [<Optional; DefaultParameterValue(null)>] ?ExtendPieColors: bool,
+            [<Optional; DefaultParameterValue(null)>] ?HiddenLabels: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?PieColorWay: Color,
+            [<Optional; DefaultParameterValue(null)>] ?BoxGap: float,
+            [<Optional; DefaultParameterValue(null)>] ?BoxGroupGap: float,
+            [<Optional; DefaultParameterValue(null)>] ?BoxMode: StyleParam.BoxMode,
+            [<Optional; DefaultParameterValue(null)>] ?ViolinGap: float,
+            [<Optional; DefaultParameterValue(null)>] ?ViolinGroupGap: float,
+            [<Optional; DefaultParameterValue(null)>] ?ViolinMode: StyleParam.ViolinMode,
+            [<Optional; DefaultParameterValue(null)>] ?WaterfallGap: float,
+            [<Optional; DefaultParameterValue(null)>] ?WaterfallGroupGap: float,
+            [<Optional; DefaultParameterValue(null)>] ?WaterfallMode: StyleParam.WaterfallMode,
+            [<Optional; DefaultParameterValue(null)>] ?FunnelGap: float,
+            [<Optional; DefaultParameterValue(null)>] ?FunnelGroupGap: float,
+            [<Optional; DefaultParameterValue(null)>] ?FunnelMode: StyleParam.FunnelMode,
+            [<Optional; DefaultParameterValue(null)>] ?ExtendFunnelAreaColors: bool,
+            [<Optional; DefaultParameterValue(null)>] ?FunnelAreaColorWay: Color,
+            [<Optional; DefaultParameterValue(null)>] ?ExtendSunBurstColors: bool,
+            [<Optional; DefaultParameterValue(null)>] ?SunBurstColorWay: Color,
+            [<Optional; DefaultParameterValue(null)>] ?ExtendTreeMapColors: bool,
+            [<Optional; DefaultParameterValue(null)>] ?TreeMapColorWay: Color,
+            [<Optional; DefaultParameterValue(null)>] ?ExtendIcicleColors: bool,
+            [<Optional; DefaultParameterValue(null)>] ?IcicleColorWay: Color,
+            [<Optional; DefaultParameterValue(null)>] ?Annotations: seq<Annotation>,
+            [<Optional; DefaultParameterValue(null)>] ?Shapes: seq<Shape>,
+            [<Optional; DefaultParameterValue(null)>] ?Images: seq<LayoutImage>,
+            [<Optional; DefaultParameterValue(null)>] ?Sliders: seq<Slider>,
+            [<Optional; DefaultParameterValue(null)>] ?UpdateMenus: seq<UpdateMenu>
+        ) =
+        (fun (ch: GenericChart) ->
+
+            let layout' =
+                Layout.init (
+                    ?Title = Title,
+                    ?ShowLegend = ShowLegend,
+                    ?Legend = Legend,
+                    ?Margin = Margin,
+                    ?AutoSize = AutoSize,
+                    ?Width = Width,
+                    ?Height = Height,
+                    ?Font = Font,
+                    ?UniformText = UniformText,
+                    ?Separators = Separators,
+                    ?PaperBGColor = PaperBGColor,
+                    ?PlotBGColor = PlotBGColor,
+                    ?AutoTypeNumbers = AutoTypeNumbers,
+                    ?Colorscale = Colorscale,
+                    ?Colorway = Colorway,
+                    ?ModeBar = ModeBar,
+                    ?HoverMode = HoverMode,
+                    ?ClickMode = ClickMode,
+                    ?DragMode = DragMode,
+                    ?SelectDirection = SelectDirection,
+                    ?HoverDistance = HoverDistance,
+                    ?SpikeDistance = SpikeDistance,
+                    ?Hoverlabel = Hoverlabel,
+                    ?Transition = Transition,
+                    ?DataRevision = DataRevision,
+                    ?UIRevision = UIRevision,
+                    ?EditRevision = EditRevision,
+                    ?SelectRevision = SelectRevision,
+                    ?Template = Template,
+                    ?Meta = Meta,
+                    ?Computed = Computed,
+                    ?Grid = Grid,
+                    ?Calendar = Calendar,
+                    ?NewShape = NewShape,
+                    ?ActiveShape = ActiveShape,
+                    ?HideSources = HideSources,
+                    ?BarGap = BarGap,
+                    ?BarGroupGap = BarGroupGap,
+                    ?BarMode = BarMode,
+                    ?BarNorm = BarNorm,
+                    ?ExtendPieColors = ExtendPieColors,
+                    ?HiddenLabels = HiddenLabels,
+                    ?PieColorWay = PieColorWay,
+                    ?BoxGap = BoxGap,
+                    ?BoxGroupGap = BoxGroupGap,
+                    ?BoxMode = BoxMode,
+                    ?ViolinGap = ViolinGap,
+                    ?ViolinGroupGap = ViolinGroupGap,
+                    ?ViolinMode = ViolinMode,
+                    ?WaterfallGap = WaterfallGap,
+                    ?WaterfallGroupGap = WaterfallGroupGap,
+                    ?WaterfallMode = WaterfallMode,
+                    ?FunnelGap = FunnelGap,
+                    ?FunnelGroupGap = FunnelGroupGap,
+                    ?FunnelMode = FunnelMode,
+                    ?ExtendFunnelAreaColors = ExtendFunnelAreaColors,
+                    ?FunnelAreaColorWay = FunnelAreaColorWay,
+                    ?ExtendSunBurstColors = ExtendSunBurstColors,
+                    ?SunBurstColorWay = SunBurstColorWay,
+                    ?ExtendTreeMapColors = ExtendTreeMapColors,
+                    ?TreeMapColorWay = TreeMapColorWay,
+                    ?ExtendIcicleColors = ExtendIcicleColors,
+                    ?IcicleColorWay = IcicleColorWay,
+                    ?Annotations = Annotations,
+                    ?Shapes = Shapes,
+                    ?Images = Images,
+                    ?Sliders = Sliders,
+                    ?UpdateMenus = UpdateMenus
+                )
+
+            GenericChart.addLayout layout' ch)
 
     // Set the LayoutGrid options of a Chart
     [<CompiledName("WithLayoutGrid")>]
@@ -1851,7 +2000,7 @@ type Chart =
     /// </summary>
     /// <param name="images">The images to add to the input charts layout</param>
     /// <param name="Append">If true, the input images will be appended to existing annotations, otherwise existing annotations will be removed (default: true)</param>
-    [<CompiledName("WithImages")>]
+    [<CompiledName("WithLayoutImages")>]
     static member withLayoutImages(images: seq<LayoutImage>, [<Optional; DefaultParameterValue(true)>] ?Append: bool) =
         let append = defaultArg Append true
 
@@ -1876,6 +2025,41 @@ type Chart =
     static member withLayoutImage(image: LayoutImage, [<Optional; DefaultParameterValue(true)>] ?Append: bool) =
 
         Chart.withLayoutImages ([ image ], ?Append = Append)
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="updateMenus">The updatmenus to add to the input charts layout</param>
+    /// <param name="Append">If true, the input images will be appended to existing annotations, otherwise existing annotations will be removed (default: true)</param>
+    [<CompiledName("WithUpdateMenus")>]
+    static member withUpdateMenus
+        (
+            updateMenus: seq<UpdateMenu>,
+            [<Optional; DefaultParameterValue(true)>] ?Append: bool
+        ) =
+        let append = defaultArg Append true
+
+        fun (ch: GenericChart) ->
+
+            let updateMenus' =
+
+                if append then
+
+                    let layout = GenericChart.getLayout ch
+
+                    layout.TryGetTypedValue<seq<UpdateMenu>>("updatemenus")
+                    |> Option.defaultValue Seq.empty
+                    |> Seq.append updateMenus
+
+                else
+                    updateMenus
+
+            ch |> GenericChart.mapLayout (Layout.style (UpdateMenus = updateMenus'))
+
+    [<CompiledName("WithUpdateMenu")>]
+    static member withUpdateMenu(updateMenu: UpdateMenu, [<Optional; DefaultParameterValue(true)>] ?Append: bool) =
+
+        Chart.withUpdateMenus ([ updateMenu ], ?Append = Append)
 
     [<CompiledName("WithSliders")>]
     static member withSliders(sliders: seq<Slider>) =

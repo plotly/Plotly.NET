@@ -3204,6 +3204,59 @@ module StyleParam =
 // #U#
 //--------------------------
     [<RequireQualifiedAccess>]
+    type UpdateMenuType =
+        | Dropdown
+        | Buttons
+
+
+        static member toString =
+            function
+            | Dropdown -> "dropdown"
+            | Buttons -> "buttons"
+
+        static member convert = UpdateMenuType.toString >> box
+        override this.ToString() = this |> UpdateMenuType.toString
+        member this.Convert() = this |> UpdateMenuType.convert
+
+    [<RequireQualifiedAccess>]
+    type UpdateMethod =
+        | Restyle
+        | Relayout
+        | Animate
+        | Update
+        | Skip
+
+        static member toString =
+            function
+            | Restyle -> "restyle"
+            | Relayout -> "relayout"
+            | Animate -> "animate"
+            | Update -> "update"
+            | Skip -> "skip"
+
+        static member convert = UpdateMethod.toString >> box
+        override this.ToString() = this |> UpdateMethod.toString
+        member this.Convert() = this |> UpdateMethod.convert
+
+    [<RequireQualifiedAccess>]
+    type UpdateMenuDirection =
+        | Left
+        | Right
+        | Up
+        | Down
+
+        static member toString =
+            function
+            | Left -> "left"
+            | Right -> "right"
+            | Up -> "up"
+            | Down -> "down"
+
+        static member convert = UpdateMenuDirection.toString >> box
+        override this.ToString() = this |> UpdateMenuDirection.toString
+        member this.Convert() = this |> UpdateMenuDirection.convert
+
+    [<RequireQualifiedAccess>]
     type UniformTextMode =
         | Hide
         | False

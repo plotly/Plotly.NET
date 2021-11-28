@@ -1,9 +1,9 @@
 (**
 ---
 title: Sliders
-category: Simple Charts
-categoryindex: 3
-index: 10
+category: Chart Layout
+categoryindex: 2
+index: 7
 ---
 *)
 

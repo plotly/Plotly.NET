@@ -267,6 +267,11 @@ module GenericChart =
                     (first.TryGetTypedValue<seq<string>>("hiddenlabels"))
                     (second.TryGetTypedValue<seq<string>>("hiddenlabels"))
 
+            let updateMenus =
+                combineOptSeqs
+                    (first.TryGetTypedValue<seq<UpdateMenu>>("updatemenus"))
+                    (second.TryGetTypedValue<seq<UpdateMenu>>("updatemenus"))
+
             DynObj.combine first second
             |> unbox
             |> Layout.style (
@@ -274,7 +279,8 @@ module GenericChart =
                 ?Shapes = shapes,
                 ?Images = images,
                 ?Sliders = sliders,
-                ?HiddenLabels = hiddenLabels
+                ?HiddenLabels = hiddenLabels,
+                ?UpdateMenus = updateMenus
             )
 
         let combineConfigs (first: Config) (second: Config) =

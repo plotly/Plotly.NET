@@ -78,7 +78,8 @@ type Layout() =
             [<Optional; DefaultParameterValue(null)>] ?Annotations: seq<Annotation>,
             [<Optional; DefaultParameterValue(null)>] ?Shapes: seq<Shape>,
             [<Optional; DefaultParameterValue(null)>] ?Images: seq<LayoutImage>,
-            [<Optional; DefaultParameterValue(null)>] ?Sliders: seq<Slider>
+            [<Optional; DefaultParameterValue(null)>] ?Sliders: seq<Slider>,
+            [<Optional; DefaultParameterValue(null)>] ?UpdateMenus: seq<UpdateMenu>
         ) =
         Layout()
         |> Layout.style (
@@ -148,7 +149,8 @@ type Layout() =
             ?Annotations = Annotations,
             ?Shapes = Shapes,
             ?Images = Images,
-            ?Sliders = Sliders
+            ?Sliders = Sliders,
+            ?UpdateMenus = UpdateMenus
         )
 
     // Applies the styles to Layout()
@@ -220,7 +222,8 @@ type Layout() =
             [<Optional; DefaultParameterValue(null)>] ?Annotations: seq<Annotation>,
             [<Optional; DefaultParameterValue(null)>] ?Shapes: seq<Shape>,
             [<Optional; DefaultParameterValue(null)>] ?Images: seq<LayoutImage>,
-            [<Optional; DefaultParameterValue(null)>] ?Sliders: seq<Slider>
+            [<Optional; DefaultParameterValue(null)>] ?Sliders: seq<Slider>,
+            [<Optional; DefaultParameterValue(null)>] ?UpdateMenus: seq<UpdateMenu>
         ) =
         (fun (layout: Layout) ->
 
@@ -291,6 +294,7 @@ type Layout() =
             Shapes |> DynObj.setValueOpt layout "shapes"
             Images |> DynObj.setValueOpt layout "images"
             Sliders |> DynObj.setValueOpt layout "sliders"
+            UpdateMenus |> DynObj.setValueOpt layout "updatemenus"
 
             layout)
 

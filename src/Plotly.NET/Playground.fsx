@@ -40,6 +40,7 @@
 #load "LinearAxis.fs"
 #load "ColorAxis.fs"
 #load "Padding.fs"
+#load "Updatemenu.fs"
 
 #I "Layout/ObjectAbstractions/Map"
 
@@ -181,3 +182,60 @@ open Plotly.NET
 open FSharp.Data
 open Deedle
 
+let data =
+    "https://raw.githubusercontent.com/plotly/datasets/master/volcano.csv"
+    |> Http.RequestString
+    |> Frame.ReadCsvString
+    |> Frame.toArray2D
+    |> Array2D.toJaggedArray
+
+let updateMenu =
+    UpdateMenu.init(
+        Buttons = [
+            UpdateMenuButton.init(
+                Args = ["type"; "surface"],
+                Label = "Surface",
+                Method = StyleParam.UpdateMethod.Restyle
+            )            
+            UpdateMenuButton.init(
+                Args = ["type"; "heatmap"],
+                Label = "Heatmap",
+                Method = StyleParam.UpdateMethod.Restyle
+            )
+        ],
+        Direction = StyleParam.UpdateMenuDirection.Down,
+        Pad = Padding.init(R = 10, T = 10),
+        ShowActive = true,
+        X = 0.1,
+        XAnchor = StyleParam.XAnchorPosition.Left,
+        Y = 1.1,
+        YAnchor = StyleParam.YAnchorPosition.Top
+    )
+
+Chart.Surface(
+    data
+)
+|> Chart.withUpdateMenu updateMenu
+|> Chart.withAnnotation (
+    Annotation.init(
+        Text = "Trace Type:", 
+        ShowArrow = false,
+        X = 0,
+        Y = 1.085,
+        YRef = "paper",
+        Align = StyleParam.AnnotationAlignment.Left
+    )
+)
+|> Chart.withScene(
+    Scene.init(
+        AspectRatio = AspectRatio.init(X=1.,Y=1.,Z=0.7),
+        AspectMode = StyleParam.AspectMode.Manual
+    )
+)
+|> Chart.withLayoutStyle(
+    Width = 800,
+    Height = 900,
+    AutoSize = false,
+    Margin = Margin.init(0,0,0,0)
+)
+|> Chart.show

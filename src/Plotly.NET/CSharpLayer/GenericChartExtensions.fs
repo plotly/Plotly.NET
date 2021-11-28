@@ -422,6 +422,151 @@ module GenericChartExtensions =
         [<Extension>]
         member this.WithLayout(layout: Layout) = GenericChart.addLayout layout this
 
+        // Set the Layout style of a Chart
+        [<CompiledName("WithLayoutStyle")>]
+        member this.WithLayoutStyle
+            (
+                [<Optional; DefaultParameterValue(null)>] ?Title: Title,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Legend: Legend,
+                [<Optional; DefaultParameterValue(null)>] ?Margin: Margin,
+                [<Optional; DefaultParameterValue(null)>] ?AutoSize: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Width: int,
+                [<Optional; DefaultParameterValue(null)>] ?Height: int,
+                [<Optional; DefaultParameterValue(null)>] ?Font: Font,
+                [<Optional; DefaultParameterValue(null)>] ?UniformText: UniformText,
+                [<Optional; DefaultParameterValue(null)>] ?Separators: string,
+                [<Optional; DefaultParameterValue(null)>] ?PaperBGColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?PlotBGColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?AutoTypeNumbers: StyleParam.AutoTypeNumbers,
+                [<Optional; DefaultParameterValue(null)>] ?Colorscale: DefaultColorScales,
+                [<Optional; DefaultParameterValue(null)>] ?Colorway: Color,
+                [<Optional; DefaultParameterValue(null)>] ?ModeBar: ModeBar,
+                [<Optional; DefaultParameterValue(null)>] ?HoverMode: StyleParam.HoverMode,
+                [<Optional; DefaultParameterValue(null)>] ?ClickMode: StyleParam.ClickMode,
+                [<Optional; DefaultParameterValue(null)>] ?DragMode: StyleParam.DragMode,
+                [<Optional; DefaultParameterValue(null)>] ?SelectDirection: StyleParam.SelectDirection,
+                [<Optional; DefaultParameterValue(null)>] ?HoverDistance: int,
+                [<Optional; DefaultParameterValue(null)>] ?SpikeDistance: int,
+                [<Optional; DefaultParameterValue(null)>] ?Hoverlabel: Hoverlabel,
+                [<Optional; DefaultParameterValue(null)>] ?Transition: Transition,
+                [<Optional; DefaultParameterValue(null)>] ?DataRevision: string,
+                [<Optional; DefaultParameterValue(null)>] ?UIRevision: string,
+                [<Optional; DefaultParameterValue(null)>] ?EditRevision: string,
+                [<Optional; DefaultParameterValue(null)>] ?SelectRevision: string,
+                [<Optional; DefaultParameterValue(null)>] ?Template: DynamicObj,
+                [<Optional; DefaultParameterValue(null)>] ?Meta: string,
+                [<Optional; DefaultParameterValue(null)>] ?Computed: string,
+                [<Optional; DefaultParameterValue(null)>] ?Grid: LayoutGrid,
+                [<Optional; DefaultParameterValue(null)>] ?Calendar: StyleParam.Calendar,
+                [<Optional; DefaultParameterValue(null)>] ?NewShape: Shape,
+                [<Optional; DefaultParameterValue(null)>] ?ActiveShape: ActiveShape,
+                [<Optional; DefaultParameterValue(null)>] ?HideSources: bool,
+                [<Optional; DefaultParameterValue(null)>] ?BarGap: float,
+                [<Optional; DefaultParameterValue(null)>] ?BarGroupGap: float,
+                [<Optional; DefaultParameterValue(null)>] ?BarMode: StyleParam.BarMode,
+                [<Optional; DefaultParameterValue(null)>] ?BarNorm: StyleParam.BarNorm,
+                [<Optional; DefaultParameterValue(null)>] ?ExtendPieColors: bool,
+                [<Optional; DefaultParameterValue(null)>] ?HiddenLabels: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?PieColorWay: Color,
+                [<Optional; DefaultParameterValue(null)>] ?BoxGap: float,
+                [<Optional; DefaultParameterValue(null)>] ?BoxGroupGap: float,
+                [<Optional; DefaultParameterValue(null)>] ?BoxMode: StyleParam.BoxMode,
+                [<Optional; DefaultParameterValue(null)>] ?ViolinGap: float,
+                [<Optional; DefaultParameterValue(null)>] ?ViolinGroupGap: float,
+                [<Optional; DefaultParameterValue(null)>] ?ViolinMode: StyleParam.ViolinMode,
+                [<Optional; DefaultParameterValue(null)>] ?WaterfallGap: float,
+                [<Optional; DefaultParameterValue(null)>] ?WaterfallGroupGap: float,
+                [<Optional; DefaultParameterValue(null)>] ?WaterfallMode: StyleParam.WaterfallMode,
+                [<Optional; DefaultParameterValue(null)>] ?FunnelGap: float,
+                [<Optional; DefaultParameterValue(null)>] ?FunnelGroupGap: float,
+                [<Optional; DefaultParameterValue(null)>] ?FunnelMode: StyleParam.FunnelMode,
+                [<Optional; DefaultParameterValue(null)>] ?ExtendFunnelAreaColors: bool,
+                [<Optional; DefaultParameterValue(null)>] ?FunnelAreaColorWay: Color,
+                [<Optional; DefaultParameterValue(null)>] ?ExtendSunBurstColors: bool,
+                [<Optional; DefaultParameterValue(null)>] ?SunBurstColorWay: Color,
+                [<Optional; DefaultParameterValue(null)>] ?ExtendTreeMapColors: bool,
+                [<Optional; DefaultParameterValue(null)>] ?TreeMapColorWay: Color,
+                [<Optional; DefaultParameterValue(null)>] ?ExtendIcicleColors: bool,
+                [<Optional; DefaultParameterValue(null)>] ?IcicleColorWay: Color,
+                [<Optional; DefaultParameterValue(null)>] ?Annotations: seq<Annotation>,
+                [<Optional; DefaultParameterValue(null)>] ?Shapes: seq<Shape>,
+                [<Optional; DefaultParameterValue(null)>] ?Images: seq<LayoutImage>,
+                [<Optional; DefaultParameterValue(null)>] ?Sliders: seq<Slider>,
+                [<Optional; DefaultParameterValue(null)>] ?UpdateMenus: seq<UpdateMenu>
+            ) =
+            this
+            |> Chart.withLayoutStyle (
+                ?Title = Title,
+                ?ShowLegend = ShowLegend,
+                ?Legend = Legend,
+                ?Margin = Margin,
+                ?AutoSize = AutoSize,
+                ?Width = Width,
+                ?Height = Height,
+                ?Font = Font,
+                ?UniformText = UniformText,
+                ?Separators = Separators,
+                ?PaperBGColor = PaperBGColor,
+                ?PlotBGColor = PlotBGColor,
+                ?AutoTypeNumbers = AutoTypeNumbers,
+                ?Colorscale = Colorscale,
+                ?Colorway = Colorway,
+                ?ModeBar = ModeBar,
+                ?HoverMode = HoverMode,
+                ?ClickMode = ClickMode,
+                ?DragMode = DragMode,
+                ?SelectDirection = SelectDirection,
+                ?HoverDistance = HoverDistance,
+                ?SpikeDistance = SpikeDistance,
+                ?Hoverlabel = Hoverlabel,
+                ?Transition = Transition,
+                ?DataRevision = DataRevision,
+                ?UIRevision = UIRevision,
+                ?EditRevision = EditRevision,
+                ?SelectRevision = SelectRevision,
+                ?Template = Template,
+                ?Meta = Meta,
+                ?Computed = Computed,
+                ?Grid = Grid,
+                ?Calendar = Calendar,
+                ?NewShape = NewShape,
+                ?ActiveShape = ActiveShape,
+                ?HideSources = HideSources,
+                ?BarGap = BarGap,
+                ?BarGroupGap = BarGroupGap,
+                ?BarMode = BarMode,
+                ?BarNorm = BarNorm,
+                ?ExtendPieColors = ExtendPieColors,
+                ?HiddenLabels = HiddenLabels,
+                ?PieColorWay = PieColorWay,
+                ?BoxGap = BoxGap,
+                ?BoxGroupGap = BoxGroupGap,
+                ?BoxMode = BoxMode,
+                ?ViolinGap = ViolinGap,
+                ?ViolinGroupGap = ViolinGroupGap,
+                ?ViolinMode = ViolinMode,
+                ?WaterfallGap = WaterfallGap,
+                ?WaterfallGroupGap = WaterfallGroupGap,
+                ?WaterfallMode = WaterfallMode,
+                ?FunnelGap = FunnelGap,
+                ?FunnelGroupGap = FunnelGroupGap,
+                ?FunnelMode = FunnelMode,
+                ?ExtendFunnelAreaColors = ExtendFunnelAreaColors,
+                ?FunnelAreaColorWay = FunnelAreaColorWay,
+                ?ExtendSunBurstColors = ExtendSunBurstColors,
+                ?SunBurstColorWay = SunBurstColorWay,
+                ?ExtendTreeMapColors = ExtendTreeMapColors,
+                ?TreeMapColorWay = TreeMapColorWay,
+                ?ExtendIcicleColors = ExtendIcicleColors,
+                ?IcicleColorWay = IcicleColorWay,
+                ?Annotations = Annotations,
+                ?Shapes = Shapes,
+                ?Images = Images,
+                ?Sliders = Sliders,
+                ?UpdateMenus = UpdateMenus
+            )
+
         // Set the LayoutGrid options of a Chart
         [<CompiledName("WithLayoutGrid")>]
         [<Extension>]
@@ -846,6 +991,20 @@ module GenericChartExtensions =
                 [<Optional; DefaultParameterValue(true)>] ?Append: bool
             ) =
             this |> Chart.withLayoutImages (images, ?Append = Append)
+
+        [<CompiledName("WithUpdateMenu")>]
+        [<Extension>]
+        member this.WithUpdateMenu(updateMenu: UpdateMenu, [<Optional; DefaultParameterValue(true)>] ?Append: bool) =
+            this |> Chart.withUpdateMenu (updateMenu, ?Append = Append)
+
+        [<CompiledName("WithUpdateMenus")>]
+        [<Extension>]
+        member this.WithUpdateMenus
+            (
+                updateMenus: seq<UpdateMenu>,
+                [<Optional; DefaultParameterValue(true)>] ?Append: bool
+            ) =
+            this |> Chart.withUpdateMenus (updateMenus, ?Append = Append)
 
         [<CompiledName("WithSlider")>]
         [<Extension>]
