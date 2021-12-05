@@ -1694,7 +1694,7 @@ type Trace2DStyle() =
 
 
     /// <summary>
-    /// Create a function that applies the styles of a 2d histogram contour plot to a Trace object
+    /// Create a function that applies the styles of a heatmap to a Trace object
     /// </summary>
     /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
     /// <param name="Visible">Determines whether or not this trace is visible. If "legendonly", the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).</param>
@@ -1875,7 +1875,40 @@ type Trace2DStyle() =
             // out ->
             heatmap)
 
-    // Applies the styles of heatmap to TraceObjects
+    /// <summary>
+    /// Create a function that applies the styles of a Image plot to a Trace object
+    /// </summary>
+    /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+    /// <param name="Visible">Determines whether or not this trace is visible. If "legendonly", the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).</param>
+    /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+    /// <param name="LegendRank">Sets the legend rank for this trace. Items and groups with smaller ranks are presented on top/left side while with `"reversed" `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items.</param>
+    /// <param name="LegendGroup">Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.</param>
+    /// <param name="LegendGroupTitle">Sets the legend group title for this trace.</param>
+    /// <param name="Opacity">Sets the opacity of the trace.</param>
+    /// <param name="Ids">Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.</param>
+    /// <param name="X0">Set the image's x position.</param>
+    /// <param name="DX">Set the pixel's horizontal size.</param>
+    /// <param name="Y0">Set the image's y position.</param>
+    /// <param name="DY">Set the pixel's vertical size</param>
+    /// <param name="Z">A 2-dimensional array in which each element is an array of 3 or 4 numbers representing a color.</param>
+    /// <param name="Source">Specifies the data URI of the image to be visualized. The URI consists of "data:image/[&lt;media subtype&gt;][;base64],&lt;data&gt;"</param>
+    /// <param name="Text">Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+    /// <param name="MultiText">Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+    /// <param name="HoverText">Sets hover text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo` must contain a "text" flag.</param>
+    /// <param name="MultiHoverText">Sets hover text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo` must contain a "text" flag.</param>
+    /// <param name="HoverInfo">Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.</param>
+    /// <param name="HoverTemplate">Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, "xother" will be added to those with different x positions from the first point. An underscore before or after "(x|y)other" will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `&lt;extra&gt;` is displayed in the secondary box, for example "&lt;extra&gt;{fullData.name}&lt;/extra&gt;". To hide the secondary box completely, use an empty tag `&lt;extra&gt;&lt;/extra&gt;`.</param>
+    /// <param name="MultiHoverTemplate">Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, "xother" will be added to those with different x positions from the first point. An underscore before or after "(x|y)other" will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `&lt;extra&gt;` is displayed in the secondary box, for example "&lt;extra&gt;{fullData.name}&lt;/extra&gt;". To hide the secondary box completely, use an empty tag `&lt;extra&gt;&lt;/extra&gt;`.</param>
+    /// <param name="Meta">Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.</param>
+    /// <param name="CustomData">Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, "scatter" traces also appends customdata items in the markers DOM elements</param>
+    /// <param name="XAxis">Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If "x" (the default value), the x coordinates refer to `layout.xaxis`. If "x2", the x coordinates refer to `layout.xaxis2`, and so on.</param>
+    /// <param name="YAxis">Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If "y" (the default value), the y coordinates refer to `layout.yaxis`. If "y2", the y coordinates refer to `layout.yaxis2`, and so on.</param>
+    /// <param name="ColorModel">Color model used to map the numerical color components described in `z` into colors. If `source` is specified, this attribute will be set to `rgba256` otherwise it defaults to `rgb`.</param>
+    /// <param name="ZMax">Sets the upper bound of the color domain. Value should have the same units as in `z` and if set, `zmin` must be set as well.</param>
+    /// <param name="ZMin">Sets the lower bound of the color domain. Value should have the same units as in `z` and if set, `zmax` must be set as well.</param>
+    /// <param name="ZSmooth">Picks a smoothing algorithm use to smooth `z` data.</param>
+    /// <param name="HoverLabel">Sets the style of the hoverlabels of this trace.</param>
+    /// <param name="UIRevision">Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.</param>
     static member Image
         (
             [<Optional; DefaultParameterValue(null)>] ?Name: string,
@@ -1886,18 +1919,19 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?LegendGroupTitle: Title,
             [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
             [<Optional; DefaultParameterValue(null)>] ?Ids: seq<#IConvertible>,
-            [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?X0: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?DX: #IConvertible,
-            [<Optional; DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?Y0: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?DY: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?Z: #seq<#seq<#seq<int>>>,
             [<Optional; DefaultParameterValue(null)>] ?Source: string,
-            [<Optional; DefaultParameterValue(null)>] ?Text: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?HoverText: string,
+            [<Optional; DefaultParameterValue(null)>] ?MultiHoverText: seq<string>,
             [<Optional; DefaultParameterValue(null)>] ?HoverInfo: StyleParam.HoverInfo,
             [<Optional; DefaultParameterValue(null)>] ?HoverTemplate: string,
+            [<Optional; DefaultParameterValue(null)>] ?MultiHoverTemplate: seq<string>,
             [<Optional; DefaultParameterValue(null)>] ?Meta: string,
             [<Optional; DefaultParameterValue(null)>] ?CustomData: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?XAxis: StyleParam.LinearAxisId,
@@ -1919,18 +1953,16 @@ type Trace2DStyle() =
             LegendGroupTitle |> DynObj.setValueOpt image "legendgrouptitle"
             Opacity |> DynObj.setValueOpt image "opacity"
             Ids |> DynObj.setValueOpt image "ids"
-            X |> DynObj.setValueOpt image "x"
             X0 |> DynObj.setValueOpt image "x0"
             DX |> DynObj.setValueOpt image "dx"
-            Y |> DynObj.setValueOpt image "y"
             Y0 |> DynObj.setValueOpt image "y0"
             DY |> DynObj.setValueOpt image "dy"
             Z |> DynObj.setValueOpt image "z"
             Source |> DynObj.setValueOpt image "source"
-            Text |> DynObj.setValueOpt image "text"
-            HoverText |> DynObj.setValueOpt image "hovertext"
+            (Text, MultiText) |> DynObj.setSingleOrMultiOpt image "text"
+            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt image "hovertext"
             HoverInfo |> DynObj.setValueOptBy image "hoverinfo" StyleParam.HoverInfo.convert
-            HoverTemplate |> DynObj.setValueOpt image "hovertemplate"
+            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt image "hovertemplate"
             Meta |> DynObj.setValueOpt image "meta"
             CustomData |> DynObj.setValueOpt image "customdata"
             XAxis |> DynObj.setValueOptBy image "xaxis" StyleParam.LinearAxisId.convert
