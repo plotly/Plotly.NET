@@ -44,7 +44,7 @@ type Trace3D(traceTypeName) =
 
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-/// Functions provide the styling of the Chart objects
+/// Create various functions for applying 3D chart styles to traces
 type Trace3DStyle() =
 
     // ######################## 3d-Charts
@@ -57,7 +57,7 @@ type Trace3DStyle() =
             trace)
 
     /// <summary>
-    /// Applies the style parameters of the Scatter3d chart to the given trace
+    /// Create a function that applies the styles of a 3D scatter plot to a Trace object
     /// </summary>
     /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
     /// <param name="Visible">Determines whether or not this trace is visible. If "legendonly", the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).</param>
@@ -201,7 +201,7 @@ type Trace3DStyle() =
 
 
     /// <summary>
-    /// Applies the style parameters of the surface chart to the given trace
+    /// Create a function that applies the styles of a surface chart to the given trace
     /// </summary>
     /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
     /// <param name="Visible">Determines whether or not this trace is visible. If "legendonly", the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).</param>
@@ -348,7 +348,7 @@ type Trace3DStyle() =
 
 
     /// <summary>
-    /// Applies the style parameters of the mesh3d chart to the given trace
+    /// Create a function that applies the styles of a mesh3d chart to the given trace
     /// </summary>
     /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
     /// <param name="Visible">Determines whether or not this trace is visible. If "legendonly", the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).</param>
@@ -517,7 +517,7 @@ type Trace3DStyle() =
 
 
     /// <summary>
-    /// Applies the style parameters of the cone chart to the given trace
+    /// Create a function that applies the styles of a cone chart to the given trace
     /// </summary>
     /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
     /// <param name="Visible">Determines whether or not this trace is visible. If "legendonly", the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).</param>
@@ -665,7 +665,7 @@ type Trace3DStyle() =
             cone)
 
     /// <summary>
-    /// Applies the style parameters of the streamtube chart to the given trace
+    /// Create a function that applies the styles of a streamtube chart to the given trace
     /// </summary>
     /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
     /// <param name="Visible">Determines whether or not this trace is visible. If "legendonly", the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).</param>
@@ -813,7 +813,7 @@ type Trace3DStyle() =
             streamTube)
 
     /// <summary>
-    /// Applies the style parameters of the volume chart to the given trace
+    /// Create a function that applies the styles of a volume chart to the given trace
     /// </summary>
     /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
     /// <param name="Visible">Determines whether or not this trace is visible. If "legendonly", the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).</param>
@@ -968,7 +968,7 @@ type Trace3DStyle() =
             volume
 
     /// <summary>
-    /// Applies the style parameters of the isosurface chart to the given trace
+    /// Create a function that applies the styles of a isosurface chart to the given trace
     /// </summary>
     /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
     /// <param name="Visible">Determines whether or not this trace is visible. If "legendonly", the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).</param>

@@ -94,6 +94,7 @@ type Trace2D(traceTypeName) =
     static member initSplom(applyStyle: Trace2D -> Trace2D) = Trace2D("splom") |> applyStyle
 
 
+/// Create various functions for applying 2D chart styles to traces
 type Trace2DStyle() =
 
     /// Sets the given axis anchor id(s) on a Trace object.
