@@ -1,6 +1,6 @@
 (**
 ---
-title: single and sulti arguments
+title: Single and multi arguments
 category: General
 categoryindex: 1
 index: 7
@@ -21,7 +21,7 @@ index: 7
 #endif // IPYNB
 
 (**
-# Single and sulti arguments
+# Single and multi arguments
 
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
 [![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
@@ -41,12 +41,17 @@ Here is an example for bar charts:
 *)
 open Plotly.NET
 
-let bar =
+let bar1 =
     Chart.Bar(
         [
             "first", 1
             "second", 2
             "third", 3
+        ],
+        MarkerColor = Color.fromColors [ // one color for each individual bar
+            Color.fromKeyword Salmon
+            Color.fromKeyword SteelBlue
+            Color.fromKeyword Azure
         ],
         MultiMarkerPatternShape = [ // individual pattern shape for each bar
             StyleParam.PatternShape.DiagonalAscending
@@ -59,14 +64,50 @@ let bar =
             "second bar"
             "third bar"
         ],
-        TextPosition = StyleParam.TextPosition.Outside // Textposition for every text item associated with this trace
+        TextPosition = StyleParam.TextPosition.Inside // Textposition for every text item associated with this trace
     )
 
 (*** condition: ipynb ***)
 #if IPYNB
-bar
+bar1
 #endif // IPYNB
 
 (***hide***)
-bar |> GenericChart.toChartHTML
+bar1 |> GenericChart.toChartHTML
 (***include-it-raw***)
+
+(**
+Here is the exact opposite chart to the above, with single values for multi and vice versa 
+*)
+
+let bar2 =
+    Chart.Bar(
+        [
+            "first", 1
+            "second", 2
+            "third", 3
+        ],
+        MarkerColor = Color.fromKeyword Salmon, // one color for every bar
+        MarkerPatternShape = StyleParam.PatternShape.DiagonalAscending, // one pattern shape for the whole trace
+        MultiOpacity = [0.75; 0.5; 0.25], //Different opacity for each bar
+        Text = "its a bar", // one text item for the whole trace
+        MultiTextPosition = [ // Textposition for every individual text item associated with this trace
+            StyleParam.TextPosition.Outside
+            StyleParam.TextPosition.Inside
+            StyleParam.TextPosition.Outside
+        ] 
+    )
+
+(*** condition: ipynb ***)
+#if IPYNB
+bar2
+#endif // IPYNB
+
+(***hide***)
+bar2 |> GenericChart.toChartHTML
+(***include-it-raw***)
+
+bar1
+|> Chart.show
+bar2
+|> Chart.show
