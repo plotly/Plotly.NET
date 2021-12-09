@@ -16,6 +16,7 @@ type Ternary() =
     /// <param name="CAxis">Sets the ternary C Axis</param>
     /// <param name="Domain">Sets the ternary domain</param>
     /// <param name="Sum">The number each triplet should sum to, and the maximum range of each axis</param>
+    /// <param name="BGColor">Sets the background color of the ternary layout.</param>
     static member init
         (
             [<Optional; DefaultParameterValue(null)>] ?AAxis: LinearAxis,
@@ -43,6 +44,7 @@ type Ternary() =
     /// <param name="CAxis">Sets the ternary C Axis</param>
     /// <param name="Domain">Sets the ternary domain</param>
     /// <param name="Sum">The number each triplet should sum to, and the maximum range of each axis</param>
+    /// <param name="BGColor">Sets the background color of the ternary layout.</param>
     static member style
         (
             [<Optional; DefaultParameterValue(null)>] ?AAxis: LinearAxis,

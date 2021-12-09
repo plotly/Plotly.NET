@@ -828,6 +828,8 @@ type LinearAxis() =
     /// <param name="StartLine">Determines whether or not a line is drawn at along the starting value of this axis. If "true", the start line is drawn on top of the grid lines.</param>
     /// <param name="StartLineColor">Sets the line color of the start line.</param>
     /// <param name="StartLineWidth">Sets the width (in px) of the start line.</param>
+    /// <param name="BackgroundColor">Sets the background color of the axis.</param>
+    /// <param name="ShowBackground">Wether or not to show the background of the axis.</param>
 
     static member style
         (
