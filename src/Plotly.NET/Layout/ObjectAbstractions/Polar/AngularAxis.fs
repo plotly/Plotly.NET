@@ -260,8 +260,8 @@ type AngularAxis() =
             NTicks |> DynObj.setValueOpt angularAxis "nticks"
             Tick0 |> DynObj.setValueOpt angularAxis "tick0"
             DTick |> DynObj.setValueOpt angularAxis "dtick"
-            TickVals |> DynObj.setValueOpt angularAxis "TickVals"
-            TickText |> DynObj.setValueOpt angularAxis "TickText"
+            TickVals |> DynObj.setValueOpt angularAxis "tickVals"
+            TickText |> DynObj.setValueOpt angularAxis "tickText"
             Ticks |> DynObj.setValueOptBy angularAxis "ticks" StyleParam.TickOptions.convert
             TickLen |> DynObj.setValueOpt angularAxis "ticklen"
             TickWidth |> DynObj.setValueOpt angularAxis "tickwidth"
@@ -277,7 +277,7 @@ type AngularAxis() =
             SeparateThousands |> DynObj.setValueOpt angularAxis "separatethousands"
             TickFont |> DynObj.setValueOpt angularAxis "tickfont"
             TickAngle |> DynObj.setValueOpt angularAxis "tickangle"
-            TickFormat |> DynObj.setValueOpt angularAxis "TickFormat"
+            TickFormat |> DynObj.setValueOpt angularAxis "tickFormat"
             TickFormatStops |> DynObj.setValueOpt angularAxis "tickformatstops"
             Layer |> DynObj.setValueOptBy angularAxis "layer" StyleParam.Layer.convert
 
