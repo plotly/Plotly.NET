@@ -276,8 +276,8 @@ type RadialAxis() =
             NTicks |> DynObj.setValueOpt radialAxis "nticks"
             Tick0 |> DynObj.setValueOpt radialAxis "tick0"
             DTick |> DynObj.setValueOpt radialAxis "dtick"
-            TickVals |> DynObj.setValueOpt radialAxis "TickVals"
-            TickText |> DynObj.setValueOpt radialAxis "TickText"
+            TickVals |> DynObj.setValueOpt radialAxis "tickvals"
+            TickText |> DynObj.setValueOpt radialAxis "ticktext"
             Ticks |> DynObj.setValueOptBy radialAxis "ticks" StyleParam.TickOptions.convert
             TickLen |> DynObj.setValueOpt radialAxis "ticklen"
             TickWidth |> DynObj.setValueOpt radialAxis "tickwidth"
@@ -293,7 +293,7 @@ type RadialAxis() =
             SeparateThousands |> DynObj.setValueOpt radialAxis "separatethousands"
             TickFont |> DynObj.setValueOpt radialAxis "tickfont"
             TickAngle |> DynObj.setValueOpt radialAxis "tickangle"
-            TickFormat |> DynObj.setValueOpt radialAxis "TickFormat"
+            TickFormat |> DynObj.setValueOpt radialAxis "tickformat"
             TickFormatStops |> DynObj.setValueOpt radialAxis "tickformatstops"
             Layer |> DynObj.setValueOptBy radialAxis "layer" StyleParam.Layer.convert
             Calendar |> DynObj.setValueOptBy radialAxis "calendar" StyleParam.Calendar.convert
