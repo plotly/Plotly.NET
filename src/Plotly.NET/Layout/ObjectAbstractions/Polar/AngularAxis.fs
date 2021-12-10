@@ -244,9 +244,9 @@ type AngularAxis() =
             CategoryOrder |> DynObj.setValueOptBy angularAxis "categoryorder" StyleParam.CategoryOrder.convert
             CategoryArray |> DynObj.setValueOpt angularAxis "categoryarray"
             ThetaUnit |> DynObj.setValueOpt angularAxis "thetaunit"
-            Period |> DynObj.setValueOpt angularAxis "Period"
-            Direction |> DynObj.setValueOpt angularAxis "Direction"
-            Rotation |> DynObj.setValueOpt angularAxis "Rotation"
+            Period |> DynObj.setValueOpt angularAxis "period"
+            Direction |> DynObj.setValueOptBy angularAxis "direction" StyleParam.Direction.convert
+            Rotation |> DynObj.setValueOpt angularAxis "rotation"
             HoverFormat |> DynObj.setValueOpt angularAxis "hoverformat"
             UIRevision |> DynObj.setValueOpt angularAxis "uirevision"
             Color |> DynObj.setValueOpt angularAxis "color"
