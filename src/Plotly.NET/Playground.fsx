@@ -176,66 +176,60 @@ open Plotly.NET
 open System
 open Plotly.NET 
 
-#r "nuget: FSharp.Data"
-#r "nuget: Deedle"
-
-open FSharp.Data
-open Deedle
-
-let data =
-    "https://raw.githubusercontent.com/plotly/datasets/master/volcano.csv"
-    |> Http.RequestString
-    |> Frame.ReadCsvString
-    |> Frame.toArray2D
-    |> Array2D.toJaggedArray
-
-let updateMenu =
-    UpdateMenu.init(
-        Buttons = [
-            UpdateMenuButton.init(
-                Args = ["type"; "surface"],
-                Label = "Surface",
-                Method = StyleParam.UpdateMethod.Restyle
-            )            
-            UpdateMenuButton.init(
-                Args = ["type"; "heatmap"],
-                Label = "Heatmap",
-                Method = StyleParam.UpdateMethod.Restyle
-            )
-        ],
-        Direction = StyleParam.UpdateMenuDirection.Down,
-        Pad = Padding.init(R = 10, T = 10),
-        ShowActive = true,
-        X = 0.1,
-        XAnchor = StyleParam.XAnchorPosition.Left,
-        Y = 1.1,
-        YAnchor = StyleParam.YAnchorPosition.Top
+[
+    Chart.Range(
+        x = [1;2;3;4;5],
+        y = [2;2;3;4;6],
+        upper= [4;6;7;5;7],
+        lower= [0;0;0;1;5],
+        mode = StyleParam.Mode.Lines_Markers,
+        TextPosition = StyleParam.TextPosition.TopCenter,
+        MarkerColor = Color.fromColorScaleValues[2;2;3;4;6],
+        RangeColor = Color.fromString "rgba(0, 204, 150, 0.2)",
+        LowerLine = Line.init(Width = 2., Color = Color.fromString "rgba(0, 204, 150, 0.4)"),
+        LowerMarker = Marker.init(Color = Color.fromString "rgba(0, 204, 150, 0.6)"),
+        UpperLine = Line.init(Width = 2., Color = Color.fromString "rgba(0, 204, 150, 0.4)"),
+        UpperMarker = Marker.init(Color = Color.fromString "rgba(0, 204, 150, 0.6)"),
+        MultiText = ["Mid1"; "Mid2"; "Mid3"; "Mid4"; "Mid5"],
+        MultiLowerText = ["Lower1"; "Lower2"; "Lower3"; "Lower4"; "Lower5"],
+        MultiUpperText = ["Upper1"; "Upper2"; "Upper3"; "Upper4"; "Upper5"],
+        ShowLegend = true
+    )
+    Chart.Range(
+        x = [1;2;3;4;5],
+        y = [2;2;3;4;6],
+        upper= [4;6;7;5;7],
+        lower= [0;0;0;1;5],
+        mode = StyleParam.Mode.Lines_Markers,
+        GroupName = "Second Range",
+        TextPosition = StyleParam.TextPosition.TopCenter,
+        MarkerColor = Color.fromColorScaleValues[2;2;3;4;6],
+        RangeColor = Color.fromString "rgba(0, 204, 150, 0.2)",
+        LowerLine = Line.init(Width = 2., Color = Color.fromString "rgba(0, 204, 150, 0.4)"),
+        LowerMarker = Marker.init(Color = Color.fromString "rgba(0, 204, 150, 0.6)"),
+        UpperLine = Line.init(Width = 2., Color = Color.fromString "rgba(0, 204, 150, 0.4)"),
+        UpperMarker = Marker.init(Color = Color.fromString "rgba(0, 204, 150, 0.6)"),
+        MultiText = ["Mid1"; "Mid2"; "Mid3"; "Mid4"; "Mid5"],
+        MultiLowerText = ["Lower1"; "Lower2"; "Lower3"; "Lower4"; "Lower5"],
+        MultiUpperText = ["Upper1"; "Upper2"; "Upper3"; "Upper4"; "Upper5"]
     )
 
-Chart.Surface(
-    data
-)
-|> Chart.withUpdateMenu updateMenu
-|> Chart.withAnnotation (
-    Annotation.init(
-        Text = "Trace Type:", 
-        ShowArrow = false,
-        X = 0,
-        Y = 1.085,
-        YRef = "paper",
-        Align = StyleParam.AnnotationAlignment.Left
-    )
-)
-|> Chart.withScene(
-    Scene.init(
-        AspectRatio = AspectRatio.init(X=1.,Y=1.,Z=0.7),
-        AspectMode = StyleParam.AspectMode.Manual
-    )
-)
-|> Chart.withLayoutStyle(
-    Width = 800,
-    Height = 900,
-    AutoSize = false,
-    Margin = Margin.init(0,0,0,0)
-)
+]
+|> Chart.combine
+|> Chart.show
+
+let rnd = System.Random(5)
+
+let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
+let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+
+let yUpper = y |> List.map (fun v -> v + rnd.NextDouble())
+let yLower = y |> List.map (fun v -> v - rnd.NextDouble())
+Chart.Range(
+    x,y,yUpper,yLower,
+    StyleParam.Mode.Lines_Markers,
+    MarkerColor=Color.fromString "grey",
+    RangeColor=Color.fromString "lightblue", 
+    UseDefaults = false)
+
 |> Chart.show

@@ -52,7 +52,7 @@ let range1 =
     Chart.Range(
         x,y,yUpper,yLower,
         StyleParam.Mode.Lines_Markers,
-        Color = Color.fromString "grey",
+        MarkerColor = Color.fromString "grey",
         RangeColor = Color.fromString "lightblue")
 
 (*** condition: ipynb ***)
@@ -64,4 +64,37 @@ range1
 range1 |> GenericChart.toChartHTML
 (***include-it-raw***)
 
+(**
+## More styled example
 
+This example shows the usage of some of the styling possibility using `Chart.Range`.
+*)
+open Plotly.NET.TraceObjects
+
+let rangeStyled = 
+    Chart.Range(
+        x = [1;2;3;4;5],
+        y = [2;2;3;4;6],
+        upper= [4;6;7;5;7],
+        lower= [0;0;0;1;5],
+        mode = StyleParam.Mode.Lines_Markers,
+        TextPosition = StyleParam.TextPosition.TopCenter,
+        RangeColor = Color.fromString "rgba(0, 204, 150, 0.2)",
+        LowerLine = Line.init(Width = 2., Color = Color.fromString "rgba(0, 204, 150, 0.4)"),
+        LowerMarker = Marker.init(Color = Color.fromString "rgba(0, 204, 150, 0.6)"),
+        UpperLine = Line.init(Width = 2., Color = Color.fromString "rgba(0, 204, 150, 0.4)"),
+        UpperMarker = Marker.init(Color = Color.fromString "rgba(0, 204, 150, 0.6)"),
+        MultiText = ["Mid1"; "Mid2"; "Mid3"; "Mid4"; "Mid5"],
+        MultiLowerText = ["Lower1"; "Lower2"; "Lower3"; "Lower4"; "Lower5"],
+        MultiUpperText = ["Upper1"; "Upper2"; "Upper3"; "Upper4"; "Upper5"],
+        ShowLegend = true
+    )
+
+(*** condition: ipynb ***)
+#if IPYNB
+rangeStyled
+#endif // IPYNB
+
+(***hide***)
+rangeStyled |> GenericChart.toChartHTML
+(***include-it-raw***)

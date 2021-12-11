@@ -1005,25 +1005,85 @@ module Chart2D =
 
             )
 
-        /// Displays a range of data by plotting two Y values per data point, with each Y value being drawn as a line
+        /// <summary>
+        /// Displays a range of data by plotting three Y values per data point (upper, mid, lower).
+        ///
+        /// The mid Y value usually resembles some kind of central tendency and the upper/lower Y values some kind of spread.
+        /// </summary>
+        /// <param name="x">Sets the x coordinates of the plotted data.</param>
+        /// <param name="y">Sets the y coordinates of the plotted data for the mid Y value.</param>
+        /// <param name="upper">Sets the y coordinates of the plotted data for the upper Y value.</param>
+        /// <param name="lower">Sets the y coordinates of the plotted data for the lower Y value.</param>
+        /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
+        /// <param name="Name">Sets the trace name of the mid Y values. The trace name appear as the legend item and on hover</param>
+        /// <param name="GroupName">Sets the name of the legendgroup for the three traces of this plot.</param>
+        /// <param name="ShowMarkers">Determines whether or not an To show markers for each datum.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Text">Sets a text associated with each datum for the mid Y values.</param>
+        /// <param name="MultiText">Sets individual text for each datum for the mid Y values.</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker for the mid Y values.</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker for the mid Y values.</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker for the mid Y values.</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum for the mid Y values.</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum for the mid Y values.</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments) for the mid Y values.</param>
+        /// <param name="LineColor">Sets the color of the line for the mid Y values.</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line for the mid Y values.</param>
+        /// <param name="LineWidth">Sets the width of the line for the mid Y values.</param>
+        /// <param name="LineDash">sets the drawing style of the line for the mid Y values.</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments) for the mid Y values.</param>
+        /// <param name="RangeColor">Sets the color of the range between upper and lower Y values.</param>
+        /// <param name="UpperText">Sets a text associated with each datum for the upper Y values.</param>
+        /// <param name="MultiUpperText">Sets individual text for each datum for the upper Y values.</param>
+        /// <param name="LowerText">Sets a text associated with each datum for the lower Y values.</param>
+        /// <param name="MultiLowerText">Sets individual text for each datum for the lower Y values.</param>
+        /// <param name="TextFont">Sets the text font for all Text items</param>
+        /// <param name="LowerName">Sets the name of the lower Y value trace.</param>
+        /// <param name="LowerLine">Sets the line for the lower Y values.</param>
+        /// <param name="LowerMarker">Sets the marker for the lower Y values.</param>
+        /// <param name="UpperName">Sets the name of the uper Y value trace.</param>
+        /// <param name="UpperLine">Sets the line for the upper Y values.</param>
+        /// <param name="UpperMarker">Sets the marker for the upper Y values.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Range
             (
-                x,
-                y,
-                upper,
-                lower,
-                mode,
-                [<Optional; DefaultParameterValue(null)>] ?Name,
-                [<Optional; DefaultParameterValue(null)>] ?ShowMarkers,
-                [<Optional; DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional; DefaultParameterValue(null)>] ?Color,
-                [<Optional; DefaultParameterValue(null)>] ?RangeColor,
-                [<Optional; DefaultParameterValue(null)>] ?Labels,
-                [<Optional; DefaultParameterValue(null)>] ?UpperLabels,
-                [<Optional; DefaultParameterValue(null)>] ?LowerLabels,
-                [<Optional; DefaultParameterValue(null)>] ?TextPosition,
-                [<Optional; DefaultParameterValue(null)>] ?TextFont,
+                x: seq<#IConvertible>,
+                y: seq<#IConvertible>,
+                upper: seq<#IConvertible>,
+                lower: seq<#IConvertible>,
+                mode: StyleParam.Mode,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?GroupName: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowMarkers: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol: StyleParam.MarkerSymbol,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?UpperMarker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?LowerMarker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?LineColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
+                [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?UpperLine: Line,
+                [<Optional; DefaultParameterValue(null)>] ?LowerLine: Line,
+                [<Optional; DefaultParameterValue(null)>] ?RangeColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?UpperText: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiUpperText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?LowerText: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiLowerText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextFont: Font,
                 [<Optional; DefaultParameterValue("lower")>] ?LowerName: string,
                 [<Optional; DefaultParameterValue("upper")>] ?UpperName: string,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
@@ -1045,18 +1105,53 @@ module Chart2D =
                 >> StyleParam.ModeUtils.showMarker (isShowMarker)
 
             let trace =
-                Trace2D.initScatter (Trace2DStyle.Scatter(X = x, Y = y, Mode = mode, ?FillColor = Color))
-                |> TraceStyle.TraceInfo(?Name = Name, ?ShowLegend = ShowLegend)
-                |> TraceStyle.Line(?Color = Color)
-                |> TraceStyle.Marker(?Color = Color)
-                |> TraceStyle.TextLabel(?Text = Labels, ?Textposition = TextPosition, ?Textfont = TextFont)
+                Chart.Scatter(
+                    x = x,
+                    y = y,
+                    mode = changeMode mode,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?TextPosition = TextPosition,
+                    ?MultiTextPosition = MultiTextPosition,
+                    ?MarkerColor = MarkerColor,
+                    ?MarkerColorScale = MarkerColorScale,
+                    ?MarkerOutline = MarkerOutline,
+                    ?MarkerSymbol = MarkerSymbol,
+                    ?MultiMarkerSymbol = MultiMarkerSymbol,
+                    ?Marker = Marker,
+                    ?LineColor = LineColor,
+                    ?LineColorScale = LineColorScale,
+                    ?LineWidth = LineWidth,
+                    ?LineDash = LineDash,
+                    ?Line = Line
+                )
+                |> GenericChart.mapTrace (
+                    Trace2DStyle.Scatter(
+                        LegendGroup = (defaultArg GroupName "Range"),
+                        LegendGroupTitle = (Title.init (Text = (defaultArg GroupName "Range")))
+                    )
+                )
 
             let lower =
                 Trace2D.initScatter (
-                    Trace2DStyle.Scatter(X = x, Y = lower, Mode = StyleParam.Mode.Lines, ?FillColor = RangeColor)
+                    Trace2DStyle.Scatter(
+                        X = x,
+                        Y = lower,
+                        Mode = changeMode mode,
+                        ?FillColor = RangeColor,
+                        ?Name = Some lowerName,
+                        ShowLegend = (defaultArg ShowLegend true),
+                        ?Text = LowerText,
+                        ?MultiText = MultiLowerText,
+                        ?TextPosition = TextPosition,
+                        ?TextFont = TextFont,
+                        ?Marker = LowerMarker,
+                        ?Line = LowerLine,
+                        LegendGroup = (defaultArg GroupName "Range")
+                    )
                 )
-                |> TraceStyle.TraceInfo(?Name = Some lowerName, ShowLegend = false)
-                |> TraceStyle.Line(Width = 0.)
                 |> TraceStyle.Marker(
                     Color =
                         if RangeColor.IsSome then
@@ -1064,20 +1159,26 @@ module Chart2D =
                         else
                             (Plotly.NET.Color.fromString "rgba(0,0,0,0.5)")
                 )
-                |> TraceStyle.TextLabel(?Text = LowerLabels, ?Textposition = TextPosition, ?Textfont = TextFont)
 
             let upper =
                 Trace2D.initScatter (
                     Trace2DStyle.Scatter(
                         X = x,
                         Y = upper,
-                        Mode = StyleParam.Mode.Lines,
+                        Mode = changeMode mode,
+                        Fill = StyleParam.Fill.ToNext_y,
                         ?FillColor = RangeColor,
-                        Fill = StyleParam.Fill.ToNext_y
+                        ?Name = Some upperName,
+                        ShowLegend = (defaultArg ShowLegend true),
+                        ?Text = UpperText,
+                        ?MultiText = MultiUpperText,
+                        ?TextPosition = TextPosition,
+                        ?TextFont = TextFont,
+                        ?Marker = UpperMarker,
+                        ?Line = LowerLine,
+                        LegendGroup = (defaultArg GroupName "Range")
                     )
                 )
-                |> TraceStyle.TraceInfo(?Name = Some upperName, ShowLegend = false)
-                |> TraceStyle.Line(Width = 0.)
                 |> TraceStyle.Marker(
                     Color =
                         if RangeColor.IsSome then
@@ -1085,31 +1186,95 @@ module Chart2D =
                         else
                             (Plotly.NET.Color.fromString "rgba(0,0,0,0.5)")
                 )
-                |> TraceStyle.TextLabel(?Text = UpperLabels, ?Textposition = TextPosition, ?Textfont = TextFont)
 
-            GenericChart.ofTraceObjects useDefaults [ lower; upper; trace ]
+            GenericChart.ofTraceObjects
+                useDefaults
+                [
+                    lower
+                    upper
+                    yield! (GenericChart.getTraces trace)
+                ]
 
-        /// Displays a range of data by plotting two Y values per data point, with each Y value being drawn as a line
+        /// <summary>
+        /// Displays a range of data by plotting three Y values per data point (upper, mid, lower).
+        ///
+        /// The mid Y value usually resembles some kind of central tendency and the upper/lower Y values some kind of spread.
+        /// </summary>
+        /// <param name="xy">Sets the x and y coordinates of the plotted data (x is used for all y data, the y coordinates are those of the mod values).</param>
+        /// <param name="upper">Sets the y coordinates of the plotted data for the upper Y value.</param>
+        /// <param name="lower">Sets the y coordinates of the plotted data for the lower Y value.</param>
+        /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="GroupName">Sets the name of the legendgroup for the three traces of this plot.</param>
+        /// <param name="ShowMarkers">Determines whether or not an To show markers for each datum.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Text">Sets a text associated with each datum for the mid Y values.</param>
+        /// <param name="MultiText">Sets individual text for each datum for the mid Y values.</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker for the mid Y values.</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker for the mid Y values.</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker for the mid Y values.</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum for the mid Y values.</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum for the mid Y values.</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments) for the mid Y values.</param>
+        /// <param name="LineColor">Sets the color of the line for the mid Y values.</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line for the mid Y values.</param>
+        /// <param name="LineWidth">Sets the width of the line for the mid Y values.</param>
+        /// <param name="LineDash">sets the drawing style of the line for the mid Y values.</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments) for the mid Y values.</param>
+        /// <param name="RangeColor">Sets the color of the range between upper and lower Y values.</param>
+        /// <param name="UpperText">Sets a text associated with each datum for the upper Y values.</param>
+        /// <param name="MultiUpperText">Sets individual text for each datum for the upper Y values.</param>
+        /// <param name="LowerText">Sets a text associated with each datum for the lower Y values.</param>
+        /// <param name="MultiLowerText">Sets individual text for each datum for the lower Y values.</param>
+        /// <param name="TextFont">Sets the text font for all Text items</param>
+        /// <param name="LowerName">Sets the name of the lower Y value trace.</param>
+        /// <param name="LowerLine">Sets the line for the lower Y values.</param>
+        /// <param name="LowerMarker">Sets the marker for the lower Y values.</param>
+        /// <param name="UpperName">Sets the name of the uper Y value trace.</param>
+        /// <param name="UpperLine">Sets the line for the upper Y values.</param>
+        /// <param name="UpperMarker">Sets the marker for the upper Y values.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Range
             (
-                xy,
-                upper,
-                lower,
-                mode,
-                [<Optional; DefaultParameterValue(null)>] ?Name,
-                [<Optional; DefaultParameterValue(null)>] ?ShowMarkers,
-                [<Optional; DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional; DefaultParameterValue(null)>] ?Color,
-                [<Optional; DefaultParameterValue(null)>] ?RangeColor,
-                [<Optional; DefaultParameterValue(null)>] ?Labels,
-                [<Optional; DefaultParameterValue(null)>] ?UpperLabels,
-                [<Optional; DefaultParameterValue(null)>] ?LowerLabels,
-                [<Optional; DefaultParameterValue(null)>] ?TextPosition,
-                [<Optional; DefaultParameterValue(null)>] ?TextFont,
-                [<Optional; DefaultParameterValue(null)>] ?LowerName,
-                [<Optional; DefaultParameterValue(null)>] ?UpperName,
-                [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
+                xy: seq<#IConvertible * #IConvertible>,
+                upper: seq<#IConvertible>,
+                lower: seq<#IConvertible>,
+                mode: StyleParam.Mode,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?GroupName: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowMarkers: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol: StyleParam.MarkerSymbol,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?UpperMarker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?LowerMarker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?LineColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
+                [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?UpperLine: Line,
+                [<Optional; DefaultParameterValue(null)>] ?LowerLine: Line,
+                [<Optional; DefaultParameterValue(null)>] ?RangeColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?UpperText: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiUpperText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?LowerText: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiLowerText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextFont: Font,
+                [<Optional; DefaultParameterValue("lower")>] ?LowerName: string,
+                [<Optional; DefaultParameterValue("upper")>] ?UpperName: string,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
             let x, y = Seq.unzip xy
 
@@ -1120,14 +1285,29 @@ module Chart2D =
                 lower,
                 mode,
                 ?Name = Name,
+                ?GroupName = GroupName,
                 ?ShowMarkers = ShowMarkers,
                 ?ShowLegend = ShowLegend,
-                ?Color = Color,
-                ?RangeColor = RangeColor,
-                ?Labels = Labels,
-                ?UpperLabels = UpperLabels,
-                ?LowerLabels = LowerLabels,
+                ?Text = Text,
+                ?MultiText = MultiText,
                 ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?LineColor = LineColor,
+                ?LineColorScale = LineColorScale,
+                ?LineWidth = LineWidth,
+                ?LineDash = LineDash,
+                ?Line = Line,
+                ?RangeColor = RangeColor,
+                ?UpperText = UpperText,
+                ?MultiUpperText = MultiUpperText,
+                ?LowerText = LowerText,
+                ?MultiLowerText = MultiLowerText,
                 ?TextFont = TextFont,
                 ?LowerName = LowerName,
                 ?UpperName = UpperName,

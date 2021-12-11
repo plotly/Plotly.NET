@@ -197,7 +197,7 @@ let rangePlotsChart =
     Chart.Range(
         x,y,yUpper,yLower,
         StyleParam.Mode.Lines_Markers,
-        Color=Color.fromString "grey",
+        MarkerColor=Color.fromString "grey",
         RangeColor=Color.fromString "lightblue", 
         UseDefaults = false)
 
@@ -205,7 +205,7 @@ let rangePlotsChart =
 let ``Range plot`` =
     testList "SimpleCharts.Range plot" [
         testCase "Range plot data" ( fun () ->
-            """var data = [{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[1.0244410755226578,1.1291130737537114,4.930085632917511,1.4292117752736488,2.5179894182449156,2.3470285278032668,1.5358344954605374,1.4046562835130172,2.6874669190437843,0.7493837949584163],"fillcolor":"lightblue","name":"lower","showlegend":false,"line":{"width":0.0},"marker":{"color":"lightblue"}},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.338369840913624,1.7844184475412679,5.2629626417825754,2.125375844363764,3.4634618528482792,3.4283738280312965,2.6463105539541276,2.4505998873853123,4.096133255211699,1.1174599459010455],"fill":"tonexty","fillcolor":"lightblue","name":"upper","showlegend":false,"line":{"width":0.0},"marker":{"color":"lightblue"}},{"type":"scatter","mode":"lines+markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"fillcolor":"grey","line":{"color":"grey"},"marker":{"color":"grey"}}];"""
+            """var data = [{"type":"scatter","name":"lower","showlegend":true,"legendgroup":"Range","mode":"lines+markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[1.0244410755226578,1.1291130737537114,4.930085632917511,1.4292117752736488,2.5179894182449156,2.3470285278032668,1.5358344954605374,1.4046562835130172,2.6874669190437843,0.7493837949584163],"fillcolor":"lightblue","marker":{"color":"lightblue"}},{"type":"scatter","name":"upper","showlegend":true,"legendgroup":"Range","mode":"lines+markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.338369840913624,1.7844184475412679,5.2629626417825754,2.125375844363764,3.4634618528482792,3.4283738280312965,2.6463105539541276,2.4505998873853123,4.096133255211699,1.1174599459010455],"fill":"tonexty","fillcolor":"lightblue","marker":{"color":"lightblue"}},{"type":"scatter","mode":"lines+markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{"color":"grey"},"line":{},"legendgroup":"Range","legendgrouptitle":{"text":"Range"}}];"""
             |> chartGeneratedContains rangePlotsChart
         );
         testCase "Range plot layout" ( fun () ->
