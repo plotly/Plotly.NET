@@ -176,60 +176,17 @@ open Plotly.NET
 open System
 open Plotly.NET 
 
-[
-    Chart.Range(
-        x = [1;2;3;4;5],
-        y = [2;2;3;4;6],
-        upper= [4;6;7;5;7],
-        lower= [0;0;0;1;5],
-        mode = StyleParam.Mode.Lines_Markers,
-        TextPosition = StyleParam.TextPosition.TopCenter,
-        MarkerColor = Color.fromColorScaleValues[2;2;3;4;6],
-        RangeColor = Color.fromString "rgba(0, 204, 150, 0.2)",
-        LowerLine = Line.init(Width = 2., Color = Color.fromString "rgba(0, 204, 150, 0.4)"),
-        LowerMarker = Marker.init(Color = Color.fromString "rgba(0, 204, 150, 0.6)"),
-        UpperLine = Line.init(Width = 2., Color = Color.fromString "rgba(0, 204, 150, 0.4)"),
-        UpperMarker = Marker.init(Color = Color.fromString "rgba(0, 204, 150, 0.6)"),
-        MultiText = ["Mid1"; "Mid2"; "Mid3"; "Mid4"; "Mid5"],
-        MultiLowerText = ["Lower1"; "Lower2"; "Lower3"; "Lower4"; "Lower5"],
-        MultiUpperText = ["Upper1"; "Upper2"; "Upper3"; "Upper4"; "Upper5"],
-        ShowLegend = true
+Chart.Indicator(
+    200., StyleParam.IndicatorMode.NumberDeltaGauge,
+    Title = "Angular gauge",
+    Delta = IndicatorDelta.init(Reference=160),
+    Range = StyleParam.Range.MinMax(0., 250.),
+    Domain = Domain.init(Row = 0, Column = 1),
+    Gauge = IndicatorGauge.init(
+        Steps = [
+            IndicatorStep.init(Range = StyleParam.Range.MinMax(0., 150.), Color = Color.fromKeyword Cyan)
+            IndicatorStep.init(Range = StyleParam.Range.MinMax(150., 250.), Color = Color.fromKeyword Red)
+        ]
     )
-    Chart.Range(
-        x = [1;2;3;4;5],
-        y = [2;2;3;4;6],
-        upper= [4;6;7;5;7],
-        lower= [0;0;0;1;5],
-        mode = StyleParam.Mode.Lines_Markers,
-        GroupName = "Second Range",
-        TextPosition = StyleParam.TextPosition.TopCenter,
-        MarkerColor = Color.fromColorScaleValues[2;2;3;4;6],
-        RangeColor = Color.fromString "rgba(0, 204, 150, 0.2)",
-        LowerLine = Line.init(Width = 2., Color = Color.fromString "rgba(0, 204, 150, 0.4)"),
-        LowerMarker = Marker.init(Color = Color.fromString "rgba(0, 204, 150, 0.6)"),
-        UpperLine = Line.init(Width = 2., Color = Color.fromString "rgba(0, 204, 150, 0.4)"),
-        UpperMarker = Marker.init(Color = Color.fromString "rgba(0, 204, 150, 0.6)"),
-        MultiText = ["Mid1"; "Mid2"; "Mid3"; "Mid4"; "Mid5"],
-        MultiLowerText = ["Lower1"; "Lower2"; "Lower3"; "Lower4"; "Lower5"],
-        MultiUpperText = ["Upper1"; "Upper2"; "Upper3"; "Upper4"; "Upper5"]
-    )
-
-]
-|> Chart.combine
-|> Chart.show
-
-let rnd = System.Random(5)
-
-let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
-let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
-
-let yUpper = y |> List.map (fun v -> v + rnd.NextDouble())
-let yLower = y |> List.map (fun v -> v - rnd.NextDouble())
-Chart.Range(
-    x,y,yUpper,yLower,
-    StyleParam.Mode.Lines_Markers,
-    MarkerColor=Color.fromString "grey",
-    RangeColor=Color.fromString "lightblue", 
-    UseDefaults = false)
-
+)
 |> Chart.show

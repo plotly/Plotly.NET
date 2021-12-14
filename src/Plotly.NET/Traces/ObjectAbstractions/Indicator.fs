@@ -130,7 +130,7 @@ type IndicatorBar() =
 
             indicatorBar)
 
-type IndicatorSteps() =
+type IndicatorStep() =
     inherit DynamicObj()
 
     static member init
@@ -142,8 +142,8 @@ type IndicatorSteps() =
             [<Optional; DefaultParameterValue(null)>] ?TemplateItemName: string,
             [<Optional; DefaultParameterValue(null)>] ?Thickness: float
         ) =
-        IndicatorSteps()
-        |> IndicatorSteps.style (
+        IndicatorStep()
+        |> IndicatorStep.style (
             ?Color = Color,
             ?Line = Line,
             ?Name = Name,
@@ -161,7 +161,7 @@ type IndicatorSteps() =
             [<Optional; DefaultParameterValue(null)>] ?TemplateItemName: string,
             [<Optional; DefaultParameterValue(null)>] ?Thickness: float
         ) =
-        (fun (indicatorSteps: IndicatorSteps) ->
+        (fun (indicatorSteps: IndicatorStep) ->
 
             Color |> DynObj.setValueOpt indicatorSteps "color"
             Line |> DynObj.setValueOpt indicatorSteps "line"
@@ -210,7 +210,7 @@ type IndicatorGauge() =
             [<Optional; DefaultParameterValue(null)>] ?BorderColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?BorderWidth: int,
             [<Optional; DefaultParameterValue(null)>] ?Shape: StyleParam.IndicatorGaugeShape,
-            [<Optional; DefaultParameterValue(null)>] ?Steps: IndicatorSteps,
+            [<Optional; DefaultParameterValue(null)>] ?Steps: seq<IndicatorStep>,
             [<Optional; DefaultParameterValue(null)>] ?Threshold: IndicatorThreshold
         ) =
         IndicatorGauge()
@@ -233,7 +233,7 @@ type IndicatorGauge() =
             [<Optional; DefaultParameterValue(null)>] ?BorderColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?BorderWidth: int,
             [<Optional; DefaultParameterValue(null)>] ?Shape: StyleParam.IndicatorGaugeShape,
-            [<Optional; DefaultParameterValue(null)>] ?Steps: IndicatorSteps,
+            [<Optional; DefaultParameterValue(null)>] ?Steps: seq<IndicatorStep>,
             [<Optional; DefaultParameterValue(null)>] ?Threshold: IndicatorThreshold
         ) =
         (fun (indicatorGauge: IndicatorGauge) ->
