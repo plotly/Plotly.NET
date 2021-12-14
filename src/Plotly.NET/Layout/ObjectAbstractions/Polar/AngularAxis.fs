@@ -244,9 +244,9 @@ type AngularAxis() =
             CategoryOrder |> DynObj.setValueOptBy angularAxis "categoryorder" StyleParam.CategoryOrder.convert
             CategoryArray |> DynObj.setValueOpt angularAxis "categoryarray"
             ThetaUnit |> DynObj.setValueOpt angularAxis "thetaunit"
-            Period |> DynObj.setValueOpt angularAxis "Period"
-            Direction |> DynObj.setValueOpt angularAxis "Direction"
-            Rotation |> DynObj.setValueOpt angularAxis "Rotation"
+            Period |> DynObj.setValueOpt angularAxis "period"
+            Direction |> DynObj.setValueOptBy angularAxis "direction" StyleParam.Direction.convert
+            Rotation |> DynObj.setValueOpt angularAxis "rotation"
             HoverFormat |> DynObj.setValueOpt angularAxis "hoverformat"
             UIRevision |> DynObj.setValueOpt angularAxis "uirevision"
             Color |> DynObj.setValueOpt angularAxis "color"
@@ -260,8 +260,8 @@ type AngularAxis() =
             NTicks |> DynObj.setValueOpt angularAxis "nticks"
             Tick0 |> DynObj.setValueOpt angularAxis "tick0"
             DTick |> DynObj.setValueOpt angularAxis "dtick"
-            TickVals |> DynObj.setValueOpt angularAxis "TickVals"
-            TickText |> DynObj.setValueOpt angularAxis "TickText"
+            TickVals |> DynObj.setValueOpt angularAxis "tickvals"
+            TickText |> DynObj.setValueOpt angularAxis "ticktext"
             Ticks |> DynObj.setValueOptBy angularAxis "ticks" StyleParam.TickOptions.convert
             TickLen |> DynObj.setValueOpt angularAxis "ticklen"
             TickWidth |> DynObj.setValueOpt angularAxis "tickwidth"
@@ -277,7 +277,7 @@ type AngularAxis() =
             SeparateThousands |> DynObj.setValueOpt angularAxis "separatethousands"
             TickFont |> DynObj.setValueOpt angularAxis "tickfont"
             TickAngle |> DynObj.setValueOpt angularAxis "tickangle"
-            TickFormat |> DynObj.setValueOpt angularAxis "TickFormat"
+            TickFormat |> DynObj.setValueOpt angularAxis "tickformat"
             TickFormatStops |> DynObj.setValueOpt angularAxis "tickformatstops"
             Layer |> DynObj.setValueOptBy angularAxis "layer" StyleParam.Layer.convert
 
