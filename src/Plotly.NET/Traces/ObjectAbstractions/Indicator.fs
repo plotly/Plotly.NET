@@ -245,6 +245,6 @@ type IndicatorGauge() =
             BorderWidth |> DynObj.setValueOpt indicatorGauge "borderwidth"
             Shape |> DynObj.setValueOptBy indicatorGauge "shape" StyleParam.IndicatorGaugeShape.convert
             Steps |> DynObj.setValueOpt indicatorGauge "steps"
-            Threshold |> DynObj.setValueOpt indicatorGauge "threshold  "
+            Threshold |> DynObj.setValueOpt indicatorGauge "threshold"
 
             indicatorGauge)

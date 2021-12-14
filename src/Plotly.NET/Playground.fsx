@@ -183,10 +183,12 @@ Chart.Indicator(
     Range = StyleParam.Range.MinMax(0., 250.),
     Domain = Domain.init(Row = 0, Column = 1),
     Gauge = IndicatorGauge.init(
+        Bar = IndicatorBar.init(Color = Color.fromKeyword Black),
         Steps = [
-            IndicatorStep.init(Range = StyleParam.Range.MinMax(0., 150.), Color = Color.fromKeyword Cyan)
-            IndicatorStep.init(Range = StyleParam.Range.MinMax(150., 250.), Color = Color.fromKeyword Red)
-        ]
+            IndicatorStep.init(Range = StyleParam.Range.MinMax(0., 150.), Color = Color.fromKeyword Green)
+            IndicatorStep.init(Range = StyleParam.Range.MinMax(150., 200.), Color = Color.fromKeyword Yellow)
+        ],
+        Threshold = IndicatorThreshold.init(Value = 200., Line = Line.init(Color=Color.fromKeyword Red, Width = 20.))
     )
 )
 |> Chart.show
