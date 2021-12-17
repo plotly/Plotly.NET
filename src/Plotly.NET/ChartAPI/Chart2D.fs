@@ -1406,9 +1406,10 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
-            
+
             Chart.Line(
-                x,y,
+                x,
+                y,
                 Fill = StyleParam.Fill.ToZero_y,
                 ?ShowMarkers = ShowMarkers,
                 ?Name = Name,
@@ -1437,7 +1438,7 @@ module Chart2D =
                 ?UseWebGL = UseWebGL,
                 ?UseDefaults = UseDefaults
             )
-            
+
 
 
         /// <summary> Creates an Area chart, which uses a Line plotted between the given datums in a 2D space, additionally colouring the area between the line and the Y Axis.</summary>
@@ -1471,7 +1472,7 @@ module Chart2D =
         [<Extension>]
         static member Area
             (
-                xy: seq<#IConvertible*#IConvertible>,
+                xy: seq<#IConvertible * #IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?ShowMarkers: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
@@ -1503,7 +1504,8 @@ module Chart2D =
             let x, y = Seq.unzip xy
 
             Chart.Area(
-                x,y,
+                x,
+                y,
                 ?ShowMarkers = ShowMarkers,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
@@ -1596,7 +1598,7 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
-            
+
             Chart.Spline(
                 x,
                 y,
@@ -1757,37 +1759,38 @@ module Chart2D =
         [<Extension>]
         static member StackedArea
             (
-               x: seq<#IConvertible>,
-               y: seq<#IConvertible>,
-               [<Optional; DefaultParameterValue(null)>] ?ShowMarkers: bool,
-               [<Optional; DefaultParameterValue(null)>] ?Name: string,
-               [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
-               [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
-               [<Optional; DefaultParameterValue(null)>] ?MultiOpacity: seq<float>,
-               [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
-               [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
-               [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
-               [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
-               [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
-               [<Optional; DefaultParameterValue(null)>] ?MarkerColorScale: StyleParam.Colorscale,
-               [<Optional; DefaultParameterValue(null)>] ?MarkerOutline: Line,
-               [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol: StyleParam.MarkerSymbol,
-               [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
-               [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
-               [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
-               [<Optional; DefaultParameterValue(null)>] ?LineColorScale: StyleParam.Colorscale,
-               [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
-               [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
-               [<Optional; DefaultParameterValue(null)>] ?Line: Line,
-               [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
-               [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
-               [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
-               [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
-               [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+                x: seq<#IConvertible>,
+                y: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?ShowMarkers: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?MultiOpacity: seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol: StyleParam.MarkerSymbol,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?LineColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
+                [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
+                [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
+                [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
+                [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
             Chart.Line(
-                x,y,
+                x,
+                y,
                 Fill = StyleParam.Fill.ToNext_y,
                 ?ShowMarkers = ShowMarkers,
                 ?Name = Name,
@@ -1878,7 +1881,8 @@ module Chart2D =
             let x, y = Seq.unzip xy
 
             Chart.StackedArea(
-                x,y,
+                x,
+                y,
                 ?ShowMarkers = ShowMarkers,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
