@@ -59,6 +59,8 @@ module Chart2D =
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
+        /// <param name="Fill">Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then it gets "tonexty" ("tonextx") if `orientation` is "v" ("h") Use with `fillcolor` if not "none". "tozerox" and "tozeroy" fill to x=0 and y=0 respectively. "tonextx" and "tonexty" fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like "tozerox" and "tozeroy". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. "tonext" fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like "toself" if there is no trace before it. "tonext" should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.</param>
+        /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
@@ -89,6 +91,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?StackGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
+                [<Optional; DefaultParameterValue(null)>] ?Fill: StyleParam.Fill,
+                [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
                 [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
@@ -133,7 +137,9 @@ module Chart2D =
                     ?MultiTextPosition = MultiTextPosition,
                     ?StackGroup = StackGroup,
                     ?Orientation = Orientation,
-                    ?GroupNorm = GroupNorm
+                    ?GroupNorm = GroupNorm,
+                    ?Fill = Fill,
+                    ?FillColor = FillColor
                 )
 
             let useWebGL = defaultArg UseWebGL false
@@ -415,6 +421,8 @@ module Chart2D =
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
+        /// <param name="Fill">Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then it gets "tonexty" ("tonextx") if `orientation` is "v" ("h") Use with `fillcolor` if not "none". "tozerox" and "tozeroy" fill to x=0 and y=0 respectively. "tonextx" and "tonexty" fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like "tozerox" and "tozeroy". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. "tonext" fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like "toself" if there is no trace before it. "tonext" should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.</param>
+        /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
@@ -445,6 +453,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?StackGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
+                [<Optional; DefaultParameterValue(null)>] ?Fill: StyleParam.Fill,
+                [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
                 [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
@@ -487,6 +497,8 @@ module Chart2D =
                 ?StackGroup = StackGroup,
                 ?Orientation = Orientation,
                 ?GroupNorm = GroupNorm,
+                ?Fill = Fill,
+                ?FillColor = FillColor,
                 ?UseWebGL = UseWebGL,
                 ?UseDefaults = UseDefaults
 
@@ -519,6 +531,8 @@ module Chart2D =
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
+        /// <param name="Fill">Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then it gets "tonexty" ("tonextx") if `orientation` is "v" ("h") Use with `fillcolor` if not "none". "tozerox" and "tozeroy" fill to x=0 and y=0 respectively. "tonextx" and "tonexty" fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like "tozerox" and "tozeroy". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. "tonext" fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like "toself" if there is no trace before it. "tonext" should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.</param>
+        /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
@@ -548,6 +562,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?StackGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
+                [<Optional; DefaultParameterValue(null)>] ?Fill: StyleParam.Fill,
+                [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
                 [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
@@ -579,6 +595,8 @@ module Chart2D =
                 ?StackGroup = StackGroup,
                 ?Orientation = Orientation,
                 ?GroupNorm = GroupNorm,
+                ?Fill = Fill,
+                ?FillColor = FillColor,
                 ?UseWebGL = UseWebGL,
                 ?UseDefaults = UseDefaults
             )
@@ -612,6 +630,8 @@ module Chart2D =
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
+        /// <param name="Fill">Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then it gets "tonexty" ("tonextx") if `orientation` is "v" ("h") Use with `fillcolor` if not "none". "tozerox" and "tozeroy" fill to x=0 and y=0 respectively. "tonextx" and "tonexty" fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like "tozerox" and "tozeroy". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. "tonext" fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like "toself" if there is no trace before it. "tonext" should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.</param>
+        /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
@@ -643,6 +663,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?StackGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
+                [<Optional; DefaultParameterValue(null)>] ?Fill: StyleParam.Fill,
+                [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
                 [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
@@ -700,7 +722,9 @@ module Chart2D =
                     ?MultiTextPosition = MultiTextPosition,
                     ?StackGroup = StackGroup,
                     ?Orientation = Orientation,
-                    ?GroupNorm = GroupNorm
+                    ?GroupNorm = GroupNorm,
+                    ?Fill = Fill,
+                    ?FillColor = FillColor
                 )
 
             let useWebGL = defaultArg UseWebGL false
@@ -737,6 +761,8 @@ module Chart2D =
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
+        /// <param name="Fill">Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then it gets "tonexty" ("tonextx") if `orientation` is "v" ("h") Use with `fillcolor` if not "none". "tozerox" and "tozeroy" fill to x=0 and y=0 respectively. "tonextx" and "tonexty" fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like "tozerox" and "tozeroy". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. "tonext" fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like "toself" if there is no trace before it. "tonext" should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.</param>
+        /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
@@ -767,6 +793,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?StackGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
+                [<Optional; DefaultParameterValue(null)>] ?Fill: StyleParam.Fill,
+                [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
                 [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
@@ -799,6 +827,8 @@ module Chart2D =
                 ?StackGroup = StackGroup,
                 ?Orientation = Orientation,
                 ?GroupNorm = GroupNorm,
+                ?Fill = Fill,
+                ?FillColor = FillColor,
                 ?UseWebGL = UseWebGL,
                 ?UseDefaults = UseDefaults
 
@@ -1315,160 +1345,350 @@ module Chart2D =
             )
 
 
-        /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
+        /// <summary> Creates an Area chart, which uses a Line plotted between the given datums in a 2D space, additionally colouring the area between the line and the Y Axis.</summary>
+        /// <param name="x">Sets the x coordinates of the plotted data.</param>
+        /// <param name="y">Sets the y coordinates of the plotted data.</param>
+        /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
+        /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
+        /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
+        /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Area
             (
-                x,
-                y,
-                [<Optional; DefaultParameterValue(null)>] ?Name,
-                [<Optional; DefaultParameterValue(null)>] ?ShowMarkers,
-                [<Optional; DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol,
-                [<Optional; DefaultParameterValue(null)>] ?Color,
-                [<Optional; DefaultParameterValue(null)>] ?Opacity,
-                [<Optional; DefaultParameterValue(null)>] ?Labels,
-                [<Optional; DefaultParameterValue(null)>] ?TextPosition,
-                [<Optional; DefaultParameterValue(null)>] ?TextFont,
-                [<Optional; DefaultParameterValue(null)>] ?Dash,
-                [<Optional; DefaultParameterValue(null)>] ?Width,
+                x: seq<#IConvertible>,
+                y: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?ShowMarkers: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?MultiOpacity: seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol: StyleParam.MarkerSymbol,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?LineColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
+                [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?StackGroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
+                [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
+                [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
+                [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
-
-            let useDefaults = defaultArg UseDefaults true
-            // if text position or font is set than show labels (not only when hovering)
-            let changeMode =
-                let isShowMarker =
-                    match ShowMarkers with
-                    | Some isShow -> isShow
-                    | Option.None -> false
-
-                StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
-                >> StyleParam.ModeUtils.showMarker (isShowMarker)
-
-            Trace2D.initScatter (
-                Trace2DStyle.Scatter(
-                    X = x,
-                    Y = y,
-                    Mode = changeMode StyleParam.Mode.Lines,
-                    Fill = StyleParam.Fill.ToZero_y
-                )
+            
+            Chart.Line(
+                x,y,
+                Fill = StyleParam.Fill.ToZero_y,
+                ?ShowMarkers = ShowMarkers,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?LineColor = LineColor,
+                ?LineColorScale = LineColorScale,
+                ?LineWidth = LineWidth,
+                ?LineDash = LineDash,
+                ?Line = Line,
+                ?StackGroup = StackGroup,
+                ?Orientation = Orientation,
+                ?GroupNorm = GroupNorm,
+                ?FillColor = FillColor,
+                ?UseWebGL = UseWebGL,
+                ?UseDefaults = UseDefaults
             )
-            |> TraceStyle.TraceInfo(?Name = Name, ?ShowLegend = ShowLegend, ?Opacity = Opacity)
-            |> TraceStyle.Line(?Color = Color, ?Dash = Dash, ?Width = Width)
-            |> TraceStyle.Marker(?Color = Color, ?Symbol = MarkerSymbol)
-            |> TraceStyle.TextLabel(?Text = Labels, ?Textposition = TextPosition, ?Textfont = TextFont)
-            |> GenericChart.ofTraceObject useDefaults
+            
 
 
-        /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
+        /// <summary> Creates an Area chart, which uses a Line plotted between the given datums in a 2D space, additionally colouring the area between the line and the Y Axis.</summary>
+        /// <param name="xy">Sets the x and y coordinates of the plotted data.</param>
+        /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
+        /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
+        /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
+        /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Area
             (
-                xy,
-                [<Optional; DefaultParameterValue(null)>] ?Name,
-                [<Optional; DefaultParameterValue(null)>] ?ShowMarkers,
-                [<Optional; DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol,
-                [<Optional; DefaultParameterValue(null)>] ?Color,
-                [<Optional; DefaultParameterValue(null)>] ?Opacity,
-                [<Optional; DefaultParameterValue(null)>] ?Labels,
-                [<Optional; DefaultParameterValue(null)>] ?TextPosition,
-                [<Optional; DefaultParameterValue(null)>] ?TextFont,
-                [<Optional; DefaultParameterValue(null)>] ?Dash,
-                [<Optional; DefaultParameterValue(null)>] ?Width,
+                xy: seq<#IConvertible*#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?ShowMarkers: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?MultiOpacity: seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol: StyleParam.MarkerSymbol,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?LineColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
+                [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?StackGroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
+                [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
+                [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
+                [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
             let x, y = Seq.unzip xy
 
             Chart.Area(
-                x,
-                y,
-                ?Name = Name,
+                x,y,
                 ?ShowMarkers = ShowMarkers,
+                ?Name = Name,
                 ?ShowLegend = ShowLegend,
-                ?MarkerSymbol = MarkerSymbol,
-                ?Color = Color,
                 ?Opacity = Opacity,
-                ?Labels = Labels,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
                 ?TextPosition = TextPosition,
-                ?TextFont = TextFont,
-                ?Dash = Dash,
-                ?Width = Width,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?LineColor = LineColor,
+                ?LineColorScale = LineColorScale,
+                ?LineWidth = LineWidth,
+                ?LineDash = LineDash,
+                ?Line = Line,
+                ?StackGroup = StackGroup,
+                ?Orientation = Orientation,
+                ?GroupNorm = GroupNorm,
+                ?FillColor = FillColor,
+                ?UseWebGL = UseWebGL,
                 ?UseDefaults = UseDefaults
             )
 
 
-        /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
+        /// <summary>Creates a Spline area chart, which uses a smoothed Line plotted between the given datums in a 2D space, additionally colouring the area between the line and the Y Axis.</summary>
+        /// <param name="x">Sets the x coordinates of the plotted data.</param>
+        /// <param name="y">Sets the y coordinates of the plotted data.</param>
+        /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="Smoothing">Sets the amount of smoothing. "0" corresponds to no smoothing (equivalent to a "linear" shape).  Use values between 0. and 1.3</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
+        /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
+        /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
+        /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member SplineArea
             (
-                x,
-                y,
-                [<Optional; DefaultParameterValue(null)>] ?Name,
-                [<Optional; DefaultParameterValue(null)>] ?ShowMarkers,
-                [<Optional; DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol,
-                [<Optional; DefaultParameterValue(null)>] ?Color,
-                [<Optional; DefaultParameterValue(null)>] ?Opacity,
-                [<Optional; DefaultParameterValue(null)>] ?Labels,
-                [<Optional; DefaultParameterValue(null)>] ?TextPosition,
-                [<Optional; DefaultParameterValue(null)>] ?TextFont,
-                [<Optional; DefaultParameterValue(null)>] ?Dash,
-                [<Optional; DefaultParameterValue(null)>] ?Width,
-                [<Optional; DefaultParameterValue(null)>] ?Smoothing,
+                x: seq<#IConvertible>,
+                y: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?ShowMarkers: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Smoothing: float,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?MultiOpacity: seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol: StyleParam.MarkerSymbol,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?LineColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
+                [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?StackGroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
+                [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
+                [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
+                [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
+            
+            Chart.Spline(
+                x,
+                y,
+                Fill = StyleParam.Fill.ToZero_y,
+                ?ShowMarkers = ShowMarkers,
+                ?Smoothing = Smoothing,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?LineColor = LineColor,
+                ?LineColorScale = LineColorScale,
+                ?LineWidth = LineWidth,
+                ?LineDash = LineDash,
+                ?Line = Line,
+                ?StackGroup = StackGroup,
+                ?Orientation = Orientation,
+                ?GroupNorm = GroupNorm,
+                ?FillColor = FillColor,
+                ?UseWebGL = UseWebGL,
+                ?UseDefaults = UseDefaults
 
-            let useDefaults = defaultArg UseDefaults true
-            // if text position or font is set than show labels (not only when hovering)
-            let changeMode =
-                let isShowMarker =
-                    match ShowMarkers with
-                    | Some isShow -> isShow
-                    | Option.None -> false
-
-                StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
-                >> StyleParam.ModeUtils.showMarker (isShowMarker)
-
-            Trace2D.initScatter (
-                Trace2DStyle.Scatter(
-                    X = x,
-                    Y = y,
-                    Mode = changeMode StyleParam.Mode.Lines,
-                    Fill = StyleParam.Fill.ToZero_y
-                )
             )
-            |> TraceStyle.TraceInfo(?Name = Name, ?ShowLegend = ShowLegend, ?Opacity = Opacity)
-            |> TraceStyle.Line(
-                ?Color = Color,
-                ?Dash = Dash,
-                ?Width = Width,
-                Shape = StyleParam.Shape.Spline,
-                ?Smoothing = Smoothing
-            )
-            |> TraceStyle.Marker(?Color = Color, ?Symbol = MarkerSymbol)
-            |> TraceStyle.TextLabel(?Text = Labels, ?Textposition = TextPosition, ?Textfont = TextFont)
-            |> GenericChart.ofTraceObject useDefaults
 
-        /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
-        [<Extension>]
+        /// <summary>Creates a Spline area chart, which uses a smoothed Line plotted between the given datums in a 2D space, additionally colouring the area between the line and the Y Axis.</summary>
+        /// <param name="xy">Sets the x and y coordinates of the plotted data.</param>
+        /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="Smoothing">Sets the amount of smoothing. "0" corresponds to no smoothing (equivalent to a "linear" shape).  Use values between 0. and 1.3</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
+        /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
+        /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
+        /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         static member SplineArea
             (
-                xy,
-                [<Optional; DefaultParameterValue(null)>] ?Name,
-                [<Optional; DefaultParameterValue(null)>] ?ShowMarkers,
-                [<Optional; DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol,
-                [<Optional; DefaultParameterValue(null)>] ?Color,
-                [<Optional; DefaultParameterValue(null)>] ?Opacity,
-                [<Optional; DefaultParameterValue(null)>] ?Labels,
-                [<Optional; DefaultParameterValue(null)>] ?TextPosition,
-                [<Optional; DefaultParameterValue(null)>] ?TextFont,
-                [<Optional; DefaultParameterValue(null)>] ?Dash,
-                [<Optional; DefaultParameterValue(null)>] ?Width,
-                [<Optional; DefaultParameterValue(null)>] ?Smoothing,
+                xy: seq<#IConvertible * #IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?ShowMarkers: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Smoothing: float,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?MultiOpacity: seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol: StyleParam.MarkerSymbol,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?LineColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
+                [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?StackGroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
+                [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
+                [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
+                [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
@@ -1477,83 +1697,212 @@ module Chart2D =
             Chart.SplineArea(
                 x,
                 y,
-                ?Name = Name,
                 ?ShowMarkers = ShowMarkers,
-                ?ShowLegend = ShowLegend,
-                ?MarkerSymbol = MarkerSymbol,
-                ?Color = Color,
-                ?Opacity = Opacity,
-                ?Labels = Labels,
-                ?TextPosition = TextPosition,
-                ?TextFont = TextFont,
-                ?Dash = Dash,
-                ?Width = Width,
                 ?Smoothing = Smoothing,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?LineColor = LineColor,
+                ?LineColorScale = LineColorScale,
+                ?LineWidth = LineWidth,
+                ?LineDash = LineDash,
+                ?Line = Line,
+                ?StackGroup = StackGroup,
+                ?Orientation = Orientation,
+                ?GroupNorm = GroupNorm,
+                ?FillColor = FillColor,
+                ?UseWebGL = UseWebGL,
                 ?UseDefaults = UseDefaults
             )
 
-        /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
+        /// <summary> Creates a stacked Area chart, which uses a Line plotted between the given datums in a 2D space, additionally colouring the area between the line and the Y Axis. Multiple Charts of this type are stacked on top of each others y dimensions</summary>
+        /// <param name="x">Sets the x coordinates of the plotted data.</param>
+        /// <param name="y">Sets the y coordinates of the plotted data.</param>
+        /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
+        /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
+        /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member StackedArea
             (
-                x,
-                y,
-                [<Optional; DefaultParameterValue(null)>] ?Name,
-                [<Optional; DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol,
-                [<Optional; DefaultParameterValue(null)>] ?Color,
-                [<Optional; DefaultParameterValue(null)>] ?Opacity,
-                [<Optional; DefaultParameterValue(null)>] ?Labels,
-                [<Optional; DefaultParameterValue(null)>] ?TextPosition,
-                [<Optional; DefaultParameterValue(null)>] ?TextFont,
-                [<Optional; DefaultParameterValue(null)>] ?Dash,
-                [<Optional; DefaultParameterValue(null)>] ?Width,
-                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+               x: seq<#IConvertible>,
+               y: seq<#IConvertible>,
+               [<Optional; DefaultParameterValue(null)>] ?ShowMarkers: bool,
+               [<Optional; DefaultParameterValue(null)>] ?Name: string,
+               [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+               [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+               [<Optional; DefaultParameterValue(null)>] ?MultiOpacity: seq<float>,
+               [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+               [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+               [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+               [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+               [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
+               [<Optional; DefaultParameterValue(null)>] ?MarkerColorScale: StyleParam.Colorscale,
+               [<Optional; DefaultParameterValue(null)>] ?MarkerOutline: Line,
+               [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol: StyleParam.MarkerSymbol,
+               [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+               [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+               [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
+               [<Optional; DefaultParameterValue(null)>] ?LineColorScale: StyleParam.Colorscale,
+               [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
+               [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
+               [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+               [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
+               [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
+               [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
+               [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
+               [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            Chart.Line(
+                x,y,
+                Fill = StyleParam.Fill.ToNext_y,
+                ?ShowMarkers = ShowMarkers,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?LineColor = LineColor,
+                ?LineColorScale = LineColorScale,
+                ?LineWidth = LineWidth,
+                ?LineDash = LineDash,
+                ?Line = Line,
+                StackGroup = "stackedarea",
+                ?Orientation = Orientation,
+                ?GroupNorm = GroupNorm,
+                ?FillColor = FillColor,
+                ?UseWebGL = UseWebGL,
+                ?UseDefaults = UseDefaults
+            )
 
-            Trace2D.initScatter (Trace2DStyle.Scatter(X = x, Y = y, Mode = StyleParam.Mode.Lines))
-            |> TraceStyle.TraceInfo(?Name = Name, ?ShowLegend = ShowLegend, ?Opacity = Opacity)
-            |> TraceStyle.Line(?Color = Color, ?Dash = Dash, ?Width = Width)
-            |> TraceStyle.Marker(?Color = Color, ?Symbol = MarkerSymbol)
-            |> TraceStyle.TextLabel(?Text = Labels, ?Textposition = TextPosition, ?Textfont = TextFont)
-            |> TraceStyle.SetStackGroup "static"
-            |> GenericChart.ofTraceObject useDefaults
-
-        /// Emphasizes the degree of change over time and shows the relationship of the parts to a whole.
+        /// <summary> Creates a stacked Area chart, which uses a Line plotted between the given datums in a 2D space, additionally colouring the area between the line and the Y Axis. Multiple Charts of this type are stacked on top of each others y dimensions</summary>
+        /// <param name="xy">Sets the x and y coordinates of the plotted data.</param>
+        /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
+        /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
+        /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member StackedArea
             (
-                xy,
-                [<Optional; DefaultParameterValue(null)>] ?Name,
-                [<Optional; DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol,
-                [<Optional; DefaultParameterValue(null)>] ?Color,
-                [<Optional; DefaultParameterValue(null)>] ?Opacity,
-                [<Optional; DefaultParameterValue(null)>] ?Labels,
-                [<Optional; DefaultParameterValue(null)>] ?TextPosition,
-                [<Optional; DefaultParameterValue(null)>] ?TextFont,
-                [<Optional; DefaultParameterValue(null)>] ?Dash,
-                [<Optional; DefaultParameterValue(null)>] ?Width,
+                xy: seq<#IConvertible * #IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?ShowMarkers: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?MultiOpacity: seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol: StyleParam.MarkerSymbol,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?LineColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
+                [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
+                [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
+                [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
+                [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
             let x, y = Seq.unzip xy
 
             Chart.StackedArea(
-                x,
-                y,
+                x,y,
+                ?ShowMarkers = ShowMarkers,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
-                ?MarkerSymbol = MarkerSymbol,
-                ?Color = Color,
                 ?Opacity = Opacity,
-                ?Labels = Labels,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
                 ?TextPosition = TextPosition,
-                ?TextFont = TextFont,
-                ?Dash = Dash,
-                ?Width = Width,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?LineColor = LineColor,
+                ?LineColorScale = LineColorScale,
+                ?LineWidth = LineWidth,
+                ?LineDash = LineDash,
+                ?Line = Line,
+                ?Orientation = Orientation,
+                ?GroupNorm = GroupNorm,
+                ?FillColor = FillColor,
+                ?UseWebGL = UseWebGL,
                 ?UseDefaults = UseDefaults
             )
 

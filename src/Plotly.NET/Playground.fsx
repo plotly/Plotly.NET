@@ -176,6 +176,52 @@ open Plotly.NET
 open System
 open Plotly.NET 
 
+let simpleAreaChart =
+    let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
+    let y  = [5.; 2.5; 5.; 7.5; 5.; 2.5; 7.5; 4.5; 5.5; 5.]
+    Chart.Area(x,y, UseDefaults = false)
+    |> Chart.show
+
+let withSplineChart =
+    let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
+    let y  = [5.; 2.5; 5.; 7.5; 5.; 2.5; 7.5; 4.5; 5.5; 5.]
+    Chart.SplineArea(x,y, UseDefaults = false)
+    |> Chart.show
+
+let stackedAreaChart =
+    let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
+    let y  = [5.; 2.5; 5.; 7.5; 5.; 2.5; 7.5; 4.5; 5.5; 5.]
+    [
+        Chart.StackedArea(x,y, UseDefaults = false)
+        Chart.StackedArea(x,y |> Seq.rev, UseDefaults = false)
+    ]
+    |> Chart.combine
+    |> Chart.show
+
+[
+    Chart.StackedArea(
+        [1,2; 3,7; 5,6],
+        MultiText = ["A"; "B"; "C"],
+        ShowMarkers = true,
+        MultiTextPosition = [StyleParam.TextPosition.MiddleRight; StyleParam.TextPosition.BottomRight; StyleParam.TextPosition.MiddleLeft],
+        MarkerColor = Color.fromColorScaleValues [2;7;6],
+        Marker = Marker.init(Size = 30, ShowScale = true)
+    )
+    Chart.StackedArea(
+        [1,2; 3,7; 5,6],
+        MultiText = ["A"; "B"; "C"],
+        ShowMarkers = true,
+        MultiTextPosition = [StyleParam.TextPosition.MiddleRight; StyleParam.TextPosition.BottomRight; StyleParam.TextPosition.MiddleLeft],
+        MarkerColor = Color.fromColorScaleValues [2;7;6],
+        Marker = Marker.init(Size = 30, ShowScale = true)
+    )
+
+]
+|> Chart.combine
+|> Chart.show
+
+
+
 Chart.Indicator(
     200., StyleParam.IndicatorMode.NumberDeltaGauge,
     Title = "Angular gauge",

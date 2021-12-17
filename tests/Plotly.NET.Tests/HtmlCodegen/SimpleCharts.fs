@@ -163,21 +163,21 @@ let stackedAreaChart =
 let ``Area charts`` =
     testList "SimpleCharts.Area charts" [
         testCase "Simple area data" ( fun () ->
-            """var data = [{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,2.5,5.0,7.5,5.0,2.5,7.5,4.5,5.5,5.0],"fill":"tozeroy","line":{},"marker":{}}];"""
+            """var data = [{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,2.5,5.0,7.5,5.0,2.5,7.5,4.5,5.5,5.0],"marker":{},"line":{},"fill":"tozeroy"}];"""
             |> chartGeneratedContains simpleAreaChart
         );
         testCase "Simple area layout" ( fun () ->
             emptyLayout simpleAreaChart
         );
         testCase "Spline data" ( fun () ->
-            """var data = [{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,2.5,5.0,7.5,5.0,2.5,7.5,4.5,5.5,5.0],"fill":"tozeroy","line":{"shape":"spline"},"marker":{}}];"""
+            """var data = [{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,2.5,5.0,7.5,5.0,2.5,7.5,4.5,5.5,5.0],"marker":{},"line":{"shape":"spline"},"fill":"tozeroy"}];"""
             |> chartGeneratedContains withSplineChart
         );
         testCase "Spline layout" ( fun () ->
             emptyLayout withSplineChart
         );
         testCase "Stacked area data" ( fun () ->
-            """var data = [{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,2.5,5.0,7.5,5.0,2.5,7.5,4.5,5.5,5.0],"line":{},"marker":{},"stackgroup":"static"},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,5.5,4.5,7.5,2.5,5.0,7.5,5.0,2.5,5.0],"line":{},"marker":{},"stackgroup":"static"}];"""
+            """var data = [{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,2.5,5.0,7.5,5.0,2.5,7.5,4.5,5.5,5.0],"stackgroup":"stackedarea","marker":{},"line":{},"fill":"tonexty"},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,5.5,4.5,7.5,2.5,5.0,7.5,5.0,2.5,5.0],"stackgroup":"stackedarea","marker":{},"line":{},"fill":"tonexty"}];"""
             |> chartGeneratedContains stackedAreaChart
         );
         testCase "Stacked area layout" ( fun () ->
