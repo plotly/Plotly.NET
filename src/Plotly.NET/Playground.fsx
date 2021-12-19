@@ -176,65 +176,40 @@ open Plotly.NET
 open System
 open Plotly.NET 
 
-let simpleAreaChart =
-    let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
-    let y  = [5.; 2.5; 5.; 7.5; 5.; 2.5; 7.5; 4.5; 5.5; 5.]
-    Chart.Area(x,y, UseDefaults = false)
-    |> Chart.show
-
-let withSplineChart =
-    let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
-    let y  = [5.; 2.5; 5.; 7.5; 5.; 2.5; 7.5; 4.5; 5.5; 5.]
-    Chart.SplineArea(x,y, UseDefaults = false)
-    |> Chart.show
-
-let stackedAreaChart =
-    let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
-    let y  = [5.; 2.5; 5.; 7.5; 5.; 2.5; 7.5; 4.5; 5.5; 5.]
+let multiTraceGrid = 
     [
-        Chart.StackedArea(x,y, UseDefaults = false)
-        Chart.StackedArea(x,y |> Seq.rev, UseDefaults = false)
+        Chart.Point([1,2; 2,3], UseDefaults = false)
+        Chart.PointTernary([1,2,3; 2,3,4], UseDefaults = false)
+        Chart.Heatmap([[1; 2];[3; 4]], ShowScale=false, UseDefaults = false)
+        Chart.Point3D([1,3,2], UseDefaults = false)
+        Chart.PointMapbox([1,2], UseDefaults = false) |> Chart.withMapbox(Mapbox.init(Style = StyleParam.MapboxStyle.OpenStreetMap))
+        [
+            // you can use nested combined charts, but they have to have the same trace type (Cartesian2D in this case)
+            let y =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+            Chart.BoxPlot("y" ,y,Name="bin1",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All, UseDefaults = false);
+            Chart.BoxPlot("y'",y,Name="bin2",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All, UseDefaults = false);
+        ]
+        |> Chart.combine
     ]
-    |> Chart.combine
+    |> Chart.Grid(2,3)
+    |> Chart.withSize(1000,1000)
     |> Chart.show
 
-[
-    Chart.StackedArea(
-        [1,2; 3,7; 5,6],
-        MultiText = ["A"; "B"; "C"],
-        ShowMarkers = true,
-        MultiTextPosition = [StyleParam.TextPosition.MiddleRight; StyleParam.TextPosition.BottomRight; StyleParam.TextPosition.MiddleLeft],
-        MarkerColor = Color.fromColorScaleValues [2;7;6],
-        Marker = Marker.init(Size = 30, ShowScale = true)
-    )
-    Chart.StackedArea(
-        [1,2; 3,7; 5,6],
-        MultiText = ["A"; "B"; "C"],
-        ShowMarkers = true,
-        MultiTextPosition = [StyleParam.TextPosition.MiddleRight; StyleParam.TextPosition.BottomRight; StyleParam.TextPosition.MiddleLeft],
-        MarkerColor = Color.fromColorScaleValues [2;7;6],
-        Marker = Marker.init(Size = 30, ShowScale = true)
-    )
-
-]
-|> Chart.combine
-|> Chart.show
-
-
-
-Chart.Indicator(
-    200., StyleParam.IndicatorMode.NumberDeltaGauge,
-    Title = "Angular gauge",
-    Delta = IndicatorDelta.init(Reference=160),
-    Range = StyleParam.Range.MinMax(0., 250.),
-    Domain = Domain.init(Row = 0, Column = 1),
-    Gauge = IndicatorGauge.init(
-        Bar = IndicatorBar.init(Color = Color.fromKeyword Black),
-        Steps = [
-            IndicatorStep.init(Range = StyleParam.Range.MinMax(0., 150.), Color = Color.fromKeyword Green)
-            IndicatorStep.init(Range = StyleParam.Range.MinMax(150., 200.), Color = Color.fromKeyword Yellow)
-        ],
-        Threshold = IndicatorThreshold.init(Value = 200., Line = Line.init(Color=Color.fromKeyword Red, Width = 20.))
-    )
-)
-|> Chart.show
+let multiTraceSingleStack = 
+    [
+        Chart.Point([1,2; 2,3], UseDefaults = false)
+        Chart.PointTernary([1,2,3; 2,3,4], UseDefaults = false)
+        Chart.Heatmap([[1; 2];[3; 4]], ShowScale=false, UseDefaults = false)
+        Chart.Point3D([1,3,2], UseDefaults = false)
+        Chart.PointMapbox([1,2], UseDefaults = false) |> Chart.withMapbox(Mapbox.init(Style = StyleParam.MapboxStyle.OpenStreetMap))
+        [
+            // you can use nested combined charts, but they have to have the same trace type (Cartesian2D in this case)
+            let y =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+            Chart.BoxPlot("y" ,y,Name="bin1",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All, UseDefaults = false);
+            Chart.BoxPlot("y'",y,Name="bin2",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All, UseDefaults = false);
+        ]
+        |> Chart.combine
+    ]
+    |> Chart.SingleStack()
+    |> Chart.withSize(1000,1000)
+    |> Chart.show

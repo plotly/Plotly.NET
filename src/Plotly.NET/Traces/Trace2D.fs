@@ -668,7 +668,7 @@ type Trace2DStyle() =
             )
 
     /// <summary>
-    /// Create a function that applies the styles of a funnel plot to a Trace object
+    /// Create a function that applies the styles of a waterfall plot to a Trace object
     /// </summary>
     /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
     /// <param name="Visible">Determines whether or not this trace is visible. If "legendonly", the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).</param>
@@ -1053,7 +1053,7 @@ type Trace2DStyle() =
     /// <param name="BoxPoints">If "outliers", only the sample points lying outside the whiskers are shown If "suspectedoutliers", the outlier points are shown and points either less than 4"Q1-3"Q3 or greater than 4"Q3-3"Q1 are highlighted (see `outliercolor`) If "all", all sample points are shown If "false", only the box(es) are shown with no sample points Defaults to "suspectedoutliers" when `marker.outliercolor` or `marker.line.outliercolor` is set. Defaults to "all" under the q1/median/q3 signature. Otherwise defaults to "outliers".</param>
     /// <param name="Notched">Determines whether or not notches are drawn. Notches displays a confidence interval around the median. We compute the confidence interval as median +/- 1.57 " IQR / sqrt(N), where IQR is the interquartile range and N is the sample size. If two boxes' notches do not overlap there is 95% confidence their medians differ. See https://sites.google.com/site/davidsstatistics/home/notched-box-plots for more info. Defaults to "false" unless `notchwidth` or `notchspan` is set.</param>
     /// <param name="NotchWidth">Sets the width of the notches relative to the box' width. For example, with 0, the notches are as wide as the box(es).</param>
-    /// <param name="Whiskerwidth">Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).</param>
+    /// <param name="WhiskerWidth">Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).</param>
     /// <param name="Q1">Sets the Quartile 1 values. There should be as many items as the number of boxes desired.</param>
     /// <param name="Median">Sets the Quartile 1 values. There should be as many items as the number of boxes desired.</param>
     /// <param name="Q3">Sets the Quartile 3 values. There should be as many items as the number of boxes desired.</param>
@@ -1119,7 +1119,7 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?BoxPoints: StyleParam.BoxPoints,
             [<Optional; DefaultParameterValue(null)>] ?Notched: bool,
             [<Optional; DefaultParameterValue(null)>] ?NotchWidth: float,
-            [<Optional; DefaultParameterValue(null)>] ?Whiskerwidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?WhiskerWidth: float,
             [<Optional; DefaultParameterValue(null)>] ?Q1: seq<IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?Median: seq<IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?Q3: seq<IConvertible>,
@@ -1183,7 +1183,7 @@ type Trace2DStyle() =
             BoxPoints |> DynObj.setValueOptBy boxPlot "boxpoints" StyleParam.BoxPoints.convert
             Notched |> DynObj.setValueOpt boxPlot "notched"
             NotchWidth |> DynObj.setValueOpt boxPlot "notchwidth"
-            Whiskerwidth |> DynObj.setValueOpt boxPlot "whiskerwidth"
+            WhiskerWidth |> DynObj.setValueOpt boxPlot "whiskerwidth"
             Q1 |> DynObj.setValueOpt boxPlot "q1"
             Median |> DynObj.setValueOpt boxPlot "median"
             Q3 |> DynObj.setValueOpt boxPlot "q3"

@@ -46,8 +46,8 @@ let box3Chart =
     let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     let y' =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     [
-        Chart.BoxPlot("y" ,y,Name="bin1",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All, UseDefaults = false);
-        Chart.BoxPlot("y'",y',Name="bin2",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All, UseDefaults = false);
+        Chart.BoxPlot(data = y , orientation = StyleParam.Orientation.Horizontal, Name="bin1",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All, UseDefaults = false);
+        Chart.BoxPlot(data = y', orientation = StyleParam.Orientation.Horizontal, Name="bin2",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All, UseDefaults = false);
     ]
     |> Chart.combine
 
@@ -55,21 +55,21 @@ let box3Chart =
 let ``Box charts`` =
     testList "DistributionCharts.Box charts" [
         testCase "Box1 data" ( fun () ->
-            """var data = [{"type":"box","x":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"boxpoints":"all","jitter":0.1,"marker":{}}];"""
+            """var data = [{"type":"box","x":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{},"line":{},"boxpoints":"all","jitter":0.1}];"""
             |> chartGeneratedContains box1Chart
         );
         testCase "Box1 layout" ( fun () ->
             emptyLayout box1Chart
         );
         testCase "Box2 data" ( fun () ->
-            """var data = [{"type":"box","x":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"y":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"orientation":"h","boxpoints":"all","jitter":0.1,"marker":{}}];"""
+            """var data = [{"type":"box","x":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"y":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"orientation":"h","marker":{},"line":{},"boxpoints":"all","jitter":0.1}];"""
             |> chartGeneratedContains box2Chart
         );
         testCase "Box2 layout" ( fun () ->
             emptyLayout box2Chart
         );
         testCase "Box3 data" ( fun () ->
-            """ar data = [{"type":"box","x":"y","y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"boxpoints":"all","jitter":0.1,"name":"bin1","marker":{}},{"type":"box","x":"y'","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"boxpoints":"all","jitter":0.1,"name":"bin2","marker":{}}];"""
+            """var data = [{"type":"box","name":"bin1","marker":{},"line":{},"boxpoints":"all","jitter":0.1,"x":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0]},{"type":"box","name":"bin2","marker":{},"line":{},"boxpoints":"all","jitter":0.1,"x":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0]}];"""
             |> chartGeneratedContains box3Chart
         );
         testCase "Box3 layout" ( fun () ->
@@ -103,8 +103,8 @@ let violin3Chart =
     let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     let y' =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     [
-        Chart.Violin ("y" ,y,Name="bin1",Jitter=0.1,Points=StyleParam.JitterPoints.All, UseDefaults = false);
-        Chart.Violin ("y'",y',Name="bin2",Jitter=0.1,Points=StyleParam.JitterPoints.All, UseDefaults = false);
+        Chart.Violin (data = y , orientation = StyleParam.Orientation.Horizontal, Name="bin1",Jitter=0.1,Points=StyleParam.BoxPoints.All, UseDefaults = false)
+        Chart.Violin (data = y', orientation = StyleParam.Orientation.Horizontal, Name="bin2",Jitter=0.1,Points=StyleParam.BoxPoints.All, UseDefaults = false)
     ]
     |> Chart.combine
 
@@ -112,21 +112,21 @@ let violin3Chart =
 let ``Violin charts`` =
     testList "DistributionCharts.Violin charts" [
         testCase "Violin1 data" ( fun () ->
-            """var data = [{"type":"violin","x":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"box":{},"points":"all","marker":{}}];"""
+            """var data = [{"type":"violin","x":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{},"line":{},"box":{},"points":"all"}];"""
             |> chartGeneratedContains violin1Chart
         );
         testCase "Violin1 layout" ( fun () ->
             emptyLayout violin1Chart
         );
         testCase "Violin2 data" ( fun () ->
-            """var data = [{"type":"violin","x":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"y":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"orientation":"h","box":{},"jitter":0.1,"meanline":{"visible":true},"points":"all","marker":{}}];"""
+            """var data = [{"type":"violin","x":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"y":["bin1","bin2","bin1","bin2","bin1","bin2","bin1","bin1","bin2","bin1"],"orientation":"h","marker":{},"line":{},"box":{},"jitter":0.1,"meanline":{"visible":true},"points":"all"}];"""
             |> chartGeneratedContains violin2Chart
         );
         testCase "Violin2 layout" ( fun () ->
             emptyLayout violin2Chart
         );
         testCase "Violin3 data" ( fun () ->
-            """var data = [{"type":"violin","name":"bin1","x":"y","y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"box":{},"jitter":0.1,"points":"all","marker":{}},{"type":"violin","name":"bin2","x":"y'","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"box":{},"jitter":0.1,"points":"all","marker":{}}];"""
+            """var data = [{"type":"violin","name":"bin1","marker":{},"line":{},"box":{},"jitter":0.1,"points":"all","x":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0]},{"type":"violin","name":"bin2","marker":{},"line":{},"box":{},"jitter":0.1,"points":"all","x":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0]}];"""
             |> chartGeneratedContains violin3Chart
         );
         testCase "Violin3 layout" ( fun () ->
@@ -193,7 +193,7 @@ let histogramContourChart =
     let x = Array.init n (fun i -> ((step i)**3.) + (0.3 * (normal (rnd) 0. 2.) ))
     let y = Array.init n (fun i -> ((step i)**6.) + (0.3 * (normal (rnd) 0. 2.) ))
     [
-        Chart.Histogram2DContour (x,y,Line=Line.init(Width=0.), UseDefaults = false)
+        Chart.Histogram2DContour (x,y,ContourLine=Line.init(Width=0.), UseDefaults = false)
         Chart.Point(x,y,Opacity=0.3, UseDefaults = false)
     ]
     |> Chart.combine

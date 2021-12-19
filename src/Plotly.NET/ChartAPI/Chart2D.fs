@@ -59,7 +59,7 @@ module Chart2D =
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
-        /// <param name="Fill">Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then it gets "tonexty" ("tonextx") if `orientation` is "v" ("h") Use with `fillcolor` if not "none". "tozerox" and "tozeroy" fill to x=0 and y=0 respectively. "tonextx" and "tonexty" fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like "tozerox" and "tozeroy". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. "tonext" fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like "toself" if there is no trace before it. "tonext" should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.</param>
+        /// <param name="Fill">Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then it gets "tonexty" ("tonextx") if `orientation` is "v" ("h") Use with `FillColor` if not "none". "tozerox" and "tozeroy" fill to x=0 and y=0 respectively. "tonextx" and "tonexty" fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like "tozerox" and "tozeroy". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. "tonext" fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like "toself" if there is no trace before it. "tonext" should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.</param>
         /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
@@ -421,7 +421,7 @@ module Chart2D =
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
-        /// <param name="Fill">Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then it gets "tonexty" ("tonextx") if `orientation` is "v" ("h") Use with `fillcolor` if not "none". "tozerox" and "tozeroy" fill to x=0 and y=0 respectively. "tonextx" and "tonexty" fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like "tozerox" and "tozeroy". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. "tonext" fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like "toself" if there is no trace before it. "tonext" should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.</param>
+        /// <param name="Fill">Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then it gets "tonexty" ("tonextx") if `orientation` is "v" ("h") Use with `FillColor` if not "none". "tozerox" and "tozeroy" fill to x=0 and y=0 respectively. "tonextx" and "tonexty" fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like "tozerox" and "tozeroy". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. "tonext" fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like "toself" if there is no trace before it. "tonext" should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.</param>
         /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
@@ -531,7 +531,7 @@ module Chart2D =
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
-        /// <param name="Fill">Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then it gets "tonexty" ("tonextx") if `orientation` is "v" ("h") Use with `fillcolor` if not "none". "tozerox" and "tozeroy" fill to x=0 and y=0 respectively. "tonextx" and "tonexty" fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like "tozerox" and "tozeroy". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. "tonext" fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like "toself" if there is no trace before it. "tonext" should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.</param>
+        /// <param name="Fill">Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then it gets "tonexty" ("tonextx") if `orientation` is "v" ("h") Use with `FillColor` if not "none". "tozerox" and "tozeroy" fill to x=0 and y=0 respectively. "tonextx" and "tonexty" fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like "tozerox" and "tozeroy". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. "tonext" fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like "toself" if there is no trace before it. "tonext" should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.</param>
         /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
@@ -630,7 +630,7 @@ module Chart2D =
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
-        /// <param name="Fill">Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then it gets "tonexty" ("tonextx") if `orientation` is "v" ("h") Use with `fillcolor` if not "none". "tozerox" and "tozeroy" fill to x=0 and y=0 respectively. "tonextx" and "tonexty" fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like "tozerox" and "tozeroy". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. "tonext" fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like "toself" if there is no trace before it. "tonext" should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.</param>
+        /// <param name="Fill">Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then it gets "tonexty" ("tonextx") if `orientation` is "v" ("h") Use with `FillColor` if not "none". "tozerox" and "tozeroy" fill to x=0 and y=0 respectively. "tonextx" and "tonexty" fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like "tozerox" and "tozeroy". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. "tonext" fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like "toself" if there is no trace before it. "tonext" should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.</param>
         /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
@@ -761,7 +761,7 @@ module Chart2D =
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
-        /// <param name="Fill">Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then it gets "tonexty" ("tonextx") if `orientation` is "v" ("h") Use with `fillcolor` if not "none". "tozerox" and "tozeroy" fill to x=0 and y=0 respectively. "tonextx" and "tonexty" fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like "tozerox" and "tozeroy". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. "tonext" fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like "toself" if there is no trace before it. "tonext" should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.</param>
+        /// <param name="Fill">Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then it gets "tonexty" ("tonextx") if `orientation` is "v" ("h") Use with `FillColor` if not "none". "tozerox" and "tozeroy" fill to x=0 and y=0 respectively. "tonextx" and "tonexty" fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like "tozerox" and "tozeroy". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. "tonext" fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like "toself" if there is no trace before it. "tonext" should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.</param>
         /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
@@ -1911,56 +1911,37 @@ module Chart2D =
             )
 
 
+        /// <summary>
         /// Creates a Funnel chart.
+        ///
         /// Funnel charts visualize stages in a process using length-encoded bars. This trace can be used to show data in either a part-to-whole representation wherein each item appears in a single stage, or in a "drop-off" representation wherein each item appears in each stage it traversed. See also the "funnelarea" trace type for a different approach to visualizing funnel data.
-        ///
-        /// Parameters:
-        ///
-        /// x              : Sets the x coordinates.
-        ///
-        /// y              : Sets the y coordinates.
-        ///
-        /// Name           : Sets the trace name. The trace name appear as the legend item and on hover
-        ///
-        /// ShowLegend     : Determines whether or not an item corresponding to this trace is shown in the legend.
-        ///
-        /// Opacity        : Sets the Opacity of the trace
-        ///
-        /// Labels         : Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.
-        ///
-        /// TextPosition   : Sets the positions of the `text` elements with respects to the (x,y) coordinates.
-        ///
-        /// TextFont       : Sets the text font of this trace
-        ///
-        /// Color          : Sets Marker Color
-        ///
-        /// Line           : Line type
-        ///
-        /// x0             : Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
-        ///
-        /// dX             : Sets the x coordinate step. See `x0` for more info.
-        ///
-        /// y0             : Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
-        ///
-        /// dY             : Sets the y coordinate step. See `y0` for more info.
-        ///
-        /// Width          : Sets the bar width (in position axis units).
-        ///
-        /// Offset         : Shifts the position where the bar is drawn (in position axis units). In "group" barmode, traces that set "offset" will be excluded and drawn in "overlay" mode instead.
-        ///
-        /// Orientation    : Sets the orientation of the funnels. With "v" ("h"), the value of the each bar spans along the vertical (horizontal). By default funnels are tend to be oriented horizontally; unless only "y" array is presented or orientation is set to "v". Also regarding graphs including only 'horizontal' funnels, "autorange" on the "y-axis" are set to "reversed".
-        ///
-        /// Alignmentgroup : Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.
-        ///
-        /// Offsetgroup    : Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.
-        ///
-        /// Cliponaxis     : Determines whether the text nodes are clipped about the subplot axes. To show the text nodes above axis lines and tick labels, make sure to set `xaxis.layer` and `yaxis.layer` to "below traces".
-        ///
-        /// Connector      : Connector type
-        ///
-        /// Insidetextfont : Sets the font used for `text` lying inside the bar.
-        ///
-        /// Outsidetextfont: Sets the font used for `text` lying outside the bar.
+        /// </summary>
+        /// <param name="x">Sets the x coordinates of the plotted data.</param>
+        /// <param name="y">Sets the y coordinates of the plotted data.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity of the trace.</param>
+        /// <param name="Width">Sets the bar width (in position axis units).</param>
+        /// <param name="Offset">Shifts the position where the bar is drawn (in position axis units). In "group" barmode, traces that set "offset" will be excluded and drawn in "overlay" mode instead.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="Orientation">Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used - including if `visible` is "legendonly" but not if it is `false`. Sets the stacking direction. With "v" ("h"), the y (x) values of subsequent traces are added. Also affects the default value of `fill`.</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
+        /// <param name="MarkerColor">Sets the color of the bars.</param>
+        /// <param name="MarkerOutline">Sets the color of the bar outline.</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="TextInfo">Determines which trace information appear on the graph. In the case of having multiple funnels, percentages and totals are computed separately (per trace).</param>
+        /// <param name="ConnectorLineColor">Sets the line color of the funnel connector</param>
+        /// <param name="ConnectorLineStyle">Sets the line style of the funnel connector</param>
+        /// <param name="ConnectorFillColor">Sets the fill color of the funnel connector</param>
+        /// <param name="ConnectorLine">Sets the line of the funnel connector (use this for more finegrained control than the other connector line associated arguments).</param>
+        /// <param name="Connector">Sets the funnel connector (use this for more finegrained control than the other connector-associated arguments).</param>
+        /// <param name="InsideTextFont">Sets the font used for `text` lying inside the bar.</param>
+        /// <param name="OutsideTextFont">Sets the font used for `text` lying outside the bar.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Funnel
             (
@@ -2006,7 +1987,7 @@ module Chart2D =
             let connector =
                 Connector
                 |> Option.defaultValue (TraceObjects.FunnelConnector.init ())
-                |> TraceObjects.FunnelConnector.style (?Fillcolor = ConnectorFillColor, ?Line = connectorLine)
+                |> TraceObjects.FunnelConnector.style (?FillColor = ConnectorFillColor, ?Line = connectorLine)
 
             Trace2D.initFunnel (
                 Trace2DStyle.Funnel(
@@ -2034,6 +2015,38 @@ module Chart2D =
             )
             |> GenericChart.ofTraceObject useDefaults
 
+        /// <summary>
+        /// Creates a stacked Funnel chart, a variation of the funnel chart where multiple funnel bars of each stage are stacked on top of each other.
+        /// To create this type of chart, combine multiple of these charts via `Chart.combine`.
+        ///
+        /// Funnel charts visualize stages in a process using length-encoded bars. This trace can be used to show data in either a part-to-whole representation wherein each item appears in a single stage, or in a "drop-off" representation wherein each item appears in each stage it traversed. See also the "funnelarea" trace type for a different approach to visualizing funnel data.
+        /// </summary>
+        /// <param name="x">Sets the x coordinates of the plotted data.</param>
+        /// <param name="y">Sets the y coordinates of the plotted data.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity of the trace.</param>
+        /// <param name="Width">Sets the bar width (in position axis units).</param>
+        /// <param name="Offset">Shifts the position where the bar is drawn (in position axis units). In "group" barmode, traces that set "offset" will be excluded and drawn in "overlay" mode instead.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="Orientation">Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used - including if `visible` is "legendonly" but not if it is `false`. Sets the stacking direction. With "v" ("h"), the y (x) values of subsequent traces are added. Also affects the default value of `fill`.</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
+        /// <param name="MarkerColor">Sets the color of the bars.</param>
+        /// <param name="MarkerOutline">Sets the color of the bar outline.</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="TextInfo">Determines which trace information appear on the graph. In the case of having multiple funnels, percentages and totals are computed separately (per trace).</param>
+        /// <param name="ConnectorLineColor">Sets the line color of the funnel connector</param>
+        /// <param name="ConnectorLineStyle">Sets the line style of the funnel connector</param>
+        /// <param name="ConnectorFillColor">Sets the fill color of the funnel connector</param>
+        /// <param name="ConnectorLine">Sets the line of the funnel connector (use this for more finegrained control than the other connector line associated arguments).</param>
+        /// <param name="Connector">Sets the funnel connector (use this for more finegrained control than the other connector-associated arguments).</param>
+        /// <param name="InsideTextFont">Sets the font used for `text` lying inside the bar.</param>
+        /// <param name="OutsideTextFont">Sets the font used for `text` lying outside the bar.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         static member StackedFunnel
             (
                 x: seq<#IConvertible>,
@@ -2094,7 +2107,36 @@ module Chart2D =
             )
             |> GenericChart.mapLayout (Layout.style (FunnelMode = StyleParam.FunnelMode.Stack))
 
-        /// Creates a waterfall chart. Waterfall charts are special bar charts that help visualizing the cumulative effect of sequentially introduced positive or negative values
+        /// <summary>
+        /// Creates a waterfall chart.
+        ///
+        /// Waterfall charts are special bar charts that help visualizing the cumulative effect of sequentially introduced positive or negative values
+        /// </summary>
+        /// <param name="x">Sets the x coordinates of the plotted data.</param>
+        /// <param name="y">Sets the y coordinates of the plotted data.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="IncreasingColor">Sets the color of increasing values</param>
+        /// <param name="Increasing">Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="DecreasingColor">Sets the color of decreasing values</param>
+        /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="TotalsColor">Sets the color of total values</param>
+        /// <param name="Totals">Sets the style options of total values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="Base">Sets where the bar base is drawn (in position axis units).</param>
+        /// <param name="Width">Sets the bar width (in position axis units).</param>
+        /// <param name="MultiWidth">Sets the individual bar width of each datum (in position axis units).</param>
+        /// <param name="Opacity">Sets the opacity of the trace.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="TextFont">Sets the font used for `text`.</param>
+        /// <param name="Connector">Sets the waterfall connector of this trace</param>
+        /// <param name="Measure">An array containing types of measures. By default the values are considered as 'relative'. However; it is possible to use 'total' to compute the sums. Also 'absolute' could be applied to reset the computed total or to declare an initial value where needed.</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
+        /// <param name="Orientation">Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used - including if `visible` is "legendonly" but not if it is `false`. Sets the stacking direction. With "v" ("h"), the y (x) values of subsequent traces are added. Also affects the default value of `fill`.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Waterfall
             (
@@ -2170,7 +2212,35 @@ module Chart2D =
             |> GenericChart.ofTraceObject useDefaults
 
 
-        /// Creates a waterfall chart. Waterfall charts are special bar charts that help visualizing the cumulative effect of sequentially introduced positive or negative values
+        /// <summary>
+        /// Creates a waterfall chart.
+        ///
+        /// Waterfall charts are special bar charts that help visualizing the cumulative effect of sequentially introduced positive or negative values
+        /// </summary>
+        /// <param name="xy">Sets the x and y coordinates of the plotted data.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="IncreasingColor">Sets the color of increasing values</param>
+        /// <param name="Increasing">Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="DecreasingColor">Sets the color of decreasing values</param>
+        /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="TotalsColor">Sets the color of total values</param>
+        /// <param name="Totals">Sets the style options of total values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="Base">Sets where the bar base is drawn (in position axis units).</param>
+        /// <param name="Width">Sets the bar width (in position axis units).</param>
+        /// <param name="MultiWidth">Sets the individual bar width of each datum (in position axis units).</param>
+        /// <param name="Opacity">Sets the opacity of the trace.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="TextFont">Sets the font used for `text`.</param>
+        /// <param name="Connector">Sets the waterfall connector of this trace</param>
+        /// <param name="Measure">An array containing types of measures. By default the values are considered as 'relative'. However; it is possible to use 'total' to compute the sums. Also 'absolute' could be applied to reset the computed total or to declare an initial value where needed.</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
+        /// <param name="Orientation">Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used - including if `visible` is "legendonly" but not if it is `false`. Sets the stacking direction. With "v" ("h"), the y (x) values of subsequent traces are added. Also affects the default value of `fill`.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Waterfall
             (
@@ -2230,7 +2300,34 @@ module Chart2D =
                 ?UseDefaults = UseDefaults
             )
 
-        /// Creates a waterfall chart. Waterfall charts are special bar charts that help visualizing the cumulative effect of sequentially introduced positive or negative values
+        /// <summary>
+        /// Creates a waterfall chart.
+        ///
+        /// Waterfall charts are special bar charts that help visualizing the cumulative effect of sequentially introduced positive or negative values
+        /// </summary>
+        /// <param name="xymeasures">Sets the x and y coordinates of the plotted data, together with a measure for each (x,y) pair that defines the type of computation done for each pair.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="IncreasingColor">Sets the color of increasing values</param>
+        /// <param name="Increasing">Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="DecreasingColor">Sets the color of decreasing values</param>
+        /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="TotalsColor">Sets the color of total values</param>
+        /// <param name="Totals">Sets the style options of total values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="Base">Sets where the bar base is drawn (in position axis units).</param>
+        /// <param name="Width">Sets the bar width (in position axis units).</param>
+        /// <param name="MultiWidth">Sets the individual bar width of each datum (in position axis units).</param>
+        /// <param name="Opacity">Sets the opacity of the trace.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="TextFont">Sets the font used for `text`.</param>
+        /// <param name="Connector">Sets the waterfall connector of this trace</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
+        /// <param name="Orientation">Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used - including if `visible` is "legendonly" but not if it is `false`. Sets the stacking direction. With "v" ("h"), the y (x) values of subsequent traces are added. Also affects the default value of `fill`.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Waterfall
             (
@@ -2289,7 +2386,32 @@ module Chart2D =
                 ?UseDefaults = UseDefaults
             )
 
-        /// Illustrates comparisons among individual items
+        /// <summary>
+        /// Creates a bar chart, with bars plotted horizontally
+        ///
+        /// A bar chart is a chart that presents categorical data with rectangular bars with heights or lengths proportional to the values that they represent.
+        /// </summary>
+        /// <param name="values">Sets the values that are plotted as the size of each bar.</param>
+        /// <param name="Keys">Sets the keys associated with each bar.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity of the trace.</param>
+        /// <param name="MultiOpacity">Sets the Opacity of each individual bar.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="MarkerColor">Sets the color of the bars</param>
+        /// <param name="MarkerColorScale">Sets the colorscale for the bars. To have an effect, `MarkerColor` must map to color scale values.</param>
+        /// <param name="MarkerOutline">Sets the color of the bar outlines</param>
+        /// <param name="MarkerPatternShape">Sets a pattern shape for all bars</param>
+        /// <param name="MultiMarkerPatternShape">Sets an individual pattern shape for each bar</param>
+        /// <param name="MarkerPattern">Sets the marker pattern (use this for more finegrained control than the other pattern-associated arguments).</param>
+        /// <param name="Marker">Sets the marker for the bars (use this for more finegrained control than the other marker-associated arguments).</param>
+        /// <param name="Base">Sets where the bar base is drawn (in position axis units).</param>
+        /// <param name="Width">Sets the bar width (in position axis units) of all bars.</param>
+        /// <param name="MultiWidth">Sets the individual bar width (in position axis units) for each bar.</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Bar
             (
@@ -2355,7 +2477,31 @@ module Chart2D =
             )
             |> GenericChart.ofTraceObject useDefaults
 
-        /// Illustrates comparisons among individual items
+        /// <summary>
+        /// Creates a bar chart, with bars plotted horizontally
+        ///
+        /// A bar chart is a chart that presents categorical data with rectangular bars with heights or lengths proportional to the values that they represent.
+        /// </summary>
+        /// <param name="keysValues">Sets the (key,value) pairs that are plotted as the size and key of each bar.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity of the trace.</param>
+        /// <param name="MultiOpacity">Sets the Opacity of each individual bar.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="MarkerColor">Sets the color of the bars</param>
+        /// <param name="MarkerColorScale">Sets the colorscale for the bars. To have an effect, `MarkerColor` must map to color scale values.</param>
+        /// <param name="MarkerOutline">Sets the color of the bar outlines</param>
+        /// <param name="MarkerPatternShape">Sets a pattern shape for all bars</param>
+        /// <param name="MultiMarkerPatternShape">Sets an individual pattern shape for each bar</param>
+        /// <param name="MarkerPattern">Sets the marker pattern (use this for more finegrained control than the other pattern-associated arguments).</param>
+        /// <param name="Marker">Sets the marker for the bars (use this for more finegrained control than the other marker-associated arguments).</param>
+        /// <param name="Base">Sets where the bar base is drawn (in position axis units).</param>
+        /// <param name="Width">Sets the bar width (in position axis units) of all bars.</param>
+        /// <param name="MultiWidth">Sets the individual bar width (in position axis units) for each bar.</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Bar
             (
@@ -2408,7 +2554,33 @@ module Chart2D =
             )
 
 
-        /// Displays series of tcolumn chart type as stacked bars.
+        /// <summary>
+        /// Creates a stacked bar chart, with bars plotted horizontally. Values with the same key are stacked on top of each other in the X dimension.
+        /// To create this type of chart, combine multiple of these charts via `Chart.combine`.
+        ///
+        /// A bar chart is a chart that presents categorical data with rectangular bars with heights or lengths proportional to the values that they represent.
+        /// </summary>
+        /// <param name="values">Sets the values that are plotted as the size of each bar.</param>
+        /// <param name="Keys">Sets the keys associated with each bar.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity of the trace.</param>
+        /// <param name="MultiOpacity">Sets the Opacity of each individual bar.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="MarkerColor">Sets the color of the bars</param>
+        /// <param name="MarkerColorScale">Sets the colorscale for the bars. To have an effect, `MarkerColor` must map to color scale values.</param>
+        /// <param name="MarkerOutline">Sets the color of the bar outlines</param>
+        /// <param name="MarkerPatternShape">Sets a pattern shape for all bars</param>
+        /// <param name="MultiMarkerPatternShape">Sets an individual pattern shape for each bar</param>
+        /// <param name="MarkerPattern">Sets the marker pattern (use this for more finegrained control than the other pattern-associated arguments).</param>
+        /// <param name="Marker">Sets the marker for the bars (use this for more finegrained control than the other marker-associated arguments).</param>
+        /// <param name="Base">Sets where the bar base is drawn (in position axis units).</param>
+        /// <param name="Width">Sets the bar width (in position axis units) of all bars.</param>
+        /// <param name="MultiWidth">Sets the individual bar width (in position axis units) for each bar.</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member StackedBar
             (
@@ -2461,12 +2633,36 @@ module Chart2D =
             |> GenericChart.mapLayout (Layout.style (BarMode = StyleParam.BarMode.Stack))
 
 
-        /// Displays series of tcolumn chart type as stacked bars.
+        /// <summary>
+        /// Creates a stacked bar chart, with bars plotted horizontally. Values with the same key are stacked on top of each other in the X dimension.
+        /// To create this type of chart, combine multiple of these charts via `Chart.combine`.
+        ///
+        /// A bar chart is a chart that presents categorical data with rectangular bars with heights or lengths proportional to the values that they represent.
+        /// </summary>
+        /// <param name="keysValues">Sets the (key,value) pairs that are plotted as the size and key of each bar.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity of the trace.</param>
+        /// <param name="MultiOpacity">Sets the Opacity of each individual bar.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="MarkerColor">Sets the color of the bars</param>
+        /// <param name="MarkerColorScale">Sets the colorscale for the bars. To have an effect, `MarkerColor` must map to color scale values.</param>
+        /// <param name="MarkerOutline">Sets the color of the bar outlines</param>
+        /// <param name="MarkerPatternShape">Sets a pattern shape for all bars</param>
+        /// <param name="MultiMarkerPatternShape">Sets an individual pattern shape for each bar</param>
+        /// <param name="MarkerPattern">Sets the marker pattern (use this for more finegrained control than the other pattern-associated arguments).</param>
+        /// <param name="Marker">Sets the marker for the bars (use this for more finegrained control than the other marker-associated arguments).</param>
+        /// <param name="Base">Sets where the bar base is drawn (in position axis units).</param>
+        /// <param name="Width">Sets the bar width (in position axis units) of all bars.</param>
+        /// <param name="MultiWidth">Sets the individual bar width (in position axis units) for each bar.</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member StackedBar
             (
                 keysValues: seq<#IConvertible * #IConvertible>,
-                [<Optional; DefaultParameterValue(null)>] ?Keys: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
@@ -2514,7 +2710,32 @@ module Chart2D =
                 ?UseDefaults = UseDefaults
             )
 
-        /// Illustrates comparisons among individual items
+        /// <summary>
+        /// Creates a column chart, with bars plotted vertically
+        ///
+        /// A column chart is a chart that presents categorical data with rectangular bars with heights or lengths proportional to the values that they represent.
+        /// </summary>
+        /// <param name="values">Sets the values that are plotted as the size of each bar.</param>
+        /// <param name="Keys">Sets the keys associated with each bar.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity of the trace.</param>
+        /// <param name="MultiOpacity">Sets the Opacity of each individual bar.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="MarkerColor">Sets the color of the bars</param>
+        /// <param name="MarkerColorScale">Sets the colorscale for the bars. To have an effect, `MarkerColor` must map to color scale values.</param>
+        /// <param name="MarkerOutline">Sets the color of the bar outlines</param>
+        /// <param name="MarkerPatternShape">Sets a pattern shape for all bars</param>
+        /// <param name="MultiMarkerPatternShape">Sets an individual pattern shape for each bar</param>
+        /// <param name="MarkerPattern">Sets the marker pattern (use this for more finegrained control than the other pattern-associated arguments).</param>
+        /// <param name="Marker">Sets the marker for the bars (use this for more finegrained control than the other marker-associated arguments).</param>
+        /// <param name="Base">Sets where the bar base is drawn (in position axis units).</param>
+        /// <param name="Width">Sets the bar width (in position axis units) of all bars.</param>
+        /// <param name="MultiWidth">Sets the individual bar width (in position axis units) for each bar.</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Column
             (
@@ -2581,7 +2802,31 @@ module Chart2D =
             |> GenericChart.ofTraceObject useDefaults
 
 
-        /// Illustrates comparisons among individual items
+        /// <summary>
+        /// Creates a column chart, with bars plotted vertically
+        ///
+        /// A column chart is a chart that presents categorical data with rectangular bars with heights or lengths proportional to the values that they represent.
+        /// </summary>
+        /// <param name="keysValues">Sets the (key,value) pairs that are plotted as the size and key of each bar.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity of the trace.</param>
+        /// <param name="MultiOpacity">Sets the Opacity of each individual bar.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="MarkerColor">Sets the color of the bars</param>
+        /// <param name="MarkerColorScale">Sets the colorscale for the bars. To have an effect, `MarkerColor` must map to color scale values.</param>
+        /// <param name="MarkerOutline">Sets the color of the bar outlines</param>
+        /// <param name="MarkerPatternShape">Sets a pattern shape for all bars</param>
+        /// <param name="MultiMarkerPatternShape">Sets an individual pattern shape for each bar</param>
+        /// <param name="MarkerPattern">Sets the marker pattern (use this for more finegrained control than the other pattern-associated arguments).</param>
+        /// <param name="Marker">Sets the marker for the bars (use this for more finegrained control than the other marker-associated arguments).</param>
+        /// <param name="Base">Sets where the bar base is drawn (in position axis units).</param>
+        /// <param name="Width">Sets the bar width (in position axis units) of all bars.</param>
+        /// <param name="MultiWidth">Sets the individual bar width (in position axis units) for each bar.</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Column
             (
@@ -2634,7 +2879,33 @@ module Chart2D =
             )
 
 
-        /// Displays series of tcolumn chart type as stacked bars.
+        /// <summary>
+        /// Creates a stacked column chart, with bars plotted vertically. Values with the same key are stacked on top of each other in the Y dimension.
+        /// To create this type of chart, combine multiple of these charts via `Chart.combine`.
+        ///
+        /// A bar chart is a chart that presents categorical data with rectangular bars with heights or lengths proportional to the values that they represent.
+        /// </summary>
+        /// <param name="values">Sets the values that are plotted as the size of each bar.</param>
+        /// <param name="Keys">Sets the keys associated with each bar.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity of the trace.</param>
+        /// <param name="MultiOpacity">Sets the Opacity of each individual bar.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="MarkerColor">Sets the color of the bars</param>
+        /// <param name="MarkerColorScale">Sets the colorscale for the bars. To have an effect, `MarkerColor` must map to color scale values.</param>
+        /// <param name="MarkerOutline">Sets the color of the bar outlines</param>
+        /// <param name="MarkerPatternShape">Sets a pattern shape for all bars</param>
+        /// <param name="MultiMarkerPatternShape">Sets an individual pattern shape for each bar</param>
+        /// <param name="MarkerPattern">Sets the marker pattern (use this for more finegrained control than the other pattern-associated arguments).</param>
+        /// <param name="Marker">Sets the marker for the bars (use this for more finegrained control than the other marker-associated arguments).</param>
+        /// <param name="Base">Sets where the bar base is drawn (in position axis units).</param>
+        /// <param name="Width">Sets the bar width (in position axis units) of all bars.</param>
+        /// <param name="MultiWidth">Sets the individual bar width (in position axis units) for each bar.</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member StackedColumn
             (
@@ -2687,7 +2958,32 @@ module Chart2D =
             |> GenericChart.mapLayout (Layout.style (BarMode = StyleParam.BarMode.Stack))
 
 
-        /// Displays series of tcolumn chart type as stacked bars.
+        /// <summary>
+        /// Creates a stacked column chart, with bars plotted vertically. Values with the same key are stacked on top of each other in the Y dimension.
+        /// To create this type of chart, combine multiple of these charts via `Chart.combine`.
+        ///
+        /// A bar chart is a chart that presents categorical data with rectangular bars with heights or lengths proportional to the values that they represent.
+        /// </summary>
+        /// <param name="keysValues">Sets the (key,value) pairs that are plotted as the size and key of each bar.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity of the trace.</param>
+        /// <param name="MultiOpacity">Sets the Opacity of each individual bar.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="MarkerColor">Sets the color of the bars</param>
+        /// <param name="MarkerColorScale">Sets the colorscale for the bars. To have an effect, `MarkerColor` must map to color scale values.</param>
+        /// <param name="MarkerOutline">Sets the color of the bar outlines</param>
+        /// <param name="MarkerPatternShape">Sets a pattern shape for all bars</param>
+        /// <param name="MultiMarkerPatternShape">Sets an individual pattern shape for each bar</param>
+        /// <param name="MarkerPattern">Sets the marker pattern (use this for more finegrained control than the other pattern-associated arguments).</param>
+        /// <param name="Marker">Sets the marker for the bars (use this for more finegrained control than the other marker-associated arguments).</param>
+        /// <param name="Base">Sets where the bar base is drawn (in position axis units).</param>
+        /// <param name="Width">Sets the bar width (in position axis units) of all bars.</param>
+        /// <param name="MultiWidth">Sets the individual bar width (in position axis units) for each bar.</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member StackedColumn
             (
@@ -2740,7 +3036,39 @@ module Chart2D =
             )
 
 
+        /// <summary>
         /// Visualizes the distribution of the input data as a histogram.
+        ///
+        /// A histogram is an approximate representation of the distribution of numerical data. To construct a histogram, the first step is to "bin"  the range of values - that is, divide the entire range of values into a series of intervals - and then count how many values fall into each interval.
+        /// The bins are usually specified as consecutive, non-overlapping intervals of a variable.
+        ///
+        /// The sample data from which statistics are computed is set in `x` for vertically spanning histograms and in `y` for horizontally spanning histograms. Binning options are set `xbins` and `ybins` respectively if no aggregation data is provided.
+        /// </summary>
+        /// <param name="X">Sets the sample data to be binned on the x axis.</param>
+        /// <param name="Y">Sets the sample data to be binned on the y axis.</param>
+        /// <param name="Orientation">Sets the orientation of the bars. With "v" ("h"), the value of the each bar spans along the vertical (horizontal).</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity of the trace.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="HistFunc">Specifies the binning function used for this histogram trace. If "count", the histogram values are computed by counting the number of values lying inside each bin. If "sum", "avg", "min", "max", the histogram values are computed using the sum, the average, the minimum or the maximum of the values lying inside each bin respectively.</param>
+        /// <param name="HistNorm">Specifies the type of normalization used for this histogram trace. If "", the span of each bar corresponds to the number of occurrences (i.e. the number of data points lying inside the bins). If "percent" / "probability", the span of each bar corresponds to the percentage / fraction of occurrences with respect to the total number of sample points (here, the sum of all bin HEIGHTS equals 100% / 1). If "density", the span of each bar corresponds to the number of occurrences in a bin divided by the size of the bin interval (here, the sum of all bin AREAS equals the total number of sample points). If "probability density", the area of each bar corresponds to the probability that an event will fall into the corresponding bin (here, the sum of all bin AREAS equals 1).</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
+        /// <param name="NBinsX">Specifies the maximum number of desired bins. This value will be used in an algorithm that will decide the optimal bin size such that the histogram best visualizes the distribution of the data. Ignored if `xbins.size` is provided.</param>
+        /// <param name="NBinsY">Specifies the maximum number of desired bins. This value will be used in an algorithm that will decide the optimal bin size such that the histogram best visualizes the distribution of the data. Ignored if `ybins.size` is provided.</param>
+        /// <param name="BinGroup">Set a group of histogram traces which will have compatible bin settings. Note that traces on the same subplot and with the same "orientation" under `barmode` "stack", "relative" and "group" are forced into the same bingroup, Using `bingroup`, traces under `barmode` "overlay" and on different axes (of the same axis type) can have compatible bin settings. Note that histogram and histogram2d" trace can share the same `bingroup`</param>
+        /// <param name="XBins">Sets the binning across the x dimension</param>
+        /// <param name="YBins">Sets the binning across the y dimension</param>
+        /// <param name="MarkerColor">Sets the color of the histogram's bars.</param>
+        /// <param name="Marker">Sets the marker for the histogram's bars (use this for more finegrained control than the other marker-associated arguments).</param>
+        /// <param name="Line">Sets the outline of the histogram's bars.</param>
+        /// <param name="ErrorX">Sets the x error of this trace.</param>
+        /// <param name="ErrorY">Sets the y error of this trace.</param>
+        /// <param name="Cumulative">Sets wether and how the cumulative distribution is displayed</param>
+        /// <param name="HoverLabel">Sets the style of the hoverlabels of this trace.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Histogram
             (
@@ -2801,7 +3129,39 @@ module Chart2D =
             |> TraceStyle.TraceInfo(?Name = Name, ?ShowLegend = ShowLegend, ?Opacity = Opacity)
             |> GenericChart.ofTraceObject useDefaults
 
+
+        /// <summary>
         /// Visualizes the distribution of the input data as a histogram, automatically determining if the data is to be used for the x or y dimension based on the `orientation` parameter.
+        ///
+        /// A histogram is an approximate representation of the distribution of numerical data. To construct a histogram, the first step is to "bin"  the range of values - that is, divide the entire range of values into a series of intervals - and then count how many values fall into each interval.
+        /// The bins are usually specified as consecutive, non-overlapping intervals of a variable.
+        ///
+        /// Binning options are set `xbins` and `ybins` respectively if no aggregation data is provided.
+        /// </summary>
+        /// <param name="data">Sets the sample data to be binned</param>
+        /// <param name="orientation">Sets the orientation of the bars. With "v" ("h"), the value of the each bar spans along the vertical (horizontal).</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity of the trace.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="HistFunc">Specifies the binning function used for this histogram trace. If "count", the histogram values are computed by counting the number of values lying inside each bin. If "sum", "avg", "min", "max", the histogram values are computed using the sum, the average, the minimum or the maximum of the values lying inside each bin respectively.</param>
+        /// <param name="HistNorm">Specifies the type of normalization used for this histogram trace. If "", the span of each bar corresponds to the number of occurrences (i.e. the number of data points lying inside the bins). If "percent" / "probability", the span of each bar corresponds to the percentage / fraction of occurrences with respect to the total number of sample points (here, the sum of all bin HEIGHTS equals 100% / 1). If "density", the span of each bar corresponds to the number of occurrences in a bin divided by the size of the bin interval (here, the sum of all bin AREAS equals the total number of sample points). If "probability density", the area of each bar corresponds to the probability that an event will fall into the corresponding bin (here, the sum of all bin AREAS equals 1).</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
+        /// <param name="NBinsX">Specifies the maximum number of desired bins. This value will be used in an algorithm that will decide the optimal bin size such that the histogram best visualizes the distribution of the data. Ignored if `xbins.size` is provided.</param>
+        /// <param name="NBinsY">Specifies the maximum number of desired bins. This value will be used in an algorithm that will decide the optimal bin size such that the histogram best visualizes the distribution of the data. Ignored if `ybins.size` is provided.</param>
+        /// <param name="BinGroup">Set a group of histogram traces which will have compatible bin settings. Note that traces on the same subplot and with the same "orientation" under `barmode` "stack", "relative" and "group" are forced into the same bingroup, Using `bingroup`, traces under `barmode` "overlay" and on different axes (of the same axis type) can have compatible bin settings. Note that histogram and histogram2d" trace can share the same `bingroup`</param>
+        /// <param name="XBins">Sets the binning across the x dimension</param>
+        /// <param name="YBins">Sets the binning across the y dimension</param>
+        /// <param name="MarkerColor">Sets the color of the histogram's bars.</param>
+        /// <param name="Marker">Sets the marker for the histogram's bars (use this for more finegrained control than the other marker-associated arguments).</param>
+        /// <param name="Line">Sets the outline of the histogram's bars.</param>
+        /// <param name="ErrorX">Sets the x error of this trace.</param>
+        /// <param name="ErrorY">Sets the y error of this trace.</param>
+        /// <param name="Cumulative">Sets wether and how the cumulative distribution is displayed</param>
+        /// <param name="HoverLabel">Sets the style of the hoverlabels of this trace.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Histogram
             (
@@ -2864,7 +3224,31 @@ module Chart2D =
             | StyleParam.Orientation.Horizontal -> histChart |> GenericChart.mapTrace (Trace2DStyle.Histogram(Y = data))
             | StyleParam.Orientation.Vertical -> histChart |> GenericChart.mapTrace (Trace2DStyle.Histogram(X = data))
 
-        /// Computes the bi-dimensional histogram of two data samples.
+        /// <summary>
+        /// Visualizes the distribution of the 2-dimensional input data as 2D Histogram.
+        ///
+        ///The sample data from which statistics are computed is set in `x` and `y` (where `x` and `y` represent marginal distributions, binning is set in `xbins` and `ybins` in this case) or `z` (where `z` represent the 2D distribution and binning set, binning is set by `x` and `y` in this case). The resulting distribution is visualized as a heatmap.
+        /// </summary>
+        /// <param name="x">Sets the sample data to be binned on the x axis.</param>
+        /// <param name="y">Sets the sample data to be binned on the y axis.</param>
+        /// <param name="Z">Sets the aggregation data.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity of the trace.</param>
+        /// <param name="XGap">Sets the horizontal gap (in pixels) between bricks.</param>
+        /// <param name="YGap">Sets the vertical gap (in pixels) between bricks.</param>
+        /// <param name="HistFunc">Specifies the binning function used for this histogram trace. If "count", the histogram values are computed by counting the number of values lying inside each bin. If "sum", "avg", "min", "max", the histogram values are computed using the sum, the average, the minimum or the maximum of the values lying inside each bin respectively.</param>
+        /// <param name="HistNorm">Specifies the type of normalization used for this histogram trace. If "", the span of each bar corresponds to the number of occurrences (i.e. the number of data points lying inside the bins). If "percent" / "probability", the span of each bar corresponds to the percentage / fraction of occurrences with respect to the total number of sample points (here, the sum of all bin HEIGHTS equals 100% / 1). If "density", the span of each bar corresponds to the number of occurrences in a bin divided by the size of the bin interval (here, the sum of all bin AREAS equals the total number of sample points). If "probability density", the area of each bar corresponds to the probability that an event will fall into the corresponding bin (here, the sum of all bin AREAS equals 1).</param>
+        /// <param name="NBinsX">Specifies the maximum number of desired bins. This value will be used in an algorithm that will decide the optimal bin size such that the histogram best visualizes the distribution of the data. Ignored if `xbins.size` is provided.</param>
+        /// <param name="NBinsY">Specifies the maximum number of desired bins. This value will be used in an algorithm that will decide the optimal bin size such that the histogram best visualizes the distribution of the data. Ignored if `ybins.size` is provided.</param>
+        /// <param name="XBins">Sets the binning across the x dimension</param>
+        /// <param name="YBins">Sets the binning across the y dimension</param>
+        /// <param name="ColorBar">Sets the styles of the colorbar for this trace.</param>
+        /// <param name="ColorScale">Sets the colorscale for this trace.</param>
+        /// <param name="ShowScale">Wether or not to show the colorscale/colorbar</param>
+        /// <param name="ReverseScale">Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.</param>
+        /// <param name="ZSmooth">Picks a smoothing algorithm use to smooth `z` data.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Histogram2D
             (
@@ -2880,8 +3264,6 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?HistNorm: StyleParam.HistNorm,
                 [<Optional; DefaultParameterValue(null)>] ?NBinsX: int,
                 [<Optional; DefaultParameterValue(null)>] ?NBinsY: int,
-                [<Optional; DefaultParameterValue(null)>] ?AutoBinX: bool,
-                [<Optional; DefaultParameterValue(null)>] ?AutoBinY: bool,
                 [<Optional; DefaultParameterValue(null)>] ?XBins: Bins,
                 [<Optional; DefaultParameterValue(null)>] ?YBins: Bins,
                 [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
@@ -2905,8 +3287,6 @@ module Chart2D =
                     ?HistNorm = HistNorm,
                     ?NBinsX = NBinsX,
                     ?NBinsY = NBinsY,
-                    ?AutoBinX = AutoBinX,
-                    ?AutoBinY = AutoBinY,
                     ?XBins = XBins,
                     ?YBins = YBins,
                     ?ColorBar = ColorBar,
@@ -2919,20 +3299,50 @@ module Chart2D =
             |> TraceStyle.TraceInfo(?Name = Name, ?ShowLegend = ShowLegend, ?Opacity = Opacity)
             |> GenericChart.ofTraceObject useDefaults
 
-        /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.
+        /// <summary>
+        /// Visualizes the distribution of the input data as a box plot.
+        ///
+        /// A box plot is a method for graphically demonstrating the locality, spread and skewness groups of numerical data through their quartiles.
+        /// The default style is based on the five number summary: minimum, first quartile, median, third quartile, and maximum.
+        ///
+        /// The sample data from which statistics are computed is set in `x` for vertically spanning boxes and in `y` for horizontally spanning boxes.
+        /// </summary>
+        /// <param name="X">Sets the x sample data or coordinates</param>
+        /// <param name="Y">Sets the y sample data or coordinates</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="FillColor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="MarkerColor">Sets the marker color.</param>
+        /// <param name="Marker">Sets the marker for the box (use this for more finegrained control than the other marker-associated arguments).</param>// <param name="Opacity">Sets the opacity of this trace.</param>
+        /// <param name="WhiskerWidth">Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).</param>
+        /// <param name="BoxPoints">If "outliers", only the sample points lying outside the whiskers are shown If "suspectedoutliers", the outlier points are shown and points either less than 4"Q1-3"Q3 or greater than 4"Q3-3"Q1 are highlighted (see `outliercolor`) If "all", all sample points are shown If "false", only the box(es) are shown with no sample points Defaults to "suspectedoutliers" when `marker.outliercolor` or `marker.line.outliercolor` is set. Defaults to "all" under the q1/median/q3 signature. Otherwise defaults to "outliers".</param>
+        /// <param name="BoxMean">If "true", the mean of the box(es)' underlying distribution is drawn as a dashed line inside the box(es). If "sd" the standard deviation is also drawn. Defaults to "true" when `mean` is set. Defaults to "sd" when `sd` is set Otherwise defaults to "false".</param>
+        /// <param name="Jitter">Sets the amount of jitter in the sample points drawn. If "0", the sample points align along the distribution axis. If "1", the sample points are drawn in a random jitter of width equal to the width of the box(es).</param>
+        /// <param name="PointPos">Sets the position of the sample points in relation to the box(es). If "0", the sample points are places over the center of the box(es). Positive (negative) values correspond to positions to the right (left) for vertical boxes and above (below) for horizontal boxes</param>
+        /// <param name="Orientation">Sets the orientation of the box(es). If "v" ("h"), the distribution is visualized along the vertical (horizontal).</param>
+        /// <param name="OutlineColor">Sets the color of the box outline</param>
+        /// <param name="OutlineWidth">Sets the width of the box outline</param>
+        /// <param name="Outline">Sets the box outline (use this for more finegrained control than the other outline-associated arguments).</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
+        /// <param name="Notched">Determines whether or not notches are drawn. Notches displays a confidence interval around the median. We compute the confidence interval as median +/- 1.57 " IQR / sqrt(N), where IQR is the interquartile range and N is the sample size. If two boxes' notches do not overlap there is 95% confidence their medians differ. See https://sites.google.com/site/davidsstatistics/home/notched-box-plots for more info. Defaults to "false" unless `notchwidth` or `notchspan` is set.</param>
+        /// <param name="NotchWidth">Sets the width of the notches relative to the box' width. For example, with 0, the notches are as wide as the box(es).</param>
+        /// <param name="QuartileMethod">Sets the method used to compute the sample's Q1 and Q3 quartiles. The "linear" method uses the 25th percentile for Q1 and 75th percentile for Q3 as computed using method #10 (listed on http://www.amstat.org/publications/jse/v14n3/langford.html). The "exclusive" method uses the median to divide the ordered dataset into two halves if the sample is odd, it does not include the median in either half - Q1 is then the median of the lower half and Q3 the median of the upper half. The "inclusive" method also uses the median to divide the ordered dataset into two halves but if the sample is odd, it includes the median in both halves - Q1 is then the median of the lower half and Q3 the median of the upper half.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member BoxPlot
             (
-                [<Optional; DefaultParameterValue(null)>] ?x: seq<#IConvertible>,
-                [<Optional; DefaultParameterValue(null)>] ?y: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
                 [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
-                [<Optional; DefaultParameterValue(null)>] ?Fillcolor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
                 [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
-                [<Optional; DefaultParameterValue(null)>] ?OutlierColor: Color,
-                [<Optional; DefaultParameterValue(null)>] ?OutlierWidth: int,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
                 [<Optional; DefaultParameterValue(null)>] ?WhiskerWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?BoxPoints: StyleParam.BoxPoints,
@@ -2940,10 +3350,11 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?Jitter: float,
                 [<Optional; DefaultParameterValue(null)>] ?PointPos: float,
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
-                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
-                [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?OutlineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?OutlineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?Outline: Line,
                 [<Optional; DefaultParameterValue(null)>] ?AlignmentGroup: string,
-                [<Optional; DefaultParameterValue(null)>] ?Offsetgroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?OffsetGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?Notched: bool,
                 [<Optional; DefaultParameterValue(null)>] ?NotchWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?QuartileMethod: StyleParam.QuartileMethod,
@@ -2952,34 +3363,166 @@ module Chart2D =
 
             let useDefaults = defaultArg UseDefaults true
 
+            let outline =
+                Outline
+                |> Option.defaultValue (Plotly.NET.Line.init ())
+                |> Plotly.NET.Line.style (?Color = OutlineColor, ?Width = OutlineWidth)
+
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (?Color = MarkerColor)
+
+
             Trace2D.initBoxPlot (
                 Trace2DStyle.BoxPlot(
-                    ?X = x,
-                    ?Y = y,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?X = X,
+                    ?Y = Y,
                     ?Text = Text,
                     ?MultiText = MultiText,
-                    ?Whiskerwidth = WhiskerWidth,
+                    ?WhiskerWidth = WhiskerWidth,
                     ?BoxPoints = BoxPoints,
                     ?BoxMean = BoxMean,
                     ?Jitter = Jitter,
                     ?PointPos = PointPos,
                     ?Orientation = Orientation,
-                    ?FillColor = Fillcolor,
-                    ?Marker = Marker,
-                    ?Line = Line,
+                    ?FillColor = FillColor,
+                    Marker = marker,
+                    Line = outline,
                     ?AlignmentGroup = AlignmentGroup,
-                    ?OffsetGroup = Offsetgroup,
+                    ?OffsetGroup = OffsetGroup,
                     ?Notched = Notched,
                     ?NotchWidth = NotchWidth,
                     ?QuartileMethod = QuartileMethod
                 )
             )
-            |> TraceStyle.TraceInfo(?Name = Name, ?ShowLegend = ShowLegend, ?Opacity = Opacity)
-            |> TraceStyle.Marker(?Color = MarkerColor, ?OutlierColor = OutlierColor, ?OutlierWidth = OutlierWidth)
             |> GenericChart.ofTraceObject useDefaults
 
+        /// <summary>
+        /// Visualizes the distribution of the input data as a box plot.
+        ///
+        /// A box plot is a method for graphically demonstrating the locality, spread and skewness groups of numerical data through their quartiles.
+        /// The default style is based on the five number summary: minimum, first quartile, median, third quartile, and maximum.
+        ///
+        /// The sample data from which statistics are computed is set in `x` for vertically spanning boxes and in `y` for horizontally spanning boxes.
+        /// </summary>
+        /// <param name="data">Sets the sample data or coordinates</param>
+        /// <param name="orientation">Sets the orientation of the box.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="FillColor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="MarkerColor">Sets the marker color.</param>
+        /// <param name="Marker">Sets the marker for the box (use this for more finegrained control than the other marker-associated arguments).</param>// <param name="Opacity">Sets the opacity of this trace.</param>
+        /// <param name="WhiskerWidth">Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).</param>
+        /// <param name="BoxPoints">If "outliers", only the sample points lying outside the whiskers are shown If "suspectedoutliers", the outlier points are shown and points either less than 4"Q1-3"Q3 or greater than 4"Q3-3"Q1 are highlighted (see `outliercolor`) If "all", all sample points are shown If "false", only the box(es) are shown with no sample points Defaults to "suspectedoutliers" when `marker.outliercolor` or `marker.line.outliercolor` is set. Defaults to "all" under the q1/median/q3 signature. Otherwise defaults to "outliers".</param>
+        /// <param name="BoxMean">If "true", the mean of the box(es)' underlying distribution is drawn as a dashed line inside the box(es). If "sd" the standard deviation is also drawn. Defaults to "true" when `mean` is set. Defaults to "sd" when `sd` is set Otherwise defaults to "false".</param>
+        /// <param name="Jitter">Sets the amount of jitter in the sample points drawn. If "0", the sample points align along the distribution axis. If "1", the sample points are drawn in a random jitter of width equal to the width of the box(es).</param>
+        /// <param name="PointPos">Sets the position of the sample points in relation to the box(es). If "0", the sample points are places over the center of the box(es). Positive (negative) values correspond to positions to the right (left) for vertical boxes and above (below) for horizontal boxes</param>
+        /// <param name="OutlineColor">Sets the color of the box outline</param>
+        /// <param name="OutlineWidth">Sets the width of the box outline</param>
+        /// <param name="Outline">Sets the box outline (use this for more finegrained control than the other outline-associated arguments).</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
+        /// <param name="Notched">Determines whether or not notches are drawn. Notches displays a confidence interval around the median. We compute the confidence interval as median +/- 1.57 " IQR / sqrt(N), where IQR is the interquartile range and N is the sample size. If two boxes' notches do not overlap there is 95% confidence their medians differ. See https://sites.google.com/site/davidsstatistics/home/notched-box-plots for more info. Defaults to "false" unless `notchwidth` or `notchspan` is set.</param>
+        /// <param name="NotchWidth">Sets the width of the notches relative to the box' width. For example, with 0, the notches are as wide as the box(es).</param>
+        /// <param name="QuartileMethod">Sets the method used to compute the sample's Q1 and Q3 quartiles. The "linear" method uses the 25th percentile for Q1 and 75th percentile for Q3 as computed using method #10 (listed on http://www.amstat.org/publications/jse/v14n3/langford.html). The "exclusive" method uses the median to divide the ordered dataset into two halves if the sample is odd, it does not include the median in either half - Q1 is then the median of the lower half and Q3 the median of the upper half. The "inclusive" method also uses the median to divide the ordered dataset into two halves but if the sample is odd, it includes the median in both halves - Q1 is then the median of the lower half and Q3 the median of the upper half.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member BoxPlot
+            (
+                data: seq<#IConvertible>,
+                orientation: StyleParam.Orientation,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?WhiskerWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?BoxPoints: StyleParam.BoxPoints,
+                [<Optional; DefaultParameterValue(null)>] ?BoxMean: StyleParam.BoxMean,
+                [<Optional; DefaultParameterValue(null)>] ?Jitter: float,
+                [<Optional; DefaultParameterValue(null)>] ?PointPos: float,
+                [<Optional; DefaultParameterValue(null)>] ?OutlineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?OutlineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?Outline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?AlignmentGroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?OffsetGroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?Notched: bool,
+                [<Optional; DefaultParameterValue(null)>] ?NotchWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?QuartileMethod: StyleParam.QuartileMethod,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+            ) =
 
-        /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.
+            let boxplot =
+                Chart.BoxPlot(
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?FillColor = FillColor,
+                    ?MarkerColor = MarkerColor,
+                    ?Marker = Marker,
+                    ?Opacity = Opacity,
+                    ?WhiskerWidth = WhiskerWidth,
+                    ?BoxPoints = BoxPoints,
+                    ?BoxMean = BoxMean,
+                    ?Jitter = Jitter,
+                    ?PointPos = PointPos,
+                    ?OutlineColor = OutlineColor,
+                    ?OutlineWidth = OutlineWidth,
+                    ?Outline = Outline,
+                    ?AlignmentGroup = AlignmentGroup,
+                    ?OffsetGroup = OffsetGroup,
+                    ?Notched = Notched,
+                    ?NotchWidth = NotchWidth,
+                    ?QuartileMethod = QuartileMethod,
+                    ?UseDefaults = UseDefaults
+                )
+
+            match orientation with
+            | StyleParam.Orientation.Horizontal -> boxplot |> GenericChart.mapTrace (Trace2DStyle.BoxPlot(X = data))
+            | StyleParam.Orientation.Vertical -> boxplot |> GenericChart.mapTrace (Trace2DStyle.BoxPlot(Y = data))
+
+
+        /// <summary>
+        /// Visualizes the distribution of the input data as a box plot.
+        ///
+        /// A box plot is a method for graphically demonstrating the locality, spread and skewness groups of numerical data through their quartiles.
+        /// The default style is based on the five number summary: minimum, first quartile, median, third quartile, and maximum.
+        ///
+        /// The sample data from which statistics are computed is set in `x` for vertically spanning boxes and in `y` for horizontally spanning boxes.
+        /// </summary>
+        /// <param name="xy">Sets the xy sample data or coordinate pairs</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="FillColor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="MarkerColor">Sets the marker color.</param>
+        /// <param name="Marker">Sets the marker for the box (use this for more finegrained control than the other marker-associated arguments).</param>// <param name="Opacity">Sets the opacity of this trace.</param>
+        /// <param name="WhiskerWidth">Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).</param>
+        /// <param name="BoxPoints">If "outliers", only the sample points lying outside the whiskers are shown If "suspectedoutliers", the outlier points are shown and points either less than 4"Q1-3"Q3 or greater than 4"Q3-3"Q1 are highlighted (see `outliercolor`) If "all", all sample points are shown If "false", only the box(es) are shown with no sample points Defaults to "suspectedoutliers" when `marker.outliercolor` or `marker.line.outliercolor` is set. Defaults to "all" under the q1/median/q3 signature. Otherwise defaults to "outliers".</param>
+        /// <param name="BoxMean">If "true", the mean of the box(es)' underlying distribution is drawn as a dashed line inside the box(es). If "sd" the standard deviation is also drawn. Defaults to "true" when `mean` is set. Defaults to "sd" when `sd` is set Otherwise defaults to "false".</param>
+        /// <param name="Jitter">Sets the amount of jitter in the sample points drawn. If "0", the sample points align along the distribution axis. If "1", the sample points are drawn in a random jitter of width equal to the width of the box(es).</param>
+        /// <param name="PointPos">Sets the position of the sample points in relation to the box(es). If "0", the sample points are places over the center of the box(es). Positive (negative) values correspond to positions to the right (left) for vertical boxes and above (below) for horizontal boxes</param>
+        /// <param name="Orientation">Sets the orientation of the box(es). If "v" ("h"), the distribution is visualized along the vertical (horizontal).</param>
+        /// <param name="OutlineColor">Sets the color of the box outline</param>
+        /// <param name="OutlineWidth">Sets the width of the box outline</param>
+        /// <param name="Outline">Sets the box outline (use this for more finegrained control than the other outline-associated arguments).</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
+        /// <param name="Notched">Determines whether or not notches are drawn. Notches displays a confidence interval around the median. We compute the confidence interval as median +/- 1.57 " IQR / sqrt(N), where IQR is the interquartile range and N is the sample size. If two boxes' notches do not overlap there is 95% confidence their medians differ. See https://sites.google.com/site/davidsstatistics/home/notched-box-plots for more info. Defaults to "false" unless `notchwidth` or `notchspan` is set.</param>
+        /// <param name="NotchWidth">Sets the width of the notches relative to the box' width. For example, with 0, the notches are as wide as the box(es).</param>
+        /// <param name="QuartileMethod">Sets the method used to compute the sample's Q1 and Q3 quartiles. The "linear" method uses the 25th percentile for Q1 and 75th percentile for Q3 as computed using method #10 (listed on http://www.amstat.org/publications/jse/v14n3/langford.html). The "exclusive" method uses the median to divide the ordered dataset into two halves if the sample is odd, it does not include the median in either half - Q1 is then the median of the lower half and Q3 the median of the upper half. The "inclusive" method also uses the median to divide the ordered dataset into two halves but if the sample is odd, it includes the median in both halves - Q1 is then the median of the lower half and Q3 the median of the upper half.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member BoxPlot
             (
@@ -2988,10 +3531,9 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
                 [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
-                [<Optional; DefaultParameterValue(null)>] ?Fillcolor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
                 [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
-                [<Optional; DefaultParameterValue(null)>] ?OutlierColor: Color,
-                [<Optional; DefaultParameterValue(null)>] ?OutlierWidth: int,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
                 [<Optional; DefaultParameterValue(null)>] ?WhiskerWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?BoxPoints: StyleParam.BoxPoints,
@@ -2999,10 +3541,11 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?Jitter: float,
                 [<Optional; DefaultParameterValue(null)>] ?PointPos: float,
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
-                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
-                [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?OutlineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?OutlineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?Outline: Line,
                 [<Optional; DefaultParameterValue(null)>] ?AlignmentGroup: string,
-                [<Optional; DefaultParameterValue(null)>] ?Offsetgroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?OffsetGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?Notched: bool,
                 [<Optional; DefaultParameterValue(null)>] ?NotchWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?QuartileMethod: StyleParam.QuartileMethod,
@@ -3018,10 +3561,9 @@ module Chart2D =
                 ?ShowLegend = ShowLegend,
                 ?Text = Text,
                 ?MultiText = MultiText,
-                ?Fillcolor = Fillcolor,
+                ?FillColor = FillColor,
                 ?MarkerColor = MarkerColor,
-                ?OutlierColor = OutlierColor,
-                ?OutlierWidth = OutlierWidth,
+                ?Marker = Marker,
                 ?Opacity = Opacity,
                 ?WhiskerWidth = WhiskerWidth,
                 ?BoxPoints = BoxPoints,
@@ -3029,10 +3571,11 @@ module Chart2D =
                 ?Jitter = Jitter,
                 ?PointPos = PointPos,
                 ?Orientation = Orientation,
-                ?Marker = Marker,
-                ?Line = Line,
+                ?OutlineColor = OutlineColor,
+                ?OutlineWidth = OutlineWidth,
+                ?Outline = Outline,
                 ?AlignmentGroup = AlignmentGroup,
-                ?Offsetgroup = Offsetgroup,
+                ?OffsetGroup = OffsetGroup,
                 ?Notched = Notched,
                 ?NotchWidth = NotchWidth,
                 ?QuartileMethod = QuartileMethod,
@@ -3040,8 +3583,45 @@ module Chart2D =
             )
 
 
-
-        /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.
+        /// <summary>
+        /// Visualizes the distribution of the input data as a violin plot.
+        ///
+        /// A violin plot is a method of plotting numeric data. It is similar to a box plot, except that they also show the probability density of the data at different values, usually smoothed by a kernel density estimator.
+        ///
+        /// In vertical (horizontal) violin plots, statistics are computed using `y` (`x`) values. By supplying an `x` (`y`) array, one violin per distinct x (y) value is drawn If no `x` (`y`) array is provided, a single violin is drawn. That violin position is then positioned with with `name` or with `x0` (`y0`) if provided.
+        /// </summary>
+        /// <param name="X">Sets the x sample data or coordinates.</param>
+        /// <param name="Y">Sets the y sample data or coordinates.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="FillColor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="Points">If "outliers", only the sample points lying outside the whiskers are shown If "suspectedoutliers", the outlier points are shown and points either less than 4"Q1-3"Q3 or greater than 4"Q3-3"Q1 are highlighted (see `outliercolor`) If "all", all sample points are shown If "false", only the violins are shown with no sample points. Defaults to "suspectedoutliers" when `marker.outliercolor` or `marker.line.outliercolor` is set, otherwise defaults to "outliers".</param>
+        /// <param name="Jitter">Sets the amount of jitter in the sample points drawn. If "0", the sample points align along the distribution axis. If "1", the sample points are drawn in a random jitter of width equal to the width of the box(es).</param>
+        /// <param name="PointPos">Sets the position of the sample points in relation to the box(es). If "0", the sample points are places over the center of the box(es). Positive (negative) values correspond to positions to the right (left) for vertical boxes and above (below) for horizontal boxes</param>
+        /// <param name="Orientation">Sets the orientation of the violin(s). If "v" ("h"), the distribution is visualized along the vertical (horizontal).</param>
+        /// <param name="Width">Sets the width of the violin in data coordinates. If "0" (default value) the width is automatically selected based on the positions of other violin traces in the same subplot.</param>
+        /// <param name="MarkerColor">Sets the marker color.</param>
+        /// <param name="Marker">Sets the marker for the violin (use this for more finegrained control than the other marker-associated arguments).</param>
+        /// <param name="OutlineColor">Sets the color of the box outline</param>
+        /// <param name="OutlineWidth">Sets the width of the box outline</param>
+        /// <param name="Outline">Sets the box outline (use this for more finegrained control than the other outline-associated arguments).</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
+        /// <param name="ShowBox">Wether and how to draw a miniature box plot</param>
+        /// <param name="BoxWidth">Sets the width of the miniature box plot</param>
+        /// <param name="BoxFillColor">Sets the fill color of the miniature box plot</param>
+        /// <param name="Box">Sets the styles of the miniature box plot (use this for more finegrained control than the other box-associated arguments)</param>
+        /// <param name="BandWidth">Sets the bandwidth used to compute the kernel density estimate. By default, the bandwidth is determined by Silverman's rule of thumb.</param>
+        /// <param name="MeanLine">Wether and how to draw the meanline</param>
+        /// <param name="ScaleGroup">If there are multiple violins that should be sized according to to some metric (see `scalemode`), link them by providing a non-empty group id here shared by every trace in the same group. If a violin's `width` is undefined, `scalegroup` will default to the trace's name. In this case, violins with the same names will be linked together</param>
+        /// <param name="ScaleMode">Sets the metric by which the width of each violin is determined."width" means each violin has the same (max) width"count" means the violins are scaled by the number of sample points makingup each violin.</param>
+        /// <param name="Side">Determines on which side of the position value the density function making up one half of a violin is plotted. Useful when comparing two violin traces under "overlay" mode, where one trace has `side` set to "positive" and the other to "negative".</param>
+        /// <param name="Span">Sets the span in data space for which the density function will be computed. Has an effect only when `spanmode` is set to "manual".</param>
+        /// <param name="SpanMode">Sets the method by which the span in data space where the density function will be computed. "soft" means the span goes from the sample's minimum value minus two bandwidths to the sample's maximum value plus two bandwidths. "hard" means the span goes from the sample's minimum to its maximum value. For custom span settings, use mode "manual" and fill in the `span` attribute.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Violin
             (
@@ -3049,6 +3629,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
                 [<Optional; DefaultParameterValue(null)>] ?Points: StyleParam.JitterPoints,
@@ -3057,10 +3639,10 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
                 [<Optional; DefaultParameterValue(null)>] ?Width: float,
                 [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
-                [<Optional; DefaultParameterValue(null)>] ?OutlierColor: Color,
-                [<Optional; DefaultParameterValue(null)>] ?OutlierWidth: int,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
-                [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?OutlineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?OutlineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?Outline: Line,
                 [<Optional; DefaultParameterValue(null)>] ?AlignmentGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?OffsetGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?ShowBox: bool,
@@ -3084,21 +3666,33 @@ module Chart2D =
                 |> Option.defaultValue (TraceObjects.Box.init ())
                 |> TraceObjects.Box.style (?Visible = ShowBox, ?Width = BoxWidth, ?FillColor = BoxFillColor)
 
+            let outline =
+                Outline
+                |> Option.defaultValue (Plotly.NET.Line.init ())
+                |> Plotly.NET.Line.style (?Color = OutlineColor, ?Width = OutlineWidth)
+
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (?Color = MarkerColor)
+
             Trace2D.initViolin (
                 Trace2DStyle.Violin(
                     ?X = X,
                     ?Y = Y,
                     ?Name = Name,
                     ?ShowLegend = ShowLegend,
-                    ?FillColor = FillColor,
                     ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?FillColor = FillColor,
                     ?Points = Points,
                     ?Jitter = Jitter,
                     ?PointPos = PointPos,
                     ?Orientation = Orientation,
                     ?Width = Width,
-                    ?Marker = Marker,
-                    ?Line = Line,
+                    Marker = marker,
+                    Line = outline,
                     ?AlignmentGroup = AlignmentGroup,
                     ?OffsetGroup = OffsetGroup,
                     Box = box,
@@ -3111,18 +3705,165 @@ module Chart2D =
                     ?SpanMode = SpanMode
                 )
             )
-            |> TraceStyle.TraceInfo(?Name = Name, ?ShowLegend = ShowLegend, ?Opacity = Opacity)
-            |> TraceStyle.Marker(?Color = MarkerColor, ?OutlierColor = OutlierColor, ?OutlierWidth = OutlierWidth)
             |> GenericChart.ofTraceObject useDefaults
 
+        /// <summary>
+        /// Visualizes the distribution of the input data as a violin plot.
+        ///
+        /// A violin plot is a method of plotting numeric data. It is similar to a box plot, except that they also show the probability density of the data at different values, usually smoothed by a kernel density estimator.
+        ///
+        /// In vertical (horizontal) violin plots, statistics are computed using `y` (`x`) values. By supplying an `x` (`y`) array, one violin per distinct x (y) value is drawn If no `x` (`y`) array is provided, a single violin is drawn. That violin position is then positioned with with `name` or with `x0` (`y0`) if provided.
+        /// </summary>
+        /// <param name="data">Sets the sample data or coordinate pairs</param>
+        /// <param name="orientation">Sets the orientation of the violin(s). If "v" ("h"), the distribution is visualized along the vertical (horizontal).</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="FillColor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="Points">If "outliers", only the sample points lying outside the whiskers are shown If "suspectedoutliers", the outlier points are shown and points either less than 4"Q1-3"Q3 or greater than 4"Q3-3"Q1 are highlighted (see `outliercolor`) If "all", all sample points are shown If "false", only the violins are shown with no sample points. Defaults to "suspectedoutliers" when `marker.outliercolor` or `marker.line.outliercolor` is set, otherwise defaults to "outliers".</param>
+        /// <param name="Jitter">Sets the amount of jitter in the sample points drawn. If "0", the sample points align along the distribution axis. If "1", the sample points are drawn in a random jitter of width equal to the width of the box(es).</param>
+        /// <param name="PointPos">Sets the position of the sample points in relation to the box(es). If "0", the sample points are places over the center of the box(es). Positive (negative) values correspond to positions to the right (left) for vertical boxes and above (below) for horizontal boxes</param>
+        /// <param name="Width">Sets the width of the violin in data coordinates. If "0" (default value) the width is automatically selected based on the positions of other violin traces in the same subplot.</param>
+        /// <param name="MarkerColor">Sets the marker color.</param>
+        /// <param name="Marker">Sets the marker for the violin (use this for more finegrained control than the other marker-associated arguments).</param>
+        /// <param name="OutlineColor">Sets the color of the box outline</param>
+        /// <param name="OutlineWidth">Sets the width of the box outline</param>
+        /// <param name="Outline">Sets the box outline (use this for more finegrained control than the other outline-associated arguments).</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
+        /// <param name="ShowBox">Wether and how to draw a miniature box plot</param>
+        /// <param name="BoxWidth">Sets the width of the miniature box plot</param>
+        /// <param name="BoxFillColor">Sets the fill color of the miniature box plot</param>
+        /// <param name="Box">Sets the styles of the miniature box plot (use this for more finegrained control than the other box-associated arguments)</param>
+        /// <param name="BandWidth">Sets the bandwidth used to compute the kernel density estimate. By default, the bandwidth is determined by Silverman's rule of thumb.</param>
+        /// <param name="MeanLine">Wether and how to draw the meanline</param>
+        /// <param name="ScaleGroup">If there are multiple violins that should be sized according to to some metric (see `scalemode`), link them by providing a non-empty group id here shared by every trace in the same group. If a violin's `width` is undefined, `scalegroup` will default to the trace's name. In this case, violins with the same names will be linked together</param>
+        /// <param name="ScaleMode">Sets the metric by which the width of each violin is determined."width" means each violin has the same (max) width"count" means the violins are scaled by the number of sample points makingup each violin.</param>
+        /// <param name="Side">Determines on which side of the position value the density function making up one half of a violin is plotted. Useful when comparing two violin traces under "overlay" mode, where one trace has `side` set to "positive" and the other to "negative".</param>
+        /// <param name="Span">Sets the span in data space for which the density function will be computed. Has an effect only when `spanmode` is set to "manual".</param>
+        /// <param name="SpanMode">Sets the method by which the span in data space where the density function will be computed. "soft" means the span goes from the sample's minimum value minus two bandwidths to the sample's maximum value plus two bandwidths. "hard" means the span goes from the sample's minimum to its maximum value. For custom span settings, use mode "manual" and fill in the `span` attribute.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member Violin
+            (
+                data: seq<#IConvertible>,
+                orientation: StyleParam.Orientation,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?Points: StyleParam.JitterPoints,
+                [<Optional; DefaultParameterValue(null)>] ?Jitter: float,
+                [<Optional; DefaultParameterValue(null)>] ?PointPos: float,
+                [<Optional; DefaultParameterValue(null)>] ?Width: float,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?OutlineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?OutlineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?Outline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?AlignmentGroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?OffsetGroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowBox: bool,
+                [<Optional; DefaultParameterValue(null)>] ?BoxWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?BoxFillColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?Box: Box,
+                [<Optional; DefaultParameterValue(null)>] ?BandWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?MeanLine: MeanLine,
+                [<Optional; DefaultParameterValue(null)>] ?ScaleGroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?ScaleMode: StyleParam.ScaleMode,
+                [<Optional; DefaultParameterValue(null)>] ?Side: StyleParam.ViolinSide,
+                [<Optional; DefaultParameterValue(null)>] ?Span: StyleParam.Range,
+                [<Optional; DefaultParameterValue(null)>] ?SpanMode: StyleParam.SpanMode,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+            ) =
 
-        /// Displays the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.
+            let violin =
+                Chart.Violin(
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?FillColor = FillColor,
+                    ?Opacity = Opacity,
+                    ?Points = Points,
+                    ?Jitter = Jitter,
+                    ?PointPos = PointPos,
+                    ?Width = Width,
+                    ?MarkerColor = MarkerColor,
+                    ?Marker = Marker,
+                    ?OutlineColor = OutlineColor,
+                    ?OutlineWidth = OutlineWidth,
+                    ?Outline = Outline,
+                    ?AlignmentGroup = AlignmentGroup,
+                    ?OffsetGroup = OffsetGroup,
+                    ?ShowBox = ShowBox,
+                    ?BoxWidth = BoxWidth,
+                    ?BoxFillColor = BoxFillColor,
+                    ?Box = Box,
+                    ?BandWidth = BandWidth,
+                    ?MeanLine = MeanLine,
+                    ?ScaleGroup = ScaleGroup,
+                    ?ScaleMode = ScaleMode,
+                    ?Side = Side,
+                    ?Span = Span,
+                    ?SpanMode = SpanMode,
+                    ?UseDefaults = UseDefaults
+                )
+
+            match orientation with
+            | StyleParam.Orientation.Horizontal -> violin |> GenericChart.mapTrace (Trace2DStyle.Violin(X = data))
+            | StyleParam.Orientation.Vertical -> violin |> GenericChart.mapTrace (Trace2DStyle.Violin(Y = data))
+
+        /// <summary>
+        /// Visualizes the distribution of the input data as a violin plot.
+        ///
+        /// A violin plot is a method of plotting numeric data. It is similar to a box plot, except that they also show the probability density of the data at different values, usually smoothed by a kernel density estimator.
+        ///
+        /// In vertical (horizontal) violin plots, statistics are computed using `y` (`x`) values. By supplying an `x` (`y`) array, one violin per distinct x (y) value is drawn If no `x` (`y`) array is provided, a single violin is drawn. That violin position is then positioned with with `name` or with `x0` (`y0`) if provided.
+        /// </summary>
+        /// <param name="xy">Sets the xy sample data or coordinate pairs</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="FillColor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="Points">If "outliers", only the sample points lying outside the whiskers are shown If "suspectedoutliers", the outlier points are shown and points either less than 4"Q1-3"Q3 or greater than 4"Q3-3"Q1 are highlighted (see `outliercolor`) If "all", all sample points are shown If "false", only the violins are shown with no sample points. Defaults to "suspectedoutliers" when `marker.outliercolor` or `marker.line.outliercolor` is set, otherwise defaults to "outliers".</param>
+        /// <param name="Jitter">Sets the amount of jitter in the sample points drawn. If "0", the sample points align along the distribution axis. If "1", the sample points are drawn in a random jitter of width equal to the width of the box(es).</param>
+        /// <param name="PointPos">Sets the position of the sample points in relation to the box(es). If "0", the sample points are places over the center of the box(es). Positive (negative) values correspond to positions to the right (left) for vertical boxes and above (below) for horizontal boxes</param>
+        /// <param name="Orientation">Sets the orientation of the violin(s). If "v" ("h"), the distribution is visualized along the vertical (horizontal).</param>
+        /// <param name="Width">Sets the width of the violin in data coordinates. If "0" (default value) the width is automatically selected based on the positions of other violin traces in the same subplot.</param>
+        /// <param name="MarkerColor">Sets the marker color.</param>
+        /// <param name="Marker">Sets the marker for the violin (use this for more finegrained control than the other marker-associated arguments).</param>
+        /// <param name="OutlineColor">Sets the color of the box outline</param>
+        /// <param name="OutlineWidth">Sets the width of the box outline</param>
+        /// <param name="Outline">Sets the box outline (use this for more finegrained control than the other outline-associated arguments).</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
+        /// <param name="ShowBox">Wether and how to draw a miniature box plot</param>
+        /// <param name="BoxWidth">Sets the width of the miniature box plot</param>
+        /// <param name="BoxFillColor">Sets the fill color of the miniature box plot</param>
+        /// <param name="Box">Sets the styles of the miniature box plot (use this for more finegrained control than the other box-associated arguments)</param>
+        /// <param name="BandWidth">Sets the bandwidth used to compute the kernel density estimate. By default, the bandwidth is determined by Silverman's rule of thumb.</param>
+        /// <param name="MeanLine">Wether and how to draw the meanline</param>
+        /// <param name="ScaleGroup">If there are multiple violins that should be sized according to to some metric (see `scalemode`), link them by providing a non-empty group id here shared by every trace in the same group. If a violin's `width` is undefined, `scalegroup` will default to the trace's name. In this case, violins with the same names will be linked together</param>
+        /// <param name="ScaleMode">Sets the metric by which the width of each violin is determined."width" means each violin has the same (max) width"count" means the violins are scaled by the number of sample points makingup each violin.</param>
+        /// <param name="Side">Determines on which side of the position value the density function making up one half of a violin is plotted. Useful when comparing two violin traces under "overlay" mode, where one trace has `side` set to "positive" and the other to "negative".</param>
+        /// <param name="Span">Sets the span in data space for which the density function will be computed. Has an effect only when `spanmode` is set to "manual".</param>
+        /// <param name="SpanMode">Sets the method by which the span in data space where the density function will be computed. "soft" means the span goes from the sample's minimum value minus two bandwidths to the sample's maximum value plus two bandwidths. "hard" means the span goes from the sample's minimum to its maximum value. For custom span settings, use mode "manual" and fill in the `span` attribute.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Violin
             (
                 xy: seq<#IConvertible * #IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
                 [<Optional; DefaultParameterValue(null)>] ?Points: StyleParam.JitterPoints,
@@ -3131,10 +3872,10 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
                 [<Optional; DefaultParameterValue(null)>] ?Width: float,
                 [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
-                [<Optional; DefaultParameterValue(null)>] ?OutlierColor: Color,
-                [<Optional; DefaultParameterValue(null)>] ?OutlierWidth: int,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
-                [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?OutlineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?OutlineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?Outline: Line,
                 [<Optional; DefaultParameterValue(null)>] ?AlignmentGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?OffsetGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?ShowBox: bool,
@@ -3158,6 +3899,8 @@ module Chart2D =
                 y,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
+                ?Text = Text,
+                ?MultiText = MultiText,
                 ?FillColor = FillColor,
                 ?Opacity = Opacity,
                 ?Points = Points,
@@ -3166,10 +3909,10 @@ module Chart2D =
                 ?Orientation = Orientation,
                 ?Width = Width,
                 ?MarkerColor = MarkerColor,
-                ?OutlierColor = OutlierColor,
-                ?OutlierWidth = OutlierWidth,
                 ?Marker = Marker,
-                ?Line = Line,
+                ?OutlineColor = OutlineColor,
+                ?OutlineWidth = OutlineWidth,
+                ?Outline = Outline,
                 ?AlignmentGroup = AlignmentGroup,
                 ?OffsetGroup = OffsetGroup,
                 ?ShowBox = ShowBox,
@@ -3187,7 +3930,38 @@ module Chart2D =
             )
 
 
-        /// Computes the bi-dimensional histogram of two data samples and auto-determines the bin size.
+        /// <summary>
+        /// Computes a 2D histogram contour plot, also known as a density contour plot, which is a 2-dimensional generalization of a histogram which resembles a contour plot but is computed by grouping a set of points specified by their x and y coordinates into bins, and applying an aggregation function such as count or sum (if z is provided) to compute the value to be used to compute contours.
+        ///
+        /// The sample data from which statistics are computed is set in `x` and `y` (where `x` and `y` represent marginal distributions, binning is set in `xbins` and `ybins` in this case) or `z` (where `z` represent the 2D distribution and binning set, binning is set by `x` and `y` in this case). The resulting distribution is visualized as a contour plot.
+        /// </summary>
+        /// <param name="x">Sets the sample data to be binned on the x axis.</param>
+        /// <param name="y">Sets the sample data to be binned on the y axis.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="Z">Sets the aggregation data.</param>
+        /// <param name="HistFunc">Specifies the binning function used for this histogram trace. If "count", the histogram values are computed by counting the number of values lying inside each bin. If "sum", "avg", "min", "max", the histogram values are computed using the sum, the average, the minimum or the maximum of the values lying inside each bin respectively.</param>
+        /// <param name="HistNorm">Specifies the type of normalization used for this histogram trace. If "", the span of each bar corresponds to the number of occurrences (i.e. the number of data points lying inside the bins). If "percent" / "probability", the span of each bar corresponds to the percentage / fraction of occurrences with respect to the total number of sample points (here, the sum of all bin HEIGHTS equals 100% / 1). If "density", the span of each bar corresponds to the number of occurrences in a bin divided by the size of the bin interval (here, the sum of all bin AREAS equals the total number of sample points). If "probability density", the area of each bar corresponds to the probability that an event will fall into the corresponding bin (here, the sum of all bin AREAS equals 1).</param>
+        /// <param name="NBinsX">Specifies the maximum number of desired bins. This value will be used in an algorithm that will decide the optimal bin size such that the histogram best visualizes the distribution of the data. Ignored if `xbins.size` is provided.</param>
+        /// <param name="NBinsY">Specifies the maximum number of desired bins. This value will be used in an algorithm that will decide the optimal bin size such that the histogram best visualizes the distribution of the data. Ignored if `ybins.size` is provided.</param>
+        /// <param name="BinGroup">Set the `xbingroup` and `ybingroup` default prefix For example, setting a `bingroup` of "1" on two histogram2d traces will make them their x-bins and y-bins match separately.</param>
+        /// <param name="XBinGroup">Set a group of histogram traces which will have compatible x-bin settings. Using `xbingroup`, histogram2d and histogram2dcontour traces (on axes of the same axis type) can have compatible x-bin settings. Note that the same `xbingroup` value can be used to set (1D) histogram `bingroup`</param>
+        /// <param name="XBins">Sets the binning across the x dimension</param>
+        /// <param name="YBinGroup">Set a group of histogram traces which will have compatible y-bin settings. Using `ybingroup`, histogram2d and histogram2dcontour traces (on axes of the same axis type) can have compatible y-bin settings. Note that the same `ybingroup` value can be used to set (1D) histogram `bingroup`</param>
+        /// <param name="YBins">Sets the binning across the y dimension</param>
+        /// <param name="Marker">Sets the marker of this trace.</param>
+        /// <param name="ContourLineDash">Sets the contour line dash style</param>
+        /// <param name="ContourLineColor">Sets the contour line color</param>
+        /// <param name="ContourLineSmoothing">Sets the amount of smoothing for the contour lines, where "0" corresponds to no smoothing.</param>
+        /// <param name="ContourLine">Sets the contour lines (use this for more finegrained control than the other contourline-associated arguments).</param>
+        /// <param name="ColorBar">Sets the styles of the colorbar for this trace.</param>
+        /// <param name="ColorScale">Sets the colorscale for this trace.</param>
+        /// <param name="ShowScale">Wether or not to show the colorscale/colorbar</param>
+        /// <param name="ReverseScale">Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.</param>
+        /// <param name="Contours">Sets the style of the contours</param>
+        /// <param name="NContours">Sets the maximum number of contour levels. The actual number of contours will be chosen automatically to be less than or equal to the value of `ncontours`. Has an effect only if `autocontour` is "true" or if `contours.size` is missing.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Histogram2DContour
             (
@@ -3207,9 +3981,10 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?YBinGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?YBins: Bins,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
-                [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
-                [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
-                [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLineDash: StyleParam.DrawingStyle,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLineSmoothing: float,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLine: Line,
                 [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
                 [<Optional; DefaultParameterValue(null)>] ?ColorScale: StyleParam.Colorscale,
                 [<Optional; DefaultParameterValue(null)>] ?ShowScale: bool,
@@ -3220,10 +3995,22 @@ module Chart2D =
             ) =
             let useDefaults = defaultArg UseDefaults true
 
+            let contourLine =
+                ContourLine
+                |> Option.defaultValue (Plotly.NET.Line.init ())
+                |> Plotly.NET.Line.style (
+                    ?Color = ContourLineColor,
+                    ?Dash = ContourLineDash,
+                    ?Smoothing = ContourLineSmoothing
+                )
+
             Trace2D.initHistogram2DContour (
                 Trace2DStyle.Histogram2DContour(
                     X = x,
                     Y = y,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
                     ?Z = Z,
                     ?HistFunc = HistFunc,
                     ?HistNorm = HistNorm,
@@ -3235,7 +4022,7 @@ module Chart2D =
                     ?YBinGroup = YBinGroup,
                     ?YBins = YBins,
                     ?Marker = Marker,
-                    ?Line = Line,
+                    Line = contourLine,
                     ?ColorBar = ColorBar,
                     ?ColorScale = ColorScale,
                     ?ShowScale = ShowScale,
@@ -3244,12 +4031,32 @@ module Chart2D =
                     ?NContours = NContours
                 )
             )
-            |> TraceStyle.TraceInfo(?Name = Name, ?ShowLegend = ShowLegend, ?Opacity = Opacity)
-            |> TraceStyle.Line(?Color = LineColor, ?Dash = LineDash)
             |> GenericChart.ofTraceObject useDefaults
 
-        /// Shows a graphical representation of a 3-dimensional surface by plotting constant z slices, called contours, on a 2-dimensional format.
-        /// That is, given a value for z, lines are drawn for connecting the (x,y) coordinates where that z value occurs.
+        /// <summary>
+        /// Creates a heatmap.
+        ///
+        /// A heatmap is a data visualization technique that shows magnitude of a phenomenon as color in two dimensions.
+        /// </summary>
+        /// <param name="zData">Sets the 2-dimensional z data, which will be visualized with the color scale.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="X">Sets the x coordinates.</param>
+        /// <param name="XGap">Sets the horizontal gap (in pixels) between bricks.</param>
+        /// <param name="Y">Sets the y coordinates.</param>
+        /// <param name="YGap">Sets the vertical gap (in pixels) between bricks.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="ColorBar">Sets the styles of the colorbar for this trace.</param>
+        /// <param name="ColorScale">Sets the colorscale for this trace.</param>
+        /// <param name="ShowScale">Wether or not to show the colorscale/colorbar</param>
+        /// <param name="ReverseScale">Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.</param>
+        /// <param name="ZSmooth">Picks a smoothing algorithm use to smooth `z` data.</param>
+        /// <param name="Transpose">Transposes the z data.</param>
+        /// <param name="UseWebGL">Wether or not to use WebGL to render this trace</param>
+        /// <param name="ReverseYAxis">Wether or not to reverse the y axis. If true, (0,0) will lie on the top left and increase downwards.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Heatmap
             (
@@ -3306,8 +4113,30 @@ module Chart2D =
                 else
                     c
 
-        /// Shows a graphical representation of a 3-dimensional surface by plotting constant z slices, called contours, on a 2-dimensional format.
-        /// That is, given a value for z, lines are drawn for connecting the (x,y) coordinates where that z value occurs.
+        /// <summary>
+        /// Creates a heatmap.
+        ///
+        /// A heatmap is a data visualization technique that shows magnitude of a phenomenon as color in two dimensions.
+        /// </summary>
+        /// <param name="zData">Sets the 2-dimensional z data, which will be visualized with the color scale.</param>
+        /// <param name="colNames">Sets names for each column (as x coordinates)</param>
+        /// <param name="rowNames">Sets names for each row (as y coordinates)</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="XGap">Sets the horizontal gap (in pixels) between bricks.</param>
+        /// <param name="YGap">Sets the vertical gap (in pixels) between bricks.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="ColorBar">Sets the styles of the colorbar for this trace.</param>
+        /// <param name="ColorScale">Sets the colorscale for this trace.</param>
+        /// <param name="ShowScale">Wether or not to show the colorscale/colorbar</param>
+        /// <param name="ReverseScale">Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.</param>
+        /// <param name="ZSmooth">Picks a smoothing algorithm use to smooth `z` data.</param>
+        /// <param name="Transpose">Transposes the z data.</param>
+        /// <param name="UseWebGL">Wether or not to use WebGL to render this trace</param>
+        /// <param name="ReverseYAxis">Wether or not to reverse the y axis. If true, (0,0) will lie on the top left and increase downwards.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Heatmap
             (
@@ -3364,8 +4193,33 @@ module Chart2D =
                 else
                     c
 
-        /// Shows a graphical representation of a 3-dimensional surface by plotting constant z slices, called contours, on a 2-dimensional format.
-        /// That is, given a value for z, lines are drawn for connecting the (x,y) coordinates where that z value occurs.
+        /// <summary>
+        /// Creates a annotated heatmap.
+        ///
+        /// A heatmap is a data visualization technique that shows magnitude of a phenomenon as color in two dimensions.
+        ///
+        /// The annotated heatmap additionally contains annotation text on each datum.
+        /// </summary>
+        /// <param name="zData">Sets the 2-dimensional z data, which will be visualized with the color scale.</param>
+        /// <param name="annotationText">Sets the text to display as annotation for each datum.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="X">Sets the x coordinates.</param>
+        /// <param name="XGap">Sets the horizontal gap (in pixels) between bricks.</param>
+        /// <param name="Y">Sets the y coordinates.</param>
+        /// <param name="YGap">Sets the vertical gap (in pixels) between bricks.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="ColorBar">Sets the styles of the colorbar for this trace.</param>
+        /// <param name="ColorScale">Sets the colorscale for this trace.</param>
+        /// <param name="ShowScale">Wether or not to show the colorscale/colorbar</param>
+        /// <param name="ReverseScale">Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.</param>
+        /// <param name="ZSmooth">Picks a smoothing algorithm use to smooth `z` data.</param>
+        /// <param name="Transpose">Transposes the z data.</param>
+        /// <param name="UseWebGL">Wether or not to use WebGL to render this trace</param>
+        /// <param name="ReverseYAxis">Wether or not to reverse the y axis. If true, (0,0) will lie on the top left and increase downwards.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member AnnotatedHeatmap
             (
@@ -3438,6 +4292,114 @@ module Chart2D =
             )
 
 
+        /// <summary>
+        /// Creates a annotated heatmap.
+        ///
+        /// A heatmap is a data visualization technique that shows magnitude of a phenomenon as color in two dimensions.
+        ///
+        /// The annotated heatmap additionally contains annotation text on each datum.
+        /// </summary>
+        /// <param name="dataAnnotations">Sets the 2-dimensional z data, which will be visualized with the color scale together with the respective annotation text.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="X">Sets the x coordinates.</param>
+        /// <param name="XGap">Sets the horizontal gap (in pixels) between bricks.</param>
+        /// <param name="Y">Sets the y coordinates.</param>
+        /// <param name="YGap">Sets the vertical gap (in pixels) between bricks.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="ColorBar">Sets the styles of the colorbar for this trace.</param>
+        /// <param name="ColorScale">Sets the colorscale for this trace.</param>
+        /// <param name="ShowScale">Wether or not to show the colorscale/colorbar</param>
+        /// <param name="ReverseScale">Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.</param>
+        /// <param name="ZSmooth">Picks a smoothing algorithm use to smooth `z` data.</param>
+        /// <param name="Transpose">Transposes the z data.</param>
+        /// <param name="UseWebGL">Wether or not to use WebGL to render this trace</param>
+        /// <param name="ReverseYAxis">Wether or not to reverse the y axis. If true, (0,0) will lie on the top left and increase downwards.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member AnnotatedHeatmap
+            (
+                dataAnnotations: seq<#seq<#IConvertible * string>>,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?XGap: int,
+                [<Optional; DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?YGap: int,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
+                [<Optional; DefaultParameterValue(null)>] ?ColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?ShowScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ReverseScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ZSmooth: StyleParam.SmoothAlg,
+                [<Optional; DefaultParameterValue(null)>] ?Transpose: bool,
+                [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
+                [<Optional; DefaultParameterValue(false)>] ?ReverseYAxis: bool,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+            ) =
+
+            let useDefaults = defaultArg UseDefaults true
+            let reverseYAxis = defaultArg ReverseYAxis false
+
+            let zData = dataAnnotations |> Seq.map (Seq.map fst)
+
+            let annotationText = dataAnnotations |> Seq.map (Seq.map snd)
+
+            let style =
+                Trace2DStyle.Heatmap(
+                    Z = zData,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?X = X,
+                    ?XGap = XGap,
+                    ?Y = Y,
+                    ?YGap = YGap,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?ColorBar = ColorBar,
+                    ?ColorScale = ColorScale,
+                    ?ShowScale = ShowScale,
+                    ?ReverseScale = ReverseScale,
+                    ?ZSmooth = ZSmooth,
+                    ?Transpose = Transpose
+                )
+
+            let useWebGL = defaultArg UseWebGL false
+
+            Chart.renderHeatmapTrace useDefaults useWebGL style
+            |> fun c ->
+                if reverseYAxis then
+                    c |> Chart.withYAxis (LinearAxis.init (AutoRange = StyleParam.AutoRange.Reversed))
+                else
+                    c
+            |> Chart.withAnnotations (
+                annotationText
+                |> Seq.mapi
+                    (fun y inner ->
+                        inner
+                        |> Seq.mapi (fun x text -> Annotation.init (x, y, Text = (string text), ShowArrow = false)))
+                |> Seq.concat
+            )
+
+        /// <summary>
+        /// Display an image, i.e. data on a 2D regular raster. By default, when an image is displayed in a subplot, its y axis will be reversed (ie. `autorange: 'reversed'`), constrained to the domain (ie. `constrain: 'domain'`) and it will have the same scale as its x axis (ie. `scaleanchor: 'x,`) in order for pixels to be rendered as squares.
+        /// </summary>
+        /// <param name="Z">A 2-dimensional array in which each element is an array of 3 or 4 numbers representing a color.</param>
+        /// <param name="Source">Specifies the data URI of the image to be visualized. The URI consists of "data:image/[&lt;media subtype&gt;][;base64],&lt;data&gt;"</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="Ids">Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.</param>
+        /// <param name="ColorModel">Color model used to map the numerical color components described in `z` into colors. If `source` is specified, this attribute will be set to `rgba256` otherwise it defaults to `rgb`.</param>
+        /// <param name="ZMax">Sets the upper bound of the color domain. Value should have the same units as in `z` and if set, `zmin` must be set as well.</param>
+        /// <param name="ZMin">Sets the lower bound of the color domain. Value should have the same units as in `z` and if set, `zmax` must be set as well.</param>
+        /// <param name="ZSmooth">Picks a smoothing algorithm use to smooth `z` data.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Image
             (
@@ -3472,6 +4434,18 @@ module Chart2D =
             )
             |> GenericChart.ofTraceObject useDefaults
 
+        /// <summary>
+        /// Display an image, i.e. data on a 2D regular raster. By default, when an image is displayed in a subplot, its y axis will be reversed (ie. `autorange: 'reversed'`), constrained to the domain (ie. `constrain: 'domain'`) and it will have the same scale as its x axis (ie. `scaleanchor: 'x,`) in order for pixels to be rendered as squares.
+        /// </summary>
+        /// <param name="z">A 2-dimensional array containing Plotly.NETs ARGB color object.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="Ids">Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.</param>
+        /// <param name="ZMax">Sets the upper bound of the color domain. Value should have the same units as in `z` and if set, `zmin` must be set as well.</param>
+        /// <param name="ZMin">Sets the lower bound of the color domain. Value should have the same units as in `z` and if set, `zmax` must be set as well.</param>
+        /// <param name="ZSmooth">Picks a smoothing algorithm use to smooth `z` data.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Image
             (
@@ -3517,7 +4491,39 @@ module Chart2D =
             )
             |> GenericChart.ofTraceObject useDefaults
 
-        /// Shows a graphical representation of a 3-dimensional surface by plotting constant z slices, called contours, on a 2-dimensional format
+        /// <summary>
+        /// Creates a 2D contour plot, which shows the contour lines of a 2D numerical array z, i.e. interpolated lines of isovalues of z.
+        ///
+        /// A contour line (also isoline, isopleth, or isarithm) of a function of two variables is a curve along which the function has a constant value, so that the curve joins points of equal value
+        ///
+        /// The data from which contour lines are computed is set in `z`. Data in `z` must be a 2D array of numbers. Say that `z` has N rows and M columns, then by default, these N rows correspond to N y coordinates (set in `y` or auto-generated) and the M columns correspond to M x coordinates (set in `x` or auto-generated). By setting `transpose` to "true", the above behavior is flipped.
+        /// </summary>
+        /// <param name="zData">Sets the z data which is used for computing the contour lines.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="X">Sets the x coordinates.</param>
+        /// <param name="Y">Sets the y coordinates.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="ColorBar">Sets the styles of the colorbar for this trace.</param>
+        /// <param name="ColorScale">Sets the colorscale for this trace.</param>
+        /// <param name="ShowScale">Wether or not to show the colorscale/colorbar</param>
+        /// <param name="ReverseScale">Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.</param>
+        /// <param name="Transpose">Transposes the z data.</param>
+        /// <param name="ContourLineDash">Sets the contour line dash style</param>
+        /// <param name="ContourLineColor">Sets the contour line color</param>
+        /// <param name="ContourLineSmoothing">Sets the amount of smoothing for the contour lines, where "0" corresponds to no smoothing.</param>
+        /// <param name="ContourLine">Sets the contour lines (use this for more finegrained control than the other contourline-associated arguments).</param>
+        /// <param name="ContoursColoring">Determines the coloring method showing the contour values. If "fill", coloring is done evenly between each contour level If "heatmap", a heatmap gradient coloring is applied between each contour level. If "lines", coloring is done on the contour lines. If "none", no coloring is applied on this trace.</param>
+        /// <param name="ContoursOperation">Sets the constraint operation. "=" keeps regions equal to `value` "&lt;" and "&lt;=" keep regions less than `value` "&gt;" and "&gt;=" keep regions greater than `value` "[]", "()", "[)", and "(]" keep regions inside `value[0]` to `value[1]` "][", ")(", "](", ")[" keep regions outside `value[0]` to value[1]` Open vs. closed intervals make no difference to constraint display, but all versions are allowed for consistency with filter transforms.</param>
+        /// <param name="ContoursType">If `levels`, the data is represented as a contour plot with multiple levels displayed. If `constraint`, the data is represented as constraints with the invalid region shaded as specified by the `operation` and `value` parameters.</param>
+        /// <param name="ShowContourLabels">Determines whether to label the contour lines with their values.</param>
+        /// <param name="ContourLabelFont">Sets the font used for labeling the contour levels. The default color comes from the lines, if shown. The default family and size come from `layout.font`.</param>
+        /// <param name="Contours">Sets the styles of the contours (use this for more finegrained control than the other contour-associated arguments).</param>
+        /// <param name="FillColor">Sets the fill color if `contours.type` is "constraint". Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="NContours">Sets the maximum number of contour levels. The actual number of contours will be chosen automatically to be less than or equal to the value of `ncontours`. Has an effect only if `autocontour` is "true" or if `contours.size` is missing.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Contour
             (
@@ -3534,9 +4540,10 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?ShowScale: bool,
                 [<Optional; DefaultParameterValue(null)>] ?ReverseScale: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Transpose: bool,
-                [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
-                [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
-                [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLineDash: StyleParam.DrawingStyle,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLineSmoothing: float,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLine: Line,
                 [<Optional; DefaultParameterValue(null)>] ?ContoursColoring: StyleParam.ContourColoring,
                 [<Optional; DefaultParameterValue(null)>] ?ContoursOperation: StyleParam.ConstraintOperation,
                 [<Optional; DefaultParameterValue(null)>] ?ContoursType: StyleParam.ContourType,
@@ -3562,9 +4569,13 @@ module Chart2D =
                 )
 
             let line =
-                Line
+                ContourLine
                 |> Option.defaultValue (Plotly.NET.Line.init ())
-                |> Plotly.NET.Line.style (?Color = LineColor, ?Dash = LineDash)
+                |> Plotly.NET.Line.style (
+                    ?Color = ContourLineColor,
+                    ?Dash = ContourLineDash,
+                    ?Smoothing = ContourLineSmoothing
+                )
 
             Trace2D.initContour (
                 Trace2DStyle.Contour(
@@ -3589,7 +4600,28 @@ module Chart2D =
             )
             |> GenericChart.ofTraceObject useDefaults
 
-        /// Creates an OHLC (open-high-low-close) chart. OHLC charts are typically used to illustrate movements in the price of a financial instrument over time.
+        /// <summary>
+        /// Creates an OHLC chart.
+        ///
+        /// The ohlc (short for Open-High-Low-Close) is a style of financial chart describing open, high, low and close for a given `x` coordinate (most likely time). The tip of the lines represent the `low` and `high` values and the horizontal segments represent the `open` and `close` values. Sample points where the close value is higher (lower) then the open value are called increasing (decreasing). By default, increasing items are drawn in green whereas decreasing are drawn in red.
+        /// </summary>
+        /// <param name="open">Sets the open values.</param>
+        /// <param name="high">Sets the high values.</param>
+        /// <param name="low">Sets the low values.</param>
+        /// <param name="close">Sets the close values.</param>
+        /// <param name="x">Sets the x coordinates. If absent, linear coordinate will be generated.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="Line">Sets the line of this trace.</param>
+        /// <param name="IncreasingColor">Sets the color of increasing values</param>
+        /// <param name="Increasing">Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="DecreasingColor">Sets the color of decreasing values</param>
+        /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="TickWidth">Sets the width of the open/close tick marks relative to the "x" minimal interval.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member OHLC
             (
@@ -3644,7 +4676,24 @@ module Chart2D =
             )
             |> GenericChart.ofTraceObject useDefaults
 
-        /// Creates an OHLC (open-high-low-close) chart. OHLC charts are typically used to illustrate movements in the price of a financial instrument over time.
+        /// <summary>
+        /// Creates an OHLC chart.
+        ///
+        /// The ohlc (short for Open-High-Low-Close) is a style of financial chart describing open, high, low and close for a given `x` coordinate (most likely time). The tip of the lines represent the `low` and `high` values and the horizontal segments represent the `open` and `close` values. Sample points where the close value is higher (lower) then the open value are called increasing (decreasing). By default, increasing items are drawn in green whereas decreasing are drawn in red.
+        /// </summary>
+        /// <param name="stockTimeSeries">a series of (time,StockData), where StockData contains opwn, high, low and close values.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="Line">Sets the line of this trace.</param>
+        /// <param name="IncreasingColor">Sets the color of increasing values</param>
+        /// <param name="Increasing">Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="DecreasingColor">Sets the color of decreasing values</param>
+        /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="TickWidth">Sets the width of the open/close tick marks relative to the "x" minimal interval.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member OHLC
             (
@@ -3687,9 +4736,28 @@ module Chart2D =
 
 
 
-        /// Creates a candlestick chart. A candlestick cart is a style of financial chart used to describe price movements of a
-        /// security, derivative, or currency. Each "candlestick" typically shows one day, thus a one-month chart may show the 20
-        /// trading days as 20 candlesticks. Candlestick charts can also be built using intervals shorter or longer than one day.
+        /// <summary>
+        /// Creates a candlestick chart.
+        ///
+        /// The candlestick is a style of financial chart describing open, high, low and close for a given `x` coordinate (most likely time). The boxes represent the spread between the `open` and `close` values and the lines represent the spread between the `low` and `high` values Sample points where the close value is higher (lower) then the open value are called increasing (decreasing). By default, increasing candles are drawn in green whereas decreasing are drawn in red.
+        /// </summary>
+        /// <param name="open">Sets the open values.</param>
+        /// <param name="high">Sets the high values.</param>
+        /// <param name="low">Sets the low values.</param>
+        /// <param name="close">Sets the close values.</param>
+        /// <param name="x">Sets the x coordinates. If absent, linear coordinate will be generated.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="Line">Sets the line of this trace.</param>
+        /// <param name="IncreasingColor">Sets the color of increasing values</param>
+        /// <param name="Increasing">Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="DecreasingColor">Sets the color of decreasing values</param>
+        /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="WhiskerWidth">Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         static member Candlestick
             (
                 ``open``: #IConvertible seq,
@@ -3743,7 +4811,24 @@ module Chart2D =
             )
             |> GenericChart.ofTraceObject useDefaults
 
-        /// Creates an OHLC (open-high-low-close) chart. OHLC charts are typically used to illustrate movements in the price of a financial instrument over time.
+        /// <summary>
+        /// Creates a candlestick chart.
+        ///
+        /// The candlestick is a style of financial chart describing open, high, low and close for a given `x` coordinate (most likely time). The boxes represent the spread between the `open` and `close` values and the lines represent the spread between the `low` and `high` values Sample points where the close value is higher (lower) then the open value are called increasing (decreasing). By default, increasing candles are drawn in green whereas decreasing are drawn in red.
+        /// </summary>
+        /// <param name="stockTimeSeries">a series of (time,StockData), where StockData contains opwn, high, low and close values.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="Line">Sets the line of this trace.</param>
+        /// <param name="IncreasingColor">Sets the color of increasing values</param>
+        /// <param name="Increasing">Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="DecreasingColor">Sets the color of decreasing values</param>
+        /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="WhiskerWidth">Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Candlestick
             (
@@ -3784,7 +4869,28 @@ module Chart2D =
                 ?UseDefaults = UseDefaults
             )
 
-        /// Computes a scatter plot matrix (SPLOM)
+        /// <summary>
+        /// Creates a scatter plot matrix (SPLOM) from multiple input dimensions.
+        ///
+        /// Each splom `dimensions` items correspond to a generated axis. Values for each of those dimensions are set in `dimensions[i].values`. Splom traces support all `scattergl` marker style attributes. Specify `layout.grid` attributes and/or layout x-axis and y-axis attributes for more control over the axis positioning and style.
+        /// </summary>
+        /// <param name="dimensions">Sets the dimensions of the scatter plot matrix, where each item corresponds to a generated axis.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker.</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker. Use `Color.fromColorScaleValues` to map marker colors to a colorscale.</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the symbol of all marker</param>
+        /// <param name="MultiMarkerSymbol">Sets the symbol of each individual marker</param>
+        /// <param name="Marker">Sets the markers (use this for more finegrained control than the other marker-associated arguments).</param>
+        /// <param name="ShowDiagonal">Wether or not to show the matrix diagional</param>
+        /// <param name="Diagonal">Sets the styles applied to the scatter plot matrix diagonal</param>
+        /// <param name="ShowLowerHalf">Determines whether or not subplots on the lower half from the diagonal are displayed.</param>
+        /// <param name="ShowUpperHalf">Determines whether or not subplots on the upper half from the diagonal are displayed.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Splom
             (
@@ -3841,7 +4947,28 @@ module Chart2D =
             )
             |> GenericChart.ofTraceObject useDefaults
 
-        /// Computes the Splom plot
+        /// <summary>
+        /// Creates a scatter plot matrix (SPLOM) from multiple input dimensions.
+        ///
+        /// Each splom `dimensions` items correspond to a generated axis. Values for each of those dimensions are set in `dimensions[i].values`. Splom traces support all `scattergl` marker style attributes. Specify `layout.grid` attributes and/or layout x-axis and y-axis attributes for more control over the axis positioning and style.
+        /// </summary>
+        /// <param name="keyValues">Sets the dimensions of the scatter plot matrix as (dimensionKey,dimensionValues) pairs, where each such pair corresponds to a generated axis.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker.</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker. Use `Color.fromColorScaleValues` to map marker colors to a colorscale.</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the symbol of all marker</param>
+        /// <param name="MultiMarkerSymbol">Sets the symbol of each individual marker</param>
+        /// <param name="Marker">Sets the markers (use this for more finegrained control than the other marker-associated arguments).</param>
+        /// <param name="ShowDiagonal">Wether or not to show the matrix diagional</param>
+        /// <param name="Diagonal">Sets the styles applied to the scatter plot matrix diagonal</param>
+        /// <param name="ShowLowerHalf">Determines whether or not subplots on the lower half from the diagonal are displayed.</param>
+        /// <param name="ShowUpperHalf">Determines whether or not subplots on the upper half from the diagonal are displayed.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Splom
             (
