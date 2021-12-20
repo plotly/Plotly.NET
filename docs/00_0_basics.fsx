@@ -56,14 +56,13 @@ These are mirrored in Plotly.NET's central type, `GenericChart`:
 
 The central type that gets created by all Chart constructors is `GenericChart`, which itself represents either a single chart or a multi chart (as a Discriminate Union type). It looks like this:
 
-*)
-
-(***do-not-eval***)
+```fsharp
 type GenericChart =
     | Chart of Trace * Layout * Config * DisplayOptions
     | MultiChart of Trace list * Layout * Config * DisplayOptions
 
-(**
+```
+
 As you can see, a `GenericChart` consists of four top level objects - `Trace` (multiple of those in the case of a MultiChart) , `Layout`, `Config`, and `DisplayOptions`.
 
 - `Trace` is in principle the representation of a dataset on a chart, including for example the data itself, color and shape of the visualization, etc.

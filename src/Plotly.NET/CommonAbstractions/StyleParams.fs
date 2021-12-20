@@ -2796,6 +2796,21 @@ module StyleParam =
 //--------------------------
 
     [<RequireQualifiedAccess>]
+    type TriangulationAlgorithm =
+        | Delaunay
+        | ConvexHull
+        | AlphaShape
+
+
+        static member convert =
+            function
+            | Delaunay -> -1
+            | ConvexHull -> 0
+            | AlphaShape -> 1
+
+        member this.Convert() = this |> TriangulationAlgorithm.convert
+
+    [<RequireQualifiedAccess>]
     type TilingFlip =
         | X
         | Y

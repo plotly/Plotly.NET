@@ -447,7 +447,7 @@ type Trace3DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?CMax: float,
             [<Optional; DefaultParameterValue(null)>] ?CMid: float,
             [<Optional; DefaultParameterValue(null)>] ?CMin: float,
-            [<Optional; DefaultParameterValue(null)>] ?AlphaHull: float,
+            [<Optional; DefaultParameterValue(null)>] ?AlphaHull: StyleParam.TriangulationAlgorithm,
             [<Optional; DefaultParameterValue(null)>] ?Delaunayaxis: StyleParam.Delaunayaxis,
             [<Optional; DefaultParameterValue(null)>] ?Contour: Contour,
             [<Optional; DefaultParameterValue(null)>] ?FlatShading: bool,
@@ -501,7 +501,7 @@ type Trace3DStyle() =
             CMin |> DynObj.setValueOpt mesh3d "cmin"
             CMid |> DynObj.setValueOpt mesh3d "cmid"
             CMax |> DynObj.setValueOpt mesh3d "cmax"
-            AlphaHull |> DynObj.setValueOpt mesh3d "alphahull"
+            AlphaHull |> DynObj.setValueOptBy mesh3d "alphahull" StyleParam.TriangulationAlgorithm.convert
             Delaunayaxis |> DynObj.setValueOptBy mesh3d "delaunayaxis" StyleParam.Delaunayaxis.convert
             Contour |> DynObj.setValueOpt mesh3d "contour"
             FlatShading |> DynObj.setValueOpt mesh3d "flatshading"
