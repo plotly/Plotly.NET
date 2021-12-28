@@ -2,11 +2,12 @@
 
 open Plotly.NET
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
 type UpdateMenuButton() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (
@@ -58,7 +59,7 @@ type UpdateMenuButton() =
             ++? ("visible", Visible ))
 
 type UpdateMenu() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (

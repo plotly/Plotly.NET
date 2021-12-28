@@ -2,18 +2,19 @@
 module internal InternalUtils
 
 open DynamicObj
+open DynamicObj.Operators
 
 [<AutoOpen>]
 module DynObj =
 
-    let setSingleOrMultiOpt (dyn: #DynamicObj) (propName: string) (single: 'A option, multi: seq<'A> option) =
+    let setSingleOrMultiOpt (dyn: #ImmutableDynamicObj) (propName: string) (single: 'A option, multi: seq<'A> option) =
         if multi.IsSome then
             multi |> DynObj.setValueOpt dyn propName
         else
             single |> DynObj.setValueOpt dyn propName
 
     let setSingleOrMultiOptBy
-        (dyn: #DynamicObj)
+        (dyn: #ImmutableDynamicObj)
         (propName: string)
         (f: 'A -> 'B)
         (single: 'A option, multi: seq<'A> option)
@@ -23,14 +24,14 @@ module DynObj =
         else
             single |> DynObj.setValueOptBy dyn propName f
 
-    let setSingleOrAnyOpt (dyn: #DynamicObj) (propName: string) (single: 'A option, any: 'B option) =
+    let setSingleOrAnyOpt (dyn: #ImmutableDynamicObj) (propName: string) (single: 'A option, any: 'B option) =
         if any.IsSome then
             any |> DynObj.setValueOpt dyn propName
         else
             single |> DynObj.setValueOpt dyn propName
 
     let setSingleOrAnyOptBy
-        (dyn: #DynamicObj)
+        (dyn: #ImmutableDynamicObj)
         (propName: string)
         (singleF: 'A -> 'C)
         (anyF: 'B -> 'D)

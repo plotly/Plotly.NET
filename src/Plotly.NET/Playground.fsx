@@ -1,7 +1,7 @@
 ﻿#r "nuget: FSharp.Data"
 #r "nuget: Deedle"
 #r "nuget: FSharpAux"
-#r "nuget: DynamicObj"
+#r "nuget: ImmutableDynamicObj"
 #r "nuget: Newtonsoft.Json, 13.0.1"
 
 #load "InternalUtils.fs"
@@ -155,6 +155,7 @@
 #load "GenericChartExtensions.fs"
 
 open DynamicObj
+open DynamicObj.Operators
 
 open Plotly.NET
 open Plotly.NET.LayoutObjects

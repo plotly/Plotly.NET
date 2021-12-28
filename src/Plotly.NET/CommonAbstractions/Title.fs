@@ -3,9 +3,10 @@
 open System.Runtime.InteropServices
 
 open DynamicObj
+open DynamicObj.Operators
 
 type Title() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (

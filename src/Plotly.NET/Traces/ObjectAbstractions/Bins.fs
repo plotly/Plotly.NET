@@ -3,12 +3,13 @@ namespace Plotly.NET.TraceObjects
 open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
 /// Bin type inherits from dynamic object
 type Bins() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     // Init Bins()
     static member init

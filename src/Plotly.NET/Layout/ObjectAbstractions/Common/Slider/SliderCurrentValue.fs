@@ -2,9 +2,10 @@
 
 open Plotly.NET
 open DynamicObj
+open DynamicObj.Operators
 
 type SliderCurrentValue() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     /// <summary>
     /// Object containing the current slider value style

@@ -2,6 +2,7 @@
 
 open Plotly.NET
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
@@ -9,7 +10,7 @@ open System.Runtime.InteropServices
 //Parent: layout.xaxis
 //Type: object containing one or more of the keys listed below.
 type RangeSlider() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (
@@ -59,7 +60,7 @@ type RangeSlider() =
             ++?? ("range", Range , StyleParam.Range.convert)
             ++? ("thickness", Thickness )
             ++? ("visible", Visible ) yAxis =
-                let tmp = DynamicObj()
+                let tmp = ImmutableDynamicObj()
                 tmp
                 ++?? ("rangemode", YAxisRangeMode , StyleParam.RangesliderRangeMode.convert)
                 ++?? ("range", YAxisRange , StyleParam.Range.convert)

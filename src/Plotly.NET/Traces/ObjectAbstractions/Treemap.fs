@@ -3,12 +3,13 @@
 open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
 
 type TreemapRoot() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init([<Optional; DefaultParameterValue(null)>] ?Color: Color) =
 
@@ -22,7 +23,7 @@ type TreemapRoot() =
             ++? ("color", Color ))
 
 type TreemapLeaf() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init([<Optional; DefaultParameterValue(null)>] ?Opacity: float) =
 
@@ -37,7 +38,7 @@ type TreemapLeaf() =
 
 
 type TreemapTiling() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (

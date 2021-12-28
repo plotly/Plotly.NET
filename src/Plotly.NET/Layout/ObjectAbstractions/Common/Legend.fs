@@ -2,12 +2,13 @@
 
 open Plotly.NET
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
 /// Legend
 type Legend() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     /// Init Legend type
     static member init

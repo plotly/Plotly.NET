@@ -5,6 +5,8 @@ open Plotly.NET.TraceObjects
 
 open DynamicObj
 open DynamicObj.Operators
+open DynamicObj
+open DynamicObj.Operators.Operators
 open System.Runtime.InteropServices
 
 module ChartTemplates =
@@ -163,14 +165,14 @@ module ChartTemplates =
 
         // non-standard props, may change in the future
         let annotationdefaults =
-            let tmp = DynamicObj()
+            let tmp = ImmutableDynamicObj()
             tmp?arrowcolor <- "#2a3f5f"
             tmp?arrowhead <- 0
             tmp?arrowwidth <- 1
             tmp
 
         let shapedefaults =
-            let tmp = DynamicObj()
+            let tmp = ImmutableDynamicObj()
             tmp?line <- Line.init (Color = Color.fromHex "#2a3f5f")
             tmp
 

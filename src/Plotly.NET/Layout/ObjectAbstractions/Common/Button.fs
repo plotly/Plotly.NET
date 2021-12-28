@@ -2,12 +2,13 @@
 
 open Plotly.NET
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
 /// Dimensions type inherits from dynamic object
 type Button() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (

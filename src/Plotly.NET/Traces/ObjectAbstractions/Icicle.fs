@@ -3,11 +3,12 @@
 open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
 type IcicleRoot() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init([<Optional; DefaultParameterValue(null)>] ?Color: Color) =
         IcicleRoot() |> IcicleRoot.style (?Color = Color)
@@ -20,7 +21,7 @@ type IcicleRoot() =
             ++? ("color", Color ))
 
 type IcicleLeaf() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init([<Optional; DefaultParameterValue(null)>] ?Opacity: float) =
         IcicleLeaf() |> IcicleLeaf.style (?Opacity = Opacity)
@@ -33,7 +34,7 @@ type IcicleLeaf() =
             ++? ("opacity", Opacity ))
 
 type IcicleTiling() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (

@@ -1,11 +1,12 @@
 ﻿namespace Plotly.NET.LayoutObjects
 
 open DynamicObj
+open DynamicObj.Operators
 open System.Runtime.InteropServices
 
 /// Margin
 type Margin() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     /// Init Margin type
     static member init

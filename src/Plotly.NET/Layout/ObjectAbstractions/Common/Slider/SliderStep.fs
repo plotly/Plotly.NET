@@ -2,12 +2,13 @@
 
 open Plotly.NET
 open DynamicObj
+open DynamicObj.Operators
 
 /// <summary>
 /// The object including the slider steps style and update parameters
 /// </summary>
 type SliderStep() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     /// <summary>
     /// Initializes the slider with style parameters

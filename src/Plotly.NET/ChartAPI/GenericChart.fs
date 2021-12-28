@@ -1,6 +1,7 @@
 namespace Plotly.NET
 
 open DynamicObj
+open DynamicObj.Operators
 open System
 open Newtonsoft.Json
 open System.Runtime.CompilerServices
@@ -232,7 +233,7 @@ module GenericChart =
     // Combines two GenericChart
 
     let combine (gCharts: seq<GenericChart>) =
-        // temporary hard fix for some props, see https://github.com/CSBiology/DynamicObj/issues/11
+        // temporary hard fix for some props, see https://github.com/CSBiology/ImmutableDynamicObj/issues/11
         let combineOptSeqs (first: seq<'A> option) (second: seq<'A> option) =
             match first, second with
             | Some f, Some s -> Some(Seq.append f s)
@@ -504,7 +505,7 @@ module GenericChart =
                 Layout.init (
                     Width = Defaults.DefaultWidth,
                     Height = Defaults.DefaultHeight,
-                    Template = (Defaults.DefaultTemplate :> DynamicObj)
+                    Template = (Defaults.DefaultTemplate :> ImmutableDynamicObj)
                 ),
                 Defaults.DefaultConfig,
                 Defaults.DefaultDisplayOptions
@@ -520,7 +521,7 @@ module GenericChart =
                 Layout.init (
                     Width = Defaults.DefaultWidth,
                     Height = Defaults.DefaultHeight,
-                    Template = (Defaults.DefaultTemplate :> DynamicObj)
+                    Template = (Defaults.DefaultTemplate :> ImmutableDynamicObj)
                 ),
                 Defaults.DefaultConfig,
                 Defaults.DefaultDisplayOptions

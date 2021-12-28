@@ -3,12 +3,13 @@ namespace Plotly.NET.TraceObjects
 open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
 /// Error type inherits from dynamic object
 type Error() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     /// <summary>Init Error type</summary>
     /// <param name ="Visible">Determines whether or not this set of error bars is visible.</param>

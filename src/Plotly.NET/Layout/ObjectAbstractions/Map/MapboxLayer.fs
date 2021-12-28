@@ -2,13 +2,14 @@
 
 open Plotly.NET
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
 /// <summary></summary>
 type MapboxLayer() =
 
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     /// <summary>Initialize a MapboxLayer object</summary>
 
@@ -93,7 +94,7 @@ type MapboxLayer() =
             ++? ("maxzoom", MaxZoom )
             |> Option.map
                 (fun r ->
-                    let circle = DynamicObj()
+                    let circle = ImmutableDynamicObj()
                     circle?radius <- r
 
             FillOutlineColor
@@ -102,7 +103,7 @@ type MapboxLayer() =
             ++? ("line", Line )
             |> Option.map
                 (fun c ->
-                    let fill = DynamicObj()
+                    let fill = ImmutableDynamicObj()
                     fill?outlinecolor <- c
 
             mapBoxLayer

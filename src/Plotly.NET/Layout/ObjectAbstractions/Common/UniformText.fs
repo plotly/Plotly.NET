@@ -2,11 +2,12 @@
 
 open Plotly.NET
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
 type UniformText() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (

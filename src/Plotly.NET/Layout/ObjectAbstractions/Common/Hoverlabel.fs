@@ -2,12 +2,13 @@ namespace Plotly.NET.LayoutObjects
 
 open Plotly.NET
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
 /// Hoverlabel type inherits from dynamic object
 type Hoverlabel() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     /// Initialized Line object
     static member init

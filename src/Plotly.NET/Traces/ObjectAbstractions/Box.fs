@@ -3,12 +3,13 @@ namespace Plotly.NET.TraceObjects
 open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
 /// Box type inherits from dynamic object (parent violin)
 type Box() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     /// Initialized Line object
     static member init

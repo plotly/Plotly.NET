@@ -3,12 +3,13 @@
 open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
 
 type SunburstRoot() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init([<Optional; DefaultParameterValue(null)>] ?Color: Color) =
 
@@ -22,7 +23,7 @@ type SunburstRoot() =
             ++? ("color", Color ))
 
 type SunburstLeaf() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init([<Optional; DefaultParameterValue(null)>] ?Opacity: float) =
 

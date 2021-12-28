@@ -4,11 +4,12 @@ open Plotly.NET
 open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
 type ContourProject() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (
@@ -35,7 +36,7 @@ type ContourProject() =
 
 /// Contour object inherits from dynamic object
 type Contour() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     /// Initialized a Contour object
     //[<CompiledName("init")>]
@@ -104,7 +105,7 @@ type Contour() =
 
 /// Contours type inherits from dynamic object
 type Contours() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (

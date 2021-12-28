@@ -3,12 +3,13 @@
 open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
 
 type IndicatorSymbol() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (
@@ -30,7 +31,7 @@ type IndicatorSymbol() =
             ++? ("symbol", Symbol ))
 
 type IndicatorDelta() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (
@@ -76,7 +77,7 @@ type IndicatorDelta() =
             ++? ("valueformat", ValueFormat ))
 
 type IndicatorNumber() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (
@@ -106,7 +107,7 @@ type IndicatorNumber() =
 
 
 type IndicatorBar() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (
@@ -131,7 +132,7 @@ type IndicatorBar() =
             ++? ("thickness", Thickness ))
 
 type IndicatorStep() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (
@@ -174,7 +175,7 @@ type IndicatorStep() =
 
 
 type IndicatorThreshold() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (
@@ -200,7 +201,7 @@ type IndicatorThreshold() =
 
 
 type IndicatorGauge() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (

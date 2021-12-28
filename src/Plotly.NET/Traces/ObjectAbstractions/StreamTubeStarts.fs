@@ -3,12 +3,13 @@
 open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
 /// An object to set the Lighting of a 3D Scene
 type StreamTubeStarts() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     /// <summary>
     /// Initializes a TubeStarts object

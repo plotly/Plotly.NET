@@ -2,13 +2,14 @@
 
 open Plotly.NET
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
 
 
 type CameraCenter() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (
@@ -34,7 +35,7 @@ type CameraCenter() =
             ++? ("z", Z )
 
 type CameraEye() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (
@@ -60,7 +61,7 @@ type CameraEye() =
             ++? ("z", Z )
 
 type CameraUp() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (
@@ -86,7 +87,7 @@ type CameraUp() =
             ++? ("z", Z )
 
 type Camera() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (

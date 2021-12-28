@@ -2,12 +2,13 @@
 
 open Plotly.NET
 open DynamicObj
+open DynamicObj.Operators
 
 /// <summary>
 /// The layout object for custom slider implementation
 /// </summary>
 type Slider() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     /// <summary>
     /// Initializes the slider with style parameters

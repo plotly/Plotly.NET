@@ -2,12 +2,13 @@ namespace Plotly.NET.LayoutObjects
 
 open Plotly.NET
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
 /// The ColorBar object to be used with ColorAxes.
 type ColorBar() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     /// <summary>
     /// Initializes a ColorBar object.

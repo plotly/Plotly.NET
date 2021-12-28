@@ -2,11 +2,12 @@ namespace Plotly.NET
 
 open System.Runtime.InteropServices
 open DynamicObj
+open DynamicObj.Operators
 open System
 
 /// Line type inherits from dynamic object
 type Line() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     /// Initialized Line object
     static member init
@@ -28,7 +29,7 @@ type Line() =
             [<Optional; DefaultParameterValue(null)>] ?Colorscale: StyleParam.Colorscale,
             [<Optional; DefaultParameterValue(null)>] ?ReverseScale: bool,
             [<Optional; DefaultParameterValue(null)>] ?ShowScale: bool,
-            [<Optional; DefaultParameterValue(null)>] ?ColorBar: #DynamicObj
+            [<Optional; DefaultParameterValue(null)>] ?ColorBar: #ImmutableDynamicObj
         ) =
         Line()
         |> Line.style (
@@ -74,7 +75,7 @@ type Line() =
             [<Optional; DefaultParameterValue(null)>] ?Colorscale: StyleParam.Colorscale,
             [<Optional; DefaultParameterValue(null)>] ?ReverseScale: bool,
             [<Optional; DefaultParameterValue(null)>] ?ShowScale: bool,
-            [<Optional; DefaultParameterValue(null)>] ?ColorBar: #DynamicObj
+            [<Optional; DefaultParameterValue(null)>] ?ColorBar: #ImmutableDynamicObj
         ) =
         (fun (line: Line) ->
             ++? ("color", Color )

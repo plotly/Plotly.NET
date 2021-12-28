@@ -3,11 +3,12 @@
 open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
 type SankeyNodes() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (
@@ -78,7 +79,7 @@ type SankeyNodes() =
             ++? ("y", Y ))
 
 type SankeyLinkColorscale() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (
@@ -123,7 +124,7 @@ type SankeyLinkColorscale() =
             ++? ("templateitemname", TemplateItemName ))
 
 type SankeyLinks() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (

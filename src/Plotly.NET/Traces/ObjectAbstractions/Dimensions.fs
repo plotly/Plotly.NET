@@ -3,12 +3,13 @@ namespace Plotly.NET.TraceObjects
 open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
 /// Dimensions type inherits from dynamic object
 type Dimension() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     /// Initializes dimensions object to be used with parcats and parcoords plots
     static member initParallel

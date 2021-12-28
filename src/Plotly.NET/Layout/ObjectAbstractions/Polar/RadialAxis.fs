@@ -2,12 +2,13 @@
 
 open Plotly.NET
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
 /// <summary>Radial axes can be used as a scale for the radial coordinates in polar plots.</summary>
 type RadialAxis() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     /// <summary>
     /// Initialize an AngularAxis object that can be used as a angular scale for polar coordinates.

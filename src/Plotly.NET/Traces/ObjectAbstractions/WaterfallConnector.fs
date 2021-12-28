@@ -3,6 +3,7 @@
 open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
@@ -16,7 +17,7 @@ open System.Runtime.InteropServices
 ///
 /// ConnectorMode : Sets the shape of connector lines.
 type WaterfallConnector() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (

@@ -3,11 +3,12 @@
 open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
 type FinanceMarker() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (

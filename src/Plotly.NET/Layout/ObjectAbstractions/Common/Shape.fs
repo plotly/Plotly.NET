@@ -2,12 +2,13 @@ namespace Plotly.NET.LayoutObjects
 
 open Plotly.NET
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
 /// Shape type inherits from dynamic object
 type Shape() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     /// Init Shape type
     static member init

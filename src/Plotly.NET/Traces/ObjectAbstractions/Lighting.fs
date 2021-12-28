@@ -3,12 +3,13 @@
 open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
 /// An object to set the Lighting of a 3D Scene
 type Lighting() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     /// <summary>
     /// Initialize a Lighting object
@@ -74,7 +75,7 @@ type Lighting() =
             ++? ("vertexnormalepsilon", VertexNormalEpsilon )
 
 type LightPosition() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     /// <summary>
     /// Initialize a LightPosition object

@@ -3,12 +3,13 @@
 open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
 /// CellColor type inherits from dynamic object
 type TableFill() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init([<Optional; DefaultParameterValue(null)>] ?Color: Color) =
         TableFill() |> TableFill.style (?Color = Color)
@@ -21,7 +22,7 @@ type TableFill() =
 
 /// Cells type inherits from dynamic object
 type TableCells() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     /// Initialized Cells object
     static member init

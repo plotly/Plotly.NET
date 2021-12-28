@@ -3,6 +3,7 @@ namespace Plotly.NET.TraceObjects
 open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
@@ -18,7 +19,7 @@ open System.Runtime.InteropServices
 
 /// Cumulative type inherits from dynamic object
 type Cumulative() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     // Init Cumulative()
     static member init

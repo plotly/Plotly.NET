@@ -6,6 +6,7 @@ open System
 open System.IO
 
 open DynamicObj
+open DynamicObj.Operators
 open GenericChart
 open System.Runtime.InteropServices
 open System.Runtime.CompilerServices
@@ -454,7 +455,7 @@ module GenericChartExtensions =
                 [<Optional; DefaultParameterValue(null)>] ?UIRevision: string,
                 [<Optional; DefaultParameterValue(null)>] ?EditRevision: string,
                 [<Optional; DefaultParameterValue(null)>] ?SelectRevision: string,
-                [<Optional; DefaultParameterValue(null)>] ?Template: DynamicObj,
+                [<Optional; DefaultParameterValue(null)>] ?Template: ImmutableDynamicObj,
                 [<Optional; DefaultParameterValue(null)>] ?Meta: string,
                 [<Optional; DefaultParameterValue(null)>] ?Computed: string,
                 [<Optional; DefaultParameterValue(null)>] ?Grid: LayoutGrid,

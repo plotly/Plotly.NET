@@ -3,11 +3,12 @@
 open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
 type SlicesFill() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (
@@ -34,7 +35,7 @@ type SlicesFill() =
 
 
 type Slices() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (

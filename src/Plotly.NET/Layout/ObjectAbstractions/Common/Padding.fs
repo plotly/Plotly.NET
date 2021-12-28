@@ -1,10 +1,11 @@
 ﻿namespace Plotly.NET.LayoutObjects
 
 open DynamicObj
+open DynamicObj.Operators
 open System.Runtime.InteropServices
 
 type Padding() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     /// <summary>
     /// Set the padding of the slider component along each side

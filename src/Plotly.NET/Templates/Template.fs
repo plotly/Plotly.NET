@@ -3,11 +3,12 @@
 open Plotly.NET.LayoutObjects
 
 open DynamicObj
+open DynamicObj.Operators
 open System.Runtime.InteropServices
 
 
 type Template() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init(layoutTemplate: Layout, [<Optional; DefaultParameterValue(null)>] ?TraceTemplates: seq<#Trace>) =
         Template() |> Template.style (layoutTemplate, ?TraceTemplates = TraceTemplates)
@@ -33,13 +34,13 @@ type Template() =
                                     templates
                                     |> Seq.map
                                         (fun t ->
-                                            let tmp = DynamicObj()
+                                            let tmp = ImmutableDynamicObj()
                                             t.CopyDynamicPropertiesTo(tmp)
                                             tmp)
 
                                     )))
                 |> fun traceTemplates ->
-                    let tmp = DynamicObj()
+                    let tmp = ImmutableDynamicObj()
 
                     traceTemplates
 

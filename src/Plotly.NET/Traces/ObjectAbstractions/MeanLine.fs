@@ -3,12 +3,13 @@ namespace Plotly.NET.TraceObjects
 open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
 /// Meanline type inherits from dynamic object (parent violin)
 type MeanLine() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     /// Initialized Line object
     static member init

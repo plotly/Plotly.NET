@@ -4,6 +4,7 @@ open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
 
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.IO
 
@@ -752,7 +753,7 @@ type Chart =
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: string,
             [<Optional; DefaultParameterValue(null)>] ?EditRevision: string,
             [<Optional; DefaultParameterValue(null)>] ?SelectRevision: string,
-            [<Optional; DefaultParameterValue(null)>] ?Template: DynamicObj,
+            [<Optional; DefaultParameterValue(null)>] ?Template: ImmutableDynamicObj,
             [<Optional; DefaultParameterValue(null)>] ?Meta: string,
             [<Optional; DefaultParameterValue(null)>] ?Computed: string,
             [<Optional; DefaultParameterValue(null)>] ?Grid: LayoutGrid,
@@ -1252,7 +1253,7 @@ type Chart =
 
     [<CompiledName("WithTemplate")>]
     static member withTemplate(template: Template) =
-        (fun (ch: GenericChart) -> ch |> GenericChart.mapLayout (Layout.style (Template = (template :> DynamicObj))))
+        (fun (ch: GenericChart) -> ch |> GenericChart.mapLayout (Layout.style (Template = (template :> ImmutableDynamicObj))))
 
     // TODO: Include withLegend & withLegendStyle
 

@@ -3,11 +3,12 @@
 open Plotly.NET
 open Plotly.NET.LayoutObjects
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
 type MarkerSelectionStyle() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (
@@ -32,7 +33,7 @@ type MarkerSelectionStyle() =
             ++? ("size", Size ))
 
 type FontSelectionStyle() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     /// Init Font()
     static member init([<Optional; DefaultParameterValue(null)>] ?Color: Color) =
@@ -44,7 +45,7 @@ type FontSelectionStyle() =
 
 type
         ++? ("color", (fun (fontSelectionStyle: FontSelectionStyle) -> Color )) Selection() =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
 
     static member init
         (

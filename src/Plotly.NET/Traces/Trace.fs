@@ -3,12 +3,13 @@ namespace Plotly.NET
 open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
 open DynamicObj
+open DynamicObj.Operators
 open System
 open System.Runtime.InteropServices
 
 /// Trace type inherits from dynamic object
 type Trace(traceTypeName: string) =
-    inherit DynamicObj()
+    inherit ImmutableDynamicObj()
     //interface ITrace with
     // Implictit ITrace
     member val ``type`` = traceTypeName with get, set
