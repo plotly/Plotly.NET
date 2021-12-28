@@ -27,11 +27,11 @@ type ContourProject() =
 
         fun (contourProject: ContourProject) ->
 
+            contourProject
+
             ++? ("x", X )
             ++? ("y", Y )
             ++? ("z", Z )
-
-            contourProject
 
 /// Contour object inherits from dynamic object
 type Contour() =
@@ -87,6 +87,9 @@ type Contour() =
         ) =
 
         (fun (contour: Contour) ->
+
+
+            contour
             ++? ("color", Color )
             ++? ("end", End )
             ++? ("highlight", Highlight )
@@ -97,10 +100,7 @@ type Contour() =
             ++? ("size", Size )
             ++? ("start", Start )
             ++? ("usecolormap", UseColorMap )
-            ++? ("width", Width )
-
-
-            contour)
+            ++? ("width", Width ))
 
 /// Contours type inherits from dynamic object
 type Contours() =
@@ -168,6 +168,9 @@ type Contours() =
         ) =
 
         (fun (contours: Contours) ->
+
+
+            contours
             ++? ("x", X )
             ++? ("y", Y )
             ++? ("z", Z )
@@ -181,10 +184,7 @@ type Contours() =
             ++? ("size", Size )
             ++? ("start", Start )
             ++?? ("type", Type , StyleParam.ContourType.convert)
-            ++? ("value", Value )
-
-
-            contours)
+            ++? ("value", Value ))
 
 
     // Initialized x-y-z-Contours with the same properties

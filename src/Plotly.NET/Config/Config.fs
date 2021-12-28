@@ -375,14 +375,14 @@ type Config() =
             [<Optional; DefaultParameterValue(null)>] ?ModeBarButtonsToAdd: seq<StyleParam.ModeBarButton>
         ) =
         fun (config: Config) ->
+
+            ModeBarButtonsToAdd
             ++? ("staticPlot", StaticPlot )
             ++? ("autosizable", Autosizable )
             ++? ("responsive", Responsive )
             ++? ("toImageButtonOptions", ToImageButtonOptions )
             ++? ("showEditInChartStudio", ShowEditInChartStudio )
             ++? ("editable", Editable )
-
-            ModeBarButtonsToAdd
             |> DynObj.setValueOptBy
                 config
                 "modeBarButtonsToAdd"
@@ -401,6 +401,6 @@ type Config() =
 
                             ed?fieldName <- true)
 
-                    ++? ("edits", ed))
-
             config
+
+                    ++? ("edits", ed))

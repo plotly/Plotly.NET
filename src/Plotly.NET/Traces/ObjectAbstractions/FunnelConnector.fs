@@ -35,8 +35,8 @@ type FunnelConnector() =
         ) =
         (fun (connector: FunnelConnector) ->
 
+            connector
+
             ++? ("fillcolor", FillColor )
             ++? ("line", Line )
-            ++? ("visible", Visible )
-
-            connector)
+            ++? ("visible", Visible ))

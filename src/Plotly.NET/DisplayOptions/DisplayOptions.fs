@@ -44,10 +44,10 @@ type DisplayOptions() =
         ) =
         (fun (displayOptions: DisplayOptions) ->
 
-            ++? ("AdditionalHeadTags", AdditionalHeadTags )
-            ++? ("Description", Description )
+            displayOptions
 
-            displayOptions)
+            ++? ("AdditionalHeadTags", AdditionalHeadTags )
+            ++? ("Description", Description ))
 
 
     static member getReplacements(displayOptions: DisplayOptions) =

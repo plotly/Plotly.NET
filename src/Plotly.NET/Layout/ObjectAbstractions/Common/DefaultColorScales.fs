@@ -29,8 +29,8 @@ type DefaultColorScales() =
         ) =
         (fun (defaultColorScales: DefaultColorScales) ->
 
+            defaultColorScales
+
             ++?? ("diverging", Diverging , StyleParam.Colorscale.convert)
             ++?? ("sequential", Sequential , StyleParam.Colorscale.convert)
-            ++?? ("sequentialminus", SequentialMinus , StyleParam.Colorscale.convert)
-
-            defaultColorScales)
+            ++?? ("sequentialminus", SequentialMinus , StyleParam.Colorscale.convert))

@@ -22,7 +22,7 @@ type UniformText() =
         ) =
         (fun (uniformText: UniformText) ->
 
-            ++? ("minsize", MinSize )
-            ++?? ("mode", Mode , StyleParam.UniformTextMode.convert)
+            uniformText
 
-            uniformText)
+            ++? ("minsize", MinSize )
+            ++?? ("mode", Mode , StyleParam.UniformTextMode.convert))

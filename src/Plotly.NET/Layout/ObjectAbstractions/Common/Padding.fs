@@ -30,8 +30,8 @@ type Padding() =
             [<Optional; DefaultParameterValue(null)>] ?T: int
         ) =
         (fun (padding: Padding) ->
+            padding
             ++? ("b", B )
             ++? ("l", L )
             ++? ("r", R )
-            ++? ("t", T )
-            padding)
+            ++? ("t", T ))

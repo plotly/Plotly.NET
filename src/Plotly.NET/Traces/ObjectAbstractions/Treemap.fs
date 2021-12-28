@@ -17,9 +17,9 @@ type TreemapRoot() =
     static member style([<Optional; DefaultParameterValue(null)>] ?Color: Color) =
         (fun (root: TreemapRoot) ->
 
-            ++? ("color", Color )
+            root
 
-            root)
+            ++? ("color", Color ))
 
 type TreemapLeaf() =
     inherit DynamicObj()
@@ -31,9 +31,9 @@ type TreemapLeaf() =
     static member style([<Optional; DefaultParameterValue(null)>] ?Opacity: float) =
         (fun (leaf: TreemapLeaf) ->
 
-            ++? ("opacity", Opacity )
+            leaf
 
-            leaf)
+            ++? ("opacity", Opacity ))
 
 
 type TreemapTiling() =
@@ -58,9 +58,9 @@ type TreemapTiling() =
             [<Optional; DefaultParameterValue(null)>] ?Pad: float
         ) =
         (fun (tiling: TreemapTiling) ->
+
+            tiling
             ++?? ("packing", Packing , StyleParam.TreemapTilingPacking.convert)
             ++? ("squarifyRatio", SquarifyRatio )
             ++?? ("flip", Flip , StyleParam.TilingFlip.convert)
-            ++? ("pad", Pad )
-
-            tiling)
+            ++? ("pad", Pad ))

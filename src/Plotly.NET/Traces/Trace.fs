@@ -32,18 +32,18 @@ type TraceStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Hoverinfo: string
         ) =
         (fun (trace: ('T :> Trace)) ->
+            // Update
+            //Stream: Stream
+
+            // out ->
+            trace
             ++? ("name", Name )
             ++?? ("visible", Visible , StyleParam.Visible.toObject)
             ++? ("showlegend", ShowLegend )
             ++? ("legendgroup", LegendGroup )
             ++? ("opacity", Opacity )
             ++? ("uid", Uid )
-            ++? ("hoverinfo", Hoverinfo )
-            // Update
-            //Stream: Stream
-
-            // out ->
-            trace)
+            ++? ("hoverinfo", Hoverinfo ))
 
     /// Sets selection of data points on a Trace object.
     static member SetSelection
@@ -54,11 +54,11 @@ type TraceStyle() =
         ) =
         (fun (trace: ('T :> Trace)) ->
 
+            trace
+
             ++? ("Selectedpoints", Selectedpoints )
             ++? ("Selected", Selected )
-            ++? ("UnSelected", UnSelected )
-
-            trace)
+            ++? ("UnSelected", UnSelected ))
 
 
     /// Sets the given text label styles on a Trace object.
@@ -71,22 +71,22 @@ type TraceStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Textpositionsrc: string
         ) =
         (fun (trace: ('T :> Trace)) ->
+
+            // out ->
+            trace
             ++? ("text", Text )
             ++?? ("textposition", Textposition , StyleParam.TextPosition.toString)
             ++? ("textsrc", Textsrc )
             ++? ("textpositionsrc", Textpositionsrc )
-            ++? ("textfont", Textfont )
-
-            // out ->
-            trace)
+            ++? ("textfont", Textfont ))
 
 
     /// Sets the given line on a Trace object.
     static member SetLine(line: Line) =
         (fun (trace: ('T :> Trace)) ->
+            trace
 
-            ++ ("line", line)
-            trace)
+            ++ ("line", line))
 
 
     /// Sets the given Line styles on the line property of a Trace object
@@ -112,17 +112,17 @@ type TraceStyle() =
                     ?Smoothing = Smoothing,
                     ?Colorscale = Colorscale
                 )
+            trace
 
-            ++ ("line", line)
-            trace)
+            ++ ("line", line))
 
 
     /// Sets the given marker on a Trace object.
     static member SetMarker(marker: Marker) =
         (fun (trace: ('T :> Trace)) ->
+            trace
 
-            ++ ("marker", marker)
-            trace)
+            ++ ("marker", marker))
 
     /// Sets the given Marker styles on the marker property of a Trace object
     static member Marker
@@ -189,9 +189,9 @@ type TraceStyle() =
                     ?SizeMode = SizeMode,
                     ?SizeRef = SizeRef
                 )
+            trace
 
             ++ ("marker", marker)
-            trace
 
             )
 
@@ -201,15 +201,15 @@ type TraceStyle() =
             ColorAxisId |> Option.map StyleParam.SubPlotId.ColorAxis
 
         (fun (trace: ('T :> Trace)) ->
-            ++?? ("coloraxis", id , StyleParam.SubPlotId.convert)
-            trace)
+            trace
+            ++?? ("coloraxis", id , StyleParam.SubPlotId.convert))
 
     /// Sets the given domain on a Trace object.
     static member SetDomain(domain: Domain) =
         (fun (trace: ('T :> Trace)) ->
+            trace
 
-            ++ ("domain", domain)
-            trace)
+            ++ ("domain", domain))
 
     /// Sets the given Domain styles on the domain property of a Trace object
     static member Domain
@@ -226,34 +226,34 @@ type TraceStyle() =
                 | None -> Domain()
 
                 |> Domain.style (?X = X, ?Y = Y, ?Row = Row, ?Column = Column)
+            trace
 
-            ++ ("domain", domain)
-            trace)
+            ++ ("domain", domain))
 
     // Sets the X-Error an a Trace object.
     static member SetErrorX(error: Error) =
         (fun (trace: ('T :> Trace)) ->
+            trace
 
-            ++ ("error_x", error)
-            trace)
+            ++ ("error_x", error))
 
     // Sets Y-Error() to TraceObjects
     static member SetErrorY(error: Error) =
         (fun (trace: ('T :> Trace)) ->
+            trace
 
-            ++ ("error_y", error)
-            trace)
+            ++ ("error_y", error))
 
     // Sets Z-Error() to TraceObjects
     static member SetErrorZ(error: Error) =
         (fun (trace: ('T :> Trace)) ->
+            trace
 
-            ++ ("error_z", error)
-            trace)
+            ++ ("error_z", error))
 
     // Sets Stackgroup() to TraceObjects
     static member SetStackGroup(stackgroup: string) =
         (fun (trace: ('T :> Trace)) ->
+            trace
 
-            ++ ("stackgroup", stackgroup)
-            trace)
+            ++ ("stackgroup", stackgroup))

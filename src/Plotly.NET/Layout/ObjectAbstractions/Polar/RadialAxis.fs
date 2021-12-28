@@ -252,6 +252,8 @@ type RadialAxis() =
         ) =
         fun (radialAxis: RadialAxis) ->
 
+            radialAxis
+
             ++? ("visible", Visible )
             ++?? ("type", AxisType , StyleParam.AxisType.convert)
             ++?? ("autotypenumbers", AutoTypeNumbers , StyleParam.AutoTypeNumbers.convert)
@@ -297,5 +299,3 @@ type RadialAxis() =
             ++? ("tickformatstops", TickFormatStops )
             ++?? ("layer", Layer , StyleParam.Layer.convert)
             ++?? ("calendar", Calendar , StyleParam.Calendar.convert)
-
-            radialAxis

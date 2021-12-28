@@ -929,6 +929,9 @@ type LinearAxis() =
         ) =
         (fun (axis: LinearAxis) ->
 
+
+            axis
+
             ++? ("visible", Visible )
             ++? ("color", Color )
             ++? ("title", Title )
@@ -1021,7 +1024,4 @@ type LinearAxis() =
             ++? ("startlinecolor", StartLineColor )
             ++? ("startlinewidth", StartLineWidth )
             ++? ("backgroundcolor", BackgroundColor )
-            ++? ("showbackground", ShowBackground )
-
-
-            axis)
+            ++? ("showbackground", ShowBackground ))

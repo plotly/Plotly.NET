@@ -25,11 +25,11 @@ type MarkerSelectionStyle() =
         ) =
         (fun (markerSelectionStyle: MarkerSelectionStyle) ->
 
+            markerSelectionStyle
+
             ++? ("opacity", Opacity )
             ++? ("color", Color )
-            ++? ("size", Size )
-
-            markerSelectionStyle)
+            ++? ("size", Size ))
 
 type FontSelectionStyle() =
     inherit DynamicObj()
@@ -41,9 +41,9 @@ type FontSelectionStyle() =
 
     // Applies the styles to Font()
     static member style([<Optional; DefaultParameterValue(null)>] ?Color: Color) =
-        ++? ("color", (fun (fontSelectionStyle: FontSelectionStyle) -> Color ))
 
-type Selection() =
+type
+        ++? ("color", (fun (fontSelectionStyle: FontSelectionStyle) -> Color )) Selection() =
     inherit DynamicObj()
 
     static member init
@@ -60,6 +60,6 @@ type Selection() =
             [<Optional; DefaultParameterValue(null)>] ?FontSelectionStyle: FontSelectionStyle
         ) =
         (fun (selection: Selection) ->
+            selection
             ++? ("marker", MarkerSelectionStyle )
-            ++? ("textfont", FontSelectionStyle )
-            selection)
+            ++? ("textfont", FontSelectionStyle ))

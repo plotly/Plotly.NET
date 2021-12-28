@@ -45,9 +45,9 @@ type TraceDomainStyle() =
     static member SetDomain([<Optional; DefaultParameterValue(null)>] ?Domain: Domain) =
         (fun (trace: TraceDomain) ->
 
-            ++? ("domain", Domain )
+            trace
 
-            trace)
+            ++? ("domain", Domain ))
 
     /// <summary>
     /// Creates a function that applies the styles of a pie chart to a Trace object
@@ -166,6 +166,8 @@ type TraceDomainStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
+
+            trace
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++? ("domain", Domain )
@@ -184,9 +186,7 @@ type TraceDomainStyle() =
             ++? ("rotation", Rotation )
             ++? ("scalegroup", ScaleGroup )
             ++? ("sort", Sort )
-            ++? ("uirevision", UIRevision )
-
-            trace)
+            ++? ("uirevision", UIRevision ))
 
     /// <summary>
     /// Creates a function that applies the styles of a funnel area chart to a Trace object
@@ -290,6 +290,8 @@ type TraceDomainStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
+
+            trace
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++? ("domain", Domain )
@@ -301,9 +303,7 @@ type TraceDomainStyle() =
             ++? ("hoverlabel", HoverLabel )
             ++? ("insidetextfont", InsideTextFont )
             ++? ("scalegroup", ScaleGroup )
-            ++? ("uirevision", UIRevision )
-
-            trace)
+            ++? ("uirevision", UIRevision ))
 
     /// <summary>
     /// Creates a function that applies the styles of a sunburst chart to a Trace object
@@ -410,6 +410,8 @@ type TraceDomainStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
+
+            trace
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++? ("domain", Domain )
@@ -430,9 +432,7 @@ type TraceDomainStyle() =
             ++? ("maxdepth", MaxDepth )
             ++? ("rotation", Rotation )
             ++? ("sort", Sort )
-            ++? ("uirevision", UIRevision )
-
-            trace)
+            ++? ("uirevision", UIRevision ))
 
     /// <summary>
     /// Creates a function that applies the styles of a treemap chart to a Trace object
@@ -543,6 +543,8 @@ type TraceDomainStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
+
+            trace
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++? ("domain", Domain )
@@ -559,9 +561,7 @@ type TraceDomainStyle() =
             ++? ("root", Root )
             ++? ("level", Level )
             ++? ("maxdepth", MaxDepth )
-            ++? ("uirevision", UIRevision )
-
-            trace)
+            ++? ("uirevision", UIRevision ))
 
     /// <summary>
     /// Creates a function that applies the styles of a parallel coordinates plot to a Trace object
@@ -604,6 +604,7 @@ type TraceDomainStyle() =
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
         ) =
         (fun (trace: ('T :> Trace)) ->
+            TickFont
 
             ++? ("name", Name )
             ++?? ("visible", Visible , StyleParam.Visible.convert)
@@ -619,11 +620,10 @@ type TraceDomainStyle() =
             ++? ("labelangle", LabelAngle )
             ++? ("labelfont", LabelFont )
             ++? ("labelside", LabelSide )
-            ++? ("rangefont", RangeFont )
-            TickFont |> DynObj.setValueOpt trace "tickfont "
-            ++? ("uirevision", UIRevision )
+            ++? ("rangefont", RangeFont ) |> DynObj.setValueOpt trace "tickfont "
 
-            trace)
+            trace
+            ++? ("uirevision", UIRevision ))
 
     /// <summary>
     /// Creates a function that applies the styles of a parallel categories plot to a Trace object
@@ -679,6 +679,7 @@ type TraceDomainStyle() =
             ++? ("dimensions", Dimensions )
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
+            TickFont
             ++? ("meta", Meta )
             ++? ("domain", Domain )
             ++? ("line", Line )
@@ -686,11 +687,10 @@ type TraceDomainStyle() =
             ++? ("bundlecolors", BundleColors )
             ++?? ("sortpaths", SortPaths , StyleParam.SortAlgorithm.convert)
             ++?? ("hoveron", Hoveron , StyleParam.HoverOn.convert)
-            ++? ("labelfont", LabelFont )
-            TickFont |> DynObj.setValueOpt trace "tickfont "
-            ++? ("uirevision", UIRevision )
+            ++? ("labelfont", LabelFont ) |> DynObj.setValueOpt trace "tickfont "
 
-            trace)
+            trace
+            ++? ("uirevision", UIRevision ))
 
     /// <summary>
     /// Creates a function that applies the styles of a sankey chart to a Trace object
@@ -740,6 +740,8 @@ type TraceDomainStyle() =
         ) =
         (fun (trace: ('T :> Trace)) ->
 
+            trace
+
             ++? ("name", Name )
             ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("legendrank", LegendRank )
@@ -759,9 +761,7 @@ type TraceDomainStyle() =
             ++? ("hoverlabel", HoverLabel )
             ++? ("valueformat", ValueFormat )
             ++? ("valuesuffix", ValueSuffix )
-            ++? ("uirevision", UIRevision )
-
-            trace)
+            ++? ("uirevision", UIRevision ))
 
     /// <summary>
     /// Creates a function that applies the styles of a table to a Trace object
@@ -810,6 +810,8 @@ type TraceDomainStyle() =
             ++? ("ids", Ids )
             ++? ("columnorder", ColumnOrder )
             (ColumnWidth, MultiColumnWidth) |> DynObj.setSingleOrMultiOpt trace "columnwidth"
+
+            trace
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
@@ -817,9 +819,7 @@ type TraceDomainStyle() =
             ++? ("cells", Cells )
             ++? ("header", Header )
             ++? ("hoverlabel", HoverLabel )
-            ++? ("uirevision", UIRevision )
-
-            trace)
+            ++? ("uirevision", UIRevision ))
 
     /// <summary>
     /// Creates a function that applies the styles of an indicator to a Trace object
@@ -861,6 +861,8 @@ type TraceDomainStyle() =
         ) =
         fun (trace: #Trace) ->
 
+            trace
+
             ++? ("name", Name )
             ++? ("title", Title )
             ++?? ("visible", Visible , StyleParam.Visible.convert)
@@ -877,8 +879,6 @@ type TraceDomainStyle() =
             ++? ("number", Number )
             ++? ("gauge", Gauge )
             ++? ("uirevision", UIRevision )
-
-            trace
 
     /// <summary>
     /// Creates a function that applies the styles of an icicle chart to a Trace object
@@ -984,6 +984,8 @@ type TraceDomainStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
+
+            trace
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++? ("domain", Domain )
@@ -1003,5 +1005,3 @@ type TraceDomainStyle() =
             ++? ("maxdepth", MaxDepth )
             ++? ("sort", Sort )
             ++? ("uirevision", UIRevision )
-
-            trace

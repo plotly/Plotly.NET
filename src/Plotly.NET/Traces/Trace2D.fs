@@ -105,10 +105,10 @@ type Trace2DStyle() =
         ) =
         (fun (trace: Trace2D) ->
 
-            ++?? ("xaxis", X , StyleParam.LinearAxisId.toString)
-            ++?? ("yaxis", Y , StyleParam.LinearAxisId.toString)
+            trace
 
-            trace)
+            ++?? ("xaxis", X , StyleParam.LinearAxisId.toString)
+            ++?? ("yaxis", Y , StyleParam.LinearAxisId.toString))
 
     /// <summary>
     /// Create a function that applies the styles of a scatter plot to a Trace object
@@ -260,6 +260,8 @@ type Trace2DStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
+
+            trace
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
             ++? ("meta", Meta )
@@ -292,9 +294,7 @@ type Trace2DStyle() =
             ++?? ("stackgaps", StackGaps , StyleParam.StackGaps.convert)
             ++?? ("xcalendar", XCalendar , StyleParam.Calendar.convert)
             ++?? ("ycalendar", YCalendar , StyleParam.Calendar.convert)
-            ++? ("uirevision", UIRevision )
-
-            trace)
+            ++? ("uirevision", UIRevision ))
 
     /// <summary>
     /// Create a function that applies the styles of a bar plot to a Trace object
@@ -454,6 +454,8 @@ type Trace2DStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt bar "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt bar "hovertemplate"
+
+            bar
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
             ++? ("meta", Meta )
@@ -486,8 +488,6 @@ type Trace2DStyle() =
             ++?? ("xcalendar", XCalendar , StyleParam.Calendar.convert)
             ++?? ("ycalendar", YCalendar , StyleParam.Calendar.convert)
             ++? ("uirevision", UIRevision )
-
-            bar
 
             )
 
@@ -634,6 +634,8 @@ type Trace2DStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt funnel "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt funnel "hovertemplate"
+
+            funnel
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
             ++? ("meta", Meta )
@@ -662,8 +664,6 @@ type Trace2DStyle() =
             ++? ("insidetextfont", InsideTextFont )
             ++? ("outsidetextfont", OutsideTextFont )
             ++? ("uirevision", UIRevision )
-
-            funnel
 
             )
 
@@ -824,6 +824,8 @@ type Trace2DStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemTotalsplate"
+
+            trace
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
             ++? ("meta", Meta )
@@ -853,9 +855,7 @@ type Trace2DStyle() =
             ++? ("insidetextfont", InsideTextFont )
             ++? ("outsidetextfont", OutsideTextFont )
             ++? ("totals", Totals )
-            ++? ("uirevision", UIRevision )
-
-            trace)
+            ++? ("uirevision", UIRevision ))
 
 
     /// <summary>
@@ -974,6 +974,8 @@ type Trace2DStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt histogram "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt histogram "hovertemplate"
+
+            histogram
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
             ++? ("meta", Meta )
@@ -1003,9 +1005,7 @@ type Trace2DStyle() =
             ++? ("hoverlabel", HoverLabel )
             ++?? ("xcalendar", XCalendar , StyleParam.Calendar.convert)
             ++?? ("ycalendar", YCalendar , StyleParam.Calendar.convert)
-            ++? ("uirevision", UIRevision )
-
-            histogram)
+            ++? ("uirevision", UIRevision ))
 
     /// <summary>
     /// Create a function that applies the styles of a boxplot to a Trace object
@@ -1162,6 +1162,9 @@ type Trace2DStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt boxPlot "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt boxPlot "hovertemplate"
+
+            // out ->
+            boxPlot
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
             ++? ("meta", Meta )
@@ -1203,10 +1206,7 @@ type Trace2DStyle() =
             ++? ("jitter", Jitter )
             ++?? ("xcalendar", XCalendar , StyleParam.Calendar.convert)
             ++?? ("ycalendar", YCalendar , StyleParam.Calendar.convert)
-            ++? ("uirevision", UIRevision )
-
-            // out ->
-            boxPlot)
+            ++? ("uirevision", UIRevision ))
 
 
     /// <summary>
@@ -1338,6 +1338,8 @@ type Trace2DStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt violin "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt violin "hovertemplate"
+
+            violin
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
             ++? ("meta", Meta )
@@ -1366,9 +1368,7 @@ type Trace2DStyle() =
             ++?? ("side", Side , StyleParam.ViolinSide.convert)
             ++?? ("span", Span , StyleParam.Range.convert)
             ++?? ("spanmode", SpanMode , StyleParam.SpanMode.convert)
-            ++? ("uirevision", UIRevision )
-
-            violin)
+            ++? ("uirevision", UIRevision ))
 
     /// <summary>
     /// Create a function that applies the styles of a 2d histogram plot to a Trace object
@@ -1493,6 +1493,8 @@ type Trace2DStyle() =
             ++? ("z", Z )
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt histogram2D "hovertemplate"
+
+            histogram2D
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
             ++? ("meta", Meta )
@@ -1526,9 +1528,7 @@ type Trace2DStyle() =
             ++? ("hoverlabel", HoverLabel )
             ++?? ("xcalendar", XCalendar , StyleParam.Calendar.convert)
             ++?? ("ycalendar", YCalendar , StyleParam.Calendar.convert)
-            ++? ("uirevision", UIRevision )
-
-            histogram2D)
+            ++? ("uirevision", UIRevision ))
 
     /// <summary>
     /// Create a function that applies the styles of a 2d histogram contour plot to a Trace object
@@ -1653,6 +1653,8 @@ type Trace2DStyle() =
             ++? ("z", Z )
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt histogram2DContour "hovertemplate"
+
+            histogram2DContour
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
             ++? ("meta", Meta )
@@ -1689,9 +1691,7 @@ type Trace2DStyle() =
             ++? ("ncontours", NContours )
             ++?? ("xcalendar", XCalendar , StyleParam.Calendar.convert)
             ++?? ("ycalendar", YCalendar , StyleParam.Calendar.convert)
-            ++? ("uirevision", UIRevision )
-
-            histogram2DContour)
+            ++? ("uirevision", UIRevision ))
 
 
     /// <summary>
@@ -1840,6 +1840,10 @@ type Trace2DStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt heatmap "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt heatmap "hovertemplate"
+
+
+            // out ->
+            heatmap
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
             ++? ("meta", Meta )
@@ -1870,11 +1874,7 @@ type Trace2DStyle() =
             ++? ("transpose", Transpose )
             ++?? ("xcalendar", XCalendar , StyleParam.Calendar.convert)
             ++?? ("ycalendar", YCalendar , StyleParam.Calendar.convert)
-            ++? ("uirevision", UIRevision )
-
-
-            // out ->
-            heatmap)
+            ++? ("uirevision", UIRevision ))
 
     /// <summary>
     /// Create a function that applies the styles of a Image plot to a Trace object
@@ -1964,6 +1964,9 @@ type Trace2DStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt image "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt image "hovertemplate"
+
+            // out ->
+            image
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++?? ("xaxis", XAxis , StyleParam.LinearAxisId.convert)
@@ -1973,10 +1976,7 @@ type Trace2DStyle() =
             ++?? ("zmin", ZMin , StyleParam.ColorComponentBound.convert)
             ++?? ("zsmooth", ZSmooth , StyleParam.SmoothAlg.convert)
             ++? ("hoverlabel", HoverLabel )
-            ++? ("uirevision", UIRevision )
-
-            // out ->
-            image)
+            ++? ("uirevision", UIRevision ))
 
     /// <summary>
     /// Create a function that applies the styles of a contour plot to a Trace object
@@ -2126,6 +2126,10 @@ type Trace2DStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt contour "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt contour "hovertemplate"
+
+
+            // out ->
+            contour
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
             ++? ("meta", Meta )
@@ -2158,11 +2162,7 @@ type Trace2DStyle() =
             ++? ("ncontours", NContours )
             ++? ("transpose", Transpose )
             ++?? ("xcalendar", XCalendar , StyleParam.Calendar.convert)
-            ++? ("uirevision", UIRevision )
-
-
-            // out ->
-            contour)
+            ++? ("uirevision", UIRevision ))
 
 
     /// <summary>
@@ -2264,6 +2264,8 @@ type Trace2DStyle() =
             ++? ("low", Low )
             (Text, MultiText) |> DynObj.setSingleOrMultiOpt ohlc "text"
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt ohlc "hovertext"
+
+            ohlc
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
@@ -2283,9 +2285,7 @@ type Trace2DStyle() =
             ++? ("hoverlabel", HoverLabel )
             ++? ("tickwidth", TickWidth )
             ++?? ("xcalendar", XCalendar , StyleParam.Calendar.convert)
-            ++? ("uirevision", UIRevision )
-
-            ohlc)
+            ++? ("uirevision", UIRevision ))
 
 
     /// <summary>
@@ -2387,6 +2387,8 @@ type Trace2DStyle() =
             ++? ("low", Low )
             (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
+
+            trace
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
@@ -2406,9 +2408,7 @@ type Trace2DStyle() =
             ++? ("decreasing", Decreasing )
             ++? ("hoverlabel", HoverLabel )
             ++?? ("xcalendar", XCalendar , StyleParam.Calendar.convert)
-            ++? ("uirevision", UIRevision )
-
-            trace)
+            ++? ("uirevision", UIRevision ))
 
     /// <summary>
     /// Create a function that applies the styles of a scatter plot matrix (SPLOM) to a Trace object
@@ -2493,6 +2493,8 @@ type Trace2DStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
+
+            trace
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
             ++? ("meta", Meta )
@@ -2507,6 +2509,4 @@ type Trace2DStyle() =
             ++? ("selected", Selected )
             ++? ("unselected", Unselected )
             ++? ("hoverlabel", HoverLabel )
-            ++? ("uirevision", UIRevision )
-
-            trace)
+            ++? ("uirevision", UIRevision ))

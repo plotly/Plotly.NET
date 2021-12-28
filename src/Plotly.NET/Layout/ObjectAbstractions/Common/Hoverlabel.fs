@@ -38,11 +38,11 @@ type Hoverlabel() =
             [<Optional; DefaultParameterValue(null)>] ?Namelength: int
         ) =
         (fun (label: Hoverlabel) ->
+
+            // out ->
+            label
             ++? ("bgcolor", BgColor )
             ++? ("bordercolor", BorderColor )
             ++? ("font", Font )
             ++?? ("align", Align , StyleParam.Align.convert)
-            ++? ("namelength", Namelength )
-
-            // out ->
-            label)
+            ++? ("namelength", Namelength ))

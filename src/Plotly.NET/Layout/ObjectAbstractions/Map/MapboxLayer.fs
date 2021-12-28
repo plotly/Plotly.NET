@@ -77,6 +77,8 @@ type MapboxLayer() =
         ) =
         (fun (mapBoxLayer: MapboxLayer) ->
 
+            CircleRadius
+
             ++? ("visible", Visible )
             ++?? ("sourcetype", SourceType , StyleParam.MapboxLayerSourceType.convert)
             ++? ("source", Source )
@@ -89,24 +91,22 @@ type MapboxLayer() =
             ++? ("opacity", Opacity )
             ++? ("minzoom", MinZoom )
             ++? ("maxzoom", MaxZoom )
-
-            CircleRadius
             |> Option.map
                 (fun r ->
                     let circle = DynamicObj()
                     circle?radius <- r
+
+            FillOutlineColor
                     ++? ("circle", circle))
 
             ++? ("line", Line )
-
-            FillOutlineColor
             |> Option.map
                 (fun c ->
                     let fill = DynamicObj()
                     fill?outlinecolor <- c
+
+            mapBoxLayer
                     ++? ("fill", fill))
 
             ++? ("symbol", Symbol )
-            ++? ("name", Name )
-
-            mapBoxLayer)
+            ++? ("name", Name ))

@@ -26,11 +26,11 @@ type SlicesFill() =
 
         fun (slicesFill: SlicesFill) ->
 
+            slicesFill
+
             ++? ("fill", Fill )
             ++? ("locations", Locations )
             ++? ("show", Show )
-
-            slicesFill
 
 
 type Slices() =
@@ -53,8 +53,8 @@ type Slices() =
         ) =
         fun (slices: Slices) ->
 
+            slices
+
             ++? ("x", X )
             ++? ("y", Y )
             ++? ("z", Z )
-
-            slices

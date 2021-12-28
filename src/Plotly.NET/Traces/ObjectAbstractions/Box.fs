@@ -46,10 +46,10 @@ type Box() =
                 else
                     None
 
+            // out ->
+            box
+
             ++? ("visible", Visible )
             ++? ("width", Width )
             ++? ("fillColor", FillColor )
-            ++? ("line", line )
-
-            // out ->
-            box)
+            ++? ("line", line ))

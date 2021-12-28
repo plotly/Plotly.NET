@@ -68,14 +68,14 @@ type SankeyNodes() =
             ++?? ("color", HoverInfo , StyleParam.HoverInfo.convert)
             ++? ("hoverlabel", HoverLabel )
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt sankeyNodes "hovertemplate"
+
+            sankeyNodes
             ++? ("label", Label )
             ++? ("line", Line )
             ++? ("pad", Pad )
             ++? ("thickness", Thickness )
             ++? ("x", X )
-            ++? ("y", Y )
-
-            sankeyNodes)
+            ++? ("y", Y ))
 
 type SankeyLinkColorscale() =
     inherit DynamicObj()
@@ -112,15 +112,15 @@ type SankeyLinkColorscale() =
         ) =
         (fun (sankeyLinkColorscale: SankeyLinkColorscale) ->
 
+
+            sankeyLinkColorscale
+
             ++? ("cmax", CMax )
             ++? ("cmin", CMin )
             ++?? ("colorscale", ColorScale , StyleParam.Colorscale.convert)
             ++? ("label", Label )
             ++? ("name", Name )
-            ++? ("templateitemname", TemplateItemName )
-
-
-            sankeyLinkColorscale)
+            ++? ("templateitemname", TemplateItemName ))
 
 type SankeyLinks() =
     inherit DynamicObj()
@@ -175,6 +175,9 @@ type SankeyLinks() =
         ) =
         (fun (sankeyLinks: SankeyLinks) ->
 
+
+            sankeyLinks
+
             ++? ("color", Color )
             ++? ("colorscales", ColorScales )
             ++? ("customdata", CustomData )
@@ -186,7 +189,4 @@ type SankeyLinks() =
             ++? ("line", Line )
             ++? ("source", Source )
             ++? ("target", Target )
-            ++? ("value", Value )
-
-
-            sankeyLinks)
+            ++? ("value", Value ))

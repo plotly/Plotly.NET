@@ -47,9 +47,9 @@ type TraceMapboxStyle() =
     static member SetMapbox([<Optional; DefaultParameterValue(null)>] ?MapboxId: StyleParam.SubPlotId) =
         (fun (trace: TraceMapbox) ->
 
-            ++?? ("subplot", MapboxId , StyleParam.SubPlotId.toString)
+            trace
 
-            trace)
+            ++?? ("subplot", MapboxId , StyleParam.SubPlotId.toString))
 
     /// <summary>
     /// Create a function that applies the styles of a mapbox scatter plot to a Trace object
@@ -153,6 +153,8 @@ type TraceMapboxStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
+
+            trace
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++?? ("subplot", SubPlot , StyleParam.SubPlotId.convert)
@@ -167,9 +169,7 @@ type TraceMapboxStyle() =
             ++?? ("fill", Fill , StyleParam.Fill.convert)
             ++? ("fillcolor", FillColor )
             ++? ("hoverlabel", HoverLabel )
-            ++? ("uirevision", UIRevision )
-
-            trace)
+            ++? ("uirevision", UIRevision ))
 
     /// <summary>
     /// Create a function that applies the styles of a choropleth mapbox plot to a Trace object
@@ -270,6 +270,9 @@ type TraceMapboxStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
+
+
+            trace
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++?? ("subplot", SubPlot , StyleParam.SubPlotId.convert)
@@ -289,10 +292,7 @@ type TraceMapboxStyle() =
             ++? ("unselected", Unselected )
             ++? ("below", Below )
             ++? ("hoverlabel", HoverLabel )
-            ++? ("uirevision", UIRevision )
-
-
-            trace)
+            ++? ("uirevision", UIRevision ))
 
     /// <summary>
     /// Create a function that applies the styles of a density mapbox plot to a Trace object
@@ -390,6 +390,9 @@ type TraceMapboxStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
+
+
+            trace
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++?? ("subplot", SubPlot , StyleParam.SubPlotId.convert)
@@ -406,7 +409,4 @@ type TraceMapboxStyle() =
             ++? ("zmax", Zmax )
             ++? ("below", Below )
             ++? ("hoverlabel", HoverLabel )
-            ++? ("uirevision", UIRevision )
-
-
-            trace)
+            ++? ("uirevision", UIRevision ))

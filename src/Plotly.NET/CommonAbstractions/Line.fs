@@ -79,6 +79,9 @@ type Line() =
         (fun (line: Line) ->
             ++? ("color", Color )
             (Width, MultiWidth) |> DynObj.setSingleOrMultiOpt line "width"
+
+            // out ->
+            line
             ++?? ("shape", Shape , StyleParam.Shape.convert)
             ++? ("smoothing", Smoothing )
             ++?? ("dash", Dash , StyleParam.DrawingStyle.convert)
@@ -94,7 +97,4 @@ type Line() =
             ++?? ("colorscale", Colorscale , StyleParam.Colorscale.convert)
             ++? ("reversescale", ReverseScale )
             ++? ("showscale", ShowScale )
-            ++? ("colorbar", ColorBar )
-
-            // out ->
-            line)
+            ++? ("colorbar", ColorBar ))

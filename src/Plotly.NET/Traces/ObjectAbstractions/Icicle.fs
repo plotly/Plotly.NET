@@ -15,9 +15,9 @@ type IcicleRoot() =
     static member style([<Optional; DefaultParameterValue(null)>] ?Color: Color) =
         (fun (icicleRoot: IcicleRoot) ->
 
-            ++? ("color", Color )
+            icicleRoot
 
-            icicleRoot)
+            ++? ("color", Color ))
 
 type IcicleLeaf() =
     inherit DynamicObj()
@@ -28,9 +28,9 @@ type IcicleLeaf() =
     static member style([<Optional; DefaultParameterValue(null)>] ?Opacity: float) =
         (fun (icicleLeaf: IcicleLeaf) ->
 
-            ++? ("opacity", Opacity )
+            icicleLeaf
 
-            icicleLeaf)
+            ++? ("opacity", Opacity ))
 
 type IcicleTiling() =
     inherit DynamicObj()
@@ -51,8 +51,8 @@ type IcicleTiling() =
         ) =
         (fun (icicleTiling: IcicleTiling) ->
 
+            icicleTiling
+
             ++?? ("flip", Flip , StyleParam.TilingFlip.convert)
             ++?? ("orientation", Orientation , StyleParam.Orientation.convert)
-            ++? ("pad", Pad )
-
-            icicleTiling)
+            ++? ("pad", Pad ))

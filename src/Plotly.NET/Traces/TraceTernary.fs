@@ -19,9 +19,9 @@ type TraceTernaryStyle() =
     static member SetTernary([<Optional; DefaultParameterValue(null)>] ?TernaryId: StyleParam.SubPlotId) =
         (fun (trace: TraceTernary) ->
 
-            ++?? ("subplot", TernaryId , StyleParam.SubPlotId.toString)
+            trace
 
-            trace)
+            ++?? ("subplot", TernaryId , StyleParam.SubPlotId.toString))
 
     /// <summary>
     /// Create a function that applies the styles of a ternary scatter plot to a Trace object
@@ -132,6 +132,8 @@ type TraceTernaryStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
+
+            trace
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++?? ("subplot", SubPlot , StyleParam.SubPlotId.convert)
@@ -149,5 +151,3 @@ type TraceTernaryStyle() =
             ++?? ("hoveron", HoverOn , StyleParam.HoverOn.convert)
             ++? ("sum", Sum )
             ++? ("uirevision", UIRevision )
-
-            trace

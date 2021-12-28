@@ -86,6 +86,8 @@ type Dimension() =
         (fun (dims: Dimension) ->
 
             let axis = LinearAxis.init (?AxisType = AxisType)
+
+            dims
             ++? ("matches", AxisMatches )
 
             ++? ("label", Label )
@@ -99,6 +101,4 @@ type Dimension() =
             ++?? ("tickformat", TickFormat , StyleParam.TickMode.convert)
             ++? ("ticktext", TickText )
             ++? ("tickvals", Tickvals )
-            ++ ("axis", axis )
-
-            dims)
+            ++ ("axis", axis ))

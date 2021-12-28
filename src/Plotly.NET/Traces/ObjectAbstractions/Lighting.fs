@@ -63,6 +63,8 @@ type Lighting() =
         ) =
         fun (l: Lighting) ->
 
+            l
+
             ++? ("ambient", Ambient )
             ++? ("diffuse", Diffuse )
             ++? ("facenormalepsilon", FaceNormalEpsilon )
@@ -70,8 +72,6 @@ type Lighting() =
             ++? ("roughness", Roughness )
             ++? ("specular", Specular )
             ++? ("vertexnormalepsilon", VertexNormalEpsilon )
-
-            l
 
 type LightPosition() =
     inherit DynamicObj()
@@ -104,8 +104,8 @@ type LightPosition() =
         ) =
         fun (lp: LightPosition) ->
 
+            lp
+
             ++? ("x", X )
             ++? ("y", Y )
             ++? ("z", Z )
-
-            lp

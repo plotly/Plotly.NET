@@ -40,13 +40,13 @@ type ModeBar() =
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
         ) =
         (fun (modeBar: ModeBar) ->
+            UIRevision
 
             ++? ("activecolor", ActiveColor )
             ++? ("add", Add )
             ++? ("bgcolor", BGColor )
             ++? ("color", Color )
             ++?? ("orientation", Orientation , StyleParam.Orientation.convert)
-            ++? ("remove", Remove )
-            UIRevision |> DynObj.setValueOpt modeBar "uirevision "
+            ++? ("remove", Remove ) |> DynObj.setValueOpt modeBar "uirevision "
 
             modeBar)

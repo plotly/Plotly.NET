@@ -28,9 +28,9 @@ type MeanLine() =
             [<Optional; DefaultParameterValue(null)>] ?Width: float
         ) =
         (fun (line: MeanLine) ->
-            ++? ("visible", Visible )
-            ++? ("color", Color )
-            ++? ("width", Width )
 
             // out ->
-            line)
+            line
+            ++? ("visible", Visible )
+            ++? ("color", Color )
+            ++? ("width", Width ))

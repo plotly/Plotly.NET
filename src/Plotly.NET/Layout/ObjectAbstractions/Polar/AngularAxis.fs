@@ -238,6 +238,8 @@ type AngularAxis() =
         ) =
         fun (angularAxis: AngularAxis) ->
 
+            angularAxis
+
             ++? ("visible", Visible )
             ++?? ("type", AxisType , StyleParam.AxisType.convert)
             ++?? ("autotypenumbers", AutoTypeNumbers , StyleParam.AutoTypeNumbers.convert)
@@ -280,5 +282,3 @@ type AngularAxis() =
             ++? ("tickformat", TickFormat )
             ++? ("tickformatstops", TickFormatStops )
             ++?? ("layer", Layer , StyleParam.Layer.convert)
-
-            angularAxis

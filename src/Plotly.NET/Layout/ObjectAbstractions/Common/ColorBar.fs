@@ -234,6 +234,8 @@ type ColorBar() =
 
         (fun (colorBar: ColorBar) ->
 
+            colorBar
+
             ++? ("bgcolor", BGColor )
             ++? ("bordercolor", BorderColor )
             ++? ("borderwidth", BorderWidth )
@@ -274,6 +276,4 @@ type ColorBar() =
             ++? ("xpad", XPad )
             ++? ("y", Y )
             ++?? ("yanchor", YAnchor , StyleParam.VerticalAlign.convert)
-            ++? ("ypad", YPad )
-
-            colorBar)
+            ++? ("ypad", YPad ))

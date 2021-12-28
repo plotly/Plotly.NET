@@ -67,6 +67,6 @@ type Pattern() =
             ++?? ("fillmode", FillMode , StyleParam.PatternFillMode.convert)
             (Shape, MultiShape) |> DynObj.setSingleOrMultiOptBy pattern "shape" StyleParam.PatternShape.convert
             (Size, MultiSize) |> DynObj.setSingleOrMultiOpt pattern "size"
-            ++? ("solidity", Solidity )
 
             pattern
+            ++? ("solidity", Solidity )

@@ -22,7 +22,7 @@ type ActiveShape() =
         ) =
         (fun (activeShape: ActiveShape) ->
 
-            ++? ("fillcolor", FillColor )
-            ++? ("opacity", Opacity )
+            activeShape
 
-            activeShape)
+            ++? ("fillcolor", FillColor )
+            ++? ("opacity", Opacity ))

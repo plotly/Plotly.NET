@@ -27,11 +27,11 @@ type CameraCenter() =
 
         fun (cameraCenter: CameraCenter) ->
 
+            cameraCenter
+
             ++? ("x", X )
             ++? ("y", Y )
             ++? ("z", Z )
-
-            cameraCenter
 
 type CameraEye() =
     inherit DynamicObj()
@@ -53,11 +53,11 @@ type CameraEye() =
 
         fun (cameraEye: CameraEye) ->
 
+            cameraEye
+
             ++? ("x", X )
             ++? ("y", Y )
             ++? ("z", Z )
-
-            cameraEye
 
 type CameraUp() =
     inherit DynamicObj()
@@ -79,11 +79,11 @@ type CameraUp() =
 
         fun (cameraUp: CameraUp) ->
 
+            cameraUp
+
             ++? ("x", X )
             ++? ("y", Y )
             ++? ("z", Z )
-
-            cameraUp
 
 type Camera() =
     inherit DynamicObj()
@@ -107,9 +107,9 @@ type Camera() =
 
         fun (camera: Camera) ->
 
+            camera
+
             ++? ("center", Center )
             ++? ("eye", Eye )
             ++?? ("projection", Projection , StyleParam.CameraProjection.convert)
             ++? ("up", Up )
-
-            camera

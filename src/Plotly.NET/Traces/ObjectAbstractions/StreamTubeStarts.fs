@@ -39,8 +39,8 @@ type StreamTubeStarts() =
         ) =
         fun (streamTubeStarts: StreamTubeStarts) ->
 
+            streamTubeStarts
+
             ++? ("x", X )
             ++? ("y", Y )
             ++? ("z", Z )
-
-            streamTubeStarts

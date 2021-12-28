@@ -45,6 +45,9 @@ type UpdateMenuButton() =
         ) =
         (fun (updateMenuButton: UpdateMenuButton) ->
 
+
+            updateMenuButton
+
             ++? ("args", Args )
             ++? ("args2", Args2 )
             ++? ("execute", Execute )
@@ -52,10 +55,7 @@ type UpdateMenuButton() =
             ++?? ("method", Method , StyleParam.UpdateMethod.convert)
             ++? ("name", Name )
             ++? ("templateitemname", TemplateItemName )
-            ++? ("visible", Visible )
-
-
-            updateMenuButton)
+            ++? ("visible", Visible ))
 
 type UpdateMenu() =
     inherit DynamicObj()
@@ -121,6 +121,8 @@ type UpdateMenu() =
         ) =
         (fun (updateMenu: UpdateMenu) ->
 
+            updateMenu
+
             ++? ("active", Active )
             ++? ("bgcolor", BGColor )
             ++? ("bordercolor", BorderColor )
@@ -136,6 +138,4 @@ type UpdateMenu() =
             ++? ("x", X )
             ++?? ("xanchor", XAnchor , StyleParam.XAnchorPosition.convert)
             ++? ("y", Y )
-            ++?? ("yanchor", YAnchor , StyleParam.YAnchorPosition.convert)
-
-            updateMenu)
+            ++?? ("yanchor", YAnchor , StyleParam.YAnchorPosition.convert))

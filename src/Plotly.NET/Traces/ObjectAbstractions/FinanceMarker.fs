@@ -38,7 +38,7 @@ type FinanceMarker() =
             let line =
                 Line.init (?Color = LineColor, ?Width = LineWidth, ?Dash = LineDash)
 
-            ++ ("marker", marker )
-            ++ ("line", line )
+            financeMarker
 
-            financeMarker)
+            ++ ("marker", marker )
+            ++ ("line", line ))

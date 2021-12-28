@@ -28,9 +28,9 @@ type Surface() =
 
         fun (surface: Surface) ->
 
+            surface
+
             ++? ("count", Count )
             ++? ("fill", Fill )
             ++?? ("pattern", Pattern , StyleParam.SurfacePattern.convert)
             ++? ("show", Show )
-
-            surface

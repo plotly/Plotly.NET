@@ -31,17 +31,17 @@ type TraceCarpetStyle() =
         ) =
         (fun (trace: TraceCarpet) ->
 
-            ++?? ("xaxis", X , StyleParam.LinearAxisId.toString)
-            ++?? ("yaxis", Y , StyleParam.LinearAxisId.toString)
+            trace
 
-            trace)
+            ++?? ("xaxis", X , StyleParam.LinearAxisId.toString)
+            ++?? ("yaxis", Y , StyleParam.LinearAxisId.toString))
 
     static member SetCarpet([<Optional; DefaultParameterValue(null)>] ?CarpetId: StyleParam.SubPlotId) =
         (fun (trace: TraceCarpet) ->
 
-            ++?? ("carpet", CarpetId , StyleParam.SubPlotId.toString)
+            trace
 
-            trace)
+            ++?? ("carpet", CarpetId , StyleParam.SubPlotId.toString))
 
 
     /// <summary>
@@ -120,6 +120,8 @@ type TraceCarpetStyle() =
             ++? ("ids", Ids )
             (X, MultiX) |> DynObj.setSingleOrAnyOpt trace "x"
             (Y, MultiY) |> DynObj.setSingleOrAnyOpt trace "y"
+
+            trace
             ++? ("a", A )
             ++? ("a0", A0 )
             ++? ("da", DA )
@@ -137,8 +139,6 @@ type TraceCarpetStyle() =
             ++? ("cheaterslope", CheaterSlope )
             ++? ("font", Font )
             ++? ("uirevision", UIRevision )
-
-            trace
 
     /// <summary>
     /// Create a function that applies the styles of a scatter carpet plot to a Trace object
@@ -246,6 +246,8 @@ type TraceCarpetStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
+
+            trace
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++?? ("xaxis", XAxis , StyleParam.LinearAxisId.convert)
@@ -263,8 +265,6 @@ type TraceCarpetStyle() =
             ++? ("hoverlabel", HoverLabel )
             ++?? ("hoveron", HoverOn , StyleParam.HoverOn.convert)
             ++? ("uirevision", UIRevision )
-
-            trace
 
     /// <summary>
     /// Create a function that applies the styles of a carpet contour scatter plot to a Trace object
@@ -379,6 +379,8 @@ type TraceCarpetStyle() =
             ++? ("db", DB )
             (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
+
+            trace
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++?? ("xaxis", XAxis , StyleParam.LinearAxisId.convert)
@@ -401,5 +403,3 @@ type TraceCarpetStyle() =
             ++? ("ncontours", NContours )
             ++? ("transpose", Transpose )
             ++? ("uirevision", UIRevision )
-
-            trace

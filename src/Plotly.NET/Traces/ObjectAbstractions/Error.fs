@@ -86,6 +86,9 @@ type Error() =
             [<Optional; DefaultParameterValue(null)>] ?Width: float
         ) =
         (fun (error: Error) ->
+
+            // out ->
+            error
             ++? ("visible", Visible )
             ++?? ("type", Type , StyleParam.ErrorType.convert)
             ++? ("symmetric", Symmetric )
@@ -98,7 +101,4 @@ type Error() =
             ++? ("copy_ystyle", Copy_ystyle )
             ++? ("color", Color )
             ++? ("thickness", Thickness )
-            ++? ("width", Width )
-
-            // out ->
-            error)
+            ++? ("width", Width ))

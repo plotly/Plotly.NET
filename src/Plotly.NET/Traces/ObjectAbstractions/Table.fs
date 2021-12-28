@@ -15,8 +15,8 @@ type TableFill() =
 
     static member style([<Optional; DefaultParameterValue(null)>] ?Color: Color) =
         (fun (fill: TableFill) ->
-            ++? ("color", Color )
-            fill)
+            fill
+            ++? ("color", Color ))
 
 
 /// Cells type inherits from dynamic object
@@ -81,9 +81,9 @@ type TableCells() =
             ++? ("line", Line )
             (Prefix, MultiPrefix) |> DynObj.setSingleOrMultiOpt cells "prefix"
             (Suffix, MultiSuffix) |> DynObj.setSingleOrMultiOpt cells "suffix"
-            ++? ("values", Values )
 
 
-            cells)
+            cells
+            ++? ("values", Values ))
 
 type TableHeader = TableCells

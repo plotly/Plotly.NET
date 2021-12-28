@@ -658,8 +658,8 @@ type Chart =
             ch
             |> GenericChart.mapTrace
                 (fun t ->
-                    ++ ("colorbar", colorbar )
-                    t))
+                    t
+                    ++ ("colorbar", colorbar )))
 
 
     [<CompiledName("withColorbar")>]

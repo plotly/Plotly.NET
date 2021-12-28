@@ -93,12 +93,12 @@ module ChartTemplates =
         |> Template.mapLayoutTemplate
             (fun l ->
                 l.TryGetTypedValue<LinearAxis>("xaxis")
-                ++? ("xaxis", |> Option.map (LinearAxis.style (Mirror = StyleParam.Mirror.AllTicks)))
 
-                l.TryGetTypedValue<LinearAxis>("yaxis")
-                ++? ("yaxis", |> Option.map (LinearAxis.style (Mirror = StyleParam.Mirror.AllTicks)))
+                l
+                ++? ("xaxis", |> Option.map (LinearAxis.style (Mirror = StyleParam.Mirror.AllTicks))).TryGetTypedValue<LinearAxis>("yaxis")
 
-                l)
+                l
+                ++? ("yaxis", |> Option.map (LinearAxis.style (Mirror = StyleParam.Mirror.AllTicks))))
 
     let fslab =
 

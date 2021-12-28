@@ -24,10 +24,10 @@ type IndicatorSymbol() =
         ) =
         (fun (indicatorDirection: IndicatorSymbol) ->
 
-            ++? ("color", Color )
-            ++? ("symbol", Symbol )
+            indicatorDirection
 
-            indicatorDirection)
+            ++? ("color", Color )
+            ++? ("symbol", Symbol ))
 
 type IndicatorDelta() =
     inherit DynamicObj()
@@ -65,15 +65,15 @@ type IndicatorDelta() =
         ) =
         (fun (indicatorDelta: IndicatorDelta) ->
 
+            indicatorDelta
+
             ++? ("decreasing", Decreasing )
             ++? ("font", Font )
             ++? ("increasing", Increasing )
             ++?? ("position", Position , StyleParam.IndicatorDeltaPosition.convert)
             ++? ("reference", Reference )
             ++? ("relative", Relative )
-            ++? ("valueformat", ValueFormat )
-
-            indicatorDelta)
+            ++? ("valueformat", ValueFormat ))
 
 type IndicatorNumber() =
     inherit DynamicObj()
@@ -97,12 +97,12 @@ type IndicatorNumber() =
         ) =
         (fun (indicatorNumber: IndicatorNumber) ->
 
+            indicatorNumber
+
             ++? ("font", Font )
             ++? ("prefix", Prefix )
             ++? ("suffix", Suffix )
-            ++? ("valueformat", ValueFormat )
-
-            indicatorNumber)
+            ++? ("valueformat", ValueFormat ))
 
 
 type IndicatorBar() =
@@ -124,11 +124,11 @@ type IndicatorBar() =
         ) =
         (fun (indicatorBar: IndicatorBar) ->
 
+            indicatorBar
+
             ++? ("color", Color )
             ++? ("line", Line )
-            ++? ("thickness", Thickness )
-
-            indicatorBar)
+            ++? ("thickness", Thickness ))
 
 type IndicatorStep() =
     inherit DynamicObj()
@@ -163,14 +163,14 @@ type IndicatorStep() =
         ) =
         (fun (indicatorSteps: IndicatorStep) ->
 
+            indicatorSteps
+
             ++? ("color", Color )
             ++? ("line", Line )
             ++? ("name", Name )
             ++?? ("range", Range , StyleParam.Range.convert)
             ++? ("templateitemname", TemplateItemName )
-            ++? ("thickness", Thickness )
-
-            indicatorSteps)
+            ++? ("thickness", Thickness ))
 
 
 type IndicatorThreshold() =
@@ -192,11 +192,11 @@ type IndicatorThreshold() =
         ) =
         (fun (indicatorThreshold: IndicatorThreshold) ->
 
+            indicatorThreshold
+
             ++? ("line", Line )
             ++? ("thickness", Thickness )
-            ++? ("value", Value )
-
-            indicatorThreshold)
+            ++? ("value", Value ))
 
 
 type IndicatorGauge() =
@@ -238,6 +238,8 @@ type IndicatorGauge() =
         ) =
         (fun (indicatorGauge: IndicatorGauge) ->
 
+            indicatorGauge
+
             ++? ("axis", Axis )
             ++? ("bar", Bar )
             ++? ("bgcolor", BGColor )
@@ -245,6 +247,4 @@ type IndicatorGauge() =
             ++? ("borderwidth", BorderWidth )
             ++?? ("shape", Shape , StyleParam.IndicatorGaugeShape.convert)
             ++? ("steps", Steps )
-            ++? ("threshold", Threshold )
-
-            indicatorGauge)
+            ++? ("threshold", Threshold ))

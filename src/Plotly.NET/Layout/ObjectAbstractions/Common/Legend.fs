@@ -69,6 +69,8 @@ type Legend() =
             [<Optional; DefaultParameterValue(null)>] ?Title: string
         ) =
         (fun (legend: Legend) ->
+
+            legend
             ++? ("bgcolor", BGColor )
             ++? ("bordercolor", BorderColor )
             ++? ("borderwidth", Borderwidth )
@@ -85,6 +87,4 @@ type Legend() =
             ++?? ("itemdoubleclick", ItemDoubleClick , StyleParam.TraceItemClickOptions.convert)
             ++?? ("yanchor", XAnchor , StyleParam.XAnchorPosition.convert)
             ++?? ("yanchor", YAnchor , StyleParam.YAnchorPosition.convert)
-            ++?? ("valign", VerticalAlign , StyleParam.VerticalAlign.convert)
-
-            legend)
+            ++?? ("valign", VerticalAlign , StyleParam.VerticalAlign.convert))

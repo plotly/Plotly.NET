@@ -56,11 +56,11 @@ type Ternary() =
         ) =
         (fun (ternary: Ternary) ->
 
+            ternary
+
             ++? ("aaxis", AAxis )
             ++? ("baxis", BAxis )
             ++? ("caxis", CAxis )
             ++? ("domain", Domain )
             ++? ("sum", Sum )
-            ++? ("bgcolor", BGColor )
-
-            ternary)
+            ++? ("bgcolor", BGColor ))

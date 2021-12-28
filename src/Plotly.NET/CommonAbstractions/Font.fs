@@ -27,8 +27,8 @@ type Font() =
         ) =
         (fun (font: Font) ->
 
+            font
+
             ++?? ("family", Family , StyleParam.FontFamily.toString)
             ++? ("size", Size )
-            ++? ("color", Color )
-
-            font)
+            ++? ("color", Color ))

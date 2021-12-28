@@ -36,8 +36,8 @@ type WaterfallConnector() =
         ) =
         (fun (connector: WaterfallConnector) ->
 
+            connector
+
             ++? ("line", Line )
             ++? ("visible", Visible )
-            ++?? ("mode", ConnectorMode , StyleParam.ConnectorMode.convert)
-
-            connector)
+            ++?? ("mode", ConnectorMode , StyleParam.ConnectorMode.convert))

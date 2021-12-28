@@ -141,6 +141,8 @@ type Slider() =
             ?YAnchor: StyleParam.YAnchorPosition
         ) =
         (fun (slider: Slider) ->
+
+            slider
             ++? ("active", Active )
             ++? ("activebgcolor", ActiveBgColor )
             ++? ("bgcolor", BgColor )
@@ -163,6 +165,4 @@ type Slider() =
             ++? ("x", X )
             ++?? ("xanchor", XAnchor , StyleParam.XAnchorPosition.convert)
             ++? ("y", Y )
-            ++?? ("yanchor", YAnchor , StyleParam.YAnchorPosition.convert)
-
-            slider)
+            ++?? ("yanchor", YAnchor , StyleParam.YAnchorPosition.convert))

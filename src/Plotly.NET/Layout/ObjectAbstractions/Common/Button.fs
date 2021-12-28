@@ -42,12 +42,12 @@ type Button() =
         ) =
         (fun (button: Button) ->
 
+            button
+
             ++? ("visible", Visible )
             ++?? ("step", Step , StyleParam.TimeStep.convert)
             ++?? ("stepmode", StepMode , StyleParam.TimeStepMode.convert)
             ++? ("count", Count )
             ++? ("label", Label )
             ++? ("name", Name )
-            ++? ("templateitemname", TemplateItemName )
-
-            button)
+            ++? ("templateitemname", TemplateItemName ))

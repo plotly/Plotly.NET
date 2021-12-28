@@ -79,6 +79,7 @@ type SliderStep() =
             // object, but this is that way the Plotly works
             let argsAsDictionaries =
                 Args |> Option.map (fun args -> args |> Seq.map (fun arg -> [ arg ] |> dict))
+            step
 
             ++? ("args", argsAsDictionaries )
             ++? ("execute", Execute )
@@ -87,5 +88,4 @@ type SliderStep() =
             ++? ("name", Name )
             ++? ("templateitemname", TemplateItemName )
             ++? ("value", Value )
-            ++? ("visible", Visible )
-            step)
+            ++? ("visible", Visible ))

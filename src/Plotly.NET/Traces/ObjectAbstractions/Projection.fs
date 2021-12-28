@@ -27,11 +27,11 @@ type ProjectionDimension() =
 
         fun (projectionDimension: ProjectionDimension) ->
 
+            projectionDimension
+
             ++? ("opacity", Opacity )
             ++? ("scale", Scale )
             ++? ("show", Show )
-
-            projectionDimension
 
 type Projection() =
     inherit DynamicObj()
@@ -53,8 +53,8 @@ type Projection() =
 
         fun (projection: Projection) ->
 
+            projection
+
             ++? ("x", X )
             ++? ("y", Y )
             ++? ("z", Z )
-
-            projection

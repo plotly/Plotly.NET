@@ -66,6 +66,8 @@ type LayoutImage() =
         ) =
         (fun (layoutImage: LayoutImage) ->
 
+            layoutImage
+
             ++?? ("layer", Layer , StyleParam.Layer.convert)
             ++? ("name", Name )
             ++? ("opacity", Opacity )
@@ -80,6 +82,4 @@ type LayoutImage() =
             ++? ("xref", XRef )
             ++? ("y", Y )
             ++?? ("yanchor", YAnchor , StyleParam.YAnchorPosition.convert)
-            ++? ("yref", YRef )
-
-            layoutImage)
+            ++? ("yref", YRef ))

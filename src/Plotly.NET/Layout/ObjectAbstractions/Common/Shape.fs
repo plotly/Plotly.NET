@@ -58,6 +58,8 @@ type Shape() =
             [<Optional; DefaultParameterValue(null)>] ?Yref: string
         ) =
         (fun (shape: Shape) ->
+            // out ->
+            shape
 
 
             ++?? ("type", ShapeType , StyleParam.ShapeType.toString)
@@ -71,6 +73,4 @@ type Shape() =
             ++? ("opacity", Opacity )
             ++? ("line", Line )
             ++? ("fillcolor", Fillcolor )
-            ++?? ("layer", Layer , StyleParam.Layer.toString)
-            // out ->
-            shape)
+            ++?? ("layer", Layer , StyleParam.Layer.toString))

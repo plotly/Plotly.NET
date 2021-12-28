@@ -36,9 +36,9 @@ type TracePolarStyle() =
     static member SetPolar([<Optional; DefaultParameterValue(null)>] ?PolarId: StyleParam.SubPlotId) =
         (fun (trace: TracePolar) ->
 
-            ++?? ("subplot", PolarId , StyleParam.SubPlotId.toString)
+            trace
 
-            trace)
+            ++?? ("subplot", PolarId , StyleParam.SubPlotId.toString))
 
     /// <summary>
     /// Create a function that applies the styles of a polar scatter plot to a Trace object
@@ -159,6 +159,8 @@ type TracePolarStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
+
+            trace
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++?? ("subplot", Subplot , StyleParam.SubPlotId.convert)
@@ -174,9 +176,7 @@ type TracePolarStyle() =
             ++? ("fillcolor", FillColor )
             ++? ("hoverlabel", HoverLabel )
             ++? ("hoveron", HoverOn )
-            ++? ("uirevision", UIRevision )
-
-            trace)
+            ++? ("uirevision", UIRevision ))
 
     /// <summary>
     /// Create a function that applies the styles of a polar bar plot to a Trace object
@@ -280,6 +280,8 @@ type TracePolarStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
+
+            trace
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++?? ("subplot", Subplot , StyleParam.SubPlotId.convert)
@@ -288,6 +290,4 @@ type TracePolarStyle() =
             ++? ("selected", Selected )
             ++? ("unselected", Unselected )
             ++? ("hoverlabel", HoverLabel )
-            ++? ("uirevision", UIRevision )
-
-            trace)
+            ++? ("uirevision", UIRevision ))

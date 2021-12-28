@@ -26,8 +26,8 @@ type AspectRatio() =
 
         fun (aspectRatio: AspectRatio) ->
 
+            aspectRatio
+
             ++? ("x", X )
             ++? ("y", Y )
             ++? ("z", Z )
-
-            aspectRatio

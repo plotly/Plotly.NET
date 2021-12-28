@@ -71,6 +71,8 @@ type Polar() =
         ) =
         (fun (polar: Polar) ->
 
+            polar
+
             ++? ("domain", Domain )
             ++?? ("sector", Sector , (fun (a, b) -> [| a; b |]))
             ++? ("hole", Hole )
@@ -80,6 +82,4 @@ type Polar() =
             ++?? ("gridshape", GridShape , StyleParam.PolarGridShape.convert)
             ++? ("uirevision", UIRevision )
             ++?? ("barmode", BarMode , StyleParam.BarMode.convert)
-            ++? ("bargap", BarGap )
-
-            polar)
+            ++? ("bargap", BarGap ))

@@ -148,6 +148,8 @@ type Annotation() =
         ) =
         (fun (ann: Annotation) ->
 
+            ann
+
             ++? ("x", X )
             ++? ("y", Y )
             ++?? ("align", Align , StyleParam.AnnotationAlignment.convert)
@@ -189,6 +191,4 @@ type Annotation() =
             ++?? ("yanchor", YAnchor , StyleParam.YAnchorPosition.convert)
             ++? ("yclick", YClick )
             ++? ("yref", YRef )
-            ++? ("yshift", YShift )
-
-            ann)
+            ++? ("yshift", YShift ))

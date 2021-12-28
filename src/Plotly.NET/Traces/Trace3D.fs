@@ -52,9 +52,9 @@ type Trace3DStyle() =
     static member SetScene([<Optional; DefaultParameterValue(null)>] ?SceneId: StyleParam.SubPlotId) =
         (fun (trace: Trace3D) ->
 
-            ++?? ("scene", SceneId , StyleParam.SubPlotId.toString)
+            trace
 
-            trace)
+            ++?? ("scene", SceneId , StyleParam.SubPlotId.toString))
 
     /// <summary>
     /// Create a function that applies the styles of a 3D scatter plot to a Trace object
@@ -175,6 +175,8 @@ type Trace3DStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt scatter "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt scatter "hovertemplate"
+
+            scatter
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
             ++? ("zhoverformat", ZHoverFormat )
@@ -194,9 +196,7 @@ type Trace3DStyle() =
             ++?? ("xcalendar", XCalendar , StyleParam.Calendar.convert)
             ++?? ("ycalendar", YCalendar , StyleParam.Calendar.convert)
             ++?? ("zcalendar", ZCalendar , StyleParam.Calendar.convert)
-            ++? ("uirevision", UIRevision )
-
-            scatter)
+            ++? ("uirevision", UIRevision ))
 
 
 
@@ -316,6 +316,8 @@ type Trace3DStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt surface "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt surface "hovertemplate"
+
+            surface
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
             ++? ("zhoverformat", ZHoverFormat )
@@ -342,9 +344,7 @@ type Trace3DStyle() =
             ++?? ("xcalendar", XCalendar , StyleParam.Calendar.convert)
             ++?? ("ycalendar", YCalendar , StyleParam.Calendar.convert)
             ++?? ("zcalendar", ZCalendar , StyleParam.Calendar.convert)
-            ++? ("uirevision", UIRevision )
-
-            surface)
+            ++? ("uirevision", UIRevision ))
 
 
     /// <summary>
@@ -484,6 +484,8 @@ type Trace3DStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt mesh3d "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt mesh3d "hovertemplate"
+
+            mesh3d
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
             ++? ("zhoverformat", ZHoverFormat )
@@ -512,8 +514,6 @@ type Trace3DStyle() =
             ++?? ("ycalendar", YCalendar , StyleParam.Calendar.convert)
             ++?? ("zcalendar", ZCalendar , StyleParam.Calendar.convert)
             ++? ("uirevision", UIRevision )
-
-            mesh3d
 
 
     /// <summary>
@@ -635,6 +635,8 @@ type Trace3DStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt cone "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt cone "hovertemplate"
+
+            cone
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
             ++? ("zhoverformat", ZHoverFormat )
@@ -660,9 +662,7 @@ type Trace3DStyle() =
             ++? ("lightposition", LightPosition )
             ++?? ("sizemode", SizeMode , StyleParam.ConeSizeMode.convert)
             ++? ("sizeref", SizeRef )
-            ++? ("uirevision", UIRevision )
-
-            cone)
+            ++? ("uirevision", UIRevision ))
 
     /// <summary>
     /// Create a function that applies the styles of a streamtube chart to the given trace
@@ -783,6 +783,8 @@ type Trace3DStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt streamTube "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt streamTube "hovertemplate"
+
+            streamTube
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
             ++? ("zhoverformat", ZHoverFormat )
@@ -808,9 +810,7 @@ type Trace3DStyle() =
             ++? ("maxdisplayed", MaxDisplayed )
             ++? ("sizeref", SizeRef )
             ++? ("starts", Starts )
-            ++? ("uirevision", UIRevision )
-
-            streamTube)
+            ++? ("uirevision", UIRevision ))
 
     /// <summary>
     /// Create a function that applies the styles of a volume chart to the given trace
@@ -934,6 +934,8 @@ type Trace3DStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt volume "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt volume "hovertemplate"
+
+            volume
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
             ++? ("zhoverformat", ZHoverFormat )
@@ -964,8 +966,6 @@ type Trace3DStyle() =
             ++? ("spaceframe", SpaceFrame )
             ++? ("surface", Surface )
             ++? ("uirevision", UIRevision )
-
-            volume
 
     /// <summary>
     /// Create a function that applies the styles of a isosurface chart to the given trace
@@ -1089,6 +1089,8 @@ type Trace3DStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt isoSurface "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt isoSurface "hovertemplate"
+
+            isoSurface
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
             ++? ("zhoverformat", ZHoverFormat )
@@ -1119,5 +1121,3 @@ type Trace3DStyle() =
             ++? ("spaceframe", SpaceFrame )
             ++? ("surface", Surface )
             ++? ("uirevision", UIRevision )
-
-            isoSurface

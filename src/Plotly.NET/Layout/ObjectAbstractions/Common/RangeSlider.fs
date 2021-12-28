@@ -50,21 +50,21 @@ type RangeSlider() =
             [<Optional; DefaultParameterValue(null)>] ?YAxisRange: StyleParam.Range
         ) =
         fun (rangeslider: RangeSlider) ->
+
+            let
             ++? ("bgcolor", BgColor )
             ++? ("bordercolor", BorderColor )
             ++? ("borderwidth", BorderWidth )
             ++? ("autorange", AutoRange )
             ++?? ("range", Range , StyleParam.Range.convert)
             ++? ("thickness", Thickness )
-            ++? ("visible", Visible )
-
-            let yAxis =
+            ++? ("visible", Visible ) yAxis =
                 let tmp = DynamicObj()
+                tmp
                 ++?? ("rangemode", YAxisRangeMode , StyleParam.RangesliderRangeMode.convert)
                 ++?? ("range", YAxisRange , StyleParam.Range.convert)
-                tmp
-
-            ++ ("yaxis", yAxis )
 
 
             rangeslider
+
+            ++ ("yaxis", yAxis )

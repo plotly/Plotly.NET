@@ -41,9 +41,9 @@ type TraceGeoStyle() =
     static member SetGeo([<Optional; DefaultParameterValue(null)>] ?GeoId: StyleParam.SubPlotId) =
         (fun (trace: TraceGeo) ->
 
-            ++?? ("geo", GeoId , StyleParam.SubPlotId.toString)
+            trace
 
-            trace)
+            ++?? ("geo", GeoId , StyleParam.SubPlotId.toString))
 
     /// <summary>
     /// Creates a function that applies the styles of a choropleth map to a Trace object
@@ -144,6 +144,8 @@ type TraceGeoStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
+
+            trace
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++?? ("geo", Geo , StyleParam.SubPlotId.convert)
@@ -163,9 +165,7 @@ type TraceGeoStyle() =
             ++? ("unselected", Unselected )
             ++? ("hoverlabel", HoverLabel )
             ++?? ("locationmode", LocationMode , StyleParam.LocationFormat.convert)
-            ++? ("uirevision", UIRevision )
-
-            trace)
+            ++? ("uirevision", UIRevision ))
 
     /// <summary>
     /// Creates a function that applies the styles of a scattergeo plot to a Trace object
@@ -278,6 +278,8 @@ type TraceGeoStyle() =
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
+
+            trace
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++?? ("geo", Geo , StyleParam.SubPlotId.convert)
@@ -293,7 +295,5 @@ type TraceGeoStyle() =
             ++? ("hoverlabel", HoverLabel )
             ++?? ("locationmode", LocationMode , StyleParam.LocationFormat.convert)
             ++? ("uirevision", UIRevision )
-
-            trace
 
             )

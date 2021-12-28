@@ -94,6 +94,8 @@ type LayoutGrid() =
                         (fun (x, y) -> $"{StyleParam.LinearAxisId.toString x}{StyleParam.LinearAxisId.toString y}")
                 ))
 
+            layoutGrid
+
             ++?? ("xaxes", XAxes , (Array.map StyleParam.LinearAxisId.toString))
             ++?? ("yaxes", YAxes , (Array.map StyleParam.LinearAxisId.toString))
             ++? ("rows", Rows )
@@ -104,6 +106,4 @@ type LayoutGrid() =
             ++? ("ygap", YGap )
             ++? ("domain", Domain )
             ++?? ("xside", XSide , StyleParam.LayoutGridXSide.toString)
-            ++?? ("yside", YSide , StyleParam.LayoutGridYSide.toString)
-
-            layoutGrid)
+            ++?? ("yside", YSide , StyleParam.LayoutGridYSide.toString))

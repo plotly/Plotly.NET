@@ -226,6 +226,7 @@ type Layout() =
             [<Optional; DefaultParameterValue(null)>] ?UpdateMenus: seq<UpdateMenu>
         ) =
         (fun (layout: Layout) ->
+            ExtendFunnelAreaColors
 
             ++? ("title", Title )
             ++? ("showlegend", ShowLegend )
@@ -281,8 +282,9 @@ type Layout() =
             ++?? ("waterfallmode", WaterfallMode , StyleParam.WaterfallMode.convert)
             ++? ("funnelgap", FunnelGap )
             ++? ("funnelgroupgap", FunnelGroupGap )
-            ++?? ("funnelmode", FunnelMode , StyleParam.FunnelMode.convert)
-            ExtendFunnelAreaColors |> DynObj.setValueOpt layout "extendfunnelareacolors "
+            ++?? ("funnelmode", FunnelMode , StyleParam.FunnelMode.convert) |> DynObj.setValueOpt layout "extendfunnelareacolors "
+
+            layout
             ++? ("funnelareacolorway", FunnelAreaColorWay )
             ++? ("extendsunburstcolors", ExtendSunBurstColors )
             ++? ("sunburstcolorway", SunBurstColorWay )
@@ -294,9 +296,7 @@ type Layout() =
             ++? ("shapes", Shapes )
             ++? ("images", Images )
             ++? ("sliders", Sliders )
-            ++? ("updatemenus", UpdateMenus )
-
-            layout)
+            ++? ("updatemenus", UpdateMenus ))
 
 
     static member AddLinearAxis(id: StyleParam.SubPlotId, axis: LinearAxis) =
@@ -305,8 +305,8 @@ type Layout() =
             match id with
             | StyleParam.SubPlotId.XAxis _
             | StyleParam.SubPlotId.YAxis _ ->
-                ++ ((StyleParam.SubPlotId.toString id), axis )
                 layout
+                ++ ((StyleParam.SubPlotId.toString id), axis )
 
             | _ ->
                 failwith
@@ -325,17 +325,17 @@ type Layout() =
                     | Some a -> DynObj.combine (unbox a) axis
                     | None -> axis :> DynamicObj
 
-                ++ ((StyleParam.SubPlotId.toString id), axis' )
-
                 layout
+
+                ++ ((StyleParam.SubPlotId.toString id), axis' )
             | _ ->
                 failwith
                     $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting a linear axis on layout")
 
     static member addScene(id: StyleParam.SubPlotId, scene: Scene) =
         (fun (layout: Layout) ->
-            ++ ((StyleParam.SubPlotId.toString id), scene )
-            layout)
+            layout
+            ++ ((StyleParam.SubPlotId.toString id), scene ))
 
     static member updateSceneById(id: StyleParam.SubPlotId, scene: Scene) =
         (fun (layout: Layout) ->
@@ -343,9 +343,9 @@ type Layout() =
                 match layout.TryGetValue(StyleParam.SubPlotId.toString id) with
                 | Some a -> DynObj.combine (unbox a) scene
                 | None -> scene :> DynamicObj
+            layout
 
-            ++ ((StyleParam.SubPlotId.toString id), scene' )
-            layout)
+            ++ ((StyleParam.SubPlotId.toString id), scene' ))
 
     static member tryGetSceneById(id: StyleParam.SubPlotId) =
         (fun (layout: Layout) -> layout.TryGetTypedValue<Scene>(StyleParam.SubPlotId.toString id))
@@ -353,9 +353,9 @@ type Layout() =
     static member AddGeo(id: StyleParam.SubPlotId, geo: Geo) =
         (fun (layout: Layout) ->
 
-            ++ ((StyleParam.SubPlotId.toString id), geo )
+            layout
 
-            layout)
+            ++ ((StyleParam.SubPlotId.toString id), geo ))
 
     // Updates the style of current geo map with given Id
     static member UpdateGeoById(id: StyleParam.SubPlotId, geo: Geo) =
@@ -364,16 +364,16 @@ type Layout() =
                 match layout.TryGetValue(StyleParam.SubPlotId.toString id) with
                 | Some a -> DynObj.combine (unbox a) geo
                 | None -> geo :> DynamicObj
+            layout
 
-            ++ ((StyleParam.SubPlotId.toString id), geo' )
-            layout)
+            ++ ((StyleParam.SubPlotId.toString id), geo' ))
 
     static member AddMapbox(id: StyleParam.SubPlotId, mapbox: Mapbox) =
         (fun (layout: Layout) ->
 
-            ++ ((StyleParam.SubPlotId.toString id), mapbox )
+            layout
 
-            layout)
+            ++ ((StyleParam.SubPlotId.toString id), mapbox ))
 
     // Updates the style of current geo map with given Id
     static member UpdateMapboxById(id: StyleParam.SubPlotId, mapbox: Mapbox) =
@@ -382,9 +382,9 @@ type Layout() =
                 match layout.TryGetValue(StyleParam.SubPlotId.toString id) with
                 | Some a -> DynObj.combine (unbox a) mapbox
                 | None -> mapbox :> DynamicObj
+            layout
 
-            ++ ((StyleParam.SubPlotId.toString id), mapbox' )
-            layout)
+            ++ ((StyleParam.SubPlotId.toString id), mapbox' ))
 
     static member tryGetPolarById(id: StyleParam.SubPlotId) =
         (fun (layout: Layout) -> layout.TryGetTypedValue<Polar>(StyleParam.SubPlotId.toString id))
@@ -399,9 +399,9 @@ type Layout() =
                 | Some a -> DynObj.combine (unbox a) polar
                 | None -> polar :> DynamicObj
 
-            ++ ((StyleParam.SubPlotId.toString id), polar' )
+            layout
 
-            layout)
+            ++ ((StyleParam.SubPlotId.toString id), polar' ))
 
     static member tryGetColorAxisById(id: StyleParam.SubPlotId) =
         (fun (layout: Layout) -> layout.TryGetTypedValue<ColorAxis>(StyleParam.SubPlotId.toString id))
@@ -416,9 +416,9 @@ type Layout() =
                 | Some a -> DynObj.combine (unbox a) colorAxis
                 | None -> colorAxis :> DynamicObj
 
-            ++ ((StyleParam.SubPlotId.toString id), colorAxis' )
+            layout
 
-            layout)
+            ++ ((StyleParam.SubPlotId.toString id), colorAxis' ))
 
     static member tryGetTernaryById(id: StyleParam.SubPlotId) =
         (fun (layout: Layout) -> layout.TryGetTypedValue<Ternary>(StyleParam.SubPlotId.toString id))
@@ -433,21 +433,21 @@ type Layout() =
                 | Some a -> DynObj.combine (unbox a) ternary
                 | None -> ternary :> DynamicObj
 
-            ++ ((StyleParam.SubPlotId.toString id), ternary' )
+            layout
 
-            layout)
+            ++ ((StyleParam.SubPlotId.toString id), ternary' ))
 
     static member SetLayoutGrid(grid: LayoutGrid) =
         (fun (layout: Layout) ->
-            ++ ("grid", grid )
-            layout)
+            layout
+            ++ ("grid", grid ))
 
     static member GetLayoutGrid(grid: LayoutGrid) =
         (fun (layout: Layout) ->
-            ++ ("grid", grid )
-            layout)
+            layout
+            ++ ("grid", grid ))
 
     static member setLegend(legend: Legend) =
         (fun (layout: Layout) ->
-            ++ ("legend", legend )
-            layout)
+            layout
+            ++ ("legend", legend ))

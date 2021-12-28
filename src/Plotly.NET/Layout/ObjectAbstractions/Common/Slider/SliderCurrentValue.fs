@@ -49,11 +49,11 @@ type SliderCurrentValue() =
 
             if autoValueIsProvided then
                 printf "The value '%s' is not supported by CurrentValue" (StyleParam.XAnchorPosition.Auto |> string)
+            currentValue
 
             ++? ("font", Font )
             ++? ("offset", Offset )
             ++? ("prefix", Prefix )
             ++? ("suffix", Suffix )
             ++? ("visible", Visible )
-            ++?? ("xanchor", XAnchor , StyleParam.XAnchorPosition.convert)
-            currentValue)
+            ++?? ("xanchor", XAnchor , StyleParam.XAnchorPosition.convert))

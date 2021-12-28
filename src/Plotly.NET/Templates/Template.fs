@@ -42,27 +42,27 @@ type Template() =
                     let tmp = DynamicObj()
 
                     traceTemplates
-                    ++ (id)), |> Option.iter (Seq.iter (fun (id, traceTemplate) -> traceTemplate )
 
                     tmp
+                    ++ (id)), |> Option.iter (Seq.iter (fun (id, traceTemplate) -> traceTemplate )
+
+            template
 
 
             ++ ("layout", layoutTemplate )
-            ++ ("data", traceTemplates )
-
-            template)
+            ++ ("data", traceTemplates ))
 
     static member mapLayoutTemplate (styleF: Layout -> Layout) (template: Template) =
-        ++? ("layout", template.TryGetTypedValue<Layout>("layout") |> Option.map (styleF) )
         template
+        ++? ("layout", template.TryGetTypedValue<Layout>("layout") |> Option.map (styleF) )
 
     static member mapTraceTemplates (styleF: #Trace [] -> #Trace []) (template: Template) =
-        ++? ("data", template.TryGetTypedValue<#Trace []>("data") |> Option.map (styleF) )
         template
+        ++? ("data", template.TryGetTypedValue<#Trace []>("data") |> Option.map (styleF) )
 
     static member withColorWay (colorway: Color) (template: Template) =
         template
         |> Template.mapLayoutTemplate
             (fun l ->
-                ++ ("colorway", colorway )
-                l)
+                l
+                ++ ("colorway", colorway ))

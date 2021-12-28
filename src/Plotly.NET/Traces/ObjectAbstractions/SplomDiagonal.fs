@@ -16,6 +16,6 @@ type SplomDiagonal() =
 
         fun (splomDiagonal: SplomDiagonal) ->
 
-            ++? ("visible", Visible )
-
             splomDiagonal
+
+            ++? ("visible", Visible )

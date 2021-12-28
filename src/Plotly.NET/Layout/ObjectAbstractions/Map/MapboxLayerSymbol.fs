@@ -44,6 +44,9 @@ type MapboxLayerSymbol() =
         ) =
         (fun (mapBoxLayerSymbol: MapboxLayerSymbol) ->
 
+
+            mapBoxLayerSymbol
+
             ++? ("icon", Icon )
             ++? ("iconsize", IconSize )
             ++? ("text", Text )
@@ -51,7 +54,4 @@ type MapboxLayerSymbol() =
             ++?? ("placement", Placement, StyleParam.MapboxLayerSymbolPlacement.convert)
 
             ++? ("textfont", TextFont )
-            ++?? ("textposition", TextPosition , StyleParam.TextPosition.convert)
-
-
-            mapBoxLayerSymbol)
+            ++?? ("textposition", TextPosition , StyleParam.TextPosition.convert))

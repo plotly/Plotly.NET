@@ -124,6 +124,8 @@ type Marker() =
             ++? ("pattern", Pattern )
             (Symbol, MultiSymbol) |> DynObj.setSingleOrMultiOptBy marker "symbol" StyleParam.MarkerSymbol.convert
             (Symbol3D, MultiSymbol3D) |> DynObj.setSingleOrMultiOptBy marker "symbol" StyleParam.MarkerSymbol3D.convert
+
+            marker
             ++? ("outliercolor", OutlierColor )
             ++? ("outlierwidth", OutlierWidth )
             ++? ("maxdisplayed", Maxdisplayed )
@@ -131,6 +133,4 @@ type Marker() =
             ++? ("showscale", ShowScale )
             ++? ("sizemin", SizeMin )
             ++? ("sizemode", SizeMode )
-            ++? ("sizeref", SizeRef )
-
-            marker)
+            ++? ("sizeref", SizeRef ))

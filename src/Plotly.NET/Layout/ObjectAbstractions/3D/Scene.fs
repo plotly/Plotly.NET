@@ -88,6 +88,8 @@ type Scene() =
         ) =
         (fun (scene: Scene) ->
 
+            scene
+
             ++? ("annotations", Annotations )
             ++?? ("aspectmode", AspectMode , StyleParam.AspectMode.convert)
             ++? ("aspectratio", AspectRatio )
@@ -99,6 +101,4 @@ type Scene() =
             ++? ("uirevision", UIRevision )
             ++? ("xaxis", XAxis )
             ++? ("yaxis", YAxis )
-            ++? ("zaxis", ZAxis )
-
-            scene)
+            ++? ("zaxis", ZAxis ))

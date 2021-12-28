@@ -17,9 +17,9 @@ type SunburstRoot() =
     static member style([<Optional; DefaultParameterValue(null)>] ?Color: Color) =
         (fun (root: SunburstRoot) ->
 
-            ++? ("color", Color )
+            root
 
-            root)
+            ++? ("color", Color ))
 
 type SunburstLeaf() =
     inherit DynamicObj()
@@ -31,6 +31,6 @@ type SunburstLeaf() =
     static member style([<Optional; DefaultParameterValue(null)>] ?Opacity: float) =
         (fun (leaf: SunburstLeaf) ->
 
-            ++? ("opacity", Opacity )
+            leaf
 
-            leaf)
+            ++? ("opacity", Opacity ))
