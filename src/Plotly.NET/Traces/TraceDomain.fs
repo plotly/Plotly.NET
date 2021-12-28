@@ -10,6 +10,7 @@ open System.Runtime.InteropServices
 type TraceDomain(traceTypeName) =
 
     inherit Trace(traceTypeName)
+    new() = TraceDomain(null)
 
     ///initializes a trace of type "pie" applying the given trace styling function
     static member initPie(applyStyle: TraceDomain -> TraceDomain) = TraceDomain("pie") |> applyStyle

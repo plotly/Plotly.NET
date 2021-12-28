@@ -41,6 +41,7 @@ open System.Runtime.InteropServices
 type Trace2D(traceTypeName) =
 
     inherit Trace(traceTypeName)
+    new() = Trace2D(null)
 
     ///initializes a trace of type "scatter" applying the given trace styling function
     static member initScatter(applyStyle: Trace2D -> Trace2D) = Trace2D("scatter") |> applyStyle

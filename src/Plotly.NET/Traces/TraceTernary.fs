@@ -10,6 +10,7 @@ open System.Runtime.InteropServices
 type TraceTernary(traceTypeName) =
 
     inherit Trace(traceTypeName)
+    new() = TraceTernary(null)
 
     ///initializes a trace of type "scatterternary" applying the given trace styling function
     static member initScatterTernary(applyStyle: TraceTernary -> TraceTernary) =

@@ -19,6 +19,7 @@ open System.Runtime.InteropServices
 type TracePolar(traceTypeName) =
 
     inherit Trace(traceTypeName)
+    new() = TracePolar(null)
 
     ///initializes a trace of type "scatterpolar" applying the given trace styling function
     static member initScatterPolar(applyStyle: TracePolar -> TracePolar) =

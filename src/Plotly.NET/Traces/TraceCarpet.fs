@@ -10,6 +10,7 @@ open System.Runtime.InteropServices
 type TraceCarpet(traceTypeName) =
 
     inherit Trace(traceTypeName)
+    new() = TraceCarpet(null)
 
     ///initializes a trace of type "carpet" applying the given trace styling function
     static member initCarpet(applyStyle: TraceCarpet -> TraceCarpet) = TraceCarpet("carpet") |> applyStyle

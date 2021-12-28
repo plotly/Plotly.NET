@@ -30,6 +30,7 @@ open System.Runtime.InteropServices
 type TraceGeo(traceTypeName) =
 
     inherit Trace(traceTypeName)
+    new() = TraceGeo(null)
 
     ///initializes a trace of type "scattergeo" applying the given trace styling function
     static member initScatterGeo(applyStyle: TraceGeo -> TraceGeo) = TraceGeo("scattergeo") |> applyStyle
