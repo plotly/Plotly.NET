@@ -305,7 +305,7 @@ type Layout() =
             match id with
             | StyleParam.SubPlotId.XAxis _
             | StyleParam.SubPlotId.YAxis _ ->
-                axis |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+                ++ ((StyleParam.SubPlotId.toString id), axis )
                 layout
 
             | _ ->
@@ -325,7 +325,7 @@ type Layout() =
                     | Some a -> DynObj.combine (unbox a) axis
                     | None -> axis :> DynamicObj
 
-                axis' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+                ++ ((StyleParam.SubPlotId.toString id), axis' )
 
                 layout
             | _ ->
@@ -334,7 +334,7 @@ type Layout() =
 
     static member addScene(id: StyleParam.SubPlotId, scene: Scene) =
         (fun (layout: Layout) ->
-            scene |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+            ++ ((StyleParam.SubPlotId.toString id), scene )
             layout)
 
     static member updateSceneById(id: StyleParam.SubPlotId, scene: Scene) =
@@ -344,7 +344,7 @@ type Layout() =
                 | Some a -> DynObj.combine (unbox a) scene
                 | None -> scene :> DynamicObj
 
-            scene' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+            ++ ((StyleParam.SubPlotId.toString id), scene' )
             layout)
 
     static member tryGetSceneById(id: StyleParam.SubPlotId) =
@@ -353,7 +353,7 @@ type Layout() =
     static member AddGeo(id: StyleParam.SubPlotId, geo: Geo) =
         (fun (layout: Layout) ->
 
-            geo |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+            ++ ((StyleParam.SubPlotId.toString id), geo )
 
             layout)
 
@@ -365,13 +365,13 @@ type Layout() =
                 | Some a -> DynObj.combine (unbox a) geo
                 | None -> geo :> DynamicObj
 
-            geo' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+            ++ ((StyleParam.SubPlotId.toString id), geo' )
             layout)
 
     static member AddMapbox(id: StyleParam.SubPlotId, mapbox: Mapbox) =
         (fun (layout: Layout) ->
 
-            mapbox |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+            ++ ((StyleParam.SubPlotId.toString id), mapbox )
 
             layout)
 
@@ -383,7 +383,7 @@ type Layout() =
                 | Some a -> DynObj.combine (unbox a) mapbox
                 | None -> mapbox :> DynamicObj
 
-            mapbox' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+            ++ ((StyleParam.SubPlotId.toString id), mapbox' )
             layout)
 
     static member tryGetPolarById(id: StyleParam.SubPlotId) =
@@ -399,7 +399,7 @@ type Layout() =
                 | Some a -> DynObj.combine (unbox a) polar
                 | None -> polar :> DynamicObj
 
-            polar' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+            ++ ((StyleParam.SubPlotId.toString id), polar' )
 
             layout)
 
@@ -416,7 +416,7 @@ type Layout() =
                 | Some a -> DynObj.combine (unbox a) colorAxis
                 | None -> colorAxis :> DynamicObj
 
-            colorAxis' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+            ++ ((StyleParam.SubPlotId.toString id), colorAxis' )
 
             layout)
 
@@ -433,21 +433,21 @@ type Layout() =
                 | Some a -> DynObj.combine (unbox a) ternary
                 | None -> ternary :> DynamicObj
 
-            ternary' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+            ++ ((StyleParam.SubPlotId.toString id), ternary' )
 
             layout)
 
     static member SetLayoutGrid(grid: LayoutGrid) =
         (fun (layout: Layout) ->
-            grid |> DynObj.setValue layout "grid"
+            ++ ("grid", grid )
             layout)
 
     static member GetLayoutGrid(grid: LayoutGrid) =
         (fun (layout: Layout) ->
-            grid |> DynObj.setValue layout "grid"
+            ++ ("grid", grid )
             layout)
 
     static member setLegend(legend: Legend) =
         (fun (layout: Layout) ->
-            legend |> DynObj.setValue layout "legend"
+            ++ ("legend", legend )
             layout)

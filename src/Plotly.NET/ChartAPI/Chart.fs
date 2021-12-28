@@ -658,7 +658,7 @@ type Chart =
             ch
             |> GenericChart.mapTrace
                 (fun t ->
-                    colorbar |> DynObj.setValue t "colorbar"
+                    ++ ("colorbar", colorbar )
                     t))
 
 

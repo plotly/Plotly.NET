@@ -38,7 +38,7 @@ type FinanceMarker() =
             let line =
                 Line.init (?Color = LineColor, ?Width = LineWidth, ?Dash = LineDash)
 
-            marker |> DynObj.setValue financeMarker "marker"
-            line |> DynObj.setValue financeMarker "line"
+            ++ ("marker", marker )
+            ++ ("line", line )
 
             financeMarker)

@@ -99,6 +99,6 @@ type Dimension() =
             TickFormat |> DynObj.setValueOptBy dims "tickformat" StyleParam.TickMode.convert
             TickText |> DynObj.setValueOpt dims "ticktext"
             Tickvals |> DynObj.setValueOpt dims "tickvals"
-            axis |> DynObj.setValue dims "axis"
+            ++ ("axis", axis )
 
             dims)

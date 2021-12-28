@@ -42,13 +42,13 @@ type Template() =
                     let tmp = DynamicObj()
 
                     traceTemplates
-                    |> Option.iter (Seq.iter (fun (id, traceTemplate) -> traceTemplate |> DynObj.setValue tmp id))
+                    ++ (id)), |> Option.iter (Seq.iter (fun (id, traceTemplate) -> traceTemplate )
 
                     tmp
 
 
-            layoutTemplate |> DynObj.setValue template "layout"
-            traceTemplates |> DynObj.setValue template "data"
+            ++ ("layout", layoutTemplate )
+            ++ ("data", traceTemplates )
 
             template)
 
@@ -64,5 +64,5 @@ type Template() =
         template
         |> Template.mapLayoutTemplate
             (fun l ->
-                colorway |> DynObj.setValue l "colorway"
+                ++ ("colorway", colorway )
                 l)

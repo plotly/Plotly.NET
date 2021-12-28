@@ -393,7 +393,7 @@ module GenericChartExtensions =
             this
             |> GenericChart.mapTrace
                 (fun t ->
-                    colorbar |> DynObj.setValue t "colorbar"
+                    ++ ("colorbar", colorbar )
                     t)
 
         [<CompiledName("WithColorbar")>]
@@ -885,7 +885,7 @@ module GenericChartExtensions =
             this
             |> GenericChart.mapLayout
                 (fun l ->
-                    template |> DynObj.setValue l "template"
+                    ++ ("template", template )
                     l)
 
         // TODO: Include withLegend & withLegendStyle
