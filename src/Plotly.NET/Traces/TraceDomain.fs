@@ -144,7 +144,14 @@ type TraceDomainStyle() =
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
         ) =
         (fun (trace: ('T :> Trace)) ->
-
+            (trace
+            |> DynObj.setSingleOrMultiOpt "pull" (Pull, MultiPull) 
+            |> DynObj.setSingleOrMultiOpt "text" (Text, MultiText) 
+            |> DynObj.setSingleOrMultiOptBy "textposition" StyleParam.TextPosition.convert (TextPosition, MultiTextPosition)
+            |> DynObj.setSingleOrMultiOpt "texttemplate" (TextTemplate, MultiTextTemplate) 
+            |> DynObj.setSingleOrMultiOpt "hovertext" (HoverText, MultiHoverText) 
+            |> DynObj.setSingleOrMultiOpt "hovertemplate" (HoverTemplate, MultiHoverTemplate) 
+            )
             ++? ("name", Name )
             ++? ("title", Title )
             ++?? ("visible", Visible , StyleParam.Visible.convert)
@@ -158,18 +165,7 @@ type TraceDomainStyle() =
             ++? ("labels", Labels )
             ++? ("dlabel", DLabel )
             ++? ("label0", Label0 )
-            (Pull, MultiPull) |> DynObj.setSingleOrMultiOpt trace "pull"
-            (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
-
-            (TextPosition, MultiTextPosition)
-            |> DynObj.setSingleOrMultiOptBy trace "textposition" StyleParam.TextPosition.convert
-
-            (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt trace "texttemplate"
-            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
-            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
-
-            trace
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++? ("domain", Domain )
@@ -269,7 +265,13 @@ type TraceDomainStyle() =
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
         ) =
         (fun (trace: ('T :> Trace)) ->
-
+            (trace
+            |> DynObj.setSingleOrMultiOpt "text" (Text, MultiText) 
+            |> DynObj.setSingleOrMultiOptBy "textposition" StyleParam.TextPosition.convert (TextPosition, MultiTextPosition)
+            |> DynObj.setSingleOrMultiOpt "texttemplate" (TextTemplate, MultiTextTemplate) 
+            |> DynObj.setSingleOrMultiOpt "hovertext" (HoverText, MultiHoverText) 
+            |> DynObj.setSingleOrMultiOpt "hovertemplate" (HoverTemplate, MultiHoverTemplate) 
+            )
             ++? ("name", Name )
             ++? ("title", Title )
             ++?? ("visible", Visible , StyleParam.Visible.convert)
@@ -283,17 +285,7 @@ type TraceDomainStyle() =
             ++? ("labels", Labels )
             ++? ("dlabel", DLabel )
             ++? ("label0", Label0 )
-            (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
-
-            (TextPosition, MultiTextPosition)
-            |> DynObj.setSingleOrMultiOptBy trace "textposition" StyleParam.TextPosition.convert
-
-            (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt trace "texttemplate"
-            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
-            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
-
-            trace
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++? ("domain", Domain )
@@ -394,7 +386,12 @@ type TraceDomainStyle() =
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
         ) =
         (fun (trace: ('T :> Trace)) ->
-
+            (trace
+            |> DynObj.setSingleOrMultiOpt "text" (Text, MultiText) 
+            |> DynObj.setSingleOrMultiOpt "texttemplate" (TextTemplate, MultiTextTemplate) 
+            |> DynObj.setSingleOrMultiOpt "hovertext" (HoverText, MultiHoverText) 
+            |> DynObj.setSingleOrMultiOpt "hovertemplate" (HoverTemplate, MultiHoverTemplate) 
+            )
             ++? ("name", Name )
             ++? ("title", Title )
             ++?? ("visible", Visible , StyleParam.Visible.convert)
@@ -407,13 +404,7 @@ type TraceDomainStyle() =
             ++? ("parents", Parents )
             ++? ("values", Values )
             ++? ("labels", Labels )
-            (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
-            (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt trace "texttemplate"
-            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
-            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
-
-            trace
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++? ("domain", Domain )
@@ -424,9 +415,7 @@ type TraceDomainStyle() =
             ++? ("count", Count )
             ++? ("hoverlabel", HoverLabel )
             ++? ("insidetextfont", InsideTextFont )
-
             ++?? ("insidetextorientation", InsideTextOrientation, StyleParam.InsideTextOrientation.convert)
-
             ++? ("outsidetextfont", OutsideTextFont )
             ++? ("root", Root )
             ++? ("leaf", Leaf )
@@ -523,7 +512,13 @@ type TraceDomainStyle() =
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
         ) =
         (fun (trace: ('T :> Trace)) ->
-
+            (trace
+            |> DynObj.setSingleOrMultiOpt "text" (Text, MultiText) 
+            |> DynObj.setSingleOrMultiOptBy "textposition" StyleParam.TextPosition.convert (TextPosition, MultiTextPosition)
+            |> DynObj.setSingleOrMultiOpt "texttemplate" (TextTemplate, MultiTextTemplate) 
+            |> DynObj.setSingleOrMultiOpt "hovertext" (HoverText, MultiHoverText) 
+            |> DynObj.setSingleOrMultiOpt "hovertemplate" (HoverTemplate, MultiHoverTemplate) 
+            )
             ++? ("name", Name )
             ++? ("title", Title )
             ++?? ("visible", Visible , StyleParam.Visible.convert)
@@ -536,17 +531,7 @@ type TraceDomainStyle() =
             ++? ("parents", Parents )
             ++? ("values", Values )
             ++? ("labels", Labels )
-            (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
-
-            (TextPosition, MultiTextPosition)
-            |> DynObj.setSingleOrMultiOptBy trace "textposition" StyleParam.TextPosition.convert
-
-            (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt trace "texttemplate"
-            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
-            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
-
-            trace
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++? ("domain", Domain )
@@ -606,8 +591,7 @@ type TraceDomainStyle() =
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
         ) =
         (fun (trace: ('T :> Trace)) ->
-            TickFont
-
+            trace
             ++? ("name", Name )
             ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("legendrank", LegendRank )
@@ -622,9 +606,8 @@ type TraceDomainStyle() =
             ++? ("labelangle", LabelAngle )
             ++? ("labelfont", LabelFont )
             ++? ("labelside", LabelSide )
-            ++? ("rangefont", RangeFont ) |> DynObj.setValueOpt trace "tickfont "
-
-            trace
+            ++? ("rangefont", RangeFont )
+            ++? ("tickfont", TickFont )
             ++? ("uirevision", UIRevision ))
 
     /// <summary>
@@ -672,7 +655,8 @@ type TraceDomainStyle() =
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
         ) =
         (fun (trace: ('T :> Trace)) ->
-
+            (trace
+            |> DynObj.setSingleOrMultiOpt "hovertemplate" (HoverTemplate, MultiHoverTemplate) )
             ++? ("name", Name )
             ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("legendgroup", LegendGroup )
@@ -680,8 +664,6 @@ type TraceDomainStyle() =
             ++? ("counts", Counts )
             ++? ("dimensions", Dimensions )
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
-            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
-            TickFont
             ++? ("meta", Meta )
             ++? ("domain", Domain )
             ++? ("line", Line )
@@ -689,9 +671,8 @@ type TraceDomainStyle() =
             ++? ("bundlecolors", BundleColors )
             ++?? ("sortpaths", SortPaths , StyleParam.SortAlgorithm.convert)
             ++?? ("hoveron", Hoveron , StyleParam.HoverOn.convert)
-            ++? ("labelfont", LabelFont ) |> DynObj.setValueOpt trace "tickfont "
-
-            trace
+            ++? ("labelfont", LabelFont )
+            ++? ("tickfont", TickFont )
             ++? ("uirevision", UIRevision ))
 
     /// <summary>
@@ -804,16 +785,15 @@ type TraceDomainStyle() =
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
         ) =
         (fun (trace: ('T :> Trace)) ->
-
+            (trace
+            |> DynObj.setSingleOrMultiOpt "columnwidth" (ColumnWidth, MultiColumnWidth) 
+            )
             ++? ("name", Name )
             ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("legendrank", LegendRank )
             ++? ("legendgrouptitle", LegendGroupTitle )
             ++? ("ids", Ids )
             ++? ("columnorder", ColumnOrder )
-            (ColumnWidth, MultiColumnWidth) |> DynObj.setSingleOrMultiOpt trace "columnwidth"
-
-            trace
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
@@ -967,7 +947,13 @@ type TraceDomainStyle() =
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
         ) =
         fun (trace: #Trace) ->
-
+            (trace
+            |> DynObj.setSingleOrMultiOpt "text" (Text, MultiText) 
+            |> DynObj.setSingleOrMultiOptBy "textposition" StyleParam.TextPosition.convert (TextPosition, MultiTextPosition)
+            |> DynObj.setSingleOrMultiOpt "texttemplate" (TextTemplate, MultiTextTemplate) 
+            |> DynObj.setSingleOrMultiOpt "hovertext" (HoverText, MultiHoverText) 
+            |> DynObj.setSingleOrMultiOpt "hovertemplate" (HoverTemplate, MultiHoverTemplate) 
+            )
             ++? ("name", Name )
             ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("legendrank", LegendRank )
@@ -977,17 +963,7 @@ type TraceDomainStyle() =
             ++? ("parents", Parents )
             ++? ("values", Values )
             ++? ("labels", Labels )
-            (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
-
-            (TextPosition, MultiTextPosition)
-            |> DynObj.setSingleOrMultiOptBy trace "textposition" StyleParam.TextPosition.convert
-
-            (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt trace "texttemplate"
-            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
-            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
-
-            trace
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++? ("domain", Domain )
