@@ -111,7 +111,10 @@ type TraceCarpetStyle() =
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
         ) =
         fun (trace: #Trace) ->
-
+            (trace
+            |> DynObj.setSingleOrAnyOpt "x" (X, MultiX) 
+            |> DynObj.setSingleOrAnyOpt "y" (Y, MultiY) 
+            )
             ++? ("name", Name )
             ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
@@ -120,10 +123,6 @@ type TraceCarpetStyle() =
             ++? ("legendgrouptitle", LegendGroupTitle )
             ++? ("opacity", Opacity )
             ++? ("ids", Ids )
-            (X, MultiX) |> DynObj.setSingleOrAnyOpt trace "x"
-            (Y, MultiY) |> DynObj.setSingleOrAnyOpt trace "y"
-
-            trace
             ++? ("a", A )
             ++? ("a0", A0 )
             ++? ("da", DA )
@@ -228,6 +227,13 @@ type TraceCarpetStyle() =
         ) =
         fun (trace: #Trace) ->
 
+            (trace
+            |> DynObj.setSingleOrMultiOpt "text" (Text, MultiText) 
+            |> DynObj.setSingleOrMultiOptBy "textposition" StyleParam.TextPosition.convert (TextPosition, MultiTextPosition)
+            |> DynObj.setSingleOrMultiOpt "texttemplate" (TextTemplate, MultiTextTemplate) 
+            |> DynObj.setSingleOrMultiOpt "hovertext" (HoverText, MultiHoverText) 
+            |> DynObj.setSingleOrMultiOpt "hovertemplate" (HoverTemplate, MultiHoverTemplate) 
+            )
             ++? ("name", Name )
             ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
@@ -239,17 +245,7 @@ type TraceCarpetStyle() =
             ++? ("ids", Ids )
             ++? ("a", A )
             ++? ("b", B )
-            (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
-
-            (TextPosition, MultiTextPosition)
-            |> DynObj.setSingleOrMultiOptBy trace "textposition" StyleParam.TextPosition.convert
-
-            (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt trace "texttemplate"
-            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
-            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
-
-            trace
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++?? ("xaxis", XAxis , StyleParam.LinearAxisId.convert)
@@ -361,7 +357,10 @@ type TraceCarpetStyle() =
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
         ) =
         fun (trace: #Trace) ->
-
+            (trace
+            |> DynObj.setSingleOrMultiOpt "text" (Text, MultiText) 
+            |> DynObj.setSingleOrMultiOpt "hovertext" (HoverText, MultiHoverText) 
+            )
             ++? ("name", Name )
             ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
@@ -379,10 +378,6 @@ type TraceCarpetStyle() =
             ++?? ("btype", BType , StyleParam.CoordinateType.convert)
             ++? ("b0", B0 )
             ++? ("db", DB )
-            (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
-            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
-
-            trace
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++?? ("xaxis", XAxis , StyleParam.LinearAxisId.convert)

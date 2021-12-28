@@ -25,7 +25,7 @@ module DynObj =
         else
             dyn ++?? (propName, single, f)
 
-    let setSingleOrAnyOpt (dyn: ImmutableDynamicObj) (propName: string) (single: 'A option, any: 'B option) =
+    let setSingleOrAnyOpt  (propName: string) (single: 'A option, any: 'B option)  (dyn: ImmutableDynamicObj) =
         if any.IsSome then
             dyn ++? (propName, any)
         else
