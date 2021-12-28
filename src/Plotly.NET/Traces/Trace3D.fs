@@ -154,7 +154,13 @@ type Trace3DStyle() =
         ) =
 
         (fun (scatter: #Trace) ->
-
+            (scatter
+            |> DynObj.setSingleOrMultiOpt "text" (Text, MultiText) 
+            |> DynObj.setSingleOrMultiOptBy "textposition" StyleParam.TextPosition.convert (TextPosition, MultiTextPosition)
+            |> DynObj.setSingleOrMultiOpt "texttemplate" (TextTemplate, MultiTextTemplate) 
+            |> DynObj.setSingleOrMultiOpt "hovertext" (HoverText, MultiHoverText) 
+            |> DynObj.setSingleOrMultiOpt "hovertemplate" (HoverTemplate, MultiHoverTemplate) 
+            )
             ++? ("name", Name )
             ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
@@ -168,17 +174,7 @@ type Trace3DStyle() =
             ++? ("y", Y )
             ++? ("z", Z )
             ++? ("surfacecolor", SurfaceColor )
-            (Text, MultiText) |> DynObj.setSingleOrMultiOpt scatter "text"
-
-            (TextPosition, MultiTextPosition)
-            |> DynObj.setSingleOrMultiOptBy scatter "textposition" StyleParam.TextPosition.convert
-
-            (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt scatter "texttemplate"
-            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt scatter "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
-            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt scatter "hovertemplate"
-
-            scatter
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
             ++? ("zhoverformat", ZHoverFormat )
@@ -301,7 +297,11 @@ type Trace3DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
         ) =
         (fun (surface: #Trace) ->
-
+            (surface
+            |> DynObj.setSingleOrMultiOpt "text" (Text, MultiText) 
+            |> DynObj.setSingleOrMultiOpt "hovertext" (HoverText, MultiHoverText) 
+            |> DynObj.setSingleOrMultiOpt "hovertemplate" (HoverTemplate, MultiHoverTemplate) 
+            )
             ++? ("name", Name )
             ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
@@ -314,12 +314,7 @@ type Trace3DStyle() =
             ++? ("y", Y )
             ++? ("z", Z )
             ++? ("surfacecolor", SurfaceColor )
-            (Text, MultiText) |> DynObj.setSingleOrMultiOpt surface "text"
-            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt surface "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
-            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt surface "hovertemplate"
-
-            surface
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
             ++? ("zhoverformat", ZHoverFormat )
@@ -463,7 +458,11 @@ type Trace3DStyle() =
         ) =
 
         fun (mesh3d: #Trace) ->
-
+            (mesh3d
+            |> DynObj.setSingleOrMultiOpt "text" (Text, MultiText) 
+            |> DynObj.setSingleOrMultiOpt "hovertext" (HoverText, MultiHoverText) 
+            |> DynObj.setSingleOrMultiOpt "hovertemplate" (HoverTemplate, MultiHoverTemplate) 
+            )
             ++? ("name", Name )
             ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
@@ -482,12 +481,7 @@ type Trace3DStyle() =
             ++? ("intensity", Intensity )
             ++?? ("intensitymode", IntensityMode , StyleParam.IntensityMode.convert)
             ++? ("vertexcolor", VertexColor )
-            (Text, MultiText) |> DynObj.setSingleOrMultiOpt mesh3d "text"
-            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt mesh3d "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
-            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt mesh3d "hovertemplate"
-
-            mesh3d
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
             ++? ("zhoverformat", ZHoverFormat )
@@ -619,6 +613,11 @@ type Trace3DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: seq<#IConvertible>
         ) =
         (fun (cone: #Trace) ->
+            (cone
+            |> DynObj.setSingleOrMultiOpt "text" (Text, MultiText) 
+            |> DynObj.setSingleOrMultiOpt "hovertext" (HoverText, MultiHoverText) 
+            |> DynObj.setSingleOrMultiOpt "hovertemplate" (HoverTemplate, MultiHoverTemplate) 
+            )
             ++? ("name", Name )
             ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
@@ -633,12 +632,7 @@ type Trace3DStyle() =
             ++? ("u", U )
             ++? ("v", V )
             ++? ("w", W )
-            (Text, MultiText) |> DynObj.setSingleOrMultiOpt cone "text"
-            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt cone "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
-            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt cone "hovertemplate"
-
-            cone
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
             ++? ("zhoverformat", ZHoverFormat )
@@ -767,6 +761,11 @@ type Trace3DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: seq<#IConvertible>
         ) =
         (fun (streamTube: #Trace) ->
+            (streamTube
+            |> DynObj.setSingleOrMultiOpt "text" (Text, MultiText) 
+            |> DynObj.setSingleOrMultiOpt "hovertext" (HoverText, MultiHoverText) 
+            |> DynObj.setSingleOrMultiOpt "hovertemplate" (HoverTemplate, MultiHoverTemplate) 
+            )
             ++? ("name", Name )
             ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
@@ -781,12 +780,7 @@ type Trace3DStyle() =
             ++? ("u", U )
             ++? ("v", V )
             ++? ("w", W )
-            (Text, MultiText) |> DynObj.setSingleOrMultiOpt streamTube "text"
-            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt streamTube "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
-            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt streamTube "hovertemplate"
-
-            streamTube
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
             ++? ("zhoverformat", ZHoverFormat )
@@ -919,7 +913,11 @@ type Trace3DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: seq<#IConvertible>
         ) =
         fun (volume: #Trace) ->
-
+            (volume
+            |> DynObj.setSingleOrMultiOpt "text" (Text, MultiText) 
+            |> DynObj.setSingleOrMultiOpt "hovertext" (HoverText, MultiHoverText) 
+            |> DynObj.setSingleOrMultiOpt "hovertemplate" (HoverTemplate, MultiHoverTemplate) 
+            )
             ++? ("name", Name )
             ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
@@ -932,12 +930,7 @@ type Trace3DStyle() =
             ++? ("y", Y )
             ++? ("z", Z )
             ++? ("value", Value )
-            (Text, MultiText) |> DynObj.setSingleOrMultiOpt volume "text"
-            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt volume "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
-            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt volume "hovertemplate"
-
-            volume
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
             ++? ("zhoverformat", ZHoverFormat )
@@ -1074,7 +1067,11 @@ type Trace3DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: seq<#IConvertible>
         ) =
         fun (isoSurface: #Trace) ->
-
+            (isoSurface
+            |> DynObj.setSingleOrMultiOpt "text" (Text, MultiText) 
+            |> DynObj.setSingleOrMultiOpt "hovertext" (HoverText, MultiHoverText) 
+            |> DynObj.setSingleOrMultiOpt "hovertemplate" (HoverTemplate, MultiHoverTemplate) 
+            )
             ++? ("name", Name )
             ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
@@ -1087,12 +1084,7 @@ type Trace3DStyle() =
             ++? ("y", Y )
             ++? ("z", Z )
             ++? ("value", Value )
-            (Text, MultiText) |> DynObj.setSingleOrMultiOpt isoSurface "text"
-            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt isoSurface "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
-            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt isoSurface "hovertemplate"
-
-            isoSurface
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
             ++? ("zhoverformat", ZHoverFormat )
