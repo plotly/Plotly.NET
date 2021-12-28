@@ -56,9 +56,8 @@ type Chart =
             LinearAxis.init (ShowGrid = false, ShowLine = false, ShowTickLabels = false, ZeroLine = false)
 
         let trace = Trace2D.initScatter (id)
-        trace.Remove("type") |> ignore
 
-        GenericChart.ofTraceObject false trace
+        GenericChart.ofTraceObject false (trace -- "type")
         |> GenericChart.mapLayout
             (fun l ->
                 l

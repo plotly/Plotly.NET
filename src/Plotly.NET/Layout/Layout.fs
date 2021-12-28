@@ -9,7 +9,6 @@ open System.Runtime.InteropServices
 /// Layout
 type Layout() =
     inherit ImmutableDynamicObj()
-
     /// Init Layout type
     static member init
         (
@@ -227,8 +226,8 @@ type Layout() =
             [<Optional; DefaultParameterValue(null)>] ?UpdateMenus: seq<UpdateMenu>
         ) =
         (fun (layout: Layout) ->
-            ExtendFunnelAreaColors
-
+            
+            layout
             ++? ("title", Title )
             ++? ("showlegend", ShowLegend )
             ++? ("legend", Legend )
@@ -283,9 +282,8 @@ type Layout() =
             ++?? ("waterfallmode", WaterfallMode , StyleParam.WaterfallMode.convert)
             ++? ("funnelgap", FunnelGap )
             ++? ("funnelgroupgap", FunnelGroupGap )
-            ++?? ("funnelmode", FunnelMode , StyleParam.FunnelMode.convert) |> DynObj.setValueOpt layout "extendfunnelareacolors "
-
-            layout
+            ++?? ("funnelmode", FunnelMode , StyleParam.FunnelMode.convert)
+            ++? ("extendfunnelareacolors ", ExtendFunnelAreaColors)
             ++? ("funnelareacolorway", FunnelAreaColorWay )
             ++? ("extendsunburstcolors", ExtendSunBurstColors )
             ++? ("sunburstcolorway", SunBurstColorWay )
@@ -323,7 +321,7 @@ type Layout() =
 
                 let axis' =
                     match layout.TryGetValue(StyleParam.SubPlotId.toString id) with
-                    | Some a -> DynObj.combine (unbox a) axis
+                    | Some a -> ImmutableDynamicObj.combine (unbox a) axis
                     | None -> axis :> ImmutableDynamicObj
 
                 layout

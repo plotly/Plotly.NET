@@ -145,7 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="DynamicObj" Version="0.2.0" />
+    <PackageReference Include="DynamicObj" Version="0.2.1" />
     <PackageReference Update="FSharp.Core" Version="6.0.1" />
   </ItemGroup>
   <ItemGroup>

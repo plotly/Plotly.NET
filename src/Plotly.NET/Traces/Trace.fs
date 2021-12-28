@@ -10,6 +10,7 @@ open System.Runtime.InteropServices
 /// Trace type inherits from dynamic object
 type Trace(traceTypeName: string) =
     inherit ImmutableDynamicObj()
+    new() = Trace(null)
     //interface ITrace with
     // Implictit ITrace
     member val ``type`` = traceTypeName with get, set
