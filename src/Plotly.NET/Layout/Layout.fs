@@ -239,14 +239,14 @@ type Layout() =
             ++? ("separators", Separators )
             ++? ("paper_bgcolor", PaperBGColor )
             ++? ("plot_bgcolor", PlotBGColor )
-            AutoTypeNumbers |> DynObj.setValueOptBy layout "autotypenumbers" StyleParam.AutoTypeNumbers.convert
+            ++?? ("autotypenumbers", AutoTypeNumbers , StyleParam.AutoTypeNumbers.convert)
             ++? ("colorscale", Colorscale )
             ++? ("colorway", Colorway )
             ++? ("modebar", ModeBar )
-            HoverMode |> DynObj.setValueOptBy layout "hovermode" StyleParam.HoverMode.convert
-            ClickMode |> DynObj.setValueOptBy layout "clickmode" StyleParam.ClickMode.convert
-            DragMode |> DynObj.setValueOptBy layout "dragmode" StyleParam.DragMode.convert
-            SelectDirection |> DynObj.setValueOptBy layout "selectdirection" StyleParam.SelectDirection.convert
+            ++?? ("hovermode", HoverMode , StyleParam.HoverMode.convert)
+            ++?? ("clickmode", ClickMode , StyleParam.ClickMode.convert)
+            ++?? ("dragmode", DragMode , StyleParam.DragMode.convert)
+            ++?? ("selectdirection", SelectDirection , StyleParam.SelectDirection.convert)
             ++? ("hoverdistance", HoverDistance )
             ++? ("spikedistance", SpikeDistance )
             ++? ("hoverlabel", Hoverlabel )
@@ -259,29 +259,29 @@ type Layout() =
             ++? ("meta", Meta )
             ++? ("computed", Computed )
             ++? ("grid", Grid )
-            Calendar |> DynObj.setValueOptBy layout "calendar" StyleParam.Calendar.convert
+            ++?? ("calendar", Calendar , StyleParam.Calendar.convert)
             ++? ("newshape", NewShape )
             ++? ("activeshape", ActiveShape )
             ++? ("hidesources", HideSources )
             ++? ("bargap", BarGap )
             ++? ("bargroupgap", BarGroupGap )
-            BarMode |> DynObj.setValueOptBy layout "barmode" StyleParam.BarMode.convert
-            BarNorm |> DynObj.setValueOptBy layout "barnorm" StyleParam.BarNorm.convert
+            ++?? ("barmode", BarMode , StyleParam.BarMode.convert)
+            ++?? ("barnorm", BarNorm , StyleParam.BarNorm.convert)
             ++? ("extendpiecolors", ExtendPieColors )
             ++? ("hiddenlabels", HiddenLabels )
             ++? ("piecolorway", PieColorWay )
             ++? ("boxgap", BoxGap )
             ++? ("boxgroupgap", BoxGroupGap )
-            BoxMode |> DynObj.setValueOptBy layout "boxmode" StyleParam.BoxMode.convert
+            ++?? ("boxmode", BoxMode , StyleParam.BoxMode.convert)
             ++? ("violingap", ViolinGap )
             ++? ("violingroupgap", ViolinGroupGap )
-            ViolinMode |> DynObj.setValueOptBy layout "violinmode" StyleParam.ViolinMode.convert
+            ++?? ("violinmode", ViolinMode , StyleParam.ViolinMode.convert)
             ++? ("waterfallgap", WaterfallGap )
             ++? ("waterfallgroupgap", WaterfallGroupGap )
-            WaterfallMode |> DynObj.setValueOptBy layout "waterfallmode" StyleParam.WaterfallMode.convert
+            ++?? ("waterfallmode", WaterfallMode , StyleParam.WaterfallMode.convert)
             ++? ("funnelgap", FunnelGap )
             ++? ("funnelgroupgap", FunnelGroupGap )
-            FunnelMode |> DynObj.setValueOptBy layout "funnelmode" StyleParam.FunnelMode.convert
+            ++?? ("funnelmode", FunnelMode , StyleParam.FunnelMode.convert)
             ExtendFunnelAreaColors |> DynObj.setValueOpt layout "extendfunnelareacolors "
             ++? ("funnelareacolorway", FunnelAreaColorWay )
             ++? ("extendsunburstcolors", ExtendSunBurstColors )

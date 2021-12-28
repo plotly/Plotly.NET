@@ -63,8 +63,8 @@ type Pathbar() =
         ) =
         (fun (pathbar: Pathbar) ->
             ++? ("visible", Visible )
-            Side |> DynObj.setValueOptBy pathbar "side" StyleParam.Side.convert
-            EdgeShape |> DynObj.setValueOptBy pathbar "edgeshape" StyleParam.PathbarEdgeShape.convert
+            ++?? ("side", Side , StyleParam.Side.convert)
+            ++?? ("edgeshape", EdgeShape , StyleParam.PathbarEdgeShape.convert)
             ++? ("thickness", Thickness )
             Textfont |> DynObj.setValueOpt pathbar "textfont "
 

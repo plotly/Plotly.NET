@@ -30,7 +30,7 @@ type Surface() =
 
             ++? ("count", Count )
             ++? ("fill", Fill )
-            Pattern |> DynObj.setValueOptBy surface "pattern" StyleParam.SurfacePattern.convert
+            ++?? ("pattern", Pattern , StyleParam.SurfacePattern.convert)
             ++? ("show", Show )
 
             surface

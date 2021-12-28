@@ -932,30 +932,30 @@ type LinearAxis() =
             ++? ("visible", Visible )
             ++? ("color", Color )
             ++? ("title", Title )
-            AxisType |> DynObj.setValueOptBy axis "type" StyleParam.AxisType.convert
-            AutoTypeNumbers |> DynObj.setValueOptBy axis "autotypenumbers" StyleParam.AutoTypeNumbers.convert
-            AutoRange |> DynObj.setValueOptBy axis "autorange" StyleParam.AutoRange.convert
-            RangeMode |> DynObj.setValueOptBy axis "rangemode" StyleParam.RangeMode.convert
-            Range |> DynObj.setValueOptBy axis "range" StyleParam.Range.convert
+            ++?? ("type", AxisType , StyleParam.AxisType.convert)
+            ++?? ("autotypenumbers", AutoTypeNumbers , StyleParam.AutoTypeNumbers.convert)
+            ++?? ("autorange", AutoRange , StyleParam.AutoRange.convert)
+            ++?? ("rangemode", RangeMode , StyleParam.RangeMode.convert)
+            ++?? ("range", Range , StyleParam.Range.convert)
             ++? ("fixedrange", FixedRange )
-            ScaleAnchor |> DynObj.setValueOptBy axis "scaleanchor" StyleParam.LinearAxisId.convert
+            ++?? ("scaleanchor", ScaleAnchor , StyleParam.LinearAxisId.convert)
             ++? ("scaleratio", ScaleRatio )
-            Constrain |> DynObj.setValueOptBy axis "constrain" StyleParam.AxisConstraint.convert
-            ConstrainToward |> DynObj.setValueOptBy axis "constraintoward" StyleParam.AxisConstraintDirection.convert
-            Matches |> DynObj.setValueOptBy axis "matches" StyleParam.LinearAxisId.convert
+            ++?? ("constrain", Constrain , StyleParam.AxisConstraint.convert)
+            ++?? ("constraintoward", ConstrainToward , StyleParam.AxisConstraintDirection.convert)
+            ++?? ("matches", Matches , StyleParam.LinearAxisId.convert)
             ++? ("rangebreaks", Rangebreaks )
-            TickMode |> DynObj.setValueOptBy axis "tickmode" StyleParam.TickMode.convert
+            ++?? ("tickmode", TickMode , StyleParam.TickMode.convert)
             ++? ("nticks", NTicks )
             ++? ("tick0", Tick0 )
             ++? ("dtick", DTick )
             ++? ("tickvals", TickVals )
             ++? ("ticktext", TickText )
-            Ticks |> DynObj.setValueOptBy axis "ticks" StyleParam.TickOptions.convert
-            TicksOn |> DynObj.setValueOptBy axis "tickson" StyleParam.CategoryTickAnchor.convert
-            TickLabelMode |> DynObj.setValueOptBy axis "ticklabelmode" StyleParam.TickLabelMode.convert
-            TickLabelPosition |> DynObj.setValueOptBy axis "ticklabelposition" StyleParam.TickLabelPosition.convert
-            TickLabelOverflow |> DynObj.setValueOptBy axis "ticklabeloverflow" StyleParam.TickLabelOverflow.convert
-            Mirror |> DynObj.setValueOptBy axis "mirror" StyleParam.Mirror.convert
+            ++?? ("ticks", Ticks , StyleParam.TickOptions.convert)
+            ++?? ("tickson", TicksOn , StyleParam.CategoryTickAnchor.convert)
+            ++?? ("ticklabelmode", TickLabelMode , StyleParam.TickLabelMode.convert)
+            ++?? ("ticklabelposition", TickLabelPosition , StyleParam.TickLabelPosition.convert)
+            ++?? ("ticklabeloverflow", TickLabelOverflow , StyleParam.TickLabelOverflow.convert)
+            ++?? ("mirror", Mirror , StyleParam.Mirror.convert)
             ++? ("ticklen", TickLen )
             ++? ("tickwidth", TickWidth )
             ++? ("tickcolor", TickColor )
@@ -964,17 +964,17 @@ type LinearAxis() =
             ++? ("showspikes", ShowSpikes )
             ++? ("spikecolor", SpikeColor )
             ++? ("spikethickness", SpikeThickness )
-            SpikeDash |> DynObj.setValueOptBy axis "spikedash" StyleParam.DrawingStyle.convert
-            SpikeMode |> DynObj.setValueOptBy axis "spikemode" StyleParam.SpikeMode.convert
-            SpikeSnap |> DynObj.setValueOptBy axis "spikesnap" StyleParam.SpikeSnap.convert
+            ++?? ("spikedash", SpikeDash , StyleParam.DrawingStyle.convert)
+            ++?? ("spikemode", SpikeMode , StyleParam.SpikeMode.convert)
+            ++?? ("spikesnap", SpikeSnap , StyleParam.SpikeSnap.convert)
             ++? ("tickfont", TickFont )
             ++? ("tickangle", TickAngle )
-            ShowTickPrefix |> DynObj.setValueOptBy axis "showtickprefix" StyleParam.ShowTickOption.convert
+            ++?? ("showtickprefix", ShowTickPrefix , StyleParam.ShowTickOption.convert)
             ++? ("tickprefix", TickPrefix )
-            ShowTickSuffix |> DynObj.setValueOptBy axis "showticksuffix" StyleParam.ShowTickOption.convert
+            ++?? ("showticksuffix", ShowTickSuffix , StyleParam.ShowTickOption.convert)
             ++? ("ticksuffix", TickSuffix )
-            ShowExponent |> DynObj.setValueOptBy axis "showexponent" StyleParam.ShowExponent.convert
-            ExponentFormat |> DynObj.setValueOptBy axis "exponentformat" StyleParam.ExponentFormat.convert
+            ++?? ("showexponent", ShowExponent , StyleParam.ShowExponent.convert)
+            ++?? ("exponentformat", ExponentFormat , StyleParam.ExponentFormat.convert)
             ++? ("minexponent", MinExponent )
             ++? ("separatethousands", SeparateThousands )
             ++? ("tickformat", TickFormat )
@@ -992,21 +992,21 @@ type LinearAxis() =
             ++? ("showdividers", ShowDividers )
             ++? ("dividercolor", DividerColor )
             ++? ("dividerwidth", DividerWidth )
-            Anchor |> DynObj.setValueOptBy axis "anchor" StyleParam.LinearAxisId.convert
-            Side |> DynObj.setValueOptBy axis "side" StyleParam.Side.convert
-            Overlaying |> DynObj.setValueOptBy axis "overlaying" StyleParam.LinearAxisId.convert
-            Layer |> DynObj.setValueOptBy axis "layer" StyleParam.Layer.convert
-            Domain |> DynObj.setValueOptBy axis "domain" StyleParam.Range.convert
+            ++?? ("anchor", Anchor , StyleParam.LinearAxisId.convert)
+            ++?? ("side", Side , StyleParam.Side.convert)
+            ++?? ("overlaying", Overlaying , StyleParam.LinearAxisId.convert)
+            ++?? ("layer", Layer , StyleParam.Layer.convert)
+            ++?? ("domain", Domain , StyleParam.Range.convert)
             ++? ("position", Position )
-            CategoryOrder |> DynObj.setValueOptBy axis "categoryorder" StyleParam.CategoryOrder.convert
+            ++?? ("categoryorder", CategoryOrder , StyleParam.CategoryOrder.convert)
             ++? ("categoryarray", CategoryArray )
             ++? ("uirevision", UIRevision )
             ++? ("rangeslider", RangeSlider )
             ++? ("rangeselector", RangeSelector )
-            Calendar |> DynObj.setValueOptBy axis "calendar" StyleParam.Calendar.convert
+            ++?? ("calendar", Calendar , StyleParam.Calendar.convert)
             ++? ("arraydtick", ArrayDTick )
             ++? ("arraytick0", ArrayTick0 )
-            CheaterType |> DynObj.setValueOptBy axis "cheatertype" StyleParam.CheaterType.convert
+            ++?? ("cheatertype", CheaterType , StyleParam.CheaterType.convert)
             ++? ("endline", EndLine )
             ++? ("endlinecolor", EndLineColor )
             ++? ("endlinewidth", EndLineWidth )

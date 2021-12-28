@@ -29,8 +29,8 @@ type Domain() =
             [<Optional; DefaultParameterValue(null)>] ?Column: int
         ) =
         (fun (dom: Domain) ->
-            X |> DynObj.setValueOptBy dom "x" StyleParam.Range.convert
-            Y |> DynObj.setValueOptBy dom "y" StyleParam.Range.convert
+            ++?? ("x", X , StyleParam.Range.convert)
+            ++?? ("y", Y , StyleParam.Range.convert)
             ++? ("row", Row )
             ++? ("column", Column )
 

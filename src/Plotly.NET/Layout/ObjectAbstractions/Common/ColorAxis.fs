@@ -77,7 +77,7 @@ type ColorAxis() =
             ++? ("cmid", CMid )
             ++? ("cmax", CMax )
             ++? ("colorbar", ColorBar )
-            ColorScale |> DynObj.setValueOptBy ca "colorscale" StyleParam.Colorscale.convert
+            ++?? ("colorscale", ColorScale , StyleParam.Colorscale.convert)
             ++? ("showscale", ShowScale )
             ++? ("reversescale", ReverseScale )
 

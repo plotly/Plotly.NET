@@ -78,11 +78,11 @@ type MapboxLayer() =
         (fun (mapBoxLayer: MapboxLayer) ->
 
             ++? ("visible", Visible )
-            SourceType |> DynObj.setValueOptBy mapBoxLayer "sourcetype" StyleParam.MapboxLayerSourceType.convert
+            ++?? ("sourcetype", SourceType , StyleParam.MapboxLayerSourceType.convert)
             ++? ("source", Source )
             ++? ("sourcelayer", SourceLayer )
             ++? ("sourceattribution", SourceAttribution )
-            Type |> DynObj.setValueOptBy mapBoxLayer "type" StyleParam.MapboxLayerType.convert
+            ++?? ("type", Type , StyleParam.MapboxLayerType.convert)
             ++? ("coordinates", Coordinates )
             ++? ("below", Below )
             ++? ("color", Color )

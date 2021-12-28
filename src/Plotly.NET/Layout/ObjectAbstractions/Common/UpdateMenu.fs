@@ -49,7 +49,7 @@ type UpdateMenuButton() =
             ++? ("args2", Args2 )
             ++? ("execute", Execute )
             ++? ("label", Label )
-            Method |> DynObj.setValueOptBy updateMenuButton "method" StyleParam.UpdateMethod.convert
+            ++?? ("method", Method , StyleParam.UpdateMethod.convert)
             ++? ("name", Name )
             ++? ("templateitemname", TemplateItemName )
             ++? ("visible", Visible )
@@ -125,17 +125,17 @@ type UpdateMenu() =
             ++? ("bgcolor", BGColor )
             ++? ("bordercolor", BorderColor )
             ++? ("buttons", Buttons )
-            Direction |> DynObj.setValueOptBy updateMenu "direction" StyleParam.UpdateMenuDirection.convert
+            ++?? ("direction", Direction , StyleParam.UpdateMenuDirection.convert)
             ++? ("font", Font )
             ++? ("name", Name )
             ++? ("pad", Pad )
             ++? ("showactive", ShowActive )
             ++? ("templateitemname", TemplateItemName )
-            Type |> DynObj.setValueOptBy updateMenu "type" StyleParam.UpdateMenuType.convert
+            ++?? ("type", Type , StyleParam.UpdateMenuType.convert)
             ++? ("visible", Visible )
             ++? ("x", X )
-            XAnchor |> DynObj.setValueOptBy updateMenu "xanchor" StyleParam.XAnchorPosition.convert
+            ++?? ("xanchor", XAnchor , StyleParam.XAnchorPosition.convert)
             ++? ("y", Y )
-            YAnchor |> DynObj.setValueOptBy updateMenu "yanchor" StyleParam.YAnchorPosition.convert
+            ++?? ("yanchor", YAnchor , StyleParam.YAnchorPosition.convert)
 
             updateMenu)

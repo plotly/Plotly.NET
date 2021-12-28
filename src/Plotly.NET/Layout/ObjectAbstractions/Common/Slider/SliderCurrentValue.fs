@@ -55,5 +55,5 @@ type SliderCurrentValue() =
             ++? ("prefix", Prefix )
             ++? ("suffix", Suffix )
             ++? ("visible", Visible )
-            XAnchor |> DynObj.setValueOptBy currentValue "xanchor" StyleParam.XAnchorPosition.convert
+            ++?? ("xanchor", XAnchor , StyleParam.XAnchorPosition.convert)
             currentValue)

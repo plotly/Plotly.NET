@@ -47,7 +47,7 @@ type TraceMapboxStyle() =
     static member SetMapbox([<Optional; DefaultParameterValue(null)>] ?MapboxId: StyleParam.SubPlotId) =
         (fun (trace: TraceMapbox) ->
 
-            MapboxId |> DynObj.setValueOptBy trace "subplot" StyleParam.SubPlotId.toString
+            ++?? ("subplot", MapboxId , StyleParam.SubPlotId.toString)
 
             trace)
 
@@ -134,13 +134,13 @@ type TraceMapboxStyle() =
         (fun (trace: #Trace) ->
 
             ++? ("name", Name )
-            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+            ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
             ++? ("legendrank", LegendRank )
             ++? ("legendgroup", LegendGroup )
             ++? ("legendgrouptitle", LegendGroupTitle )
             ++? ("opacity", Opacity )
-            Mode |> DynObj.setValueOptBy trace "mode" StyleParam.Mode.convert
+            ++?? ("mode", Mode , StyleParam.Mode.convert)
             ++? ("ids", Ids )
             ++? ("lat", Lat )
             ++? ("lon", Lon )
@@ -151,11 +151,11 @@ type TraceMapboxStyle() =
 
             (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt trace "texttemplate"
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
-            HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
+            ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
-            SubPlot |> DynObj.setValueOptBy trace "subplot" StyleParam.SubPlotId.convert
+            ++?? ("subplot", SubPlot , StyleParam.SubPlotId.convert)
             ++? ("marker", Marker )
             ++? ("line", Line )
             ++? ("textfont", TextFont )
@@ -164,7 +164,7 @@ type TraceMapboxStyle() =
             ++? ("unselected", Unselected )
             ++? ("below", Below )
             ++? ("connectgaps", ConnectGaps )
-            Fill |> DynObj.setValueOptBy trace "fill" StyleParam.Fill.convert
+            ++?? ("fill", Fill , StyleParam.Fill.convert)
             ++? ("fillcolor", FillColor )
             ++? ("hoverlabel", HoverLabel )
             ++? ("uirevision", UIRevision )
@@ -256,7 +256,7 @@ type TraceMapboxStyle() =
         (fun (trace: #Trace) ->
 
             ++? ("name", Name )
-            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+            ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
             ++? ("legendrank", LegendRank )
             ++? ("legendgroup", LegendGroup )
@@ -268,16 +268,16 @@ type TraceMapboxStyle() =
             ++? ("locations", Locations )
             (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
-            HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
+            ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
-            SubPlot |> DynObj.setValueOptBy trace "subplot" StyleParam.SubPlotId.convert
-            ColorAxis |> DynObj.setValueOptBy trace "coloraxis" StyleParam.SubPlotId.convert
+            ++?? ("subplot", SubPlot , StyleParam.SubPlotId.convert)
+            ++?? ("coloraxis", ColorAxis , StyleParam.SubPlotId.convert)
             ++? ("marker", Marker )
             ++? ("colorbar", ColorBar )
             ++? ("autocolorscale", AutoColorScale )
-            ColorScale |> DynObj.setValueOptBy trace "colorscale" StyleParam.Colorscale.convert
+            ++?? ("colorscale", ColorScale , StyleParam.Colorscale.convert)
             ++? ("showscale", ShowScale )
             ++? ("reversescale", ReverseScale )
             ++? ("zauto", ZAuto )
@@ -375,7 +375,7 @@ type TraceMapboxStyle() =
         (fun (trace: #Trace) ->
 
             ++? ("name", Name )
-            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+            ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
             ++? ("legendrank", LegendRank )
             ++? ("legendgroup", LegendGroup )
@@ -388,16 +388,16 @@ type TraceMapboxStyle() =
             ++? ("lon", Lon )
             (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
-            HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
+            ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
-            SubPlot |> DynObj.setValueOptBy trace "subplot" StyleParam.SubPlotId.convert
-            ColorAxis |> DynObj.setValueOptBy trace "coloraxis" StyleParam.SubPlotId.convert
+            ++?? ("subplot", SubPlot , StyleParam.SubPlotId.convert)
+            ++?? ("coloraxis", ColorAxis , StyleParam.SubPlotId.convert)
             ++? ("marker", Marker )
             ++? ("colorbar", ColorBar )
             ++? ("autocolorscale", AutoColorScale )
-            ColorScale |> DynObj.setValueOptBy trace "colorscale" StyleParam.Colorscale.convert
+            ++?? ("colorscale", ColorScale , StyleParam.Colorscale.convert)
             ++? ("showscale", ShowScale )
             ++? ("reversescale", ReverseScale )
             ++? ("zauto", ZAuto )

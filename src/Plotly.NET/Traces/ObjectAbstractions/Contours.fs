@@ -171,16 +171,16 @@ type Contours() =
             ++? ("x", X )
             ++? ("y", Y )
             ++? ("z", Z )
-            Coloring |> DynObj.setValueOptBy contours "coloring" StyleParam.ContourColoring.convert
+            ++?? ("coloring", Coloring , StyleParam.ContourColoring.convert)
             ++? ("end", End )
             ++? ("labelfont", LabelFont )
             ++? ("labelformat", LabelFormat )
-            Operation |> DynObj.setValueOptBy contours "operation" StyleParam.ConstraintOperation.convert
+            ++?? ("operation", Operation , StyleParam.ConstraintOperation.convert)
             ++? ("showlabels", ShowLabels )
             ++? ("showlines", ShowLines )
             ++? ("size", Size )
             ++? ("start", Start )
-            Type |> DynObj.setValueOptBy contours "type" StyleParam.ContourType.convert
+            ++?? ("type", Type , StyleParam.ContourType.convert)
             ++? ("value", Value )
 
 

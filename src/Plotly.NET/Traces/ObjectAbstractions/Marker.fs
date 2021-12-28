@@ -114,9 +114,9 @@ type Marker() =
             ++? ("cmin", CMin )
             ++? ("color", Color )
             ++? ("colors", Colors )
-            ColorAxis |> DynObj.setValueOptBy marker "coloraxis" StyleParam.SubPlotId.convert
+            ++?? ("coloraxis", ColorAxis , StyleParam.SubPlotId.convert)
             ++? ("colorbar", ColorBar )
-            Colorscale |> DynObj.setValueOptBy marker "colorscale" StyleParam.Colorscale.convert
+            ++?? ("colorscale", Colorscale , StyleParam.Colorscale.convert)
             ++? ("gradient", Gradient )
             ++? ("line", Outline )
             (Size, MultiSize) |> DynObj.setSingleOrMultiOpt marker "size"

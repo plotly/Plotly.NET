@@ -38,6 +38,6 @@ type WaterfallConnector() =
 
             ++? ("line", Line )
             ++? ("visible", Visible )
-            ConnectorMode |> DynObj.setValueOptBy connector "mode" StyleParam.ConnectorMode.convert
+            ++?? ("mode", ConnectorMode , StyleParam.ConnectorMode.convert)
 
             connector)

@@ -41,7 +41,7 @@ type TraceGeoStyle() =
     static member SetGeo([<Optional; DefaultParameterValue(null)>] ?GeoId: StyleParam.SubPlotId) =
         (fun (trace: TraceGeo) ->
 
-            GeoId |> DynObj.setValueOptBy trace "geo" StyleParam.SubPlotId.toString
+            ++?? ("geo", GeoId , StyleParam.SubPlotId.toString)
 
             trace)
 
@@ -130,7 +130,7 @@ type TraceGeoStyle() =
         (fun (trace: #Trace) ->
 
             ++? ("name", Name )
-            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+            ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
             ++? ("legendrank", LegendRank )
             ++? ("legendgroup", LegendGroup )
@@ -142,16 +142,16 @@ type TraceGeoStyle() =
             ++? ("locations", Locations )
             (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
-            HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
+            ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
-            Geo |> DynObj.setValueOptBy trace "geo" StyleParam.SubPlotId.convert
-            ColorAxis |> DynObj.setValueOptBy trace "coloraxis" StyleParam.SubPlotId.convert
+            ++?? ("geo", Geo , StyleParam.SubPlotId.convert)
+            ++?? ("coloraxis", ColorAxis , StyleParam.SubPlotId.convert)
             ++? ("marker", Marker )
             ++? ("colorbar", ColorBar )
             ++? ("autocolorscale", AutoColorScale )
-            ColorScale |> DynObj.setValueOptBy trace "colorscale" StyleParam.Colorscale.convert
+            ++?? ("colorscale", ColorScale , StyleParam.Colorscale.convert)
             ++? ("showscale", ShowScale )
             ++? ("reversescale", ReverseScale )
             ++? ("zauto", ZAuto )
@@ -162,7 +162,7 @@ type TraceGeoStyle() =
             ++? ("selected", Selected )
             ++? ("unselected", Unselected )
             ++? ("hoverlabel", HoverLabel )
-            LocationMode |> DynObj.setValueOptBy trace "locationmode" StyleParam.LocationFormat.convert
+            ++?? ("locationmode", LocationMode , StyleParam.LocationFormat.convert)
             ++? ("uirevision", UIRevision )
 
             trace)
@@ -256,13 +256,13 @@ type TraceGeoStyle() =
         (fun (trace: #Trace) ->
 
             ++? ("name", Name )
-            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+            ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
             ++? ("legendrank", LegendRank )
             ++? ("legendgroup", LegendGroup )
             ++? ("legendgrouptitle", LegendGroupTitle )
             ++? ("opacity", Opacity )
-            Mode |> DynObj.setValueOptBy trace "mode" StyleParam.Mode.convert
+            ++?? ("mode", Mode , StyleParam.Mode.convert)
             ++? ("ids", Ids )
             ++? ("lat", Lat )
             ++? ("geojson", GeoJson )
@@ -276,11 +276,11 @@ type TraceGeoStyle() =
 
             (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt trace "texttemplate"
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
-            HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
+            ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
-            Geo |> DynObj.setValueOptBy trace "geo" StyleParam.SubPlotId.convert
+            ++?? ("geo", Geo , StyleParam.SubPlotId.convert)
             ++? ("marker", Marker )
             ++? ("line", Line )
             ++? ("textfont", TextFont )
@@ -288,10 +288,10 @@ type TraceGeoStyle() =
             ++? ("selected", Selected )
             ++? ("unselected", Unselected )
             ++? ("connectgaps", ConnectGaps )
-            Fill |> DynObj.setValueOptBy trace "fill" StyleParam.Fill.convert
+            ++?? ("fill", Fill , StyleParam.Fill.convert)
             ++? ("fillcolor", FillColor )
             ++? ("hoverlabel", HoverLabel )
-            LocationMode |> DynObj.setValueOptBy trace "locationmode" StyleParam.LocationFormat.convert
+            ++?? ("locationmode", LocationMode , StyleParam.LocationFormat.convert)
             ++? ("uirevision", UIRevision )
 
             trace

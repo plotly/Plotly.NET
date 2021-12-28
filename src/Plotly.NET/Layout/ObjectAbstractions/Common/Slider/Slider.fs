@@ -149,7 +149,7 @@ type Slider() =
             ++? ("currentvalue", CurrentValue )
             ++? ("font", Font )
             ++? ("len", Len )
-            LenMode |> DynObj.setValueOptBy slider "lenmode" StyleParam.UnitMode.convert
+            ++?? ("lenmode", LenMode , StyleParam.UnitMode.convert)
             ++? ("minorticklen", MinorTickLen )
             ++? ("name", Name )
             ++? ("pad", Padding )
@@ -161,8 +161,8 @@ type Slider() =
             ++? ("transition", Transition )
             ++? ("visible", Visible )
             ++? ("x", X )
-            XAnchor |> DynObj.setValueOptBy slider "xanchor" StyleParam.XAnchorPosition.convert
+            ++?? ("xanchor", XAnchor , StyleParam.XAnchorPosition.convert)
             ++? ("y", Y )
-            YAnchor |> DynObj.setValueOptBy slider "yanchor" StyleParam.YAnchorPosition.convert
+            ++?? ("yanchor", YAnchor , StyleParam.YAnchorPosition.convert)
 
             slider)

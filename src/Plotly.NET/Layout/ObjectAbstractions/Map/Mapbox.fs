@@ -52,7 +52,7 @@ type Mapbox() =
 
             ++? ("domain", Domain )
             ++? ("accesstoken", AccessToken )
-            Style |> DynObj.setValueOptBy mapBox "style" StyleParam.MapboxStyle.convert
+            ++?? ("style", Style , StyleParam.MapboxStyle.convert)
 
             Center
             |> Option.map

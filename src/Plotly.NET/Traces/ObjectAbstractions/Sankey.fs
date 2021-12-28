@@ -65,7 +65,7 @@ type SankeyNodes() =
             ++? ("color", Color )
             ++? ("customdata", CustomData )
             ++? ("hoverinfo", Groups )
-            HoverInfo |> DynObj.setValueOptBy sankeyNodes "color" StyleParam.HoverInfo.convert
+            ++?? ("color", HoverInfo , StyleParam.HoverInfo.convert)
             ++? ("hoverlabel", HoverLabel )
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt sankeyNodes "hovertemplate"
             ++? ("label", Label )
@@ -114,7 +114,7 @@ type SankeyLinkColorscale() =
 
             ++? ("cmax", CMax )
             ++? ("cmin", CMin )
-            ColorScale |> DynObj.setValueOptBy sankeyLinkColorscale "colorscale" StyleParam.Colorscale.convert
+            ++?? ("colorscale", ColorScale , StyleParam.Colorscale.convert)
             ++? ("label", Label )
             ++? ("name", Name )
             ++? ("templateitemname", TemplateItemName )
@@ -178,7 +178,7 @@ type SankeyLinks() =
             ++? ("color", Color )
             ++? ("colorscales", ColorScales )
             ++? ("customdata", CustomData )
-            HoverInfo |> DynObj.setValueOptBy sankeyLinks "hoverinfo" StyleParam.HoverInfo.convert
+            ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             ++? ("hoverlabel", HoverLabel )
             ++? ("hovertemplate", HoverTemplate )
             ++? ("multihovertemplate", MultiHoverTemplate )

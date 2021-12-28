@@ -45,7 +45,7 @@ type ModeBar() =
             ++? ("add", Add )
             ++? ("bgcolor", BGColor )
             ++? ("color", Color )
-            Orientation |> DynObj.setValueOptBy modeBar "orientation" StyleParam.Orientation.convert
+            ++?? ("orientation", Orientation , StyleParam.Orientation.convert)
             ++? ("remove", Remove )
             UIRevision |> DynObj.setValueOpt modeBar "uirevision "
 

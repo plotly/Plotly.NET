@@ -52,7 +52,7 @@ type Trace3DStyle() =
     static member SetScene([<Optional; DefaultParameterValue(null)>] ?SceneId: StyleParam.SubPlotId) =
         (fun (trace: Trace3D) ->
 
-            SceneId |> DynObj.setValueOptBy trace "scene" StyleParam.SubPlotId.toString
+            ++?? ("scene", SceneId , StyleParam.SubPlotId.toString)
 
             trace)
 
@@ -154,12 +154,12 @@ type Trace3DStyle() =
         (fun (scatter: #Trace) ->
 
             ++? ("name", Name )
-            Visible |> DynObj.setValueOptBy scatter "visible" StyleParam.Visible.convert
+            ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
             ++? ("legendrank", LegendRank )
             ++? ("legendgroup", LegendGroup )
             ++? ("legendgrouptitle", LegendGroupTitle )
-            Mode |> DynObj.setValueOptBy scatter "mode" StyleParam.Mode.convert
+            ++?? ("mode", Mode , StyleParam.Mode.convert)
             ++? ("opacity", Opacity )
             ++? ("ids", Ids )
             ++? ("x", X )
@@ -173,14 +173,14 @@ type Trace3DStyle() =
 
             (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt scatter "texttemplate"
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt scatter "hovertext"
-            HoverInfo |> DynObj.setValueOptBy scatter "hoverinfo" StyleParam.HoverInfo.convert
+            ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt scatter "hovertemplate"
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
             ++? ("zhoverformat", ZHoverFormat )
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
-            Scene |> DynObj.setValueOptBy scatter "scene" StyleParam.SubPlotId.convert
+            ++?? ("scene", Scene , StyleParam.SubPlotId.convert)
             ++? ("marker", Marker )
             ++? ("line", Line )
             ++? ("textfont", TextFont )
@@ -190,10 +190,10 @@ type Trace3DStyle() =
             ++? ("connectgaps", ConnectGaps )
             ++? ("hoverlabel", Hoverlabel )
             ++? ("projection", Projection )
-            Surfaceaxis |> DynObj.setValueOptBy scatter "surfaceaxis" StyleParam.SurfaceAxis.convert
-            XCalendar |> DynObj.setValueOptBy scatter "xcalendar" StyleParam.Calendar.convert
-            YCalendar |> DynObj.setValueOptBy scatter "ycalendar" StyleParam.Calendar.convert
-            ZCalendar |> DynObj.setValueOptBy scatter "zcalendar" StyleParam.Calendar.convert
+            ++?? ("surfaceaxis", Surfaceaxis , StyleParam.SurfaceAxis.convert)
+            ++?? ("xcalendar", XCalendar , StyleParam.Calendar.convert)
+            ++?? ("ycalendar", YCalendar , StyleParam.Calendar.convert)
+            ++?? ("zcalendar", ZCalendar , StyleParam.Calendar.convert)
             ++? ("uirevision", UIRevision )
 
             scatter)
@@ -301,7 +301,7 @@ type Trace3DStyle() =
         (fun (surface: #Trace) ->
 
             ++? ("name", Name )
-            Visible |> DynObj.setValueOptBy surface "visible" StyleParam.Visible.convert
+            ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
             ++? ("legendrank", LegendRank )
             ++? ("legendgroup", LegendGroup )
@@ -314,18 +314,18 @@ type Trace3DStyle() =
             ++? ("surfacecolor", SurfaceColor )
             (Text, MultiText) |> DynObj.setSingleOrMultiOpt surface "text"
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt surface "hovertext"
-            HoverInfo |> DynObj.setValueOptBy surface "hoverinfo" StyleParam.HoverInfo.convert
+            ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt surface "hovertemplate"
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
             ++? ("zhoverformat", ZHoverFormat )
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
-            Scene |> DynObj.setValueOptBy surface "scene" StyleParam.SubPlotId.convert
-            ColorAxis |> DynObj.setValueOptBy surface "coloraxis" StyleParam.SubPlotId.convert
+            ++?? ("scene", Scene , StyleParam.SubPlotId.convert)
+            ++?? ("coloraxis", ColorAxis , StyleParam.SubPlotId.convert)
             ++? ("colorbar", ColorBar )
             ++? ("autocolorscale", AutoColorScale )
-            ColorScale |> DynObj.setValueOptBy surface "colorscale" StyleParam.Colorscale.convert
+            ++?? ("colorscale", ColorScale , StyleParam.Colorscale.convert)
             ++? ("showscale", ShowScale )
             ++? ("reversescale", ReverseScale )
             ++? ("cauto", CAuto )
@@ -339,9 +339,9 @@ type Trace3DStyle() =
             ++? ("lighting", Lighting )
             ++? ("lightposition", LightPosition )
             ++? ("opacityscale", OpacityScale )
-            XCalendar |> DynObj.setValueOptBy surface "xcalendar" StyleParam.Calendar.convert
-            YCalendar |> DynObj.setValueOptBy surface "ycalendar" StyleParam.Calendar.convert
-            ZCalendar |> DynObj.setValueOptBy surface "zcalendar" StyleParam.Calendar.convert
+            ++?? ("xcalendar", XCalendar , StyleParam.Calendar.convert)
+            ++?? ("ycalendar", YCalendar , StyleParam.Calendar.convert)
+            ++?? ("zcalendar", ZCalendar , StyleParam.Calendar.convert)
             ++? ("uirevision", UIRevision )
 
             surface)
@@ -463,7 +463,7 @@ type Trace3DStyle() =
         fun (mesh3d: #Trace) ->
 
             ++? ("name", Name )
-            Visible |> DynObj.setValueOptBy mesh3d "visible" StyleParam.Visible.convert
+            ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
             ++? ("legendrank", LegendRank )
             ++? ("legendgroup", LegendGroup )
@@ -478,39 +478,39 @@ type Trace3DStyle() =
             ++? ("k", K )
             ++? ("facecolor", FaceColor )
             ++? ("intensity", Intensity )
-            IntensityMode |> DynObj.setValueOptBy mesh3d "intensitymode" StyleParam.IntensityMode.convert
+            ++?? ("intensitymode", IntensityMode , StyleParam.IntensityMode.convert)
             ++? ("vertexcolor", VertexColor )
             (Text, MultiText) |> DynObj.setSingleOrMultiOpt mesh3d "text"
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt mesh3d "hovertext"
-            HoverInfo |> DynObj.setValueOptBy mesh3d "hoverinfo" StyleParam.HoverInfo.convert
+            ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt mesh3d "hovertemplate"
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
             ++? ("zhoverformat", ZHoverFormat )
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
-            Scene |> DynObj.setValueOptBy mesh3d "scene" StyleParam.SubPlotId.convert
+            ++?? ("scene", Scene , StyleParam.SubPlotId.convert)
             ++? ("color", Color )
-            ColorAxis |> DynObj.setValueOptBy mesh3d "coloraxis" StyleParam.SubPlotId.convert
+            ++?? ("coloraxis", ColorAxis , StyleParam.SubPlotId.convert)
             ++? ("colorbar", ColorBar )
             ++? ("autocolorscale", AutoColorScale )
-            ColorScale |> DynObj.setValueOptBy mesh3d "colorscale" StyleParam.Colorscale.convert
+            ++?? ("colorscale", ColorScale , StyleParam.Colorscale.convert)
             ++? ("showscale", ShowScale )
             ++? ("reversescale", ReverseScale )
             ++? ("cauto", CAuto )
             ++? ("cmin", CMin )
             ++? ("cmid", CMid )
             ++? ("cmax", CMax )
-            AlphaHull |> DynObj.setValueOptBy mesh3d "alphahull" StyleParam.TriangulationAlgorithm.convert
-            Delaunayaxis |> DynObj.setValueOptBy mesh3d "delaunayaxis" StyleParam.Delaunayaxis.convert
+            ++?? ("alphahull", AlphaHull , StyleParam.TriangulationAlgorithm.convert)
+            ++?? ("delaunayaxis", Delaunayaxis , StyleParam.Delaunayaxis.convert)
             ++? ("contour", Contour )
             ++? ("flatshading", FlatShading )
             ++? ("hoverlabel", Hoverlabel )
             ++? ("lighting", Lighting )
             ++? ("lightposition", LightPosition )
-            XCalendar |> DynObj.setValueOptBy mesh3d "xcalendar" StyleParam.Calendar.convert
-            YCalendar |> DynObj.setValueOptBy mesh3d "ycalendar" StyleParam.Calendar.convert
-            ZCalendar |> DynObj.setValueOptBy mesh3d "zcalendar" StyleParam.Calendar.convert
+            ++?? ("xcalendar", XCalendar , StyleParam.Calendar.convert)
+            ++?? ("ycalendar", YCalendar , StyleParam.Calendar.convert)
+            ++?? ("zcalendar", ZCalendar , StyleParam.Calendar.convert)
             ++? ("uirevision", UIRevision )
 
             mesh3d
@@ -618,7 +618,7 @@ type Trace3DStyle() =
         ) =
         (fun (cone: #Trace) ->
             ++? ("name", Name )
-            Visible |> DynObj.setValueOptBy cone "visible" StyleParam.Visible.convert
+            ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
             ++? ("legendrank", LegendRank )
             ++? ("legendgroup", LegendGroup )
@@ -633,7 +633,7 @@ type Trace3DStyle() =
             ++? ("w", W )
             (Text, MultiText) |> DynObj.setSingleOrMultiOpt cone "text"
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt cone "hovertext"
-            HoverInfo |> DynObj.setValueOptBy cone "hoverinfo" StyleParam.HoverInfo.convert
+            ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt cone "hovertemplate"
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
@@ -643,22 +643,22 @@ type Trace3DStyle() =
             ++? ("whoverformat", WHoverFormat )
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
-            Scene |> DynObj.setValueOptBy cone "scene" StyleParam.SubPlotId.convert
-            ColorAxis |> DynObj.setValueOptBy cone "scene" StyleParam.SubPlotId.convert
+            ++?? ("scene", Scene , StyleParam.SubPlotId.convert)
+            ++?? ("scene", ColorAxis , StyleParam.SubPlotId.convert)
             ++? ("colorbar", ColorBar )
             ++? ("autocolorscale", AutoColorScale )
-            ColorScale |> DynObj.setValueOptBy cone "colorscale" StyleParam.Colorscale.convert
+            ++?? ("colorscale", ColorScale , StyleParam.Colorscale.convert)
             ++? ("showscale", ShowScale )
             ++? ("reversescale", ReverseScale )
             ++? ("cauto", CAuto )
             ++? ("cmin", CMin )
             ++? ("cmid", CMid )
             ++? ("cmax", CMax )
-            Anchor |> DynObj.setValueOptBy cone "anchor" StyleParam.ConeAnchor.convert
+            ++?? ("anchor", Anchor , StyleParam.ConeAnchor.convert)
             ++? ("hoverlabel", HoverLabel )
             ++? ("lighting", Lighting )
             ++? ("lightposition", LightPosition )
-            SizeMode |> DynObj.setValueOptBy cone "sizemode" StyleParam.ConeSizeMode.convert
+            ++?? ("sizemode", SizeMode , StyleParam.ConeSizeMode.convert)
             ++? ("sizeref", SizeRef )
             ++? ("uirevision", UIRevision )
 
@@ -766,7 +766,7 @@ type Trace3DStyle() =
         ) =
         (fun (streamTube: #Trace) ->
             ++? ("name", Name )
-            Visible |> DynObj.setValueOptBy streamTube "visible" StyleParam.Visible.convert
+            ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
             ++? ("legendrank", LegendRank )
             ++? ("legendgroup", LegendGroup )
@@ -781,7 +781,7 @@ type Trace3DStyle() =
             ++? ("w", W )
             (Text, MultiText) |> DynObj.setSingleOrMultiOpt streamTube "text"
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt streamTube "hovertext"
-            HoverInfo |> DynObj.setValueOptBy streamTube "hoverinfo" StyleParam.HoverInfo.convert
+            ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt streamTube "hovertemplate"
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
@@ -791,11 +791,11 @@ type Trace3DStyle() =
             ++? ("whoverformat", WHoverFormat )
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
-            Scene |> DynObj.setValueOptBy streamTube "scene" StyleParam.SubPlotId.convert
-            ColorAxis |> DynObj.setValueOptBy streamTube "scene" StyleParam.SubPlotId.convert
+            ++?? ("scene", Scene , StyleParam.SubPlotId.convert)
+            ++?? ("scene", ColorAxis , StyleParam.SubPlotId.convert)
             ++? ("colorbar", ColorBar )
             ++? ("autocolorscale", AutoColorScale )
-            ColorScale |> DynObj.setValueOptBy streamTube "colorscale" StyleParam.Colorscale.convert
+            ++?? ("colorscale", ColorScale , StyleParam.Colorscale.convert)
             ++? ("showscale", ShowScale )
             ++? ("reversescale", ReverseScale )
             ++? ("cauto", CAuto )
@@ -919,7 +919,7 @@ type Trace3DStyle() =
         fun (volume: #Trace) ->
 
             ++? ("name", Name )
-            Visible |> DynObj.setValueOptBy volume "visible" StyleParam.Visible.convert
+            ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
             ++? ("legendrank", LegendRank )
             ++? ("legendgroup", LegendGroup )
@@ -932,7 +932,7 @@ type Trace3DStyle() =
             ++? ("value", Value )
             (Text, MultiText) |> DynObj.setSingleOrMultiOpt volume "text"
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt volume "hovertext"
-            HoverInfo |> DynObj.setValueOptBy volume "hoverinfo" StyleParam.HoverInfo.convert
+            ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt volume "hovertemplate"
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
@@ -940,11 +940,11 @@ type Trace3DStyle() =
             ++? ("valuehoverformat", ValueHoverFormat )
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
-            Scene |> DynObj.setValueOptBy volume "scene" StyleParam.SubPlotId.convert
-            ColorAxis |> DynObj.setValueOptBy volume "scene" StyleParam.SubPlotId.convert
+            ++?? ("scene", Scene , StyleParam.SubPlotId.convert)
+            ++?? ("scene", ColorAxis , StyleParam.SubPlotId.convert)
             ++? ("colorbar", ColorBar )
             ++? ("autocolorscale", AutoColorScale )
-            ColorScale |> DynObj.setValueOptBy volume "colorscale" StyleParam.Colorscale.convert
+            ++?? ("colorscale", ColorScale , StyleParam.Colorscale.convert)
             ++? ("showscale", ShowScale )
             ++? ("reversescale", ReverseScale )
             ++? ("cauto", CAuto )
@@ -1074,7 +1074,7 @@ type Trace3DStyle() =
         fun (isoSurface: #Trace) ->
 
             ++? ("name", Name )
-            Visible |> DynObj.setValueOptBy isoSurface "visible" StyleParam.Visible.convert
+            ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
             ++? ("legendrank", LegendRank )
             ++? ("legendgroup", LegendGroup )
@@ -1087,7 +1087,7 @@ type Trace3DStyle() =
             ++? ("value", Value )
             (Text, MultiText) |> DynObj.setSingleOrMultiOpt isoSurface "text"
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt isoSurface "hovertext"
-            HoverInfo |> DynObj.setValueOptBy isoSurface "hoverinfo" StyleParam.HoverInfo.convert
+            ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt isoSurface "hovertemplate"
             ++? ("xhoverformat", XHoverFormat )
             ++? ("yhoverformat", YHoverFormat )
@@ -1095,11 +1095,11 @@ type Trace3DStyle() =
             ++? ("valuehoverformat", ValueHoverFormat )
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
-            Scene |> DynObj.setValueOptBy isoSurface "scene" StyleParam.SubPlotId.convert
-            ColorAxis |> DynObj.setValueOptBy isoSurface "scene" StyleParam.SubPlotId.convert
+            ++?? ("scene", Scene , StyleParam.SubPlotId.convert)
+            ++?? ("scene", ColorAxis , StyleParam.SubPlotId.convert)
             ++? ("colorbar", ColorBar )
             ++? ("autocolorscale", AutoColorScale )
-            ColorScale |> DynObj.setValueOptBy isoSurface "colorscale" StyleParam.Colorscale.convert
+            ++?? ("colorscale", ColorScale , StyleParam.Colorscale.convert)
             ++? ("showscale", ShowScale )
             ++? ("reversescale", ReverseScale )
             ++? ("cauto", CAuto )

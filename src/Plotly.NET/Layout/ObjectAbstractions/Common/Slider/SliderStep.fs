@@ -83,7 +83,7 @@ type SliderStep() =
             ++? ("args", argsAsDictionaries )
             ++? ("execute", Execute )
             ++? ("label", Label )
-            Method |> DynObj.setValueOptBy step "method" StyleParam.Method.convert
+            ++?? ("method", Method , StyleParam.Method.convert)
             ++? ("name", Name )
             ++? ("templateitemname", TemplateItemName )
             ++? ("value", Value )

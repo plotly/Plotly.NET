@@ -51,8 +51,8 @@ type IcicleTiling() =
         ) =
         (fun (icicleTiling: IcicleTiling) ->
 
-            Flip |> DynObj.setValueOptBy icicleTiling "flip" StyleParam.TilingFlip.convert
-            Orientation |> DynObj.setValueOptBy icicleTiling "orientation" StyleParam.Orientation.convert
+            ++?? ("flip", Flip , StyleParam.TilingFlip.convert)
+            ++?? ("orientation", Orientation , StyleParam.Orientation.convert)
             ++? ("pad", Pad )
 
             icicleTiling)

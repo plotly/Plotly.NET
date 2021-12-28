@@ -58,9 +58,9 @@ type TreemapTiling() =
             [<Optional; DefaultParameterValue(null)>] ?Pad: float
         ) =
         (fun (tiling: TreemapTiling) ->
-            Packing |> DynObj.setValueOptBy tiling "packing" StyleParam.TreemapTilingPacking.convert
+            ++?? ("packing", Packing , StyleParam.TreemapTilingPacking.convert)
             ++? ("squarifyRatio", SquarifyRatio )
-            Flip |> DynObj.setValueOptBy tiling "flip" StyleParam.TilingFlip.convert
+            ++?? ("flip", Flip , StyleParam.TilingFlip.convert)
             ++? ("pad", Pad )
 
             tiling)

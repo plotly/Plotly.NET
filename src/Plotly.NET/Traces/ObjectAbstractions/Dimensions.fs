@@ -93,10 +93,10 @@ type Dimension() =
             ++? ("templateitemname", TemplateItemName )
             ++? ("values", Values )
             ++? ("visible", Visible )
-            ConstraintRange |> DynObj.setValueOptBy dims "constraintrange" StyleParam.Range.convert
+            ++?? ("constraintrange", ConstraintRange , StyleParam.Range.convert)
             ++? ("multiselect", MultiSelect )
-            Range |> DynObj.setValueOptBy dims "range" StyleParam.Range.convert
-            TickFormat |> DynObj.setValueOptBy dims "tickformat" StyleParam.TickMode.convert
+            ++?? ("range", Range , StyleParam.Range.convert)
+            ++?? ("tickformat", TickFormat , StyleParam.TickMode.convert)
             ++? ("ticktext", TickText )
             ++? ("tickvals", Tickvals )
             ++ ("axis", axis )

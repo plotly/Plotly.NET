@@ -68,7 +68,7 @@ type IndicatorDelta() =
             ++? ("decreasing", Decreasing )
             ++? ("font", Font )
             ++? ("increasing", Increasing )
-            Position |> DynObj.setValueOptBy indicatorDelta "position" StyleParam.IndicatorDeltaPosition.convert
+            ++?? ("position", Position , StyleParam.IndicatorDeltaPosition.convert)
             ++? ("reference", Reference )
             ++? ("relative", Relative )
             ++? ("valueformat", ValueFormat )
@@ -166,7 +166,7 @@ type IndicatorStep() =
             ++? ("color", Color )
             ++? ("line", Line )
             ++? ("name", Name )
-            Range |> DynObj.setValueOptBy indicatorSteps "range" StyleParam.Range.convert
+            ++?? ("range", Range , StyleParam.Range.convert)
             ++? ("templateitemname", TemplateItemName )
             ++? ("thickness", Thickness )
 
@@ -243,7 +243,7 @@ type IndicatorGauge() =
             ++? ("bgcolor", BGColor )
             ++? ("bordercolor", BorderColor )
             ++? ("borderwidth", BorderWidth )
-            Shape |> DynObj.setValueOptBy indicatorGauge "shape" StyleParam.IndicatorGaugeShape.convert
+            ++?? ("shape", Shape , StyleParam.IndicatorGaugeShape.convert)
             ++? ("steps", Steps )
             ++? ("threshold", Threshold )
 

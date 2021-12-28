@@ -87,7 +87,7 @@ type Error() =
         ) =
         (fun (error: Error) ->
             ++? ("visible", Visible )
-            Type |> DynObj.setValueOptBy error "type" StyleParam.ErrorType.convert
+            ++?? ("type", Type , StyleParam.ErrorType.convert)
             ++? ("symmetric", Symmetric )
             ++? ("array", Array )
             ++? ("arrayminus", Arrayminus )

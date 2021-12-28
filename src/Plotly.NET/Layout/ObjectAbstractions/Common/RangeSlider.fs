@@ -54,14 +54,14 @@ type RangeSlider() =
             ++? ("bordercolor", BorderColor )
             ++? ("borderwidth", BorderWidth )
             ++? ("autorange", AutoRange )
-            Range |> DynObj.setValueOptBy rangeslider "range" StyleParam.Range.convert
+            ++?? ("range", Range , StyleParam.Range.convert)
             ++? ("thickness", Thickness )
             ++? ("visible", Visible )
 
             let yAxis =
                 let tmp = DynamicObj()
-                YAxisRangeMode |> DynObj.setValueOptBy tmp "rangemode" StyleParam.RangesliderRangeMode.convert
-                YAxisRange |> DynObj.setValueOptBy tmp "range" StyleParam.Range.convert
+                ++?? ("rangemode", YAxisRangeMode , StyleParam.RangesliderRangeMode.convert)
+                ++?? ("range", YAxisRange , StyleParam.Range.convert)
                 tmp
 
             ++ ("yaxis", yAxis )

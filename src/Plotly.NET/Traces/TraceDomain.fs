@@ -145,7 +145,7 @@ type TraceDomainStyle() =
 
             ++? ("name", Name )
             ++? ("title", Title )
-            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+            ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
             ++? ("legendrank", LegendRank )
             ++? ("legendgroup", LegendGroup )
@@ -164,7 +164,7 @@ type TraceDomainStyle() =
 
             (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt trace "texttemplate"
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
-            HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
+            ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
@@ -172,14 +172,13 @@ type TraceDomainStyle() =
             ++? ("automargin", AutoMargin )
             ++? ("marker", Marker )
             ++? ("textfont", TextFont )
-            TextInfo |> DynObj.setValueOptBy trace "textinfo" StyleParam.TextInfo.convert
-            Direction |> DynObj.setValueOptBy trace "direction" StyleParam.Direction.convert
+            ++?? ("textinfo", TextInfo , StyleParam.TextInfo.convert)
+            ++?? ("direction", Direction , StyleParam.Direction.convert)
             ++? ("hole", Hole )
             ++? ("hoverlabel", HoverLabel )
             ++? ("insidetextfont", InsideTextFont )
 
-            InsideTextOrientation
-            |> DynObj.setValueOptBy trace "insidetextorientation" StyleParam.InsideTextOrientation.convert
+            ++?? ("insidetextorientation", InsideTextOrientation, StyleParam.InsideTextOrientation.convert)
 
             ++? ("outsidetextfont", OutsideTextFont )
             ++? ("rotation", Rotation )
@@ -271,7 +270,7 @@ type TraceDomainStyle() =
 
             ++? ("name", Name )
             ++? ("title", Title )
-            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+            ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
             ++? ("legendrank", LegendRank )
             ++? ("legendgroup", LegendGroup )
@@ -289,14 +288,14 @@ type TraceDomainStyle() =
 
             (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt trace "texttemplate"
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
-            HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
+            ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++? ("domain", Domain )
             ++? ("marker", Marker )
             ++? ("textfont", TextFont )
-            TextInfo |> DynObj.setValueOptBy trace "textinfo" StyleParam.TextInfo.convert
+            ++?? ("textinfo", TextInfo , StyleParam.TextInfo.convert)
             ++? ("aspectratio", AspectRatio )
             ++? ("baseratio", BaseRatio )
             ++? ("hoverlabel", HoverLabel )
@@ -396,7 +395,7 @@ type TraceDomainStyle() =
 
             ++? ("name", Name )
             ++? ("title", Title )
-            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+            ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
             ++? ("legendrank", LegendRank )
             ++? ("legendgroup", LegendGroup )
@@ -409,21 +408,20 @@ type TraceDomainStyle() =
             (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
             (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt trace "texttemplate"
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
-            HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
+            ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++? ("domain", Domain )
             ++? ("marker", Marker )
             ++? ("textfont", TextFont )
-            TextInfo |> DynObj.setValueOptBy trace "textinfo" StyleParam.TextInfo.convert
-            BranchValues |> DynObj.setValueOptBy trace "branchvalues" StyleParam.BranchValues.convert
+            ++?? ("textinfo", TextInfo , StyleParam.TextInfo.convert)
+            ++?? ("branchvalues", BranchValues , StyleParam.BranchValues.convert)
             ++? ("count", Count )
             ++? ("hoverlabel", HoverLabel )
             ++? ("insidetextfont", InsideTextFont )
 
-            InsideTextOrientation
-            |> DynObj.setValueOptBy trace "insidetextorientation" StyleParam.InsideTextOrientation.convert
+            ++?? ("insidetextorientation", InsideTextOrientation, StyleParam.InsideTextOrientation.convert)
 
             ++? ("outsidetextfont", OutsideTextFont )
             ++? ("root", Root )
@@ -526,7 +524,7 @@ type TraceDomainStyle() =
 
             ++? ("name", Name )
             ++? ("title", Title )
-            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+            ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
             ++? ("legendrank", LegendRank )
             ++? ("legendgroup", LegendGroup )
@@ -543,15 +541,15 @@ type TraceDomainStyle() =
 
             (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt trace "texttemplate"
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
-            HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
+            ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++? ("domain", Domain )
             ++? ("marker", Marker )
             ++? ("textfont", TextFont )
-            TextInfo |> DynObj.setValueOptBy trace "textinfo" StyleParam.TextInfo.convert
-            BranchValues |> DynObj.setValueOptBy trace "branchvalues" StyleParam.BranchValues.convert
+            ++?? ("textinfo", TextInfo , StyleParam.TextInfo.convert)
+            ++?? ("branchvalues", BranchValues , StyleParam.BranchValues.convert)
             ++? ("count", Count )
             ++? ("tiling", Tiling )
             ++? ("pathbar", PathBar )
@@ -608,7 +606,7 @@ type TraceDomainStyle() =
         (fun (trace: ('T :> Trace)) ->
 
             ++? ("name", Name )
-            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+            ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("legendrank", LegendRank )
             ++? ("legendgroup", LegendGroup )
             ++? ("legendgrouptitle", LegendGroupTitle )
@@ -674,20 +672,20 @@ type TraceDomainStyle() =
         (fun (trace: ('T :> Trace)) ->
 
             ++? ("name", Name )
-            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+            ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("legendgroup", LegendGroup )
             ++? ("legendgrouptitle", LegendGroupTitle )
             ++? ("counts", Counts )
             ++? ("dimensions", Dimensions )
-            HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
+            ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
             ++? ("meta", Meta )
             ++? ("domain", Domain )
             ++? ("line", Line )
-            Arrangement |> DynObj.setValueOptBy trace "arrangement" StyleParam.CategoryArrangement.convert
+            ++?? ("arrangement", Arrangement , StyleParam.CategoryArrangement.convert)
             ++? ("bundlecolors", BundleColors )
-            SortPaths |> DynObj.setValueOptBy trace "sortpaths" StyleParam.SortAlgorithm.convert
-            Hoveron |> DynObj.setValueOptBy trace "hoveron" StyleParam.HoverOn.convert
+            ++?? ("sortpaths", SortPaths , StyleParam.SortAlgorithm.convert)
+            ++?? ("hoveron", Hoveron , StyleParam.HoverOn.convert)
             ++? ("labelfont", LabelFont )
             TickFont |> DynObj.setValueOpt trace "tickfont "
             ++? ("uirevision", UIRevision )
@@ -743,21 +741,21 @@ type TraceDomainStyle() =
         (fun (trace: ('T :> Trace)) ->
 
             ++? ("name", Name )
-            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+            ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("legendrank", LegendRank )
             ++? ("legendgroup", LegendGroup )
             ++? ("legendgrouptitle", LegendGroupTitle )
             ++? ("ids", Ids )
-            HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
+            ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++? ("domain", Domain )
-            Orientation |> DynObj.setValueOptBy trace "orientation" StyleParam.Orientation.convert
+            ++?? ("orientation", Orientation , StyleParam.Orientation.convert)
             ++? ("node", Node )
             ++? ("link", Link )
             ++? ("textfont", TextFont )
             ++? ("selectedpoints", SelectedPoints )
-            Arrangement |> DynObj.setValueOptBy trace "arrangement" StyleParam.CategoryArrangement.convert
+            ++?? ("arrangement", Arrangement , StyleParam.CategoryArrangement.convert)
             ++? ("hoverlabel", HoverLabel )
             ++? ("valueformat", ValueFormat )
             ++? ("valuesuffix", ValueSuffix )
@@ -806,13 +804,13 @@ type TraceDomainStyle() =
         (fun (trace: ('T :> Trace)) ->
 
             ++? ("name", Name )
-            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+            ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("legendrank", LegendRank )
             ++? ("legendgrouptitle", LegendGroupTitle )
             ++? ("ids", Ids )
             ++? ("columnorder", ColumnOrder )
             (ColumnWidth, MultiColumnWidth) |> DynObj.setSingleOrMultiOpt trace "columnwidth"
-            HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
+            ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++? ("domain", Domain )
@@ -865,16 +863,16 @@ type TraceDomainStyle() =
 
             ++? ("name", Name )
             ++? ("title", Title )
-            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+            ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("legendrank", LegendRank )
             ++? ("legendgrouptitle", LegendGroupTitle )
-            Mode |> DynObj.setValueOptBy trace "mode" StyleParam.IndicatorMode.convert
+            ++?? ("mode", Mode , StyleParam.IndicatorMode.convert)
             ++? ("ids", Ids )
             ++? ("value", Value )
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++? ("domain", Domain )
-            Align |> DynObj.setValueOptBy trace "align" StyleParam.IndicatorAlignment.convert
+            ++?? ("align", Align , StyleParam.IndicatorAlignment.convert)
             ++? ("delta", Delta )
             ++? ("number", Number )
             ++? ("gauge", Gauge )
@@ -969,7 +967,7 @@ type TraceDomainStyle() =
         fun (trace: #Trace) ->
 
             ++? ("name", Name )
-            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+            ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("legendrank", LegendRank )
             ++? ("legendgrouptitle", LegendGroupTitle )
             ++? ("opacity", Opacity )
@@ -984,16 +982,16 @@ type TraceDomainStyle() =
 
             (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt trace "texttemplate"
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
-            HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
+            ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++? ("domain", Domain )
             ++? ("marker", Marker )
             ++? ("textfont", TextFont )
-            TextInfo |> DynObj.setValueOptBy trace "textinfo" StyleParam.TextInfo.convert
-            BranchValues |> DynObj.setValueOptBy trace "branchvalues" StyleParam.BranchValues.convert
-            Count |> DynObj.setValueOptBy trace "count" StyleParam.IcicleCount.convert
+            ++?? ("textinfo", TextInfo , StyleParam.TextInfo.convert)
+            ++?? ("branchvalues", BranchValues , StyleParam.BranchValues.convert)
+            ++?? ("count", Count , StyleParam.IcicleCount.convert)
             ++? ("tiling", Tiling )
             ++? ("pathbar", PathBar )
             ++? ("hoverlabel", HoverLabel )

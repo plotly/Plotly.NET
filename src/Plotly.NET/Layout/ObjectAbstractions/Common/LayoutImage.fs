@@ -66,20 +66,20 @@ type LayoutImage() =
         ) =
         (fun (layoutImage: LayoutImage) ->
 
-            Layer |> DynObj.setValueOptBy layoutImage "layer" StyleParam.Layer.convert
+            ++?? ("layer", Layer , StyleParam.Layer.convert)
             ++? ("name", Name )
             ++? ("opacity", Opacity )
             ++? ("sizex", SizeX )
             ++? ("sizey", SizeY )
-            Sizing |> DynObj.setValueOptBy layoutImage "sizing" StyleParam.LayoutImageSizing.convert
+            ++?? ("sizing", Sizing , StyleParam.LayoutImageSizing.convert)
             ++? ("source", Source )
             ++? ("templateitemname", TemplateItemname )
             ++? ("visible", Visible )
             ++? ("x", X )
-            XAnchor |> DynObj.setValueOptBy layoutImage "xanchor" StyleParam.XAnchorPosition.convert
+            ++?? ("xanchor", XAnchor , StyleParam.XAnchorPosition.convert)
             ++? ("xref", XRef )
             ++? ("y", Y )
-            YAnchor |> DynObj.setValueOptBy layoutImage "yanchor" StyleParam.YAnchorPosition.convert
+            ++?? ("yanchor", YAnchor , StyleParam.YAnchorPosition.convert)
             ++? ("yref", YRef )
 
             layoutImage)

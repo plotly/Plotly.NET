@@ -19,7 +19,7 @@ type TraceTernaryStyle() =
     static member SetTernary([<Optional; DefaultParameterValue(null)>] ?TernaryId: StyleParam.SubPlotId) =
         (fun (trace: TraceTernary) ->
 
-            TernaryId |> DynObj.setValueOptBy trace "subplot" StyleParam.SubPlotId.toString
+            ++?? ("subplot", TernaryId , StyleParam.SubPlotId.toString)
 
             trace)
 
@@ -112,13 +112,13 @@ type TraceTernaryStyle() =
         fun (trace: #Trace) ->
 
             ++? ("name", Name )
-            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+            ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
             ++? ("legendrank", LegendRank )
             ++? ("legendgroup", LegendGroup )
             ++? ("legendgrouptitle", LegendGroupTitle )
             ++? ("opacity", Opacity )
-            Mode |> DynObj.setValueOptBy trace "mode" StyleParam.Mode.convert
+            ++?? ("mode", Mode , StyleParam.Mode.convert)
             ++? ("ids", Ids )
             ++? ("a", A )
             ++? ("b", B )
@@ -130,11 +130,11 @@ type TraceTernaryStyle() =
 
             (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt trace "texttemplate"
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
-            HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
+            ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
-            SubPlot |> DynObj.setValueOptBy trace "subplot" StyleParam.SubPlotId.convert
+            ++?? ("subplot", SubPlot , StyleParam.SubPlotId.convert)
             ++? ("marker", Marker )
             ++? ("line", Line )
             ++? ("textfont", TextFont )
@@ -143,10 +143,10 @@ type TraceTernaryStyle() =
             ++? ("unselected", Unselected )
             ++? ("cliponaxis", ClipOnAxis )
             ++? ("connectgaps", ConnectGaps )
-            Fill |> DynObj.setValueOptBy trace "fill" StyleParam.Fill.convert
+            ++?? ("fill", Fill , StyleParam.Fill.convert)
             ++? ("fillcolor", FillColor )
             ++? ("hoverlabel", HoverLabel )
-            HoverOn |> DynObj.setValueOptBy trace "hoveron" StyleParam.HoverOn.convert
+            ++?? ("hoveron", HoverOn , StyleParam.HoverOn.convert)
             ++? ("sum", Sum )
             ++? ("uirevision", UIRevision )
 

@@ -79,9 +79,9 @@ type Line() =
         (fun (line: Line) ->
             ++? ("color", Color )
             (Width, MultiWidth) |> DynObj.setSingleOrMultiOpt line "width"
-            Shape |> DynObj.setValueOptBy line "shape" StyleParam.Shape.convert
+            ++?? ("shape", Shape , StyleParam.Shape.convert)
             ++? ("smoothing", Smoothing )
-            Dash |> DynObj.setValueOptBy line "dash" StyleParam.DrawingStyle.convert
+            ++?? ("dash", Dash , StyleParam.DrawingStyle.convert)
             ++? ("outliercolor", OutlierColor )
             ++? ("outlierwidth", OutlierWidth )
             ++? ("autocolorscale", AutoColorScale )
@@ -90,8 +90,8 @@ type Line() =
             ++? ("cmid", CMid )
             ++? ("cmin", CMin )
             ++? ("color", Color )
-            ColorAxis |> DynObj.setValueOptBy line "coloraxis" StyleParam.SubPlotId.convert
-            Colorscale |> DynObj.setValueOptBy line "colorscale" StyleParam.Colorscale.convert
+            ++?? ("coloraxis", ColorAxis , StyleParam.SubPlotId.convert)
+            ++?? ("colorscale", Colorscale , StyleParam.Colorscale.convert)
             ++? ("reversescale", ReverseScale )
             ++? ("showscale", ShowScale )
             ++? ("colorbar", ColorBar )

@@ -36,7 +36,7 @@ type TracePolarStyle() =
     static member SetPolar([<Optional; DefaultParameterValue(null)>] ?PolarId: StyleParam.SubPlotId) =
         (fun (trace: TracePolar) ->
 
-            PolarId |> DynObj.setValueOptBy trace "subplot" StyleParam.SubPlotId.toString
+            ++?? ("subplot", PolarId , StyleParam.SubPlotId.toString)
 
             trace)
 
@@ -135,13 +135,13 @@ type TracePolarStyle() =
         (fun (trace: ('T :> Trace)) ->
 
             ++? ("name", Name )
-            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+            ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
             ++? ("legendrank", LegendRank )
             ++? ("legendgroup", LegendGroup )
             ++? ("legendgrouptitle", LegendGroupTitle )
             ++? ("opacity", Opacity )
-            Mode |> DynObj.setValueOptBy trace "mode" StyleParam.Mode.convert
+            ++?? ("mode", Mode , StyleParam.Mode.convert)
             ++? ("ids", Ids )
             ++? ("r", R )
             ++? ("r0", R0 )
@@ -149,7 +149,7 @@ type TracePolarStyle() =
             ++? ("theta", Theta )
             ++? ("theta0", Theta0 )
             ++? ("dtheta", DTheta )
-            ThetaUnit |> DynObj.setValueOptBy trace "thetaunit" StyleParam.AngularUnit.convert
+            ++?? ("thetaunit", ThetaUnit , StyleParam.AngularUnit.convert)
             (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
 
             (TextPosition, MultiTextPosition)
@@ -157,11 +157,11 @@ type TracePolarStyle() =
 
             (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt trace "texttemplate"
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
-            HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
+            ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
-            Subplot |> DynObj.setValueOptBy trace "subplot" StyleParam.SubPlotId.convert
+            ++?? ("subplot", Subplot , StyleParam.SubPlotId.convert)
             ++? ("marker", Marker )
             ++? ("line", Line )
             ++? ("textfont", TextFont )
@@ -170,7 +170,7 @@ type TracePolarStyle() =
             ++? ("unselected", Unselected )
             ++? ("cliponaxis", ClipOnAxis )
             ++? ("connectgaps", ConnectGaps )
-            Fill |> DynObj.setValueOptBy trace "fill" StyleParam.Fill.convert
+            ++?? ("fill", Fill , StyleParam.Fill.convert)
             ++? ("fillcolor", FillColor )
             ++? ("hoverlabel", HoverLabel )
             ++? ("hoveron", HoverOn )
@@ -259,7 +259,7 @@ type TracePolarStyle() =
         (fun (trace: ('T :> Trace)) ->
 
             ++? ("name", Name )
-            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
+            ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
             ++? ("legendrank", LegendRank )
             ++? ("legendgroup", LegendGroup )
@@ -273,16 +273,16 @@ type TracePolarStyle() =
             ++? ("theta", Theta )
             ++? ("theta0", Theta0 )
             ++? ("dtheta", DTheta )
-            ThetaUnit |> DynObj.setValueOptBy trace "thetaunit" StyleParam.AngularUnit.convert
+            ++?? ("thetaunit", ThetaUnit , StyleParam.AngularUnit.convert)
             (Width, MultiWidth) |> DynObj.setSingleOrMultiOpt trace "width"
             (Offset, MultiOffset) |> DynObj.setSingleOrMultiOpt trace "offset"
             (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
-            HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
+            ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
-            Subplot |> DynObj.setValueOptBy trace "subplot" StyleParam.SubPlotId.convert
+            ++?? ("subplot", Subplot , StyleParam.SubPlotId.convert)
             ++? ("marker", Marker )
             ++? ("selectedpoints", SelectedPoints )
             ++? ("selected", Selected )

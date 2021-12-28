@@ -64,7 +64,7 @@ type Pattern() =
             ++? ("bgcolor", BGColor )
             ++? ("fgcolor", FGColor )
             ++? ("fgopacity", FGOpacity )
-            FillMode |> DynObj.setValueOptBy pattern "fillmode" StyleParam.PatternFillMode.convert
+            ++?? ("fillmode", FillMode , StyleParam.PatternFillMode.convert)
             (Shape, MultiShape) |> DynObj.setSingleOrMultiOptBy pattern "shape" StyleParam.PatternShape.convert
             (Size, MultiSize) |> DynObj.setSingleOrMultiOpt pattern "size"
             ++? ("solidity", Solidity )

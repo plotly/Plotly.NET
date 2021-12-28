@@ -109,7 +109,7 @@ type Camera() =
 
             ++? ("center", Center )
             ++? ("eye", Eye )
-            Projection |> DynObj.setValueOptBy camera "projection" StyleParam.CameraProjection.convert
+            ++?? ("projection", Projection , StyleParam.CameraProjection.convert)
             ++? ("up", Up )
 
             camera
