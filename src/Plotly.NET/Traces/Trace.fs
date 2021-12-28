@@ -85,7 +85,7 @@ type TraceStyle() =
     static member SetLine(line: Line) =
         (fun (trace: ('T :> Trace)) ->
 
-            trace.SetValue("line", line)
+            ++ ("line", line)
             trace)
 
 
@@ -113,7 +113,7 @@ type TraceStyle() =
                     ?Colorscale = Colorscale
                 )
 
-            trace.SetValue("line", line)
+            ++ ("line", line)
             trace)
 
 
@@ -121,7 +121,7 @@ type TraceStyle() =
     static member SetMarker(marker: Marker) =
         (fun (trace: ('T :> Trace)) ->
 
-            trace.SetValue("marker", marker)
+            ++ ("marker", marker)
             trace)
 
     /// Sets the given Marker styles on the marker property of a Trace object
@@ -190,7 +190,7 @@ type TraceStyle() =
                     ?SizeRef = SizeRef
                 )
 
-            trace.SetValue("marker", marker)
+            ++ ("marker", marker)
             trace
 
             )
@@ -208,7 +208,7 @@ type TraceStyle() =
     static member SetDomain(domain: Domain) =
         (fun (trace: ('T :> Trace)) ->
 
-            trace.SetValue("domain", domain)
+            ++ ("domain", domain)
             trace)
 
     /// Sets the given Domain styles on the domain property of a Trace object
@@ -227,33 +227,33 @@ type TraceStyle() =
 
                 |> Domain.style (?X = X, ?Y = Y, ?Row = Row, ?Column = Column)
 
-            trace.SetValue("domain", domain)
+            ++ ("domain", domain)
             trace)
 
     // Sets the X-Error an a Trace object.
     static member SetErrorX(error: Error) =
         (fun (trace: ('T :> Trace)) ->
 
-            trace.SetValue("error_x", error)
+            ++ ("error_x", error)
             trace)
 
     // Sets Y-Error() to TraceObjects
     static member SetErrorY(error: Error) =
         (fun (trace: ('T :> Trace)) ->
 
-            trace.SetValue("error_y", error)
+            ++ ("error_y", error)
             trace)
 
     // Sets Z-Error() to TraceObjects
     static member SetErrorZ(error: Error) =
         (fun (trace: ('T :> Trace)) ->
 
-            trace.SetValue("error_z", error)
+            ++ ("error_z", error)
             trace)
 
     // Sets Stackgroup() to TraceObjects
     static member SetStackGroup(stackgroup: string) =
         (fun (trace: ('T :> Trace)) ->
 
-            trace.SetValue("stackgroup", stackgroup)
+            ++ ("stackgroup", stackgroup)
             trace)
