@@ -50,6 +50,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.DotNet.Interactive" Version="1.0.0-beta.21559.2" />
     <PackageReference Include="Microsoft.DotNet.Interactive.Formatting" Version="1.0.0-beta.21559.2" />
+    <PackageReference Update="FSharp.Core" Version="6.0.1" />
   </ItemGroup>
 
 </Project>

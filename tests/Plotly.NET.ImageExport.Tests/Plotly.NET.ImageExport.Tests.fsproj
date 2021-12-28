@@ -22,5 +22,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\Plotly.NET\Plotly.NET.fsproj" />
     <ProjectReference Include="..\..\src\Plotly.NET.ImageExport\Plotly.NET.ImageExport.fsproj" />
+    <PackageReference Update="FSharp.Core" Version="6.0.1" />
   </ItemGroup>
 </Project>

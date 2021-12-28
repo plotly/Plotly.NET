@@ -2,6 +2,7 @@
 using Plotly.NET;
 using Microsoft.FSharp.Core; // use this for less verbose and more helpful intellisense
 using Plotly.NET.LayoutObjects;
+using DynamicObj;
 
 namespace Plotly.NET.Tests.CSharp
 {
@@ -13,25 +14,25 @@ namespace Plotly.NET.Tests.CSharp
             double[] y = new double[] { 5, 10 };
 
             LinearAxis xAxis = new LinearAxis();
-            xAxis.SetValue("title", "xAxis");
-            xAxis.SetValue("showgrid", false);
-            xAxis.SetValue("showline", true);
+            xAxis = xAxis.AddItem("title", "xAxis");
+            xAxis = xAxis.AddItem("showgrid", false);
+            xAxis = xAxis.AddItem("showline", true);
 
             LinearAxis yAxis = new LinearAxis();
-            yAxis.SetValue("title", "yAxis");
-            yAxis.SetValue("showgrid", false);
-            yAxis.SetValue("showline", true);
+            yAxis = yAxis.AddItem("title", "yAxis");
+            yAxis = yAxis.AddItem("showgrid", false);
+            yAxis = yAxis.AddItem("showline", true);
 
             Layout layout = new Layout();
-            layout.SetValue("xaxis", xAxis);
-            layout.SetValue("yaxis", yAxis);
-            layout.SetValue("showlegend", true);
+            layout = layout.AddItem("xaxis", xAxis);
+            layout = layout.AddItem("yaxis", yAxis);
+            layout = layout.AddItem("showlegend", true);
 
             Trace trace = new Trace("scatter");
-            trace.SetValue("x", x);
-            trace.SetValue("y", y);
-            trace.SetValue("mode", "markers");
-            trace.SetValue("name", "Hello from C#");
+            trace = trace.AddItem("x", x);
+            trace = trace.AddItem("y", y);
+            trace = trace.AddItem("mode", "markers");
+            trace = trace.AddItem("name", "Hello from C#");
 
             GenericChart
                 .ofTraceObject(true,trace)

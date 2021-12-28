@@ -3,6 +3,7 @@ using Xunit;
 using Plotly.NET;
 using Plotly.NET.LayoutObjects;
 using Microsoft.FSharp.Core;
+using DynamicObj;
 
 namespace Plotly.NET.Tests.CSharp
 {
@@ -14,10 +15,10 @@ namespace Plotly.NET.Tests.CSharp
             var actual = LinearAxis.init<IConvertible, IConvertible, IConvertible, IConvertible, IConvertible, IConvertible>(Color: Color.fromString("red"), AxisType: StyleParam.AxisType.Linear);
 
             var expected = new LinearAxis();
-            expected.SetValue("color", Color.fromString("red"));
-            expected.SetValue("type", StyleParam.AxisType.Linear.Convert());
+            expected = expected.AddItem("color", Color.fromString("red"));
+            expected = expected.AddItem("type", StyleParam.AxisType.Linear.Convert());
 
-            Assert.Equal(expected.GetProperties(true), actual.GetProperties(true));
+            Assert.Equal(expected, actual);
         }
     }
 }

@@ -26,32 +26,14 @@ let main argv =
         |> Chart.withLine(Line.init(Color=Color.fromString "red"))
         |> Chart.withSize(800,800)
     
-    let rec printObj (d:DynamicObj) =
-    
-        let members = d.GetDynamicMemberNames() |> Seq.cast<string> |> List.ofSeq
-
-        let rec loop (object:DynamicObj) (identationLevel:int) (membersLeft:string list) (acc:string list) =
-            let ident = [for i in 0 .. identationLevel do yield "    "] |> String.concat ""
-            match membersLeft with
-            | [] -> acc |> List.rev |> String.concat "\r\n"
-            | m::rest ->
-                let item = object?(``m``)
-                match item with
-                | :? DynamicObj as item -> 
-                    let innerMembers = item.GetDynamicMemberNames() |> Seq.cast<string> |> List.ofSeq
-                    let innerPrint = (loop item (identationLevel + 1) innerMembers [])
-                    loop object identationLevel rest ($"{ident}{m}:\r\n{innerPrint}" :: acc)
-                | _ -> 
-                    loop d identationLevel rest ($"{ident}{m}: {item}"::acc)
-    
-        loop d 0 members []
+    let rec printObj (d:ImmutableDynamicObj) =
+        ImmutableDynamicObj.print d
     
 
     scatterChart
     |> GenericChart.getTraces
     |> Seq.exactlyOne
     |> printObj
-    |> printfn "%s"
     
     scatterChart
     |> Chart.show

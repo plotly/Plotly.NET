@@ -7,6 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 open Plotly.NET.LayoutObjects
 open System
+open DynamicObj.Operators
 
 open TestUtils.HtmlCodegen
 
@@ -212,12 +213,12 @@ let meshChart =
     
     Trace3D.initMesh3D 
         (fun mesh3d ->
-            mesh3d?x <- a
-            mesh3d?y <- b
-            mesh3d?z <- c
-            mesh3d?flatshading <- true
-            mesh3d?contour <- Contours.initXyz(Show=true)
             mesh3d
+            ++ ("x", a)
+            ++ ("y", b)
+            ++ ("z", c)
+            ++ ("flatshading", true)
+            ++ ("contour", Contours.initXyz(Show=true))
             )
     |> GenericChart.ofTraceObject false
 
