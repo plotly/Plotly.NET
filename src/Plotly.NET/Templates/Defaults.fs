@@ -6,7 +6,7 @@ open Plotly.NET.LayoutObjects
 open DynamicObj
 open DynamicObj.Operators
 open DynamicObj
-open DynamicObj.Operators.Operators
+open DynamicObj.Operators
 open System.Runtime.InteropServices
 
 module Defaults =

@@ -1371,10 +1371,11 @@ type Chart =
                             (fun l ->
                                 if i > 0 then
                                     // remove default axes from consecutive charts, otherwise they will override the first one
-                                    l.Remove("xaxis") |> ignore
-                                    l.Remove("yaxis") |> ignore
-
-                                l)
+                                    l
+                                    -- "xaxis"
+                                    -- "yaxis"
+                                else
+                                    l)
                     | TraceID.Cartesian3D ->
 
                         let scene =
@@ -1679,8 +1680,8 @@ type Chart =
                         ch
                         |> mapTrace
                             (fun t ->
-                                t?scene <- (StyleParam.SubPlotId.toString sceneId)
-                                t)
+                                t
+                                ++ ("scene", (StyleParam.SubPlotId.toString sceneId)))
                         |> GenericChart.setLayout layout
                     //|> Chart.withAxisAnchor(X=index,Y=index)
                     else
@@ -1697,9 +1698,6 @@ type Chart =
                                 with
                             | Some x, Some y ->
                                 // remove axis
-                                DynObj.remove layout xName
-                                DynObj.remove layout yName
-
                                 x
                                 |> LinearAxis.style (
                                     Anchor = StyleParam.LinearAxisId.Y index,
@@ -1710,11 +1708,9 @@ type Chart =
                                     Anchor = StyleParam.LinearAxisId.X index,
                                     Domain = StyleParam.Range.MinMax ydomain
                                 ),
-                                layout
+                                layout -- xName -- yName
                             | Some x, None ->
                                 // remove x - axis
-                                DynObj.remove layout xName
-
                                 x
                                 |> LinearAxis.style (
                                     Anchor = StyleParam.LinearAxisId.Y index,
@@ -1724,11 +1720,9 @@ type Chart =
                                     Anchor = StyleParam.LinearAxisId.X index,
                                     Domain = StyleParam.Range.MinMax ydomain
                                 ),
-                                layout
+                                layout --xName
                             | None, Some y ->
                                 // remove y - axis
-                                DynObj.remove layout yName
-
                                 LinearAxis.init (
                                     Anchor = StyleParam.LinearAxisId.Y index,
                                     Domain = StyleParam.Range.MinMax xdomain
@@ -1738,7 +1732,7 @@ type Chart =
                                     Anchor = StyleParam.LinearAxisId.X index,
                                     Domain = StyleParam.Range.MinMax ydomain
                                 ),
-                                layout
+                                layout -- yName
                             | None, None ->
                                 LinearAxis.init (
                                     Anchor = StyleParam.LinearAxisId.Y index,
