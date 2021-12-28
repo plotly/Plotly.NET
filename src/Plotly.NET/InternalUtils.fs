@@ -7,37 +7,38 @@ open DynamicObj.Operators
 [<AutoOpen>]
 module DynObj =
 
-    let setSingleOrMultiOpt (dyn: #ImmutableDynamicObj) (propName: string) (single: 'A option, multi: seq<'A> option) =
+    let setSingleOrMultiOpt (propName: string) (single: 'A option, multi: seq<'A> option) (dyn: ImmutableDynamicObj) =
+        
         if multi.IsSome then
-            multi |> DynObj.setValueOpt dyn propName
+            dyn ++ (propName, multi)
         else
-            single |> DynObj.setValueOpt dyn propName
+            dyn ++ (propName, single)
 
     let setSingleOrMultiOptBy
-        (dyn: #ImmutableDynamicObj)
         (propName: string)
         (f: 'A -> 'B)
         (single: 'A option, multi: seq<'A> option)
+        (dyn: ImmutableDynamicObj)
         =
         if multi.IsSome then
-            multi |> DynObj.setValueOptBy dyn propName (Seq.map f)
+            dyn ++?? (propName, multi, (Seq.map f))
         else
-            single |> DynObj.setValueOptBy dyn propName f
+            dyn ++?? (propName, single, f)
 
-    let setSingleOrAnyOpt (dyn: #ImmutableDynamicObj) (propName: string) (single: 'A option, any: 'B option) =
+    let setSingleOrAnyOpt (dyn: ImmutableDynamicObj) (propName: string) (single: 'A option, any: 'B option) =
         if any.IsSome then
-            any |> DynObj.setValueOpt dyn propName
+            dyn ++? (propName, any)
         else
-            single |> DynObj.setValueOpt dyn propName
+            dyn ++? (propName, single)
 
     let setSingleOrAnyOptBy
-        (dyn: #ImmutableDynamicObj)
         (propName: string)
         (singleF: 'A -> 'C)
         (anyF: 'B -> 'D)
         (single: 'A option, any: 'B option)
+        (dyn: ImmutableDynamicObj)
         =
         if any.IsSome then
-            any |> DynObj.setValueOptBy dyn propName anyF
+            dyn ++?? (propName, any, anyF)
         else
-            single |> DynObj.setValueOptBy dyn propName singleF
+            dyn ++?? (propName, single, singleF)

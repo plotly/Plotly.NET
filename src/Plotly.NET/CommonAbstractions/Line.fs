@@ -78,11 +78,10 @@ type Line() =
             [<Optional; DefaultParameterValue(null)>] ?ColorBar: #ImmutableDynamicObj
         ) =
         (fun (line: Line) ->
+            
+            (line
+            |> DynObj.setSingleOrMultiOpt "width" (Width, MultiWidth) )
             ++? ("color", Color )
-            (Width, MultiWidth) |> DynObj.setSingleOrMultiOpt line "width"
-
-            // out ->
-            line
             ++?? ("shape", Shape , StyleParam.Shape.convert)
             ++? ("smoothing", Smoothing )
             ++?? ("dash", Dash , StyleParam.DrawingStyle.convert)

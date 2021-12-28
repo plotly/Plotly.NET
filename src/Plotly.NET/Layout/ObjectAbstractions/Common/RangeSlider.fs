@@ -52,20 +52,22 @@ type RangeSlider() =
         ) =
         fun (rangeslider: RangeSlider) ->
 
-            let
-            ++? ("bgcolor", BgColor )
-            ++? ("bordercolor", BorderColor )
-            ++? ("borderwidth", BorderWidth )
-            ++? ("autorange", AutoRange )
-            ++?? ("range", Range , StyleParam.Range.convert)
-            ++? ("thickness", Thickness )
-            ++? ("visible", Visible ) yAxis =
+            let newRangeSlider =
+                rangeslider
+                ++? ("bgcolor", BgColor )
+                ++? ("bordercolor", BorderColor )
+                ++? ("borderwidth", BorderWidth )
+                ++? ("autorange", AutoRange )
+                ++?? ("range", Range , StyleParam.Range.convert)
+                ++? ("thickness", Thickness )
+                ++? ("visible", Visible )
+
+            let yAxis =
                 let tmp = ImmutableDynamicObj()
                 tmp
                 ++?? ("rangemode", YAxisRangeMode , StyleParam.RangesliderRangeMode.convert)
                 ++?? ("range", YAxisRange , StyleParam.Range.convert)
 
 
-            rangeslider
-
+            newRangeSlider
             ++ ("yaxis", yAxis )

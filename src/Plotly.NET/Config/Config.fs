@@ -377,31 +377,24 @@ type Config() =
         ) =
         fun (config: Config) ->
 
-            ModeBarButtonsToAdd
+            config
             ++? ("staticPlot", StaticPlot )
             ++? ("autosizable", Autosizable )
             ++? ("responsive", Responsive )
             ++? ("toImageButtonOptions", ToImageButtonOptions )
             ++? ("showEditInChartStudio", ShowEditInChartStudio )
             ++? ("editable", Editable )
-            |> DynObj.setValueOptBy
-                config
-                "modeBarButtonsToAdd"
-                (fun x -> x |> Seq.map StyleParam.ModeBarButton.convert)
-
-            EditableAnnotations
-            |> Option.map
-                (fun edits ->
-                    let ed = ImmutableDynamicObj()
-
-                    edits
-                    |> Seq.iter
-                        (fun edit ->
-                            let fieldName =
-                                StyleParam.AnnotationEditOptions.toString edit
-
-                            ed?fieldName <- true)
-
-            config
-
-                    ++? ("edits", ed))
+            ++?? ("modeBarButtonsToAdd", ModeBarButtonsToAdd,  (fun x -> x |> Seq.map StyleParam.ModeBarButton.convert))
+            |> (fun newConfig ->
+                match EditableAnnotations with
+                | None -> newConfig
+                | Some edits ->
+                    let mutable ed = ImmutableDynamicObj()
+                    
+                    for edit in edits do
+                        let fieldName = StyleParam.AnnotationEditOptions.toString edit
+                        ed <- ed ++ (fieldName, true)
+                    
+                    config
+                    ++ ("edits", ed)
+            )
