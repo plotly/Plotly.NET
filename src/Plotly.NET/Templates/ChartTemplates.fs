@@ -6,7 +6,6 @@ open Plotly.NET.TraceObjects
 open DynamicObj
 open DynamicObj.Operators
 open DynamicObj
-open DynamicObj.Operators.Operators
 open System.Runtime.InteropServices
 
 module ChartTemplates =
@@ -94,13 +93,10 @@ module ChartTemplates =
         dark
         |> Template.mapLayoutTemplate
             (fun l ->
-                l.TryGetTypedValue<LinearAxis>("xaxis")
-
                 l
-                ++? ("xaxis", |> Option.map (LinearAxis.style (Mirror = StyleParam.Mirror.AllTicks))).TryGetTypedValue<LinearAxis>("yaxis")
-
-                l
-                ++? ("yaxis", |> Option.map (LinearAxis.style (Mirror = StyleParam.Mirror.AllTicks))))
+                ++? ("xaxis", l.TryGetTypedValue<LinearAxis>("xaxis") |> Option.map (LinearAxis.style (Mirror = StyleParam.Mirror.AllTicks)))
+                ++? ("yaxis", l.TryGetTypedValue<LinearAxis>("yaxis") |> Option.map (LinearAxis.style (Mirror = StyleParam.Mirror.AllTicks)))
+                )
 
     let fslab =
 
@@ -165,16 +161,14 @@ module ChartTemplates =
 
         // non-standard props, may change in the future
         let annotationdefaults =
-            let tmp = ImmutableDynamicObj()
-            tmp?arrowcolor <- "#2a3f5f"
-            tmp?arrowhead <- 0
-            tmp?arrowwidth <- 1
-            tmp
+            ImmutableDynamicObj()
+            ++ ("arrowcolor",  "#2a3f5f")
+            ++ ("arrowhead", 0)
+            ++ ("arrowwidth",  1)
 
         let shapedefaults =
-            let tmp = ImmutableDynamicObj()
-            tmp?line <- Line.init (Color = Color.fromHex "#2a3f5f")
-            tmp
+            ImmutableDynamicObj()
+            ++ ("line", Line.init (Color = Color.fromHex "#2a3f5f"))
 
         let layoutTempplate =
             Layout.init (
@@ -346,10 +340,9 @@ module ChartTemplates =
             )
             |> fun l ->
                 // set non-standard props
-                l?annotationdefaults <- annotationdefaults
-                l?shapedefaults <- shapedefaults
-
                 l
+                ++ ("annotationdefaults", annotationdefaults)
+                ++ ("shapedefaults", shapedefaults)
 
         let traceTemplates: Trace list =
             [

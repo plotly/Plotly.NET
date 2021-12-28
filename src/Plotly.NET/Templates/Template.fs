@@ -19,7 +19,6 @@ type Template() =
             [<Optional; DefaultParameterValue(null)>] ?TraceTemplates: seq<#Trace>
         ) =
         (fun (template: Template) ->
-
             let traceTemplates =
                 TraceTemplates
                 |> Option.map
@@ -35,17 +34,19 @@ type Template() =
                                     |> Seq.map
                                         (fun t ->
                                             let tmp = ImmutableDynamicObj()
-                                            t.CopyDynamicPropertiesTo(tmp)
                                             tmp)
 
                                     )))
                 |> fun traceTemplates ->
-                    let tmp = ImmutableDynamicObj()
+                    let mutable tmp = ImmutableDynamicObj()
 
-                    traceTemplates
+                    match traceTemplates with
+                    | Some templates ->
+                        for (id, traceTemplate) in templates do
+                            tmp <- tmp ++ (id, traceTemplate)
+                    | None -> ()
 
                     tmp
-                    ++ (id)), |> Option.iter (Seq.iter (fun (id, traceTemplate) -> traceTemplate )
 
             template
 

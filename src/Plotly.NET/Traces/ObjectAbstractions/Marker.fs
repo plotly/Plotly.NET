@@ -108,6 +108,12 @@ type Marker() =
         ) =
         (fun (marker: Marker) ->
 
+            (marker
+            |> DynObj.setSingleOrMultiOpt "size" (Size, MultiSize)
+            |> DynObj.setSingleOrMultiOpt "opacity" (Opacity, MultiOpacity)
+            |> DynObj.setSingleOrMultiOptBy "symbol" StyleParam.MarkerSymbol.convert (Symbol, MultiSymbol)
+            |> DynObj.setSingleOrMultiOptBy "symbol" StyleParam.MarkerSymbol3D.convert (Symbol3D, MultiSymbol3D)
+            )
             ++? ("autocolorscale", AutoColorScale )
             ++? ("cauto", CAuto )
             ++? ("cmax", CMax )
@@ -120,13 +126,7 @@ type Marker() =
             ++?? ("colorscale", Colorscale , StyleParam.Colorscale.convert)
             ++? ("gradient", Gradient )
             ++? ("line", Outline )
-            (Size, MultiSize) |> DynObj.setSingleOrMultiOpt marker "size"
-            (Opacity, MultiOpacity) |> DynObj.setSingleOrMultiOpt marker "opacity"
             ++? ("pattern", Pattern )
-            (Symbol, MultiSymbol) |> DynObj.setSingleOrMultiOptBy marker "symbol" StyleParam.MarkerSymbol.convert
-            (Symbol3D, MultiSymbol3D) |> DynObj.setSingleOrMultiOptBy marker "symbol" StyleParam.MarkerSymbol3D.convert
-
-            marker
             ++? ("outliercolor", OutlierColor )
             ++? ("outlierwidth", OutlierWidth )
             ++? ("maxdisplayed", Maxdisplayed )

@@ -62,15 +62,13 @@ type SankeyNodes() =
             [<Optional; DefaultParameterValue(null)>] ?Y: seq<#IConvertible>
         ) =
         (fun (sankeyNodes: SankeyNodes) ->
-
+            (sankeyNodes
+            |> DynObj.setSingleOrMultiOpt "hovertemplate" (HoverTemplate, MultiHoverTemplate))
             ++? ("color", Color )
             ++? ("customdata", CustomData )
             ++? ("hoverinfo", Groups )
             ++?? ("color", HoverInfo , StyleParam.HoverInfo.convert)
             ++? ("hoverlabel", HoverLabel )
-            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt sankeyNodes "hovertemplate"
-
-            sankeyNodes
             ++? ("label", Label )
             ++? ("line", Line )
             ++? ("pad", Pad )

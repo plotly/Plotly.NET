@@ -42,9 +42,11 @@ type FontSelectionStyle() =
 
     // Applies the styles to Font()
     static member style([<Optional; DefaultParameterValue(null)>] ?Color: Color) =
+        (fun (fontSelectionStyle: FontSelectionStyle) -> fontSelectionStyle ++? ("color", Color))
 
-type
-        ++? ("color", (fun (fontSelectionStyle: FontSelectionStyle) -> Color )) Selection() =
+
+type Selection() =
+        
     inherit ImmutableDynamicObj()
 
     static member init
