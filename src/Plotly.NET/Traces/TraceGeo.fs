@@ -130,7 +130,11 @@ type TraceGeoStyle() =
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
         ) =
         (fun (trace: #Trace) ->
-
+            (trace
+            |> DynObj.setSingleOrMultiOpt "text" (Text, MultiText)
+            |> DynObj.setSingleOrMultiOpt "hovertext" (HoverText, MultiHoverText)
+            |> DynObj.setSingleOrMultiOpt "hovertemplate" (HoverTemplate, MultiHoverTemplate)
+            )
             ++? ("name", Name )
             ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
@@ -142,12 +146,7 @@ type TraceGeoStyle() =
             ++? ("geojson", GeoJson )
             ++? ("featureidkey", FeatureIdKey )
             ++? ("locations", Locations )
-            (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
-            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
-            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
-
-            trace
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++?? ("geo", Geo , StyleParam.SubPlotId.convert)
@@ -256,7 +255,13 @@ type TraceGeoStyle() =
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
         ) =
         (fun (trace: #Trace) ->
-
+            (trace
+            |> DynObj.setSingleOrMultiOpt "text" (Text, MultiText) 
+            |> DynObj.setSingleOrMultiOptBy "textposition" StyleParam.TextPosition.convert (TextPosition, MultiTextPosition)
+            |> DynObj.setSingleOrMultiOpt "texttemplate" (TextTemplate, MultiTextTemplate)
+            |> DynObj.setSingleOrMultiOpt "hovertext" (HoverText, MultiHoverText)
+            |> DynObj.setSingleOrMultiOpt "hovertemplate" (HoverTemplate, MultiHoverTemplate)
+            )
             ++? ("name", Name )
             ++?? ("visible", Visible , StyleParam.Visible.convert)
             ++? ("showlegend", ShowLegend )
@@ -271,17 +276,7 @@ type TraceGeoStyle() =
             ++? ("featureidkey", FeatureIdKey )
             ++? ("locations", Locations )
             ++? ("lon", Lon )
-            (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
-
-            (TextPosition, MultiTextPosition)
-            |> DynObj.setSingleOrMultiOptBy trace "textposition" StyleParam.TextPosition.convert
-
-            (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt trace "texttemplate"
-            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
             ++?? ("hoverinfo", HoverInfo , StyleParam.HoverInfo.convert)
-            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
-
-            trace
             ++? ("meta", Meta )
             ++? ("customdata", CustomData )
             ++?? ("geo", Geo , StyleParam.SubPlotId.convert)
