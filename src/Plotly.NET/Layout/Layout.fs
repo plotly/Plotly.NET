@@ -340,7 +340,7 @@ type Layout() =
         (fun (layout: Layout) ->
             let scene' =
                 match layout.TryGetValue(StyleParam.SubPlotId.toString id) with
-                | Some a -> DynObj.combine (unbox a) scene
+                | Some a -> ImmutableDynamicObj.combine (unbox a) scene
                 | None -> scene :> ImmutableDynamicObj
             layout
 
@@ -361,7 +361,7 @@ type Layout() =
         (fun (layout: Layout) ->
             let geo' =
                 match layout.TryGetValue(StyleParam.SubPlotId.toString id) with
-                | Some a -> DynObj.combine (unbox a) geo
+                | Some a -> ImmutableDynamicObj.combine (unbox a) geo
                 | None -> geo :> ImmutableDynamicObj
             layout
 
@@ -379,7 +379,7 @@ type Layout() =
         (fun (layout: Layout) ->
             let mapbox' =
                 match layout.TryGetValue(StyleParam.SubPlotId.toString id) with
-                | Some a -> DynObj.combine (unbox a) mapbox
+                | Some a -> ImmutableDynamicObj.combine (unbox a) mapbox
                 | None -> mapbox :> ImmutableDynamicObj
             layout
 
@@ -395,7 +395,7 @@ type Layout() =
 
             let polar' =
                 match layout |> Layout.tryGetPolarById (id) with
-                | Some a -> DynObj.combine (unbox a) polar
+                | Some a -> ImmutableDynamicObj.combine (unbox a) polar
                 | None -> polar :> ImmutableDynamicObj
 
             layout
@@ -412,7 +412,7 @@ type Layout() =
 
             let colorAxis' =
                 match layout |> Layout.tryGetColorAxisById (id) with
-                | Some a -> DynObj.combine (unbox a) colorAxis
+                | Some a -> ImmutableDynamicObj.combine (unbox a) colorAxis
                 | None -> colorAxis :> ImmutableDynamicObj
 
             layout
@@ -429,7 +429,7 @@ type Layout() =
 
             let ternary' =
                 match layout |> Layout.tryGetTernaryById (id) with
-                | Some a -> DynObj.combine (unbox a) ternary
+                | Some a -> ImmutableDynamicObj.combine (unbox a) ternary
                 | None -> ternary :> ImmutableDynamicObj
 
             layout

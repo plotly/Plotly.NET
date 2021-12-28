@@ -86,17 +86,8 @@ type LayoutGrid() =
             [<Optional; DefaultParameterValue(null)>] ?YSide: StyleParam.LayoutGridYSide
         ) =
         (fun (layoutGrid: LayoutGrid) ->
-            SubPlots
-            |> DynObj.setValueOptBy
-                layoutGrid
-                "subplots"
-                (Array.map (
-                    Array.map
-                        (fun (x, y) -> $"{StyleParam.LinearAxisId.toString x}{StyleParam.LinearAxisId.toString y}")
-                ))
-
             layoutGrid
-
+            ++?? ("subplots", SubPlots, ((Array.map (Array.map (fun (x, y) -> $"{StyleParam.LinearAxisId.toString x}{StyleParam.LinearAxisId.toString y}")))))
             ++?? ("xaxes", XAxes , (Array.map StyleParam.LinearAxisId.toString))
             ++?? ("yaxes", YAxes , (Array.map StyleParam.LinearAxisId.toString))
             ++? ("rows", Rows )
