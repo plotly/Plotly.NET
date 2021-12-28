@@ -74,17 +74,16 @@ type TableCells() =
         ) =
         (fun (cells: TableCells) ->
 
-            (Align, MultiAlign) |> DynObj.setSingleOrMultiOptBy cells "align" StyleParam.HorizontalAlign.convert
+            (cells
+            |> DynObj.setSingleOrMultiOptBy "align" StyleParam.HorizontalAlign.convert (Align, MultiAlign)
+            |> DynObj.setSingleOrMultiOpt "prefix" (Prefix, MultiPrefix) 
+            |> DynObj.setSingleOrMultiOpt "suffix" (Suffix, MultiSuffix) 
+            )
             ++? ("fill", Fill )
             ++? ("font", Font )
             ++? ("format", Format )
             ++? ("height", Height )
             ++? ("line", Line )
-            (Prefix, MultiPrefix) |> DynObj.setSingleOrMultiOpt cells "prefix"
-            (Suffix, MultiSuffix) |> DynObj.setSingleOrMultiOpt cells "suffix"
-
-
-            cells
             ++? ("values", Values ))
 
 type TableHeader = TableCells
