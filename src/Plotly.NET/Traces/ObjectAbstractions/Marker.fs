@@ -107,30 +107,30 @@ type Marker() =
         ) =
         (fun (marker: Marker) ->
 
-            AutoColorScale |> DynObj.setValueOpt marker "autocolorscale"
-            CAuto |> DynObj.setValueOpt marker "cauto"
-            CMax |> DynObj.setValueOpt marker "cmax"
-            CMid |> DynObj.setValueOpt marker "cmid"
-            CMin |> DynObj.setValueOpt marker "cmin"
-            Color |> DynObj.setValueOpt marker "color"
-            Colors |> DynObj.setValueOpt marker "colors"
+            ++? ("autocolorscale", AutoColorScale )
+            ++? ("cauto", CAuto )
+            ++? ("cmax", CMax )
+            ++? ("cmid", CMid )
+            ++? ("cmin", CMin )
+            ++? ("color", Color )
+            ++? ("colors", Colors )
             ColorAxis |> DynObj.setValueOptBy marker "coloraxis" StyleParam.SubPlotId.convert
-            ColorBar |> DynObj.setValueOpt marker "colorbar"
+            ++? ("colorbar", ColorBar )
             Colorscale |> DynObj.setValueOptBy marker "colorscale" StyleParam.Colorscale.convert
-            Gradient |> DynObj.setValueOpt marker "gradient"
-            Outline |> DynObj.setValueOpt marker "line"
+            ++? ("gradient", Gradient )
+            ++? ("line", Outline )
             (Size, MultiSize) |> DynObj.setSingleOrMultiOpt marker "size"
             (Opacity, MultiOpacity) |> DynObj.setSingleOrMultiOpt marker "opacity"
-            Pattern |> DynObj.setValueOpt marker "pattern"
+            ++? ("pattern", Pattern )
             (Symbol, MultiSymbol) |> DynObj.setSingleOrMultiOptBy marker "symbol" StyleParam.MarkerSymbol.convert
             (Symbol3D, MultiSymbol3D) |> DynObj.setSingleOrMultiOptBy marker "symbol" StyleParam.MarkerSymbol3D.convert
-            OutlierColor |> DynObj.setValueOpt marker "outliercolor"
-            OutlierWidth |> DynObj.setValueOpt marker "outlierwidth"
-            Maxdisplayed |> DynObj.setValueOpt marker "maxdisplayed"
-            ReverseScale |> DynObj.setValueOpt marker "reversescale"
-            ShowScale |> DynObj.setValueOpt marker "showscale"
-            SizeMin |> DynObj.setValueOpt marker "sizemin"
-            SizeMode |> DynObj.setValueOpt marker "sizemode"
-            SizeRef |> DynObj.setValueOpt marker "sizeref"
+            ++? ("outliercolor", OutlierColor )
+            ++? ("outlierwidth", OutlierWidth )
+            ++? ("maxdisplayed", Maxdisplayed )
+            ++? ("reversescale", ReverseScale )
+            ++? ("showscale", ShowScale )
+            ++? ("sizemin", SizeMin )
+            ++? ("sizemode", SizeMode )
+            ++? ("sizeref", SizeRef )
 
             marker)

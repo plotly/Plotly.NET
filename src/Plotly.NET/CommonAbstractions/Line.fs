@@ -77,24 +77,24 @@ type Line() =
             [<Optional; DefaultParameterValue(null)>] ?ColorBar: #DynamicObj
         ) =
         (fun (line: Line) ->
-            Color |> DynObj.setValueOpt line "color"
+            ++? ("color", Color )
             (Width, MultiWidth) |> DynObj.setSingleOrMultiOpt line "width"
             Shape |> DynObj.setValueOptBy line "shape" StyleParam.Shape.convert
-            Smoothing |> DynObj.setValueOpt line "smoothing"
+            ++? ("smoothing", Smoothing )
             Dash |> DynObj.setValueOptBy line "dash" StyleParam.DrawingStyle.convert
-            OutlierColor |> DynObj.setValueOpt line "outliercolor"
-            OutlierWidth |> DynObj.setValueOpt line "outlierwidth"
-            AutoColorScale |> DynObj.setValueOpt line "autocolorscale"
-            CAuto |> DynObj.setValueOpt line "cauto"
-            CMax |> DynObj.setValueOpt line "cmax"
-            CMid |> DynObj.setValueOpt line "cmid"
-            CMin |> DynObj.setValueOpt line "cmin"
-            Color |> DynObj.setValueOpt line "color"
+            ++? ("outliercolor", OutlierColor )
+            ++? ("outlierwidth", OutlierWidth )
+            ++? ("autocolorscale", AutoColorScale )
+            ++? ("cauto", CAuto )
+            ++? ("cmax", CMax )
+            ++? ("cmid", CMid )
+            ++? ("cmin", CMin )
+            ++? ("color", Color )
             ColorAxis |> DynObj.setValueOptBy line "coloraxis" StyleParam.SubPlotId.convert
             Colorscale |> DynObj.setValueOptBy line "colorscale" StyleParam.Colorscale.convert
-            ReverseScale |> DynObj.setValueOpt line "reversescale"
-            ShowScale |> DynObj.setValueOpt line "showscale"
-            ColorBar |> DynObj.setValueOpt line "colorbar"
+            ++? ("reversescale", ReverseScale )
+            ++? ("showscale", ShowScale )
+            ++? ("colorbar", ColorBar )
 
             // out ->
             line)

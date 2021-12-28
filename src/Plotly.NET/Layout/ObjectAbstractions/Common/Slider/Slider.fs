@@ -141,28 +141,28 @@ type Slider() =
             ?YAnchor: StyleParam.YAnchorPosition
         ) =
         (fun (slider: Slider) ->
-            Active |> DynObj.setValueOpt slider "active"
-            ActiveBgColor |> DynObj.setValueOpt slider "activebgcolor"
-            BgColor |> DynObj.setValueOpt slider "bgcolor"
-            BorderColor |> DynObj.setValueOpt slider "bordercolor"
-            BorderWidth |> DynObj.setValueOpt slider "borderwidth"
-            CurrentValue |> DynObj.setValueOpt slider "currentvalue"
-            Font |> DynObj.setValueOpt slider "font"
-            Len |> DynObj.setValueOpt slider "len"
+            ++? ("active", Active )
+            ++? ("activebgcolor", ActiveBgColor )
+            ++? ("bgcolor", BgColor )
+            ++? ("bordercolor", BorderColor )
+            ++? ("borderwidth", BorderWidth )
+            ++? ("currentvalue", CurrentValue )
+            ++? ("font", Font )
+            ++? ("len", Len )
             LenMode |> DynObj.setValueOptBy slider "lenmode" StyleParam.UnitMode.convert
-            MinorTickLen |> DynObj.setValueOpt slider "minorticklen"
-            Name |> DynObj.setValueOpt slider "name"
-            Padding |> DynObj.setValueOpt slider "pad"
-            Steps |> DynObj.setValueOpt slider "steps"
-            TemplateItemName |> DynObj.setValueOpt slider "templateitemname"
-            TickColor |> DynObj.setValueOpt slider "tickcolor"
-            TickLen |> DynObj.setValueOpt slider "ticklen"
-            TickWidth |> DynObj.setValueOpt slider "tickwidth"
-            Transition |> DynObj.setValueOpt slider "transition"
-            Visible |> DynObj.setValueOpt slider "visible"
-            X |> DynObj.setValueOpt slider "x"
+            ++? ("minorticklen", MinorTickLen )
+            ++? ("name", Name )
+            ++? ("pad", Padding )
+            ++? ("steps", Steps )
+            ++? ("templateitemname", TemplateItemName )
+            ++? ("tickcolor", TickColor )
+            ++? ("ticklen", TickLen )
+            ++? ("tickwidth", TickWidth )
+            ++? ("transition", Transition )
+            ++? ("visible", Visible )
+            ++? ("x", X )
             XAnchor |> DynObj.setValueOptBy slider "xanchor" StyleParam.XAnchorPosition.convert
-            Y |> DynObj.setValueOpt slider "y"
+            ++? ("y", Y )
             YAnchor |> DynObj.setValueOptBy slider "yanchor" StyleParam.YAnchorPosition.convert
 
             slider)

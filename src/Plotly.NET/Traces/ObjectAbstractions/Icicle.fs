@@ -15,7 +15,7 @@ type IcicleRoot() =
     static member style([<Optional; DefaultParameterValue(null)>] ?Color: Color) =
         (fun (icicleRoot: IcicleRoot) ->
 
-            Color |> DynObj.setValueOpt icicleRoot "color"
+            ++? ("color", Color )
 
             icicleRoot)
 
@@ -28,7 +28,7 @@ type IcicleLeaf() =
     static member style([<Optional; DefaultParameterValue(null)>] ?Opacity: float) =
         (fun (icicleLeaf: IcicleLeaf) ->
 
-            Opacity |> DynObj.setValueOpt icicleLeaf "opacity"
+            ++? ("opacity", Opacity )
 
             icicleLeaf)
 
@@ -53,6 +53,6 @@ type IcicleTiling() =
 
             Flip |> DynObj.setValueOptBy icicleTiling "flip" StyleParam.TilingFlip.convert
             Orientation |> DynObj.setValueOptBy icicleTiling "orientation" StyleParam.Orientation.convert
-            Pad |> DynObj.setValueOpt icicleTiling "pad"
+            ++? ("pad", Pad )
 
             icicleTiling)

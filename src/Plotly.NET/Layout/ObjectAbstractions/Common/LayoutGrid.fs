@@ -96,13 +96,13 @@ type LayoutGrid() =
 
             XAxes |> DynObj.setValueOptBy layoutGrid "xaxes" (Array.map StyleParam.LinearAxisId.toString)
             YAxes |> DynObj.setValueOptBy layoutGrid "yaxes" (Array.map StyleParam.LinearAxisId.toString)
-            Rows |> DynObj.setValueOpt layoutGrid "rows"
-            Columns |> DynObj.setValueOpt layoutGrid "columns"
+            ++? ("rows", Rows )
+            ++? ("columns", Columns )
             RowOrder |> DynObj.setValueOptBy layoutGrid "roworder" StyleParam.LayoutGridRowOrder.toString
             Pattern |> DynObj.setValueOptBy layoutGrid "pattern" StyleParam.LayoutGridPattern.toString
-            XGap |> DynObj.setValueOpt layoutGrid "xgap"
-            YGap |> DynObj.setValueOpt layoutGrid "ygap"
-            Domain |> DynObj.setValueOpt layoutGrid "domain"
+            ++? ("xgap", XGap )
+            ++? ("ygap", YGap )
+            ++? ("domain", Domain )
             XSide |> DynObj.setValueOptBy layoutGrid "xside" StyleParam.LayoutGridXSide.toString
             YSide |> DynObj.setValueOptBy layoutGrid "yside" StyleParam.LayoutGridYSide.toString
 

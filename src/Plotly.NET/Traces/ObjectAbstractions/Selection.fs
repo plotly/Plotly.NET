@@ -25,9 +25,9 @@ type MarkerSelectionStyle() =
         ) =
         (fun (markerSelectionStyle: MarkerSelectionStyle) ->
 
-            Opacity |> DynObj.setValueOpt markerSelectionStyle "opacity"
-            Color |> DynObj.setValueOpt markerSelectionStyle "color"
-            Size |> DynObj.setValueOpt markerSelectionStyle "size"
+            ++? ("opacity", Opacity )
+            ++? ("color", Color )
+            ++? ("size", Size )
 
             markerSelectionStyle)
 
@@ -41,7 +41,7 @@ type FontSelectionStyle() =
 
     // Applies the styles to Font()
     static member style([<Optional; DefaultParameterValue(null)>] ?Color: Color) =
-        (fun (fontSelectionStyle: FontSelectionStyle) -> Color |> DynObj.setValueOpt fontSelectionStyle "color")
+        ++? ("color", (fun (fontSelectionStyle: FontSelectionStyle) -> Color ))
 
 type Selection() =
     inherit DynamicObj()
@@ -60,6 +60,6 @@ type Selection() =
             [<Optional; DefaultParameterValue(null)>] ?FontSelectionStyle: FontSelectionStyle
         ) =
         (fun (selection: Selection) ->
-            MarkerSelectionStyle |> DynObj.setValueOpt selection "marker"
-            FontSelectionStyle |> DynObj.setValueOpt selection "textfont"
+            ++? ("marker", MarkerSelectionStyle )
+            ++? ("textfont", FontSelectionStyle )
             selection)

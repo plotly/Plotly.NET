@@ -63,13 +63,13 @@ type Lighting() =
         ) =
         fun (l: Lighting) ->
 
-            Ambient |> DynObj.setValueOpt l "ambient"
-            Diffuse |> DynObj.setValueOpt l "diffuse"
-            FaceNormalEpsilon |> DynObj.setValueOpt l "facenormalepsilon"
-            Fresnel |> DynObj.setValueOpt l "fresnel"
-            Roughness |> DynObj.setValueOpt l "roughness"
-            Specular |> DynObj.setValueOpt l "specular"
-            VertexNormalEpsilon |> DynObj.setValueOpt l "vertexnormalepsilon"
+            ++? ("ambient", Ambient )
+            ++? ("diffuse", Diffuse )
+            ++? ("facenormalepsilon", FaceNormalEpsilon )
+            ++? ("fresnel", Fresnel )
+            ++? ("roughness", Roughness )
+            ++? ("specular", Specular )
+            ++? ("vertexnormalepsilon", VertexNormalEpsilon )
 
             l
 
@@ -104,8 +104,8 @@ type LightPosition() =
         ) =
         fun (lp: LightPosition) ->
 
-            X |> DynObj.setValueOpt lp "x"
-            Y |> DynObj.setValueOpt lp "y"
-            Z |> DynObj.setValueOpt lp "z"
+            ++? ("x", X )
+            ++? ("y", Y )
+            ++? ("z", Z )
 
             lp

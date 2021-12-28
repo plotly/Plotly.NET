@@ -53,11 +53,11 @@ type Template() =
             template)
 
     static member mapLayoutTemplate (styleF: Layout -> Layout) (template: Template) =
-        template.TryGetTypedValue<Layout>("layout") |> Option.map (styleF) |> DynObj.setValueOpt template "layout"
+        ++? ("layout", template.TryGetTypedValue<Layout>("layout") |> Option.map (styleF) )
         template
 
     static member mapTraceTemplates (styleF: #Trace [] -> #Trace []) (template: Template) =
-        template.TryGetTypedValue<#Trace []>("data") |> Option.map (styleF) |> DynObj.setValueOpt template "data"
+        ++? ("data", template.TryGetTypedValue<#Trace []>("data") |> Option.map (styleF) )
         template
 
     static member withColorWay (colorway: Color) (template: Template) =

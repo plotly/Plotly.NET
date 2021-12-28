@@ -28,7 +28,7 @@ type Font() =
         (fun (font: Font) ->
 
             Family |> DynObj.setValueOptBy font "family" StyleParam.FontFamily.toString
-            Size |> DynObj.setValueOpt font "size"
-            Color |> DynObj.setValueOpt font "color"
+            ++? ("size", Size )
+            ++? ("color", Color )
 
             font)

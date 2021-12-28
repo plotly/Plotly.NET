@@ -28,6 +28,6 @@ type Gradient() =
 
             (Type, MultiTypes) |> DynObj.setSingleOrMultiOpt gradient "type"
 
-            Color |> DynObj.setValueOpt gradient "color"
+            ++? ("color", Color )
 
             gradient

@@ -24,8 +24,8 @@ type IndicatorSymbol() =
         ) =
         (fun (indicatorDirection: IndicatorSymbol) ->
 
-            Color |> DynObj.setValueOpt indicatorDirection "color"
-            Symbol |> DynObj.setValueOpt indicatorDirection "symbol"
+            ++? ("color", Color )
+            ++? ("symbol", Symbol )
 
             indicatorDirection)
 
@@ -65,13 +65,13 @@ type IndicatorDelta() =
         ) =
         (fun (indicatorDelta: IndicatorDelta) ->
 
-            Decreasing |> DynObj.setValueOpt indicatorDelta "decreasing"
-            Font |> DynObj.setValueOpt indicatorDelta "font"
-            Increasing |> DynObj.setValueOpt indicatorDelta "increasing"
+            ++? ("decreasing", Decreasing )
+            ++? ("font", Font )
+            ++? ("increasing", Increasing )
             Position |> DynObj.setValueOptBy indicatorDelta "position" StyleParam.IndicatorDeltaPosition.convert
-            Reference |> DynObj.setValueOpt indicatorDelta "reference"
-            Relative |> DynObj.setValueOpt indicatorDelta "relative"
-            ValueFormat |> DynObj.setValueOpt indicatorDelta "valueformat"
+            ++? ("reference", Reference )
+            ++? ("relative", Relative )
+            ++? ("valueformat", ValueFormat )
 
             indicatorDelta)
 
@@ -97,10 +97,10 @@ type IndicatorNumber() =
         ) =
         (fun (indicatorNumber: IndicatorNumber) ->
 
-            Font |> DynObj.setValueOpt indicatorNumber "font"
-            Prefix |> DynObj.setValueOpt indicatorNumber "prefix"
-            Suffix |> DynObj.setValueOpt indicatorNumber "suffix"
-            ValueFormat |> DynObj.setValueOpt indicatorNumber "valueformat"
+            ++? ("font", Font )
+            ++? ("prefix", Prefix )
+            ++? ("suffix", Suffix )
+            ++? ("valueformat", ValueFormat )
 
             indicatorNumber)
 
@@ -124,9 +124,9 @@ type IndicatorBar() =
         ) =
         (fun (indicatorBar: IndicatorBar) ->
 
-            Color |> DynObj.setValueOpt indicatorBar "color"
-            Line |> DynObj.setValueOpt indicatorBar "line"
-            Thickness |> DynObj.setValueOpt indicatorBar "thickness"
+            ++? ("color", Color )
+            ++? ("line", Line )
+            ++? ("thickness", Thickness )
 
             indicatorBar)
 
@@ -163,12 +163,12 @@ type IndicatorStep() =
         ) =
         (fun (indicatorSteps: IndicatorStep) ->
 
-            Color |> DynObj.setValueOpt indicatorSteps "color"
-            Line |> DynObj.setValueOpt indicatorSteps "line"
-            Name |> DynObj.setValueOpt indicatorSteps "name"
+            ++? ("color", Color )
+            ++? ("line", Line )
+            ++? ("name", Name )
             Range |> DynObj.setValueOptBy indicatorSteps "range" StyleParam.Range.convert
-            TemplateItemName |> DynObj.setValueOpt indicatorSteps "templateitemname"
-            Thickness |> DynObj.setValueOpt indicatorSteps "thickness"
+            ++? ("templateitemname", TemplateItemName )
+            ++? ("thickness", Thickness )
 
             indicatorSteps)
 
@@ -192,9 +192,9 @@ type IndicatorThreshold() =
         ) =
         (fun (indicatorThreshold: IndicatorThreshold) ->
 
-            Line |> DynObj.setValueOpt indicatorThreshold "line"
-            Thickness |> DynObj.setValueOpt indicatorThreshold "thickness"
-            Value |> DynObj.setValueOpt indicatorThreshold "value"
+            ++? ("line", Line )
+            ++? ("thickness", Thickness )
+            ++? ("value", Value )
 
             indicatorThreshold)
 
@@ -238,13 +238,13 @@ type IndicatorGauge() =
         ) =
         (fun (indicatorGauge: IndicatorGauge) ->
 
-            Axis |> DynObj.setValueOpt indicatorGauge "axis"
-            Bar |> DynObj.setValueOpt indicatorGauge "bar"
-            BGColor |> DynObj.setValueOpt indicatorGauge "bgcolor"
-            BorderColor |> DynObj.setValueOpt indicatorGauge "bordercolor"
-            BorderWidth |> DynObj.setValueOpt indicatorGauge "borderwidth"
+            ++? ("axis", Axis )
+            ++? ("bar", Bar )
+            ++? ("bgcolor", BGColor )
+            ++? ("bordercolor", BorderColor )
+            ++? ("borderwidth", BorderWidth )
             Shape |> DynObj.setValueOptBy indicatorGauge "shape" StyleParam.IndicatorGaugeShape.convert
-            Steps |> DynObj.setValueOpt indicatorGauge "steps"
-            Threshold |> DynObj.setValueOpt indicatorGauge "threshold"
+            ++? ("steps", Steps )
+            ++? ("threshold", Threshold )
 
             indicatorGauge)

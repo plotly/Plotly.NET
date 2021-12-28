@@ -93,12 +93,10 @@ module ChartTemplates =
         |> Template.mapLayoutTemplate
             (fun l ->
                 l.TryGetTypedValue<LinearAxis>("xaxis")
-                |> Option.map (LinearAxis.style (Mirror = StyleParam.Mirror.AllTicks))
-                |> DynObj.setValueOpt l "xaxis"
+                ++? ("xaxis", |> Option.map (LinearAxis.style (Mirror = StyleParam.Mirror.AllTicks)))
 
                 l.TryGetTypedValue<LinearAxis>("yaxis")
-                |> Option.map (LinearAxis.style (Mirror = StyleParam.Mirror.AllTicks))
-                |> DynObj.setValueOpt l "yaxis"
+                ++? ("yaxis", |> Option.map (LinearAxis.style (Mirror = StyleParam.Mirror.AllTicks)))
 
                 l)
 

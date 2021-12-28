@@ -27,9 +27,9 @@ type CameraCenter() =
 
         fun (cameraCenter: CameraCenter) ->
 
-            X |> DynObj.setValueOpt cameraCenter "x"
-            Y |> DynObj.setValueOpt cameraCenter "y"
-            Z |> DynObj.setValueOpt cameraCenter "z"
+            ++? ("x", X )
+            ++? ("y", Y )
+            ++? ("z", Z )
 
             cameraCenter
 
@@ -53,9 +53,9 @@ type CameraEye() =
 
         fun (cameraEye: CameraEye) ->
 
-            X |> DynObj.setValueOpt cameraEye "x"
-            Y |> DynObj.setValueOpt cameraEye "y"
-            Z |> DynObj.setValueOpt cameraEye "z"
+            ++? ("x", X )
+            ++? ("y", Y )
+            ++? ("z", Z )
 
             cameraEye
 
@@ -79,9 +79,9 @@ type CameraUp() =
 
         fun (cameraUp: CameraUp) ->
 
-            X |> DynObj.setValueOpt cameraUp "x"
-            Y |> DynObj.setValueOpt cameraUp "y"
-            Z |> DynObj.setValueOpt cameraUp "z"
+            ++? ("x", X )
+            ++? ("y", Y )
+            ++? ("z", Z )
 
             cameraUp
 
@@ -107,9 +107,9 @@ type Camera() =
 
         fun (camera: Camera) ->
 
-            Center |> DynObj.setValueOpt camera "center"
-            Eye |> DynObj.setValueOpt camera "eye"
+            ++? ("center", Center )
+            ++? ("eye", Eye )
             Projection |> DynObj.setValueOptBy camera "projection" StyleParam.CameraProjection.convert
-            Up |> DynObj.setValueOpt camera "up"
+            ++? ("up", Up )
 
             camera

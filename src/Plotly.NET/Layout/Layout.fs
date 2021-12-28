@@ -227,74 +227,74 @@ type Layout() =
         ) =
         (fun (layout: Layout) ->
 
-            Title |> DynObj.setValueOpt layout "title"
-            ShowLegend |> DynObj.setValueOpt layout "showlegend"
-            Legend |> DynObj.setValueOpt layout "legend"
-            Margin |> DynObj.setValueOpt layout "margin"
-            AutoSize |> DynObj.setValueOpt layout "autosize"
-            Width |> DynObj.setValueOpt layout "width"
-            Height |> DynObj.setValueOpt layout "height"
-            Font |> DynObj.setValueOpt layout "font"
-            UniformText |> DynObj.setValueOpt layout "uniformtext"
-            Separators |> DynObj.setValueOpt layout "separators"
-            PaperBGColor |> DynObj.setValueOpt layout "paper_bgcolor"
-            PlotBGColor |> DynObj.setValueOpt layout "plot_bgcolor"
+            ++? ("title", Title )
+            ++? ("showlegend", ShowLegend )
+            ++? ("legend", Legend )
+            ++? ("margin", Margin )
+            ++? ("autosize", AutoSize )
+            ++? ("width", Width )
+            ++? ("height", Height )
+            ++? ("font", Font )
+            ++? ("uniformtext", UniformText )
+            ++? ("separators", Separators )
+            ++? ("paper_bgcolor", PaperBGColor )
+            ++? ("plot_bgcolor", PlotBGColor )
             AutoTypeNumbers |> DynObj.setValueOptBy layout "autotypenumbers" StyleParam.AutoTypeNumbers.convert
-            Colorscale |> DynObj.setValueOpt layout "colorscale"
-            Colorway |> DynObj.setValueOpt layout "colorway"
-            ModeBar |> DynObj.setValueOpt layout "modebar"
+            ++? ("colorscale", Colorscale )
+            ++? ("colorway", Colorway )
+            ++? ("modebar", ModeBar )
             HoverMode |> DynObj.setValueOptBy layout "hovermode" StyleParam.HoverMode.convert
             ClickMode |> DynObj.setValueOptBy layout "clickmode" StyleParam.ClickMode.convert
             DragMode |> DynObj.setValueOptBy layout "dragmode" StyleParam.DragMode.convert
             SelectDirection |> DynObj.setValueOptBy layout "selectdirection" StyleParam.SelectDirection.convert
-            HoverDistance |> DynObj.setValueOpt layout "hoverdistance"
-            SpikeDistance |> DynObj.setValueOpt layout "spikedistance"
-            Hoverlabel |> DynObj.setValueOpt layout "hoverlabel"
-            Transition |> DynObj.setValueOpt layout "transition"
-            DataRevision |> DynObj.setValueOpt layout "datarevision"
-            UIRevision |> DynObj.setValueOpt layout "uirevision"
-            EditRevision |> DynObj.setValueOpt layout "editrevision"
-            SelectRevision |> DynObj.setValueOpt layout "selectrevision"
-            Template |> DynObj.setValueOpt layout "template"
-            Meta |> DynObj.setValueOpt layout "meta"
-            Computed |> DynObj.setValueOpt layout "computed"
-            Grid |> DynObj.setValueOpt layout "grid"
+            ++? ("hoverdistance", HoverDistance )
+            ++? ("spikedistance", SpikeDistance )
+            ++? ("hoverlabel", Hoverlabel )
+            ++? ("transition", Transition )
+            ++? ("datarevision", DataRevision )
+            ++? ("uirevision", UIRevision )
+            ++? ("editrevision", EditRevision )
+            ++? ("selectrevision", SelectRevision )
+            ++? ("template", Template )
+            ++? ("meta", Meta )
+            ++? ("computed", Computed )
+            ++? ("grid", Grid )
             Calendar |> DynObj.setValueOptBy layout "calendar" StyleParam.Calendar.convert
-            NewShape |> DynObj.setValueOpt layout "newshape"
-            ActiveShape |> DynObj.setValueOpt layout "activeshape"
-            HideSources |> DynObj.setValueOpt layout "hidesources"
-            BarGap |> DynObj.setValueOpt layout "bargap"
-            BarGroupGap |> DynObj.setValueOpt layout "bargroupgap"
+            ++? ("newshape", NewShape )
+            ++? ("activeshape", ActiveShape )
+            ++? ("hidesources", HideSources )
+            ++? ("bargap", BarGap )
+            ++? ("bargroupgap", BarGroupGap )
             BarMode |> DynObj.setValueOptBy layout "barmode" StyleParam.BarMode.convert
             BarNorm |> DynObj.setValueOptBy layout "barnorm" StyleParam.BarNorm.convert
-            ExtendPieColors |> DynObj.setValueOpt layout "extendpiecolors"
-            HiddenLabels |> DynObj.setValueOpt layout "hiddenlabels"
-            PieColorWay |> DynObj.setValueOpt layout "piecolorway"
-            BoxGap |> DynObj.setValueOpt layout "boxgap"
-            BoxGroupGap |> DynObj.setValueOpt layout "boxgroupgap"
+            ++? ("extendpiecolors", ExtendPieColors )
+            ++? ("hiddenlabels", HiddenLabels )
+            ++? ("piecolorway", PieColorWay )
+            ++? ("boxgap", BoxGap )
+            ++? ("boxgroupgap", BoxGroupGap )
             BoxMode |> DynObj.setValueOptBy layout "boxmode" StyleParam.BoxMode.convert
-            ViolinGap |> DynObj.setValueOpt layout "violingap"
-            ViolinGroupGap |> DynObj.setValueOpt layout "violingroupgap"
+            ++? ("violingap", ViolinGap )
+            ++? ("violingroupgap", ViolinGroupGap )
             ViolinMode |> DynObj.setValueOptBy layout "violinmode" StyleParam.ViolinMode.convert
-            WaterfallGap |> DynObj.setValueOpt layout "waterfallgap"
-            WaterfallGroupGap |> DynObj.setValueOpt layout "waterfallgroupgap"
+            ++? ("waterfallgap", WaterfallGap )
+            ++? ("waterfallgroupgap", WaterfallGroupGap )
             WaterfallMode |> DynObj.setValueOptBy layout "waterfallmode" StyleParam.WaterfallMode.convert
-            FunnelGap |> DynObj.setValueOpt layout "funnelgap"
-            FunnelGroupGap |> DynObj.setValueOpt layout "funnelgroupgap"
+            ++? ("funnelgap", FunnelGap )
+            ++? ("funnelgroupgap", FunnelGroupGap )
             FunnelMode |> DynObj.setValueOptBy layout "funnelmode" StyleParam.FunnelMode.convert
             ExtendFunnelAreaColors |> DynObj.setValueOpt layout "extendfunnelareacolors "
-            FunnelAreaColorWay |> DynObj.setValueOpt layout "funnelareacolorway"
-            ExtendSunBurstColors |> DynObj.setValueOpt layout "extendsunburstcolors"
-            SunBurstColorWay |> DynObj.setValueOpt layout "sunburstcolorway"
-            ExtendTreeMapColors |> DynObj.setValueOpt layout "extendtreemapcolors"
-            TreeMapColorWay |> DynObj.setValueOpt layout "treemapcolorway"
-            ExtendIcicleColors |> DynObj.setValueOpt layout "extendiciclecolors"
-            IcicleColorWay |> DynObj.setValueOpt layout "iciclecolorway"
-            Annotations |> DynObj.setValueOpt layout "annotations"
-            Shapes |> DynObj.setValueOpt layout "shapes"
-            Images |> DynObj.setValueOpt layout "images"
-            Sliders |> DynObj.setValueOpt layout "sliders"
-            UpdateMenus |> DynObj.setValueOpt layout "updatemenus"
+            ++? ("funnelareacolorway", FunnelAreaColorWay )
+            ++? ("extendsunburstcolors", ExtendSunBurstColors )
+            ++? ("sunburstcolorway", SunBurstColorWay )
+            ++? ("extendtreemapcolors", ExtendTreeMapColors )
+            ++? ("treemapcolorway", TreeMapColorWay )
+            ++? ("extendiciclecolors", ExtendIcicleColors )
+            ++? ("iciclecolorway", IcicleColorWay )
+            ++? ("annotations", Annotations )
+            ++? ("shapes", Shapes )
+            ++? ("images", Images )
+            ++? ("sliders", Sliders )
+            ++? ("updatemenus", UpdateMenus )
 
             layout)
 

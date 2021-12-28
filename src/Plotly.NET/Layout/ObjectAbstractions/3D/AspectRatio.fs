@@ -26,8 +26,8 @@ type AspectRatio() =
 
         fun (aspectRatio: AspectRatio) ->
 
-            X |> DynObj.setValueOpt aspectRatio "x"
-            Y |> DynObj.setValueOpt aspectRatio "y"
-            Z |> DynObj.setValueOpt aspectRatio "z"
+            ++? ("x", X )
+            ++? ("y", Y )
+            ++? ("z", Z )
 
             aspectRatio

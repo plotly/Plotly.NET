@@ -15,7 +15,7 @@ type TableFill() =
 
     static member style([<Optional; DefaultParameterValue(null)>] ?Color: Color) =
         (fun (fill: TableFill) ->
-            Color |> DynObj.setValueOpt fill "color"
+            ++? ("color", Color )
             fill)
 
 
@@ -74,14 +74,14 @@ type TableCells() =
         (fun (cells: TableCells) ->
 
             (Align, MultiAlign) |> DynObj.setSingleOrMultiOptBy cells "align" StyleParam.HorizontalAlign.convert
-            Fill |> DynObj.setValueOpt cells "fill"
-            Font |> DynObj.setValueOpt cells "font"
-            Format |> DynObj.setValueOpt cells "format"
-            Height |> DynObj.setValueOpt cells "height"
-            Line |> DynObj.setValueOpt cells "line"
+            ++? ("fill", Fill )
+            ++? ("font", Font )
+            ++? ("format", Format )
+            ++? ("height", Height )
+            ++? ("line", Line )
             (Prefix, MultiPrefix) |> DynObj.setSingleOrMultiOpt cells "prefix"
             (Suffix, MultiSuffix) |> DynObj.setSingleOrMultiOpt cells "suffix"
-            Values |> DynObj.setValueOpt cells "values"
+            ++? ("values", Values )
 
 
             cells)

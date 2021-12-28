@@ -24,8 +24,8 @@ type CapFill() =
 
         fun (capFill: CapFill) ->
 
-            Fill |> DynObj.setValueOpt capFill "fill"
-            Show |> DynObj.setValueOpt capFill "show"
+            ++? ("fill", Fill )
+            ++? ("show", Show )
 
             capFill
 
@@ -50,8 +50,8 @@ type Caps() =
         ) =
         fun (caps: Caps) ->
 
-            X |> DynObj.setValueOpt caps "x"
-            Y |> DynObj.setValueOpt caps "y"
-            Z |> DynObj.setValueOpt caps "z"
+            ++? ("x", X )
+            ++? ("y", Y )
+            ++? ("z", Z )
 
             caps

@@ -929,99 +929,99 @@ type LinearAxis() =
         ) =
         (fun (axis: LinearAxis) ->
 
-            Visible |> DynObj.setValueOpt axis "visible"
-            Color |> DynObj.setValueOpt axis "color"
-            Title |> DynObj.setValueOpt axis "title"
+            ++? ("visible", Visible )
+            ++? ("color", Color )
+            ++? ("title", Title )
             AxisType |> DynObj.setValueOptBy axis "type" StyleParam.AxisType.convert
             AutoTypeNumbers |> DynObj.setValueOptBy axis "autotypenumbers" StyleParam.AutoTypeNumbers.convert
             AutoRange |> DynObj.setValueOptBy axis "autorange" StyleParam.AutoRange.convert
             RangeMode |> DynObj.setValueOptBy axis "rangemode" StyleParam.RangeMode.convert
             Range |> DynObj.setValueOptBy axis "range" StyleParam.Range.convert
-            FixedRange |> DynObj.setValueOpt axis "fixedrange"
+            ++? ("fixedrange", FixedRange )
             ScaleAnchor |> DynObj.setValueOptBy axis "scaleanchor" StyleParam.LinearAxisId.convert
-            ScaleRatio |> DynObj.setValueOpt axis "scaleratio"
+            ++? ("scaleratio", ScaleRatio )
             Constrain |> DynObj.setValueOptBy axis "constrain" StyleParam.AxisConstraint.convert
             ConstrainToward |> DynObj.setValueOptBy axis "constraintoward" StyleParam.AxisConstraintDirection.convert
             Matches |> DynObj.setValueOptBy axis "matches" StyleParam.LinearAxisId.convert
-            Rangebreaks |> DynObj.setValueOpt axis "rangebreaks"
+            ++? ("rangebreaks", Rangebreaks )
             TickMode |> DynObj.setValueOptBy axis "tickmode" StyleParam.TickMode.convert
-            NTicks |> DynObj.setValueOpt axis "nticks"
-            Tick0 |> DynObj.setValueOpt axis "tick0"
-            DTick |> DynObj.setValueOpt axis "dtick"
-            TickVals |> DynObj.setValueOpt axis "tickvals"
-            TickText |> DynObj.setValueOpt axis "ticktext"
+            ++? ("nticks", NTicks )
+            ++? ("tick0", Tick0 )
+            ++? ("dtick", DTick )
+            ++? ("tickvals", TickVals )
+            ++? ("ticktext", TickText )
             Ticks |> DynObj.setValueOptBy axis "ticks" StyleParam.TickOptions.convert
             TicksOn |> DynObj.setValueOptBy axis "tickson" StyleParam.CategoryTickAnchor.convert
             TickLabelMode |> DynObj.setValueOptBy axis "ticklabelmode" StyleParam.TickLabelMode.convert
             TickLabelPosition |> DynObj.setValueOptBy axis "ticklabelposition" StyleParam.TickLabelPosition.convert
             TickLabelOverflow |> DynObj.setValueOptBy axis "ticklabeloverflow" StyleParam.TickLabelOverflow.convert
             Mirror |> DynObj.setValueOptBy axis "mirror" StyleParam.Mirror.convert
-            TickLen |> DynObj.setValueOpt axis "ticklen"
-            TickWidth |> DynObj.setValueOpt axis "tickwidth"
-            TickColor |> DynObj.setValueOpt axis "tickcolor"
-            ShowTickLabels |> DynObj.setValueOpt axis "showticklabels"
-            AutoMargin |> DynObj.setValueOpt axis "automargin"
-            ShowSpikes |> DynObj.setValueOpt axis "showspikes"
-            SpikeColor |> DynObj.setValueOpt axis "spikecolor"
-            SpikeThickness |> DynObj.setValueOpt axis "spikethickness"
+            ++? ("ticklen", TickLen )
+            ++? ("tickwidth", TickWidth )
+            ++? ("tickcolor", TickColor )
+            ++? ("showticklabels", ShowTickLabels )
+            ++? ("automargin", AutoMargin )
+            ++? ("showspikes", ShowSpikes )
+            ++? ("spikecolor", SpikeColor )
+            ++? ("spikethickness", SpikeThickness )
             SpikeDash |> DynObj.setValueOptBy axis "spikedash" StyleParam.DrawingStyle.convert
             SpikeMode |> DynObj.setValueOptBy axis "spikemode" StyleParam.SpikeMode.convert
             SpikeSnap |> DynObj.setValueOptBy axis "spikesnap" StyleParam.SpikeSnap.convert
-            TickFont |> DynObj.setValueOpt axis "tickfont"
-            TickAngle |> DynObj.setValueOpt axis "tickangle"
+            ++? ("tickfont", TickFont )
+            ++? ("tickangle", TickAngle )
             ShowTickPrefix |> DynObj.setValueOptBy axis "showtickprefix" StyleParam.ShowTickOption.convert
-            TickPrefix |> DynObj.setValueOpt axis "tickprefix"
+            ++? ("tickprefix", TickPrefix )
             ShowTickSuffix |> DynObj.setValueOptBy axis "showticksuffix" StyleParam.ShowTickOption.convert
-            TickSuffix |> DynObj.setValueOpt axis "ticksuffix"
+            ++? ("ticksuffix", TickSuffix )
             ShowExponent |> DynObj.setValueOptBy axis "showexponent" StyleParam.ShowExponent.convert
             ExponentFormat |> DynObj.setValueOptBy axis "exponentformat" StyleParam.ExponentFormat.convert
-            MinExponent |> DynObj.setValueOpt axis "minexponent"
-            SeparateThousands |> DynObj.setValueOpt axis "separatethousands"
-            TickFormat |> DynObj.setValueOpt axis "tickformat"
-            TickFormatStops |> DynObj.setValueOpt axis "tickformatstops"
-            HoverFormat |> DynObj.setValueOpt axis "hoverformat"
-            ShowLine |> DynObj.setValueOpt axis "showline"
-            LineColor |> DynObj.setValueOpt axis "linecolor"
-            LineWidth |> DynObj.setValueOpt axis "linewidth"
-            ShowGrid |> DynObj.setValueOpt axis "showgrid"
-            GridColor |> DynObj.setValueOpt axis "gridcolor"
-            GridWidth |> DynObj.setValueOpt axis "gridwidth"
-            ZeroLine |> DynObj.setValueOpt axis "zeroline"
-            ZeroLineColor |> DynObj.setValueOpt axis "zerolinecolor"
-            ZeroLineWidth |> DynObj.setValueOpt axis "zerolinewidth"
-            ShowDividers |> DynObj.setValueOpt axis "showdividers"
-            DividerColor |> DynObj.setValueOpt axis "dividercolor"
-            DividerWidth |> DynObj.setValueOpt axis "dividerwidth"
+            ++? ("minexponent", MinExponent )
+            ++? ("separatethousands", SeparateThousands )
+            ++? ("tickformat", TickFormat )
+            ++? ("tickformatstops", TickFormatStops )
+            ++? ("hoverformat", HoverFormat )
+            ++? ("showline", ShowLine )
+            ++? ("linecolor", LineColor )
+            ++? ("linewidth", LineWidth )
+            ++? ("showgrid", ShowGrid )
+            ++? ("gridcolor", GridColor )
+            ++? ("gridwidth", GridWidth )
+            ++? ("zeroline", ZeroLine )
+            ++? ("zerolinecolor", ZeroLineColor )
+            ++? ("zerolinewidth", ZeroLineWidth )
+            ++? ("showdividers", ShowDividers )
+            ++? ("dividercolor", DividerColor )
+            ++? ("dividerwidth", DividerWidth )
             Anchor |> DynObj.setValueOptBy axis "anchor" StyleParam.LinearAxisId.convert
             Side |> DynObj.setValueOptBy axis "side" StyleParam.Side.convert
             Overlaying |> DynObj.setValueOptBy axis "overlaying" StyleParam.LinearAxisId.convert
             Layer |> DynObj.setValueOptBy axis "layer" StyleParam.Layer.convert
             Domain |> DynObj.setValueOptBy axis "domain" StyleParam.Range.convert
-            Position |> DynObj.setValueOpt axis "position"
+            ++? ("position", Position )
             CategoryOrder |> DynObj.setValueOptBy axis "categoryorder" StyleParam.CategoryOrder.convert
-            CategoryArray |> DynObj.setValueOpt axis "categoryarray"
-            UIRevision |> DynObj.setValueOpt axis "uirevision"
-            RangeSlider |> DynObj.setValueOpt axis "rangeslider"
-            RangeSelector |> DynObj.setValueOpt axis "rangeselector"
+            ++? ("categoryarray", CategoryArray )
+            ++? ("uirevision", UIRevision )
+            ++? ("rangeslider", RangeSlider )
+            ++? ("rangeselector", RangeSelector )
             Calendar |> DynObj.setValueOptBy axis "calendar" StyleParam.Calendar.convert
-            ArrayDTick |> DynObj.setValueOpt axis "arraydtick"
-            ArrayTick0 |> DynObj.setValueOpt axis "arraytick0"
+            ++? ("arraydtick", ArrayDTick )
+            ++? ("arraytick0", ArrayTick0 )
             CheaterType |> DynObj.setValueOptBy axis "cheatertype" StyleParam.CheaterType.convert
-            EndLine |> DynObj.setValueOpt axis "endline"
-            EndLineColor |> DynObj.setValueOpt axis "endlinecolor"
-            EndLineWidth |> DynObj.setValueOpt axis "endlinewidth"
-            LabelPadding |> DynObj.setValueOpt axis "labelpadding"
-            LabelPrefix |> DynObj.setValueOpt axis "labelprefix"
-            LabelSuffix |> DynObj.setValueOpt axis "labelsuffix"
-            MinorGridColor |> DynObj.setValueOpt axis "minorgridcolor"
-            MinorGridCount |> DynObj.setValueOpt axis "minorgridcount"
-            MinorGridWidth |> DynObj.setValueOpt axis "minorgridwidth"
-            Smoothing |> DynObj.setValueOpt axis "smoothing"
-            StartLine |> DynObj.setValueOpt axis "startline"
-            StartLineColor |> DynObj.setValueOpt axis "startlinecolor"
-            StartLineWidth |> DynObj.setValueOpt axis "startlinewidth"
-            BackgroundColor |> DynObj.setValueOpt axis "backgroundcolor"
-            ShowBackground |> DynObj.setValueOpt axis "showbackground"
+            ++? ("endline", EndLine )
+            ++? ("endlinecolor", EndLineColor )
+            ++? ("endlinewidth", EndLineWidth )
+            ++? ("labelpadding", LabelPadding )
+            ++? ("labelprefix", LabelPrefix )
+            ++? ("labelsuffix", LabelSuffix )
+            ++? ("minorgridcolor", MinorGridColor )
+            ++? ("minorgridcount", MinorGridCount )
+            ++? ("minorgridwidth", MinorGridWidth )
+            ++? ("smoothing", Smoothing )
+            ++? ("startline", StartLine )
+            ++? ("startlinecolor", StartLineColor )
+            ++? ("startlinewidth", StartLineWidth )
+            ++? ("backgroundcolor", BackgroundColor )
+            ++? ("showbackground", ShowBackground )
 
 
             axis)

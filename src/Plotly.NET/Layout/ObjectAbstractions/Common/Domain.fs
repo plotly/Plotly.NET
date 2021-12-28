@@ -31,8 +31,8 @@ type Domain() =
         (fun (dom: Domain) ->
             X |> DynObj.setValueOptBy dom "x" StyleParam.Range.convert
             Y |> DynObj.setValueOptBy dom "y" StyleParam.Range.convert
-            Row |> DynObj.setValueOpt dom "row"
-            Column |> DynObj.setValueOpt dom "column"
+            ++? ("row", Row )
+            ++? ("column", Column )
 
             // out ->
             dom)

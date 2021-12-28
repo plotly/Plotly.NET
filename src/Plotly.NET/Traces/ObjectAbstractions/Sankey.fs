@@ -62,18 +62,18 @@ type SankeyNodes() =
         ) =
         (fun (sankeyNodes: SankeyNodes) ->
 
-            Color |> DynObj.setValueOpt sankeyNodes "color"
-            CustomData |> DynObj.setValueOpt sankeyNodes "customdata"
-            Groups |> DynObj.setValueOpt sankeyNodes "hoverinfo"
+            ++? ("color", Color )
+            ++? ("customdata", CustomData )
+            ++? ("hoverinfo", Groups )
             HoverInfo |> DynObj.setValueOptBy sankeyNodes "color" StyleParam.HoverInfo.convert
-            HoverLabel |> DynObj.setValueOpt sankeyNodes "hoverlabel"
+            ++? ("hoverlabel", HoverLabel )
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt sankeyNodes "hovertemplate"
-            Label |> DynObj.setValueOpt sankeyNodes "label"
-            Line |> DynObj.setValueOpt sankeyNodes "line"
-            Pad |> DynObj.setValueOpt sankeyNodes "pad"
-            Thickness |> DynObj.setValueOpt sankeyNodes "thickness"
-            X |> DynObj.setValueOpt sankeyNodes "x"
-            Y |> DynObj.setValueOpt sankeyNodes "y"
+            ++? ("label", Label )
+            ++? ("line", Line )
+            ++? ("pad", Pad )
+            ++? ("thickness", Thickness )
+            ++? ("x", X )
+            ++? ("y", Y )
 
             sankeyNodes)
 
@@ -112,12 +112,12 @@ type SankeyLinkColorscale() =
         ) =
         (fun (sankeyLinkColorscale: SankeyLinkColorscale) ->
 
-            CMax |> DynObj.setValueOpt sankeyLinkColorscale "cmax"
-            CMin |> DynObj.setValueOpt sankeyLinkColorscale "cmin"
+            ++? ("cmax", CMax )
+            ++? ("cmin", CMin )
             ColorScale |> DynObj.setValueOptBy sankeyLinkColorscale "colorscale" StyleParam.Colorscale.convert
-            Label |> DynObj.setValueOpt sankeyLinkColorscale "label"
-            Name |> DynObj.setValueOpt sankeyLinkColorscale "name"
-            TemplateItemName |> DynObj.setValueOpt sankeyLinkColorscale "templateitemname"
+            ++? ("label", Label )
+            ++? ("name", Name )
+            ++? ("templateitemname", TemplateItemName )
 
 
             sankeyLinkColorscale)
@@ -175,18 +175,18 @@ type SankeyLinks() =
         ) =
         (fun (sankeyLinks: SankeyLinks) ->
 
-            Color |> DynObj.setValueOpt sankeyLinks "color"
-            ColorScales |> DynObj.setValueOpt sankeyLinks "colorscales"
-            CustomData |> DynObj.setValueOpt sankeyLinks "customdata"
+            ++? ("color", Color )
+            ++? ("colorscales", ColorScales )
+            ++? ("customdata", CustomData )
             HoverInfo |> DynObj.setValueOptBy sankeyLinks "hoverinfo" StyleParam.HoverInfo.convert
-            HoverLabel |> DynObj.setValueOpt sankeyLinks "hoverlabel"
-            HoverTemplate |> DynObj.setValueOpt sankeyLinks "hovertemplate"
-            MultiHoverTemplate |> DynObj.setValueOpt sankeyLinks "multihovertemplate"
-            Label |> DynObj.setValueOpt sankeyLinks "label"
-            Line |> DynObj.setValueOpt sankeyLinks "line"
-            Source |> DynObj.setValueOpt sankeyLinks "source"
-            Target |> DynObj.setValueOpt sankeyLinks "target"
-            Value |> DynObj.setValueOpt sankeyLinks "value"
+            ++? ("hoverlabel", HoverLabel )
+            ++? ("hovertemplate", HoverTemplate )
+            ++? ("multihovertemplate", MultiHoverTemplate )
+            ++? ("label", Label )
+            ++? ("line", Line )
+            ++? ("source", Source )
+            ++? ("target", Target )
+            ++? ("value", Value )
 
 
             sankeyLinks)

@@ -62,10 +62,10 @@ type Pathbar() =
             [<Optional; DefaultParameterValue(null)>] ?Textfont: Font
         ) =
         (fun (pathbar: Pathbar) ->
-            Visible |> DynObj.setValueOpt pathbar "visible"
+            ++? ("visible", Visible )
             Side |> DynObj.setValueOptBy pathbar "side" StyleParam.Side.convert
             EdgeShape |> DynObj.setValueOptBy pathbar "edgeshape" StyleParam.PathbarEdgeShape.convert
-            Thickness |> DynObj.setValueOpt pathbar "thickness"
+            ++? ("thickness", Thickness )
             Textfont |> DynObj.setValueOpt pathbar "textfont "
 
             pathbar)

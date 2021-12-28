@@ -86,19 +86,19 @@ type Dimension() =
         (fun (dims: Dimension) ->
 
             let axis = LinearAxis.init (?AxisType = AxisType)
-            AxisMatches |> DynObj.setValueOpt axis "matches"
+            ++? ("matches", AxisMatches )
 
-            Label |> DynObj.setValueOpt dims "label"
-            Name |> DynObj.setValueOpt dims "name"
-            TemplateItemName |> DynObj.setValueOpt dims "templateitemname"
-            Values |> DynObj.setValueOpt dims "values"
-            Visible |> DynObj.setValueOpt dims "visible"
+            ++? ("label", Label )
+            ++? ("name", Name )
+            ++? ("templateitemname", TemplateItemName )
+            ++? ("values", Values )
+            ++? ("visible", Visible )
             ConstraintRange |> DynObj.setValueOptBy dims "constraintrange" StyleParam.Range.convert
-            MultiSelect |> DynObj.setValueOpt dims "multiselect"
+            ++? ("multiselect", MultiSelect )
             Range |> DynObj.setValueOptBy dims "range" StyleParam.Range.convert
             TickFormat |> DynObj.setValueOptBy dims "tickformat" StyleParam.TickMode.convert
-            TickText |> DynObj.setValueOpt dims "ticktext"
-            Tickvals |> DynObj.setValueOpt dims "tickvals"
+            ++? ("ticktext", TickText )
+            ++? ("tickvals", Tickvals )
             ++ ("axis", axis )
 
             dims)

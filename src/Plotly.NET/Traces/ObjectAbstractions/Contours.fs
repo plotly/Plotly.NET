@@ -27,9 +27,9 @@ type ContourProject() =
 
         fun (contourProject: ContourProject) ->
 
-            X |> DynObj.setValueOpt contourProject "x"
-            Y |> DynObj.setValueOpt contourProject "y"
-            Z |> DynObj.setValueOpt contourProject "z"
+            ++? ("x", X )
+            ++? ("y", Y )
+            ++? ("z", Z )
 
             contourProject
 
@@ -87,17 +87,17 @@ type Contour() =
         ) =
 
         (fun (contour: Contour) ->
-            Color |> DynObj.setValueOpt contour "color"
-            End |> DynObj.setValueOpt contour "end"
-            Highlight |> DynObj.setValueOpt contour "highlight"
-            HighlightColor |> DynObj.setValueOpt contour "highlightcolor"
-            HighlightWidth |> DynObj.setValueOpt contour "highlightwidth"
-            Project |> DynObj.setValueOpt contour "project"
-            Show |> DynObj.setValueOpt contour "show"
-            Size |> DynObj.setValueOpt contour "size"
-            Start |> DynObj.setValueOpt contour "start"
-            UseColorMap |> DynObj.setValueOpt contour "usecolormap"
-            Width |> DynObj.setValueOpt contour "width"
+            ++? ("color", Color )
+            ++? ("end", End )
+            ++? ("highlight", Highlight )
+            ++? ("highlightcolor", HighlightColor )
+            ++? ("highlightwidth", HighlightWidth )
+            ++? ("project", Project )
+            ++? ("show", Show )
+            ++? ("size", Size )
+            ++? ("start", Start )
+            ++? ("usecolormap", UseColorMap )
+            ++? ("width", Width )
 
 
             contour)
@@ -168,20 +168,20 @@ type Contours() =
         ) =
 
         (fun (contours: Contours) ->
-            X |> DynObj.setValueOpt contours "x"
-            Y |> DynObj.setValueOpt contours "y"
-            Z |> DynObj.setValueOpt contours "z"
+            ++? ("x", X )
+            ++? ("y", Y )
+            ++? ("z", Z )
             Coloring |> DynObj.setValueOptBy contours "coloring" StyleParam.ContourColoring.convert
-            End |> DynObj.setValueOpt contours "end"
-            LabelFont |> DynObj.setValueOpt contours "labelfont"
-            LabelFormat |> DynObj.setValueOpt contours "labelformat"
+            ++? ("end", End )
+            ++? ("labelfont", LabelFont )
+            ++? ("labelformat", LabelFormat )
             Operation |> DynObj.setValueOptBy contours "operation" StyleParam.ConstraintOperation.convert
-            ShowLabels |> DynObj.setValueOpt contours "showlabels"
-            ShowLines |> DynObj.setValueOpt contours "showlines"
-            Size |> DynObj.setValueOpt contours "size"
-            Start |> DynObj.setValueOpt contours "start"
+            ++? ("showlabels", ShowLabels )
+            ++? ("showlines", ShowLines )
+            ++? ("size", Size )
+            ++? ("start", Start )
             Type |> DynObj.setValueOptBy contours "type" StyleParam.ContourType.convert
-            Value |> DynObj.setValueOpt contours "value"
+            ++? ("value", Value )
 
 
             contours)

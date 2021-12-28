@@ -22,7 +22,7 @@ type UniformText() =
         ) =
         (fun (uniformText: UniformText) ->
 
-            MinSize |> DynObj.setValueOpt uniformText "minsize"
+            ++? ("minsize", MinSize )
             Mode |> DynObj.setValueOptBy uniformText "mode" StyleParam.UniformTextMode.convert
 
             uniformText)
