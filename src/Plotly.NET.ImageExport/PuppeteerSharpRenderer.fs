@@ -9,6 +9,12 @@ open System.Text
 open System.Text.RegularExpressions
 open DynamicObj
 
+module PuppeteerSharpRendererOptions =
+
+    let mutable launchOptions = LaunchOptions()
+
+    launchOptions.Timeout <- 60000
+
 type PuppeteerSharpRenderer() =
 
     /// adapted from the original C# implementation by @ilyalatt : https://github.com/ilyalatt/Plotly.NET.PuppeteerRenderer
@@ -76,9 +82,10 @@ type PuppeteerSharpRenderer() =
 
             let! revision = browserFetcher.DownloadAsync() |> Async.AwaitTask
 
-            let launchOptions = LaunchOptions()
+            let launchOptions =
+                PuppeteerSharpRendererOptions.launchOptions
+
             launchOptions.ExecutablePath <- revision.ExecutablePath
-            launchOptions.Timeout <- 60000
 
             return! Puppeteer.LaunchAsync(launchOptions) |> Async.AwaitTask
         }
