@@ -176,6 +176,15 @@ open Plotly.NET
 open System
 open Plotly.NET 
 
+Chart.BubbleTernary(
+    [
+        1,2,3,5
+        2,2,2,15
+        3,2,1,25
+    ]
+)
+|> Chart.show
+
 let multiTraceGrid = 
     [
         Chart.Point([1,2; 2,3], UseDefaults = false)
