@@ -53,13 +53,18 @@ let contourCarpet =
                 Smoothing = 0.,
                 MinorGridCount = 9,
                 AxisType = StyleParam.AxisType.Linear
-            )
+            ), 
+            UseDefaults = false,
+            Opacity = 0.75
         )    
         Chart.ContourCarpet(
-            "contour",
             [1.; 1.96; 2.56; 3.0625; 4.; 5.0625; 1.; 7.5625; 9.; 12.25; 15.21; 14.0625],
+            "contour",
             A = [0; 1; 2; 3; 0; 1; 2; 3; 0; 1; 2; 3],
-            B = [4; 4; 4; 4; 5; 5; 5; 5; 6; 6; 6; 6]
+            B = [4; 4; 4; 4; 5; 5; 5; 5; 6; 6; 6; 6], 
+            UseDefaults = false,
+            ContourLineColor = Color.fromKeyword White,
+            ShowContourLabels = true
         )
     ]
     |> Chart.combine

@@ -18,7 +18,40 @@ module ChartCarpet =
     [<Extension>]
     type Chart =
 
-        /// Shows how proportions of data, shown as pie-shaped pieces, contribute to the data.
+        /// <summary>
+        /// Creates a carpet in a 2D coordinate system to be used as additional coordinate system in a carpet plot.
+        ///
+        /// A  carpet plot illustrates the interaction between two or more independent variables and one or more dependent variables in a two-dimensional plot.
+        /// Besides the ability to incorporate more variables, another feature that distinguishes a carpet plot from an equivalent contour plot or 3D surface plot is that a carpet plot can be used to more accurately interpolate data points.
+        /// A conventional carpet plot can capture the interaction of up to three independent variables and three dependent variables and still be easily read and interpolated.
+        ///
+        /// Three-variable carpet plot (cheater plot):
+        ///
+        /// A carpet plot with two independent variables and one dependent variable is often called a cheater plot for the use of a phantom "cheater" axis instead of the horizontal axis. As a result of this missing axis, the values can be shifted horizontally such that the intersections line up vertically. This allows easy interpolation by having fixed horizontal intervals correspond to fixed intervals in both independent variables.
+        ///
+        /// Four-variable carpet plot (true carpet plot)
+        ///
+        /// Instead of using the horizontal axis to adjust the plot perspective and align carpet intersections vertically, the horizontal axis can be used to show the effects on an additional dependent variable.[5] In this case the perspective is fixed, and any overlapping cannot be adjusted. Because a true carpet plot represents two independent variables and two dependent variables simultaneously, there is no corresponding way to show the information on a conventional contour plot or 3D surface plot.
+        ///
+        /// (from https://en.wikipedia.org/wiki/Carpet_plot @ 1/11/2021)
+        /// </summary>
+        /// <param name="carpetId">An identifier for this carpet, so that `scattercarpet` and `contourcarpet` traces can specify a carpet plot on which they lie.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="X">A one dimensional array of x coordinates matching the dimensions of `a` and `b`.</param>
+        /// <param name="MultiX">A two dimensional array of x coordinates at each carpet point. If omitted, the plot is a cheater plot and the xaxis is hidden by default.</param>
+        /// <param name="Y">A one dimensional array of y coordinates matching the dimensions of `a` and `b`.</param>
+        /// <param name="MultiY">A two dimensional array of y coordinates at each carpet point.</param>
+        /// <param name="A">An array containing values of the first parameter value</param>
+        /// <param name="B">An array containing values of the second parameter value</param>
+        /// <param name="AAxis">Sets this carpet's a axis.</param>
+        /// <param name="BAxis">Sets this carpet's b axis.</param>
+        /// <param name="XAxis">Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If "x" (the default value), the x coordinates refer to `layout.xaxis`. If "x2", the x coordinates refer to `layout.xaxis2`, and so on.</param>
+        /// <param name="YAxis">Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If "y" (the default value), the y coordinates refer to `layout.yaxis`. If "y2", the y coordinates refer to `layout.yaxis2`, and so on.</param>
+        /// <param name="Color">Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.</param>
+        /// <param name="CheaterSlope">The shift applied to each successive row of data in creating a cheater plot. Only used if `x` is been omitted.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Carpet
             (
@@ -65,6 +98,39 @@ module ChartCarpet =
             )
             |> GenericChart.ofTraceObject useDefaults
 
+        /// <summary>
+        /// Creates a scatter plot that lies on a specified carpet.
+        ///
+        /// In general, ScatterCarpet creates a plot that uses the given carpet identifier as coordinate system.
+        ///
+        /// Wether the resulting plot is a cheater or true carpet plot depends on the referenced carpet.
+        ///
+        /// ScatterCarpet charts are the basis of PointCarpet, LineCarpet, and BubbleCarpet Charts, and can be customized as such. We also provide abstractions for those: Chart.LineCarpet, Chart.PointCarpet, Chart.BubbleCarpet
+        /// </summary>
+        /// <param name="a">Sets the a-axis coordinates on the carpet.</param>
+        /// <param name="b">Sets the b-axis coordinates on the carpet.</param>
+        /// <param name="mode">Determines the drawing mode for this scatter trace. If the provided `mode` includes "text" then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace is not stacked then the default is "lines+markers". Otherwise, "lines".</param>
+        /// <param name="carpetAnchorId">The identifier of the carpet that this trace will lie on.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member ScatterCarpet
             (
@@ -137,6 +203,38 @@ module ChartCarpet =
             )
             |> GenericChart.ofTraceObject useDefaults
 
+        /// <summary>
+        /// Creates a scatter plot that lies on a specified carpet.
+        ///
+        /// In general, ScatterCarpet creates a plot that uses the given carpet identifier as coordinate system.
+        ///
+        /// Wether the resulting plot is a cheater or true carpet plot depends on the referenced carpet.
+        ///
+        /// ScatterCarpet charts are the basis of PointCarpet, LineCarpet, and BubbleCarpet Charts, and can be customized as such. We also provide abstractions for those: Chart.LineCarpet, Chart.PointCarpet, Chart.BubbleCarpet
+        /// </summary>
+        /// <param name="ab">Sets the a and b-axis coordinates on the carpet.</param>
+        /// <param name="mode">Determines the drawing mode for this scatter trace. If the provided `mode` includes "text" then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace is not stacked then the default is "lines+markers". Otherwise, "lines".</param>
+        /// <param name="carpetAnchorId">The identifier of the carpet that this trace will lie on.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member ScatterCarpet
             (
@@ -195,7 +293,31 @@ module ChartCarpet =
 
             )
 
-
+        /// <summary>
+        /// Creates a point plot that lies on a specified carpet.
+        ///
+        /// In general, PointCarpet creates a point plot that uses the given carpet identifier as coordinate system.
+        ///
+        /// Wether the resulting plot is a cheater or true carpet plot depends on the referenced carpet.
+        /// </summary>
+        /// <param name="a">Sets the a-axis coordinates on the carpet.</param>
+        /// <param name="b">Sets the b-axis coordinates on the carpet.</param>
+        /// <param name="carpetAnchorId">The identifier of the carpet that this trace will lie on.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member PointCarpet
             (
@@ -247,6 +369,30 @@ module ChartCarpet =
 
             )
 
+        /// <summary>
+        /// Creates a point plot that lies on a specified carpet.
+        ///
+        /// In general, PointCarpet creates a point plot that uses the given carpet identifier as coordinate system.
+        ///
+        /// Wether the resulting plot is a cheater or true carpet plot depends on the referenced carpet.
+        /// </summary>
+        /// <param name="ab">Sets the a and b-axis coordinates on the carpet.</param>
+        /// <param name="carpetAnchorId">The identifier of the carpet that this trace will lie on.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member PointCarpet
             (
@@ -292,6 +438,37 @@ module ChartCarpet =
                 ?UseDefaults = UseDefaults
             )
 
+        /// <summary>
+        /// Creates a line plot that lies on a specified carpet.
+        ///
+        /// In general, LineCarpet creates a line plot that uses the given carpet identifier as coordinate system.
+        ///
+        /// Wether the resulting plot is a cheater or true carpet plot depends on the referenced carpet.
+        /// </summary>
+        /// <param name="a">Sets the a-axis coordinates on the carpet.</param>
+        /// <param name="b">Sets the b-axis coordinates on the carpet.</param>
+        /// <param name="carpetAnchorId">The identifier of the carpet that this trace will lie on.</param>
+        /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member LineCarpet
             (
@@ -357,7 +534,36 @@ module ChartCarpet =
                 ?UseDefaults = UseDefaults
             )
 
-
+        /// <summary>
+        /// Creates a line plot that lies on a specified carpet.
+        ///
+        /// In general, LineCarpet creates a line plot that uses the given carpet identifier as coordinate system.
+        ///
+        /// Wether the resulting plot is a cheater or true carpet plot depends on the referenced carpet.
+        /// </summary>
+        /// <param name="ab">Sets the a and b-axis coordinates on the carpet.</param>
+        /// <param name="carpetAnchorId">The identifier of the carpet that this trace will lie on.</param>
+        /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member LineCarpet
             (
@@ -415,6 +621,39 @@ module ChartCarpet =
                 ?UseDefaults = UseDefaults
             )
 
+        /// <summary>
+        /// Creates a spline plot that lies on a specified carpet.
+        ///
+        /// In general, SplineCarpet creates a spline plot that uses the given carpet identifier as coordinate system.
+        /// A spline chart is a line chart in which data points are connected by smoothed curves.
+        ///
+        /// Wether the resulting plot is a cheater or true carpet plot depends on the referenced carpet.
+        /// </summary>
+        /// <param name="a">Sets the a-axis coordinates on the carpet.</param>
+        /// <param name="b">Sets the b-axis coordinates on the carpet.</param>
+        /// <param name="carpetAnchorId">The identifier of the carpet that this trace will lie on.</param>
+        /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="Smoothing">Sets the amount of smoothing. "0" corresponds to no smoothing (equivalent to a "linear" shape).  Use values between 0. and 1.3</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member SplineCarpet
             (
@@ -500,7 +739,38 @@ module ChartCarpet =
             |> GenericChart.ofTraceObject useDefaults
 
 
-
+        /// <summary>
+        /// Creates a spline plot that lies on a specified carpet.
+        ///
+        /// In general, SplineCarpet creates a spline plot that uses the given carpet identifier as coordinate system.
+        /// A spline chart is a line chart in which data points are connected by smoothed curves.
+        ///
+        /// Wether the resulting plot is a cheater or true carpet plot depends on the referenced carpet.
+        /// </summary>
+        /// <param name="ab">Sets the a and b-axis coordinates on the carpet.</param>
+        /// <param name="carpetAnchorId">The identifier of the carpet that this trace will lie on.</param>
+        /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="Smoothing">Sets the amount of smoothing. "0" corresponds to no smoothing (equivalent to a "linear" shape).  Use values between 0. and 1.3</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member SplineCarpet
             (
@@ -561,6 +831,39 @@ module ChartCarpet =
 
             )
 
+        /// <summary>
+        /// Creates a bubble chart that lies on a specified carpet.
+        ///
+        /// In general, BubbleCarpet creates a bubble chart that uses the given carpet identifier as coordinate system.
+        ///
+        /// A bubble chart is a variation of the Point chart, where the data points get an additional scale by being rendered as bubbles of different sizes.
+        ///
+        /// Wether the resulting plot is a cheater or true carpet plot depends on the referenced carpet.
+        /// </summary>
+        /// <param name="a">Sets the a-axis coordinates on the carpet.</param>
+        /// <param name="b">Sets the b-axis coordinates on the carpet.</param>
+        /// <param name="sizes">Sets the bubble size of the plotted data</param>
+        /// <param name="carpetAnchorId">The identifier of the carpet that this trace will lie on.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         static member BubbleCarpet
             (
                 a: seq<#IConvertible>,
@@ -636,6 +939,37 @@ module ChartCarpet =
             )
             |> GenericChart.ofTraceObject useDefaults
 
+        /// <summary>
+        /// Creates a bubble chart that lies on a specified carpet.
+        ///
+        /// In general, BubbleCarpet creates a bubble chart that uses the given carpet identifier as coordinate system.
+        ///
+        /// A bubble chart is a variation of the Point chart, where the data points get an additional scale by being rendered as bubbles of different sizes.
+        ///
+        /// Wether the resulting plot is a cheater or true carpet plot depends on the referenced carpet.
+        /// </summary>
+        /// <param name="absizes">Sets the a and b-axis coordinates on the carpet and the associated bubble size.</param>
+        /// <param name="carpetAnchorId">The identifier of the carpet that this trace will lie on.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         static member BubbleCarpet
             (
                 absizes: seq<#IConvertible * #IConvertible * int>,
@@ -692,10 +1026,40 @@ module ChartCarpet =
 
             )
 
+        /// <summary>
+        /// Creates a contour chart that lies on a specified carpet.
+        ///
+        /// Plots contours on either the first carpet axis or the carpet axis with a matching `carpet` attribute. Data `z` is interpreted as matching that of the corresponding carpet axis.
+        /// </summary>
+        /// <param name="carpetAnchorId">The identifier of the carpet that this trace will lie on.</param>
+        /// <param name="z">Sets the z data.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="A">Sets the a coordinates.</param>
+        /// <param name="B">Sets the b coordinates.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="ColorBar">Sets the colorbar of this trace.</param>
+        /// <param name="ColorScale">Sets the colorscale of this trace.</param>
+        /// <param name="ShowScale">Determines whether or not a colorbar is displayed for this trace.</param>
+        /// <param name="ReverseScale">Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.</param>
+        /// <param name="Transpose">Transposes the z data.</param>
+        /// <param name="ContourLineDash">Sets the contour line dash style</param>
+        /// <param name="ContourLineColor">Sets the contour line color</param>
+        /// <param name="ContourLineSmoothing">Sets the amount of smoothing for the contour lines, where "0" corresponds to no smoothing.</param>
+        /// <param name="ContourLine">Sets the contour lines (use this for more finegrained control than the other contourline-associated arguments).</param>
+        /// <param name="ContoursColoring">Determines the coloring method showing the contour values. If "fill", coloring is done evenly between each contour level If "heatmap", a heatmap gradient coloring is applied between each contour level. If "lines", coloring is done on the contour lines. If "none", no coloring is applied on this trace.</param>
+        /// <param name="ContoursOperation">Sets the constraint operation. "=" keeps regions equal to `value` "&lt;" and "&lt;=" keep regions less than `value` "&gt;" and "&gt;=" keep regions greater than `value` "[]", "()", "[)", and "(]" keep regions inside `value[0]` to `value[1]` "][", ")(", "](", ")[" keep regions outside `value[0]` to value[1]` Open vs. closed intervals make no difference to constraint display, but all versions are allowed for consistency with filter transforms.</param>
+        /// <param name="ContoursType">If `levels`, the data is represented as a contour plot with multiple levels displayed. If `constraint`, the data is represented as constraints with the invalid region shaded as specified by the `operation` and `value` parameters.</param>
+        /// <param name="ShowContourLabels">Determines whether to label the contour lines with their values.</param>
+        /// <param name="ContourLabelFont">Sets the font used for labeling the contour levels. The default color comes from the lines, if shown. The default family and size come from `layout.font`.</param>
+        /// <param name="Contours">Sets the styles of the contours (use this for more finegrained control than the other contour-associated arguments).</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         static member ContourCarpet
             (
-                carpetAnchorId: string,
                 z: seq<#IConvertible>,
+                carpetAnchorId: string,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
@@ -703,56 +1067,15 @@ module ChartCarpet =
                 [<Optional; DefaultParameterValue(null)>] ?B: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
                 [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
-                [<Optional; DefaultParameterValue(null)>] ?Dash: StyleParam.DrawingStyle,
-                [<Optional; DefaultParameterValue(null)>] ?Width: float,
-                [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
-                [<Optional; DefaultParameterValue(null)>] ?Line: Line,
-                [<Optional; DefaultParameterValue(null)>] ?ColorScale: StyleParam.Colorscale,
-                [<Optional; DefaultParameterValue(null)>] ?ShowScale: bool,
-                [<Optional; DefaultParameterValue(null)>] ?Contours: Contours,
-                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
-            ) =
-
-            let useDefaults = defaultArg UseDefaults true
-
-            TraceCarpet.initContourCarpet (
-                TraceCarpetStyle.ContourCarpet(
-                    Carpet = StyleParam.SubPlotId.Carpet carpetAnchorId,
-                    ?Name = Name,
-                    ?ShowLegend = ShowLegend,
-                    ?Opacity = Opacity,
-                    Z = z,
-                    ?A = A,
-                    ?B = B,
-                    ?Text = Text,
-                    ?MultiText = MultiText,
-                    ?Line = Line,
-                    ?ColorScale = ColorScale,
-                    ?ShowScale = ShowScale,
-                    ?Contours = Contours
-                )
-                >> TraceStyle.Line(?Dash = Dash, ?Width = Width, ?Color = LineColor)
-            )
-            |> GenericChart.ofTraceObject useDefaults
-
-
-        static member ContourCarpet
-            (
-                carpetAnchorId: string,
-                abz: seq<#IConvertible * #IConvertible * #IConvertible>,
-                [<Optional; DefaultParameterValue(null)>] ?Name: string,
-                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
-                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
-                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
-                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
                 [<Optional; DefaultParameterValue(null)>] ?ColorScale: StyleParam.Colorscale,
                 [<Optional; DefaultParameterValue(null)>] ?ShowScale: bool,
                 [<Optional; DefaultParameterValue(null)>] ?ReverseScale: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Transpose: bool,
-                [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
-                [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
-                [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLineDash: StyleParam.DrawingStyle,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLineSmoothing: float,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLine: Line,
                 [<Optional; DefaultParameterValue(null)>] ?ContoursColoring: StyleParam.ContourColoring,
                 [<Optional; DefaultParameterValue(null)>] ?ContoursOperation: StyleParam.ConstraintOperation,
                 [<Optional; DefaultParameterValue(null)>] ?ContoursType: StyleParam.ContourType,
@@ -762,8 +1085,16 @@ module ChartCarpet =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-
             let useDefaults = defaultArg UseDefaults true
+
+            let line =
+                ContourLine
+                |> Option.defaultValue (Plotly.NET.Line.init ())
+                |> Plotly.NET.Line.style (
+                    ?Color = ContourLineColor,
+                    ?Dash = ContourLineDash,
+                    ?Smoothing = ContourLineSmoothing
+                )
 
             let contours =
                 Contours
@@ -776,18 +1107,11 @@ module ChartCarpet =
                     ?LabelFont = ContourLabelFont
                 )
 
-            let line =
-                Line
-                |> Option.defaultValue (Plotly.NET.Line.init ())
-                |> Plotly.NET.Line.style (?Color = LineColor, ?Dash = LineDash)
-
-            let a, b, z = Seq.unzip3 abz
-
             TraceCarpet.initContourCarpet (
                 TraceCarpetStyle.ContourCarpet(
-                    A = a,
-                    B = b,
                     Z = z,
+                    ?A = A,
+                    ?B = B,
                     ?Name = Name,
                     ?ShowLegend = ShowLegend,
                     ?Opacity = Opacity,
@@ -798,7 +1122,94 @@ module ChartCarpet =
                     ?ShowScale = ShowScale,
                     ?ReverseScale = ReverseScale,
                     ?Transpose = Transpose,
+                    Carpet = (carpetAnchorId |> StyleParam.SubPlotId.Carpet),
                     Contours = contours,
                     Line = line
                 )
+            )
+            |> GenericChart.ofTraceObject useDefaults
+
+        /// <summary>
+        /// Creates a contour chart that lies on a specified carpet.
+        ///
+        /// Plots contours on either the first carpet axis or the carpet axis with a matching `carpet` attribute. Data `z` is interpreted as matching that of the corresponding carpet axis.
+        /// </summary>
+        /// <param name="carpetAnchorId">The identifier of the carpet that this trace will lie on.</param>
+        /// <param name="abz">Sets the a and b coordinates together with the respective z value</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="ColorBar">Sets the colorbar of this trace.</param>
+        /// <param name="ColorScale">Sets the colorscale of this trace.</param>
+        /// <param name="ShowScale">Determines whether or not a colorbar is displayed for this trace.</param>
+        /// <param name="ReverseScale">Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.</param>
+        /// <param name="Transpose">Transposes the z data.</param>
+        /// <param name="ContourLineDash">Sets the contour line dash style</param>
+        /// <param name="ContourLineColor">Sets the contour line color</param>
+        /// <param name="ContourLineSmoothing">Sets the amount of smoothing for the contour lines, where "0" corresponds to no smoothing.</param>
+        /// <param name="ContourLine">Sets the contour lines (use this for more finegrained control than the other contourline-associated arguments).</param>
+        /// <param name="ContoursColoring">Determines the coloring method showing the contour values. If "fill", coloring is done evenly between each contour level If "heatmap", a heatmap gradient coloring is applied between each contour level. If "lines", coloring is done on the contour lines. If "none", no coloring is applied on this trace.</param>
+        /// <param name="ContoursOperation">Sets the constraint operation. "=" keeps regions equal to `value` "&lt;" and "&lt;=" keep regions less than `value` "&gt;" and "&gt;=" keep regions greater than `value` "[]", "()", "[)", and "(]" keep regions inside `value[0]` to `value[1]` "][", ")(", "](", ")[" keep regions outside `value[0]` to value[1]` Open vs. closed intervals make no difference to constraint display, but all versions are allowed for consistency with filter transforms.</param>
+        /// <param name="ContoursType">If `levels`, the data is represented as a contour plot with multiple levels displayed. If `constraint`, the data is represented as constraints with the invalid region shaded as specified by the `operation` and `value` parameters.</param>
+        /// <param name="ShowContourLabels">Determines whether to label the contour lines with their values.</param>
+        /// <param name="ContourLabelFont">Sets the font used for labeling the contour levels. The default color comes from the lines, if shown. The default family and size come from `layout.font`.</param>
+        /// <param name="Contours">Sets the styles of the contours (use this for more finegrained control than the other contour-associated arguments).</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        static member ContourCarpet
+            (
+                abz: seq<#IConvertible * #IConvertible * #IConvertible>,
+                carpetAnchorId: string,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
+                [<Optional; DefaultParameterValue(null)>] ?ColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?ShowScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ReverseScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Transpose: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLineDash: StyleParam.DrawingStyle,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLineSmoothing: float,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLine: Line,
+                [<Optional; DefaultParameterValue(null)>] ?ContoursColoring: StyleParam.ContourColoring,
+                [<Optional; DefaultParameterValue(null)>] ?ContoursOperation: StyleParam.ConstraintOperation,
+                [<Optional; DefaultParameterValue(null)>] ?ContoursType: StyleParam.ContourType,
+                [<Optional; DefaultParameterValue(null)>] ?ShowContourLabels: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLabelFont: Font,
+                [<Optional; DefaultParameterValue(null)>] ?Contours: Contours,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+            ) =
+
+            let a, b, z = Seq.unzip3 abz
+
+            Chart.ContourCarpet(
+                z,
+                carpetAnchorId,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                A = a,
+                B = b,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?ColorBar = ColorBar,
+                ?ColorScale = ColorScale,
+                ?ShowScale = ShowScale,
+                ?ReverseScale = ReverseScale,
+                ?Transpose = Transpose,
+                ?ContourLineColor = ContourLineColor,
+                ?ContourLineDash = ContourLineDash,
+                ?ContourLineSmoothing = ContourLineSmoothing,
+                ?ContourLine = ContourLine,
+                ?ContoursColoring = ContoursColoring,
+                ?ContoursOperation = ContoursOperation,
+                ?ContoursType = ContoursType,
+                ?ShowContourLabels = ShowContourLabels,
+                ?ContourLabelFont = ContourLabelFont,
+                ?Contours = Contours,
+                ?UseDefaults = UseDefaults
             )

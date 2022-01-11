@@ -118,14 +118,17 @@ let contour =
                 MinorGridCount = 9,
                 AxisType = StyleParam.AxisType.Linear
             ), 
-            UseDefaults = false
+            UseDefaults = false,
+            Opacity = 0.75
         )    
         Chart.ContourCarpet(
-            "contour",
             [1.; 1.96; 2.56; 3.0625; 4.; 5.0625; 1.; 7.5625; 9.; 12.25; 15.21; 14.0625],
+            "contour",
             A = [0; 1; 2; 3; 0; 1; 2; 3; 0; 1; 2; 3],
             B = [4; 4; 4; 4; 5; 5; 5; 5; 6; 6; 6; 6], 
-            UseDefaults = false
+            UseDefaults = false,
+            ContourLineColor = Color.fromKeyword White,
+            ShowContourLabels = true
         )
     ]
     |> Chart.combine
@@ -133,8 +136,8 @@ let contour =
 [<Tests>]
 let ``ContourCarpet Charts`` =
     testList "CarpetCharts.ContourCarpet Charts" [
-        testCase "ScatterCarpet data" ( fun () ->
-            """var data = [{"type":"carpet","x":[2.0,3.0,4.0,5.0,2.2,3.1,4.1,5.1,1.5,2.5,3.5,4.5],"y":[1.0,1.4,1.6,1.75,2.0,2.5,2.7,2.75,3.0,3.5,3.7,3.75],"a":[0.0,1.0,2.0,3.0,0.0,1.0,2.0,3.0,0.0,1.0,2.0,3.0],"b":[4.0,4.0,4.0,4.0,5.0,5.0,5.0,5.0,6.0,6.0,6.0,6.0],"aaxis":{"type":"linear","tickprefix":"a = ","minorgridcount":9,"smoothing":0.0},"baxis":{"type":"linear","tickprefix":"b = ","minorgridcount":9,"smoothing":0.0},"carpet":"contour"},{"type":"contourcarpet","z":[1.0,1.96,2.56,3.0625,4.0,5.0625,1.0,7.5625,9.0,12.25,15.21,14.0625],"a":[0,1,2,3,0,1,2,3,0,1,2,3],"b":[4,4,4,4,5,5,5,5,6,6,6,6],"carpet":"contour","line":{}}];"""
+        testCase "ContourCarpet data" ( fun () ->
+            """var data = [{"type":"carpet","opacity":0.75,"x":[2.0,3.0,4.0,5.0,2.2,3.1,4.1,5.1,1.5,2.5,3.5,4.5],"y":[1.0,1.4,1.6,1.75,2.0,2.5,2.7,2.75,3.0,3.5,3.7,3.75],"a":[0.0,1.0,2.0,3.0,0.0,1.0,2.0,3.0,0.0,1.0,2.0,3.0],"b":[4.0,4.0,4.0,4.0,5.0,5.0,5.0,5.0,6.0,6.0,6.0,6.0],"aaxis":{"type":"linear","tickprefix":"a = ","minorgridcount":9,"smoothing":0.0},"baxis":{"type":"linear","tickprefix":"b = ","minorgridcount":9,"smoothing":0.0},"carpet":"contour"},{"type":"contourcarpet","z":[1.0,1.96,2.56,3.0625,4.0,5.0625,1.0,7.5625,9.0,12.25,15.21,14.0625],"a":[0,1,2,3,0,1,2,3,0,1,2,3],"b":[4,4,4,4,5,5,5,5,6,6,6,6],"line":{"color":"rgba(255, 255, 255, 1.0)"},"carpet":"contour","contours":{"showlabels":true}}];"""
             |> chartGeneratedContains contour
         );
         testCase "ScatterCarpet layout" ( fun () ->

@@ -448,6 +448,7 @@ module ChartTernary =
         /// In general, LineTernary creates a barycentric line plot on three variables which sum to a constant, graphically depicting the ratios of the three variables as positions in an equilateral triangle.
         /// </summary>
         /// <param name="abc">Sets the quantities of the a, b, and c components</param>
+        /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
