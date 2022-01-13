@@ -190,8 +190,8 @@ module GenericChart =
     // Adds a Layout function to the GenericChart
     let addLayout layout gChart =
         match gChart with
-        | Chart (trace, l', c, d) -> Chart(trace, (ImmutableDynamicObj.combine l' layout |> unbox), c, d)
-        | MultiChart (traces, l', c, d) -> MultiChart(traces, (ImmutableDynamicObj.combine l' layout |> unbox), c, d)
+        | Chart (trace, l', c, d) -> Chart(trace, (l' |> ImmutableDynamicObj.combineWith layout), c, d)
+        | MultiChart (traces, l', c, d) -> MultiChart(traces, (l' |> ImmutableDynamicObj.combineWith layout), c, d)
 
     /// Returns a tuple containing the width and height of a GenericChart's layout if the property is set, otherwise returns None
     let tryGetLayoutSize gChart =
@@ -273,8 +273,8 @@ module GenericChart =
                     (first.TryGetTypedValue<seq<UpdateMenu>>("updatemenus"))
                     (second.TryGetTypedValue<seq<UpdateMenu>>("updatemenus"))
 
-            ImmutableDynamicObj.combine first second
-            |> unbox
+            first
+            |> ImmutableDynamicObj.combineWith second
             |> Layout.style (
                 ?Annotations = annotations,
                 ?Shapes = shapes,
@@ -296,8 +296,8 @@ module GenericChart =
                     (first.TryGetTypedValue<seq<StyleParam.ModeBarButton>>("modeBarButtonsToAdd"))
                     (second.TryGetTypedValue<seq<StyleParam.ModeBarButton>>("modeBarButtonsToAdd"))
 
-            ImmutableDynamicObj.combine first second
-            |> unbox
+            first
+            |> ImmutableDynamicObj.combineWith second
             |> Config.style (?EditableAnnotations = editableAnnotations, ?ModeBarButtonsToAdd = modeBarButtonsToAdd)
 
         let combineDisplayOptions (first: DisplayOptions) (second: DisplayOptions) =
@@ -307,7 +307,10 @@ module GenericChart =
                     (first.TryGetTypedValue<seq<string>>("AdditionalHeadTags"))
                     (second.TryGetTypedValue<seq<string>>("AdditionalHeadTags"))
 
-            ImmutableDynamicObj.combine first second |> unbox |> DisplayOptions.style (?AdditionalHeadTags = additionalHeadTags)
+
+            first
+            |> ImmutableDynamicObj.combineWith second
+            |> DisplayOptions.style (?AdditionalHeadTags = additionalHeadTags)
 
         gCharts
         |> Seq.reduce
