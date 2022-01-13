@@ -1,4 +1,4 @@
-module Tests.SimpleTests
+module Tests.HtmlCodegen.SimpleTests
 
 open Expecto
 open Plotly.NET

@@ -1,4 +1,4 @@
-﻿module Tests.TernaryCharts
+﻿module Tests.HtmlCodegen.TernaryCharts
 
 open Expecto
 open Plotly.NET

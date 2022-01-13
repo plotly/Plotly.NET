@@ -31,6 +31,15 @@ module HtmlCodegen =
     let emptyLayout chart =
         "var layout = {};" |> chartGeneratedContains chart
 
+    let genTests chart name parts =
+        parts
+        |> List.mapi (fun i part ->
+            testCase $"{name} #{i}: '{part}'" ( fun () ->
+                part
+                |> chartGeneratedContains chart
+            );
+        )
+
 module LayoutObjects =
     
     let createJsonFieldTest fieldName expected (object:#ImmutableDynamicObj) =

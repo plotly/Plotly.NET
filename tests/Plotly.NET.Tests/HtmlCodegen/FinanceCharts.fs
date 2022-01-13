@@ -1,4 +1,4 @@
-﻿module Tests.FinanceCharts
+﻿module Tests.HtmlCodegen.FinanceCharts
 
 open Expecto
 open Plotly.NET

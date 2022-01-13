@@ -1,4 +1,4 @@
-﻿module Tests.DistributionCharts
+﻿module Tests.HtmlCodegen.DistributionCharts
 
 open Expecto
 open Plotly.NET

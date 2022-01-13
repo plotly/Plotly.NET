@@ -1,4 +1,4 @@
-﻿module Tests.GeoMapCharts
+﻿module Tests.HtmlCodegen.GeoMapCharts
 
 open Expecto
 open Plotly.NET
@@ -47,31 +47,30 @@ let cultureMapChart =
 
 [<Tests>]
 let ``Geo charts`` =
-    testList "GeoMapCharts.Geo charts" [
-        testCase "Basemap data" ( fun () ->
-            """var data = [{"type":"scattergeo","mode":"markers","locations":[],"marker":{},"line":{}}];"""
-            |> chartGeneratedContains basemapChart
-        );
-        testCase "Basemap layout" ( fun () ->
-            "var layout = {\"margin\":{\"l\":0,\"r\":0,\"t\":0,\"b\":0}};"
-            |> chartGeneratedContains basemapChart
-        );
-        testCase "More features map data" ( fun () ->
-            """var data = [{"type":"scattergeo","mode":"markers","locations":[],"marker":{},"line":{}}];"""
-            |> chartGeneratedContains moreFeaturesBasemapChart
-        );
-        testCase "More features map layout" ( fun () ->
-            "var layout = {\"geo\":{\"resolution\":\"50\",\"showcoastline\":true,\"coastlinecolor\":\"RebeccaPurple\",\"showland\":true,\"landcolor\":\"LightGreen\",\"showocean\":true,\"oceancolor\":\"LightBlue\",\"showlakes\":true,\"lakecolor\":\"Blue\",\"showrivers\":true,\"rivercolor\":\"Blue\"},\"margin\":{\"l\":0,\"r\":0,\"t\":0,\"b\":0}};"
-            |> chartGeneratedContains moreFeaturesBasemapChart
-        );
-        testCase "Cultural map data" ( fun () ->
-            """var data = [{"type":"scattergeo","mode":"markers","locations":[],"marker":{},"line":{}}];"""
-            |> chartGeneratedContains cultureMapChart
-        );
-        testCase "Cultural map layout" ( fun () ->
-            "var layout = {\"geo\":{\"resolution\":\"50\",\"visible\":false,\"showcountries\":true,\"countrycolor\":\"RebeccaPurple\"},\"margin\":{\"l\":0,\"r\":0,\"t\":0,\"b\":0}};"
-            |> chartGeneratedContains cultureMapChart
-        );
+    testList "GeoMapCharts.Geo charts" <| List.collect id [
+        
+        ["""var data = """; "\"type\":\"scattergeo\""; "\"mode\":\"markers\""; "\"locations\":[]"; "\"marker\":{}"; "\"line\":{}"]
+        |> genTests basemapChart "Basemap data";
+
+        ["var layout = "; """{\"margin\":"""; "\"l\":0"; "\"r\":0"; "\"t\":0"; "\"b\":0"]
+        |> genTests basemapChart "Basemap layout";
+
+
+        ["""var layout = """; "\"margin:\"\""; "\"l\":0"; "\"r\":0"; "\"t\":0"; "\"b\":0"]
+        |> genTests moreFeaturesBasemapChart "More features map data";
+
+        ["var layout = "; "geo\":"; "\"resolution\":\"50\""; "\"showcoastline\":true"; "\"coastlinecolor\":\"RebeccaPurple\""; "\"showland\":true";
+        "\"landcolor\":\"LightGreen\""; "\"showocean\":true"; "\"oceancolor\":\"LightBlue\""; "\"showlakes\":true"; "\"lakecolor\":\"Blue\"";
+        "\"showrivers\":true"; "\"rivercolor\":\"Blue\""; "\"margin\":"; "\"l\":0"; "\"r\":0"; "\"t\":0"; "\"b\":0"]
+        |> genTests moreFeaturesBasemapChart "More features map layout";
+
+
+        ["var data = "; "\"type\":\"scattergeo\""; "\"mode\":\"markers\""; "\"locations\":[]"; "\"marker\":{}"; "\"line\":{}"]
+        |> genTests cultureMapChart "Cultural map data";
+
+        ["var layout = "; "\"geo\":"; "\"resolution\":\"50\""; "\"visible\":false"; "\"showcountries\":true"; "\"countrycolor\":\"RebeccaPurple\""; 
+        "\"margin\":"; "\"l\":0"; "\"r\":0"; "\"t\":0"; "\"b\":0"]
+        |> genTests cultureMapChart "Cultural map layout";
     ]
 
 

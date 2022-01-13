@@ -1,4 +1,4 @@
-﻿module Tests.CategoricalCharts
+﻿module Tests.HtmlCodegen.CategoricalCharts
 
 open Expecto
 open Plotly.NET

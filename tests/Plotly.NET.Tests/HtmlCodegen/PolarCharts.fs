@@ -1,4 +1,4 @@
-﻿module Tests.PolarCharts
+﻿module Tests.HtmlCodegen.PolarCharts
 
 open Expecto
 open Plotly.NET

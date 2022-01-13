@@ -1,4 +1,4 @@
-﻿module Tests.MapboxMapCharts
+﻿module Tests.HtmlCodegen.MapboxMapCharts
 
 open Expecto
 open Plotly.NET

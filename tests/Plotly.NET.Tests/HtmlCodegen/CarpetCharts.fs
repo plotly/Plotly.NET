@@ -1,4 +1,4 @@
-﻿module Tests.CarpetCharts
+﻿module Tests.HtmlCodegen.CarpetCharts
 
 open Expecto
 open Plotly.NET

@@ -1,4 +1,4 @@
-﻿module Tests.Charts3D
+﻿module Tests.HtmlCodegen.Charts3D
 
 open Expecto
 open Plotly.NET
