@@ -1824,6 +1824,7 @@ module StyleParam =
         | HoverClosestPie
         | ResetSankeyGroup
         | ToggleHover
+        | HoverMode
         | ResetViews
         | ToggleSpikelines
         | ResetViewMapbox
@@ -1867,6 +1868,7 @@ module StyleParam =
             | HoverClosestPie -> "hoverClosestPie"
             | ResetSankeyGroup -> "resetSankeyGroup"
             | ToggleHover -> "toggleHover"
+            | HoverMode -> "v1hovermode"
             | ResetViews -> "resetViews"
             | ToggleSpikelines -> "toggleSpikelines"
             | ResetViewMapbox -> "resetViewMapbox"
