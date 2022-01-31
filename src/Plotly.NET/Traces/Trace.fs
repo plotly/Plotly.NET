@@ -20,29 +20,34 @@ type Trace(traceTypeName: string) =
 /// These functions are used internally to style traces of Chart objects. Users are usually pointed
 /// to the API layer provided by the `Chart` module/object
 type TraceStyle() =
-    /// Applies the given TraceInfo style parameters to a Trace object.
+
+    /// <summary>
+    /// Sets trace information on the given trace.
+    /// </summary>
+    /// <param name="Name">Sets the name of the chart's trace(s). When the chart is a multichart (it contains multiple traces), the name is suffixed by '_%i' where %i is the index of the trace.</param>
+    /// <param name="Visible">Wether or not the chart's traces are visible</param>
+    /// <param name="ShowLegend">Determines whether or not item(s) corresponding to this chart's trace(s) is/are shown in the legend.</param>
+    /// <param name="LegendRank">Sets the legend rank for the chart's trace(s). Items and groups with smaller ranks are presented on top/left side while with `"reversed" `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items.</param>
+    /// <param name="LegendGroup">Sets the legend group for the chart's trace(s). Traces part of the same legend group hide/show at the same time when toggling legend items.</param>
+    /// <param name="LegendGroupTitle">Sets the title for the chart's trace legend group </param>
     static member TraceInfo
         (
             [<Optional; DefaultParameterValue(null)>] ?Name: string,
             [<Optional; DefaultParameterValue(null)>] ?Visible: StyleParam.Visible,
             [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+            [<Optional; DefaultParameterValue(null)>] ?LegendRank: int,
             [<Optional; DefaultParameterValue(null)>] ?LegendGroup: string,
-            [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
-            [<Optional; DefaultParameterValue(null)>] ?Uid: string,
-            [<Optional; DefaultParameterValue(null)>] ?Hoverinfo: string
+            [<Optional; DefaultParameterValue(null)>] ?LegendGroupTitle: Title
         ) =
         (fun (trace: ('T :> Trace)) ->
+
             Name |> DynObj.setValueOpt trace "name"
             Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.toObject
             ShowLegend |> DynObj.setValueOpt trace "showlegend"
+            LegendRank |> DynObj.setValueOpt trace "legendrank"
             LegendGroup |> DynObj.setValueOpt trace "legendgroup"
-            Opacity |> DynObj.setValueOpt trace "opacity"
-            Uid |> DynObj.setValueOpt trace "uid"
-            Hoverinfo |> DynObj.setValueOpt trace "hoverinfo"
-            // Update
-            //Stream: Stream
+            LegendGroupTitle |> DynObj.setValueOpt trace "legendgrouptitle"
 
-            // out ->
             trace)
 
     /// Sets selection of data points on a Trace object.

@@ -16,21 +16,25 @@ module GenericChartExtensions =
 
     type GenericChart with
 
-        [<CompiledName("WithTraceName")>]
+        [<CompiledName("WithTraceInfo")>]
         [<Extension>]
-        member this.WithTraceName
+        member this.WithTraceInfo
             (
-                [<Optional; DefaultParameterValue(null)>] ?Name,
-                [<Optional; DefaultParameterValue(null)>] ?ShowLegend,
-                [<Optional; DefaultParameterValue(null)>] ?LegendGroup,
-                [<Optional; DefaultParameterValue(null)>] ?Visible
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?Visible: StyleParam.Visible,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?LegendRank: int,
+                [<Optional; DefaultParameterValue(null)>] ?LegendGroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?LegendGroupTitle: Title
             ) =
             this
-            |> Chart.withTraceName (
+            |> Chart.withTraceInfo (
                 ?Name = Name,
+                ?Visible = Visible,
                 ?ShowLegend = ShowLegend,
+                ?LegendRank = LegendRank,
                 ?LegendGroup = LegendGroup,
-                ?Visible = Visible
+                ?LegendGroupTitle = LegendGroupTitle
             )
 
         /// Set the axis anchor id the trace is belonging to

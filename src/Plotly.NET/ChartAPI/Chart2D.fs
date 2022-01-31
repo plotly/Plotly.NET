@@ -3107,6 +3107,7 @@ module Chart2D =
                 Trace2DStyle.Histogram(
                     ?X = X,
                     ?Y = Y,
+                    ?Opacity = Opacity,
                     ?Text = Text,
                     ?MultiText = MultiText,
                     ?Orientation = Orientation,
@@ -3128,7 +3129,7 @@ module Chart2D =
                 )
             )
             |> TraceStyle.Marker(?Color = MarkerColor)
-            |> TraceStyle.TraceInfo(?Name = Name, ?ShowLegend = ShowLegend, ?Opacity = Opacity)
+            |> TraceStyle.TraceInfo(?Name = Name, ?ShowLegend = ShowLegend)
             |> GenericChart.ofTraceObject useDefaults
 
 
@@ -3198,6 +3199,7 @@ module Chart2D =
             let histChart =
                 Trace2D.initHistogram (
                     Trace2DStyle.Histogram(
+                        ?Opacity = Opacity,
                         ?Text = Text,
                         ?MultiText = MultiText,
                         Orientation = orientation,
@@ -3219,7 +3221,7 @@ module Chart2D =
                     )
                 )
                 |> TraceStyle.Marker(?Color = MarkerColor)
-                |> TraceStyle.TraceInfo(?Name = Name, ?ShowLegend = ShowLegend, ?Opacity = Opacity)
+                |> TraceStyle.TraceInfo(?Name = Name, ?ShowLegend = ShowLegend)
                 |> GenericChart.ofTraceObject useDefaults
 
             match orientation with
@@ -3285,6 +3287,7 @@ module Chart2D =
                     Y = y,
                     ?YGap = YGap,
                     ?Z = Z,
+                    ?Opacity = Opacity,
                     ?HistFunc = HistFunc,
                     ?HistNorm = HistNorm,
                     ?NBinsX = NBinsX,
@@ -3298,7 +3301,7 @@ module Chart2D =
                     ?ZSmooth = ZSmooth
                 )
             )
-            |> TraceStyle.TraceInfo(?Name = Name, ?ShowLegend = ShowLegend, ?Opacity = Opacity)
+            |> TraceStyle.TraceInfo(?Name = Name, ?ShowLegend = ShowLegend)
             |> GenericChart.ofTraceObject useDefaults
 
         /// <summary>
