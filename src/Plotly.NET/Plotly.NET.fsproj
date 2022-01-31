@@ -38,9 +38,11 @@
     <Compile Include="CommonAbstractions\StyleParams.fs" />
     <Compile Include="CommonAbstractions\ColorKeyword.fs" />
     <Compile Include="CommonAbstractions\Colors.fs" />
+    <Compile Include="CommonAbstractions\TickFormatStop.fs" />
     <Compile Include="CommonAbstractions\Frame.fs" />
     <Compile Include="CommonAbstractions\Font.fs" />
     <Compile Include="CommonAbstractions\Title.fs" />
+    <Compile Include="CommonAbstractions\ColorBar.fs" />
     <Compile Include="CommonAbstractions\Line.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\Padding.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\LayoutImage.fs" />
@@ -59,8 +61,6 @@
     <Compile Include="Layout\ObjectAbstractions\Common\Annotation.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\LayoutGrid.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\Legend.fs" />
-    <Compile Include="Layout\ObjectAbstractions\Common\TickFormatStop.fs" />
-    <Compile Include="Layout\ObjectAbstractions\Common\ColorBar.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\Rangebreak.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\LinearAxis.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\ColorAxis.fs" />

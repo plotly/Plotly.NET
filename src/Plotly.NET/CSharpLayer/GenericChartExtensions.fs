@@ -130,21 +130,47 @@ module GenericChartExtensions =
         [<Extension>]
         member this.WithLineStyle
             (
-                [<Optional; DefaultParameterValue(null)>] ?Width,
-                [<Optional; DefaultParameterValue(null)>] ?Color,
-                [<Optional; DefaultParameterValue(null)>] ?Shape,
-                [<Optional; DefaultParameterValue(null)>] ?Dash,
-                [<Optional; DefaultParameterValue(null)>] ?Smoothing,
-                [<Optional; DefaultParameterValue(null)>] ?Colorscale
+                [<Optional; DefaultParameterValue(null)>] ?AutoColorScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?CAuto: bool,
+                [<Optional; DefaultParameterValue(null)>] ?CMax: float,
+                [<Optional; DefaultParameterValue(null)>] ?CMid: float,
+                [<Optional; DefaultParameterValue(null)>] ?CMin: float,
+                [<Optional; DefaultParameterValue(null)>] ?Color: Color,
+                [<Optional; DefaultParameterValue(null)>] ?ColorAxis: StyleParam.SubPlotId,
+                [<Optional; DefaultParameterValue(null)>] ?Colorscale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?ReverseScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ShowScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
+                [<Optional; DefaultParameterValue(null)>] ?Dash: StyleParam.DrawingStyle,
+                [<Optional; DefaultParameterValue(null)>] ?Shape: StyleParam.Shape,
+                [<Optional; DefaultParameterValue(null)>] ?Simplify: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Smoothing: float,
+                [<Optional; DefaultParameterValue(null)>] ?Width: float,
+                [<Optional; DefaultParameterValue(null)>] ?MultiWidth: seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?OutlierColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?OutlierWidth: float
             ) =
             this
             |> Chart.withLineStyle (
-                ?Width = Width,
+                ?AutoColorScale = AutoColorScale,
+                ?CAuto = CAuto,
+                ?CMax = CMax,
+                ?CMid = CMid,
+                ?CMin = CMin,
                 ?Color = Color,
-                ?Shape = Shape,
+                ?ColorAxis = ColorAxis,
+                ?Colorscale = Colorscale,
+                ?ReverseScale = ReverseScale,
+                ?ShowScale = ShowScale,
+                ?ColorBar = ColorBar,
                 ?Dash = Dash,
+                ?Shape = Shape,
+                ?Simplify = Simplify,
                 ?Smoothing = Smoothing,
-                ?Colorscale = Colorscale
+                ?Width = Width,
+                ?MultiWidth = MultiWidth,
+                ?OutlierColor = OutlierColor,
+                ?OutlierWidth = OutlierWidth
             )
 
         /// Apply styling to the xError(s) of the chart as Object

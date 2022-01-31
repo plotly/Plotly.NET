@@ -249,7 +249,10 @@ type Chart =
                 )
             )
 
-    /// Apply styling to the Line(s) of the chart as Object.
+    /// <summary>
+    /// Sets the line for the chart's trace(s).
+    /// </summary>
+    /// <param name="line">The new line for the chart's trace(s)</param>
     [<CompiledName("WithLine")>]
     static member withLine(line: Line) =
         (fun (ch: GenericChart) -> ch |> mapTrace (TraceStyle.SetLine(line)))
@@ -258,28 +261,51 @@ type Chart =
     [<CompiledName("WithLineStyle")>]
     static member withLineStyle
         (
-            [<Optional; DefaultParameterValue(null)>] ?Width,
-            [<Optional; DefaultParameterValue(null)>] ?Color,
-            [<Optional; DefaultParameterValue(null)>] ?Shape,
-            [<Optional; DefaultParameterValue(null)>] ?Dash,
-            [<Optional; DefaultParameterValue(null)>] ?Smoothing,
-            [<Optional; DefaultParameterValue(null)>] ?Colorscale,
-            [<Optional; DefaultParameterValue(null)>] ?OutlierColor,
-            [<Optional; DefaultParameterValue(null)>] ?OutlierWidth
+            [<Optional; DefaultParameterValue(null)>] ?AutoColorScale: bool,
+            [<Optional; DefaultParameterValue(null)>] ?CAuto: bool,
+            [<Optional; DefaultParameterValue(null)>] ?CMax: float,
+            [<Optional; DefaultParameterValue(null)>] ?CMid: float,
+            [<Optional; DefaultParameterValue(null)>] ?CMin: float,
+            [<Optional; DefaultParameterValue(null)>] ?Color: Color,
+            [<Optional; DefaultParameterValue(null)>] ?ColorAxis: StyleParam.SubPlotId,
+            [<Optional; DefaultParameterValue(null)>] ?Colorscale: StyleParam.Colorscale,
+            [<Optional; DefaultParameterValue(null)>] ?ReverseScale: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ShowScale: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
+            [<Optional; DefaultParameterValue(null)>] ?Dash: StyleParam.DrawingStyle,
+            [<Optional; DefaultParameterValue(null)>] ?Shape: StyleParam.Shape,
+            [<Optional; DefaultParameterValue(null)>] ?Simplify: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Smoothing: float,
+            [<Optional; DefaultParameterValue(null)>] ?Width: float,
+            [<Optional; DefaultParameterValue(null)>] ?MultiWidth: seq<float>,
+            [<Optional; DefaultParameterValue(null)>] ?OutlierColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?OutlierWidth: float
         ) =
-        let line =
-            Line.init (
-                ?Width = Width,
-                ?Color = Color,
-                ?Shape = Shape,
-                ?Dash = Dash,
-                ?Smoothing = Smoothing,
-                ?Colorscale = Colorscale,
-                ?OutlierColor = OutlierColor,
-                ?OutlierWidth = OutlierWidth
+        fun (ch: GenericChart) ->
+            ch
+            |> mapTrace (
+                TraceStyle.Line(
+                    ?AutoColorScale = AutoColorScale,
+                    ?CAuto = CAuto,
+                    ?CMax = CMax,
+                    ?CMid = CMid,
+                    ?CMin = CMin,
+                    ?Color = Color,
+                    ?ColorAxis = ColorAxis,
+                    ?Colorscale = Colorscale,
+                    ?ReverseScale = ReverseScale,
+                    ?ShowScale = ShowScale,
+                    ?ColorBar = ColorBar,
+                    ?Dash = Dash,
+                    ?Shape = Shape,
+                    ?Simplify = Simplify,
+                    ?Smoothing = Smoothing,
+                    ?Width = Width,
+                    ?MultiWidth = MultiWidth,
+                    ?OutlierColor = OutlierColor,
+                    ?OutlierWidth = OutlierWidth
+                )
             )
-
-        Chart.withLine (line)
 
     /// Apply styling to the xError(s) of the chart as Object
     [<CompiledName("WithXError")>]
