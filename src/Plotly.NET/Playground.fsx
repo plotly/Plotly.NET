@@ -11,9 +11,11 @@
 #load "StyleParams.fs"
 #load "ColorKeyword.fs"
 #load "Colors.fs"
+#load "TickFormatStop.fs"
 #load "Frame.fs"
 #load "Font.fs"
 #load "Title.fs"
+#load "ColorBar.fs"
 #load "Line.fs"
 
 #I "Layout/ObjectAbstractions/Common"
@@ -34,8 +36,6 @@
 #load "Annotation.fs"
 #load "LayoutGrid.fs"
 #load "Legend.fs"
-#load "TickFormatStop.fs"
-#load "ColorBar.fs"
 #load "Rangebreak.fs"
 #load "LinearAxis.fs"
 #load "ColorAxis.fs"
@@ -175,6 +175,55 @@ open Plotly.NET
 
 open System
 open Plotly.NET 
+
+
+let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+let x = ["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"bin1"]
+
+let y2 =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+let x2 = ["bin3";"bin4";"bin3";"bin4";"bin3";"bin4";"bin3";"bin3";"bin4";"bin3"]
+
+let violin1 =
+    Chart.Violin (
+        x,y,
+        ShowBox = true,
+        BoxFillColor = Color.fromKeyword ColorKeyword.Red)
+
+let violin2 =
+    Chart.Violin (
+        x2,y2,
+        ShowBox = true,
+        BoxFillColor = Color.fromKeyword ColorKeyword.Green)
+
+[
+    violin1
+    violin2
+]
+|> Chart.combine
+|> Chart.withTraceInfo(
+    Name = "violins",
+    LegendGroup = "violins",
+    LegendGroupTitle = Title.init("Some violins m8")
+)
+|> Chart.show
+
+let table1 =
+    let header = ["<b>RowIndex</b>";"A";"simple";"table"]
+    let rows = 
+        [
+         ["0";"I"     ;"am"     ;"a"]        
+         ["1";"little";"example";"!"]       
+        ]
+    Chart.Table(header, rows)
+    |> Chart.show
+
+Trace2D.initHistogram(
+    Trace2DStyle.Histogram(
+        Y = [1;2;3;3;4;4;4;5;6;6;7]
+    )
+)
+|> GenericChart.ofTraceObject true
+|> Chart.show
 
 let contour = 
     [

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <OutputType>Library</OutputType>
     <NoWarn>$(NoWarn);NU5100</NoWarn><!-- dll outside of lib/ folder -->
     <!-- Optional: Declare that the Repository URL can be published to NuSpec -->
@@ -32,7 +32,7 @@
   <ItemGroup>
     <None Include="Repack.ps1" />
     <None Include="..\..\docs\img\logo.png" Pack="true" PackagePath="\" />
-    <None Include="..\..\bin\Plotly.NET.Interactive\net5.0\Plotly.NET.Interactive.dll" Pack="true" PackagePath="interactive-extensions/dotnet" />
+    <None Include="..\..\bin\Plotly.NET.Interactive\netstandard2.1\Plotly.NET.Interactive.dll" Pack="true" PackagePath="interactive-extensions/dotnet" />
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Extension.fs" />
   </ItemGroup>
@@ -48,8 +48,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.DotNet.Interactive" Version="1.0.0-beta.21559.2" />
-    <PackageReference Include="Microsoft.DotNet.Interactive.Formatting" Version="1.0.0-beta.21559.2" />
+    <PackageReference Include="Microsoft.DotNet.Interactive" Version="1.0.0-beta.21606.1" />
+    <PackageReference Include="Microsoft.DotNet.Interactive.Formatting" Version="1.0.0-beta.21606.1" />
   </ItemGroup>
 
 </Project>
