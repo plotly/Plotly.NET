@@ -48,7 +48,7 @@ type Box() =
 
             Visible |> DynObj.setValueOpt box "visible"
             Width |> DynObj.setValueOpt box "width"
-            FillColor |> DynObj.setValueOpt box "fillColor"
+            FillColor |> DynObj.setValueOpt box "fillcolor"
             line |> DynObj.setValueOpt box "line"
 
             // out ->
