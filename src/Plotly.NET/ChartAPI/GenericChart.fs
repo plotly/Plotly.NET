@@ -499,15 +499,25 @@ module GenericChart =
     /// Converts from a trace object and a layout object into GenericChart. If useDefaults = true, also sets the default Chart properties found in `Defaults`
     let ofTraceObject (useDefaults: bool) trace = //layout =
         if useDefaults then
+            // copy default instances so we can safely manipulate the respective objects of the created chart without changing global default objects
+            let defaultConfig = Config()
+            Defaults.DefaultConfig.CopyDynamicPropertiesTo defaultConfig
+
+            let defaultDisplayOpts = DisplayOptions()
+            Defaults.DefaultDisplayOptions.CopyDynamicPropertiesTo defaultDisplayOpts
+
+            let defaultTemplate = Template()
+            Defaults.DefaultTemplate.CopyDynamicPropertiesTo defaultTemplate
+
             GenericChart.Chart(
                 trace,
                 Layout.init (
-                    Width = Defaults.DefaultWidth,
-                    Height = Defaults.DefaultHeight,
-                    Template = (Defaults.DefaultTemplate :> DynamicObj)
+                    Width = Defaults.DefaultWidth, // no need to copy these, as they are primitives
+                    Height = Defaults.DefaultHeight, // no need to copy these, as they are primitives
+                    Template = (defaultTemplate :> DynamicObj)
                 ),
-                Defaults.DefaultConfig,
-                Defaults.DefaultDisplayOptions
+                defaultConfig,
+                defaultDisplayOpts
             )
         else
             GenericChart.Chart(trace, Layout(), Config(), DisplayOptions())
@@ -515,15 +525,26 @@ module GenericChart =
     /// Converts from a list of trace objects and a layout object into GenericChart. If useDefaults = true, also sets the default Chart properties found in `Defaults`
     let ofTraceObjects (useDefaults: bool) traces = // layout =
         if useDefaults then
+            // copy default instances so we can safely manipulate the respective objects of the created chart without changing global default objects
+            let defaultConfig = Config()
+            Defaults.DefaultConfig.CopyDynamicPropertiesTo defaultConfig
+
+            let defaultDisplayOpts = DisplayOptions()
+            Defaults.DefaultDisplayOptions.CopyDynamicPropertiesTo defaultDisplayOpts
+
+            let defaultTemplate = Template()
+            Defaults.DefaultTemplate.CopyDynamicPropertiesTo defaultTemplate
+
             GenericChart.MultiChart(
                 traces,
                 Layout.init (
                     Width = Defaults.DefaultWidth,
                     Height = Defaults.DefaultHeight,
-                    Template = (Defaults.DefaultTemplate :> DynamicObj)
+                    Template = (defaultTemplate :> DynamicObj)
                 ),
-                Defaults.DefaultConfig,
-                Defaults.DefaultDisplayOptions
+                defaultConfig,
+                defaultDisplayOpts
+
             )
         else
             GenericChart.MultiChart(traces, Layout(), Config(), DisplayOptions())
