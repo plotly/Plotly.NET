@@ -10,41 +10,6 @@ open System.IO
 open GenericChart
 open System.Runtime.InteropServices
 
-// Copied from FSharp.Care.Collections to remove dependencies
-[<AutoOpen>]
-module internal Seq =
-
-    /// Splits a sequence of pairs into two sequences
-    let unzip (input: seq<_>) =
-        let (lstA, lstB) =
-            Seq.foldBack (fun (a, b) (accA, accB) -> a :: accA, b :: accB) input ([], [])
-
-        (Seq.ofList lstA, Seq.ofList lstB)
-
-    /// Splits a sequence of triples into three sequences
-    let unzip3 (input: seq<_>) =
-        let (lstA, lstB, lstC) =
-            Seq.foldBack (fun (a, b, c) (accA, accB, accC) -> a :: accA, b :: accB, c :: accC) input ([], [], [])
-
-        (Seq.ofList lstA, Seq.ofList lstB, Seq.ofList lstC)
-
-[<AutoOpen>]
-module internal ChartIO =
-
-    ///Choose process to open plots with depending on OS. Thanks to @zyzhu for hinting at a solution (https://github.com/plotly/Plotly.NET/issues/31)
-    let openOsSpecificFile path =
-        if RuntimeInformation.IsOSPlatform(OSPlatform.Windows) then
-            let psi =
-                new System.Diagnostics.ProcessStartInfo(FileName = path, UseShellExecute = true)
-
-            System.Diagnostics.Process.Start(psi) |> ignore
-        elif RuntimeInformation.IsOSPlatform(OSPlatform.Linux) then
-            System.Diagnostics.Process.Start("xdg-open", path) |> ignore
-        elif RuntimeInformation.IsOSPlatform(OSPlatform.OSX) then
-            System.Diagnostics.Process.Start("open", path) |> ignore
-        else
-            invalidOp "Not supported OS platform"
-
 /// Provides a set of static methods for creating and styling charts.
 type Chart =
 
@@ -135,10 +100,10 @@ type Chart =
     /// <summary>
     /// Sets the color axis id for the chart's trace(s).
     /// </summary>
-    /// <param name="Id">The new color axis id for the chart's trace(s)</param>
+    /// <param name="id">The new color axis id for the chart's trace(s)</param>
     [<CompiledName("WithColorAxisAnchor")>]
-    static member withColorAxisAnchor([<Optional; DefaultParameterValue(null)>] ?Id: int) =
-        fun (ch: GenericChart) -> ch |> mapTrace (TraceStyle.setColorAxisAnchor (?ColorAxisId = Id))
+    static member withColorAxisAnchor(id: int) =
+        fun (ch: GenericChart) -> ch |> mapTrace (Trace.setColorAxisAnchor id)
 
     /// <summary>
     /// Sets the marker for the chart's trace(s).
@@ -310,7 +275,7 @@ type Chart =
     /// Apply styling to the xError(s) of the chart as Object
     [<CompiledName("WithXError")>]
     static member withXError(xError: Error) =
-        (fun (ch: GenericChart) -> ch |> mapTrace (Trace.SetXError(xError)))
+        (fun (ch: GenericChart) -> ch |> mapTrace (Trace.setXError (xError)))
 
     /// Apply styling to the xError(s) of the chart as Object
     [<CompiledName("WithXErrorStyle")>]
@@ -338,7 +303,7 @@ type Chart =
     /// Apply styling to the yError(s) of the chart as Object
     [<CompiledName("WithYError")>]
     static member withYError(yError: Error) =
-        (fun (ch: GenericChart) -> ch |> mapTrace (Trace.SetYError(yError)))
+        (fun (ch: GenericChart) -> ch |> mapTrace (Trace.setYError (yError)))
 
     /// Apply styling to the yError(s) of the chart as Object
     [<CompiledName("WithYErrorStyle")>]
@@ -366,7 +331,7 @@ type Chart =
     /// Apply styling to the zError(s) of the chart as Object
     [<CompiledName("WithZError")>]
     static member withZError(zError: Error) =
-        (fun (ch: GenericChart) -> ch |> mapTrace (Trace.SetZError(zError)))
+        (fun (ch: GenericChart) -> ch |> mapTrace (Trace.setZError (zError)))
 
     /// Apply styling to the zError(s) of the chart as Object
     [<CompiledName("WithZErrorStyle")>]
@@ -759,39 +724,6 @@ type Chart =
             )
 
         Chart.withColorBar (colorbar)
-    //// Sets second x-Axis of 2D- Charts
-    //static member withX_Axis2(xAxis2:Axis.LinearAxis) =
-    //    (fun (ch:GenericChart) ->
-    //            let layout =
-    //                GenericChart.getLayout ch
-    //                |> Layout.style (xAxis2=xAxis2)
-    //            GenericChart.setLayout layout ch
-    //            )
-
-
-    // // Sets second x-Axis of 2D- Charts
-    //static member withX_Axis2Style(title,?MinMax,?Showgrid,?Showline) =
-    //    let range = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
-    //    let xaxis = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,?Showline=Showline,Side=StyleParam.Side.Top)
-    //    Chart.withX_Axis2(xaxis)
-
-
-    //// Sets second y-Axis of 2D- Charts
-    //static member withY_Axis2(yAxis2:Axis.LinearAxis) =
-    //    (fun (ch:GenericChart) ->
-    //            let layout =
-    //                GenericChart.getLayout ch
-    //                |> Layout.style (yAxis2=yAxis2)
-    //            GenericChart.setLayout layout ch
-    //            )
-
-
-    // // Sets second x-Axis of 2D- Charts
-    //static member withY_Axis2Style(title,?MinMax,?Showgrid,?Showline) =
-    //    let range = if MinMax.IsSome then Some (StyleParam.Range.MinMax (MinMax.Value)) else None
-    //    let yaxis = Axis.LinearAxis.init(Title=title,?Range=range,?Showgrid=Showgrid,?Showline=Showline,Side=StyleParam.Side.Right)
-    //    Chart.withY_Axis2(yaxis)
-
 
     // Set the Layout of a Chart
     [<CompiledName("WithLayout")>]

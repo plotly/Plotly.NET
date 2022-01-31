@@ -6,8 +6,7 @@ open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
-let createEmpty2DTrace() = Trace2D.initScatter(id)
-let createEmpty3DTrace() = Trace3D.initScatter3D(id)
+
 
 [<Tests>]
 let ``TraceStyle tests`` =
@@ -16,33 +15,33 @@ let ``TraceStyle tests`` =
         let marker = Marker.init(Color=Color.fromKeyword Red, Opacity = 0.)
         let markerTrace = Trace2D.initScatter(Trace2DStyle.Scatter(Marker = marker))
 
-        testCase "SetMarker" (fun _ ->
-            Expect.equal
-                (createEmpty2DTrace() |> Trace.setMarker(Marker.init(Color=Color.fromKeyword Red, Opacity = 0.)))
-                markerTrace
-                "TraceStyle.SetMarker did not produce the correct trace object"
-        )
-        testCase "GetMarker" (fun _ ->
+        testCase "getMarker" (fun _ ->
             Expect.equal
                 (markerTrace |> Trace.getMarker)
                 marker
-                "TraceStyle.GetMarker did not return the correct marker object"
+                "TraceStyle.getMarker did not return the correct marker object"
+        )
+        testCase "setMarker" (fun _ ->
+            Expect.equal
+                (Trace2D.initScatter(id) |> Trace.setMarker(Marker.init(Color=Color.fromKeyword Red, Opacity = 0.)))
+                markerTrace
+                "TraceStyle.setMarker did not produce the correct trace object"
         )
 
         let line = Line.init(Color=Color.fromKeyword Red, Width = 0.)
         let lineTrace = Trace2D.initScatter(Trace2DStyle.Scatter(Line = line))
 
-        testCase "SetLine" (fun _ ->
-            Expect.equal
-                (createEmpty2DTrace() |> Trace.setLine(Line.init(Color=Color.fromKeyword Red, Width = 0.)))
-                lineTrace
-                "TraceStyle.SetLine did not produce the correct trace object"
-        )
-        testCase "GetLine" (fun _ ->
+        testCase "getLine" (fun _ ->
             Expect.equal
                 (lineTrace |> Trace.getLine)
                 line
-                "TraceStyle.GetLine did not return the correct line object"
+                "TraceStyle.getLine did not return the correct line object"
+        )
+        testCase "setLine" (fun _ ->
+            Expect.equal
+                (Trace2D.initScatter(id) |> Trace.setLine(Line.init(Color=Color.fromKeyword Red, Width = 0.)))
+                lineTrace
+                "TraceStyle.setLine did not produce the correct trace object"
         )
 
         let error = Error.init(Value = 2., Symmetric = true)
@@ -50,41 +49,88 @@ let ``TraceStyle tests`` =
         let yErrorTrace = Trace3D.initScatter3D(Trace3DStyle.Scatter3D(YError = error))
         let zErrorTrace = Trace3D.initScatter3D(Trace3DStyle.Scatter3D(ZError = error))
 
-        testCase "SetXError" (fun _ ->
+        testCase "getXError" (fun _ ->
             Expect.equal
-                (createEmpty3DTrace() |> Trace.SetXError(Error.init(Value = 2., Symmetric = true)))
+                (xErrorTrace |> Trace.getXError)
+                error
+                "TraceStyle.getXError did not return the correct error object"
+        )
+        testCase "setXError" (fun _ ->
+            Expect.equal
+                (Trace3D.initScatter3D(id) |> Trace.setXError(Error.init(Value = 2., Symmetric = true)))
                 xErrorTrace
-                "TraceStyle.SetXError did not produce the correct trace object"
+                "TraceStyle.setXError did not produce the correct trace object"
         )
-        testCase "GetXError" (fun _ ->
+        testCase "getYError" (fun _ ->
             Expect.equal
-                (xErrorTrace |> Trace.GetXError)
+                (yErrorTrace |> Trace.getYError)
                 error
-                "TraceStyle.GetXError did not return the correct error object"
+                "TraceStyle.getYError did not return the correct error object"
         )
-        testCase "SetYError" (fun _ ->
+        testCase "setYError" (fun _ ->
             Expect.equal
-                (createEmpty3DTrace() |> Trace.SetYError(Error.init(Value = 2., Symmetric = true)))
+                (Trace3D.initScatter3D(id) |> Trace.setYError(Error.init(Value = 2., Symmetric = true)))
                 yErrorTrace
-                "TraceStyle.SetYError did not produce the correct trace object"
+                "TraceStyle.setYError did not produce the correct trace object"
         )
-        testCase "GetYError" (fun _ ->
+        testCase "getZError" (fun _ ->
             Expect.equal
-                (yErrorTrace |> Trace.GetYError)
+                (zErrorTrace |> Trace.getZError)
                 error
-                "TraceStyle.GetYError did not return the correct error object"
+                "TraceStyle.getZError did not return the correct error object"
         )
-        testCase "SetZError" (fun _ ->
+        testCase "setZError" (fun _ ->
             Expect.equal
-                (createEmpty3DTrace() |> Trace.SetZError(Error.init(Value = 2., Symmetric = true)))
+                (Trace3D.initScatter3D(id) |> Trace.setZError(Error.init(Value = 2., Symmetric = true)))
                 zErrorTrace
-                "TraceStyle.SetZError did not produce the correct trace object"
-        )
-        testCase "GetZError" (fun _ ->
-            Expect.equal
-                (zErrorTrace |> Trace.GetZError)
-                error
-                "TraceStyle.GetZError did not return the correct error object"
+                "TraceStyle.setZError did not produce the correct trace object"
         )
         
+        let colorAxisAnchor = StyleParam.SubPlotId.ColorAxis 69
+        let colorAxisAnchorTrace = Trace2D.initScatter(Trace2DStyle.Heatmap(ColorAxis = colorAxisAnchor))
+
+        testCase "getColorAxisAnchor" (fun _ ->
+            Expect.equal
+                (colorAxisAnchorTrace |> Trace.getColorAxisAnchor)
+                colorAxisAnchor
+                "TraceStyle.getStackGroup did not return the correct color axis anchor"
+        )
+        testCase "setColorAxisAnchor" (fun _ ->
+            Expect.equal
+                (Trace2D.initHeatmap(id) |> Trace.setColorAxisAnchor 69)
+                colorAxisAnchorTrace
+                "TraceStyle.setColorAxisAnchor did not produce the correct trace object"
+        )
+
+        let domain = Domain.init(Row = 1, Column = 2)
+        let domainTrace = TraceDomain.initPie(TraceDomainStyle.Pie(Domain = domain))
+
+        testCase "getDomain" (fun _ ->
+            Expect.equal
+                (domainTrace |> Trace.getDomain)
+                domain
+                "TraceStyle.getDomain did not return the correct domain object"
+        )
+        testCase "setDomain" (fun _ ->
+            Expect.equal
+                (TraceDomain.initPie(id) |> Trace.setDomain (Domain.init(Row = 1, Column = 2)))
+                domainTrace
+                "TraceStyle.setDomain did not produce the correct trace object"
+        )
+
+        let stackGroup = "soos"
+        let stackGroupTrace = Trace2D.initScatter(Trace2DStyle.Scatter(StackGroup = stackGroup))
+
+        testCase "getStackGroup" (fun _ ->
+            Expect.equal
+                (stackGroupTrace |> Trace.getStackGroup)
+                stackGroup
+                "TraceStyle.getStackGroup did not return the correct stack group"
+        )
+        testCase "setStackGroup" (fun _ ->
+            Expect.equal
+                (Trace2D.initScatter(id) |> Trace.setStackGroup "soos")
+                stackGroupTrace
+                "TraceStyle.setStackGroup did not produce the correct trace object"
+        )
     ]

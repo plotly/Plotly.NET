@@ -5,12 +5,16 @@ open Plotly.NET.TraceObjects
 open DynamicObj
 open System
 open System.Runtime.InteropServices
+open System.Text.RegularExpressions
 
-/// Trace type inherits from dynamic object
+/// A Trace object in the context of plotly charts contains the data to visualize and additional styling parameters.
+///
+/// This is the base object that contains visualization-unspecific getters and setters for the underlying DynamicObj.
+///
+/// Visualization-specific equivalents are suffixed with the respective trace subtype, e.g. `Trace2D`
 type Trace(traceTypeName: string) =
     inherit DynamicObj()
-    //interface ITrace with
-    // Implictit ITrace
+
     member val ``type`` = traceTypeName with get, set
 
     /// <summary>
@@ -52,64 +56,125 @@ type Trace(traceTypeName: string) =
     /// </summary>
     /// <param name="line">The new line object</param>
     static member setLine(line: Line) =
-        (fun (trace: ('T :> Trace)) ->
+        (fun (trace: #Trace) ->
             trace.SetValue("line", line)
             trace)
 
     /// <summary>
-    /// Returns a function that sets the Error object for the x dimension of the given trace.
+    /// Returns the Error object for the x dimension of the given trace.
     /// </summary>
     /// <param name="trace">The trace to get the x error from</param>
-    static member GetXError(trace: #Trace) =
+    static member getXError(trace: #Trace) =
         trace |> Trace.tryGetTypedMember<Error> "error_x" |> Option.defaultValue (Error.init ())
 
     /// <summary>
     /// Returns a function that sets the Error object for the x dimension of the given trace.
     /// </summary>
     /// <param name="error">The new error object</param>
-    static member SetXError(error: Error) =
-        (fun (trace: ('T :> Trace)) ->
+    static member setXError(error: Error) =
+        (fun (trace: #Trace) ->
             trace.SetValue("error_x", error)
             trace)
 
     /// <summary>
-    /// Returns a function that sets the Error object for the y dimension of the given trace.
+    /// Returns the Error object for the y dimension of the given trace.
     /// </summary>
     /// <param name="trace">The trace to get the y error from</param>
-    static member GetYError(trace: #Trace) =
+    static member getYError(trace: #Trace) =
         trace |> Trace.tryGetTypedMember<Error> "error_y" |> Option.defaultValue (Error.init ())
 
     /// <summary>
     /// Returns a function that sets the Error object for the x dimension of the given trace.
     /// </summary>
     /// <param name="error">The new error object</param>
-    static member SetYError(error: Error) =
-        (fun (trace: ('T :> Trace)) ->
+    static member setYError(error: Error) =
+        (fun (trace: #Trace) ->
             trace.SetValue("error_y", error)
             trace)
 
     /// <summary>
-    /// Returns a function that sets the Error object for the z dimension of the given trace.
+    /// Returns the Error object for the z dimension of the given trace.
     /// </summary>
     /// <param name="trace">The trace to get the z error from</param>
-    static member GetZError(trace: #Trace) =
+    static member getZError(trace: #Trace) =
         trace |> Trace.tryGetTypedMember<Error> "error_z" |> Option.defaultValue (Error.init ())
 
     /// <summary>
     /// Returns a function that sets the Error object for the x dimension of the given trace.
     /// </summary>
     /// <param name="error">The new error object</param>
-    static member SetZError(error: Error) =
-        (fun (trace: ('T :> Trace)) ->
+    static member setZError(error: Error) =
+        (fun (trace: #Trace) ->
 
             trace.SetValue("error_z", error)
             trace)
 
+    /// <summary>
+    /// Returns the color axis anchor of the given trace.
+    /// </summary>
+    /// <param name="trace">The trace to get the color axis anchor from</param>
+    static member getColorAxisAnchor(trace: #Trace) =
+        let idString =
+            trace |> Trace.tryGetTypedMember<string> ("coloraxis") |> Option.defaultValue "coloraxis"
+
+        if idString = "coloraxis" then
+            StyleParam.SubPlotId.ColorAxis 1
+        else
+            StyleParam.SubPlotId.ColorAxis(idString.Replace("coloraxis", "") |> int)
+
+    /// <summary>
+    /// Returns a function that sets the color axis anchor of the given trace.
+    /// </summary>
+    /// <param name="colorAxisId">The new color axis anchor</param>
+    static member setColorAxisAnchor(colorAxisId: int) =
+        let id =
+            StyleParam.SubPlotId.ColorAxis colorAxisId
+
+        (fun (trace: #Trace) ->
+            trace.SetValue("coloraxis", StyleParam.SubPlotId.convert id)
+            trace)
+
+    /// <summary>
+    /// Returns the domain of the given trace.
+    /// </summary>
+    /// <param name="trace">The trace to get the cdomain from</param>
+    static member getDomain(trace: #Trace) =
+        trace |> Trace.tryGetTypedMember<Domain> "domain" |> Option.defaultValue (Domain.init ())
+
+    /// <summary>
+    /// Returns a function that sets the domain of the given trace.
+    /// </summary>
+    /// <param name="domain">The new domain</param>
+    static member setDomain(domain: Domain) =
+        (fun (trace: ('T :> Trace)) ->
+
+            trace.SetValue("domain", domain)
+            trace)
+
+    /// <summary>
+    /// Returns the stackgroup of the given trace.
+    /// </summary>
+    /// <param name="trace">The trace to get the cdomain from</param>
+    static member getStackGroup(trace: #Trace) =
+        trace |> Trace.tryGetTypedMember<string> "stackgroup" |> Option.defaultValue ("")
+
+    /// <summary>
+    /// Returns a function that sets the stackgroup of the given trace.
+    /// </summary>
+    /// <param name="stackgroup">The new stackgroup</param>
+    static member setStackGroup(stackgroup: string) =
+        (fun (trace: ('T :> Trace)) ->
+
+            trace.SetValue("stackgroup", stackgroup)
+            trace)
+
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-/// Contains general functions to style Trace Objects.
+/// Contains general, visualization-unspecific functions to style Trace Objects.
 ///
 /// These functions are used internally to style traces of Chart objects.
 /// Users should usually be pointed to the API layer provided by the `Chart` module/object
+///
+/// Visualization-specific equivalents are suffixed with the respective trace subtype, e.g. `TraceStyle2D`
 type TraceStyle() =
 
     /// <summary>
@@ -350,8 +415,7 @@ type TraceStyle() =
         (fun (trace: ('T :> Trace)) ->
             let xerror =
                 trace
-                |> Trace.tryGetTypedMember<Error> "error_x"
-                |> Option.defaultValue (Error.init ())
+                |> Trace.getXError
                 |> Error.style (
                     ?Visible = Visible,
                     ?Type = Type,
@@ -368,7 +432,7 @@ type TraceStyle() =
                     ?Width = Width
                 )
 
-            trace |> Trace.SetXError(xerror))
+            trace |> Trace.setXError (xerror))
 
     /// <summary>
     /// Returns a function that applies the given styles to the trace's Error object for the y dimension.
@@ -403,10 +467,9 @@ type TraceStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Width: float
         ) =
         (fun (trace: ('T :> Trace)) ->
-            let xerror =
+            let yerror =
                 trace
-                |> Trace.tryGetTypedMember<Error> "error_y"
-                |> Option.defaultValue (Error.init ())
+                |> Trace.getYError
                 |> Error.style (
                     ?Visible = Visible,
                     ?Type = Type,
@@ -423,7 +486,7 @@ type TraceStyle() =
                     ?Width = Width
                 )
 
-            trace |> Trace.SetYError(xerror))
+            trace |> Trace.setYError (yerror))
 
     /// <summary>
     /// Returns a function that applies the given styles to the trace's Error object for the z dimension.
@@ -458,10 +521,9 @@ type TraceStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Width: float
         ) =
         (fun (trace: ('T :> Trace)) ->
-            let xerror =
+            let zerror =
                 trace
-                |> Trace.tryGetTypedMember<Error> "error_z"
-                |> Option.defaultValue (Error.init ())
+                |> Trace.getZError
                 |> Error.style (
                     ?Visible = Visible,
                     ?Type = Type,
@@ -478,30 +540,30 @@ type TraceStyle() =
                     ?Width = Width
                 )
 
-            trace |> Trace.SetZError(xerror))
+            trace |> Trace.setZError (zerror))
 
     /// <summary>
-    /// 
+    /// Returns a function that applies the given styles to the trace's selection.
     /// </summary>
-    /// <param name="Selectedpoints"></param>
-    /// <param name="Selected"></param>
-    /// <param name="UnSelected"></param>
+    /// <param name="SelectedPoints">Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.</param>
+    /// <param name="Selected">Sets the style of selected points of this trace.</param>
+    /// <param name="Unselected">Sets the style of unselected points of this trace.</param>
     static member Selection
         (
-            [<Optional; DefaultParameterValue(null)>] ?Selectedpoints,
-            [<Optional; DefaultParameterValue(null)>] ?Selected,
-            [<Optional; DefaultParameterValue(null)>] ?UnSelected
+            [<Optional; DefaultParameterValue(null)>] ?SelectedPoints: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Selected: Selection,
+            [<Optional; DefaultParameterValue(null)>] ?Unselected: Selection
         ) =
         (fun (trace: ('T :> Trace)) ->
 
-            Selectedpoints |> DynObj.setValueOpt trace "Selectedpoints"
-            Selected |> DynObj.setValueOpt trace "Selected"
-            UnSelected |> DynObj.setValueOpt trace "UnSelected"
+            SelectedPoints |> DynObj.setValueOpt trace "selectedpoints"
+            Selected |> DynObj.setValueOpt trace "selected"
+            Unselected |> DynObj.setValueOpt trace "unselected"
 
             trace)
 
     /// <summary>
-    /// 
+    /// Returns a function that applies the given styles to the trace's text items.
     /// </summary>
     /// <param name="Text">Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
     /// <param name="MultiText">Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
@@ -532,10 +594,10 @@ type TraceStyle() =
         ) =
         (fun (trace: ('T :> Trace)) ->
             (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
-            
+
             (TextPosition, MultiTextPosition)
             |> DynObj.setSingleOrMultiOptBy trace "textposition" StyleParam.TextPosition.convert
-            
+
             (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt trace "texttemplate"
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
             HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
@@ -545,23 +607,9 @@ type TraceStyle() =
 
             trace)
 
-    /// Sets the given color axis anchor on a Trace object. (determines which colorscale it uses)
-    static member setColorAxisAnchor(?ColorAxisId: int) =
-        let id =
-            ColorAxisId |> Option.map StyleParam.SubPlotId.ColorAxis
-
-        (fun (trace: ('T :> Trace)) ->
-            id |> DynObj.setValueOptBy trace "coloraxis" StyleParam.SubPlotId.convert
-            trace)
-
-    /// Sets the given domain on a Trace object.
-    static member SetDomain(domain: Domain) =
-        (fun (trace: ('T :> Trace)) ->
-
-            trace.SetValue("domain", domain)
-            trace)
-
-    /// Sets the given Domain styles on the domain property of a Trace object
+    // <summary>
+    /// Returns a function that applies the given styles to the trace's domain object.
+    /// </summary>
     static member Domain
         (
             [<Optional; DefaultParameterValue(null)>] ?X: StyleParam.Range,
@@ -571,19 +619,6 @@ type TraceStyle() =
         ) =
         (fun (trace: ('T :> Trace)) ->
             let domain =
-                match (trace.TryGetValue "domain") with
-                | Some m -> m :?> Domain
-                | None -> Domain()
+                trace |> Trace.getDomain |> Domain.style (?X = X, ?Y = Y, ?Row = Row, ?Column = Column)
 
-                |> Domain.style (?X = X, ?Y = Y, ?Row = Row, ?Column = Column)
-
-            trace.SetValue("domain", domain)
-            trace)
-
-
-    // Sets Stackgroup() to TraceObjects
-    static member SetStackGroup(stackgroup: string) =
-        (fun (trace: ('T :> Trace)) ->
-
-            trace.SetValue("stackgroup", stackgroup)
-            trace)
+            trace |> Trace.setDomain domain)
