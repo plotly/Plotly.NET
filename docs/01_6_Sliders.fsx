@@ -65,7 +65,7 @@ let scattersChart =
                             Size = 6
                         )
                     )
-                |> Chart.withTraceName(Visible=chartVisibility)
+                |> Chart.withTraceInfo(Visible=chartVisibility)
             go
         )
     |> GenericChart.combine
