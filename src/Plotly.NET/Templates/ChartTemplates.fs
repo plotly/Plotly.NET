@@ -355,8 +355,8 @@ module ChartTemplates =
             [
                 Trace2D.initBar (
                     Trace2DStyle.Bar(
-                        ErrorX = Error.init (Color = Color.fromHex "#2a3f5f"),
-                        ErrorY = Error.init (Color = Color.fromHex "#2a3f5f"),
+                        XError = Error.init (Color = Color.fromHex "#2a3f5f"),
+                        YError = Error.init (Color = Color.fromHex "#2a3f5f"),
                         Marker =
                             Marker.init (
                                 Outline = Line.init (Color = Color.fromHex "#E5ECF6", Width = 0.5),

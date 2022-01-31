@@ -13,12 +13,103 @@ type Trace(traceTypeName: string) =
     // Implictit ITrace
     member val ``type`` = traceTypeName with get, set
 
+    /// <summary>
+    /// Returns Some(dynamic member value) of the trace object's underlying DynamicObj when a dynamic member eith the given name exists, and None otherwise.
+    /// </summary>
+    /// <param name="propName">The name of the dynamic member to get the value of</param>
+    /// <param name="trace">The trace to get the dynamic member value from</param>
     static member tryGetTypedMember<'T> (propName: string) (trace: Trace) = trace.TryGetTypedValue<'T>(propName)
 
+    /// <summary>
+    /// Returns the Marker object of the given trace.
+    ///
+    /// If there is no marker set, returns an empty marker object.
+    /// </summary>
+    /// <param name="marker">The new marker object</param>
+    static member getMarker(trace: #Trace) =
+        trace |> Trace.tryGetTypedMember<Marker> "marker" |> Option.defaultValue (Marker.init ())
+
+    /// <summary>
+    /// Returns a function that sets the Marker object of the given trace.
+    /// </summary>
+    /// <param name="marker">The new marker object</param>
+    static member setMarker(marker: Marker) =
+        (fun (trace: ('T :> Trace)) ->
+            trace.SetValue("marker", marker)
+            trace)
+
+    /// <summary>
+    /// Returns the Line object of the given trace.
+    ///
+    /// If there is no line set, returns an empty line object.
+    /// </summary>
+    /// <param name="marker">The new line object</param>
+    static member getLine(trace: #Trace) =
+        trace |> Trace.tryGetTypedMember<Line> "line" |> Option.defaultValue (Line.init ())
+
+    /// <summary>
+    /// Returns a function that sets the Line object of the given trace.
+    /// </summary>
+    /// <param name="line">The new line object</param>
+    static member setLine(line: Line) =
+        (fun (trace: ('T :> Trace)) ->
+            trace.SetValue("line", line)
+            trace)
+
+    /// <summary>
+    /// Returns a function that sets the Error object for the x dimension of the given trace.
+    /// </summary>
+    /// <param name="error">The new error object</param>
+    static member GetXError(trace: #Trace) =
+        trace |> Trace.tryGetTypedMember<Error> "error_x" |> Option.defaultValue (Error.init ())
+
+    /// <summary>
+    /// Returns a function that sets the Error object for the x dimension of the given trace.
+    /// </summary>
+    /// <param name="error">The new error object</param>
+    static member SetXError(error: Error) =
+        (fun (trace: ('T :> Trace)) ->
+            trace.SetValue("error_x", error)
+            trace)
+
+    /// <summary>
+    /// Returns a function that sets the Error object for the y dimension of the given trace.
+    /// </summary>
+    /// <param name="error">The new error object</param>
+    static member GetYError(trace: #Trace) =
+        trace |> Trace.tryGetTypedMember<Error> "error_y" |> Option.defaultValue (Error.init ())
+
+    /// <summary>
+    /// Returns a function that sets the Error object for the x dimension of the given trace.
+    /// </summary>
+    /// <param name="error">The new error object</param>
+    static member SetYError(error: Error) =
+        (fun (trace: ('T :> Trace)) ->
+            trace.SetValue("error_y", error)
+            trace)
+
+    /// <summary>
+    /// Returns a function that sets the Error object for the z dimension of the given trace.
+    /// </summary>
+    /// <param name="error">The new error object</param>
+    static member GetZError(trace: #Trace) =
+        trace |> Trace.tryGetTypedMember<Error> "error_z" |> Option.defaultValue (Error.init ())
+
+    /// <summary>
+    /// Returns a function that sets the Error object for the x dimension of the given trace.
+    /// </summary>
+    /// <param name="error">The new error object</param>
+    static member SetZError(error: Error) =
+        (fun (trace: ('T :> Trace)) ->
+
+            trace.SetValue("error_z", error)
+            trace)
+
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-/// Functions provide the styling of the Chart objects
-/// These functions are used internally to style traces of Chart objects. Users are usually pointed
-/// to the API layer provided by the `Chart` module/object
+/// Contains general functions to style Trace Objects.
+///
+/// These functions are used internally to style traces of Chart objects.
+/// Users should usually be pointed to the API layer provided by the `Chart` module/object
 type TraceStyle() =
 
     /// <summary>
@@ -48,17 +139,6 @@ type TraceStyle() =
             LegendGroup |> DynObj.setValueOpt trace "legendgroup"
             LegendGroupTitle |> DynObj.setValueOpt trace "legendgrouptitle"
 
-            trace)
-
-
-    /// <summary>
-    /// Returns a function that sets the Marker object of the given trace.
-    /// </summary>
-    /// <param name="marker">The new marker object</param>
-    static member SetMarker(marker: Marker) =
-        (fun (trace: ('T :> Trace)) ->
-
-            trace.SetValue("marker", marker)
             trace)
 
     /// <summary>
@@ -128,8 +208,7 @@ type TraceStyle() =
         (fun (trace: ('T :> Trace)) ->
             let marker =
                 trace
-                |> Trace.tryGetTypedMember<Marker> "marker"
-                |> Option.defaultValue (Marker.init ())
+                |> Trace.getMarker
                 |> Marker.style (
                     ?AutoColorScale = AutoColorScale,
                     ?CAuto = CAuto,
@@ -162,10 +241,7 @@ type TraceStyle() =
                     ?SizeRef = SizeRef
                 )
 
-            trace.SetValue("marker", marker)
-            trace
-
-            )
+            trace |> Trace.setMarker (marker))
 
     /// <summary>
     /// Returns a function that applies the given styles to the trace's line object.
@@ -214,8 +290,7 @@ type TraceStyle() =
         (fun (trace: ('T :> Trace)) ->
             let line =
                 trace
-                |> Trace.tryGetTypedMember<Line> "Line"
-                |> Option.defaultValue (Line.init ())
+                |> Trace.getLine
                 |> Line.style (
                     ?AutoColorScale = AutoColorScale,
                     ?CAuto = CAuto,
@@ -238,9 +313,172 @@ type TraceStyle() =
                     ?OutlierWidth = OutlierWidth
                 )
 
-            trace.SetValue("line", line)
-            trace)
+            trace |> Trace.setLine (line))
 
+    /// <summary>
+    /// Returns a function that applies the given styles to the trace's Error object for the x dimension.
+    /// </summary>
+    /// <param name ="Visible">Determines whether or not this set of error bars is visible.</param>
+    /// <param name ="Type">Determines the rule used to generate the error bars. If "constant`, the bar lengths are of a constant value. Set this constant in `value`. If "percent", the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If "sqrt", the bar lengths correspond to the square of the underlying data. If "data", the bar lengths are set with data set `array`.</param>
+    /// <param name ="Symmetric">Determines whether or not the error bars have the same length in both direction (top/bottom for vertical bars, left/right for horizontal bars.</param>
+    /// <param name ="Array">Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.</param>
+    /// <param name ="Arrayminus">Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.</param>
+    /// <param name ="Value">Sets the value of either the percentage (if `type` is set to "percent") or the constant (if `type` is set to "constant") corresponding to the lengths of the error bars.</param>
+    /// <param name ="Valueminus">Sets the value of either the percentage (if `type` is set to "percent") or the constant (if `type` is set to "constant") corresponding to the lengths of the error bars in the bottom (left) direction for vertical (horizontal) bars</param>
+    /// <param name ="Traceref"></param>
+    /// <param name ="Tracerefminus"></param>
+    /// <param name ="Copy_ystyle"></param>
+    /// <param name ="Color">Sets the stoke color of the error bars.</param>
+    /// <param name ="Thickness">Sets the thickness (in px) of the error bars.</param>
+    /// <param name ="Width">Sets the width (in px) of the cross-bar at both ends of the error bars.</param>
+    static member XError
+        (
+            [<Optional; DefaultParameterValue(null)>] ?Visible: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Type: StyleParam.ErrorType,
+            [<Optional; DefaultParameterValue(null)>] ?Symmetric: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Array: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Arrayminus: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Value: float,
+            [<Optional; DefaultParameterValue(null)>] ?Valueminus: float,
+            [<Optional; DefaultParameterValue(null)>] ?Traceref: int,
+            [<Optional; DefaultParameterValue(null)>] ?Tracerefminus: int,
+            [<Optional; DefaultParameterValue(null)>] ?Copy_ystyle: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Color: Color,
+            [<Optional; DefaultParameterValue(null)>] ?Thickness: float,
+            [<Optional; DefaultParameterValue(null)>] ?Width: float
+        ) =
+        (fun (trace: ('T :> Trace)) ->
+            let xerror =
+                trace
+                |> Trace.tryGetTypedMember<Error> "error_x"
+                |> Option.defaultValue (Error.init ())
+                |> Error.style (
+                    ?Visible = Visible,
+                    ?Type = Type,
+                    ?Symmetric = Symmetric,
+                    ?Array = Array,
+                    ?Arrayminus = Arrayminus,
+                    ?Value = Value,
+                    ?Valueminus = Valueminus,
+                    ?Traceref = Traceref,
+                    ?Tracerefminus = Tracerefminus,
+                    ?Copy_ystyle = Copy_ystyle,
+                    ?Color = Color,
+                    ?Thickness = Thickness,
+                    ?Width = Width
+                )
+
+            trace |> Trace.SetXError(xerror))
+
+    /// <summary>
+    /// Returns a function that applies the given styles to the trace's Error object for the y dimension.
+    /// </summary>
+    /// <param name ="Visible">Determines whether or not this set of error bars is visible.</param>
+    /// <param name ="Type">Determines the rule used to generate the error bars. If "constant`, the bar lengths are of a constant value. Set this constant in `value`. If "percent", the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If "sqrt", the bar lengths correspond to the square of the underlying data. If "data", the bar lengths are set with data set `array`.</param>
+    /// <param name ="Symmetric">Determines whether or not the error bars have the same length in both direction (top/bottom for vertical bars, left/right for horizontal bars.</param>
+    /// <param name ="Array">Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.</param>
+    /// <param name ="Arrayminus">Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.</param>
+    /// <param name ="Value">Sets the value of either the percentage (if `type` is set to "percent") or the constant (if `type` is set to "constant") corresponding to the lengths of the error bars.</param>
+    /// <param name ="Valueminus">Sets the value of either the percentage (if `type` is set to "percent") or the constant (if `type` is set to "constant") corresponding to the lengths of the error bars in the bottom (left) direction for vertical (horizontal) bars</param>
+    /// <param name ="Traceref"></param>
+    /// <param name ="Tracerefminus"></param>
+    /// <param name ="Copy_ystyle"></param>
+    /// <param name ="Color">Sets the stoke color of the error bars.</param>
+    /// <param name ="Thickness">Sets the thickness (in px) of the error bars.</param>
+    /// <param name ="Width">Sets the width (in px) of the cross-bar at both ends of the error bars.</param>
+    static member YError
+        (
+            [<Optional; DefaultParameterValue(null)>] ?Visible: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Type: StyleParam.ErrorType,
+            [<Optional; DefaultParameterValue(null)>] ?Symmetric: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Array: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Arrayminus: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Value: float,
+            [<Optional; DefaultParameterValue(null)>] ?Valueminus: float,
+            [<Optional; DefaultParameterValue(null)>] ?Traceref: int,
+            [<Optional; DefaultParameterValue(null)>] ?Tracerefminus: int,
+            [<Optional; DefaultParameterValue(null)>] ?Copy_ystyle: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Color: Color,
+            [<Optional; DefaultParameterValue(null)>] ?Thickness: float,
+            [<Optional; DefaultParameterValue(null)>] ?Width: float
+        ) =
+        (fun (trace: ('T :> Trace)) ->
+            let xerror =
+                trace
+                |> Trace.tryGetTypedMember<Error> "error_y"
+                |> Option.defaultValue (Error.init ())
+                |> Error.style (
+                    ?Visible = Visible,
+                    ?Type = Type,
+                    ?Symmetric = Symmetric,
+                    ?Array = Array,
+                    ?Arrayminus = Arrayminus,
+                    ?Value = Value,
+                    ?Valueminus = Valueminus,
+                    ?Traceref = Traceref,
+                    ?Tracerefminus = Tracerefminus,
+                    ?Copy_ystyle = Copy_ystyle,
+                    ?Color = Color,
+                    ?Thickness = Thickness,
+                    ?Width = Width
+                )
+
+            trace |> Trace.SetYError(xerror))
+
+    /// <summary>
+    /// Returns a function that applies the given styles to the trace's Error object for the z dimension.
+    /// </summary>
+    /// <param name ="Visible">Determines whether or not this set of error bars is visible.</param>
+    /// <param name ="Type">Determines the rule used to generate the error bars. If "constant`, the bar lengths are of a constant value. Set this constant in `value`. If "percent", the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If "sqrt", the bar lengths correspond to the square of the underlying data. If "data", the bar lengths are set with data set `array`.</param>
+    /// <param name ="Symmetric">Determines whether or not the error bars have the same length in both direction (top/bottom for vertical bars, left/right for horizontal bars.</param>
+    /// <param name ="Array">Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.</param>
+    /// <param name ="Arrayminus">Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.</param>
+    /// <param name ="Value">Sets the value of either the percentage (if `type` is set to "percent") or the constant (if `type` is set to "constant") corresponding to the lengths of the error bars.</param>
+    /// <param name ="Valueminus">Sets the value of either the percentage (if `type` is set to "percent") or the constant (if `type` is set to "constant") corresponding to the lengths of the error bars in the bottom (left) direction for vertical (horizontal) bars</param>
+    /// <param name ="Traceref"></param>
+    /// <param name ="Tracerefminus"></param>
+    /// <param name ="Copy_ystyle"></param>
+    /// <param name ="Color">Sets the stoke color of the error bars.</param>
+    /// <param name ="Thickness">Sets the thickness (in px) of the error bars.</param>
+    /// <param name ="Width">Sets the width (in px) of the cross-bar at both ends of the error bars.</param>
+    static member ZError
+        (
+            [<Optional; DefaultParameterValue(null)>] ?Visible: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Type: StyleParam.ErrorType,
+            [<Optional; DefaultParameterValue(null)>] ?Symmetric: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Array: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Arrayminus: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Value: float,
+            [<Optional; DefaultParameterValue(null)>] ?Valueminus: float,
+            [<Optional; DefaultParameterValue(null)>] ?Traceref: int,
+            [<Optional; DefaultParameterValue(null)>] ?Tracerefminus: int,
+            [<Optional; DefaultParameterValue(null)>] ?Copy_ystyle: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Color: Color,
+            [<Optional; DefaultParameterValue(null)>] ?Thickness: float,
+            [<Optional; DefaultParameterValue(null)>] ?Width: float
+        ) =
+        (fun (trace: ('T :> Trace)) ->
+            let xerror =
+                trace
+                |> Trace.tryGetTypedMember<Error> "error_z"
+                |> Option.defaultValue (Error.init ())
+                |> Error.style (
+                    ?Visible = Visible,
+                    ?Type = Type,
+                    ?Symmetric = Symmetric,
+                    ?Array = Array,
+                    ?Arrayminus = Arrayminus,
+                    ?Value = Value,
+                    ?Valueminus = Valueminus,
+                    ?Traceref = Traceref,
+                    ?Tracerefminus = Tracerefminus,
+                    ?Copy_ystyle = Copy_ystyle,
+                    ?Color = Color,
+                    ?Thickness = Thickness,
+                    ?Width = Width
+                )
+
+            trace |> Trace.SetZError(xerror))
 
     /// Sets selection of data points on a Trace object.
     static member SetSelection
@@ -277,15 +515,6 @@ type TraceStyle() =
             // out ->
             trace)
 
-
-    /// Sets the given line on a Trace object.
-    static member SetLine(line: Line) =
-        (fun (trace: ('T :> Trace)) ->
-
-            trace.SetValue("line", line)
-            trace)
-
-
     /// Sets the given color axis anchor on a Trace object. (determines which colorscale it uses)
     static member setColorAxisAnchor(?ColorAxisId: int) =
         let id =
@@ -321,26 +550,6 @@ type TraceStyle() =
             trace.SetValue("domain", domain)
             trace)
 
-    // Sets the X-Error an a Trace object.
-    static member SetErrorX(error: Error) =
-        (fun (trace: ('T :> Trace)) ->
-
-            trace.SetValue("error_x", error)
-            trace)
-
-    // Sets Y-Error() to TraceObjects
-    static member SetErrorY(error: Error) =
-        (fun (trace: ('T :> Trace)) ->
-
-            trace.SetValue("error_y", error)
-            trace)
-
-    // Sets Z-Error() to TraceObjects
-    static member SetErrorZ(error: Error) =
-        (fun (trace: ('T :> Trace)) ->
-
-            trace.SetValue("error_z", error)
-            trace)
 
     // Sets Stackgroup() to TraceObjects
     static member SetStackGroup(stackgroup: string) =

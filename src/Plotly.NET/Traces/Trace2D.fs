@@ -157,8 +157,8 @@ type Trace2DStyle() =
     /// <param name="Marker">Sets the marker of this trace.</param>
     /// <param name="Line">Sets the line of this trace.</param>
     /// <param name="TextFont">Sets the text font of this trace.</param>
-    /// <param name="ErrorX">Sets the x error of this trace.</param>
-    /// <param name="ErrorY">Sets the y error of this trace.</param>
+    /// <param name="XError">Sets the x error of this trace.</param>
+    /// <param name="YError">Sets the y error of this trace.</param>
     /// <param name="SelectedPoints">Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.</param>
     /// <param name="Selected">Sets the style of selected points of this trace.</param>
     /// <param name="Unselected">Sets the style of unselected points of this trace.</param>
@@ -218,8 +218,8 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
             [<Optional; DefaultParameterValue(null)>] ?Line: Line,
             [<Optional; DefaultParameterValue(null)>] ?TextFont: Font,
-            [<Optional; DefaultParameterValue(null)>] ?ErrorX: Error,
-            [<Optional; DefaultParameterValue(null)>] ?ErrorY: Error,
+            [<Optional; DefaultParameterValue(null)>] ?XError: Error,
+            [<Optional; DefaultParameterValue(null)>] ?YError: Error,
             [<Optional; DefaultParameterValue(null)>] ?SelectedPoints: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?Selected: Selection,
             [<Optional; DefaultParameterValue(null)>] ?Unselected: Selection,
@@ -278,8 +278,8 @@ type Trace2DStyle() =
             Marker |> DynObj.setValueOpt trace "marker"
             Line |> DynObj.setValueOpt trace "line"
             TextFont |> DynObj.setValueOpt trace "textfont"
-            ErrorX |> DynObj.setValueOpt trace "error_x"
-            ErrorY |> DynObj.setValueOpt trace "error_y"
+            XError |> DynObj.setValueOpt trace "error_x"
+            YError |> DynObj.setValueOpt trace "error_y"
             SelectedPoints |> DynObj.setValueOpt trace "selectedpoints"
             Selected |> DynObj.setValueOpt trace "selected"
             Unselected |> DynObj.setValueOpt trace "unselected"
@@ -347,8 +347,8 @@ type Trace2DStyle() =
     /// <param name="Marker">Sets the marker of this trace.</param>
     /// <param name="TextAngle">Sets the angle of the tick labels with respect to the bar. For example, a `tickangle` of -90 draws the tick labels vertically. With "auto" the texts may automatically be rotated to fit with the maximum size in bars.</param>
     /// <param name="TextFont">Sets the font used for `text`.</param>
-    /// <param name="ErrorX">Sets the x error of this trace.</param>
-    /// <param name="ErrorY">Sets the y error of this trace.</param>
+    /// <param name="XError">Sets the x error of this trace.</param>
+    /// <param name="YError">Sets the y error of this trace.</param>
     /// <param name="SelectedPoints">Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.</param>
     /// <param name="Selected">Sets the style of selected points of this trace.</param>
     /// <param name="Unselected">Sets the style of unselected points of this trace.</param>
@@ -411,8 +411,8 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
             [<Optional; DefaultParameterValue(null)>] ?TextAngle: float,
             [<Optional; DefaultParameterValue(null)>] ?TextFont: Font,
-            [<Optional; DefaultParameterValue(null)>] ?ErrorX: Error,
-            [<Optional; DefaultParameterValue(null)>] ?ErrorY: Error,
+            [<Optional; DefaultParameterValue(null)>] ?XError: Error,
+            [<Optional; DefaultParameterValue(null)>] ?YError: Error,
             [<Optional; DefaultParameterValue(null)>] ?SelectedPoints: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?Selected: Selection,
             [<Optional; DefaultParameterValue(null)>] ?Unselected: Selection,
@@ -472,8 +472,8 @@ type Trace2DStyle() =
             Marker |> DynObj.setValueOpt bar "marker"
             TextAngle |> DynObj.setValueOpt bar "textangle"
             TextFont |> DynObj.setValueOpt bar "textfont"
-            ErrorX |> DynObj.setValueOpt bar "errorx"
-            ErrorY |> DynObj.setValueOpt bar "errory"
+            XError |> DynObj.setValueOpt bar "error_x"
+            YError |> DynObj.setValueOpt bar "error_y"
             SelectedPoints |> DynObj.setValueOpt bar "selectedpoints"
             Selected |> DynObj.setValueOpt bar "selected"
             Unselected |> DynObj.setValueOpt bar "unselected"
@@ -898,8 +898,8 @@ type Trace2DStyle() =
     /// <param name="YBins">Sets the binning across the y dimension</param>
     /// <param name="Marker">Sets the marker of this trace.</param>
     /// <param name="Line">Sets the line of this trace.</param>
-    /// <param name="ErrorX">Sets the x error of this trace.</param>
-    /// <param name="ErrorY">Sets the y error of this trace.</param>
+    /// <param name="XError">Sets the x error of this trace.</param>
+    /// <param name="YError">Sets the y error of this trace.</param>
     /// <param name="SelectedPoints">Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.</param>
     /// <param name="Selected">Sets the style of selected points of this trace.</param>
     /// <param name="Unselected">Sets the style of unselected points of this trace.</param>
@@ -947,8 +947,8 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?YBins: Bins,
             [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
             [<Optional; DefaultParameterValue(null)>] ?Line: Line,
-            [<Optional; DefaultParameterValue(null)>] ?ErrorX: Error,
-            [<Optional; DefaultParameterValue(null)>] ?ErrorY: Error,
+            [<Optional; DefaultParameterValue(null)>] ?XError: Error,
+            [<Optional; DefaultParameterValue(null)>] ?YError: Error,
             [<Optional; DefaultParameterValue(null)>] ?SelectedPoints: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?Selected: Selection,
             [<Optional; DefaultParameterValue(null)>] ?Unselected: Selection,
@@ -994,8 +994,8 @@ type Trace2DStyle() =
             YBins |> DynObj.setValueOpt histogram "ybins"
             Marker |> DynObj.setValueOpt histogram "marker"
             Line |> DynObj.setValueOpt histogram "line"
-            ErrorX |> DynObj.setValueOpt histogram "error_x"
-            ErrorY |> DynObj.setValueOpt histogram "error_y"
+            XError |> DynObj.setValueOpt histogram "error_x"
+            YError |> DynObj.setValueOpt histogram "error_y"
             SelectedPoints |> DynObj.setValueOpt histogram "selectedpoints"
             Selected |> DynObj.setValueOpt histogram "selected"
             Unselected |> DynObj.setValueOpt histogram "unselected"

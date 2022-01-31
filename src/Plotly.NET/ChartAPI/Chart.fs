@@ -146,7 +146,7 @@ type Chart =
     /// <param name="marker">The new marker for the chart's trace(s)</param>
     [<CompiledName("WithMarker")>]
     static member withMarker(marker: Marker) =
-        (fun (ch: GenericChart) -> ch |> mapTrace (TraceStyle.SetMarker(marker)))
+        (fun (ch: GenericChart) -> ch |> mapTrace (Trace.setMarker (marker)))
 
     /// <summary>
     /// Applies the given styles to the marker object(s) of the chart's trace(s).
@@ -255,7 +255,7 @@ type Chart =
     /// <param name="line">The new line for the chart's trace(s)</param>
     [<CompiledName("WithLine")>]
     static member withLine(line: Line) =
-        (fun (ch: GenericChart) -> ch |> mapTrace (TraceStyle.SetLine(line)))
+        (fun (ch: GenericChart) -> ch |> mapTrace (Trace.setLine (line)))
 
     /// Apply styling to the Line(s) of the chart.
     [<CompiledName("WithLineStyle")>]
@@ -310,7 +310,7 @@ type Chart =
     /// Apply styling to the xError(s) of the chart as Object
     [<CompiledName("WithXError")>]
     static member withXError(xError: Error) =
-        (fun (ch: GenericChart) -> ch |> mapTrace (TraceStyle.SetErrorX(xError)))
+        (fun (ch: GenericChart) -> ch |> mapTrace (Trace.SetXError(xError)))
 
     /// Apply styling to the xError(s) of the chart as Object
     [<CompiledName("WithXErrorStyle")>]
@@ -338,7 +338,7 @@ type Chart =
     /// Apply styling to the yError(s) of the chart as Object
     [<CompiledName("WithYError")>]
     static member withYError(yError: Error) =
-        (fun (ch: GenericChart) -> ch |> mapTrace (TraceStyle.SetErrorY(yError)))
+        (fun (ch: GenericChart) -> ch |> mapTrace (Trace.SetYError(yError)))
 
     /// Apply styling to the yError(s) of the chart as Object
     [<CompiledName("WithYErrorStyle")>]
@@ -366,7 +366,7 @@ type Chart =
     /// Apply styling to the zError(s) of the chart as Object
     [<CompiledName("WithZError")>]
     static member withZError(zError: Error) =
-        (fun (ch: GenericChart) -> ch |> mapTrace (TraceStyle.SetErrorZ(zError)))
+        (fun (ch: GenericChart) -> ch |> mapTrace (Trace.SetZError(zError)))
 
     /// Apply styling to the zError(s) of the chart as Object
     [<CompiledName("WithZErrorStyle")>]

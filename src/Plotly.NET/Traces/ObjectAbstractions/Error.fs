@@ -10,7 +10,9 @@ open System.Runtime.InteropServices
 type Error() =
     inherit DynamicObj()
 
-    /// <summary>Init Error type</summary>
+    /// <summary>
+    /// Returns a new Error object with the given styling.
+    /// </summary>
     /// <param name ="Visible">Determines whether or not this set of error bars is visible.</param>
     /// <param name ="Type">Determines the rule used to generate the error bars. If "constant`, the bar lengths are of a constant value. Set this constant in `value`. If "percent", the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If "sqrt", the bar lengths correspond to the square of the underlying data. If "data", the bar lengths are set with data set `array`.</param>
     /// <param name ="Symmetric">Determines whether or not the error bars have the same length in both direction (top/bottom for vertical bars, left/right for horizontal bars.</param>
@@ -42,6 +44,8 @@ type Error() =
         ) =
         Error()
         |> Error.style (
+            ?Visible = Visible,
+            ?Type = Type,
             ?Symmetric = Symmetric,
             ?Array = Array,
             ?Arrayminus = Arrayminus,
@@ -55,7 +59,9 @@ type Error() =
             ?Width = Width
         )
 
-    /// <summary>Creates a function that applies the given style parameters to an Error object</summary>
+    /// <summary>
+    /// Returns a function that applies the given style parameters to an Error object
+    /// </summary>
     /// <param name ="Visible">Determines whether or not this set of error bars is visible.</param>
     /// <param name ="Type">Determines the rule used to generate the error bars. If "constant`, the bar lengths are of a constant value. Set this constant in `value`. If "percent", the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If "sqrt", the bar lengths correspond to the square of the underlying data. If "data", the bar lengths are set with data set `array`.</param>
     /// <param name ="Symmetric">Determines whether or not the error bars have the same length in both direction (top/bottom for vertical bars, left/right for horizontal bars.</param>

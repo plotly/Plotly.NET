@@ -91,9 +91,9 @@ type Trace3DStyle() =
     /// <param name="Marker">Sets the marker of this trace.</param>
     /// <param name="Line">Sets the line of this trace.</param>
     /// <param name="TextFont">Sets the text font of this trace.</param>
-    /// <param name="ErrorX">Sets the x Error of this trace.</param>
-    /// <param name="ErrorY">Sets the y Error of this trace.</param>
-    /// <param name="ErrorZ">Sets the z Error of this trace.</param>
+    /// <param name="XError">Sets the x Error of this trace.</param>
+    /// <param name="YError">Sets the y Error of this trace.</param>
+    /// <param name="ZError">Sets the z Error of this trace.</param>
     /// <param name="ZHoverFormat">Sets the hover text formatting rulefor `z` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"By default the values are formatted using `zaxis.hoverformat`.</param>
     /// <param name="ConnectGaps">Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.</param>
     /// <param name="Hoverlabel">Sets the hoverlabel of this trace.</param>
@@ -137,9 +137,9 @@ type Trace3DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
             [<Optional; DefaultParameterValue(null)>] ?Line: Line,
             [<Optional; DefaultParameterValue(null)>] ?TextFont: Font,
-            [<Optional; DefaultParameterValue(null)>] ?ErrorX: Error,
-            [<Optional; DefaultParameterValue(null)>] ?ErrorY: Error,
-            [<Optional; DefaultParameterValue(null)>] ?ErrorZ: Error,
+            [<Optional; DefaultParameterValue(null)>] ?XError: Error,
+            [<Optional; DefaultParameterValue(null)>] ?YError: Error,
+            [<Optional; DefaultParameterValue(null)>] ?ZError: Error,
             [<Optional; DefaultParameterValue(null)>] ?ZHoverFormat: string,
             [<Optional; DefaultParameterValue(null)>] ?ConnectGaps: bool,
             [<Optional; DefaultParameterValue(null)>] ?Hoverlabel: Hoverlabel,
@@ -184,9 +184,9 @@ type Trace3DStyle() =
             Marker |> DynObj.setValueOpt scatter "marker"
             Line |> DynObj.setValueOpt scatter "line"
             TextFont |> DynObj.setValueOpt scatter "textfont"
-            ErrorX |> DynObj.setValueOpt scatter "errorx"
-            ErrorY |> DynObj.setValueOpt scatter "errory"
-            ErrorZ |> DynObj.setValueOpt scatter "errorz"
+            XError |> DynObj.setValueOpt scatter "error_x"
+            YError |> DynObj.setValueOpt scatter "error_y"
+            ZError |> DynObj.setValueOpt scatter "error_z"
             ConnectGaps |> DynObj.setValueOpt scatter "connectgaps"
             Hoverlabel |> DynObj.setValueOpt scatter "hoverlabel"
             Projection |> DynObj.setValueOpt scatter "projection"

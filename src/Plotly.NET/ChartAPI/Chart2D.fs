@@ -3066,8 +3066,8 @@ module Chart2D =
         /// <param name="MarkerColor">Sets the color of the histogram's bars.</param>
         /// <param name="Marker">Sets the marker for the histogram's bars (use this for more finegrained control than the other marker-associated arguments).</param>
         /// <param name="Line">Sets the outline of the histogram's bars.</param>
-        /// <param name="ErrorX">Sets the x error of this trace.</param>
-        /// <param name="ErrorY">Sets the y error of this trace.</param>
+        /// <param name="XError">Sets the x error of this trace.</param>
+        /// <param name="YError">Sets the y error of this trace.</param>
         /// <param name="Cumulative">Sets wether and how the cumulative distribution is displayed</param>
         /// <param name="HoverLabel">Sets the style of the hoverlabels of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
@@ -3094,8 +3094,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
                 [<Optional; DefaultParameterValue(null)>] ?Line: Line,
-                [<Optional; DefaultParameterValue(null)>] ?ErrorX: Error,
-                [<Optional; DefaultParameterValue(null)>] ?ErrorY: Error,
+                [<Optional; DefaultParameterValue(null)>] ?XError: Error,
+                [<Optional; DefaultParameterValue(null)>] ?YError: Error,
                 [<Optional; DefaultParameterValue(null)>] ?Cumulative: Cumulative,
                 [<Optional; DefaultParameterValue(null)>] ?HoverLabel: Hoverlabel,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
@@ -3122,8 +3122,8 @@ module Chart2D =
                     ?YBins = YBins,
                     ?Marker = Marker,
                     ?Line = Line,
-                    ?ErrorX = ErrorX,
-                    ?ErrorY = ErrorY,
+                    ?XError = XError,
+                    ?YError = YError,
                     ?Cumulative = Cumulative,
                     ?HoverLabel = HoverLabel
                 )
@@ -3187,8 +3187,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
                 [<Optional; DefaultParameterValue(null)>] ?Line: Line,
-                [<Optional; DefaultParameterValue(null)>] ?ErrorX: Error,
-                [<Optional; DefaultParameterValue(null)>] ?ErrorY: Error,
+                [<Optional; DefaultParameterValue(null)>] ?XError: Error,
+                [<Optional; DefaultParameterValue(null)>] ?YError: Error,
                 [<Optional; DefaultParameterValue(null)>] ?Cumulative: Cumulative,
                 [<Optional; DefaultParameterValue(null)>] ?HoverLabel: Hoverlabel,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
@@ -3214,8 +3214,8 @@ module Chart2D =
                         ?YBins = YBins,
                         ?Marker = Marker,
                         ?Line = Line,
-                        ?ErrorX = ErrorX,
-                        ?ErrorY = ErrorY,
+                        ?XError = XError,
+                        ?YError = YError,
                         ?Cumulative = Cumulative,
                         ?HoverLabel = HoverLabel
                     )

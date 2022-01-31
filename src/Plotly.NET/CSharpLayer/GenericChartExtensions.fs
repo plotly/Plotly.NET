@@ -205,8 +205,7 @@ module GenericChartExtensions =
         /// Apply styling to the yError(s) of the chart as Object
         [<CompiledName("WithYError")>]
         [<Extension>]
-        member this.WithYError(yError: Error) =
-            this |> mapTrace (TraceStyle.SetErrorY(yError))
+        member this.WithYError(yError: Error) = this |> Chart.withYError (yError)
 
         /// Apply styling to the yError(s) of the chart as Object
         [<CompiledName("WithYErrorStyle")>]
@@ -235,8 +234,7 @@ module GenericChartExtensions =
         /// Apply styling to the zError(s) of the chart as Object
         [<CompiledName("WithZError")>]
         [<Extension>]
-        member this.WithZError(zError: Error) =
-            this |> mapTrace (TraceStyle.SetErrorZ(zError))
+        member this.WithZError(zError: Error) = this |> Chart.withZError (zError)
 
 
         /// Apply styling to the zError(s) of the chart as Object
