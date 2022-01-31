@@ -25,7 +25,7 @@ type Trace(traceTypeName: string) =
     ///
     /// If there is no marker set, returns an empty marker object.
     /// </summary>
-    /// <param name="marker">The new marker object</param>
+    /// <param name="trace">The trace to get the marker from</param>
     static member getMarker(trace: #Trace) =
         trace |> Trace.tryGetTypedMember<Marker> "marker" |> Option.defaultValue (Marker.init ())
 
@@ -43,7 +43,7 @@ type Trace(traceTypeName: string) =
     ///
     /// If there is no line set, returns an empty line object.
     /// </summary>
-    /// <param name="marker">The new line object</param>
+    /// <param name="trace">The trace to get the line from</param>
     static member getLine(trace: #Trace) =
         trace |> Trace.tryGetTypedMember<Line> "line" |> Option.defaultValue (Line.init ())
 
@@ -59,7 +59,7 @@ type Trace(traceTypeName: string) =
     /// <summary>
     /// Returns a function that sets the Error object for the x dimension of the given trace.
     /// </summary>
-    /// <param name="error">The new error object</param>
+    /// <param name="trace">The trace to get the x error from</param>
     static member GetXError(trace: #Trace) =
         trace |> Trace.tryGetTypedMember<Error> "error_x" |> Option.defaultValue (Error.init ())
 
@@ -75,7 +75,7 @@ type Trace(traceTypeName: string) =
     /// <summary>
     /// Returns a function that sets the Error object for the y dimension of the given trace.
     /// </summary>
-    /// <param name="error">The new error object</param>
+    /// <param name="trace">The trace to get the y error from</param>
     static member GetYError(trace: #Trace) =
         trace |> Trace.tryGetTypedMember<Error> "error_y" |> Option.defaultValue (Error.init ())
 
@@ -91,7 +91,7 @@ type Trace(traceTypeName: string) =
     /// <summary>
     /// Returns a function that sets the Error object for the z dimension of the given trace.
     /// </summary>
-    /// <param name="error">The new error object</param>
+    /// <param name="trace">The trace to get the z error from</param>
     static member GetZError(trace: #Trace) =
         trace |> Trace.tryGetTypedMember<Error> "error_z" |> Option.defaultValue (Error.init ())
 
@@ -480,8 +480,13 @@ type TraceStyle() =
 
             trace |> Trace.SetZError(xerror))
 
-    /// Sets selection of data points on a Trace object.
-    static member SetSelection
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Selectedpoints"></param>
+    /// <param name="Selected"></param>
+    /// <param name="UnSelected"></param>
+    static member Selection
         (
             [<Optional; DefaultParameterValue(null)>] ?Selectedpoints,
             [<Optional; DefaultParameterValue(null)>] ?Selected,
@@ -495,24 +500,49 @@ type TraceStyle() =
 
             trace)
 
-
-    /// Sets the given text label styles on a Trace object.
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Text">Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+    /// <param name="MultiText">Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+    /// <param name="TextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
+    /// <param name="MultiTextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
+    /// <param name="TextTemplate">Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.</param>
+    /// <param name="MultiTextTemplate">Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.</param>
+    /// <param name="HoverText">Sets hover text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo` must contain a "text" flag.</param>
+    /// <param name="MultiHoverText">Sets hover text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo` must contain a "text" flag.</param>
+    /// <param name="HoverInfo">Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.</param>
+    /// <param name="HoverTemplate">Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, "xother" will be added to those with different x positions from the first point. An underscore before or after "(x|y)other" will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `&lt;extra&gt;` is displayed in the secondary box, for example "&lt;extra&gt;{fullData.name}&lt;/extra&gt;". To hide the secondary box completely, use an empty tag `&lt;extra&gt;&lt;/extra&gt;`.</param>
+    /// <param name="MultiHoverTemplate">Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, "xother" will be added to those with different x positions from the first point. An underscore before or after "(x|y)other" will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `&lt;extra&gt;` is displayed in the secondary box, for example "&lt;extra&gt;{fullData.name}&lt;/extra&gt;". To hide the secondary box completely, use an empty tag `&lt;extra&gt;&lt;/extra&gt;`.</param>
+    /// <param name="TextFont">Sets the text font of this trace.</param>
     static member TextLabel
         (
-            [<Optional; DefaultParameterValue(null)>] ?Text: seq<#IConvertible>,
-            [<Optional; DefaultParameterValue(null)>] ?Textposition: StyleParam.TextPosition,
-            [<Optional; DefaultParameterValue(null)>] ?Textfont: Font,
-            [<Optional; DefaultParameterValue(null)>] ?Textsrc: string,
-            [<Optional; DefaultParameterValue(null)>] ?Textpositionsrc: string
+            [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+            [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+            [<Optional; DefaultParameterValue(null)>] ?TextTemplate: string,
+            [<Optional; DefaultParameterValue(null)>] ?MultiTextTemplate: seq<string>,
+            [<Optional; DefaultParameterValue(null)>] ?HoverText: string,
+            [<Optional; DefaultParameterValue(null)>] ?MultiHoverText: seq<string>,
+            [<Optional; DefaultParameterValue(null)>] ?HoverInfo: StyleParam.HoverInfo,
+            [<Optional; DefaultParameterValue(null)>] ?HoverTemplate: string,
+            [<Optional; DefaultParameterValue(null)>] ?MultiHoverTemplate: seq<string>,
+            [<Optional; DefaultParameterValue(null)>] ?TextFont: Font
         ) =
         (fun (trace: ('T :> Trace)) ->
-            Text |> DynObj.setValueOpt trace "text"
-            Textposition |> DynObj.setValueOptBy trace "textposition" StyleParam.TextPosition.toString
-            Textsrc |> DynObj.setValueOpt trace "textsrc"
-            Textpositionsrc |> DynObj.setValueOpt trace "textpositionsrc"
-            Textfont |> DynObj.setValueOpt trace "textfont"
+            (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
+            
+            (TextPosition, MultiTextPosition)
+            |> DynObj.setSingleOrMultiOptBy trace "textposition" StyleParam.TextPosition.convert
+            
+            (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt trace "texttemplate"
+            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
+            HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
+            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
 
-            // out ->
+            TextFont |> DynObj.setValueOpt trace "textfont"
+
             trace)
 
     /// Sets the given color axis anchor on a Trace object. (determines which colorscale it uses)

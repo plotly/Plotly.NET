@@ -45,14 +45,14 @@ let ``TraceStyle tests`` =
                 "TraceStyle.GetLine did not return the correct line object"
         )
 
-        let error = Error.init(Value = 2, Symmetric = true)
+        let error = Error.init(Value = 2., Symmetric = true)
         let xErrorTrace = Trace3D.initScatter3D(Trace3DStyle.Scatter3D(XError = error))
         let yErrorTrace = Trace3D.initScatter3D(Trace3DStyle.Scatter3D(YError = error))
         let zErrorTrace = Trace3D.initScatter3D(Trace3DStyle.Scatter3D(ZError = error))
 
         testCase "SetXError" (fun _ ->
             Expect.equal
-                (createEmpty3DTrace() |> Trace.SetXError(Error.init(Value = 2, Symmetric = true)))
+                (createEmpty3DTrace() |> Trace.SetXError(Error.init(Value = 2., Symmetric = true)))
                 xErrorTrace
                 "TraceStyle.SetXError did not produce the correct trace object"
         )
@@ -64,7 +64,7 @@ let ``TraceStyle tests`` =
         )
         testCase "SetYError" (fun _ ->
             Expect.equal
-                (createEmpty3DTrace() |> Trace.SetYError(Error.init(Value = 2, Symmetric = true)))
+                (createEmpty3DTrace() |> Trace.SetYError(Error.init(Value = 2., Symmetric = true)))
                 yErrorTrace
                 "TraceStyle.SetYError did not produce the correct trace object"
         )
@@ -76,7 +76,7 @@ let ``TraceStyle tests`` =
         )
         testCase "SetZError" (fun _ ->
             Expect.equal
-                (createEmpty3DTrace() |> Trace.SetZError(Error.init(Value = 2, Symmetric = true)))
+                (createEmpty3DTrace() |> Trace.SetZError(Error.init(Value = 2., Symmetric = true)))
                 zErrorTrace
                 "TraceStyle.SetZError did not produce the correct trace object"
         )
