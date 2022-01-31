@@ -12,8 +12,10 @@ open DynamicObj
 module PuppeteerSharpRendererOptions =
 
     let mutable launchOptions = LaunchOptions()
-
     launchOptions.Timeout <- 60000
+
+    let mutable localBrowserExecutablePath = None
+
 
 type PuppeteerSharpRenderer() =
 
@@ -78,16 +80,25 @@ type PuppeteerSharpRenderer() =
     /// Initalizes headless browser
     let fetchAndLaunchBrowserAsync () =
         async {
-            use browserFetcher = new BrowserFetcher()
+            match PuppeteerSharpRendererOptions.localBrowserExecutablePath with
+            | None -> 
+                use browserFetcher = new BrowserFetcher()
 
-            let! revision = browserFetcher.DownloadAsync() |> Async.AwaitTask
+                let! revision = browserFetcher.DownloadAsync() |> Async.AwaitTask
 
-            let launchOptions =
-                PuppeteerSharpRendererOptions.launchOptions
+                let launchOptions =
+                    PuppeteerSharpRendererOptions.launchOptions
 
-            launchOptions.ExecutablePath <- revision.ExecutablePath
+                launchOptions.ExecutablePath <- revision.ExecutablePath
 
-            return! Puppeteer.LaunchAsync(launchOptions) |> Async.AwaitTask
+                return! Puppeteer.LaunchAsync(launchOptions) |> Async.AwaitTask
+            | Some p ->
+                let launchOptions =
+                    PuppeteerSharpRendererOptions.launchOptions
+                
+                launchOptions.ExecutablePath <- p
+                
+                return! Puppeteer.LaunchAsync(launchOptions) |> Async.AwaitTask
         }
 
     /// Initalizes headless browser
