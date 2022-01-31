@@ -101,7 +101,13 @@ type Chart =
 
                     ))
 
-    /// Set the axis anchor id the trace is belonging to
+    /// <summary>
+    /// Sets the axis anchor ids for the chart's cartesian and/or carpet trace(s).
+    ///
+    /// If the traces are not of these types, nothing will be set and a warning message will be displayed.
+    /// </summary>
+    /// <param name="X">The new x axis anchor id for the chart's cartesian and/or carpet trace(s)</param>
+    /// <param name="Y">The new x axis anchor id for the chart's cartesian and/or carpet trace(s)</param>
     [<CompiledName("WithAxisAnchor")>]
     static member withAxisAnchor
         (
@@ -126,26 +132,54 @@ type Chart =
                         printfn "the input was not a 2D cartesian or carpet trace. no axis anchors set."
                         trace)
 
-    [<CompiledName("WithAxisAnchor")>]
-    static member withAxisAnchor
-        (
-            (ch: GenericChart),
-            [<Optional; DefaultParameterValue(null)>] ?X,
-            [<Optional; DefaultParameterValue(null)>] ?Y
-        ) =
-        ch |> Chart.withAxisAnchor (?X = X, ?Y = Y)
-
-    /// Set the axis anchor id the trace is belonging to
+    /// <summary>
+    /// Sets the color axis id for the chart's trace(s).
+    /// </summary>
+    /// <param name="Id">The new color axis id for the chart's trace(s)</param>
     [<CompiledName("WithColorAxisAnchor")>]
     static member withColorAxisAnchor([<Optional; DefaultParameterValue(null)>] ?Id: int) =
         fun (ch: GenericChart) -> ch |> mapTrace (TraceStyle.setColorAxisAnchor (?ColorAxisId = Id))
 
-    /// Apply styling to the Marker(s) of the chart as Object.
+    /// <summary>
+    /// Sets the marker for the chart's trace(s).
+    /// </summary>
+    /// <param name="marker">The new marker for the chart's trace(s)</param>
     [<CompiledName("WithMarker")>]
     static member withMarker(marker: Marker) =
         (fun (ch: GenericChart) -> ch |> mapTrace (TraceStyle.SetMarker(marker)))
 
-    /// Apply styling to the Marker(s) of the chart.
+    /// <summary>
+    /// Applies the given styles to the marker object(s) of the chart's trace(s).
+    /// </summary>
+    /// <param name="AutoColorScale">Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `marker.colorscale`. Has an effect only if in `marker.color`is set to a numerical array. In case `colorscale` is unspecified or `autocolorscale` is true, the default palette will be chosen according to whether numbers in the `color` array are all positive, all negative or mixed.</param>
+    /// <param name="CAuto">Determines whether or not the color domain is computed with respect to the input data (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax` Has an effect only if in `marker.color`is set to a numerical array. Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.</param>
+    /// <param name="CMax">Sets the upper bound of the color domain. Has an effect only if in `marker.color`is set to a numerical array. Value should have the same units as in `marker.color` and if set, `marker.cmin` must be set as well.</param>
+    /// <param name="CMid">Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be equidistant to this point. Has an effect only if in `marker.color`is set to a numerical array. Value should have the same units as in `marker.color`. Has no effect when `marker.cauto` is `false`.</param>
+    /// <param name="CMin">Sets the lower bound of the color domain. Has an effect only if in `marker.color`is set to a numerical array. Value should have the same units as in `marker.color` and if set, `marker.cmax` must be set as well.</param>
+    /// <param name="Color">Sets the marker color. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.</param>
+    /// <param name="Colors">Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.</param>
+    /// <param name="ColorAxis">Sets a reference to a shared color axis. References to these shared color axes are "coloraxis", "coloraxis2", "coloraxis3", etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.</param>
+    /// <param name="ColorBar">Sets the marker's color bar.</param>
+    /// <param name="Colorscale"></param>
+    /// <param name="Gradient">Sets the marker's gradient</param>
+    /// <param name="Outline">Sets the marker's outline.</param>
+    /// <param name="Opacity">Sets the marker opacity.</param>
+    /// <param name="MaxDisplayed">Sets a maximum number of points to be drawn on the graph. "0" corresponds to no limit.</param>
+    /// <param name="MultiOpacity">Sets the individual marker opacity.</param>
+    /// <param name="Pattern">Sets the pattern within the marker.</param>
+    /// <param name="ReverseScale">Reverses the color mapping if true. Has an effect only if in `marker.color`is set to a numerical array. If true, `marker.cmin` will correspond to the last color in the array and `marker.cmax` will correspond to the first color.</param>
+    /// <param name="ShowScale">Determines whether or not a colorbar is displayed for this trace. Has an effect only if in `marker.color`is set to a numerical array.</param>
+    /// <param name="Size">Sets the marker's size.</param>
+    /// <param name="MultiSize">Sets the individual marker's size.</param>
+    /// <param name="SizeMin">Has an effect only if `marker.size` is set to a numerical array. Sets the minimum size (in px) of the rendered marker points.</param>
+    /// <param name="SizeMode">Has an effect only if `marker.size` is set to a numerical array. Sets the rule for which the data in `size` is converted to pixels.</param>
+    /// <param name="SizeRef">Has an effect only if `marker.size` is set to a numerical array. Sets the scale factor used to determine the rendered size of marker points. Use with `sizemin` and `sizemode`.</param>
+    /// <param name="Symbol">Sets the marker symbol.</param>
+    /// <param name="MultiSymbol">Sets the individual marker symbols.</param>
+    /// <param name="Symbol3D">Sets the marker symbol for 3d traces.</param>
+    /// <param name="MultiSymbol3D">Sets the individual marker symbols for 3d traces.</param>
+    /// <param name="OutlierColor">Sets the color of the outlier sample points.</param>
+    /// <param name="OutlierWidth">Sets the width of the outlier sample points.</param>
     [<CompiledName("WithMarkerStyle")>]
     static member withMarkerStyle
         (
@@ -161,20 +195,23 @@ type Chart =
             [<Optional; DefaultParameterValue(null)>] ?Colorscale: StyleParam.Colorscale,
             [<Optional; DefaultParameterValue(null)>] ?Gradient: Gradient,
             [<Optional; DefaultParameterValue(null)>] ?Outline: Line,
-            [<Optional; DefaultParameterValue(null)>] ?Size: int,
-            [<Optional; DefaultParameterValue(null)>] ?MultiSize: seq<int>,
+            [<Optional; DefaultParameterValue(null)>] ?MaxDisplayed: int,
             [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
             [<Optional; DefaultParameterValue(null)>] ?MultiOpacity: seq<float>,
             [<Optional; DefaultParameterValue(null)>] ?Pattern: Pattern,
-            [<Optional; DefaultParameterValue(null)>] ?Symbol: StyleParam.MarkerSymbol,
-            [<Optional; DefaultParameterValue(null)>] ?MultiSymbols: seq<StyleParam.MarkerSymbol>,
-            [<Optional; DefaultParameterValue(null)>] ?OutlierColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?Maxdisplayed: int,
             [<Optional; DefaultParameterValue(null)>] ?ReverseScale: bool,
             [<Optional; DefaultParameterValue(null)>] ?ShowScale: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Size: int,
+            [<Optional; DefaultParameterValue(null)>] ?MultiSize: seq<int>,
             [<Optional; DefaultParameterValue(null)>] ?SizeMin: int,
             [<Optional; DefaultParameterValue(null)>] ?SizeMode: StyleParam.MarkerSizeMode,
-            [<Optional; DefaultParameterValue(null)>] ?SizeRef: int
+            [<Optional; DefaultParameterValue(null)>] ?SizeRef: int,
+            [<Optional; DefaultParameterValue(null)>] ?Symbol: StyleParam.MarkerSymbol,
+            [<Optional; DefaultParameterValue(null)>] ?MultiSymbol: seq<StyleParam.MarkerSymbol>,
+            [<Optional; DefaultParameterValue(null)>] ?Symbol3D: StyleParam.MarkerSymbol3D,
+            [<Optional; DefaultParameterValue(null)>] ?MultiSymbol3D: seq<StyleParam.MarkerSymbol3D>,
+            [<Optional; DefaultParameterValue(null)>] ?OutlierColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?OutlierWidth: int
         ) =
         fun (ch: GenericChart) ->
             ch
@@ -195,12 +232,15 @@ type Chart =
                     ?Size = Size,
                     ?MultiSize = MultiSize,
                     ?Opacity = Opacity,
-                    ?MultiOpacity = MultiOpacity,
                     ?Pattern = Pattern,
+                    ?MultiOpacity = MultiOpacity,
                     ?Symbol = Symbol,
-                    ?MultiSymbol = MultiSymbols,
+                    ?MultiSymbol = MultiSymbol,
+                    ?Symbol3D = Symbol3D,
+                    ?MultiSymbol3D = MultiSymbol3D,
                     ?OutlierColor = OutlierColor,
-                    ?Maxdisplayed = Maxdisplayed,
+                    ?OutlierWidth = OutlierWidth,
+                    ?MaxDisplayed = MaxDisplayed,
                     ?ReverseScale = ReverseScale,
                     ?ShowScale = ShowScale,
                     ?SizeMin = SizeMin,
