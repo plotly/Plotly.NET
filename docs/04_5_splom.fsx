@@ -10,8 +10,8 @@ index: 5
 (*** hide ***)
 
 (*** condition: prepare ***)
-#r "nuget: Newtonsoft.JSON, 12.0.3"
-#r "nuget: DynamicObj"
+#r "nuget: Newtonsoft.JSON, 13.0.1"
+#r "nuget: DynamicObj, 1.0.1"
 #r "../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
 
 (*** condition: ipynb ***)
