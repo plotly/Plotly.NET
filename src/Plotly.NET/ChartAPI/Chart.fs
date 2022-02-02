@@ -13,6 +13,10 @@ open System.Runtime.InteropServices
 /// Provides a set of static methods for creating and styling charts.
 type Chart =
 
+    //==============================================================================================================
+//============================================= Unspecific charts ==============================================
+//==============================================================================================================
+
     /// <summary>Creates a chart that is completely invisible when rendered. The Chart object however is NOT empty! Combining this chart with other charts will have unforseen consequences (it has for example invisible axes that can override other axes if used in Chart.Combine)</summary>
     static member Invisible() =
         let hiddenAxis () =
@@ -25,9 +29,12 @@ type Chart =
         |> GenericChart.mapLayout
             (fun l ->
                 l
-                |> Layout.AddLinearAxis(StyleParam.SubPlotId.XAxis 1, hiddenAxis ())
-                |> Layout.AddLinearAxis(StyleParam.SubPlotId.YAxis 1, hiddenAxis ()))
+                |> Layout.addLinearAxis (StyleParam.SubPlotId.XAxis 1, hiddenAxis ())
+                |> Layout.addLinearAxis (StyleParam.SubPlotId.YAxis 1, hiddenAxis ()))
 
+    //==============================================================================================================
+//======================================== General Trace object styling ========================================
+//==============================================================================================================
 
     /// <summary>
     /// Sets trace information on the given chart.
@@ -222,7 +229,28 @@ type Chart =
     static member withLine(line: Line) =
         (fun (ch: GenericChart) -> ch |> mapTrace (Trace.setLine (line)))
 
-    /// Apply styling to the Line(s) of the chart.
+    /// <summary>
+    /// Applies the given styles to the line object(s) of the chart's trace(s).
+    /// </summary>
+    /// <param name="AutoColorScale">Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `line.colorscale`. Has an effect only if in `line.color`is set to a numerical array. In case `colorscale` is unspecified or `autocolorscale` is true, the default palette will be chosen according to whether numbers in the `color` array are all positive, all negative or mixed.</param>
+    /// <param name="CAuto">Determines whether or not the color domain is computed with respect to the input data (here in `line.color`) or the bounds set in `line.cmin` and `line.cmax` Has an effect only if in `line.color`is set to a numerical array. Defaults to `false` when `line.cmin` and `line.cmax` are set by the user.</param>
+    /// <param name="CMax">Sets the upper bound of the color domain. Has an effect only if in `line.color`is set to a numerical array. Value should have the same units as in `line.color` and if set, `line.cmin` must be set as well.</param>
+    /// <param name="CMid">Sets the mid-point of the color domain by scaling `line.cmin` and/or `line.cmax` to be equidistant to this point. Has an effect only if in `line.color`is set to a numerical array. Value should have the same units as in `line.color`. Has no effect when `line.cauto` is `false`.</param>
+    /// <param name="CMin">Sets the lower bound of the color domain. Has an effect only if in `line.color`is set to a numerical array. Value should have the same units as in `line.color` and if set, `line.cmax` must be set as well.</param>
+    /// <param name="Color">Sets the line color.</param>
+    /// <param name="ColorAxis">Sets a reference to a shared color axis. References to these shared color axes are "coloraxis", "coloraxis2", "coloraxis3", etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.</param>
+    /// <param name="Colorscale">Sets the line colorscale</param>
+    /// <param name="ReverseScale">Reverses the color mapping if true.</param>
+    /// <param name="ShowScale">Wether or not to show the color bar</param>
+    /// <param name="ColorBar">Sets the colorbar.</param>
+    /// <param name="Dash">Sets the dash style of lines. Set to a dash type string ("solid", "dot", "dash", "longdash", "dashdot", or "longdashdot") or a dash length list in px (eg "5px,10px,2px,2px").</param>
+    /// <param name="Shape">Determines the line shape. With "spline" the lines are drawn using spline interpolation. The other available values correspond to step-wise line shapes.</param>
+    /// <param name="Simplify">Simplifies lines by removing nearly-collinear points. When transitioning lines, it may be desirable to disable this so that the number of points along the resulting SVG path is unaffected.</param>
+    /// <param name="Smoothing">Has an effect only if `shape` is set to "spline" Sets the amount of smoothing. "0" corresponds to no smoothing (equivalent to a "linear" shape).</param>
+    /// <param name="Width">Sets the line width (in px).</param>
+    /// <param name="MultiWidth">Sets the individual line width (in px).</param>
+    /// <param name="OutlierColor">Sets the color of the outline of outliers</param>
+    /// <param name="OutlierWidth">Sets the width of the outline of outliers</param>
     [<CompiledName("WithLineStyle")>]
     static member withLineStyle
         (
@@ -272,98 +300,192 @@ type Chart =
                 )
             )
 
-    /// Apply styling to the xError(s) of the chart as Object
+    /// <summary>
+    /// Sets the error in the x dimension for the chart's trace(s).
+    /// </summary>
+    /// <param name="xError">The new error for the chart's trace(s)</param>
     [<CompiledName("WithXError")>]
     static member withXError(xError: Error) =
         (fun (ch: GenericChart) -> ch |> mapTrace (Trace.setXError (xError)))
 
-    /// Apply styling to the xError(s) of the chart as Object
+    /// <summary>
+    /// Applies the given styles to the error object(s) in the x dimension of the chart's trace(s).
+    /// </summary>
+    /// <param name ="Visible">Determines whether or not this set of error bars is visible.</param>
+    /// <param name ="Type">Determines the rule used to generate the error bars. If "constant`, the bar lengths are of a constant value. Set this constant in `value`. If "percent", the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If "sqrt", the bar lengths correspond to the square of the underlying data. If "data", the bar lengths are set with data set `array`.</param>
+    /// <param name ="Symmetric">Determines whether or not the error bars have the same length in both direction (top/bottom for vertical bars, left/right for horizontal bars.</param>
+    /// <param name ="Array">Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.</param>
+    /// <param name ="Arrayminus">Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.</param>
+    /// <param name ="Value">Sets the value of either the percentage (if `type` is set to "percent") or the constant (if `type` is set to "constant") corresponding to the lengths of the error bars.</param>
+    /// <param name ="Valueminus">Sets the value of either the percentage (if `type` is set to "percent") or the constant (if `type` is set to "constant") corresponding to the lengths of the error bars in the bottom (left) direction for vertical (horizontal) bars</param>
+    /// <param name ="Traceref"></param>
+    /// <param name ="Tracerefminus"></param>
+    /// <param name ="Copy_ystyle"></param>
+    /// <param name ="Color">Sets the stoke color of the error bars.</param>
+    /// <param name ="Thickness">Sets the thickness (in px) of the error bars.</param>
+    /// <param name ="Width">Sets the width (in px) of the cross-bar at both ends of the error bars.</param>
     [<CompiledName("WithXErrorStyle")>]
     static member withXErrorStyle
         (
-            [<Optional; DefaultParameterValue(null)>] ?Array,
-            [<Optional; DefaultParameterValue(null)>] ?Arrayminus,
-            [<Optional; DefaultParameterValue(null)>] ?Symmetric,
-            [<Optional; DefaultParameterValue(null)>] ?Color,
-            [<Optional; DefaultParameterValue(null)>] ?Thickness,
-            [<Optional; DefaultParameterValue(null)>] ?Width
+            [<Optional; DefaultParameterValue(null)>] ?Visible: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Type: StyleParam.ErrorType,
+            [<Optional; DefaultParameterValue(null)>] ?Symmetric: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Array: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Arrayminus: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Value: float,
+            [<Optional; DefaultParameterValue(null)>] ?Valueminus: float,
+            [<Optional; DefaultParameterValue(null)>] ?Traceref: int,
+            [<Optional; DefaultParameterValue(null)>] ?Tracerefminus: int,
+            [<Optional; DefaultParameterValue(null)>] ?Copy_ystyle: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Color: Color,
+            [<Optional; DefaultParameterValue(null)>] ?Thickness: float,
+            [<Optional; DefaultParameterValue(null)>] ?Width: float
         ) =
-        let error =
-            Error.init (
-                ?Array = Array,
-                ?Arrayminus = Arrayminus,
-                ?Symmetric = Symmetric,
-                ?Color = Color,
-                ?Thickness = Thickness,
-                ?Width = Width
+        fun (ch: GenericChart) ->
+            ch
+            |> mapTrace (
+                TraceStyle.XError(
+                    ?Visible = Visible,
+                    ?Type = Type,
+                    ?Symmetric = Symmetric,
+                    ?Array = Array,
+                    ?Arrayminus = Arrayminus,
+                    ?Value = Value,
+                    ?Valueminus = Valueminus,
+                    ?Traceref = Traceref,
+                    ?Tracerefminus = Tracerefminus,
+                    ?Copy_ystyle = Copy_ystyle,
+                    ?Color = Color,
+                    ?Thickness = Thickness,
+                    ?Width = Width
+                )
             )
 
-        Chart.withXError error
-
-    /// Apply styling to the yError(s) of the chart as Object
+    /// <summary>
+    /// Sets the error in the y dimension for the chart's trace(s).
+    /// </summary>
+    /// <param name="yError">The new error for the chart's trace(s)</param>
     [<CompiledName("WithYError")>]
     static member withYError(yError: Error) =
         (fun (ch: GenericChart) -> ch |> mapTrace (Trace.setYError (yError)))
 
-    /// Apply styling to the yError(s) of the chart as Object
+    /// <summary>
+    /// Applies the given styles to the error object(s) in the y dimension of the chart's trace(s).
+    /// </summary>
+    /// <param name ="Visible">Determines whether or not this set of error bars is visible.</param>
+    /// <param name ="Type">Determines the rule used to generate the error bars. If "constant`, the bar lengths are of a constant value. Set this constant in `value`. If "percent", the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If "sqrt", the bar lengths correspond to the square of the underlying data. If "data", the bar lengths are set with data set `array`.</param>
+    /// <param name ="Symmetric">Determines whether or not the error bars have the same length in both direction (top/bottom for vertical bars, left/right for horizontal bars.</param>
+    /// <param name ="Array">Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.</param>
+    /// <param name ="Arrayminus">Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.</param>
+    /// <param name ="Value">Sets the value of either the percentage (if `type` is set to "percent") or the constant (if `type` is set to "constant") corresponding to the lengths of the error bars.</param>
+    /// <param name ="Valueminus">Sets the value of either the percentage (if `type` is set to "percent") or the constant (if `type` is set to "constant") corresponding to the lengths of the error bars in the bottom (left) direction for vertical (horizontal) bars</param>
+    /// <param name ="Traceref"></param>
+    /// <param name ="Tracerefminus"></param>
+    /// <param name ="Copy_ystyle"></param>
+    /// <param name ="Color">Sets the stoke color of the error bars.</param>
+    /// <param name ="Thickness">Sets the thickness (in px) of the error bars.</param>
+    /// <param name ="Width">Sets the width (in px) of the cross-bar at both ends of the error bars.</param>
     [<CompiledName("WithYErrorStyle")>]
     static member withYErrorStyle
         (
-            [<Optional; DefaultParameterValue(null)>] ?Array,
-            [<Optional; DefaultParameterValue(null)>] ?Arrayminus,
-            [<Optional; DefaultParameterValue(null)>] ?Symmetric,
-            [<Optional; DefaultParameterValue(null)>] ?Color,
-            [<Optional; DefaultParameterValue(null)>] ?Thickness,
-            [<Optional; DefaultParameterValue(null)>] ?Width
+            [<Optional; DefaultParameterValue(null)>] ?Visible: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Type: StyleParam.ErrorType,
+            [<Optional; DefaultParameterValue(null)>] ?Symmetric: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Array: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Arrayminus: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Value: float,
+            [<Optional; DefaultParameterValue(null)>] ?Valueminus: float,
+            [<Optional; DefaultParameterValue(null)>] ?Traceref: int,
+            [<Optional; DefaultParameterValue(null)>] ?Tracerefminus: int,
+            [<Optional; DefaultParameterValue(null)>] ?Copy_ystyle: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Color: Color,
+            [<Optional; DefaultParameterValue(null)>] ?Thickness: float,
+            [<Optional; DefaultParameterValue(null)>] ?Width: float
         ) =
-        let error =
-            Error.init (
-                ?Array = Array,
-                ?Arrayminus = Arrayminus,
-                ?Symmetric = Symmetric,
-                ?Color = Color,
-                ?Thickness = Thickness,
-                ?Width = Width
+        fun (ch: GenericChart) ->
+            ch
+            |> mapTrace (
+                TraceStyle.YError(
+                    ?Visible = Visible,
+                    ?Type = Type,
+                    ?Symmetric = Symmetric,
+                    ?Array = Array,
+                    ?Arrayminus = Arrayminus,
+                    ?Value = Value,
+                    ?Valueminus = Valueminus,
+                    ?Traceref = Traceref,
+                    ?Tracerefminus = Tracerefminus,
+                    ?Copy_ystyle = Copy_ystyle,
+                    ?Color = Color,
+                    ?Thickness = Thickness,
+                    ?Width = Width
+                )
             )
 
-        Chart.withYError error
-
-    /// Apply styling to the zError(s) of the chart as Object
+    /// <summary>
+    /// Sets the error in the z dimension for the chart's trace(s).
+    /// </summary>
+    /// <param name="zError">The new error for the chart's trace(s)</param>
     [<CompiledName("WithZError")>]
     static member withZError(zError: Error) =
         (fun (ch: GenericChart) -> ch |> mapTrace (Trace.setZError (zError)))
 
-    /// Apply styling to the zError(s) of the chart as Object
+    /// <summary>
+    /// Applies the given styles to the error object(s) in the z dimension of the chart's trace(s).
+    /// </summary>
+    /// <param name ="Visible">Determines whether or not this set of error bars is visible.</param>
+    /// <param name ="Type">Determines the rule used to generate the error bars. If "constant`, the bar lengths are of a constant value. Set this constant in `value`. If "percent", the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If "sqrt", the bar lengths correspond to the square of the underlying data. If "data", the bar lengths are set with data set `array`.</param>
+    /// <param name ="Symmetric">Determines whether or not the error bars have the same length in both direction (top/bottom for vertical bars, left/right for horizontal bars.</param>
+    /// <param name ="Array">Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.</param>
+    /// <param name ="Arrayminus">Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.</param>
+    /// <param name ="Value">Sets the value of either the percentage (if `type` is set to "percent") or the constant (if `type` is set to "constant") corresponding to the lengths of the error bars.</param>
+    /// <param name ="Valueminus">Sets the value of either the percentage (if `type` is set to "percent") or the constant (if `type` is set to "constant") corresponding to the lengths of the error bars in the bottom (left) direction for vertical (horizontal) bars</param>
+    /// <param name ="Traceref"></param>
+    /// <param name ="Tracerefminus"></param>
+    /// <param name ="Copy_ystyle"></param>
+    /// <param name ="Color">Sets the stoke color of the error bars.</param>
+    /// <param name ="Thickness">Sets the thickness (in px) of the error bars.</param>
+    /// <param name ="Width">Sets the width (in px) of the cross-bar at both ends of the error bars.</param>
     [<CompiledName("WithZErrorStyle")>]
     static member withZErrorStyle
         (
-            [<Optional; DefaultParameterValue(null)>] ?Array,
-            [<Optional; DefaultParameterValue(null)>] ?Arrayminus,
-            [<Optional; DefaultParameterValue(null)>] ?Symmetric,
-            [<Optional; DefaultParameterValue(null)>] ?Color,
-            [<Optional; DefaultParameterValue(null)>] ?Thickness,
-            [<Optional; DefaultParameterValue(null)>] ?Width
+            [<Optional; DefaultParameterValue(null)>] ?Visible: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Type: StyleParam.ErrorType,
+            [<Optional; DefaultParameterValue(null)>] ?Symmetric: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Array: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Arrayminus: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?Value: float,
+            [<Optional; DefaultParameterValue(null)>] ?Valueminus: float,
+            [<Optional; DefaultParameterValue(null)>] ?Traceref: int,
+            [<Optional; DefaultParameterValue(null)>] ?Tracerefminus: int,
+            [<Optional; DefaultParameterValue(null)>] ?Copy_ystyle: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Color: Color,
+            [<Optional; DefaultParameterValue(null)>] ?Thickness: float,
+            [<Optional; DefaultParameterValue(null)>] ?Width: float
         ) =
-        let error =
-            Error.init (
-                ?Array = Array,
-                ?Arrayminus = Arrayminus,
-                ?Symmetric = Symmetric,
-                ?Color = Color,
-                ?Thickness = Thickness,
-                ?Width = Width
+        fun (ch: GenericChart) ->
+            ch
+            |> mapTrace (
+                TraceStyle.ZError(
+                    ?Visible = Visible,
+                    ?Type = Type,
+                    ?Symmetric = Symmetric,
+                    ?Array = Array,
+                    ?Arrayminus = Arrayminus,
+                    ?Value = Value,
+                    ?Valueminus = Valueminus,
+                    ?Traceref = Traceref,
+                    ?Tracerefminus = Tracerefminus,
+                    ?Copy_ystyle = Copy_ystyle,
+                    ?Color = Color,
+                    ?Thickness = Thickness,
+                    ?Width = Width
+                )
             )
 
-        Chart.withZError error
-
-
-    // ############################################################
-// ####################### Apply to layout
-
-    [<Obsolete("Use withXAxis instead")>]
-    [<CompiledName("WithX_Axis")>]
-    static member withX_Axis(xAxis: LinearAxis, [<Optional; DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId) =
-        Chart.withXAxis (xAxis, ?Id = Id)
+    //==============================================================================================================
+//======================================= General Layout object styling ========================================
+//==============================================================================================================
 
     // Sets x-Axis of 2D and 3d- Charts
     [<CompiledName("WithXAxis")>]
@@ -376,7 +498,7 @@ type Chart =
             match id with
             | StyleParam.SubPlotId.XAxis _ ->
                 let layout =
-                    GenericChart.getLayout ch |> Layout.UpdateLinearAxisById(id, axis = xAxis)
+                    GenericChart.getLayout ch |> Layout.updateLinearAxisById (id, axis = xAxis)
 
                 GenericChart.setLayout layout ch
 
@@ -506,7 +628,7 @@ type Chart =
             match id with
             | StyleParam.SubPlotId.YAxis _ ->
                 let layout =
-                    GenericChart.getLayout ch |> Layout.UpdateLinearAxisById(id, axis = yAxis)
+                    GenericChart.getLayout ch |> Layout.updateLinearAxisById (id, axis = yAxis)
 
                 GenericChart.setLayout layout ch
 
@@ -884,7 +1006,7 @@ type Chart =
     static member withLayoutGrid(layoutGrid: LayoutGrid) =
         (fun (ch: GenericChart) ->
             let layout =
-                GenericChart.getLayout ch |> Layout.SetLayoutGrid layoutGrid
+                GenericChart.getLayout ch |> Layout.setLayoutGrid layoutGrid
 
             GenericChart.setLayout layout ch)
 
@@ -905,7 +1027,7 @@ type Chart =
                 let id =
                     defaultArg Id (StyleParam.SubPlotId.Geo 1)
 
-                GenericChart.getLayout ch |> Layout.UpdateGeoById(id, map)
+                GenericChart.getLayout ch |> Layout.updateGeoById (id, map)
 
             GenericChart.setLayout layout ch)
 
@@ -917,7 +1039,7 @@ type Chart =
                 let id =
                     defaultArg Id (StyleParam.SubPlotId.Mapbox 1)
 
-                GenericChart.getLayout ch |> Layout.UpdateMapboxById(id, mapBox)
+                GenericChart.getLayout ch |> Layout.updateMapboxById (id, mapBox)
 
             GenericChart.setLayout layout ch)
 
@@ -1145,7 +1267,7 @@ type Chart =
                 )
 
             let updatedLayout =
-                layout |> Layout.SetLayoutGrid updatedGrid
+                layout |> Layout.setLayoutGrid updatedGrid
 
             GenericChart.setLayout updatedLayout ch)
 

@@ -42,8 +42,8 @@ module ChartTemplates =
 
         let defaultLayout =
             Layout.init (PaperBGColor = Color.fromString "white", PlotBGColor = Color.fromString "white")
-            |> Layout.AddLinearAxis((StyleParam.SubPlotId.XAxis 1), (initLightAxisTemplate ()))
-            |> Layout.AddLinearAxis((StyleParam.SubPlotId.YAxis 1), (initLightAxisTemplate ()))
+            |> Layout.addLinearAxis ((StyleParam.SubPlotId.XAxis 1), (initLightAxisTemplate ()))
+            |> Layout.addLinearAxis ((StyleParam.SubPlotId.YAxis 1), (initLightAxisTemplate ()))
 
         Template.init (defaultLayout)
 
@@ -59,8 +59,8 @@ module ChartTemplates =
 
         let defaultLayout =
             Layout.init (PaperBGColor = Color.fromString "white", PlotBGColor = Color.fromString "white")
-            |> Layout.AddLinearAxis((StyleParam.SubPlotId.XAxis 1), (initLightAxisTemplate ()))
-            |> Layout.AddLinearAxis((StyleParam.SubPlotId.YAxis 1), (initLightAxisTemplate ()))
+            |> Layout.addLinearAxis ((StyleParam.SubPlotId.XAxis 1), (initLightAxisTemplate ()))
+            |> Layout.addLinearAxis ((StyleParam.SubPlotId.YAxis 1), (initLightAxisTemplate ()))
 
         Template.init (defaultLayout)
 
@@ -83,8 +83,8 @@ module ChartTemplates =
                 PlotBGColor = Color.fromString "rgb(55, 55, 61)",
                 Font = Font.init (Color = Color.fromString "rgb(204, 204, 204)")
             )
-            |> Layout.AddLinearAxis((StyleParam.SubPlotId.XAxis 1), (initDarkAxisTemplate ()))
-            |> Layout.AddLinearAxis((StyleParam.SubPlotId.YAxis 1), (initDarkAxisTemplate ()))
+            |> Layout.addLinearAxis ((StyleParam.SubPlotId.XAxis 1), (initDarkAxisTemplate ()))
+            |> Layout.addLinearAxis ((StyleParam.SubPlotId.YAxis 1), (initDarkAxisTemplate ()))
 
         Template.init (darkLayoutTemplate)
 
@@ -121,8 +121,8 @@ module ChartTemplates =
                 PlotBGColor = Color.fromString "#200117",
                 Font = Font.init (Color = Color.fromString "white")
             )
-            |> Layout.AddLinearAxis((StyleParam.SubPlotId.XAxis 1), (initFslabAxisTemplate ()))
-            |> Layout.AddLinearAxis((StyleParam.SubPlotId.YAxis 1), (initFslabAxisTemplate ()))
+            |> Layout.addLinearAxis ((StyleParam.SubPlotId.XAxis 1), (initFslabAxisTemplate ()))
+            |> Layout.addLinearAxis ((StyleParam.SubPlotId.YAxis 1), (initFslabAxisTemplate ()))
 
         Template.init (fslabLayoutTemplate) |> Template.withColorWay ColorWays.fslab
 
@@ -136,8 +136,8 @@ module ChartTemplates =
                 PaperBGColor = Color.fromString "rgba(255, 255, 255, 0)",
                 PlotBGColor = Color.fromString "rgba(255, 255, 255, 0)"
             )
-            |> Layout.AddLinearAxis((StyleParam.SubPlotId.XAxis 1), (initTransparentAxisTemplate ()))
-            |> Layout.AddLinearAxis((StyleParam.SubPlotId.YAxis 1), (initTransparentAxisTemplate ()))
+            |> Layout.addLinearAxis ((StyleParam.SubPlotId.XAxis 1), (initTransparentAxisTemplate ()))
+            |> Layout.addLinearAxis ((StyleParam.SubPlotId.YAxis 1), (initTransparentAxisTemplate ()))
 
         Template.init (defaultLayout)
 
@@ -155,8 +155,8 @@ module ChartTemplates =
                 PaperBGColor = Color.fromString "rgba(255, 255, 255, 0)",
                 PlotBGColor = Color.fromString "rgba(255, 255, 255, 0)"
             )
-            |> Layout.AddLinearAxis((StyleParam.SubPlotId.XAxis 1), (initTransparentAxisTemplate ()))
-            |> Layout.AddLinearAxis((StyleParam.SubPlotId.YAxis 1), (initTransparentAxisTemplate ()))
+            |> Layout.addLinearAxis ((StyleParam.SubPlotId.XAxis 1), (initTransparentAxisTemplate ()))
+            |> Layout.addLinearAxis ((StyleParam.SubPlotId.YAxis 1), (initTransparentAxisTemplate ()))
 
         Template.init (defaultLayout)
 
@@ -228,7 +228,7 @@ module ChartTemplates =
                 StyleParam.SubPlotId.ColorAxis 1,
                 ColorAxis.init (ColorBar = ColorBar.init (OutlineWidth = 0., Ticks = StyleParam.TickOptions.Empty))
             )
-            |> Layout.UpdateGeoById(
+            |> Layout.updateGeoById (
                 StyleParam.SubPlotId.Geo 1,
                 Geo.init (
                     BgColor = Color.fromKeyword White,
@@ -239,7 +239,7 @@ module ChartTemplates =
                     SubunitColor = Color.fromKeyword White
                 )
             )
-            |> Layout.UpdateMapboxById(
+            |> Layout.updateMapboxById (
                 StyleParam.SubPlotId.Mapbox 1,
                 Mapbox.init (Style = StyleParam.MapboxStyle.MapboxLight)
             )
@@ -320,7 +320,7 @@ module ChartTemplates =
                     BGColor = Color.fromHex "#E5ECF6"
                 )
             )
-            |> Layout.UpdateLinearAxisById(
+            |> Layout.updateLinearAxisById (
                 StyleParam.SubPlotId.XAxis 1,
                 LinearAxis.init (
                     AutoMargin = true,
@@ -332,7 +332,7 @@ module ChartTemplates =
                     ZeroLineWidth = 2.
                 )
             )
-            |> Layout.UpdateLinearAxisById(
+            |> Layout.updateLinearAxisById (
                 StyleParam.SubPlotId.YAxis 1,
                 LinearAxis.init (
                     AutoMargin = true,

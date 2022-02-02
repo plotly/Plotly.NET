@@ -169,10 +169,10 @@ type Trace(traceTypeName: string) =
             trace)
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-/// Contains general, visualization-unspecific functions to style Trace Objects.
+/// Contains general, visualization-unspecific functions to style Trace objects.
 ///
 /// These functions are used internally to style traces of Chart objects.
-/// Users should usually be pointed to the API layer provided by the `Chart` module/object
+/// Users should usually be pointed to the API layer provided by the `Chart` module/object first.
 ///
 /// Visualization-specific equivalents are suffixed with the respective trace subtype, e.g. `TraceStyle2D`
 type TraceStyle() =

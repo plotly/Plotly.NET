@@ -3131,6 +3131,20 @@ module StyleParam =
         member this.Convert() = this |> TraceItemClickOptions.convert
 
     [<RequireQualifiedAccess>]
+    type TraceGroupClickOptions =
+        | ToggleItem
+        | ToggleGroup
+
+        static member toString =
+            function
+            | Toggle -> "toggleitem"
+            | ToggleGroup -> "togglegroup"
+
+        static member convert = TraceGroupClickOptions.toString >> box
+        override this.ToString() = this |> TraceGroupClickOptions.toString
+        member this.Convert() = this |> TraceGroupClickOptions.convert
+
+    [<RequireQualifiedAccess>]
     type TickLabelMode =
         | Instant
         | Period

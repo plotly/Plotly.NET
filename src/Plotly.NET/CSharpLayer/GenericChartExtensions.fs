@@ -606,7 +606,7 @@ module GenericChartExtensions =
         [<Extension>]
         member this.WithLayoutGrid(layoutGrid: LayoutGrid) =
             let layout =
-                GenericChart.getLayout this |> Layout.SetLayoutGrid layoutGrid
+                GenericChart.getLayout this |> Layout.setLayoutGrid layoutGrid
 
             GenericChart.setLayout layout this
 
@@ -831,7 +831,7 @@ module GenericChartExtensions =
                 ) in
 
             let updatedLayout =
-                layout |> Layout.SetLayoutGrid updatedGrid in
+                layout |> Layout.setLayoutGrid updatedGrid in
 
             GenericChart.setLayout updatedLayout this
 
