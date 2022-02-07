@@ -224,7 +224,7 @@ type Layout() =
         )
 
     /// <summary>
-    /// Returns a function ahat applies the given styles to a Layout object.
+    /// Returns a function that applies the given styles to a Layout object.
     /// </summary>
     /// <param name="Title">Sets the title of the layout.</param>
     /// <param name="ShowLegend">Determines whether or not a legend is drawn. Default is `true` if there is a trace to show and any of these: a) Two or more traces would by default be shown in the legend. b) One pie trace is shown in the legend. c) One trace is explicitly given with `showlegend: true`.</param>
@@ -483,8 +483,8 @@ type Layout() =
     /// If there is no linear axis set, returns an empty LinearAxis object.
     /// </summary>
     /// <param name="id">The target axis id</param>
-    static member getLinearAxisById (id: StyleParam.SubPlotId) (layout: Layout) =
-        layout |> Layout.tryGetLinearAxisById id |> Option.defaultValue (LinearAxis.init ())
+    static member getLinearAxisById(id: StyleParam.SubPlotId) =
+        (fun (layout: Layout) -> layout |> Layout.tryGetLinearAxisById id |> Option.defaultValue (LinearAxis.init ()))
 
     /// <summary>
     /// Sets a linear axis object on the layout as a dynamic property with the given axis id.
@@ -532,8 +532,8 @@ type Layout() =
     /// If there is no scene set, returns an empty Scene object.
     /// </summary>
     /// <param name="id">The target scene id</param>
-    static member getSceneById (id: StyleParam.SubPlotId) (layout: Layout) =
-        layout |> Layout.tryGetSceneById id |> Option.defaultValue (Scene.init ())
+    static member getSceneById(id: StyleParam.SubPlotId) =
+        (fun (layout: Layout) -> layout |> Layout.tryGetSceneById id |> Option.defaultValue (Scene.init ()))
 
     /// <summary>
     /// Sets a scene object on the layout as a dynamic property with the given scene id.
@@ -573,8 +573,8 @@ type Layout() =
     /// If there is no geo set, returns an empty Geo object.
     /// </summary>
     /// <param name="id">The target geo id</param>
-    static member getGeoById (id: StyleParam.SubPlotId) (layout: Layout) =
-        layout |> Layout.tryGetGeoById id |> Option.defaultValue (Geo.init ())
+    static member getGeoById(id: StyleParam.SubPlotId) =
+        (fun (layout: Layout) -> layout |> Layout.tryGetGeoById id |> Option.defaultValue (Geo.init ()))
 
     /// <summary>
     /// Sets a geo object on the layout as a dynamic property with the given geo id.
@@ -616,8 +616,8 @@ type Layout() =
     /// If there is no mapbox set, returns an empty Mapbox object.
     /// </summary>
     /// <param name="id">The target mapbox id</param>
-    static member getMapboxById (id: StyleParam.SubPlotId) (layout: Layout) =
-        layout |> Layout.tryGetMapboxById id |> Option.defaultValue (Mapbox.init ())
+    static member getMapboxById(id: StyleParam.SubPlotId) =
+        (fun (layout: Layout) -> layout |> Layout.tryGetMapboxById id |> Option.defaultValue (Mapbox.init ()))
 
     /// <summary>
     /// Sets a mapbox object on the layout as a dynamic property with the given mapbox id.
@@ -661,8 +661,8 @@ type Layout() =
     /// If there is no polar set, returns an empty Polar object.
     /// </summary>
     /// <param name="id">The target polar id</param>
-    static member getPolarById (id: StyleParam.SubPlotId) (layout: Layout) =
-        layout |> Layout.tryGetPolarById id |> Option.defaultValue (Polar.init ())
+    static member getPolarById(id: StyleParam.SubPlotId) =
+        (fun (layout: Layout) -> layout |> Layout.tryGetPolarById id |> Option.defaultValue (Polar.init ()))
 
     /// <summary>
     /// Sets a polar object on the layout as a dynamic property with the given polar id.
@@ -706,8 +706,8 @@ type Layout() =
     /// If there is no color axis set, returns an empty ColorAxis object.
     /// </summary>
     /// <param name="id">The target color axis id</param>
-    static member getColorAxisById (id: StyleParam.SubPlotId) (layout: Layout) =
-        layout |> Layout.tryGetColorAxisById id |> Option.defaultValue (ColorAxis.init ())
+    static member getColorAxisById(id: StyleParam.SubPlotId) =
+        (fun (layout: Layout) -> layout |> Layout.tryGetColorAxisById id |> Option.defaultValue (ColorAxis.init ()))
 
     /// <summary>
     /// Sets a ColorAxis object on the layout as a dynamic property with the given ColorAxis id.
@@ -751,8 +751,8 @@ type Layout() =
     /// If there is no ternary set, returns an empty Ternary object.
     /// </summary>
     /// <param name="id">The target ternary id</param>
-    static member getTernaryById (id: StyleParam.SubPlotId) (layout: Layout) =
-        layout |> Layout.tryGetTernaryById id |> Option.defaultValue (Ternary.init ())
+    static member getTernaryById(id: StyleParam.SubPlotId) =
+        (fun (layout: Layout) -> layout |> Layout.tryGetTernaryById id |> Option.defaultValue (Ternary.init ()))
 
     /// <summary>
     /// Sets a Ternary object on the layout as a dynamic property with the given Ternary id.
@@ -816,7 +816,7 @@ type Layout() =
     /// <summary>
     /// Combines the given Legend object with the one already present on the layout.
     /// </summary>
-    /// <param name="legend">The updated LayoutGrid object</param>
+    /// <param name="legend">The updated Legend object</param>
     static member updateLegend(legend: Legend) =
         (fun (layout: Layout) ->
             let combined =

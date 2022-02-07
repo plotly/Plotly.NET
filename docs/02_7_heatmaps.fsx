@@ -105,9 +105,7 @@ let heat3 =
         matrix,
         ColorScale = StyleParam.Colorscale.Viridis
     )
-    |> Chart.withColorBarStyle(
-        Title.init("Im the ColorBar")
-    )
+    |> Chart.withColorBarStyle(TitleText = "Im the ColorBar")
 
 (*** condition: ipynb ***)
 #if IPYNB

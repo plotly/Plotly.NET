@@ -43,6 +43,17 @@ type Trace(traceTypeName: string) =
             trace)
 
     /// <summary>
+    /// Combines the given marker object with the one already present on the trace.
+    /// </summary>
+    /// <param name="marker">The updated Trace object</param>
+    static member updateMarker(marker: Marker) =
+        (fun (trace: #Trace) ->
+            let combined =
+                (DynObj.combine (trace |> Trace.getMarker) marker) :?> Marker
+
+            trace |> Trace.setMarker combined)
+
+    /// <summary>
     /// Returns the Line object of the given trace.
     ///
     /// If there is no line set, returns an empty line object.
@@ -59,6 +70,17 @@ type Trace(traceTypeName: string) =
         (fun (trace: #Trace) ->
             trace.SetValue("line", line)
             trace)
+
+    /// <summary>
+    /// Combines the given Line object with the one already present on the trace.
+    /// </summary>
+    /// <param name="line">The updated Line object</param>
+    static member updateLine(line: Line) =
+        (fun (trace: #Trace) ->
+            let combined =
+                (DynObj.combine (trace |> Trace.getLine) line) :?> Line
+
+            trace |> Trace.setLine combined)
 
     /// <summary>
     /// Returns the Error object for the x dimension of the given trace.
@@ -79,6 +101,17 @@ type Trace(traceTypeName: string) =
             trace)
 
     /// <summary>
+    /// Combines the given Error object for the x dimension with the one already present on the trace.
+    /// </summary>
+    /// <param name="error">The updated Error object</param>
+    static member updateXError(error: Error) =
+        (fun (trace: #Trace) ->
+            let combined =
+                (DynObj.combine (trace |> Trace.getXError) error) :?> Error
+
+            trace |> Trace.setXError combined)
+
+    /// <summary>
     /// Returns the Error object for the y dimension of the given trace.
     ///
     /// If there is no error set, returns an empty error object.
@@ -97,6 +130,17 @@ type Trace(traceTypeName: string) =
             trace)
 
     /// <summary>
+    /// Combines the given Error object for the y dimension with the one already present on the trace.
+    /// </summary>
+    /// <param name="error">The updated Error object</param>
+    static member updateYError(error: Error) =
+        (fun (trace: #Trace) ->
+            let combined =
+                (DynObj.combine (trace |> Trace.getYError) error) :?> Error
+
+            trace |> Trace.setYError combined)
+
+    /// <summary>
     /// Returns the Error object for the z dimension of the given trace.
     ///
     /// If there is no error set, returns an empty error object.
@@ -113,6 +157,17 @@ type Trace(traceTypeName: string) =
         (fun (trace: #Trace) ->
             trace.SetValue("error_z", error)
             trace)
+
+    /// <summary>
+    /// Combines the given Error object for the z dimension with the one already present on the trace.
+    /// </summary>
+    /// <param name="error">The updated Error object</param>
+    static member updateZError(error: Error) =
+        (fun (trace: #Trace) ->
+            let combined =
+                (DynObj.combine (trace |> Trace.getZError) error) :?> Error
+
+            trace |> Trace.setZError combined)
 
     /// <summary>
     /// Returns the color axis anchor of the given trace.
@@ -160,6 +215,17 @@ type Trace(traceTypeName: string) =
             trace)
 
     /// <summary>
+    /// Combines the given Domain object with the one already present on the trace.
+    /// </summary>
+    /// <param name="domain">The updated Domain object</param>
+    static member updateDomain(domain: Domain) =
+        (fun (trace: #Trace) ->
+            let combined =
+                (DynObj.combine (trace |> Trace.getDomain) domain) :?> Domain
+
+            trace |> Trace.setDomain combined)
+
+    /// <summary>
     /// Returns the stackgroup of the given trace.
     ///
     /// If there is no stackgroup set, returns "stackgroup".
@@ -195,6 +261,17 @@ type Trace(traceTypeName: string) =
 
             trace.SetValue("colorbar", colorBar)
             trace)
+
+    /// <summary>
+    /// Combines the given ColorBar object with the one already present on the trace.
+    /// </summary>
+    /// <param name="colorBar">The updated ColorBar object</param>
+    static member updateColorBar(colorBar: ColorBar) =
+        (fun (trace: #Trace) ->
+            let combined =
+                (DynObj.combine (trace |> Trace.getColorBar) colorBar) :?> ColorBar
+
+            trace |> Trace.setColorBar combined)
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 /// Contains general, visualization-unspecific functions to style Trace objects.
@@ -235,7 +312,7 @@ type TraceStyle() =
             trace)
 
     /// <summary>
-    /// Returns a function that applies the given styles to the trace's marker object.
+    /// Returns a function that applies the given styles to the trace's marker object. Overwrites attributes with the same name that are already set.
     /// </summary>
     /// <param name="AutoColorScale">Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `marker.colorscale`. Has an effect only if in `marker.color`is set to a numerical array. In case `colorscale` is unspecified or `autocolorscale` is true, the default palette will be chosen according to whether numbers in the `color` array are all positive, all negative or mixed.</param>
     /// <param name="CAuto">Determines whether or not the color domain is computed with respect to the input data (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax` Has an effect only if in `marker.color`is set to a numerical array. Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.</param>
@@ -337,7 +414,7 @@ type TraceStyle() =
             trace |> Trace.setMarker (marker))
 
     /// <summary>
-    /// Returns a function that applies the given styles to the trace's line object.
+    /// Returns a function that applies the given styles to the trace's line object. Overwrites attributes with the same name that are already set.
     /// </summary>
     /// <param name="AutoColorScale">Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `line.colorscale`. Has an effect only if in `line.color`is set to a numerical array. In case `colorscale` is unspecified or `autocolorscale` is true, the default palette will be chosen according to whether numbers in the `color` array are all positive, all negative or mixed.</param>
     /// <param name="CAuto">Determines whether or not the color domain is computed with respect to the input data (here in `line.color`) or the bounds set in `line.cmin` and `line.cmax` Has an effect only if in `line.color`is set to a numerical array. Defaults to `false` when `line.cmin` and `line.cmax` are set by the user.</param>
@@ -409,7 +486,7 @@ type TraceStyle() =
             trace |> Trace.setLine (line))
 
     /// <summary>
-    /// Returns a function that applies the given styles to the trace's Error object for the x dimension.
+    /// Returns a function that applies the given styles to the trace's Error object for the x dimension. Overwrites attributes with the same name that are already set.
     /// </summary>
     /// <param name ="Visible">Determines whether or not this set of error bars is visible.</param>
     /// <param name ="Type">Determines the rule used to generate the error bars. If "constant`, the bar lengths are of a constant value. Set this constant in `value`. If "percent", the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If "sqrt", the bar lengths correspond to the square of the underlying data. If "data", the bar lengths are set with data set `array`.</param>
@@ -463,7 +540,7 @@ type TraceStyle() =
             trace |> Trace.setXError (xerror))
 
     /// <summary>
-    /// Returns a function that applies the given styles to the trace's Error object for the y dimension.
+    /// Returns a function that applies the given styles to the trace's Error object for the y dimension. Overwrites attributes with the same name that are already set.
     /// </summary>
     /// <param name ="Visible">Determines whether or not this set of error bars is visible.</param>
     /// <param name ="Type">Determines the rule used to generate the error bars. If "constant`, the bar lengths are of a constant value. Set this constant in `value`. If "percent", the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If "sqrt", the bar lengths correspond to the square of the underlying data. If "data", the bar lengths are set with data set `array`.</param>

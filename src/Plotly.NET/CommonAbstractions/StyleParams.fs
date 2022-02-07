@@ -3145,7 +3145,7 @@ module StyleParam =
 
         static member toString =
             function
-            | Toggle -> "toggleitem"
+            | ToggleItem -> "toggleitem"
             | ToggleGroup -> "togglegroup"
 
         static member convert = TraceGroupClickOptions.toString >> box

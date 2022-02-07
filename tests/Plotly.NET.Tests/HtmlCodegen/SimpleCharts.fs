@@ -517,11 +517,7 @@ let heatmapStyledChart =
     )
     |> Chart.withSize(700.,500.)
     |> Chart.withMarginSize(Left=200.)
-    |> Chart.withColorBarStyle(
-        Title.init(
-            Text = "Im the Colorbar"
-        )
-    )
+    |> Chart.withColorBarStyle(TitleText = "Im the Colorbar")
 
 let annotatedheatmap = 
     Chart.AnnotatedHeatmap(

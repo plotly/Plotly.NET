@@ -116,32 +116,29 @@ type Chart =
     /// Sets the marker for the chart's trace(s).
     /// </summary>
     /// <param name="marker">The new marker for the chart's trace(s)</param>
+    /// <param name="Combine">Wether or not to combine the objects if there is already a marker (default is false)</param>
     [<CompiledName("SetMarker")>]
     static member setMarker(marker: Marker, ?Combine: bool) =
         let combine = defaultArg Combine false
 
         (fun (ch: GenericChart) ->
             if combine then
-                ch
-                |> GenericChart.mapTrace
-                    (fun t ->
-                        let currentMarker = Trace.getMarker t
-                        t |> Trace.setMarker ((DynObj.combine currentMarker marker) :?> Marker)
-
-                        )
+                ch |> GenericChart.mapTrace (Trace.updateMarker marker)
             else
-                ch |> mapTrace (Trace.setMarker (marker)))
+                ch |> GenericChart.mapTrace (Trace.setMarker marker))
 
     /// <summary>
     /// Sets the marker for the chart's trace(s).
+    ///
+    /// If there is already a marker set, the objects are combined.
     /// </summary>
     /// <param name="marker">The new marker for the chart's trace(s)</param>
     [<CompiledName("WithMarker")>]
     static member withMarker(marker: Marker) =
-        (fun (ch: GenericChart) -> ch |> mapTrace (Trace.setMarker (marker)))
+        (fun (ch: GenericChart) -> ch |> Chart.setMarker (marker, true))
 
     /// <summary>
-    /// Applies the given styles to the marker object(s) of the chart's trace(s).
+    /// Applies the given styles to the marker object(s) of the chart's trace(s). Overwrites attributes with the same name that are already set.
     /// </summary>
     /// <param name="AutoColorScale">Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `marker.colorscale`. Has an effect only if in `marker.color`is set to a numerical array. In case `colorscale` is unspecified or `autocolorscale` is true, the default palette will be chosen according to whether numbers in the `color` array are all positive, all negative or mixed.</param>
     /// <param name="CAuto">Determines whether or not the color domain is computed with respect to the input data (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax` Has an effect only if in `marker.color`is set to a numerical array. Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.</param>
@@ -244,13 +241,30 @@ type Chart =
     /// <summary>
     /// Sets the line for the chart's trace(s).
     /// </summary>
+    /// <param name="line">The new Line for the chart's trace(s)</param>
+    /// <param name="Combine">Wether or not to combine the objects if there is already a Line (default is false)</param>
+    [<CompiledName("SetLine")>]
+    static member setLine(line: Line, ?Combine: bool) =
+        let combine = defaultArg Combine false
+
+        (fun (ch: GenericChart) ->
+            if combine then
+                ch |> GenericChart.mapTrace (Trace.updateLine line)
+            else
+                ch |> GenericChart.mapTrace (Trace.setLine line))
+
+    /// <summary>
+    /// Sets the line for the chart's trace(s).
+    ///
+    /// If there is already a Line set, the objects are combined.
+    /// </summary>
     /// <param name="line">The new line for the chart's trace(s)</param>
     [<CompiledName("WithLine")>]
     static member withLine(line: Line) =
-        (fun (ch: GenericChart) -> ch |> mapTrace (Trace.setLine (line)))
+        (fun (ch: GenericChart) -> ch |> Chart.setLine (line, true))
 
     /// <summary>
-    /// Applies the given styles to the line object(s) of the chart's trace(s).
+    /// Applies the given styles to the line object(s) of the chart's trace(s). Overwrites attributes with the same name that are already set.
     /// </summary>
     /// <param name="AutoColorScale">Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `line.colorscale`. Has an effect only if in `line.color`is set to a numerical array. In case `colorscale` is unspecified or `autocolorscale` is true, the default palette will be chosen according to whether numbers in the `color` array are all positive, all negative or mixed.</param>
     /// <param name="CAuto">Determines whether or not the color domain is computed with respect to the input data (here in `line.color`) or the bounds set in `line.cmin` and `line.cmax` Has an effect only if in `line.color`is set to a numerical array. Defaults to `false` when `line.cmin` and `line.cmax` are set by the user.</param>
@@ -321,15 +335,32 @@ type Chart =
             )
 
     /// <summary>
+    /// Sets the error for the x dimension for the chart's trace(s).
+    /// </summary>
+    /// <param name="xError">The new Error in the x dimension for the chart's trace(s)</param>
+    /// <param name="Combine">Wether or not to combine the objects if there is already an Error object set (default is false)</param>
+    [<CompiledName("SetXError")>]
+    static member setXError(xError: Error, ?Combine: bool) =
+        let combine = defaultArg Combine false
+
+        (fun (ch: GenericChart) ->
+            if combine then
+                ch |> GenericChart.mapTrace (Trace.updateXError xError)
+            else
+                ch |> GenericChart.mapTrace (Trace.setXError xError))
+
+    /// <summary>
     /// Sets the error in the x dimension for the chart's trace(s).
+    ///
+    /// If there is already an error set, the objects are combined.
     /// </summary>
     /// <param name="xError">The new error for the chart's trace(s)</param>
     [<CompiledName("WithXError")>]
     static member withXError(xError: Error) =
-        (fun (ch: GenericChart) -> ch |> mapTrace (Trace.setXError (xError)))
+        (fun (ch: GenericChart) -> ch |> Chart.setXError (xError, true))
 
     /// <summary>
-    /// Applies the given styles to the error object(s) in the x dimension of the chart's trace(s).
+    /// Applies the given styles to the error object(s) in the x dimension of the chart's trace(s). Overwrites attributes with the same name that are already set.
     /// </summary>
     /// <param name ="Visible">Determines whether or not this set of error bars is visible.</param>
     /// <param name ="Type">Determines the rule used to generate the error bars. If "constant`, the bar lengths are of a constant value. Set this constant in `value`. If "percent", the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If "sqrt", the bar lengths correspond to the square of the underlying data. If "data", the bar lengths are set with data set `array`.</param>
@@ -382,15 +413,32 @@ type Chart =
             )
 
     /// <summary>
+    /// Sets the error for the y dimension for the chart's trace(s).
+    /// </summary>
+    /// <param name="yError">The new Error in the x dimension for the chart's trace(s)</param>
+    /// <param name="Combine">Wether or not to combine the objects if there is already an Error object set (default is false)</param>
+    [<CompiledName("SetYError")>]
+    static member setYError(yError: Error, ?Combine: bool) =
+        let combine = defaultArg Combine false
+
+        (fun (ch: GenericChart) ->
+            if combine then
+                ch |> GenericChart.mapTrace (Trace.updateYError yError)
+            else
+                ch |> GenericChart.mapTrace (Trace.setYError yError))
+
+    /// <summary>
     /// Sets the error in the y dimension for the chart's trace(s).
+    ///
+    /// If there is already an error set, the objects are combined.
     /// </summary>
     /// <param name="yError">The new error for the chart's trace(s)</param>
     [<CompiledName("WithYError")>]
     static member withYError(yError: Error) =
-        (fun (ch: GenericChart) -> ch |> mapTrace (Trace.setYError (yError)))
+        (fun (ch: GenericChart) -> ch |> Chart.setYError (yError, true))
 
     /// <summary>
-    /// Applies the given styles to the error object(s) in the y dimension of the chart's trace(s).
+    /// Applies the given styles to the error object(s) in the y dimension of the chart's trace(s). Overwrites attributes with the same name that are already set.
     /// </summary>
     /// <param name ="Visible">Determines whether or not this set of error bars is visible.</param>
     /// <param name ="Type">Determines the rule used to generate the error bars. If "constant`, the bar lengths are of a constant value. Set this constant in `value`. If "percent", the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If "sqrt", the bar lengths correspond to the square of the underlying data. If "data", the bar lengths are set with data set `array`.</param>
@@ -443,15 +491,32 @@ type Chart =
             )
 
     /// <summary>
+    /// Sets the error for the z dimension for the chart's trace(s).
+    /// </summary>
+    /// <param name="zError">The new Error in the x dimension for the chart's trace(s)</param>
+    /// <param name="Combine">Wether or not to combine the objects if there is already an Error object set (default is false)</param>
+    [<CompiledName("SetZError")>]
+    static member setZError(zError: Error, ?Combine: bool) =
+        let combine = defaultArg Combine false
+
+        (fun (ch: GenericChart) ->
+            if combine then
+                ch |> GenericChart.mapTrace (Trace.updateZError zError)
+            else
+                ch |> GenericChart.mapTrace (Trace.setZError zError))
+
+    /// <summary>
     /// Sets the error in the z dimension for the chart's trace(s).
+    ///
+    /// If there is already an error set, the objects are combined.
     /// </summary>
     /// <param name="zError">The new error for the chart's trace(s)</param>
     [<CompiledName("WithZError")>]
     static member withZError(zError: Error) =
-        (fun (ch: GenericChart) -> ch |> mapTrace (Trace.setZError (zError)))
+        (fun (ch: GenericChart) -> ch |> Chart.setZError (zError, true))
 
     /// <summary>
-    /// Applies the given styles to the error object(s) in the z dimension of the chart's trace(s).
+    /// Applies the given styles to the error object(s) in the z dimension of the chart's trace(s). Overwrites attributes with the same name that are already set.
     /// </summary>
     /// <param name ="Visible">Determines whether or not this set of error bars is visible.</param>
     /// <param name ="Type">Determines the rule used to generate the error bars. If "constant`, the bar lengths are of a constant value. Set this constant in `value`. If "percent", the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If "sqrt", the bar lengths correspond to the square of the underlying data. If "data", the bar lengths are set with data set `array`.</param>
@@ -503,27 +568,89 @@ type Chart =
                 )
             )
 
+    /// <summary>
+    /// Sets the ColorBar for the chart's trace(s).
+    /// </summary>
+    /// <param name="colorBar">The new ColorBar for the chart's trace(s)</param>
+    /// <param name="Combine">Wether or not to combine the objects if there is already a ColorBar object set (default is false)</param>
+    [<CompiledName("SetColorBar")>]
+    static member setColorBar(colorBar: ColorBar, ?Combine: bool) =
+        let combine = defaultArg Combine false
+
+        (fun (ch: GenericChart) ->
+            if combine then
+                ch |> GenericChart.mapTrace (Trace.updateColorBar colorBar)
+            else
+                ch |> GenericChart.mapTrace (Trace.setColorBar colorBar))
+
+    /// <summary>
+    /// Sets the ColorBar for the chart's trace(s).
+    ///
+    /// If there is already a ColorBar set, the objects are combined.
+    /// </summary>
+    /// <param name="colorbar">The new ColorBar for the chart's trace(s)</param>
     [<CompiledName("WithColorBar")>]
     static member withColorBar(colorbar: ColorBar) =
-        (fun (ch: GenericChart) -> ch |> GenericChart.mapTrace (Trace.setColorBar colorbar))
+        (fun (ch: GenericChart) -> ch |> Chart.setColorBar (colorbar, true))
 
-
-    [<CompiledName("withColorbar")>]
+    /// <summary>
+    /// Applies the given styles to the ColorBar object(s) of the chart's trace(s). Overwrites attributes with the same name that are already set.
+    /// </summary>
+    /// <param name="TitleText">Sets the text of the colorbar title.</param>
+    /// <param name="TitleFont">Sets the font of the colorbar title.</param>
+    /// <param name="TitleStandoff">Sets the standoff distance (in px) between the colorbar labels and the title text.</param>
+    /// <param name="Title">Sets the Title (use this for more finegrained control than the other title-associated arguments)</param>
+    /// <param name="Len">Sets the length of the color bar This measure excludes the padding of both ends. That is, the color bar length is this length minus the padding on both ends.</param>
+    /// <param name="LenMode">Determines whether this color bar's length (i.e. the measure in the color variation direction) is set in units of plot "fraction" or in "pixels. Use `len` to set the value.</param>
+    /// <param name="BGColor">Sets the color of padded area.</param>
+    /// <param name="BorderColor">Sets the axis line color.</param>
+    /// <param name="OutlineColor">Sets the axis line color.</param>
+    /// <param name="X">Sets the x position of the color bar (in plot fraction).</param>
+    /// <param name="XAnchor">Sets this color bar's horizontal position anchor. This anchor binds the `x` position to the "left", "center" or "right" of the color bar.</param>
+    /// <param name="XPad">Sets the amount of padding (in px) along the x direction.</param>
+    /// <param name="Y">Sets the y position of the color bar (in plot fraction).</param>
+    /// <param name="YAnchor">Sets this color bar's vertical position anchor This anchor binds the `y` position to the "top", "middle" or "bottom" of the color bar.</param>
+    /// <param name="YPad">Sets the amount of padding (in px) along the y direction.</param>
+    [<CompiledName("WithColorbarStyle")>]
     static member withColorBarStyle
         (
-            title,
-            [<Optional; DefaultParameterValue(null)>] ?Length,
-            [<Optional; DefaultParameterValue(null)>] ?OutlineColor,
-            [<Optional; DefaultParameterValue(null)>] ?BorderColor,
-            [<Optional; DefaultParameterValue(null)>] ?BGColor
+            [<Optional; DefaultParameterValue(null)>] ?TitleText: string,
+            [<Optional; DefaultParameterValue(null)>] ?TitleFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?TitleStandoff: int,
+            [<Optional; DefaultParameterValue(null)>] ?Title: Title,
+            [<Optional; DefaultParameterValue(null)>] ?Len: float,
+            [<Optional; DefaultParameterValue(null)>] ?LenMode: StyleParam.UnitMode,
+            [<Optional; DefaultParameterValue(null)>] ?BGColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?BorderColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?OutlineColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?X: float,
+            [<Optional; DefaultParameterValue(null)>] ?XAnchor: StyleParam.HorizontalAlign,
+            [<Optional; DefaultParameterValue(null)>] ?XPad: float,
+            [<Optional; DefaultParameterValue(null)>] ?Y: float,
+            [<Optional; DefaultParameterValue(null)>] ?YAnchor: StyleParam.VerticalAlign,
+            [<Optional; DefaultParameterValue(null)>] ?YPad: float
         ) =
+
+        let title =
+            Title
+            |> Option.defaultValue (Plotly.NET.Title())
+            |> Plotly.NET.Title.style (?Text = TitleText, ?Font = TitleFont, ?Standoff = TitleStandoff)
+
         let colorbar =
             ColorBar.init (
                 Title = title,
-                ?Len = Length,
-                ?OutlineColor = OutlineColor,
+                ?Len = Len,
+                ?LenMode = LenMode,
                 ?BGColor = BGColor,
-                ?BorderColor = BorderColor
+                ?BorderColor = BorderColor,
+                ?OutlineColor = OutlineColor,
+                ?X = X,
+                ?XAnchor = XAnchor,
+                ?XPad = XPad,
+                ?Y = Y,
+                ?YAnchor = YAnchor,
+                ?YPad = YPad
+
             )
 
         Chart.withColorBar (colorbar)
@@ -1099,9 +1226,7 @@ type Chart =
                 ?RangeSelector = RangeSelector,
                 ?BackgroundColor = BackgroundColor,
                 ?ShowBackground = ShowBackground
-
             )
-
         Chart.withYAxis (yaxis, ?Id = Id)
 
 
