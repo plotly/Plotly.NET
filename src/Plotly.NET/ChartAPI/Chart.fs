@@ -29,8 +29,8 @@ type Chart =
         |> GenericChart.mapLayout
             (fun l ->
                 l
-                |> Layout.addLinearAxis (StyleParam.SubPlotId.XAxis 1, hiddenAxis ())
-                |> Layout.addLinearAxis (StyleParam.SubPlotId.YAxis 1, hiddenAxis ()))
+                |> Layout.setLinearAxis (StyleParam.SubPlotId.XAxis 1, hiddenAxis ())
+                |> Layout.setLinearAxis (StyleParam.SubPlotId.YAxis 1, hiddenAxis ()))
 
     //==============================================================================================================
     //======================================== General Trace object styling ========================================
@@ -111,6 +111,26 @@ type Chart =
     [<CompiledName("WithColorAxisAnchor")>]
     static member withColorAxisAnchor(id: int) =
         fun (ch: GenericChart) -> ch |> mapTrace (Trace.setColorAxisAnchor id)
+
+    /// <summary>
+    /// Sets the marker for the chart's trace(s).
+    /// </summary>
+    /// <param name="marker">The new marker for the chart's trace(s)</param>
+    [<CompiledName("SetMarker")>]
+    static member setMarker(marker: Marker, ?Combine: bool) =
+        let combine = defaultArg Combine false
+
+        (fun (ch: GenericChart) ->
+            if combine then
+                ch
+                |> GenericChart.mapTrace
+                    (fun t ->
+                        let currentMarker = Trace.getMarker t
+                        t |> Trace.setMarker ((DynObj.combine currentMarker marker) :?> Marker)
+
+                        )
+            else
+                ch |> mapTrace (Trace.setMarker (marker)))
 
     /// <summary>
     /// Sets the marker for the chart's trace(s).
@@ -483,486 +503,9 @@ type Chart =
                 )
             )
 
-    //==============================================================================================================
-    //======================================= General Layout object styling ========================================
-    //==============================================================================================================
-
-    /// <summary>
-    /// Sets the given axis on the input chart's layout, optionally passing a target axis id.
-    /// </summary>
-    /// <param name="axis">The x axis to set on the chart's layout</param>
-    /// <param name="Id">The target axis id with which the axis should be set. Default is 1.</param>
-    /// <param name="SceneAxis">If set on a scene, define wether it is the x, y or z axis. default is x.</param>
-    /// <param name="Combine">Wether or not to combine the objects if there is already an axis set (default is false)</param>
-    [<CompiledName("SetAxis")>]
-    static member setAxis
-        (
-            axis: LinearAxis,
-            id: StyleParam.SubPlotId,
-            [<Optional; DefaultParameterValue(null)>] ?SceneAxis: StyleParam.SubPlotId,
-            [<Optional; DefaultParameterValue(null)>] ?Combine: bool
-        ) =
-
-        fun (ch: GenericChart) ->
-
-            let combine = defaultArg Combine false
-
-            match id with
-            // x and y axes for 2d cartesion plots are set on the layout directly
-            | StyleParam.SubPlotId.XAxis _
-            | StyleParam.SubPlotId.YAxis _ ->
-                let layout = GenericChart.getLayout ch
-
-                if combine then
-                    GenericChart.setLayout (layout |> Layout.updateLinearAxisById (id, axis = axis)) ch
-                else
-                    GenericChart.setLayout (layout |> Layout.addLinearAxis (id, axis = axis)) ch
-
-            // x, y, and z axes for 3d cartesion plots are set on the scene object on the layout.
-            | StyleParam.SubPlotId.Scene _ ->
-
-                // we need to know which axis to set on the scene
-                let sceneAxisId =
-                    defaultArg SceneAxis (StyleParam.SubPlotId.XAxis 1)
-
-                let layout = GenericChart.getLayout ch
-
-                let scene =
-                    layout |> Layout.tryGetSceneById (id) |> Option.defaultValue (Scene.init ())
-
-                if combine then
-                    let currentAxis =
-                        match sceneAxisId with
-                        | StyleParam.SubPlotId.XAxis _ -> scene |> Scene.getXAxis
-                        | StyleParam.SubPlotId.YAxis _ -> scene |> Scene.getYAxis
-                        | StyleParam.SubPlotId.ZAxis _ -> scene |> Scene.getZAxis
-                        | _ -> failwith "invalid scene axis id"
-
-                    let updatedAxis = DynObj.combine currentAxis axis
-
-                    updatedAxis |> DynObj.setValue scene (sceneAxisId |> StyleParam.SubPlotId.toString)
-
-                    let updatedLayout =
-                        layout |> Layout.updateSceneById (id, scene)
-
-                    GenericChart.addLayout updatedLayout ch
-                else
-                    let updatedScene =
-                        layout
-                        |> Layout.tryGetSceneById (id)
-                        |> Option.defaultValue (Scene.init ())
-                        |> fun s ->
-                            match sceneAxisId with
-                            | StyleParam.SubPlotId.XAxis _ -> s |> Scene.setXAxis axis
-                            | StyleParam.SubPlotId.YAxis _ -> s |> Scene.setYAxis axis
-                            | StyleParam.SubPlotId.ZAxis _ -> s |> Scene.setZAxis axis
-                            | _ -> failwith "invalid scene axis id"
-
-
-                    let updatedLayout =
-                        layout |> Layout.updateSceneById (id, updatedScene)
-
-                    GenericChart.addLayout updatedLayout ch
-
-            | _ -> failwith $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting a xaxis"
-
-    /// <summary>
-    /// Sets the given x axis on the input chart's layout, optionally passing a target axis id.
-    ///
-    /// If there is already an axis set at the given id, the axis objects are combined.
-    /// </summary>
-    /// <param name="xAxis">The x axis to set on the chart's layout</param>
-    /// <param name="Id">The target axis id with which the axis should be set. Default is 1.</param>
-    [<CompiledName("WithXAxis")>]
-    static member withXAxis(xAxis: LinearAxis, [<Optional; DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId) =
-        let id =
-            defaultArg Id (StyleParam.SubPlotId.XAxis 1)
-
-        fun (ch: GenericChart) ->
-            ch |> Chart.setAxis (xAxis, id, SceneAxis = StyleParam.SubPlotId.XAxis 1, Combine = true)
-
-    /// <summary>
-    /// Sets the given x axis styles on the input chart's layout.
-    ///
-    /// If there is already an axis set at the given id, the styles are applied to it. If there is no axis present, a new LinearAxis object with the given styles will be set.
-    /// </summary>
-    /// <param name="TitleText">Sets the text of the axis title.</param>
-    /// <param name="TitleFont">Sets the text of the axis title.</param>
-    /// <param name="TitleStandoff">Sets the standoff distance (in px) between the axis labels and the title text.</param>
-    /// <param name="Title">Sets the Title (use this for more finegrained control than the other title-associated arguments)</param>
-    /// <param name="Color">Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors.</param>
-    /// <param name="AxisType">Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.</param>
-    /// <param name="MinMax">Tuple of (Min*Max value). Sets the range of this axis (the axis will go from Min to Max). If the axis `type` is "log", then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2).</param>
-    /// <param name="Mirror">Determines if and how the axis lines or/and ticks are mirrored to the opposite side of the plotting area.</param>
-    /// <param name="ShowSpikes">Determines whether or not spikes (aka droplines) are drawn for this axis.</param>
-    /// <param name="SpikeColor">Sets the spike color. If not set, will use the series color</param>
-    /// <param name="SpikeThickness">Sets the width (in px) of the zero line.</param>
-    /// <param name="ShowLine">Determines whether or not a line bounding this axis is drawn.</param>
-    /// <param name="LineColor">Sets the axis line color.</param>
-    /// <param name="ShowGrid">Determines whether or not grid lines are drawn. If "true", the grid lines are drawn at every tick mark.</param>
-    /// <param name="GridColor">Sets the color of the grid lines.</param>
-    /// <param name="ZeroLine">Determines whether or not a line is drawn at along the 0 value of this axis. If "true", the zero line is drawn on top of the grid lines.</param>
-    /// <param name="ZeroLineColor">Sets the line color of the zero line.</param>
-    /// <param name="Anchor">If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to "free", this axis' position is determined by `position`.</param>
-    /// <param name="Side">Determines whether a x (y) axis is positioned at the "bottom" ("left") or "top" ("right") of the plotting area.</param>
-    /// <param name="Overlaying">If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter axis, with traces and axes visible for both axes. If "false", this axis does not overlay any same-letter axes. In this case, for axes with overlapping domains only the highest-numbered axis will be visible.</param>
-    /// <param name="Domain">Tuple of (X*Y fractions). Sets the domain of this axis (in plot fraction).</param>
-    /// <param name="Position">Sets the position of this axis in the plotting space (in normalized coordinates). Only has an effect if `anchor` is set to "free".</param>
-    /// <param name="CategoryOrder">Specifies the ordering logic for the case of categorical variables. By default, plotly uses "trace", which specifies the order that is present in the data supplied. Set `categoryorder` to "category ascending" or "category descending" if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to "array" to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the "trace" mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to "total ascending" or "total descending" if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.</param>
-    /// <param name="CategoryArray">Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to "array". Used with `categoryorder`.</param>
-    /// <param name="RangeSlider">Sets a range slider for this axis</param>
-    /// <param name="RangeSelector">Sets a range selector for this axis. This object contains toggable presets for the rangeslider.</param>
-    /// <param name="BackgroundColor">Sets the background color of this axis' wall. (Only has an effect on 3D scenes)</param>
-    /// <param name="ShowBackground">Sets whether or not this axis' wall has a background color. (Only has an effect on 3D scenes)</param>
-    /// <param name="Id">The target axis id on which the styles should be applied. Default is 1.</param>
-    [<CompiledName("WithXAxisStyle")>]
-    static member withXAxisStyle
-        (
-            [<Optional; DefaultParameterValue(null)>] ?TitleText: string,
-            [<Optional; DefaultParameterValue(null)>] ?TitleFont: Font,
-            [<Optional; DefaultParameterValue(null)>] ?TitleStandoff: int,
-            [<Optional; DefaultParameterValue(null)>] ?Title: Title,
-            [<Optional; DefaultParameterValue(null)>] ?Color: Color,
-            [<Optional; DefaultParameterValue(null)>] ?AxisType: StyleParam.AxisType,
-            [<Optional; DefaultParameterValue(null)>] ?MinMax: #IConvertible * #IConvertible,
-            [<Optional; DefaultParameterValue(null)>] ?Mirror: StyleParam.Mirror,
-            [<Optional; DefaultParameterValue(null)>] ?ShowSpikes: bool,
-            [<Optional; DefaultParameterValue(null)>] ?SpikeColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?SpikeThickness: int,
-            [<Optional; DefaultParameterValue(null)>] ?ShowLine: bool,
-            [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?ShowGrid: bool,
-            [<Optional; DefaultParameterValue(null)>] ?GridColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?ZeroLine: bool,
-            [<Optional; DefaultParameterValue(null)>] ?ZeroLineColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?Anchor: StyleParam.LinearAxisId,
-            [<Optional; DefaultParameterValue(null)>] ?Side: StyleParam.Side,
-            [<Optional; DefaultParameterValue(null)>] ?Overlaying: StyleParam.LinearAxisId,
-            [<Optional; DefaultParameterValue(null)>] ?Domain: float * float,
-            [<Optional; DefaultParameterValue(null)>] ?Position: float,
-            [<Optional; DefaultParameterValue(null)>] ?CategoryOrder: StyleParam.CategoryOrder,
-            [<Optional; DefaultParameterValue(null)>] ?CategoryArray: seq<#IConvertible>,
-            [<Optional; DefaultParameterValue(null)>] ?RangeSlider: RangeSlider,
-            [<Optional; DefaultParameterValue(null)>] ?RangeSelector: RangeSelector,
-            [<Optional; DefaultParameterValue(null)>] ?BackgroundColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?ShowBackground: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId
-        ) =
-        let range =
-            MinMax |> Option.map StyleParam.Range.ofMinMax
-
-        let domain =
-            Domain |> Option.map StyleParam.Range.ofMinMax
-
-        let title =
-            Title
-            |> Option.defaultValue (Plotly.NET.Title())
-            |> Plotly.NET.Title.style (?Text = TitleText, ?Font = TitleFont, ?Standoff = TitleStandoff)
-
-        let xaxis =
-            LinearAxis.init (
-                Title = title,
-                ?Range = range,
-                ?Domain = domain,
-                ?Color = Color,
-                ?AxisType = AxisType,
-                ?Mirror = Mirror,
-                ?ShowSpikes = ShowSpikes,
-                ?SpikeColor = SpikeColor,
-                ?SpikeThickness = SpikeThickness,
-                ?ShowLine = ShowLine,
-                ?LineColor = LineColor,
-                ?ShowGrid = ShowGrid,
-                ?GridColor = GridColor,
-                ?ZeroLine = ZeroLine,
-                ?ZeroLineColor = ZeroLineColor,
-                ?Anchor = Anchor,
-                ?Side = Side,
-                ?Overlaying = Overlaying,
-                ?Position = Position,
-                ?CategoryOrder = CategoryOrder,
-                ?CategoryArray = CategoryArray,
-                ?RangeSlider = RangeSlider,
-                ?RangeSelector = RangeSelector,
-                ?BackgroundColor = BackgroundColor,
-                ?ShowBackground = ShowBackground
-
-            )
-
-        Chart.withXAxis (xaxis, ?Id = Id)
-
-    [<Obsolete("Use withXAxisRangeSlider instead")>]
-    [<CompiledName("WithX_AxisRangeSlider")>]
-    static member withX_AxisRangeSlider(rangeSlider: RangeSlider, [<Optional; DefaultParameterValue(null)>] ?Id) =
-        Chart.withXAxisRangeSlider (rangeSlider, ?Id = Id)
-
-    /// Sets the range slider for the xAxis
-    [<CompiledName("WithXAxisRangeSlider")>]
-    static member withXAxisRangeSlider(rangeSlider: RangeSlider, [<Optional; DefaultParameterValue(null)>] ?Id) =
-        let xaxis =
-            LinearAxis.init (RangeSlider = rangeSlider)
-
-        Chart.withXAxis (xaxis, ?Id = Id)
-
-    /// <summary>
-    /// Sets the given y axis on the input chart's layout, optionally passing a target axis id.
-    ///
-    /// If there is already an axis set at the given id, the axis objects are combined.
-    /// </summary>
-    /// <param name="yAxis">The y axis to set on the chart's layout</param>
-    /// <param name="Id">The target axis id with which the axis should be set. Default is 1.</param>
-    [<CompiledName("WithYAxis")>]
-    static member withYAxis(yAxis: LinearAxis, [<Optional; DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId) =
-        let id =
-            defaultArg Id (StyleParam.SubPlotId.YAxis 1)
-
-        fun (ch: GenericChart) ->
-            ch |> Chart.setAxis (yAxis, id, SceneAxis = StyleParam.SubPlotId.YAxis 1, Combine = true)
-
-    /// <summary>
-    /// Sets the given y axis styles on the input chart's layout.
-    ///
-    /// If there is already an axis set at the given id, the styles are applied to it. If there is no axis present, a new LinearAxis object with the given styles will be set.
-    /// </summary>
-    /// <param name="TitleText">Sets the text of the axis title.</param>
-    /// <param name="TitleFont">Sets the text of the axis title.</param>
-    /// <param name="TitleStandoff">Sets the standoff distance (in px) between the axis labels and the title text.</param>
-    /// <param name="Title">Sets the Title (use this for more finegrained control than the other title-associated arguments)</param>
-    /// <param name="Color">Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors.</param>
-    /// <param name="AxisType">Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.</param>
-    /// <param name="MinMax">Tuple of (Min*Max value). Sets the range of this axis (the axis will go from Min to Max). If the axis `type` is "log", then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2).</param>
-    /// <param name="Mirror">Determines if and how the axis lines or/and ticks are mirrored to the opposite side of the plotting area.</param>
-    /// <param name="ShowSpikes">Determines whether or not spikes (aka droplines) are drawn for this axis.</param>
-    /// <param name="SpikeColor">Sets the spike color. If not set, will use the series color</param>
-    /// <param name="SpikeThickness">Sets the width (in px) of the zero line.</param>
-    /// <param name="ShowLine">Determines whether or not a line bounding this axis is drawn.</param>
-    /// <param name="LineColor">Sets the axis line color.</param>
-    /// <param name="ShowGrid">Determines whether or not grid lines are drawn. If "true", the grid lines are drawn at every tick mark.</param>
-    /// <param name="GridColor">Sets the color of the grid lines.</param>
-    /// <param name="ZeroLine">Determines whether or not a line is drawn at along the 0 value of this axis. If "true", the zero line is drawn on top of the grid lines.</param>
-    /// <param name="ZeroLineColor">Sets the line color of the zero line.</param>
-    /// <param name="Anchor">If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to "free", this axis' position is determined by `position`.</param>
-    /// <param name="Side">Determines whether a x (y) axis is positioned at the "bottom" ("left") or "top" ("right") of the plotting area.</param>
-    /// <param name="Overlaying">If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter axis, with traces and axes visible for both axes. If "false", this axis does not overlay any same-letter axes. In this case, for axes with overlapping domains only the highest-numbered axis will be visible.</param>
-    /// <param name="Domain">Tuple of (X*Y fractions). Sets the domain of this axis (in plot fraction).</param>
-    /// <param name="Position">Sets the position of this axis in the plotting space (in normalized coordinates). Only has an effect if `anchor` is set to "free".</param>
-    /// <param name="CategoryOrder">Specifies the ordering logic for the case of categorical variables. By default, plotly uses "trace", which specifies the order that is present in the data supplied. Set `categoryorder` to "category ascending" or "category descending" if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to "array" to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the "trace" mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to "total ascending" or "total descending" if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.</param>
-    /// <param name="CategoryArray">Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to "array". Used with `categoryorder`.</param>
-    /// <param name="RangeSlider">Sets a range slider for this axis</param>
-    /// <param name="RangeSelector">Sets a range selector for this axis. This object contains toggable presets for the rangeslider.</param>
-    /// <param name="BackgroundColor">Sets the background color of this axis' wall. (Only has an effect on 3D scenes)</param>
-    /// <param name="ShowBackground">Sets whether or not this axis' wall has a background color. (Only has an effect on 3D scenes)</param>
-    /// <param name="Id">The target axis id on which the styles should be applied. Default is 1.</param>
-    [<CompiledName("WithYAxisStyle")>]
-    static member withYAxisStyle
-        (
-            [<Optional; DefaultParameterValue(null)>] ?TitleText: string,
-            [<Optional; DefaultParameterValue(null)>] ?TitleFont: Font,
-            [<Optional; DefaultParameterValue(null)>] ?TitleStandoff: int,
-            [<Optional; DefaultParameterValue(null)>] ?Title: Title,
-            [<Optional; DefaultParameterValue(null)>] ?Color: Color,
-            [<Optional; DefaultParameterValue(null)>] ?AxisType: StyleParam.AxisType,
-            [<Optional; DefaultParameterValue(null)>] ?MinMax: #IConvertible * #IConvertible,
-            [<Optional; DefaultParameterValue(null)>] ?Mirror: StyleParam.Mirror,
-            [<Optional; DefaultParameterValue(null)>] ?ShowSpikes: bool,
-            [<Optional; DefaultParameterValue(null)>] ?SpikeColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?SpikeThickness: int,
-            [<Optional; DefaultParameterValue(null)>] ?ShowLine: bool,
-            [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?ShowGrid: bool,
-            [<Optional; DefaultParameterValue(null)>] ?GridColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?ZeroLine: bool,
-            [<Optional; DefaultParameterValue(null)>] ?ZeroLineColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?Anchor: StyleParam.LinearAxisId,
-            [<Optional; DefaultParameterValue(null)>] ?Side: StyleParam.Side,
-            [<Optional; DefaultParameterValue(null)>] ?Overlaying: StyleParam.LinearAxisId,
-            [<Optional; DefaultParameterValue(null)>] ?Domain: float * float,
-            [<Optional; DefaultParameterValue(null)>] ?Position: float,
-            [<Optional; DefaultParameterValue(null)>] ?CategoryOrder: StyleParam.CategoryOrder,
-            [<Optional; DefaultParameterValue(null)>] ?CategoryArray: seq<#IConvertible>,
-            [<Optional; DefaultParameterValue(null)>] ?RangeSlider: RangeSlider,
-            [<Optional; DefaultParameterValue(null)>] ?RangeSelector: RangeSelector,
-            [<Optional; DefaultParameterValue(null)>] ?BackgroundColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?ShowBackground: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId
-        ) =
-        let range =
-            MinMax |> Option.map StyleParam.Range.ofMinMax
-
-        let domain =
-            Domain |> Option.map StyleParam.Range.ofMinMax
-
-        let title =
-            Title
-            |> Option.defaultValue (Plotly.NET.Title())
-            |> Plotly.NET.Title.style (?Text = TitleText, ?Font = TitleFont, ?Standoff = TitleStandoff)
-
-        let yaxis =
-            LinearAxis.init (
-                Title = title,
-                ?Range = range,
-                ?Domain = domain,
-                ?Color = Color,
-                ?AxisType = AxisType,
-                ?Mirror = Mirror,
-                ?ShowSpikes = ShowSpikes,
-                ?SpikeColor = SpikeColor,
-                ?SpikeThickness = SpikeThickness,
-                ?ShowLine = ShowLine,
-                ?LineColor = LineColor,
-                ?ShowGrid = ShowGrid,
-                ?GridColor = GridColor,
-                ?ZeroLine = ZeroLine,
-                ?ZeroLineColor = ZeroLineColor,
-                ?Anchor = Anchor,
-                ?Side = Side,
-                ?Overlaying = Overlaying,
-                ?Position = Position,
-                ?CategoryOrder = CategoryOrder,
-                ?CategoryArray = CategoryArray,
-                ?RangeSlider = RangeSlider,
-                ?RangeSelector = RangeSelector,
-                ?BackgroundColor = BackgroundColor,
-                ?ShowBackground = ShowBackground
-
-            )
-
-        Chart.withYAxis (yaxis, ?Id = Id)
-
-
-    /// <summary>
-    /// Sets the given z axis on the input chart's scene, optionally passing a scene axis id.
-    ///
-    /// If there is already an axis set at the given id, the axis objects are combined.
-    /// </summary>
-    /// <param name="zAxis">The z axis to set on the chart's layout</param>
-    /// <param name="Id">The target scene id on which the axis should be set. Default is 1.</param>
-    [<CompiledName("WithZAxis")>]
-    static member withZAxis(zAxis: LinearAxis, [<Optional; DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId) =
-        let id =
-            defaultArg Id (StyleParam.SubPlotId.Scene 1)
-
-        fun (ch: GenericChart) ->
-            ch |> Chart.setAxis (zAxis, id, SceneAxis = StyleParam.SubPlotId.ZAxis, Combine = true)
-
-    /// <summary>
-    /// Sets the given z axis styles on the input chart's scene.
-    ///
-    /// If there is already an axis set at the given id, the styles are applied to it. If there is no axis present, a new LinearAxis object with the given styles will be set.
-    /// </summary>
-    /// <param name="TitleText">Sets the text of the axis title.</param>
-    /// <param name="TitleFont">Sets the text of the axis title.</param>
-    /// <param name="TitleStandoff">Sets the standoff distance (in px) between the axis labels and the title text.</param>
-    /// <param name="Title">Sets the Title (use this for more finegrained control than the other title-associated arguments)</param>
-    /// <param name="Color">Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors.</param>
-    /// <param name="AxisType">Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.</param>
-    /// <param name="MinMax">Tuple of (Min*Max value). Sets the range of this axis (the axis will go from Min to Max). If the axis `type` is "log", then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2).</param>
-    /// <param name="Mirror">Determines if and how the axis lines or/and ticks are mirrored to the opposite side of the plotting area.</param>
-    /// <param name="ShowSpikes">Determines whether or not spikes (aka droplines) are drawn for this axis.</param>
-    /// <param name="SpikeColor">Sets the spike color. If not set, will use the series color</param>
-    /// <param name="SpikeThickness">Sets the width (in px) of the zero line.</param>
-    /// <param name="ShowLine">Determines whether or not a line bounding this axis is drawn.</param>
-    /// <param name="LineColor">Sets the axis line color.</param>
-    /// <param name="ShowGrid">Determines whether or not grid lines are drawn. If "true", the grid lines are drawn at every tick mark.</param>
-    /// <param name="GridColor">Sets the color of the grid lines.</param>
-    /// <param name="ZeroLine">Determines whether or not a line is drawn at along the 0 value of this axis. If "true", the zero line is drawn on top of the grid lines.</param>
-    /// <param name="ZeroLineColor">Sets the line color of the zero line.</param>
-    /// <param name="Anchor">If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to "free", this axis' position is determined by `position`.</param>
-    /// <param name="Side">Determines whether a x (y) axis is positioned at the "bottom" ("left") or "top" ("right") of the plotting area.</param>
-    /// <param name="Overlaying">If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter axis, with traces and axes visible for both axes. If "false", this axis does not overlay any same-letter axes. In this case, for axes with overlapping domains only the highest-numbered axis will be visible.</param>
-    /// <param name="Domain">Tuple of (X*Y fractions). Sets the domain of this axis (in plot fraction).</param>
-    /// <param name="Position">Sets the position of this axis in the plotting space (in normalized coordinates). Only has an effect if `anchor` is set to "free".</param>
-    /// <param name="CategoryOrder">Specifies the ordering logic for the case of categorical variables. By default, plotly uses "trace", which specifies the order that is present in the data supplied. Set `categoryorder` to "category ascending" or "category descending" if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to "array" to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the "trace" mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to "total ascending" or "total descending" if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.</param>
-    /// <param name="CategoryArray">Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to "array". Used with `categoryorder`.</param>
-    /// <param name="RangeSlider">Sets a range slider for this axis</param>
-    /// <param name="RangeSelector">Sets a range selector for this axis. This object contains toggable presets for the rangeslider.</param>
-    /// <param name="BackgroundColor">Sets the background color of this axis' wall. (Only has an effect on 3D scenes)</param>
-    /// <param name="ShowBackground">Sets whether or not this axis' wall has a background color. (Only has an effect on 3D scenes)</param>
-    /// <param name="Id">The target scene id on which the axis styles should be applied. Default is 1.</param>
-    [<CompiledName("WithZAxisStyle")>]
-    static member withZAxisStyle
-        (
-            [<Optional; DefaultParameterValue(null)>] ?TitleText: string,
-            [<Optional; DefaultParameterValue(null)>] ?TitleFont: Font,
-            [<Optional; DefaultParameterValue(null)>] ?TitleStandoff: int,
-            [<Optional; DefaultParameterValue(null)>] ?Title: Title,
-            [<Optional; DefaultParameterValue(null)>] ?Color: Color,
-            [<Optional; DefaultParameterValue(null)>] ?AxisType: StyleParam.AxisType,
-            [<Optional; DefaultParameterValue(null)>] ?MinMax: #IConvertible * #IConvertible,
-            [<Optional; DefaultParameterValue(null)>] ?Mirror: StyleParam.Mirror,
-            [<Optional; DefaultParameterValue(null)>] ?ShowSpikes: bool,
-            [<Optional; DefaultParameterValue(null)>] ?SpikeColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?SpikeThickness: int,
-            [<Optional; DefaultParameterValue(null)>] ?ShowLine: bool,
-            [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?ShowGrid: bool,
-            [<Optional; DefaultParameterValue(null)>] ?GridColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?ZeroLine: bool,
-            [<Optional; DefaultParameterValue(null)>] ?ZeroLineColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?Anchor: StyleParam.LinearAxisId,
-            [<Optional; DefaultParameterValue(null)>] ?Side: StyleParam.Side,
-            [<Optional; DefaultParameterValue(null)>] ?Overlaying: StyleParam.LinearAxisId,
-            [<Optional; DefaultParameterValue(null)>] ?Domain: float * float,
-            [<Optional; DefaultParameterValue(null)>] ?Position: float,
-            [<Optional; DefaultParameterValue(null)>] ?CategoryOrder: StyleParam.CategoryOrder,
-            [<Optional; DefaultParameterValue(null)>] ?CategoryArray: seq<#IConvertible>,
-            [<Optional; DefaultParameterValue(null)>] ?RangeSlider: RangeSlider,
-            [<Optional; DefaultParameterValue(null)>] ?RangeSelector: RangeSelector,
-            [<Optional; DefaultParameterValue(null)>] ?BackgroundColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?ShowBackground: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId
-        ) =
-        let range =
-            MinMax |> Option.map StyleParam.Range.ofMinMax
-
-        let domain =
-            Domain |> Option.map StyleParam.Range.ofMinMax
-
-        let title =
-            Title
-            |> Option.defaultValue (Plotly.NET.Title())
-            |> Plotly.NET.Title.style (?Text = TitleText, ?Font = TitleFont, ?Standoff = TitleStandoff)
-
-        let yaxis =
-            LinearAxis.init (
-                Title = title,
-                ?Range = range,
-                ?Domain = domain,
-                ?Color = Color,
-                ?AxisType = AxisType,
-                ?Mirror = Mirror,
-                ?ShowSpikes = ShowSpikes,
-                ?SpikeColor = SpikeColor,
-                ?SpikeThickness = SpikeThickness,
-                ?ShowLine = ShowLine,
-                ?LineColor = LineColor,
-                ?ShowGrid = ShowGrid,
-                ?GridColor = GridColor,
-                ?ZeroLine = ZeroLine,
-                ?ZeroLineColor = ZeroLineColor,
-                ?Anchor = Anchor,
-                ?Side = Side,
-                ?Overlaying = Overlaying,
-                ?Position = Position,
-                ?CategoryOrder = CategoryOrder,
-                ?CategoryArray = CategoryArray,
-                ?RangeSlider = RangeSlider,
-                ?RangeSelector = RangeSelector,
-                ?BackgroundColor = BackgroundColor,
-                ?ShowBackground = ShowBackground
-
-            )
-
-        Chart.withZAxis (yaxis, ?Id = Id)
-
     [<CompiledName("WithColorBar")>]
     static member withColorBar(colorbar: ColorBar) =
-        (fun (ch: GenericChart) ->
-            ch
-            |> GenericChart.mapTrace
-                (fun t ->
-                    colorbar |> DynObj.setValue t "colorbar"
-                    t))
+        (fun (ch: GenericChart) -> ch |> GenericChart.mapTrace (Trace.setColorBar colorbar))
 
 
     [<CompiledName("withColorbar")>]
@@ -985,12 +528,91 @@ type Chart =
 
         Chart.withColorBar (colorbar)
 
-    // Set the Layout of a Chart
+    //==============================================================================================================
+    //======================================= General Layout object styling ========================================
+    //==============================================================================================================
+
+
+    /// <summary>
+    /// Sets the given layout on the input chart.
+    ///
+    /// If there is already an layout set at the given id, the axis objects are combined.
+    /// </summary>
     [<CompiledName("WithLayout")>]
     static member withLayout(layout: Layout) =
         (fun (ch: GenericChart) -> GenericChart.addLayout layout ch)
 
-    // Set the Layout style of a Chart
+    /// <summary>
+    /// Applies the given styles to the chart's Layout object. Overwrites attributes with the same name that are already set.
+    /// </summary>
+    /// <param name="Title">Sets the title of the layout.</param>
+    /// <param name="ShowLegend">Determines whether or not a legend is drawn. Default is `true` if there is a trace to show and any of these: a) Two or more traces would by default be shown in the legend. b) One pie trace is shown in the legend. c) One trace is explicitly given with `showlegend: true`.</param>
+    /// <param name="Legend">Sets the legend styles of the layout.</param>
+    /// <param name="Margin">Sets the margins around the layout.</param>
+    /// <param name="AutoSize">Determines whether or not a layout width or height that has been left undefined by the user is initialized on each relayout. Note that, regardless of this attribute, an undefined layout width or height is always initialized on the first call to plot.</param>
+    /// <param name="Width">Sets the plot's width (in px).</param>
+    /// <param name="Height">Sets the plot's height (in px).</param>
+    /// <param name="Font">Sets the global font. Note that fonts used in traces and other layout components inherit from the global font.</param>
+    /// <param name="UniformText">Determines how the font size for various text elements are uniformed between each trace type.</param>
+    /// <param name="Separators">Sets the decimal and thousand separators. For example, ". " puts a '.' before decimals and a space between thousands. In English locales, dflt is ".," but other locales may alter this default.</param>
+    /// <param name="PaperBGColor">Sets the background color of the paper where the graph is drawn.</param>
+    /// <param name="PlotBGColor">Sets the background color of the plotting area in-between x and y axes.</param>
+    /// <param name="AutoTypeNumbers">Using "strict" a numeric string in trace data is not converted to a number. Using "convert types" a numeric string in trace data may be treated as a number during automatic axis `type` detection. This is the default value; however it could be overridden for individual axes.</param>
+    /// <param name="Colorscale">Sets the default colorscales that are used by plots using autocolorscale.</param>
+    /// <param name="Colorway">Sets the default trace colors.</param>
+    /// <param name="ModeBar">Sets the modebar of the layout.</param>
+    /// <param name="HoverMode">Determines the mode of hover interactions. If "closest", a single hoverlabel will appear for the "closest" point within the `hoverdistance`. If "x" (or "y"), multiple hoverlabels will appear for multiple points at the "closest" x- (or y-) coordinate within the `hoverdistance`, with the caveat that no more than one hoverlabel will appear per trace. If "x unified" (or "y unified"), a single hoverlabel will appear multiple points at the closest x- (or y-) coordinate within the `hoverdistance` with the caveat that no more than one hoverlabel will appear per trace. In this mode, spikelines are enabled by default perpendicular to the specified axis. If false, hover interactions are disabled.</param>
+    /// <param name="ClickMode">Determines the mode of single click interactions. "event" is the default value and emits the `plotly_click` event. In addition this mode emits the `plotly_selected` event in drag modes "lasso" and "select", but with no event data attached (kept for compatibility reasons). The "select" flag enables selecting single data points via click. This mode also supports persistent selections, meaning that pressing Shift while clicking, adds to / subtracts from an existing selection. "select" with `hovermode`: "x" can be confusing, consider explicitly setting `hovermode`: "closest" when using this feature. Selection events are sent accordingly as long as "event" flag is set as well. When the "event" flag is missing, `plotly_click` and `plotly_selected` events are not fired.</param>
+    /// <param name="DragMode">Determines the mode of drag interactions. "select" and "lasso" apply only to scatter traces with markers or text. "orbit" and "turntable" apply only to 3D scenes.</param>
+    /// <param name="SelectDirection">When `dragmode` is set to "select", this limits the selection of the drag to horizontal, vertical or diagonal. "h" only allows horizontal selection, "v" only vertical, "d" only diagonal and "any" sets no limit.</param>
+    /// <param name="HoverDistance">Sets the default distance (in pixels) to look for data to add hover labels (-1 means no cutoff, 0 means no looking for data). This is only a real distance for hovering on point-like objects, like scatter points. For area-like objects (bars, scatter fills, etc) hovering is on inside the area and off outside, but these objects will not supersede hover on point-like objects in case of conflict.</param>
+    /// <param name="SpikeDistance">Sets the default distance (in pixels) to look for data to draw spikelines to (-1 means no cutoff, 0 means no looking for data). As with hoverdistance, distance does not apply to area-like objects. In addition, some objects can be hovered on but will not generate spikelines, such as scatter fills.</param>
+    /// <param name="Hoverlabel">Sets the style ov hover labels.</param>
+    /// <param name="Transition">Sets transition options used during Plotly.react updates.</param>
+    /// <param name="DataRevision">If provided, a changed value tells `Plotly.react` that one or more data arrays has changed. This way you can modify arrays in-place rather than making a complete new copy for an incremental change. If NOT provided, `Plotly.react` assumes that data arrays are being treated as immutable, thus any data array with a different identity from its predecessor contains new data.</param>
+    /// <param name="UIRevision">Used to allow user interactions with the plot to persist after `Plotly.react` calls that are unaware of these interactions. If `uirevision` is omitted, or if it is given and it changed from the previous `Plotly.react` call, the exact new figure is used. If `uirevision` is truthy and did NOT change, any attribute that has been affected by user interactions and did not receive a different value in the new figure will keep the interaction value. `layout.uirevision` attribute serves as the default for `uirevision` attributes in various sub-containers. For finer control you can set these sub-attributes directly. For example, if your app separately controls the data on the x and y axes you might set `xaxis.uirevision="time"` and `yaxis.uirevision="cost"`. Then if only the y data is changed, you can update `yaxis.uirevision="quantity"` and the y axis range will reset but the x axis range will retain any user-driven zoom.</param>
+    /// <param name="EditRevision">Controls persistence of user-driven changes in `editable: true` configuration, other than trace names and axis titles. Defaults to `layout.uirevision`.</param>
+    /// <param name="SelectRevision">Controls persistence of user-driven changes in `editable: true` configuration, other than trace names and axis titles. Defaults to `layout.uirevision`.</param>
+    /// <param name="Template">Default attributes to be applied to the plot. Templates can be created from existing plots using `Plotly.makeTemplate`, or created manually. They should be objects with format: `{layout: layoutTemplate, data: {[type]: [traceTemplate, ...]}, ...}` `layoutTemplate` and `traceTemplate` are objects matching the attribute structure of `layout` and a data trace. Trace templates are applied cyclically to traces of each type. Container arrays (eg `annotations`) have special handling: An object ending in `defaults` (eg `annotationdefaults`) is applied to each array item. But if an item has a `templateitemname` key we look in the template array for an item with matching `name` and apply that instead. If no matching `name` is found we mark the item invisible. Any named template item not referenced is appended to the end of the array, so you can use this for a watermark annotation or a logo image, for example. To omit one of these items on the plot, make an item with matching `templateitemname` and `visible: false`.</param>
+    /// <param name="Meta">Assigns extra meta information that can be used in various `text` attributes. Attributes such as the graph, axis and colorbar `title.text`, annotation `text` `trace.name` in legend items, `rangeselector`, `updatemenus` and `sliders` `label` text all support `meta`. One can access `meta` fields using template strings: `%{meta[i]}` where `i` is the index of the `meta` item in question. `meta` can also be an object for example `{key: value}` which can be accessed %{meta[key]}.</param>
+    /// <param name="Computed">Placeholder for exporting automargin-impacting values namely `margin.t`, `margin.b`, `margin.l` and `margin.r` in "full-json" mode.</param>
+    /// <param name="Grid">Sets the layout grid for arranging multiple plots</param>
+    /// <param name="Calendar">Sets the default calendar system to use for interpreting and displaying dates throughout the plot.</param>
+    /// <param name="NewShape">Controls the behavior of newly drawn shapes</param>
+    /// <param name="ActiveShape">Sets the styling of the active shape</param>
+    /// <param name="HideSources">Determines whether or not a text link citing the data source is placed at the bottom-right cored of the figure. Has only an effect only on graphs that have been generated via forked graphs from the Chart Studio Cloud (at https://chart-studio.plotly.com or on-premise).</param>
+    /// <param name="BarGap">Sets the gap (in plot fraction) between bars of adjacent location coordinates.</param>
+    /// <param name="BarGroupGap">Sets the gap (in plot fraction) between bars of adjacent location coordinates.</param>
+    /// <param name="BarMode">Determines how bars at the same location coordinate are displayed on the graph. With "stack", the bars are stacked on top of one another With "relative", the bars are stacked on top of one another, with negative values below the axis, positive values above With "group", the bars are plotted next to one another centered around the shared location. With "overlay", the bars are plotted over one another, you might need to an "opacity" to see multiple bars.</param>
+    /// <param name="BarNorm">Sets the normalization for bar traces on the graph. With "fraction", the value of each bar is divided by the sum of all values at that location coordinate. "percent" is the same but multiplied by 100 to show percentages.</param>
+    /// <param name="ExtendPieColors">If `true`, the pie slice colors (whether given by `piecolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. This is intended to reduce the likelihood of reusing the same color when you have many slices, but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are never extended.</param>
+    /// <param name="HiddenLabels">If `true`, the pie slice colors (whether given by `piecolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. This is intended to reduce the likelihood of reusing the same color when you have many slices, but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are never extended.</param>
+    /// <param name="PieColorWay">Sets the default pie slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new list here it can still be extended with lighter and darker colors, see `extendpiecolors`.</param>
+    /// <param name="BoxGap">Sets the gap (in plot fraction) between boxes of adjacent location coordinates. Has no effect on traces that have "width" set.</param>
+    /// <param name="BoxGroupGap">Sets the gap (in plot fraction) between boxes of the same location coordinate. Has no effect on traces that have "width" set.</param>
+    /// <param name="BoxMode">Sets the gap (in plot fraction) between boxes of the same location coordinate. Has no effect on traces that have "width" set.</param>
+    /// <param name="ViolinGap">Sets the gap (in plot fraction) between boxes of the same location coordinate. Has no effect on traces that have "width" set.</param>
+    /// <param name="ViolinGroupGap">Sets the gap (in plot fraction) between violins of the same location coordinate. Has no effect on traces that have "width" set.</param>
+    /// <param name="ViolinMode">Determines how violins at the same location coordinate are displayed on the graph. If "group", the violins are plotted next to one another centered around the shared location. If "overlay", the violins are plotted over one another, you might need to set "opacity" to see them multiple violins. Has no effect on traces that have "width" set.</param>
+    /// <param name="WaterfallGap">Sets the gap (in plot fraction) between bars of adjacent location coordinates.</param>
+    /// <param name="WaterfallGroupGap">Sets the gap (in plot fraction) between bars of the same location coordinate.</param>
+    /// <param name="WaterfallMode">Determines how bars at the same location coordinate are displayed on the graph. With "group", the bars are plotted next to one another centered around the shared location. With "overlay", the bars are plotted over one another, you might need to an "opacity" to see multiple bars.</param>
+    /// <param name="FunnelGap">Sets the gap (in plot fraction) between bars of adjacent location coordinates.</param>
+    /// <param name="FunnelGroupGap">Sets the gap (in plot fraction) between bars of adjacent location coordinates.</param>
+    /// <param name="FunnelMode">Determines how bars at the same location coordinate are displayed on the graph. With "stack", the bars are stacked on top of one another With "group", the bars are plotted next to one another centered around the shared location. With "overlay", the bars are plotted over one another, you might need to an "opacity" to see multiple bars.</param>
+    /// <param name="ExtendFunnelAreaColors">If `true`, the funnelarea slice colors (whether given by `funnelareacolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. This is intended to reduce the likelihood of reusing the same color when you have many slices, but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are never extended.</param>
+    /// <param name="FunnelAreaColorWay">Sets the default funnelarea slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new list here it can still be extended with lighter and darker colors, see `extendfunnelareacolors`.</param>
+    /// <param name="ExtendSunBurstColors">If `true`, the sunburst slice colors (whether given by `sunburstcolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. This is intended to reduce the likelihood of reusing the same color when you have many slices, but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are never extended.</param>
+    /// <param name="SunBurstColorWay">If `true`, the sunburst slice colors (whether given by `sunburstcolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. This is intended to reduce the likelihood of reusing the same color when you have many slices, but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are never extended.</param>
+    /// <param name="ExtendTreeMapColors">If `true`, the treemap slice colors (whether given by `treemapcolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. This is intended to reduce the likelihood of reusing the same color when you have many slices, but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are never extended.</param>
+    /// <param name="TreeMapColorWay">Sets the default treemap slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new list here it can still be extended with lighter and darker colors, see `extendtreemapcolors`.</param>
+    /// <param name="ExtendIcicleColors">If `true`, the icicle slice colors (whether given by `iciclecolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. This is intended to reduce the likelihood of reusing the same color when you have many slices, but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are never extended.</param>
+    /// <param name="IcicleColorWay">Sets the default icicle slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new list here it can still be extended with lighter and darker colors, see `extendiciclecolors`.</param>
+    /// <param name="Annotations">A collection containing all Annotations of this layout. An annotation is a text element that can be placed anywhere in the plot. It can be positioned with respect to relative coordinates in the plot or with respect to the actual data coordinates of the graph. Annotations can be shown with or without an arrow.</param>
+    /// <param name="Shapes">A collection containing all Shapes of this layout.</param>
+    /// <param name="Images">A collection containing all Images of this layout. </param>
+    /// <param name="Sliders">A collection containing all Sliders of this layout. </param>
+    /// <param name="UpdateMenus">A collection containing all UpdateMenus of this layout. </param>
     [<CompiledName("WithLayoutStyle")>]
     static member withLayoutStyle
         (
@@ -1138,6 +760,475 @@ type Chart =
                 )
 
             GenericChart.addLayout layout' ch)
+
+    /// <summary>
+    /// Sets the given axis on the input chart's layout, optionally passing a target axis id.
+    /// </summary>
+    /// <param name="axis">The x axis to set on the chart's layout</param>
+    /// <param name="id">The target axis id with which the axis should be set. Default is 1.</param>
+    /// <param name="SceneAxis">If set on a scene, define wether it is the x, y or z axis. default is x.</param>
+    /// <param name="Combine">Wether or not to combine the objects if there is already an axis set (default is false)</param>
+    [<CompiledName("SetAxis")>]
+    static member setAxis
+        (
+            axis: LinearAxis,
+            id: StyleParam.SubPlotId,
+            [<Optional; DefaultParameterValue(null)>] ?SceneAxis: StyleParam.SubPlotId,
+            [<Optional; DefaultParameterValue(null)>] ?Combine: bool
+        ) =
+
+        fun (ch: GenericChart) ->
+
+            let combine = defaultArg Combine false
+
+            match id with
+            // x and y axes for 2d cartesion plots are set on the layout directly
+            | StyleParam.SubPlotId.XAxis _
+            | StyleParam.SubPlotId.YAxis _ ->
+                let layout = GenericChart.getLayout ch
+
+                if combine then
+                    GenericChart.setLayout (layout |> Layout.updateLinearAxisById (id, axis = axis)) ch
+                else
+                    GenericChart.setLayout (layout |> Layout.setLinearAxis (id, axis = axis)) ch
+
+            // x, y, and z axes for 3d cartesion plots are set on the scene object on the layout.
+            | StyleParam.SubPlotId.Scene _ ->
+
+                // we need to know which axis to set on the scene
+                let sceneAxisId =
+                    defaultArg SceneAxis (StyleParam.SubPlotId.XAxis 1)
+
+                let layout = GenericChart.getLayout ch
+
+                let scene =
+                    layout |> Layout.tryGetSceneById (id) |> Option.defaultValue (Scene.init ())
+
+                if combine then
+                    let currentAxis =
+                        match sceneAxisId with
+                        | StyleParam.SubPlotId.XAxis _ -> scene |> Scene.getXAxis
+                        | StyleParam.SubPlotId.YAxis _ -> scene |> Scene.getYAxis
+                        | StyleParam.SubPlotId.ZAxis _ -> scene |> Scene.getZAxis
+                        | _ -> failwith "invalid scene axis id"
+
+                    let updatedAxis =
+                        (DynObj.combine currentAxis axis) :?> LinearAxis
+
+                    updatedAxis |> DynObj.setValue scene (sceneAxisId |> StyleParam.SubPlotId.toString)
+
+                    let updatedLayout =
+                        layout |> Layout.updateSceneById (id, scene)
+
+                    GenericChart.addLayout updatedLayout ch
+                else
+                    let updatedScene =
+                        layout
+                        |> Layout.tryGetSceneById (id)
+                        |> Option.defaultValue (Scene.init ())
+                        |> fun s ->
+                            match sceneAxisId with
+                            | StyleParam.SubPlotId.XAxis _ -> s |> Scene.setXAxis axis
+                            | StyleParam.SubPlotId.YAxis _ -> s |> Scene.setYAxis axis
+                            | StyleParam.SubPlotId.ZAxis _ -> s |> Scene.setZAxis axis
+                            | _ -> failwith "invalid scene axis id"
+
+
+                    let updatedLayout =
+                        layout |> Layout.updateSceneById (id, updatedScene)
+
+                    GenericChart.addLayout updatedLayout ch
+
+            | _ -> failwith $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting a xaxis"
+
+    /// <summary>
+    /// Sets the given x axis on the input chart's layout, optionally passing a target axis id.
+    ///
+    /// If there is already an axis set at the given id, the axis objects are combined.
+    /// </summary>
+    /// <param name="xAxis">The x axis to set on the chart's layout</param>
+    /// <param name="Id">The target axis id with which the axis should be set. Default is 1.</param>
+    [<CompiledName("WithXAxis")>]
+    static member withXAxis(xAxis: LinearAxis, [<Optional; DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId) =
+        let id =
+            defaultArg Id (StyleParam.SubPlotId.XAxis 1)
+
+        fun (ch: GenericChart) ->
+            ch |> Chart.setAxis (xAxis, id, SceneAxis = StyleParam.SubPlotId.XAxis 1, Combine = true)
+
+    /// <summary>
+    /// Sets the given x axis styles on the input chart's layout.
+    ///
+    /// If there is already an axis set at the given id, the styles are applied to it. If there is no axis present, a new LinearAxis object with the given styles will be set.
+    /// </summary>
+    /// <param name="TitleText">Sets the text of the axis title.</param>
+    /// <param name="TitleFont">Sets the font of the axis title.</param>
+    /// <param name="TitleStandoff">Sets the standoff distance (in px) between the axis labels and the title text.</param>
+    /// <param name="Title">Sets the Title (use this for more finegrained control than the other title-associated arguments)</param>
+    /// <param name="Color">Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors.</param>
+    /// <param name="AxisType">Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.</param>
+    /// <param name="MinMax">Tuple of (Min*Max value). Sets the range of this axis (the axis will go from Min to Max). If the axis `type` is "log", then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2).</param>
+    /// <param name="Mirror">Determines if and how the axis lines or/and ticks are mirrored to the opposite side of the plotting area.</param>
+    /// <param name="ShowSpikes">Determines whether or not spikes (aka droplines) are drawn for this axis.</param>
+    /// <param name="SpikeColor">Sets the spike color. If not set, will use the series color</param>
+    /// <param name="SpikeThickness">Sets the width (in px) of the zero line.</param>
+    /// <param name="ShowLine">Determines whether or not a line bounding this axis is drawn.</param>
+    /// <param name="LineColor">Sets the axis line color.</param>
+    /// <param name="ShowGrid">Determines whether or not grid lines are drawn. If "true", the grid lines are drawn at every tick mark.</param>
+    /// <param name="GridColor">Sets the color of the grid lines.</param>
+    /// <param name="ZeroLine">Determines whether or not a line is drawn at along the 0 value of this axis. If "true", the zero line is drawn on top of the grid lines.</param>
+    /// <param name="ZeroLineColor">Sets the line color of the zero line.</param>
+    /// <param name="Anchor">If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to "free", this axis' position is determined by `position`.</param>
+    /// <param name="Side">Determines whether a x (y) axis is positioned at the "bottom" ("left") or "top" ("right") of the plotting area.</param>
+    /// <param name="Overlaying">If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter axis, with traces and axes visible for both axes. If "false", this axis does not overlay any same-letter axes. In this case, for axes with overlapping domains only the highest-numbered axis will be visible.</param>
+    /// <param name="Domain">Tuple of (X*Y fractions). Sets the domain of this axis (in plot fraction).</param>
+    /// <param name="Position">Sets the position of this axis in the plotting space (in normalized coordinates). Only has an effect if `anchor` is set to "free".</param>
+    /// <param name="CategoryOrder">Specifies the ordering logic for the case of categorical variables. By default, plotly uses "trace", which specifies the order that is present in the data supplied. Set `categoryorder` to "category ascending" or "category descending" if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to "array" to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the "trace" mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to "total ascending" or "total descending" if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.</param>
+    /// <param name="CategoryArray">Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to "array". Used with `categoryorder`.</param>
+    /// <param name="RangeSlider">Sets a range slider for this axis</param>
+    /// <param name="RangeSelector">Sets a range selector for this axis. This object contains toggable presets for the rangeslider.</param>
+    /// <param name="BackgroundColor">Sets the background color of this axis' wall. (Only has an effect on 3D scenes)</param>
+    /// <param name="ShowBackground">Sets whether or not this axis' wall has a background color. (Only has an effect on 3D scenes)</param>
+    /// <param name="Id">The target axis id on which the styles should be applied. Default is 1.</param>
+    [<CompiledName("WithXAxisStyle")>]
+    static member withXAxisStyle
+        (
+            [<Optional; DefaultParameterValue(null)>] ?TitleText: string,
+            [<Optional; DefaultParameterValue(null)>] ?TitleFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?TitleStandoff: int,
+            [<Optional; DefaultParameterValue(null)>] ?Title: Title,
+            [<Optional; DefaultParameterValue(null)>] ?Color: Color,
+            [<Optional; DefaultParameterValue(null)>] ?AxisType: StyleParam.AxisType,
+            [<Optional; DefaultParameterValue(null)>] ?MinMax: #IConvertible * #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?Mirror: StyleParam.Mirror,
+            [<Optional; DefaultParameterValue(null)>] ?ShowSpikes: bool,
+            [<Optional; DefaultParameterValue(null)>] ?SpikeColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?SpikeThickness: int,
+            [<Optional; DefaultParameterValue(null)>] ?ShowLine: bool,
+            [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?ShowGrid: bool,
+            [<Optional; DefaultParameterValue(null)>] ?GridColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?ZeroLine: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ZeroLineColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?Anchor: StyleParam.LinearAxisId,
+            [<Optional; DefaultParameterValue(null)>] ?Side: StyleParam.Side,
+            [<Optional; DefaultParameterValue(null)>] ?Overlaying: StyleParam.LinearAxisId,
+            [<Optional; DefaultParameterValue(null)>] ?Domain: float * float,
+            [<Optional; DefaultParameterValue(null)>] ?Position: float,
+            [<Optional; DefaultParameterValue(null)>] ?CategoryOrder: StyleParam.CategoryOrder,
+            [<Optional; DefaultParameterValue(null)>] ?CategoryArray: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?RangeSlider: RangeSlider,
+            [<Optional; DefaultParameterValue(null)>] ?RangeSelector: RangeSelector,
+            [<Optional; DefaultParameterValue(null)>] ?BackgroundColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?ShowBackground: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId
+        ) =
+        let range =
+            MinMax |> Option.map StyleParam.Range.ofMinMax
+
+        let domain =
+            Domain |> Option.map StyleParam.Range.ofMinMax
+
+        let title =
+            Title
+            |> Option.defaultValue (Plotly.NET.Title())
+            |> Plotly.NET.Title.style (?Text = TitleText, ?Font = TitleFont, ?Standoff = TitleStandoff)
+
+        let xaxis =
+            LinearAxis.init (
+                Title = title,
+                ?Range = range,
+                ?Domain = domain,
+                ?Color = Color,
+                ?AxisType = AxisType,
+                ?Mirror = Mirror,
+                ?ShowSpikes = ShowSpikes,
+                ?SpikeColor = SpikeColor,
+                ?SpikeThickness = SpikeThickness,
+                ?ShowLine = ShowLine,
+                ?LineColor = LineColor,
+                ?ShowGrid = ShowGrid,
+                ?GridColor = GridColor,
+                ?ZeroLine = ZeroLine,
+                ?ZeroLineColor = ZeroLineColor,
+                ?Anchor = Anchor,
+                ?Side = Side,
+                ?Overlaying = Overlaying,
+                ?Position = Position,
+                ?CategoryOrder = CategoryOrder,
+                ?CategoryArray = CategoryArray,
+                ?RangeSlider = RangeSlider,
+                ?RangeSelector = RangeSelector,
+                ?BackgroundColor = BackgroundColor,
+                ?ShowBackground = ShowBackground
+
+            )
+
+        Chart.withXAxis (xaxis, ?Id = Id)
+
+    [<Obsolete("Use withXAxisRangeSlider instead")>]
+    [<CompiledName("WithX_AxisRangeSlider")>]
+    static member withX_AxisRangeSlider(rangeSlider: RangeSlider, [<Optional; DefaultParameterValue(null)>] ?Id) =
+        Chart.withXAxisRangeSlider (rangeSlider, ?Id = Id)
+
+    /// Sets the range slider for the xAxis
+    [<CompiledName("WithXAxisRangeSlider")>]
+    static member withXAxisRangeSlider(rangeSlider: RangeSlider, [<Optional; DefaultParameterValue(null)>] ?Id) =
+        let xaxis =
+            LinearAxis.init (RangeSlider = rangeSlider)
+
+        Chart.withXAxis (xaxis, ?Id = Id)
+
+    /// <summary>
+    /// Sets the given y axis on the input chart's layout, optionally passing a target axis id.
+    ///
+    /// If there is already an axis set at the given id, the axis objects are combined.
+    /// </summary>
+    /// <param name="yAxis">The y axis to set on the chart's layout</param>
+    /// <param name="Id">The target axis id with which the axis should be set. Default is 1.</param>
+    [<CompiledName("WithYAxis")>]
+    static member withYAxis(yAxis: LinearAxis, [<Optional; DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId) =
+        let id =
+            defaultArg Id (StyleParam.SubPlotId.YAxis 1)
+
+        fun (ch: GenericChart) ->
+            ch |> Chart.setAxis (yAxis, id, SceneAxis = StyleParam.SubPlotId.YAxis 1, Combine = true)
+
+    /// <summary>
+    /// Sets the given y axis styles on the input chart's layout.
+    ///
+    /// If there is already an axis set at the given id, the styles are applied to it. If there is no axis present, a new LinearAxis object with the given styles will be set.
+    /// </summary>
+    /// <param name="TitleText">Sets the text of the axis title.</param>
+    /// <param name="TitleFont">Sets the font of the axis title.</param>
+    /// <param name="TitleStandoff">Sets the standoff distance (in px) between the axis labels and the title text.</param>
+    /// <param name="Title">Sets the Title (use this for more finegrained control than the other title-associated arguments)</param>
+    /// <param name="Color">Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors.</param>
+    /// <param name="AxisType">Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.</param>
+    /// <param name="MinMax">Tuple of (Min*Max value). Sets the range of this axis (the axis will go from Min to Max). If the axis `type` is "log", then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2).</param>
+    /// <param name="Mirror">Determines if and how the axis lines or/and ticks are mirrored to the opposite side of the plotting area.</param>
+    /// <param name="ShowSpikes">Determines whether or not spikes (aka droplines) are drawn for this axis.</param>
+    /// <param name="SpikeColor">Sets the spike color. If not set, will use the series color</param>
+    /// <param name="SpikeThickness">Sets the width (in px) of the zero line.</param>
+    /// <param name="ShowLine">Determines whether or not a line bounding this axis is drawn.</param>
+    /// <param name="LineColor">Sets the axis line color.</param>
+    /// <param name="ShowGrid">Determines whether or not grid lines are drawn. If "true", the grid lines are drawn at every tick mark.</param>
+    /// <param name="GridColor">Sets the color of the grid lines.</param>
+    /// <param name="ZeroLine">Determines whether or not a line is drawn at along the 0 value of this axis. If "true", the zero line is drawn on top of the grid lines.</param>
+    /// <param name="ZeroLineColor">Sets the line color of the zero line.</param>
+    /// <param name="Anchor">If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to "free", this axis' position is determined by `position`.</param>
+    /// <param name="Side">Determines whether a x (y) axis is positioned at the "bottom" ("left") or "top" ("right") of the plotting area.</param>
+    /// <param name="Overlaying">If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter axis, with traces and axes visible for both axes. If "false", this axis does not overlay any same-letter axes. In this case, for axes with overlapping domains only the highest-numbered axis will be visible.</param>
+    /// <param name="Domain">Tuple of (X*Y fractions). Sets the domain of this axis (in plot fraction).</param>
+    /// <param name="Position">Sets the position of this axis in the plotting space (in normalized coordinates). Only has an effect if `anchor` is set to "free".</param>
+    /// <param name="CategoryOrder">Specifies the ordering logic for the case of categorical variables. By default, plotly uses "trace", which specifies the order that is present in the data supplied. Set `categoryorder` to "category ascending" or "category descending" if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to "array" to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the "trace" mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to "total ascending" or "total descending" if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.</param>
+    /// <param name="CategoryArray">Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to "array". Used with `categoryorder`.</param>
+    /// <param name="RangeSlider">Sets a range slider for this axis</param>
+    /// <param name="RangeSelector">Sets a range selector for this axis. This object contains toggable presets for the rangeslider.</param>
+    /// <param name="BackgroundColor">Sets the background color of this axis' wall. (Only has an effect on 3D scenes)</param>
+    /// <param name="ShowBackground">Sets whether or not this axis' wall has a background color. (Only has an effect on 3D scenes)</param>
+    /// <param name="Id">The target axis id on which the styles should be applied. Default is 1.</param>
+    [<CompiledName("WithYAxisStyle")>]
+    static member withYAxisStyle
+        (
+            [<Optional; DefaultParameterValue(null)>] ?TitleText: string,
+            [<Optional; DefaultParameterValue(null)>] ?TitleFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?TitleStandoff: int,
+            [<Optional; DefaultParameterValue(null)>] ?Title: Title,
+            [<Optional; DefaultParameterValue(null)>] ?Color: Color,
+            [<Optional; DefaultParameterValue(null)>] ?AxisType: StyleParam.AxisType,
+            [<Optional; DefaultParameterValue(null)>] ?MinMax: #IConvertible * #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?Mirror: StyleParam.Mirror,
+            [<Optional; DefaultParameterValue(null)>] ?ShowSpikes: bool,
+            [<Optional; DefaultParameterValue(null)>] ?SpikeColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?SpikeThickness: int,
+            [<Optional; DefaultParameterValue(null)>] ?ShowLine: bool,
+            [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?ShowGrid: bool,
+            [<Optional; DefaultParameterValue(null)>] ?GridColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?ZeroLine: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ZeroLineColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?Anchor: StyleParam.LinearAxisId,
+            [<Optional; DefaultParameterValue(null)>] ?Side: StyleParam.Side,
+            [<Optional; DefaultParameterValue(null)>] ?Overlaying: StyleParam.LinearAxisId,
+            [<Optional; DefaultParameterValue(null)>] ?Domain: float * float,
+            [<Optional; DefaultParameterValue(null)>] ?Position: float,
+            [<Optional; DefaultParameterValue(null)>] ?CategoryOrder: StyleParam.CategoryOrder,
+            [<Optional; DefaultParameterValue(null)>] ?CategoryArray: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?RangeSlider: RangeSlider,
+            [<Optional; DefaultParameterValue(null)>] ?RangeSelector: RangeSelector,
+            [<Optional; DefaultParameterValue(null)>] ?BackgroundColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?ShowBackground: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId
+        ) =
+        let range =
+            MinMax |> Option.map StyleParam.Range.ofMinMax
+
+        let domain =
+            Domain |> Option.map StyleParam.Range.ofMinMax
+
+        let title =
+            Title
+            |> Option.defaultValue (Plotly.NET.Title())
+            |> Plotly.NET.Title.style (?Text = TitleText, ?Font = TitleFont, ?Standoff = TitleStandoff)
+
+        let yaxis =
+            LinearAxis.init (
+                Title = title,
+                ?Range = range,
+                ?Domain = domain,
+                ?Color = Color,
+                ?AxisType = AxisType,
+                ?Mirror = Mirror,
+                ?ShowSpikes = ShowSpikes,
+                ?SpikeColor = SpikeColor,
+                ?SpikeThickness = SpikeThickness,
+                ?ShowLine = ShowLine,
+                ?LineColor = LineColor,
+                ?ShowGrid = ShowGrid,
+                ?GridColor = GridColor,
+                ?ZeroLine = ZeroLine,
+                ?ZeroLineColor = ZeroLineColor,
+                ?Anchor = Anchor,
+                ?Side = Side,
+                ?Overlaying = Overlaying,
+                ?Position = Position,
+                ?CategoryOrder = CategoryOrder,
+                ?CategoryArray = CategoryArray,
+                ?RangeSlider = RangeSlider,
+                ?RangeSelector = RangeSelector,
+                ?BackgroundColor = BackgroundColor,
+                ?ShowBackground = ShowBackground
+
+            )
+
+        Chart.withYAxis (yaxis, ?Id = Id)
+
+
+    /// <summary>
+    /// Sets the given z axis on the input chart's scene, optionally passing a scene axis id.
+    ///
+    /// If there is already an axis set at the given id, the axis objects are combined.
+    /// </summary>
+    /// <param name="zAxis">The z axis to set on the chart's layout</param>
+    /// <param name="Id">The target scene id on which the axis should be set. Default is 1.</param>
+    [<CompiledName("WithZAxis")>]
+    static member withZAxis(zAxis: LinearAxis, [<Optional; DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId) =
+        let id =
+            defaultArg Id (StyleParam.SubPlotId.Scene 1)
+
+        fun (ch: GenericChart) ->
+            ch |> Chart.setAxis (zAxis, id, SceneAxis = StyleParam.SubPlotId.ZAxis, Combine = true)
+
+    /// <summary>
+    /// Sets the given z axis styles on the input chart's scene.
+    ///
+    /// If there is already an axis set at the given id, the styles are applied to it. If there is no axis present, a new LinearAxis object with the given styles will be set.
+    /// </summary>
+    /// <param name="TitleText">Sets the text of the axis title.</param>
+    /// <param name="TitleFont">Sets the font of the axis title.</param>
+    /// <param name="TitleStandoff">Sets the standoff distance (in px) between the axis labels and the title text.</param>
+    /// <param name="Title">Sets the Title (use this for more finegrained control than the other title-associated arguments)</param>
+    /// <param name="Color">Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors.</param>
+    /// <param name="AxisType">Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.</param>
+    /// <param name="MinMax">Tuple of (Min*Max value). Sets the range of this axis (the axis will go from Min to Max). If the axis `type` is "log", then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2).</param>
+    /// <param name="Mirror">Determines if and how the axis lines or/and ticks are mirrored to the opposite side of the plotting area.</param>
+    /// <param name="ShowSpikes">Determines whether or not spikes (aka droplines) are drawn for this axis.</param>
+    /// <param name="SpikeColor">Sets the spike color. If not set, will use the series color</param>
+    /// <param name="SpikeThickness">Sets the width (in px) of the zero line.</param>
+    /// <param name="ShowLine">Determines whether or not a line bounding this axis is drawn.</param>
+    /// <param name="LineColor">Sets the axis line color.</param>
+    /// <param name="ShowGrid">Determines whether or not grid lines are drawn. If "true", the grid lines are drawn at every tick mark.</param>
+    /// <param name="GridColor">Sets the color of the grid lines.</param>
+    /// <param name="ZeroLine">Determines whether or not a line is drawn at along the 0 value of this axis. If "true", the zero line is drawn on top of the grid lines.</param>
+    /// <param name="ZeroLineColor">Sets the line color of the zero line.</param>
+    /// <param name="Anchor">If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to "free", this axis' position is determined by `position`.</param>
+    /// <param name="Side">Determines whether a x (y) axis is positioned at the "bottom" ("left") or "top" ("right") of the plotting area.</param>
+    /// <param name="Overlaying">If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter axis, with traces and axes visible for both axes. If "false", this axis does not overlay any same-letter axes. In this case, for axes with overlapping domains only the highest-numbered axis will be visible.</param>
+    /// <param name="Domain">Tuple of (X*Y fractions). Sets the domain of this axis (in plot fraction).</param>
+    /// <param name="Position">Sets the position of this axis in the plotting space (in normalized coordinates). Only has an effect if `anchor` is set to "free".</param>
+    /// <param name="CategoryOrder">Specifies the ordering logic for the case of categorical variables. By default, plotly uses "trace", which specifies the order that is present in the data supplied. Set `categoryorder` to "category ascending" or "category descending" if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to "array" to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the "trace" mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to "total ascending" or "total descending" if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.</param>
+    /// <param name="CategoryArray">Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to "array". Used with `categoryorder`.</param>
+    /// <param name="RangeSlider">Sets a range slider for this axis</param>
+    /// <param name="RangeSelector">Sets a range selector for this axis. This object contains toggable presets for the rangeslider.</param>
+    /// <param name="BackgroundColor">Sets the background color of this axis' wall. (Only has an effect on 3D scenes)</param>
+    /// <param name="ShowBackground">Sets whether or not this axis' wall has a background color. (Only has an effect on 3D scenes)</param>
+    /// <param name="Id">The target scene id on which the axis styles should be applied. Default is 1.</param>
+    [<CompiledName("WithZAxisStyle")>]
+    static member withZAxisStyle
+        (
+            [<Optional; DefaultParameterValue(null)>] ?TitleText: string,
+            [<Optional; DefaultParameterValue(null)>] ?TitleFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?TitleStandoff: int,
+            [<Optional; DefaultParameterValue(null)>] ?Title: Title,
+            [<Optional; DefaultParameterValue(null)>] ?Color: Color,
+            [<Optional; DefaultParameterValue(null)>] ?AxisType: StyleParam.AxisType,
+            [<Optional; DefaultParameterValue(null)>] ?MinMax: #IConvertible * #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?Mirror: StyleParam.Mirror,
+            [<Optional; DefaultParameterValue(null)>] ?ShowSpikes: bool,
+            [<Optional; DefaultParameterValue(null)>] ?SpikeColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?SpikeThickness: int,
+            [<Optional; DefaultParameterValue(null)>] ?ShowLine: bool,
+            [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?ShowGrid: bool,
+            [<Optional; DefaultParameterValue(null)>] ?GridColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?ZeroLine: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ZeroLineColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?Anchor: StyleParam.LinearAxisId,
+            [<Optional; DefaultParameterValue(null)>] ?Side: StyleParam.Side,
+            [<Optional; DefaultParameterValue(null)>] ?Overlaying: StyleParam.LinearAxisId,
+            [<Optional; DefaultParameterValue(null)>] ?Domain: float * float,
+            [<Optional; DefaultParameterValue(null)>] ?Position: float,
+            [<Optional; DefaultParameterValue(null)>] ?CategoryOrder: StyleParam.CategoryOrder,
+            [<Optional; DefaultParameterValue(null)>] ?CategoryArray: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?RangeSlider: RangeSlider,
+            [<Optional; DefaultParameterValue(null)>] ?RangeSelector: RangeSelector,
+            [<Optional; DefaultParameterValue(null)>] ?BackgroundColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?ShowBackground: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId
+        ) =
+        let range =
+            MinMax |> Option.map StyleParam.Range.ofMinMax
+
+        let domain =
+            Domain |> Option.map StyleParam.Range.ofMinMax
+
+        let title =
+            Title
+            |> Option.defaultValue (Plotly.NET.Title())
+            |> Plotly.NET.Title.style (?Text = TitleText, ?Font = TitleFont, ?Standoff = TitleStandoff)
+
+        let yaxis =
+            LinearAxis.init (
+                Title = title,
+                ?Range = range,
+                ?Domain = domain,
+                ?Color = Color,
+                ?AxisType = AxisType,
+                ?Mirror = Mirror,
+                ?ShowSpikes = ShowSpikes,
+                ?SpikeColor = SpikeColor,
+                ?SpikeThickness = SpikeThickness,
+                ?ShowLine = ShowLine,
+                ?LineColor = LineColor,
+                ?ShowGrid = ShowGrid,
+                ?GridColor = GridColor,
+                ?ZeroLine = ZeroLine,
+                ?ZeroLineColor = ZeroLineColor,
+                ?Anchor = Anchor,
+                ?Side = Side,
+                ?Overlaying = Overlaying,
+                ?Position = Position,
+                ?CategoryOrder = CategoryOrder,
+                ?CategoryArray = CategoryArray,
+                ?RangeSlider = RangeSlider,
+                ?RangeSelector = RangeSelector,
+                ?BackgroundColor = BackgroundColor,
+                ?ShowBackground = ShowBackground
+
+            )
+
+        Chart.withZAxis (yaxis, ?Id = Id)
 
     // Set the LayoutGrid options of a Chart
     [<CompiledName("WithLayoutGrid")>]
@@ -1944,7 +2035,7 @@ type Chart =
                             )
 
                         let layout =
-                            GenericChart.getLayout ch |> Layout.addScene (sceneId, scene)
+                            GenericChart.getLayout ch |> Layout.setScene (sceneId, scene)
 
                         ch
                         |> mapTrace

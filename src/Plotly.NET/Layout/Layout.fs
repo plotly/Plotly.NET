@@ -447,22 +447,11 @@ type Layout() =
     static member tryGetTypedMember<'T> (propName: string) (layout: Layout) = layout.TryGetTypedValue<'T>(propName)
 
     /// <summary>
-    /// Sets a linear axis object on the layout as a dynamic property with the given axis id.
+    /// Returns Some(LinearAxis) if there is an axis object set on the layout with the given id, and None otherwise.
     /// </summary>
-    /// <param name="id">The axis id of the new axis</param>
-    /// <param name="axis">The axis to add to the layout.</param>
-    static member addLinearAxis(id: StyleParam.SubPlotId, axis: LinearAxis) =
-        (fun (layout: Layout) ->
-
-            match id with
-            | StyleParam.SubPlotId.XAxis _
-            | StyleParam.SubPlotId.YAxis _ ->
-                axis |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
-                layout
-
-            | _ ->
-                failwith
-                    $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting a linear axis on layout")
+    /// <param name="id">The target axis id</param>
+    static member tryGetLinearAxisById(id: StyleParam.SubPlotId) =
+        (fun (layout: Layout) -> layout.TryGetTypedValue<LinearAxis>(StyleParam.SubPlotId.toString id))
 
     /// <summary>
     /// Combines the given axis object with the one already present on the layout.
@@ -477,9 +466,9 @@ type Layout() =
             | StyleParam.SubPlotId.YAxis _ ->
 
                 let axis' =
-                    match layout.TryGetValue(StyleParam.SubPlotId.toString id) with
-                    | Some a -> DynObj.combine (unbox a) axis
-                    | None -> axis :> DynamicObj
+                    match Layout.tryGetLinearAxisById id layout with
+                    | Some a -> (DynObj.combine a axis) :?> LinearAxis
+                    | None -> axis
 
                 axis' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
 
@@ -489,36 +478,31 @@ type Layout() =
                     $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting a linear axis on layout")
 
     /// <summary>
-    /// Returns Some(LinearAxis) if there is an axis object set on the layout with the given id, and None otherwise.
+    /// Returns the linear axis object of the layout with the given id.
+    ///
+    /// If there is no linear axis set, returns an empty LinearAxis object.
     /// </summary>
     /// <param name="id">The target axis id</param>
-    static member tryGetLinearAxisById(id: StyleParam.SubPlotId) =
-        (fun (layout: Layout) -> layout.TryGetTypedValue<LinearAxis>(StyleParam.SubPlotId.toString id))
+    static member getLinearAxisById (id: StyleParam.SubPlotId) (layout: Layout) =
+        layout |> Layout.tryGetLinearAxisById id |> Option.defaultValue (LinearAxis.init ())
 
     /// <summary>
-    /// Sets a scene object on the layout as a dynamic property with the given scene id.
+    /// Sets a linear axis object on the layout as a dynamic property with the given axis id.
     /// </summary>
-    /// <param name="id">The scene id of the new scene</param>
-    /// <param name="scene">The scene to add to the layout.</param>
-    static member addScene(id: StyleParam.SubPlotId, scene: Scene) =
+    /// <param name="id">The axis id of the new axis</param>
+    /// <param name="axis">The axis to add to the layout.</param>
+    static member setLinearAxis(id: StyleParam.SubPlotId, axis: LinearAxis) =
         (fun (layout: Layout) ->
-            scene |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
-            layout)
 
-    /// <summary>
-    /// Combines the given scene object with the one already present on the layout.
-    /// </summary>
-    /// <param name="id">The target scene id</param>
-    /// <param name="scene">The updated scene object.</param>
-    static member updateSceneById(id: StyleParam.SubPlotId, scene: Scene) =
-        (fun (layout: Layout) ->
-            let scene' =
-                match layout.TryGetValue(StyleParam.SubPlotId.toString id) with
-                | Some a -> DynObj.combine (unbox a) scene
-                | None -> scene :> DynamicObj
+            match id with
+            | StyleParam.SubPlotId.XAxis _
+            | StyleParam.SubPlotId.YAxis _ ->
+                axis |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+                layout
 
-            scene' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
-            layout)
+            | _ ->
+                failwith
+                    $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting a linear axis on layout")
 
     /// <summary>
     /// Returns Some(Scene) if there is a scene object set on the layout with the given id, and None otherwise.
@@ -528,30 +512,37 @@ type Layout() =
         (fun (layout: Layout) -> layout.TryGetTypedValue<Scene>(StyleParam.SubPlotId.toString id))
 
     /// <summary>
-    /// Sets a geo object on the layout as a dynamic property with the given geo id.
+    /// Combines the given scene object with the one already present on the layout.
     /// </summary>
-    /// <param name="id">The scene id of the new geo</param>
-    /// <param name="geo">The geo to add to the layout.</param>
-    static member addGeo(id: StyleParam.SubPlotId, geo: Geo) =
+    /// <param name="id">The target scene id</param>
+    /// <param name="scene">The updated scene object.</param>
+    static member updateSceneById(id: StyleParam.SubPlotId, scene: Scene) =
         (fun (layout: Layout) ->
+            let scene' =
+                match Layout.tryGetSceneById id layout with
+                | Some a -> (DynObj.combine a scene) :?> Scene
+                | None -> scene
 
-            geo |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
-
+            scene' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
             layout)
 
     /// <summary>
-    /// Combines the given geo object with the one already present on the layout.
+    /// Returns the Scene object of the layout with the given id.
+    ///
+    /// If there is no scene set, returns an empty Scene object.
     /// </summary>
-    /// <param name="id">The target geo id</param>
-    /// <param name="geo">The updated geo object.</param>
-    static member updateGeoById(id: StyleParam.SubPlotId, geo: Geo) =
-        (fun (layout: Layout) ->
-            let geo' =
-                match layout.TryGetValue(StyleParam.SubPlotId.toString id) with
-                | Some a -> DynObj.combine (unbox a) geo
-                | None -> geo :> DynamicObj
+    /// <param name="id">The target scene id</param>
+    static member getSceneById (id: StyleParam.SubPlotId) (layout: Layout) =
+        layout |> Layout.tryGetSceneById id |> Option.defaultValue (Scene.init ())
 
-            geo' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+    /// <summary>
+    /// Sets a scene object on the layout as a dynamic property with the given scene id.
+    /// </summary>
+    /// <param name="id">The scene id of the new scene</param>
+    /// <param name="scene">The scene to add to the layout.</param>
+    static member setScene(id: StyleParam.SubPlotId, scene: Scene) =
+        (fun (layout: Layout) ->
+            scene |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
             layout)
 
     /// <summary>
@@ -562,30 +553,39 @@ type Layout() =
         (fun (layout: Layout) -> layout.TryGetTypedValue<Geo>(StyleParam.SubPlotId.toString id))
 
     /// <summary>
-    /// Sets a mapbox object on the layout as a dynamic property with the given mapbox id.
+    /// Combines the given geo object with the one already present on the layout.
     /// </summary>
-    /// <param name="id">The mapbox id of the new mapbox</param>
-    /// <param name="mapbox">The mapbox to add to the layout.</param>
-    static member addMapbox(id: StyleParam.SubPlotId, mapbox: Mapbox) =
+    /// <param name="id">The target geo id</param>
+    /// <param name="geo">The updated geo object.</param>
+    static member updateGeoById(id: StyleParam.SubPlotId, geo: Geo) =
         (fun (layout: Layout) ->
+            let geo' =
+                match Layout.tryGetGeoById id layout with
+                | Some a -> (DynObj.combine a geo) :?> Geo
+                | None -> geo
 
-            mapbox |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
-
+            geo' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
             layout)
 
     /// <summary>
-    /// Combines the given mapbox object with the one already present on the layout.
+    /// Returns the Geo object of the layout with the given id.
+    ///
+    /// If there is no geo set, returns an empty Geo object.
     /// </summary>
-    /// <param name="id">The target mapbox id</param>
-    /// <param name="mapbox">The updated mapbox object.</param>
-    static member updateMapboxById(id: StyleParam.SubPlotId, mapbox: Mapbox) =
-        (fun (layout: Layout) ->
-            let mapbox' =
-                match layout.TryGetValue(StyleParam.SubPlotId.toString id) with
-                | Some a -> DynObj.combine (unbox a) mapbox
-                | None -> mapbox :> DynamicObj
+    /// <param name="id">The target geo id</param>
+    static member getGeoById (id: StyleParam.SubPlotId) (layout: Layout) =
+        layout |> Layout.tryGetGeoById id |> Option.defaultValue (Geo.init ())
 
-            mapbox' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+    /// <summary>
+    /// Sets a geo object on the layout as a dynamic property with the given geo id.
+    /// </summary>
+    /// <param name="id">The scene id of the new geo</param>
+    /// <param name="geo">The geo to add to the layout.</param>
+    static member setGeo(id: StyleParam.SubPlotId, geo: Geo) =
+        (fun (layout: Layout) ->
+
+            geo |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+
             layout)
 
     /// <summary>
@@ -596,31 +596,38 @@ type Layout() =
         (fun (layout: Layout) -> layout.TryGetTypedValue<Mapbox>(StyleParam.SubPlotId.toString id))
 
     /// <summary>
-    /// Sets a polar object on the layout as a dynamic property with the given polar id.
+    /// Combines the given mapbox object with the one already present on the layout.
     /// </summary>
-    /// <param name="id">The scene id of the new geo</param>
-    /// <param name="polar">The polar to add to the layout.</param>
-    static member addPolar(id: StyleParam.SubPlotId, polar: Polar) =
+    /// <param name="id">The target mapbox id</param>
+    /// <param name="mapbox">The updated mapbox object.</param>
+    static member updateMapboxById(id: StyleParam.SubPlotId, mapbox: Mapbox) =
         (fun (layout: Layout) ->
+            let mapbox' =
+                match Layout.tryGetMapboxById id layout with
+                | Some a -> (DynObj.combine a mapbox) :?> Mapbox
+                | None -> mapbox
 
-            polar |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
-
+            mapbox' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
             layout)
 
     /// <summary>
-    /// Combines the given polar object with the one already present on the layout.
+    /// Returns the Mapbox object of the layout with the given id.
+    ///
+    /// If there is no mapbox set, returns an empty Mapbox object.
     /// </summary>
-    /// <param name="id">The target polar id</param>
-    /// <param name="polar">The updated polar object.</param>
-    static member updatePolarById(id: StyleParam.SubPlotId, polar: Polar) =
+    /// <param name="id">The target mapbox id</param>
+    static member getMapboxById (id: StyleParam.SubPlotId) (layout: Layout) =
+        layout |> Layout.tryGetMapboxById id |> Option.defaultValue (Mapbox.init ())
+
+    /// <summary>
+    /// Sets a mapbox object on the layout as a dynamic property with the given mapbox id.
+    /// </summary>
+    /// <param name="id">The mapbox id of the new mapbox</param>
+    /// <param name="mapbox">The mapbox to add to the layout.</param>
+    static member setMapbox(id: StyleParam.SubPlotId, mapbox: Mapbox) =
         (fun (layout: Layout) ->
 
-            let polar' =
-                match layout |> Layout.tryGetPolarById (id) with
-                | Some a -> DynObj.combine (unbox a) polar
-                | None -> polar :> DynamicObj
-
-            polar' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+            mapbox |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
 
             layout)
 
@@ -632,31 +639,40 @@ type Layout() =
         (fun (layout: Layout) -> layout.TryGetTypedValue<Polar>(StyleParam.SubPlotId.toString id))
 
     /// <summary>
-    /// Sets a ColorAxis object on the layout as a dynamic property with the given ColorAxis id.
+    /// Combines the given polar object with the one already present on the layout.
     /// </summary>
-    /// <param name="id">The ColorAxis id of the new ColorAxis</param>
-    /// <param name="colorAxis">The ColorAxis to add to the layout.</param>
-    static member addColorAxis(id: StyleParam.SubPlotId, colorAxis: ColorAxis) =
+    /// <param name="id">The target polar id</param>
+    /// <param name="polar">The updated polar object.</param>
+    static member updatePolarById(id: StyleParam.SubPlotId, polar: Polar) =
         (fun (layout: Layout) ->
 
-            colorAxis |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+            let polar' =
+                match layout |> Layout.tryGetPolarById (id) with
+                | Some a -> (DynObj.combine a polar) :?> Polar
+                | None -> polar
+
+            polar' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
 
             layout)
 
     /// <summary>
-    /// Combines the given colorAxis object with the one already present on the layout.
+    /// Returns the Polar object of the layout with the given id.
+    ///
+    /// If there is no polar set, returns an empty Polar object.
     /// </summary>
-    /// <param name="id">The target ColorAxis id</param>
-    /// <param name="colorAxis">The updated ColorAxis object.</param>
-    static member updateColorAxisById(id: StyleParam.SubPlotId, colorAxis: ColorAxis) =
+    /// <param name="id">The target polar id</param>
+    static member getPolarById (id: StyleParam.SubPlotId) (layout: Layout) =
+        layout |> Layout.tryGetPolarById id |> Option.defaultValue (Polar.init ())
+
+    /// <summary>
+    /// Sets a polar object on the layout as a dynamic property with the given polar id.
+    /// </summary>
+    /// <param name="id">The scene id of the new geo</param>
+    /// <param name="polar">The polar to add to the layout.</param>
+    static member setPolar(id: StyleParam.SubPlotId, polar: Polar) =
         (fun (layout: Layout) ->
 
-            let colorAxis' =
-                match layout |> Layout.tryGetColorAxisById (id) with
-                | Some a -> DynObj.combine (unbox a) colorAxis
-                | None -> colorAxis :> DynamicObj
-
-            colorAxis' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+            polar |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
 
             layout)
 
@@ -668,16 +684,49 @@ type Layout() =
         (fun (layout: Layout) -> layout.TryGetTypedValue<ColorAxis>(StyleParam.SubPlotId.toString id))
 
     /// <summary>
-    /// Sets a Ternary object on the layout as a dynamic property with the given Ternary id.
+    /// Combines the given colorAxis object with the one already present on the layout.
     /// </summary>
-    /// <param name="id">The Ternary id of the new ColorAxis</param>
-    /// <param name="ternary">The Ternary to add to the layout.</param>
-    static member addTernary(id: StyleParam.SubPlotId, ternary: Ternary) =
+    /// <param name="id">The target ColorAxis id</param>
+    /// <param name="colorAxis">The updated ColorAxis object.</param>
+    static member updateColorAxisById(id: StyleParam.SubPlotId, colorAxis: ColorAxis) =
         (fun (layout: Layout) ->
 
-            ternary |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+            let colorAxis' =
+                match layout |> Layout.tryGetColorAxisById (id) with
+                | Some a -> (DynObj.combine a colorAxis) :?> ColorAxis
+                | None -> colorAxis
+
+            colorAxis' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
 
             layout)
+
+    /// <summary>
+    /// Returns the ColorAxis object of the layout with the given id.
+    ///
+    /// If there is no color axis set, returns an empty ColorAxis object.
+    /// </summary>
+    /// <param name="id">The target color axis id</param>
+    static member getColorAxisById (id: StyleParam.SubPlotId) (layout: Layout) =
+        layout |> Layout.tryGetColorAxisById id |> Option.defaultValue (ColorAxis.init ())
+
+    /// <summary>
+    /// Sets a ColorAxis object on the layout as a dynamic property with the given ColorAxis id.
+    /// </summary>
+    /// <param name="id">The ColorAxis id of the new ColorAxis</param>
+    /// <param name="colorAxis">The ColorAxis to add to the layout.</param>
+    static member setColorAxis(id: StyleParam.SubPlotId, colorAxis: ColorAxis) =
+        (fun (layout: Layout) ->
+
+            colorAxis |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+
+            layout)
+
+    /// <summary>
+    /// Returns Some(Ternary) if there is a ColorAxis object set on the layout with the given id, and None otherwise.
+    /// </summary>
+    /// <param name="id">The target Ternary id</param>
+    static member tryGetTernaryById(id: StyleParam.SubPlotId) =
+        (fun (layout: Layout) -> layout.TryGetTypedValue<Ternary>(StyleParam.SubPlotId.toString id))
 
     /// <summary>
     /// Combines the given ternary object with the one already present on the layout.
@@ -689,23 +738,36 @@ type Layout() =
 
             let ternary' =
                 match layout |> Layout.tryGetTernaryById (id) with
-                | Some a -> DynObj.combine (unbox a) ternary
-                | None -> ternary :> DynamicObj
+                | Some a -> (DynObj.combine a ternary) :?> Ternary
+                | None -> ternary
 
             ternary' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
 
             layout)
 
     /// <summary>
-    /// Returns Some(Ternary) if there is a ColorAxis object set on the layout with the given id, and None otherwise.
+    /// Returns the Ternary object of the layout with the given id.
+    ///
+    /// If there is no ternary set, returns an empty Ternary object.
     /// </summary>
-    /// <param name="id">The target Ternary id</param>
-    static member tryGetTernaryById(id: StyleParam.SubPlotId) =
-        (fun (layout: Layout) -> layout.TryGetTypedValue<Ternary>(StyleParam.SubPlotId.toString id))
-
+    /// <param name="id">The target ternary id</param>
+    static member getTernaryById (id: StyleParam.SubPlotId) (layout: Layout) =
+        layout |> Layout.tryGetTernaryById id |> Option.defaultValue (Ternary.init ())
 
     /// <summary>
-    /// Returns the grid object of the given layout.
+    /// Sets a Ternary object on the layout as a dynamic property with the given Ternary id.
+    /// </summary>
+    /// <param name="id">The Ternary id of the new ColorAxis</param>
+    /// <param name="ternary">The Ternary to add to the layout.</param>
+    static member setTernary(id: StyleParam.SubPlotId, ternary: Ternary) =
+        (fun (layout: Layout) ->
+
+            ternary |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+
+            layout)
+
+    /// <summary>
+    /// Returns the LayoutGrid object of the given layout.
     ///
     /// If there is no grid set, returns an empty LayoutGrid object.
     /// </summary>
@@ -714,13 +776,24 @@ type Layout() =
         layout |> Layout.tryGetTypedMember<LayoutGrid> "grid" |> Option.defaultValue (LayoutGrid.init ())
 
     /// <summary>
-    /// Returns a function that sets the Marker object of the given trace.
+    /// Returns a function that sets the LayoutGrid object of the given trace.
     /// </summary>
     /// <param name="layoutGrid">The new LayoutGrid object</param>
     static member setLayoutGrid(layoutGrid: LayoutGrid) =
         (fun (layout: Layout) ->
             layout.SetValue("grid", layoutGrid)
             layout)
+
+    /// <summary>
+    /// Combines the given layoutGrid object with the one already present on the layout.
+    /// </summary>
+    /// <param name="layoutGrid">The updated LayoutGrid object</param>
+    static member updateLayoutGrid(layoutGrid: LayoutGrid) =
+        (fun (layout: Layout) ->
+            let combined =
+                (DynObj.combine (layout |> Layout.getLayoutGrid) layoutGrid) :?> LayoutGrid
+
+            layout |> Layout.setLayoutGrid combined)
 
     /// <summary>
     /// Returns the legend object of the given layout.
@@ -732,10 +805,21 @@ type Layout() =
         layout |> Layout.tryGetTypedMember<Legend> "legend" |> Option.defaultValue (Legend.init ())
 
     /// <summary>
-    /// Returns a function that sets the Marker object of the given trace.
+    /// Returns a function that sets the Legend object of the given trace.
     /// </summary>
     /// <param name="legend">The new Legend object</param>
     static member setLegend(legend: Legend) =
         (fun (layout: Layout) ->
             layout.SetValue("legend", legend)
             layout)
+
+    /// <summary>
+    /// Combines the given Legend object with the one already present on the layout.
+    /// </summary>
+    /// <param name="legend">The updated LayoutGrid object</param>
+    static member updateLegend(legend: Legend) =
+        (fun (layout: Layout) ->
+            let combined =
+                (DynObj.combine (layout |> Layout.getLegend) legend) :?> Legend
+
+            layout |> Layout.setLegend combined)

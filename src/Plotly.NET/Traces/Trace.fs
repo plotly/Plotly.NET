@@ -62,6 +62,8 @@ type Trace(traceTypeName: string) =
 
     /// <summary>
     /// Returns the Error object for the x dimension of the given trace.
+    ///
+    /// If there is no error set, returns an empty error object.
     /// </summary>
     /// <param name="trace">The trace to get the x error from</param>
     static member getXError(trace: #Trace) =
@@ -78,6 +80,8 @@ type Trace(traceTypeName: string) =
 
     /// <summary>
     /// Returns the Error object for the y dimension of the given trace.
+    ///
+    /// If there is no error set, returns an empty error object.
     /// </summary>
     /// <param name="trace">The trace to get the y error from</param>
     static member getYError(trace: #Trace) =
@@ -94,6 +98,8 @@ type Trace(traceTypeName: string) =
 
     /// <summary>
     /// Returns the Error object for the z dimension of the given trace.
+    ///
+    /// If there is no error set, returns an empty error object.
     /// </summary>
     /// <param name="trace">The trace to get the z error from</param>
     static member getZError(trace: #Trace) =
@@ -105,12 +111,13 @@ type Trace(traceTypeName: string) =
     /// <param name="error">The new error object</param>
     static member setZError(error: Error) =
         (fun (trace: #Trace) ->
-
             trace.SetValue("error_z", error)
             trace)
 
     /// <summary>
     /// Returns the color axis anchor of the given trace.
+    ///
+    /// If there is no color axis set, returns "coloraxis".
     /// </summary>
     /// <param name="trace">The trace to get the color axis anchor from</param>
     static member getColorAxisAnchor(trace: #Trace) =
@@ -136,6 +143,8 @@ type Trace(traceTypeName: string) =
 
     /// <summary>
     /// Returns the domain of the given trace.
+    ///
+    /// If there is no domain set, returns an empty Domain object.
     /// </summary>
     /// <param name="trace">The trace to get the cdomain from</param>
     static member getDomain(trace: #Trace) =
@@ -147,14 +156,15 @@ type Trace(traceTypeName: string) =
     /// <param name="domain">The new domain</param>
     static member setDomain(domain: Domain) =
         (fun (trace: ('T :> Trace)) ->
-
             trace.SetValue("domain", domain)
             trace)
 
     /// <summary>
     /// Returns the stackgroup of the given trace.
+    ///
+    /// If there is no stackgroup set, returns "stackgroup".
     /// </summary>
-    /// <param name="trace">The trace to get the cdomain from</param>
+    /// <param name="trace">The trace to get the stackgroup from</param>
     static member getStackGroup(trace: #Trace) =
         trace |> Trace.tryGetTypedMember<string> "stackgroup" |> Option.defaultValue ("")
 
@@ -164,8 +174,26 @@ type Trace(traceTypeName: string) =
     /// <param name="stackgroup">The new stackgroup</param>
     static member setStackGroup(stackgroup: string) =
         (fun (trace: ('T :> Trace)) ->
-
             trace.SetValue("stackgroup", stackgroup)
+            trace)
+
+    /// <summary>
+    /// Returns the colorbar of the given trace.
+    ///
+    /// If there is no colorbar set, returns an empty ColorBar object.
+    /// </summary>
+    /// <param name="trace">The trace to get the cdomain from</param>
+    static member getColorBar(trace: #Trace) =
+        trace |> Trace.tryGetTypedMember<ColorBar> "colorbar" |> Option.defaultValue (ColorBar.init ())
+
+    /// <summary>
+    /// Returns a function that sets the ColorBar of the given trace.
+    /// </summary>
+    /// <param name="colorBar">The new ColorBar</param>
+    static member setColorBar(colorBar: ColorBar) =
+        (fun (trace: ('T :> Trace)) ->
+
+            trace.SetValue("colorbar", colorBar)
             trace)
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
