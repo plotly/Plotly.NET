@@ -2636,6 +2636,7 @@ module StyleParam =
     [<RequireQualifiedAccess>]
     type Side =
         | Top
+        | TopLeft
         | Bottom
         | Left
         | Right
@@ -2643,6 +2644,7 @@ module StyleParam =
         static member toString =
             function
             | Top -> "top"
+            | TopLeft -> "top left"
             | Bottom -> "bottom"
             | Left -> "left"
             | Right -> "right"

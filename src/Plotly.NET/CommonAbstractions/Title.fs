@@ -32,7 +32,7 @@ type Title() =
             Text |> DynObj.setValueOpt title "text"
             Font |> DynObj.setValueOpt title "font"
             Standoff |> DynObj.setValueOpt title "standoff"
-            Side |> DynObj.setValueOpt title "side"
+            Side |> DynObj.setValueOptBy title "side" StyleParam.Side.convert
             X |> DynObj.setValueOpt title "x"
             Y |> DynObj.setValueOpt title "y"
 
