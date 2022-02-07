@@ -1672,6 +1672,12 @@ type Chart =
 
             GenericChart.addLayout layout ch)
 
+    // Set the title of a Chart
+    [<CompiledName("WithTitle")>]
+    static member withTitle(title) =
+        (fun (ch: GenericChart) ->
+            let layout = Layout() |> Layout.style (Title = title)
+            GenericChart.addLayout layout ch)
 
     // Set showLegend of a Chart
     [<CompiledName("WithLegend")>]
