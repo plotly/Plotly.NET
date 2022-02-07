@@ -1,6 +1,6 @@
 ﻿namespace Plotly.NET
 
-
+open System
 // https://plot.ly/javascript/reference/
 // https://plot.ly/javascript-graphing-library/reference/
 
@@ -166,6 +166,7 @@ module StyleParam =
     type SubPlotId =
         | XAxis of int
         | YAxis of int
+        | ZAxis
         | ColorAxis of int
         | Geo of int
         | Mapbox of int
@@ -186,6 +187,7 @@ module StyleParam =
                     "yaxis"
                 else
                     sprintf "yaxis%i" id
+            | ZAxis -> "zaxis"
             | ColorAxis id ->
                 if id < 2 then
                     "coloraxis"
@@ -2258,8 +2260,14 @@ module StyleParam =
     /// Defines a Range between min and max value
     [<RequireQualifiedAccess>]
     type Range =
-        | MinMax of float * float
-        | Values of array<float>
+        | MinMax of IConvertible * IConvertible
+        | Values of array<IConvertible>
+
+        static member ofMinMax(min: #IConvertible, max: #IConvertible) =
+            MinMax(min :> IConvertible, max :> IConvertible)
+
+        static member ofValues(values: seq<#IConvertible>) =
+            Values(values |> Array.ofSeq |> Array.map (fun x -> x :> IConvertible))
 
         static member convert =
             function
