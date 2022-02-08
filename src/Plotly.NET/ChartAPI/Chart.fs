@@ -1227,6 +1227,7 @@ type Chart =
                 ?BackgroundColor = BackgroundColor,
                 ?ShowBackground = ShowBackground
             )
+
         Chart.withYAxis (yaxis, ?Id = Id)
 
 

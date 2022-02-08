@@ -5018,3 +5018,114 @@ module Chart2D =
                 ?ShowUpperHalf = ShowUpperHalf,
                 ?UseDefaults = UseDefaults
             )
+
+        /// <summary>
+        /// Creates a point density plot - a combination of a Scatter plot and Histogram2DContour.
+        ///
+        /// Additionally to plotting the (x,y) data as points on a 2D plane, a density contour plot is computed by grouping a set of points specified by their x and y coordinates into bins, and applying a count aggregation function to compute the value to be used to compute contours.
+        /// The sample data from which statistics are computed is set in `x` and `y` (where `x` and `y` represent marginal distributions, binning is set in `xbins` and `ybins` in this case). The resulting distribution is visualized as a contour plot.
+        ///
+        /// </summary>
+        /// <param name="x">Sets the x coordinates of the plotted data as well as the sample data to be binned on the x axis.</param>
+        /// <param name="y">Sets the y coordinates of the plotted data as well as the sample data to be binned on the y axis.</param>
+        /// <param name="PointOpacity">Sets the opacity of the point trace.</param>
+        /// <param name="PointMarkerColor">Sets the marker color of the point trace.</param>
+        /// <param name="PointMarkerSymbol">Sets the marker symbol of the point trace.</param>
+        /// <param name="PointMarkerSize">Sets the marker size of the point trace.</param>
+        /// <param name="ContourLineColor">Sets the color of the contour lines of the histogram2dcontour trace.</param>
+        /// <param name="ContourLineSmoothing">Sets the smoothing of the contour lines of the histogram2dcontour trace.</param>
+        /// <param name="ContourLineWidth">Sets the width of the contour lines of the histogram2dcontour trace.</param>
+        /// <param name="ShowContourLines">Wether or not to show contour lines</param>
+        /// <param name="ShowContourLabels">Wether or not to show contour labels</param>
+        /// <param name="ContourColoring">Determines the coloring method showing the contour values. If "fill", coloring is done evenly between each contour level If "heatmap", a heatmap gradient coloring is applied between each contour level. If "lines", coloring is done on the contour lines. If "none", no coloring is applied on this trace.</param>
+        /// <param name="NContours">Sets the maximum number of contour levels. The actual number of contours will be chosen automatically to be less than or equal to the value of `ncontours`. Has an effect only if `autocontour` is "true" or if `contours.size` is missing.</param>
+        /// <param name="HistNorm">Specifies the type of normalization used for this histogram trace. If "", the span of each bar corresponds to the number of occurrences (i.e. the number of data points lying inside the bins). If "percent" / "probability", the span of each bar corresponds to the percentage / fraction of occurrences with respect to the total number of sample points (here, the sum of all bin HEIGHTS equals 100% / 1). If "density", the span of each bar corresponds to the number of occurrences in a bin divided by the size of the bin interval (here, the sum of all bin AREAS equals the total number of sample points). If "probability density", the area of each bar corresponds to the probability that an event will fall into the corresponding bin (here, the sum of all bin AREAS equals 1).</param>
+        /// <param name="ContourOpacity">Sets the opacity of the histogram2dcontour trace.</param>
+        /// <param name="ColorBar">Sets the color bar.</param>
+        /// <param name="ColorScale">Sets the colorscale of the histogram2dcontour trace.</param>
+        /// <param name="ShowScale">wether or not to show the colorbar</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member PointDensity
+            (
+                x: seq<#IConvertible>,
+                y: seq<#IConvertible>,
+                ?PointOpacity: float,
+                ?PointMarkerColor: Color,
+                ?PointMarkerSymbol: StyleParam.MarkerSymbol,
+                ?PointMarkerSize: int,
+                ?ContourLineColor: Color,
+                ?ContourLineSmoothing: float,
+                ?ContourLineWidth: float,
+                ?ShowContourLines: bool,
+                ?ShowContourLabels: bool,
+                ?ContourColoring: StyleParam.ContourColoring,
+                ?NContours: int,
+                ?HistNorm: StyleParam.HistNorm,
+                ?ContourOpacity: float,
+                ?ColorBar: ColorBar,
+                ?ColorScale: StyleParam.Colorscale,
+                ?ShowScale: bool,
+                ?UseDefaults: bool
+            ) =
+
+            let showContourLines = defaultArg ShowContourLines false
+            let pointOpacity = defaultArg PointOpacity 0.3
+
+            let contourColoring =
+                defaultArg ContourColoring StyleParam.ContourColoring.Fill
+
+            let useDefaults = defaultArg UseDefaults true
+
+            let contourLineWidth =
+                ContourLineWidth |> Option.map (fun v -> if showContourLines then v else 0.) |> Option.defaultValue 0.
+
+            let marker =
+                Marker.init (?Color = PointMarkerColor, ?Symbol = PointMarkerSymbol, ?Size = PointMarkerSize)
+
+            let pointTrace =
+                Trace2D.initScatter (
+                    Trace2DStyle.Scatter(
+                        X = x,
+                        Y = y,
+                        Mode = StyleParam.Mode.Markers,
+                        Marker = marker,
+                        Opacity = pointOpacity
+                    )
+                )
+
+            let contourLine =
+                Plotly.NET.Line.init (
+                    ?Color = ContourLineColor,
+                    ?Smoothing = ContourLineSmoothing,
+                    Width = contourLineWidth
+                )
+
+            let contours =
+                Contours.init (
+                    ShowLines = showContourLines,
+                    Coloring = contourColoring,
+                    ?ShowLabels = ShowContourLabels
+                )
+
+            let densityContourTrace =
+                Trace2D.initHistogram2DContour (
+                    Trace2DStyle.Histogram2DContour(
+                        X = x,
+                        Y = y,
+                        Contours = contours,
+                        Line = contourLine,
+                        ?NContours = NContours,
+                        ?ColorBar = ColorBar,
+                        ?ColorScale = ColorScale,
+                        ?ShowScale = ShowScale,
+                        ?HistNorm = HistNorm,
+                        ?Opacity = ContourOpacity
+                    )
+                )
+
+            [
+                densityContourTrace :> Trace
+                pointTrace :> Trace
+            ]
+            |> GenericChart.ofTraceObjects useDefaults

@@ -60,12 +60,7 @@ let y = Array.init n (fun i -> ((step i)**6.) + (0.3 * (normal (rnd) 0. 2.) ))
 A Histogram2D chart can be created using the `Chart.Histogram2D` or `Chart.Histogram2DContour` functions.
 *)
 
-let histogramContour =
-    [
-        Chart.Histogram2DContour (x,y,ContourLine=Line.init(Width=0.))
-        Chart.Point(x,y,Opacity=0.3)
-    ]
-    |> Chart.combine
+let histogramContour = Chart.Histogram2DContour (x,y,ContourLine=Line.init(Width=0.))
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -76,8 +71,7 @@ histogramContour
 histogramContour |> GenericChart.toChartHTML
 (*** include-it-raw ***)
 
-let histogram2D = 
-    Chart.Histogram2D (x,y)
+let histogram2D = Chart.Histogram2D (x,y)
 
 (*** condition: ipynb ***)
 #if IPYNB

@@ -79,6 +79,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{7B09CC0A-F
 		docs\04_3_contour-plots.fsx = docs\04_3_contour-plots.fsx
 		docs\04_4_2d-histograms.fsx = docs\04_4_2d-histograms.fsx
 		docs\04_5_splom.fsx = docs\04_5_splom.fsx
+		docs\04_6_point-density.fsx = docs\04_6_point-density.fsx
 		docs\05_0_geo-vs-mapbox.fsx = docs\05_0_geo-vs-mapbox.fsx
 		docs\05_1_geo-plots.fsx = docs\05_1_geo-plots.fsx
 		docs\05_2_choropleth-map.fsx = docs\05_2_choropleth-map.fsx

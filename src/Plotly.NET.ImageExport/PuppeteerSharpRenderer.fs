@@ -81,7 +81,7 @@ type PuppeteerSharpRenderer() =
     let fetchAndLaunchBrowserAsync () =
         async {
             match PuppeteerSharpRendererOptions.localBrowserExecutablePath with
-            | None -> 
+            | None ->
                 use browserFetcher = new BrowserFetcher()
 
                 let! revision = browserFetcher.DownloadAsync() |> Async.AwaitTask
@@ -95,9 +95,9 @@ type PuppeteerSharpRenderer() =
             | Some p ->
                 let launchOptions =
                     PuppeteerSharpRendererOptions.launchOptions
-                
+
                 launchOptions.ExecutablePath <- p
-                
+
                 return! Puppeteer.LaunchAsync(launchOptions) |> Async.AwaitTask
         }
 
