@@ -62,29 +62,29 @@ let sunburstStyled =
         Rotation = 45,
         UseDefaults = false
     )(* output: 
-<div id="e98d80ba-9467-42c5-b0bb-c8fb8b740d29"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="48edd473-327e-4b16-b77b-cdcb2437e1c3"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_e98d80ba946742c5b0bbc8fb8b740d29 = function() {
+            var renderPlotly_48edd473327e4b16b77bcdcb2437e1c3 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.6.3.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"sunburst","parents":["","","","","","A","A","B","AA","AA"],"values":[20,1,2,3,4,15,5,1,10,5],"labels":["A","B","C","D","E","AA","AB","BA","AAA","AAB"],"marker":{"colorscale":"Viridis","line":{"color":"rgba(0, 0, 0, 1.0)"},"showscale":true},"branchvalues":"total","rotation":45}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('e98d80ba-9467-42c5-b0bb-c8fb8b740d29', data, layout, config);
+            Plotly.newPlot('48edd473-327e-4b16-b77b-cdcb2437e1c3', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_e98d80ba946742c5b0bbc8fb8b740d29();
+                    renderPlotly_48edd473327e4b16b77bcdcb2437e1c3();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_e98d80ba946742c5b0bbc8fb8b740d29();
+                renderPlotly_48edd473327e4b16b77bcdcb2437e1c3();
             }
 </script>
 *)

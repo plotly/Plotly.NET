@@ -35,7 +35,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.16</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.17</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -170,13 +170,13 @@
               <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
               <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
             </div>
-            <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/Chart.fs#L50-50" class="fsdocs-source-link" title="Source on GitHub">
+            <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/Chart.fs#L14-14" class="fsdocs-source-link" title="Source on GitHub">
               <img src="https://plotly.net/content/img/github.png" class="normal"/>
               <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
             </a>
             <p class="fsdocs-summary">
               
- Provides a set of static methods for creating charts.
+ Provides a set of static methods for creating and styling charts.
 
             </p>
           </div>
@@ -517,6 +517,38 @@
       <tr>
         <td class="fsdocs-entity-name">
           <p>
+            <a name="ColorBar">
+              <a href="https://plotly.net/reference/plotly-net-colorbar.html">
+                ColorBar
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Plotly.NET.ColorBar`')">
+              <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+              <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Plotly.NET.ColorBar\'/>')">
+              <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+              <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/ColorBar.fs#L9-9" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://plotly.net/content/img/github.png" class="normal"/>
+              <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ The ColorBar object to be used with ColorAxes.
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
             <a name="ColorConverter">
               <a href="https://plotly.net/reference/plotly-net-colorconverter.html">
                 ColorConverter
@@ -630,12 +662,16 @@ W3C Recognized color keyword names
               <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
               <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
             </div>
-            <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Templates/Defaults.fs#L10-10" class="fsdocs-source-link" title="Source on GitHub">
+            <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Templates/Defaults.fs#L14-14" class="fsdocs-source-link" title="Source on GitHub">
               <img src="https://plotly.net/content/img/github.png" class="normal"/>
               <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
             </a>
             <p class="fsdocs-summary">
               
+ Contains mutable global default values.
+
+ Changing these values will apply the default values to all consecutive Chart generations.
+
             </p>
           </div>
         </td>
@@ -854,7 +890,7 @@ Extension methods for providing a Plotly.NET fluent interface pattern for C#
             </a>
             <p class="fsdocs-summary">
               
- Layout
+ A Layout object in the context of plotly charts contains all styling options that are not directly related to the visualization of the data itself, such as axes, legends, watermarks, etc.
 
             </p>
           </div>
@@ -886,38 +922,8 @@ Extension methods for providing a Plotly.NET fluent interface pattern for C#
             </a>
             <p class="fsdocs-summary">
               
- Line type inherits from dynamic object
+ The line object determines the style of the line in various aspect of plots such as a line connecting datums, outline of layout objects, etc..
 
-            </p>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td class="fsdocs-entity-name">
-          <p>
-            <a name="Seq">
-              <a href="https://plotly.net/reference/plotly-net-seq.html">
-                Seq
-              </a>
-            </a>
-          </p>
-        </td>
-        <td class="fsdocs-entity-xmldoc">
-          <div>
-            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Plotly.NET.Seq`')">
-              <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-              <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-            </div>
-            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Plotly.NET.Seq\'/>')">
-              <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-              <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-            </div>
-            <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/Chart.fs#L16-16" class="fsdocs-source-link" title="Source on GitHub">
-              <img src="https://plotly.net/content/img/github.png" class="normal"/>
-              <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-            </a>
-            <p class="fsdocs-summary">
-              
             </p>
           </div>
         </td>
@@ -985,6 +991,36 @@ Extension methods for providing a Plotly.NET fluent interface pattern for C#
       <tr>
         <td class="fsdocs-entity-name">
           <p>
+            <a name="TickFormatStop">
+              <a href="https://plotly.net/reference/plotly-net-tickformatstop.html">
+                TickFormatStop
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Plotly.NET.TickFormatStop`')">
+              <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+              <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Plotly.NET.TickFormatStop\'/>')">
+              <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+              <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/TickFormatStop.fs#L8-8" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://plotly.net/content/img/github.png" class="normal"/>
+              <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
             <a name="Title">
               <a href="https://plotly.net/reference/plotly-net-title.html">
                 Title
@@ -1032,13 +1068,17 @@ Extension methods for providing a Plotly.NET fluent interface pattern for C#
               <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
               <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
             </div>
-            <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L10-10" class="fsdocs-source-link" title="Source on GitHub">
+            <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L15-15" class="fsdocs-source-link" title="Source on GitHub">
               <img src="https://plotly.net/content/img/github.png" class="normal"/>
               <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
             </a>
             <p class="fsdocs-summary">
               
- Trace type inherits from dynamic object
+ A Trace object in the context of plotly charts contains the data to visualize and additional styling parameters.
+
+ This is the base object that contains visualization-unspecific getters and setters for the underlying DynamicObj.
+
+ Visualization-specific equivalents are suffixed with the respective trace subtype, e.g. `Trace2D`
 
             </p>
           </div>
@@ -1064,7 +1104,7 @@ Extension methods for providing a Plotly.NET fluent interface pattern for C#
               <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
               <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
             </div>
-            <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace2D.fs#L42-42" class="fsdocs-source-link" title="Source on GitHub">
+            <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace2D.fs#L40-40" class="fsdocs-source-link" title="Source on GitHub">
               <img src="https://plotly.net/content/img/github.png" class="normal"/>
               <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
             </a>
@@ -1126,12 +1166,14 @@ Extension methods for providing a Plotly.NET fluent interface pattern for C#
               <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
               <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
             </div>
-            <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace2D.fs#L99-99" class="fsdocs-source-link" title="Source on GitHub">
+            <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace2D.fs#L98-98" class="fsdocs-source-link" title="Source on GitHub">
               <img src="https://plotly.net/content/img/github.png" class="normal"/>
               <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
             </a>
             <p class="fsdocs-summary">
               
+ Create various functions for applying 2D chart styles to traces
+
             </p>
           </div>
         </td>
@@ -1204,7 +1246,7 @@ Extension methods for providing a Plotly.NET fluent interface pattern for C#
             </a>
             <p class="fsdocs-summary">
               
- Functions provide the styling of the Chart objects
+ Create various functions for applying 3D chart styles to traces
 
             </p>
           </div>
@@ -1574,12 +1616,14 @@ case default values will be inferred. Multiple traces of a compatible type can b
               <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
               <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
             </div>
-            <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/TracePolar.fs#L33-33" class="fsdocs-source-link" title="Source on GitHub">
+            <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/TracePolar.fs#L34-34" class="fsdocs-source-link" title="Source on GitHub">
               <img src="https://plotly.net/content/img/github.png" class="normal"/>
               <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
             </a>
             <p class="fsdocs-summary">
               
+ Create various functions for applying polar chart styles to traces
+
             </p>
           </div>
         </td>
@@ -1604,15 +1648,18 @@ case default values will be inferred. Multiple traces of a compatible type can b
               <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
               <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
             </div>
-            <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L22-22" class="fsdocs-source-link" title="Source on GitHub">
+            <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L283-283" class="fsdocs-source-link" title="Source on GitHub">
               <img src="https://plotly.net/content/img/github.png" class="normal"/>
               <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
             </a>
             <p class="fsdocs-summary">
               
- Functions provide the styling of the Chart objects
- These functions are used internally to style traces of Chart objects. Users are usually pointed
- to the API layer provided by the `Chart` module/object
+ Contains general, visualization-unspecific functions to style Trace objects.
+
+ These functions are used internally to style traces of Chart objects.
+ Users should usually be pointed to the API layer provided by the `Chart` module/object first.
+
+ Visualization-specific equivalents are suffixed with the respective trace subtype, e.g. `TraceStyle2D`
 
             </p>
           </div>

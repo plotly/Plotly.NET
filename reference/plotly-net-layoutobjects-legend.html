@@ -35,7 +35,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.16</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.17</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -128,7 +128,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2007', 2007)" onmouseover="showTip(event, '2007', 2007)">
+              <code onmouseout="hideTip(event, '2112', 2112)" onmouseover="showTip(event, '2112', 2112)">
                 <p>
                   <a id="( .ctor )">
                     <a href="#( .ctor )">
@@ -137,7 +137,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2007">
+              <div class="fsdocs-tip" id="2112">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Legend<span>()</span></span></code>
@@ -204,19 +204,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2008', 2008)" onmouseover="showTip(event, '2008', 2008)">
+              <code onmouseout="hideTip(event, '2113', 2113)" onmouseover="showTip(event, '2113', 2113)">
                 <p>
                   <a id="init">
                     <a href="#init">
-                      <code><span>Legend.init&#32;<span><span>(<span>?BGColor,&#32;?BorderColor,&#32;?Borderwidth,&#32;?Orientation,&#32;?TraceOrder,&#32;?TraceGroupGap,&#32;?ItemSizing,&#32;?ItemWidth,&#32;?ItemClick,&#32;?ItemDoubleClick,&#32;?X,&#32;?XAnchor,&#32;?Y,&#32;?YAnchor,&#32;?VerticalAlign,&#32;?Title</span>)</span></span></span></code>
+                      <code><span>Legend.init&#32;<span><span>(<span>?BGColor,&#32;?BorderColor,&#32;?Borderwidth,&#32;?Font,&#32;?GroupClick,&#32;?GroupTitleFont,&#32;?ItemClick,&#32;?ItemDoubleClick,&#32;?ItemSizing,&#32;?ItemWidth,&#32;?Orientation,&#32;?Title,&#32;?TraceGroupGap,&#32;?TraceOrder,&#32;?UIRevision,&#32;?VerticalAlign,&#32;?X,&#32;?XAnchor,&#32;?Y,&#32;?YAnchor</span>)</span></span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2008">
+              <div class="fsdocs-tip" id="2113">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Legend.init&#32;<span><span>(<span>?BGColor,&#32;?BorderColor,&#32;?Borderwidth,&#32;?Orientation,&#32;?TraceOrder,&#32;?TraceGroupGap,&#32;?ItemSizing,&#32;?ItemWidth,&#32;?ItemClick,&#32;?ItemDoubleClick,&#32;?X,&#32;?XAnchor,&#32;?Y,&#32;?YAnchor,&#32;?VerticalAlign,&#32;?Title</span>)</span></span></span></code>
+                  <code><span>Legend.init&#32;<span><span>(<span>?BGColor,&#32;?BorderColor,&#32;?Borderwidth,&#32;?Font,&#32;?GroupClick,&#32;?GroupTitleFont,&#32;?ItemClick,&#32;?ItemDoubleClick,&#32;?ItemSizing,&#32;?ItemWidth,&#32;?Orientation,&#32;?Title,&#32;?TraceGroupGap,&#32;?TraceOrder,&#32;?UIRevision,&#32;?VerticalAlign,&#32;?X,&#32;?XAnchor,&#32;?Y,&#32;?YAnchor</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -227,6 +227,8 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                       - 
+                      Sets the legend background color. Defaults to `layout.paper_bgcolor`.
                     </span>
                     <br/>
                     <span>
@@ -235,6 +237,8 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                       - 
+                      Sets the color of the border enclosing the legend.
                     </span>
                     <br/>
                     <span>
@@ -243,46 +247,38 @@
                       </b>
                       :
                       <code>float</code>
+                       - 
+                      Sets the width (in px) of the border enclosing the legend.
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?Orientation
+                        ?Font
                       </b>
                       :
-                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-orientation.html">Orientation</a></code>
+                      <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                       - 
+                      Sets the font used to text the legend items.
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?TraceOrder
+                        ?GroupClick
                       </b>
                       :
-                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-traceorder.html">TraceOrder</a></code>
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-tracegroupclickoptions.html">TraceGroupClickOptions</a></code>
+                       - 
+                      Determines the behavior on legend group item click. "toggleitem" toggles the visibility of the individual item clicked on the graph. "togglegroup" toggles the visibility of all items in the same legendgroup as the item clicked on the graph.
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?TraceGroupGap
+                        ?GroupTitleFont
                       </b>
                       :
-                      <code>float</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?ItemSizing
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-traceitemsizing.html">TraceItemSizing</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?ItemWidth
-                      </b>
-                      :
-                      <code>int</code>
+                      <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                       - 
+                      Sets the font for group titles in legend. Defaults to `legend.font` with its size increased about 10%.
                     </span>
                     <br/>
                     <span>
@@ -291,6 +287,8 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-styleparam-traceitemclickoptions.html">TraceItemClickOptions</a></code>
+                       - 
+                      Determines the behavior on legend item click. "toggle" toggles the visibility of the item clicked on the graph. "toggleothers" makes the clicked item the sole visible item on the graph. "false" disables legend item click interactions.
                     </span>
                     <br/>
                     <span>
@@ -299,38 +297,78 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-styleparam-traceitemclickoptions.html">TraceItemClickOptions</a></code>
+                       - 
+                      Determines the behavior on legend item double-click. "toggle" toggles the visibility of the item clicked on the graph. "toggleothers" makes the clicked item the sole visible item on the graph. "false" disables legend item double-click interactions.
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?X
+                        ?ItemSizing
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-traceitemsizing.html">TraceItemSizing</a></code>
+                       - 
+                      Determines if the legend items symbols scale with their corresponding "trace" attributes or remain "constant" independent of the symbol size on the graph.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ItemWidth
+                      </b>
+                      :
+                      <code>int</code>
+                       - 
+                      Sets the width (in px) of the legend item symbols (the part other than the title.text).
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Orientation
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-orientation.html">Orientation</a></code>
+                       - 
+                      Sets the orientation of the legend.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Title
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-title.html">Title</a></code>
+                       - 
+                      Sets the title of the legend.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?TraceGroupGap
                       </b>
                       :
                       <code>float</code>
+                       - 
+                      Sets the amount of vertical space (in px) between legend groups.
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?XAnchor
+                        ?TraceOrder
                       </b>
                       :
-                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-xanchorposition.html">XAnchorPosition</a></code>
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-traceorder.html">TraceOrder</a></code>
+                       - 
+                      Determines the order at which the legend items are displayed. If "normal", the items are displayed top-to-bottom in the same order as the input data. If "reversed", the items are displayed in the opposite order as "normal". If "grouped", the items are displayed in groups (when a trace `legendgroup` is provided). if "grouped+reversed", the items are displayed in the opposite order as "grouped".
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?Y
+                        ?UIRevision
                       </b>
                       :
-                      <code>float</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?YAnchor
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-yanchorposition.html">YAnchorPosition</a></code>
+                      <code>string</code>
+                       - 
+                      Controls persistence of legend-driven changes in trace and pie label visibility. Defaults to `layout.uirevision`.
                     </span>
                     <br/>
                     <span>
@@ -339,14 +377,48 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-styleparam-verticalalign.html">VerticalAlign</a></code>
+                       - 
+                      Sets the vertical alignment of the symbols with respect to their associated text.
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?Title
+                        ?X
                       </b>
                       :
-                      <code>string</code>
+                      <code>float</code>
+                       - 
+                      Sets the x position (in normalized coordinates) of the legend. Defaults to "1.02" for vertical legends and defaults to "0" for horizontal legends.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?XAnchor
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-xanchorposition.html">XAnchorPosition</a></code>
+                       - 
+                      Sets the legend's horizontal position anchor. This anchor binds the `x` position to the "left", "center" or "right" of the legend. Value "auto" anchors legends to the right for `x` values greater than or equal to 2/3, anchors legends to the left for `x` values less than or equal to 1/3 and anchors legends with respect to their center otherwise.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Y
+                      </b>
+                      :
+                      <code>float</code>
+                       - 
+                      Sets the y position (in normalized coordinates) of the legend. Defaults to "1" for vertical legends, defaults to "-0.1" for horizontal legends on graphs w/o range sliders and defaults to "1.1" for horizontal legends on graph with one or multiple range sliders.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?YAnchor
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-yanchorposition.html">YAnchorPosition</a></code>
+                       - 
+                      Sets the legend's vertical position anchor This anchor binds the `y` position to the "top", "middle" or "bottom" of the legend. Value "auto" anchors legends at their bottom for `y` values less than or equal to 1/3, anchors legends to at their top for `y` values greater than or equal to 2/3 and anchors legends with respect to their middle otherwise.
                     </span>
                     <br/>
                   </ul>
@@ -370,14 +442,14 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Common/Legend.fs#L13-13" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Common/Legend.fs#L35-35" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Init Legend type
-
+ Returns a new Legend object with the given styles
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -388,7 +460,11 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the legend background color. Defaults to `layout.paper_bgcolor`.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?BorderColor
@@ -396,7 +472,11 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the color of the border enclosing the legend.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Borderwidth
@@ -404,47 +484,47 @@
                 :
                 <code>float</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the width (in px) of the border enclosing the legend.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?Orientation
+                  ?Font
                 </span>
                 :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-orientation.html">Orientation</a></code>
+                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the font used to text the legend items.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?TraceOrder
+                  ?GroupClick
                 </span>
                 :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-traceorder.html">TraceOrder</a></code>
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-tracegroupclickoptions.html">TraceGroupClickOptions</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Determines the behavior on legend group item click. "toggleitem" toggles the visibility of the individual item clicked on the graph. "togglegroup" toggles the visibility of all items in the same legendgroup as the item clicked on the graph.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?TraceGroupGap
+                  ?GroupTitleFont
                 </span>
                 :
-                <code>float</code>
+                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ItemSizing
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-traceitemsizing.html">TraceItemSizing</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ItemWidth
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the font for group titles in legend. Defaults to `legend.font` with its size increased about 10%.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?ItemClick
@@ -452,7 +532,11 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-styleparam-traceitemclickoptions.html">TraceItemClickOptions</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Determines the behavior on legend item click. "toggle" toggles the visibility of the item clicked on the graph. "toggleothers" makes the clicked item the sole visible item on the graph. "false" disables legend item click interactions.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?ItemDoubleClick
@@ -460,39 +544,95 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-styleparam-traceitemclickoptions.html">TraceItemClickOptions</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Determines the behavior on legend item double-click. "toggle" toggles the visibility of the item clicked on the graph. "toggleothers" makes the clicked item the sole visible item on the graph. "false" disables legend item double-click interactions.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?X
+                  ?ItemSizing
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-traceitemsizing.html">TraceItemSizing</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Determines if the legend items symbols scale with their corresponding "trace" attributes or remain "constant" independent of the symbol size on the graph.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ItemWidth
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the width (in px) of the legend item symbols (the part other than the title.text).
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Orientation
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-orientation.html">Orientation</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the orientation of the legend.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Title
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-title.html">Title</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the title of the legend.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TraceGroupGap
                 </span>
                 :
                 <code>float</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the amount of vertical space (in px) between legend groups.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?XAnchor
+                  ?TraceOrder
                 </span>
                 :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-xanchorposition.html">XAnchorPosition</a></code>
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-traceorder.html">TraceOrder</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Determines the order at which the legend items are displayed. If "normal", the items are displayed top-to-bottom in the same order as the input data. If "reversed", the items are displayed in the opposite order as "normal". If "grouped", the items are displayed in groups (when a trace `legendgroup` is provided). if "grouped+reversed", the items are displayed in the opposite order as "grouped".
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?Y
+                  ?UIRevision
                 </span>
                 :
-                <code>float</code>
+                <code>string</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?YAnchor
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-yanchorposition.html">YAnchorPosition</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Controls persistence of legend-driven changes in trace and pie label visibility. Defaults to `layout.uirevision`.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?VerticalAlign
@@ -500,15 +640,59 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-styleparam-verticalalign.html">VerticalAlign</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the vertical alignment of the symbols with respect to their associated text.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?Title
+                  ?X
                 </span>
                 :
-                <code>string</code>
+                <code>float</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the x position (in normalized coordinates) of the legend. Defaults to "1.02" for vertical legends and defaults to "0" for horizontal legends.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?XAnchor
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-xanchorposition.html">XAnchorPosition</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the legend's horizontal position anchor. This anchor binds the `x` position to the "left", "center" or "right" of the legend. Value "auto" anchors legends to the right for `x` values greater than or equal to 2/3, anchors legends to the left for `x` values less than or equal to 1/3 and anchors legends with respect to their center otherwise.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Y
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the y position (in normalized coordinates) of the legend. Defaults to "1" for vertical legends, defaults to "-0.1" for horizontal legends on graphs w/o range sliders and defaults to "1.1" for horizontal legends on graph with one or multiple range sliders.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?YAnchor
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-yanchorposition.html">YAnchorPosition</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the legend's vertical position anchor This anchor binds the `y` position to the "top", "middle" or "bottom" of the legend. Value "auto" anchors legends at their bottom for `y` values less than or equal to 1/3, anchors legends to at their top for `y` values greater than or equal to 2/3 and anchors legends with respect to their middle otherwise.
+                </p>
+              </dd>
             </dl>
             <dl class="fsdocs-returns">
               <dt>
@@ -524,19 +708,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2009', 2009)" onmouseover="showTip(event, '2009', 2009)">
+              <code onmouseout="hideTip(event, '2114', 2114)" onmouseover="showTip(event, '2114', 2114)">
                 <p>
                   <a id="style">
                     <a href="#style">
-                      <code><span>Legend.style&#32;<span><span>(<span>?BGColor,&#32;?BorderColor,&#32;?Borderwidth,&#32;?Orientation,&#32;?TraceOrder,&#32;?TraceGroupGap,&#32;?ItemSizing,&#32;?ItemWidth,&#32;?ItemClick,&#32;?ItemDoubleClick,&#32;?X,&#32;?XAnchor,&#32;?Y,&#32;?YAnchor,&#32;?VerticalAlign,&#32;?Title</span>)</span></span></span></code>
+                      <code><span>Legend.style&#32;<span><span>(<span>?BGColor,&#32;?BorderColor,&#32;?Borderwidth,&#32;?Font,&#32;?GroupClick,&#32;?GroupTitleFont,&#32;?ItemClick,&#32;?ItemDoubleClick,&#32;?ItemSizing,&#32;?ItemWidth,&#32;?Orientation,&#32;?Title,&#32;?TraceGroupGap,&#32;?TraceOrder,&#32;?UIRevision,&#32;?VerticalAlign,&#32;?X,&#32;?XAnchor,&#32;?Y,&#32;?YAnchor</span>)</span></span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2009">
+              <div class="fsdocs-tip" id="2114">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Legend.style&#32;<span><span>(<span>?BGColor,&#32;?BorderColor,&#32;?Borderwidth,&#32;?Orientation,&#32;?TraceOrder,&#32;?TraceGroupGap,&#32;?ItemSizing,&#32;?ItemWidth,&#32;?ItemClick,&#32;?ItemDoubleClick,&#32;?X,&#32;?XAnchor,&#32;?Y,&#32;?YAnchor,&#32;?VerticalAlign,&#32;?Title</span>)</span></span></span></code>
+                  <code><span>Legend.style&#32;<span><span>(<span>?BGColor,&#32;?BorderColor,&#32;?Borderwidth,&#32;?Font,&#32;?GroupClick,&#32;?GroupTitleFont,&#32;?ItemClick,&#32;?ItemDoubleClick,&#32;?ItemSizing,&#32;?ItemWidth,&#32;?Orientation,&#32;?Title,&#32;?TraceGroupGap,&#32;?TraceOrder,&#32;?UIRevision,&#32;?VerticalAlign,&#32;?X,&#32;?XAnchor,&#32;?Y,&#32;?YAnchor</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -547,6 +731,8 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                       - 
+                      Sets the legend background color. Defaults to `layout.paper_bgcolor`.
                     </span>
                     <br/>
                     <span>
@@ -555,6 +741,8 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                       - 
+                      Sets the color of the border enclosing the legend.
                     </span>
                     <br/>
                     <span>
@@ -563,46 +751,38 @@
                       </b>
                       :
                       <code>float</code>
+                       - 
+                      Sets the width (in px) of the border enclosing the legend.
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?Orientation
+                        ?Font
                       </b>
                       :
-                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-orientation.html">Orientation</a></code>
+                      <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                       - 
+                      Sets the font used to text the legend items.
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?TraceOrder
+                        ?GroupClick
                       </b>
                       :
-                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-traceorder.html">TraceOrder</a></code>
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-tracegroupclickoptions.html">TraceGroupClickOptions</a></code>
+                       - 
+                      Determines the behavior on legend group item click. "toggleitem" toggles the visibility of the individual item clicked on the graph. "togglegroup" toggles the visibility of all items in the same legendgroup as the item clicked on the graph.
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?TraceGroupGap
+                        ?GroupTitleFont
                       </b>
                       :
-                      <code>float</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?ItemSizing
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-traceitemsizing.html">TraceItemSizing</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?ItemWidth
-                      </b>
-                      :
-                      <code>int</code>
+                      <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                       - 
+                      Sets the font for group titles in legend. Defaults to `legend.font` with its size increased about 10%.
                     </span>
                     <br/>
                     <span>
@@ -611,6 +791,8 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-styleparam-traceitemclickoptions.html">TraceItemClickOptions</a></code>
+                       - 
+                      Determines the behavior on legend item click. "toggle" toggles the visibility of the item clicked on the graph. "toggleothers" makes the clicked item the sole visible item on the graph. "false" disables legend item click interactions.
                     </span>
                     <br/>
                     <span>
@@ -619,38 +801,78 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-styleparam-traceitemclickoptions.html">TraceItemClickOptions</a></code>
+                       - 
+                      Determines the behavior on legend item double-click. "toggle" toggles the visibility of the item clicked on the graph. "toggleothers" makes the clicked item the sole visible item on the graph. "false" disables legend item double-click interactions.
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?X
+                        ?ItemSizing
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-traceitemsizing.html">TraceItemSizing</a></code>
+                       - 
+                      Determines if the legend items symbols scale with their corresponding "trace" attributes or remain "constant" independent of the symbol size on the graph.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ItemWidth
+                      </b>
+                      :
+                      <code>int</code>
+                       - 
+                      Sets the width (in px) of the legend item symbols (the part other than the title.text).
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Orientation
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-orientation.html">Orientation</a></code>
+                       - 
+                      Sets the orientation of the legend.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Title
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-title.html">Title</a></code>
+                       - 
+                      Sets the title of the legend.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?TraceGroupGap
                       </b>
                       :
                       <code>float</code>
+                       - 
+                      Sets the amount of vertical space (in px) between legend groups.
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?XAnchor
+                        ?TraceOrder
                       </b>
                       :
-                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-xanchorposition.html">XAnchorPosition</a></code>
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-traceorder.html">TraceOrder</a></code>
+                       - 
+                      Determines the order at which the legend items are displayed. If "normal", the items are displayed top-to-bottom in the same order as the input data. If "reversed", the items are displayed in the opposite order as "normal". If "grouped", the items are displayed in groups (when a trace `legendgroup` is provided). if "grouped+reversed", the items are displayed in the opposite order as "grouped".
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?Y
+                        ?UIRevision
                       </b>
                       :
-                      <code>float</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?YAnchor
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-yanchorposition.html">YAnchorPosition</a></code>
+                      <code>string</code>
+                       - 
+                      Controls persistence of legend-driven changes in trace and pie label visibility. Defaults to `layout.uirevision`.
                     </span>
                     <br/>
                     <span>
@@ -659,14 +881,48 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-styleparam-verticalalign.html">VerticalAlign</a></code>
+                       - 
+                      Sets the vertical alignment of the symbols with respect to their associated text.
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?Title
+                        ?X
                       </b>
                       :
-                      <code>string</code>
+                      <code>float</code>
+                       - 
+                      Sets the x position (in normalized coordinates) of the legend. Defaults to "1.02" for vertical legends and defaults to "0" for horizontal legends.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?XAnchor
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-xanchorposition.html">XAnchorPosition</a></code>
+                       - 
+                      Sets the legend's horizontal position anchor. This anchor binds the `x` position to the "left", "center" or "right" of the legend. Value "auto" anchors legends to the right for `x` values greater than or equal to 2/3, anchors legends to the left for `x` values less than or equal to 1/3 and anchors legends with respect to their center otherwise.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Y
+                      </b>
+                      :
+                      <code>float</code>
+                       - 
+                      Sets the y position (in normalized coordinates) of the legend. Defaults to "1" for vertical legends, defaults to "-0.1" for horizontal legends on graphs w/o range sliders and defaults to "1.1" for horizontal legends on graph with one or multiple range sliders.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?YAnchor
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-yanchorposition.html">YAnchorPosition</a></code>
+                       - 
+                      Sets the legend's vertical position anchor This anchor binds the `y` position to the "top", "middle" or "bottom" of the legend. Value "auto" anchors legends at their bottom for `y` values less than or equal to 1/3, anchors legends to at their top for `y` values greater than or equal to 2/3 and anchors legends with respect to their middle otherwise.
                     </span>
                     <br/>
                   </ul>
@@ -690,12 +946,14 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Common/Legend.fs#L52-52" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Common/Legend.fs#L105-105" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
+ Returns a function that applies the given styles to a Legend object
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -706,7 +964,11 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the legend background color. Defaults to `layout.paper_bgcolor`.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?BorderColor
@@ -714,7 +976,11 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the color of the border enclosing the legend.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Borderwidth
@@ -722,47 +988,47 @@
                 :
                 <code>float</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the width (in px) of the border enclosing the legend.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?Orientation
+                  ?Font
                 </span>
                 :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-orientation.html">Orientation</a></code>
+                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the font used to text the legend items.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?TraceOrder
+                  ?GroupClick
                 </span>
                 :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-traceorder.html">TraceOrder</a></code>
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-tracegroupclickoptions.html">TraceGroupClickOptions</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Determines the behavior on legend group item click. "toggleitem" toggles the visibility of the individual item clicked on the graph. "togglegroup" toggles the visibility of all items in the same legendgroup as the item clicked on the graph.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?TraceGroupGap
+                  ?GroupTitleFont
                 </span>
                 :
-                <code>float</code>
+                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ItemSizing
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-traceitemsizing.html">TraceItemSizing</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ItemWidth
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the font for group titles in legend. Defaults to `legend.font` with its size increased about 10%.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?ItemClick
@@ -770,7 +1036,11 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-styleparam-traceitemclickoptions.html">TraceItemClickOptions</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Determines the behavior on legend item click. "toggle" toggles the visibility of the item clicked on the graph. "toggleothers" makes the clicked item the sole visible item on the graph. "false" disables legend item click interactions.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?ItemDoubleClick
@@ -778,39 +1048,95 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-styleparam-traceitemclickoptions.html">TraceItemClickOptions</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Determines the behavior on legend item double-click. "toggle" toggles the visibility of the item clicked on the graph. "toggleothers" makes the clicked item the sole visible item on the graph. "false" disables legend item double-click interactions.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?X
+                  ?ItemSizing
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-traceitemsizing.html">TraceItemSizing</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Determines if the legend items symbols scale with their corresponding "trace" attributes or remain "constant" independent of the symbol size on the graph.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ItemWidth
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the width (in px) of the legend item symbols (the part other than the title.text).
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Orientation
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-orientation.html">Orientation</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the orientation of the legend.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Title
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-title.html">Title</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the title of the legend.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TraceGroupGap
                 </span>
                 :
                 <code>float</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the amount of vertical space (in px) between legend groups.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?XAnchor
+                  ?TraceOrder
                 </span>
                 :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-xanchorposition.html">XAnchorPosition</a></code>
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-traceorder.html">TraceOrder</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Determines the order at which the legend items are displayed. If "normal", the items are displayed top-to-bottom in the same order as the input data. If "reversed", the items are displayed in the opposite order as "normal". If "grouped", the items are displayed in groups (when a trace `legendgroup` is provided). if "grouped+reversed", the items are displayed in the opposite order as "grouped".
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?Y
+                  ?UIRevision
                 </span>
                 :
-                <code>float</code>
+                <code>string</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?YAnchor
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-yanchorposition.html">YAnchorPosition</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Controls persistence of legend-driven changes in trace and pie label visibility. Defaults to `layout.uirevision`.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?VerticalAlign
@@ -818,15 +1144,59 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-styleparam-verticalalign.html">VerticalAlign</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the vertical alignment of the symbols with respect to their associated text.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?Title
+                  ?X
                 </span>
                 :
-                <code>string</code>
+                <code>float</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the x position (in normalized coordinates) of the legend. Defaults to "1.02" for vertical legends and defaults to "0" for horizontal legends.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?XAnchor
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-xanchorposition.html">XAnchorPosition</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the legend's horizontal position anchor. This anchor binds the `x` position to the "left", "center" or "right" of the legend. Value "auto" anchors legends to the right for `x` values greater than or equal to 2/3, anchors legends to the left for `x` values less than or equal to 1/3 and anchors legends with respect to their center otherwise.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Y
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the y position (in normalized coordinates) of the legend. Defaults to "1" for vertical legends, defaults to "-0.1" for horizontal legends on graphs w/o range sliders and defaults to "1.1" for horizontal legends on graph with one or multiple range sliders.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?YAnchor
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-yanchorposition.html">YAnchorPosition</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the legend's vertical position anchor This anchor binds the `y` position to the "top", "middle" or "bottom" of the legend. Value "auto" anchors legends at their bottom for `y` values less than or equal to 1/3, anchors legends to at their top for `y` values greater than or equal to 2/3 and anchors legends with respect to their middle otherwise.
+                </p>
+              </dd>
             </dl>
             <dl class="fsdocs-returns">
               <dt>
