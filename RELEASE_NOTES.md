@@ -9,13 +9,12 @@
  * **Breaking:** Chart methods now have static type annotations, which may lead to incompatibilities in some cases
  * **Breaking:** Rename ChartDescription type: `Plotly.NET.ChartDescription.Description` -> `Plotly.NET.ChartDescription`
  * [**Possibly breaking:** target netstandad 2.0](https://github.com/plotly/Plotly.NET/commit/0fd6d42d755c060f42cf48465cbcfd02e0a07088)
- * [**Possibly breaking:** target net5.0 as well](https://github.com/plotly/Plotly.NET/commit/4f0633f0481df91cb2e310da61175d7ddb26ee11)
  * **Breaking:** Many functions of the Chart API have been changed to be in lower camelCase (e.g `Chart.Show` -> `Chart.show`, `Chart.withX_Axis` -> `Chart.withXAxis`, etc.) see full set of changes in that category [here](https://github.com/plotly/Plotly.NET/pull/114), thanks [@WhiteBlackGoose](https://github.com/WhiteBlackGoose)
  * **Breaking**: Many Parameters of `init` and `style` functions have been changed to PascalCase, this is ongoing and will be breaking eregularily until unified.
  * SubPlotIds are now unified under the `StyleParam.SubPlotId` type which is used to assign subplots anchors (e.g. scenes for 3d charts, polar for polar charts) This change will be reflectes in trace type modeling in a later release.
  * **Breaking**: Layout and trace object abstractions are now in new namespaces: `Plotly.NET.LayoutObjects`/`Plotly.NET.TraceObjects`
  * **Breaking**: every argument/parameter concerned with color has been changed to use the new Color type isntead of a plain string.
- * **Breaking**: The underlying plotly.js version is now correctly pinned at 2.42
+ * **Breaking**: The underlying plotly.js version is now pinned at 2.6.3
  * [**Breaking**: POC of multivalue support (breaks Bar charts)](https://github.com/plotly/Plotly.NET/commit/c5f6fbb6e3ac14bae06192d696dcf8637dcaa21e)
 
 **Major Additions:**
@@ -65,6 +64,7 @@
  * [Add indicator charts](https://github.com/plotly/Plotly.NET/pull/207)
  * [Add icicle charts](https://github.com/plotly/Plotly.NET/pull/210)
  * [Add Chart.AnnotatedHeatmap](https://github.com/plotly/Plotly.NET/pull/234)
+ * [Add Chart.PointDensity](https://github.com/plotly/Plotly.NET/commit/8533cbb555ac51e7b9aa77c8599ebcb66cd552e2)
 
 **Minor Additions/fixes:**
 
@@ -99,7 +99,8 @@
  * Full trace style args for geo traces: [#246](https://github.com/plotly/Plotly.NET/pull/246)
  * Full trace style args for mapbox traces: [#247](https://github.com/plotly/Plotly.NET/pull/247)
  * Full trace style args for domain traces: [#250](https://github.com/plotly/Plotly.NET/pull/250)
-
+ * All Chart constructors are now fully documented with XML docs
+ * Trace and Layout types have been expanded with important get/set/update methods (this is only important internally)
 
 **Other notable changes**
 
