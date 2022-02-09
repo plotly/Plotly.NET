@@ -716,7 +716,7 @@ module StyleParam =
     /// The colorscale must be a collection containing a mapping of a normalized value (between 0.0 and 1.0) to it's color. At minimum, a mapping for the lowest (0.0) and highest (1.0) values are required.
     [<RequireQualifiedAccess>]
     type Colorscale =
-        | Custom of seq<float * string>
+        | Custom of seq<float * Color>
         | RdBu
         | Earth
         | Blackbody
@@ -733,9 +733,15 @@ module StyleParam =
         | Rainbow
         | Viridis
         | Cividis
+
         static member convert =
             function
-            | Custom (cScale) -> cScale |> Seq.map (fun (v, color) -> [| box v; box color |]) |> Array.ofSeq |> box
+            | Custom (cScale) ->
+                if Seq.length cScale < 2 then
+                    failwith
+                        "Color scale did not contain enough values. At minimum, a mapping for the lowest (0.0) and highest (1.0) values are required"
+
+                cScale |> Seq.map (fun (v, color) -> [| box v; box color |]) |> Array.ofSeq |> box
             | RdBu -> box "RdBu"
             | Earth -> box "Earth"
             | Blackbody -> box "Blackbody"
