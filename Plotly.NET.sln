@@ -49,6 +49,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{7B09CC0A-F
 		docs\00_4_templates.fsx = docs\00_4_templates.fsx
 		docs\00_5_defaults.fsx = docs\00_5_defaults.fsx
 		docs\00_6_multi-arguments.fsx = docs\00_6_multi-arguments.fsx
+		docs\00_7_working-with-colors.fsx = docs\00_7_working-with-colors.fsx
 		docs\01_0_axis-styling.fsx = docs\01_0_axis-styling.fsx
 		docs\01_1_errorbars.fsx = docs\01_1_errorbars.fsx
 		docs\01_2_multiple-charts.fsx = docs\01_2_multiple-charts.fsx
