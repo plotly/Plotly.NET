@@ -380,7 +380,7 @@ module GenericChartExtensions =
         // Sets z-Axis of 3d- Charts
         [<CompiledName("WithZAxis")>]
         [<Extension>]
-        member this.WithZAxis(zAxis: LinearAxis, [<Optional; DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId) =
+        member this.WithZAxis(zAxis: LinearAxis, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
             this |> Chart.withZAxis (zAxis, ?Id = Id)
 
 
@@ -621,13 +621,13 @@ module GenericChartExtensions =
         /// Sets a map for the given chart (will only work with traces supporting geo, e.g. choropleth, scattergeo)
         [<CompiledName("WithMap")>]
         [<Extension>]
-        member this.WithGeo(geo: Geo, [<Optional; DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId) =
+        member this.WithGeo(geo: Geo, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
             this |> Chart.withGeo (geo, ?Id = Id)
 
         /// Sets a mapbox for the given chart (will only work with traces supporting mapboxes, e.g. choroplethmapbox, scattermapbox)
         [<CompiledName("WithMapbox")>]
         [<Extension>]
-        member this.withMapbox(mapBox: Mapbox, [<Optional; DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId) =
+        member this.withMapbox(mapBox: Mapbox, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
             this |> Chart.withMapbox (mapBox, ?Id = Id)
 
 

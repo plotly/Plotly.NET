@@ -889,10 +889,10 @@ type Chart =
             GenericChart.addLayout layout' ch)
 
     /// <summary>
-    /// Sets the given axis on the input chart's layout, optionally passing a target axis id.
+    /// Sets the given axis with the given id on the input chart's layout.
     /// </summary>
     /// <param name="axis">The x axis to set on the chart's layout</param>
-    /// <param name="id">The target axis id with which the axis should be set. Default is 1.</param>
+    /// <param name="id">The target axis id with which the axis should be set.</param>
     /// <param name="SceneAxis">If set on a scene, define wether it is the x, y or z axis. default is x.</param>
     /// <param name="Combine">Wether or not to combine the objects if there is already an axis set (default is false)</param>
     [<CompiledName("SetAxis")>]
@@ -1239,9 +1239,9 @@ type Chart =
     /// <param name="zAxis">The z axis to set on the chart's layout</param>
     /// <param name="Id">The target scene id on which the axis should be set. Default is 1.</param>
     [<CompiledName("WithZAxis")>]
-    static member withZAxis(zAxis: LinearAxis, [<Optional; DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId) =
+    static member withZAxis(zAxis: LinearAxis, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
         let id =
-            defaultArg Id (StyleParam.SubPlotId.Scene 1)
+            Id |> Option.defaultValue 1 |> StyleParam.SubPlotId.Scene
 
         fun (ch: GenericChart) ->
             ch |> Chart.setAxis (zAxis, id, SceneAxis = StyleParam.SubPlotId.ZAxis, Combine = true)
@@ -1311,7 +1311,7 @@ type Chart =
             [<Optional; DefaultParameterValue(null)>] ?RangeSelector: RangeSelector,
             [<Optional; DefaultParameterValue(null)>] ?BackgroundColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?ShowBackground: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId
+            [<Optional; DefaultParameterValue(null)>] ?Id: int
         ) =
         let range =
             MinMax |> Option.map StyleParam.Range.ofMinMax
@@ -1356,117 +1356,245 @@ type Chart =
 
         Chart.withZAxis (yaxis, ?Id = Id)
 
-    // Set the LayoutGrid options of a Chart
-    [<CompiledName("WithLayoutGrid")>]
-    static member withLayoutGrid(layoutGrid: LayoutGrid) =
+    /// <summary>
+    /// Sets the given Scene object with the given id on the input chart's layout.
+    /// </summary>
+    /// <param name="scene">The Scene object to set on the chart's layout</param>
+    /// <param name="id">The target scene id with which the Scene object should be set.</param>
+    /// <param name="Combine">Wether or not to combine the objects if there is already an Scene set (default is false)</param>
+    [<CompiledName("SetScene")>]
+    static member setScene
+        (
+            scene: Scene,
+            id: StyleParam.SubPlotId,
+            [<Optional; DefaultParameterValue(null)>] ?Combine: bool
+        ) =
+
+        let combine = defaultArg Combine false
+
         (fun (ch: GenericChart) ->
-            let layout =
-                GenericChart.getLayout ch |> Layout.setLayoutGrid layoutGrid
+            if combine then
+                ch |> GenericChart.mapLayout (Layout.updateSceneById (id, scene))
+            else
+                ch |> GenericChart.mapLayout (Layout.setScene (id, scene)))
 
-            GenericChart.setLayout layout ch)
+    /// <summary>
+    /// Sets the Scene for the chart's layout
+    ///
+    /// If there is already a Scene set, the objects are combined.
+    /// </summary>
+    /// <param name="scene">The Scene to set on the chart's layout</param>
+    /// <param name="Id">The target scene id on which the scene should be set. Default is 1.</param>
+    [<CompiledName("WithScene")>]
+    static member withScene(scene: Scene, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
+        let id =
+            Id |> Option.defaultValue 1 |> StyleParam.SubPlotId.Scene
 
-    // Set the LayoutGrid options of a Chart
-    [<CompiledName("WithLegend")>]
-    static member withLegend(legend: Legend) =
+        (fun (ch: GenericChart) -> ch |> Chart.setScene (scene, id, true))
+
+    /// <summary>
+    /// Sets the given Scene styles on the target Scene object on the input chart's layout.
+    ///
+    /// If there is already a Scene set, the styles are applied to it. If there is no Scene present, a new Scene object with the given styles will be set.
+    /// </summary>
+    /// <param name="Annotations">An annotation is a text element that can be placed anywhere in the plot. It can be positioned with respect to relative coordinates in the plot or with respect to the actual data coordinates of the graph. Annotations can be shown with or without an arrow.</param>
+    /// <param name="AspectMode">If "cube", this scene's axes are drawn as a cube, regardless of the axes' ranges. If "data", this scene's axes are drawn in proportion with the axes' ranges. If "manual", this scene's axes are drawn in proportion with the input of "aspectratio" (the default behavior if "aspectratio" is provided). If "auto", this scene's axes are drawn using the results of "data" except when one axis is more than four times the size of the two others, where in that case the results of "cube" are used.</param>
+    /// <param name="AspectRatio">Sets this scene's axis aspectratio.</param>
+    /// <param name="BGColor">Sets this scene's background color.</param>
+    /// <param name="Camera">Sets this scene's camera</param>
+    /// <param name="Domain">Sets this scene's domain</param>
+    /// <param name="DragMode">Determines the mode of drag interactions for this scene.</param>
+    /// <param name="HoverMode">Determines the mode of hover interactions for this scene.</param>
+    /// <param name="UIRevision">Controls persistence of user-driven changes in camera attributes. Defaults to `layout.uirevision`.</param>
+    /// <param name="XAxis">Sets this scene's xaxis</param>
+    /// <param name="YAxis">Sets this scene's yaxis</param>
+    /// <param name="ZAxis">Sets this scene's zaxis</param>
+    /// <param name="Id">The target scene id</param>
+    [<CompiledName("WithSceneStyle")>]
+    static member withSceneStyle
+        (
+            [<Optional; DefaultParameterValue(null)>] ?Annotations: seq<Annotation>,
+            [<Optional; DefaultParameterValue(null)>] ?AspectMode: StyleParam.AspectMode,
+            [<Optional; DefaultParameterValue(null)>] ?AspectRatio: AspectRatio,
+            [<Optional; DefaultParameterValue(null)>] ?BGColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?Camera: Camera,
+            [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
+            [<Optional; DefaultParameterValue(null)>] ?DragMode: StyleParam.DragMode,
+            [<Optional; DefaultParameterValue(null)>] ?HoverMode: StyleParam.HoverMode,
+            [<Optional; DefaultParameterValue(null)>] ?UIRevision: string,
+            [<Optional; DefaultParameterValue(null)>] ?XAxis: LinearAxis,
+            [<Optional; DefaultParameterValue(null)>] ?YAxis: LinearAxis,
+            [<Optional; DefaultParameterValue(null)>] ?ZAxis: LinearAxis,
+            [<Optional; DefaultParameterValue(null)>] ?Id: int
+        ) =
         (fun (ch: GenericChart) ->
-            let layout =
-                GenericChart.getLayout ch |> Layout.setLegend legend
+            let scene =
+                Scene.init (
+                    ?Annotations = Annotations,
+                    ?AspectMode = AspectMode,
+                    ?AspectRatio = AspectRatio,
+                    ?BGColor = BGColor,
+                    ?Camera = Camera,
+                    ?Domain = Domain,
+                    ?DragMode = DragMode,
+                    ?HoverMode = HoverMode,
+                    ?UIRevision = UIRevision,
+                    ?XAxis = XAxis,
+                    ?YAxis = YAxis,
+                    ?ZAxis = ZAxis
+                )
 
-            GenericChart.setLayout layout ch)
+            ch |> Chart.withScene (scene, ?Id = Id))
 
-    /// Sets a map for the given chart (will only work with traces supporting geo, e.g. choropleth, scattergeo)
+    /// <summary>
+    /// Sets the given Polar object with the given id on the input chart's layout.
+    /// </summary>
+    /// <param name="polar">The Polar object to set on the chart's layout</param>
+    /// <param name="id">The target polar id with which the Polar object should be set.</param>
+    /// <param name="Combine">Wether or not to combine the objects if there is already an Polar set (default is false)</param>
+    [<CompiledName("SetPolar")>]
+    static member setPolar
+        (
+            polar: Polar,
+            id: StyleParam.SubPlotId,
+            [<Optional; DefaultParameterValue(null)>] ?Combine: bool
+        ) =
+
+        let combine = defaultArg Combine false
+
+        (fun (ch: GenericChart) ->
+            if combine then
+                ch |> GenericChart.mapLayout (Layout.updatePolarById (id, polar))
+            else
+                ch |> GenericChart.mapLayout (Layout.setPolar (id, polar)))
+
+    /// <summary>
+    /// Sets the Polar for the chart's layout
+    ///
+    /// If there is already a Polar set, the objects are combined.
+    /// </summary>
+    /// <param name="polar">The new Polar for the chart's trace(s)</param>
+    /// <param name="Id">The target polar id on which the poalr object should be set. Default is 1.</param>
+    [<CompiledName("WithPolar")>]
+    static member withPolar(polar: Polar, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
+        let id =
+            Id |> Option.defaultValue 1 |> StyleParam.SubPlotId.Polar
+
+        (fun (ch: GenericChart) -> ch |> Chart.setPolar (polar, id, true))
+
+    /// <summary>
+    /// Sets the given Polar styles on the target Polar object on the input chart's layout.
+    ///
+    /// If there is already a Polar set, the styles are applied to it. If there is no Polar present, a new Polar object with the given styles will be set.
+    /// </summary>
+    /// <param name="Domain">Sets the domain of this polar subplot</param>
+    /// <param name="Sector">Sets angular span of this polar subplot with two angles (in degrees). Sector are assumed to be spanned in the counterclockwise direction with "0" corresponding to rightmost limit of the polar subplot.</param>
+    /// <param name="Hole">Sets the fraction of the radius to cut out of the polar subplot.</param>
+    /// <param name="BGColor">Set the background color of the subplot</param>
+    /// <param name="RadialAxis">Sets the radial axis of the polar subplot.</param>
+    /// <param name="AngularAxis">Sets the angular axis of the polar subplot.</param>
+    /// <param name="GridShape">Determines if the radial axis grid lines and angular axis line are drawn as "circular" sectors or as "linear" (polygon) sectors. Has an effect only when the angular axis has `type` "category". Note that `radialaxis.angle` is snapped to the angle of the closest vertex when `gridshape` is "circular" (so that radial axis scale is the same as the data scale).</param>
+    /// <param name="UIRevision">Controls persistence of user-driven changes in axis attributes, if not overridden in the individual axes. Defaults to `layout.uirevision`.</param>
+    /// <param name="Id">The target polar id</param>
+    [<CompiledName("WithPolarStyle")>]
+    static member withPolarStyle
+        (
+            [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
+            [<Optional; DefaultParameterValue(null)>] ?Sector: float * float,
+            [<Optional; DefaultParameterValue(null)>] ?Hole: float,
+            [<Optional; DefaultParameterValue(null)>] ?BGColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?RadialAxis: RadialAxis,
+            [<Optional; DefaultParameterValue(null)>] ?AngularAxis: AngularAxis,
+            [<Optional; DefaultParameterValue(null)>] ?GridShape: StyleParam.PolarGridShape,
+            [<Optional; DefaultParameterValue(null)>] ?UIRevision: string,
+            [<Optional; DefaultParameterValue(null)>] ?Id: int
+        ) =
+        (fun (ch: GenericChart) ->
+            let polar =
+                Polar.init (
+                    ?Domain = Domain,
+                    ?Sector = Sector,
+                    ?Hole = Hole,
+                    ?BGColor = BGColor,
+                    ?RadialAxis = RadialAxis,
+                    ?AngularAxis = AngularAxis,
+                    ?GridShape = GridShape,
+                    ?UIRevision = UIRevision
+                )
+
+            ch |> Chart.withPolar (polar, ?Id = Id))
+
+    /// <summary>
+    /// Sets the given Geo object with the given id on the input chart's layout.
+    /// </summary>
+    /// <param name="geo">The Geo object to set on the chart's layout</param>
+    /// <param name="id">The target Geo id with which the Geo object should be set.</param>
+    /// <param name="Combine">Wether or not to combine the objects if there is already an Geo set (default is false)</param>
+    [<CompiledName("SetGeo")>]
+    static member setGeo(geo: Geo, id: StyleParam.SubPlotId, [<Optional; DefaultParameterValue(null)>] ?Combine: bool) =
+
+        let combine = defaultArg Combine false
+
+        (fun (ch: GenericChart) ->
+            if combine then
+                ch |> GenericChart.mapLayout (Layout.updateGeoById (id, geo))
+            else
+                ch |> GenericChart.mapLayout (Layout.setGeo (id, geo)))
+
+    /// <summary>
+    /// Sets the Geo for the chart's layout
+    ///
+    /// If there is already a Geo set, the objects are combined.
+    /// </summary>
+    /// <param name="geo">The new Geo for the chart's trace(s)</param>
+    /// <param name="Id">The target geo id on which the Geo should be set. Default is 1.</param>
     [<CompiledName("WithGeo")>]
-    static member withGeo(map: Geo, [<Optional; DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId) =
-        (fun (ch: GenericChart) ->
-            let layout =
-                let id =
-                    defaultArg Id (StyleParam.SubPlotId.Geo 1)
+    static member withGeo(geo: Geo, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
+        let id =
+            Id |> Option.defaultValue 1 |> StyleParam.SubPlotId.Geo
 
-                GenericChart.getLayout ch |> Layout.updateGeoById (id, map)
+        (fun (ch: GenericChart) -> ch |> Chart.setGeo (geo, id, true))
 
-            GenericChart.setLayout layout ch)
-
-    /// Sets a mapbox for the given chart (will only work with traces supporting mapboxes, e.g. choroplethmapbox, scattermapbox)
-    [<CompiledName("WithMapbox")>]
-    static member withMapbox(mapBox: Mapbox, [<Optional; DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId) =
-        (fun (ch: GenericChart) ->
-            let layout =
-                let id =
-                    defaultArg Id (StyleParam.SubPlotId.Mapbox 1)
-
-                GenericChart.getLayout ch |> Layout.updateMapboxById (id, mapBox)
-
-            GenericChart.setLayout layout ch)
-
-    /// Sets the map style for the given chart (will only work with traces supporting geo, e.g. choropleth, scattergeo)
+    /// <summary>
+    /// Sets the given Geo styles on the target geo on the input chart's layout.
     ///
-    /// Parameters      :
-    ///
-    /// FitBounds       : Determines if and how this subplot's view settings are auto-computed to fit trace data
-    ///
-    /// Resolution      : Sets the resolution of the base layers
-    ///
-    /// Scope           : Set the scope of the map.
-    ///
-    /// Projection      : Determines the type of projection used to display the map
-    ///
-    /// Center          : Sets the (lon,lat) coordinates of the map's center. By default, the map's longitude center lies at the middle of the longitude range for scoped projection and above `projection.rotation.lon` otherwise. For all projection types, the map's latitude center lies at the middle of the latitude range by default.
-    ///
-    /// Visible         : Wether or not the base layers are visible
-    ///
-    /// Domain          : The domain of this geo subplot
-    ///
-    /// ShowCoastLine   : Sets whether or not the coastlines are drawn.
-    ///
-    /// CoastLineColor  : Sets the coastline color.
-    ///
-    /// CoastLineWidth  : Sets the coastline stroke width (in px).
-    ///
-    /// ShowLand        : Sets whether or not land masses are filled in color.
-    ///
-    /// LandColor       : Sets the land mass color.
-    ///
-    /// ShowOcean       : Sets whether or not oceans are filled in color.
-    ///
-    /// OceanColor      : Sets the ocean color
-    ///
-    /// ShowLakes       : Sets whether or not lakes are drawn.
-    ///
-    /// LakeColor       : Sets the color of the lakes.
-    ///
-    /// ShowRivers      : Sets whether or not rivers are drawn.
-    ///
-    /// RiverColor      : Sets color of the rivers.
-    ///
-    /// RiverWidth      : Sets the stroke width (in px) of the rivers.
-    ///
-    /// ShowCountries   : Sets whether or not country boundaries are drawn.
-    ///
-    /// CountryColor    : Sets line color of the country boundaries.
-    ///
-    /// CountryWidth    : Sets line width (in px) of the country boundaries.
-    ///
-    /// ShowSubunits    : Sets whether or not boundaries of subunits within countries (e.g. states, provinces) are drawn.
-    ///
-    /// SubunitColor    : Sets the color of the subunits boundaries.
-    ///
-    /// SubunitWidth    : Sets the stroke width (in px) of the subunits boundaries.
-    ///
-    /// ShowFrame       : Sets whether or not a frame is drawn around the map.
-    ///
-    /// FrameColor      : Sets the color the frame.
-    ///
-    /// FrameWidth      : Sets the stroke width (in px) of the frame.
-    ///
-    /// BgColor         : Set the background color of the map
-    ///
-    /// LatAxis         : Sets the latitudinal axis for this geo trace
-    ///
-    /// LonAxis         : Sets the longitudinal axis for this geo trace
+    /// If there is already a Geo set, the styles are applied to it. If there is no Geo present, a new Geo object with the given styles will be set.
+    /// </summary>
+    /// <param name="FitBounds">Determines if and how this subplot's view settings are auto-computed to fit trace data</param>
+    /// <param name="Resolution">Sets the resolution of the base layers</param>
+    /// <param name="Scope">Set the scope of the map.</param>
+    /// <param name="Projection">Determines the type of projection used to display the map</param>
+    /// <param name="Center">Sets the (lon,lat) coordinates of the map's center. By default, the map's longitude center lies at the middle of the longitude range for scoped projection and above `projection.rotation.lon` otherwise. For all projection types, the map's latitude center lies at the middle of the latitude range by default.</param>
+    /// <param name="Visible">Wether or not the base layers are visible</param>
+    /// <param name="Domain">The domain of this geo subplot</param>
+    /// <param name="ShowCoastLines">Sets whether or not the coastlines are drawn.</param>
+    /// <param name="CoastLineColor">Sets the coastline color.</param>
+    /// <param name="CoastLineWidth">Sets the coastline stroke width (in px).</param>
+    /// <param name="ShowLand">Sets whether or not land masses are filled in color.</param>
+    /// <param name="LandColor">Sets the land mass color.</param>
+    /// <param name="ShowOcean">Sets whether or not oceans are filled in color.</param>
+    /// <param name="OceanColor">Sets the ocean color</param>
+    /// <param name="ShowLakes">Sets whether or not lakes are drawn.</param>
+    /// <param name="LakeColor">Sets the color of the lakes.</param>
+    /// <param name="ShowRivers">Sets whether or not rivers are drawn.</param>
+    /// <param name="RiverColor">Sets color of the rivers.</param>
+    /// <param name="RiverWidth">Sets the stroke width (in px) of the rivers.</param>
+    /// <param name="ShowCountries">Sets whether or not country boundaries are drawn.</param>
+    /// <param name="CountryColor">Sets line color of the country boundaries.</param>
+    /// <param name="CountryWidth">Sets line width (in px) of the country boundaries.</param>
+    /// <param name="ShowSubunits">Sets whether or not boundaries of subunits within countries (e.g. states, provinces) are drawn.</param>
+    /// <param name="SubunitColor">Sets the color of the subunits boundaries.</param>
+    /// <param name="SubunitWidth">Sets the stroke width (in px) of the subunits boundaries.</param>
+    /// <param name="ShowFrame">Sets whether or not a frame is drawn around the map.</param>
+    /// <param name="FrameColor">Sets the color the frame.</param>
+    /// <param name="FrameWidth">Sets the stroke width (in px) of the frame.</param>
+    /// <param name="BgColor">Set the background color of the map</param>
+    /// <param name="LatAxis">Sets the latitudinal axis for this geo trace</param>
+    /// <param name="LonAxis">Sets the longitudinal axis for this geo trace</param>
+    /// <param name="Id">the target geo id</param>
     [<CompiledName("WithGeoStyle")>]
     static member withGeoStyle
         (
-            [<Optional; DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId,
             [<Optional; DefaultParameterValue(null)>] ?FitBounds: StyleParam.GeoFitBounds,
             [<Optional; DefaultParameterValue(null)>] ?Resolution: StyleParam.GeoResolution,
             [<Optional; DefaultParameterValue(null)>] ?Scope: StyleParam.GeoScope,
@@ -1475,33 +1603,33 @@ type Chart =
             [<Optional; DefaultParameterValue(null)>] ?Visible: bool,
             [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
             [<Optional; DefaultParameterValue(null)>] ?ShowCoastLines: bool,
-            [<Optional; DefaultParameterValue(null)>] ?CoastLineColor,
+            [<Optional; DefaultParameterValue(null)>] ?CoastLineColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?CoastLineWidth: float,
             [<Optional; DefaultParameterValue(null)>] ?ShowLand: bool,
-            [<Optional; DefaultParameterValue(null)>] ?LandColor,
+            [<Optional; DefaultParameterValue(null)>] ?LandColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?ShowOcean: bool,
-            [<Optional; DefaultParameterValue(null)>] ?OceanColor,
+            [<Optional; DefaultParameterValue(null)>] ?OceanColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?ShowLakes: bool,
-            [<Optional; DefaultParameterValue(null)>] ?LakeColor,
+            [<Optional; DefaultParameterValue(null)>] ?LakeColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?ShowRivers: bool,
-            [<Optional; DefaultParameterValue(null)>] ?RiverColor,
+            [<Optional; DefaultParameterValue(null)>] ?RiverColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?RiverWidth: float,
             [<Optional; DefaultParameterValue(null)>] ?ShowCountries: bool,
-            [<Optional; DefaultParameterValue(null)>] ?CountryColor,
+            [<Optional; DefaultParameterValue(null)>] ?CountryColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?CountryWidth: float,
             [<Optional; DefaultParameterValue(null)>] ?ShowSubunits: bool,
-            [<Optional; DefaultParameterValue(null)>] ?SubunitColor,
+            [<Optional; DefaultParameterValue(null)>] ?SubunitColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?SubunitWidth: float,
             [<Optional; DefaultParameterValue(null)>] ?ShowFrame: bool,
-            [<Optional; DefaultParameterValue(null)>] ?FrameColor,
+            [<Optional; DefaultParameterValue(null)>] ?FrameColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?FrameWidth: float,
-            [<Optional; DefaultParameterValue(null)>] ?BgColor,
+            [<Optional; DefaultParameterValue(null)>] ?BgColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?LatAxis: LinearAxis,
-            [<Optional; DefaultParameterValue(null)>] ?LonAxis: LinearAxis
+            [<Optional; DefaultParameterValue(null)>] ?LonAxis: LinearAxis,
+            [<Optional; DefaultParameterValue(null)>] ?Id: int
         ) =
-        fun (ch: GenericChart) ->
-
-            let map =
+        (fun (ch: GenericChart) ->
+            let geo =
                 Geo.init (
                     ?FitBounds = FitBounds,
                     ?Resolution = Resolution,
@@ -1536,11 +1664,18 @@ type Chart =
                     ?LonAxis = LonAxis
                 )
 
-            let id =
-                defaultArg Id (StyleParam.SubPlotId.Geo 1)
+            ch |> Chart.withGeo (geo, ?Id = Id))
 
-            ch |> Chart.withGeo (map, id)
-
+    /// <summary>
+    /// Sets the given Geo Projection styles on the target geo on the input chart's layout.
+    ///
+    /// If there is already a Geo set, the styles are applied to it. If there is no Geo present, a new Geo object with the given styles will be set.
+    /// </summary>
+    /// <param name="projectionType">Sets the type of projection</param>
+    /// <param name="Rotation">Sets the rotation applied to the map</param>
+    /// <param name="Parallels">For conic projection types only. Sets the parallels (tangent, secant) where the cone intersects the sphere.</param>
+    /// <param name="Scale">Zooms in or out on the map view. A scale of "1" corresponds to the largest zoom level that fits the map's lon and lat ranges.</param>
+    /// <param name="Id">the target geo id</param>
     [<CompiledName("WithGeoProjection")>]
     static member withGeoProjection
         (
@@ -1548,7 +1683,7 @@ type Chart =
             [<Optional; DefaultParameterValue(null)>] ?Rotation,
             [<Optional; DefaultParameterValue(null)>] ?Parallels,
             [<Optional; DefaultParameterValue(null)>] ?Scale,
-            [<Optional; DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId
+            [<Optional; DefaultParameterValue(null)>] ?Id: int
         ) =
         (fun (ch: GenericChart) ->
 
@@ -1562,12 +1697,186 @@ type Chart =
 
             let map = Geo.init (Projection = projection)
 
-            let id =
-                defaultArg Id (StyleParam.SubPlotId.Geo 1)
+            ch |> Chart.withGeo (map, ?Id = Id))
 
-            ch |> Chart.withGeo (map, id))
+    /// <summary>
+    /// Sets the given Mapbox object with the given id on the input chart's layout.
+    /// </summary>
+    /// <param name="mapbox">The Mapbox object to set on the chart's layout</param>
+    /// <param name="id">The target Mapbox id with which the Mapbox object should be set.</param>
+    /// <param name="Combine">Wether or not to combine the objects if there is already an Mapbox set (default is false)</param>
+    [<CompiledName("SetMapbox")>]
+    static member setMapbox
+        (
+            mapbox: Mapbox,
+            id: StyleParam.SubPlotId,
+            [<Optional; DefaultParameterValue(null)>] ?Combine: bool
+        ) =
 
-    /// <summary>Set the LayoutGrid options of a Chart</summary>
+        let combine = defaultArg Combine false
+
+        (fun (ch: GenericChart) ->
+            if combine then
+                ch |> GenericChart.mapLayout (Layout.updateMapboxById (id, mapbox))
+            else
+                ch |> GenericChart.mapLayout (Layout.setMapbox (id, mapbox)))
+
+    /// <summary>
+    /// Sets the Mapbox for the chart's layout
+    ///
+    /// If there is already a Mapbox set, the objects are combined.
+    /// </summary>
+    /// <param name="mapbox">The Mapbox to set on the chart's layout</param>
+    /// <param name="Id">The target mapbox id on which the Mapbox should be set. Default is 1.</param>
+    [<CompiledName("WithMapbox")>]
+    static member withMapbox(mapbox: Mapbox, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
+        let id =
+            Id |> Option.defaultValue 1 |> StyleParam.SubPlotId.Mapbox
+
+        (fun (ch: GenericChart) -> ch |> Chart.setMapbox (mapbox, id, true))
+
+    /// <summary>
+    /// Sets the given Mapbox styles on the target Mapbox object on the input chart's layout.
+    ///
+    /// If there is already a Mapbox set, the styles are applied to it. If there is no Mapbox present, a new Mapbox object with the given styles will be set.
+    /// </summary>
+    /// <param name="Domain">Sets the domain of the Mapbox subplot</param>
+    /// <param name="AccessToken">Sets the mapbox access token to be used for this mapbox map. Alternatively, the mapbox access token can be set in the configuration options under `mapboxAccessToken`. Note that accessToken are only required when `style` (e.g with values : basic, streets, outdoors, light, dark, satellite, satellite-streets ) and/or a layout layer references the Mapbox server.</param>
+    /// <param name="Style">Defines the map layers that are rendered by default below the trace layers defined in `data`, which are themselves by default rendered below the layers defined in `layout.mapbox.layers`. These layers can be defined either explicitly as a Mapbox Style object which can contain multiple layer definitions that load data from any public or private Tile Map Service (TMS or XYZ) or Web Map Service (WMS) or implicitly by using one of the built-in style objects which use WMSes which do not require any access tokens, or by using a default Mapbox style or custom Mapbox style URL, both of which require a Mapbox access token Note that Mapbox access token can be set in the `accesstoken` attribute or in the `mapboxAccessToken` config option. Mapbox Style objects are of the form described in the Mapbox GL JS documentation available at https://docs.mapbox.com/mapbox-gl-js/style-spec The built-in plotly.js styles objects are: carto-darkmatter, carto-positron, open-street-map, stamen-terrain, stamen-toner, stamen-watercolor, white-bg The built-in Mapbox styles are: basic, streets, outdoors, light, dark, satellite, satellite-streets Mapbox style URLs are of the form: mapbox://mapbox.mapbox/name/version</param>
+    /// <param name="Center">Sets the (lon,lat) coordinates of the center of the map view</param>
+    /// <param name="Zoom">Sets the zoom level of the map (mapbox.zoom).</param>
+    /// <param name="Bearing">Sets the bearing angle of the map in degrees counter-clockwise from North (mapbox.bearing).</param>
+    /// <param name="Pitch">Sets the pitch angle of the map (in degrees, where "0" means perpendicular to the surface of the map) (mapbox.pitch).</param>
+    /// <param name="Layers">Sets the layers of this Mapbox</param>
+    /// <param name="Id">The target mapbox id</param>
+    static member withMapboxStyle
+        (
+            [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
+            [<Optional; DefaultParameterValue(null)>] ?AccessToken: string,
+            [<Optional; DefaultParameterValue(null)>] ?Style: StyleParam.MapboxStyle,
+            [<Optional; DefaultParameterValue(null)>] ?Center: (float * float),
+            [<Optional; DefaultParameterValue(null)>] ?Zoom: float,
+            [<Optional; DefaultParameterValue(null)>] ?Bearing: float,
+            [<Optional; DefaultParameterValue(null)>] ?Pitch: float,
+            [<Optional; DefaultParameterValue(null)>] ?Layers: seq<MapboxLayer>,
+            [<Optional; DefaultParameterValue(null)>] ?Id: int
+        ) =
+        (fun (ch: GenericChart) ->
+            let mapbox =
+                Mapbox.init (
+                    ?Domain = Domain,
+                    ?AccessToken = AccessToken,
+                    ?Style = Style,
+                    ?Center = Center,
+                    ?Zoom = Zoom,
+                    ?Bearing = Bearing,
+                    ?Pitch = Pitch,
+                    ?Layers = Layers
+                )
+
+            ch |> Chart.withMapbox (mapbox, ?Id = Id))
+
+    /// <summary>
+    /// Sets the given Ternary object with the given id on the input chart's layout.
+    /// </summary>
+    /// <param name="ternary">The Ternary object to set on the chart's layout</param>
+    /// <param name="id">The target Ternary id with which the Ternary object should be set.</param>
+    /// <param name="Combine">Wether or not to combine the objects if there is already an Ternary set (default is false)</param>
+    [<CompiledName("SetTernary")>]
+    static member setTernary
+        (
+            ternary: Ternary,
+            id: StyleParam.SubPlotId,
+            [<Optional; DefaultParameterValue(null)>] ?Combine: bool
+        ) =
+
+        let combine = defaultArg Combine false
+
+        (fun (ch: GenericChart) ->
+            if combine then
+                ch |> GenericChart.mapLayout (Layout.updateTernaryById (id, ternary))
+            else
+                ch |> GenericChart.mapLayout (Layout.setTernary (id, ternary)))
+
+    /// <summary>
+    /// Sets the Ternary for the chart's layout
+    ///
+    /// If there is already a Ternary set, the objects are combined.
+    /// </summary>
+    /// <param name="ternary">The Ternary to set on the chart's layout</param>
+    /// <param name="Id">The target ternary id on which the Ternary should be set. Default is 1.</param>
+    [<CompiledName("WithTernary")>]
+    static member withTernary(ternary: Ternary, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
+        let id =
+            Id |> Option.defaultValue 1 |> StyleParam.SubPlotId.Ternary
+
+        (fun (ch: GenericChart) -> ch |> Chart.setTernary (ternary, id, true))
+
+    /// <summary>
+    /// Sets the given Ternary styles on the target Ternary object on the input chart's layout.
+    ///
+    /// If there is already a Ternary set, the styles are applied to it. If there is no Ternary present, a new Ternary object with the given styles will be set.
+    /// </summary>
+    /// <param name="AAxis">Sets the ternary A Axis</param>
+    /// <param name="BAxis">Sets the ternary B Axis</param>
+    /// <param name="CAxis">Sets the ternary C Axis</param>
+    /// <param name="Domain">Sets the ternary domain</param>
+    /// <param name="Sum">The number each triplet should sum to, and the maximum range of each axis</param>
+    /// <param name="BGColor">Sets the background color of the ternary layout.</param>
+    /// <param name="Id">The target Ternary id</param>
+    static member withTernaryStyle
+        (
+            [<Optional; DefaultParameterValue(null)>] ?AAxis: LinearAxis,
+            [<Optional; DefaultParameterValue(null)>] ?BAxis: LinearAxis,
+            [<Optional; DefaultParameterValue(null)>] ?CAxis: LinearAxis,
+            [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
+            [<Optional; DefaultParameterValue(null)>] ?Sum: #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?BGColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?Id: int
+        ) =
+        (fun (ch: GenericChart) ->
+            let ternary =
+                Ternary.init (
+                    ?AAxis = AAxis,
+                    ?BAxis = BAxis,
+                    ?CAxis = CAxis,
+                    ?Domain = Domain,
+                    ?Sum = Sum,
+                    ?BGColor = BGColor
+                )
+
+            ch |> Chart.withTernary (ternary, ?Id = Id))
+
+    /// <summary>
+    /// Sets the LayoutGrid for the chart's layout.
+    /// </summary>
+    /// <param name="layoutGrid">The new LayoutGrid for the chart's trace(s)</param>
+    /// <param name="Combine">Wether or not to combine the objects if there is already a ColorBar object set (default is false)</param>
+    [<CompiledName("SetLayoutGrid")>]
+    static member setLayoutGrid(layoutGrid: LayoutGrid, ?Combine: bool) =
+        let combine = defaultArg Combine false
+
+        (fun (ch: GenericChart) ->
+            if combine then
+                ch |> GenericChart.mapLayout (Layout.updateLayoutGrid layoutGrid)
+            else
+                ch |> GenericChart.mapLayout (Layout.setLayoutGrid layoutGrid))
+
+    /// <summary>
+    /// Sets the LayoutGrid for the chart's layout
+    ///
+    /// If there is already a LayoutGrid set, the objects are combined.
+    /// </summary>
+    /// <param name="layoutGrid">The new LayoutGrid for the chart's trace(s)</param>
+    [<CompiledName("WithLayoutGrid")>]
+    static member withLayoutGrid(layoutGrid: LayoutGrid) =
+        (fun (ch: GenericChart) -> ch |> Chart.setLayoutGrid (layoutGrid, true))
+
+    /// <summary>
+    /// Sets the given LayoutGrid styles on the input chart's LayoutGrid.
+    ///
+    /// If there is already a LayoutGrid set , the styles are applied to it. If there is no LayoutGrid present, a new LayoutGrid object with the given styles will be set.
+    /// </summary>
     /// <param name ="Rows">The number of rows in the grid. If you provide a 2D `subplots` array or a `yaxes` array, its length is used as the default. But it's also possible to have a different length, if you want to leave a row at the end for non-cartesian subplots.</param>
     /// <param name ="Columns">The number of columns in the grid. If you provide a 2D `subplots` array, the length of its longest row is used as the default. If you give an `xaxes` array, its length is used as the default. But it's also possible to have a different length, if you want to leave a row at the end for non-cartesian subplots.</param>
     /// <param name ="SubPlots">Used for freeform grids, where some axes may be shared across subplots but others are not. Each entry should be a cartesian subplot id, like "xy" or "x3y2", or "" to leave that cell empty. You may reuse x axes within the same column, and y axes within the same row. Non-cartesian subplots and traces that support `domain` can place themselves in this grid separately using the `gridcell` attribute.</param>
@@ -1597,16 +1906,8 @@ type Chart =
             [<Optional; DefaultParameterValue(null)>] ?YSide: StyleParam.LayoutGridYSide
         ) =
         (fun (ch: GenericChart) ->
-            let layout = GenericChart.getLayout ch
-
-            let updatedGrid =
-                let currentGrid =
-                    match layout.TryGetTypedValue<LayoutGrid> "grid" with
-                    | Some grid -> grid
-                    | None -> LayoutGrid()
-
-                currentGrid
-                |> LayoutGrid.style (
+            let grid =
+                LayoutGrid.init (
                     ?SubPlots = SubPlots,
                     ?XAxes = XAxes,
                     ?YAxes = YAxes,
@@ -1619,12 +1920,112 @@ type Chart =
                     ?Domain = Domain,
                     ?XSide = XSide,
                     ?YSide = YSide
+
                 )
 
-            let updatedLayout =
-                layout |> Layout.setLayoutGrid updatedGrid
+            ch |> Chart.withLayoutGrid grid)
 
-            GenericChart.setLayout updatedLayout ch)
+    /// <summary>
+    /// Sets the Legend for the chart's layout.
+    /// </summary>
+    /// <param name="legend">The new Legend for the chart's trace(s)</param>
+    /// <param name="Combine">Wether or not to combine the objects if there is already a Legend object set (default is false)</param>
+    [<CompiledName("SetLegend")>]
+    static member setLegend(legend: Legend, ?Combine: bool) =
+        let combine = defaultArg Combine false
+
+        (fun (ch: GenericChart) ->
+            if combine then
+                ch |> GenericChart.mapLayout (Layout.updateLegend legend)
+            else
+                ch |> GenericChart.mapLayout (Layout.setLegend legend))
+
+    /// <summary>
+    /// Sets the Legend for the chart's layout
+    ///
+    /// If there is already a Legend set, the objects are combined.
+    /// </summary>
+    /// <param name="legend">The new Legend for the chart's trace(s)</param>
+    [<CompiledName("WithLegend")>]
+    static member withLegend(legend: Legend) =
+        (fun (ch: GenericChart) -> ch |> Chart.setLegend (legend, true))
+
+    /// <summary>
+    /// Sets the given Legend styles on the input chart's Legend.
+    ///
+    /// If there is already a Legend set , the styles are applied to it. If there is no Legend present, a new Legend object with the given styles will be set.
+    /// </summary>
+    /// <param name="BGColor">Sets the legend background color. Defaults to `layout.paper_bgcolor`.</param>
+    /// <param name="BorderColor">Sets the color of the border enclosing the legend.</param>
+    /// <param name="Borderwidth">Sets the width (in px) of the border enclosing the legend.</param>
+    /// <param name="Font">Sets the font used to text the legend items.</param>
+    /// <param name="GroupClick">Determines the behavior on legend group item click. "toggleitem" toggles the visibility of the individual item clicked on the graph. "togglegroup" toggles the visibility of all items in the same legendgroup as the item clicked on the graph.</param>
+    /// <param name="GroupTitleFont">Sets the font for group titles in legend. Defaults to `legend.font` with its size increased about 10%.</param>
+    /// <param name="ItemClick">Determines the behavior on legend item click. "toggle" toggles the visibility of the item clicked on the graph. "toggleothers" makes the clicked item the sole visible item on the graph. "false" disables legend item click interactions.</param>
+    /// <param name="ItemDoubleClick">Determines the behavior on legend item double-click. "toggle" toggles the visibility of the item clicked on the graph. "toggleothers" makes the clicked item the sole visible item on the graph. "false" disables legend item double-click interactions.</param>
+    /// <param name="ItemSizing">Determines if the legend items symbols scale with their corresponding "trace" attributes or remain "constant" independent of the symbol size on the graph.</param>
+    /// <param name="ItemWidth">Sets the width (in px) of the legend item symbols (the part other than the title.text).</param>
+    /// <param name="Orientation">Sets the orientation of the legend.</param>
+    /// <param name="Title">Sets the title of the legend.</param>
+    /// <param name="TraceGroupGap">Sets the amount of vertical space (in px) between legend groups.</param>
+    /// <param name="TraceOrder">Determines the order at which the legend items are displayed. If "normal", the items are displayed top-to-bottom in the same order as the input data. If "reversed", the items are displayed in the opposite order as "normal". If "grouped", the items are displayed in groups (when a trace `legendgroup` is provided). if "grouped+reversed", the items are displayed in the opposite order as "grouped".</param>
+    /// <param name="UIRevision">Controls persistence of legend-driven changes in trace and pie label visibility. Defaults to `layout.uirevision`.</param>
+    /// <param name="VerticalAlign">Sets the vertical alignment of the symbols with respect to their associated text.</param>
+    /// <param name="X">Sets the x position (in normalized coordinates) of the legend. Defaults to "1.02" for vertical legends and defaults to "0" for horizontal legends.</param>
+    /// <param name="XAnchor">Sets the legend's horizontal position anchor. This anchor binds the `x` position to the "left", "center" or "right" of the legend. Value "auto" anchors legends to the right for `x` values greater than or equal to 2/3, anchors legends to the left for `x` values less than or equal to 1/3 and anchors legends with respect to their center otherwise.</param>
+    /// <param name="Y">Sets the y position (in normalized coordinates) of the legend. Defaults to "1" for vertical legends, defaults to "-0.1" for horizontal legends on graphs w/o range sliders and defaults to "1.1" for horizontal legends on graph with one or multiple range sliders.</param>
+    /// <param name="YAnchor">Sets the legend's vertical position anchor This anchor binds the `y` position to the "top", "middle" or "bottom" of the legend. Value "auto" anchors legends at their bottom for `y` values less than or equal to 1/3, anchors legends to at their top for `y` values greater than or equal to 2/3 and anchors legends with respect to their middle otherwise.</param>
+    [<CompiledName("WithLegendStyle")>]
+    static member withLegendStyle
+        (
+            [<Optional; DefaultParameterValue(null)>] ?BGColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?BorderColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?Borderwidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?Font: Font,
+            [<Optional; DefaultParameterValue(null)>] ?GroupClick: StyleParam.TraceGroupClickOptions,
+            [<Optional; DefaultParameterValue(null)>] ?GroupTitleFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?ItemClick: StyleParam.TraceItemClickOptions,
+            [<Optional; DefaultParameterValue(null)>] ?ItemDoubleClick: StyleParam.TraceItemClickOptions,
+            [<Optional; DefaultParameterValue(null)>] ?ItemSizing: StyleParam.TraceItemSizing,
+            [<Optional; DefaultParameterValue(null)>] ?ItemWidth: int,
+            [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
+            [<Optional; DefaultParameterValue(null)>] ?Title: Title,
+            [<Optional; DefaultParameterValue(null)>] ?TraceGroupGap: float,
+            [<Optional; DefaultParameterValue(null)>] ?TraceOrder: StyleParam.TraceOrder,
+            [<Optional; DefaultParameterValue(null)>] ?UIRevision: string,
+            [<Optional; DefaultParameterValue(null)>] ?VerticalAlign: StyleParam.VerticalAlign,
+            [<Optional; DefaultParameterValue(null)>] ?X: float,
+            [<Optional; DefaultParameterValue(null)>] ?XAnchor: StyleParam.XAnchorPosition,
+            [<Optional; DefaultParameterValue(null)>] ?Y: float,
+            [<Optional; DefaultParameterValue(null)>] ?YAnchor: StyleParam.YAnchorPosition
+        ) =
+        (fun (ch: GenericChart) ->
+            let legend =
+                Legend.init (
+                    ?BGColor = BGColor,
+                    ?BorderColor = BorderColor,
+                    ?Borderwidth = Borderwidth,
+                    ?Font = Font,
+                    ?GroupClick = GroupClick,
+                    ?GroupTitleFont = GroupTitleFont,
+                    ?ItemClick = ItemClick,
+                    ?ItemDoubleClick = ItemDoubleClick,
+                    ?ItemSizing = ItemSizing,
+                    ?ItemWidth = ItemWidth,
+                    ?Orientation = Orientation,
+                    ?Title = Title,
+                    ?TraceGroupGap = TraceGroupGap,
+                    ?TraceOrder = TraceOrder,
+                    ?UIRevision = UIRevision,
+                    ?VerticalAlign = VerticalAlign,
+                    ?X = X,
+                    ?XAnchor = XAnchor,
+                    ?Y = Y,
+                    ?YAnchor = YAnchor
+
+                )
+
+            ch |> Chart.withLegend legend)
 
     [<CompiledName("WithConfig")>]
     static member withConfig(config: Config) =
@@ -1881,7 +2282,7 @@ type Chart =
 
                         gChart
                         |> GenericChart.mapTrace (fun t -> t :?> Trace3D |> Trace3DStyle.SetScene sceneAnchor :> Trace)
-                        |> Chart.withScene (scene, sceneAnchor)
+                        |> Chart.withScene (scene, (i + 1))
                     | TraceID.Polar ->
 
                         let polar =
@@ -1896,7 +2297,7 @@ type Chart =
                         gChart
                         |> GenericChart.mapTrace
                             (fun t -> t :?> TracePolar |> TracePolarStyle.SetPolar polarAnchor :> Trace)
-                        |> Chart.withPolar (polar, polarAnchor)
+                        |> Chart.withPolar (polar, (i + 1))
                     | TraceID.Geo ->
                         let geo =
                             layout.TryGetTypedValue<Geo> "geo"
@@ -1909,7 +2310,7 @@ type Chart =
 
                         gChart
                         |> GenericChart.mapTrace (fun t -> t :?> TraceGeo |> TraceGeoStyle.SetGeo geoAnchor :> Trace)
-                        |> Chart.withGeo (geo, geoAnchor)
+                        |> Chart.withGeo (geo, (i + 1))
                     | TraceID.Mapbox ->
                         let mapbox =
                             layout.TryGetTypedValue<Mapbox> "mapbox"
@@ -1923,7 +2324,7 @@ type Chart =
                         gChart
                         |> GenericChart.mapTrace
                             (fun t -> t :?> TraceMapbox |> TraceMapboxStyle.SetMapbox mapboxAnchor :> Trace)
-                        |> Chart.withMapbox (mapbox, mapboxAnchor)
+                        |> Chart.withMapbox (mapbox, (i + 1))
                     | TraceID.Domain ->
                         let newDomain =
                             LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1)
@@ -1946,7 +2347,7 @@ type Chart =
                         gChart
                         |> GenericChart.mapTrace
                             (fun t -> t :?> TraceTernary |> TraceTernaryStyle.SetTernary ternaryAnchor :> Trace)
-                        |> Chart.withTernary (ternary, ternaryAnchor))
+                        |> Chart.withTernary (ternary, (i + 1)))
             |> Chart.combine
             |> Chart.withLayoutGrid (
                 LayoutGrid.init (
@@ -2246,8 +2647,8 @@ type Chart =
                         ch
                         |> GenericChart.setLayout layout
                         |> Chart.withAxisAnchor (X = index, Y = index)
-                        |> Chart.withXAxis (xaxis, StyleParam.SubPlotId.YAxis index)
-                        |> Chart.withYAxis (yaxis, StyleParam.SubPlotId.XAxis index))
+                        |> Chart.withXAxis (xaxis, StyleParam.SubPlotId.XAxis(index))
+                        |> Chart.withYAxis (yaxis, StyleParam.SubPlotId.YAxis(index)))
 
             |> Chart.combine)
 
@@ -2338,19 +2739,6 @@ type Chart =
         File.WriteAllText(path, html)
         path |> openOsSpecificFile
 
-    /// Sets the polar object with the given id on the chart layout
-    [<CompiledName("WithPolar")>]
-    static member withPolar(polar: Polar, [<Optional; DefaultParameterValue(null)>] ?Id) =
-        (fun (ch: GenericChart) ->
-            let layout =
-                let id =
-                    defaultArg Id (StyleParam.SubPlotId.Polar 1)
-
-                GenericChart.getLayout ch |> Layout.updatePolarById (id, polar)
-
-            GenericChart.setLayout layout ch)
-
-
     /// Sets the angular axis of the polar object with the given id on the chart layout
     [<CompiledName("WithAngularAxis")>]
     static member withAngularAxis(angularAxis: AngularAxis, [<Optional; DefaultParameterValue(null)>] ?Id) =
@@ -2401,30 +2789,6 @@ type Chart =
                     defaultArg Id (StyleParam.SubPlotId.ColorAxis 1)
 
                 GenericChart.getLayout ch |> Layout.updateColorAxisById (id, colorAxis)
-
-            GenericChart.setLayout layout ch)
-
-    /// Sets the scene with the given id on the chart layout
-    [<CompiledName("WithScene")>]
-    static member withScene(scene: Scene, [<Optional; DefaultParameterValue(null)>] ?Id) =
-        (fun (ch: GenericChart) ->
-            let layout =
-                let id =
-                    defaultArg Id (StyleParam.SubPlotId.Scene 1)
-
-                GenericChart.getLayout ch |> Layout.updateSceneById (id, scene)
-
-            GenericChart.setLayout layout ch)
-
-    /// Sets the scene with the given id on the chart layout
-    [<CompiledName("WithTernary")>]
-    static member withTernary(ternary: Ternary, [<Optional; DefaultParameterValue(null)>] ?Id) =
-        (fun (ch: GenericChart) ->
-            let layout =
-                let id =
-                    defaultArg Id (StyleParam.SubPlotId.Ternary 1)
-
-                GenericChart.getLayout ch |> Layout.updateTernaryById (id, ternary)
 
             GenericChart.setLayout layout ch)
 
