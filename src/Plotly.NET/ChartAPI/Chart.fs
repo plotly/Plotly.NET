@@ -14,6 +14,50 @@ open System.Runtime.InteropServices
 type Chart =
 
     //==============================================================================================================
+    //================================================ Core methods ================================================
+    //==============================================================================================================
+
+    /// Save chart as html single page
+    [<CompiledName("SaveHtmlAs")>]
+    static member saveHtmlAs(pathName: string, [<Optional; DefaultParameterValue(null)>] ?Verbose) =
+        fun (ch: GenericChart) ->
+            let html = GenericChart.toEmbeddedHTML ch
+            let file = sprintf "%s.html" pathName // remove file extension
+            File.WriteAllText(file, html)
+
+            let verbose = defaultArg Verbose false
+
+            if verbose then
+                file |> openOsSpecificFile
+
+    /// Show chart in browser
+    [<CompiledName("Show")>]
+    static member show(ch: GenericChart) =
+        let guid = Guid.NewGuid().ToString()
+        let html = GenericChart.toEmbeddedHTML ch
+        let tempPath = Path.GetTempPath()
+        let file = sprintf "%s.html" guid
+        let path = Path.Combine(tempPath, file)
+        File.WriteAllText(path, html)
+        path |> openOsSpecificFile
+
+    /// Show chart in browser
+    [<CompiledName("ShowAsImage")>]
+    static member showAsImage (format: StyleParam.ImageFormat) (ch: GenericChart) =
+        let guid = Guid.NewGuid().ToString()
+        let html = GenericChart.toEmbeddedImage format ch
+        let tempPath = Path.GetTempPath()
+        let file = sprintf "%s.html" guid
+        let path = Path.Combine(tempPath, file)
+        File.WriteAllText(path, html)
+        path |> openOsSpecificFile
+
+    // #######################
+    /// Create a combined chart with the given charts merged
+    [<CompiledName("Combine")>]
+    static member combine(gCharts: seq<GenericChart>) = GenericChart.combine gCharts
+
+    //==============================================================================================================
     //============================================= Unspecific charts ==============================================
     //==============================================================================================================
 
@@ -912,12 +956,14 @@ type Chart =
             // x and y axes for 2d cartesion plots are set on the layout directly
             | StyleParam.SubPlotId.XAxis _
             | StyleParam.SubPlotId.YAxis _ ->
-                let layout = GenericChart.getLayout ch
+                ch
+                |> GenericChart.mapLayout
+                    (fun layout ->
 
-                if combine then
-                    GenericChart.setLayout (layout |> Layout.updateLinearAxisById (id, axis = axis)) ch
-                else
-                    GenericChart.setLayout (layout |> Layout.setLinearAxis (id, axis = axis)) ch
+                        if combine then
+                            layout |> Layout.updateLinearAxisById (id, axis = axis)
+                        else
+                            layout |> Layout.setLinearAxis (id, axis = axis))
 
             // x, y, and z axes for 3d cartesion plots are set on the scene object on the layout.
             | StyleParam.SubPlotId.Scene _ ->
@@ -926,45 +972,46 @@ type Chart =
                 let sceneAxisId =
                     defaultArg SceneAxis (StyleParam.SubPlotId.XAxis 1)
 
-                let layout = GenericChart.getLayout ch
+                ch
+                |> GenericChart.mapLayout
+                    (fun layout ->
+                        let scene =
+                            layout |> Layout.getSceneById sceneAxisId
 
-                let scene =
-                    layout |> Layout.tryGetSceneById (id) |> Option.defaultValue (Scene.init ())
+                        if combine then
+                            let currentAxis =
+                                match sceneAxisId with
+                                | StyleParam.SubPlotId.XAxis _ -> scene |> Scene.getXAxis
+                                | StyleParam.SubPlotId.YAxis _ -> scene |> Scene.getYAxis
+                                | StyleParam.SubPlotId.ZAxis _ -> scene |> Scene.getZAxis
+                                | _ -> failwith "invalid scene axis id"
 
-                if combine then
-                    let currentAxis =
-                        match sceneAxisId with
-                        | StyleParam.SubPlotId.XAxis _ -> scene |> Scene.getXAxis
-                        | StyleParam.SubPlotId.YAxis _ -> scene |> Scene.getYAxis
-                        | StyleParam.SubPlotId.ZAxis _ -> scene |> Scene.getZAxis
-                        | _ -> failwith "invalid scene axis id"
+                            let updatedAxis =
+                                (DynObj.combine currentAxis axis) :?> LinearAxis
 
-                    let updatedAxis =
-                        (DynObj.combine currentAxis axis) :?> LinearAxis
+                            let updatedScene =
+                                scene
+                                |> fun s ->
+                                    match sceneAxisId with
+                                    | StyleParam.SubPlotId.XAxis _ -> s |> Scene.setXAxis axis
+                                    | StyleParam.SubPlotId.YAxis _ -> s |> Scene.setYAxis axis
+                                    | StyleParam.SubPlotId.ZAxis _ -> s |> Scene.setZAxis axis
+                                    | _ -> failwith "invalid scene axis id"
 
-                    updatedAxis |> DynObj.setValue scene (sceneAxisId |> StyleParam.SubPlotId.toString)
+                            layout |> Layout.updateSceneById (id, updatedScene)
 
-                    let updatedLayout =
-                        layout |> Layout.updateSceneById (id, scene)
+                        else
+                            let updatedScene =
+                                layout
+                                |> Layout.getSceneById id
+                                |> fun s ->
+                                    match sceneAxisId with
+                                    | StyleParam.SubPlotId.XAxis _ -> s |> Scene.setXAxis axis
+                                    | StyleParam.SubPlotId.YAxis _ -> s |> Scene.setYAxis axis
+                                    | StyleParam.SubPlotId.ZAxis _ -> s |> Scene.setZAxis axis
+                                    | _ -> failwith "invalid scene axis id"
 
-                    GenericChart.addLayout updatedLayout ch
-                else
-                    let updatedScene =
-                        layout
-                        |> Layout.tryGetSceneById (id)
-                        |> Option.defaultValue (Scene.init ())
-                        |> fun s ->
-                            match sceneAxisId with
-                            | StyleParam.SubPlotId.XAxis _ -> s |> Scene.setXAxis axis
-                            | StyleParam.SubPlotId.YAxis _ -> s |> Scene.setYAxis axis
-                            | StyleParam.SubPlotId.ZAxis _ -> s |> Scene.setZAxis axis
-                            | _ -> failwith "invalid scene axis id"
-
-
-                    let updatedLayout =
-                        layout |> Layout.updateSceneById (id, updatedScene)
-
-                    GenericChart.addLayout updatedLayout ch
+                            layout |> Layout.updateSceneById (id, updatedScene))
 
             | _ -> failwith $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting a xaxis"
 
@@ -1473,8 +1520,8 @@ type Chart =
     ///
     /// If there is already a Polar set, the objects are combined.
     /// </summary>
-    /// <param name="polar">The new Polar for the chart's trace(s)</param>
-    /// <param name="Id">The target polar id on which the poalr object should be set. Default is 1.</param>
+    /// <param name="polar">The new Polar for the chart's layout</param>
+    /// <param name="Id">The target polar id on which the polar object should be set. Default is 1.</param>
     [<CompiledName("WithPolar")>]
     static member withPolar(polar: Polar, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
         let id =
@@ -1525,6 +1572,123 @@ type Chart =
             ch |> Chart.withPolar (polar, ?Id = Id))
 
     /// <summary>
+    /// Sets the angular axis on the polar object with the given id on the input chart's layout.
+    /// </summary>
+    /// <param name="angularAxis">The AngularAxis to set on the target polar object on the chart's layout</param>
+    /// <param name="id">The target polar id with which the AngularAxis should be set.(default is 1)</param>
+    /// <param name="Combine">Wether or not to combine the objects if there is already an axis set (default is false)</param>
+    [<CompiledName("SetAngularAxis")>]
+    static member setAngularAxis
+        (
+            angularAxis: AngularAxis,
+            id: StyleParam.SubPlotId,
+            [<Optional; DefaultParameterValue(null)>] ?Combine: bool
+        ) =
+
+        fun (ch: GenericChart) ->
+
+            let combine = defaultArg Combine false
+
+            match id with
+            | StyleParam.SubPlotId.Polar _ ->
+
+                ch
+                |> GenericChart.mapLayout
+                    (fun layout ->
+                        let polar = layout |> Layout.getPolarById id
+
+                        if combine then
+                            let currentAxis = polar |> Polar.getAngularAxis
+
+                            let updatedAxis =
+                                (DynObj.combine currentAxis angularAxis) :?> AngularAxis
+
+                            let updatedPolar =
+                                polar |> Polar.setAngularAxis updatedAxis
+
+                            layout |> Layout.updatePolarById (id, updatedPolar)
+
+                        else
+                            let updatedPolar =
+                                layout |> Layout.getPolarById id |> Polar.setAngularAxis angularAxis
+
+                            layout |> Layout.updatePolarById (id, updatedPolar))
+
+            | _ -> failwith $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting an angular axis"
+
+    /// <summary>
+    /// Sets the AngularAxis on the polar object with the given id on the input chart's layout.
+    ///
+    /// If there is already a AngularAxis set on the polar object, the AngularAxis objects are combined.
+    /// </summary>
+    /// <param name="angularAxis">The new AngularAxis for the chart layout's polar object</param>
+    /// <param name="Id">The target polar id on which the AngularAxis should be set. Default is 1.</param>
+    [<CompiledName("WithAngularAxis")>]
+    static member withAngularAxis(angularAxis: AngularAxis, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
+        let id =
+            Id |> Option.defaultValue 1 |> StyleParam.SubPlotId.Polar
+
+        (fun (ch: GenericChart) -> ch |> Chart.setAngularAxis (angularAxis, id, true))
+
+    /// <summary>
+    /// Sets the RadialAxis on the polar object with the given id on the input chart's layout.
+    /// </summary>
+    /// <param name="radialAxis">The RadialAxis to set on the target polar object on the chart's layout</param>
+    /// <param name="id">The target polar id with which the RadialAxis should be set.(default is 1)</param>
+    /// <param name="Combine">Wether or not to combine the objects if there is already an axis set (default is false)</param>
+    [<CompiledName("SetRadialAxis")>]
+    static member setRadialAxis
+        (
+            radialAxis: RadialAxis,
+            id: StyleParam.SubPlotId,
+            [<Optional; DefaultParameterValue(null)>] ?Combine: bool
+        ) =
+
+        fun (ch: GenericChart) ->
+
+            let combine = defaultArg Combine false
+
+            match id with
+            | StyleParam.SubPlotId.Polar _ ->
+
+                ch
+                |> GenericChart.mapLayout
+                    (fun layout ->
+                        let polar = layout |> Layout.getPolarById id
+
+                        if combine then
+                            let currentAxis = polar |> Polar.getRadialAxis
+
+                            let updatedAxis =
+                                (DynObj.combine currentAxis radialAxis) :?> RadialAxis
+
+                            let updatedPolar = polar |> Polar.setRadialAxis updatedAxis
+
+                            layout |> Layout.updatePolarById (id, updatedPolar)
+
+                        else
+                            let updatedPolar =
+                                layout |> Layout.getPolarById id |> Polar.setRadialAxis radialAxis
+
+                            layout |> Layout.updatePolarById (id, updatedPolar))
+
+            | _ -> failwith $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting an radial axis"
+
+    /// <summary>
+    /// Sets the RadialAxis on the polar object with the given id on the input chart's layout.
+    ///
+    /// If there is already a RadialAxis set on the polar object, the RadialAxis objects are combined.
+    /// </summary>
+    /// <param name="radialAxis">The new RadialAxis for the chart layout's polar object</param>
+    /// <param name="Id">The target polar id on which the RadialAxis should be set. Default is 1.</param>
+    [<CompiledName("WithRadialAxis")>]
+    static member withRadialAxis(radialAxis: RadialAxis, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
+        let id =
+            Id |> Option.defaultValue 1 |> StyleParam.SubPlotId.Polar
+
+        (fun (ch: GenericChart) -> ch |> Chart.setRadialAxis (radialAxis, id, true))
+
+    /// <summary>
     /// Sets the given Geo object with the given id on the input chart's layout.
     /// </summary>
     /// <param name="geo">The Geo object to set on the chart's layout</param>
@@ -1546,7 +1710,7 @@ type Chart =
     ///
     /// If there is already a Geo set, the objects are combined.
     /// </summary>
-    /// <param name="geo">The new Geo for the chart's trace(s)</param>
+    /// <param name="geo">The new Geo for the chart's layout</param>
     /// <param name="Id">The target geo id on which the Geo should be set. Default is 1.</param>
     [<CompiledName("WithGeo")>]
     static member withGeo(geo: Geo, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
@@ -1848,9 +2012,183 @@ type Chart =
             ch |> Chart.withTernary (ternary, ?Id = Id))
 
     /// <summary>
+    /// Sets the a axis on the ternary object with the given id on the input chart's layout.
+    /// </summary>
+    /// <param name="aAxis">The a Axis to set on the target ternary object on the chart's layout</param>
+    /// <param name="id">The target ternary id with which the a Axis should be set.(default is 1)</param>
+    /// <param name="Combine">Wether or not to combine the objects if there is already an axis set (default is false)</param>
+    [<CompiledName("SetAAxis")>]
+    static member setAAxis
+        (
+            aAxis: LinearAxis,
+            id: StyleParam.SubPlotId,
+            [<Optional; DefaultParameterValue(null)>] ?Combine: bool
+        ) =
+
+        fun (ch: GenericChart) ->
+
+            let combine = defaultArg Combine false
+
+            match id with
+            | StyleParam.SubPlotId.Ternary _ ->
+
+                ch
+                |> GenericChart.mapLayout
+                    (fun layout ->
+                        let polar = layout |> Layout.getTernaryById id
+
+                        if combine then
+                            let currentAxis = polar |> Ternary.getAAxis
+
+                            let updatedAxis =
+                                (DynObj.combine currentAxis aAxis) :?> LinearAxis
+
+                            let updatedTernary = polar |> Ternary.setAAxis updatedAxis
+
+                            layout |> Layout.updateTernaryById (id, updatedTernary)
+
+                        else
+                            let updatedTernary =
+                                layout |> Layout.getTernaryById id |> Ternary.setAAxis aAxis
+
+                            layout |> Layout.updateTernaryById (id, updatedTernary))
+
+            | _ -> failwith $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting an a axis"
+
+    /// <summary>
+    /// Sets the a axis on the ternary object with the given id on the input chart's layout.
+    ///
+    /// If there is already a a axis set on the ternary object, the a axis objects are combined.
+    /// </summary>
+    /// <param name="aAxis">The new a axis for the chart layout's ternary object</param>
+    /// <param name="Id">The target ternary id on which the a axis should be set. Default is 1.</param>
+    [<CompiledName("WithAAxis")>]
+    static member withAAxis(aAxis: LinearAxis, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
+        let id =
+            Id |> Option.defaultValue 1 |> StyleParam.SubPlotId.Ternary
+
+        (fun (ch: GenericChart) -> ch |> Chart.setAAxis (aAxis, id, true))
+
+    /// <summary>
+    /// Sets the b axis on the ternary object with the given id on the input chart's layout.
+    /// </summary>
+    /// <param name="bAxis">The b Axis to set on the target ternary object on the chart's layout</param>
+    /// <param name="id">The target ternary id with which the b Axis should be set.(default is 1)</param>
+    /// <param name="Combine">Wether or not to combine the objects if there is already an axis set (default is false)</param>
+    [<CompiledName("SetBAxis")>]
+    static member setBAxis
+        (
+            bAxis: LinearAxis,
+            id: StyleParam.SubPlotId,
+            [<Optional; DefaultParameterValue(null)>] ?Combine: bool
+        ) =
+
+        fun (ch: GenericChart) ->
+
+            let combine = defaultArg Combine false
+
+            match id with
+            | StyleParam.SubPlotId.Ternary _ ->
+
+                ch
+                |> GenericChart.mapLayout
+                    (fun layout ->
+                        let polar = layout |> Layout.getTernaryById id
+
+                        if combine then
+                            let currentAxis = polar |> Ternary.getBAxis
+
+                            let updatedAxis =
+                                (DynObj.combine currentAxis bAxis) :?> LinearAxis
+
+                            let updatedTernary = polar |> Ternary.setBAxis updatedAxis
+
+                            layout |> Layout.updateTernaryById (id, updatedTernary)
+
+                        else
+                            let updatedTernary =
+                                layout |> Layout.getTernaryById id |> Ternary.setBAxis bAxis
+
+                            layout |> Layout.updateTernaryById (id, updatedTernary))
+
+            | _ -> failwith $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting a b axis"
+
+    /// <summary>
+    /// Sets the b axis on the ternary object with the given id on the input chart's layout.
+    ///
+    /// If there is already a b axis set on the ternary object, the b axis objects are combined.
+    /// </summary>
+    /// <param name="bAxis">The new b axis for the chart layout's ternary object</param>
+    /// <param name="Id">The target ternary id on which the b axis should be set. Default is 1.</param>
+    [<CompiledName("WithBAxis")>]
+    static member withBAxis(bAxis: LinearAxis, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
+        let id =
+            Id |> Option.defaultValue 1 |> StyleParam.SubPlotId.Ternary
+
+        (fun (ch: GenericChart) -> ch |> Chart.setBAxis (bAxis, id, true))
+
+    /// <summary>
+    /// Sets the c axis on the ternary object with the given id on the input chart's layout.
+    /// </summary>
+    /// <param name="cAxis">The c Axis to set on the target ternary object on the chart's layout</param>
+    /// <param name="id">The target ternary id with which the c Axis should be set.(default is 1)</param>
+    /// <param name="Combine">Wether or not to combine the objects if there is already an axis set (default is false)</param>
+    [<CompiledName("SetCAxis")>]
+    static member setCAxis
+        (
+            cAxis: LinearAxis,
+            id: StyleParam.SubPlotId,
+            [<Optional; DefaultParameterValue(null)>] ?Combine: bool
+        ) =
+
+        fun (ch: GenericChart) ->
+
+            let combine = defaultArg Combine false
+
+            match id with
+            | StyleParam.SubPlotId.Ternary _ ->
+
+                ch
+                |> GenericChart.mapLayout
+                    (fun layout ->
+                        let polar = layout |> Layout.getTernaryById id
+
+                        if combine then
+                            let currentAxis = polar |> Ternary.getCAxis
+
+                            let updatedAxis =
+                                (DynObj.combine currentAxis cAxis) :?> LinearAxis
+
+                            let updatedTernary = polar |> Ternary.setCAxis updatedAxis
+
+                            layout |> Layout.updateTernaryById (id, updatedTernary)
+
+                        else
+                            let updatedTernary =
+                                layout |> Layout.getTernaryById id |> Ternary.setBAxis cAxis
+
+                            layout |> Layout.updateTernaryById (id, updatedTernary))
+
+            | _ -> failwith $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting a c axis"
+
+    /// <summary>
+    /// Sets the c axis on the ternary object with the given id on the input chart's layout.
+    ///
+    /// If there is already a c axis set on the ternary object, the c axis objects are combined.
+    /// </summary>
+    /// <param name="cAxis">The new c axis for the chart layout's ternary object</param>
+    /// <param name="Id">The target ternary id on which the c axis should be set. Default is 1.</param>
+    [<CompiledName("WithCAxis")>]
+    static member withCAxis(cAxis: LinearAxis, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
+        let id =
+            Id |> Option.defaultValue 1 |> StyleParam.SubPlotId.Ternary
+
+        (fun (ch: GenericChart) -> ch |> Chart.setCAxis (cAxis, id, true))
+
+    /// <summary>
     /// Sets the LayoutGrid for the chart's layout.
     /// </summary>
-    /// <param name="layoutGrid">The new LayoutGrid for the chart's trace(s)</param>
+    /// <param name="layoutGrid">The new LayoutGrid for the chart's layout</param>
     /// <param name="Combine">Wether or not to combine the objects if there is already a ColorBar object set (default is false)</param>
     [<CompiledName("SetLayoutGrid")>]
     static member setLayoutGrid(layoutGrid: LayoutGrid, ?Combine: bool) =
@@ -1867,7 +2205,7 @@ type Chart =
     ///
     /// If there is already a LayoutGrid set, the objects are combined.
     /// </summary>
-    /// <param name="layoutGrid">The new LayoutGrid for the chart's trace(s)</param>
+    /// <param name="layoutGrid">The new LayoutGrid for the chart's layout</param>
     [<CompiledName("WithLayoutGrid")>]
     static member withLayoutGrid(layoutGrid: LayoutGrid) =
         (fun (ch: GenericChart) -> ch |> Chart.setLayoutGrid (layoutGrid, true))
@@ -1928,7 +2266,7 @@ type Chart =
     /// <summary>
     /// Sets the Legend for the chart's layout.
     /// </summary>
-    /// <param name="legend">The new Legend for the chart's trace(s)</param>
+    /// <param name="legend">The new Legend for the chart's layout</param>
     /// <param name="Combine">Wether or not to combine the objects if there is already a Legend object set (default is false)</param>
     [<CompiledName("SetLegend")>]
     static member setLegend(legend: Legend, ?Combine: bool) =
@@ -1945,7 +2283,7 @@ type Chart =
     ///
     /// If there is already a Legend set, the objects are combined.
     /// </summary>
-    /// <param name="legend">The new Legend for the chart's trace(s)</param>
+    /// <param name="legend">The new Legend for the chart's layout</param>
     [<CompiledName("WithLegend")>]
     static member withLegend(legend: Legend) =
         (fun (ch: GenericChart) -> ch |> Chart.setLegend (legend, true))
@@ -2182,10 +2520,11 @@ type Chart =
     static member withShape(shape: Shape, [<Optional; DefaultParameterValue(true)>] ?Append: bool) =
         Chart.withShapes ([ shape ], ?Append = Append)
 
-    // #######################
-    /// Create a combined chart with the given charts merged
-    [<CompiledName("Combine")>]
-    static member combine(gCharts: seq<GenericChart>) = GenericChart.combine gCharts
+
+    //==============================================================================================================
+    //================================= More complicated composite methods =========================================
+    //==============================================================================================================
+
 
     /// <summary>
     /// Creates a subplot grid with the given dimensions (nRows x nCols) for the input charts.
@@ -2509,149 +2848,6 @@ type Chart =
                 ?YSide = YSide
             )
 
-    /// Create a combined chart with the given charts merged
-    [<Obsolete("Use Chart.Grid for multi column grid charts or SingleStack for one-column stacked charts.")>]
-    [<CompiledName("Stack")>]
-    static member Stack
-        (
-            [<Optional; DefaultParameterValue(null)>] ?Columns: int,
-            [<Optional; DefaultParameterValue(null)>] ?Space
-        ) =
-        (fun (charts: #seq<GenericChart>) ->
-
-            let col = defaultArg Columns 2
-            let len = charts |> Seq.length
-            let colWidth = 1. / float col
-
-            let rowWidth =
-                let tmp = float len / float col |> ceil
-                1. / tmp
-
-            let space =
-                let s = defaultArg Space 0.05
-
-                if s < 0. || s > 1. then
-                    printfn "Space should be between 0.0 - 1.0. Automaticaly set to default (0.05)"
-                    0.05
-                else
-                    s
-
-            let contains3d ch =
-                ch
-                |> existsTrace
-                    (fun t ->
-                        match t with
-                        | :? Trace3D -> true
-                        | _ -> false)
-
-            charts
-            |> Seq.mapi
-                (fun i ch ->
-                    let colI, rowI, index = (i % col + 1), (i / col + 1), (i + 1)
-
-                    let xdomain =
-                        (colWidth * float (colI - 1), (colWidth * float colI) - space)
-
-                    let ydomain =
-                        (1. - ((rowWidth * float rowI) - space), 1. - (rowWidth * float (rowI - 1)))
-
-                    if contains3d ch then
-                        let sceneId = StyleParam.SubPlotId.Scene(i + 1)
-
-                        let scene =
-                            Scene.init (
-                                Domain =
-                                    Domain.init (
-                                        X = StyleParam.Range.ofMinMax xdomain,
-                                        Y = StyleParam.Range.ofMinMax ydomain
-                                    )
-                            )
-
-                        let layout =
-                            GenericChart.getLayout ch |> Layout.setScene (sceneId, scene)
-
-                        ch
-                        |> mapTrace
-                            (fun t ->
-                                t?scene <- (StyleParam.SubPlotId.toString sceneId)
-                                t)
-                        |> GenericChart.setLayout layout
-                    //|> Chart.withAxisAnchor(X=index,Y=index)
-                    else
-
-                        let xaxis, yaxis, layout =
-                            let layout = GenericChart.getLayout ch
-
-                            let xName, yName =
-                                StyleParam.LinearAxisId.X 1 |> StyleParam.LinearAxisId.toString,
-                                StyleParam.LinearAxisId.Y 1 |> StyleParam.LinearAxisId.toString
-
-                            match (layout.TryGetTypedValue<LinearAxis> xName),
-                                  (layout.TryGetTypedValue<LinearAxis> yName)
-                                with
-                            | Some x, Some y ->
-                                // remove axis
-                                DynObj.remove layout xName
-                                DynObj.remove layout yName
-
-                                x
-                                |> LinearAxis.style (
-                                    Anchor = StyleParam.LinearAxisId.Y index,
-                                    Domain = StyleParam.Range.ofMinMax xdomain
-                                ),
-                                y
-                                |> LinearAxis.style (
-                                    Anchor = StyleParam.LinearAxisId.X index,
-                                    Domain = StyleParam.Range.ofMinMax ydomain
-                                ),
-                                layout
-                            | Some x, None ->
-                                // remove x - axis
-                                DynObj.remove layout xName
-
-                                x
-                                |> LinearAxis.style (
-                                    Anchor = StyleParam.LinearAxisId.Y index,
-                                    Domain = StyleParam.Range.ofMinMax xdomain
-                                ),
-                                LinearAxis.init (
-                                    Anchor = StyleParam.LinearAxisId.X index,
-                                    Domain = StyleParam.Range.ofMinMax ydomain
-                                ),
-                                layout
-                            | None, Some y ->
-                                // remove y - axis
-                                DynObj.remove layout yName
-
-                                LinearAxis.init (
-                                    Anchor = StyleParam.LinearAxisId.Y index,
-                                    Domain = StyleParam.Range.ofMinMax xdomain
-                                ),
-                                y
-                                |> LinearAxis.style (
-                                    Anchor = StyleParam.LinearAxisId.X index,
-                                    Domain = StyleParam.Range.ofMinMax ydomain
-                                ),
-                                layout
-                            | None, None ->
-                                LinearAxis.init (
-                                    Anchor = StyleParam.LinearAxisId.Y index,
-                                    Domain = StyleParam.Range.ofMinMax xdomain
-                                ),
-                                LinearAxis.init (
-                                    Anchor = StyleParam.LinearAxisId.X index,
-                                    Domain = StyleParam.Range.ofMinMax ydomain
-                                ),
-                                layout
-
-                        ch
-                        |> GenericChart.setLayout layout
-                        |> Chart.withAxisAnchor (X = index, Y = index)
-                        |> Chart.withXAxis (xaxis, StyleParam.SubPlotId.XAxis(index))
-                        |> Chart.withYAxis (yaxis, StyleParam.SubPlotId.YAxis(index)))
-
-            |> Chart.combine)
-
     // ############################################################
 // ####################### Apply to DisplayOptions
 
@@ -2704,82 +2900,6 @@ type Chart =
             else
                 ch |> Chart.withHeadTags tags)
 
-    /// Save chart as html single page
-    [<CompiledName("SaveHtmlAs")>]
-    static member saveHtmlAs(pathName: string, [<Optional; DefaultParameterValue(null)>] ?Verbose) =
-        fun (ch: GenericChart) ->
-            let html = GenericChart.toEmbeddedHTML ch
-            let file = sprintf "%s.html" pathName // remove file extension
-            File.WriteAllText(file, html)
-
-            let verbose = defaultArg Verbose false
-
-            if verbose then
-                file |> openOsSpecificFile
-
-    /// Show chart in browser
-    [<CompiledName("Show")>]
-    static member show(ch: GenericChart) =
-        let guid = Guid.NewGuid().ToString()
-        let html = GenericChart.toEmbeddedHTML ch
-        let tempPath = Path.GetTempPath()
-        let file = sprintf "%s.html" guid
-        let path = Path.Combine(tempPath, file)
-        File.WriteAllText(path, html)
-        path |> openOsSpecificFile
-
-    /// Show chart in browser
-    [<CompiledName("ShowAsImage")>]
-    static member showAsImage (format: StyleParam.ImageFormat) (ch: GenericChart) =
-        let guid = Guid.NewGuid().ToString()
-        let html = GenericChart.toEmbeddedImage format ch
-        let tempPath = Path.GetTempPath()
-        let file = sprintf "%s.html" guid
-        let path = Path.Combine(tempPath, file)
-        File.WriteAllText(path, html)
-        path |> openOsSpecificFile
-
-    /// Sets the angular axis of the polar object with the given id on the chart layout
-    [<CompiledName("WithAngularAxis")>]
-    static member withAngularAxis(angularAxis: AngularAxis, [<Optional; DefaultParameterValue(null)>] ?Id) =
-        (fun (ch: GenericChart) ->
-
-            let id =
-                defaultArg Id (StyleParam.SubPlotId.Polar 1)
-
-            let layout = GenericChart.getLayout ch
-
-            let updatedPolar =
-                layout
-                |> Layout.tryGetPolarById (id)
-                |> Option.defaultValue (Polar.init ())
-                |> Polar.style (AngularAxis = angularAxis)
-
-            let updatedLayout =
-                layout |> Layout.updatePolarById (id, updatedPolar)
-
-            GenericChart.setLayout updatedLayout ch)
-
-    /// Sets the radial axis of the polar object with the given id on the chart layout
-    [<CompiledName("WithRadialAxis")>]
-    static member withRadialAxis(radialAxis: RadialAxis, [<Optional; DefaultParameterValue(null)>] ?Id) =
-        (fun (ch: GenericChart) ->
-            let id =
-                defaultArg Id (StyleParam.SubPlotId.Polar 1)
-
-            let layout = GenericChart.getLayout ch
-
-            let updatedPolar =
-                layout
-                |> Layout.tryGetPolarById (id)
-                |> Option.defaultValue (Polar.init ())
-                |> Polar.style (RadialAxis = radialAxis)
-
-            let updatedLayout =
-                layout |> Layout.updatePolarById (id, updatedPolar)
-
-            GenericChart.setLayout updatedLayout ch)
-
     /// Sets the color axis with the given id on the chart layout
     [<CompiledName("WithColorAxis")>]
     static member withColorAxis(colorAxis: ColorAxis, [<Optional; DefaultParameterValue(null)>] ?Id) =
@@ -2791,66 +2911,6 @@ type Chart =
                 GenericChart.getLayout ch |> Layout.updateColorAxisById (id, colorAxis)
 
             GenericChart.setLayout layout ch)
-
-    /// Sets the A-Axis of the ternary coordinate system with the given id on the chart layout
-    [<CompiledName("WithAAxis")>]
-    static member withAAxis(aAxis: LinearAxis, [<Optional; DefaultParameterValue(null)>] ?Id) =
-        (fun (ch: GenericChart) ->
-            let id =
-                defaultArg Id (StyleParam.SubPlotId.Ternary 1)
-
-            let layout = GenericChart.getLayout ch
-
-            let updatedTernary =
-                layout
-                |> Layout.tryGetTernaryById (id)
-                |> Option.defaultValue (Ternary.init ())
-                |> Ternary.style (AAxis = aAxis)
-
-            let updatedLayout =
-                layout |> Layout.updateTernaryById (id, updatedTernary)
-
-            GenericChart.setLayout updatedLayout ch)
-
-    /// Sets the A-Axis of the ternary coordinate system with the given id on the chart layout
-    [<CompiledName("WithBAxis")>]
-    static member withBAxis(bAxis: LinearAxis, [<Optional; DefaultParameterValue(null)>] ?Id) =
-        (fun (ch: GenericChart) ->
-            let id =
-                defaultArg Id (StyleParam.SubPlotId.Ternary 1)
-
-            let layout = GenericChart.getLayout ch
-
-            let updatedTernary =
-                layout
-                |> Layout.tryGetTernaryById (id)
-                |> Option.defaultValue (Ternary.init ())
-                |> Ternary.style (BAxis = bAxis)
-
-            let updatedLayout =
-                layout |> Layout.updateTernaryById (id, updatedTernary)
-
-            GenericChart.setLayout updatedLayout ch)
-
-    /// Sets the A-Axis of the ternary coordinate system with the given id on the chart layout
-    [<CompiledName("WithCAxis")>]
-    static member withCAxis(cAxis: LinearAxis, [<Optional; DefaultParameterValue(null)>] ?Id) =
-        (fun (ch: GenericChart) ->
-            let id =
-                defaultArg Id (StyleParam.SubPlotId.Ternary 1)
-
-            let layout = GenericChart.getLayout ch
-
-            let updatedTernary =
-                layout
-                |> Layout.tryGetTernaryById (id)
-                |> Option.defaultValue (Ternary.init ())
-                |> Ternary.style (CAxis = cAxis)
-
-            let updatedLayout =
-                layout |> Layout.updateTernaryById (id, updatedTernary)
-
-            GenericChart.setLayout updatedLayout ch)
 
     /// <summary>
     ///

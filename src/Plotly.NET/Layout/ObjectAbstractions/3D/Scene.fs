@@ -104,23 +104,23 @@ type Scene() =
             scene)
 
     /// <summary>
-    /// Returns Some(dynamic member value) of the trace object's underlying DynamicObj when a dynamic member eith the given name exists, and None otherwise.
+    /// Returns Some(dynamic member value) of the scene object's underlying DynamicObj when a dynamic member eith the given name exists, and None otherwise.
     /// </summary>
     /// <param name="propName">The name of the dynamic member to get the value of</param>
-    /// <param name="scene">The trace to get the dynamic member value from</param>
+    /// <param name="scene">The scene to get the dynamic member value from</param>
     static member tryGetTypedMember<'T> (propName: string) (scene: Scene) = scene.TryGetTypedValue<'T>(propName)
 
     /// <summary>
-    /// Returns the x axis object of the given trace.
+    /// Returns the x axis object of the given scene.
     ///
     /// If there is no x axis set, returns an empty LinearAxis object.
     /// </summary>
-    /// <param name="scene">The scene to get the marker from</param>
+    /// <param name="scene">The scene to get the x axis from</param>
     static member getXAxis(scene: Scene) =
         scene |> Scene.tryGetTypedMember<LinearAxis> "xaxis" |> Option.defaultValue (LinearAxis.init ())
 
     /// <summary>
-    /// Returns a function that sets the x axis object of the given trace.
+    /// Returns a function that sets the x axis object of the given scene.
     /// </summary>
     /// <param name="xAxis">The new x axis object</param>
     static member setXAxis(xAxis: LinearAxis) =
@@ -129,16 +129,16 @@ type Scene() =
             scene)
 
     /// <summary>
-    /// Returns the y axis object of the given trace.
+    /// Returns the y axis object of the given scene.
     ///
     /// If there is no y axis set, returns an empty LinearAxis object.
     /// </summary>
-    /// <param name="scene">The scene to get the marker from</param>
+    /// <param name="scene">The scene to get the y axis from</param>
     static member getYAxis(scene: Scene) =
         scene |> Scene.tryGetTypedMember<LinearAxis> "yaxis" |> Option.defaultValue (LinearAxis.init ())
 
     /// <summary>
-    /// Returns a function that sets the y axis object of the given trace.
+    /// Returns a function that sets the y axis object of the given scene.
     /// </summary>
     /// <param name="yAxis">The new y axis object</param>
     static member setYAxis(yAxis: LinearAxis) =
@@ -147,16 +147,16 @@ type Scene() =
             scene)
 
     /// <summary>
-    /// Returns the z axis object of the given trace.
+    /// Returns the z axis object of the given scene.
     ///
     /// If there is no z axis set, returns an empty LinearAxis object.
     /// </summary>
-    /// <param name="scene">The scene to get the marker from</param>
+    /// <param name="scene">The scene to get the z axis from</param>
     static member getZAxis(scene: Scene) =
         scene |> Scene.tryGetTypedMember<LinearAxis> "zaxis" |> Option.defaultValue (LinearAxis.init ())
 
     /// <summary>
-    /// Returns a function that sets the z axis object of the given trace.
+    /// Returns a function that sets the z axis object of the given scene.
     /// </summary>
     /// <param name="zAxis">The new z axis object</param>
     static member setZAxis(zAxis: LinearAxis) =

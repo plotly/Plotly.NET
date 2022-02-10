@@ -83,3 +83,46 @@ type Polar() =
             BarGap |> DynObj.setValueOpt polar "bargap"
 
             polar)
+
+    /// <summary>
+    /// Returns Some(dynamic member value) of the object's underlying DynamicObj when a dynamic member eith the given name exists, and None otherwise.
+    /// </summary>
+    /// <param name="propName">The name of the dynamic member to get the value of</param>
+    /// <param name="polar">The object to get the dynamic member value from</param>
+    static member tryGetTypedMember<'T> (propName: string) (polar: Polar) = polar.TryGetTypedValue<'T>(propName)
+
+    /// <summary>
+    /// Returns the AngularAxis object of the given polar object.
+    ///
+    /// If there is no AngularAxis set, returns an empty AngularAxis object.
+    /// </summary>
+    /// <param name="polar">The polar object to get the AngularAxis from</param>
+    static member getAngularAxis(polar: Polar) =
+        polar |> Polar.tryGetTypedMember<AngularAxis> "angularaxis" |> Option.defaultValue (AngularAxis.init ())
+
+    /// <summary>
+    /// Returns a function that sets the AngularAxis object of the given polar object.
+    /// </summary>
+    /// <param name="angularAxis">The new AngularAxis object</param>
+    static member setAngularAxis(angularAxis: AngularAxis) =
+        (fun (polar: Polar) ->
+            polar.SetValue("angularaxis", angularAxis)
+            polar)
+
+    /// <summary>
+    /// Returns the RadialAxis object of the given polar object.
+    ///
+    /// If there is no RadialAxis set, returns an empty RadialAxis object.
+    /// </summary>
+    /// <param name="polar">The polar object to get the RadialAxis from</param>
+    static member getRadialAxis(polar: Polar) =
+        polar |> Polar.tryGetTypedMember<RadialAxis> "radialaxis" |> Option.defaultValue (RadialAxis.init ())
+
+    /// <summary>
+    /// Returns a function that sets the RadialAxis object of the given polar object.
+    /// </summary>
+    /// <param name="radialAxis">The new RadialAxis object</param>
+    static member setRadialAxis(radialAxis: RadialAxis) =
+        (fun (polar: Polar) ->
+            polar.SetValue("radialaxis", radialAxis)
+            polar)
