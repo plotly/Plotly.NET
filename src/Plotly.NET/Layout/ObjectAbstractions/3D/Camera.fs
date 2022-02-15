@@ -85,6 +85,20 @@ type CameraUp() =
 
             cameraUp
 
+type CameraProjection() =
+    inherit DynamicObj()
+
+    static member init([<Optional; DefaultParameterValue(null)>] ?ProjectionType: StyleParam.CameraProjectionType) =
+        CameraProjection() |> CameraProjection.style (?ProjectionType = ProjectionType)
+
+    static member style([<Optional; DefaultParameterValue(null)>] ?ProjectionType: StyleParam.CameraProjectionType) =
+
+        fun (cameraProjection: CameraProjection) ->
+
+            ProjectionType |> DynObj.setValueOptBy cameraProjection "type" StyleParam.CameraProjectionType.convert
+
+            cameraProjection
+
 type Camera() =
     inherit DynamicObj()
 
@@ -92,7 +106,7 @@ type Camera() =
         (
             [<Optional; DefaultParameterValue(null)>] ?Center: CameraCenter,
             [<Optional; DefaultParameterValue(null)>] ?Eye: CameraEye,
-            [<Optional; DefaultParameterValue(null)>] ?Projection: StyleParam.CameraProjection,
+            [<Optional; DefaultParameterValue(null)>] ?Projection: CameraProjection,
             [<Optional; DefaultParameterValue(null)>] ?Up: CameraUp
         ) =
         Camera() |> Camera.style (?Center = Center, ?Eye = Eye, ?Projection = Projection, ?Up = Up)
@@ -101,7 +115,7 @@ type Camera() =
         (
             [<Optional; DefaultParameterValue(null)>] ?Center: CameraCenter,
             [<Optional; DefaultParameterValue(null)>] ?Eye: CameraEye,
-            [<Optional; DefaultParameterValue(null)>] ?Projection: StyleParam.CameraProjection,
+            [<Optional; DefaultParameterValue(null)>] ?Projection: CameraProjection,
             [<Optional; DefaultParameterValue(null)>] ?Up: CameraUp
         ) =
 
@@ -109,7 +123,7 @@ type Camera() =
 
             Center |> DynObj.setValueOpt camera "center"
             Eye |> DynObj.setValueOpt camera "eye"
-            Projection |> DynObj.setValueOptBy camera "projection" StyleParam.CameraProjection.convert
+            Projection |> DynObj.setValueOpt camera "projection"
             Up |> DynObj.setValueOpt camera "up"
 
             camera

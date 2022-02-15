@@ -471,7 +471,7 @@ module StyleParam =
         member this.Convert() = this |> ConstraintOperation.convert
 
     [<RequireQualifiedAccess>]
-    type CameraProjection =
+    type CameraProjectionType =
         | Perspective
         | Orthographic
 
@@ -480,9 +480,9 @@ module StyleParam =
             | Perspective -> "perspective"
             | Orthographic -> "orthographic"
 
-        static member convert = CameraProjection.toString >> box
-        override this.ToString() = this |> CameraProjection.toString
-        member this.Convert() = this |> CameraProjection.convert
+        static member convert = CameraProjectionType.toString >> box
+        override this.ToString() = this |> CameraProjectionType.toString
+        member this.Convert() = this |> CameraProjectionType.convert
 
     [<RequireQualifiedAccess>]
     type ContourType =
