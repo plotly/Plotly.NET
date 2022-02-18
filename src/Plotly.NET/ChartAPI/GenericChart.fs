@@ -48,14 +48,6 @@ module HTML =
 </html>"""
 
 
-    //  let chart =
-    //      """<div id="[ID]" style="width: [WIDTH]px; height: [HEIGHT]px;"><!-- Plotly chart will be drawn inside this DIV --></div>
-    //<script>
-    //  var data = [DATA];
-    //  var layout = [LAYOUT];
-    //  var config = [CONFIG];
-    //  Plotly.newPlot('[ID]', data, layout, config);
-    //</script>"""
     let chart =
         let newScript = new System.Text.StringBuilder()
         newScript.AppendLine("""<div id="[ID]"><!-- Plotly chart will be drawn inside this DIV --></div>""") |> ignore
@@ -99,14 +91,13 @@ module HTML =
         newScript.ToString()
 
 
-    let staticChart =
+    let imageChart =
         """<div id="[ID]" style="display: none;"><!-- Plotly chart will be drawn inside this DIV --></div>
 
-  <img id="jpg-export"></img>
+  <img id="chart-image"></img>
 
   <script>
-    var d3 = Plotly.d3;
-    var img_jpg= d3.select('#jpg-export');
+    var img_jpg = d3.select('#chart-image');
     var data = [DATA];
     var layout = [LAYOUT];
     var config = [CONFIG];
@@ -388,12 +379,6 @@ module GenericChart =
             .Replace("[CONFIG]", configJson)
         |> DisplayOptions.replaceHtmlPlaceholders displayOpts
 
-
-
-
-
-
-
     /// Converts a GenericChart to it HTML representation and set the size of the div
     let toChartHtmlWithSize (width: int) (height: int) (gChart: GenericChart) =
         let guid = Guid.NewGuid().ToString()
@@ -411,7 +396,6 @@ module GenericChart =
             JsonConvert.SerializeObject(config, jsonConfig)
 
         let displayOpts = getDisplayOptions gChart
-
 
         HTML
             .chart
@@ -431,8 +415,16 @@ module GenericChart =
 
         HTML.doc.Replace("[CHART]", chartMarkup) |> DisplayOptions.replaceHtmlPlaceholders displayOpts
 
+    [<Obsolete("This function will be dropped in the 2.0 release. Create either a static chart (e.g using Config.init(StaticPlot=true)) or use Plotly.NET.ImageExport")>]
     /// Converts a GenericChart to its Image representation
+    ///
+    /// This function is obsolete and will soon be dropped.
+    ///
+    /// Either use a static plot config (e.g. myChart |> Chart.withConfig(Config.init(StaticPlot=true)) https://plotly.net/00_3_chart-config.html#Static-plots
+    ///
+    /// or use the Plotly.NET.ImageExport package https://www.nuget.org/packages/Plotly.NET.ImageExport/
     let toChartImage (format: StyleParam.ImageFormat) gChart =
+
         let guid = Guid.NewGuid().ToString()
 
         let tracesJson =
@@ -443,30 +435,32 @@ module GenericChart =
             let layout = getLayout gChart
             JsonConvert.SerializeObject(layout, jsonConfig)
 
-        let html =
-            HTML
-                .staticChart
-                .Replace("[WIDTH]", string 600)
-                .Replace("[HEIGHT]", string 600)
-                .Replace("[ID]", guid)
-                .Replace("[DATA]", tracesJson)
-                .Replace("[LAYOUT]", layoutJson)
-                .Replace("[IMAGEFORMAT]", format.ToString().ToLower())
-                .Replace("[CONFIG]", "{}")
+        let displayOpts = getDisplayOptions gChart
 
-        html
+        HTML
+            .imageChart
+            .Replace("[WIDTH]", string 600)
+            .Replace("[HEIGHT]", string 600)
+            .Replace("[ID]", guid)
+            .Replace("[DATA]", tracesJson)
+            .Replace("[LAYOUT]", layoutJson)
+            .Replace("[IMAGEFORMAT]", format.ToString().ToLower())
+            .Replace("[CONFIG]", "{}")
+        |> DisplayOptions.replaceHtmlPlaceholders displayOpts
+
 
     /// Converts a GenericChart to an image and embeds it into a html page
     let toEmbeddedImage (format: StyleParam.ImageFormat) gChart =
-        let html =
-            let chartMarkup = toChartImage format gChart
 
-            HTML
-                .doc
-                .Replace("[CHART]", chartMarkup)
-                .Replace("[CONFIG]", "{}")
+        let chartMarkup = toChartImage format gChart
 
-        html
+        let displayOpts = getDisplayOptions gChart
+
+        HTML
+            .doc
+            .Replace("[CHART]", chartMarkup)
+            .Replace("[CONFIG]", "{}")
+        |> DisplayOptions.replaceHtmlPlaceholders displayOpts
 
 
     /// Creates a new GenericChart whose traces are the results of applying the given function to each of the trace of the GenericChart.

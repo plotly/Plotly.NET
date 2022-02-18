@@ -966,10 +966,10 @@ module GenericChartExtensions =
 
 
         /// Save chart as html single page
-        [<CompiledName("SaveHtmlAs")>]
+        [<CompiledName("SaveHtml")>]
         [<Extension>]
-        member this.SaveHtmlAs(pathName: string, [<Optional; DefaultParameterValue(null)>] ?Verbose) =
-            Chart.saveHtmlAs pathName this
+        member this.SaveHtml(path: string, [<Optional; DefaultParameterValue(null)>] ?OpenInBrowser: bool) =
+            this |> Chart.saveHtml (path, ?OpenInBrowser = OpenInBrowser)
 
         /// Show chart in browser
         [<CompiledName("Show")>]

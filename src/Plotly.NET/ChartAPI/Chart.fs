@@ -18,37 +18,44 @@ type Chart =
     //==============================================================================================================
 
     /// Save chart as html single page
-    [<CompiledName("SaveHtmlAs")>]
-    static member saveHtmlAs(pathName: string, [<Optional; DefaultParameterValue(null)>] ?Verbose) =
+    [<CompiledName("SaveHtml")>]
+    static member saveHtml(path: string, [<Optional; DefaultParameterValue(null)>] ?OpenInBrowser: bool) =
         fun (ch: GenericChart) ->
+            let show = defaultArg OpenInBrowser false
+
             let html = GenericChart.toEmbeddedHTML ch
-            let file = sprintf "%s.html" pathName // remove file extension
+
+            let file =
+                if path.EndsWith(".html") then
+                    path
+                else
+                    $"{path}.html"
+
             File.WriteAllText(file, html)
-
-            let verbose = defaultArg Verbose false
-
-            if verbose then
-                file |> openOsSpecificFile
+            if show then file |> openOsSpecificFile
 
     /// Show chart in browser
     [<CompiledName("Show")>]
     static member show(ch: GenericChart) =
         let guid = Guid.NewGuid().ToString()
-        let html = GenericChart.toEmbeddedHTML ch
         let tempPath = Path.GetTempPath()
         let file = sprintf "%s.html" guid
         let path = Path.Combine(tempPath, file)
-        File.WriteAllText(path, html)
-        path |> openOsSpecificFile
+        ch |> Chart.saveHtml (path, true)
 
     /// Show chart in browser
     [<CompiledName("ShowAsImage")>]
     static member showAsImage (format: StyleParam.ImageFormat) (ch: GenericChart) =
         let guid = Guid.NewGuid().ToString()
-        let html = GenericChart.toEmbeddedImage format ch
         let tempPath = Path.GetTempPath()
         let file = sprintf "%s.html" guid
         let path = Path.Combine(tempPath, file)
+
+        let html =
+            ch
+            |> Chart.withAdditionalHeadTags [ """<script src="https://unpkg.com/@plotly/d3@3.8.0/d3.js"></script>""" ]
+            |> GenericChart.toEmbeddedImage format
+
         File.WriteAllText(path, html)
         path |> openOsSpecificFile
 
