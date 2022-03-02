@@ -96,7 +96,7 @@ let ``LinearAxis tests`` =
         fullAxis |> createJsonFieldTest "title" "{\"text\":\"Hi\"}"
         fullAxis |> createJsonFieldTest "type" "\"log\""
         fullAxis |> createJsonFieldTest "autotypenumbers" "\"strict\""
-        fullAxis |> createJsonFieldTest "autorange" "\"true\""
+        fullAxis |> createJsonFieldTest "autorange" "true"
         fullAxis |> createJsonFieldTest "rangemode" "\"normal\""
         fullAxis |> createJsonFieldTest "range" "[-1.0,1.0]"
         fullAxis |> createJsonFieldTest "fixedrange" "true"

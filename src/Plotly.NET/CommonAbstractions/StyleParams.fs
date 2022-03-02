@@ -89,14 +89,12 @@ module StyleParam =
         | False
         | Reversed
 
-        static member toString =
+        static member convert =
             function
-            | True -> "true"
-            | False -> "false"
-            | Reversed -> "reversed"
+            | True -> box true
+            | False -> box false
+            | Reversed -> box "reversed"
 
-        static member convert = AutoRange.toString >> box
-        override this.ToString() = this |> AutoRange.toString
         member this.Convert() = this |> AutoRange.convert
 
     /// Sets the axis type. By default (Auto), plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
@@ -301,18 +299,16 @@ module StyleParam =
     type BoxPoints =
         | Outliers
         | All
-        | Suspectedoutliers
+        | SuspectedOutliers
         | False
 
-        static member toString =
+        static member convert =
             function
-            | Outliers -> "outliers"
-            | All -> "all"
-            | Suspectedoutliers -> "suspectedoutliers"
-            | False -> "false"
+            | Outliers -> box "outliers"
+            | All -> box "all"
+            | SuspectedOutliers -> box "suspectedoutliers"
+            | False -> box false
 
-        static member convert = BoxPoints.toString >> box
-        override this.ToString() = this |> BoxPoints.toString
         member this.Convert() = this |> BoxPoints.convert
 
 
@@ -589,14 +585,12 @@ module StyleParam =
         | OnOff
         | OnOut
 
-        static member toString =
+        static member convert =
             function
-            | False -> "false"
-            | OnOff -> "onoff"
-            | OnOut -> "onout"
+            | False -> box false
+            | OnOff -> box "onoff"
+            | OnOut -> box "onout"
 
-        static member convert = ClickToShow.toString >> box
-        override this.ToString() = this |> ClickToShow.toString
         member this.Convert() = this |> ClickToShow.convert
 
     [<RequireQualifiedAccess>]
@@ -936,23 +930,21 @@ module StyleParam =
         | TurnTable
         | False
 
-        static member toString =
+        static member convert =
             function
-            | Zoom -> "zoom"
-            | Pan -> "pan"
-            | Select -> "select"
-            | Lasso -> "lasso"
-            | DrawClosedPath -> "drawclosedpath"
-            | DrawOpenPath -> "drawopenpath"
-            | DrawLine -> "drawline"
-            | DrawRect -> "drawrect"
-            | DrawCircle -> "drawcircle"
-            | Orbit -> "orbit"
-            | TurnTable -> "turntable"
-            | False -> "False"
+            | Zoom -> box "zoom"
+            | Pan -> box "pan"
+            | Select -> box "select"
+            | Lasso -> box "lasso"
+            | DrawClosedPath -> box "drawclosedpath"
+            | DrawOpenPath -> box "drawopenpath"
+            | DrawLine -> box "drawline"
+            | DrawRect -> box "drawrect"
+            | DrawCircle -> box "drawcircle"
+            | Orbit -> box "orbit"
+            | TurnTable -> box "turntable"
+            | False -> box false
 
-        static member convert = DragMode.toString >> box
-        override this.ToString() = this |> DragMode.toString
         member this.Convert() = this |> DragMode.convert
 
     /// Sets the Delaunay axis, which is the axis that is perpendicular to the surface of the Delaunay triangulation.
@@ -1191,14 +1183,12 @@ module StyleParam =
         | Locations
         | GeoJson
 
-        static member toString =
+        static member convert =
             function
-            | False -> "false"
-            | Locations -> "locations"
-            | GeoJson -> "geojson"
+            | False -> box false
+            | Locations -> box "locations"
+            | GeoJson -> box "geojson"
 
-        static member convert = GeoFitBounds.toString >> box
-        override this.ToString() = this |> GeoFitBounds.toString
         member this.Convert() = this |> GeoFitBounds.convert
 
     ///Used for the Layout.geo field. Sets the resolution of the base layers. The values have units of km/mm e.g. 110 corresponds to a scale ratio of 1:110,000,000.
@@ -1416,16 +1406,18 @@ module StyleParam =
         | X
         | Y
         | False
+        | XUnified
+        | YUnified
 
-        static member toString =
+        static member convert =
             function
-            | Closest -> "closest"
-            | X -> "x"
-            | Y -> "y"
-            | False -> "false"
+            | Closest -> box "closest"
+            | X -> box "x"
+            | Y -> box "y"
+            | False -> box false
+            | XUnified -> box "x unified"
+            | YUnified -> box "y unified"
 
-        static member convert = HoverMode.toString >> box
-        override this.ToString() = this |> HoverMode.toString
         member this.Convert() = this |> HoverMode.convert
 
     [<RequireQualifiedAccess>]
@@ -1898,16 +1890,14 @@ module StyleParam =
         | All
         | AllTicks
 
-        static member toString =
+        static member convert =
             function
-            | True -> "true"
-            | Ticks -> "ticks"
-            | False -> "false"
-            | All -> "all"
-            | AllTicks -> "allticks"
+            | True -> box true
+            | Ticks -> box "ticks"
+            | False -> box false
+            | All -> box "all"
+            | AllTicks -> box "allticks"
 
-        static member convert = Mirror.toString >> box
-        override this.ToString() = this |> Mirror.toString
         member this.Convert() = this |> Mirror.convert
 
     // | "lines", "markers", "text" joined with a "+" OR "none".
@@ -2666,14 +2656,12 @@ module StyleParam =
         | Best
         | Fast
 
-        static member toString =
+        static member convert =
             function
-            | False -> "false"
-            | Best -> "best"
-            | Fast -> "fast"
+            | False -> box false
+            | Best -> box "best"
+            | Fast -> box "fast"
 
-        static member convert = SmoothAlg.toString >> box
-        override this.ToString() = this |> SmoothAlg.toString
         member this.Convert() = this |> SmoothAlg.convert
 
     /// Determines the drawing mode for the spike line
@@ -3136,14 +3124,12 @@ module StyleParam =
         | ToggleOthers
         | False
 
-        static member toString =
+        static member convert =
             function
-            | Toggle -> "toggle"
-            | ToggleOthers -> "toggleothers"
-            | False -> "False"
+            | Toggle -> box "toggle"
+            | ToggleOthers -> box "toggleothers"
+            | False -> box false
 
-        static member convert = TraceItemClickOptions.toString >> box
-        override this.ToString() = this |> TraceItemClickOptions.toString
         member this.Convert() = this |> TraceItemClickOptions.convert
 
     [<RequireQualifiedAccess>]
@@ -3309,14 +3295,12 @@ module StyleParam =
         | False
         | Show
 
-        static member toString =
+        static member convert =
             function
-            | Hide -> "hide"
-            | False -> "false"
-            | Show -> "show"
+            | Hide -> box "hide"
+            | False -> box false
+            | Show -> box "show"
 
-        static member convert = UniformTextMode.toString >> box
-        override this.ToString() = this |> UniformTextMode.toString
         member this.Convert() = this |> UniformTextMode.convert
 
     //--------------------------
@@ -3360,20 +3344,12 @@ module StyleParam =
         | False
         | LegendOnly
 
-        static member toObject =
+        static member convert =
             function
             | True -> box (true)
             | False -> box (false)
             | LegendOnly -> box ("legendonly")
 
-        static member toString =
-            function
-            | True -> "true"
-            | False -> "false"
-            | LegendOnly -> "legendonly"
-
-        static member convert = Visible.toObject >> box
-        override this.ToString() = this |> Visible.toString
         member this.Convert() = this |> Visible.convert
 
     [<RequireQualifiedAccess>]
