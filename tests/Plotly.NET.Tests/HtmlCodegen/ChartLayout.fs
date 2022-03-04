@@ -160,20 +160,65 @@ let singleStackChart =
 
 let multiTraceGrid = 
     [
-        Chart.Point([1,2; 2,3], UseDefaults = false)
-        Chart.PointTernary([1,2,3; 2,3,4], UseDefaults = false)
-        Chart.Heatmap([[1; 2];[3; 4]], ShowScale=false, UseDefaults = false)
-        Chart.Point3D([1,3,2], UseDefaults = false)
-        Chart.PointMapbox([1,2], UseDefaults = false) |> Chart.withMapbox(Mapbox.init(Style = StyleParam.MapboxStyle.OpenStreetMap))
+        Chart.Point([1,2; 2,3], Name = "2D Cartesian", UseDefaults = false)
+        Chart.Point3D([1,3,2], Name = "3D Cartesian", UseDefaults = false)
+        Chart.PointPolar([10,20], Name = "Polar", UseDefaults = false)
+        Chart.PointGeo([1,2], Name = "Geo", UseDefaults = false)
+        Chart.PointMapbox([1,2], Name = "MapBox", UseDefaults = false) |> Chart.withMapbox(Mapbox.init(Style = StyleParam.MapboxStyle.OpenStreetMap))
+        Chart.PointTernary([1,2,3; 2,3,4], Name = "Ternary", UseDefaults = false)
+        [
+            Chart.Carpet(
+                "contour",
+                A = [0.; 1.; 2.; 3.; 0.; 1.; 2.; 3.; 0.; 1.; 2.; 3.],
+                B = [4.; 4.; 4.; 4.; 5.; 5.; 5.; 5.; 6.; 6.; 6.; 6.],
+                X = [2.; 3.; 4.; 5.; 2.2; 3.1; 4.1; 5.1; 1.5; 2.5; 3.5; 4.5],
+                Y = [1.; 1.4; 1.6; 1.75; 2.; 2.5; 2.7; 2.75; 3.; 3.5; 3.7; 3.75],
+                AAxis = LinearAxis.initCarpet(
+                    TickPrefix = "a = ",
+                    Smoothing = 0.,
+                    MinorGridCount = 9,
+                    AxisType = StyleParam.AxisType.Linear
+                ),
+                BAxis = LinearAxis.initCarpet(
+                    TickPrefix = "b = ",
+                    Smoothing = 0.,
+                    MinorGridCount = 9,
+                    AxisType = StyleParam.AxisType.Linear
+                ), 
+                UseDefaults = false,
+                Opacity = 0.75
+            )    
+            Chart.ContourCarpet(
+                [1.; 1.96; 2.56; 3.0625; 4.; 5.0625; 1.; 7.5625; 9.; 12.25; 15.21; 14.0625],
+                "contour",
+                A = [0; 1; 2; 3; 0; 1; 2; 3; 0; 1; 2; 3],
+                B = [4; 4; 4; 4; 5; 5; 5; 5; 6; 6; 6; 6], 
+                UseDefaults = false,
+                ContourLineColor = Color.fromKeyword White,
+                ShowContourLabels = true,
+                ShowScale = false
+            )
+        ]
+        |> Chart.combine
+        Chart.Pie([10;40;50;], Name = "Domain", UseDefaults = false)
+        Chart.BubbleSmith(
+            [0.5; 1.; 2.; 3.],
+            [0.5; 1.; 2.; 3.],
+            sizes = [10;20;30;40],
+            MultiText=["one";"two";"three";"four";"five";"six";"seven"],
+            TextPosition=StyleParam.TextPosition.TopCenter,
+            Name = "Smith",
+            UseDefaults = false
+        )
         [
             // you can use nested combined charts, but they have to have the same trace type (Cartesian2D in this case)
             let y =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
-            Chart.BoxPlot("y" ,y,Name="bin1",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All, UseDefaults = false);
-            Chart.BoxPlot("y'",y,Name="bin2",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All, UseDefaults = false);
+            Chart.BoxPlot("y" ,y,Name="Combined 1",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All, UseDefaults = false);
+            Chart.BoxPlot("y'",y,Name="Combined 2",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All, UseDefaults = false);
         ]
         |> Chart.combine
     ]
-    |> Chart.Grid(2,3)
+    |> Chart.Grid(4,3)
     |> Chart.withSize(1000,1000)
 
 let multiTraceSingleStack = 
@@ -210,11 +255,11 @@ let ``Multicharts and subplots`` =
             |> chartGeneratedContains subPlotChart
         );        
         testCase "MultiTrace Subplot grid data" ( fun () ->
-            """var data = [{"type":"scatter","mode":"markers","x":[1,2],"y":[2,3],"marker":{},"line":{},"xaxis":"x","yaxis":"y"},{"type":"scatterternary","mode":"markers","a":[1,2],"b":[2,3],"c":[3,4],"marker":{},"line":{},"subplot":"ternary2"},{"type":"heatmap","z":[[1,2],[3,4]],"showscale":false,"xaxis":"x3","yaxis":"y3"},{"type":"scatter3d","mode":"markers","x":[1],"y":[3],"z":[2],"marker":{},"line":{},"scene":"scene4"},{"type":"scattermapbox","mode":"markers","lat":[2],"lon":[1],"marker":{},"line":{},"subplot":"mapbox5"},{"type":"box","name":"bin1","x":"y","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{},"line":{},"boxpoints":"all","jitter":0.1,"xaxis":"x6","yaxis":"y6"},{"type":"box","name":"bin2","x":"y'","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{},"line":{},"boxpoints":"all","jitter":0.1,"xaxis":"x6","yaxis":"y6"}];"""
+            """var data = [{"type":"scatter","name":"2D Cartesian","mode":"markers","x":[1,2],"y":[2,3],"marker":{},"line":{},"xaxis":"x","yaxis":"y"},{"type":"scatter3d","name":"3D Cartesian","mode":"markers","x":[1],"y":[3],"z":[2],"marker":{},"line":{},"scene":"scene2"},{"type":"scatterpolar","name":"Polar","mode":"markers","r":[10],"theta":[20],"marker":{},"subplot":"polar3"},{"type":"scattergeo","name":"Geo","mode":"markers","lat":[2],"lon":[1],"marker":{},"line":{},"geo":"geo4"},{"type":"scattermapbox","name":"MapBox","mode":"markers","lat":[2],"lon":[1],"marker":{},"line":{},"subplot":"mapbox5"},{"type":"scatterternary","name":"Ternary","mode":"markers","a":[1,2],"b":[2,3],"c":[3,4],"marker":{},"line":{},"subplot":"ternary6"},{"type":"carpet","opacity":0.75,"x":[2.0,3.0,4.0,5.0,2.2,3.1,4.1,5.1,1.5,2.5,3.5,4.5],"y":[1.0,1.4,1.6,1.75,2.0,2.5,2.7,2.75,3.0,3.5,3.7,3.75],"a":[0.0,1.0,2.0,3.0,0.0,1.0,2.0,3.0,0.0,1.0,2.0,3.0],"b":[4.0,4.0,4.0,4.0,5.0,5.0,5.0,5.0,6.0,6.0,6.0,6.0],"aaxis":{"type":"linear","tickprefix":"a = ","minorgridcount":9,"smoothing":0.0},"baxis":{"type":"linear","tickprefix":"b = ","minorgridcount":9,"smoothing":0.0},"carpet":"contour","xaxis":"x7","yaxis":"y7"},{"type":"contourcarpet","z":[1.0,1.96,2.56,3.0625,4.0,5.0625,1.0,7.5625,9.0,12.25,15.21,14.0625],"a":[0,1,2,3,0,1,2,3,0,1,2,3],"b":[4,4,4,4,5,5,5,5,6,6,6,6],"line":{"color":"rgba(255, 255, 255, 1.0)"},"showscale":false,"carpet":"contour","contours":{"showlabels":true}},{"type":"pie","name":"Domain","values":[10,40,50],"marker":{"line":{}},"domain":{"row":2,"column":1}},{"type":"scattersmith","name":"Smith","mode":"markers+text","imag":[0.5,1.0,2.0,3.0],"real":[0.5,1.0,2.0,3.0],"text":["one","two","three","four","five","six","seven"],"textposition":"top center","marker":{"size":[10,20,30,40]},"line":{},"subplot":"smith9"},{"type":"box","name":"Combined 1","x":"y","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{},"line":{},"boxpoints":"all","jitter":0.1,"xaxis":"x10","yaxis":"y10"},{"type":"box","name":"Combined 2","x":"y'","y":[2.0,1.5,5.0,1.5,2.0,2.5,2.1,2.5,1.5,1.0,2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{},"line":{},"boxpoints":"all","jitter":0.1,"xaxis":"x10","yaxis":"y10"}];"""
             |> chartGeneratedContains multiTraceGrid
         );
         testCase "MultiTrace Subplot grid layout" ( fun () ->
-            """var layout = {"xaxis":{},"yaxis":{},"ternary2":{"domain":{"row":0,"column":1}},"xaxis3":{},"yaxis3":{},"scene4":{"domain":{"row":1,"column":0}},"mapbox":{"style":"open-street-map","domain":{"row":1,"column":1}},"mapbox5":{"style":"open-street-map","domain":{"row":1,"column":1}},"xaxis6":{},"yaxis6":{},"grid":{"rows":2,"columns":3,"pattern":"independent"},"width":1000,"height":1000};"""
+            """var layout = {"xaxis":{},"yaxis":{},"scene2":{"domain":{"row":0,"column":1}},"polar3":{"domain":{"row":0,"column":2}},"geo4":{"domain":{"row":1,"column":0}},"mapbox":{"style":"open-street-map","domain":{"row":1,"column":1}},"mapbox5":{"style":"open-street-map","domain":{"row":1,"column":1}},"ternary6":{"domain":{"row":1,"column":2}},"xaxis7":{},"yaxis7":{},"smith9":{"domain":{"row":2,"column":2}},"xaxis10":{},"yaxis10":{},"grid":{"rows":4,"columns":3,"pattern":"independent"},"width":1000,"height":1000};"""
             |> chartGeneratedContains multiTraceGrid
         );
         testCase "Single Stack data" ( fun () -> 

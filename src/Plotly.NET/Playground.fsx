@@ -184,39 +184,3 @@ open Plotly.NET
 
 open System
 open Plotly.NET 
-
-Chart.ScatterSmith(
-    [0.5; 1.; 2.; 3.],
-    [0.5; 1.; 2.; 3.],
-    StyleParam.Mode.Lines_Markers_Text,
-    MultiText = ["Pretty"; "Cool"; "Plot"; "Huh?"],
-    TextPosition = StyleParam.TextPosition.TopCenter,
-    UseDefaults = false
-)
-|> Chart.show
-
-Chart.PointSmith(
-    [0.5; 1.; 2.; 3.],
-    [0.5; 1.; 2.; 3.],
-    UseDefaults = false
-)
-|> Chart.show
-
-Chart.LineSmith(
-    [0.5; 1.; 2.; 3.],
-    [0.5; 1.; 2.; 3.],
-    LineDash = StyleParam.DrawingStyle.DashDot,
-    LineColor = Color.fromKeyword Purple,
-    UseDefaults = false
-)
-|> Chart.show
-
-Chart.BubbleSmith(
-    [0.5; 1.; 2.; 3.],
-    [0.5; 1.; 2.; 3.],
-    sizes = [10;20;30;40],
-    MultiText=["one";"two";"three";"four";"five";"six";"seven"],
-    TextPosition=StyleParam.TextPosition.TopCenter,
-    UseDefaults = false
-)
-|> Chart.show
