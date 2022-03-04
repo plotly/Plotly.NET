@@ -677,6 +677,51 @@ type Layout() =
             layout)
 
     /// <summary>
+    /// Returns Some(smith) if there is a smith object set on the layout with the given id, and None otherwise.
+    /// </summary>
+    /// <param name="id">the target Smith id</param>
+    static member tryGetSmithById(id: StyleParam.SubPlotId) =
+        (fun (layout: Layout) -> layout.TryGetTypedValue<Smith>(StyleParam.SubPlotId.toString id))
+
+    /// <summary>
+    /// Combines the given Smith object with the one already present on the layout.
+    /// </summary>
+    /// <param name="id">The target smith id</param>
+    /// <param name="smith">The updated smith object.</param>
+    static member updateSmithById(id: StyleParam.SubPlotId, smith: Smith) =
+        (fun (layout: Layout) ->
+
+            let smith' =
+                match layout |> Layout.tryGetPolarById (id) with
+                | Some a -> (DynObj.combine a smith) :?> Smith
+                | None -> smith
+
+            smith' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+
+            layout)
+
+    /// <summary>
+    /// Returns the Smith object of the layout with the given id.
+    ///
+    /// If there is no smith set, returns an empty Smith object.
+    /// </summary>
+    /// <param name="id">The target smith id</param>
+    static member getSmithById(id: StyleParam.SubPlotId) =
+        (fun (layout: Layout) -> layout |> Layout.tryGetSmithById id |> Option.defaultValue (Smith.init ()))
+
+    /// <summary>
+    /// Sets a smith object on the layout as a dynamic property with the given smith id.
+    /// </summary>
+    /// <param name="id">The scene id of the new geo</param>
+    /// <param name="smith">The smith to add to the layout.</param>
+    static member setSmith(id: StyleParam.SubPlotId, smith: Smith) =
+        (fun (layout: Layout) ->
+
+            smith |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+
+            layout)
+
+    /// <summary>
     /// Returns Some(ColorAxis) if there is a ColorAxis object set on the layout with the given id, and None otherwise.
     /// </summary>
     /// <param name="id">The target ColorAxis id</param>
