@@ -65,6 +65,7 @@
  * [Add icicle charts](https://github.com/plotly/Plotly.NET/pull/210)
  * [Add Chart.AnnotatedHeatmap](https://github.com/plotly/Plotly.NET/pull/234)
  * [Add Chart.PointDensity](https://github.com/plotly/Plotly.NET/commit/8533cbb555ac51e7b9aa77c8599ebcb66cd552e2)
+ * [Add Smith traces, charts, and layout objects](https://github.com/plotly/Plotly.NET/pull/270)
 
 **Minor Additions/fixes:**
 
