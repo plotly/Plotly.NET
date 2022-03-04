@@ -351,6 +351,7 @@ module ChartSmith =
         /// </summary>
         /// <param name="real">Sets the real component of the data, in units of normalized impedance such that real=1, imag=0 is the center of the chart.</param>
         /// <param name="imag">Sets the imaginary component of the data, in units of normalized impedance such that real=1, imag=0 is the center of the chart.</param>
+        /// <param name="ShowMarkers">Wether or not to show markers for each datum.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
@@ -446,6 +447,7 @@ module ChartSmith =
         /// In general, LineSmith charts plot complex numbers on a transformed two-dimensional Cartesian complex plane as datums connected by a line. Complex numbers with positive real parts map inside the circle. Those with negative real parts map outside the circle.
         /// </summary>
         /// <param name="realImag">Sets the real and imaginary components of the data, in units of normalized impedance such that real=1, imag=0 is the center of the chart.</param>
+        /// <param name="ShowMarkers">Wether or not to show markers for each datum.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>

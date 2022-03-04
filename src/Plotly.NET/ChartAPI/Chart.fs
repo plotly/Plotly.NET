@@ -1783,7 +1783,7 @@ type Chart =
     /// <summary>
     /// Sets the imaginary Axis on the polar object with the given id on the input chart's layout.
     /// </summary>
-    /// <param name="angularAxis">The ImaginaryAxis to set on the target polar object on the chart's layout</param>
+    /// <param name="imaginaryAxis">The ImaginaryAxis to set on the target polar object on the chart's layout</param>
     /// <param name="id">The target polar id with which the ImaginaryAxis should be set.(default is 1)</param>
     /// <param name="Combine">Wether or not to combine the objects if there is already an axis set (default is false)</param>
     [<CompiledName("SetImaginaryAxis")>]
