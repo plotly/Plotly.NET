@@ -271,12 +271,12 @@ let streamTubeChart =
 
 [<Tests>]
 let ``StreamTube charts`` =
-    testList "StreamTube.Volume charts" [
-        testCase "Volume data" ( fun () ->
+    testList "Charts3D.StreamTube charts" [
+        testCase "StreamTube data" ( fun () ->
             """var data = [{"type":"streamtube","x":[0,0,0],"y":[0,1,2],"z":[0,0,0],"u":[0,0,0],"v":[1,1,1],"w":[0,0,0],"colorscale":"Viridis"}];"""
             |> chartGeneratedContains streamTubeChart
         );
-        testCase "Volume layout" ( fun () ->
+        testCase "StreamTube layout" ( fun () ->
             emptyLayout streamTubeChart
         );
     ]

@@ -16,6 +16,7 @@ type TraceID =
     | Ternary
     | Carpet
     | Domain
+    | Smith
     | Multi
 
     static member ofTrace(t: Trace) : TraceID =
@@ -28,6 +29,7 @@ type TraceID =
         | :? TraceTernary -> TraceID.Ternary
         | :? TraceCarpet -> TraceID.Carpet
         | :? TraceDomain -> TraceID.Domain
+        | :? TraceSmith -> TraceID.Smith
         | unknownTraceType -> failwith $"cannot get trace id for type {unknownTraceType.GetType()}"
 
     static member ofTraces(t: seq<Trace>) : TraceID =

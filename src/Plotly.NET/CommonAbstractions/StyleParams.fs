@@ -172,6 +172,7 @@ module StyleParam =
         | Ternary of int
         | Scene of int
         | Carpet of string
+        | Smith of int
 
         static member toString =
             function
@@ -216,6 +217,11 @@ module StyleParam =
                     "scene"
                 else
                     sprintf "scene%i" id
+            | Smith id ->
+                if id < 2 then
+                    "smith"
+                else
+                    sprintf "smith%i" id
             | Carpet id -> id
 
         static member convert = SubPlotId.toString >> box

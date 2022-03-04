@@ -1724,6 +1724,180 @@ type Chart =
         (fun (ch: GenericChart) -> ch |> Chart.setRadialAxis (radialAxis, id, true))
 
     /// <summary>
+    /// Sets the given Smith object with the given id on the input chart's layout.
+    /// </summary>
+    /// <param name="smith">The Smith object to set on the chart's layout</param>
+    /// <param name="id">The target smith id with which the Smith object should be set.</param>
+    /// <param name="Combine">Wether or not to combine the objects if there is already an Smith set (default is false)</param>
+    [<CompiledName("SetSmith")>]
+    static member setSmith
+        (
+            smith: Smith,
+            id: StyleParam.SubPlotId,
+            [<Optional; DefaultParameterValue(null)>] ?Combine: bool
+        ) =
+
+        let combine = defaultArg Combine false
+
+        (fun (ch: GenericChart) ->
+            if combine then
+                ch |> GenericChart.mapLayout (Layout.updateSmithById (id, smith))
+            else
+                ch |> GenericChart.mapLayout (Layout.setSmith (id, smith)))
+
+    /// <summary>
+    /// Sets the Smith for the chart's layout
+    ///
+    /// If there is already a Smith set, the objects are combined.
+    /// </summary>
+    /// <param name="smith">The new Smith for the chart's layout</param>
+    /// <param name="Id">The target smith id on which the smith object should be set. Default is 1.</param>
+    [<CompiledName("WithSmith")>]
+    static member withSmith(smith: Smith, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
+        let id =
+            Id |> Option.defaultValue 1 |> StyleParam.SubPlotId.Smith
+
+        (fun (ch: GenericChart) -> ch |> Chart.setSmith (smith, id, true))
+
+    /// <summary>
+    /// Sets the given Smith styles on the target Smith object on the input chart's layout.
+    ///
+    /// If there is already a Smith set, the styles are applied to it. If there is no Smith present, a new Smith object with the given styles will be set.
+    /// </summary>
+
+    [<CompiledName("WithSmithStyle")>]
+    static member withSmithStyle
+        (
+            [<Optional; DefaultParameterValue(null)>] ?BGColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
+            [<Optional; DefaultParameterValue(null)>] ?ImaginaryAxis: ImaginaryAxis,
+            [<Optional; DefaultParameterValue(null)>] ?RealAxis: RealAxis,
+            [<Optional; DefaultParameterValue(null)>] ?Id: int
+        ) =
+        (fun (ch: GenericChart) ->
+            let smith =
+                Smith.init (?BGColor = BGColor, ?Domain = Domain, ?ImaginaryAxis = ImaginaryAxis, ?RealAxis = RealAxis)
+
+            ch |> Chart.withSmith (smith, ?Id = Id))
+
+    /// <summary>
+    /// Sets the imaginary Axis on the polar object with the given id on the input chart's layout.
+    /// </summary>
+    /// <param name="angularAxis">The ImaginaryAxis to set on the target polar object on the chart's layout</param>
+    /// <param name="id">The target polar id with which the ImaginaryAxis should be set.(default is 1)</param>
+    /// <param name="Combine">Wether or not to combine the objects if there is already an axis set (default is false)</param>
+    [<CompiledName("SetImaginaryAxis")>]
+    static member setImaginaryAxis
+        (
+            imaginaryAxis: ImaginaryAxis,
+            id: StyleParam.SubPlotId,
+            [<Optional; DefaultParameterValue(null)>] ?Combine: bool
+        ) =
+
+        fun (ch: GenericChart) ->
+
+            let combine = defaultArg Combine false
+
+            match id with
+            | StyleParam.SubPlotId.Smith _ ->
+
+                ch
+                |> GenericChart.mapLayout
+                    (fun layout ->
+                        let smith = layout |> Layout.getSmithById id
+
+                        if combine then
+                            let currentAxis = smith |> Smith.getImaginaryAxis
+
+                            let updatedAxis =
+                                (DynObj.combine currentAxis imaginaryAxis) :?> ImaginaryAxis
+
+                            let updatedSmith =
+                                smith |> Smith.setImaginaryAxis updatedAxis
+
+                            layout |> Layout.updateSmithById (id, updatedSmith)
+
+                        else
+                            let updatedSmith =
+                                layout |> Layout.getSmithById id |> Smith.setImaginaryAxis imaginaryAxis
+
+                            layout |> Layout.updateSmithById (id, updatedSmith))
+
+            | _ -> failwith $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting an imaginary Axis"
+
+    /// <summary>
+    /// Sets the ImaginaryAxis on the smith object with the given id on the input chart's layout.
+    ///
+    /// If there is already a ImaginaryAxis set on the smith object, the ImaginaryAxis objects are combined.
+    /// </summary>
+    /// <param name="imaginaryAxis">The new ImaginaryAxis for the chart layout's smith object</param>
+    /// <param name="Id">The target smith id on which the ImaginaryAxis should be set. Default is 1.</param>
+    [<CompiledName("WithImaginaryAxis")>]
+    static member withImaginaryAxis(imaginaryAxis: ImaginaryAxis, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
+        let id =
+            Id |> Option.defaultValue 1 |> StyleParam.SubPlotId.Smith
+
+        (fun (ch: GenericChart) -> ch |> Chart.setImaginaryAxis (imaginaryAxis, id, true))
+
+    /// <summary>
+    /// Sets the RealAxis on the smith object with the given id on the input chart's layout.
+    /// </summary>
+    /// <param name="realAxis">The RealAxis to set on the target smith object on the chart's layout</param>
+    /// <param name="id">The target smith id with which the RealAxis should be set.(default is 1)</param>
+    /// <param name="Combine">Wether or not to combine the objects if there is already an axis set (default is false)</param>
+    [<CompiledName("SetRealAxis")>]
+    static member setRealAxis
+        (
+            realAxis: RealAxis,
+            id: StyleParam.SubPlotId,
+            [<Optional; DefaultParameterValue(null)>] ?Combine: bool
+        ) =
+
+        fun (ch: GenericChart) ->
+
+            let combine = defaultArg Combine false
+
+            match id with
+            | StyleParam.SubPlotId.Smith _ ->
+
+                ch
+                |> GenericChart.mapLayout
+                    (fun layout ->
+                        let smith = layout |> Layout.getSmithById id
+
+                        if combine then
+                            let currentAxis = smith |> Smith.getRealAxis
+
+                            let updatedAxis =
+                                (DynObj.combine currentAxis realAxis) :?> RealAxis
+
+                            let updatedSmith = smith |> Smith.setRealAxis updatedAxis
+
+                            layout |> Layout.updateSmithById (id, updatedSmith)
+
+                        else
+                            let updatedSmith =
+                                layout |> Layout.getSmithById id |> Smith.setRealAxis realAxis
+
+                            layout |> Layout.updateSmithById (id, updatedSmith))
+
+            | _ -> failwith $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting an real axis"
+
+    /// <summary>
+    /// Sets the RealAxis on the smith object with the given id on the input chart's layout.
+    ///
+    /// If there is already a RealAxis set on the smith object, the RealAxis objects are combined.
+    /// </summary>
+    /// <param name="realAxis">The new RealAxis for the chart layout's smith object</param>
+    /// <param name="Id">The target smith id on which the RealAxis should be set. Default is 1.</param>
+    [<CompiledName("WithRealAxis")>]
+    static member withRealAxis(realAxis: RealAxis, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
+        let id =
+            Id |> Option.defaultValue 1 |> StyleParam.SubPlotId.Smith
+
+        (fun (ch: GenericChart) -> ch |> Chart.setRealAxis (realAxis, id, true))
+
+    /// <summary>
     /// Sets the given Geo object with the given id on the input chart's layout.
     /// </summary>
     /// <param name="geo">The Geo object to set on the chart's layout</param>
@@ -2070,15 +2244,15 @@ type Chart =
                 ch
                 |> GenericChart.mapLayout
                     (fun layout ->
-                        let polar = layout |> Layout.getTernaryById id
+                        let ternary = layout |> Layout.getTernaryById id
 
                         if combine then
-                            let currentAxis = polar |> Ternary.getAAxis
+                            let currentAxis = ternary |> Ternary.getAAxis
 
                             let updatedAxis =
                                 (DynObj.combine currentAxis aAxis) :?> LinearAxis
 
-                            let updatedTernary = polar |> Ternary.setAAxis updatedAxis
+                            let updatedTernary = ternary |> Ternary.setAAxis updatedAxis
 
                             layout |> Layout.updateTernaryById (id, updatedTernary)
 
@@ -2128,15 +2302,15 @@ type Chart =
                 ch
                 |> GenericChart.mapLayout
                     (fun layout ->
-                        let polar = layout |> Layout.getTernaryById id
+                        let ternary = layout |> Layout.getTernaryById id
 
                         if combine then
-                            let currentAxis = polar |> Ternary.getBAxis
+                            let currentAxis = ternary |> Ternary.getBAxis
 
                             let updatedAxis =
                                 (DynObj.combine currentAxis bAxis) :?> LinearAxis
 
-                            let updatedTernary = polar |> Ternary.setBAxis updatedAxis
+                            let updatedTernary = ternary |> Ternary.setBAxis updatedAxis
 
                             layout |> Layout.updateTernaryById (id, updatedTernary)
 
@@ -2186,15 +2360,15 @@ type Chart =
                 ch
                 |> GenericChart.mapLayout
                     (fun layout ->
-                        let polar = layout |> Layout.getTernaryById id
+                        let ternary = layout |> Layout.getTernaryById id
 
                         if combine then
-                            let currentAxis = polar |> Ternary.getCAxis
+                            let currentAxis = ternary |> Ternary.getCAxis
 
                             let updatedAxis =
                                 (DynObj.combine currentAxis cAxis) :?> LinearAxis
 
-                            let updatedTernary = polar |> Ternary.setCAxis updatedAxis
+                            let updatedTernary = ternary |> Ternary.setCAxis updatedAxis
 
                             layout |> Layout.updateTernaryById (id, updatedTernary)
 
@@ -2737,6 +2911,23 @@ type Chart =
                         |> GenericChart.mapTrace
                             (fun t -> t :?> TracePolar |> TracePolarStyle.SetPolar polarAnchor :> Trace)
                         |> Chart.withPolar (polar, (i + 1))
+
+                    | TraceID.Smith ->
+
+                        let smith =
+                            layout.TryGetTypedValue<Smith> "smith"
+                            |> Option.defaultValue (Smith.init ())
+                            |> Smith.style (
+                                Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1)
+                            )
+
+                        let polarAnchor = StyleParam.SubPlotId.Smith(i + 1)
+
+                        gChart
+                        |> GenericChart.mapTrace
+                            (fun t -> t :?> TraceSmith |> TraceSmithStyle.SetSmith polarAnchor :> Trace)
+                        |> Chart.withSmith (smith, (i + 1))
+
                     | TraceID.Geo ->
                         let geo =
                             layout.TryGetTypedValue<Geo> "geo"
