@@ -107,6 +107,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{7B09CC0A-F
 		docs\10_1_styling_ternary_layouts.fsx = docs\10_1_styling_ternary_layouts.fsx
 		docs\11_1_carpet_line_scatter_plots.fsx = docs\11_1_carpet_line_scatter_plots.fsx
 		docs\11_2_contourcarpet_plots.fsx = docs\11_2_contourcarpet_plots.fsx
+		docs\12_1_smith_line_scatter_plots.fsx = docs\12_1_smith_line_scatter_plots.fsx
 		docs\_template.fsx = docs\_template.fsx
 		docs\_template.html = docs\_template.html
 		docs\_template.ipynb = docs\_template.ipynb
