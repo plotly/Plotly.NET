@@ -223,45 +223,6 @@ module StyleParam =
         member this.Convert() = this |> SubPlotId.convert
 
     [<RequireQualifiedAccess>]
-    /// Editable parts of a chart that can be set via Chart config.
-    type Edits =
-        ///Determines if the main anchor of the annotation is editable.The main anchor corresponds to the',
-        ///text (if no arrow) or the arrow (which drags the whole thing leaving the arrow length & direction unchanged).
-        | AnnotationPosition
-        ///Has only an effect for annotations with arrows. Enables changing the length and direction of the arrow.
-        | AnnotationTail
-        ///Enables editing annotation text.
-        | AnnotationText
-        ///Enables editing axis title text.
-        | AxisTitleText
-        ///Enables moving colorbars.
-        | ColorbarPosition
-        ///Enables editing colorbar title text.
-        | ColorbarTitleText
-        ///Enables moving the legend.
-        | LegendPosition
-        ///Enables editing the trace name fields from the legend
-        | LegendText
-        ///Enables moving shapes.
-        | ShapePosition
-
-        static member toString aeo =
-            match aeo with
-            | AnnotationPosition -> "annotationPosition"
-            | AnnotationTail -> "annotationTail"
-            | AnnotationText -> "annotationText"
-            | AxisTitleText -> "axisTitleText"
-            | ColorbarPosition -> "colorbarPosition"
-            | ColorbarTitleText -> "colorbarTitleText"
-            | LegendPosition -> "legendPosition"
-            | LegendText -> "legendText"
-            | ShapePosition -> "shapePosition"
-
-        static member convert = Edits.toString >> box
-        override this.ToString() = this |> Edits.toString
-        member this.Convert() = this |> Edits.convert
-
-    [<RequireQualifiedAccess>]
     type AutoTypeNumbers =
         | ConvertTypes
         | Strict
