@@ -17,7 +17,12 @@ type Chart =
     //================================================ Core methods ================================================
     //==============================================================================================================
 
-    /// Save chart as html single page
+    /// <summary>
+    /// Saves the given Chart as html file at the given path (.html file extension is added if not present). 
+    /// Optionally opens the generated file in the browser.
+    /// </summary>
+    /// <param name="path">The path to save the chart html at.</param>
+    /// <param name="OpenInBrowser">Wether or not to open the generated file in the browser (default: false)</param>
     [<CompiledName("SaveHtml")>]
     static member saveHtml(path: string, [<Optional; DefaultParameterValue(null)>] ?OpenInBrowser: bool) =
         fun (ch: GenericChart) ->
@@ -34,7 +39,10 @@ type Chart =
             File.WriteAllText(file, html)
             if show then file |> openOsSpecificFile
 
-    /// Show chart in browser
+    /// <summary>
+    /// Saves the given chart as a temporary html file and opens it in the browser.
+    /// </summary>
+    /// <param name="ch">The chart to show in the browser</param>
     [<CompiledName("Show")>]
     static member show(ch: GenericChart) =
         let guid = Guid.NewGuid().ToString()
@@ -43,7 +51,18 @@ type Chart =
         let path = Path.Combine(tempPath, file)
         ch |> Chart.saveHtml (path, true)
 
-    /// Show chart in browser
+    /// <summary>
+    /// Saves the given chart as a temporary html file containing a static image of the chart and opens it in the browser.
+    ///
+    /// IMPORTANT: this is not the same as static image generation. The file still needs to be opened in the browser to generate the image, as it is done via a js script in the html.
+    /// 
+    /// For real programmatic static image export use Plotly.NET.ImageExport (https://www.nuget.org/packages/Plotly.NET.ImageExport/)
+    ///
+    /// This yields basically the same results as using `StaticPlot = true` for the chart's config.
+    /// </summary>
+    /// <param name="format">The image format for the static chart</param>
+    /// <param name="ch">The chart to show in the browser</param>
+    [<Obsolete("This function will be dropped in the 2.0 release. It is recommended to either create static plots or use Plotly.NET.ImageExport instead.")>]
     [<CompiledName("ShowAsImage")>]
     static member showAsImage (format: StyleParam.ImageFormat) (ch: GenericChart) =
         let guid = Guid.NewGuid().ToString()
