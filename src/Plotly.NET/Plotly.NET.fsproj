@@ -80,6 +80,9 @@
     <Compile Include="Layout\ObjectAbstractions\Polar\AngularAxis.fs" />
     <Compile Include="Layout\ObjectAbstractions\Polar\RadialAxis.fs" />
     <Compile Include="Layout\ObjectAbstractions\Polar\Polar.fs" />
+    <Compile Include="Layout\ObjectAbstractions\Smith\ImaginaryAxis.fs" />
+    <Compile Include="Layout\ObjectAbstractions\Smith\RealAxis.fs" />
+    <Compile Include="Layout\ObjectAbstractions\Smith\Smith.fs" />
     <Compile Include="Layout\Layout.fs" />
     <Compile Include="Traces\ObjectAbstractions\Pattern.fs" />
     <Compile Include="Traces\ObjectAbstractions\Gradient.fs" />
@@ -120,6 +123,7 @@
     <Compile Include="Traces\TraceTernary.fs" />
     <Compile Include="Traces\TraceCarpet.fs" />
     <Compile Include="Traces\TraceDomain.fs" />
+    <Compile Include="Traces\TraceSmith.fs" />
     <Compile Include="Traces\TraceID.fs" />
     <Folder Include="Extensions\" />
     <Folder Include="Layout\ObjectAbstractions\2D\" />
@@ -141,6 +145,7 @@
     <Compile Include="ChartAPI\ChartTernary.fs" />
     <Compile Include="ChartAPI\ChartCarpet.fs" />
     <Compile Include="ChartAPI\ChartDomain.fs" />
+    <Compile Include="ChartAPI\ChartSmith.fs" />
     <Compile Include="CSharpLayer\GenericChartExtensions.fs" />
     <None Include="Playground.fsx" />
   </ItemGroup>
