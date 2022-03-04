@@ -199,6 +199,11 @@ module GenericChart =
         | Chart (t, l, _, d) -> Chart(t, l, config, d)
         | MultiChart (t, l, _, d) -> MultiChart(t, l, config, d)
 
+    let addConfig config gChart =
+        match gChart with
+        | Chart (trace, l, c', d) -> Chart(trace, l, (DynObj.combine c' config |> unbox), d)
+        | MultiChart (traces, l, c', d) -> MultiChart(traces, l, (DynObj.combine c' config |> unbox), d)
+
     let getDisplayOptions gChart =
         match gChart with
         | Chart (_, _, _, d) -> d
@@ -276,19 +281,16 @@ module GenericChart =
 
         let combineConfigs (first: Config) (second: Config) =
 
-            let editableAnnotations =
-                combineOptSeqs
-                    (first.TryGetTypedValue<seq<StyleParam.AnnotationEditOptions>>("editable"))
-                    (second.TryGetTypedValue<seq<StyleParam.AnnotationEditOptions>>("editable"))
-
             let modeBarButtonsToAdd =
                 combineOptSeqs
-                    (first.TryGetTypedValue<seq<StyleParam.ModeBarButton>>("modeBarButtonsToAdd"))
-                    (second.TryGetTypedValue<seq<StyleParam.ModeBarButton>>("modeBarButtonsToAdd"))
+                    (first.TryGetTypedValue<seq<string>>("modeBarButtonsToAdd"))
+                    (second.TryGetTypedValue<seq<string>>("modeBarButtonsToAdd"))
 
             DynObj.combine first second
             |> unbox
-            |> Config.style (?EditableAnnotations = editableAnnotations, ?ModeBarButtonsToAdd = modeBarButtonsToAdd)
+            |> Config.style (
+                ?ModeBarButtonsToAdd = (modeBarButtonsToAdd |> Option.map (Seq.map StyleParam.ModeBarButton.ofString))
+            )
 
         let combineDisplayOptions (first: DisplayOptions) (second: DisplayOptions) =
 

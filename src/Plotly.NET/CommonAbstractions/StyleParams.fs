@@ -224,7 +224,7 @@ module StyleParam =
 
     [<RequireQualifiedAccess>]
     /// Editable parts of a chart that can be set via Chart config.
-    type AnnotationEditOptions =
+    type Edits =
         ///Determines if the main anchor of the annotation is editable.The main anchor corresponds to the',
         ///text (if no arrow) or the arrow (which drags the whole thing leaving the arrow length & direction unchanged).
         | AnnotationPosition
@@ -257,9 +257,9 @@ module StyleParam =
             | LegendText -> "legendText"
             | ShapePosition -> "shapePosition"
 
-        static member convert = AnnotationEditOptions.toString >> box
-        override this.ToString() = this |> AnnotationEditOptions.toString
-        member this.Convert() = this |> AnnotationEditOptions.convert
+        static member convert = Edits.toString >> box
+        override this.ToString() = this |> Edits.toString
+        member this.Convert() = this |> Edits.convert
 
     [<RequireQualifiedAccess>]
     type AutoTypeNumbers =
@@ -1875,6 +1875,49 @@ module StyleParam =
             | ZoomInMapbox -> "zoomInMapbox"
             | ZoomOutMapbox -> "zoomOutMapbox"
 
+        static member ofString =
+            function
+            | "toImage" -> ToImage
+            | "sendDataToCloud" -> SendDataToCloud
+            | "editInChartStudio" -> EditInChartStudio
+            | "zoom2d" -> Zoom2d
+            | "pan2d" -> Pan2d
+            | "select2d" -> Select2d
+            | "lasso2d" -> Lasso2d
+            | "drawclosedpath" -> DrawClosedPath
+            | "drawopenpath" -> DrawOpenPath
+            | "drawline" -> DrawLine
+            | "drawrect" -> DrawRect
+            | "drawcircle" -> DrawCircle
+            | "eraseshape" -> EraseShape
+            | "zoomIn2d" -> ZoomIn2d
+            | "zoomOut2d" -> ZoomOut2d
+            | "autoScale2d" -> AutoScale2d
+            | "resetScale2d" -> ResetScale2d
+            | "hoverClosestCartesian" -> HoverClosestCartesian
+            | "hoverCompareCartesian" -> HoverCompareCartesian
+            | "zoom3d" -> Zoom3d
+            | "pan3d" -> Pan3d
+            | "orbitRotation" -> OrbitRotation
+            | "tableRotation" -> TableRotation
+            | "resetCameraDefault3d" -> ResetCameraDefault3d
+            | "resetCameraLastSave3d" -> ResetCameraLastSave3d
+            | "hoverClosest3d" -> HoverClosest3d
+            | "zoomInGeo" -> ZoomInGeo
+            | "zoomOutGeo" -> ZoomOutGeo
+            | "resetGeo" -> ResetGeo
+            | "hoverClosestGeo" -> HoverClosestGeo
+            | "hoverClosestGl2d" -> HoverClosestGl2d
+            | "hoverClosestPie" -> HoverClosestPie
+            | "resetSankeyGroup" -> ResetSankeyGroup
+            | "toggleHover" -> ToggleHover
+            | "v1hovermode" -> HoverMode
+            | "resetViews" -> ResetViews
+            | "toggleSpikelines" -> ToggleSpikelines
+            | "resetViewMapbox" -> ResetViewMapbox
+            | "zoomInMapbox" -> ZoomInMapbox
+            | "zoomOutMapbox" -> ZoomOutMapbox
+            | _ -> failwith "unsupported mode button"
 
         static member convert = ModeBarButton.toString >> box
         override this.ToString() = this |> ModeBarButton.toString

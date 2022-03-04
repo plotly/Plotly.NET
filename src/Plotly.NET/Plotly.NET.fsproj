@@ -123,6 +123,7 @@
     <Compile Include="Traces\TraceID.fs" />
     <Folder Include="Extensions\" />
     <Folder Include="Layout\ObjectAbstractions\2D\" />
+    <Compile Include="Config\ObjectAbstractions\Edits.fs" />
     <Compile Include="Config\ObjectAbstractions\ToImageButtonOptions.fs" />
     <Compile Include="Config\Config.fs" />
     <Folder Include="DisplayOptions\ObjectAbstractions\" />

@@ -8,9 +8,9 @@
 
 #I "CommonAbstractions"
 
-#load "StyleParams.fs"
 #load "ColorKeyword.fs"
 #load "Colors.fs"
+#load "StyleParams.fs"
 #load "TickFormatStop.fs"
 #load "Frame.fs"
 #load "Font.fs"
@@ -122,6 +122,7 @@
 
 #I "Config/ObjectAbstractions"
 
+#load "Edits.fs"
 #load "ToImageButtonOptions.fs"
 
 #I "Config"
@@ -187,13 +188,37 @@ let violin1 =
     Chart.Violin (
         x,y,
         ShowBox = true,
-        BoxFillColor = Color.fromKeyword ColorKeyword.Red)
+        BoxFillColor = Color.fromKeyword ColorKeyword.Red
+    )
+    |> Chart.withConfigStyle(
+        StaticPlot = false,
+        Editable= true,
+        PlotlyServerUrl = "https://chart-studio.plotly.com",
+        ModeBarButtonsToAdd = [
+            StyleParam.ModeBarButton.DrawRect
+        ]
+    )
 
 let violin2 =
     Chart.Violin (
         x2,y2,
         ShowBox = true,
-        BoxFillColor = Color.fromKeyword ColorKeyword.Green)
+        BoxFillColor = Color.fromKeyword ColorKeyword.Green
+    )
+    |> Chart.withConfigStyle(
+        ShowEditInChartStudio = true,
+        ModeBarButtonsToAdd = [
+            StyleParam.ModeBarButton.DrawLine
+        ]
+    )
+
+violin2
+|> GenericChart.getConfig
+|> DynObj.print
+
+violin1
+|> GenericChart.getConfig
+|> DynObj.print
 
 [
     violin1

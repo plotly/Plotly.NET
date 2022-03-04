@@ -105,11 +105,11 @@ You can define fields that can be edited on the chart by setting `Editable = tru
 let editableConfig = 
     Config.init(
         Editable = true,
-        EditableAnnotations = [
-            StyleParam.AnnotationEditOptions.LegendPosition
-            StyleParam.AnnotationEditOptions.AxisTitleText
-            StyleParam.AnnotationEditOptions.LegendText
-        ]
+        Edits = Edits.init(
+            LegendPosition  = true,
+            AxisTitleText   = true,
+            LegendText      = true
+        )
     )
 
 let editablePlot =

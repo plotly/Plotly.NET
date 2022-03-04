@@ -2,6 +2,7 @@ namespace Plotly.NET
 
 open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
+open Plotly.NET.ConfigObjects
 
 open DynamicObj
 open System
@@ -18,7 +19,7 @@ type Chart =
     //==============================================================================================================
 
     /// <summary>
-    /// Saves the given Chart as html file at the given path (.html file extension is added if not present). 
+    /// Saves the given Chart as html file at the given path (.html file extension is added if not present).
     /// Optionally opens the generated file in the browser.
     /// </summary>
     /// <param name="path">The path to save the chart html at.</param>
@@ -55,7 +56,7 @@ type Chart =
     /// Saves the given chart as a temporary html file containing a static image of the chart and opens it in the browser.
     ///
     /// IMPORTANT: this is not the same as static image generation. The file still needs to be opened in the browser to generate the image, as it is done via a js script in the html.
-    /// 
+    ///
     /// For real programmatic static image export use Plotly.NET.ImageExport (https://www.nuget.org/packages/Plotly.NET.ImageExport/)
     ///
     /// This yields basically the same results as using `StaticPlot = true` for the chart's config.
@@ -729,11 +730,19 @@ type Chart =
     //======================================= General Layout object styling ========================================
     //==============================================================================================================
 
+    // <summary>
+    /// Sets the given layout on the input chart.
+    ///
+    /// If there is already an layout set, the object is replaced.
+    /// </summary>
+    [<CompiledName("SetLayout")>]
+    static member setLayout(layout: Layout) =
+        (fun (ch: GenericChart) -> GenericChart.setLayout layout ch)
 
     /// <summary>
     /// Sets the given layout on the input chart.
     ///
-    /// If there is already an layout set at the given id, the axis objects are combined.
+    /// If there is already an layout set, the objects are combined.
     /// </summary>
     [<CompiledName("WithLayout")>]
     static member withLayout(layout: Layout) =
@@ -2391,10 +2400,6 @@ type Chart =
 
             ch |> Chart.withLegend legend)
 
-    [<CompiledName("WithConfig")>]
-    static member withConfig(config: Config) =
-        (fun (ch: GenericChart) -> GenericChart.setConfig config ch)
-
     /// <summary>
     ///
     /// </summary>
@@ -2545,6 +2550,75 @@ type Chart =
     [<CompiledName("WithShape")>]
     static member withShape(shape: Shape, [<Optional; DefaultParameterValue(true)>] ?Append: bool) =
         Chart.withShapes ([ shape ], ?Append = Append)
+
+
+    //==============================================================================================================
+    //======================================= General Config object styling ========================================
+    //==============================================================================================================
+
+    // <summary>
+    /// Sets the given config on the input chart.
+    ///
+    /// If there is already a config set, the object is replaced.
+    /// </summary>
+    [<CompiledName("SetConfig")>]
+    static member setConfig(config: Config) =
+        (fun (ch: GenericChart) -> GenericChart.setConfig config ch)
+
+    // <summary>
+    /// Sets the given config on the input chart.
+    ///
+    /// If there is already a config set, the objects are combined.
+    /// </summary>
+    [<CompiledName("WithConfig")>]
+    static member withConfig(config: Config) =
+        (fun (ch: GenericChart) -> GenericChart.addConfig config ch)
+
+    /// <summary>
+    /// Applies the given styles to the chart's Config object. Overwrites attributes with the same name that are already set.
+    /// </summary>
+    /// <param name="StaticPlot">Determines whether the plot is interactive or not. (default: false)</param>
+    /// <param name="PlotlyServerUrl">When set it determines base URL for the 'Edit in Chart Studio'/`showEditInChartStudio`/`showSendToCloud` mode bar button', and the showLink/sendData on-graph link. To enable sending your data to Chart Studio Cloud, you need to' set both `plotlyServerURL` to \'https://chart-studio.plotly.com\' and also set `showSendToCloud` to true.</param>
+    /// <param name="Editable">Determines whether the graph is editable or not. Sets all pieces of `edits` unless a separate `edits` config item overrides individual parts.</param>
+    /// <param name="Edits">Object holding individual editable pieces of the graph.</param>
+    /// <param name="Autosizable">Determines whether the graphs are plotted with respect to layout.autosize:true and infer its container size. (default: false)</param>
+    /// <param name="Responsive">Determines whether to change the layout size when window is resized.</param>
+    /// <param name="ShowSendToCloud">Should we include a ModeBar button, labeled "Edit in Chart Studio",that sends this chart to chart-studio.plotly.com (formerly plot.ly) or another plotly server as specified by `plotlyServerURL` for editing, export, etc? Note that this button can (depending on `plotlyServerURL` being set) send your data to an external server. However that server does not persist your data until you arrive at the Chart Studio and explicitly click "Save".</param>
+    /// <param name="ShowEditInChartStudio">Same as `showSendToCloud`, but use a pencil icon instead of a floppy-disk. Note that if both `showSendToCloud` and `showEditInChartStudio` are turned,  only `showEditInChartStudio` will be honored.</param>
+    /// <param name="ToImageButtonOptions">Statically override options for toImage modebar button</param>
+    /// <param name="ModeBarButtonsToAdd">ModeBar buttons to add to the graph.</param>
+    [<CompiledName("WithConfigStyle")>]
+    static member withConfigStyle
+        (
+            [<Optional; DefaultParameterValue(null)>] ?StaticPlot: bool,
+            [<Optional; DefaultParameterValue(null)>] ?PlotlyServerUrl: string,
+            [<Optional; DefaultParameterValue(null)>] ?Autosizable: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Editable: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Edits: Edits,
+            [<Optional; DefaultParameterValue(null)>] ?ShowSendToCloud: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ShowEditInChartStudio: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Responsive: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ToImageButtonOptions: ToImageButtonOptions,
+            [<Optional; DefaultParameterValue(null)>] ?ModeBarButtonsToAdd: seq<StyleParam.ModeBarButton>
+        ) =
+        (fun (ch: GenericChart) ->
+
+            let config =
+                Config.init (
+                    ?StaticPlot = StaticPlot,
+                    ?PlotlyServerUrl = PlotlyServerUrl,
+                    ?Autosizable = Autosizable,
+                    ?Responsive = Responsive,
+                    ?ToImageButtonOptions = ToImageButtonOptions,
+                    ?ShowSendToCloud = ShowSendToCloud,
+                    ?ShowEditInChartStudio = ShowEditInChartStudio,
+                    ?Editable = Editable,
+                    ?Edits = Edits,
+                    ?ModeBarButtonsToAdd = ModeBarButtonsToAdd
+                )
+
+            ch |> Chart.withConfig config)
+
 
 
     //==============================================================================================================

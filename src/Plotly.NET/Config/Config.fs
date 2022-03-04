@@ -333,75 +333,93 @@ open System.Runtime.InteropServices
 //        ].join(' ')
 //    }
 //};
-/// Config
+
+/// The Config object gets passed to the plotly renderer and contains render-specific options.
 type Config() =
     inherit DynamicObj()
 
-    /// Init Legend type
+    /// <summary>
+    /// Returns a new Config Object with the given styling.
+    /// </summary>
+    /// <param name="StaticPlot">Determines whether the plot is interactive or not. (default: false)</param>
+    /// <param name="PlotlyServerUrl">When set it determines base URL for the 'Edit in Chart Studio'/`showEditInChartStudio`/`showSendToCloud` mode bar button', and the showLink/sendData on-graph link. To enable sending your data to Chart Studio Cloud, you need to' set both `plotlyServerURL` to \'https://chart-studio.plotly.com\' and also set `showSendToCloud` to true.</param>
+    /// <param name="Editable">Determines whether the graph is editable or not. Sets all pieces of `edits` unless a separate `edits` config item overrides individual parts.</param>
+    /// <param name="Edits">Object holding individual editable pieces of the graph.</param>
+    /// <param name="Autosizable">Determines whether the graphs are plotted with respect to layout.autosize:true and infer its container size. (default: false)</param>
+    /// <param name="Responsive">Determines whether to change the layout size when window is resized.</param>
+    /// <param name="ShowSendToCloud">Should we include a ModeBar button, labeled "Edit in Chart Studio",that sends this chart to chart-studio.plotly.com (formerly plot.ly) or another plotly server as specified by `plotlyServerURL` for editing, export, etc? Note that this button can (depending on `plotlyServerURL` being set) send your data to an external server. However that server does not persist your data until you arrive at the Chart Studio and explicitly click "Save".</param>
+    /// <param name="ShowEditInChartStudio">Same as `showSendToCloud`, but use a pencil icon instead of a floppy-disk. Note that if both `showSendToCloud` and `showEditInChartStudio` are turned,  only `showEditInChartStudio` will be honored.</param>
+    /// <param name="ToImageButtonOptions">Statically override options for toImage modebar button</param>
+    /// <param name="ModeBarButtonsToAdd">ModeBar buttons to add to the graph.</param>
     static member init
         (
             [<Optional; DefaultParameterValue(null)>] ?StaticPlot: bool,
+            [<Optional; DefaultParameterValue(null)>] ?PlotlyServerUrl: string,
             [<Optional; DefaultParameterValue(null)>] ?Autosizable: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Responsive: bool,
-            [<Optional; DefaultParameterValue(null)>] ?ShowEditInChartStudio: bool,
-            [<Optional; DefaultParameterValue(null)>] ?ToImageButtonOptions: ToImageButtonOptions,
             [<Optional; DefaultParameterValue(null)>] ?Editable: bool,
-            [<Optional; DefaultParameterValue(null)>] ?EditableAnnotations: seq<StyleParam.AnnotationEditOptions>,
+            [<Optional; DefaultParameterValue(null)>] ?Edits: Edits,
+            [<Optional; DefaultParameterValue(null)>] ?ShowSendToCloud: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ShowEditInChartStudio: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Responsive: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ToImageButtonOptions: ToImageButtonOptions,
             [<Optional; DefaultParameterValue(null)>] ?ModeBarButtonsToAdd: seq<StyleParam.ModeBarButton>
         ) =
         Config()
         |> Config.style (
             ?StaticPlot = StaticPlot,
+            ?PlotlyServerUrl = PlotlyServerUrl,
             ?Autosizable = Autosizable,
             ?Responsive = Responsive,
             ?ToImageButtonOptions = ToImageButtonOptions,
+            ?ShowSendToCloud = ShowSendToCloud,
             ?ShowEditInChartStudio = ShowEditInChartStudio,
             ?Editable = Editable,
-            ?EditableAnnotations = EditableAnnotations,
+            ?Edits = Edits,
             ?ModeBarButtonsToAdd = ModeBarButtonsToAdd
         )
 
 
-    // Applies the styles to Config()
+    /// <summary>
+    /// Returns a function that applies the given styles to a Config object.
+    /// </summary>
+    /// <param name="StaticPlot">Determines whether the plot is interactive or not. (default: false)</param>
+    /// <param name="PlotlyServerUrl">When set it determines base URL for the 'Edit in Chart Studio'/`showEditInChartStudio`/`showSendToCloud` mode bar button', and the showLink/sendData on-graph link. To enable sending your data to Chart Studio Cloud, you need to' set both `plotlyServerURL` to \'https://chart-studio.plotly.com\' and also set `showSendToCloud` to true.</param>
+    /// <param name="Editable">Determines whether the graph is editable or not. Sets all pieces of `edits` unless a separate `edits` config item overrides individual parts.</param>
+    /// <param name="Edits">Object holding individual editable pieces of the graph.</param>
+    /// <param name="Autosizable">Determines whether the graphs are plotted with respect to layout.autosize:true and infer its container size. (default: false)</param>
+    /// <param name="Responsive">Determines whether to change the layout size when window is resized.</param>
+    /// <param name="ShowSendToCloud">Should we include a ModeBar button, labeled "Edit in Chart Studio",that sends this chart to chart-studio.plotly.com (formerly plot.ly) or another plotly server as specified by `plotlyServerURL` for editing, export, etc? Note that this button can (depending on `plotlyServerURL` being set) send your data to an external server. However that server does not persist your data until you arrive at the Chart Studio and explicitly click "Save".</param>
+    /// <param name="ShowEditInChartStudio">Same as `showSendToCloud`, but use a pencil icon instead of a floppy-disk. Note that if both `showSendToCloud` and `showEditInChartStudio` are turned,  only `showEditInChartStudio` will be honored.</param>
+    /// <param name="ToImageButtonOptions">Statically override options for toImage modebar button</param>
+    /// <param name="ModeBarButtonsToAdd">ModeBar buttons to add to the graph.</param>
     static member style
         (
             [<Optional; DefaultParameterValue(null)>] ?StaticPlot: bool,
+            [<Optional; DefaultParameterValue(null)>] ?PlotlyServerUrl: string,
             [<Optional; DefaultParameterValue(null)>] ?Autosizable: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Editable: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Edits: Edits,
+            [<Optional; DefaultParameterValue(null)>] ?ShowSendToCloud: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ShowEditInChartStudio: bool,
             [<Optional; DefaultParameterValue(null)>] ?Responsive: bool,
             [<Optional; DefaultParameterValue(null)>] ?ToImageButtonOptions: ToImageButtonOptions,
-            [<Optional; DefaultParameterValue(null)>] ?ShowEditInChartStudio: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Editable: bool,
-            [<Optional; DefaultParameterValue(null)>] ?EditableAnnotations: seq<StyleParam.AnnotationEditOptions>,
             [<Optional; DefaultParameterValue(null)>] ?ModeBarButtonsToAdd: seq<StyleParam.ModeBarButton>
         ) =
         fun (config: Config) ->
             StaticPlot |> DynObj.setValueOpt config "staticPlot"
+            PlotlyServerUrl |> DynObj.setValueOpt config "plotlyServerURL"
             Autosizable |> DynObj.setValueOpt config "autosizable"
+            Editable |> DynObj.setValueOpt config "editable"
+            Edits |> DynObj.setValueOpt config "edits"
+            ShowSendToCloud |> DynObj.setValueOpt config "showSendToCloud"
+            ShowEditInChartStudio |> DynObj.setValueOpt config "showEditInChartStudio"
             Responsive |> DynObj.setValueOpt config "responsive"
             ToImageButtonOptions |> DynObj.setValueOpt config "toImageButtonOptions"
-            ShowEditInChartStudio |> DynObj.setValueOpt config "showEditInChartStudio"
-            Editable |> DynObj.setValueOpt config "editable"
 
             ModeBarButtonsToAdd
             |> DynObj.setValueOptBy
                 config
                 "modeBarButtonsToAdd"
-                (fun x -> x |> Seq.map StyleParam.ModeBarButton.convert)
-
-            EditableAnnotations
-            |> Option.map
-                (fun edits ->
-                    let ed = DynamicObj()
-
-                    edits
-                    |> Seq.iter
-                        (fun edit ->
-                            let fieldName =
-                                StyleParam.AnnotationEditOptions.toString edit
-
-                            ed?fieldName <- true)
-
-                    ed)
-            |> DynObj.setValueOpt config "edits"
+                (fun x -> x |> Seq.map StyleParam.ModeBarButton.toString)
 
             config
