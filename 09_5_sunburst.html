@@ -41,7 +41,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.17</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.18</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -98,6 +98,11 @@
 <li class="nav-item">
   <a class="nav-link" href="https://plotly.net/00_6_multi-arguments.html">
     Single and multi arguments
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/00_7_working-with-colors.html">
+    Working with colors
   </a>
 </li>             
 <li class="nav-header">
@@ -417,6 +422,14 @@
   <a class="nav-link" href="https://plotly.net/11_2_contourcarpet_plots.html">
     Contour carpet plots
   </a>
+</li>             
+<li class="nav-header">
+  Smith Plots
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/12_1_smith_line_scatter_plots.html">
+    Smith line and scatter plots
+  </a>
 </li>
                         <li class="nav-header">
   API Reference
@@ -482,34 +495,34 @@ For even more styling control, use the respective TraceStyle function <code>Trac
         <span class="fn">BranchValues</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs14', 20)" onmouseover="showTip(event, 'fs14', 20)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs15', 21)" onmouseover="showTip(event, 'fs15', 21)" class="rt">BranchValues</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs16', 22)" onmouseover="showTip(event, 'fs16', 22)" class="id">Total</span><span class="pn">,</span> <span class="c">// branch values are the total of their childrens values</span>
         <span class="fn">SectionColorScale</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs14', 23)" onmouseover="showTip(event, 'fs14', 23)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 24)" onmouseover="showTip(event, 'fs17', 24)" class="rt">Colorscale</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 25)" onmouseover="showTip(event, 'fs18', 25)" class="id">Viridis</span><span class="pn">,</span>
         <span class="fn">ShowSectionColorScale</span> <span class="o">=</span> <span class="k">true</span><span class="pn">,</span>
-        <span class="fn">SectionOutlineColor</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs19', 26)" onmouseover="showTip(event, 'fs19', 26)" class="m">Color</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 27)" onmouseover="showTip(event, 'fs20', 27)" class="id">fromKeyword</span> <span onmouseout="hideTip(event, 'fs21', 28)" onmouseover="showTip(event, 'fs21', 28)" class="uc">Black</span><span class="pn">,</span>
+        <span class="fn">SectionOutlineColor</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs19', 26)" onmouseover="showTip(event, 'fs19', 26)" class="rt">Color</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 27)" onmouseover="showTip(event, 'fs20', 27)" class="id">fromKeyword</span> <span onmouseout="hideTip(event, 'fs21', 28)" onmouseover="showTip(event, 'fs21', 28)" class="uc">Black</span><span class="pn">,</span>
         <span class="fn">Rotation</span> <span class="o">=</span> <span class="n">45</span><span class="pn">,</span>
         <span class="fn">UseDefaults</span> <span class="o">=</span> <span class="k">false</span>
     <span class="pn">)</span>
 </code></pre>
-<div id="393ca508-5f81-4128-808d-c63535d9fe0b"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="bf9c7556-caea-411c-841c-752ba6db8032"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_393ca5085f814128808dc63535d9fe0b = function() {
+            var renderPlotly_bf9c7556caea411c841c752ba6db8032 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.6.3.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"sunburst","parents":["","","","","","A","A","B","AA","AA"],"values":[20,1,2,3,4,15,5,1,10,5],"labels":["A","B","C","D","E","AA","AB","BA","AAA","AAB"],"marker":{"colorscale":"Viridis","line":{"color":"rgba(0, 0, 0, 1.0)"},"showscale":true},"branchvalues":"total","rotation":45}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('393ca508-5f81-4128-808d-c63535d9fe0b', data, layout, config);
+            Plotly.newPlot('bf9c7556-caea-411c-841c-752ba6db8032', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_393ca5085f814128808dc63535d9fe0b();
+                    renderPlotly_bf9c7556caea411c841c752ba6db8032();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_393ca5085f814128808dc63535d9fe0b();
+                renderPlotly_bf9c7556caea411c841c752ba6db8032();
             }
 </script>
 
@@ -559,7 +572,7 @@ from Plotly.NET</div>
     static member toString : (BranchValues -&gt; string)</div>
 <div class="fsdocs-tip" id="fs16">union case StyleParam.BranchValues.Total: StyleParam.BranchValues</div>
 <div class="fsdocs-tip" id="fs17">type Colorscale =
-  | Custom of seq&lt;float * string&gt;
+  | Custom of seq&lt;float * Color&gt;
   | RdBu
   | Earth
   | Blackbody
@@ -575,9 +588,7 @@ from Plotly.NET</div>
  The colorscale must be a collection containing a mapping of a normalized value (between 0.0 and 1.0) to it&#39;s color. At minimum, a mapping for the lowest (0.0) and highest (1.0) values are required.
 &lt;/summary&gt;</em></div>
 <div class="fsdocs-tip" id="fs18">union case StyleParam.Colorscale.Viridis: StyleParam.Colorscale</div>
-<div class="fsdocs-tip" id="fs19">Multiple items<br />module Color
-
-from Plotly.NET<br /><br />--------------------<br />type Color =
+<div class="fsdocs-tip" id="fs19">type Color =
   private new : obj:obj -&gt; Color
   override Equals : other:obj -&gt; bool
   override GetHashCode : unit -&gt; int

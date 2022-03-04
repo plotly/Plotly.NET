@@ -17,29 +17,29 @@ open Plotly.NET
 let lightMirrored = 
     Chart.Point([1,2])
     |> Chart.withTemplate ChartTemplates.lightMirrored(* output: 
-<div id="ed55b257-669a-4ad1-be26-02756ee1e4e5"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="4b4a8643-3c17-4f0e-8134-7ff2e19408fe"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_ed55b257669a4ad1be2602756ee1e4e5 = function() {
+            var renderPlotly_4b4a86433c174f0e81347ff2e19408fe = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.6.3.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","mode":"markers","x":[1],"y":[2],"marker":{},"line":{}}];
             var layout = {"width":600,"height":600,"template":{"layout":{"paper_bgcolor":"white","plot_bgcolor":"white","xaxis":{"ticks":"inside","mirror":"all","showline":true,"zeroline":true},"yaxis":{"ticks":"inside","mirror":"all","showline":true,"zeroline":true}},"data":{}}};
             var config = {"responsive":true};
-            Plotly.newPlot('ed55b257-669a-4ad1-be26-02756ee1e4e5', data, layout, config);
+            Plotly.newPlot('4b4a8643-3c17-4f0e-8134-7ff2e19408fe', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_ed55b257669a4ad1be2602756ee1e4e5();
+                    renderPlotly_4b4a86433c174f0e81347ff2e19408fe();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_ed55b257669a4ad1be2602756ee1e4e5();
+                renderPlotly_4b4a86433c174f0e81347ff2e19408fe();
             }
 </script>
 *)
@@ -79,29 +79,29 @@ let myTemplate = Template.init(layoutTemplate, traceTemplates)
 let myTemplateExampleChart =
     Chart.Point([1,2])
     |> Chart.withTemplate myTemplate(* output: 
-<div id="4c28c68f-268f-4384-bd54-f0f57cb14a28"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="41793cb5-fef9-4af1-97cf-a2fa624b7bb5"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_4c28c68f268f4384bd54f0f57cb14a28 = function() {
+            var renderPlotly_41793cb5fef94af197cfa2fa624b7bb5 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.6.3.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","mode":"markers","x":[1],"y":[2],"marker":{},"line":{}}];
             var layout = {"width":600,"height":600,"template":{"layout":{"title":{"text":"I will always be there now!"}},"data":{"scatter":[{"marker":{"size":20,"symbol":"47"}}]}}};
             var config = {"responsive":true};
-            Plotly.newPlot('4c28c68f-268f-4384-bd54-f0f57cb14a28', data, layout, config);
+            Plotly.newPlot('41793cb5-fef9-4af1-97cf-a2fa624b7bb5', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_4c28c68f268f4384bd54f0f57cb14a28();
+                    renderPlotly_41793cb5fef94af197cfa2fa624b7bb5();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_4c28c68f268f4384bd54f0f57cb14a28();
+                renderPlotly_41793cb5fef94af197cfa2fa624b7bb5();
             }
 </script>
 *)

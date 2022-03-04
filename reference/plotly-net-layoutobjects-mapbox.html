@@ -35,7 +35,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.17</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.18</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -126,7 +126,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2121', 2121)" onmouseover="showTip(event, '2121', 2121)">
+              <code onmouseout="hideTip(event, '2134', 2134)" onmouseover="showTip(event, '2134', 2134)">
                 <p>
                   <a id="( .ctor )">
                     <a href="#( .ctor )">
@@ -135,7 +135,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2121">
+              <div class="fsdocs-tip" id="2134">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Mapbox<span>()</span></span></code>
@@ -202,7 +202,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2122', 2122)" onmouseover="showTip(event, '2122', 2122)">
+              <code onmouseout="hideTip(event, '2135', 2135)" onmouseover="showTip(event, '2135', 2135)">
                 <p>
                   <a id="init">
                     <a href="#init">
@@ -211,7 +211,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2122">
+              <div class="fsdocs-tip" id="2135">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Mapbox.init&#32;<span><span>(<span>?Domain,&#32;?AccessToken,&#32;?Style,&#32;?Center,&#32;?Zoom,&#32;?Bearing,&#32;?Pitch,&#32;?Layers</span>)</span></span></span></code>
@@ -225,6 +225,8 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-domain.html">Domain</a></code>
+                       - 
+                      Sets the domain of the Mapbox subplot
                     </span>
                     <br/>
                     <span>
@@ -233,6 +235,8 @@
                       </b>
                       :
                       <code>string</code>
+                       - 
+                      Sets the mapbox access token to be used for this mapbox map. Alternatively, the mapbox access token can be set in the configuration options under `mapboxAccessToken`. Note that accessToken are only required when `style` (e.g with values : basic, streets, outdoors, light, dark, satellite, satellite-streets ) and/or a layout layer references the Mapbox server.
                     </span>
                     <br/>
                     <span>
@@ -241,6 +245,8 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-styleparam-mapboxstyle.html">MapboxStyle</a></code>
+                       - 
+                      Defines the map layers that are rendered by default below the trace layers defined in `data`, which are themselves by default rendered below the layers defined in `layout.mapbox.layers`. These layers can be defined either explicitly as a Mapbox Style object which can contain multiple layer definitions that load data from any public or private Tile Map Service (TMS or XYZ) or Web Map Service (WMS) or implicitly by using one of the built-in style objects which use WMSes which do not require any access tokens, or by using a default Mapbox style or custom Mapbox style URL, both of which require a Mapbox access token Note that Mapbox access token can be set in the `accesstoken` attribute or in the `mapboxAccessToken` config option. Mapbox Style objects are of the form described in the Mapbox GL JS documentation available at https://docs.mapbox.com/mapbox-gl-js/style-spec The built-in plotly.js styles objects are: carto-darkmatter, carto-positron, open-street-map, stamen-terrain, stamen-toner, stamen-watercolor, white-bg The built-in Mapbox styles are: basic, streets, outdoors, light, dark, satellite, satellite-streets Mapbox style URLs are of the form: mapbox://mapbox.mapbox/name/version
                     </span>
                     <br/>
                     <span>
@@ -249,6 +255,8 @@
                       </b>
                       :
                       <code><span>float&#32;*&#32;float</span></code>
+                       - 
+                      Sets the (lon,lat) coordinates of the center of the map view
                     </span>
                     <br/>
                     <span>
@@ -257,6 +265,8 @@
                       </b>
                       :
                       <code>float</code>
+                       - 
+                      Sets the zoom level of the map (mapbox.zoom).
                     </span>
                     <br/>
                     <span>
@@ -265,6 +275,8 @@
                       </b>
                       :
                       <code>float</code>
+                       - 
+                      Sets the bearing angle of the map in degrees counter-clockwise from North (mapbox.bearing).
                     </span>
                     <br/>
                     <span>
@@ -273,6 +285,8 @@
                       </b>
                       :
                       <code>float</code>
+                       - 
+                      Sets the pitch angle of the map (in degrees, where "0" means perpendicular to the surface of the map) (mapbox.pitch).
                     </span>
                     <br/>
                     <span>
@@ -281,6 +295,8 @@
                       </b>
                       :
                       <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-layoutobjects-mapboxlayer.html">MapboxLayer</a>&gt;</span></code>
+                       - 
+                      Sets the layers of this Mapbox
                     </span>
                     <br/>
                   </ul>
@@ -304,12 +320,14 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Map/Mapbox.fs#L15-15" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Map/Mapbox.fs#L24-24" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
-                Initialize a Mapbox object that determines the style of the map shown in geo mapbox
+                
+ Returns a new Mapbox object with the given styles applied.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -320,7 +338,11 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-domain.html">Domain</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the domain of the Mapbox subplot
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?AccessToken
@@ -328,7 +350,11 @@
                 :
                 <code>string</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the mapbox access token to be used for this mapbox map. Alternatively, the mapbox access token can be set in the configuration options under `mapboxAccessToken`. Note that accessToken are only required when `style` (e.g with values : basic, streets, outdoors, light, dark, satellite, satellite-streets ) and/or a layout layer references the Mapbox server.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Style
@@ -336,7 +362,11 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-styleparam-mapboxstyle.html">MapboxStyle</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Defines the map layers that are rendered by default below the trace layers defined in `data`, which are themselves by default rendered below the layers defined in `layout.mapbox.layers`. These layers can be defined either explicitly as a Mapbox Style object which can contain multiple layer definitions that load data from any public or private Tile Map Service (TMS or XYZ) or Web Map Service (WMS) or implicitly by using one of the built-in style objects which use WMSes which do not require any access tokens, or by using a default Mapbox style or custom Mapbox style URL, both of which require a Mapbox access token Note that Mapbox access token can be set in the `accesstoken` attribute or in the `mapboxAccessToken` config option. Mapbox Style objects are of the form described in the Mapbox GL JS documentation available at https://docs.mapbox.com/mapbox-gl-js/style-spec The built-in plotly.js styles objects are: carto-darkmatter, carto-positron, open-street-map, stamen-terrain, stamen-toner, stamen-watercolor, white-bg The built-in Mapbox styles are: basic, streets, outdoors, light, dark, satellite, satellite-streets Mapbox style URLs are of the form: mapbox://mapbox.mapbox/name/version
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Center
@@ -344,7 +374,11 @@
                 :
                 <code><span>float&#32;*&#32;float</span></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the (lon,lat) coordinates of the center of the map view
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Zoom
@@ -352,7 +386,11 @@
                 :
                 <code>float</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the zoom level of the map (mapbox.zoom).
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Bearing
@@ -360,7 +398,11 @@
                 :
                 <code>float</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the bearing angle of the map in degrees counter-clockwise from North (mapbox.bearing).
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Pitch
@@ -368,7 +410,11 @@
                 :
                 <code>float</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the pitch angle of the map (in degrees, where "0" means perpendicular to the surface of the map) (mapbox.pitch).
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Layers
@@ -376,7 +422,11 @@
                 :
                 <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-layoutobjects-mapboxlayer.html">MapboxLayer</a>&gt;</span></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the layers of this Mapbox
+                </p>
+              </dd>
             </dl>
             <dl class="fsdocs-returns">
               <dt>
@@ -392,7 +442,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2123', 2123)" onmouseover="showTip(event, '2123', 2123)">
+              <code onmouseout="hideTip(event, '2136', 2136)" onmouseover="showTip(event, '2136', 2136)">
                 <p>
                   <a id="style">
                     <a href="#style">
@@ -401,7 +451,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2123">
+              <div class="fsdocs-tip" id="2136">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Mapbox.style&#32;<span><span>(<span>?Domain,&#32;?AccessToken,&#32;?Style,&#32;?Center,&#32;?Zoom,&#32;?Bearing,&#32;?Pitch,&#32;?Layers</span>)</span></span></span></code>
@@ -415,6 +465,8 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-domain.html">Domain</a></code>
+                       - 
+                      Sets the domain of the Mapbox subplot
                     </span>
                     <br/>
                     <span>
@@ -423,6 +475,8 @@
                       </b>
                       :
                       <code>string</code>
+                       - 
+                      Sets the mapbox access token to be used for this mapbox map. Alternatively, the mapbox access token can be set in the configuration options under `mapboxAccessToken`. Note that accessToken are only required when `style` (e.g with values : basic, streets, outdoors, light, dark, satellite, satellite-streets ) and/or a layout layer references the Mapbox server.
                     </span>
                     <br/>
                     <span>
@@ -431,6 +485,8 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-styleparam-mapboxstyle.html">MapboxStyle</a></code>
+                       - 
+                      Defines the map layers that are rendered by default below the trace layers defined in `data`, which are themselves by default rendered below the layers defined in `layout.mapbox.layers`. These layers can be defined either explicitly as a Mapbox Style object which can contain multiple layer definitions that load data from any public or private Tile Map Service (TMS or XYZ) or Web Map Service (WMS) or implicitly by using one of the built-in style objects which use WMSes which do not require any access tokens, or by using a default Mapbox style or custom Mapbox style URL, both of which require a Mapbox access token Note that Mapbox access token can be set in the `accesstoken` attribute or in the `mapboxAccessToken` config option. Mapbox Style objects are of the form described in the Mapbox GL JS documentation available at https://docs.mapbox.com/mapbox-gl-js/style-spec The built-in plotly.js styles objects are: carto-darkmatter, carto-positron, open-street-map, stamen-terrain, stamen-toner, stamen-watercolor, white-bg The built-in Mapbox styles are: basic, streets, outdoors, light, dark, satellite, satellite-streets Mapbox style URLs are of the form: mapbox://mapbox.mapbox/name/version
                     </span>
                     <br/>
                     <span>
@@ -439,6 +495,8 @@
                       </b>
                       :
                       <code><span>float&#32;*&#32;float</span></code>
+                       - 
+                      Sets the (lon,lat) coordinates of the center of the map view
                     </span>
                     <br/>
                     <span>
@@ -447,6 +505,8 @@
                       </b>
                       :
                       <code>float</code>
+                       - 
+                      Sets the zoom level of the map (mapbox.zoom).
                     </span>
                     <br/>
                     <span>
@@ -455,6 +515,8 @@
                       </b>
                       :
                       <code>float</code>
+                       - 
+                      Sets the bearing angle of the map in degrees counter-clockwise from North (mapbox.bearing).
                     </span>
                     <br/>
                     <span>
@@ -463,6 +525,8 @@
                       </b>
                       :
                       <code>float</code>
+                       - 
+                      Sets the pitch angle of the map (in degrees, where "0" means perpendicular to the surface of the map) (mapbox.pitch).
                     </span>
                     <br/>
                     <span>
@@ -471,6 +535,8 @@
                       </b>
                       :
                       <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-layoutobjects-mapboxlayer.html">MapboxLayer</a>&gt;</span></code>
+                       - 
+                      Sets the layers of this Mapbox
                     </span>
                     <br/>
                   </ul>
@@ -494,7 +560,7 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Map/Mapbox.fs#L40-40" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Map/Mapbox.fs#L56-56" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
@@ -510,7 +576,11 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-domain.html">Domain</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the domain of the Mapbox subplot
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?AccessToken
@@ -518,7 +588,11 @@
                 :
                 <code>string</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the mapbox access token to be used for this mapbox map. Alternatively, the mapbox access token can be set in the configuration options under `mapboxAccessToken`. Note that accessToken are only required when `style` (e.g with values : basic, streets, outdoors, light, dark, satellite, satellite-streets ) and/or a layout layer references the Mapbox server.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Style
@@ -526,7 +600,11 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-styleparam-mapboxstyle.html">MapboxStyle</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Defines the map layers that are rendered by default below the trace layers defined in `data`, which are themselves by default rendered below the layers defined in `layout.mapbox.layers`. These layers can be defined either explicitly as a Mapbox Style object which can contain multiple layer definitions that load data from any public or private Tile Map Service (TMS or XYZ) or Web Map Service (WMS) or implicitly by using one of the built-in style objects which use WMSes which do not require any access tokens, or by using a default Mapbox style or custom Mapbox style URL, both of which require a Mapbox access token Note that Mapbox access token can be set in the `accesstoken` attribute or in the `mapboxAccessToken` config option. Mapbox Style objects are of the form described in the Mapbox GL JS documentation available at https://docs.mapbox.com/mapbox-gl-js/style-spec The built-in plotly.js styles objects are: carto-darkmatter, carto-positron, open-street-map, stamen-terrain, stamen-toner, stamen-watercolor, white-bg The built-in Mapbox styles are: basic, streets, outdoors, light, dark, satellite, satellite-streets Mapbox style URLs are of the form: mapbox://mapbox.mapbox/name/version
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Center
@@ -534,7 +612,11 @@
                 :
                 <code><span>float&#32;*&#32;float</span></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the (lon,lat) coordinates of the center of the map view
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Zoom
@@ -542,7 +624,11 @@
                 :
                 <code>float</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the zoom level of the map (mapbox.zoom).
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Bearing
@@ -550,7 +636,11 @@
                 :
                 <code>float</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the bearing angle of the map in degrees counter-clockwise from North (mapbox.bearing).
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Pitch
@@ -558,7 +648,11 @@
                 :
                 <code>float</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the pitch angle of the map (in degrees, where "0" means perpendicular to the surface of the map) (mapbox.pitch).
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Layers
@@ -566,7 +660,11 @@
                 :
                 <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-layoutobjects-mapboxlayer.html">MapboxLayer</a>&gt;</span></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the layers of this Mapbox
+                </p>
+              </dd>
             </dl>
             <dl class="fsdocs-returns">
               <dt>

@@ -41,7 +41,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.17</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.18</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -98,6 +98,11 @@
 <li class="nav-item">
   <a class="nav-link" href="https://plotly.net/00_6_multi-arguments.html">
     Single and multi arguments
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/00_7_working-with-colors.html">
+    Working with colors
   </a>
 </li>             
 <li class="nav-header">
@@ -417,6 +422,14 @@
   <a class="nav-link" href="https://plotly.net/11_2_contourcarpet_plots.html">
     Contour carpet plots
   </a>
+</li>             
+<li class="nav-header">
+  Smith Plots
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/12_1_smith_line_scatter_plots.html">
+    Smith line and scatter plots
+  </a>
 </li>
                         <li class="nav-header">
   API Reference
@@ -471,35 +484,35 @@
             <span onmouseout="hideTip(event, 'fs17', 25)" onmouseover="showTip(event, 'fs17', 25)" class="fn">A</span> <span class="o">=</span> <span class="pn">[</span><span class="n">0</span><span class="pn">;</span> <span class="n">1</span><span class="pn">;</span> <span class="n">2</span><span class="pn">;</span> <span class="n">3</span><span class="pn">;</span> <span class="n">0</span><span class="pn">;</span> <span class="n">1</span><span class="pn">;</span> <span class="n">2</span><span class="pn">;</span> <span class="n">3</span><span class="pn">;</span> <span class="n">0</span><span class="pn">;</span> <span class="n">1</span><span class="pn">;</span> <span class="n">2</span><span class="pn">;</span> <span class="n">3</span><span class="pn">]</span><span class="pn">,</span>
             <span onmouseout="hideTip(event, 'fs18', 26)" onmouseover="showTip(event, 'fs18', 26)" class="fn">B</span> <span class="o">=</span> <span class="pn">[</span><span class="n">4</span><span class="pn">;</span> <span class="n">4</span><span class="pn">;</span> <span class="n">4</span><span class="pn">;</span> <span class="n">4</span><span class="pn">;</span> <span class="n">5</span><span class="pn">;</span> <span class="n">5</span><span class="pn">;</span> <span class="n">5</span><span class="pn">;</span> <span class="n">5</span><span class="pn">;</span> <span class="n">6</span><span class="pn">;</span> <span class="n">6</span><span class="pn">;</span> <span class="n">6</span><span class="pn">;</span> <span class="n">6</span><span class="pn">]</span><span class="pn">,</span> 
             <span class="fn">UseDefaults</span> <span class="o">=</span> <span class="k">false</span><span class="pn">,</span>
-            <span class="fn">ContourLineColor</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs19', 27)" onmouseover="showTip(event, 'fs19', 27)" class="m">Color</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 28)" onmouseover="showTip(event, 'fs20', 28)" class="id">fromKeyword</span> <span onmouseout="hideTip(event, 'fs21', 29)" onmouseover="showTip(event, 'fs21', 29)" class="uc">White</span><span class="pn">,</span>
+            <span class="fn">ContourLineColor</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs19', 27)" onmouseover="showTip(event, 'fs19', 27)" class="rt">Color</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 28)" onmouseover="showTip(event, 'fs20', 28)" class="id">fromKeyword</span> <span onmouseout="hideTip(event, 'fs21', 29)" onmouseover="showTip(event, 'fs21', 29)" class="uc">White</span><span class="pn">,</span>
             <span class="fn">ShowContourLabels</span> <span class="o">=</span> <span class="k">true</span>
         <span class="pn">)</span>
     <span class="pn">]</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs5', 30)" onmouseover="showTip(event, 'fs5', 30)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs22', 31)" onmouseover="showTip(event, 'fs22', 31)" class="id">combine</span>
 </code></pre>
-<div id="450fb412-70d1-483c-80ef-17f0fa3a8718"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="0721cc0f-7fe1-4f53-acf8-c15089f52e81"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_450fb41270d1483c80ef17f0fa3a8718 = function() {
+            var renderPlotly_0721cc0f7fe14f53acf8c15089f52e81 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.6.3.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"carpet","opacity":0.75,"x":[2.0,3.0,4.0,5.0,2.2,3.1,4.1,5.1,1.5,2.5,3.5,4.5],"y":[1.0,1.4,1.6,1.75,2.0,2.5,2.7,2.75,3.0,3.5,3.7,3.75],"a":[0.0,1.0,2.0,3.0,0.0,1.0,2.0,3.0,0.0,1.0,2.0,3.0],"b":[4.0,4.0,4.0,4.0,5.0,5.0,5.0,5.0,6.0,6.0,6.0,6.0],"aaxis":{"type":"linear","tickprefix":"a = ","minorgridcount":9,"smoothing":0.0},"baxis":{"type":"linear","tickprefix":"b = ","minorgridcount":9,"smoothing":0.0},"carpet":"contour"},{"type":"contourcarpet","z":[1.0,1.96,2.56,3.0625,4.0,5.0625,1.0,7.5625,9.0,12.25,15.21,14.0625],"a":[0,1,2,3,0,1,2,3,0,1,2,3],"b":[4,4,4,4,5,5,5,5,6,6,6,6],"line":{"color":"rgba(255, 255, 255, 1.0)"},"carpet":"contour","contours":{"showlabels":true}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('450fb412-70d1-483c-80ef-17f0fa3a8718', data, layout, config);
+            Plotly.newPlot('0721cc0f-7fe1-4f53-acf8-c15089f52e81', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_450fb41270d1483c80ef17f0fa3a8718();
+                    renderPlotly_0721cc0f7fe14f53acf8c15089f52e81();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_450fb41270d1483c80ef17f0fa3a8718();
+                renderPlotly_0721cc0f7fe14f53acf8c15089f52e81();
             }
 </script>
 
@@ -629,9 +642,7 @@ from Plotly.NET</div>
 
  Plots contours on either the first carpet axis or the carpet axis with a matching `carpet` attribute. Data `z` is interpreted as matching that of the corresponding carpet axis.
  &lt;/summary&gt;<br />&lt;param name=&quot;carpetAnchorId&quot;&gt;The identifier of the carpet that this trace will lie on.&lt;/param&gt;<br />&lt;param name=&quot;z&quot;&gt;Sets the z data.&lt;/param&gt;<br />&lt;param name=&quot;Name&quot;&gt;Sets the trace name. The trace name appear as the legend item and on hover&lt;/param&gt;<br />&lt;param name=&quot;ShowLegend&quot;&gt;Determines whether or not an item corresponding to this trace is shown in the legend.&lt;/param&gt;<br />&lt;param name=&quot;Opacity&quot;&gt;Sets the opactity of the trace&lt;/param&gt;<br />&lt;param name=&quot;A&quot;&gt;Sets the a coordinates.&lt;/param&gt;<br />&lt;param name=&quot;B&quot;&gt;Sets the b coordinates.&lt;/param&gt;<br />&lt;param name=&quot;Text&quot;&gt;Sets a text associated with each datum&lt;/param&gt;<br />&lt;param name=&quot;MultiText&quot;&gt;Sets individual text for each datum&lt;/param&gt;<br />&lt;param name=&quot;ColorBar&quot;&gt;Sets the colorbar of this trace.&lt;/param&gt;<br />&lt;param name=&quot;ColorScale&quot;&gt;Sets the colorscale of this trace.&lt;/param&gt;<br />&lt;param name=&quot;ShowScale&quot;&gt;Determines whether or not a colorbar is displayed for this trace.&lt;/param&gt;<br />&lt;param name=&quot;ReverseScale&quot;&gt;Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.&lt;/param&gt;<br />&lt;param name=&quot;Transpose&quot;&gt;Transposes the z data.&lt;/param&gt;<br />&lt;param name=&quot;ContourLineDash&quot;&gt;Sets the contour line dash style&lt;/param&gt;<br />&lt;param name=&quot;ContourLineColor&quot;&gt;Sets the contour line color&lt;/param&gt;<br />&lt;param name=&quot;ContourLineSmoothing&quot;&gt;Sets the amount of smoothing for the contour lines, where &quot;0&quot; corresponds to no smoothing.&lt;/param&gt;<br />&lt;param name=&quot;ContourLine&quot;&gt;Sets the contour lines (use this for more finegrained control than the other contourline-associated arguments).&lt;/param&gt;<br />&lt;param name=&quot;ContoursColoring&quot;&gt;Determines the coloring method showing the contour values. If &quot;fill&quot;, coloring is done evenly between each contour level If &quot;heatmap&quot;, a heatmap gradient coloring is applied between each contour level. If &quot;lines&quot;, coloring is done on the contour lines. If &quot;none&quot;, no coloring is applied on this trace.&lt;/param&gt;<br />&lt;param name=&quot;ContoursOperation&quot;&gt;Sets the constraint operation. &quot;=&quot; keeps regions equal to `value` &quot;&amp;lt;&quot; and &quot;&amp;lt;=&quot; keep regions less than `value` &quot;&amp;gt;&quot; and &quot;&amp;gt;=&quot; keep regions greater than `value` &quot;[]&quot;, &quot;()&quot;, &quot;[)&quot;, and &quot;(]&quot; keep regions inside `value[0]` to `value[1]` &quot;][&quot;, &quot;)(&quot;, &quot;](&quot;, &quot;)[&quot; keep regions outside `value[0]` to value[1]` Open vs. closed intervals make no difference to constraint display, but all versions are allowed for consistency with filter transforms.&lt;/param&gt;<br />&lt;param name=&quot;ContoursType&quot;&gt;If `levels`, the data is represented as a contour plot with multiple levels displayed. If `constraint`, the data is represented as constraints with the invalid region shaded as specified by the `operation` and `value` parameters.&lt;/param&gt;<br />&lt;param name=&quot;ShowContourLabels&quot;&gt;Determines whether to label the contour lines with their values.&lt;/param&gt;<br />&lt;param name=&quot;ContourLabelFont&quot;&gt;Sets the font used for labeling the contour levels. The default color comes from the lines, if shown. The default family and size come from `layout.font`.&lt;/param&gt;<br />&lt;param name=&quot;Contours&quot;&gt;Sets the styles of the contours (use this for more finegrained control than the other contour-associated arguments).&lt;/param&gt;<br />&lt;param name=&quot;UseDefaults&quot;&gt;If set to false, ignore the global default settings set in `Defaults`&lt;/param&gt;</em></div>
-<div class="fsdocs-tip" id="fs19">Multiple items<br />module Color
-
-from Plotly.NET<br /><br />--------------------<br />type Color =
+<div class="fsdocs-tip" id="fs19">type Color =
   private new : obj:obj -&gt; Color
   override Equals : other:obj -&gt; bool
   override GetHashCode : unit -&gt; int

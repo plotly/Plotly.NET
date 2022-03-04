@@ -35,7 +35,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.17</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.18</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -98,7 +98,7 @@
     <div>
       <p class="fsdocs-summary">
         
- Config
+ The Config object gets passed to the plotly renderer and contains render-specific options.
 
       </p>
     </div>
@@ -128,7 +128,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '1811', 1811)" onmouseover="showTip(event, '1811', 1811)">
+              <code onmouseout="hideTip(event, '1805', 1805)" onmouseover="showTip(event, '1805', 1805)">
                 <p>
                   <a id="( .ctor )">
                     <a href="#( .ctor )">
@@ -137,7 +137,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="1811">
+              <div class="fsdocs-tip" id="1805">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Config<span>()</span></span></code>
@@ -162,7 +162,7 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Config/Config.fs#L337-337" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Config/Config.fs#L338-338" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
@@ -204,19 +204,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '1812', 1812)" onmouseover="showTip(event, '1812', 1812)">
+              <code onmouseout="hideTip(event, '1806', 1806)" onmouseover="showTip(event, '1806', 1806)">
                 <p>
                   <a id="init">
                     <a href="#init">
-                      <code><span>Config.init&#32;<span><span>(<span>?StaticPlot,&#32;?Autosizable,&#32;?Responsive,&#32;?ShowEditInChartStudio,&#32;?ToImageButtonOptions,&#32;?Editable,&#32;?EditableAnnotations,&#32;?ModeBarButtonsToAdd</span>)</span></span></span></code>
+                      <code><span>Config.init&#32;<span><span>(<span>?StaticPlot,&#32;?PlotlyServerUrl,&#32;?Autosizable,&#32;?Editable,&#32;?Edits,&#32;?ShowSendToCloud,&#32;?ShowEditInChartStudio,&#32;?Responsive,&#32;?ToImageButtonOptions,&#32;?ModeBarButtonsToAdd</span>)</span></span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="1812">
+              <div class="fsdocs-tip" id="1806">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Config.init&#32;<span><span>(<span>?StaticPlot,&#32;?Autosizable,&#32;?Responsive,&#32;?ShowEditInChartStudio,&#32;?ToImageButtonOptions,&#32;?Editable,&#32;?EditableAnnotations,&#32;?ModeBarButtonsToAdd</span>)</span></span></span></code>
+                  <code><span>Config.init&#32;<span><span>(<span>?StaticPlot,&#32;?PlotlyServerUrl,&#32;?Autosizable,&#32;?Editable,&#32;?Edits,&#32;?ShowSendToCloud,&#32;?ShowEditInChartStudio,&#32;?Responsive,&#32;?ToImageButtonOptions,&#32;?ModeBarButtonsToAdd</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -227,6 +227,18 @@
                       </b>
                       :
                       <code>bool</code>
+                       - 
+                      Determines whether the plot is interactive or not. (default: false)
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?PlotlyServerUrl
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      When set it determines base URL for the 'Edit in Chart Studio'/`showEditInChartStudio`/`showSendToCloud` mode bar button', and the showLink/sendData on-graph link. To enable sending your data to Chart Studio Cloud, you need to' set both `plotlyServerURL` to \'https://chart-studio.plotly.com\' and also set `showSendToCloud` to true.
                     </span>
                     <br/>
                     <span>
@@ -235,30 +247,8 @@
                       </b>
                       :
                       <code>bool</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Responsive
-                      </b>
-                      :
-                      <code>bool</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?ShowEditInChartStudio
-                      </b>
-                      :
-                      <code>bool</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?ToImageButtonOptions
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-configobjects-toimagebuttonoptions.html">ToImageButtonOptions</a></code>
+                       - 
+                      Determines whether the graphs are plotted with respect to layout.autosize:true and infer its container size. (default: false)
                     </span>
                     <br/>
                     <span>
@@ -267,14 +257,58 @@
                       </b>
                       :
                       <code>bool</code>
+                       - 
+                      Determines whether the graph is editable or not. Sets all pieces of `edits` unless a separate `edits` config item overrides individual parts.
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?EditableAnnotations
+                        ?Edits
                       </b>
                       :
-                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-annotationeditoptions.html">AnnotationEditOptions</a>&gt;</span></code>
+                      <code><a href="https://plotly.net/reference/plotly-net-configobjects-edits.html">Edits</a></code>
+                       - 
+                      Object holding individual editable pieces of the graph.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ShowSendToCloud
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      Should we include a ModeBar button, labeled "Edit in Chart Studio",that sends this chart to chart-studio.plotly.com (formerly plot.ly) or another plotly server as specified by `plotlyServerURL` for editing, export, etc? Note that this button can (depending on `plotlyServerURL` being set) send your data to an external server. However that server does not persist your data until you arrive at the Chart Studio and explicitly click "Save".
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ShowEditInChartStudio
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      Same as `showSendToCloud`, but use a pencil icon instead of a floppy-disk. Note that if both `showSendToCloud` and `showEditInChartStudio` are turned,  only `showEditInChartStudio` will be honored.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Responsive
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      Determines whether to change the layout size when window is resized.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ToImageButtonOptions
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-configobjects-toimagebuttonoptions.html">ToImageButtonOptions</a></code>
+                       - 
+                      Statically override options for toImage modebar button
                     </span>
                     <br/>
                     <span>
@@ -283,6 +317,8 @@
                       </b>
                       :
                       <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-modebarbutton.html">ModeBarButton</a>&gt;</span></code>
+                       - 
+                      ModeBar buttons to add to the graph.
                     </span>
                     <br/>
                   </ul>
@@ -306,14 +342,14 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Config/Config.fs#L341-341" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Config/Config.fs#L354-354" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Init Legend type
-
+ Returns a new Config Object with the given styling.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -324,7 +360,23 @@
                 :
                 <code>bool</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Determines whether the plot is interactive or not. (default: false)
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?PlotlyServerUrl
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  When set it determines base URL for the 'Edit in Chart Studio'/`showEditInChartStudio`/`showSendToCloud` mode bar button', and the showLink/sendData on-graph link. To enable sending your data to Chart Studio Cloud, you need to' set both `plotlyServerURL` to \'https://chart-studio.plotly.com\' and also set `showSendToCloud` to true.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Autosizable
@@ -332,31 +384,11 @@
                 :
                 <code>bool</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Responsive
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ShowEditInChartStudio
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ToImageButtonOptions
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-configobjects-toimagebuttonoptions.html">ToImageButtonOptions</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Determines whether the graphs are plotted with respect to layout.autosize:true and infer its container size. (default: false)
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Editable
@@ -364,15 +396,71 @@
                 :
                 <code>bool</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Determines whether the graph is editable or not. Sets all pieces of `edits` unless a separate `edits` config item overrides individual parts.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?EditableAnnotations
+                  ?Edits
                 </span>
                 :
-                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-annotationeditoptions.html">AnnotationEditOptions</a>&gt;</span></code>
+                <code><a href="https://plotly.net/reference/plotly-net-configobjects-edits.html">Edits</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Object holding individual editable pieces of the graph.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ShowSendToCloud
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Should we include a ModeBar button, labeled "Edit in Chart Studio",that sends this chart to chart-studio.plotly.com (formerly plot.ly) or another plotly server as specified by `plotlyServerURL` for editing, export, etc? Note that this button can (depending on `plotlyServerURL` being set) send your data to an external server. However that server does not persist your data until you arrive at the Chart Studio and explicitly click "Save".
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ShowEditInChartStudio
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Same as `showSendToCloud`, but use a pencil icon instead of a floppy-disk. Note that if both `showSendToCloud` and `showEditInChartStudio` are turned,  only `showEditInChartStudio` will be honored.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Responsive
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Determines whether to change the layout size when window is resized.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ToImageButtonOptions
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-configobjects-toimagebuttonoptions.html">ToImageButtonOptions</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Statically override options for toImage modebar button
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?ModeBarButtonsToAdd
@@ -380,7 +468,11 @@
                 :
                 <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-modebarbutton.html">ModeBarButton</a>&gt;</span></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  ModeBar buttons to add to the graph.
+                </p>
+              </dd>
             </dl>
             <dl class="fsdocs-returns">
               <dt>
@@ -396,19 +488,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '1813', 1813)" onmouseover="showTip(event, '1813', 1813)">
+              <code onmouseout="hideTip(event, '1807', 1807)" onmouseover="showTip(event, '1807', 1807)">
                 <p>
                   <a id="style">
                     <a href="#style">
-                      <code><span>Config.style&#32;<span><span>(<span>?StaticPlot,&#32;?Autosizable,&#32;?Responsive,&#32;?ToImageButtonOptions,&#32;?ShowEditInChartStudio,&#32;?Editable,&#32;?EditableAnnotations,&#32;?ModeBarButtonsToAdd</span>)</span></span></span></code>
+                      <code><span>Config.style&#32;<span><span>(<span>?StaticPlot,&#32;?PlotlyServerUrl,&#32;?Autosizable,&#32;?Editable,&#32;?Edits,&#32;?ShowSendToCloud,&#32;?ShowEditInChartStudio,&#32;?Responsive,&#32;?ToImageButtonOptions,&#32;?ModeBarButtonsToAdd</span>)</span></span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="1813">
+              <div class="fsdocs-tip" id="1807">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Config.style&#32;<span><span>(<span>?StaticPlot,&#32;?Autosizable,&#32;?Responsive,&#32;?ToImageButtonOptions,&#32;?ShowEditInChartStudio,&#32;?Editable,&#32;?EditableAnnotations,&#32;?ModeBarButtonsToAdd</span>)</span></span></span></code>
+                  <code><span>Config.style&#32;<span><span>(<span>?StaticPlot,&#32;?PlotlyServerUrl,&#32;?Autosizable,&#32;?Editable,&#32;?Edits,&#32;?ShowSendToCloud,&#32;?ShowEditInChartStudio,&#32;?Responsive,&#32;?ToImageButtonOptions,&#32;?ModeBarButtonsToAdd</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -419,6 +511,18 @@
                       </b>
                       :
                       <code>bool</code>
+                       - 
+                      Determines whether the plot is interactive or not. (default: false)
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?PlotlyServerUrl
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      When set it determines base URL for the 'Edit in Chart Studio'/`showEditInChartStudio`/`showSendToCloud` mode bar button', and the showLink/sendData on-graph link. To enable sending your data to Chart Studio Cloud, you need to' set both `plotlyServerURL` to \'https://chart-studio.plotly.com\' and also set `showSendToCloud` to true.
                     </span>
                     <br/>
                     <span>
@@ -427,30 +531,8 @@
                       </b>
                       :
                       <code>bool</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?Responsive
-                      </b>
-                      :
-                      <code>bool</code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?ToImageButtonOptions
-                      </b>
-                      :
-                      <code><a href="https://plotly.net/reference/plotly-net-configobjects-toimagebuttonoptions.html">ToImageButtonOptions</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        ?ShowEditInChartStudio
-                      </b>
-                      :
-                      <code>bool</code>
+                       - 
+                      Determines whether the graphs are plotted with respect to layout.autosize:true and infer its container size. (default: false)
                     </span>
                     <br/>
                     <span>
@@ -459,14 +541,58 @@
                       </b>
                       :
                       <code>bool</code>
+                       - 
+                      Determines whether the graph is editable or not. Sets all pieces of `edits` unless a separate `edits` config item overrides individual parts.
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?EditableAnnotations
+                        ?Edits
                       </b>
                       :
-                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-annotationeditoptions.html">AnnotationEditOptions</a>&gt;</span></code>
+                      <code><a href="https://plotly.net/reference/plotly-net-configobjects-edits.html">Edits</a></code>
+                       - 
+                      Object holding individual editable pieces of the graph.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ShowSendToCloud
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      Should we include a ModeBar button, labeled "Edit in Chart Studio",that sends this chart to chart-studio.plotly.com (formerly plot.ly) or another plotly server as specified by `plotlyServerURL` for editing, export, etc? Note that this button can (depending on `plotlyServerURL` being set) send your data to an external server. However that server does not persist your data until you arrive at the Chart Studio and explicitly click "Save".
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ShowEditInChartStudio
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      Same as `showSendToCloud`, but use a pencil icon instead of a floppy-disk. Note that if both `showSendToCloud` and `showEditInChartStudio` are turned,  only `showEditInChartStudio` will be honored.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Responsive
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      Determines whether to change the layout size when window is resized.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ToImageButtonOptions
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-configobjects-toimagebuttonoptions.html">ToImageButtonOptions</a></code>
+                       - 
+                      Statically override options for toImage modebar button
                     </span>
                     <br/>
                     <span>
@@ -475,6 +601,8 @@
                       </b>
                       :
                       <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-modebarbutton.html">ModeBarButton</a>&gt;</span></code>
+                       - 
+                      ModeBar buttons to add to the graph.
                     </span>
                     <br/>
                   </ul>
@@ -498,12 +626,14 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Config/Config.fs#L366-366" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Config/Config.fs#L395-395" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
+ Returns a function that applies the given styles to a Config object.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -514,7 +644,23 @@
                 :
                 <code>bool</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Determines whether the plot is interactive or not. (default: false)
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?PlotlyServerUrl
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  When set it determines base URL for the 'Edit in Chart Studio'/`showEditInChartStudio`/`showSendToCloud` mode bar button', and the showLink/sendData on-graph link. To enable sending your data to Chart Studio Cloud, you need to' set both `plotlyServerURL` to \'https://chart-studio.plotly.com\' and also set `showSendToCloud` to true.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Autosizable
@@ -522,31 +668,11 @@
                 :
                 <code>bool</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Responsive
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ToImageButtonOptions
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-configobjects-toimagebuttonoptions.html">ToImageButtonOptions</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ShowEditInChartStudio
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Determines whether the graphs are plotted with respect to layout.autosize:true and infer its container size. (default: false)
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Editable
@@ -554,15 +680,71 @@
                 :
                 <code>bool</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Determines whether the graph is editable or not. Sets all pieces of `edits` unless a separate `edits` config item overrides individual parts.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  ?EditableAnnotations
+                  ?Edits
                 </span>
                 :
-                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-annotationeditoptions.html">AnnotationEditOptions</a>&gt;</span></code>
+                <code><a href="https://plotly.net/reference/plotly-net-configobjects-edits.html">Edits</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Object holding individual editable pieces of the graph.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ShowSendToCloud
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Should we include a ModeBar button, labeled "Edit in Chart Studio",that sends this chart to chart-studio.plotly.com (formerly plot.ly) or another plotly server as specified by `plotlyServerURL` for editing, export, etc? Note that this button can (depending on `plotlyServerURL` being set) send your data to an external server. However that server does not persist your data until you arrive at the Chart Studio and explicitly click "Save".
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ShowEditInChartStudio
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Same as `showSendToCloud`, but use a pencil icon instead of a floppy-disk. Note that if both `showSendToCloud` and `showEditInChartStudio` are turned,  only `showEditInChartStudio` will be honored.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Responsive
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Determines whether to change the layout size when window is resized.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ToImageButtonOptions
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-configobjects-toimagebuttonoptions.html">ToImageButtonOptions</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Statically override options for toImage modebar button
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?ModeBarButtonsToAdd
@@ -570,7 +752,11 @@
                 :
                 <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-modebarbutton.html">ModeBarButton</a>&gt;</span></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  ModeBar buttons to add to the graph.
+                </p>
+              </dd>
             </dl>
             <dl class="fsdocs-returns">
               <dt>

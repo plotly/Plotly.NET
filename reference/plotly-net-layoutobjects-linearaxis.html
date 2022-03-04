@@ -35,7 +35,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.17</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.18</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -126,7 +126,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2115', 2115)" onmouseover="showTip(event, '2115', 2115)">
+              <code onmouseout="hideTip(event, '2128', 2128)" onmouseover="showTip(event, '2128', 2128)">
                 <p>
                   <a id="( .ctor )">
                     <a href="#( .ctor )">
@@ -135,7 +135,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2115">
+              <div class="fsdocs-tip" id="2128">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>LinearAxis<span>()</span></span></code>
@@ -202,7 +202,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2116', 2116)" onmouseover="showTip(event, '2116', 2116)">
+              <code onmouseout="hideTip(event, '2129', 2129)" onmouseover="showTip(event, '2129', 2129)">
                 <p>
                   <a id="init">
                     <a href="#init">
@@ -211,7 +211,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2116">
+              <div class="fsdocs-tip" id="2129">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>LinearAxis.init&#32;<span><span>(<span>?Visible,&#32;?Color,&#32;?Title,&#32;?AxisType,&#32;?AutoTypeNumbers,&#32;?AutoRange,&#32;?RangeMode,&#32;?Range,&#32;?FixedRange,&#32;?ScaleAnchor,&#32;?ScaleRatio,&#32;?Constrain,&#32;?ConstrainToward,&#32;?Matches,&#32;?Rangebreaks,&#32;?TickMode,&#32;?NTicks,&#32;?Tick0,&#32;?DTick,&#32;?TickVals,&#32;?TickText,&#32;?Ticks,&#32;?TicksOn,&#32;?TickLabelMode,&#32;?TickLabelPosition,&#32;?TickLabelOverflow,&#32;?Mirror,&#32;?TickLen,&#32;?TickWidth,&#32;?TickColor,&#32;?ShowTickLabels,&#32;?AutoMargin,&#32;?ShowSpikes,&#32;?SpikeColor,&#32;?SpikeThickness,&#32;?SpikeDash,&#32;?SpikeMode,&#32;?SpikeSnap,&#32;?TickFont,&#32;?TickAngle,&#32;?ShowTickPrefix,&#32;?TickPrefix,&#32;?ShowTickSuffix,&#32;?TickSuffix,&#32;?ShowExponent,&#32;?ExponentFormat,&#32;?MinExponent,&#32;?SeparateThousands,&#32;?TickFormat,&#32;?TickFormatStops,&#32;?HoverFormat,&#32;?ShowLine,&#32;?LineColor,&#32;?LineWidth,&#32;?ShowGrid,&#32;?GridColor,&#32;?GridWidth,&#32;?ZeroLine,&#32;?ZeroLineColor,&#32;?ZeroLineWidth,&#32;?ShowDividers,&#32;?DividerColor,&#32;?DividerWidth,&#32;?Anchor,&#32;?Side,&#32;?Overlaying,&#32;?Layer,&#32;?Domain,&#32;?Position,&#32;?CategoryOrder,&#32;?CategoryArray,&#32;?UIRevision,&#32;?RangeSlider,&#32;?RangeSelector,&#32;?Calendar,&#32;?BackgroundColor,&#32;?ShowBackground</span>)</span></span></span></code>
@@ -394,7 +394,7 @@
                         ?Tick0
                       </b>
                       :
-                      <code>'a</code>
+                      <code>'b</code>
                        - 
                       Sets the placement of the first tick on this axis. Use with `dtick`. If the axis `type` is "log", then you must take the log of your starting tick (e.g. to set the starting tick to 100, set the `tick0` to 2) except when `dtick`="L<f>" (see `dtick` for more info). If the axis `type` is "date", it should be a date string, like date data. If the axis `type` is "category", it should be a number, using the scale where each category is assigned a serial number from zero in the order it appears.
                     </span>
@@ -404,7 +404,7 @@
                         ?DTick
                       </b>
                       :
-                      <code>'b</code>
+                      <code>'c</code>
                        - 
                       Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings available to "log" and "date" axes. If the axis `type` is "log", then ticks are set every 10^(n"dtick) where n is the tick number. For example, to set a tick mark at 1, 10, 100, 1000, ... set dtick to 1. To set tick marks at 1, 100, 10000, ... set dtick to 2. To set tick marks at 1, 5, 25, 125, 625, 3125, ... set dtick to log_10(5), or 0.69897000433. "log" has several special values; "L<f>", where `f` is a positive number, gives ticks linearly spaced in value (but not position). For example `tick0` = 0.1, `dtick` = "L0.5" will put ticks at 0.1, 0.6, 1.1, 1.6 etc. To show powers of 10 plus small digits between, use "D1" (all digits) or "D2" (only 2 and 5). `tick0` is ignored for "D1" and "D2". If the axis `type` is "date", then you must convert the time to milliseconds. For example, to set the interval between ticks to one day, set `dtick` to 86400000.0. "date" also has special values "M<n>" gives ticks spaced by a number of months. `n` must be a positive integer. To set ticks on the 15th of every third month, set `tick0` to "2000-01-15" and `dtick` to "M3". To set ticks every 4 years, set `dtick` to "M48"
                     </span>
@@ -414,7 +414,7 @@
                         ?TickVals
                       </b>
                       :
-                      <code><span>seq&lt;'c&gt;</span></code>
+                      <code><span>seq&lt;'d&gt;</span></code>
                        - 
                       Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to "array". Used with `TickText`.
                     </span>
@@ -424,7 +424,7 @@
                         ?TickText
                       </b>
                       :
-                      <code><span>seq&lt;'d&gt;</span></code>
+                      <code><span>seq&lt;'e&gt;</span></code>
                        - 
                       Sets the text displayed at the ticks position via `TickVals`. Only has an effect if `tickmode` is set to "array". Used with `TickVals`.
                     </span>
@@ -924,7 +924,7 @@
                         ?CategoryArray
                       </b>
                       :
-                      <code><span>seq&lt;'e&gt;</span></code>
+                      <code><span>seq&lt;'f&gt;</span></code>
                        - 
                       Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to "array". Used with `categoryorder`.
                     </span>
@@ -934,7 +934,7 @@
                         ?UIRevision
                       </b>
                       :
-                      <code>'f</code>
+                      <code>'g</code>
                        - 
                       Controls persistence of user-driven changes in axis `range`, `autorange`, and `title` if in `editable: true` configuration. Defaults to `layout.uirevision`.
                     </span>
@@ -1230,7 +1230,7 @@
                   ?Tick0
                 </span>
                 :
-                <code>'a</code>
+                <code>'b</code>
               </dt>
               <dd class="fsdocs-param-docs">
                 <p>
@@ -1242,7 +1242,7 @@
                   ?DTick
                 </span>
                 :
-                <code>'b</code>
+                <code>'c</code>
               </dt>
               <dd class="fsdocs-param-docs">
                 <p>
@@ -1254,7 +1254,7 @@
                   ?TickVals
                 </span>
                 :
-                <code><span>seq&lt;'c&gt;</span></code>
+                <code><span>seq&lt;'d&gt;</span></code>
               </dt>
               <dd class="fsdocs-param-docs">
                 <p>
@@ -1266,7 +1266,7 @@
                   ?TickText
                 </span>
                 :
-                <code><span>seq&lt;'d&gt;</span></code>
+                <code><span>seq&lt;'e&gt;</span></code>
               </dt>
               <dd class="fsdocs-param-docs">
                 <p>
@@ -1866,7 +1866,7 @@
                   ?CategoryArray
                 </span>
                 :
-                <code><span>seq&lt;'e&gt;</span></code>
+                <code><span>seq&lt;'f&gt;</span></code>
               </dt>
               <dd class="fsdocs-param-docs">
                 <p>
@@ -1878,7 +1878,7 @@
                   ?UIRevision
                 </span>
                 :
-                <code>'f</code>
+                <code>'g</code>
               </dt>
               <dd class="fsdocs-param-docs">
                 <p>
@@ -1960,7 +1960,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2117', 2117)" onmouseover="showTip(event, '2117', 2117)">
+              <code onmouseout="hideTip(event, '2130', 2130)" onmouseover="showTip(event, '2130', 2130)">
                 <p>
                   <a id="initCarpet">
                     <a href="#initCarpet">
@@ -1969,7 +1969,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2117">
+              <div class="fsdocs-tip" id="2130">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>LinearAxis.initCarpet&#32;<span><span>(<span>?Color,&#32;?Title,&#32;?AxisType,&#32;?AutoTypeNumbers,&#32;?AutoRange,&#32;?RangeMode,&#32;?Range,&#32;?FixedRange,&#32;?TickMode,&#32;?NTicks,&#32;?Tick0,&#32;?DTick,&#32;?TickVals,&#32;?TickText,&#32;?Ticks,&#32;?ShowTickLabels,&#32;?TickFont,&#32;?TickAngle,&#32;?ShowTickPrefix,&#32;?TickPrefix,&#32;?ShowTickSuffix,&#32;?TickSuffix,&#32;?ShowExponent,&#32;?ExponentFormat,&#32;?MinExponent,&#32;?SeparateThousands,&#32;?TickFormat,&#32;?TickFormatStops,&#32;?ShowLine,&#32;?LineColor,&#32;?LineWidth,&#32;?ShowGrid,&#32;?GridColor,&#32;?GridWidth,&#32;?CategoryOrder,&#32;?CategoryArray,&#32;?ArrayDTick,&#32;?ArrayTick0,&#32;?CheaterType,&#32;?EndLine,&#32;?EndLineColor,&#32;?EndLineWidth,&#32;?LabelPadding,&#32;?LabelPrefix,&#32;?LabelSuffix,&#32;?MinorGridColor,&#32;?MinorGridCount,&#32;?MinorGridWidth,&#32;?Smoothing,&#32;?StartLine,&#32;?StartLineColor,&#32;?StartLineWidth</span>)</span></span></span></code>
@@ -3168,7 +3168,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2118', 2118)" onmouseover="showTip(event, '2118', 2118)">
+              <code onmouseout="hideTip(event, '2131', 2131)" onmouseover="showTip(event, '2131', 2131)">
                 <p>
                   <a id="initCategorical">
                     <a href="#initCategorical">
@@ -3177,7 +3177,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2118">
+              <div class="fsdocs-tip" id="2131">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>LinearAxis.initCategorical&#32;<span><span>(<span>categoryOrder,&#32;?Visible,&#32;?Color,&#32;?Title,&#32;?AutoTypeNumbers,&#32;?AutoRange,&#32;?RangeMode,&#32;?Range,&#32;?FixedRange,&#32;?ScaleAnchor,&#32;?ScaleRatio,&#32;?Constrain,&#32;?ConstrainToward,&#32;?Matches,&#32;?Rangebreaks,&#32;?TickMode,&#32;?NTicks,&#32;?Tick0,&#32;?DTick,&#32;?TickVals,&#32;?TickText,&#32;?Ticks,&#32;?TicksOn,&#32;?TickLabelMode,&#32;?TickLabelPosition,&#32;?TickLabelOverflow,&#32;?Mirror,&#32;?TickLen,&#32;?TickWidth,&#32;?TickColor,&#32;?ShowTickLabels,&#32;?AutoMargin,&#32;?ShowSpikes,&#32;?SpikeColor,&#32;?SpikeThickness,&#32;?SpikeDash,&#32;?SpikeMode,&#32;?SpikeSnap,&#32;?TickFont,&#32;?TickAngle,&#32;?ShowTickPrefix,&#32;?TickPrefix,&#32;?ShowTickSuffix,&#32;?TickSuffix,&#32;?ShowExponent,&#32;?ExponentFormat,&#32;?MinExponent,&#32;?SeparateThousands,&#32;?TickFormat,&#32;?TickFormatStops,&#32;?HoverFormat,&#32;?ShowLine,&#32;?LineColor,&#32;?LineWidth,&#32;?ShowGrid,&#32;?GridColor,&#32;?GridWidth,&#32;?ZeroLine,&#32;?ZeroLineColor,&#32;?ZeroLineWidth,&#32;?ShowDividers,&#32;?DividerColor,&#32;?DividerWidth,&#32;?Anchor,&#32;?Side,&#32;?Overlaying,&#32;?Layer,&#32;?Domain,&#32;?Position,&#32;?CategoryArray,&#32;?UIRevision,&#32;?RangeSlider,&#32;?RangeSelector,&#32;?Calendar</span>)</span></span></span></code>
@@ -4860,7 +4860,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2119', 2119)" onmouseover="showTip(event, '2119', 2119)">
+              <code onmouseout="hideTip(event, '2132', 2132)" onmouseover="showTip(event, '2132', 2132)">
                 <p>
                   <a id="initIndicatorGauge">
                     <a href="#initIndicatorGauge">
@@ -4869,7 +4869,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2119">
+              <div class="fsdocs-tip" id="2132">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>LinearAxis.initIndicatorGauge&#32;<span><span>(<span>?DTick,&#32;?ExponentFormat,&#32;?MinExponent,&#32;?NTicks,&#32;?Range,&#32;?SeparateThousands,&#32;?ShowExponent,&#32;?ShowTickLabels,&#32;?ShowTickPrefix,&#32;?ShowTickSuffix,&#32;?Tick0,&#32;?TickAngle,&#32;?TickColor,&#32;?TickFont,&#32;?TickFormat,&#32;?TickFormatStops,&#32;?TickLen,&#32;?TickMode,&#32;?TickPrefix,&#32;?Ticks,&#32;?TickSuffix,&#32;?TickText,&#32;?TickVals,&#32;?TickWidth,&#32;?Visible</span>)</span></span></span></code>
@@ -5474,7 +5474,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2120', 2120)" onmouseover="showTip(event, '2120', 2120)">
+              <code onmouseout="hideTip(event, '2133', 2133)" onmouseover="showTip(event, '2133', 2133)">
                 <p>
                   <a id="style">
                     <a href="#style">
@@ -5483,7 +5483,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2120">
+              <div class="fsdocs-tip" id="2133">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>LinearAxis.style&#32;<span><span>(<span>?Visible,&#32;?Color,&#32;?Title,&#32;?AxisType,&#32;?AutoTypeNumbers,&#32;?AutoRange,&#32;?RangeMode,&#32;?Range,&#32;?FixedRange,&#32;?ScaleAnchor,&#32;?ScaleRatio,&#32;?Constrain,&#32;?ConstrainToward,&#32;?Matches,&#32;?Rangebreaks,&#32;?TickMode,&#32;?NTicks,&#32;?Tick0,&#32;?DTick,&#32;?TickVals,&#32;?TickText,&#32;?Ticks,&#32;?TicksOn,&#32;?TickLabelMode,&#32;?TickLabelPosition,&#32;?TickLabelOverflow,&#32;?Mirror,&#32;?TickLen,&#32;?TickWidth,&#32;?TickColor,&#32;?ShowTickLabels,&#32;?AutoMargin,&#32;?ShowSpikes,&#32;?SpikeColor,&#32;?SpikeThickness,&#32;?SpikeDash,&#32;?SpikeMode,&#32;?SpikeSnap,&#32;?TickFont,&#32;?TickAngle,&#32;?ShowTickPrefix,&#32;?TickPrefix,&#32;?ShowTickSuffix,&#32;?TickSuffix,&#32;?ShowExponent,&#32;?ExponentFormat,&#32;?MinExponent,&#32;?SeparateThousands,&#32;?TickFormat,&#32;?TickFormatStops,&#32;?HoverFormat,&#32;?ShowLine,&#32;?LineColor,&#32;?LineWidth,&#32;?ShowGrid,&#32;?GridColor,&#32;?GridWidth,&#32;?ZeroLine,&#32;?ZeroLineColor,&#32;?ZeroLineWidth,&#32;?ShowDividers,&#32;?DividerColor,&#32;?DividerWidth,&#32;?Anchor,&#32;?Side,&#32;?Overlaying,&#32;?Layer,&#32;?Domain,&#32;?Position,&#32;?CategoryOrder,&#32;?CategoryArray,&#32;?UIRevision,&#32;?RangeSlider,&#32;?RangeSelector,&#32;?Calendar,&#32;?ArrayDTick,&#32;?ArrayTick0,&#32;?CheaterType,&#32;?EndLine,&#32;?EndLineColor,&#32;?EndLineWidth,&#32;?LabelPadding,&#32;?LabelPrefix,&#32;?LabelSuffix,&#32;?MinorGridColor,&#32;?MinorGridCount,&#32;?MinorGridWidth,&#32;?Smoothing,&#32;?StartLine,&#32;?StartLineColor,&#32;?StartLineWidth,&#32;?BackgroundColor,&#32;?ShowBackground</span>)</span></span></span></code>
