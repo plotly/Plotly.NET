@@ -1529,7 +1529,7 @@ type Chart =
             ch |> Chart.withScene (scene, ?Id = Id))
 
     /// <summary>
-    /// Sets the given Smith object with the given id on the input chart's layout.
+    /// Sets the given Polar object with the given id on the input chart's layout.
     /// </summary>
     /// <param name="polar">The Polar object to set on the chart's layout</param>
     /// <param name="id">The target polar id with which the Polar object should be set.</param>
