@@ -5,6 +5,9 @@
 [![](https://img.shields.io/nuget/vpre/Plotly.NET)](https://www.nuget.org/packages/Plotly.NET/)
 [![Discord](https://img.shields.io/discord/836161044501889064?color=purple&label=Join%20our%20Discord%21&logo=discord&logoColor=white)](https://discord.gg/k3kUtFY8DB)
 ![](https://img.shields.io/badge/supported%20plotly.js%20version-2.6.3-blue)
+
+We are currently in the process of writing a software paper on Plotly.NET. in the meantime, if you are using Plotly.NET for your research please cite the zenodo archive:
+
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6344285.svg)](https://doi.org/10.5281/zenodo.6344285)
 
 Plotly.NET provides functions for generating and rendering plotly.js charts in **.NET** programming languages 📈🚀. 
