@@ -16,6 +16,14 @@ module PuppeteerSharpRendererOptions =
 
     let mutable localBrowserExecutablePath = None
 
+module internal Path =
+
+    /// checks whether provided path has correct extension and sets if no extension provided
+    let ensureFileExtension (ext: string) (path: string) =
+        match Path.GetExtension(path) with
+        | "" -> sprintf "%s%s" path ext
+        | e when String.Compare(e, ext, StringComparison.OrdinalIgnoreCase) = 0 -> path
+        | _ as e -> failwithf "Provided path contains wrong file extension. Expected '%s' got '%s'." ext e
 
 type PuppeteerSharpRenderer() =
 
@@ -135,8 +143,10 @@ type PuppeteerSharpRenderer() =
                 let! rendered =
                     (this :> IGenericChartRenderer)
                         .RenderJPGAsync(width, height, gChart)
+                
+                let path = Path.ensureFileExtension ".jpg" path
 
-                return rendered |> getBytesFromBase64String |> fun base64 -> File.WriteAllBytes($"{path}.jpg", base64)
+                return rendered |> getBytesFromBase64String |> fun base64 -> File.WriteAllBytes(path, base64)
             }
 
         member this.SaveJPG(path: string, width: int, height: int, gChart: GenericChart.GenericChart) =
@@ -162,7 +172,9 @@ type PuppeteerSharpRenderer() =
                     (this :> IGenericChartRenderer)
                         .RenderPNGAsync(width, height, gChart)
 
-                return rendered |> getBytesFromBase64String |> fun base64 -> File.WriteAllBytes($"{path}.png", base64)
+                let path = Path.ensureFileExtension ".png" path
+
+                return rendered |> getBytesFromBase64String |> fun base64 -> File.WriteAllBytes(path, base64)
             }
 
         member this.SavePNG(path: string, width: int, height: int, gChart: GenericChart.GenericChart) =
@@ -190,8 +202,10 @@ type PuppeteerSharpRenderer() =
                 let! rendered =
                     (this :> IGenericChartRenderer)
                         .RenderSVGAsync(width, height, gChart)
+                    
+                let path = Path.ensureFileExtension ".svg" path
 
-                return rendered |> fun svg -> File.WriteAllText($"{path}.svg", svg)
+                return rendered |> fun svg -> File.WriteAllText(path, svg)
             }
 
         member this.SaveSVG(path: string, width: int, height: int, gChart: GenericChart.GenericChart) =
