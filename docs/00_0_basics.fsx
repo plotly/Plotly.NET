@@ -14,7 +14,8 @@ index: 1
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 1.0.1"
 open DynamicObj
-#r "../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
+#I "../src/Plotly.NET/bin/Release/netstandard2.0"
+#r "Plotly.NET.dll"
 
 (*** condition: ipynb ***)
 #if IPYNB

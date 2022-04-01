@@ -2,28 +2,16 @@
   "version": 1,
   "isRoot": true,
   "tools": {
-    "fake-cli": {
-      "version": "5.20.4",
-      "commands": [
-        "fake"
-      ]
-    },
-    "paket": {
-      "version": "5.257.0",
-      "commands": [
-        "paket"
-      ]
-    },
-    "fsharp.formatting.commandtool": {
-      "version": "11.5.1",
-      "commands": [
-        "fsdocs"
-      ]
-    },
     "fantomas-tool": {
-      "version": "4.5.8",
+      "version": "4.7.5",
       "commands": [
         "fantomas"
+      ]
+    },
+    "fsdocs-tool": {
+      "version": "15.0.0",
+      "commands": [
+        "fsdocs"
       ]
     }
   }

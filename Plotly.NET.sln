@@ -19,10 +19,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "git", "git", "{078A9C52-DDC
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{7C6D08E7-3EAC-4335-8F4B-252C193C27C9}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{7C6D08E7-3EAC-4335-8F4B-252C193C27C9}"
 	ProjectSection(SolutionItems) = preProject
 		build.cmd = build.cmd
-		build.fsx = build.fsx
 		build.sh = build.sh
 	EndProjectSection
 EndProject
@@ -149,6 +148,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plotly.NET.Tests.CSharp", "
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Plotly.NET.ImageExport.Tests", "tests\Plotly.NET.ImageExport.Tests\Plotly.NET.ImageExport.Tests.fsproj", "{55A461C3-8018-4020-B16E-D6005BDFCAED}"
 EndProject
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "build", "build\build.fsproj", "{403785C9-B5B1-4BA4-9944-A0F9D5D1B3CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -204,6 +205,12 @@ Global
 		{55A461C3-8018-4020-B16E-D6005BDFCAED}.Dotnet|Any CPU.Build.0 = Debug|Any CPU
 		{55A461C3-8018-4020-B16E-D6005BDFCAED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55A461C3-8018-4020-B16E-D6005BDFCAED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{403785C9-B5B1-4BA4-9944-A0F9D5D1B3CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{403785C9-B5B1-4BA4-9944-A0F9D5D1B3CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{403785C9-B5B1-4BA4-9944-A0F9D5D1B3CD}.Dotnet|Any CPU.ActiveCfg = Debug|Any CPU
+		{403785C9-B5B1-4BA4-9944-A0F9D5D1B3CD}.Dotnet|Any CPU.Build.0 = Debug|Any CPU
+		{403785C9-B5B1-4BA4-9944-A0F9D5D1B3CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{403785C9-B5B1-4BA4-9944-A0F9D5D1B3CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -220,6 +227,7 @@ Global
 		{1BC73DA0-586F-45C2-BC5B-A70C452A00F0} = {EAE25A1F-86FC-426B-803F-1006D1AD06A8}
 		{26539796-0C9D-4856-8584-B58BE32CC495} = {EAE25A1F-86FC-426B-803F-1006D1AD06A8}
 		{55A461C3-8018-4020-B16E-D6005BDFCAED} = {EAE25A1F-86FC-426B-803F-1006D1AD06A8}
+		{403785C9-B5B1-4BA4-9944-A0F9D5D1B3CD} = {7C6D08E7-3EAC-4335-8F4B-252C193C27C9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7177F1E1-341C-48AB-9864-6B525FFF7633}

@@ -26,8 +26,6 @@ Plotly.NET provides functions for generating and rendering plotly.js charts in *
     - [docs](#docs)
 - [Library license](#library-license)
 
-
-
 # Installation
 
 Plotly.NET will be available as 2.0.0 version of its predecessor FSharp.Plotly. The feature roadmap can be seen [here](https://github.com/plotly/Plotly.NET/issues/43). Contributions are very welcome!
@@ -98,7 +96,7 @@ _Note:_ The `release` and `prerelease` build targets assume that there is a `NUG
 
 ### build
 
-Check the [build.fsx file](https://github.com/plotly/Plotly.NET/blob/dev/build.fsx) to take a look at the  build targets. Here are some examples:
+Check the [build project](https://github.com/plotly/Plotly.NET/blob/dev/build) to take a look at the  build targets. Here are some examples:
 
 ```shell
 # Windows
@@ -106,11 +104,11 @@ Check the [build.fsx file](https://github.com/plotly/Plotly.NET/blob/dev/build.f
 # Build only
 ./build.cmd
 
-# Full release buildchain: build, test, pack, build the docs, push a git tag, publsih thze nuget package, release the docs
-./build.cmd -t release
+# Full release buildchain: build, test, pack, build the docs, push a git tag, publish thze nuget package, release the docs
+./build.cmd release
 
 # The same for prerelease versions:
-./build.cmd -t prerelease
+./build.cmd prerelease
 
 
 # Linux/mac
@@ -118,11 +116,11 @@ Check the [build.fsx file](https://github.com/plotly/Plotly.NET/blob/dev/build.f
 # Build only
 build.sh
 
-# Full release buildchain: build, test, pack, build the docs, push a git tag, publsih thze nuget package, release the docs
-build.sh -t release
+# Full release buildchain: build, test, pack, build the docs, push a git tag, publísh the nuget package, release the docs
+build.sh release
 
 # The same for prerelease versions:
-build.sh -t prerelease
+build.sh prerelease
 
 ```
 
@@ -132,14 +130,11 @@ The docs are contained in `.fsx` and `.md` files in the `docs` folder. To develo
 
 ```shell
 # Windows
-./build.cmd -t watchdocs
+./build.cmd watchdocs
 
 # Linux/mac
-./build.sh -t watchdocs
+./build.sh watchdocs
 ```
-
-
-### release
 
 Library license
 ===============
