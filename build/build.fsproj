@@ -27,6 +27,7 @@
     <PackageReference Include="Fake.DotNet.MSBuild" Version="5.22.0" />
     <PackageReference Include="Fake.IO.FileSystem" Version="5.22.0" />
     <PackageReference Include="Fake.Tools.Git" Version="5.22.0" />
+    <PackageReference Include="FSharp.Compiler.Service" Version="41.0.3" />
   </ItemGroup>
 
 </Project>
