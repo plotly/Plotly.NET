@@ -7,24 +7,19 @@ open Fake.IO.Globbing.Operators
 
 open ProjectInfo
 
-let setPrereleaseTag = BuildTask.create "SetPrereleaseTag" [] {
-    printfn "Please enter pre-release package suffix"
-    let suffix = System.Console.ReadLine()
-    prereleaseSuffix <- suffix
-    prereleaseTag <- (sprintf "%s-%s" release.NugetVersion suffix)
-    isPrerelease <- true
-}
+let setPrereleaseTag =
+    BuildTask.create "SetPrereleaseTag" [] {
+        printfn "Please enter pre-release package suffix"
+        let suffix = System.Console.ReadLine()
+        prereleaseSuffix <- suffix
+        prereleaseTag <- (sprintf "%s-%s" release.NugetVersion suffix)
+        isPrerelease <- true
+    }
 
-let clean = BuildTask.create "Clean" [] {
-    !! "src/**/bin"
-    ++ "src/**/obj"
-    ++ "tests/**/bin"
-    ++ "tests/**/obj"
-    ++ "pkg"
-    |> Shell.cleanDirs 
-}
+let clean =
+    BuildTask.create "Clean" [] {
+        !! "src/**/bin" ++ "src/**/obj" ++ "tests/**/bin" ++ "tests/**/obj" ++ "pkg" |> Shell.cleanDirs
+    }
 
-let build = BuildTask.create "Build" [clean] {
-    solutionFile
-    |> DotNet.build id
-}
+let build =
+    BuildTask.create "Build" [ clean ] { solutionFile |> DotNet.build id }

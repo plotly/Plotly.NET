@@ -77,7 +77,8 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let outline =
                 SectionOutline
@@ -263,7 +264,9 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
+
             let hole = Option.defaultValue 0.4 Hole
 
             Chart.Pie(
@@ -432,7 +435,8 @@ module ChartDomain =
             ) =
 
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let outline =
                 SectionOutline
@@ -610,7 +614,8 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let outline =
                 SectionOutline
@@ -727,7 +732,8 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
 
-            let labels, parents = Seq.unzip labelsparents
+            let labels, parents =
+                Seq.unzip labelsparents
 
             Chart.Sunburst(
                 labels,
@@ -834,7 +840,8 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let outline =
                 SectionOutline
@@ -953,7 +960,8 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
 
-            let labels, parents = Seq.unzip labelsparents
+            let labels, parents =
+                Seq.unzip labelsparents
 
             Chart.Treemap(
                 labels,
@@ -1028,7 +1036,8 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?TickFont: Font,
                 [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let line =
                 Line
@@ -1156,7 +1165,8 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let line =
                 Line
@@ -1228,7 +1238,8 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let dims =
                 keyValues |> Seq.map (fun (key, vals) -> Dimension.initParallel (Label = key, Values = vals))
@@ -1291,7 +1302,8 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             TraceDomain.initSankey (
                 TraceDomainStyle.Sankey(
@@ -1377,7 +1389,8 @@ module ChartDomain =
             let linkOutline =
                 Line.init (?Color = LinkOutlineColor, ?Width = LinkOutlineWidth)
 
-            let sources, targets = Seq.unzip linkedNodeIds
+            let sources, targets =
+                Seq.unzip linkedNodeIds
 
             let colorScales =
                 LinkColorScales
@@ -1431,7 +1444,8 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             TraceDomain.initTable (
                 TraceDomainStyle.Table(
@@ -1505,9 +1519,11 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
-            let transpose = defaultArg TransposeCells true
+            let transpose =
+                defaultArg TransposeCells true
 
             let cellsValues =
                 if transpose then
@@ -1537,7 +1553,8 @@ module ChartDomain =
                     ?Height = HeaderHeight
                 )
 
-            let cellsFill = TableFill.init (?Color = CellsFillColor)
+            let cellsFill =
+                TableFill.init (?Color = CellsFillColor)
 
             let cellsOutline =
                 CellsOutline
@@ -1611,7 +1628,8 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let axis =
                 GaugeAxis
@@ -1718,7 +1736,8 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let outline =
                 SectionOutline
@@ -1848,7 +1867,8 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
 
-            let labels, parents = Seq.unzip labelsparents
+            let labels, parents =
+                Seq.unzip labelsparents
 
             Chart.Icicle(
                 labels,

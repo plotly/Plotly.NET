@@ -43,7 +43,9 @@ module StyleParam =
             | Center -> "center"
             | Right -> "right"
 
-        static member convert = AnnotationAlignment.toString >> box
+        static member convert =
+            AnnotationAlignment.toString >> box
+
         override this.ToString() = this |> AnnotationAlignment.toString
         member this.Convert() = this |> AnnotationAlignment.convert
 
@@ -238,7 +240,9 @@ module StyleParam =
             | ConvertTypes -> "convert types"
             | Strict -> "strict"
 
-        static member convert = AutoTypeNumbers.toString >> box
+        static member convert =
+            AutoTypeNumbers.toString >> box
+
         override this.ToString() = this |> AutoTypeNumbers.toString
         member this.Convert() = this |> AutoTypeNumbers.convert
 
@@ -377,7 +381,9 @@ module StyleParam =
             | Fixed -> "fixed"
             | Snap -> "snap"
 
-        static member convert = CategoryArrangement.toString >> box
+        static member convert =
+            CategoryArrangement.toString >> box
+
         override this.ToString() = this |> CategoryArrangement.toString
         member this.Convert() = this |> CategoryArrangement.convert
 
@@ -429,7 +435,9 @@ module StyleParam =
             | OutsideExclusiveInterval -> "]("
 
 
-        static member convert = ConstraintOperation.toString >> box
+        static member convert =
+            ConstraintOperation.toString >> box
+
         override this.ToString() = this |> ConstraintOperation.toString
         member this.Convert() = this |> ConstraintOperation.convert
 
@@ -443,7 +451,9 @@ module StyleParam =
             | Perspective -> "perspective"
             | Orthographic -> "orthographic"
 
-        static member convert = CameraProjectionType.toString >> box
+        static member convert =
+            CameraProjectionType.toString >> box
+
         override this.ToString() = this |> CameraProjectionType.toString
         member this.Convert() = this |> CameraProjectionType.convert
 
@@ -475,7 +485,9 @@ module StyleParam =
             | Lines -> "lines"
             | NoColoring -> "none"
 
-        static member convert = ContourColoring.toString >> box
+        static member convert =
+            ContourColoring.toString >> box
+
         override this.ToString() = this |> ContourColoring.toString
         member this.Convert() = this |> ContourColoring.convert
 
@@ -651,7 +663,9 @@ module StyleParam =
             | Increasing -> "increasing"
             | Decreasing -> "decreasing"
 
-        static member convert = CumulativeDirection.toString >> box
+        static member convert =
+            CumulativeDirection.toString >> box
+
         override this.ToString() = this |> CumulativeDirection.toString
         member this.Convert() = this |> CumulativeDirection.convert
 
@@ -817,7 +831,8 @@ module StyleParam =
             | Middle -> "middle"
             | Bottom -> "bottom"
 
-        static member convert = AxisConstraintDirection.toString >> box
+        static member convert =
+            AxisConstraintDirection.toString >> box
 
         override this.ToString() =
             this |> AxisConstraintDirection.toString
@@ -834,7 +849,9 @@ module StyleParam =
             | Labels -> "labels"
             | Boundaries -> "boundaries"
 
-        static member convert = CategoryTickAnchor.toString >> box
+        static member convert =
+            CategoryTickAnchor.toString >> box
+
         override this.ToString() = this |> CategoryTickAnchor.toString
         member this.Convert() = this |> CategoryTickAnchor.convert
 
@@ -1247,7 +1264,9 @@ module StyleParam =
             | Aitoff -> "aitoff"
             | Sinusoidal -> "sinusoidal"
 
-        static member convert = GeoProjectionType.toString >> box
+        static member convert =
+            GeoProjectionType.toString >> box
+
         override this.ToString() = this |> GeoProjectionType.toString
         member this.Convert() = this |> GeoProjectionType.convert
 
@@ -1398,7 +1417,9 @@ module StyleParam =
             | Center -> "center"
             | Right -> "right"
 
-        static member convert = HorizontalAlign.toString >> box
+        static member convert =
+            HorizontalAlign.toString >> box
+
         override this.ToString() = this |> HorizontalAlign.toString
         member this.Convert() = this |> HorizontalAlign.convert
 
@@ -1456,7 +1477,9 @@ module StyleParam =
             | Center -> "center"
             | Right -> "right"
 
-        static member convert = IndicatorAlignment.toString >> box
+        static member convert =
+            IndicatorAlignment.toString >> box
+
         override this.ToString() = this |> IndicatorAlignment.toString
         member this.Convert() = this |> IndicatorAlignment.convert
 
@@ -1469,7 +1492,9 @@ module StyleParam =
             | Angular -> "angular"
             | Bullet -> "bullet"
 
-        static member convert = IndicatorGaugeShape.toString >> box
+        static member convert =
+            IndicatorGaugeShape.toString >> box
+
         override this.ToString() = this |> IndicatorGaugeShape.toString
         member this.Convert() = this |> IndicatorGaugeShape.convert
 
@@ -1486,7 +1511,9 @@ module StyleParam =
             | Left -> "left"
             | Right -> "right"
 
-        static member convert = IndicatorDeltaPosition.toString >> box
+        static member convert =
+            IndicatorDeltaPosition.toString >> box
+
         override this.ToString() = this |> IndicatorDeltaPosition.toString
         member this.Convert() = this |> IndicatorDeltaPosition.convert
 
@@ -1501,7 +1528,9 @@ module StyleParam =
             | Middle -> "middle"
             | Start -> "start"
 
-        static member convert = InsideTextAnchor.toString >> box
+        static member convert =
+            InsideTextAnchor.toString >> box
+
         override this.ToString() = this |> InsideTextAnchor.toString
         member this.Convert() = this |> InsideTextAnchor.convert
 
@@ -1518,7 +1547,9 @@ module StyleParam =
             | Tangential -> "tangential"
             | Auto -> "auto"
 
-        static member convert = InsideTextOrientation.toString >> box
+        static member convert =
+            InsideTextOrientation.toString >> box
+
         override this.ToString() = this |> InsideTextOrientation.toString
         member this.Convert() = this |> InsideTextOrientation.convert
 
@@ -1580,7 +1611,9 @@ module StyleParam =
             | Contain -> "contain"
             | Stretch -> "stretch"
 
-        static member convert = LayoutImageSizing.toString >> box
+        static member convert =
+            LayoutImageSizing.toString >> box
+
         override this.ToString() = this |> LayoutImageSizing.toString
         member this.Convert() = this |> LayoutImageSizing.convert
 
@@ -1634,7 +1667,9 @@ module StyleParam =
             | TopToBottom -> "top to bottom"
             | BottomToTop -> "bottom to top"
 
-        static member convert = LayoutGridRowOrder.toString >> box
+        static member convert =
+            LayoutGridRowOrder.toString >> box
+
         override this.ToString() = this |> LayoutGridRowOrder.toString
         member this.Convert() = this |> LayoutGridRowOrder.convert
 
@@ -1651,7 +1686,9 @@ module StyleParam =
             | Independent -> "independent"
             | Coupled -> "coupled"
 
-        static member convert = LayoutGridPattern.toString >> box
+        static member convert =
+            LayoutGridPattern.toString >> box
+
         override this.ToString() = this |> LayoutGridPattern.toString
         member this.Convert() = this |> LayoutGridPattern.convert
 
@@ -1671,7 +1708,9 @@ module StyleParam =
             | Top -> "top"
             | TopPlot -> "top plot"
 
-        static member convert = LayoutGridXSide.toString >> box
+        static member convert =
+            LayoutGridXSide.toString >> box
+
         override this.ToString() = this |> LayoutGridXSide.toString
         member this.Convert() = this |> LayoutGridXSide.convert
 
@@ -1690,7 +1729,9 @@ module StyleParam =
             | Right -> "right"
             | RightPlot -> "right plot"
 
-        static member convert = LayoutGridYSide.toString >> box
+        static member convert =
+            LayoutGridYSide.toString >> box
+
         override this.ToString() = this |> LayoutGridYSide.toString
         member this.Convert() = this |> LayoutGridYSide.convert
 
@@ -1708,7 +1749,9 @@ module StyleParam =
             | Center -> "center"
             | Right -> "right"
 
-        static member convert = XAnchorPosition.toString >> box
+        static member convert =
+            XAnchorPosition.toString >> box
+
         override this.ToString() = this |> XAnchorPosition.toString
         member this.Convert() = this |> XAnchorPosition.convert
 
@@ -1726,7 +1769,9 @@ module StyleParam =
             | Middle -> "middle"
             | Bottom -> "bottom"
 
-        static member convert = YAnchorPosition.toString >> box
+        static member convert =
+            YAnchorPosition.toString >> box
+
         override this.ToString() = this |> YAnchorPosition.toString
         member this.Convert() = this |> YAnchorPosition.convert
 
@@ -1951,6 +1996,7 @@ module StyleParam =
                 | _ -> cmode
             else
                 cmode
+
         /// Takes the current mode and adds the Markers flag
         let showMarker isShow (cmode: Mode) =
             if isShow then
@@ -2042,7 +2088,9 @@ module StyleParam =
             | Raster -> "raster"
             | Image -> "image"
 
-        static member convert = MapboxLayerSourceType.toString >> box
+        static member convert =
+            MapboxLayerSourceType.toString >> box
+
         override this.ToString() = this |> MapboxLayerSourceType.toString
         member this.Convert() = this |> MapboxLayerSourceType.convert
 
@@ -2062,7 +2110,9 @@ module StyleParam =
             | Symbol -> "symbol"
             | Raster -> "raster"
 
-        static member convert = MapboxLayerType.toString >> box
+        static member convert =
+            MapboxLayerType.toString >> box
+
         override this.ToString() = this |> MapboxLayerType.toString
         member this.Convert() = this |> MapboxLayerType.convert
 
@@ -2140,7 +2190,9 @@ module StyleParam =
             | Replace -> "replace"
             | Overlay -> "overlay"
 
-        static member convert = PatternFillMode.toString >> box
+        static member convert =
+            PatternFillMode.toString >> box
+
         override this.ToString() = this |> PatternFillMode.toString
         member this.Convert() = this |> PatternFillMode.convert
 
@@ -2184,7 +2236,9 @@ module StyleParam =
             | Middle -> "middle"
             | End -> "end"
 
-        static member convert = PeriodAlignment.toString >> box
+        static member convert =
+            PeriodAlignment.toString >> box
+
         override this.ToString() = this |> PeriodAlignment.toString
         member this.Convert() = this |> PeriodAlignment.convert
 
@@ -2241,7 +2295,9 @@ module StyleParam =
             | Fixed -> "fixed"
             | Match -> "match"
 
-        static member convert = RangesliderRangeMode.toString >> box
+        static member convert =
+            RangesliderRangeMode.toString >> box
+
         override this.ToString() = this |> RangesliderRangeMode.toString
         member this.Convert() = this |> RangesliderRangeMode.convert
 
@@ -2295,7 +2351,9 @@ module StyleParam =
             | Hour -> "hour"
             | NoPattern -> ""
 
-        static member convert = RangebreakPattern.toString >> box
+        static member convert =
+            RangebreakPattern.toString >> box
+
         override this.ToString() = this |> RangebreakPattern.toString
         member this.Convert() = this |> RangebreakPattern.convert
 
@@ -2379,7 +2437,9 @@ module StyleParam =
             | Diagonal -> "d"
             | Any -> "any"
 
-        static member convert = SelectDirection.toString >> box
+        static member convert =
+            SelectDirection.toString >> box
+
         override this.ToString() = this |> SelectDirection.toString
         member this.Convert() = this |> SelectDirection.convert
 
@@ -2567,7 +2627,8 @@ module StyleParam =
             | ArrowBarLeft -> 51
             | ArrowBarRight -> 52
 
-        static member convert = MarkerSymbol.toInteger >> string >> box
+        static member convert =
+            MarkerSymbol.toInteger >> string >> box
 
         override this.ToString() =
             this |> MarkerSymbol.toInteger |> string
@@ -2920,7 +2981,9 @@ module StyleParam =
             | BackInOut -> "back-in-out"
             | BounceInOut -> "bounce-in-out"
 
-        static member convert = TransitionEasing.toString >> box
+        static member convert =
+            TransitionEasing.toString >> box
+
         override this.ToString() = this |> TransitionEasing.toString
         member this.Convert() = this |> TransitionEasing.convert
 
@@ -2934,7 +2997,9 @@ module StyleParam =
             | LayoutFirst -> "layout first"
             | TracesFirst -> "traces first"
 
-        static member convert = TransitionOrdering.toString >> box
+        static member convert =
+            TransitionOrdering.toString >> box
+
         override this.ToString() = this |> TransitionOrdering.toString
         member this.Convert() = this |> TransitionOrdering.convert
 
@@ -3072,7 +3137,9 @@ module StyleParam =
             | Slash -> "/"
             | BackSlash -> """\"""
 
-        static member convert = PathbarEdgeShape.toString >> box
+        static member convert =
+            PathbarEdgeShape.toString >> box
+
         override this.ToString() = this |> PathbarEdgeShape.toString
         member this.Convert() = this |> PathbarEdgeShape.convert
 
@@ -3092,7 +3159,9 @@ module StyleParam =
             | Slice -> "slice"
             | SliceDice -> "slice-dice"
 
-        static member convert = TreemapTilingPacking.toString >> box
+        static member convert =
+            TreemapTilingPacking.toString >> box
+
         override this.ToString() = this |> TreemapTilingPacking.toString
         member this.Convert() = this |> TreemapTilingPacking.convert
 
@@ -3124,7 +3193,9 @@ module StyleParam =
             | Trace -> "trace"
             | Constant -> "constant"
 
-        static member convert = TraceItemSizing.toString >> box
+        static member convert =
+            TraceItemSizing.toString >> box
+
         override this.ToString() = this |> TraceItemSizing.toString
         member this.Convert() = this |> TraceItemSizing.convert
 
@@ -3152,7 +3223,9 @@ module StyleParam =
             | ToggleItem -> "toggleitem"
             | ToggleGroup -> "togglegroup"
 
-        static member convert = TraceGroupClickOptions.toString >> box
+        static member convert =
+            TraceGroupClickOptions.toString >> box
+
         override this.ToString() = this |> TraceGroupClickOptions.toString
         member this.Convert() = this |> TraceGroupClickOptions.convert
 
@@ -3196,7 +3269,9 @@ module StyleParam =
             | OutsideBottom -> "outside bottom"
             | InsideBottom -> "inside bottom"
 
-        static member convert = TickLabelPosition.toString >> box
+        static member convert =
+            TickLabelPosition.toString >> box
+
         override this.ToString() = this |> TickLabelPosition.toString
         member this.Convert() = this |> TickLabelPosition.convert
 
@@ -3213,7 +3288,9 @@ module StyleParam =
             | HidePastDomain -> "hide past domain"
 
 
-        static member convert = TickLabelOverflow.toString >> box
+        static member convert =
+            TickLabelOverflow.toString >> box
+
         override this.ToString() = this |> TickLabelOverflow.toString
         member this.Convert() = this |> TickLabelOverflow.convert
 
@@ -3295,7 +3372,9 @@ module StyleParam =
             | Up -> "up"
             | Down -> "down"
 
-        static member convert = UpdateMenuDirection.toString >> box
+        static member convert =
+            UpdateMenuDirection.toString >> box
+
         override this.ToString() = this |> UpdateMenuDirection.toString
         member this.Convert() = this |> UpdateMenuDirection.convert
 
@@ -3407,7 +3486,9 @@ module StyleParam =
             | Total -> "total"
             | Absolute -> "absolute"
 
-        static member convert = WaterfallMeasure.toString >> box
+        static member convert =
+            WaterfallMeasure.toString >> box
+
         override this.ToString() = this |> WaterfallMeasure.toString
         member this.Convert() = this |> WaterfallMeasure.convert
 

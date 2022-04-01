@@ -88,7 +88,8 @@ module ChartPolar =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let marker =
                 Marker
@@ -265,7 +266,8 @@ module ChartPolar =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let changeMode =
                 StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
@@ -427,7 +429,8 @@ module ChartPolar =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let changeMode =
                 let isShowMarker =
@@ -626,7 +629,8 @@ module ChartPolar =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let changeMode =
                 let isShowMarker =
@@ -818,7 +822,8 @@ module ChartPolar =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let changeMode =
                 StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
@@ -972,7 +977,8 @@ module ChartPolar =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let pattern =
                 MarkerPattern

@@ -1,6 +1,7 @@
 ﻿namespace Plotly.NET.ImageExport
 
 open Plotly.NET
+
 /// <summary>
 /// Interface for Engines that render Plotly.NET's GenericChart to static images.
 /// </summary>

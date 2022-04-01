@@ -28,7 +28,9 @@ module internal Hex =
 
     [<CompiledName("Encode")>]
     let encode (prefix: string) (color: byte array) =
-        let hex = Array.zeroCreate (color.Length * 2)
+        let hex =
+            Array.zeroCreate (color.Length * 2)
+
         let mutable n = 0
 
         for i = 0 to color.Length - 1 do
@@ -126,7 +128,9 @@ type ARGB =
 
     /// Converts this Color structure to a human-readable string.
     static member toString c =
-        let a, r, g, b = (int c.A, int c.R, int c.G, int c.B)
+        let a, r, g, b =
+            (int c.A, int c.R, int c.G, int c.B)
+
         sprintf "{Alpha: %i Red: %i Green: %i Blue: %i}" a r g b
 
     static member fromKeyword(c: ColorKeyword) =
@@ -199,5 +203,8 @@ and ColorConverter() =
 
     override _.WriteJson(writer, value, serializer) =
         let c = value :?> Color
-        let jc = JsonConvert.SerializeObject(c.Value)
+
+        let jc =
+            JsonConvert.SerializeObject(c.Value)
+
         writer.WriteRawValue(jc)

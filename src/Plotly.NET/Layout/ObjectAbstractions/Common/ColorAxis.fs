@@ -45,6 +45,7 @@ type ColorAxis() =
             ?ShowScale = ShowScale,
             ?ReverseScale = ReverseScale
         )
+
     /// <summary>
     /// Creates a function that applies the given style parameters to a ColorAxis object
     /// </summary>

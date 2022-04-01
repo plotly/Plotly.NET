@@ -33,7 +33,8 @@ type FinanceMarker() =
             [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle
         ) =
         (fun (financeMarker: FinanceMarker) ->
-            let marker = Marker.init (?Color = MarkerColor)
+            let marker =
+                Marker.init (?Color = MarkerColor)
 
             let line =
                 Line.init (?Color = LineColor, ?Width = LineWidth, ?Dash = LineDash)

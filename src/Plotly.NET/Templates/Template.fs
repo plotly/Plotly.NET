@@ -21,23 +21,20 @@ type Template() =
 
             let traceTemplates =
                 TraceTemplates
-                |> Option.map
-                    (fun traceTemplates ->
-                        traceTemplates
-                        |> Seq.groupBy (fun t -> t.``type``)
-                        |> (fun groupedTemplates ->
-                            groupedTemplates
-                            |> Seq.map
-                                (fun (id, templates) ->
-                                    id,
-                                    templates
-                                    |> Seq.map
-                                        (fun t ->
-                                            let tmp = DynamicObj()
-                                            t.CopyDynamicPropertiesTo(tmp)
-                                            tmp)
+                |> Option.map (fun traceTemplates ->
+                    traceTemplates
+                    |> Seq.groupBy (fun t -> t.``type``)
+                    |> (fun groupedTemplates ->
+                        groupedTemplates
+                        |> Seq.map (fun (id, templates) ->
+                            id,
+                            templates
+                            |> Seq.map (fun t ->
+                                let tmp = DynamicObj()
+                                t.CopyDynamicPropertiesTo(tmp)
+                                tmp)
 
-                                    )))
+                        )))
                 |> fun traceTemplates ->
                     let tmp = DynamicObj()
 
@@ -62,7 +59,6 @@ type Template() =
 
     static member withColorWay (colorway: Color) (template: Template) =
         template
-        |> Template.mapLayoutTemplate
-            (fun l ->
-                colorway |> DynObj.setValue l "colorway"
-                l)
+        |> Template.mapLayoutTemplate (fun l ->
+            colorway |> DynObj.setValue l "colorway"
+            l)

@@ -71,12 +71,11 @@ type Mapbox() =
             Style |> DynObj.setValueOptBy mapBox "style" StyleParam.MapboxStyle.convert
 
             Center
-            |> Option.map
-                (fun (lon, lat) ->
-                    let t = DynamicObj()
-                    t?lon <- lon
-                    t?lat <- lat
-                    t)
+            |> Option.map (fun (lon, lat) ->
+                let t = DynamicObj()
+                t?lon <- lon
+                t?lat <- lat
+                t)
             |> DynObj.setValueOpt mapBox "center"
 
             Zoom |> DynObj.setValueOpt mapBox "zoom"

@@ -10,7 +10,6 @@
     <Compile Include="MessagePrompts.fs" />
     <Compile Include="ProjectInfo.fs" />
     <Compile Include="BasicTasks.fs" />
-    <Compile Include="FormattingTasks.fs" />
     <Compile Include="TestTasks.fs" />
     <Compile Include="PackageTasks.fs" />
     <Compile Include="DocumentationTasks.fs" />

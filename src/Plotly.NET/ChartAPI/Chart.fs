@@ -97,11 +97,10 @@ type Chart =
         trace.Remove("type") |> ignore
 
         GenericChart.ofTraceObject false trace
-        |> GenericChart.mapLayout
-            (fun l ->
-                l
-                |> Layout.setLinearAxis (StyleParam.SubPlotId.XAxis 1, hiddenAxis ())
-                |> Layout.setLinearAxis (StyleParam.SubPlotId.YAxis 1, hiddenAxis ()))
+        |> GenericChart.mapLayout (fun l ->
+            l
+            |> Layout.setLinearAxis (StyleParam.SubPlotId.XAxis 1, hiddenAxis ())
+            |> Layout.setLinearAxis (StyleParam.SubPlotId.YAxis 1, hiddenAxis ()))
 
     //==============================================================================================================
     //======================================== General Trace object styling ========================================
@@ -128,21 +127,20 @@ type Chart =
         ) =
         fun (ch: GenericChart) ->
             ch
-            |> mapiTrace
-                (fun i trace ->
-                    let naming i name =
-                        name |> Option.map (fun v -> if i = 0 then v else sprintf "%s_%i" v i)
+            |> mapiTrace (fun i trace ->
+                let naming i name =
+                    name |> Option.map (fun v -> if i = 0 then v else sprintf "%s_%i" v i)
 
-                    trace
-                    |> TraceStyle.TraceInfo(
-                        ?Name = (naming i Name),
-                        ?Visible = Visible,
-                        ?ShowLegend = ShowLegend,
-                        ?LegendRank = LegendRank,
-                        ?LegendGroup = LegendGroup,
-                        ?LegendGroupTitle = LegendGroupTitle
+                trace
+                |> TraceStyle.TraceInfo(
+                    ?Name = (naming i Name),
+                    ?Visible = Visible,
+                    ?ShowLegend = ShowLegend,
+                    ?LegendRank = LegendRank,
+                    ?LegendGroup = LegendGroup,
+                    ?LegendGroupTitle = LegendGroupTitle
 
-                    ))
+                ))
 
     /// <summary>
     /// Sets the axis anchor ids for the chart's cartesian and/or carpet trace(s).
@@ -165,15 +163,14 @@ type Chart =
 
         fun (ch: GenericChart) ->
             ch
-            |> mapTrace
-                (fun trace ->
-                    match trace with
-                    | :? Trace2D as trace -> trace |> Trace2DStyle.SetAxisAnchor(?X = idx, ?Y = idy) :> Trace
-                    | :? TraceCarpet as trace when trace.``type`` = "carpet" ->
-                        trace |> TraceCarpetStyle.SetAxisAnchor(?X = idx, ?Y = idy) :> Trace
-                    | _ ->
-                        printfn "the input was not a 2D cartesian or carpet trace. no axis anchors set."
-                        trace)
+            |> mapTrace (fun trace ->
+                match trace with
+                | :? Trace2D as trace -> trace |> Trace2DStyle.SetAxisAnchor(?X = idx, ?Y = idy) :> Trace
+                | :? TraceCarpet as trace when trace.``type`` = "carpet" ->
+                    trace |> TraceCarpetStyle.SetAxisAnchor(?X = idx, ?Y = idy) :> Trace
+                | _ ->
+                    printfn "the input was not a 2D cartesian or carpet trace. no axis anchors set."
+                    trace)
 
     /// <summary>
     /// Sets the color axis id for the chart's trace(s).
@@ -992,13 +989,12 @@ type Chart =
             | StyleParam.SubPlotId.XAxis _
             | StyleParam.SubPlotId.YAxis _ ->
                 ch
-                |> GenericChart.mapLayout
-                    (fun layout ->
+                |> GenericChart.mapLayout (fun layout ->
 
-                        if combine then
-                            layout |> Layout.updateLinearAxisById (id, axis = axis)
-                        else
-                            layout |> Layout.setLinearAxis (id, axis = axis))
+                    if combine then
+                        layout |> Layout.updateLinearAxisById (id, axis = axis)
+                    else
+                        layout |> Layout.setLinearAxis (id, axis = axis))
 
             // x, y, and z axes for 3d cartesion plots are set on the scene object on the layout.
             | StyleParam.SubPlotId.Scene _ ->
@@ -1008,45 +1004,44 @@ type Chart =
                     defaultArg SceneAxis (StyleParam.SubPlotId.XAxis 1)
 
                 ch
-                |> GenericChart.mapLayout
-                    (fun layout ->
-                        let scene =
-                            layout |> Layout.getSceneById sceneAxisId
+                |> GenericChart.mapLayout (fun layout ->
+                    let scene =
+                        layout |> Layout.getSceneById sceneAxisId
 
-                        if combine then
-                            let currentAxis =
+                    if combine then
+                        let currentAxis =
+                            match sceneAxisId with
+                            | StyleParam.SubPlotId.XAxis _ -> scene |> Scene.getXAxis
+                            | StyleParam.SubPlotId.YAxis _ -> scene |> Scene.getYAxis
+                            | StyleParam.SubPlotId.ZAxis _ -> scene |> Scene.getZAxis
+                            | _ -> failwith "invalid scene axis id"
+
+                        let updatedAxis =
+                            (DynObj.combine currentAxis axis) :?> LinearAxis
+
+                        let updatedScene =
+                            scene
+                            |> fun s ->
                                 match sceneAxisId with
-                                | StyleParam.SubPlotId.XAxis _ -> scene |> Scene.getXAxis
-                                | StyleParam.SubPlotId.YAxis _ -> scene |> Scene.getYAxis
-                                | StyleParam.SubPlotId.ZAxis _ -> scene |> Scene.getZAxis
+                                | StyleParam.SubPlotId.XAxis _ -> s |> Scene.setXAxis axis
+                                | StyleParam.SubPlotId.YAxis _ -> s |> Scene.setYAxis axis
+                                | StyleParam.SubPlotId.ZAxis _ -> s |> Scene.setZAxis axis
                                 | _ -> failwith "invalid scene axis id"
 
-                            let updatedAxis =
-                                (DynObj.combine currentAxis axis) :?> LinearAxis
+                        layout |> Layout.updateSceneById (id, updatedScene)
 
-                            let updatedScene =
-                                scene
-                                |> fun s ->
-                                    match sceneAxisId with
-                                    | StyleParam.SubPlotId.XAxis _ -> s |> Scene.setXAxis axis
-                                    | StyleParam.SubPlotId.YAxis _ -> s |> Scene.setYAxis axis
-                                    | StyleParam.SubPlotId.ZAxis _ -> s |> Scene.setZAxis axis
-                                    | _ -> failwith "invalid scene axis id"
+                    else
+                        let updatedScene =
+                            layout
+                            |> Layout.getSceneById id
+                            |> fun s ->
+                                match sceneAxisId with
+                                | StyleParam.SubPlotId.XAxis _ -> s |> Scene.setXAxis axis
+                                | StyleParam.SubPlotId.YAxis _ -> s |> Scene.setYAxis axis
+                                | StyleParam.SubPlotId.ZAxis _ -> s |> Scene.setZAxis axis
+                                | _ -> failwith "invalid scene axis id"
 
-                            layout |> Layout.updateSceneById (id, updatedScene)
-
-                        else
-                            let updatedScene =
-                                layout
-                                |> Layout.getSceneById id
-                                |> fun s ->
-                                    match sceneAxisId with
-                                    | StyleParam.SubPlotId.XAxis _ -> s |> Scene.setXAxis axis
-                                    | StyleParam.SubPlotId.YAxis _ -> s |> Scene.setYAxis axis
-                                    | StyleParam.SubPlotId.ZAxis _ -> s |> Scene.setZAxis axis
-                                    | _ -> failwith "invalid scene axis id"
-
-                            layout |> Layout.updateSceneById (id, updatedScene))
+                        layout |> Layout.updateSceneById (id, updatedScene))
 
             | _ -> failwith $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting a xaxis"
 
@@ -1628,26 +1623,26 @@ type Chart =
             | StyleParam.SubPlotId.Polar _ ->
 
                 ch
-                |> GenericChart.mapLayout
-                    (fun layout ->
-                        let polar = layout |> Layout.getPolarById id
+                |> GenericChart.mapLayout (fun layout ->
+                    let polar = layout |> Layout.getPolarById id
 
-                        if combine then
-                            let currentAxis = polar |> Polar.getAngularAxis
+                    if combine then
+                        let currentAxis =
+                            polar |> Polar.getAngularAxis
 
-                            let updatedAxis =
-                                (DynObj.combine currentAxis angularAxis) :?> AngularAxis
+                        let updatedAxis =
+                            (DynObj.combine currentAxis angularAxis) :?> AngularAxis
 
-                            let updatedPolar =
-                                polar |> Polar.setAngularAxis updatedAxis
+                        let updatedPolar =
+                            polar |> Polar.setAngularAxis updatedAxis
 
-                            layout |> Layout.updatePolarById (id, updatedPolar)
+                        layout |> Layout.updatePolarById (id, updatedPolar)
 
-                        else
-                            let updatedPolar =
-                                layout |> Layout.getPolarById id |> Polar.setAngularAxis angularAxis
+                    else
+                        let updatedPolar =
+                            layout |> Layout.getPolarById id |> Polar.setAngularAxis angularAxis
 
-                            layout |> Layout.updatePolarById (id, updatedPolar))
+                        layout |> Layout.updatePolarById (id, updatedPolar))
 
             | _ -> failwith $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting an angular axis"
 
@@ -1687,25 +1682,26 @@ type Chart =
             | StyleParam.SubPlotId.Polar _ ->
 
                 ch
-                |> GenericChart.mapLayout
-                    (fun layout ->
-                        let polar = layout |> Layout.getPolarById id
+                |> GenericChart.mapLayout (fun layout ->
+                    let polar = layout |> Layout.getPolarById id
 
-                        if combine then
-                            let currentAxis = polar |> Polar.getRadialAxis
+                    if combine then
+                        let currentAxis =
+                            polar |> Polar.getRadialAxis
 
-                            let updatedAxis =
-                                (DynObj.combine currentAxis radialAxis) :?> RadialAxis
+                        let updatedAxis =
+                            (DynObj.combine currentAxis radialAxis) :?> RadialAxis
 
-                            let updatedPolar = polar |> Polar.setRadialAxis updatedAxis
+                        let updatedPolar =
+                            polar |> Polar.setRadialAxis updatedAxis
 
-                            layout |> Layout.updatePolarById (id, updatedPolar)
+                        layout |> Layout.updatePolarById (id, updatedPolar)
 
-                        else
-                            let updatedPolar =
-                                layout |> Layout.getPolarById id |> Polar.setRadialAxis radialAxis
+                    else
+                        let updatedPolar =
+                            layout |> Layout.getPolarById id |> Polar.setRadialAxis radialAxis
 
-                            layout |> Layout.updatePolarById (id, updatedPolar))
+                        layout |> Layout.updatePolarById (id, updatedPolar))
 
             | _ -> failwith $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting an radial axis"
 
@@ -1802,26 +1798,26 @@ type Chart =
             | StyleParam.SubPlotId.Smith _ ->
 
                 ch
-                |> GenericChart.mapLayout
-                    (fun layout ->
-                        let smith = layout |> Layout.getSmithById id
+                |> GenericChart.mapLayout (fun layout ->
+                    let smith = layout |> Layout.getSmithById id
 
-                        if combine then
-                            let currentAxis = smith |> Smith.getImaginaryAxis
+                    if combine then
+                        let currentAxis =
+                            smith |> Smith.getImaginaryAxis
 
-                            let updatedAxis =
-                                (DynObj.combine currentAxis imaginaryAxis) :?> ImaginaryAxis
+                        let updatedAxis =
+                            (DynObj.combine currentAxis imaginaryAxis) :?> ImaginaryAxis
 
-                            let updatedSmith =
-                                smith |> Smith.setImaginaryAxis updatedAxis
+                        let updatedSmith =
+                            smith |> Smith.setImaginaryAxis updatedAxis
 
-                            layout |> Layout.updateSmithById (id, updatedSmith)
+                        layout |> Layout.updateSmithById (id, updatedSmith)
 
-                        else
-                            let updatedSmith =
-                                layout |> Layout.getSmithById id |> Smith.setImaginaryAxis imaginaryAxis
+                    else
+                        let updatedSmith =
+                            layout |> Layout.getSmithById id |> Smith.setImaginaryAxis imaginaryAxis
 
-                            layout |> Layout.updateSmithById (id, updatedSmith))
+                        layout |> Layout.updateSmithById (id, updatedSmith))
 
             | _ -> failwith $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting an imaginary Axis"
 
@@ -1861,25 +1857,25 @@ type Chart =
             | StyleParam.SubPlotId.Smith _ ->
 
                 ch
-                |> GenericChart.mapLayout
-                    (fun layout ->
-                        let smith = layout |> Layout.getSmithById id
+                |> GenericChart.mapLayout (fun layout ->
+                    let smith = layout |> Layout.getSmithById id
 
-                        if combine then
-                            let currentAxis = smith |> Smith.getRealAxis
+                    if combine then
+                        let currentAxis = smith |> Smith.getRealAxis
 
-                            let updatedAxis =
-                                (DynObj.combine currentAxis realAxis) :?> RealAxis
+                        let updatedAxis =
+                            (DynObj.combine currentAxis realAxis) :?> RealAxis
 
-                            let updatedSmith = smith |> Smith.setRealAxis updatedAxis
+                        let updatedSmith =
+                            smith |> Smith.setRealAxis updatedAxis
 
-                            layout |> Layout.updateSmithById (id, updatedSmith)
+                        layout |> Layout.updateSmithById (id, updatedSmith)
 
-                        else
-                            let updatedSmith =
-                                layout |> Layout.getSmithById id |> Smith.setRealAxis realAxis
+                    else
+                        let updatedSmith =
+                            layout |> Layout.getSmithById id |> Smith.setRealAxis realAxis
 
-                            layout |> Layout.updateSmithById (id, updatedSmith))
+                        layout |> Layout.updateSmithById (id, updatedSmith))
 
             | _ -> failwith $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting an real axis"
 
@@ -2242,25 +2238,27 @@ type Chart =
             | StyleParam.SubPlotId.Ternary _ ->
 
                 ch
-                |> GenericChart.mapLayout
-                    (fun layout ->
-                        let ternary = layout |> Layout.getTernaryById id
+                |> GenericChart.mapLayout (fun layout ->
+                    let ternary =
+                        layout |> Layout.getTernaryById id
 
-                        if combine then
-                            let currentAxis = ternary |> Ternary.getAAxis
+                    if combine then
+                        let currentAxis =
+                            ternary |> Ternary.getAAxis
 
-                            let updatedAxis =
-                                (DynObj.combine currentAxis aAxis) :?> LinearAxis
+                        let updatedAxis =
+                            (DynObj.combine currentAxis aAxis) :?> LinearAxis
 
-                            let updatedTernary = ternary |> Ternary.setAAxis updatedAxis
+                        let updatedTernary =
+                            ternary |> Ternary.setAAxis updatedAxis
 
-                            layout |> Layout.updateTernaryById (id, updatedTernary)
+                        layout |> Layout.updateTernaryById (id, updatedTernary)
 
-                        else
-                            let updatedTernary =
-                                layout |> Layout.getTernaryById id |> Ternary.setAAxis aAxis
+                    else
+                        let updatedTernary =
+                            layout |> Layout.getTernaryById id |> Ternary.setAAxis aAxis
 
-                            layout |> Layout.updateTernaryById (id, updatedTernary))
+                        layout |> Layout.updateTernaryById (id, updatedTernary))
 
             | _ -> failwith $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting an a axis"
 
@@ -2300,25 +2298,27 @@ type Chart =
             | StyleParam.SubPlotId.Ternary _ ->
 
                 ch
-                |> GenericChart.mapLayout
-                    (fun layout ->
-                        let ternary = layout |> Layout.getTernaryById id
+                |> GenericChart.mapLayout (fun layout ->
+                    let ternary =
+                        layout |> Layout.getTernaryById id
 
-                        if combine then
-                            let currentAxis = ternary |> Ternary.getBAxis
+                    if combine then
+                        let currentAxis =
+                            ternary |> Ternary.getBAxis
 
-                            let updatedAxis =
-                                (DynObj.combine currentAxis bAxis) :?> LinearAxis
+                        let updatedAxis =
+                            (DynObj.combine currentAxis bAxis) :?> LinearAxis
 
-                            let updatedTernary = ternary |> Ternary.setBAxis updatedAxis
+                        let updatedTernary =
+                            ternary |> Ternary.setBAxis updatedAxis
 
-                            layout |> Layout.updateTernaryById (id, updatedTernary)
+                        layout |> Layout.updateTernaryById (id, updatedTernary)
 
-                        else
-                            let updatedTernary =
-                                layout |> Layout.getTernaryById id |> Ternary.setBAxis bAxis
+                    else
+                        let updatedTernary =
+                            layout |> Layout.getTernaryById id |> Ternary.setBAxis bAxis
 
-                            layout |> Layout.updateTernaryById (id, updatedTernary))
+                        layout |> Layout.updateTernaryById (id, updatedTernary))
 
             | _ -> failwith $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting a b axis"
 
@@ -2358,25 +2358,27 @@ type Chart =
             | StyleParam.SubPlotId.Ternary _ ->
 
                 ch
-                |> GenericChart.mapLayout
-                    (fun layout ->
-                        let ternary = layout |> Layout.getTernaryById id
+                |> GenericChart.mapLayout (fun layout ->
+                    let ternary =
+                        layout |> Layout.getTernaryById id
 
-                        if combine then
-                            let currentAxis = ternary |> Ternary.getCAxis
+                    if combine then
+                        let currentAxis =
+                            ternary |> Ternary.getCAxis
 
-                            let updatedAxis =
-                                (DynObj.combine currentAxis cAxis) :?> LinearAxis
+                        let updatedAxis =
+                            (DynObj.combine currentAxis cAxis) :?> LinearAxis
 
-                            let updatedTernary = ternary |> Ternary.setCAxis updatedAxis
+                        let updatedTernary =
+                            ternary |> Ternary.setCAxis updatedAxis
 
-                            layout |> Layout.updateTernaryById (id, updatedTernary)
+                        layout |> Layout.updateTernaryById (id, updatedTernary)
 
-                        else
-                            let updatedTernary =
-                                layout |> Layout.getTernaryById id |> Ternary.setBAxis cAxis
+                    else
+                        let updatedTernary =
+                            layout |> Layout.getTernaryById id |> Ternary.setBAxis cAxis
 
-                            layout |> Layout.updateTernaryById (id, updatedTernary))
+                        layout |> Layout.updateTernaryById (id, updatedTernary))
 
             | _ -> failwith $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting a c axis"
 
@@ -2621,7 +2623,9 @@ type Chart =
     [<CompiledName("WithTitle")>]
     static member withTitle(title) =
         (fun (ch: GenericChart) ->
-            let layout = Layout() |> Layout.style (Title = title)
+            let layout =
+                Layout() |> Layout.style (Title = title)
+
             GenericChart.addLayout layout ch)
 
     // Set showLegend of a Chart
@@ -2846,138 +2850,131 @@ type Chart =
 
             gCharts
             |> Seq.zip gridCoordinates
-            |> Seq.mapi
-                (fun i ((rowIndex, colIndex), gChart) ->
+            |> Seq.mapi (fun i ((rowIndex, colIndex), gChart) ->
 
-                    let layout = gChart |> GenericChart.getLayout
+                let layout =
+                    gChart |> GenericChart.getLayout
 
-                    match TraceID.ofTraces (gChart |> GenericChart.getTraces) with
-                    | TraceID.Multi ->
-                        failwith
-                            $"the trace for ({rowIndex},{colIndex}) contains multiple different subplot types. this is not supported."
-                    | TraceID.Cartesian2D
-                    | TraceID.Carpet ->
+                match TraceID.ofTraces (gChart |> GenericChart.getTraces) with
+                | TraceID.Multi ->
+                    failwith
+                        $"the trace for ({rowIndex},{colIndex}) contains multiple different subplot types. this is not supported."
+                | TraceID.Cartesian2D
+                | TraceID.Carpet ->
 
-                        let xAxis =
-                            layout.TryGetTypedValue<LinearAxis> "xaxis" |> Option.defaultValue (LinearAxis.init ())
+                    let xAxis =
+                        layout.TryGetTypedValue<LinearAxis> "xaxis" |> Option.defaultValue (LinearAxis.init ())
 
-                        let yAxis =
-                            layout.TryGetTypedValue<LinearAxis> "yaxis" |> Option.defaultValue (LinearAxis.init ())
+                    let yAxis =
+                        layout.TryGetTypedValue<LinearAxis> "yaxis" |> Option.defaultValue (LinearAxis.init ())
 
-                        let xAnchor, yAnchor =
-                            if hasSharedAxes then
-                                colIndex, rowIndex //set axis anchors according to grid coordinates
-                            else
-                                i + 1, i + 1
+                    let xAnchor, yAnchor =
+                        if hasSharedAxes then
+                            colIndex, rowIndex //set axis anchors according to grid coordinates
+                        else
+                            i + 1, i + 1
 
-                        gChart
-                        |> Chart.withAxisAnchor (xAnchor, yAnchor) // set adapted axis anchors
-                        |> Chart.withXAxis (xAxis, (StyleParam.SubPlotId.XAxis(i + 1))) // set previous axis with adapted id (one individual axis for each subplot, wether or not they will be used later)
-                        |> Chart.withYAxis (yAxis, (StyleParam.SubPlotId.YAxis(i + 1))) // set previous axis with adapted id (one individual axis for each subplot, wether or not they will be used later)
-                        |> GenericChart.mapLayout
-                            (fun l ->
-                                if i > 0 then
-                                    // remove default axes from consecutive charts, otherwise they will override the first one
-                                    l.Remove("xaxis") |> ignore
-                                    l.Remove("yaxis") |> ignore
+                    gChart
+                    |> Chart.withAxisAnchor (xAnchor, yAnchor) // set adapted axis anchors
+                    |> Chart.withXAxis (xAxis, (StyleParam.SubPlotId.XAxis(i + 1))) // set previous axis with adapted id (one individual axis for each subplot, wether or not they will be used later)
+                    |> Chart.withYAxis (yAxis, (StyleParam.SubPlotId.YAxis(i + 1))) // set previous axis with adapted id (one individual axis for each subplot, wether or not they will be used later)
+                    |> GenericChart.mapLayout (fun l ->
+                        if i > 0 then
+                            // remove default axes from consecutive charts, otherwise they will override the first one
+                            l.Remove("xaxis") |> ignore
+                            l.Remove("yaxis") |> ignore
 
-                                l)
-                    | TraceID.Cartesian3D ->
+                        l)
+                | TraceID.Cartesian3D ->
 
-                        let scene =
-                            layout.TryGetTypedValue<Scene> "scene"
-                            |> Option.defaultValue (Scene.init ())
-                            |> Scene.style (
-                                Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1)
-                            )
+                    let scene =
+                        layout.TryGetTypedValue<Scene> "scene"
+                        |> Option.defaultValue (Scene.init ())
+                        |> Scene.style (Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1))
 
-                        let sceneAnchor = StyleParam.SubPlotId.Scene(i + 1)
+                    let sceneAnchor =
+                        StyleParam.SubPlotId.Scene(i + 1)
 
-                        gChart
-                        |> GenericChart.mapTrace (fun t -> t :?> Trace3D |> Trace3DStyle.SetScene sceneAnchor :> Trace)
-                        |> Chart.withScene (scene, (i + 1))
-                    | TraceID.Polar ->
+                    gChart
+                    |> GenericChart.mapTrace (fun t -> t :?> Trace3D |> Trace3DStyle.SetScene sceneAnchor :> Trace)
+                    |> Chart.withScene (scene, (i + 1))
+                | TraceID.Polar ->
 
-                        let polar =
-                            layout.TryGetTypedValue<Polar> "polar"
-                            |> Option.defaultValue (Polar.init ())
-                            |> Polar.style (
-                                Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1)
-                            )
+                    let polar =
+                        layout.TryGetTypedValue<Polar> "polar"
+                        |> Option.defaultValue (Polar.init ())
+                        |> Polar.style (Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1))
 
-                        let polarAnchor = StyleParam.SubPlotId.Polar(i + 1)
+                    let polarAnchor =
+                        StyleParam.SubPlotId.Polar(i + 1)
 
-                        gChart
-                        |> GenericChart.mapTrace
-                            (fun t -> t :?> TracePolar |> TracePolarStyle.SetPolar polarAnchor :> Trace)
-                        |> Chart.withPolar (polar, (i + 1))
+                    gChart
+                    |> GenericChart.mapTrace (fun t -> t :?> TracePolar |> TracePolarStyle.SetPolar polarAnchor :> Trace)
+                    |> Chart.withPolar (polar, (i + 1))
 
-                    | TraceID.Smith ->
+                | TraceID.Smith ->
 
-                        let smith =
-                            layout.TryGetTypedValue<Smith> "smith"
-                            |> Option.defaultValue (Smith.init ())
-                            |> Smith.style (
-                                Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1)
-                            )
+                    let smith =
+                        layout.TryGetTypedValue<Smith> "smith"
+                        |> Option.defaultValue (Smith.init ())
+                        |> Smith.style (Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1))
 
-                        let polarAnchor = StyleParam.SubPlotId.Smith(i + 1)
+                    let polarAnchor =
+                        StyleParam.SubPlotId.Smith(i + 1)
 
-                        gChart
-                        |> GenericChart.mapTrace
-                            (fun t -> t :?> TraceSmith |> TraceSmithStyle.SetSmith polarAnchor :> Trace)
-                        |> Chart.withSmith (smith, (i + 1))
+                    gChart
+                    |> GenericChart.mapTrace (fun t -> t :?> TraceSmith |> TraceSmithStyle.SetSmith polarAnchor :> Trace)
+                    |> Chart.withSmith (smith, (i + 1))
 
-                    | TraceID.Geo ->
-                        let geo =
-                            layout.TryGetTypedValue<Geo> "geo"
-                            |> Option.defaultValue (Geo.init ())
-                            |> Geo.style (
-                                Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1)
-                            )
+                | TraceID.Geo ->
+                    let geo =
+                        layout.TryGetTypedValue<Geo> "geo"
+                        |> Option.defaultValue (Geo.init ())
+                        |> Geo.style (Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1))
 
-                        let geoAnchor = StyleParam.SubPlotId.Geo(i + 1)
+                    let geoAnchor =
+                        StyleParam.SubPlotId.Geo(i + 1)
 
-                        gChart
-                        |> GenericChart.mapTrace (fun t -> t :?> TraceGeo |> TraceGeoStyle.SetGeo geoAnchor :> Trace)
-                        |> Chart.withGeo (geo, (i + 1))
-                    | TraceID.Mapbox ->
-                        let mapbox =
-                            layout.TryGetTypedValue<Mapbox> "mapbox"
-                            |> Option.defaultValue (Mapbox.init ())
-                            |> Mapbox.style (
-                                Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1)
-                            )
+                    gChart
+                    |> GenericChart.mapTrace (fun t -> t :?> TraceGeo |> TraceGeoStyle.SetGeo geoAnchor :> Trace)
+                    |> Chart.withGeo (geo, (i + 1))
+                | TraceID.Mapbox ->
+                    let mapbox =
+                        layout.TryGetTypedValue<Mapbox> "mapbox"
+                        |> Option.defaultValue (Mapbox.init ())
+                        |> Mapbox.style (Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1))
 
-                        let mapboxAnchor = StyleParam.SubPlotId.Mapbox(i + 1)
+                    let mapboxAnchor =
+                        StyleParam.SubPlotId.Mapbox(i + 1)
 
-                        gChart
-                        |> GenericChart.mapTrace
-                            (fun t -> t :?> TraceMapbox |> TraceMapboxStyle.SetMapbox mapboxAnchor :> Trace)
-                        |> Chart.withMapbox (mapbox, (i + 1))
-                    | TraceID.Domain ->
-                        let newDomain =
-                            LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1)
+                    gChart
+                    |> GenericChart.mapTrace (fun t ->
+                        t :?> TraceMapbox |> TraceMapboxStyle.SetMapbox mapboxAnchor :> Trace)
+                    |> Chart.withMapbox (mapbox, (i + 1))
+                | TraceID.Domain ->
+                    let newDomain =
+                        LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1)
 
-                        gChart
-                        |> GenericChart.mapTrace
-                            (fun t -> t :?> TraceDomain |> TraceDomainStyle.SetDomain newDomain :> Trace)
+                    gChart
+                    |> GenericChart.mapTrace (fun t ->
+                        t :?> TraceDomain |> TraceDomainStyle.SetDomain newDomain :> Trace)
 
-                    | TraceID.Ternary ->
+                | TraceID.Ternary ->
 
-                        let ternary =
-                            layout.TryGetTypedValue<Ternary> "ternary"
-                            |> Option.defaultValue (Ternary.init ())
-                            |> Ternary.style (
-                                Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1)
-                            )
+                    let ternary =
+                        layout.TryGetTypedValue<Ternary> "ternary"
+                        |> Option.defaultValue (Ternary.init ())
+                        |> Ternary.style (
+                            Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1)
+                        )
 
-                        let ternaryAnchor = StyleParam.SubPlotId.Ternary(i + 1)
+                    let ternaryAnchor =
+                        StyleParam.SubPlotId.Ternary(i + 1)
 
-                        gChart
-                        |> GenericChart.mapTrace
-                            (fun t -> t :?> TraceTernary |> TraceTernaryStyle.SetTernary ternaryAnchor :> Trace)
-                        |> Chart.withTernary (ternary, (i + 1)))
+                    gChart
+                    |> GenericChart.mapTrace (fun t ->
+                        t :?> TraceTernary |> TraceTernaryStyle.SetTernary ternaryAnchor :> Trace)
+                    |> Chart.withTernary (ternary, (i + 1)))
             |> Chart.combine
             |> Chart.withLayoutGrid (
                 LayoutGrid.init (
@@ -3046,19 +3043,18 @@ type Chart =
 
                 let newGrid =
                     copy
-                    |> Seq.map
-                        (fun (row) ->
-                            let nCharts = Seq.length row
+                    |> Seq.map (fun (row) ->
+                        let nCharts = Seq.length row
 
-                            if nCharts <> nCols then
-                                seq {
-                                    yield! row
+                        if nCharts <> nCols then
+                            seq {
+                                yield! row
 
-                                    for i in nCharts .. nCols - 1 do
-                                        yield Chart.Invisible()
-                                }
-                            else
-                                row)
+                                for i in nCharts .. nCols - 1 do
+                                    yield Chart.Invisible()
+                            }
+                        else
+                            row)
                     |> Seq.concat
 
                 newGrid
@@ -3152,22 +3148,20 @@ type Chart =
     [<CompiledName("WithAdditionalHeadTags")>]
     static member withAdditionalHeadTags (additionalHeadTags: seq<string>) (ch: GenericChart) =
         ch
-        |> mapDisplayOptions
-            (fun d ->
-                let tags =
-                    d.TryGetTypedValue<seq<string>>("AdditionalHeadTags")
+        |> mapDisplayOptions (fun d ->
+            let tags =
+                d.TryGetTypedValue<seq<string>>("AdditionalHeadTags")
 
-                let newTags =
-                    tags
-                    |> Option.map
-                        (fun tags ->
-                            seq {
-                                yield! tags
-                                yield! additionalHeadTags
-                            })
-                    |> Option.defaultValue additionalHeadTags
+            let newTags =
+                tags
+                |> Option.map (fun tags ->
+                    seq {
+                        yield! tags
+                        yield! additionalHeadTags
+                    })
+                |> Option.defaultValue additionalHeadTags
 
-                d |> DisplayOptions.style (AdditionalHeadTags = newTags))
+            d |> DisplayOptions.style (AdditionalHeadTags = newTags))
 
     /// Sets the given additional head tags on the chart's DisplayOptions. They will be included in the document's <head>
     [<CompiledName("WithHeadTags")>]

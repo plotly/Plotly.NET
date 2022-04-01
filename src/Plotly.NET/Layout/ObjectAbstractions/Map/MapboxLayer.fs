@@ -91,21 +91,19 @@ type MapboxLayer() =
             MaxZoom |> DynObj.setValueOpt mapBoxLayer "maxzoom"
 
             CircleRadius
-            |> Option.map
-                (fun r ->
-                    let circle = DynamicObj()
-                    circle?radius <- r
-                    circle)
+            |> Option.map (fun r ->
+                let circle = DynamicObj()
+                circle?radius <- r
+                circle)
             |> DynObj.setValueOpt mapBoxLayer "circle"
 
             Line |> DynObj.setValueOpt mapBoxLayer "line"
 
             FillOutlineColor
-            |> Option.map
-                (fun c ->
-                    let fill = DynamicObj()
-                    fill?outlinecolor <- c
-                    fill)
+            |> Option.map (fun c ->
+                let fill = DynamicObj()
+                fill?outlinecolor <- c
+                fill)
             |> DynObj.setValueOpt mapBoxLayer "fill"
 
             Symbol |> DynObj.setValueOpt mapBoxLayer "symbol"

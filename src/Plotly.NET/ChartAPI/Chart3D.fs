@@ -81,7 +81,8 @@ module Chart3D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let marker =
                 Marker
@@ -185,7 +186,9 @@ module Chart3D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
+
             let x, y, z = Seq.unzip3 xyz
 
             Chart.Scatter3D(
@@ -594,7 +597,8 @@ module Chart3D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let changeMode =
                 StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
@@ -818,7 +822,8 @@ module Chart3D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             Trace3D.initSurface (
                 Trace3DStyle.Surface(
@@ -895,7 +900,8 @@ module Chart3D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             Trace3D.initMesh3D (
                 Trace3DStyle.Mesh3D(
@@ -1047,7 +1053,8 @@ module Chart3D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             Trace3D.initCone (
                 Trace3DStyle.Cone(
@@ -1256,7 +1263,8 @@ module Chart3D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             Trace3D.initStreamTube (
                 Trace3DStyle.StreamTube(
@@ -1324,7 +1332,9 @@ module Chart3D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
+
             let x, y, z = Seq.unzip3 streamTubeXYZ
             let u, v, w = Seq.unzip3 streamTubeUVW
 
@@ -1471,7 +1481,8 @@ module Chart3D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             Trace3D.initVolume (
                 Trace3DStyle.Volume(
@@ -1549,7 +1560,8 @@ module Chart3D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             Trace3D.initIsoSurface (
                 Trace3DStyle.IsoSurface(

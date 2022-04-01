@@ -85,7 +85,9 @@ type Dimension() =
         ) =
         (fun (dims: Dimension) ->
 
-            let axis = LinearAxis.init (?AxisType = AxisType)
+            let axis =
+                LinearAxis.init (?AxisType = AxisType)
+
             AxisMatches |> DynObj.setValueOpt axis "matches"
 
             Label |> DynObj.setValueOpt dims "label"

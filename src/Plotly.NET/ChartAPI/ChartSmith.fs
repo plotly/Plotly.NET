@@ -79,7 +79,8 @@ module ChartSmith =
                 [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let marker =
                 Marker
@@ -679,7 +680,8 @@ module ChartSmith =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let real, imag, sizes = Seq.unzip3 realImagSizes
+            let real, imag, sizes =
+                Seq.unzip3 realImagSizes
 
             Chart.BubbleSmith(
                 real,

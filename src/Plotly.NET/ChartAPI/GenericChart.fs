@@ -49,7 +49,9 @@ module HTML =
 
 
     let chart =
-        let newScript = new System.Text.StringBuilder()
+        let newScript =
+            new System.Text.StringBuilder()
+
         newScript.AppendLine("""<div id="[ID]"><!-- Plotly chart will be drawn inside this DIV --></div>""") |> ignore
         newScript.AppendLine("<script type=\"text/javascript\">") |> ignore
 
@@ -124,7 +126,9 @@ module HTML =
 module GenericChart =
 
 
-    let internal jsonConfig = JsonSerializerSettings()
+    let internal jsonConfig =
+        JsonSerializerSettings()
+
     jsonConfig.ReferenceLoopHandling <- ReferenceLoopHandling.Serialize
 
     type Figure =
@@ -302,37 +306,31 @@ module GenericChart =
             DynObj.combine first second |> unbox |> DisplayOptions.style (?AdditionalHeadTags = additionalHeadTags)
 
         gCharts
-        |> Seq.reduce
-            (fun acc elem ->
-                match acc, elem with
-                | MultiChart (traces, l1, c1, d1), Chart (trace, l2, c2, d2) ->
-                    MultiChart(
-                        List.append traces [ trace ],
-                        combineLayouts l1 l2,
-                        combineConfigs c1 c2,
-                        combineDisplayOptions d1 d2
-                    )
-                | MultiChart (traces1, l1, c1, d1), MultiChart (traces2, l2, c2, d2) ->
-                    MultiChart(
-                        List.append traces1 traces2,
-                        combineLayouts l1 l2,
-                        combineConfigs c1 c2,
-                        combineDisplayOptions d1 d2
-                    )
-                | Chart (trace1, l1, c1, d1), Chart (trace2, l2, c2, d2) ->
-                    MultiChart(
-                        [ trace1; trace2 ],
-                        combineLayouts l1 l2,
-                        combineConfigs c1 c2,
-                        combineDisplayOptions d1 d2
-                    )
-                | Chart (trace, l1, c1, d1), MultiChart (traces, l2, c2, d2) ->
-                    MultiChart(
-                        List.append [ trace ] traces,
-                        combineLayouts l1 l2,
-                        combineConfigs c1 c2,
-                        combineDisplayOptions d1 d2
-                    ))
+        |> Seq.reduce (fun acc elem ->
+            match acc, elem with
+            | MultiChart (traces, l1, c1, d1), Chart (trace, l2, c2, d2) ->
+                MultiChart(
+                    List.append traces [ trace ],
+                    combineLayouts l1 l2,
+                    combineConfigs c1 c2,
+                    combineDisplayOptions d1 d2
+                )
+            | MultiChart (traces1, l1, c1, d1), MultiChart (traces2, l2, c2, d2) ->
+                MultiChart(
+                    List.append traces1 traces2,
+                    combineLayouts l1 l2,
+                    combineConfigs c1 c2,
+                    combineDisplayOptions d1 d2
+                )
+            | Chart (trace1, l1, c1, d1), Chart (trace2, l2, c2, d2) ->
+                MultiChart([ trace1; trace2 ], combineLayouts l1 l2, combineConfigs c1 c2, combineDisplayOptions d1 d2)
+            | Chart (trace, l1, c1, d1), MultiChart (traces, l2, c2, d2) ->
+                MultiChart(
+                    List.append [ trace ] traces,
+                    combineLayouts l1 l2,
+                    combineConfigs c1 c2,
+                    combineDisplayOptions d1 d2
+                ))
 
     // let private materialzeLayout (layout:(Layout -> Layout) list) =
     //     let rec reduce fl v =
@@ -418,13 +416,6 @@ module GenericChart =
         HTML.doc.Replace("[CHART]", chartMarkup) |> DisplayOptions.replaceHtmlPlaceholders displayOpts
 
     [<Obsolete("This function will be dropped in the 2.0 release. Create either a static chart (e.g using Config.init(StaticPlot=true)) or use Plotly.NET.ImageExport")>]
-    /// Converts a GenericChart to its Image representation
-    ///
-    /// This function is obsolete and will soon be dropped.
-    ///
-    /// Either use a static plot config (e.g. myChart |> Chart.withConfig(Config.init(StaticPlot=true)) https://plotly.net/00_3_chart-config.html#Static-plots
-    ///
-    /// or use the Plotly.NET.ImageExport package https://www.nuget.org/packages/Plotly.NET.ImageExport/
     let toChartImage (format: StyleParam.ImageFormat) gChart =
 
         let guid = Guid.NewGuid().ToString()

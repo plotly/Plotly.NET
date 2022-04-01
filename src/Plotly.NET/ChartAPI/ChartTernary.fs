@@ -79,7 +79,8 @@ module ChartTernary =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let marker =
                 Marker
@@ -525,7 +526,6 @@ module ChartTernary =
 
             )
 
-        /// <summary>
         //// Creates a bubble plot on a ternary coordinate system
         ///
         /// A bubble chart is a variation of the Point chart, where the data points get an additional scale by being rendered as bubbles of different sizes.
@@ -587,7 +587,8 @@ module ChartTernary =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             // if text position or font is set than show labels (not only when hovering)
             let changeMode =

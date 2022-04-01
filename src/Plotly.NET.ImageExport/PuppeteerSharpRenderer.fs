@@ -14,7 +14,8 @@ module PuppeteerSharpRendererOptions =
     let mutable launchOptions = LaunchOptions()
     launchOptions.Timeout <- 60000
 
-    let mutable localBrowserExecutablePath = None
+    let mutable localBrowserExecutablePath =
+        None
 
 
 type PuppeteerSharpRenderer() =
@@ -25,15 +26,13 @@ type PuppeteerSharpRenderer() =
     let toFullScreenHtml (gChart: GenericChart.GenericChart) =
 
         gChart
-        |> GenericChart.mapConfig
-            (fun c ->
-                DynObj.setValue c "responsive" true
-                c)
-        |> GenericChart.mapLayout
-            (fun l ->
-                DynObj.setValue l "width" "100%"
-                DynObj.setValue l "height" "100%"
-                l)
+        |> GenericChart.mapConfig (fun c ->
+            DynObj.setValue c "responsive" true
+            c)
+        |> GenericChart.mapLayout (fun l ->
+            DynObj.setValue l "width" "100%"
+            DynObj.setValue l "height" "100%"
+            l)
         |> GenericChart.toChartHTML
         |> fun html -> html.Replace("width: 600px; height: 600px;", "width: 100%; height: 100%;")
 
@@ -41,7 +40,8 @@ type PuppeteerSharpRenderer() =
     ///
     /// adds the necessary js function calls to render an image with plotly.js
     let patchHtml width height (format: StyleParam.ImageFormat) html =
-        let regex = Regex(@"(Plotly\.newPlot\(.+?\))")
+        let regex =
+            Regex(@"(Plotly\.newPlot\(.+?\))")
 
         let patchedHtml =
             regex.Replace(

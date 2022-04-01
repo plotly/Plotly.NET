@@ -74,7 +74,8 @@ module ChartCarpet =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             TraceCarpet.initCarpet (
                 TraceCarpetStyle.Carpet(
@@ -160,7 +161,8 @@ module ChartCarpet =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let marker =
                 Marker
@@ -341,7 +343,8 @@ module ChartCarpet =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let changeMode =
                 StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
@@ -684,7 +687,8 @@ module ChartCarpet =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let changeMode =
                 let isShowMarker =
@@ -892,7 +896,8 @@ module ChartCarpet =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let changeMode =
                 StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
@@ -1085,7 +1090,8 @@ module ChartCarpet =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let line =
                 ContourLine

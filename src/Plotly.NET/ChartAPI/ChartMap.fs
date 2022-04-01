@@ -56,7 +56,8 @@ module ChartMap =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             TraceGeo.initChoroplethMap (
                 TraceGeoStyle.ChoroplethMap(
@@ -141,7 +142,8 @@ module ChartMap =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let marker =
                 Marker
@@ -345,7 +347,8 @@ module ChartMap =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let marker =
                 Marker
@@ -960,7 +963,8 @@ module ChartMap =
             let changeMode =
                 StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let marker =
                 Marker
@@ -1044,7 +1048,8 @@ module ChartMap =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let longitudes, latitudes, sizes = Seq.unzip3 lonlatsizes
+            let longitudes, latitudes, sizes =
+                Seq.unzip3 lonlatsizes
 
             Chart.BubbleGeo(
                 longitudes,
@@ -1209,7 +1214,8 @@ module ChartMap =
             ) =
 
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let marker =
                 Marker
@@ -1723,7 +1729,8 @@ module ChartMap =
             let changeMode =
                 StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let marker =
                 Marker
@@ -1803,7 +1810,8 @@ module ChartMap =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let longitudes, latitudes, sizes = Seq.unzip3 lonlatsizes
+            let longitudes, latitudes, sizes =
+                Seq.unzip3 lonlatsizes
 
             Chart.BubbleMapbox(
                 longitudes,
@@ -1871,7 +1879,8 @@ module ChartMap =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             TraceMapbox.initChoroplethMapbox (
                 TraceMapboxStyle.ChoroplethMapbox(
@@ -1934,7 +1943,8 @@ module ChartMap =
                 [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             TraceMapbox.initDensityMapbox (
                 TraceMapboxStyle.DensityMapbox(

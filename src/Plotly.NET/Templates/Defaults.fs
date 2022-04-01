@@ -20,13 +20,16 @@ module Defaults =
     let mutable DefaultHeight = 600
 
     /// The default chart config. Default: Config.init (Responsive = true)
-    let mutable DefaultConfig = Config.init (Responsive = true)
+    let mutable DefaultConfig =
+        Config.init (Responsive = true)
 
     /// The display options used for generating html. Default: DisplayOptions.init ()
-    let mutable DefaultDisplayOptions = DisplayOptions.init ()
+    let mutable DefaultDisplayOptions =
+        DisplayOptions.init ()
 
     /// The default chart template. Default: ChartTemplates.plotly
-    let mutable DefaultTemplate = ChartTemplates.plotly
+    let mutable DefaultTemplate =
+        ChartTemplates.plotly
 
     /// reset global defaults to the initial values
     let reset () =

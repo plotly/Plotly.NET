@@ -417,9 +417,7 @@ type Config() =
             ToImageButtonOptions |> DynObj.setValueOpt config "toImageButtonOptions"
 
             ModeBarButtonsToAdd
-            |> DynObj.setValueOptBy
-                config
-                "modeBarButtonsToAdd"
-                (fun x -> x |> Seq.map StyleParam.ModeBarButton.toString)
+            |> DynObj.setValueOptBy config "modeBarButtonsToAdd" (fun x ->
+                x |> Seq.map StyleParam.ModeBarButton.toString)
 
             config

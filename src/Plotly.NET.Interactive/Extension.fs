@@ -10,10 +10,9 @@ type FormatterKernelExtension() =
 
     let registerFormatter () =
         Formatter.Register<GenericChart>(
-            Action<_, _>
-                (fun chart (writer: IO.TextWriter) ->
-                    let html = toChartHTML chart
-                    writer.Write(html)),
+            Action<_, _> (fun chart (writer: IO.TextWriter) ->
+                let html = toChartHTML chart
+                writer.Write(html)),
             HtmlFormatter.MimeType
         )
 

@@ -186,12 +186,11 @@ type Geo() =
             Projection |> DynObj.setValueOpt geo "projection"
 
             Center
-            |> Option.map
-                (fun (lon, lat) ->
-                    let t = DynamicObj()
-                    t?lon <- lon
-                    t?lat <- lat
-                    t)
+            |> Option.map (fun (lon, lat) ->
+                let t = DynamicObj()
+                t?lon <- lon
+                t?lat <- lat
+                t)
             |> DynObj.setValueOpt geo "center"
 
             Visible |> DynObj.setValueOpt geo "visible"

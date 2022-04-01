@@ -17,6 +17,10 @@ open System.Runtime.InteropServices
 ///- cone and streamtube: 3d vector field trace types
 ///
 ///- volume and isosurface: 3d volume trace types
+///- scatter3d, which can be used to draw individual markers, 3d bubble charts and lines and curves
+///- surface and mesh: 3d surface trace types
+///- cone and streamtube: 3d vector field trace types
+///- volume and isosurface: 3d volume trace types
 
 type Trace3D(traceTypeName) =
     inherit Trace(traceTypeName)

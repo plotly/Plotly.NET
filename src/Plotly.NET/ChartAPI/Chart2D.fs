@@ -99,7 +99,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let marker =
                 Marker
@@ -291,7 +292,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
             // if text position or font is set, then show labels (not only when hovering)
             let changeMode =
                 StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
@@ -461,7 +463,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             // if text position or font is set than show labels (not only when hovering)
             let changeMode =
@@ -681,7 +684,8 @@ module Chart2D =
                 StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
                 >> StyleParam.ModeUtils.showMarker (isShowMarker)
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let marker =
                 Marker
@@ -897,7 +901,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             // if text position or font is set than show labels (not only when hovering)
             let changeMode =
@@ -1121,7 +1126,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let upperName = defaultArg UpperName "upper"
             let lowerName = defaultArg LowerName "lower"
@@ -1975,7 +1981,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let marker =
                 Marker
@@ -2169,7 +2176,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let increasing =
                 Increasing
@@ -2440,7 +2448,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let pattern =
                 MarkerPattern
@@ -2764,7 +2773,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let pattern =
                 MarkerPattern
@@ -3101,7 +3111,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             Trace2D.initHistogram (
                 Trace2DStyle.Histogram(
@@ -3194,7 +3205,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let histChart =
                 Trace2D.initHistogram (
@@ -3278,7 +3290,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             Trace2D.initHistogram2D (
                 Trace2DStyle.Histogram2D(
@@ -3366,7 +3379,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let outline =
                 Outline
@@ -3664,7 +3678,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let box =
                 Box
@@ -3998,7 +4013,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?NContours: int,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let contourLine =
                 ContourLine
@@ -4086,8 +4102,11 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
-            let reverseYAxis = defaultArg ReverseYAxis false
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let reverseYAxis =
+                defaultArg ReverseYAxis false
 
             let style =
                 Trace2DStyle.Heatmap(
@@ -4166,8 +4185,11 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
-            let reverseYAxis = defaultArg ReverseYAxis false
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let reverseYAxis =
+                defaultArg ReverseYAxis false
 
             let style =
                 Trace2DStyle.Heatmap(
@@ -4250,8 +4272,11 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
-            let reverseYAxis = defaultArg ReverseYAxis false
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let reverseYAxis =
+                defaultArg ReverseYAxis false
 
             let dims = Seq.length zData
             let dims2 = Seq.length annotationText
@@ -4289,10 +4314,8 @@ module Chart2D =
                     c
             |> Chart.withAnnotations (
                 annotationText
-                |> Seq.mapi
-                    (fun y inner ->
-                        inner
-                        |> Seq.mapi (fun x text -> Annotation.init (x, y, Text = (string text), ShowArrow = false)))
+                |> Seq.mapi (fun y inner ->
+                    inner |> Seq.mapi (fun x text -> Annotation.init (x, y, Text = (string text), ShowArrow = false)))
                 |> Seq.concat
             )
 
@@ -4347,12 +4370,17 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
-            let reverseYAxis = defaultArg ReverseYAxis false
+            let useDefaults =
+                defaultArg UseDefaults true
 
-            let zData = dataAnnotations |> Seq.map (Seq.map fst)
+            let reverseYAxis =
+                defaultArg ReverseYAxis false
 
-            let annotationText = dataAnnotations |> Seq.map (Seq.map snd)
+            let zData =
+                dataAnnotations |> Seq.map (Seq.map fst)
+
+            let annotationText =
+                dataAnnotations |> Seq.map (Seq.map snd)
 
             let style =
                 Trace2DStyle.Heatmap(
@@ -4384,10 +4412,8 @@ module Chart2D =
                     c
             |> Chart.withAnnotations (
                 annotationText
-                |> Seq.mapi
-                    (fun y inner ->
-                        inner
-                        |> Seq.mapi (fun x text -> Annotation.init (x, y, Text = (string text), ShowArrow = false)))
+                |> Seq.mapi (fun y inner ->
+                    inner |> Seq.mapi (fun x text -> Annotation.init (x, y, Text = (string text), ShowArrow = false)))
                 |> Seq.concat
             )
 
@@ -4421,7 +4447,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             Trace2D.initImage (
                 Trace2DStyle.Image(
@@ -4465,19 +4492,19 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let z' =
                 z
                 |> Seq.map (
-                    Seq.map
-                        (fun argb ->
-                            seq {
-                                int argb.R
-                                int argb.G
-                                int argb.B
-                                int argb.A
-                            })
+                    Seq.map (fun argb ->
+                        seq {
+                            int argb.R
+                            int argb.G
+                            int argb.B
+                            int argb.A
+                        })
                 )
 
 
@@ -4560,7 +4587,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let contours =
                 Contours
@@ -4649,7 +4677,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let increasing =
                 Increasing
@@ -4717,7 +4746,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             Chart.OHLC(
                 ``open`` = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.Open))),
@@ -4784,7 +4814,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let increasing =
                 Increasing
@@ -4852,7 +4883,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             Chart.Candlestick(
                 ``open`` = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.Open))),
@@ -4918,7 +4950,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let marker =
                 Marker
@@ -5069,13 +5102,17 @@ module Chart2D =
                 ?UseDefaults: bool
             ) =
 
-            let showContourLines = defaultArg ShowContourLines false
-            let pointOpacity = defaultArg PointOpacity 0.3
+            let showContourLines =
+                defaultArg ShowContourLines false
+
+            let pointOpacity =
+                defaultArg PointOpacity 0.3
 
             let contourColoring =
                 defaultArg ContourColoring StyleParam.ContourColoring.Fill
 
-            let useDefaults = defaultArg UseDefaults true
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let contourLineWidth =
                 ContourLineWidth |> Option.map (fun v -> if showContourLines then v else 0.) |> Option.defaultValue 0.

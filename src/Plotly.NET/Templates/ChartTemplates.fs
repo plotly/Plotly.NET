@@ -90,17 +90,16 @@ module ChartTemplates =
 
     let darkMirrored =
         dark
-        |> Template.mapLayoutTemplate
-            (fun l ->
-                l.TryGetTypedValue<LinearAxis>("xaxis")
-                |> Option.map (LinearAxis.style (Mirror = StyleParam.Mirror.AllTicks))
-                |> DynObj.setValueOpt l "xaxis"
+        |> Template.mapLayoutTemplate (fun l ->
+            l.TryGetTypedValue<LinearAxis>("xaxis")
+            |> Option.map (LinearAxis.style (Mirror = StyleParam.Mirror.AllTicks))
+            |> DynObj.setValueOpt l "xaxis"
 
-                l.TryGetTypedValue<LinearAxis>("yaxis")
-                |> Option.map (LinearAxis.style (Mirror = StyleParam.Mirror.AllTicks))
-                |> DynObj.setValueOpt l "yaxis"
+            l.TryGetTypedValue<LinearAxis>("yaxis")
+            |> Option.map (LinearAxis.style (Mirror = StyleParam.Mirror.AllTicks))
+            |> DynObj.setValueOpt l "yaxis"
 
-                l)
+            l)
 
     let fslab =
 

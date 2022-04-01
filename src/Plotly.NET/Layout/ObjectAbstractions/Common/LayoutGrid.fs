@@ -90,8 +90,7 @@ type LayoutGrid() =
                 layoutGrid
                 "subplots"
                 (Array.map (
-                    Array.map
-                        (fun (x, y) -> $"{StyleParam.LinearAxisId.toString x}{StyleParam.LinearAxisId.toString y}")
+                    Array.map (fun (x, y) -> $"{StyleParam.LinearAxisId.toString x}{StyleParam.LinearAxisId.toString y}")
                 ))
 
             XAxes |> DynObj.setValueOptBy layoutGrid "xaxes" (Array.map StyleParam.LinearAxisId.toString)
