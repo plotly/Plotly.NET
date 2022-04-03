@@ -24,6 +24,7 @@ Plotly.NET provides functions for generating and rendering plotly.js charts in *
 - [Develop](#develop)
     - [build](#build)
     - [docs](#docs)
+- [Contributors](#contributors)
 - [Library license](#library-license)
 
 # Installation
@@ -136,7 +137,14 @@ The docs are contained in `.fsx` and `.md` files in the `docs` folder. To develo
 ./build.sh watchdocs
 ```
 
-Library license
-===============
+## Contributors 
+
+Plotly.NET is a community maintained open source projects. Big thanks to all contributors!
+
+<a href="https://github.com/plotly/Plotly.NET/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=plotly/Plotly.NET" />
+</a>
+
+## Library license
 
 The library is available under the [MIT license](https://github.com/plotly/Plotly.NET/blob/dev/LICENSE).
