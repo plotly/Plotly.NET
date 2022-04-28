@@ -10,25 +10,12 @@ open System.Runtime.InteropServices
 ///
 /// These trace types are compatible with 3D subplots via the scene attribute, which contains special camera controls:
 ///
-///- scatter3d, which can be used to draw individual markers, 3d bubble charts and lines and curves
+/// - scatter3d, which can be used to draw individual markers, 3d bubble charts and lines and curves
 ///
-///- surface and mesh: 3d surface trace types
+/// - surface and mesh: 3d surface trace types
 ///
-///- cone and streamtube: 3d vector field trace types
-///
-///- volume and isosurface: 3d volume trace types
-///- scatter3d, which can be used to draw individual markers, 3d bubble charts and lines and curves
-///- surface and mesh: 3d surface trace types
-///- cone and streamtube: 3d vector field trace types
-///- volume and isosurface: 3d volume trace types
-///- scatter3d, which can be used to draw individual markers, 3d bubble charts and lines and curves
-///- surface and mesh: 3d surface trace types
-///- cone and streamtube: 3d vector field trace types
-///- volume and isosurface: 3d volume trace types
-///- scatter3d, which can be used to draw individual markers, 3d bubble charts and lines and curves
-///- surface and mesh: 3d surface trace types
-///- cone and streamtube: 3d vector field trace types
-///- volume and isosurface: 3d volume trace types
+/// - cone and streamtube: 3d vector field trace types
+
 
 type Trace3D(traceTypeName) =
     inherit Trace(traceTypeName)

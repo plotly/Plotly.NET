@@ -134,7 +134,7 @@ type ARGB =
         sprintf "{Alpha: %i Red: %i Green: %i Blue: %i}" a r g b
 
     static member fromKeyword(c: ColorKeyword) =
-        c |> ColorKeyword.toRGB |> fun (r, g, b) -> ARGB.fromRGB r g b
+        c |> ColorKeyword.toRGB |> (fun (r, g, b) -> ARGB.fromRGB r g b)
 
 and ARGBConverter() =
     inherit JsonConverter()

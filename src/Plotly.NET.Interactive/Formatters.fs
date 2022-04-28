@@ -4,8 +4,9 @@ open Plotly.NET
 open Plotly.NET.GenericChart
 
 module Formatters =
-    
-    let interactiveDoc = """
+
+    let interactiveDoc =
+        """
 <div>
     [CHART]
     [DESCRIPTION]

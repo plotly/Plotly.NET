@@ -136,7 +136,7 @@ type PuppeteerSharpRenderer() =
                     (this :> IGenericChartRenderer)
                         .RenderJPGAsync(width, height, gChart)
 
-                return rendered |> getBytesFromBase64String |> fun base64 -> File.WriteAllBytes($"{path}.jpg", base64)
+                return rendered |> getBytesFromBase64String |> (fun base64 -> File.WriteAllBytes($"{path}.jpg", base64))
             }
 
         member this.SaveJPG(path: string, width: int, height: int, gChart: GenericChart.GenericChart) =
@@ -162,7 +162,7 @@ type PuppeteerSharpRenderer() =
                     (this :> IGenericChartRenderer)
                         .RenderPNGAsync(width, height, gChart)
 
-                return rendered |> getBytesFromBase64String |> fun base64 -> File.WriteAllBytes($"{path}.png", base64)
+                return rendered |> getBytesFromBase64String |> (fun base64 -> File.WriteAllBytes($"{path}.png", base64))
             }
 
         member this.SavePNG(path: string, width: int, height: int, gChart: GenericChart.GenericChart) =

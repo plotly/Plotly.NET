@@ -1,4 +1,5 @@
 ﻿namespace Plotly.NET.Interactive
+
 open System
 open System.Threading.Tasks
 open Microsoft.DotNet.Interactive
@@ -12,7 +13,7 @@ type FormatterKernelExtension() =
         member _.OnLoadAsync _ =
 
             Formatter.Register<GenericChart>(
-                Action<_, _> (fun chart (writer: IO.TextWriter) -> writer.Write(Formatters.toInteractiveHTML chart)),
+                Action<_, _>(fun chart (writer: IO.TextWriter) -> writer.Write(Formatters.toInteractiveHTML chart)),
                 "text/html"
             )
 
