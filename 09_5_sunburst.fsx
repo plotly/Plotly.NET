@@ -1,13 +1,11 @@
 (**
-// can't yet format YamlFrontmatter (["title: Sunburst Charts"; "category: Categorical Charts"; "categoryindex: 10"; "index: 6"], Some { StartLine = 2 StartColumn = 0 EndLine = 6 EndColumn = 8 }) to pynb markdown
-
 # Sunburst charts
 
 [![Binder](https://plotly.net/img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=09_5_sunburst.ipynb)&emsp;
 [![Script](https://plotly.net/img/badge-script.svg)](https://plotly.net/09_5_sunburst.fsx)&emsp;
 [![Notebook](https://plotly.net/img/badge-notebook.svg)](https://plotly.net/09_5_sunburst.ipynb)
 
-*Summary:* This example shows how to create sunburst charts in F#.
+**Summary:** This example shows how to create sunburst charts in F#.
 
 Sunburst Chart � also known as Ring Chart, Multi-level Pie Chart, and Radial Treemap � is typically used to visualize hierarchical data structures.
 A Sunburst Chart consists of an inner circle surrounded by rings of deeper hierarchy levels.
@@ -62,29 +60,29 @@ let sunburstStyled =
         Rotation = 45,
         UseDefaults = false
     )(* output: 
-<div id="04714789-172e-4626-8385-989956fbf561"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="7e915acb-00d3-4973-94b6-7d2f0f88d54a"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_04714789172e46268385989956fbf561 = function() {
+            var renderPlotly_7e915acb00d3497394b67d2f0f88d54a = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.6.3.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"sunburst","parents":["","","","","","A","A","B","AA","AA"],"values":[20,1,2,3,4,15,5,1,10,5],"labels":["A","B","C","D","E","AA","AB","BA","AAA","AAB"],"marker":{"colorscale":"Viridis","line":{"color":"rgba(0, 0, 0, 1.0)"},"showscale":true},"branchvalues":"total","rotation":45}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('04714789-172e-4626-8385-989956fbf561', data, layout, config);
+            Plotly.newPlot('7e915acb-00d3-4973-94b6-7d2f0f88d54a', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_04714789172e46268385989956fbf561();
+                    renderPlotly_7e915acb00d3497394b67d2f0f88d54a();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_04714789172e46268385989956fbf561();
+                renderPlotly_7e915acb00d3497394b67d2f0f88d54a();
             }
 </script>
 *)

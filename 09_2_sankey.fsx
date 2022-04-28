@@ -1,17 +1,15 @@
 (**
-// can't yet format YamlFrontmatter (["title: Sankey Charts"; "category: Categorical Charts"; "categoryindex: 10"; "index: 3"], Some { StartLine = 2 StartColumn = 0 EndLine = 6 EndColumn = 8 }) to pynb markdown
-
 # Sankey charts
 
 [![Binder](https://plotly.net/img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=09_2_sankey.ipynb)&emsp;
 [![Script](https://plotly.net/img/badge-script.svg)](https://plotly.net/09_2_sankey.fsx)&emsp;
 [![Notebook](https://plotly.net/img/badge-notebook.svg)](https://plotly.net/09_2_sankey.ipynb)
 
-*Summary:* This example shows how to create sankey charts in F#.
+**Summary:** This example shows how to create sankey charts in F#.
 
-Sankey charts are a visualization of multiple, linked graphs layed out linearly. 
+Sankey charts are a visualization of multiple, linked graphs layed out linearly.
 These are usually used to depict flow between nodes or stations.
-To create Sankey, a set of nodes and links between them are required. 
+To create Sankey, a set of nodes and links between them are required.
 These are created using the provided Node and Link structures.
 
 *)
@@ -47,29 +45,29 @@ let sankey1 =
         LinkOutlineWidth = 1.,
         UseDefaults = false
     )(* output: 
-<div id="e49226b2-08df-43be-953a-5d59f89cd390"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="53932cb7-d933-4867-bc19-a32563549b20"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_e49226b208df43be953a5d59f89cd390 = function() {
+            var renderPlotly_53932cb7d9334867bc19a32563549b20 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.6.3.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"sankey","node":{"label":["A1","A2","B1","B2","C1","C2","D1"],"line":{"color":"rgba(0, 0, 0, 1.0)","width":1.0}},"link":{"color":["rgba(130, 139, 251, 1.0)","rgba(130, 139, 251, 1.0)","rgba(242, 119, 98, 1.0)","rgba(51, 214, 171, 1.0)","rgba(188, 130, 251, 1.0)","rgba(188, 130, 251, 1.0)","rgba(255, 180, 123, 1.0)","rgba(71, 220, 245, 1.0)"],"line":{"color":"rgba(0, 0, 0, 1.0)","width":1.0},"source":[0,0,1,2,3,3,4,5],"target":[2,3,3,4,4,5,6,6],"value":[8,4,2,7,3,2,5,2]}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('e49226b2-08df-43be-953a-5d59f89cd390', data, layout, config);
+            Plotly.newPlot('53932cb7-d933-4867-bc19-a32563549b20', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_e49226b208df43be953a5d59f89cd390();
+                    renderPlotly_53932cb7d9334867bc19a32563549b20();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_e49226b208df43be953a5d59f89cd390();
+                renderPlotly_53932cb7d9334867bc19a32563549b20();
             }
 </script>
 *)

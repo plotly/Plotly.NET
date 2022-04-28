@@ -1,20 +1,22 @@
 (**
-// can't yet format YamlFrontmatter (["title: Basics "; "category: General"; "categoryindex: 1"; "index: 1"], Some { StartLine = 2 StartColumn = 0 EndLine = 6 EndColumn = 8 }) to pynb markdown
-
 [![Binder](https://plotly.net/img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=00_0_basics.ipynb)&emsp;
 [![Script](https://plotly.net/img/badge-script.svg)](https://plotly.net/00_0_basics.fsx)&emsp;
 [![Notebook](https://plotly.net/img/badge-notebook.svg)](https://plotly.net/00_0_basics.ipynb)
 
 # Plotly.NET basics
 
-_This section is WIP._
+**This section is WIP.**
 
 ### Table of contents
 
-- Library design(#Library-design)
-- [GenericChart](#GenericChart)
-- [Working with GenericCharts](#Working-with-GenericCharts)
-    - [Dynamic object style](#Dynamic-object-style)
+* Library design(#Library-design)
+
+* [GenericChart](#GenericChart)
+
+* [Working with GenericCharts](#Working-with-GenericCharts)
+
+  * [Dynamic object style](#Dynamic-object-style)
+  
 
 ## Library design
 
@@ -22,9 +24,11 @@ Plotly.NET is a .NET wrapper for creation of [plotly charts]() written in F#. Th
 
 A plotly.js chart consists of 3 objects:
 
-- `data`, which is a collection of `traces` which represent the data and chart type used to visualize the data
-- `layout`, which controls the general chart layout such as axis positions and styles
-- `config` high level properties of the chart like making all chart elements editable or the tool bar on top
+* `data`, which is a collection of `traces` which represent the data and chart type used to visualize the data
+
+* `layout`, which controls the general chart layout such as axis positions and styles
+
+* `config` high level properties of the chart like making all chart elements editable or the tool bar on top
 
 These are mirrored in Plotly.NET's central type, `GenericChart`:
 
@@ -41,10 +45,13 @@ type GenericChart =
 
 As you can see, a `GenericChart` consists of four top level objects - `Trace` (multiple of those in the case of a MultiChart) , `Layout`, `Config`, and `DisplayOptions`.
 
-- `Trace` is in principle the representation of a dataset on a chart, including for example the data itself, color and shape of the visualization, etc.
-- `Layout` is everything of the chart that is not dataset specifivc - e.g. the shape and style of axes, the chart title, etc.
-- `Config` is an object that configures high level properties of the chart like making all chart elements editable or the tool bar on top
-- `DisplayOptions` is an object that contains meta information about how the html document that contains the chart.
+* `Trace` is in principle the representation of a dataset on a chart, including for example the data itself, color and shape of the visualization, etc.
+
+* `Layout` is everything of the chart that is not dataset specifivc - e.g. the shape and style of axes, the chart title, etc.
+
+* `Config` is an object that configures high level properties of the chart like making all chart elements editable or the tool bar on top
+
+* `DisplayOptions` is an object that contains meta information about how the html document that contains the chart.
 
 ### Layers of abstraction
 
@@ -65,11 +72,11 @@ No value returned by any evaluator*)
 #### The TraceStyle modules
 
 The TraceStyle modules offer access to all parameters supported by plotly.js for the respective trace type. If you want to create a `scatter` trace, you can use the function
-`Trace2D.initScatter`, which will initialize an empty trace of type `scatter` and apply a styling function to it. This function would be `Trace2DStyle.Scatter`, which can apply all scatter related parameters to a trace. 
-In contrast to the `Chart` module, the parameters are named exactly the same as in plotly.js (but in PascalCase). 
+`Trace2D.initScatter`, which will initialize an empty trace of type `scatter` and apply a styling function to it. This function would be `Trace2DStyle.Scatter`, which can apply all scatter related parameters to a trace.
+In contrast to the `Chart` module, the parameters are named exactly the same as in plotly.js (but in PascalCase).
 
 To create a GenericChart from a `Trace` object, you can use `GenericChart.ofTraceObject`.
-Compare how many more styling options you have compared to `Chart.Point` above, but also take a look at how more verbose you have to be. 
+Compare how many more styling options you have compared to `Chart.Point` above, but also take a look at how more verbose you have to be.
 You can clearly see the advantages and disadvantages of both approaches.
 
 *)
@@ -89,7 +96,7 @@ The prime directive for all functions provided by Plotly.NET is the construction
 For this purpose, `Trace`, `Layout`, and `Config` (and many other internal objects) are inheriting from [`DynamicObj`](https://github.com/plotly/Plotly.NET/blob/dev/src/Plotly.NET/DynamicObj.fs),
 an extension of `DynamicObject` which makes it possible to set arbitraryly named and typed properties of these objects via the `?` operator.
 
-If you want to exactly mirror a plotly.js tutorial, or want to set properties that for any reason are not abstracted in Plotly.NET, 
+If you want to exactly mirror a plotly.js tutorial, or want to set properties that for any reason are not abstracted in Plotly.NET,
 it can be useful to use the power of DynamicObj to set the parameters directly. Just make sure that the property name is exactly the same as in plotly.js (all lowercase)
 
 So if you want to set any kind of property on one of these objects you can do it in a very declarative way like this:

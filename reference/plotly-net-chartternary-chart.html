@@ -35,7 +35,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0-preview.18</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -130,7 +130,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '290', 290)" onmouseover="showTip(event, '290', 290)">
+              <code onmouseout="hideTip(event, '292', 292)" onmouseover="showTip(event, '292', 292)">
                 <p>
                   <a id="BubbleTernary">
                     <a href="#BubbleTernary">
@@ -139,7 +139,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="290">
+              <div class="fsdocs-tip" id="292">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Chart.BubbleTernary<span><span>(<span>abcSizes,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?MarkerColor,&#32;?MarkerColorScale,&#32;?MarkerOutline,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Marker,&#32;?LineColor,&#32;?LineColorScale,&#32;?LineWidth,&#32;?LineDash,&#32;?Line,&#32;?UseDefaults</span>)</span></span></span></code>
@@ -378,7 +378,7 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartTernary.fs#L668-668" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartTernary.fs#L669-669" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
@@ -661,7 +661,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '291', 291)" onmouseover="showTip(event, '291', 291)">
+              <code onmouseout="hideTip(event, '293', 293)" onmouseover="showTip(event, '293', 293)">
                 <p>
                   <a id="BubbleTernary">
                     <a href="#BubbleTernary">
@@ -670,7 +670,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="291">
+              <div class="fsdocs-tip" id="293">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Chart.BubbleTernary<span><span>(<span>sizes,&#32;?A,&#32;?B,&#32;?C,&#32;?Sum,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?MarkerColor,&#32;?MarkerColorScale,&#32;?MarkerOutline,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Marker,&#32;?LineColor,&#32;?LineColorScale,&#32;?LineWidth,&#32;?LineDash,&#32;?Line,&#32;?UseDefaults</span>)</span></span></span></code>
@@ -684,8 +684,6 @@
                       </b>
                       :
                       <code><span>seq&lt;int&gt;</span></code>
-                       - 
-                      Sets the bubble size of the plotted data
                     </span>
                     <br/>
                     <span>
@@ -694,8 +692,6 @@
                       </b>
                       :
                       <code><span>seq&lt;'a&gt;</span></code>
-                       - 
-                      Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
                     </span>
                     <br/>
                     <span>
@@ -704,8 +700,6 @@
                       </b>
                       :
                       <code><span>seq&lt;'b&gt;</span></code>
-                       - 
-                      Sets the quantity of component `b` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
                     </span>
                     <br/>
                     <span>
@@ -714,8 +708,6 @@
                       </b>
                       :
                       <code><span>seq&lt;'c&gt;</span></code>
-                       - 
-                      Sets the quantity of component `c` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
                     </span>
                     <br/>
                     <span>
@@ -724,8 +716,6 @@
                       </b>
                       :
                       <code>'d</code>
-                       - 
-                      The number each triplet should sum to, if only two of `a`, `b`, and `c` are provided. This overrides `ternary<i>.sum` to normalize this specific trace, but does not affect the values displayed on the axes. 0 (or missing) means to use `ternary<i>.sum`
                     </span>
                     <br/>
                     <span>
@@ -734,8 +724,6 @@
                       </b>
                       :
                       <code>string</code>
-                       - 
-                      Sets the trace name. The trace name appear as the legend item and on hover
                     </span>
                     <br/>
                     <span>
@@ -744,8 +732,6 @@
                       </b>
                       :
                       <code>bool</code>
-                       - 
-                      Determines whether or not an item corresponding to this trace is shown in the legend.
                     </span>
                     <br/>
                     <span>
@@ -754,8 +740,6 @@
                       </b>
                       :
                       <code>float</code>
-                       - 
-                      Sets the opactity of the trace
                     </span>
                     <br/>
                     <span>
@@ -764,8 +748,6 @@
                       </b>
                       :
                       <code><span>seq&lt;float&gt;</span></code>
-                       - 
-                      Sets the opactity of individual datum markers
                     </span>
                     <br/>
                     <span>
@@ -774,8 +756,6 @@
                       </b>
                       :
                       <code>'e</code>
-                       - 
-                      Sets a text associated with each datum
                     </span>
                     <br/>
                     <span>
@@ -784,8 +764,6 @@
                       </b>
                       :
                       <code><span>seq&lt;'e&gt;</span></code>
-                       - 
-                      Sets individual text for each datum
                     </span>
                     <br/>
                     <span>
@@ -794,8 +772,6 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a></code>
-                       - 
-                      Sets the position of text associated with each datum
                     </span>
                     <br/>
                     <span>
@@ -804,8 +780,6 @@
                       </b>
                       :
                       <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a>&gt;</span></code>
-                       - 
-                      Sets the position of text associated with individual datum
                     </span>
                     <br/>
                     <span>
@@ -814,8 +788,6 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-                       - 
-                      Sets the color of the marker
                     </span>
                     <br/>
                     <span>
@@ -824,8 +796,6 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
-                       - 
-                      Sets the colorscale of the marker
                     </span>
                     <br/>
                     <span>
@@ -834,8 +804,6 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
-                       - 
-                      Sets the outline of the marker
                     </span>
                     <br/>
                     <span>
@@ -844,8 +812,6 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
-                       - 
-                      Sets the marker symbol for each datum
                     </span>
                     <br/>
                     <span>
@@ -854,8 +820,6 @@
                       </b>
                       :
                       <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
-                       - 
-                      Sets the marker symbol for each individual datum
                     </span>
                     <br/>
                     <span>
@@ -864,8 +828,6 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-traceobjects-marker.html">Marker</a></code>
-                       - 
-                      Sets the marker (use this for more finegrained control than the other marker-associated arguments)
                     </span>
                     <br/>
                     <span>
@@ -874,8 +836,6 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-                       - 
-                      Sets the color of the line
                     </span>
                     <br/>
                     <span>
@@ -884,8 +844,6 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
-                       - 
-                      Sets the colorscale of the line
                     </span>
                     <br/>
                     <span>
@@ -894,8 +852,6 @@
                       </b>
                       :
                       <code>float</code>
-                       - 
-                      Sets the width of the line
                     </span>
                     <br/>
                     <span>
@@ -904,8 +860,6 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
-                       - 
-                      sets the drawing style of the line
                     </span>
                     <br/>
                     <span>
@@ -914,8 +868,6 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
-                       - 
-                      Sets the line (use this for more finegrained control than the other line-associated arguments)
                     </span>
                     <br/>
                     <span>
@@ -924,8 +876,6 @@
                       </b>
                       :
                       <code>bool</code>
-                       - 
-                      If set to false, ignore the global default settings set in `Defaults`
                     </span>
                     <br/>
                   </ul>
@@ -955,12 +905,37 @@
               </a>
               <p class="fsdocs-summary">
                 
-
  A bubble chart is a variation of the Point chart, where the data points get an additional scale by being rendered as bubbles of different sizes.
 
  In general, BubbleTernary creates a barycentric point plot on three variables which sum to a constant, graphically depicting the ratios of the three variables as positions in an equilateral triangle.
  A 4th data dimension is used to determine the size of the points.
- 
+ </summary>
+ <param name="sizes">Sets the bubble size of the plotted data</param>
+ <param name="A">Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary&lt;i&gt;.sum`.</param>
+ <param name="B">Sets the quantity of component `b` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary&lt;i&gt;.sum`.</param>
+ <param name="C">Sets the quantity of component `c` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary&lt;i&gt;.sum`.</param>
+ <param name="Sum">The number each triplet should sum to, if only two of `a`, `b`, and `c` are provided. This overrides `ternary&lt;i&gt;.sum` to normalize this specific trace, but does not affect the values displayed on the axes. 0 (or missing) means to use `ternary&lt;i&gt;.sum`</param>
+ <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+ <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+ <param name="Opacity">Sets the opactity of the trace</param>
+ <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+ <param name="Text">Sets a text associated with each datum</param>
+ <param name="MultiText">Sets individual text for each datum</param>
+ <param name="TextPosition">Sets the position of text associated with each datum</param>
+ <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+ <param name="MarkerColor">Sets the color of the marker</param>
+ <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+ <param name="MarkerOutline">Sets the outline of the marker</param>
+ <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+ <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+ <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+ <param name="LineColor">Sets the color of the line</param>
+ <param name="LineColorScale">Sets the colorscale of the line</param>
+ <param name="LineWidth">Sets the width of the line</param>
+ <param name="LineDash">sets the drawing style of the line</param>
+ <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+ <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -971,11 +946,7 @@
                 :
                 <code><span>seq&lt;int&gt;</span></code>
               </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the bubble size of the plotted data
-                </p>
-              </dd>
+              <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?A
@@ -983,11 +954,7 @@
                 :
                 <code><span>seq&lt;'a&gt;</span></code>
               </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
-                </p>
-              </dd>
+              <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?B
@@ -995,11 +962,7 @@
                 :
                 <code><span>seq&lt;'b&gt;</span></code>
               </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the quantity of component `b` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
-                </p>
-              </dd>
+              <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?C
@@ -1007,11 +970,7 @@
                 :
                 <code><span>seq&lt;'c&gt;</span></code>
               </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the quantity of component `c` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
-                </p>
-              </dd>
+              <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Sum
@@ -1019,11 +978,7 @@
                 :
                 <code>'d</code>
               </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The number each triplet should sum to, if only two of `a`, `b`, and `c` are provided. This overrides `ternary<i>.sum` to normalize this specific trace, but does not affect the values displayed on the axes. 0 (or missing) means to use `ternary<i>.sum`
-                </p>
-              </dd>
+              <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Name
@@ -1031,11 +986,7 @@
                 :
                 <code>string</code>
               </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the trace name. The trace name appear as the legend item and on hover
-                </p>
-              </dd>
+              <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?ShowLegend
@@ -1043,11 +994,7 @@
                 :
                 <code>bool</code>
               </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Determines whether or not an item corresponding to this trace is shown in the legend.
-                </p>
-              </dd>
+              <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Opacity
@@ -1055,11 +1002,7 @@
                 :
                 <code>float</code>
               </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the opactity of the trace
-                </p>
-              </dd>
+              <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?MultiOpacity
@@ -1067,11 +1010,7 @@
                 :
                 <code><span>seq&lt;float&gt;</span></code>
               </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the opactity of individual datum markers
-                </p>
-              </dd>
+              <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Text
@@ -1079,11 +1018,7 @@
                 :
                 <code>'e</code>
               </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets a text associated with each datum
-                </p>
-              </dd>
+              <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?MultiText
@@ -1091,11 +1026,7 @@
                 :
                 <code><span>seq&lt;'e&gt;</span></code>
               </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets individual text for each datum
-                </p>
-              </dd>
+              <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?TextPosition
@@ -1103,11 +1034,7 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a></code>
               </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the position of text associated with each datum
-                </p>
-              </dd>
+              <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?MultiTextPosition
@@ -1115,11 +1042,7 @@
                 :
                 <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a>&gt;</span></code>
               </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the position of text associated with individual datum
-                </p>
-              </dd>
+              <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?MarkerColor
@@ -1127,11 +1050,7 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
               </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the color of the marker
-                </p>
-              </dd>
+              <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?MarkerColorScale
@@ -1139,11 +1058,7 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
               </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the colorscale of the marker
-                </p>
-              </dd>
+              <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?MarkerOutline
@@ -1151,11 +1066,7 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
               </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the outline of the marker
-                </p>
-              </dd>
+              <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?MarkerSymbol
@@ -1163,11 +1074,7 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a></code>
               </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the marker symbol for each datum
-                </p>
-              </dd>
+              <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?MultiMarkerSymbol
@@ -1175,11 +1082,7 @@
                 :
                 <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-markersymbol.html">MarkerSymbol</a>&gt;</span></code>
               </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the marker symbol for each individual datum
-                </p>
-              </dd>
+              <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Marker
@@ -1187,11 +1090,7 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-traceobjects-marker.html">Marker</a></code>
               </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the marker (use this for more finegrained control than the other marker-associated arguments)
-                </p>
-              </dd>
+              <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?LineColor
@@ -1199,11 +1098,7 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
               </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the color of the line
-                </p>
-              </dd>
+              <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?LineColorScale
@@ -1211,11 +1106,7 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a></code>
               </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the colorscale of the line
-                </p>
-              </dd>
+              <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?LineWidth
@@ -1223,11 +1114,7 @@
                 :
                 <code>float</code>
               </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the width of the line
-                </p>
-              </dd>
+              <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?LineDash
@@ -1235,11 +1122,7 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
               </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  sets the drawing style of the line
-                </p>
-              </dd>
+              <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Line
@@ -1247,11 +1130,7 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
               </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the line (use this for more finegrained control than the other line-associated arguments)
-                </p>
-              </dd>
+              <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?UseDefaults
@@ -1259,11 +1138,7 @@
                 :
                 <code>bool</code>
               </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  If set to false, ignore the global default settings set in `Defaults`
-                </p>
-              </dd>
+              <dd class="fsdocs-param-docs"></dd>
             </dl>
             <dl class="fsdocs-returns">
               <dt>
@@ -1279,7 +1154,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '292', 292)" onmouseover="showTip(event, '292', 292)">
+              <code onmouseout="hideTip(event, '294', 294)" onmouseover="showTip(event, '294', 294)">
                 <p>
                   <a id="LineTernary">
                     <a href="#LineTernary">
@@ -1288,7 +1163,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="292">
+              <div class="fsdocs-tip" id="294">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Chart.LineTernary<span><span>(<span>abc,&#32;?ShowMarkers,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?MarkerColor,&#32;?MarkerColorScale,&#32;?MarkerOutline,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Marker,&#32;?LineColor,&#32;?LineColorScale,&#32;?LineWidth,&#32;?LineDash,&#32;?Line,&#32;?UseDefaults</span>)</span></span></span></code>
@@ -1537,7 +1412,7 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartTernary.fs#L472-472" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartTernary.fs#L473-473" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
@@ -1829,7 +1704,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '293', 293)" onmouseover="showTip(event, '293', 293)">
+              <code onmouseout="hideTip(event, '295', 295)" onmouseover="showTip(event, '295', 295)">
                 <p>
                   <a id="LineTernary">
                     <a href="#LineTernary">
@@ -1838,7 +1713,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="293">
+              <div class="fsdocs-tip" id="295">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Chart.LineTernary<span><span>(<span>?A,&#32;?B,&#32;?C,&#32;?Sum,&#32;?ShowMarkers,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?MarkerColor,&#32;?MarkerColorScale,&#32;?MarkerOutline,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Marker,&#32;?LineColor,&#32;?LineColorScale,&#32;?LineWidth,&#32;?LineDash,&#32;?Line,&#32;?UseDefaults</span>)</span></span></span></code>
@@ -2117,7 +1992,7 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartTernary.fs#L378-378" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartTernary.fs#L379-379" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
@@ -2445,7 +2320,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '294', 294)" onmouseover="showTip(event, '294', 294)">
+              <code onmouseout="hideTip(event, '296', 296)" onmouseover="showTip(event, '296', 296)">
                 <p>
                   <a id="PointTernary">
                     <a href="#PointTernary">
@@ -2454,7 +2329,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="294">
+              <div class="fsdocs-tip" id="296">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Chart.PointTernary<span><span>(<span>abc,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?MarkerColor,&#32;?MarkerColorScale,&#32;?MarkerOutline,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Marker,&#32;?UseDefaults</span>)</span></span></span></code>
@@ -2643,7 +2518,7 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartTernary.fs#L304-304" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartTernary.fs#L305-305" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
@@ -2863,7 +2738,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '295', 295)" onmouseover="showTip(event, '295', 295)">
+              <code onmouseout="hideTip(event, '297', 297)" onmouseover="showTip(event, '297', 297)">
                 <p>
                   <a id="PointTernary">
                     <a href="#PointTernary">
@@ -2872,7 +2747,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="295">
+              <div class="fsdocs-tip" id="297">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Chart.PointTernary<span><span>(<span>?A,&#32;?B,&#32;?C,&#32;?Sum,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?MarkerColor,&#32;?MarkerColorScale,&#32;?MarkerOutline,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Marker,&#32;?UseDefaults</span>)</span></span></span></code>
@@ -3091,7 +2966,7 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartTernary.fs#L234-234" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartTernary.fs#L235-235" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
@@ -3347,7 +3222,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '296', 296)" onmouseover="showTip(event, '296', 296)">
+              <code onmouseout="hideTip(event, '298', 298)" onmouseover="showTip(event, '298', 298)">
                 <p>
                   <a id="ScatterTernary">
                     <a href="#ScatterTernary">
@@ -3356,7 +3231,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="296">
+              <div class="fsdocs-tip" id="298">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Chart.ScatterTernary<span><span>(<span>abc,&#32;?Mode,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?MarkerColor,&#32;?MarkerColorScale,&#32;?MarkerOutline,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Marker,&#32;?LineColor,&#32;?LineColorScale,&#32;?LineWidth,&#32;?LineDash,&#32;?Line,&#32;?UseDefaults</span>)</span></span></span></code>
@@ -3605,7 +3480,7 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartTernary.fs#L155-155" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/ChartTernary.fs#L156-156" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
@@ -3899,7 +3774,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '297', 297)" onmouseover="showTip(event, '297', 297)">
+              <code onmouseout="hideTip(event, '299', 299)" onmouseover="showTip(event, '299', 299)">
                 <p>
                   <a id="ScatterTernary">
                     <a href="#ScatterTernary">
@@ -3908,7 +3783,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="297">
+              <div class="fsdocs-tip" id="299">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Chart.ScatterTernary<span><span>(<span>?A,&#32;?B,&#32;?C,&#32;?Sum,&#32;?Mode,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?MultiOpacity,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?MarkerColor,&#32;?MarkerColorScale,&#32;?MarkerOutline,&#32;?MarkerSymbol,&#32;?MultiMarkerSymbol,&#32;?Marker,&#32;?LineColor,&#32;?LineColorScale,&#32;?LineWidth,&#32;?LineDash,&#32;?Line,&#32;?UseDefaults</span>)</span></span></span></code>

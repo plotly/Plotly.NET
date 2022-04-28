@@ -1,20 +1,17 @@
 (**
-// can't yet format YamlFrontmatter (["title: Display Options"; "category: General"; "categoryindex: 1"; "index: 3"], Some { StartLine = 2 StartColumn = 0 EndLine = 6 EndColumn = 8 }) to pynb markdown
-
 # Display Options
 
 [![Binder](https://plotly.net/img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath=00_2_display-options.ipynb)&emsp;
 [![Script](https://plotly.net/img/badge-script.svg)](https://plotly.net/00_2_display-options.fsx)&emsp;
 [![Notebook](https://plotly.net/img/badge-notebook.svg)](https://plotly.net/00_2_display-options.ipynb)
 
-*Summary:* This example shows how to alter the display options that control the html document that contains plotly charts
+**Summary:** This example shows how to alter the display options that control the html document that contains plotly charts
 
 You can control the html document that gets created via `Chart.Show` with various functions that change a chart's `DisplayOptions`.
 
 Naturally, these full html documents can not be embedded in this documentation page, so images have to suffice in this case.
 
 let's first create some data for the purpose of creating example charts:
-
 
 *)
 open Plotly.NET 
@@ -24,7 +21,7 @@ let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
 (**
 ## Chart description
 
-To create a chart description to put below the chart, use `ChartDescription.create` to create the description, and `Chart.WithDescription` 
+To create a chart description to put below the chart, use `ChartDescription.create` to create the description, and `Chart.WithDescription`
 to add the description to the chart's display options:
 
 *)
@@ -54,7 +51,6 @@ let desc2 =
 You can add any number of additional html tags to the documents `<head>` tag using `Chart.WithAdditionalHeadTags`.
 
 For example, you can load external css libraries to style the chart description:
-
 
 *)
 //html for description containing bulma classes such as "hero"
@@ -88,7 +84,6 @@ let desc3 =
 
 By popular request, `Chart.WithMathTex` is a prebuilt function to enable MathTeX for your generated plotly chart documents:
 
-
 *)
 [
     Chart.Point([(1.,2.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$")
@@ -101,7 +96,6 @@ By popular request, `Chart.WithMathTex` is a prebuilt function to enable MathTeX
 |> Chart.show
 (**
 ![](https://plotly.net/img/desc4.png)
-
 
 *)
 
