@@ -28,13 +28,9 @@
     <FsDocsLicenseLink>https://github.com/plotly/Plotly.NET/blob/dev/LICENSE</FsDocsLicenseLink>
     <FsDocsReleaseNotesLink>https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md</FsDocsReleaseNotesLink>
   </PropertyGroup>
-
+	
   <ItemGroup>
-    <None Include="Repack.ps1" />
-    <None Include="..\..\docs\img\logo.png" Pack="true" PackagePath="\" />
-    <None Include="..\..\bin\Plotly.NET.Interactive\netstandard2.1\Plotly.NET.Interactive.dll" Pack="true" PackagePath="interactive-extensions/dotnet" />
-    <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="Extension.fs" />
+    <ProjectReference Include="..\Plotly.NET\Plotly.NET.fsproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,14 +38,21 @@
     <EmbeddedResource Remove="bin\**" />
     <None Remove="bin\**" />
   </ItemGroup>
-
+	
   <ItemGroup>
-    <ProjectReference Include="..\Plotly.NET\Plotly.NET.fsproj" />
+    <Compile Include="Formatters.fs" />
+    <Compile Include="Extension.fs" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.DotNet.Interactive" Version="1.0.0-beta.21606.1" />
-    <PackageReference Include="Microsoft.DotNet.Interactive.Formatting" Version="1.0.0-beta.21606.1" />
+    <None Include="..\..\docs\img\logo.png" Pack="true" PackagePath="\" />
+    <None Include="$(OutputPath)/Plotly.NET.Interactive.dll" Pack="true" PackagePath="interactive-extensions/dotnet" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.DotNet.Interactive" Version="1.0.0-beta.22175.2" />
+    <PackageReference Include="Microsoft.DotNet.Interactive.Formatting" Version="1.0.0-beta.22175.2" />
   </ItemGroup>
 
 </Project>

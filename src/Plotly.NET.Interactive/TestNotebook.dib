@@ -17,3 +17,4 @@ The version of the package is always `0.0.0-dev`.
 open Plotly.NET
 
 Chart.Point([1,2])
+|> Chart.withDe

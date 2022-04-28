@@ -5,7 +5,6 @@ Remove-Item -Recurse ~\.nuget\packages\plotly.net* -Force
 
 # build and pack Plotly.NET.Interactive
 cd ../../
-dotnet tool restore
-dotnet fake build
-dotnet pack -c Release -p:PackageVersion=0.0.0-dev -o "./pkg"
+./build.cmd
+dotnet pack -c Release -p:PackageVersion=0.0.1-dev -o "./pkg"
 cd src/Plotly.NET.Interactive

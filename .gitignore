@@ -193,3 +193,6 @@ temp/gh-pages
 
 # Jupyter notebooks checkpoints
 **/.ipynb_checkpoints/**
+/plotly-net-gource.gif
+/plotly-gource.x264.avi
+/plotly-gource.ppm
