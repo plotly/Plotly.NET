@@ -58,7 +58,7 @@ let publishNuget =
                 "https://api.nuget.org/v3/index.json"
 
             let apikey =
-                Environment.environVar "NUGET_KEY_CSB"
+                Environment.environVar "NUGET_KEY"
 
             for artifact in targets do
                 let result =
@@ -93,7 +93,7 @@ let publishNugetPrerelease =
                 "https://api.nuget.org/v3/index.json"
 
             let apikey =
-                Environment.environVar "NUGET_KEY_CSB"
+                Environment.environVar "NUGET_KEY"
 
             for artifact in targets do
                 let result =
