@@ -14,11 +14,11 @@ namespace Plotly.NET.CSharp.Tests
         {
             Trace actual =
                 chart
-                .WithTraceInfo(Name: "Name")
+                .WithTraceInfo(Name: "Trace Name")
                 .GetTraces()
                 [0];
 
-            Assert.Equal("Name", DynamicObj.DynamicObj.GetValue(actual,"name"));
+            Assert.Equal("Trace Name", DynamicObj.DynamicObj.GetValue(actual,"name"));
         }
     }
 }
