@@ -29,10 +29,6 @@ Plotly.NET provides functions for generating and rendering plotly.js charts in *
 
 # Installation
 
-Plotly.NET will be available as 2.0.0 version of its predecessor FSharp.Plotly. The feature roadmap can be seen [here](https://github.com/plotly/Plotly.NET/issues/43). Contributions are very welcome!
-
-Old packages up until version 1.2.2 can be accessed via the old package name *FSharp.Plotly* [here](https://www.nuget.org/packages/FSharp.Plotly/)
-
 The most recent Plotly.NET package is [![](https://img.shields.io/nuget/vpre/Plotly.NET)](https://www.nuget.org/packages/Plotly.NET/).
 
 ### For applications and libraries
