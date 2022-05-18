@@ -107,8 +107,3 @@ bar2
 (***hide***)
 bar2 |> GenericChart.toChartHTML
 (***include-it-raw***)
-
-bar1
-|> Chart.show
-bar2
-|> Chart.show
