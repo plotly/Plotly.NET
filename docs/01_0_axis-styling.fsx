@@ -99,6 +99,30 @@ plot2
 plot2 |> GenericChart.toChartHTML
 (***include-it-raw***)
 
+(**
+### Formatting the tick label
+
+You can use `TickFormat` to format the tick label. The formatting rule uses the d3 formatting mini-languages which are very similar to those in Python. See [here](https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format) for numbers and [here](https://github.com/d3/d3-time-format#locale_format) for dates. Plotly adds two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with TickFormat "%H~%M~%S.%2f" would display "09~15~23.46".
+
+This example styles the x-axis tick labels as dollars and the y-axis tick label as percentages with one decimal place.
+*)
+
+let dollarAxis = LinearAxis.init(TickFormat="$")
+let percentAxis = LinearAxis.init(TickFormat=".1%")
+
+let plot3 =
+    Chart.Point(x,y)
+    |> Chart.withXAxis dollarAxis
+    |> Chart.withYAxis percentAxis
+
+(*** condition: ipynb ***)
+#if IPYNB
+plot3
+#endif // IPYNB
+
+(***hide***)
+plot3 |> GenericChart.toChartHTML
+(***include-it-raw***)
 
 (**
 ## Multiple axes
