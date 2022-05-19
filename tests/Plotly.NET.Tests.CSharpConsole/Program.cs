@@ -3,7 +3,7 @@ using Plotly.NET;
 using Microsoft.FSharp.Core; // use this for less verbose and more helpful intellisense
 using Plotly.NET.LayoutObjects;
 
-namespace Plotly.NET.Tests.CSharp
+namespace Plotly.NET.Tests.CSharpConsole
 {
     class Program
     {
@@ -34,8 +34,19 @@ namespace Plotly.NET.Tests.CSharp
             trace.SetValue("name", "Hello from C#");
 
             GenericChart
-                .ofTraceObject(true,trace)
+                .ofTraceObject(true, trace)
                 .WithLayout(layout)
+                .Show();
+        }
+        static void Main2(string[] args)
+        {
+            double[] x = new double[] { 1, 2 };
+            double[] y = new double[] { 5, 10 };
+            GenericChart.GenericChart chart = Chart2D.Chart.Point<double, double, string>(x: x, y: y);
+            chart
+                .WithTraceInfo("Hello from C#", ShowLegend: true)
+                .WithXAxisStyle(title: Title.init("xAxis"))
+                .WithYAxisStyle(title: Title.init("yAxis"))
                 .Show();
         }
     }

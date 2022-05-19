@@ -3,7 +3,8 @@
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 1.0.1"
-#r "../bin/Plotly.NET/netstandard2.0/Plotly.NET.dll"
+#I "../src/Plotly.NET/bin/Release/netstandard2.0"
+#r "Plotly.NET.dll"
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -41,13 +42,13 @@ Plotly.NET provides functions for generating and rendering plotly.js charts in *
 
 # Installation
 
-Plotly.NET will be available as 2.0.0 version of its predecessor FSharp.Plotly. The feature roadmap can be seen [here](https://github.com/plotly/Plotly.NET/issues/43). Contributions are very welcome!
+Plotly.NET is the 2.0.0+ version of its predecessor FSharp.Plotly.
 
-Old packages up until version 1.2.2 can be accessed via the old package name *FSharp.Plotly* [here](https://www.nuget.org/packages/FSharp.Plotly/)
+If needed, old packages up until version 1.2.2 can be accessed via the old package name *FSharp.Plotly* [here](https://www.nuget.org/packages/FSharp.Plotly/)
 
 ### For applications and libraries
 
-A preview version of Plotly.NET 2.0.0 is available on nuget to plug into your favorite package manager.
+Plotly.NET is available on nuget to plug into your favorite package manager.
 
 You can find all available package versions on the [nuget page](https://www.nuget.org/packages/Plotly.NET/).
 
@@ -85,7 +86,7 @@ You can include the package via an inline package reference:
 
 ### For dotnet interactive notebooks
 
-You can use the same inline package reference as in script, but as an additional goodie, 
+You can use the same inline package reference as in scripts, but as an additional goodie
 the interactive extensions for dotnet interactive have you covered for seamless chart rendering:
 
 ```
@@ -110,7 +111,7 @@ A possible fix for this is the inclusion of Dotnet.Interactive preview package s
 
 ## Basics
 
-The general design philosophy of Plotly.NET implements the following visualization flow:
+The general, high-level API of Plotly.NET implements the following visualization flow:
 
 - **initialize** a `GenericChart` object from the data you want to visualize by using the respective `Chart.*` function, optionally setting some specific style parameters
 - further **style** the chart with fine-grained control, e.g. by setting axis titles, tick intervals, etc.
@@ -147,8 +148,8 @@ Styling functions are generally the `Chart.with*` naming convention. The followi
 let myFirstStyledChart =
     Chart.Point(xData,yData)
     |> Chart.withTitle "Hello world!"
-    |> Chart.withXAxisStyle ("xAxis", ShowGrid=false)
-    |> Chart.withYAxisStyle ("yAxis", ShowGrid=false)
+    |> Chart.withXAxisStyle ("xAxis")
+    |> Chart.withYAxisStyle ("yAxis")
 
 (**
 **Attention:** Styling functions mutate 😈 the input chart, therefore possibly affecting bindings to intermediary results. 
@@ -197,8 +198,8 @@ Chart.Point(xData',yData')
 
 Chart.Point(xData,yData)
 |> Chart.withTitle "Hello world!"
-|> Chart.withXAxisStyle ("xAxis", ShowGrid=false)
-|> Chart.withYAxisStyle ("yAxis", ShowGrid=false)
+|> Chart.withXAxisStyle ("xAxis")
+|> Chart.withYAxisStyle ("yAxis")
 
 
 (**
@@ -211,19 +212,20 @@ One of the main design points of Plotly.NET it is to provide support for multipl
 
 [(1,5);(2,10)]
 |> Chart.Point
-|> Chart.withTraceInfo("Hello from F#",ShowLegend=true)
-|> Chart.withYAxisStyle("xAxis",ShowGrid= false, ShowLine=true)
-|> Chart.withXAxisStyle("yAxis",ShowGrid= false, ShowLine=true)
+|> Chart.withTraceInfo(Name = "Hello from F#")
+|> Chart.withYAxisStyle(TitleText = "xAxis")
+|> Chart.withXAxisStyle(TitleText = "yAxis")
 
 (**
 ### Fluent interface style in C#:
 
-```
+```csharp
 using System;
 using Plotly.NET;
 using Microsoft.FSharp.Core; // use this for less verbose and more helpful intellisense
+using Plotly.NET.LayoutObjects;
 
-namespace Plotly.NET.Tests.CSharp
+namespace Plotly.NET.Tests.CSharpConsole
 {
     class Program
     {
@@ -233,17 +235,18 @@ namespace Plotly.NET.Tests.CSharp
             double[] y = new double[] { 5, 10 };
             GenericChart.GenericChart chart = Chart2D.Chart.Point<double, double, string>(x: x, y: y);
             chart
-                .WithTraceName("Hello from C#", true)
-                .WithXAxisStyle(title: Title.init("xAxis"), ShowGrid: false, ShowLine: true)
-                .WithYAxisStyle(title: Title.init("yAxis"), ShowGrid: false, ShowLine: true)
+                .WithTraceInfo("Hello from C#", ShowLegend: true)
+                .WithXAxisStyle(title: Title.init("xAxis"))
+                .WithYAxisStyle(title: Title.init("yAxis"))
                 .Show();
         }
     }
 }
-
 ```
 
 ### Declarative style in F# using the underlying `DynamicObj`:
+
+This API is the most low-level and closest to the original plotly.js syntax. Make sure to spell dynamic members exactly as they are used in the plotly.js json schema.
 *)
 
 open Plotly.NET.LayoutObjects
@@ -283,13 +286,13 @@ GenericChart.ofTraceObject true trace
 (**
 ### Declarative style in C# using the underlying `DynamicObj`:
 
-```
+```csharp
 using System;
 using Plotly.NET;
 using Microsoft.FSharp.Core; // use this for less verbose and more helpful intellisense
 using Plotly.NET.LayoutObjects;
 
-namespace Plotly.NET.Tests.CSharp
+namespace Plotly.NET.Tests.CSharpConsole
 {
     class Program
     {
@@ -320,7 +323,7 @@ namespace Plotly.NET.Tests.CSharp
             trace.SetValue("name", "Hello from C#");
 
             GenericChart
-                .ofTraceObject(trace)
+                .ofTraceObject(true, trace)
                 .WithLayout(layout)
                 .Show();
         }
@@ -332,16 +335,16 @@ namespace Plotly.NET.Tests.CSharp
 
 The project is hosted on [GitHub][gh] where you can [report issues][issues], fork 
 the project and submit pull requests. If you're adding a new public API, please also 
-consider adding [samples][content] that can be turned into a documentation. You might
+consider adding [samples][docs] that can be turned into a documentation. You might
 also want to read the [library design notes][readme] to understand how it works.
 
-The library is available under Public Domain license, which allows modification and 
+The library is available under the OSI-approved MIT license, which allows modification and 
 redistribution for both commercial and non-commercial purposes. For more information see the 
 [License file][license] in the GitHub repository. 
 
-  [content]: https://github.com/plotly/Plotly.NET/tree/master/docs/content
+  [docs]: https://github.com/plotly/Plotly.NET/tree/dev/docs
   [gh]: https://github.com/plotly/Plotly.NET
   [issues]: https://github.com/plotly/Plotly.NET/issues
-  [readme]: https://github.com/plotly/Plotly.NET/blob/master/README.md
-  [license]: https://github.com/plotly/Plotly.NET/blob/master/LICENSE.txt
+  [readme]: https://github.com/plotly/Plotly.NET/blob/dev/README.md
+  [license]: https://github.com/plotly/Plotly.NET/blob/dev/LICENSE
 *)
