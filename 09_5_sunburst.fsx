@@ -60,29 +60,29 @@ let sunburstStyled =
         Rotation = 45,
         UseDefaults = false
     )(* output: 
-<div id="7e915acb-00d3-4973-94b6-7d2f0f88d54a"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="7f5f767b-1814-4b10-97ac-1993f372f671"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_7e915acb00d3497394b67d2f0f88d54a = function() {
+            var renderPlotly_7f5f767b18144b1097ac1993f372f671 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.6.3.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"sunburst","parents":["","","","","","A","A","B","AA","AA"],"values":[20,1,2,3,4,15,5,1,10,5],"labels":["A","B","C","D","E","AA","AB","BA","AAA","AAB"],"marker":{"colorscale":"Viridis","line":{"color":"rgba(0, 0, 0, 1.0)"},"showscale":true},"branchvalues":"total","rotation":45}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('7e915acb-00d3-4973-94b6-7d2f0f88d54a', data, layout, config);
+            Plotly.newPlot('7f5f767b-1814-4b10-97ac-1993f372f671', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_7e915acb00d3497394b67d2f0f88d54a();
+                    renderPlotly_7f5f767b18144b1097ac1993f372f671();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_7e915acb00d3497394b67d2f0f88d54a();
+                renderPlotly_7f5f767b18144b1097ac1993f372f671();
             }
 </script>
 *)

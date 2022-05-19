@@ -115,6 +115,5 @@ lets have a look at the trace object that will be created. The relevant section 
 var data = [{"type":"scatter","x":[0,1,2],"y":[0,1,2]}];
 ```
 
-
 *)
 
