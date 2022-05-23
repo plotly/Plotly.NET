@@ -143,7 +143,7 @@ type Legend() =
             UIRevision |> DynObj.setValueOpt legend "uirevision"
             VerticalAlign |> DynObj.setValueOptBy legend "valign" StyleParam.VerticalAlign.convert
             X |> DynObj.setValueOpt legend "x"
-            XAnchor |> DynObj.setValueOptBy legend "yanchor" StyleParam.XAnchorPosition.convert
+            XAnchor |> DynObj.setValueOptBy legend "xanchor" StyleParam.XAnchorPosition.convert
             Y |> DynObj.setValueOpt legend "y"
             YAnchor |> DynObj.setValueOptBy legend "yanchor" StyleParam.YAnchorPosition.convert
 
