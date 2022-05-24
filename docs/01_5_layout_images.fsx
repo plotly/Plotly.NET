@@ -22,7 +22,7 @@ index: 6
 #endif // IPYNB
 
 (** 
-# Annotations
+# Layout images
 
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
 [![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
@@ -53,10 +53,10 @@ let image =
         Source="https://fsharp.org/img/logo/fsharp.svg",
         XRef="x",
         YRef="y",
-        X=0,
-        Y=3,
-        SizeX=2,
-        SizeY=2,
+        X=4,
+        Y=4,
+        SizeX=5,
+        SizeY=3,
         Sizing=StyleParam.LayoutImageSizing.Stretch,
         Opacity=0.5,
         Layer=StyleParam.Layer.Below
