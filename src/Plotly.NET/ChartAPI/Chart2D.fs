@@ -30,6 +30,7 @@ module Chart2D =
                 Trace2D.initHeatmap style |> GenericChart.ofTraceObject useDefaults
 
 
+        static member Foo(notopt: seq<#IConvertible>,?opt1: seq<#IConvertible>) = 2
 
         /// <summary>
         /// Creates a Scatter plot.
