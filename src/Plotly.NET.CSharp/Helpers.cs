@@ -8,14 +8,7 @@ using Microsoft.FSharp.Core;
 
 namespace Plotly.NET.CSharp
 {
-    internal class OptionWrapper<T> { 
-        internal static FSharpOption<T> WrapAsOption(T? Value) { 
-            if (Value is null) {
-                return FSharpOption<T>.None;
-            } else {
-                T v = (T)Value;
-                return FSharpOption<T>.Some(v);
-            }
-        }
+    static class Helpers {
+        static internal Microsoft.FSharp.Core.FSharpOption<T> ToOption<T>(this T? thing) => thing is null ? Microsoft.FSharp.Core.FSharpOption<T>.None : new(thing);
     }
 }

@@ -6,14 +6,23 @@ using System.Threading.Tasks;
 using Plotly.NET;
 using Plotly.NET.LayoutObjects;
 using Plotly.NET.TraceObjects;
+
 namespace Plotly.NET.CSharp.ChartAPI
 {
     public static class Test
     {
-        public static int Foo<T>(IEnumerable<T> notopt, IEnumerable<T>? opt1) =>
-            Plotly.NET.Chart2D.Chart.Foo<T, T>(
+        public static int Foo<T1,T2,T3>(
+            IEnumerable<T1> notopt, 
+            IEnumerable<T2>? opt1 = null,
+            T3? opt2 = null
+        ) 
+            where T1 : IConvertible
+            where T2 : IConvertible
+            where T3 : IConvertible =>
+            Plotly.NET.Chart2D.Chart.Foo<T1, T2, T3>(
                 notopt: notopt,
-                opt1: opt1
+                opt1: Helpers.ToOption<IEnumerable<T2>>(opt1),
+                opt2: opt2
             );
     }
         public static class Chart2D
@@ -52,52 +61,58 @@ namespace Plotly.NET.CSharp.ChartAPI
         /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Scatter(
-            IEnumerable<IConvertible> x,
-            IEnumerable<IConvertible> y,
+        public static GenericChart.GenericChart Scatter<XType,YType,TextType>(
+            IEnumerable<XType> x,
+            IEnumerable<YType> y,
             StyleParam.Mode mode,
-            string? Name,
-            bool? ShowLegend,
-            float? Opacity,
-            IEnumerable<float>? MultiOpacity,
-            IConvertible? Text,
-            IEnumerable<IConvertible>? MultiText,
-            StyleParam.TextPosition? TextPosition,
-            IEnumerable<StyleParam.TextPosition>? MultiTextPosition,
-            Color? MarkerColor,
-            StyleParam.Colorscale? MarkerColorScale,
-            Line? MarkerOutline,
-            StyleParam.MarkerSymbol? MarkerSymbol,
-            IEnumerable<StyleParam.MarkerSymbol>? MultiMarkerSymbol,
-            Marker? Marker,
-            Color? LineColor,
-            StyleParam.Colorscale? LineColorScale,
-            float? LineWidth,
-            StyleParam.DrawingStyle? LineDash,
-            Line? Line,
-            string StackGroup,
-            StyleParam.Orientation? Orientation,
-            StyleParam.GroupNorm? GroupNorm,
-            StyleParam.Fill? Fill,
-            Color? FillColor,
-            bool? UseWebGL,
-            bool? UseDefaults
-        ) =>
-            Plotly.NET.Chart2D.Chart.Scatter<IConvertible,IConvertible,IConvertible>(
-                x, y, mode,
+            string? Name = null,
+            bool? ShowLegend = null,
+            double? Opacity = null,
+            IEnumerable<double>? MultiOpacity = null,
+            TextType? Text = null,
+            IEnumerable<TextType>? MultiText = null,
+            StyleParam.TextPosition? TextPosition = null,
+            IEnumerable<StyleParam.TextPosition>? MultiTextPosition = null,
+            Color? MarkerColor = null,
+            StyleParam.Colorscale? MarkerColorScale = null,
+            Line? MarkerOutline = null,
+            StyleParam.MarkerSymbol? MarkerSymbol = null,
+            IEnumerable<StyleParam.MarkerSymbol>? MultiMarkerSymbol = null,
+            Marker? Marker = null,
+            Color? LineColor = null,
+            StyleParam.Colorscale? LineColorScale = null,
+            double? LineWidth = null,
+            StyleParam.DrawingStyle? LineDash = null,
+            Line? Line = null,
+            string? StackGroup = null,
+            StyleParam.Orientation? Orientation = null,
+            StyleParam.GroupNorm? GroupNorm = null,
+            StyleParam.Fill? Fill = null,
+            Color? FillColor = null,
+            bool? UseWebGL = null,
+            bool? UseDefaults = null
+        )
+            where XType : IConvertible
+            where YType : IConvertible
+            where TextType : IConvertible
+        =>
+            Plotly.NET.Chart2D.Chart.Scatter(
+                x: x, 
+                y: y, 
+                mode: mode,
                 Name: Name,
                 ShowLegend: ShowLegend,
                 Opacity: Opacity,
-                MultiOpacity: MultiOpacity,
-                Text: Text,
-                MultiText: MultiText,
+                MultiOpacity: Helpers.ToOption(MultiOpacity),
+                Text: Helpers.ToOption(Text),
+                MultiText: Helpers.ToOption(MultiText),
                 TextPosition: TextPosition,
-                MultiTextPosition: MultiTextPosition,
+                MultiTextPosition: Helpers.ToOption(MultiTextPosition),
                 MarkerColor: MarkerColor,
                 MarkerColorScale: MarkerColorScale,
                 MarkerOutline: MarkerOutline,
                 MarkerSymbol: MarkerSymbol,
-                MultiMarkerSymbol: MultiMarkerSymbol,
+                MultiMarkerSymbol: Helpers.ToOption(MultiMarkerSymbol),
                 Marker: Marker,
                 LineColor: LineColor,
                 LineColorScale: LineColorScale,

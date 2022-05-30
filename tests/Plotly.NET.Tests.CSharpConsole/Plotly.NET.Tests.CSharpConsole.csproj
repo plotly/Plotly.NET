@@ -2,7 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Plotly.NET\Plotly.NET.fsproj" />
-    <ProjectReference Include="..\..\src\Plotly.NET.CSharp\Plotly.NET.CSharp.fsproj" />
+    <ProjectReference Include="..\..\src\Plotly.NET.CSharp\Plotly.NET.CSharp.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
