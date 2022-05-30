@@ -9,11 +9,17 @@ namespace Plotly.NET.Tests.CSharpConsole
     {
         static void Main(string[] args)
         {
-            Plotly.NET.CSharp.ChartAPI.Chart2D.Scatter(
+            Plotly.NET.CSharp.ChartAPI.Chart2D.Scatter<int,int,string>(
                 x: new int [] { 1, 2 },
                 y: new int [] { 1, 2 },
                 mode: StyleParam.Mode.Markers
-            );
+            ).Show();
+
+            Chart2D.Chart.Scatter<int,int,string> (
+                x: new int[] { 1, 2 },
+                y: new int[] { 1, 2 },
+                mode: StyleParam.Mode.Markers
+            ).Show();
         }
         static void Main2(string[] args)
         {

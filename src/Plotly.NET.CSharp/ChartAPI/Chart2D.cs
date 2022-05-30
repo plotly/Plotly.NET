@@ -18,7 +18,7 @@ namespace Plotly.NET.CSharp.ChartAPI
         ) 
             where T1 : IConvertible
             where T2 : IConvertible
-            where T3 : IConvertible =>
+            where T3 : class, IConvertible =>
             Plotly.NET.Chart2D.Chart.Foo<T1, T2, T3>(
                 notopt: notopt,
                 opt1: Helpers.ToOption<IEnumerable<T2>>(opt1),
@@ -94,38 +94,38 @@ namespace Plotly.NET.CSharp.ChartAPI
         )
             where XType : IConvertible
             where YType : IConvertible
-            where TextType : IConvertible
+            where TextType : class, IConvertible
         =>
             Plotly.NET.Chart2D.Chart.Scatter(
                 x: x, 
                 y: y, 
                 mode: mode,
-                Name: Name,
-                ShowLegend: ShowLegend,
-                Opacity: Opacity,
+                Name: Helpers.ToOption(Name),
+                ShowLegend: Helpers.ToOption(ShowLegend),
+                Opacity: Helpers.ToOption(Opacity),
                 MultiOpacity: Helpers.ToOption(MultiOpacity),
                 Text: Helpers.ToOption(Text),
                 MultiText: Helpers.ToOption(MultiText),
-                TextPosition: TextPosition,
+                TextPosition: Helpers.ToOption(TextPosition),
                 MultiTextPosition: Helpers.ToOption(MultiTextPosition),
-                MarkerColor: MarkerColor,
-                MarkerColorScale: MarkerColorScale,
-                MarkerOutline: MarkerOutline,
-                MarkerSymbol: MarkerSymbol,
+                MarkerColor: Helpers.ToOption(MarkerColor),
+                MarkerColorScale: Helpers.ToOption(MarkerColorScale),
+                MarkerOutline: Helpers.ToOption(MarkerOutline),
+                MarkerSymbol: Helpers.ToOption(MarkerSymbol),
                 MultiMarkerSymbol: Helpers.ToOption(MultiMarkerSymbol),
-                Marker: Marker,
-                LineColor: LineColor,
-                LineColorScale: LineColorScale,
-                LineWidth: LineWidth,
-                LineDash: LineDash,
-                Line: Line,
-                StackGroup: StackGroup,
-                Orientation: Orientation,
-                GroupNorm: GroupNorm,
-                Fill: Fill,
-                FillColor: FillColor,
-                UseWebGL: UseWebGL,
-                UseDefaults: UseDefaults
+                Marker: Helpers.ToOption(Marker),
+                LineColor: Helpers.ToOption(LineColor),
+                LineColorScale: Helpers.ToOption(LineColorScale),
+                LineWidth: Helpers.ToOption(LineWidth),
+                LineDash: Helpers.ToOption(LineDash),
+                Line: Helpers.ToOption(Line),
+                StackGroup: Helpers.ToOption(StackGroup),
+                Orientation: Helpers.ToOption(Orientation),
+                GroupNorm: Helpers.ToOption(GroupNorm),
+                Fill: Helpers.ToOption(Fill),
+                FillColor: Helpers.ToOption(FillColor),
+                UseWebGL: Helpers.ToOption(UseWebGL),
+                UseDefaults: Helpers.ToOption(UseDefaults)
             );
     };
 }
