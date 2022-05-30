@@ -29,9 +29,6 @@ module Chart2D =
             else
                 Trace2D.initHeatmap style |> GenericChart.ofTraceObject useDefaults
 
-
-        static member Foo(notopt: seq<#IConvertible>,?opt1: seq<#IConvertible>, ?opt2: #IConvertible) = 2
-
         /// <summary>
         /// Creates a Scatter plot.
         ///

@@ -7,7 +7,7 @@ using Plotly.NET;
 
 namespace Plotly.NET.CSharp
 {
-    public static class Chart
+    public static partial class Chart
     {
         public static GenericChart.GenericChart Combine(IEnumerable<GenericChart.GenericChart> gCharts) => Plotly.NET.Chart.Combine(gCharts);
 

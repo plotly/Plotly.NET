@@ -1,24 +1,31 @@
 ﻿using System;
 using Plotly.NET.CSharp;
-using Plotly.NET.CSharp.ChartAPI;
-using Plotly.NET.LayoutObjects;
+using static Plotly.NET.StyleParam;
+using static Plotly.NET.GenericChart;
 
-namespace Plotly.NET.Tests.CSharpConsole
+namespace TestConsoleApp
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Plotly.NET.CSharp.ChartAPI.Chart2D.Scatter<int,int,string>(
-                x: new int [] { 1, 2 },
-                y: new int [] { 1, 2 },
-                mode: StyleParam.Mode.Markers
-            ).Show();
-
-            Chart2D.Chart.Scatter<int,int,string> (
-                x: new int[] { 1, 2 },
-                y: new int[] { 1, 2 },
-                mode: StyleParam.Mode.Markers
+            Chart.Combine(
+                new GenericChart []
+                {
+                    Chart.Scatter<int,int,string>(
+                        x: new int [] { 1, 2 },
+                        y: new int [] { 3, 4 },
+                        mode: Mode.Markers
+                    ),
+                    Chart.Point<int,int,string>(
+                        x: new int [] { 5, 6 },
+                        y: new int [] { 7, 8 }
+                    ),
+                    Chart.Line<int,int,string>(
+                        x: new int [] { 9, 10 },
+                        y: new int [] { 11, 12 }
+                    )
+                }
             ).Show();
         }
         static void Main2(string[] args)
