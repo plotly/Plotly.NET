@@ -37,16 +37,5 @@ namespace TestConsoleApp
                     }
             ).Show();
         }
-        static void Main2(string[] args)
-        {
-            double[] x = new double[] { 1, 2 };
-            double[] y = new double[] { 5, 10 };
-            GenericChart.GenericChart chart = Chart2D.Chart.Point<double, double, string>(x: x, y: y);
-            chart
-                .WithTraceInfo("Hello from C#", ShowLegend: true)
-                .WithXAxisStyle(title: Title.init("xAxis"))
-                .WithYAxisStyle(title: Title.init("yAxis"))
-                .Show();
-        }
     }
 }
