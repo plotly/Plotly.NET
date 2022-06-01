@@ -9,7 +9,7 @@ using Plotly.NET.TraceObjects;
 
 namespace Plotly.NET.CSharp
 {
-    public static partial class ChartMap
+    public static partial class Chart
     {
         /// <summary>
         /// Creates a ScatterGeo chart, where data is visualized using plotly's base geo map.
