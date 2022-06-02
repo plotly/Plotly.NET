@@ -17,7 +17,7 @@ namespace Plotly.NET.CSharp
         public static void SaveHtml(
             this GenericChart.GenericChart gChart,
             string path,
-            bool? OpenInBrowser
+            bool? OpenInBrowser = null
         ) =>
             Plotly.NET.Chart.SaveHtml(
                 path: path,
@@ -41,12 +41,12 @@ namespace Plotly.NET.CSharp
         /// <param name="LegendGroupTitle">Sets the title for the chart's trace legend group </param>
         public static GenericChart.GenericChart WithTraceInfo(
             this GenericChart.GenericChart gChart,
-            string? Name,
-            StyleParam.Visible? Visible,
-            bool? ShowLegend,
-            int? LegendRank,
-            string? LegendGroup,
-            Title? LegendGroupTitle
+            string? Name = null,
+            StyleParam.Visible? Visible = null,
+            bool? ShowLegend = null,
+            int? LegendRank = null,
+            string? LegendGroup = null,
+            Title? LegendGroupTitle = null
         ) =>
             Plotly.NET.Chart.WithTraceInfo(
                 Name: Name,
@@ -56,6 +56,14 @@ namespace Plotly.NET.CSharp
                 LegendGroup: LegendGroup,
                 LegendGroupTitle: LegendGroupTitle
             ).Invoke(gChart);
+
+        /// Sets the size of a Chart (in pixels)
+        public static GenericChart.GenericChart WithSize(
+            this GenericChart.GenericChart gChart,
+            int? Width = null,
+            int? Height = null
+        ) =>
+            Plotly.NET.Chart.WithSize(Width: Width, Height: Height).Invoke(gChart);
     }
 
 
