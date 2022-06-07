@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Plotly.NET;
 using Plotly.NET.LayoutObjects;
 using Plotly.NET.TraceObjects;
 
@@ -11,17 +7,15 @@ namespace Plotly.NET.CSharp
     public static partial class Chart
     {
         /// <summary>
-        /// Creates a Scatter plot on a ternary coordinate system
+        /// Creates a Scatter plot on a smith coordinate system.
         ///
-        /// In general, ScatterTernary creates a barycentric plot on three variables which sum to a constant, graphically depicting the ratios of the three variables as positions in an equilateral triangle.
+        /// In general, ScatterSmith charts plot complex numbers on a transformed two-dimensional Cartesian complex plane. Complex numbers with positive real parts map inside the circle. Those with negative real parts map outside the circle.
         ///
-        /// ScatterTernary charts are the basis of PointTernary, LineTernary, and BubbleTernary Charts, and can be customized as such. We also provide abstractions for those: Chart.LineTernary, Chart.PointTernary, Chart.BubbleTernary
+        /// ScatterSmith charts are the basis of PointSmith, LineSmith, and BubbleSmith Charts, and can be customized as such. We also provide abstractions for those: Chart.LineSmith, Chart.PointSmith, Chart.BubbleSmith
         /// </summary>
-        /// <param name="A">Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary&lt;i&gt;.sum`.</param>
-        /// <param name="B">Sets the quantity of component `b` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary&lt;i&gt;.sum`.</param>
-        /// <param name="C">Sets the quantity of component `c` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary&lt;i&gt;.sum`.</param>
-        /// <param name="Sum">The number each triplet should sum to, if only two of `a`, `b`, and `c` are provided. This overrides `ternary&lt;i&gt;.sum` to normalize this specific trace, but does not affect the values displayed on the axes. 0 (or missing) means to use `ternary&lt;i&gt;.sum`</param>
-        /// <param name="Mode">Determines the drawing mode for this scatter trace.</param>
+        /// <param name="real">Sets the real component of the data, in units of normalized impedance such that real=1, imag=0 is the center of the chart.</param>
+        /// <param name="imag">Sets the imaginary component of the data, in units of normalized impedance such that real=1, imag=0 is the center of the chart.</param>
+        /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
@@ -41,13 +35,13 @@ namespace Plotly.NET.CSharp
         /// <param name="LineWidth">Sets the width of the line</param>
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="Fill">Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then it gets "tonexty" ("tonextx") if `orientation` is "v" ("h") Use with `FillColor` if not "none". "tozerox" and "tozeroy" fill to x=0 and y=0 respectively. "tonextx" and "tonexty" fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like "tozerox" and "tozeroy". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. "tonext" fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like "toself" if there is no trace before it. "tonext" should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.</param>
+        /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart ScatterTernary<AType, BType, CType, SumType, TextType>(
-            IEnumerable<AType>? A = null,
-            IEnumerable<BType>? B = null,
-            IEnumerable<CType>? C = null,
-            SumType? Sum = null,
-            StyleParam.Mode? Mode = null,
+        public static GenericChart.GenericChart ScatterSmith<RealType, ImagType, TextType>(
+            IEnumerable<RealType> real,
+            IEnumerable<ImagType> imag,
+            StyleParam.Mode mode,
             string? Name = null,
             bool? ShowLegend = null,
             double? Opacity = null,
@@ -67,20 +61,18 @@ namespace Plotly.NET.CSharp
             double? LineWidth = null,
             StyleParam.DrawingStyle? LineDash = null,
             Line? Line = null,
-            bool? UseDefaults = null
+            StyleParam.Fill? Fill = null,
+            Color? FillColor = null,
+            bool? UseDefaults = true
         )
-            where AType : IConvertible
-            where BType : IConvertible
-            where CType : IConvertible
-            where SumType : class, IConvertible
+            where RealType : IConvertible
+            where ImagType : IConvertible
             where TextType : class, IConvertible
             =>
-                Plotly.NET.ChartTernary.Chart.ScatterTernary<AType, BType, CType, SumType, TextType>(
-                    A: A.ToOption(),
-                    B: B.ToOption(),
-                    C: C.ToOption(),
-                    Sum: Sum.ToOption(),
-                    Mode: Mode.ToOption(),
+                Plotly.NET.ChartSmith.Chart.ScatterSmith<RealType, ImagType, TextType>(
+                    real: real,
+                    imag: imag,
+                    mode: mode,
                     Name: Name.ToOption(),
                     ShowLegend: ShowLegend.ToOptionV(),
                     Opacity: Opacity.ToOptionV(),
@@ -91,15 +83,17 @@ namespace Plotly.NET.CSharp
                     MultiTextPosition: MultiTextPosition.ToOption(),
                     MarkerColor: MarkerColor.ToOption(),
                     MarkerColorScale: MarkerColorScale.ToOption(),
-                    MarkerOutline: MarkerOutline.ToOption(),    
+                    MarkerOutline: MarkerOutline.ToOption(),
                     MarkerSymbol: MarkerSymbol.ToOption(),
                     MultiMarkerSymbol: MultiMarkerSymbol.ToOption(),
-                    Marker: Marker.ToOption(),  
+                    Marker: Marker.ToOption(),
                     LineColor: LineColor.ToOption(),
                     LineColorScale: LineColorScale.ToOption(),
                     LineWidth: LineWidth.ToOptionV(),
                     LineDash: LineDash.ToOption(),
                     Line: Line.ToOption(),
+                    Fill: Fill.ToOption(),
+                    FillColor: FillColor.ToOption(),
                     UseDefaults: UseDefaults.ToOptionV()
                 );
     }

@@ -10,7 +10,7 @@ namespace TestConsoleApp
         static void Main(string[] args)
         {
             Chart.Grid(
-                nRows: 7,
+                nRows: 8,
                 nCols: 3,
                 gCharts:
                     new GenericChart []
@@ -50,7 +50,7 @@ namespace TestConsoleApp
                         ),
                         Chart.Invisible(),
                         Chart.Invisible(),
-                        Chart.Scatterternary<int,int,int,IConvertible,string>(
+                        Chart.ScatterTernary<int,int,int,IConvertible,string>(
                             A: new int [] { 1, 2 },
                             B: new int [] { 3, 4 },
                             C: new int [] { 5, 6 }
@@ -68,6 +68,13 @@ namespace TestConsoleApp
                         Chart.Pie<double,string,string>(
                             values: new double [] {1,2,3,4},
                             Labels: new string [] {"soos", "saas", "fiif", "leel"}
+                        ),
+                        Chart.Invisible(),
+                        Chart.Invisible(),
+                        Chart.ScatterSmith<double,double,string>(
+                            real: new double [] {1,2,3,4},
+                            imag: new double [] {1,2,3,4},
+                            mode: Mode.Markers
                         ),
                         Chart.Invisible(),
                         Chart.Invisible(),
