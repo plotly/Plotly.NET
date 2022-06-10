@@ -2638,7 +2638,7 @@ type Chart =
             GenericChart.addLayout layout ch)
 
 
-    // Set the size of a Chart
+    /// Sets the size of a Chart (in pixels)
     [<CompiledName("WithSize")>]
     static member withSize
         (

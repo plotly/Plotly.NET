@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Plotly.NET\Plotly.NET.fsproj" />
+    <ProjectReference Include="..\..\src\Plotly.NET.CSharp\Plotly.NET.CSharp.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

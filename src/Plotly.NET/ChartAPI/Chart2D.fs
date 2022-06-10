@@ -29,8 +29,6 @@ module Chart2D =
             else
                 Trace2D.initHeatmap style |> GenericChart.ofTraceObject useDefaults
 
-
-
         /// <summary>
         /// Creates a Scatter plot.
         ///
