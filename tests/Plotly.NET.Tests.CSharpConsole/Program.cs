@@ -11,9 +11,9 @@ namespace TestConsoleApp
         {
             Chart.Grid(
                 nRows: 8,
-                nCols: 3,
+                nCols: 5,
                 gCharts:
-                    new GenericChart []
+                    new GenericChart[]
                     {
                         Chart.Scatter<int,int,string>(
                             x: new int [] { 1, 2 },
@@ -28,12 +28,22 @@ namespace TestConsoleApp
                             x: new int [] { 9, 10 },
                             y: new int [] { 11, 12 }
                         ),
+                        Chart.Bar<int,string,string>(
+                            values: new int [] { 1,2 },
+                            Keys: new string [] { "first", "second"}
+                        ),
+                        Chart.Column<int,string,string>(
+                            values: new int [] { 1,2 },
+                            Keys: new string [] { "first", "second"}
+                        ),
                         Chart.Scatter3D<int,int,int,string>(
                             x: new int[] { 12, 13 },
                             y: new int [] { 13, 14 },
                             z: new int [] { 14, 15 },
                             mode: Mode.Markers
                         ),
+                        Chart.Invisible(),
+                        Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.ScatterPolar<int,int,string>(
@@ -43,6 +53,8 @@ namespace TestConsoleApp
                         ),
                         Chart.Invisible(),
                         Chart.Invisible(),
+                        Chart.Invisible(),
+                        Chart.Invisible(),
                         Chart.ScatterGeo<int,int,string>(
                             longitudes: new int [] { 1, 2 },
                             latitudes: new int [] { 3, 4 },
@@ -50,11 +62,15 @@ namespace TestConsoleApp
                         ),
                         Chart.Invisible(),
                         Chart.Invisible(),
+                        Chart.Invisible(),
+                        Chart.Invisible(),
                         Chart.ScatterTernary<int,int,int,IConvertible,string>(
                             A: new int [] { 1, 2 },
                             B: new int [] { 3, 4 },
                             C: new int [] { 5, 6 }
                         ),
+                        Chart.Invisible(),
+                        Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Carpet<double,double,double,double,double,double>(
@@ -65,10 +81,14 @@ namespace TestConsoleApp
                         ),
                         Chart.Invisible(),
                         Chart.Invisible(),
+                        Chart.Invisible(),
+                        Chart.Invisible(),
                         Chart.Pie<double,string,string>(
                             values: new double [] {1,2,3,4},
                             Labels: new string [] {"soos", "saas", "fiif", "leel"}
                         ),
+                        Chart.Invisible(),
+                        Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.ScatterSmith<double,double,string>(
@@ -78,9 +98,11 @@ namespace TestConsoleApp
                         ),
                         Chart.Invisible(),
                         Chart.Invisible(),
+                        Chart.Invisible(),
+                        Chart.Invisible(),
                     }
             )
-                .WithSize(750,2000)
+                .WithSize(1250,2000)
                 .Show();
 
             Chart.Point<int, int, string>(
