@@ -1,4 +1,6 @@
 ﻿using Plotly.NET;
+using Plotly.NET.LayoutObjects;
+using Plotly.NET.TraceObjects;
 
 namespace Plotly.NET.CSharp
 {
@@ -21,7 +23,7 @@ namespace Plotly.NET.CSharp
         ) =>
             Plotly.NET.Chart.SaveHtml(
                 path: path,
-                OpenInBrowser: OpenInBrowser
+                OpenInBrowser: OpenInBrowser.ToOptionV()
             ).Invoke(gChart);
 
         /// <summary>
@@ -49,12 +51,12 @@ namespace Plotly.NET.CSharp
             Title? LegendGroupTitle = null
         ) =>
             Plotly.NET.Chart.WithTraceInfo(
-                Name: Name,
-                Visible: Visible,
-                ShowLegend: ShowLegend,
-                LegendRank: LegendRank,
-                LegendGroup: LegendGroup,
-                LegendGroupTitle: LegendGroupTitle
+                Name: Name.ToOption(),
+                Visible: Visible.ToOption(),
+                ShowLegend: ShowLegend.ToOptionV(),
+                LegendRank: LegendRank.ToOptionV(),
+                LegendGroup: LegendGroup.ToOption(),
+                LegendGroupTitle: LegendGroupTitle.ToOption()
             ).Invoke(gChart);
 
         /// Sets the size of a Chart (in pixels)
@@ -63,8 +65,213 @@ namespace Plotly.NET.CSharp
             int? Width = null,
             int? Height = null
         ) =>
-            Plotly.NET.Chart.WithSize(Width: Width, Height: Height).Invoke(gChart);
-    }
+            Plotly.NET.Chart.WithSize(Width: Width.ToOptionV(), Height: Height.ToOptionV()).Invoke(gChart);
 
+        /// <summary>
+        /// Sets the given x axis styles on the input chart's layout.
+        ///
+        /// If there is already an axis set at the given id, the styles are applied to it. If there is no axis present, a new LinearAxis object with the given styles will be set.
+        /// </summary>
+        /// <param name="TitleText">Sets the text of the axis title.</param>
+        /// <param name="TitleFont">Sets the font of the axis title.</param>
+        /// <param name="TitleStandoff">Sets the standoff distance (in px) between the axis labels and the title text.</param>
+        /// <param name="Title">Sets the Title (use this for more finegrained control than the other title-associated arguments)</param>
+        /// <param name="Color">Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors.</param>
+        /// <param name="AxisType">Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.</param>
+        /// <param name="MinMax">Tuple of (Min*Max value). Sets the range of this axis (the axis will go from Min to Max). If the axis `type` is "log", then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2).</param>
+        /// <param name="Mirror">Determines if and how the axis lines or/and ticks are mirrored to the opposite side of the plotting area.</param>
+        /// <param name="ShowSpikes">Determines whether or not spikes (aka droplines) are drawn for this axis.</param>
+        /// <param name="SpikeColor">Sets the spike color. If not set, will use the series color</param>
+        /// <param name="SpikeThickness">Sets the width (in px) of the zero line.</param>
+        /// <param name="ShowLine">Determines whether or not a line bounding this axis is drawn.</param>
+        /// <param name="LineColor">Sets the axis line color.</param>
+        /// <param name="ShowGrid">Determines whether or not grid lines are drawn. If "true", the grid lines are drawn at every tick mark.</param>
+        /// <param name="GridColor">Sets the color of the grid lines.</param>
+        /// <param name="ZeroLine">Determines whether or not a line is drawn at along the 0 value of this axis. If "true", the zero line is drawn on top of the grid lines.</param>
+        /// <param name="ZeroLineColor">Sets the line color of the zero line.</param>
+        /// <param name="Anchor">If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to "free", this axis' position is determined by `position`.</param>
+        /// <param name="Side">Determines whether a x (y) axis is positioned at the "bottom" ("left") or "top" ("right") of the plotting area.</param>
+        /// <param name="Overlaying">If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter axis, with traces and axes visible for both axes. If "false", this axis does not overlay any same-letter axes. In this case, for axes with overlapping domains only the highest-numbered axis will be visible.</param>
+        /// <param name="Domain">Tuple of (X*Y fractions). Sets the domain of this axis (in plot fraction).</param>
+        /// <param name="Position">Sets the position of this axis in the plotting space (in normalized coordinates). Only has an effect if `anchor` is set to "free".</param>
+        /// <param name="CategoryOrder">Specifies the ordering logic for the case of categorical variables. By default, plotly uses "trace", which specifies the order that is present in the data supplied. Set `categoryorder` to "category ascending" or "category descending" if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to "array" to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the "trace" mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to "total ascending" or "total descending" if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.</param>
+        /// <param name="CategoryArray">Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to "array". Used with `categoryorder`.</param>
+        /// <param name="RangeSlider">Sets a range slider for this axis</param>
+        /// <param name="RangeSelector">Sets a range selector for this axis. This object contains toggable presets for the rangeslider.</param>
+        /// <param name="BackgroundColor">Sets the background color of this axis' wall. (Only has an effect on 3D scenes)</param>
+        /// <param name="ShowBackground">Sets whether or not this axis' wall has a background color. (Only has an effect on 3D scenes)</param>
+        /// <param name="Id">The target axis id on which the styles should be applied. Default is 1.</param>
+        public static GenericChart.GenericChart WithXAxisStyle<MinType, MaxType, CategoryArrayType>(
+            this GenericChart.GenericChart gChart,
+            string? TitleText = null,
+            Font? TitleFont = null,
+            int? TitleStandoff = null,
+            Title? Title = null,
+            Color? Color = null,
+            StyleParam.AxisType? AxisType = null,
+            Tuple<MinType, MaxType>? MinMax = null,
+            StyleParam.Mirror? Mirror = null,
+            bool? ShowSpikes = null,
+            Color? SpikeColor = null,
+            int? SpikeThickness = null,
+            bool? ShowLine = null,
+            Color? LineColor = null,
+            bool? ShowGrid = null,
+            Color? GridColor = null,
+            bool? ZeroLine = null,
+            Color? ZeroLineColor = null,
+            StyleParam.LinearAxisId? Anchor = null,
+            StyleParam.Side? Side = null,
+            StyleParam.LinearAxisId? Overlaying = null,
+            Tuple<double, double>? Domain = null,
+            double? Position = null,
+            StyleParam.CategoryOrder? CategoryOrder = null,
+            IEnumerable<CategoryArrayType>? CategoryArray = null,
+            RangeSlider? RangeSlider = null,
+            RangeSelector? RangeSelector = null,
+            Color? BackgroundColor = null,
+            bool? ShowBackground = null,
+            StyleParam.SubPlotId? Id = null
+        )
+            where MinType : IConvertible
+            where MaxType : IConvertible
+            where CategoryArrayType : class, IConvertible
+            =>
+                Plotly.NET.Chart.WithXAxisStyle<MinType, MaxType, CategoryArrayType>(
+                    TitleText: TitleText.ToOption(),
+                    TitleFont: TitleFont.ToOption(),
+                    TitleStandoff: TitleStandoff.ToOptionV(),
+                    Title: Title.ToOption(),
+                    Color: Color.ToOption(),
+                    AxisType: AxisType.ToOption(),
+                    MinMax: MinMax.ToOption(),
+                    Mirror: Mirror.ToOption(),
+                    ShowSpikes: ShowSpikes.ToOptionV(),
+                    SpikeColor: SpikeColor.ToOption(),
+                    SpikeThickness: SpikeThickness.ToOptionV(),
+                    ShowLine: ShowLine.ToOptionV(),
+                    LineColor: LineColor.ToOption(),
+                    ShowGrid: ShowGrid.ToOptionV(),
+                    GridColor: GridColor.ToOption(),
+                    ZeroLine: ZeroLine.ToOptionV(),
+                    ZeroLineColor: ZeroLineColor.ToOption(),
+                    Anchor: Anchor.ToOption(),
+                    Side: Side.ToOption(),
+                    Overlaying: Overlaying.ToOption(),
+                    Domain: Domain.ToOption(),
+                    Position: Position.ToOptionV(),
+                    CategoryOrder: CategoryOrder.ToOption(),
+                    CategoryArray: CategoryArray.ToOption(),
+                    RangeSlider: RangeSlider.ToOption(),
+                    RangeSelector: RangeSelector.ToOption(),
+                    BackgroundColor: BackgroundColor.ToOption(),
+                    ShowBackground: ShowBackground.ToOptionV(),
+                    Id: Id.ToOption()
+
+                ).Invoke(gChart);
+
+        /// <summary>
+        /// Sets the given y axis styles on the input chart's layout.
+        ///
+        /// If there is already an axis set at the given id, the styles are applied to it. If there is no axis present, a new LinearAxis object with the given styles will be set.
+        /// </summary>
+        /// <param name="TitleText">Sets the text of the axis title.</param>
+        /// <param name="TitleFont">Sets the font of the axis title.</param>
+        /// <param name="TitleStandoff">Sets the standoff distance (in px) between the axis labels and the title text.</param>
+        /// <param name="Title">Sets the Title (use this for more finegrained control than the other title-associated arguments)</param>
+        /// <param name="Color">Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors.</param>
+        /// <param name="AxisType">Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.</param>
+        /// <param name="MinMax">Tuple of (Min*Max value). Sets the range of this axis (the axis will go from Min to Max). If the axis `type` is "log", then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2).</param>
+        /// <param name="Mirror">Determines if and how the axis lines or/and ticks are mirrored to the opposite side of the plotting area.</param>
+        /// <param name="ShowSpikes">Determines whether or not spikes (aka droplines) are drawn for this axis.</param>
+        /// <param name="SpikeColor">Sets the spike color. If not set, will use the series color</param>
+        /// <param name="SpikeThickness">Sets the width (in px) of the zero line.</param>
+        /// <param name="ShowLine">Determines whether or not a line bounding this axis is drawn.</param>
+        /// <param name="LineColor">Sets the axis line color.</param>
+        /// <param name="ShowGrid">Determines whether or not grid lines are drawn. If "true", the grid lines are drawn at every tick mark.</param>
+        /// <param name="GridColor">Sets the color of the grid lines.</param>
+        /// <param name="ZeroLine">Determines whether or not a line is drawn at along the 0 value of this axis. If "true", the zero line is drawn on top of the grid lines.</param>
+        /// <param name="ZeroLineColor">Sets the line color of the zero line.</param>
+        /// <param name="Anchor">If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to "free", this axis' position is determined by `position`.</param>
+        /// <param name="Side">Determines whether a x (y) axis is positioned at the "bottom" ("left") or "top" ("right") of the plotting area.</param>
+        /// <param name="Overlaying">If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter axis, with traces and axes visible for both axes. If "false", this axis does not overlay any same-letter axes. In this case, for axes with overlapping domains only the highest-numbered axis will be visible.</param>
+        /// <param name="Domain">Tuple of (X*Y fractions). Sets the domain of this axis (in plot fraction).</param>
+        /// <param name="Position">Sets the position of this axis in the plotting space (in normalized coordinates). Only has an effect if `anchor` is set to "free".</param>
+        /// <param name="CategoryOrder">Specifies the ordering logic for the case of categorical variables. By default, plotly uses "trace", which specifies the order that is present in the data supplied. Set `categoryorder` to "category ascending" or "category descending" if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to "array" to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the "trace" mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to "total ascending" or "total descending" if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.</param>
+        /// <param name="CategoryArray">Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to "array". Used with `categoryorder`.</param>
+        /// <param name="RangeSlider">Sets a range slider for this axis</param>
+        /// <param name="RangeSelector">Sets a range selector for this axis. This object contains toggable presets for the rangeslider.</param>
+        /// <param name="BackgroundColor">Sets the background color of this axis' wall. (Only has an effect on 3D scenes)</param>
+        /// <param name="ShowBackground">Sets whether or not this axis' wall has a background color. (Only has an effect on 3D scenes)</param>
+        /// <param name="Id">The target axis id on which the styles should be applied. Default is 1.</param>
+        public static GenericChart.GenericChart WithYAxisStyle<MinType, MaxType, CategoryArrayType>(
+            this GenericChart.GenericChart gChart,
+            string? TitleText = null,
+            Font? TitleFont = null,
+            int? TitleStandoff = null,
+            Title? Title = null,
+            Color? Color = null,
+            StyleParam.AxisType? AxisType = null,
+            Tuple<MinType, MaxType>? MinMax = null,
+            StyleParam.Mirror? Mirror = null,
+            bool? ShowSpikes = null,
+            Color? SpikeColor = null,
+            int? SpikeThickness = null,
+            bool? ShowLine = null,
+            Color? LineColor = null,
+            bool? ShowGrid = null,
+            Color? GridColor = null,
+            bool? ZeroLine = null,
+            Color? ZeroLineColor = null,
+            StyleParam.LinearAxisId? Anchor = null,
+            StyleParam.Side? Side = null,
+            StyleParam.LinearAxisId? Overlaying = null,
+            Tuple<double, double>? Domain = null,
+            double? Position = null,
+            StyleParam.CategoryOrder? CategoryOrder = null,
+            IEnumerable<CategoryArrayType>? CategoryArray = null,
+            RangeSlider? RangeSlider = null,
+            RangeSelector? RangeSelector = null,
+            Color? BackgroundColor = null,
+            bool? ShowBackground = null,
+            StyleParam.SubPlotId? Id = null
+        )
+            where MinType : IConvertible
+            where MaxType : IConvertible
+            where CategoryArrayType : class, IConvertible
+            =>
+                Plotly.NET.Chart.WithYAxisStyle<MinType, MaxType, CategoryArrayType>(
+                    TitleText: TitleText.ToOption(),
+                    TitleFont: TitleFont.ToOption(),
+                    TitleStandoff: TitleStandoff.ToOptionV(),
+                    Title: Title.ToOption(),
+                    Color: Color.ToOption(),
+                    AxisType: AxisType.ToOption(),
+                    MinMax: MinMax.ToOption(),
+                    Mirror: Mirror.ToOption(),
+                    ShowSpikes: ShowSpikes.ToOptionV(),
+                    SpikeColor: SpikeColor.ToOption(),
+                    SpikeThickness: SpikeThickness.ToOptionV(),
+                    ShowLine: ShowLine.ToOptionV(),
+                    LineColor: LineColor.ToOption(),
+                    ShowGrid: ShowGrid.ToOptionV(),
+                    GridColor: GridColor.ToOption(),
+                    ZeroLine: ZeroLine.ToOptionV(),
+                    ZeroLineColor: ZeroLineColor.ToOption(),
+                    Anchor: Anchor.ToOption(),
+                    Side: Side.ToOption(),
+                    Overlaying: Overlaying.ToOption(),
+                    Domain: Domain.ToOption(),
+                    Position: Position.ToOptionV(),
+                    CategoryOrder: CategoryOrder.ToOption(),
+                    CategoryArray: CategoryArray.ToOption(),
+                    RangeSlider: RangeSlider.ToOption(),
+                    RangeSelector: RangeSelector.ToOption(),
+                    BackgroundColor: BackgroundColor.ToOption(),
+                    ShowBackground: ShowBackground.ToOptionV(),
+                    Id: Id.ToOption()
+
+                ).Invoke(gChart);
+    }
 
 }

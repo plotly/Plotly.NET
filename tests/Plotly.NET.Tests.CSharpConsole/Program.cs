@@ -82,6 +82,15 @@ namespace TestConsoleApp
             )
                 .WithSize(750,2000)
                 .Show();
+
+            Chart.Point<int, int, string>(
+                x: new int[] { 1, 2 },
+                y: new int[] { 3, 4 }
+            )
+            .WithTraceInfo("Hello from C#", ShowLegend: true)
+            .WithXAxisStyle<int, int, string>(TitleText: "x axis")
+            .WithYAxisStyle<int, int, string>(TitleText: "y axis")
+            .Show();
         }
     }
 }
