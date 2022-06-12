@@ -8,12 +8,12 @@ open BlackFox.Fake
 
 let buildDocs =
     BuildTask.create "BuildDocs" [ build ] {
-        printfn "building docs with stable version %s" stableVersionTag
+        printfn "building docs with stable version %s" stableDocsVersionTag
 
         runDotNet
             (sprintf
                 "fsdocs build --eval --clean --properties Configuration=Release --parameters fsdocs-package-version %s"
-                stableVersionTag)
+                stableDocsVersionTag)
             "./"
     }
 
@@ -30,12 +30,12 @@ let buildDocsPrerelease =
 
 let watchDocs =
     BuildTask.create "WatchDocs" [ build ] {
-        printfn "watching docs with stable version %s" stableVersionTag
+        printfn "watching docs with stable version %s" stableDocsVersionTag
 
         runDotNet
             (sprintf
                 "fsdocs watch --eval --clean --properties Configuration=Release --parameters fsdocs-package-version %s"
-                stableVersionTag)
+                stableDocsVersionTag)
             "./"
     }
 

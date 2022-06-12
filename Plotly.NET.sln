@@ -8,6 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "project", "project", "{BF60
 		.editorconfig = .editorconfig
 		.config\dotnet-tools.json = .config\dotnet-tools.json
 		global.json = global.json
+		key.snk = key.snk
 		LICENSE = LICENSE
 		README.md = README.md
 		RELEASE_NOTES.md = RELEASE_NOTES.md

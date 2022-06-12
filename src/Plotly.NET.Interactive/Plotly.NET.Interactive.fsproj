@@ -11,6 +11,8 @@
     <!-- Optional: Include PDB in the built .nupkg -->
     <IncludeSymbols>true</IncludeSymbols>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>../../key.snk</AssemblyOriginatorKeyFile>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
