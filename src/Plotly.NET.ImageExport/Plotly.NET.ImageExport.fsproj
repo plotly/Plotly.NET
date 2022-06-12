@@ -22,6 +22,7 @@
   
   <ItemGroup>
     <None Include="..\..\docs\img\logo.png" Pack="true" PackagePath="\" />
+    <None Include="RELEASE_NOTES.md" />
     <Compile Include="IGenericChartRenderer.fs" />
     <Compile Include="PuppeteerSharpRenderer.fs" />
     <Compile Include="ExportEngine.fs" />
