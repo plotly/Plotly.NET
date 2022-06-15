@@ -16,7 +16,6 @@ open ReleaseTasks
 
 initializeContext ()
 
-open FSharp.Compiler.Diagnostics
 open BasicTasks
 
 let sourceFiles =
