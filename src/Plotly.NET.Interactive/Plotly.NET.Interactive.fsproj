@@ -30,10 +30,6 @@
     <FsDocsLicenseLink>https://github.com/plotly/Plotly.NET/blob/dev/LICENSE</FsDocsLicenseLink>
     <FsDocsReleaseNotesLink>https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md</FsDocsReleaseNotesLink>
   </PropertyGroup>
-	
-  <ItemGroup>
-    <ProjectReference Include="..\Plotly.NET\Plotly.NET.fsproj" />
-  </ItemGroup>
 
   <ItemGroup>
     <Compile Remove="bin\**" />
@@ -52,10 +48,10 @@
     <None Include="$(OutputPath)/Plotly.NET.Interactive.dll" Pack="true" PackagePath="interactive-extensions/dotnet" />
   </ItemGroup>
 
-
   <ItemGroup>
-    <PackageReference Include="Microsoft.DotNet.Interactive" Version="1.0.0-beta.22175.2" />
-    <PackageReference Include="Microsoft.DotNet.Interactive.Formatting" Version="1.0.0-beta.22175.2" />
+    <PackageReference Include="Plotly.NET" Version="3.*" />
+    <PackageReference Include="Microsoft.DotNet.Interactive" Version="1.0.0-beta.22314.1" />
+    <PackageReference Include="Microsoft.DotNet.Interactive.Formatting" Version="1.0.0-beta.22314.1" />
   </ItemGroup>
 
 </Project>

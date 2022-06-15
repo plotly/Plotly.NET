@@ -22,7 +22,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Authors>Kevin Schneider, F# open source contributors</Authors>
+    <Authors>Kevin Schneider, open source contributors</Authors>
     <Description>Native C# bindings for Plotly.NET 📈🚀.</Description>
     <Summary>Native C# bindings for Plotly.NET 📈🚀.</Summary>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -37,7 +37,7 @@
 
   <ItemGroup>
     <None Include="..\..\docs\img\logo.png" Pack="true" PackagePath="\" />
-    <ProjectReference Include="..\Plotly.NET\Plotly.NET.fsproj" />
+    <PackageReference Include="Plotly.NET" Version="3.*" />
   </ItemGroup>
 
 </Project>

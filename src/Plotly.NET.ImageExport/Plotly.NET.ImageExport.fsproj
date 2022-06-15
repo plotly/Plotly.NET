@@ -33,13 +33,8 @@
     <None Include="Playground.fsx" />
   </ItemGroup>
 
-  <ItemGroup />
-
   <ItemGroup>
-    <ProjectReference Include="..\Plotly.NET\Plotly.NET.fsproj" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="Plotly.NET" Version="3.*" />
     <PackageReference Include="DynamicObj" Version="2.0.0" />
     <PackageReference Include="PuppeteerSharp" Version="6.0.0" />
   </ItemGroup>
