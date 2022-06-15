@@ -14,6 +14,8 @@
     <!-- Optional: Include PDB in the built .nupkg -->
     <IncludeSymbols>true</IncludeSymbols>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>../../key.snk</AssemblyOriginatorKeyFile>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     <Configurations>Debug;Release;Dotnet</Configurations>
@@ -32,8 +34,8 @@
     <FsDocsReleaseNotesLink>https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md</FsDocsReleaseNotesLink>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="RELEASE_NOTES.md" />
     <None Include="..\..\docs\img\logo.png" Pack="true" PackagePath="\" />
-    <Compile Include="AssemblyInfo.fs" />
     <Compile Include="InternalUtils.fs" />
     <Compile Include="CommonAbstractions\ColorKeyword.fs" />
     <Compile Include="CommonAbstractions\Colors.fs" />
@@ -125,7 +127,6 @@
     <Compile Include="Traces\TraceDomain.fs" />
     <Compile Include="Traces\TraceSmith.fs" />
     <Compile Include="Traces\TraceID.fs" />
-    <Folder Include="Extensions\" />
     <Folder Include="Layout\ObjectAbstractions\2D\" />
     <Compile Include="Config\ObjectAbstractions\Edits.fs" />
     <Compile Include="Config\ObjectAbstractions\ToImageButtonOptions.fs" />
@@ -151,7 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="DynamicObj" Version="1.0.1" />
+    <PackageReference Include="DynamicObj" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Layout\ObjectAbstractions\Carpet\" />

@@ -4,9 +4,39 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <AssemblyName>Plotly.NET.CSharp</AssemblyName>
+    <Name>Plotly.NET.CSharp</Name>
+    <OutputType>Library</OutputType>
+    <!-- Optional: Declare that the Repository URL can be published to NuSpec -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <!-- Optional: Embed source files that are not tracked by the source control manager to the PDB -->
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <!-- Optional: Include PDB in the built .nupkg -->
+    <IncludeSymbols>true</IncludeSymbols>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>../../key.snk</AssemblyOriginatorKeyFile>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>../../key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Authors>Kevin Schneider, F# open source contributors</Authors>
+    <Description>Native C# bindings for Plotly.NET 📈🚀.</Description>
+    <Summary>Native C# bindings for Plotly.NET 📈🚀.</Summary>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://plotly.net</PackageProjectUrl>
+    <PackageIcon>logo.png</PackageIcon>
+    <PackageTags>visualization charting plotly fsharp csharp</PackageTags>
+    <RepositoryUrl>https://github.com/plotly/Plotly.NET/</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <FsDocsLicenseLink>https://github.com/plotly/Plotly.NET/blob/dev/LICENSE</FsDocsLicenseLink>
+    <FsDocsReleaseNotesLink>https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md</FsDocsReleaseNotesLink>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\..\docs\img\logo.png" Pack="true" PackagePath="\" />
     <ProjectReference Include="..\Plotly.NET\Plotly.NET.fsproj" />
   </ItemGroup>
 

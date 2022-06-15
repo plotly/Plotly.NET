@@ -17,9 +17,9 @@ open Fake.IO.Globbing.Operators
 
 let createTag =
     BuildTask.create "CreateTag" [ clean; build; runTests; pack ] {
-        if promptYesNo (sprintf "tagging branch with %s OK?" stableVersionTag) then
-            Git.Branches.tag "" stableVersionTag
-            Git.Branches.pushTag "" projectRepo stableVersionTag
+        if promptYesNo (sprintf "tagging branch with %s OK?" branchTag) then
+            Git.Branches.tag "" branchTag
+            Git.Branches.pushTag "" projectRepo branchTag
         else
             failwith "aborted"
     }
@@ -47,13 +47,19 @@ let publishNuget =
         let targets =
             (!!(sprintf "%s/*.*pkg" pkgDir))
 
+        printfn "package files:" 
+
         for target in targets do
             printfn "%A" target
 
-        let msg =
-            sprintf "release package with version %s?" stableVersionTag
+        printfn "package versions to release:" 
 
-        if promptYesNo msg then
+        projects
+        |> List.iter (fun p ->  
+            printfn $"{p.Name} @ {p.PackageVersionTag}"
+        )
+
+        if promptYesNo "OK?" then
             let source =
                 "https://api.nuget.org/v3/index.json"
 
@@ -82,13 +88,19 @@ let publishNugetPrerelease =
         let targets =
             (!!(sprintf "%s/*.*pkg" pkgDir))
 
+        printfn "package files:" 
+
         for target in targets do
             printfn "%A" target
 
-        let msg =
-            sprintf "release package with version %s?" prereleaseTag
+        printfn "package versions to release:" 
 
-        if promptYesNo msg then
+        projects
+        |> List.iter (fun p ->  
+            printfn $"{p.Name} @ {p.PackagePrereleaseTag}"
+        )
+
+        if promptYesNo "OK?" then
             let source =
                 "https://api.nuget.org/v3/index.json"
 
@@ -108,7 +120,7 @@ let publishNugetPrerelease =
 let releaseDocs =
     BuildTask.create "ReleaseDocs" [ buildDocs ] {
         let msg =
-            sprintf "release docs for version %s?" stableVersionTag
+            sprintf "release docs for version %s?" stableDocsVersionTag
 
         if promptYesNo msg then
             Shell.cleanDir "temp"
@@ -122,7 +134,7 @@ let releaseDocs =
             Git.CommandHelper.runSimpleGitCommand "temp/gh-pages" "add ." |> printfn "%s"
 
             let cmd =
-                sprintf """commit -a -m "Update generated documentation for version %s""" stableVersionTag
+                sprintf """commit -a -m "Update generated documentation for version %s""" stableDocsVersionTag
 
             Git.CommandHelper.runSimpleGitCommand "temp/gh-pages" cmd |> printfn "%s"
             Git.Branches.push "temp/gh-pages"

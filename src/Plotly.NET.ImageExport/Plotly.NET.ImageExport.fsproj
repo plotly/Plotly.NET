@@ -4,6 +4,8 @@
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <WarnOn>3390;$(WarnOn)</WarnOn>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>../../key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -22,6 +24,7 @@
   
   <ItemGroup>
     <None Include="..\..\docs\img\logo.png" Pack="true" PackagePath="\" />
+    <None Include="RELEASE_NOTES.md" />
     <Compile Include="IGenericChartRenderer.fs" />
     <Compile Include="PuppeteerSharpRenderer.fs" />
     <Compile Include="ExportEngine.fs" />
@@ -37,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DynamicObj" Version="1.0.1" />
+    <PackageReference Include="DynamicObj" Version="2.0.0" />
     <PackageReference Include="PuppeteerSharp" Version="6.0.0" />
   </ItemGroup>
 
