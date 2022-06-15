@@ -19,53 +19,6 @@ initializeContext ()
 open FSharp.Compiler.Diagnostics
 open BasicTasks
 
-let verifyDocs =
-    BuildTask.create "VerifyDocs" [ clean; build ] {
-        let targets =
-            !! "docs/**.fsx" |> Seq.map (fun f -> f.ToString())
-
-        let checker =
-            FSharp.Compiler.CodeAnalysis.FSharpChecker.Create()
-
-        let ignoredDiagnostics = Set.ofList [ 1182 ] // unused variable
-
-        targets
-        |> Seq.map (fun target ->
-            checker.Compile(
-                [|
-                    "fsc.exe"
-                    "-o"
-                    @"aaaaaaaaaaa.exe"
-                    "-a"
-                    target
-                |]
-            )
-            |> Async.RunSynchronously
-            |> fst
-            |> Seq.where (fun diag ->
-                match diag.Severity with
-                | FSharpDiagnosticSeverity.Error
-                | FSharpDiagnosticSeverity.Warning -> true
-                | _ -> false))
-        |> Seq.collect id
-        |> Seq.where (fun c -> not (ignoredDiagnostics.Contains c.ErrorNumber))
-        |> Seq.sortBy (fun diag ->
-            (match diag.Severity with
-             | FSharpDiagnosticSeverity.Error -> 0
-             | _ -> 1),
-            diag.FileName.[..6 (* to only count the numeric part *) ])
-        |> Seq.map (fun diag ->
-            (match diag.Severity with
-             | FSharpDiagnosticSeverity.Error -> "--- Error: "
-             | _ -> "--- Warning: ")
-            + diag.ToString())
-        |> String.concat "\n"
-        |> (fun errorText ->
-            match errorText with
-            | "" -> ()
-            | text -> raise (System.Exception $"Errors:\n{text}"))
-    }
-
 let sourceFiles =
     !! "src/Plotly.NET/**/*.fs"
     ++ "src/Plotly.NET.ImageExport/**/*.fs"
@@ -73,33 +26,6 @@ let sourceFiles =
     ++ "build/*.fs"
     -- "**/obj/**/*.*"
     -- "**/bin/**/*.*"
-
-let checkFormat =
-    BuildTask.create "CheckFormat" [] {
-        let result =
-            sourceFiles
-            |> Seq.map (sprintf "\"%s\"")
-            |> String.concat " "
-            |> sprintf "%s --check"
-            |> DotNet.exec id "fantomas"
-
-        if result.ExitCode = 0 then
-            Trace.log "No files need formatting"
-        elif result.ExitCode = 99 then
-            failwith "Some files need formatting, check output for more info"
-        else
-            Trace.logf "Errors while formatting: %A" result.Errors
-    }
-
-let format =
-    BuildTask.create "Format" [] {
-        let result =
-            sourceFiles |> Seq.map (sprintf "\"%s\"") |> String.concat " " |> DotNet.exec id "fantomas"
-
-        if not result.OK then
-            printfn "Errors while formatting all files: %A" result.Messages
-    }
-
 
 /// Full release of nuget package, git tag, and documentation for the stable version.
 let _release =
