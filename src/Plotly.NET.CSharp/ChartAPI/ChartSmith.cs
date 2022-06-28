@@ -1,6 +1,7 @@
 ﻿using Plotly.NET;
 using Plotly.NET.LayoutObjects;
 using Plotly.NET.TraceObjects;
+using System.Runtime.InteropServices;
 
 namespace Plotly.NET.CSharp
 {
@@ -42,32 +43,32 @@ namespace Plotly.NET.CSharp
             IEnumerable<RealType> real,
             IEnumerable<ImagType> imag,
             StyleParam.Mode mode,
-            string? Name = null,
-            bool? ShowLegend = null,
-            double? Opacity = null,
-            IEnumerable<double>? MultiOpacity = null,
-            TextType? Text = null,
-            IEnumerable<TextType>? MultiText = null,
-            StyleParam.TextPosition? TextPosition = null,
-            IEnumerable<StyleParam.TextPosition>? MultiTextPosition = null,
-            Color? MarkerColor = null,
-            StyleParam.Colorscale? MarkerColorScale = null,
-            Line? MarkerOutline = null,
-            StyleParam.MarkerSymbol? MarkerSymbol = null,
-            IEnumerable<StyleParam.MarkerSymbol>? MultiMarkerSymbol = null,
-            Marker? Marker = null,
-            Color? LineColor = null,
-            StyleParam.Colorscale? LineColorScale = null,
-            double? LineWidth = null,
-            StyleParam.DrawingStyle? LineDash = null,
-            Line? Line = null,
-            StyleParam.Fill? Fill = null,
-            Color? FillColor = null,
-            bool? UseDefaults = true
+            [Optional] string? Name,
+            [Optional] bool? ShowLegend,
+            [Optional] double? Opacity,
+            [Optional] IEnumerable<double>? MultiOpacity,
+            [Optional] TextType? Text,
+            [Optional] IEnumerable<TextType>? MultiText,
+            [Optional] StyleParam.TextPosition? TextPosition,
+            [Optional] IEnumerable<StyleParam.TextPosition>? MultiTextPosition,
+            [Optional] Color? MarkerColor,
+            [Optional] StyleParam.Colorscale? MarkerColorScale,
+            [Optional] Line? MarkerOutline,
+            [Optional] StyleParam.MarkerSymbol? MarkerSymbol,
+            [Optional] IEnumerable<StyleParam.MarkerSymbol>? MultiMarkerSymbol,
+            [Optional] Marker? Marker,
+            [Optional] Color? LineColor,
+            [Optional] StyleParam.Colorscale? LineColorScale,
+            [Optional] double? LineWidth,
+            [Optional] StyleParam.DrawingStyle? LineDash,
+            [Optional] Line? Line,
+            [Optional] StyleParam.Fill? Fill,
+            [Optional] Color? FillColor,
+            [Optional] bool? UseDefaults
         )
             where RealType : IConvertible
             where ImagType : IConvertible
-            where TextType : class, IConvertible
+            where TextType : IConvertible
             =>
                 Plotly.NET.ChartSmith.Chart.ScatterSmith<RealType, ImagType, TextType>(
                     real: real,

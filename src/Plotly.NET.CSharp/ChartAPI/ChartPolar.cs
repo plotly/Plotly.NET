@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Plotly.NET;
 using Plotly.NET.LayoutObjects;
 using Plotly.NET.TraceObjects;
+using System.Runtime.InteropServices;
 
 namespace Plotly.NET.CSharp
 {
@@ -46,31 +47,31 @@ namespace Plotly.NET.CSharp
             IEnumerable<RType> r,
             IEnumerable<ThetaType> theta,
             StyleParam.Mode mode,
-            string? Name = null,
-            bool? ShowLegend = null,
-            double? Opacity = null,
-            IEnumerable<double>? MultiOpacity = null,
-            TextType? Text = null,
-            IEnumerable<TextType>? MultiText = null,
-            StyleParam.TextPosition? TextPosition = null,
-            IEnumerable<StyleParam.TextPosition>? MultiTextPosition = null,
-            Color? MarkerColor = null,
-            StyleParam.Colorscale? MarkerColorScale = null,
-            Line? MarkerOutline = null,
-            StyleParam.MarkerSymbol3D? MarkerSymbol = null,
-            IEnumerable<StyleParam.MarkerSymbol3D>? MultiMarkerSymbol = null,
-            Marker? Marker = null,
-            Color? LineColor = null,
-            StyleParam.Colorscale? LineColorScale = null,
-            double? LineWidth = null,
-            StyleParam.DrawingStyle? LineDash = null,
-            Line? Line = null,
-            bool? UseWebGL = null,
-            bool? UseDefaults = null
+            [Optional] string? Name,
+            [Optional] bool? ShowLegend,
+            [Optional] double? Opacity,
+            [Optional] IEnumerable<double>? MultiOpacity,
+            [Optional] TextType? Text,
+            [Optional] IEnumerable<TextType>? MultiText,
+            [Optional] StyleParam.TextPosition? TextPosition,
+            [Optional] IEnumerable<StyleParam.TextPosition>? MultiTextPosition,
+            [Optional] Color? MarkerColor,
+            [Optional] StyleParam.Colorscale? MarkerColorScale,
+            [Optional] Line? MarkerOutline,
+            [Optional] StyleParam.MarkerSymbol3D? MarkerSymbol,
+            [Optional] IEnumerable<StyleParam.MarkerSymbol3D>? MultiMarkerSymbol,
+            [Optional] Marker? Marker,
+            [Optional] Color? LineColor,
+            [Optional] StyleParam.Colorscale? LineColorScale,
+            [Optional] double? LineWidth,
+            [Optional] StyleParam.DrawingStyle? LineDash,
+            [Optional] Line? Line,
+            [Optional] bool? UseWebGL,
+            [Optional] bool? UseDefaults
         )
             where RType : IConvertible
             where ThetaType : IConvertible
-            where TextType : class, IConvertible
+            where TextType : IConvertible
 
             =>
                 Plotly.NET.ChartPolar.Chart.ScatterPolar<RType, ThetaType, TextType>(

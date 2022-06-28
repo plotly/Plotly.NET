@@ -15,7 +15,16 @@ namespace Plotly.NET.CSharp
         /// </summary>
         /// <param name="thing">the thing to turn into a FSharpOption</param>
         /// <returns>The original value wrapped as a FSharpOption</returns>
-        static internal Microsoft.FSharp.Core.FSharpOption<T> ToOption<T>(this T? thing) => thing is null ? Microsoft.FSharp.Core.FSharpOption<T>.None : new(thing);
+        static internal Microsoft.FSharp.Core.FSharpOption<T> ToOption<T>(this T? thing) {
+            if (EqualityComparer<T>.Default.Equals(thing, default(T)))
+            {
+                return FSharpOption<T>.None;
+            }
+            else
+            {
+                return new(thing);
+            }
+        }
         /// <summary>
         /// Helper extension method to convert any nullable value type to a FSharpOption, to be used with F# optional parameters.
         /// The resulting opton will be `None` when the value is null, and Some(value) otherwise

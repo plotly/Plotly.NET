@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Plotly.NET;
 using Plotly.NET.LayoutObjects;
 using Plotly.NET.TraceObjects;
+using System.Runtime.InteropServices;
 
 namespace Plotly.NET.CSharp
 {
@@ -36,16 +37,16 @@ namespace Plotly.NET.CSharp
             IEnumerable<GenericChart.GenericChart> gCharts,
             int nRows,
             int nCols,
-            Tuple<StyleParam.LinearAxisId, StyleParam.LinearAxisId>[][]? SubPlots = null,
-            StyleParam.LinearAxisId[]? XAxes = null,
-            StyleParam.LinearAxisId[]? YAxes = null,
-            StyleParam.LayoutGridRowOrder? RowOrder = null,
-            StyleParam.LayoutGridPattern? Pattern = null,
-            double? XGap = null,
-            double? YGap = null,
-            Domain? Domain = null,
-            StyleParam.LayoutGridXSide? XSide = null,
-            StyleParam.LayoutGridYSide? YSide = null
+            [Optional] Tuple<StyleParam.LinearAxisId, StyleParam.LinearAxisId>[][]? SubPlots,
+            [Optional] StyleParam.LinearAxisId[]? XAxes,
+            [Optional] StyleParam.LinearAxisId[]? YAxes,
+            [Optional] StyleParam.LayoutGridRowOrder? RowOrder,
+            [Optional] StyleParam.LayoutGridPattern? Pattern,
+            [Optional] double? XGap,
+            [Optional] double? YGap,
+            [Optional] Domain? Domain,
+            [Optional] StyleParam.LayoutGridXSide? XSide,
+            [Optional] StyleParam.LayoutGridYSide? YSide
         ) =>
             Plotly.NET.Chart.Grid<IEnumerable<GenericChart.GenericChart>>(
                 nRows: nRows,
