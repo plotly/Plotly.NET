@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Plotly.NET;
 using Plotly.NET.LayoutObjects;
 using Plotly.NET.TraceObjects;
+using System.Runtime.InteropServices;
 
 namespace Plotly.NET.CSharp
 {
@@ -48,33 +49,33 @@ namespace Plotly.NET.CSharp
             IEnumerable<LongitudesType> longitudes,
             IEnumerable<LatitudesType> latitudes,
             StyleParam.Mode mode,
-            string? Name = null,
-            bool? ShowLegend = null,
-            double? Opacity = null,
-            IEnumerable<double>? MultiOpacity = null,
-            TextType? Text = null,
-            IEnumerable<TextType>? MultiText = null,
-            StyleParam.TextPosition? TextPosition = null,
-            IEnumerable<StyleParam.TextPosition>? MultiTextPosition = null,
-            Color? MarkerColor = null,
-            StyleParam.Colorscale? MarkerColorScale = null,
-            Line? MarkerOutline = null,
-            StyleParam.MarkerSymbol? MarkerSymbol = null,
-            IEnumerable<StyleParam.MarkerSymbol>? MultiMarkerSymbol = null,
-            Marker? Marker = null,
-            Color? LineColor = null,
-            StyleParam.Colorscale? LineColorScale = null,
-            double? LineWidth = null,
-            StyleParam.DrawingStyle? LineDash = null,
-            Line? Line = null,
-            StyleParam.LocationFormat? LocationMode = null,
-            Object? GeoJson = null,
-            string? FeatureIdKey = null,
-            bool? UseDefaults = null
+            [Optional] string? Name,
+            [Optional] bool? ShowLegend,
+            [Optional] double? Opacity,
+            [Optional] IEnumerable<double>? MultiOpacity,
+            [Optional] TextType? Text,
+            [Optional] IEnumerable<TextType>? MultiText,
+            [Optional] StyleParam.TextPosition? TextPosition,
+            [Optional] IEnumerable<StyleParam.TextPosition>? MultiTextPosition,
+            [Optional] Color? MarkerColor,
+            [Optional] StyleParam.Colorscale? MarkerColorScale,
+            [Optional] Line? MarkerOutline,
+            [Optional] StyleParam.MarkerSymbol? MarkerSymbol,
+            [Optional] IEnumerable<StyleParam.MarkerSymbol>? MultiMarkerSymbol,
+            [Optional] Marker? Marker,
+            [Optional] Color? LineColor,
+            [Optional] StyleParam.Colorscale? LineColorScale,
+            [Optional] double? LineWidth,
+            [Optional] StyleParam.DrawingStyle? LineDash,
+            [Optional] Line? Line,
+            [Optional] StyleParam.LocationFormat? LocationMode,
+            [Optional] Object? GeoJson,
+            [Optional] string? FeatureIdKey,
+            [Optional] bool? UseDefaults
         )
             where LongitudesType : IConvertible
             where LatitudesType : IConvertible
-            where TextType : class, IConvertible
+            where TextType : IConvertible
             =>
                 Plotly.NET.ChartMap.Chart.ScatterGeo<LongitudesType, LatitudesType, TextType>(
                     longitudes: longitudes,

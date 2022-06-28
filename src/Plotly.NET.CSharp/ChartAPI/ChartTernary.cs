@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Plotly.NET.LayoutObjects;
 using Plotly.NET.TraceObjects;
+using System.Runtime.InteropServices;
 
 namespace Plotly.NET.CSharp
 {
@@ -43,37 +44,37 @@ namespace Plotly.NET.CSharp
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         public static GenericChart.GenericChart ScatterTernary<AType, BType, CType, SumType, TextType>(
-            IEnumerable<AType>? A = null,
-            IEnumerable<BType>? B = null,
-            IEnumerable<CType>? C = null,
-            SumType? Sum = null,
-            StyleParam.Mode? Mode = null,
-            string? Name = null,
-            bool? ShowLegend = null,
-            double? Opacity = null,
-            IEnumerable<double>? MultiOpacity = null,
-            TextType? Text = null,
-            IEnumerable<TextType>? MultiText = null,
-            StyleParam.TextPosition? TextPosition = null,
-            IEnumerable<StyleParam.TextPosition>? MultiTextPosition = null,
-            Color? MarkerColor = null,
-            StyleParam.Colorscale? MarkerColorScale = null,
-            Line? MarkerOutline = null,
-            StyleParam.MarkerSymbol? MarkerSymbol = null,
-            IEnumerable<StyleParam.MarkerSymbol>? MultiMarkerSymbol = null,
-            Marker? Marker = null,
-            Color? LineColor = null,
-            StyleParam.Colorscale? LineColorScale = null,
-            double? LineWidth = null,
-            StyleParam.DrawingStyle? LineDash = null,
-            Line? Line = null,
-            bool? UseDefaults = null
+            IEnumerable<AType>? A,
+            IEnumerable<BType>? B,
+            IEnumerable<CType>? C,
+            [Optional] SumType? Sum,
+            [Optional] StyleParam.Mode? Mode,
+            [Optional] string? Name,
+            [Optional] bool? ShowLegend,
+            [Optional] double? Opacity,
+            [Optional] IEnumerable<double>? MultiOpacity,
+            [Optional] TextType? Text,
+            [Optional] IEnumerable<TextType>? MultiText,
+            [Optional] StyleParam.TextPosition? TextPosition,
+            [Optional] IEnumerable<StyleParam.TextPosition>? MultiTextPosition,
+            [Optional] Color? MarkerColor,
+            [Optional] StyleParam.Colorscale? MarkerColorScale,
+            [Optional] Line? MarkerOutline,
+            [Optional] StyleParam.MarkerSymbol? MarkerSymbol,
+            [Optional] IEnumerable<StyleParam.MarkerSymbol>? MultiMarkerSymbol,
+            [Optional] Marker? Marker,
+            [Optional] Color? LineColor,
+            [Optional] StyleParam.Colorscale? LineColorScale,
+            [Optional] double? LineWidth,
+            [Optional] StyleParam.DrawingStyle? LineDash,
+            [Optional] Line? Line,
+            [Optional] bool? UseDefaults
         )
             where AType : IConvertible
             where BType : IConvertible
             where CType : IConvertible
-            where SumType : class, IConvertible
-            where TextType : class, IConvertible
+            where SumType : IConvertible
+            where TextType : IConvertible
             =>
                 Plotly.NET.ChartTernary.Chart.ScatterTernary<AType, BType, CType, SumType, TextType>(
                     A: A.ToOption(),

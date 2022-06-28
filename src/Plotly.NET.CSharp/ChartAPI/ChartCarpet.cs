@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Plotly.NET.LayoutObjects;
 using Plotly.NET.TraceObjects;
+using System.Runtime.InteropServices;
 
 namespace Plotly.NET.CSharp
 {
@@ -46,22 +47,22 @@ namespace Plotly.NET.CSharp
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         public static GenericChart.GenericChart Carpet<XType, MultiXType, YType, MultiYType, AType, BType>(
             string carpetId,
-            string? Name = null,
-            bool? ShowLegend = null,
-            double? Opacity = null,
-            IEnumerable<XType>? X = null,
-            IEnumerable<IEnumerable<MultiXType>>? MultiX = null,
-            IEnumerable<YType>? Y = null,
-            IEnumerable<IEnumerable<MultiYType>>? MultiY = null,
-            IEnumerable<AType>? A = null,
-            IEnumerable<BType>? B = null,
-            LinearAxis? AAxis = null,
-            LinearAxis? BAxis = null,
-            StyleParam.LinearAxisId? XAxis = null,
-            StyleParam.LinearAxisId? YAxis = null,
-            Color? Color = null,
-            double? CheaterSlope = null,
-            bool? UseDefaults = true
+            [Optional] string? Name,
+            [Optional] bool? ShowLegend,
+            [Optional] double? Opacity,
+            [Optional] IEnumerable<XType>? X,
+            [Optional] IEnumerable<IEnumerable<MultiXType>>? MultiX,
+            [Optional] IEnumerable<YType>? Y,
+            [Optional] IEnumerable<IEnumerable<MultiYType>>? MultiY,
+            [Optional] IEnumerable<AType>? A,
+            [Optional] IEnumerable<BType>? B,
+            [Optional] LinearAxis? AAxis,
+            [Optional] LinearAxis? BAxis,
+            [Optional] StyleParam.LinearAxisId? XAxis,
+            [Optional] StyleParam.LinearAxisId? YAxis,
+            [Optional] Color? Color,
+            [Optional] double? CheaterSlope,
+            [Optional] bool? UseDefaults
         )
             where XType : IConvertible 
             where MultiXType : IConvertible 
