@@ -10,12 +10,12 @@ namespace TestConsoleApp
         static void Main(string[] args)
         {
             Chart.Grid(
-                nRows: 8,
-                nCols: 8,
+                nRows: 9,
+                nCols: 5,
                 gCharts:
                     new GenericChart[]
                     {
-                        //2D traces
+                        //2D basic traces
                         Chart.Scatter(
                             x: new int [] { 1, 2 },
                             y: new int [] { 3, 4 },
@@ -38,6 +38,8 @@ namespace TestConsoleApp
                             values: new int [] { 3,4 },
                             Keys: new string [] { "first", "second"}
                         ),
+
+                        //2D distributions
                         Chart.Histogram<int,int,int>(
                             X: new int [] { 1,2,2,2,3,4,5,5 },
                             MultiText: new int [] { 1,2,3,4,5,6,7}
@@ -48,7 +50,11 @@ namespace TestConsoleApp
                         ),
                         Chart.BoxPlot<int,int,string>(
                             X: new int [] { 1,2,2,2,3,4,5,5 }
+                        ),                        
+                        Chart.Violin<int,int,string>(
+                            X: new int [] { 1,2,2,2,3,4,5,5 }
                         ),
+                        Chart.Invisible(),
 
                         //3D traces
                         Chart.Scatter3D<int,int,int,string>(
@@ -61,9 +67,8 @@ namespace TestConsoleApp
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
-                        Chart.Invisible(),
-                        Chart.Invisible(),
-                        Chart.Invisible(),
+
+                        //polar traces
                         Chart.ScatterPolar<int,int,string>(
                             theta: new int [] { 1, 2 },
                             r: new int [] { 3, 4 },
@@ -73,9 +78,8 @@ namespace TestConsoleApp
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
-                        Chart.Invisible(),
-                        Chart.Invisible(),
-                        Chart.Invisible(),
+
+                        //geo/mapbox traces
                         Chart.ScatterGeo<int,int,string>(
                             longitudes: new int [] { 1, 2 },
                             latitudes: new int [] { 3, 4 },
@@ -85,9 +89,8 @@ namespace TestConsoleApp
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
-                        Chart.Invisible(),
-                        Chart.Invisible(),
-                        Chart.Invisible(),
+                        
+                        //ternary traces
                         Chart.ScatterTernary<int,int,int,IConvertible,string>(
                             A: new int [] { 1, 2 },
                             B: new int [] { 3, 4 },
@@ -97,9 +100,8 @@ namespace TestConsoleApp
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
-                        Chart.Invisible(),
-                        Chart.Invisible(),
-                        Chart.Invisible(),
+
+                        //carpet traces
                         Chart.Carpet<double,double,double,double,double,double>(
                             carpetId: "testCarpet",
                             A: new double [] {4.0, 4.0, 4.0, 4.5, 4.5, 4.5, 5.0, 5.0, 5.0, 6.0, 6.0, 6.0},
@@ -110,9 +112,8 @@ namespace TestConsoleApp
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
-                        Chart.Invisible(),
-                        Chart.Invisible(),
-                        Chart.Invisible(),
+
+                        //domain traces
                         Chart.Pie<double,string,string>(
                             values: new double [] {1,2,3,4},
                             Labels: new string [] {"soos", "saas", "fiif", "leel"}
@@ -121,9 +122,8 @@ namespace TestConsoleApp
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
-                        Chart.Invisible(),
-                        Chart.Invisible(),
-                        Chart.Invisible(),
+
+                        //smith traces
                         Chart.ScatterSmith<double,double,string>(
                             real: new double [] {1,2,3,4},
                             imag: new double [] {1,2,3,4},
@@ -133,12 +133,9 @@ namespace TestConsoleApp
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
-                        Chart.Invisible(),
-                        Chart.Invisible(),
-                        Chart.Invisible(),
                     }
             )
-                .WithSize(2000, 2000)
+                .WithSize(1000, 1800)
                 .Show();
         }
     }
