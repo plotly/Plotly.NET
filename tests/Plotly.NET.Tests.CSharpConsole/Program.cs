@@ -11,7 +11,7 @@ namespace TestConsoleApp
         {
             Chart.Grid(
                 nRows: 8,
-                nCols: 7,
+                nCols: 8,
                 gCharts:
                     new GenericChart[]
                     {
@@ -46,6 +46,9 @@ namespace TestConsoleApp
                            x: new int [] { 1,2,2,2,3,4,5,5 },
                            y: new int [] { 1,2,2,2,3,4,5,5 }
                         ),
+                        Chart.BoxPlot<int,int,string>(
+                            X: new int [] { 1,2,2,2,3,4,5,5 }
+                        ),
 
                         //3D traces
                         Chart.Scatter3D<int,int,int,string>(
@@ -54,6 +57,7 @@ namespace TestConsoleApp
                             z: new int [] { 14, 15 },
                             mode: Mode.Markers
                         ),
+                        Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
@@ -71,6 +75,7 @@ namespace TestConsoleApp
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
+                        Chart.Invisible(),
                         Chart.ScatterGeo<int,int,string>(
                             longitudes: new int [] { 1, 2 },
                             latitudes: new int [] { 3, 4 },
@@ -82,11 +87,13 @@ namespace TestConsoleApp
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
+                        Chart.Invisible(),
                         Chart.ScatterTernary<int,int,int,IConvertible,string>(
                             A: new int [] { 1, 2 },
                             B: new int [] { 3, 4 },
                             C: new int [] { 5, 6 }
                         ),
+                        Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
@@ -105,10 +112,12 @@ namespace TestConsoleApp
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
+                        Chart.Invisible(),
                         Chart.Pie<double,string,string>(
                             values: new double [] {1,2,3,4},
                             Labels: new string [] {"soos", "saas", "fiif", "leel"}
                         ),
+                        Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
@@ -120,6 +129,7 @@ namespace TestConsoleApp
                             imag: new double [] {1,2,3,4},
                             mode: Mode.Markers
                         ),
+                        Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
