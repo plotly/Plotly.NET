@@ -664,7 +664,6 @@ namespace Plotly.NET.CSharp
             where XType : IConvertible
             where YType : IConvertible
             where TextType : IConvertible
-
             =>
                 Plotly.NET.Chart2D.Chart.BoxPlot<XType, YType, TextType>(
                     X: X.ToOption(),
@@ -691,6 +690,79 @@ namespace Plotly.NET.CSharp
                     Notched: Notched.ToOptionV(),
                     NotchWidth: NotchWidth.ToOptionV(),
                     QuartileMethod: QuartileMethod.ToOption(),
+                    UseDefaults: UseDefaults.ToOptionV()
+                );
+
+        public static GenericChart.GenericChart Violin<XType, YType, TextType>(
+            [Optional] IEnumerable<XType>? X,
+            [Optional] IEnumerable<YType>? Y,
+            [Optional] string? Name,
+            [Optional] bool? ShowLegend,
+            [Optional] TextType? Text,
+            [Optional] IEnumerable<TextType>? MultiText,
+            [Optional] Color? FillColor,
+            [Optional] double? Opacity,
+            [Optional] StyleParam.BoxPoints? Points,
+            [Optional] double? Jitter,
+            [Optional] double? PointPos,
+            [Optional] StyleParam.Orientation? Orientation,
+            [Optional] double? Width,
+            [Optional] Color? MarkerColor,
+            [Optional] Marker? Marker,
+            [Optional] Color? OutlineColor,
+            [Optional] double? OutlineWidth,
+            [Optional] Line? Outline,
+            [Optional] string? AlignmentGroup,
+            [Optional] string? OffsetGroup,
+            [Optional] bool? ShowBox,
+            [Optional] double? BoxWidth,
+            [Optional] Color? BoxFillColor,
+            [Optional] Box? Box,
+            [Optional] double? BandWidth,
+            [Optional] MeanLine? MeanLine,
+            [Optional] string? ScaleGroup,
+            [Optional] StyleParam.ScaleMode? ScaleMode,
+            [Optional] StyleParam.ViolinSide? Side,
+            [Optional] StyleParam.Range? Span,
+            [Optional] StyleParam.SpanMode? SpanMode,
+            [Optional] bool? UseDefaults
+        )
+            where XType : IConvertible
+            where YType : IConvertible
+            where TextType : IConvertible
+            =>
+                Plotly.NET.Chart2D.Chart.Violin<XType, YType, TextType>(
+                    X: X.ToOption(),
+                    Y: Y.ToOption(),
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOptionV(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    FillColor: FillColor.ToOption(),
+                    Opacity: Opacity.ToOptionV(),
+                    Points: Points.ToOption(),
+                    Jitter: Jitter.ToOptionV(),
+                    PointPos: PointPos.ToOptionV(),
+                    Orientation: Orientation.ToOption(),
+                    Width: Width.ToOptionV(),
+                    MarkerColor: MarkerColor.ToOption(),
+                    Marker: Marker.ToOption(),
+                    OutlineColor: OutlineColor.ToOption(),
+                    OutlineWidth: OutlineWidth.ToOptionV(),
+                    Outline: Outline.ToOption(),
+                    AlignmentGroup: AlignmentGroup.ToOption(),
+                    OffsetGroup: OffsetGroup.ToOption(),
+                    ShowBox: ShowBox.ToOptionV(),
+                    BoxWidth: BoxWidth.ToOptionV(),
+                    BoxFillColor: BoxFillColor.ToOption(),
+                    Box: Box.ToOption(),
+                    BandWidth: BandWidth.ToOptionV(),
+                    MeanLine: MeanLine.ToOption(),
+                    ScaleGroup: ScaleGroup.ToOption(),
+                    ScaleMode: ScaleMode.ToOption(),
+                    Side: Side.ToOption(),
+                    Span: Span.ToOption(),
+                    SpanMode: SpanMode.ToOption(),
                     UseDefaults: UseDefaults.ToOptionV()
                 );
     };
