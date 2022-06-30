@@ -693,6 +693,45 @@ namespace Plotly.NET.CSharp
                     UseDefaults: UseDefaults.ToOptionV()
                 );
 
+        /// <summary>
+        /// Visualizes the distribution of the input data as a violin plot.
+        ///
+        /// A violin plot is a method of plotting numeric data. It is similar to a box plot, except that they also show the probability density of the data at different values, usually smoothed by a kernel density estimator.
+        ///
+        /// In vertical (horizontal) violin plots, statistics are computed using `y` (`x`) values. By supplying an `x` (`y`) array, one violin per distinct x (y) value is drawn If no `x` (`y`) array is provided, a single violin is drawn. That violin position is then positioned with with `name` or with `x0` (`y0`) if provided.
+        /// </summary>
+        /// <param name="X">Sets the x sample data or coordinates.</param>
+        /// <param name="Y">Sets the y sample data or coordinates.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="FillColor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="Points">If "outliers", only the sample points lying outside the whiskers are shown If "suspectedoutliers", the outlier points are shown and points either less than 4"Q1-3"Q3 or greater than 4"Q3-3"Q1 are highlighted (see `outliercolor`) If "all", all sample points are shown If "false", only the violins are shown with no sample points. Defaults to "suspectedoutliers" when `marker.outliercolor` or `marker.line.outliercolor` is set, otherwise defaults to "outliers".</param>
+        /// <param name="Jitter">Sets the amount of jitter in the sample points drawn. If "0", the sample points align along the distribution axis. If "1", the sample points are drawn in a random jitter of width equal to the width of the box(es).</param>
+        /// <param name="PointPos">Sets the position of the sample points in relation to the box(es). If "0", the sample points are places over the center of the box(es). Positive (negative) values correspond to positions to the right (left) for vertical boxes and above (below) for horizontal boxes</param>
+        /// <param name="Orientation">Sets the orientation of the violin(s). If "v" ("h"), the distribution is visualized along the vertical (horizontal).</param>
+        /// <param name="Width">Sets the width of the violin in data coordinates. If "0" (default value) the width is automatically selected based on the positions of other violin traces in the same subplot.</param>
+        /// <param name="MarkerColor">Sets the marker color.</param>
+        /// <param name="Marker">Sets the marker for the violin (use this for more finegrained control than the other marker-associated arguments).</param>
+        /// <param name="OutlineColor">Sets the color of the box outline</param>
+        /// <param name="OutlineWidth">Sets the width of the box outline</param>
+        /// <param name="Outline">Sets the box outline (use this for more finegrained control than the other outline-associated arguments).</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
+        /// <param name="ShowBox">Wether and how to draw a miniature box plot</param>
+        /// <param name="BoxWidth">Sets the width of the miniature box plot</param>
+        /// <param name="BoxFillColor">Sets the fill color of the miniature box plot</param>
+        /// <param name="Box">Sets the styles of the miniature box plot (use this for more finegrained control than the other box-associated arguments)</param>
+        /// <param name="BandWidth">Sets the bandwidth used to compute the kernel density estimate. By default, the bandwidth is determined by Silverman's rule of thumb.</param>
+        /// <param name="MeanLine">Wether and how to draw the meanline</param>
+        /// <param name="ScaleGroup">If there are multiple violins that should be sized according to to some metric (see `scalemode`), link them by providing a non-empty group id here shared by every trace in the same group. If a violin's `width` is undefined, `scalegroup` will default to the trace's name. In this case, violins with the same names will be linked together</param>
+        /// <param name="ScaleMode">Sets the metric by which the width of each violin is determined."width" means each violin has the same (max) width"count" means the violins are scaled by the number of sample points makingup each violin.</param>
+        /// <param name="Side">Determines on which side of the position value the density function making up one half of a violin is plotted. Useful when comparing two violin traces under "overlay" mode, where one trace has `side` set to "positive" and the other to "negative".</param>
+        /// <param name="Span">Sets the span in data space for which the density function will be computed. Has an effect only when `spanmode` is set to "manual".</param>
+        /// <param name="SpanMode">Sets the method by which the span in data space where the density function will be computed. "soft" means the span goes from the sample's minimum value minus two bandwidths to the sample's maximum value plus two bandwidths. "hard" means the span goes from the sample's minimum to its maximum value. For custom span settings, use mode "manual" and fill in the `span` attribute.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         public static GenericChart.GenericChart Violin<XType, YType, TextType>(
             [Optional] IEnumerable<XType>? X,
             [Optional] IEnumerable<YType>? Y,
@@ -763,6 +802,101 @@ namespace Plotly.NET.CSharp
                     Side: Side.ToOption(),
                     Span: Span.ToOption(),
                     SpanMode: SpanMode.ToOption(),
+                    UseDefaults: UseDefaults.ToOptionV()
+                );
+
+        /// <summary>
+        /// Computes a 2D histogram contour plot, also known as a density contour plot, which is a 2-dimensional generalization of a histogram which resembles a contour plot but is computed by grouping a set of points specified by their x and y coordinates into bins, and applying an aggregation function such as count or sum (if z is provided) to compute the value to be used to compute contours.
+        ///
+        /// The sample data from which statistics are computed is set in `x` and `y` (where `x` and `y` represent marginal distributions, binning is set in `xbins` and `ybins` in this case) or `z` (where `z` represent the 2D distribution and binning set, binning is set by `x` and `y` in this case). The resulting distribution is visualized as a contour plot.
+        /// </summary>
+        /// <param name="x">Sets the sample data to be binned on the x axis.</param>
+        /// <param name="y">Sets the sample data to be binned on the y axis.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="Z">Sets the aggregation data.</param>
+        /// <param name="HistFunc">Specifies the binning function used for this histogram trace. If "count", the histogram values are computed by counting the number of values lying inside each bin. If "sum", "avg", "min", "max", the histogram values are computed using the sum, the average, the minimum or the maximum of the values lying inside each bin respectively.</param>
+        /// <param name="HistNorm">Specifies the type of normalization used for this histogram trace. If "", the span of each bar corresponds to the number of occurrences (i.e. the number of data points lying inside the bins). If "percent" / "probability", the span of each bar corresponds to the percentage / fraction of occurrences with respect to the total number of sample points (here, the sum of all bin HEIGHTS equals 100% / 1). If "density", the span of each bar corresponds to the number of occurrences in a bin divided by the size of the bin interval (here, the sum of all bin AREAS equals the total number of sample points). If "probability density", the area of each bar corresponds to the probability that an event will fall into the corresponding bin (here, the sum of all bin AREAS equals 1).</param>
+        /// <param name="NBinsX">Specifies the maximum number of desired bins. This value will be used in an algorithm that will decide the optimal bin size such that the histogram best visualizes the distribution of the data. Ignored if `xbins.size` is provided.</param>
+        /// <param name="NBinsY">Specifies the maximum number of desired bins. This value will be used in an algorithm that will decide the optimal bin size such that the histogram best visualizes the distribution of the data. Ignored if `ybins.size` is provided.</param>
+        /// <param name="BinGroup">Set the `xbingroup` and `ybingroup` default prefix For example, setting a `bingroup` of "1" on two histogram2d traces will make them their x-bins and y-bins match separately.</param>
+        /// <param name="XBinGroup">Set a group of histogram traces which will have compatible x-bin settings. Using `xbingroup`, histogram2d and histogram2dcontour traces (on axes of the same axis type) can have compatible x-bin settings. Note that the same `xbingroup` value can be used to set (1D) histogram `bingroup`</param>
+        /// <param name="XBins">Sets the binning across the x dimension</param>
+        /// <param name="YBinGroup">Set a group of histogram traces which will have compatible y-bin settings. Using `ybingroup`, histogram2d and histogram2dcontour traces (on axes of the same axis type) can have compatible y-bin settings. Note that the same `ybingroup` value can be used to set (1D) histogram `bingroup`</param>
+        /// <param name="YBins">Sets the binning across the y dimension</param>
+        /// <param name="Marker">Sets the marker of this trace.</param>
+        /// <param name="ContourLineDash">Sets the contour line dash style</param>
+        /// <param name="ContourLineColor">Sets the contour line color</param>
+        /// <param name="ContourLineSmoothing">Sets the amount of smoothing for the contour lines, where "0" corresponds to no smoothing.</param>
+        /// <param name="ContourLine">Sets the contour lines (use this for more finegrained control than the other contourline-associated arguments).</param>
+        /// <param name="ColorBar">Sets the styles of the colorbar for this trace.</param>
+        /// <param name="ColorScale">Sets the colorscale for this trace.</param>
+        /// <param name="ShowScale">Wether or not to show the colorscale/colorbar</param>
+        /// <param name="ReverseScale">Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.</param>
+        /// <param name="Contours">Sets the style of the contours</param>
+        /// <param name="NContours">Sets the maximum number of contour levels. The actual number of contours will be chosen automatically to be less than or equal to the value of `ncontours`. Has an effect only if `autocontour` is "true" or if `contours.size` is missing.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        public static GenericChart.GenericChart Histogram2DContour<XType, YType, ZType>(
+            IEnumerable<XType> x,
+            IEnumerable<YType> y,
+            [Optional] string? Name,
+            [Optional] bool? ShowLegend,
+            [Optional] double? Opacity,
+            [Optional] IEnumerable<IEnumerable<ZType>>? Z,
+            [Optional] StyleParam.HistFunc? HistFunc,
+            [Optional] StyleParam.HistNorm? HistNorm,
+            [Optional] int? NBinsX,
+            [Optional] int? NBinsY,
+            [Optional] string? BinGroup,
+            [Optional] string? XBinGroup,
+            [Optional] Bins? XBins,
+            [Optional] string? YBinGroup,
+            [Optional] Bins? YBins,
+            [Optional] Marker? Marker,
+            [Optional] Color? ContourLineColor,
+            [Optional] StyleParam.DrawingStyle? ContourLineDash,
+            [Optional] double? ContourLineSmoothing,
+            [Optional] Line? ContourLine,
+            [Optional] ColorBar? ColorBar,
+            [Optional] StyleParam.Colorscale? ColorScale,
+            [Optional] bool? ShowScale,
+            [Optional] bool? ReverseScale,
+            [Optional] Contours? Contours,
+            [Optional] int? NContours,
+            [Optional] bool? UseDefaults
+        )
+            where XType : IConvertible
+            where YType : IConvertible
+            where ZType : IConvertible
+            =>
+                Plotly.NET.Chart2D.Chart.Histogram2DContour<XType, YType, IEnumerable<ZType>, ZType>(
+                    x: x,
+                    y: y,
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOptionV(),
+                    Opacity: Opacity.ToOptionV(),
+                    Z: Z.ToOption(),
+                    HistFunc: HistFunc.ToOption(),
+                    HistNorm: HistNorm.ToOption(),
+                    NBinsX: NBinsX.ToOptionV(),
+                    NBinsY: NBinsY.ToOptionV(),
+                    BinGroup: BinGroup.ToOption(),
+                    XBinGroup: XBinGroup.ToOption(),
+                    XBins: XBins.ToOption(),
+                    YBinGroup: YBinGroup.ToOption(),
+                    YBins: YBins.ToOption(),
+                    Marker: Marker.ToOption(),
+                    ContourLineColor: ContourLineColor.ToOption(),
+                    ContourLineDash: ContourLineDash.ToOption(),
+                    ContourLineSmoothing: ContourLineSmoothing.ToOptionV(),
+                    ContourLine: ContourLine.ToOption(),
+                    ColorBar: ColorBar.ToOption(),
+                    ColorScale: ColorScale.ToOption(),
+                    ShowScale: ShowScale.ToOptionV(),
+                    ReverseScale: ReverseScale.ToOptionV(),
+                    Contours: Contours.ToOption(),
+                    NContours: NContours.ToOptionV(),
                     UseDefaults: UseDefaults.ToOptionV()
                 );
     };

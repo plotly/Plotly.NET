@@ -46,7 +46,8 @@ namespace TestConsoleApp
                         ),
                         Chart.Histogram2D<int,int,int>(
                            x: new int [] { 1,2,2,2,3,4,5,5 },
-                           y: new int [] { 1,2,2,2,3,4,5,5 }
+                           y: new int [] { 1,2,2,2,3,4,5,5 },
+                           ShowScale: false
                         ),
                         Chart.BoxPlot<int,int,string>(
                             X: new int [] { 1,2,2,2,3,4,5,5 }
@@ -54,7 +55,11 @@ namespace TestConsoleApp
                         Chart.Violin<int,int,string>(
                             X: new int [] { 1,2,2,2,3,4,5,5 }
                         ),
-                        Chart.Invisible(),
+                        Chart.Histogram2DContour<int,int,int>(
+                           x: new int [] { 1,2,2,2,3,4,5,5 },
+                           y: new int [] { 1,2,2,2,3,4,5,5 },
+                           ShowScale: false
+                        ),
 
                         //3D traces
                         Chart.Scatter3D<int,int,int,string>(
