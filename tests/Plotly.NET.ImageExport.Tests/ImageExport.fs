@@ -17,6 +17,12 @@ let readTestFilePlatformSpecific filePostfix =
     else
         raise (Exception "Running tests on the current OS is not supported :(")
 
+let runTest =
+    if RuntimeInformation.IsOSPlatform(OSPlatform.Linux) then
+        // https://github.com/plotly/Plotly.NET/pull/307#issuecomment-1172374126
+        ptestAsync
+    else
+        testAsync
 
 [<Tests>]
 let ``Image export tests`` =
@@ -27,7 +33,7 @@ let ``Image export tests`` =
     testSequencedGroup "ImageExport_Sequenced" (
         // skipping this for now, cannot make it work atm (pTestAsync -> testAsync for running it)
         testList "base64 strings" [
-            testAsync "Chart.toBase64JPGStringAsync" {
+            runTest "Chart.toBase64JPGStringAsync" {
                 let testBase64JPG = readTestFilePlatformSpecific "TestBase64JPG.txt"
                 
                 let! actual = (Chart.Point([1.,1.]) |> Chart.toBase64JPGStringAsync())
@@ -38,7 +44,7 @@ let ``Image export tests`` =
                         testBase64JPG
                         "Invalid base64 string for Chart.toBase64JPGStringAsync"
             }
-            testAsync "Chart.toBase64PNGStringAsync" {
+            runTest "Chart.toBase64PNGStringAsync" {
                 let testBase64PNG = readTestFilePlatformSpecific "TestBase64PNG.txt"
                 
                 let! actual = (Chart.Point([1.,1.]) |> Chart.toBase64PNGStringAsync())

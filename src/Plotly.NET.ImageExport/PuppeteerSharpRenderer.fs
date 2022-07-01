@@ -12,6 +12,10 @@ open DynamicObj
 module PuppeteerSharpRendererOptions =
 
     let mutable launchOptions = LaunchOptions()
+    
+    // https://github.com/hardkoded/puppeteer-sharp/issues/1211
+    launchOptions.Args <- [| "--no-sandbox" |]
+    
     launchOptions.Timeout <- 60000
 
     let mutable localBrowserExecutablePath =
@@ -89,7 +93,6 @@ type PuppeteerSharpRenderer() =
                 let launchOptions =
                     PuppeteerSharpRendererOptions.launchOptions
 
-                launchOptions.Args <- [| "--no-sandbox" |]
                 launchOptions.ExecutablePath <- revision.ExecutablePath
 
                 return! Puppeteer.LaunchAsync(launchOptions) |> Async.AwaitTask
