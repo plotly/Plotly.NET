@@ -89,6 +89,7 @@ type PuppeteerSharpRenderer() =
                 let launchOptions =
                     PuppeteerSharpRendererOptions.launchOptions
 
+                launchOptions.Args <- [| "--no-sandbox" |]
                 launchOptions.ExecutablePath <- revision.ExecutablePath
 
                 return! Puppeteer.LaunchAsync(launchOptions) |> Async.AwaitTask
