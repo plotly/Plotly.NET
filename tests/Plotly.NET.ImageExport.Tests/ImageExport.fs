@@ -44,7 +44,7 @@ let ``Image export tests`` =
                 let! actual = (Chart.Point([1.,1.]) |> Chart.toBase64PNGStringAsync())
 
                 return 
-                    Expect.stringContains
+                    Expect.equal
                         actual
                         testBase64PNG
                         "Invalid base64 string for Chart.toBase64PNGStringAsync"
