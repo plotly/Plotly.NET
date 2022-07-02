@@ -10,7 +10,7 @@ module Formatters =
 <div>
     [CHART]
     [DESCRIPTION]
-</div    
+</div>    
 """
 
     /// Converts a GenericChart to it's HTML representation and embeds it in a div element, together with the chart description for display in notebook environments.
