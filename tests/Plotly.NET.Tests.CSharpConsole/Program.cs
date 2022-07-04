@@ -11,7 +11,7 @@ namespace TestConsoleApp
         {
             Chart.Grid(
                 nRows: 9,
-                nCols: 5,
+                nCols: 6,
                 gCharts:
                     new GenericChart[]
                     {
@@ -38,6 +38,7 @@ namespace TestConsoleApp
                             values: new int [] { 3,4 },
                             Keys: new string [] { "first", "second"}
                         ),
+                        Chart.Invisible(),
 
                         //2D distributions
                         Chart.Histogram<int,int,int>(
@@ -60,6 +61,11 @@ namespace TestConsoleApp
                            y: new int [] { 1,2,2,2,3,4,5,5 },
                            ShowScale: false
                         ),
+                        Chart.PointDensity<int,int>(
+                           x: new int [] { 1,2,2,2,3,4,5,5 },
+                           y: new int [] { 1,2,2,2,3,4,5,5 },
+                           ShowScale: false
+                        ),
 
                         //3D traces
                         Chart.Scatter3D<int,int,int,string>(
@@ -68,6 +74,7 @@ namespace TestConsoleApp
                             z: new int [] { 14, 15 },
                             mode: Mode.Markers
                         ),
+                        Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
@@ -83,6 +90,7 @@ namespace TestConsoleApp
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
+                        Chart.Invisible(),
 
                         //geo/mapbox traces
                         Chart.ScatterGeo<int,int,string>(
@@ -94,6 +102,7 @@ namespace TestConsoleApp
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
+                        Chart.Invisible(),
                         
                         //ternary traces
                         Chart.ScatterTernary<int,int,int,IConvertible,string>(
@@ -101,6 +110,7 @@ namespace TestConsoleApp
                             B: new int [] { 3, 4 },
                             C: new int [] { 5, 6 }
                         ),
+                        Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
@@ -117,12 +127,14 @@ namespace TestConsoleApp
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
+                        Chart.Invisible(),
 
                         //domain traces
                         Chart.Pie<double,string,string>(
                             values: new double [] {1,2,3,4},
                             Labels: new string [] {"soos", "saas", "fiif", "leel"}
                         ),
+                        Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
@@ -134,6 +146,7 @@ namespace TestConsoleApp
                             imag: new double [] {1,2,3,4},
                             mode: Mode.Markers
                         ),
+                        Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
