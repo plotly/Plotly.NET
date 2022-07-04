@@ -17,13 +17,6 @@ let readTestFilePlatformSpecific filePostfix =
     else
         raise (Exception "Running tests on the current OS is not supported :(")
 
-let runTest =
-    if RuntimeInformation.IsOSPlatform(OSPlatform.Linux) then
-        // https://github.com/plotly/Plotly.NET/pull/307#issuecomment-1172374126
-        ptestAsync
-    else
-        testAsync
-
 [<Tests>]
 let ``Image export tests`` =
     // this has to run in sequence as the first call will establish chromium dependencies.
@@ -44,7 +37,7 @@ let ``Image export tests`` =
                         testBase64JPG
                         "Invalid base64 string for Chart.toBase64JPGStringAsync"
             }
-            testAsync "Chart.toBase64PNGStringAsync" {
+            ptestAsync "Chart.toBase64PNGStringAsync" {
                 let testBase64PNG = readTestFilePlatformSpecific "TestBase64PNG.txt"
                 
                 let! actual = (Chart.Point([1.,1.]) |> Chart.toBase64PNGStringAsync())
