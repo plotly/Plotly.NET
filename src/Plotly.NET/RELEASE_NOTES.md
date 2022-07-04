@@ -1,4 +1,4 @@
-### 3.0.0 - June 15 2020
+### 3.0.0 - June 15 2022
 
 This release adopts strong assembly naming. 
 This might cause backwards incompatibility and therefore results in an early major version increase. 

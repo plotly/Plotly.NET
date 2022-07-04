@@ -1,4 +1,4 @@
-### 0.0.1 - June 10 2020
+### 0.0.1 - June 15 2022
 
 C# bindings for basic charts and styling for usage in ML.NET notebooks:
 

@@ -1,3 +1,9 @@
+### 3.0.1 - July 04 2022
+
+(unlisted)
+
+Accidental push without code base change, whoops!
+
 ### 3.0.0 - June 15 2020
 
 This release adopts strong assembly naming. 
