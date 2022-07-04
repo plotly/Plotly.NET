@@ -20,7 +20,7 @@ let readTestFilePlatformSpecific filePostfix =
 let runTest =
     if RuntimeInformation.IsOSPlatform(OSPlatform.Linux) then
         // https://github.com/plotly/Plotly.NET/pull/307#issuecomment-1172374126
-        ptestAsync
+        testAsync
     else
         testAsync
 
@@ -44,7 +44,7 @@ let ``Image export tests`` =
                         testBase64JPG
                         "Invalid base64 string for Chart.toBase64JPGStringAsync"
             }
-            runTest "Chart.toBase64PNGStringAsync" {
+            testAsync "Chart.toBase64PNGStringAsync" {
                 let testBase64PNG = readTestFilePlatformSpecific "TestBase64PNG.txt"
                 
                 let! actual = (Chart.Point([1.,1.]) |> Chart.toBase64PNGStringAsync())
