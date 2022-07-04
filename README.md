@@ -18,7 +18,7 @@ Plotly.NET provides functions for generating and rendering plotly.js charts in *
     - [For applications and libraries](#for-applications-and-libraries)
     - [For scripting](#for-scripting)
     - [For dotnet interactive notebooks](#for-dotnet-interactive-notebooks)
-    - [Nightly builds](##getting-nightly-builds)
+    - [Nightly builds](#getting-nightly-builds)
 - [Documentation](#documentation)
     - [Getting started](#getting-started)
     - [Full library reference](#full-library-reference)
