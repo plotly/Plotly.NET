@@ -33,7 +33,7 @@ let ``Image export tests`` =
     testSequencedGroup "ImageExport_Sequenced" (
         // skipping this for now, cannot make it work atm (pTestAsync -> testAsync for running it)
         testList "base64 strings" [
-            runTest "Chart.toBase64JPGStringAsync" {
+            ptestAsync "Chart.toBase64JPGStringAsync" {
                 let testBase64JPG = readTestFilePlatformSpecific "TestBase64JPG.txt"
                 
                 let! actual = (Chart.Point([1.,1.]) |> Chart.toBase64JPGStringAsync())
@@ -44,7 +44,7 @@ let ``Image export tests`` =
                         testBase64JPG
                         "Invalid base64 string for Chart.toBase64JPGStringAsync"
             }
-            runTest "Chart.toBase64PNGStringAsync" {
+            testAsync "Chart.toBase64PNGStringAsync" {
                 let testBase64PNG = readTestFilePlatformSpecific "TestBase64PNG.txt"
                 
                 let! actual = (Chart.Point([1.,1.]) |> Chart.toBase64PNGStringAsync())
