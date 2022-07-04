@@ -50,6 +50,8 @@ jobs:
           
           # Plotly.NET.Interactive
           cd ./Plotly.NET.Interactive
+          dotnet remove package Plotly.NET
+          dotnet add reference ../Plotly.NET/Plotly.NET.fsproj
           dotnet restore Plotly.NET.Interactive.fsproj
           dotnet build Plotly.NET.Interactive.fsproj -c release
           dotnet pack Plotly.NET.Interactive.fsproj -c release -p:PackageVersion=$name
@@ -60,6 +62,8 @@ jobs:
           
           # Plotly.NET.ImageExport
           cd ./Plotly.NET.ImageExport
+          dotnet remove package Plotly.NET
+          dotnet add reference ../Plotly.NET/Plotly.NET.fsproj
           dotnet restore Plotly.NET.ImageExport.fsproj
           dotnet build Plotly.NET.ImageExport.fsproj -c release
           dotnet pack Plotly.NET.ImageExport.fsproj -c release -p:PackageVersion=$name
@@ -70,6 +74,8 @@ jobs:
           
           # Plotly.NET.CSharp
           cd ./Plotly.NET.CSharp
+          dotnet remove package Plotly.NET
+          dotnet add reference ../Plotly.NET/Plotly.NET.fsproj
           dotnet restore Plotly.NET.CSharp.fsproj
           dotnet build Plotly.NET.CSharp.fsproj -c release
           dotnet pack Plotly.NET.CSharp.fsproj -c release -p:PackageVersion=$name
