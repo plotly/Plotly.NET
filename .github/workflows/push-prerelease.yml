@@ -3,7 +3,7 @@ name: 'Upload last-dev versions to MyGet'
 on:
   push:
     branches:
-      - test-nightly
+      - dev
 
 jobs:
   main:

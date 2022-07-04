@@ -18,6 +18,7 @@ Plotly.NET provides functions for generating and rendering plotly.js charts in *
     - [For applications and libraries](#for-applications-and-libraries)
     - [For scripting](#for-scripting)
     - [For dotnet interactive notebooks](#for-dotnet-interactive-notebooks)
+    - [Nightly builds](#getting-nightly-builds)
 - [Documentation](#documentation)
     - [Getting started](#getting-started)
     - [Full library reference](#full-library-reference)
@@ -57,6 +58,7 @@ Or add the package reference directly to your `.*proj` file:
 <PackageReference Include="Plotly.NET" Version="<version>" />
 ```
 
+
 ### For scripting
 
 You can include the package via an inline package reference:
@@ -74,6 +76,25 @@ the interactive extensions for dotnet interactive have you covered for seamless 
 #r "nuget: Plotly.NET, <version>"
 #r "nuget: Plotly.NET.Interactive, <version>"
 ```
+
+<details><summary><h3>Getting nightly builds</h3><sub>[click 🖱️]</sub></summary>
+
+The nightly builds are located on myget.org.
+
+For your project:
+```
+dotnet new nugetconfig
+dotnet nuget add source https://www.myget.org/F/plotly-net-nightly/api/v3/index.json
+dotnet add package Plotly.NET --prerelease
+```
+
+Interactively:
+```
+#i "https://www.myget.org/F/plotly-net-nightly/api/v3/index.json"
+#r "nuget:Plotly.NET.Interactive, *-*"
+```
+
+</details>
 
 # Documentation
 
