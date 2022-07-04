@@ -289,6 +289,14 @@ namespace Plotly.NET.CSharp
 
                 ).Invoke(gChart);
 
+        /// <summary>
+        /// Sets the Mapbox for the chart's layout
+        ///
+        /// If there is already a Mapbox set, the objects are combined.
+        /// </summary>
+        /// <param name="gChart">The chart in which to change the mapbox</param>
+        /// <param name="mapbox">The Mapbox to set on the chart's layout</param>
+        /// <param name="Id">The target mapbox id on which the Mapbox should be set. Default is 1.</param>
         public static GenericChart.GenericChart WithMabox(
             this GenericChart.GenericChart gChart,
             Mapbox mapbox, 
@@ -300,6 +308,21 @@ namespace Plotly.NET.CSharp
                         Id: Id.ToOptionV()
                     ).Invoke(gChart);
 
+        /// <summary>
+        /// Sets the given Mapbox styles on the target Mapbox object on the input chart's layout.
+        ///
+        /// If there is already a Mapbox set, the styles are applied to it. If there is no Mapbox present, a new Mapbox object with the given styles will be set.
+        /// </summary>
+        /// <param name="gChart">The chart in which to change the mapbox style</param>
+        /// <param name="Domain">Sets the domain of the Mapbox subplot</param>
+        /// <param name="AccessToken">Sets the mapbox access token to be used for this mapbox map. Alternatively, the mapbox access token can be set in the configuration options under `mapboxAccessToken`. Note that accessToken are only required when `style` (e.g with values : basic, streets, outdoors, light, dark, satellite, satellite-streets ) and/or a layout layer references the Mapbox server.</param>
+        /// <param name="Style">Defines the map layers that are rendered by default below the trace layers defined in `data`, which are themselves by default rendered below the layers defined in `layout.mapbox.layers`. These layers can be defined either explicitly as a Mapbox Style object which can contain multiple layer definitions that load data from any public or private Tile Map Service (TMS or XYZ) or Web Map Service (WMS) or implicitly by using one of the built-in style objects which use WMSes which do not require any access tokens, or by using a default Mapbox style or custom Mapbox style URL, both of which require a Mapbox access token Note that Mapbox access token can be set in the `accesstoken` attribute or in the `mapboxAccessToken` config option. Mapbox Style objects are of the form described in the Mapbox GL JS documentation available at https://docs.mapbox.com/mapbox-gl-js/style-spec The built-in plotly.js styles objects are: carto-darkmatter, carto-positron, open-street-map, stamen-terrain, stamen-toner, stamen-watercolor, white-bg The built-in Mapbox styles are: basic, streets, outdoors, light, dark, satellite, satellite-streets Mapbox style URLs are of the form: mapbox://mapbox.mapbox/name/version</param>
+        /// <param name="Center">Sets the (lon,lat) coordinates of the center of the map view</param>
+        /// <param name="Zoom">Sets the zoom level of the map (mapbox.zoom).</param>
+        /// <param name="Bearing">Sets the bearing angle of the map in degrees counter-clockwise from North (mapbox.bearing).</param>
+        /// <param name="Pitch">Sets the pitch angle of the map (in degrees, where "0" means perpendicular to the surface of the map) (mapbox.pitch).</param>
+        /// <param name="Layers">Sets the layers of this Mapbox</param>
+        /// <param name="Id">The target mapbox id</param>
         public static GenericChart.GenericChart WithMaboxStyle(
             this GenericChart.GenericChart gChart,
             [Optional] Domain? Domain, 

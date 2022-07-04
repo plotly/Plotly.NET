@@ -90,5 +90,95 @@ namespace Plotly.NET.CSharp
                     CheaterSlope: CheaterSlope.ToOptionV(),
                     UseDefaults: UseDefaults.ToOptionV()
                 );
+
+        /// <summary>
+        /// Creates a contour chart that lies on a specified carpet.
+        ///
+        /// Plots contours on either the first carpet axis or the carpet axis with a matching `carpet` attribute. Data `z` is interpreted as matching that of the corresponding carpet axis.
+        /// </summary>
+        /// <param name="carpetAnchorId">The identifier of the carpet that this trace will lie on.</param>
+        /// <param name="z">Sets the z data.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="A">Sets the a coordinates.</param>
+        /// <param name="B">Sets the b coordinates.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="ColorBar">Sets the colorbar of this trace.</param>
+        /// <param name="ColorScale">Sets the colorscale of this trace.</param>
+        /// <param name="ShowScale">Determines whether or not a colorbar is displayed for this trace.</param>
+        /// <param name="ReverseScale">Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.</param>
+        /// <param name="Transpose">Transposes the z data.</param>
+        /// <param name="ContourLineDash">Sets the contour line dash style</param>
+        /// <param name="ContourLineColor">Sets the contour line color</param>
+        /// <param name="ContourLineSmoothing">Sets the amount of smoothing for the contour lines, where "0" corresponds to no smoothing.</param>
+        /// <param name="ContourLine">Sets the contour lines (use this for more finegrained control than the other contourline-associated arguments).</param>
+        /// <param name="ContoursColoring">Determines the coloring method showing the contour values. If "fill", coloring is done evenly between each contour level If "heatmap", a heatmap gradient coloring is applied between each contour level. If "lines", coloring is done on the contour lines. If "none", no coloring is applied on this trace.</param>
+        /// <param name="ContoursOperation">Sets the constraint operation. "=" keeps regions equal to `value` "&lt;" and "&lt;=" keep regions less than `value` "&gt;" and "&gt;=" keep regions greater than `value` "[]", "()", "[)", and "(]" keep regions inside `value[0]` to `value[1]` "][", ")(", "](", ")[" keep regions outside `value[0]` to value[1]` Open vs. closed intervals make no difference to constraint display, but all versions are allowed for consistency with filter transforms.</param>
+        /// <param name="ContoursType">If `levels`, the data is represented as a contour plot with multiple levels displayed. If `constraint`, the data is represented as constraints with the invalid region shaded as specified by the `operation` and `value` parameters.</param>
+        /// <param name="ShowContourLabels">Determines whether to label the contour lines with their values.</param>
+        /// <param name="ContourLabelFont">Sets the font used for labeling the contour levels. The default color comes from the lines, if shown. The default family and size come from `layout.font`.</param>
+        /// <param name="Contours">Sets the styles of the contours (use this for more finegrained control than the other contour-associated arguments).</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        public static GenericChart.GenericChart ContourCarpet<ZType, AType, BType, TextType>(
+            IEnumerable<ZType> z,
+            string carpetAnchorId,
+            [Optional] string? Name,
+            [Optional] bool? ShowLegend,
+            [Optional] double? Opacity,
+            [Optional] IEnumerable<AType>? A,
+            [Optional] IEnumerable<BType>? B,
+            [Optional] TextType? Text,
+            [Optional] IEnumerable<TextType>? MultiText,
+            [Optional] ColorBar? ColorBar,
+            [Optional] StyleParam.Colorscale? ColorScale,
+            [Optional] bool? ShowScale,
+            [Optional] bool? ReverseScale,
+            [Optional] bool? Transpose,
+            [Optional] Color? ContourLineColor,
+            [Optional] StyleParam.DrawingStyle? ContourLineDash,
+            [Optional] double? ContourLineSmoothing,
+            [Optional] Line? ContourLine,
+            [Optional] StyleParam.ContourColoring? ContoursColoring,
+            [Optional] StyleParam.ConstraintOperation? ContoursOperation,
+            [Optional] StyleParam.ContourType? ContoursType,
+            [Optional] bool? ShowContourLabels,
+            [Optional] Font? ContourLabelFont,
+            [Optional] Contours? Contours,
+            [Optional] bool? UseDefaults
+        )
+            where ZType : IConvertible
+            where AType : IConvertible
+            where BType : IConvertible
+            where TextType : IConvertible
+            =>
+                Plotly.NET.ChartCarpet.Chart.ContourCarpet<ZType, AType, BType, TextType>(
+                    z: z,
+                    carpetAnchorId: carpetAnchorId,
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOptionV(),
+                    Opacity: Opacity.ToOptionV(),
+                    A: A.ToOption(),
+                    B: B.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    ColorBar: ColorBar.ToOption(),
+                    ColorScale: ColorScale.ToOption(),
+                    ShowScale: ShowScale.ToOptionV(),
+                    ReverseScale: ReverseScale.ToOptionV(),
+                    Transpose: Transpose.ToOptionV(),
+                    ContourLineColor: ContourLineColor.ToOption(),
+                    ContourLineDash: ContourLineDash.ToOption(),
+                    ContourLineSmoothing: ContourLineSmoothing.ToOptionV(),
+                    ContourLine: ContourLine.ToOption(),
+                    ContoursColoring: ContoursColoring.ToOption(),
+                    ContoursOperation: ContoursOperation.ToOption(),
+                    ContoursType: ContoursType.ToOption(),
+                    ShowContourLabels: ShowContourLabels.ToOptionV(),
+                    ContourLabelFont: ContourLabelFont.ToOption(),
+                    Contours: Contours.ToOption(),
+                    UseDefaults: UseDefaults.ToOptionV()
+                );
     }
 }
