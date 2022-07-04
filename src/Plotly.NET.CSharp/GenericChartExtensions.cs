@@ -1,6 +1,7 @@
 ﻿using Plotly.NET;
 using Plotly.NET.LayoutObjects;
 using Plotly.NET.TraceObjects;
+using System.Runtime.InteropServices;
 
 namespace Plotly.NET.CSharp
 {
@@ -31,7 +32,7 @@ namespace Plotly.NET.CSharp
         public static void SaveHtml(
             this GenericChart.GenericChart gChart,
             string path,
-            bool? OpenInBrowser = null
+            [Optional] bool? OpenInBrowser
         ) =>
             Plotly.NET.Chart.SaveHtml(
                 path: path,
@@ -56,12 +57,12 @@ namespace Plotly.NET.CSharp
         /// <param name="LegendGroupTitle">Sets the title for the chart's trace legend group </param>
         public static GenericChart.GenericChart WithTraceInfo(
             this GenericChart.GenericChart gChart,
-            string? Name = null,
-            StyleParam.Visible? Visible = null,
-            bool? ShowLegend = null,
-            int? LegendRank = null,
-            string? LegendGroup = null,
-            Title? LegendGroupTitle = null
+            [Optional] string? Name,
+            [Optional] StyleParam.Visible? Visible,
+            [Optional] bool? ShowLegend,
+            [Optional] int? LegendRank,
+            [Optional] string? LegendGroup,
+            [Optional] Title? LegendGroupTitle
         ) =>
             Plotly.NET.Chart.WithTraceInfo(
                 Name: Name.ToOption(),
@@ -75,8 +76,8 @@ namespace Plotly.NET.CSharp
         /// Sets the size of a Chart (in pixels)
         public static GenericChart.GenericChart WithSize(
             this GenericChart.GenericChart gChart,
-            int? Width = null,
-            int? Height = null
+            int? Width,
+            int? Height
         ) =>
             Plotly.NET.Chart.WithSize(Width: Width.ToOptionV(), Height: Height.ToOptionV()).Invoke(gChart);
 
@@ -117,39 +118,39 @@ namespace Plotly.NET.CSharp
         /// <param name="Id">The target axis id on which the styles should be applied. Default is 1.</param>
         public static GenericChart.GenericChart WithXAxisStyle<MinType, MaxType, CategoryArrayType>(
             this GenericChart.GenericChart gChart,
-            string? TitleText = null,
-            Font? TitleFont = null,
-            int? TitleStandoff = null,
-            Title? Title = null,
-            Color? Color = null,
-            StyleParam.AxisType? AxisType = null,
-            Tuple<MinType, MaxType>? MinMax = null,
-            StyleParam.Mirror? Mirror = null,
-            bool? ShowSpikes = null,
-            Color? SpikeColor = null,
-            int? SpikeThickness = null,
-            bool? ShowLine = null,
-            Color? LineColor = null,
-            bool? ShowGrid = null,
-            Color? GridColor = null,
-            bool? ZeroLine = null,
-            Color? ZeroLineColor = null,
-            StyleParam.LinearAxisId? Anchor = null,
-            StyleParam.Side? Side = null,
-            StyleParam.LinearAxisId? Overlaying = null,
-            Tuple<double, double>? Domain = null,
-            double? Position = null,
-            StyleParam.CategoryOrder? CategoryOrder = null,
-            IEnumerable<CategoryArrayType>? CategoryArray = null,
-            RangeSlider? RangeSlider = null,
-            RangeSelector? RangeSelector = null,
-            Color? BackgroundColor = null,
-            bool? ShowBackground = null,
-            StyleParam.SubPlotId? Id = null
+            string? TitleText,
+            Font? TitleFont,
+            int? TitleStandoff,
+            Title? Title,
+            Color? Color,
+            StyleParam.AxisType? AxisType,
+            Tuple<MinType, MaxType>? MinMax,
+            StyleParam.Mirror? Mirror,
+            bool? ShowSpikes,
+            Color? SpikeColor,
+            int? SpikeThickness,
+            bool? ShowLine,
+            Color? LineColor,
+            bool? ShowGrid,
+            Color? GridColor,
+            bool? ZeroLine,
+            Color? ZeroLineColor,
+            StyleParam.LinearAxisId? Anchor,
+            StyleParam.Side? Side,
+            StyleParam.LinearAxisId? Overlaying,
+            Tuple<double, double>? Domain,
+            double? Position,
+            StyleParam.CategoryOrder? CategoryOrder,
+            IEnumerable<CategoryArrayType>? CategoryArray,
+            RangeSlider? RangeSlider,
+            RangeSelector? RangeSelector,
+            Color? BackgroundColor,
+            bool? ShowBackground,
+            StyleParam.SubPlotId? Id
         )
             where MinType : IConvertible
             where MaxType : IConvertible
-            where CategoryArrayType : class, IConvertible
+            where CategoryArrayType : IConvertible
             =>
                 Plotly.NET.Chart.WithXAxisStyle<MinType, MaxType, CategoryArrayType>(
                     TitleText: TitleText.ToOption(),
@@ -221,39 +222,39 @@ namespace Plotly.NET.CSharp
         /// <param name="Id">The target axis id on which the styles should be applied. Default is 1.</param>
         public static GenericChart.GenericChart WithYAxisStyle<MinType, MaxType, CategoryArrayType>(
             this GenericChart.GenericChart gChart,
-            string? TitleText = null,
-            Font? TitleFont = null,
-            int? TitleStandoff = null,
-            Title? Title = null,
-            Color? Color = null,
-            StyleParam.AxisType? AxisType = null,
-            Tuple<MinType, MaxType>? MinMax = null,
-            StyleParam.Mirror? Mirror = null,
-            bool? ShowSpikes = null,
-            Color? SpikeColor = null,
-            int? SpikeThickness = null,
-            bool? ShowLine = null,
-            Color? LineColor = null,
-            bool? ShowGrid = null,
-            Color? GridColor = null,
-            bool? ZeroLine = null,
-            Color? ZeroLineColor = null,
-            StyleParam.LinearAxisId? Anchor = null,
-            StyleParam.Side? Side = null,
-            StyleParam.LinearAxisId? Overlaying = null,
-            Tuple<double, double>? Domain = null,
-            double? Position = null,
-            StyleParam.CategoryOrder? CategoryOrder = null,
-            IEnumerable<CategoryArrayType>? CategoryArray = null,
-            RangeSlider? RangeSlider = null,
-            RangeSelector? RangeSelector = null,
-            Color? BackgroundColor = null,
-            bool? ShowBackground = null,
-            StyleParam.SubPlotId? Id = null
+            string? TitleText,
+            Font? TitleFont,
+            int? TitleStandoff,
+            Title? Title,
+            Color? Color,
+            StyleParam.AxisType? AxisType,
+            Tuple<MinType, MaxType>? MinMax,
+            StyleParam.Mirror? Mirror,
+            bool? ShowSpikes,
+            Color? SpikeColor,
+            int? SpikeThickness,
+            bool? ShowLine,
+            Color? LineColor,
+            bool? ShowGrid,
+            Color? GridColor,
+            bool? ZeroLine,
+            Color? ZeroLineColor,
+            StyleParam.LinearAxisId? Anchor,
+            StyleParam.Side? Side,
+            StyleParam.LinearAxisId? Overlaying,
+            Tuple<double, double>? Domain,
+            double? Position,
+            StyleParam.CategoryOrder? CategoryOrder,
+            IEnumerable<CategoryArrayType>? CategoryArray,
+            RangeSlider? RangeSlider,
+            RangeSelector? RangeSelector,
+            Color? BackgroundColor,
+            bool? ShowBackground,
+            StyleParam.SubPlotId? Id
         )
             where MinType : IConvertible
             where MaxType : IConvertible
-            where CategoryArrayType : class, IConvertible
+            where CategoryArrayType : IConvertible
             =>
                 Plotly.NET.Chart.WithYAxisStyle<MinType, MaxType, CategoryArrayType>(
                     TitleText: TitleText.ToOption(),
@@ -287,6 +288,42 @@ namespace Plotly.NET.CSharp
                     Id: Id.ToOption()
 
                 ).Invoke(gChart);
-    }
+
+        public static GenericChart.GenericChart WithMabox(
+            this GenericChart.GenericChart gChart,
+            Mapbox mapbox, 
+            [Optional] int? Id
+        )
+            =>
+                    Plotly.NET.Chart.WithMapbox(
+                        mapbox: mapbox,
+                        Id: Id.ToOptionV()
+                    ).Invoke(gChart);
+
+        public static GenericChart.GenericChart WithMaboxStyle(
+            this GenericChart.GenericChart gChart,
+            [Optional] Domain? Domain, 
+            [Optional] string? AccessToken, 
+            [Optional] StyleParam.MapboxStyle? Style, 
+            [Optional] Tuple<double, double>? Center, 
+            [Optional] double? Zoom, 
+            [Optional] double? Bearing, 
+            [Optional] double? Pitch, 
+            [Optional] IEnumerable<MapboxLayer>? Layers, 
+            [Optional] int? Id
+        )
+            =>
+                    Plotly.NET.Chart.withMapboxStyle(
+                        Domain: Domain.ToOption(),
+                        AccessToken: AccessToken.ToOption(),
+                        Style: Style.ToOption(),
+                        Center: Center.ToOption(),
+                        Zoom: Zoom.ToOptionV(),
+                        Bearing: Bearing.ToOptionV(),
+                        Pitch: Pitch.ToOptionV(),
+                        Layers: Layers.ToOption(),
+                        Id: Id.ToOptionV()
+                    ).Invoke(gChart);
+            }
 
 }

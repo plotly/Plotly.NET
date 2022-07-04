@@ -102,7 +102,13 @@ namespace TestConsoleApp
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
-                        Chart.Invisible(),
+                        Chart.DensityMapbox<int,int,int,string>(
+                            longitudes: new int [] { 1,2,2,2,3,4,5,5 },
+                            latitudes:  new int [] { 1,2,2,2,3,4,5,5 },
+                            ShowScale: false
+                        ).WithMaboxStyle(
+                            Style: MapboxStyle.OpenStreetMap
+                        ),
                         
                         //ternary traces
                         Chart.ScatterTernary<int,int,int,IConvertible,string>(

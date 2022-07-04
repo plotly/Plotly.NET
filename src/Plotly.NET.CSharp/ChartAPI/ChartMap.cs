@@ -105,5 +105,67 @@ namespace Plotly.NET.CSharp
                     FeatureIdKey: Helpers.ToOption(FeatureIdKey),
                     UseDefaults: Helpers.ToOptionV(UseDefaults)
                 );
+
+        /// <summary>
+        /// Creates a DensityMapbox Chart that draws a bivariate kernel density estimation with a Gaussian kernel from `lon` and `lat` coordinates and optional `z` values using a colorscale.
+        ///
+        /// Customize the mapbox layers, style, etc. by using Chart.withMapbox.
+        ///
+        /// You might need a Mapbox token, which you can also configure with Chart.withMapbox.
+        /// </summary>
+        /// <param name="longitudes">Sets the longitude coordinates (in degrees East).</param>
+        /// <param name="latitudes">Sets the latitude coordinates (in degrees North).</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opacity of the trace</param>
+        /// <param name="Z">Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot</param>
+        /// <param name="Radius">Sets the radius of influence of one `lon` / `lat` point in pixels. Increasing the value makes the densitymapbox trace smoother, but less detailed.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="ColorBar">Sets the colorbar.</param>
+        /// <param name="ColorScale">Sets the colorscale.</param>
+        /// <param name="ShowScale">Determines whether or not a colorbar is displayed for this trace.</param>
+        /// <param name="ReverseScale">Reverses the color mapping if true.</param>
+        /// <param name="Below">Determines if this scattermapbox trace's layers are to be inserted before the layer with the specified ID. By default, scattermapbox layers are inserted above all the base layers. To place the scattermapbox layers above every other layer, set `below` to "''".</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        public static GenericChart.GenericChart DensityMapbox<LongitudesType, LatitudesType, ZType, TextType>(
+            IEnumerable<LongitudesType> longitudes,
+            IEnumerable<LatitudesType> latitudes,
+            [Optional] string? Name,
+            [Optional] bool? ShowLegend,
+            [Optional] double? Opacity,
+            [Optional] IEnumerable<ZType>? Z,
+            [Optional] int? Radius,
+            [Optional] TextType? Text,
+            [Optional] IEnumerable<TextType>? MultiText,
+            [Optional] ColorBar? ColorBar,
+            [Optional] StyleParam.Colorscale? ColorScale,
+            [Optional] bool? ShowScale,
+            [Optional] bool? ReverseScale,
+            [Optional] string? Below,
+            [Optional] bool? UseDefaults
+        )
+            where LongitudesType: IConvertible
+            where LatitudesType: IConvertible
+            where ZType: IConvertible
+            where TextType: IConvertible
+            =>
+                Plotly.NET.ChartMap.Chart.DensityMapbox<LongitudesType, LatitudesType, ZType, TextType>(
+                    longitudes: longitudes,
+                    latitudes: latitudes,
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOptionV(),
+                    Opacity: Opacity.ToOptionV(),
+                    Z: Z.ToOption(),
+                    Radius: Radius.ToOptionV(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    ColorBar: ColorBar.ToOption(),
+                    ColorScale: ColorScale.ToOption(),
+                    ShowScale: ShowScale.ToOptionV(),
+                    ReverseScale: ReverseScale.ToOptionV(),
+                    Below: Below.ToOption(),
+                    UseDefaults: UseDefaults.ToOptionV()
+                );
     }
 }
