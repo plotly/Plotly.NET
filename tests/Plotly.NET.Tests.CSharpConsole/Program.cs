@@ -52,7 +52,7 @@ namespace TestConsoleApp
                         ),
                         Chart.BoxPlot<int,int,string>(
                             X: new int [] { 1,2,2,2,3,4,5,5 }
-                        ),                        
+                        ),
                         Chart.Violin<int,int,string>(
                             X: new int [] { 1,2,2,2,3,4,5,5 }
                         ),
@@ -133,7 +133,25 @@ namespace TestConsoleApp
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
-                        Chart.Invisible(),
+                        Chart.Combine(
+                            new GenericChart []
+                            {
+                                Chart.Carpet<double,double,double,double,double,double>(
+                                    carpetId: "contour",
+                                    A: new double [] { 0.0, 1.0, 2.0, 3.0, 0.0, 1.0, 2.0, 3.0, 0.0, 1.0, 2.0, 3.0},
+                                    B: new double[] { 4.0, 4.0, 4.0, 4.0, 5.0, 5.0, 5.0, 5.0, 6.0, 6.0, 6.0, 6.0},
+                                    X: new double[] { 2.0, 3.0, 4.0, 5.0, 2.2, 3.1, 4.1, 5.1, 1.5, 2.5, 3.5, 4.5},
+                                    Y: new double [] { 1.0, 1.4, 1.6, 1.75, 2.0, 2.5, 2.7, 2.75, 3.0, 3.5, 3.7, 3.75}
+                                ),
+                                Chart.ContourCarpet<double,int,int,string>(
+                                    z: new double [] { 1.0, 1.96, 2.56, 3.0625, 4.0, 5.0625, 1.0, 7.5625, 9.0, 12.25, 15.21, 14.0625 },
+                                    carpetAnchorId: "contour",
+                                    A: new int [] { 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3},
+                                    B: new int[] { 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6},
+                                    ShowScale: false
+                                )
+                            }
+                        ),
 
                         //domain traces
                         Chart.Pie<double,string,string>(
