@@ -1,0 +1,85 @@
+name: 'Upload last-master versions to MyGet'
+
+on:
+  push:
+    branches:
+      - test-nightly
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup .NET 6
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.0.301'  # I highly recommend fixing a version
+          include-prerelease: true
+          
+      - uses: actions/checkout@v2
+        
+      - name: 'Add myget as source'
+        run: |
+          cd src
+          dotnet new nugetconfig
+          dotnet nuget add source https://www.myget.org/F/plotly-net-nightly/api/v3/index.json --name myget
+        
+      - name: 'Push packages'
+        run: |
+          # versioning
+          commithash=$(git rev-parse --short HEAD)
+          currtime=$(date +%s)
+          echo "commit hash is $commithash"
+          echo "time is $currtime"
+          name=10.0.0-master-$currtime-$commithash
+          echo "name is $name"
+          
+          chmod +x build.sh
+          ./build.sh
+          
+          cd src
+          
+          # Plotly.NET
+          cd ./Plotly.NET
+          dotnet restore Plotly.NET.fsproj
+          dotnet build Plotly.NET.fsproj -c release
+          dotnet pack Plotly.NET.fsproj -c release -p:PackageVersion=$name
+          cd bin/release
+          dotnet nuget push Plotly.NET.$name.nupkg --api-key ${{ secrets.MYGET_KEY }} --source "myget"
+          cd ../../..
+          echo 'Pushed Plotly.NET!'
+          
+          # Plotly.NET.Interactive
+          cd ./Plotly.NET.Interactive
+          dotnet remove package Plotly.NET
+          dotnet add reference ../Plotly.NET/Plotly.NET.fsproj
+          dotnet restore Plotly.NET.Interactive.fsproj
+          dotnet build Plotly.NET.Interactive.fsproj -c release
+          dotnet pack Plotly.NET.Interactive.fsproj -c release -p:PackageVersion=$name
+          cd bin/release
+          dotnet nuget push Plotly.NET.Interactive.$name.nupkg --api-key ${{ secrets.MYGET_KEY }} --source "myget"
+          cd ../../..
+          echo 'Pushed Plotly.NET.Interactive!'
+          
+          # Plotly.NET.ImageExport
+          cd ./Plotly.NET.ImageExport
+          dotnet remove package Plotly.NET
+          dotnet add reference ../Plotly.NET/Plotly.NET.fsproj
+          dotnet restore Plotly.NET.ImageExport.fsproj
+          dotnet build Plotly.NET.ImageExport.fsproj -c release
+          dotnet pack Plotly.NET.ImageExport.fsproj -c release -p:PackageVersion=$name
+          cd bin/release
+          dotnet nuget push Plotly.NET.ImageExport.$name.nupkg --api-key ${{ secrets.MYGET_KEY }} --source "myget"
+          cd ../../..
+          echo 'Pushed Plotly.NET.ImageExport!'
+          
+          # Plotly.NET.CSharp
+          cd ./Plotly.NET.CSharp
+          dotnet remove package Plotly.NET
+          dotnet add reference ../Plotly.NET/Plotly.NET.fsproj
+          dotnet restore Plotly.NET.CSharp.fsproj
+          dotnet build Plotly.NET.CSharp.fsproj -c release
+          dotnet pack Plotly.NET.CSharp.fsproj -c release -p:PackageVersion=$name
+          cd bin/release
+          dotnet nuget push Plotly.NET.CSharp.$name.nupkg --api-key ${{ secrets.MYGET_KEY }} --source "myget"
+          cd ../../..
+          echo 'Pushed Plotly.NET.CSharp!'
