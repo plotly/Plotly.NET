@@ -21,7 +21,7 @@ jobs:
         run: |
           cd src
           dotnet new nugetconfig
-          dotnet nuget add source https://www.myget.org/F/plotly.net/api/v3/index.json --name myget
+          dotnet nuget add source https://www.myget.org/F/plotly-net-nightly/api/v3/index.json --name myget
         
       - name: 'Push packages'
         run: |
