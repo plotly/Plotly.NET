@@ -12,6 +12,7 @@ open DynamicObj
 module PuppeteerSharpRendererOptions =
 
     let mutable launchOptions = LaunchOptions()
+    
     launchOptions.Timeout <- 60000
 
     let mutable localBrowserExecutablePath =

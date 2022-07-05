@@ -1,5 +1,6 @@
 ﻿module Tests.ImageExport
 
+open System.Runtime.InteropServices
 open Expecto
 open Plotly.NET
 open Plotly.NET.ImageExport
@@ -7,11 +8,14 @@ open Plotly.NET.ImageExport
 open System
 open System.IO
 
-let testBase64JPG   = File.ReadAllText (__SOURCE_DIRECTORY__ + "/data/testBase64JPG.txt")
-
-let testBase64PNG   = 
-    File.ReadAllBytes(__SOURCE_DIRECTORY__ + "/data/testPNG.png")
-    |> Convert.ToBase64String
+let readTestFilePlatformSpecific filePostfix =
+    if RuntimeInformation.IsOSPlatform(OSPlatform.Linux) then
+        let content = File.ReadAllText (__SOURCE_DIRECTORY__ + $"/data/linux{filePostfix}")
+        content.Substring(0, content.Length - 1) // Because on Linux you're expected to newline terminate the file
+    else if RuntimeInformation.IsOSPlatform(OSPlatform.Windows) then
+        File.ReadAllText (__SOURCE_DIRECTORY__ + $"/data/win{filePostfix}")
+    else
+        raise (Exception "Running tests on the current OS is not supported :(")
 
 [<Tests>]
 let ``Image export tests`` =
@@ -23,21 +27,25 @@ let ``Image export tests`` =
         // skipping this for now, cannot make it work atm (pTestAsync -> testAsync for running it)
         testList "base64 strings" [
             ptestAsync "Chart.toBase64JPGStringAsync" {
+                let testBase64JPG = readTestFilePlatformSpecific "TestBase64JPG.txt"
+                
                 let! actual = (Chart.Point([1.,1.]) |> Chart.toBase64JPGStringAsync())
 
                 return 
-                    Expect.stringContains
+                    Expect.equal
                         actual
                         testBase64JPG
                         "Invalid base64 string for Chart.toBase64JPGStringAsync"
             }
             ptestAsync "Chart.toBase64PNGStringAsync" {
+                let testBase64PNG = readTestFilePlatformSpecific "TestBase64PNG.txt"
+                
                 let! actual = (Chart.Point([1.,1.]) |> Chart.toBase64PNGStringAsync())
 
                 return 
-                    Expect.stringContains
+                    Expect.equal
                         actual
-                        testBase64JPG
+                        testBase64PNG
                         "Invalid base64 string for Chart.toBase64PNGStringAsync"
             }
         ]
