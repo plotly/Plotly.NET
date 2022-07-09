@@ -29,7 +29,7 @@ let ``Image export tests`` =
             ptestAsync "Chart.toBase64JPGStringAsync" {
                 let testBase64JPG = readTestFilePlatformSpecific "TestBase64JPG.txt"
                 
-                let! actual = (Chart.Point([1.,1.]) |> Chart.toBase64JPGStringAsync())
+                let! actual = (Chart.Point([1.,1.]) |> Chart.toBase64JPGStringAsync() |> Async.AwaitTask)
 
                 return 
                     Expect.equal
@@ -40,7 +40,7 @@ let ``Image export tests`` =
             ptestAsync "Chart.toBase64PNGStringAsync" {
                 let testBase64PNG = readTestFilePlatformSpecific "TestBase64PNG.txt"
                 
-                let! actual = (Chart.Point([1.,1.]) |> Chart.toBase64PNGStringAsync())
+                let! actual = (Chart.Point([1.,1.]) |> Chart.toBase64PNGStringAsync() |> Async.AwaitTask)
 
                 return 
                     Expect.equal
@@ -48,5 +48,9 @@ let ``Image export tests`` =
                         testBase64PNG
                         "Invalid base64 string for Chart.toBase64PNGStringAsync"
             }
+            testCase "Chart.toBase64JPGString" <| fun () ->
+                let actual = Chart.Point([1.,1.]) |> Chart.toBase64JPGString()
+                Expect.isTrue (actual.Length > 100) ""
+            
         ]
     )

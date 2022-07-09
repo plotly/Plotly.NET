@@ -56,7 +56,7 @@ module ChartExtensions =
             fun (gChart: GenericChart) ->
                 gChart
                 |> Chart.toBase64JPGStringAsync (?EngineType = EngineType, ?Width = Width, ?Height = Height)
-                |> Async.RunSynchronously
+                |> AsyncHelper.taskSync
 
         /// <summary>
         /// Returns an async function that saves a GenericChart as JPG image
@@ -97,7 +97,7 @@ module ChartExtensions =
             fun (gChart: GenericChart) ->
                 gChart
                 |> Chart.saveJPGAsync (path, ?EngineType = EngineType, ?Width = Width, ?Height = Height)
-                |> Async.RunSynchronously
+                |> AsyncHelper.taskSync
 
         /// <summary>
         /// Returns an async function that converts a GenericChart to a base64 encoded PNG string
@@ -134,7 +134,7 @@ module ChartExtensions =
             fun (gChart: GenericChart) ->
                 gChart
                 |> Chart.toBase64PNGStringAsync (?EngineType = EngineType, ?Width = Width, ?Height = Height)
-                |> Async.RunSynchronously
+                |> AsyncHelper.taskSync
 
         /// <summary>
         /// Returns an async function that saves a GenericChart as PNG image
@@ -175,7 +175,7 @@ module ChartExtensions =
             fun (gChart: GenericChart) ->
                 gChart
                 |> Chart.savePNGAsync (path, ?EngineType = EngineType, ?Width = Width, ?Height = Height)
-                |> Async.RunSynchronously
+                |> AsyncHelper.taskSync
 
         /// <summary>
         /// Returns an async function that converts a GenericChart to a SVG string
@@ -211,7 +211,7 @@ module ChartExtensions =
             fun (gChart: GenericChart) ->
                 gChart
                 |> Chart.toSVGStringAsync (?EngineType = EngineType, ?Width = Width, ?Height = Height)
-                |> Async.RunSynchronously
+                |> AsyncHelper.taskSync
 
         /// <summary>
         /// Returns an async function that saves a GenericChart as SVG image
@@ -251,4 +251,4 @@ module ChartExtensions =
             fun (gChart: GenericChart) ->
                 gChart
                 |> Chart.saveSVGAsync (path, ?EngineType = EngineType, ?Width = Width, ?Height = Height)
-                |> Async.RunSynchronously
+                |> AsyncHelper.taskSync
