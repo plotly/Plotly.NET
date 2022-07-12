@@ -36,7 +36,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\docs\img\logo.png" Pack="true" PackagePath="\" />
+      <None Include="..\..\docs\img\logo.png" Pack="true" PackagePath="\" />
+      <None Include="./extension.dib" Pack="true" PackagePath="interactive-extensions/dotnet" />
     <PackageReference Include="Plotly.NET" Version="3.*" />
   </ItemGroup>
 
