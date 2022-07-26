@@ -2,16 +2,14 @@
 
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
-#r "nuget: DynamicObj, 1.0.1"
-#I "../src/Plotly.NET/bin/Release/netstandard2.0"
-#r "Plotly.NET.dll"
+#r "nuget: DynamicObj, 2.0.0"
+#r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
 (*** condition: ipynb ***)
 #if IPYNB
 #r "nuget: Plotly.NET, {{fsdocs-package-version}}"
 #r "nuget: Plotly.NET.Interactive, {{fsdocs-package-version}}"
 #endif // IPYNB
-
 
 (**
 # Plotly.NET
@@ -42,15 +40,15 @@ Plotly.NET provides functions for generating and rendering plotly.js charts in *
 
 # Installation
 
-Plotly.NET is the 2.0.0+ version of its predecessor FSharp.Plotly.
+Plotly.NET consists of multiple packages. The two main ones are:
 
-If needed, old packages up until version 1.2.2 can be accessed via the old package name *FSharp.Plotly* [here](https://www.nuget.org/packages/FSharp.Plotly/)
+- Plotly.NET [![](https://img.shields.io/nuget/vpre/Plotly.NET)](https://www.nuget.org/packages/Plotly.NET/), the core API written in F#. 
+- Plotly.NET.CSharp [![](https://img.shields.io/nuget/vpre/Plotly.NET.CSharp)](https://www.nuget.org/packages/Plotly.NET.CSharp/), native C# bindings that make the usage of Plotly.NET more idiomatic from C#. This is work in progress. Missing charts and/or styling must be done via the core API.
+
 
 ### For applications and libraries
 
-Plotly.NET is available on nuget to plug into your favorite package manager.
-
-You can find all available package versions on the [nuget page](https://www.nuget.org/packages/Plotly.NET/).
+Plotly.NET packages are available on nuget to plug into your favorite package manager.
 
  - dotnet CLI
 
@@ -90,7 +88,6 @@ You can use the same inline package reference as in scripts, but as an additiona
 the interactive extensions for dotnet interactive have you covered for seamless chart rendering:
 
 ```
-#r "nuget: Plotly.NET, {{fsdocs-package-version}}"
 #r "nuget: Plotly.NET.Interactive, {{fsdocs-package-version}}"
 ```
 
@@ -221,24 +218,23 @@ One of the main design points of Plotly.NET it is to provide support for multipl
 
 ```csharp
 using System;
-using Plotly.NET;
-using Microsoft.FSharp.Core; // use this for less verbose and more helpful intellisense
-using Plotly.NET.LayoutObjects;
+using Plotly.NET.CSharp;
 
-namespace Plotly.NET.Tests.CSharpConsole
+namespace TestConsoleApp
 {
     class Program
     {
         static void Main(string[] args)
         {
-            double[] x = new double[] { 1, 2 };
-            double[] y = new double[] { 5, 10 };
-            GenericChart.GenericChart chart = Chart2D.Chart.Point<double, double, string>(x: x, y: y);
-            chart
-                .WithTraceInfo("Hello from C#", ShowLegend: true)
-                .WithXAxisStyle(title: Title.init("xAxis"))
-                .WithYAxisStyle(title: Title.init("yAxis"))
-                .Show();
+
+            Chart.Point<double, double, string>(
+                x: new double[] { 1, 2 }, 
+                y: new double[] { 5, 10 }
+            )
+            .WithTraceInfo("Hello from C#", ShowLegend: true)
+            .WithXAxisStyle<double, double, string>(Title: Plotly.NET.Title.init("xAxis"))
+            .WithYAxisStyle<double, double, string>(Title: Plotly.NET.Title.init("yAxis"))
+            .Show();
         }
     }
 }
@@ -286,13 +282,14 @@ GenericChart.ofTraceObject true trace
 (**
 ### Declarative style in C# using the underlying `DynamicObj`:
 
+note that this works only when using the Plotly.NET core API, as the C# bindings only target the high level API.
+
 ```csharp
 using System;
 using Plotly.NET;
-using Microsoft.FSharp.Core; // use this for less verbose and more helpful intellisense
 using Plotly.NET.LayoutObjects;
 
-namespace Plotly.NET.Tests.CSharpConsole
+namespace TestConsoleApp
 {
     class Program
     {

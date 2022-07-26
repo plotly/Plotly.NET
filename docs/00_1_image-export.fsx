@@ -12,12 +12,10 @@ index: 2
 
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
-#r "nuget: DynamicObj, 1.0.1"
-#r "nuget: PuppeteerSharp, 6.0.0"
-#I "../src/Plotly.NET/bin/Release/netstandard2.0"
-#I "../src/Plotly.NET.ImageExport/bin/Release/netstandard2.0"
-#r "Plotly.NET.dll"
-#r "Plotly.NET.ImageExport.dll"
+#r "nuget: DynamicObj, 2.0.0"
+#r "nuget: PuppeteerSharp, 7.0.0"
+#r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+#r "../src/Plotly.NET.ImageExport/bin/Release/netstandard2.0/Plotly.NET.ImageExport.dll"
 
 (*** condition: ipynb ***)
 #if IPYNB
