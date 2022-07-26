@@ -78,7 +78,7 @@ namespace TestConsoleApp
                         ).WithXAxisRangeSlider(
                             rangeSlider: Plotly.NET.LayoutObjects.RangeSlider.init(
                                 Visible: false
-                        )),                        
+                        )),
                         Chart.Candlestick<double,DateTime,string>(
                             open: new double [] {1.2, 2.7},
                             high: new double [] {1.8, 8.5},
@@ -89,7 +89,18 @@ namespace TestConsoleApp
                             rangeSlider: Plotly.NET.LayoutObjects.RangeSlider.init(
                                 Visible: false
                         )),
-                        Chart.Invisible(),
+                        Chart.Waterfall<string, int, string>(
+                            x: new string [] {"A", "B", "Net", "Purch", "Other", "Profit"},
+                            y: new int [] {60, 80, 0, -40, -20, 0},
+                            Measure: new Plotly.NET.StyleParam.WaterfallMeasure [] {
+                                Plotly.NET.StyleParam.WaterfallMeasure.Relative,
+                                Plotly.NET.StyleParam.WaterfallMeasure.Relative,
+                                Plotly.NET.StyleParam.WaterfallMeasure.Total,
+                                Plotly.NET.StyleParam.WaterfallMeasure.Relative,
+                                Plotly.NET.StyleParam.WaterfallMeasure.Relative,
+                                Plotly.NET.StyleParam.WaterfallMeasure.Total
+                            }
+                        ),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
