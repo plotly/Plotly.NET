@@ -20,6 +20,10 @@
 
 Plotly.NET provides functions for generating and rendering plotly.js charts in **.NET** programming languages 📈🚀. 
 
+**This documentation page is almost exclusively for the core F# API of Plotly.NET.** 
+
+It should be easy to translate them into C#. However, as work on the idiomatic C# API progresses, we will privde native C# docs as well.
+
 ### Table of contents 
 
 - [Installation](#Installation)
@@ -43,8 +47,7 @@ Plotly.NET provides functions for generating and rendering plotly.js charts in *
 Plotly.NET consists of multiple packages. The two main ones are:
 
 - Plotly.NET [![](https://img.shields.io/nuget/vpre/Plotly.NET)](https://www.nuget.org/packages/Plotly.NET/), the core API written in F#. 
-- Plotly.NET.CSharp [![](https://img.shields.io/nuget/vpre/Plotly.NET.CSharp)](https://www.nuget.org/packages/Plotly.NET.CSharp/), native C# bindings that make the usage of Plotly.NET more idiomatic from C#. This is work in progress. Missing charts and/or styling must be done via the core API.
-
+- Plotly.NET.CSharp [![](https://img.shields.io/nuget/vpre/Plotly.NET.CSharp)](https://www.nuget.org/packages/Plotly.NET.CSharp/), native C# bindings that make the usage of Plotly.NET more idiomatic from C#. This is work in progress. Missing charts and/or styling must be done via the core API. 
 
 ### For applications and libraries
 
@@ -216,28 +219,20 @@ One of the main design points of Plotly.NET it is to provide support for multipl
 (**
 ### Fluent interface style in C#:
 
+This example uses the high-level native C# bindings for Plotly.NET that are provided by the `Plotly.NET.CSharp` package.
+
 ```csharp
 using System;
 using Plotly.NET.CSharp;
 
-namespace TestConsoleApp
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-
-            Chart.Point<double, double, string>(
-                x: new double[] { 1, 2 }, 
-                y: new double[] { 5, 10 }
-            )
-            .WithTraceInfo("Hello from C#", ShowLegend: true)
-            .WithXAxisStyle<double, double, string>(Title: Plotly.NET.Title.init("xAxis"))
-            .WithYAxisStyle<double, double, string>(Title: Plotly.NET.Title.init("yAxis"))
-            .Show();
-        }
-    }
-}
+Chart.Point<double, double, string>(
+    x: new double[] { 1, 2 }, 
+    y: new double[] { 5, 10 }
+)
+.WithTraceInfo("Hello from C#", ShowLegend: true)
+.WithXAxisStyle<double, double, string>(Title: Plotly.NET.Title.init("xAxis"))
+.WithYAxisStyle<double, double, string>(Title: Plotly.NET.Title.init("yAxis"))
+.Show();
 ```
 
 ### Declarative style in F# using the underlying `DynamicObj`:
@@ -289,43 +284,34 @@ using System;
 using Plotly.NET;
 using Plotly.NET.LayoutObjects;
 
-namespace TestConsoleApp
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            double[] x = new double[] { 1, 2 };
-            double[] y = new double[] { 5, 10 };
+double[] x = new double[] { 1, 2 };
+double[] y = new double[] { 5, 10 };
 
-            LinearAxis xAxis = new LinearAxis();
-            xAxis.SetValue("title", "xAxis");
-            xAxis.SetValue("showgrid", false);
-            xAxis.SetValue("showline", true);
+LinearAxis xAxis = new LinearAxis();
+xAxis.SetValue("title", "xAxis");
+xAxis.SetValue("showgrid", false);
+xAxis.SetValue("showline", true);
 
-            LinearAxis yAxis = new LinearAxis();
-            yAxis.SetValue("title", "yAxis");
-            yAxis.SetValue("showgrid", false);
-            yAxis.SetValue("showline", true);
+LinearAxis yAxis = new LinearAxis();
+yAxis.SetValue("title", "yAxis");
+yAxis.SetValue("showgrid", false);
+yAxis.SetValue("showline", true);
 
-            Layout layout = new Layout();
-            layout.SetValue("xaxis", xAxis);
-            layout.SetValue("yaxis", yAxis);
-            layout.SetValue("showlegend", true);
+Layout layout = new Layout();
+layout.SetValue("xaxis", xAxis);
+layout.SetValue("yaxis", yAxis);
+layout.SetValue("showlegend", true);
 
-            Trace trace = new Trace("scatter");
-            trace.SetValue("x", x);
-            trace.SetValue("y", y);
-            trace.SetValue("mode", "markers");
-            trace.SetValue("name", "Hello from C#");
+Trace trace = new Trace("scatter");
+trace.SetValue("x", x);
+trace.SetValue("y", y);
+trace.SetValue("mode", "markers");
+trace.SetValue("name", "Hello from C#");
 
-            GenericChart
-                .ofTraceObject(true, trace)
-                .WithLayout(layout)
-                .Show();
-        }
-    }
-}
+GenericChart
+    .ofTraceObject(true, trace)
+    .WithLayout(layout)
+    .Show();
 ```
 
 # Contributing and copyright
