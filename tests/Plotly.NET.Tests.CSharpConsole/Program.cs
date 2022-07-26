@@ -10,7 +10,7 @@ namespace TestConsoleApp
         static void Main(string[] args)
         {
             Chart.Grid(
-                nRows: 9,
+                nRows: 10,
                 nCols: 6,
                 gCharts:
                     new GenericChart[]
@@ -67,6 +67,23 @@ namespace TestConsoleApp
                            y: new int [] { 1,2,2,2,3,4,5,5 },
                            ShowScale: false
                         ),
+
+                        //2D Finance traces
+                        Chart.OHLC<double,DateTime,string>(
+                            open: new double [] {1.2, 2.7},
+                            high: new double [] {1.8, 8.5},
+                            low: new double []  {0.5, 0.1},
+                            close: new double [] {1.1, 2.9},
+                            x: new DateTime [] {DateTime.Parse("07/07/2021"), DateTime.Parse("07/07/2022") }
+                        ).WithXAxisRangeSlider(
+                            rangeSlider: Plotly.NET.LayoutObjects.RangeSlider.init(
+                                Visible: false
+                        )),
+                        Chart.Invisible(),
+                        Chart.Invisible(),
+                        Chart.Invisible(),
+                        Chart.Invisible(),
+                        Chart.Invisible(),
 
                         //3D traces
                         Chart.Scatter3D<int,int,int,string>(
@@ -175,17 +192,11 @@ namespace TestConsoleApp
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
-                        Chart.Invisible(),
+                        Chart.Invisible()
                     }
             )
-                .WithSize(1000, 1800)
-                .Show();
-            Chart.Column<int, string, string>(
-                values: new int[] { 3, 4 },
-                Keys: new string[] { "first", "second" },
-                Width: 1,
-                Base: 4
-            ).Show();
+            .WithSize(1000, 1800)
+            .Show();
         }
     }
 }
