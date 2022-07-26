@@ -78,8 +78,17 @@ namespace TestConsoleApp
                         ).WithXAxisRangeSlider(
                             rangeSlider: Plotly.NET.LayoutObjects.RangeSlider.init(
                                 Visible: false
+                        )),                        
+                        Chart.Candlestick<double,DateTime,string>(
+                            open: new double [] {1.2, 2.7},
+                            high: new double [] {1.8, 8.5},
+                            low: new double []  {0.5, 0.1},
+                            close: new double [] {1.1, 2.9},
+                            x: new DateTime [] {DateTime.Parse("07/07/2021"), DateTime.Parse("07/07/2022") }
+                        ).WithXAxisRangeSlider(
+                            rangeSlider: Plotly.NET.LayoutObjects.RangeSlider.init(
+                                Visible: false
                         )),
-                        Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),

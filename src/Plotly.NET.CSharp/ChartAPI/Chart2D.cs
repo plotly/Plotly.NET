@@ -1037,6 +1037,70 @@ namespace Plotly.NET.CSharp
                     UseDefaults: UseDefaults.ToOption()
                 );
 
+        /// <summary>
+        /// Creates a candlestick chart.
+        ///
+        /// The candlestick is a style of financial chart describing open, high, low and close for a given `x` coordinate (most likely time). The boxes represent the spread between the `open` and `close` values and the lines represent the spread between the `low` and `high` values Sample points where the close value is higher (lower) then the open value are called increasing (decreasing). By default, increasing candles are drawn in green whereas decreasing are drawn in red.
+        /// </summary>
+        /// <param name="open">Sets the open values.</param>
+        /// <param name="high">Sets the high values.</param>
+        /// <param name="low">Sets the low values.</param>
+        /// <param name="close">Sets the close values.</param>
+        /// <param name="x">Sets the x coordinates. If absent, linear coordinate will be generated.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="Line">Sets the line of this trace.</param>
+        /// <param name="IncreasingColor">Sets the color of increasing values</param>
+        /// <param name="Increasing">Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="DecreasingColor">Sets the color of decreasing values</param>
+        /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="WhiskerWidth">Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        public static GenericChart.GenericChart Candlestick<OHLCType, XType, TextType>(
+            IEnumerable<OHLCType> open,
+            IEnumerable<OHLCType> high,
+            IEnumerable<OHLCType> low,
+            IEnumerable<OHLCType> close,
+            IEnumerable<XType> x,
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<TextType> Text = default,
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<Line> Line = default,
+            Optional<Color> IncreasingColor = default,
+            Optional<FinanceMarker> Increasing = default,
+            Optional<Color> DecreasingColor = default,
+            Optional<FinanceMarker> Decreasing = default,
+            Optional<double> WhiskerWidth = default, 
+            Optional<bool> UseDefaults = default
+        )
+            where OHLCType : IConvertible
+            where XType : IConvertible
+            where TextType : IConvertible
+            =>
+                Plotly.NET.Chart2D.Chart.Candlestick<OHLCType, OHLCType, OHLCType, OHLCType, XType, TextType>(
+                    open: open,
+                    high: high,
+                    low: low,
+                    close: close,
+                    x: x,
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    Line: Line.ToOption(),
+                    IncreasingColor: IncreasingColor.ToOption(),
+                    Increasing: Increasing.ToOption(),
+                    DecreasingColor: DecreasingColor.ToOption(),
+                    Decreasing: Decreasing.ToOption(),
+                    WhiskerWidth: WhiskerWidth.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
     };
 
 }
