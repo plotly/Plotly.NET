@@ -21,8 +21,6 @@ index: 1
 #r "nuget: Plotly.NET.Interactive, {{fsdocs-package-version}}"
 #endif // IPYNB
 
-open Plotly.NET
-
 (**
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
 [![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
@@ -41,7 +39,7 @@ _This section is WIP._
 
 ## Library design
 
-Plotly.NET is a .NET wrapper for creation of [plotly charts]() written in F#. This means that, under the hood, all functionality creates JSON objects that can be rendered by plotly.
+Plotly.NET is a .NET wrapper for creation of [plotly charts](plot.ly). This means that, under the hood, all functionality creates JSON objects that can be rendered by plotly.
 
 A plotly.js chart consists of 3 objects:
 
@@ -56,7 +54,7 @@ These are mirrored in Plotly.NET's central type, `GenericChart`:
 The central type that gets created by all Chart constructors is `GenericChart`, which itself represents either a single chart or a multi chart (as a Discriminate Union type). It looks like this:
 
 ```fsharp
-type GenericChart_ =
+type GenericChart =
     | Chart of Trace * Layout * Config * DisplayOptions
     | MultiChart of Trace list * Layout * Config * DisplayOptions
 
@@ -80,6 +78,8 @@ It also provides composite charts which consist of multiple traces such as `Char
 
 Here is an example on how to create a simple 2D point chart:
 *)
+
+open Plotly.NET
 
 let pointChart =
     Chart.Point([1,2; 3,4])
