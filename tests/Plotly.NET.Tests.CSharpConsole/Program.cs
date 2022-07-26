@@ -16,7 +16,7 @@ namespace TestConsoleApp
                     new GenericChart[]
                     {
                         //2D basic traces
-                        Chart.Scatter(
+                        Chart.Scatter<int, int, int>(
                             x: new int [] { 1, 2 },
                             y: new int [] { 3, 4 },
                             mode: Mode.Markers,
@@ -24,7 +24,8 @@ namespace TestConsoleApp
                         ),
                         Chart.Point<int,int,string>(
                             x: new int [] { 5, 6 },
-                            y: new int [] { 7, 8 }
+                            y: new int [] { 7, 8 },
+                            Text: "hi"
                         ),
                         Chart.Line<int,int,string>(
                             x: new int [] { 9, 10 },
@@ -109,7 +110,7 @@ namespace TestConsoleApp
                         ).WithMaboxStyle(
                             Style: MapboxStyle.OpenStreetMap
                         ),
-                        
+
                         //ternary traces
                         Chart.ScatterTernary<int,int,int,IConvertible,string>(
                             A: new int [] { 1, 2 },
@@ -179,6 +180,12 @@ namespace TestConsoleApp
             )
                 .WithSize(1000, 1800)
                 .Show();
+            Chart.Column<int, string, string>(
+                values: new int[] { 3, 4 },
+                Keys: new string[] { "first", "second" },
+                Width: 1,
+                Base: 4
+            ).Show();
         }
     }
 }

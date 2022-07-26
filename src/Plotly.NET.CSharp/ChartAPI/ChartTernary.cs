@@ -44,31 +44,31 @@ namespace Plotly.NET.CSharp
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         public static GenericChart.GenericChart ScatterTernary<AType, BType, CType, SumType, TextType>(
-            IEnumerable<AType>? A,
-            IEnumerable<BType>? B,
-            IEnumerable<CType>? C,
-            [Optional] SumType? Sum,
-            [Optional] StyleParam.Mode? Mode,
-            [Optional] string? Name,
-            [Optional] bool? ShowLegend,
-            [Optional] double? Opacity,
-            [Optional] IEnumerable<double>? MultiOpacity,
-            [Optional] TextType? Text,
-            [Optional] IEnumerable<TextType>? MultiText,
-            [Optional] StyleParam.TextPosition? TextPosition,
-            [Optional] IEnumerable<StyleParam.TextPosition>? MultiTextPosition,
-            [Optional] Color? MarkerColor,
-            [Optional] StyleParam.Colorscale? MarkerColorScale,
-            [Optional] Line? MarkerOutline,
-            [Optional] StyleParam.MarkerSymbol? MarkerSymbol,
-            [Optional] IEnumerable<StyleParam.MarkerSymbol>? MultiMarkerSymbol,
-            [Optional] Marker? Marker,
-            [Optional] Color? LineColor,
-            [Optional] StyleParam.Colorscale? LineColorScale,
-            [Optional] double? LineWidth,
-            [Optional] StyleParam.DrawingStyle? LineDash,
-            [Optional] Line? Line,
-            [Optional] bool? UseDefaults
+            Optional<IEnumerable<AType>> A = default,
+            Optional<IEnumerable<BType>> B = default,
+            Optional<IEnumerable<CType>> C = default,
+            Optional<SumType> Sum = default,
+            Optional<StyleParam.Mode> Mode = default,
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<IEnumerable<double>> MultiOpacity = default,
+            Optional<TextType> Text = default,
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<StyleParam.TextPosition> TextPosition = default,
+            Optional<IEnumerable<StyleParam.TextPosition>> MultiTextPosition = default,
+            Optional<Color> MarkerColor = default,
+            Optional<StyleParam.Colorscale> MarkerColorScale = default,
+            Optional<Line> MarkerOutline = default,
+            Optional<StyleParam.MarkerSymbol> MarkerSymbol = default,
+            Optional<IEnumerable<StyleParam.MarkerSymbol>> MultiMarkerSymbol = default,
+            Optional<Marker> Marker = default,
+            Optional<Color> LineColor = default,
+            Optional<StyleParam.Colorscale> LineColorScale = default,
+            Optional<double> LineWidth = default,
+            Optional<StyleParam.DrawingStyle> LineDash = default,
+            Optional<Line> Line = default,
+            Optional<bool> UseDefaults = default
         )
             where AType : IConvertible
             where BType : IConvertible
@@ -83,8 +83,8 @@ namespace Plotly.NET.CSharp
                     Sum: Sum.ToOption(),
                     Mode: Mode.ToOption(),
                     Name: Name.ToOption(),
-                    ShowLegend: ShowLegend.ToOptionV(),
-                    Opacity: Opacity.ToOptionV(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
                     MultiOpacity: MultiOpacity.ToOption(),
                     Text: Text.ToOption(),
                     MultiText: MultiText.ToOption(),
@@ -98,10 +98,10 @@ namespace Plotly.NET.CSharp
                     Marker: Marker.ToOption(),  
                     LineColor: LineColor.ToOption(),
                     LineColorScale: LineColorScale.ToOption(),
-                    LineWidth: LineWidth.ToOptionV(),
+                    LineWidth: LineWidth.ToOption(),
                     LineDash: LineDash.ToOption(),
                     Line: Line.ToOption(),
-                    UseDefaults: UseDefaults.ToOptionV()
+                    UseDefaults: UseDefaults.ToOption()
                 );
     }
 }
