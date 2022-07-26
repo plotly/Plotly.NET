@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Plotly.NET;
 using Plotly.NET.LayoutObjects;
 using Plotly.NET.TraceObjects;
+using System.Runtime.InteropServices;
 
 namespace Plotly.NET.CSharp
 {
@@ -36,30 +37,30 @@ namespace Plotly.NET.CSharp
             IEnumerable<GenericChart.GenericChart> gCharts,
             int nRows,
             int nCols,
-            Tuple<StyleParam.LinearAxisId, StyleParam.LinearAxisId>[][]? SubPlots = null,
-            StyleParam.LinearAxisId[]? XAxes = null,
-            StyleParam.LinearAxisId[]? YAxes = null,
-            StyleParam.LayoutGridRowOrder? RowOrder = null,
-            StyleParam.LayoutGridPattern? Pattern = null,
-            double? XGap = null,
-            double? YGap = null,
-            Domain? Domain = null,
-            StyleParam.LayoutGridXSide? XSide = null,
-            StyleParam.LayoutGridYSide? YSide = null
+            Optional<Tuple<StyleParam.LinearAxisId, StyleParam.LinearAxisId>[][]> SubPlots = default,
+            Optional<StyleParam.LinearAxisId[]> XAxes = default,
+            Optional<StyleParam.LinearAxisId[]> YAxes = default,
+            Optional<StyleParam.LayoutGridRowOrder> RowOrder = default,
+            Optional<StyleParam.LayoutGridPattern> Pattern = default,
+            Optional<double> XGap = default,
+            Optional<double> YGap = default,
+            Optional<Domain> Domain = default,
+            Optional<StyleParam.LayoutGridXSide> XSide = default,
+            Optional<StyleParam.LayoutGridYSide> YSide = default
         ) =>
             Plotly.NET.Chart.Grid<IEnumerable<GenericChart.GenericChart>>(
                 nRows: nRows,
                 nCols: nCols,
-                SubPlots: Helpers.ToOption(SubPlots),
-                XAxes: Helpers.ToOption(XAxes),
-                YAxes: Helpers.ToOption(YAxes),
-                RowOrder: Helpers.ToOption(RowOrder),
-                Pattern: Helpers.ToOption(Pattern),
-                XGap: Helpers.ToOptionV(XGap),
-                YGap: Helpers.ToOptionV(YGap),
-                Domain: Helpers.ToOption(Domain),
-                XSide: Helpers.ToOption(XSide),
-                YSide: Helpers.ToOption(YSide)
+                SubPlots: SubPlots.ToOption(),
+                XAxes: XAxes.ToOption(),
+                YAxes: YAxes.ToOption(),
+                RowOrder: RowOrder.ToOption(),
+                Pattern: Pattern.ToOption(),
+                XGap: XGap.ToOption(),
+                YGap: YGap.ToOption(),
+                Domain: Domain.ToOption(),
+                XSide: XSide.ToOption(),
+                YSide: YSide.ToOption()
             ).Invoke(gCharts);
     }
 }

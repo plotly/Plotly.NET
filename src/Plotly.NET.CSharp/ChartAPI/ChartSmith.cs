@@ -1,6 +1,7 @@
 ﻿using Plotly.NET;
 using Plotly.NET.LayoutObjects;
 using Plotly.NET.TraceObjects;
+using System.Runtime.InteropServices;
 
 namespace Plotly.NET.CSharp
 {
@@ -42,40 +43,40 @@ namespace Plotly.NET.CSharp
             IEnumerable<RealType> real,
             IEnumerable<ImagType> imag,
             StyleParam.Mode mode,
-            string? Name = null,
-            bool? ShowLegend = null,
-            double? Opacity = null,
-            IEnumerable<double>? MultiOpacity = null,
-            TextType? Text = null,
-            IEnumerable<TextType>? MultiText = null,
-            StyleParam.TextPosition? TextPosition = null,
-            IEnumerable<StyleParam.TextPosition>? MultiTextPosition = null,
-            Color? MarkerColor = null,
-            StyleParam.Colorscale? MarkerColorScale = null,
-            Line? MarkerOutline = null,
-            StyleParam.MarkerSymbol? MarkerSymbol = null,
-            IEnumerable<StyleParam.MarkerSymbol>? MultiMarkerSymbol = null,
-            Marker? Marker = null,
-            Color? LineColor = null,
-            StyleParam.Colorscale? LineColorScale = null,
-            double? LineWidth = null,
-            StyleParam.DrawingStyle? LineDash = null,
-            Line? Line = null,
-            StyleParam.Fill? Fill = null,
-            Color? FillColor = null,
-            bool? UseDefaults = true
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<IEnumerable<double>> MultiOpacity = default,
+            Optional<TextType> Text = default,
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<StyleParam.TextPosition> TextPosition = default,
+            Optional<IEnumerable<StyleParam.TextPosition>> MultiTextPosition = default,
+            Optional<Color> MarkerColor = default,
+            Optional<StyleParam.Colorscale> MarkerColorScale = default,
+            Optional<Line> MarkerOutline = default,
+            Optional<StyleParam.MarkerSymbol> MarkerSymbol = default,
+            Optional<IEnumerable<StyleParam.MarkerSymbol>> MultiMarkerSymbol = default,
+            Optional<Marker> Marker = default,
+            Optional<Color> LineColor = default,
+            Optional<StyleParam.Colorscale> LineColorScale = default,
+            Optional<double> LineWidth = default,
+            Optional<StyleParam.DrawingStyle> LineDash = default,
+            Optional<Line> Line = default,
+            Optional<StyleParam.Fill> Fill = default,
+            Optional<Color> FillColor = default,
+            Optional<bool> UseDefaults = default
         )
             where RealType : IConvertible
             where ImagType : IConvertible
-            where TextType : class, IConvertible
+            where TextType : IConvertible
             =>
                 Plotly.NET.ChartSmith.Chart.ScatterSmith<RealType, ImagType, TextType>(
                     real: real,
                     imag: imag,
                     mode: mode,
                     Name: Name.ToOption(),
-                    ShowLegend: ShowLegend.ToOptionV(),
-                    Opacity: Opacity.ToOptionV(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
                     MultiOpacity: MultiOpacity.ToOption(),
                     Text: Text.ToOption(),
                     MultiText: MultiText.ToOption(),
@@ -89,12 +90,12 @@ namespace Plotly.NET.CSharp
                     Marker: Marker.ToOption(),
                     LineColor: LineColor.ToOption(),
                     LineColorScale: LineColorScale.ToOption(),
-                    LineWidth: LineWidth.ToOptionV(),
+                    LineWidth: LineWidth.ToOption(),
                     LineDash: LineDash.ToOption(),
                     Line: Line.ToOption(),
                     Fill: Fill.ToOption(),
                     FillColor: FillColor.ToOption(),
-                    UseDefaults: UseDefaults.ToOptionV()
+                    UseDefaults: UseDefaults.ToOption()
                 );
     }
 }

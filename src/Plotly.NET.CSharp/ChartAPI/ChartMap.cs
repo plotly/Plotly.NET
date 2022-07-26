@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Plotly.NET;
 using Plotly.NET.LayoutObjects;
 using Plotly.NET.TraceObjects;
+using System.Runtime.InteropServices;
 
 namespace Plotly.NET.CSharp
 {
@@ -48,61 +49,123 @@ namespace Plotly.NET.CSharp
             IEnumerable<LongitudesType> longitudes,
             IEnumerable<LatitudesType> latitudes,
             StyleParam.Mode mode,
-            string? Name = null,
-            bool? ShowLegend = null,
-            double? Opacity = null,
-            IEnumerable<double>? MultiOpacity = null,
-            TextType? Text = null,
-            IEnumerable<TextType>? MultiText = null,
-            StyleParam.TextPosition? TextPosition = null,
-            IEnumerable<StyleParam.TextPosition>? MultiTextPosition = null,
-            Color? MarkerColor = null,
-            StyleParam.Colorscale? MarkerColorScale = null,
-            Line? MarkerOutline = null,
-            StyleParam.MarkerSymbol? MarkerSymbol = null,
-            IEnumerable<StyleParam.MarkerSymbol>? MultiMarkerSymbol = null,
-            Marker? Marker = null,
-            Color? LineColor = null,
-            StyleParam.Colorscale? LineColorScale = null,
-            double? LineWidth = null,
-            StyleParam.DrawingStyle? LineDash = null,
-            Line? Line = null,
-            StyleParam.LocationFormat? LocationMode = null,
-            Object? GeoJson = null,
-            string? FeatureIdKey = null,
-            bool? UseDefaults = null
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<IEnumerable<double>> MultiOpacity = default,
+            Optional<TextType> Text = default,
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<StyleParam.TextPosition> TextPosition = default,
+            Optional<IEnumerable<StyleParam.TextPosition>> MultiTextPosition = default,
+            Optional<Color> MarkerColor = default,
+            Optional<StyleParam.Colorscale> MarkerColorScale = default,
+            Optional<Line> MarkerOutline = default,
+            Optional<StyleParam.MarkerSymbol> MarkerSymbol = default,
+            Optional<IEnumerable<StyleParam.MarkerSymbol>> MultiMarkerSymbol = default,
+            Optional<Marker> Marker = default,
+            Optional<Color> LineColor = default,
+            Optional<StyleParam.Colorscale> LineColorScale = default,
+            Optional<double> LineWidth = default,
+            Optional<StyleParam.DrawingStyle> LineDash = default,
+            Optional<Line> Line = default,
+            Optional<StyleParam.LocationFormat> LocationMode = default,
+            Optional<Object> GeoJson = default,
+            Optional<string> FeatureIdKey = default,
+            Optional<bool> UseDefaults = default
         )
             where LongitudesType : IConvertible
             where LatitudesType : IConvertible
-            where TextType : class, IConvertible
+            where TextType : IConvertible
             =>
                 Plotly.NET.ChartMap.Chart.ScatterGeo<LongitudesType, LatitudesType, TextType>(
                     longitudes: longitudes,
                     latitudes: latitudes,
                     mode: mode,
-                    Name: Helpers.ToOption(Name),
-                    ShowLegend: Helpers.ToOptionV(ShowLegend),
-                    Opacity: Helpers.ToOptionV(Opacity),
-                    MultiOpacity: Helpers.ToOption(MultiOpacity),
-                    Text: Helpers.ToOption(Text),
-                    MultiText: Helpers.ToOption(MultiText),
-                    TextPosition: Helpers.ToOption(TextPosition),
-                    MultiTextPosition: Helpers.ToOption(MultiTextPosition),
-                    MarkerColor: Helpers.ToOption(MarkerColor),
-                    MarkerColorScale: Helpers.ToOption(MarkerColorScale),
-                    MarkerOutline: Helpers.ToOption(MarkerOutline),
-                    MarkerSymbol: Helpers.ToOption(MarkerSymbol),
-                    MultiMarkerSymbol: Helpers.ToOption(MultiMarkerSymbol),
-                    Marker: Helpers.ToOption(Marker),
-                    LineColor: Helpers.ToOption(LineColor),
-                    LineColorScale: Helpers.ToOption(LineColorScale),
-                    LineWidth: Helpers.ToOptionV(LineWidth),
-                    LineDash: Helpers.ToOption(LineDash),
-                    Line: Helpers.ToOption(Line),
-                    LocationMode: Helpers.ToOption(LocationMode),
-                    GeoJson: Helpers.ToOption(GeoJson),
-                    FeatureIdKey: Helpers.ToOption(FeatureIdKey),
-                    UseDefaults: Helpers.ToOptionV(UseDefaults)
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    MultiOpacity: MultiOpacity.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    TextPosition: TextPosition.ToOption(),
+                    MultiTextPosition: MultiTextPosition.ToOption(),
+                    MarkerColor: MarkerColor.ToOption(),
+                    MarkerColorScale: MarkerColorScale.ToOption(),
+                    MarkerOutline: MarkerOutline.ToOption(),
+                    MarkerSymbol: MarkerSymbol.ToOption(),
+                    MultiMarkerSymbol: MultiMarkerSymbol.ToOption(),
+                    Marker: Marker.ToOption(),
+                    LineColor: LineColor.ToOption(),
+                    LineColorScale: LineColorScale.ToOption(),
+                    LineWidth: LineWidth.ToOption(),
+                    LineDash: LineDash.ToOption(),
+                    Line: Line.ToOption(),
+                    LocationMode: LocationMode.ToOption(),
+                    GeoJson: GeoJson.ToOption(),
+                    FeatureIdKey: FeatureIdKey.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
+
+        /// <summary>
+        /// Creates a DensityMapbox Chart that draws a bivariate kernel density estimation with a Gaussian kernel from `lon` and `lat` coordinates and optional `z` values using a colorscale.
+        ///
+        /// Customize the mapbox layers, style, etc. by using Chart.withMapbox.
+        ///
+        /// You might need a Mapbox token, which you can also configure with Chart.withMapbox.
+        /// </summary>
+        /// <param name="longitudes">Sets the longitude coordinates (in degrees East).</param>
+        /// <param name="latitudes">Sets the latitude coordinates (in degrees North).</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opacity of the trace</param>
+        /// <param name="Z">Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot</param>
+        /// <param name="Radius">Sets the radius of influence of one `lon` / `lat` point in pixels. Increasing the value makes the densitymapbox trace smoother, but less detailed.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="ColorBar">Sets the colorbar.</param>
+        /// <param name="ColorScale">Sets the colorscale.</param>
+        /// <param name="ShowScale">Determines whether or not a colorbar is displayed for this trace.</param>
+        /// <param name="ReverseScale">Reverses the color mapping if true.</param>
+        /// <param name="Below">Determines if this scattermapbox trace's layers are to be inserted before the layer with the specified ID. By default, scattermapbox layers are inserted above all the base layers. To place the scattermapbox layers above every other layer, set `below` to "''".</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        public static GenericChart.GenericChart DensityMapbox<LongitudesType, LatitudesType, ZType, TextType>(
+            IEnumerable<LongitudesType> longitudes,
+            IEnumerable<LatitudesType> latitudes,
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<IEnumerable<ZType>> Z = default,
+            Optional<int> Radius = default,
+            Optional<TextType> Text = default,
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<ColorBar> ColorBar = default,
+            Optional<StyleParam.Colorscale> ColorScale = default,
+            Optional<bool> ShowScale = default,
+            Optional<bool> ReverseScale = default,
+            Optional<string> Below = default,
+            Optional<bool> UseDefaults = default
+        )
+            where LongitudesType: IConvertible
+            where LatitudesType: IConvertible
+            where ZType: IConvertible
+            where TextType: IConvertible
+            =>
+                Plotly.NET.ChartMap.Chart.DensityMapbox<LongitudesType, LatitudesType, ZType, TextType>(
+                    longitudes: longitudes,
+                    latitudes: latitudes,
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    Z: Z.ToOption(),
+                    Radius: Radius.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    ColorBar: ColorBar.ToOption(),
+                    ColorScale: ColorScale.ToOption(),
+                    ShowScale: ShowScale.ToOption(),
+                    ReverseScale: ReverseScale.ToOption(),
+                    Below: Below.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
                 );
     }
 }

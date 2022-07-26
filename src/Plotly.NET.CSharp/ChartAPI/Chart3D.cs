@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Plotly.NET;
 using Plotly.NET.LayoutObjects;
 using Plotly.NET.TraceObjects;
+using System.Runtime.InteropServices;
+
 
 namespace Plotly.NET.CSharp
 {
@@ -43,64 +45,64 @@ namespace Plotly.NET.CSharp
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
         /// <param name="Projection">Sets the projection of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Scatter3D<XData, YData, ZData, TextData>(
-            IEnumerable<XData> x,
-            IEnumerable<YData> y,
-            IEnumerable<ZData> z,
+        public static GenericChart.GenericChart Scatter3D<XType, YType, ZType, TextType>(
+            IEnumerable<XType> x,
+            IEnumerable<YType> y,
+            IEnumerable<ZType> z,
             StyleParam.Mode mode,
-            string? Name = null,
-            bool? ShowLegend = null,
-            double? Opacity = null,
-            IEnumerable<double>? MultiOpacity = null,
-            TextData? Text = null,
-            IEnumerable<TextData>? MultiText = null,
-            StyleParam.TextPosition? TextPosition = null,
-            IEnumerable<StyleParam.TextPosition>? MultiTextPosition = null,
-            Color? MarkerColor = null,
-            StyleParam.Colorscale? MarkerColorScale = null,
-            Line? MarkerOutline = null,
-            StyleParam.MarkerSymbol3D? MarkerSymbol = null,
-            IEnumerable<StyleParam.MarkerSymbol3D>? MultiMarkerSymbol = null,
-            Marker? Marker = null,
-            Color? LineColor = null,
-            StyleParam.Colorscale? LineColorScale = null,
-            double? LineWidth = null,
-            StyleParam.DrawingStyle? LineDash = null,
-            Line? Line = null,
-            Projection? Projection = null,
-            bool? UseDefaults = null
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<IEnumerable<double>> MultiOpacity = default,
+            Optional<TextType> Text = default,
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<StyleParam.TextPosition> TextPosition = default,
+            Optional<IEnumerable<StyleParam.TextPosition>> MultiTextPosition = default,
+            Optional<Color> MarkerColor = default,
+            Optional<StyleParam.Colorscale> MarkerColorScale = default,
+            Optional<Line> MarkerOutline = default,
+            Optional<StyleParam.MarkerSymbol3D> MarkerSymbol = default,
+            Optional<IEnumerable<StyleParam.MarkerSymbol3D>> MultiMarkerSymbol = default,
+            Optional<Marker> Marker = default,
+            Optional<Color> LineColor = default,
+            Optional<StyleParam.Colorscale> LineColorScale = default,
+            Optional<double> LineWidth = default,
+            Optional<StyleParam.DrawingStyle> LineDash = default,
+            Optional<Line> Line = default,
+            Optional<Projection> Projection = default,
+            Optional<bool> UseDefaults = default
         )
-            where XData: IConvertible
-            where YData: IConvertible
-            where ZData: IConvertible
-            where TextData: class, IConvertible
+            where XType: IConvertible
+            where YType: IConvertible
+            where ZType : IConvertible
+            where TextType : IConvertible
             
-            => Plotly.NET.Chart3D.Chart.Scatter3D<XData, YData, ZData, TextData>(
+            => Plotly.NET.Chart3D.Chart.Scatter3D<XType, YType, ZType, TextType>(
                 x: x,
                 y: y,
                 z: z,
                 mode: mode,
-                Name: Helpers.ToOption(Name),
-                ShowLegend: Helpers.ToOptionV(ShowLegend),
-                Opacity: Helpers.ToOptionV(Opacity),
-                MultiOpacity: Helpers.ToOption(MultiOpacity),
-                Text: Helpers.ToOption(Text),
-                MultiText: Helpers.ToOption(MultiText),
-                TextPosition: Helpers.ToOption(TextPosition),
-                MultiTextPosition: Helpers.ToOption(MultiTextPosition),
-                MarkerColor: Helpers.ToOption(MarkerColor),
-                MarkerColorScale: Helpers.ToOption(MarkerColorScale),
-                MarkerOutline: Helpers.ToOption(MarkerOutline),
-                MarkerSymbol: Helpers.ToOption(MarkerSymbol),
-                MultiMarkerSymbol: Helpers.ToOption(MultiMarkerSymbol),
-                Marker: Helpers.ToOption(Marker),
-                LineColor: Helpers.ToOption(LineColor),
-                LineColorScale: Helpers.ToOption(LineColorScale),
-                LineWidth: Helpers.ToOptionV(LineWidth),
-                LineDash: Helpers.ToOption(LineDash),
-                Line: Helpers.ToOption(Line),
-                Projection: Helpers.ToOption(Projection),
-                UseDefaults: Helpers.ToOptionV(UseDefaults)
+                Name: Name.ToOption(),
+                ShowLegend: ShowLegend.ToOption(),
+                Opacity: Opacity.ToOption(),
+                MultiOpacity: MultiOpacity.ToOption(),
+                Text: Text.ToOption(),
+                MultiText: MultiText.ToOption(),
+                TextPosition: TextPosition.ToOption(),
+                MultiTextPosition: MultiTextPosition.ToOption(),
+                MarkerColor: MarkerColor.ToOption(),
+                MarkerColorScale: MarkerColorScale.ToOption(),
+                MarkerOutline: MarkerOutline.ToOption(),
+                MarkerSymbol: MarkerSymbol.ToOption(),
+                MultiMarkerSymbol: MultiMarkerSymbol.ToOption(),
+                Marker: Marker.ToOption(),
+                LineColor: LineColor.ToOption(),
+                LineColorScale: LineColorScale.ToOption(),
+                LineWidth: LineWidth.ToOption(),
+                LineDash: LineDash.ToOption(),
+                Line: Line.ToOption(),
+                Projection: Projection.ToOption(),
+                UseDefaults: UseDefaults.ToOption()
             );
     }
 }

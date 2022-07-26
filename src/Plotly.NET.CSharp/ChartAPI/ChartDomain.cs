@@ -1,6 +1,7 @@
 ﻿using Plotly.NET;
 using Plotly.NET.LayoutObjects;
 using Plotly.NET.TraceObjects;
+using System.Runtime.InteropServices;
 
 
 namespace Plotly.NET.CSharp
@@ -39,42 +40,42 @@ namespace Plotly.NET.CSharp
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         public static GenericChart.GenericChart Pie<ValuesType, LabelsType, TextType>(
             IEnumerable<ValuesType> values,
-            string? Name = null,
-            bool? ShowLegend = null,
-            double? Opacity = null,
-            IEnumerable<double>? MultiOpacity = null,
-            IEnumerable<LabelsType>? Labels = null,
-            double? Pull = null,
-            IEnumerable<double>? MultiPull = null,
-            TextType? Text = null,
-            IEnumerable<TextType>? MultiText = null,
-            StyleParam.TextPosition? TextPosition = null,
-            IEnumerable<StyleParam.TextPosition>? MultiTextPosition = null,
-            IEnumerable<Color>? SectionColors = null,
-            Color? SectionOutlineColor = null,
-            double? SectionOutlineWidth = null,
-            IEnumerable<double>? SectionOutlineMultiWidth = null,
-            Line? SectionOutline = null,
-            Marker? Marker = null,
-            StyleParam.TextInfo? TextInfo = null,
-            StyleParam.Direction? Direction = null,
-            double? Hole = null,
-            double? Rotation = null,
-            bool? Sort = null,
-            bool? UseDefaults = null
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<IEnumerable<double>> MultiOpacity = default,
+            Optional<IEnumerable<LabelsType>> Labels = default,
+            Optional<double> Pull = default,
+            Optional<IEnumerable<double>> MultiPull = default,
+            Optional<TextType> Text = default,
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<StyleParam.TextPosition> TextPosition = default,
+            Optional<IEnumerable<StyleParam.TextPosition>> MultiTextPosition = default,
+            Optional<IEnumerable<Color>> SectionColors = default,
+            Optional<Color> SectionOutlineColor = default,
+            Optional<double> SectionOutlineWidth = default,
+            Optional<IEnumerable<double>> SectionOutlineMultiWidth = default,
+            Optional<Line> SectionOutline = default,
+            Optional<Marker> Marker = default,
+            Optional<StyleParam.TextInfo> TextInfo = default,
+            Optional<StyleParam.Direction> Direction = default,
+            Optional<double> Hole = default,
+            Optional<double> Rotation = default,
+            Optional<bool> Sort = default,
+            Optional<bool> UseDefaults = default
         )
             where ValuesType : IConvertible
             where LabelsType : IConvertible
-            where TextType : class, IConvertible
+            where TextType : IConvertible
             =>
                 Plotly.NET.ChartDomain.Chart.Pie<ValuesType, LabelsType, TextType>(
                     values: values,
                     Name: Name.ToOption(),
-                    ShowLegend: ShowLegend.ToOptionV(),
-                    Opacity: Opacity.ToOptionV(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
                     MultiOpacity: MultiOpacity.ToOption(),
                     Labels: Labels.ToOption(),
-                    Pull: Pull.ToOptionV(),
+                    Pull: Pull.ToOption(),
                     MultiPull: MultiPull.ToOption(),
                     Text: Text.ToOption(),
                     MultiText: MultiText.ToOption(),
@@ -82,16 +83,16 @@ namespace Plotly.NET.CSharp
                     MultiTextPosition: MultiTextPosition.ToOption(),
                     SectionColors: SectionColors.ToOption(),
                     SectionOutlineColor: SectionOutlineColor.ToOption(),
-                    SectionOutlineWidth: SectionOutlineWidth.ToOptionV(),
+                    SectionOutlineWidth: SectionOutlineWidth.ToOption(),
                     SectionOutlineMultiWidth: SectionOutlineMultiWidth.ToOption(),
                     SectionOutline: SectionOutline.ToOption(),
                     Marker: Marker.ToOption(),
                     TextInfo: TextInfo.ToOption(),
                     Direction: Direction.ToOption(),
-                    Hole: Hole.ToOptionV(),
-                    Rotation: Rotation.ToOptionV(),
-                    Sort: Sort.ToOptionV(),
-                    UseDefaults: UseDefaults.ToOptionV()
+                    Hole: Hole.ToOption(),
+                    Rotation: Rotation.ToOption(),
+                    Sort: Sort.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
                 );
 
     }
