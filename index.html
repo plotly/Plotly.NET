@@ -43,7 +43,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 3.0.0</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -453,6 +453,8 @@
 <a href="https://plotly.net/index.fsx"><img src="https://plotly.net/img/badge-script.svg" alt="Script" /></a>&emsp;
 <a href="https://plotly.net/index.ipynb"><img src="https://plotly.net/img/badge-notebook.svg" alt="Notebook" /></a></p>
 <p>Plotly.NET provides functions for generating and rendering plotly.js charts in <strong>.NET</strong> programming languages 📈🚀.</p>
+<p><strong>This documentation page is almost exclusively for the core F# API of Plotly.NET.</strong></p>
+<p>It should be easy to translate them into C#. However, as work on the idiomatic C# API progresses, we will privde native C# docs as well.</p>
 <h3><a name="Table-of-contents" class="anchor" href="#Table-of-contents">Table of contents</a></h3>
 <ul>
 <li>
@@ -488,40 +490,41 @@
 <li><a href="#Contributing-and-copyright">Contributing and copyright</a></li>
 </ul>
 <h1><a name="Installation" class="anchor" href="#Installation">Installation</a></h1>
-<p>Plotly.NET is the 2.0.0+ version of its predecessor FSharp.Plotly.</p>
-<p>If needed, old packages up until version 1.2.2 can be accessed via the old package name <em>FSharp.Plotly</em> <a href="https://www.nuget.org/packages/FSharp.Plotly/">here</a></p>
+<p>Plotly.NET consists of multiple packages. The two main ones are:</p>
+<ul>
+<li>Plotly.NET <a href="https://www.nuget.org/packages/Plotly.NET/"><img src="https://img.shields.io/nuget/vpre/Plotly.NET" alt="" /></a>, the core API written in F#.</li>
+<li>Plotly.NET.CSharp <a href="https://www.nuget.org/packages/Plotly.NET.CSharp/"><img src="https://img.shields.io/nuget/vpre/Plotly.NET.CSharp" alt="" /></a>, native C# bindings that make the usage of Plotly.NET more idiomatic from C#. This is work in progress. Missing charts and/or styling must be done via the core API.</li>
+</ul>
 <h3><a name="For-applications-and-libraries" class="anchor" href="#For-applications-and-libraries">For applications and libraries</a></h3>
-<p>Plotly.NET is available on nuget to plug into your favorite package manager.</p>
-<p>You can find all available package versions on the <a href="https://www.nuget.org/packages/Plotly.NET/">nuget page</a>.</p>
+<p>Plotly.NET packages are available on nuget to plug into your favorite package manager.</p>
 <ul>
 <li>
 <p>dotnet CLI</p>
-<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="shell">dotnet add package Plotly.NET --version 2.0.0
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="shell">dotnet add package Plotly.NET --version 3.0.0
 </code></pre></td></tr></table>
 </li>
 <li>
 <p>paket CLI</p>
-<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="shell">paket add Plotly.NET --version 2.0.0
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="shell">paket add Plotly.NET --version 3.0.0
 </code></pre></td></tr></table>
 </li>
 <li>
 <p>package manager</p>
-<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="shell">Install-Package Plotly.NET -Version 2.0.0
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="shell">Install-Package Plotly.NET -Version 3.0.0
 </code></pre></td></tr></table>
 <p>Or add the package reference directly to your <code>.*proj</code> file:</p>
-<pre class="fssnip highlighted"><code lang="fsharp"><span class="pn">&lt;</span><span class="id">PackageReference</span> <span class="id">Include</span><span class="o">=</span><span class="s">&quot;Plotly.NET&quot;</span> <span class="id">Version</span><span class="o">=</span><span class="s">&quot;2.0.0&quot;</span> <span class="o">/&gt;</span>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pn">&lt;</span><span class="id">PackageReference</span> <span class="id">Include</span><span class="o">=</span><span class="s">&quot;Plotly.NET&quot;</span> <span class="id">Version</span><span class="o">=</span><span class="s">&quot;3.0.0&quot;</span> <span class="o">/&gt;</span>
 </code></pre>
 </li>
 </ul>
 <h3><a name="For-scripting" class="anchor" href="#For-scripting">For scripting</a></h3>
 <p>You can include the package via an inline package reference:</p>
-<pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;nuget: Plotly.NET, 2.0.0&quot;</span>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;nuget: Plotly.NET, 3.0.0&quot;</span>
 </code></pre>
 <h3><a name="For-dotnet-interactive-notebooks" class="anchor" href="#For-dotnet-interactive-notebooks">For dotnet interactive notebooks</a></h3>
 <p>You can use the same inline package reference as in scripts, but as an additional goodie
 the interactive extensions for dotnet interactive have you covered for seamless chart rendering:</p>
-<pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;nuget: Plotly.NET, 2.0.0&quot;</span>
-<span class="pp">#r</span> <span class="s">&quot;nuget: Plotly.NET.Interactive, 2.0.0&quot;</span>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;nuget: Plotly.NET.Interactive, 3.0.0&quot;</span>
 </code></pre>
 <p><em>Note</em>:</p>
 <p>due to the currently fast development cycles of Dotnet Interactive, there might be increments in their versioning that renders the current version of Plotly.NET.Interactive incompatible (example <a href="https://github.com/plotly/Plotly.NET/issues/67">here</a>).</p>
@@ -571,29 +574,29 @@ We recommend creating a single chart for each workflow to prevent unexpected res
 <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 22)" onmouseover="showTip(event, 'fs6', 22)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 23)" onmouseover="showTip(event, 'fs12', 23)" class="id">show</span>
 </code></pre>
 <p>Should render this chart in your brower:</p>
-<div id="4dd1ab46-759e-456a-9a9c-dee2815b269b"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="862c98fb-e51d-4518-ba17-117dc4a5ca3c"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_4dd1ab46759e456a9a9cdee2815b269b = function() {
+            var renderPlotly_862c98fbe51d4518ba17117dc4a5ca3c = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.6.3.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","mode":"markers","x":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"marker":{},"line":{}}];
             var layout = {"width":600,"height":600,"template":{"layout":{"title":{"x":0.05},"font":{"color":"rgba(42, 63, 95, 1.0)"},"paper_bgcolor":"rgba(255, 255, 255, 1.0)","plot_bgcolor":"rgba(229, 236, 246, 1.0)","autotypenumbers":"strict","colorscale":{"diverging":[[0.0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1.0,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"hovermode":"closest","hoverlabel":{"align":"left"},"coloraxis":{"colorbar":{"outlinewidth":0.0,"ticks":""}},"geo":{"showland":true,"landcolor":"rgba(229, 236, 246, 1.0)","showlakes":true,"lakecolor":"rgba(255, 255, 255, 1.0)","subunitcolor":"rgba(255, 255, 255, 1.0)","bgcolor":"rgba(255, 255, 255, 1.0)"},"mapbox":{"style":"light"},"polar":{"bgcolor":"rgba(229, 236, 246, 1.0)","radialaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","ticks":""},"angularaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","ticks":""}},"scene":{"xaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true},"yaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true},"zaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true}},"ternary":{"aaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"baxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"caxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"bgcolor":"rgba(229, 236, 246, 1.0)"},"xaxis":{"title":{"standoff":15},"ticks":"","automargin":true,"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","zerolinecolor":"rgba(255, 255, 255, 1.0)","zerolinewidth":2.0},"yaxis":{"title":{"standoff":15},"ticks":"","automargin":true,"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","zerolinecolor":"rgba(255, 255, 255, 1.0)","zerolinewidth":2.0},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"shapedefaults":{"line":{"color":"rgba(42, 63, 95, 1.0)"}},"colorway":["rgba(99, 110, 250, 1.0)","rgba(239, 85, 59, 1.0)","rgba(0, 204, 150, 1.0)","rgba(171, 99, 250, 1.0)","rgba(255, 161, 90, 1.0)","rgba(25, 211, 243, 1.0)","rgba(255, 102, 146, 1.0)","rgba(182, 232, 128, 1.0)","rgba(255, 151, 255, 1.0)","rgba(254, 203, 82, 1.0)"]},"data":{"bar":[{"marker":{"line":{"color":"rgba(229, 236, 246, 1.0)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"error_x":{"color":"rgba(42, 63, 95, 1.0)"},"error_y":{"color":"rgba(42, 63, 95, 1.0)"}}],"barpolar":[{"marker":{"line":{"color":"rgba(229, 236, 246, 1.0)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}}}],"carpet":[{"aaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","endlinecolor":"rgba(42, 63, 95, 1.0)","minorgridcolor":"rgba(255, 255, 255, 1.0)","startlinecolor":"rgba(42, 63, 95, 1.0)"},"baxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","endlinecolor":"rgba(42, 63, 95, 1.0)","minorgridcolor":"rgba(255, 255, 255, 1.0)","startlinecolor":"rgba(42, 63, 95, 1.0)"}}],"choropleth":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contour":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"colorbar":{"outlinewidth":0.0,"ticks":""}}],"heatmap":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}}}],"histogram2d":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"colorbar":{"outlinewidth":0.0,"ticks":""}}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"pie":[{"automargin":true}],"scatter":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatter3d":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}},"line":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"surface":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"table":[{"cells":{"fill":{"color":"rgba(235, 240, 248, 1.0)"},"line":{"color":"rgba(255, 255, 255, 1.0)"}},"header":{"fill":{"color":"rgba(200, 212, 227, 1.0)"},"line":{"color":"rgba(255, 255, 255, 1.0)"}}}]}}};
             var config = {"responsive":true};
-            Plotly.newPlot('4dd1ab46-759e-456a-9a9c-dee2815b269b', data, layout, config);
+            Plotly.newPlot('862c98fb-e51d-4518-ba17-117dc4a5ca3c', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_4dd1ab46759e456a9a9cdee2815b269b();
+                    renderPlotly_862c98fbe51d4518ba17117dc4a5ca3c();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_4dd1ab46759e456a9a9cdee2815b269b();
+                renderPlotly_862c98fbe51d4518ba17117dc4a5ca3c();
             }
 </script>
 
@@ -601,29 +604,29 @@ We recommend creating a single chart for each workflow to prevent unexpected res
 <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 28)" onmouseover="showTip(event, 'fs6', 28)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 29)" onmouseover="showTip(event, 'fs12', 29)" class="id">show</span>
 </code></pre>
 <p>And here is what happened after applying the styles from above:</p>
-<div id="ee69bd95-8e5d-49aa-a8d7-e9601969b017"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="fd5e27ee-4601-4924-86ff-8f2a40452022"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_ee69bd958e5d49aaa8d7e9601969b017 = function() {
+            var renderPlotly_fd5e27ee4601492486ff8f2a40452022 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.6.3.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","mode":"markers","x":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"marker":{},"line":{}}];
             var layout = {"width":600,"height":600,"template":{"layout":{"title":{"x":0.05},"font":{"color":"rgba(42, 63, 95, 1.0)"},"paper_bgcolor":"rgba(255, 255, 255, 1.0)","plot_bgcolor":"rgba(229, 236, 246, 1.0)","autotypenumbers":"strict","colorscale":{"diverging":[[0.0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1.0,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"hovermode":"closest","hoverlabel":{"align":"left"},"coloraxis":{"colorbar":{"outlinewidth":0.0,"ticks":""}},"geo":{"showland":true,"landcolor":"rgba(229, 236, 246, 1.0)","showlakes":true,"lakecolor":"rgba(255, 255, 255, 1.0)","subunitcolor":"rgba(255, 255, 255, 1.0)","bgcolor":"rgba(255, 255, 255, 1.0)"},"mapbox":{"style":"light"},"polar":{"bgcolor":"rgba(229, 236, 246, 1.0)","radialaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","ticks":""},"angularaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","ticks":""}},"scene":{"xaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true},"yaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true},"zaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true}},"ternary":{"aaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"baxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"caxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"bgcolor":"rgba(229, 236, 246, 1.0)"},"xaxis":{"title":{"standoff":15},"ticks":"","automargin":true,"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","zerolinecolor":"rgba(255, 255, 255, 1.0)","zerolinewidth":2.0},"yaxis":{"title":{"standoff":15},"ticks":"","automargin":true,"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","zerolinecolor":"rgba(255, 255, 255, 1.0)","zerolinewidth":2.0},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"shapedefaults":{"line":{"color":"rgba(42, 63, 95, 1.0)"}},"colorway":["rgba(99, 110, 250, 1.0)","rgba(239, 85, 59, 1.0)","rgba(0, 204, 150, 1.0)","rgba(171, 99, 250, 1.0)","rgba(255, 161, 90, 1.0)","rgba(25, 211, 243, 1.0)","rgba(255, 102, 146, 1.0)","rgba(182, 232, 128, 1.0)","rgba(255, 151, 255, 1.0)","rgba(254, 203, 82, 1.0)"]},"data":{"bar":[{"marker":{"line":{"color":"rgba(229, 236, 246, 1.0)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"error_x":{"color":"rgba(42, 63, 95, 1.0)"},"error_y":{"color":"rgba(42, 63, 95, 1.0)"}}],"barpolar":[{"marker":{"line":{"color":"rgba(229, 236, 246, 1.0)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}}}],"carpet":[{"aaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","endlinecolor":"rgba(42, 63, 95, 1.0)","minorgridcolor":"rgba(255, 255, 255, 1.0)","startlinecolor":"rgba(42, 63, 95, 1.0)"},"baxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","endlinecolor":"rgba(42, 63, 95, 1.0)","minorgridcolor":"rgba(255, 255, 255, 1.0)","startlinecolor":"rgba(42, 63, 95, 1.0)"}}],"choropleth":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contour":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"colorbar":{"outlinewidth":0.0,"ticks":""}}],"heatmap":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}}}],"histogram2d":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"colorbar":{"outlinewidth":0.0,"ticks":""}}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"pie":[{"automargin":true}],"scatter":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatter3d":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}},"line":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"surface":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"table":[{"cells":{"fill":{"color":"rgba(235, 240, 248, 1.0)"},"line":{"color":"rgba(255, 255, 255, 1.0)"}},"header":{"fill":{"color":"rgba(200, 212, 227, 1.0)"},"line":{"color":"rgba(255, 255, 255, 1.0)"}}}]}},"title":{"text":"Hello world!"},"xaxis":{"title":{"text":"xAxis"}},"yaxis":{"title":{"text":"yAxis"}}};
             var config = {"responsive":true};
-            Plotly.newPlot('ee69bd95-8e5d-49aa-a8d7-e9601969b017', data, layout, config);
+            Plotly.newPlot('fd5e27ee-4601-4924-86ff-8f2a40452022', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_ee69bd958e5d49aaa8d7e9601969b017();
+                    renderPlotly_fd5e27ee4601492486ff8f2a40452022();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_ee69bd958e5d49aaa8d7e9601969b017();
+                renderPlotly_fd5e27ee4601492486ff8f2a40452022();
             }
 </script>
 
@@ -650,28 +653,18 @@ That's why you can render charts directly in the cell output. Just end the cell 
 <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 55)" onmouseover="showTip(event, 'fs6', 55)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 56)" onmouseover="showTip(event, 'fs10', 56)" class="id">withXAxisStyle</span><span class="pn">(</span><span class="fn">TitleText</span> <span class="o">=</span> <span class="s">&quot;yAxis&quot;</span><span class="pn">)</span>
 </code></pre>
 <h3><a name="Fluent-interface-style-in-C" class="anchor" href="#Fluent-interface-style-in-C">Fluent interface style in C#:</a></h3>
+<p>This example uses the high-level native C# bindings for Plotly.NET that are provided by the <code>Plotly.NET.CSharp</code> package.</p>
 <table class="pre"><tr><td class="snippet"><pre class="fssnip highlighted"><code lang="csharp"><span class="k">using</span> System;
-<span class="k">using</span> Plotly.NET;
-<span class="k">using</span> Microsoft.FSharp.Core; <span class="c">// use this for less verbose and more helpful intellisense</span>
-<span class="k">using</span> Plotly.NET.LayoutObjects;
+<span class="k">using</span> Plotly.NET.CSharp;
 
-<span class="k">namespace</span> Plotly.NET.Tests.CSharpConsole
-{
-    <span class="k">class</span> Program
-    {
-        <span class="k">static</span> <span class="k">void</span> Main(<span class="k">string</span>[] args)
-        {
-            <span class="k">double</span>[] x <span class="o">=</span> <span class="k">new</span> <span class="k">double</span>[] { <span class="n">1</span>, <span class="n">2</span> };
-            <span class="k">double</span>[] y <span class="o">=</span> <span class="k">new</span> <span class="k">double</span>[] { <span class="n">5</span>, <span class="n">10</span> };
-            GenericChart.GenericChart chart <span class="o">=</span> Chart<span class="n">2</span>D.Chart.Point&lt;<span class="k">double</span>, <span class="k">double</span>, <span class="k">string</span>&gt;(x: x, y: y);
-            chart
-                .WithTraceInfo(<span class="s">"Hello from C#"</span>, ShowLegend: <span class="k">true</span>)
-                .WithXAxisStyle(title: Title.init(<span class="s">"xAxis"</span>))
-                .WithYAxisStyle(title: Title.init(<span class="s">"yAxis"</span>))
-                .Show();
-        }
-    }
-}
+Chart.Point&lt;<span class="k">double</span>, <span class="k">double</span>, <span class="k">string</span>&gt;(
+    x: <span class="k">new</span> <span class="k">double</span>[] { <span class="n">1</span>, <span class="n">2</span> }, 
+    y: <span class="k">new</span> <span class="k">double</span>[] { <span class="n">5</span>, <span class="n">10</span> }
+)
+.WithTraceInfo(<span class="s">"Hello from C#"</span>, ShowLegend: <span class="k">true</span>)
+.WithXAxisStyle&lt;<span class="k">double</span>, <span class="k">double</span>, <span class="k">string</span>&gt;(Title: Plotly.NET.Title.init(<span class="s">"xAxis"</span>))
+.WithYAxisStyle&lt;<span class="k">double</span>, <span class="k">double</span>, <span class="k">string</span>&gt;(Title: Plotly.NET.Title.init(<span class="s">"yAxis"</span>))
+.Show();
 </code></pre></td></tr></table>
 <h3><a name="Declarative-style-in-F-using-the-underlying" class="anchor" href="#Declarative-style-in-F-using-the-underlying">Declarative style in F# using the underlying <code>DynamicObj</code>:</a></h3>
 <p>This API is the most low-level and closest to the original plotly.js syntax. Make sure to spell dynamic members exactly as they are used in the plotly.js json schema.</p>
@@ -710,48 +703,39 @@ That's why you can render charts directly in the cell output. Just end the cell 
 <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs13', 94)" onmouseover="showTip(event, 'fs13', 94)" class="m">GenericChart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 95)" onmouseover="showTip(event, 'fs30', 95)" class="id">setLayout</span> <span onmouseout="hideTip(event, 'fs23', 96)" onmouseover="showTip(event, 'fs23', 96)" class="id">layout</span>
 </code></pre>
 <h3><a name="Declarative-style-in-C-using-the-underlying" class="anchor" href="#Declarative-style-in-C-using-the-underlying">Declarative style in C# using the underlying <code>DynamicObj</code>:</a></h3>
+<p>note that this works only when using the Plotly.NET core API, as the C# bindings only target the high level API.</p>
 <table class="pre"><tr><td class="snippet"><pre class="fssnip highlighted"><code lang="csharp"><span class="k">using</span> System;
 <span class="k">using</span> Plotly.NET;
-<span class="k">using</span> Microsoft.FSharp.Core; <span class="c">// use this for less verbose and more helpful intellisense</span>
 <span class="k">using</span> Plotly.NET.LayoutObjects;
 
-<span class="k">namespace</span> Plotly.NET.Tests.CSharpConsole
-{
-    <span class="k">class</span> Program
-    {
-        <span class="k">static</span> <span class="k">void</span> Main(<span class="k">string</span>[] args)
-        {
-            <span class="k">double</span>[] x <span class="o">=</span> <span class="k">new</span> <span class="k">double</span>[] { <span class="n">1</span>, <span class="n">2</span> };
-            <span class="k">double</span>[] y <span class="o">=</span> <span class="k">new</span> <span class="k">double</span>[] { <span class="n">5</span>, <span class="n">10</span> };
+<span class="k">double</span>[] x <span class="o">=</span> <span class="k">new</span> <span class="k">double</span>[] { <span class="n">1</span>, <span class="n">2</span> };
+<span class="k">double</span>[] y <span class="o">=</span> <span class="k">new</span> <span class="k">double</span>[] { <span class="n">5</span>, <span class="n">10</span> };
 
-            LinearAxis xAxis <span class="o">=</span> <span class="k">new</span> LinearAxis();
-            xAxis.SetValue(<span class="s">"title"</span>, <span class="s">"xAxis"</span>);
-            xAxis.SetValue(<span class="s">"showgrid"</span>, <span class="k">false</span>);
-            xAxis.SetValue(<span class="s">"showline"</span>, <span class="k">true</span>);
+LinearAxis xAxis <span class="o">=</span> <span class="k">new</span> LinearAxis();
+xAxis.SetValue(<span class="s">"title"</span>, <span class="s">"xAxis"</span>);
+xAxis.SetValue(<span class="s">"showgrid"</span>, <span class="k">false</span>);
+xAxis.SetValue(<span class="s">"showline"</span>, <span class="k">true</span>);
 
-            LinearAxis yAxis <span class="o">=</span> <span class="k">new</span> LinearAxis();
-            yAxis.SetValue(<span class="s">"title"</span>, <span class="s">"yAxis"</span>);
-            yAxis.SetValue(<span class="s">"showgrid"</span>, <span class="k">false</span>);
-            yAxis.SetValue(<span class="s">"showline"</span>, <span class="k">true</span>);
+LinearAxis yAxis <span class="o">=</span> <span class="k">new</span> LinearAxis();
+yAxis.SetValue(<span class="s">"title"</span>, <span class="s">"yAxis"</span>);
+yAxis.SetValue(<span class="s">"showgrid"</span>, <span class="k">false</span>);
+yAxis.SetValue(<span class="s">"showline"</span>, <span class="k">true</span>);
 
-            Layout layout <span class="o">=</span> <span class="k">new</span> Layout();
-            layout.SetValue(<span class="s">"xaxis"</span>, xAxis);
-            layout.SetValue(<span class="s">"yaxis"</span>, yAxis);
-            layout.SetValue(<span class="s">"showlegend"</span>, <span class="k">true</span>);
+Layout layout <span class="o">=</span> <span class="k">new</span> Layout();
+layout.SetValue(<span class="s">"xaxis"</span>, xAxis);
+layout.SetValue(<span class="s">"yaxis"</span>, yAxis);
+layout.SetValue(<span class="s">"showlegend"</span>, <span class="k">true</span>);
 
-            Trace trace <span class="o">=</span> <span class="k">new</span> Trace(<span class="s">"scatter"</span>);
-            trace.SetValue(<span class="s">"x"</span>, x);
-            trace.SetValue(<span class="s">"y"</span>, y);
-            trace.SetValue(<span class="s">"mode"</span>, <span class="s">"markers"</span>);
-            trace.SetValue(<span class="s">"name"</span>, <span class="s">"Hello from C#"</span>);
+Trace trace <span class="o">=</span> <span class="k">new</span> Trace(<span class="s">"scatter"</span>);
+trace.SetValue(<span class="s">"x"</span>, x);
+trace.SetValue(<span class="s">"y"</span>, y);
+trace.SetValue(<span class="s">"mode"</span>, <span class="s">"markers"</span>);
+trace.SetValue(<span class="s">"name"</span>, <span class="s">"Hello from C#"</span>);
 
-            GenericChart
-                .ofTraceObject(<span class="k">true</span>, trace)
-                .WithLayout(layout)
-                .Show();
-        }
-    }
-}
+GenericChart
+    .ofTraceObject(<span class="k">true</span>, trace)
+    .WithLayout(layout)
+    .Show();
 </code></pre></td></tr></table>
 <h1><a name="Contributing-and-copyright" class="anchor" href="#Contributing-and-copyright">Contributing and copyright</a></h1>
 <p>The project is hosted on <a href="https://github.com/plotly/Plotly.NET">GitHub</a> where you can <a href="https://github.com/plotly/Plotly.NET/issues">report issues</a>, fork

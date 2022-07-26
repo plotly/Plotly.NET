@@ -37,7 +37,7 @@ These are mirrored in Plotly.NET's central type, `GenericChart`:
 The central type that gets created by all Chart constructors is `GenericChart`, which itself represents either a single chart or a multi chart (as a Discriminate Union type). It looks like this:
 
 ```fsharp
-type GenericChart =
+type GenericChart_ =
     | Chart of Trace * Layout * Config * DisplayOptions
     | MultiChart of Trace list * Layout * Config * DisplayOptions
 

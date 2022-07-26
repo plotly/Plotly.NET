@@ -41,7 +41,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 2.0.0</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 3.0.0</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -459,29 +459,29 @@
     <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="id">Point</span><span class="pn">(</span><span class="pn">[</span><span class="n">1</span><span class="pn">,</span><span class="n">2</span><span class="pn">]</span><span class="pn">)</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 7)" onmouseover="showTip(event, 'fs6', 7)" class="id">withTemplate</span> <span onmouseout="hideTip(event, 'fs7', 8)" onmouseover="showTip(event, 'fs7', 8)" class="m">ChartTemplates</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs8', 9)" onmouseover="showTip(event, 'fs8', 9)" class="id">lightMirrored</span>
 </code></pre>
-<div id="66d41e5d-fcb0-4676-a556-9864471f49e1"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="b1904cea-71d2-4b72-8a3e-d2dcb6ed063d"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_66d41e5dfcb04676a5569864471f49e1 = function() {
+            var renderPlotly_b1904cea71d24b728a3ed2dcb6ed063d = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.6.3.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","mode":"markers","x":[1],"y":[2],"marker":{},"line":{}}];
             var layout = {"width":600,"height":600,"template":{"layout":{"paper_bgcolor":"white","plot_bgcolor":"white","xaxis":{"ticks":"inside","mirror":"all","showline":true,"zeroline":true},"yaxis":{"ticks":"inside","mirror":"all","showline":true,"zeroline":true}},"data":{}}};
             var config = {"responsive":true};
-            Plotly.newPlot('66d41e5d-fcb0-4676-a556-9864471f49e1', data, layout, config);
+            Plotly.newPlot('b1904cea-71d2-4b72-8a3e-d2dcb6ed063d', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_66d41e5dfcb04676a5569864471f49e1();
+                    renderPlotly_b1904cea71d24b728a3ed2dcb6ed063d();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_66d41e5dfcb04676a5569864471f49e1();
+                renderPlotly_b1904cea71d24b728a3ed2dcb6ed063d();
             }
 </script>
 
@@ -516,29 +516,29 @@
     <span onmouseout="hideTip(event, 'fs4', 44)" onmouseover="showTip(event, 'fs4', 44)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs35', 45)" onmouseover="showTip(event, 'fs35', 45)" class="id">Point</span><span class="pn">(</span><span class="pn">[</span><span class="n">1</span><span class="pn">,</span><span class="n">2</span><span class="pn">]</span><span class="pn">)</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs4', 46)" onmouseover="showTip(event, 'fs4', 46)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 47)" onmouseover="showTip(event, 'fs6', 47)" class="id">withTemplate</span> <span onmouseout="hideTip(event, 'fs31', 48)" onmouseover="showTip(event, 'fs31', 48)" class="id">myTemplate</span>
 </code></pre>
-<div id="b4ed97f6-8b8e-45e0-83de-8dc1f336e070"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="b0c2ab15-7d2a-4121-afa7-ae6a68664009"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_b4ed97f68b8e45e083de8dc1f336e070 = function() {
+            var renderPlotly_b0c2ab157d2a4121afa7ae6a68664009 = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.6.3.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"scatter","mode":"markers","x":[1],"y":[2],"marker":{},"line":{}}];
             var layout = {"width":600,"height":600,"template":{"layout":{"title":{"text":"I will always be there now!"}},"data":{"scatter":[{"marker":{"size":20,"symbol":"47"}}]}}};
             var config = {"responsive":true};
-            Plotly.newPlot('b4ed97f6-8b8e-45e0-83de-8dc1f336e070', data, layout, config);
+            Plotly.newPlot('b0c2ab15-7d2a-4121-afa7-ae6a68664009', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_b4ed97f68b8e45e083de8dc1f336e070();
+                    renderPlotly_b0c2ab157d2a4121afa7ae6a68664009();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_b4ed97f68b8e45e083de8dc1f336e070();
+                renderPlotly_b0c2ab157d2a4121afa7ae6a68664009();
             }
 </script>
 

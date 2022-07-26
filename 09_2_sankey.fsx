@@ -45,29 +45,29 @@ let sankey1 =
         LinkOutlineWidth = 1.,
         UseDefaults = false
     )(* output: 
-<div id="35a0a5e5-8cec-4b04-9386-f54ae8b97e9b"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id="e7c0f6be-8c95-4b26-a5fd-98c4aa5d3d8c"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script type="text/javascript">
 
-            var renderPlotly_35a0a5e58cec4b049386f54ae8b97e9b = function() {
+            var renderPlotly_e7c0f6be8c954b26a5fd98c4aa5d3d8c = function() {
             var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.6.3.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {
 
             var data = [{"type":"sankey","node":{"label":["A1","A2","B1","B2","C1","C2","D1"],"line":{"color":"rgba(0, 0, 0, 1.0)","width":1.0}},"link":{"color":["rgba(130, 139, 251, 1.0)","rgba(130, 139, 251, 1.0)","rgba(242, 119, 98, 1.0)","rgba(51, 214, 171, 1.0)","rgba(188, 130, 251, 1.0)","rgba(188, 130, 251, 1.0)","rgba(255, 180, 123, 1.0)","rgba(71, 220, 245, 1.0)"],"line":{"color":"rgba(0, 0, 0, 1.0)","width":1.0},"source":[0,0,1,2,3,3,4,5],"target":[2,3,3,4,4,5,6,6],"value":[8,4,2,7,3,2,5,2]}}];
             var layout = {};
             var config = {};
-            Plotly.newPlot('35a0a5e5-8cec-4b04-9386-f54ae8b97e9b', data, layout, config);
+            Plotly.newPlot('e7c0f6be-8c95-4b26-a5fd-98c4aa5d3d8c', data, layout, config);
 });
             };
             if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
                 var script = document.createElement("script");
                 script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
                 script.onload = function(){
-                    renderPlotly_35a0a5e58cec4b049386f54ae8b97e9b();
+                    renderPlotly_e7c0f6be8c954b26a5fd98c4aa5d3d8c();
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             else {
-                renderPlotly_35a0a5e58cec4b049386f54ae8b97e9b();
+                renderPlotly_e7c0f6be8c954b26a5fd98c4aa5d3d8c();
             }
 </script>
 *)
