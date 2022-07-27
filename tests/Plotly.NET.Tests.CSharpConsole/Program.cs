@@ -109,7 +109,11 @@ namespace TestConsoleApp
                             values: new int [] { 5, 4, 3, 2, 1 },
                             MultiText: new string[] { "A", "B", "C", "D", "E"}
                         ),
-                        Chart.Invisible(),
+                        Chart.Indicator<double>(
+                            value: 200,
+                            mode: Plotly.NET.StyleParam.IndicatorMode.NumberDeltaGauge,
+                            DeltaReference: 160
+                        ),
 
                         //3D traces
                         Chart.Scatter3D<int,int,int,string>(
