@@ -105,7 +105,10 @@ namespace TestConsoleApp
                             x: new double [] { 1200, 909.4, 600.6, 300, 80 },
                             y: new string[] { "A", "B", "C", "D", "E"}
                         ),
-                        Chart.Invisible(),
+                        Chart.FunnelArea<int, string, string>(
+                            values: new int [] { 5, 4, 3, 2, 1 },
+                            MultiText: new string[] { "A", "B", "C", "D", "E"}
+                        ),
                         Chart.Invisible(),
 
                         //3D traces
