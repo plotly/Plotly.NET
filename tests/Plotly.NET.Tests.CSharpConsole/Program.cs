@@ -101,7 +101,10 @@ namespace TestConsoleApp
                                 Plotly.NET.StyleParam.WaterfallMeasure.Total
                             }
                         ),
-                        Chart.Invisible(),
+                        Chart.Funnel<double, string, string>(
+                            x: new double [] { 1200, 909.4, 600.6, 300, 80 },
+                            y: new string[] { "A", "B", "C", "D", "E"}
+                        ),
                         Chart.Invisible(),
                         Chart.Invisible(),
 
@@ -215,7 +218,7 @@ namespace TestConsoleApp
                         Chart.Invisible()
                     }
             )
-            .WithSize(1000, 1800)
+            .WithSize(1200, 2000)
             .Show();
         }
     }
