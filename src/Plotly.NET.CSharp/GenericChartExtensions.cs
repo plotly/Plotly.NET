@@ -347,6 +347,23 @@ namespace Plotly.NET.CSharp
                     Layers: Layers.ToOption(),
                     Id: Id.ToOption()
                 ).Invoke(gChart);
-            }
 
+        /// <summary>
+        /// Sets the range slider for the xAxis
+        /// </summary>
+        /// <param name="gChart">The chart for which to set the x axis range slider</param>
+        /// <param name="rangeSlider">The rangeslider to set</param>
+        /// <param name="Id">The id of the respective x axis</param>
+        /// <returns></returns>
+        public static GenericChart.GenericChart WithXAxisRangeSlider(
+            this GenericChart.GenericChart gChart,
+            RangeSlider rangeSlider,
+            Optional<StyleParam.SubPlotId> Id = default
+        )
+            =>
+                Plotly.NET.Chart.WithXAxisRangeSlider(
+                    rangeSlider: rangeSlider,
+                    Id: Id.ToOption()
+                ).Invoke(gChart);
+    }
 }
