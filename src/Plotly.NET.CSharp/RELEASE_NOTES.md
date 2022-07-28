@@ -1,4 +1,21 @@
+### 0.2.0 - July 28 2022
+
+added C# bindings for finance charts
+
+- [x] OHLC
+- [x] Candlestick
+- [x] Waterfall
+- [x] Funnel
+- [x] Funnel Area
+- [x] Indicator
+
+Additionally, some GenericChart extensions have been added:
+
+- [x] WithXAxisrangeSlider
+
 ### 0.1.0 - July 26 2022
+
+added C# bindings for statistical charts
 
 - [x] Histogram
 - [x] Histogram2D
