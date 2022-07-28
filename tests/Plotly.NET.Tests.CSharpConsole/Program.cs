@@ -10,7 +10,7 @@ namespace TestConsoleApp
         static void Main(string[] args)
         {
             Chart.Grid(
-                nRows: 9,
+                nRows: 10,
                 nCols: 6,
                 gCharts:
                     new GenericChart[]
@@ -66,6 +66,53 @@ namespace TestConsoleApp
                            x: new int [] { 1,2,2,2,3,4,5,5 },
                            y: new int [] { 1,2,2,2,3,4,5,5 },
                            ShowScale: false
+                        ),
+
+                        //2D Finance traces
+                        Chart.OHLC<double,DateTime,string>(
+                            open: new double [] {1.2, 2.7},
+                            high: new double [] {1.8, 8.5},
+                            low: new double []  {0.5, 0.1},
+                            close: new double [] {1.1, 2.9},
+                            x: new DateTime [] {DateTime.Parse("07/07/2021"), DateTime.Parse("07/07/2022") }
+                        ).WithXAxisRangeSlider(
+                            rangeSlider: Plotly.NET.LayoutObjects.RangeSlider.init(
+                                Visible: false
+                        )),
+                        Chart.Candlestick<double,DateTime,string>(
+                            open: new double [] {1.2, 2.7},
+                            high: new double [] {1.8, 8.5},
+                            low: new double []  {0.5, 0.1},
+                            close: new double [] {1.1, 2.9},
+                            x: new DateTime [] {DateTime.Parse("07/07/2021"), DateTime.Parse("07/07/2022") }
+                        ).WithXAxisRangeSlider(
+                            rangeSlider: Plotly.NET.LayoutObjects.RangeSlider.init(
+                                Visible: false
+                        )),
+                        Chart.Waterfall<string, int, string>(
+                            x: new string [] {"A", "B", "Net", "Purch", "Other", "Profit"},
+                            y: new int [] {60, 80, 0, -40, -20, 0},
+                            Measure: new Plotly.NET.StyleParam.WaterfallMeasure [] {
+                                Plotly.NET.StyleParam.WaterfallMeasure.Relative,
+                                Plotly.NET.StyleParam.WaterfallMeasure.Relative,
+                                Plotly.NET.StyleParam.WaterfallMeasure.Total,
+                                Plotly.NET.StyleParam.WaterfallMeasure.Relative,
+                                Plotly.NET.StyleParam.WaterfallMeasure.Relative,
+                                Plotly.NET.StyleParam.WaterfallMeasure.Total
+                            }
+                        ),
+                        Chart.Funnel<double, string, string>(
+                            x: new double [] { 1200, 909.4, 600.6, 300, 80 },
+                            y: new string[] { "A", "B", "C", "D", "E"}
+                        ),
+                        Chart.FunnelArea<int, string, string>(
+                            values: new int [] { 5, 4, 3, 2, 1 },
+                            MultiText: new string[] { "A", "B", "C", "D", "E"}
+                        ),
+                        Chart.Indicator<double>(
+                            value: 200,
+                            mode: Plotly.NET.StyleParam.IndicatorMode.NumberDeltaGauge,
+                            DeltaReference: 160
                         ),
 
                         //3D traces
@@ -175,17 +222,11 @@ namespace TestConsoleApp
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
-                        Chart.Invisible(),
+                        Chart.Invisible()
                     }
             )
-                .WithSize(1000, 1800)
-                .Show();
-            Chart.Column<int, string, string>(
-                values: new int[] { 3, 4 },
-                Keys: new string[] { "first", "second" },
-                Width: 1,
-                Base: 4
-            ).Show();
+            .WithSize(1200, 2000)
+            .Show();
         }
     }
 }
