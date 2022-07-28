@@ -16,29 +16,57 @@ namespace TestConsoleApp
                     new GenericChart[]
                     {
                         //2D basic traces
-                        Chart.Scatter<int, int, int>(
-                            x: new int [] { 1, 2 },
-                            y: new int [] { 3, 4 },
-                            mode: Mode.Markers,
-                            MultiText: new int [] { 3, 4 }
-                        ),
-                        Chart.Point<int,int,string>(
-                            x: new int [] { 5, 6 },
-                            y: new int [] { 7, 8 },
-                            Text: "hi"
-                        ),
-                        Chart.Line<int,int,string>(
-                            x: new int [] { 9, 10 },
-                            y: new int [] { 11, 12 }
+
+                        //scatter derived
+                        Chart.Combine(
+                            new GenericChart []
+                            {
+                                Chart.Scatter<int, int, int>(
+                                    x: new int [] { 1, 2, 3 },
+                                    y: new int [] { 5, 3, 4 },
+                                    mode: Mode.Markers,
+                                    Name: "scatter",
+                                    MultiText: new int [] { 3, 4 }
+                                ),
+                                Chart.Point<int,int,string>(
+                                    x: new int [] { 1, 2, 3 },
+                                    y: new int [] { 6, 4, 5 },
+                                    Name: "point",
+                                    Text: "hi"
+                                ),
+                                Chart.Line<int,int,string>(
+                                    x: new int [] { 1, 2, 3 },
+                                    y: new int [] { 7, 5, 6 },
+                                    Name: "line"
+                                ),
+                                Chart.Spline<int,int,string>(
+                                    x: new int [] { 1, 2, 3},
+                                    y: new int [] { 8, 6, 7 },
+                                    Name: "spline"
+                                ),
+                                Chart.Bubble<int,int,string>(
+                                    x: new int [] { 1, 2, 3 },
+                                    y: new int [] { 9, 7, 8 },
+                                    sizes: new int [] { 10, 20, 30 },
+                                    Name: "bubble"
+                                )
+                            }
+                        ).WithTraceInfo(
+                            LegendGroup: "simple-scatter-derived",
+                            LegendGroupTitle: Plotly.NET.Title.init("simple scatter-derived traces")
                         ),
                         Chart.Bar<int,string,string>(
                             values: new int [] { 1,2 },
-                            Keys: new string [] { "first", "second"}
+                            Keys: new string [] { "first", "second"},
+                            Name: "bar"
                         ),
                         Chart.Column<int,string,string>(
                             values: new int [] { 3,4 },
-                            Keys: new string [] { "first", "second"}
+                            Keys: new string [] { "first", "second"},
+                            Name: "column"
                         ),
+                        Chart.Invisible(),
+                        Chart.Invisible(),
                         Chart.Invisible(),
 
                         //2D distributions
