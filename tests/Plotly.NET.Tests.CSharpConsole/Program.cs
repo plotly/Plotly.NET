@@ -67,6 +67,11 @@ namespace TestConsoleApp
                                     lower: new int [] { 4, 2, 3 },
                                     mode: Mode.Lines,
                                     Name: "range"
+                                ),
+                                Chart.Area<int,int,string>(
+                                    x: new int [] { 1, 2},
+                                    y: new int [] { 3, 1},
+                                    Name: "area"
                                 )
                             }
                         ).WithTraceInfo(
