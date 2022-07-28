@@ -17,7 +17,7 @@ namespace TestConsoleApp
                     {
                         //2D basic traces
 
-                        //scatter derived
+                        //simple scatter derived
                         Chart.Combine(
                             new GenericChart []
                             {
@@ -55,6 +55,24 @@ namespace TestConsoleApp
                             LegendGroup: "simple-scatter-derived",
                             LegendGroupTitle: Plotly.NET.Title.init("simple scatter-derived traces")
                         ),
+
+                        //extended scatter derived
+                        Chart.Combine(
+                            new GenericChart []
+                            {
+                                Chart.Range<int, int, string>(
+                                    x: new int [] { 1, 2, 3 },
+                                    y: new int [] { 5, 3, 4 },
+                                    upper: new int [] { 6, 4, 5 },
+                                    lower: new int [] { 4, 2, 3 },
+                                    mode: Mode.Lines,
+                                    Name: "range"
+                                )
+                            }
+                        ).WithTraceInfo(
+                            LegendGroup: "extended-scatter-derived",
+                            LegendGroupTitle: Plotly.NET.Title.init("extended scatter-derived traces")
+                        ),
                         Chart.Bar<int,string,string>(
                             values: new int [] { 1,2 },
                             Keys: new string [] { "first", "second"},
@@ -65,7 +83,6 @@ namespace TestConsoleApp
                             Keys: new string [] { "first", "second"},
                             Name: "column"
                         ),
-                        Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
 
