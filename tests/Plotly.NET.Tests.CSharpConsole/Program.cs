@@ -11,7 +11,7 @@ namespace TestConsoleApp
         {
             Chart.Grid(
                 nRows: 10,
-                nCols: 6,
+                nCols: 7,
                 gCharts:
                     new GenericChart[]
                     {
@@ -105,6 +105,7 @@ namespace TestConsoleApp
                         ),
                         Chart.Invisible(),
                         Chart.Invisible(),
+                        Chart.Invisible(),
 
                         //2D distributions
                         Chart.Histogram<int,int,int>(
@@ -132,6 +133,7 @@ namespace TestConsoleApp
                            y: new int [] { 1,2,2,2,3,4,5,5 },
                            ShowScale: false
                         ),
+                        Chart.Invisible(),
 
                         //2D Finance traces
                         Chart.OHLC<double,DateTime,string>(
@@ -170,6 +172,19 @@ namespace TestConsoleApp
                             x: new double [] { 1200, 909.4, 600.6, 300, 80 },
                             y: new string[] { "A", "B", "C", "D", "E"}
                         ),
+                        Chart.Combine(
+                            new GenericChart []
+                            {
+                                Chart.StackedFunnel<double, string, string>(
+                                    x: new double [] { 1200, 909.4, 600.6, 300, 80 },
+                                    y: new string[] { "A", "B", "C", "D", "E"}
+                                ),
+                                Chart.StackedFunnel<double, string, string>(
+                                    x: new double [] { 1200, 909.4, 600.6, 300, 80 },
+                                    y: new string[] { "A", "B", "C", "D", "E"}
+                                ),
+                            }
+                        ),
                         Chart.FunnelArea<int, string, string>(
                             values: new int [] { 5, 4, 3, 2, 1 },
                             MultiText: new string[] { "A", "B", "C", "D", "E"}
@@ -192,6 +207,7 @@ namespace TestConsoleApp
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
+                        Chart.Invisible(),
 
                         //polar traces
                         Chart.ScatterPolar<int,int,string>(
@@ -204,6 +220,7 @@ namespace TestConsoleApp
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
+                        Chart.Invisible(),
 
                         //geo/mapbox traces
                         Chart.ScatterGeo<int,int,string>(
@@ -211,6 +228,7 @@ namespace TestConsoleApp
                             latitudes: new int [] { 3, 4 },
                             mode: Mode.Markers
                         ),
+                        Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
@@ -234,6 +252,7 @@ namespace TestConsoleApp
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
+                        Chart.Invisible(),
 
                         //carpet traces
                         Chart.Carpet<double,double,double,double,double,double>(
@@ -242,6 +261,7 @@ namespace TestConsoleApp
                             B: new double [] {1.0, 2.0, 3.0, 1.0, 2.0, 3.0, 1.0, 2.0, 3.0, 1.0, 2.0, 3.0},
                             Y: new double [] {2.0, 3.5, 4.0, 3.0, 4.5, 5.0, 5.5, 6.5, 7.5, 8.0, 8.5, 10.0}
                         ),
+                        Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
@@ -276,6 +296,7 @@ namespace TestConsoleApp
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
+                        Chart.Invisible(),
 
                         //smith traces
                         Chart.ScatterSmith<double,double,string>(
@@ -287,10 +308,11 @@ namespace TestConsoleApp
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
+                        Chart.Invisible(),
                         Chart.Invisible()
                     }
             )
-            .WithSize(1200, 2000)
+            .WithSize(1400, 2000)
             .Show();
         }
     }
