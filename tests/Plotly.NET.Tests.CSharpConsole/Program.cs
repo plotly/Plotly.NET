@@ -53,7 +53,7 @@ namespace TestConsoleApp
                             }
                         ).WithTraceInfo(
                             LegendGroup: "simple-scatter-derived",
-                            LegendGroupTitle: Plotly.NET.Title.init("simple scatter-derived traces")
+                            LegendGroupTitle: Plotly.NET.Title.init("simple scatter-derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
 
                         //extended scatter derived
@@ -91,7 +91,7 @@ namespace TestConsoleApp
                             }
                         ).WithTraceInfo(
                             LegendGroup: "extended-scatter-derived",
-                            LegendGroupTitle: Plotly.NET.Title.init("extended scatter-derived traces")
+                            LegendGroupTitle: Plotly.NET.Title.init("extended scatter-derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.Bar<int,string,string>(
                             values: new int [] { 1,2 },
@@ -99,7 +99,7 @@ namespace TestConsoleApp
                             Name: "bar"
                         ).WithTraceInfo(
                             LegendGroup: "bar-and-derived-traces",
-                            LegendGroupTitle: Plotly.NET.Title.init("bar and derived traces")
+                            LegendGroupTitle: Plotly.NET.Title.init("bar and derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.Column<int,string,string>(
                             values: new int [] { 3,4 },
@@ -107,7 +107,7 @@ namespace TestConsoleApp
                             Name: "column"
                         ).WithTraceInfo(
                             LegendGroup: "bar-and-derived-traces",
-                            LegendGroupTitle: Plotly.NET.Title.init("bar and derived traces")
+                            LegendGroupTitle: Plotly.NET.Title.init("bar and derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.Combine(
                             new GenericChart []
@@ -125,7 +125,7 @@ namespace TestConsoleApp
                             }
                         ).WithTraceInfo(
                             LegendGroup: "bar-and-derived-traces",
-                            LegendGroupTitle: Plotly.NET.Title.init("bar and derived traces")
+                            LegendGroupTitle: Plotly.NET.Title.init("bar and derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.Combine(
                             new GenericChart []
@@ -143,19 +143,33 @@ namespace TestConsoleApp
                             }
                         ).WithTraceInfo(
                             LegendGroup: "bar-and-derived-traces",
-                            LegendGroupTitle: Plotly.NET.Title.init("bar and derived traces")
+                            LegendGroupTitle: Plotly.NET.Title.init("bar and derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.Invisible(),
 
                         //2D distributions
+                        Chart.Heatmap<int, int, int, string>(
+                            zData: new int [] []
+                            {
+                                new int [] { 1,2,3},
+                                new int [] { 2,1,2},
+                                new int [] { 3,2,1}
+                            },
+                            ShowScale: false,
+                            Name: "heatmap",
+                            ShowLegend: true
+                        ),                        
                         Chart.Histogram<int,int,int>(
                             X: new int [] { 1,2,2,2,3,4,5,5 },
-                            MultiText: new int [] { 1,2,3,4,5,6,7}
+                            MultiText: new int [] { 1,2,3,4,5,6,7},
+                            Name: "histogram"
                         ),
                         Chart.Histogram2D<int,int,int>(
                            x: new int [] { 1,2,2,2,3,4,5,5 },
                            y: new int [] { 1,2,2,2,3,4,5,5 },
-                           ShowScale: false
+                           ShowScale: false,
+                           ShowLegend: true,
+                           Name: "histogram2D"
                         ),
                         Chart.BoxPlot<int,int,string>(
                             X: new int [] { 1,2,2,2,3,4,5,5 }
@@ -173,7 +187,6 @@ namespace TestConsoleApp
                            y: new int [] { 1,2,2,2,3,4,5,5 },
                            ShowScale: false
                         ),
-                        Chart.Invisible(),
 
                         //2D Finance traces
                         Chart.OHLC<double,DateTime,string>(
