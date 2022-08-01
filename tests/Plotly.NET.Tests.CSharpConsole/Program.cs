@@ -97,14 +97,54 @@ namespace TestConsoleApp
                             values: new int [] { 1,2 },
                             Keys: new string [] { "first", "second"},
                             Name: "bar"
+                        ).WithTraceInfo(
+                            LegendGroup: "bar-and-derived-traces",
+                            LegendGroupTitle: Plotly.NET.Title.init("bar and derived traces")
                         ),
                         Chart.Column<int,string,string>(
                             values: new int [] { 3,4 },
                             Keys: new string [] { "first", "second"},
                             Name: "column"
+                        ).WithTraceInfo(
+                            LegendGroup: "bar-and-derived-traces",
+                            LegendGroupTitle: Plotly.NET.Title.init("bar and derived traces")
                         ),
-                        Chart.Invisible(),
-                        Chart.Invisible(),
+                        Chart.Combine(
+                            new GenericChart []
+                            {
+                                Chart.StackedBar<int,string,string>(
+                                    values: new int [] { 1,2 },
+                                    Keys: new string [] { "first", "second"},
+                                    Name: "stacked bar 1"
+                                ),
+                                Chart.StackedBar<int,string,string>(
+                                    values: new int [] { 1,2 },
+                                    Keys: new string [] { "first", "second"},
+                                    Name: "stacked bar 2"
+                                ),
+                            }
+                        ).WithTraceInfo(
+                            LegendGroup: "bar-and-derived-traces",
+                            LegendGroupTitle: Plotly.NET.Title.init("bar and derived traces")
+                        ),
+                        Chart.Combine(
+                            new GenericChart []
+                            {
+                                Chart.StackedColumn<int,string,string>(
+                                    values: new int [] { 1,2 },
+                                    Keys: new string [] { "first", "second"},
+                                    Name: "stacked column 1"
+                                ),
+                                Chart.StackedColumn<int,string,string>(
+                                    values: new int [] { 1,2 },
+                                    Keys: new string [] { "first", "second"},
+                                    Name: "stacked column 2"
+                                ),
+                            }
+                        ).WithTraceInfo(
+                            LegendGroup: "bar-and-derived-traces",
+                            LegendGroupTitle: Plotly.NET.Title.init("bar and derived traces")
+                        ),
                         Chart.Invisible(),
 
                         //2D distributions
