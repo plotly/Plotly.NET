@@ -72,6 +72,21 @@ namespace TestConsoleApp
                                     x: new int [] { 1, 2},
                                     y: new int [] { 3, 1},
                                     Name: "area"
+                                ),
+                                Chart.SplineArea<int,int,string>(
+                                    x: new int [] { 3, 4, 5},
+                                    y: new int [] { 3, 1, 4},
+                                    Name: "splinearea"
+                                ),                                
+                                Chart.StackedArea<int,int,string>(
+                                    x: new int [] { 6, 7},
+                                    y: new int [] { 3, 1},
+                                    Name: "stacked area 1"
+                                ),                                
+                                Chart.StackedArea<int,int,string>(
+                                    x: new int [] { 6, 7},
+                                    y: new int [] { 3, 2},
+                                    Name: "stacked area 2"
                                 )
                             }
                         ).WithTraceInfo(
