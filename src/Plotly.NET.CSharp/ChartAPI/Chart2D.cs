@@ -285,6 +285,878 @@ namespace Plotly.NET.CSharp
                 UseDefaults: UseDefaults.ToOption()
             );
 
+        /// <summary>Creates a Spline chart. A spline chart is a line chart in which data points are connected by smoothed curves: this modification is aimed to improve the design of a chart.
+        /// Very similar to Line Plots, spline charts are typically used to visualize an evolution of Y depending on X. </summary>
+        /// <param name="x">Sets the x coordinates of the plotted data.</param>
+        /// <param name="y">Sets the y coordinates of the plotted data.</param>
+        /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="Smoothing">Sets the amount of smoothing. "0" corresponds to no smoothing (equivalent to a "linear" shape).  Use values between 0. and 1.3</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
+        /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
+        /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
+        /// <param name="Fill">Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then it gets "tonexty" ("tonextx") if `orientation` is "v" ("h") Use with `FillColor` if not "none". "tozerox" and "tozeroy" fill to x=0 and y=0 respectively. "tonextx" and "tonexty" fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like "tozerox" and "tozeroy". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. "tonext" fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like "toself" if there is no trace before it. "tonext" should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.</param>
+        /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        public static GenericChart.GenericChart Spline<XType, YType, TextType>(
+            IEnumerable<XType> x,
+            IEnumerable<YType> y,
+            Optional<bool> ShowMarkers = default,
+            Optional<double> Smoothing = default,
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<IEnumerable<double>> MultiOpacity = default,
+            Optional<TextType> Text = default,
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<StyleParam.TextPosition> TextPosition = default,
+            Optional<IEnumerable<StyleParam.TextPosition>> MultiTextPosition = default,
+            Optional<Color> MarkerColor = default,
+            Optional<StyleParam.Colorscale> MarkerColorScale = default,
+            Optional<Line> MarkerOutline = default,
+            Optional<StyleParam.MarkerSymbol> MarkerSymbol = default,
+            Optional<IEnumerable<StyleParam.MarkerSymbol>> MultiMarkerSymbol = default,
+            Optional<Marker> Marker = default,
+            Optional<Color> LineColor = default,
+            Optional<StyleParam.Colorscale> LineColorScale = default,
+            Optional<double> LineWidth = default,
+            Optional<StyleParam.DrawingStyle> LineDash = default,
+            Optional<Line> Line = default,
+            Optional<string> StackGroup = default,
+            Optional<StyleParam.Orientation> Orientation = default,
+            Optional<StyleParam.GroupNorm> GroupNorm = default,
+            Optional<StyleParam.Fill> Fill = default,
+            Optional<Color> FillColor = default,
+            Optional<bool> UseWebGL = default,
+            Optional<bool> UseDefaults = default
+        )
+            where XType : IConvertible
+            where YType : IConvertible
+            where TextType : IConvertible
+        =>
+            Plotly.NET.Chart2D.Chart.Spline(
+                x: x,
+                y: y,
+                ShowMarkers: ShowMarkers.ToOption(),
+                Smoothing: Smoothing.ToOption(),
+                Name: Name.ToOption(),
+                ShowLegend: ShowLegend.ToOption(),
+                Opacity: Opacity.ToOption(),
+                MultiOpacity: MultiOpacity.ToOption(),
+                Text: Text.ToOption(),
+                MultiText: MultiText.ToOption(),
+                TextPosition: TextPosition.ToOption(),
+                MultiTextPosition: MultiTextPosition.ToOption(),
+                MarkerColor: MarkerColor.ToOption(),
+                MarkerColorScale: MarkerColorScale.ToOption(),
+                MarkerOutline: MarkerOutline.ToOption(),
+                MarkerSymbol: MarkerSymbol.ToOption(),
+                MultiMarkerSymbol: MultiMarkerSymbol.ToOption(),
+                Marker: Marker.ToOption(),
+                LineColor: LineColor.ToOption(),
+                LineColorScale: LineColorScale.ToOption(),
+                LineWidth: LineWidth.ToOption(),
+                LineDash: LineDash.ToOption(),
+                Line: Line.ToOption(),
+                StackGroup: StackGroup.ToOption(),
+                Orientation: Orientation.ToOption(),
+                GroupNorm: GroupNorm.ToOption(),
+                Fill: Fill.ToOption(),
+                FillColor: FillColor.ToOption(),
+                UseWebGL: UseWebGL.ToOption(),
+                UseDefaults: UseDefaults.ToOption()
+            );
+
+        /// <summary>Creates a bubble chart. A bubble chart is a variation of the Point chart, where the data points get an additional scale by being rendered as bubbles of different sizes.</summary>
+        /// <param name="x">Sets the x coordinates of the plotted data.</param>
+        /// <param name="y">Sets the y coordinates of the plotted data.</param>
+        /// <param name="sizes">Sets the bubble size of the plotted data</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
+        /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
+        /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        public static GenericChart.GenericChart Bubble<XType, YType, TextType>(
+            IEnumerable<XType> x,
+            IEnumerable<YType> y,
+            IEnumerable<int> sizes,
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<IEnumerable<double>> MultiOpacity = default,
+            Optional<TextType> Text = default,
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<StyleParam.TextPosition> TextPosition = default,
+            Optional<IEnumerable<StyleParam.TextPosition>> MultiTextPosition = default,
+            Optional<Color> MarkerColor = default,
+            Optional<StyleParam.Colorscale> MarkerColorScale = default,
+            Optional<Line> MarkerOutline = default,
+            Optional<StyleParam.MarkerSymbol> MarkerSymbol = default,
+            Optional<IEnumerable<StyleParam.MarkerSymbol>> MultiMarkerSymbol = default,
+            Optional<Marker> Marker = default,
+            Optional<Color> LineColor = default,
+            Optional<StyleParam.Colorscale> LineColorScale = default,
+            Optional<double> LineWidth = default,
+            Optional<StyleParam.DrawingStyle> LineDash = default,
+            Optional<Line> Line = default,
+            Optional<string> StackGroup = default,
+            Optional<StyleParam.Orientation> Orientation = default,
+            Optional<StyleParam.GroupNorm> GroupNorm = default,
+            Optional<bool> UseWebGL = default,
+            Optional<bool> UseDefaults = default
+        )
+            where XType : IConvertible
+            where YType : IConvertible
+            where TextType : IConvertible
+        =>
+            Plotly.NET.Chart2D.Chart.Bubble<XType, YType, TextType>(
+                x: x,
+                y: y,
+                sizes: sizes,
+                Name: Name.ToOption(),
+                ShowLegend: ShowLegend.ToOption(),
+                Opacity: Opacity.ToOption(),
+                MultiOpacity: MultiOpacity.ToOption(),
+                Text: Text.ToOption(),
+                MultiText: MultiText.ToOption(),
+                TextPosition: TextPosition.ToOption(),
+                MultiTextPosition: MultiTextPosition.ToOption(),
+                MarkerColor: MarkerColor.ToOption(),
+                MarkerColorScale: MarkerColorScale.ToOption(),
+                MarkerOutline: MarkerOutline.ToOption(),
+                MarkerSymbol: MarkerSymbol.ToOption(),
+                MultiMarkerSymbol: MultiMarkerSymbol.ToOption(),
+                Marker: Marker.ToOption(),
+                LineColor: LineColor.ToOption(),
+                LineColorScale: LineColorScale.ToOption(),
+                LineWidth: LineWidth.ToOption(),
+                LineDash: LineDash.ToOption(),
+                Line: Line.ToOption(),
+                StackGroup: StackGroup.ToOption(),
+                Orientation: Orientation.ToOption(),
+                GroupNorm: GroupNorm.ToOption(),
+                UseWebGL: UseWebGL.ToOption(),
+                UseDefaults: UseDefaults.ToOption()
+            );
+        /// <summary>
+        /// Displays a range of data by plotting three Y values per data point (upper, mid, lower).
+        ///
+        /// The mid Y value usually resembles some kind of central tendency and the upper/lower Y values some kind of spread.
+        /// </summary>
+        /// <param name="x">Sets the x coordinates of the plotted data.</param>
+        /// <param name="y">Sets the y coordinates of the plotted data for the mid Y value.</param>
+        /// <param name="upper">Sets the y coordinates of the plotted data for the upper Y value.</param>
+        /// <param name="lower">Sets the y coordinates of the plotted data for the lower Y value.</param>
+        /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
+        /// <param name="Name">Sets the trace name of the mid Y values. The trace name appear as the legend item and on hover</param>
+        /// <param name="GroupName">Sets the name of the legendgroup for the three traces of this plot.</param>
+        /// <param name="ShowMarkers">Determines whether or not an To show markers for each datum.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Text">Sets a text associated with each datum for the mid Y values.</param>
+        /// <param name="MultiText">Sets individual text for each datum for the mid Y values.</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker for the mid Y values.</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker for the mid Y values.</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker for the mid Y values.</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum for the mid Y values.</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum for the mid Y values.</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments) for the mid Y values.</param>
+        /// <param name="LineColor">Sets the color of the line for the mid Y values.</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line for the mid Y values.</param>
+        /// <param name="LineWidth">Sets the width of the line for the mid Y values.</param>
+        /// <param name="LineDash">sets the drawing style of the line for the mid Y values.</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments) for the mid Y values.</param>
+        /// <param name="RangeColor">Sets the color of the range between upper and lower Y values.</param>
+        /// <param name="UpperText">Sets a text associated with each datum for the upper Y values.</param>
+        /// <param name="MultiUpperText">Sets individual text for each datum for the upper Y values.</param>
+        /// <param name="LowerText">Sets a text associated with each datum for the lower Y values.</param>
+        /// <param name="MultiLowerText">Sets individual text for each datum for the lower Y values.</param>
+        /// <param name="TextFont">Sets the text font for all Text items</param>
+        /// <param name="LowerName">Sets the name of the lower Y value trace.</param>
+        /// <param name="LowerLine">Sets the line for the lower Y values.</param>
+        /// <param name="LowerMarker">Sets the marker for the lower Y values.</param>
+        /// <param name="UpperName">Sets the name of the uper Y value trace.</param>
+        /// <param name="UpperLine">Sets the line for the upper Y values.</param>
+        /// <param name="UpperMarker">Sets the marker for the upper Y values.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        public static GenericChart.GenericChart Range<XType, YType, TextType>(
+            IEnumerable<XType> x, 
+            IEnumerable<YType> y, 
+            IEnumerable<YType> upper, 
+            IEnumerable<YType> lower, 
+            StyleParam.Mode mode, 
+            Optional<string> Name = default, 
+            Optional<string> GroupName = default, 
+            Optional<bool> ShowMarkers = default, 
+            Optional<bool> ShowLegend = default, 
+            Optional<TextType> Text = default, 
+            Optional<IEnumerable<TextType>> MultiText = default, 
+            Optional<StyleParam.TextPosition> TextPosition = default, 
+            Optional<IEnumerable<StyleParam.TextPosition>> MultiTextPosition = default, 
+            Optional<Color> MarkerColor = default, 
+            Optional<StyleParam.Colorscale> MarkerColorScale = default, 
+            Optional<Line> MarkerOutline = default, 
+            Optional<StyleParam.MarkerSymbol> MarkerSymbol = default,
+            Optional<IEnumerable<StyleParam.MarkerSymbol>> MultiMarkerSymbol = default, 
+            Optional<Marker> Marker = default,
+            Optional<Marker> UpperMarker = default, 
+            Optional<Marker> LowerMarker = default, 
+            Optional<Color> LineColor = default, 
+            Optional<StyleParam.Colorscale> LineColorScale = default,
+            Optional<double> LineWidth = default,
+            Optional<StyleParam.DrawingStyle> LineDash = default, 
+            Optional<Line> Line = default,
+            Optional<Line> UpperLine = default, 
+            Optional<Line> LowerLine = default, 
+            Optional<Color> RangeColor = default, 
+            Optional<TextType> UpperText = default, 
+            Optional<IEnumerable<TextType>> MultiUpperText = default, 
+            Optional<TextType> LowerText = default, 
+            Optional<IEnumerable<TextType>> MultiLowerText = default, 
+            Optional<Font> TextFont = default, 
+            Optional<string> LowerName = default, 
+            Optional<string> UpperName = default, 
+            Optional<bool> UseDefaults = default
+        )
+            where XType : IConvertible
+            where YType : IConvertible
+            where TextType : IConvertible
+            =>
+                Plotly.NET.Chart2D.Chart.Range<XType, YType, YType, YType, TextType, TextType, TextType>(
+                    x: x,
+                    y: y,
+                    upper: upper,
+                    lower: lower,
+                    mode: mode,
+                    Name: Name.ToOption(),
+                    GroupName: GroupName.ToOption(),
+                    ShowMarkers: ShowMarkers.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    TextPosition: TextPosition.ToOption(),
+                    MultiTextPosition: MultiTextPosition.ToOption(),
+                    MarkerColor: MarkerColor.ToOption(),
+                    MarkerColorScale: MarkerColorScale.ToOption(),
+                    MarkerOutline: MarkerOutline.ToOption(),
+                    MarkerSymbol: MarkerSymbol.ToOption(),
+                    MultiMarkerSymbol: MultiMarkerSymbol.ToOption(),
+                    Marker: Marker.ToOption(),
+                    UpperMarker: UpperMarker.ToOption(),
+                    LowerMarker: LowerMarker.ToOption(),
+                    LineColor: LineColor.ToOption(),
+                    LineColorScale: LineColorScale.ToOption(),
+                    LineWidth: LineWidth.ToOption(),
+                    LineDash: LineDash.ToOption(),
+                    Line: Line.ToOption(),
+                    UpperLine: UpperLine.ToOption(),
+                    LowerLine: LowerLine.ToOption(),
+                    RangeColor: RangeColor.ToOption(),
+                    UpperText: UpperText.ToOption(),
+                    MultiUpperText: MultiUpperText.ToOption(),
+                    LowerText: LowerText.ToOption(),
+                    MultiLowerText: MultiLowerText.ToOption(),
+                    TextFont: TextFont.ToOption(),
+                    LowerName: LowerName.ToOption(),
+                    UpperName: UpperName.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
+
+        /// <summary> Creates an Area chart, which uses a Line plotted between the given datums in a 2D space, additionally colouring the area between the line and the Y Axis.</summary>
+        /// <param name="x">Sets the x coordinates of the plotted data.</param>
+        /// <param name="y">Sets the y coordinates of the plotted data.</param>
+        /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
+        /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
+        /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
+        /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        public static GenericChart.GenericChart Area<XType, YType, TextType>(
+            IEnumerable<XType> x, 
+            IEnumerable<YType> y, 
+            Optional<bool> ShowMarkers = default, 
+            Optional<string> Name = default, 
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<IEnumerable<double>> MultiOpacity = default,
+            Optional<TextType> Text = default, 
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<StyleParam.TextPosition> TextPosition = default, 
+            Optional<IEnumerable<StyleParam.TextPosition>> MultiTextPosition = default, 
+            Optional<Color> MarkerColor = default, 
+            Optional<StyleParam.Colorscale> MarkerColorScale = default,
+            Optional<Line> MarkerOutline = default, 
+            Optional<StyleParam.MarkerSymbol> MarkerSymbol = default, 
+            Optional<IEnumerable<StyleParam.MarkerSymbol>> MultiMarkerSymbol = default, 
+            Optional<Marker> Marker = default, 
+            Optional<Color> LineColor = default, 
+            Optional<StyleParam.Colorscale> LineColorScale = default, 
+            Optional<double> LineWidth = default, 
+            Optional<StyleParam.DrawingStyle> LineDash = default, 
+            Optional<Line> Line = default, 
+            Optional<string> StackGroup = default, 
+            Optional<StyleParam.Orientation> Orientation = default,
+            Optional<StyleParam.GroupNorm> GroupNorm = default, 
+            Optional<Color> FillColor = default, 
+            Optional<bool> UseWebGL = default, 
+            Optional<bool> UseDefaults = default
+        )
+            where XType : IConvertible
+            where YType : IConvertible
+            where TextType : IConvertible
+            =>
+                Plotly.NET.Chart2D.Chart.Area<XType, YType, TextType>(
+                    x: x,
+                    y: y,
+                    ShowMarkers: ShowMarkers.ToOption(),
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    MultiOpacity: MultiOpacity.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    TextPosition: TextPosition.ToOption(),
+                    MultiTextPosition: MultiTextPosition.ToOption(),
+                    MarkerColor: MarkerColor.ToOption(),
+                    MarkerColorScale: MarkerColorScale.ToOption(),
+                    MarkerOutline: MarkerOutline.ToOption(),
+                    MarkerSymbol: MarkerSymbol.ToOption(),
+                    MultiMarkerSymbol: MultiMarkerSymbol.ToOption(),
+                    Marker: Marker.ToOption(),
+                    LineColor: LineColor.ToOption(),
+                    LineColorScale: LineColorScale.ToOption(),
+                    LineWidth: LineWidth.ToOption(),
+                    LineDash: LineDash.ToOption(),
+                    Line: Line.ToOption(),
+                    StackGroup: StackGroup.ToOption(),
+                    Orientation: Orientation.ToOption(),
+                    GroupNorm: GroupNorm.ToOption(),
+                    FillColor: FillColor.ToOption(),
+                    UseWebGL: UseWebGL.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
+
+        /// <summary>Creates a Spline area chart, which uses a smoothed Line plotted between the given datums in a 2D space, additionally colouring the area between the line and the Y Axis.</summary>
+        /// <param name="x">Sets the x coordinates of the plotted data.</param>
+        /// <param name="y">Sets the y coordinates of the plotted data.</param>
+        /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="Smoothing">Sets the amount of smoothing. "0" corresponds to no smoothing (equivalent to a "linear" shape).  Use values between 0. and 1.3</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
+        /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
+        /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
+        /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        public static GenericChart.GenericChart SplineArea<XType, YType, TextType>(
+            IEnumerable<XType> x,
+            IEnumerable<YType> y,
+            Optional<bool> ShowMarkers = default,
+            Optional<double> Smoothing = default,
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<IEnumerable<double>> MultiOpacity = default,
+            Optional<TextType> Text = default,
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<StyleParam.TextPosition> TextPosition = default,
+            Optional<IEnumerable<StyleParam.TextPosition>> MultiTextPosition = default,
+            Optional<Color> MarkerColor = default,
+            Optional<StyleParam.Colorscale> MarkerColorScale = default,
+            Optional<Line> MarkerOutline = default,
+            Optional<StyleParam.MarkerSymbol> MarkerSymbol = default,
+            Optional<IEnumerable<StyleParam.MarkerSymbol>> MultiMarkerSymbol = default,
+            Optional<Marker> Marker = default,
+            Optional<Color> LineColor = default,
+            Optional<StyleParam.Colorscale> LineColorScale = default,
+            Optional<double> LineWidth = default,
+            Optional<StyleParam.DrawingStyle> LineDash = default,
+            Optional<Line> Line = default,
+            Optional<string> StackGroup = default,
+            Optional<StyleParam.Orientation> Orientation = default,
+            Optional<StyleParam.GroupNorm> GroupNorm = default,
+            Optional<Color> FillColor = default,
+            Optional<bool> UseWebGL = default,
+            Optional<bool> UseDefaults = default
+        )
+            where XType : IConvertible
+            where YType : IConvertible
+            where TextType : IConvertible
+            =>
+                Plotly.NET.Chart2D.Chart.SplineArea<XType, YType, TextType>(
+                    x: x,
+                    y: y,
+                    ShowMarkers: ShowMarkers.ToOption(),
+                    Smoothing: Smoothing.ToOption(),
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    MultiOpacity: MultiOpacity.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    TextPosition: TextPosition.ToOption(),
+                    MultiTextPosition: MultiTextPosition.ToOption(),
+                    MarkerColor: MarkerColor.ToOption(),
+                    MarkerColorScale: MarkerColorScale.ToOption(),
+                    MarkerOutline: MarkerOutline.ToOption(),
+                    MarkerSymbol: MarkerSymbol.ToOption(),
+                    MultiMarkerSymbol: MultiMarkerSymbol.ToOption(),
+                    Marker: Marker.ToOption(),
+                    LineColor: LineColor.ToOption(),
+                    LineColorScale: LineColorScale.ToOption(),
+                    LineWidth: LineWidth.ToOption(),
+                    LineDash: LineDash.ToOption(),
+                    Line: Line.ToOption(),
+                    StackGroup: StackGroup.ToOption(),
+                    Orientation: Orientation.ToOption(),
+                    GroupNorm: GroupNorm.ToOption(),
+                    FillColor: FillColor.ToOption(),
+                    UseWebGL: UseWebGL.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
+
+        /// <summary> Creates a stacked Area chart, which uses a Line plotted between the given datums in a 2D space, additionally colouring the area between the line and the Y Axis. Multiple Charts of this type are stacked on top of each others y dimensions</summary>
+        /// <param name="x">Sets the x coordinates of the plotted data.</param>
+        /// <param name="y">Sets the y coordinates of the plotted data.</param>
+        /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
+        /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
+        /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        public static GenericChart.GenericChart StackedArea<XType, YType, TextType>(
+            IEnumerable<XType> x,
+            IEnumerable<YType> y,
+            Optional<bool> ShowMarkers = default,
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<IEnumerable<double>> MultiOpacity = default,
+            Optional<TextType> Text = default,
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<StyleParam.TextPosition> TextPosition = default,
+            Optional<IEnumerable<StyleParam.TextPosition>> MultiTextPosition = default,
+            Optional<Color> MarkerColor = default,
+            Optional<StyleParam.Colorscale> MarkerColorScale = default,
+            Optional<Line> MarkerOutline = default,
+            Optional<StyleParam.MarkerSymbol> MarkerSymbol = default,
+            Optional<IEnumerable<StyleParam.MarkerSymbol>> MultiMarkerSymbol = default,
+            Optional<Marker> Marker = default,
+            Optional<Color> LineColor = default,
+            Optional<StyleParam.Colorscale> LineColorScale = default,
+            Optional<double> LineWidth = default,
+            Optional<StyleParam.DrawingStyle> LineDash = default,
+            Optional<Line> Line = default,
+            Optional<StyleParam.Orientation> Orientation = default,
+            Optional<StyleParam.GroupNorm> GroupNorm = default,
+            Optional<Color> FillColor = default,
+            Optional<bool> UseWebGL = default,
+            Optional<bool> UseDefaults = default
+        )
+            where XType : IConvertible
+            where YType : IConvertible
+            where TextType : IConvertible
+            =>
+                Plotly.NET.Chart2D.Chart.StackedArea<XType, YType, TextType>(
+                    x: x,
+                    y: y,
+                    ShowMarkers: ShowMarkers.ToOption(),
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    MultiOpacity: MultiOpacity.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    TextPosition: TextPosition.ToOption(),
+                    MultiTextPosition: MultiTextPosition.ToOption(),
+                    MarkerColor: MarkerColor.ToOption(),
+                    MarkerColorScale: MarkerColorScale.ToOption(),
+                    MarkerOutline: MarkerOutline.ToOption(),
+                    MarkerSymbol: MarkerSymbol.ToOption(),
+                    MultiMarkerSymbol: MultiMarkerSymbol.ToOption(),
+                    Marker: Marker.ToOption(),
+                    LineColor: LineColor.ToOption(),
+                    LineColorScale: LineColorScale.ToOption(),
+                    LineWidth: LineWidth.ToOption(),
+                    LineDash: LineDash.ToOption(),
+                    Line: Line.ToOption(),
+                    Orientation: Orientation.ToOption(),
+                    GroupNorm: GroupNorm.ToOption(),
+                    FillColor: FillColor.ToOption(),
+                    UseWebGL: UseWebGL.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
+
+        /// <summary>
+        /// Creates a Funnel chart.
+        ///
+        /// Funnel charts visualize stages in a process using length-encoded bars. This trace can be used to show data in either a part-to-whole representation wherein each item appears in a single stage, or in a "drop-off" representation wherein each item appears in each stage it traversed. See also the "funnelarea" trace type for a different approach to visualizing funnel data.
+        /// </summary>
+        /// <param name="x">Sets the x coordinates of the plotted data.</param>
+        /// <param name="y">Sets the y coordinates of the plotted data.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity of the trace.</param>
+        /// <param name="Width">Sets the bar width (in position axis units).</param>
+        /// <param name="Offset">Shifts the position where the bar is drawn (in position axis units). In "group" barmode, traces that set "offset" will be excluded and drawn in "overlay" mode instead.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="Orientation">Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used - including if `visible` is "legendonly" but not if it is `false`. Sets the stacking direction. With "v" ("h"), the y (x) values of subsequent traces are added. Also affects the default value of `fill`.</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
+        /// <param name="MarkerColor">Sets the color of the bars.</param>
+        /// <param name="MarkerOutline">Sets the color of the bar outline.</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="TextInfo">Determines which trace information appear on the graph. In the case of having multiple funnels, percentages and totals are computed separately (per trace).</param>
+        /// <param name="ConnectorLineColor">Sets the line color of the funnel connector</param>
+        /// <param name="ConnectorLineStyle">Sets the line style of the funnel connector</param>
+        /// <param name="ConnectorFillColor">Sets the fill color of the funnel connector</param>
+        /// <param name="ConnectorLine">Sets the line of the funnel connector (use this for more finegrained control than the other connector line associated arguments).</param>
+        /// <param name="Connector">Sets the funnel connector (use this for more finegrained control than the other connector-associated arguments).</param>
+        /// <param name="InsideTextFont">Sets the font used for `text` lying inside the bar.</param>
+        /// <param name="OutsideTextFont">Sets the font used for `text` lying outside the bar.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        public static GenericChart.GenericChart Funnel<XType, YType, TextType>(
+            IEnumerable<XType> x,
+            IEnumerable<YType> y,
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<double> Width = default,
+            Optional<double> Offset = default,
+            Optional<TextType> Text = default,
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<StyleParam.TextPosition> TextPosition = default,
+            Optional<IEnumerable<StyleParam.TextPosition>> MultiTextPosition = default,
+            Optional<StyleParam.Orientation> Orientation = default,
+            Optional<string> AlignmentGroup = default,
+            Optional<string> OffsetGroup = default,
+            Optional<Color> MarkerColor = default,
+            Optional<Line> MarkerOutline = default,
+            Optional<Marker> Marker = default,
+            Optional<StyleParam.TextInfo> TextInfo = default,
+            Optional<Color> ConnectorLineColor = default,
+            Optional<StyleParam.DrawingStyle> ConnectorLineStyle = default,
+            Optional<Color> ConnectorFillColor = default,
+            Optional<Line> ConnectorLine = default,
+            Optional<FunnelConnector> Connector = default,
+            Optional<Font> InsideTextFont = default,
+            Optional<Font> OutsideTextFont = default,
+            Optional<bool> UseDefaults = default
+        )
+            where XType : IConvertible
+            where YType : IConvertible
+            where TextType : IConvertible
+            =>
+                Plotly.NET.Chart2D.Chart.Funnel<XType, YType, TextType>(
+                    x: x,
+                    y: y,
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    Width: Width.ToOption(),
+                    Offset: Offset.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    TextPosition: TextPosition.ToOption(),
+                    MultiTextPosition: MultiTextPosition.ToOption(),
+                    Orientation: Orientation.ToOption(),
+                    AlignmentGroup: AlignmentGroup.ToOption(),
+                    OffsetGroup: OffsetGroup.ToOption(),
+                    MarkerColor: MarkerColor.ToOption(),
+                    MarkerOutline: MarkerOutline.ToOption(),
+                    Marker: Marker.ToOption(),
+                    TextInfo: TextInfo.ToOption(),
+                    ConnectorLineColor: ConnectorLineColor.ToOption(),
+                    ConnectorLineStyle: ConnectorLineStyle.ToOption(),
+                    ConnectorFillColor: ConnectorFillColor.ToOption(),
+                    ConnectorLine: ConnectorLine.ToOption(),
+                    Connector: Connector.ToOption(),
+                    InsideTextFont: InsideTextFont.ToOption(),
+                    OutsideTextFont: OutsideTextFont.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
+
+        /// <summary>
+        /// Creates a stacked Funnel chart, a variation of the funnel chart where multiple funnel bars of each stage are stacked on top of each other.
+        /// To create this type of chart, combine multiple of these charts via `Chart.combine`.
+        ///
+        /// Funnel charts visualize stages in a process using length-encoded bars. This trace can be used to show data in either a part-to-whole representation wherein each item appears in a single stage, or in a "drop-off" representation wherein each item appears in each stage it traversed. See also the "funnelarea" trace type for a different approach to visualizing funnel data.
+        /// </summary>
+        /// <param name="x">Sets the x coordinates of the plotted data.</param>
+        /// <param name="y">Sets the y coordinates of the plotted data.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity of the trace.</param>
+        /// <param name="Width">Sets the bar width (in position axis units).</param>
+        /// <param name="Offset">Shifts the position where the bar is drawn (in position axis units). In "group" barmode, traces that set "offset" will be excluded and drawn in "overlay" mode instead.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="Orientation">Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used - including if `visible` is "legendonly" but not if it is `false`. Sets the stacking direction. With "v" ("h"), the y (x) values of subsequent traces are added. Also affects the default value of `fill`.</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
+        /// <param name="MarkerColor">Sets the color of the bars.</param>
+        /// <param name="MarkerOutline">Sets the color of the bar outline.</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="TextInfo">Determines which trace information appear on the graph. In the case of having multiple funnels, percentages and totals are computed separately (per trace).</param>
+        /// <param name="ConnectorLineColor">Sets the line color of the funnel connector</param>
+        /// <param name="ConnectorLineStyle">Sets the line style of the funnel connector</param>
+        /// <param name="ConnectorFillColor">Sets the fill color of the funnel connector</param>
+        /// <param name="ConnectorLine">Sets the line of the funnel connector (use this for more finegrained control than the other connector line associated arguments).</param>
+        /// <param name="Connector">Sets the funnel connector (use this for more finegrained control than the other connector-associated arguments).</param>
+        /// <param name="InsideTextFont">Sets the font used for `text` lying inside the bar.</param>
+        /// <param name="OutsideTextFont">Sets the font used for `text` lying outside the bar.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        public static GenericChart.GenericChart StackedFunnel<XType, YType, TextType>(
+            IEnumerable<XType> x,
+            IEnumerable<YType> y,
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<double> Width = default,
+            Optional<double> Offset = default,
+            Optional<TextType> Text = default,
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<StyleParam.TextPosition> TextPosition = default,
+            Optional<IEnumerable<StyleParam.TextPosition>> MultiTextPosition = default,
+            Optional<StyleParam.Orientation> Orientation = default,
+            Optional<string> AlignmentGroup = default,
+            Optional<string> OffsetGroup = default,
+            Optional<Color> MarkerColor = default,
+            Optional<Line> MarkerOutline = default,
+            Optional<Marker> Marker = default,
+            Optional<StyleParam.TextInfo> TextInfo = default,
+            Optional<Color> ConnectorLineColor = default,
+            Optional<StyleParam.DrawingStyle> ConnectorLineStyle = default,
+            Optional<Color> ConnectorFillColor = default,
+            Optional<Line> ConnectorLine = default,
+            Optional<FunnelConnector> Connector = default,
+            Optional<Font> InsideTextFont = default,
+            Optional<Font> OutsideTextFont = default,
+            Optional<bool> UseDefaults = default
+        )
+            where XType : IConvertible
+            where YType : IConvertible
+            where TextType : IConvertible
+            =>
+                Plotly.NET.Chart2D.Chart.StackedFunnel<XType, YType, TextType>(
+                    x: x,
+                    y: y,
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    Width: Width.ToOption(),
+                    Offset: Offset.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    TextPosition: TextPosition.ToOption(),
+                    MultiTextPosition: MultiTextPosition.ToOption(),
+                    Orientation: Orientation.ToOption(),
+                    AlignmentGroup: AlignmentGroup.ToOption(),
+                    OffsetGroup: OffsetGroup.ToOption(),
+                    MarkerColor: MarkerColor.ToOption(),
+                    MarkerOutline: MarkerOutline.ToOption(),
+                    Marker: Marker.ToOption(),
+                    TextInfo: TextInfo.ToOption(),
+                    ConnectorLineColor: ConnectorLineColor.ToOption(),
+                    ConnectorLineStyle: ConnectorLineStyle.ToOption(),
+                    ConnectorFillColor: ConnectorFillColor.ToOption(),
+                    ConnectorLine: ConnectorLine.ToOption(),
+                    Connector: Connector.ToOption(),
+                    InsideTextFont: InsideTextFont.ToOption(),
+                    OutsideTextFont: OutsideTextFont.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
+
+        /// <summary>
+        /// Creates a waterfall chart.
+        ///
+        /// Waterfall charts are special bar charts that help visualizing the cumulative effect of sequentially introduced positive or negative values
+        /// </summary>
+        /// <param name="x">Sets the x coordinates of the plotted data.</param>
+        /// <param name="y">Sets the y coordinates of the plotted data.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="IncreasingColor">Sets the color of increasing values</param>
+        /// <param name="Increasing">Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="DecreasingColor">Sets the color of decreasing values</param>
+        /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="TotalsColor">Sets the color of total values</param>
+        /// <param name="Totals">Sets the style options of total values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="Base">Sets where the bar base is drawn (in position axis units).</param>
+        /// <param name="Width">Sets the bar width (in position axis units).</param>
+        /// <param name="MultiWidth">Sets the individual bar width of each datum (in position axis units).</param>
+        /// <param name="Opacity">Sets the opacity of the trace.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="TextFont">Sets the font used for `text`.</param>
+        /// <param name="Connector">Sets the waterfall connector of this trace</param>
+        /// <param name="Measure">An array containing types of measures. By default the values are considered as 'relative'. However; it is possible to use 'total' to compute the sums. Also 'absolute' could be applied to reset the computed total or to declare an initial value where needed.</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
+        /// <param name="Orientation">Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used - including if `visible` is "legendonly" but not if it is `false`. Sets the stacking direction. With "v" ("h"), the y (x) values of subsequent traces are added. Also affects the default value of `fill`.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        public static GenericChart.GenericChart Waterfall<XType, YType, TextType>(
+            IEnumerable<XType> x,
+            IEnumerable<YType> y,
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<Color> IncreasingColor = default,
+            Optional<FinanceMarker> Increasing = default,
+            Optional<Color> DecreasingColor = default,
+            Optional<FinanceMarker> Decreasing = default,
+            Optional<Color> TotalsColor = default,
+            Optional<FinanceMarker> Totals = default,
+            Optional<double> Base = default,
+            Optional<double> Width = default,
+            Optional<IEnumerable<double>> MultiWidth = default,
+            Optional<double> Opacity = default,
+            Optional<TextType> Text = default,
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<StyleParam.TextPosition> TextPosition = default,
+            Optional<IEnumerable<StyleParam.TextPosition>> MultiTextPosition = default,
+            Optional<Font> TextFont = default,
+            Optional<WaterfallConnector> Connector = default,
+            Optional<IEnumerable<StyleParam.WaterfallMeasure>> Measure = default,
+            Optional<string> AlignmentGroup = default,
+            Optional<string> OffsetGroup = default,
+            Optional<StyleParam.Orientation> Orientation = default,
+            Optional<bool> UseDefaults = default
+        )
+            where XType : IConvertible
+            where YType : IConvertible
+            where TextType : IConvertible
+            =>
+                Plotly.NET.Chart2D.Chart.Waterfall<XType, YType, TextType>(
+                    x: x,
+                    y: y,
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    IncreasingColor: IncreasingColor.ToOption(),
+                    Increasing: Increasing.ToOption(),
+                    DecreasingColor: DecreasingColor.ToOption(),
+                    Decreasing: Decreasing.ToOption(),
+                    TotalsColor: TotalsColor.ToOption(),
+                    Totals: Totals.ToOption(),
+                    Base: Base.ToOption(),
+                    Width: Width.ToOption(),
+                    MultiWidth: MultiWidth.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    TextPosition: TextPosition.ToOption(),
+                    MultiTextPosition: MultiTextPosition.ToOption(),
+                    TextFont: TextFont.ToOption(),
+                    Connector: Connector.ToOption(),
+                    Measure: Measure.ToOption(),
+                    AlignmentGroup: AlignmentGroup.ToOption(),
+                    OffsetGroup: OffsetGroup.ToOption(),
+                    Orientation: Orientation.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
+
         /// <summary>
         /// Creates a bar chart, with bars plotted horizontally
         ///
@@ -361,6 +1233,85 @@ namespace Plotly.NET.CSharp
                     MultiTextPosition: MultiTextPosition.ToOption(),
                     UseDefaults: UseDefaults.ToOption()
                 );
+
+        /// <summary>
+        /// Creates a stacked bar chart, with bars plotted horizontally. Values with the same key are stacked on top of each other in the X dimension.
+        /// To create this type of chart, combine multiple of these charts via `Chart.combine`.
+        ///
+        /// A bar chart is a chart that presents categorical data with rectangular bars with heights or lengths proportional to the values that they represent.
+        /// </summary>
+        /// <param name="values">Sets the values that are plotted as the size of each bar.</param>
+        /// <param name="Keys">Sets the keys associated with each bar.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity of the trace.</param>
+        /// <param name="MultiOpacity">Sets the Opacity of each individual bar.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="MarkerColor">Sets the color of the bars</param>
+        /// <param name="MarkerColorScale">Sets the colorscale for the bars. To have an effect, `MarkerColor` must map to color scale values.</param>
+        /// <param name="MarkerOutline">Sets the color of the bar outlines</param>
+        /// <param name="MarkerPatternShape">Sets a pattern shape for all bars</param>
+        /// <param name="MultiMarkerPatternShape">Sets an individual pattern shape for each bar</param>
+        /// <param name="MarkerPattern">Sets the marker pattern (use this for more finegrained control than the other pattern-associated arguments).</param>
+        /// <param name="Marker">Sets the marker for the bars (use this for more finegrained control than the other marker-associated arguments).</param>
+        /// <param name="Base">Sets where the bar base is drawn (in position axis units).</param>
+        /// <param name="Width">Sets the bar width (in position axis units) of all bars.</param>
+        /// <param name="MultiWidth">Sets the individual bar width (in position axis units) for each bar.</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        public static GenericChart.GenericChart StackedBar<ValuesType, KeysType, TextType>(
+            IEnumerable<ValuesType> values,
+            Optional<IEnumerable<KeysType>> Keys = default,
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<IEnumerable<double>> MultiOpacity = default,
+            Optional<TextType> Text = default,
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<Color> MarkerColor = default,
+            Optional<StyleParam.Colorscale> MarkerColorScale = default,
+            Optional<Line> MarkerOutline = default,
+            Optional<StyleParam.PatternShape> MarkerPatternShape = default,
+            Optional<IEnumerable<StyleParam.PatternShape>> MultiMarkerPatternShape = default,
+            Optional<Pattern> MarkerPattern = default,
+            Optional<Marker> Marker = default,
+            Optional<StyleParam.TextPosition> TextPosition = default,
+            Optional<IEnumerable<StyleParam.TextPosition>> MultiTextPosition = default,
+            Optional<IEnumerable<ValuesType>> MultiWidth = default,
+            Optional<bool> UseDefaults = default,
+            Optional<ValuesType> Base = default,
+            Optional<ValuesType> Width = default
+        )
+            where ValuesType : IConvertible
+            where KeysType : IConvertible
+            where TextType : IConvertible
+            =>
+                Plotly.NET.Chart2D.Chart.StackedBar<ValuesType, KeysType, TextType, ValuesType, ValuesType>(
+                    values: values,
+                    Keys: Keys.ToOption(),
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    MultiOpacity: MultiOpacity.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    MarkerColor: MarkerColor.ToOption(),
+                    MarkerColorScale: MarkerColorScale.ToOption(),
+                    MarkerOutline: MarkerOutline.ToOption(),
+                    MarkerPatternShape: MarkerPatternShape.ToOption(),
+                    MultiMarkerPatternShape: MultiMarkerPatternShape.ToOption(),
+                    MarkerPattern: MarkerPattern.ToOption(),
+                    Marker: Marker.ToOption(),
+                    Base: Base.ToOption(),
+                    Width: Width.ToOption(),
+                    MultiWidth: MultiWidth.ToOption(),
+                    TextPosition: TextPosition.ToOption(),
+                    MultiTextPosition: MultiTextPosition.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
+
         /// <summary>
         /// Creates a column chart, with bars plotted vertically
         ///
@@ -437,6 +1388,86 @@ namespace Plotly.NET.CSharp
                     MultiTextPosition: MultiTextPosition.ToOption(),
                     UseDefaults: UseDefaults.ToOption()
                 );
+
+
+        /// <summary>
+        /// Creates a stacked column chart, with bars plotted vertically. Values with the same key are stacked on top of each other in the Y dimension.
+        /// To create this type of chart, combine multiple of these charts via `Chart.combine`.
+        ///
+        /// A bar chart is a chart that presents categorical data with rectangular bars with heights or lengths proportional to the values that they represent.
+        /// </summary>
+        /// <param name="values">Sets the values that are plotted as the size of each bar.</param>
+        /// <param name="Keys">Sets the keys associated with each bar.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity of the trace.</param>
+        /// <param name="MultiOpacity">Sets the Opacity of each individual bar.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="MarkerColor">Sets the color of the bars</param>
+        /// <param name="MarkerColorScale">Sets the colorscale for the bars. To have an effect, `MarkerColor` must map to color scale values.</param>
+        /// <param name="MarkerOutline">Sets the color of the bar outlines</param>
+        /// <param name="MarkerPatternShape">Sets a pattern shape for all bars</param>
+        /// <param name="MultiMarkerPatternShape">Sets an individual pattern shape for each bar</param>
+        /// <param name="MarkerPattern">Sets the marker pattern (use this for more finegrained control than the other pattern-associated arguments).</param>
+        /// <param name="Marker">Sets the marker for the bars (use this for more finegrained control than the other marker-associated arguments).</param>
+        /// <param name="Base">Sets where the bar base is drawn (in position axis units).</param>
+        /// <param name="Width">Sets the bar width (in position axis units) of all bars.</param>
+        /// <param name="MultiWidth">Sets the individual bar width (in position axis units) for each bar.</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        public static GenericChart.GenericChart StackedColumn<ValuesType, KeysType, TextType>(
+            IEnumerable<ValuesType> values,
+            Optional<IEnumerable<KeysType>> Keys = default,
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<IEnumerable<double>> MultiOpacity = default,
+            Optional<TextType> Text = default,
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<Color> MarkerColor = default,
+            Optional<StyleParam.Colorscale> MarkerColorScale = default,
+            Optional<Line> MarkerOutline = default,
+            Optional<StyleParam.PatternShape> MarkerPatternShape = default,
+            Optional<IEnumerable<StyleParam.PatternShape>> MultiMarkerPatternShape = default,
+            Optional<Pattern> MarkerPattern = default,
+            Optional<Marker> Marker = default,
+            Optional<StyleParam.TextPosition> TextPosition = default,
+            Optional<IEnumerable<StyleParam.TextPosition>> MultiTextPosition = default,
+            Optional<IEnumerable<ValuesType>> MultiWidth = default,
+            Optional<bool> UseDefaults = default,
+            Optional<ValuesType> Base = default,
+            Optional<ValuesType> Width = default
+        )
+            where ValuesType : IConvertible
+            where KeysType : IConvertible
+            where TextType : IConvertible
+            =>
+                Plotly.NET.Chart2D.Chart.StackedColumn<ValuesType, KeysType, TextType, ValuesType, ValuesType>(
+                    values: values,
+                    Keys: Keys.ToOption(),
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    MultiOpacity: MultiOpacity.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    MarkerColor: MarkerColor.ToOption(),
+                    MarkerColorScale: MarkerColorScale.ToOption(),
+                    MarkerOutline: MarkerOutline.ToOption(),
+                    MarkerPatternShape: MarkerPatternShape.ToOption(),
+                    MultiMarkerPatternShape: MultiMarkerPatternShape.ToOption(),
+                    MarkerPattern: MarkerPattern.ToOption(),
+                    Marker: Marker.ToOption(),
+                    Base: Base.ToOption(),
+                    Width: Width.ToOption(),
+                    MultiWidth: MultiWidth.ToOption(),
+                    TextPosition: TextPosition.ToOption(),
+                    MultiTextPosition: MultiTextPosition.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
+
         /// <summary>
         /// Visualizes the distribution of the input data as a histogram.
         ///
@@ -528,6 +1559,7 @@ namespace Plotly.NET.CSharp
                     HoverLabel: HoverLabel.ToOption(),
                     UseDefaults: UseDefaults.ToOption()
                 );
+
         /// <summary>
         /// Visualizes the distribution of the 2-dimensional input data as 2D Histogram.
         ///
@@ -901,6 +1933,487 @@ namespace Plotly.NET.CSharp
                 );
 
         /// <summary>
+        /// Creates a heatmap.
+        ///
+        /// A heatmap is a data visualization technique that shows magnitude of a phenomenon as color in two dimensions.
+        /// </summary>
+        /// <param name="zData">Sets the 2-dimensional z data, which will be visualized with the color scale.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="X">Sets the x coordinates.</param>
+        /// <param name="XGap">Sets the horizontal gap (in pixels) between bricks.</param>
+        /// <param name="Y">Sets the y coordinates.</param>
+        /// <param name="YGap">Sets the vertical gap (in pixels) between bricks.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="ColorBar">Sets the styles of the colorbar for this trace.</param>
+        /// <param name="ColorScale">Sets the colorscale for this trace.</param>
+        /// <param name="ShowScale">Wether or not to show the colorscale/colorbar</param>
+        /// <param name="ReverseScale">Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.</param>
+        /// <param name="ZSmooth">Picks a smoothing algorithm use to smooth `z` data.</param>
+        /// <param name="Transpose">Transposes the z data.</param>
+        /// <param name="UseWebGL">Wether or not to use WebGL to render this trace</param>
+        /// <param name="ReverseYAxis">Wether or not to reverse the y axis. If true, (0,0) will lie on the top left and increase downwards.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        public static GenericChart.GenericChart Heatmap<ZType, XType, YType, TextType>(
+            IEnumerable<IEnumerable<ZType>> zData, 
+            Optional<string> Name = default, 
+            Optional<bool> ShowLegend = default, 
+            Optional<double> Opacity = default, 
+            Optional<IEnumerable<XType>> X = default, 
+            Optional<int> XGap = default, 
+            Optional<IEnumerable<YType>> Y = default, 
+            Optional<int> YGap = default, 
+            Optional<TextType> Text = default, 
+            Optional<IEnumerable<TextType>> MultiText = default, 
+            Optional<ColorBar> ColorBar = default, 
+            Optional<StyleParam.Colorscale> ColorScale = default, 
+            Optional<bool> ShowScale = default, 
+            Optional<bool> ReverseScale = default, 
+            Optional<StyleParam.SmoothAlg> ZSmooth = default, 
+            Optional<bool> Transpose = default, 
+            Optional<bool> UseWebGL = default, 
+            Optional<bool> ReverseYAxis = default, 
+            Optional<bool> UseDefaults = default
+        )
+            where ZType : IConvertible
+            where XType : IConvertible
+            where YType : IConvertible
+            where TextType : IConvertible
+            =>
+                Plotly.NET.Chart2D.Chart.Heatmap<IEnumerable<ZType>, ZType, XType, YType, TextType>(
+                    zData: zData,
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    X: X.ToOption(),
+                    XGap: XGap.ToOption(),
+                    Y: Y.ToOption(),
+                    YGap: YGap.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    ColorBar: ColorBar.ToOption(),
+                    ColorScale: ColorScale.ToOption(),
+                    ShowScale: ShowScale.ToOption(),
+                    ReverseScale: ReverseScale.ToOption(),
+                    ZSmooth: ZSmooth.ToOption(),
+                    Transpose: Transpose.ToOption(),
+                    UseWebGL: UseWebGL.ToOption(),
+                    ReverseYAxis: ReverseYAxis.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
+
+        /// <summary>
+        /// Creates a annotated heatmap.
+        ///
+        /// A heatmap is a data visualization technique that shows magnitude of a phenomenon as color in two dimensions.
+        ///
+        /// The annotated heatmap additionally contains annotation text on each datum.
+        /// </summary>
+        /// <param name="zData">Sets the 2-dimensional z data, which will be visualized with the color scale.</param>
+        /// <param name="annotationText">Sets the text to display as annotation for each datum.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="X">Sets the x coordinates.</param>
+        /// <param name="XGap">Sets the horizontal gap (in pixels) between bricks.</param>
+        /// <param name="Y">Sets the y coordinates.</param>
+        /// <param name="YGap">Sets the vertical gap (in pixels) between bricks.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="ColorBar">Sets the styles of the colorbar for this trace.</param>
+        /// <param name="ColorScale">Sets the colorscale for this trace.</param>
+        /// <param name="ShowScale">Wether or not to show the colorscale/colorbar</param>
+        /// <param name="ReverseScale">Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.</param>
+        /// <param name="ZSmooth">Picks a smoothing algorithm use to smooth `z` data.</param>
+        /// <param name="Transpose">Transposes the z data.</param>
+        /// <param name="UseWebGL">Wether or not to use WebGL to render this trace</param>
+        /// <param name="ReverseYAxis">Wether or not to reverse the y axis. If true, (0,0) will lie on the top left and increase downwards.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        public static GenericChart.GenericChart AnnotatedHeatmap<ZType, XType, YType, TextType>(
+            IEnumerable<IEnumerable<ZType>> zData,
+            IEnumerable<IEnumerable<string>> annotationText,
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<IEnumerable<XType>> X = default,
+            Optional<int> XGap = default,
+            Optional<IEnumerable<YType>> Y = default,
+            Optional<int> YGap = default,
+            Optional<TextType> Text = default,
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<ColorBar> ColorBar = default,
+            Optional<StyleParam.Colorscale> ColorScale = default,
+            Optional<bool> ShowScale = default,
+            Optional<bool> ReverseScale = default,
+            Optional<StyleParam.SmoothAlg> ZSmooth = default,
+            Optional<bool> Transpose = default,
+            Optional<bool> UseWebGL = default,
+            Optional<bool> ReverseYAxis = default,
+            Optional<bool> UseDefaults = default
+        )
+            where ZType : IConvertible
+            where XType : IConvertible
+            where YType : IConvertible
+            where TextType : IConvertible
+            =>
+                Plotly.NET.Chart2D.Chart.AnnotatedHeatmap<IEnumerable<ZType>, ZType, IEnumerable<string>, XType, YType, TextType>(
+                    zData: zData,
+                    annotationText: annotationText,
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    X: X.ToOption(),
+                    XGap: XGap.ToOption(),
+                    Y: Y.ToOption(),
+                    YGap: YGap.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    ColorBar: ColorBar.ToOption(),
+                    ColorScale: ColorScale.ToOption(),
+                    ShowScale: ShowScale.ToOption(),
+                    ReverseScale: ReverseScale.ToOption(),
+                    ZSmooth: ZSmooth.ToOption(),
+                    Transpose: Transpose.ToOption(),
+                    UseWebGL: UseWebGL.ToOption(),
+                    ReverseYAxis: ReverseYAxis.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
+
+        /// <summary>
+        /// Display an image, i.e. data on a 2D regular raster. By default, when an image is displayed in a subplot, its y axis will be reversed (ie. `autorange: 'reversed'`), constrained to the domain (ie. `constrain: 'domain'`) and it will have the same scale as its x axis (ie. `scaleanchor: 'x,`) in order for pixels to be rendered as squares.
+        /// </summary>
+        /// <param name="Z">A 2-dimensional array in which each element is an array of 3 or 4 numbers representing a color.</param>
+        /// <param name="Source">Specifies the data URI of the image to be visualized. The URI consists of "data:image/[&lt;media subtype&gt;][;base64],&lt;data&gt;"</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="Ids">Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.</param>
+        /// <param name="ColorModel">Color model used to map the numerical color components described in `z` into colors. If `source` is specified, this attribute will be set to `rgba256` otherwise it defaults to `rgb`.</param>
+        /// <param name="ZMax">Sets the upper bound of the color domain. Value should have the same units as in `z` and if set, `zmin` must be set as well.</param>
+        /// <param name="ZMin">Sets the lower bound of the color domain. Value should have the same units as in `z` and if set, `zmax` must be set as well.</param>
+        /// <param name="ZSmooth">Picks a smoothing algorithm use to smooth `z` data.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        public static GenericChart.GenericChart Image<IdType>(
+            Optional<IEnumerable<IEnumerable<IEnumerable<int>>>> Z = default, 
+            Optional<string> Source = default, 
+            Optional<string> Name = default, 
+            Optional<bool> ShowLegend = default, 
+            Optional<double> Opacity = default, 
+            Optional<IEnumerable<IdType>> Ids = default, 
+            Optional<StyleParam.ColorModel> ColorModel = default, 
+            Optional<StyleParam.ColorComponentBound> ZMax = default, 
+            Optional<StyleParam.ColorComponentBound> ZMin = default, 
+            Optional<StyleParam.SmoothAlg> ZSmooth = default, 
+            Optional<bool> UseDefaults = default
+        )
+            where IdType : IConvertible
+            =>
+                Plotly.NET.Chart2D.Chart.Image<IEnumerable<IEnumerable<int>>, IEnumerable<int>, IdType>(
+                    Z: Z.ToOption(),
+                    Source: Source.ToOption(),
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    Ids: Ids.ToOption(),
+                    ColorModel: ColorModel.ToOption(),
+                    ZMax: ZMax.ToOption(),
+                    ZMin: ZMin.ToOption(),
+                    ZSmooth: ZSmooth.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
+
+        /// <summary>
+        /// Creates a 2D contour plot, which shows the contour lines of a 2D numerical array z, i.e. interpolated lines of isovalues of z.
+        ///
+        /// A contour line (also isoline, isopleth, or isarithm) of a function of two variables is a curve along which the function has a constant value, so that the curve joins points of equal value
+        ///
+        /// The data from which contour lines are computed is set in `z`. Data in `z` must be a 2D array of numbers. Say that `z` has N rows and M columns, then by default, these N rows correspond to N y coordinates (set in `y` or auto-generated) and the M columns correspond to M x coordinates (set in `x` or auto-generated). By setting `transpose` to "true", the above behavior is flipped.
+        /// </summary>
+        /// <param name="zData">Sets the z data which is used for computing the contour lines.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="X">Sets the x coordinates.</param>
+        /// <param name="Y">Sets the y coordinates.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="ColorBar">Sets the styles of the colorbar for this trace.</param>
+        /// <param name="ColorScale">Sets the colorscale for this trace.</param>
+        /// <param name="ShowScale">Wether or not to show the colorscale/colorbar</param>
+        /// <param name="ReverseScale">Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.</param>
+        /// <param name="Transpose">Transposes the z data.</param>
+        /// <param name="ContourLineDash">Sets the contour line dash style</param>
+        /// <param name="ContourLineColor">Sets the contour line color</param>
+        /// <param name="ContourLineSmoothing">Sets the amount of smoothing for the contour lines, where "0" corresponds to no smoothing.</param>
+        /// <param name="ContourLine">Sets the contour lines (use this for more finegrained control than the other contourline-associated arguments).</param>
+        /// <param name="ContoursColoring">Determines the coloring method showing the contour values. If "fill", coloring is done evenly between each contour level If "heatmap", a heatmap gradient coloring is applied between each contour level. If "lines", coloring is done on the contour lines. If "none", no coloring is applied on this trace.</param>
+        /// <param name="ContoursOperation">Sets the constraint operation. "=" keeps regions equal to `value` "&lt;" and "&lt;=" keep regions less than `value` "&gt;" and "&gt;=" keep regions greater than `value` "[]", "()", "[)", and "(]" keep regions inside `value[0]` to `value[1]` "][", ")(", "](", ")[" keep regions outside `value[0]` to value[1]` Open vs. closed intervals make no difference to constraint display, but all versions are allowed for consistency with filter transforms.</param>
+        /// <param name="ContoursType">If `levels`, the data is represented as a contour plot with multiple levels displayed. If `constraint`, the data is represented as constraints with the invalid region shaded as specified by the `operation` and `value` parameters.</param>
+        /// <param name="ShowContourLabels">Determines whether to label the contour lines with their values.</param>
+        /// <param name="ContourLabelFont">Sets the font used for labeling the contour levels. The default color comes from the lines, if shown. The default family and size come from `layout.font`.</param>
+        /// <param name="Contours">Sets the styles of the contours (use this for more finegrained control than the other contour-associated arguments).</param>
+        /// <param name="FillColor">Sets the fill color if `contours.type` is "constraint". Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="NContours">Sets the maximum number of contour levels. The actual number of contours will be chosen automatically to be less than or equal to the value of `ncontours`. Has an effect only if `autocontour` is "true" or if `contours.size` is missing.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        public static GenericChart.GenericChart Contour<ZType, XType, YType, TextType>(
+            IEnumerable<IEnumerable<ZType>> zData, 
+            Optional<string> Name = default, 
+            Optional<bool> ShowLegend = default, 
+            Optional<double> Opacity = default, 
+            Optional<IEnumerable<XType>> X = default, 
+            Optional<IEnumerable<YType>> Y = default, 
+            Optional<TextType> Text = default, 
+            Optional<IEnumerable<TextType>> MultiText = default, 
+            Optional<ColorBar> ColorBar = default, 
+            Optional<StyleParam.Colorscale> ColorScale = default, 
+            Optional<bool> ShowScale = default, 
+            Optional<bool> ReverseScale = default, 
+            Optional<bool> Transpose = default, 
+            Optional<Color> ContourLineColor = default, 
+            Optional<StyleParam.DrawingStyle> ContourLineDash = default, 
+            Optional<double> ContourLineSmoothing = default, 
+            Optional<Line> ContourLine = default, 
+            Optional<StyleParam.ContourColoring> ContoursColoring = default, 
+            Optional<StyleParam.ConstraintOperation> ContoursOperation = default, 
+            Optional<StyleParam.ContourType> ContoursType = default, 
+            Optional<bool> ShowContourLabels = default, 
+            Optional<Font> ContourLabelFont = default, 
+            Optional<Contours> Contours = default, 
+            Optional<Color> FillColor = default, 
+            Optional<int> NContours = default, 
+            Optional<bool> UseDefaults = default
+        )
+            where ZType : IConvertible
+            where XType : IConvertible
+            where YType : IConvertible
+            where TextType : IConvertible
+            =>
+                Plotly.NET.Chart2D.Chart.Contour<IEnumerable<ZType>, ZType, XType, YType, TextType>(
+                    zData: zData,
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    X: X.ToOption(),
+                    Y: Y.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    ColorBar: ColorBar.ToOption(),
+                    ColorScale: ColorScale.ToOption(),
+                    ShowScale: ShowScale.ToOption(),
+                    ReverseScale: ReverseScale.ToOption(),
+                    Transpose: Transpose.ToOption(),
+                    ContourLineColor: ContourLineColor.ToOption(),
+                    ContourLineDash: ContourLineDash.ToOption(),
+                    ContourLineSmoothing: ContourLineSmoothing.ToOption(),
+                    ContourLine: ContourLine.ToOption(),
+                    ContoursColoring: ContoursColoring.ToOption(),
+                    ContoursOperation: ContoursOperation.ToOption(),
+                    ContoursType: ContoursType.ToOption(),
+                    ShowContourLabels: ShowContourLabels.ToOption(),
+                    ContourLabelFont: ContourLabelFont.ToOption(),
+                    Contours: Contours.ToOption(),
+                    FillColor: FillColor.ToOption(),
+                    NContours: NContours.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
+
+
+        /// <summary>
+        /// Creates an OHLC chart.
+        ///
+        /// The ohlc (short for Open-High-Low-Close) is a style of financial chart describing open, high, low and close for a given `x` coordinate (most likely time). The tip of the lines represent the `low` and `high` values and the horizontal segments represent the `open` and `close` values. Sample points where the close value is higher (lower) then the open value are called increasing (decreasing). By default, increasing items are drawn in green whereas decreasing are drawn in red.
+        /// </summary>
+        /// <param name="open">Sets the open values.</param>
+        /// <param name="high">Sets the high values.</param>
+        /// <param name="low">Sets the low values.</param>
+        /// <param name="close">Sets the close values.</param>
+        /// <param name="x">Sets the x coordinates. If absent, linear coordinate will be generated.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="Line">Sets the line of this trace.</param>
+        /// <param name="IncreasingColor">Sets the color of increasing values</param>
+        /// <param name="Increasing">Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="DecreasingColor">Sets the color of decreasing values</param>
+        /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="TickWidth">Sets the width of the open/close tick marks relative to the "x" minimal interval.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        public static GenericChart.GenericChart OHLC<OHLCType, XType, TextType>(
+            IEnumerable<OHLCType> open,
+            IEnumerable<OHLCType> high,
+            IEnumerable<OHLCType> low,
+            IEnumerable<OHLCType> close,
+            IEnumerable<XType> x,
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<TextType> Text = default,
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<Line> Line = default,
+            Optional<Color> IncreasingColor = default,
+            Optional<FinanceMarker> Increasing = default,
+            Optional<Color> DecreasingColor = default,
+            Optional<FinanceMarker> Decreasing = default,
+            Optional<double> TickWidth = default,
+            Optional<bool> UseDefaults = default
+        )
+            where OHLCType : IConvertible
+            where XType : IConvertible
+            where TextType : IConvertible
+            =>
+                Plotly.NET.Chart2D.Chart.OHLC<OHLCType, OHLCType, OHLCType, OHLCType, XType, TextType>(
+                    open: open,
+                    high: high,
+                    low: low,
+                    close: close,
+                    x: x,
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    Line: Line.ToOption(),
+                    IncreasingColor: IncreasingColor.ToOption(),
+                    Increasing: Increasing.ToOption(),
+                    DecreasingColor: DecreasingColor.ToOption(),
+                    Decreasing: Decreasing.ToOption(),
+                    TickWidth: TickWidth.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
+
+        /// <summary>
+        /// Creates a candlestick chart.
+        ///
+        /// The candlestick is a style of financial chart describing open, high, low and close for a given `x` coordinate (most likely time). The boxes represent the spread between the `open` and `close` values and the lines represent the spread between the `low` and `high` values Sample points where the close value is higher (lower) then the open value are called increasing (decreasing). By default, increasing candles are drawn in green whereas decreasing are drawn in red.
+        /// </summary>
+        /// <param name="open">Sets the open values.</param>
+        /// <param name="high">Sets the high values.</param>
+        /// <param name="low">Sets the low values.</param>
+        /// <param name="close">Sets the close values.</param>
+        /// <param name="x">Sets the x coordinates. If absent, linear coordinate will be generated.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="Line">Sets the line of this trace.</param>
+        /// <param name="IncreasingColor">Sets the color of increasing values</param>
+        /// <param name="Increasing">Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="DecreasingColor">Sets the color of decreasing values</param>
+        /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="WhiskerWidth">Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        public static GenericChart.GenericChart Candlestick<OHLCType, XType, TextType>(
+            IEnumerable<OHLCType> open,
+            IEnumerable<OHLCType> high,
+            IEnumerable<OHLCType> low,
+            IEnumerable<OHLCType> close,
+            IEnumerable<XType> x,
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<TextType> Text = default,
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<Line> Line = default,
+            Optional<Color> IncreasingColor = default,
+            Optional<FinanceMarker> Increasing = default,
+            Optional<Color> DecreasingColor = default,
+            Optional<FinanceMarker> Decreasing = default,
+            Optional<double> WhiskerWidth = default,
+            Optional<bool> UseDefaults = default
+        )
+            where OHLCType : IConvertible
+            where XType : IConvertible
+            where TextType : IConvertible
+            =>
+                Plotly.NET.Chart2D.Chart.Candlestick<OHLCType, OHLCType, OHLCType, OHLCType, XType, TextType>(
+                    open: open,
+                    high: high,
+                    low: low,
+                    close: close,
+                    x: x,
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    Line: Line.ToOption(),
+                    IncreasingColor: IncreasingColor.ToOption(),
+                    Increasing: Increasing.ToOption(),
+                    DecreasingColor: DecreasingColor.ToOption(),
+                    Decreasing: Decreasing.ToOption(),
+                    WhiskerWidth: WhiskerWidth.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
+
+        /// <summary>
+        /// Creates a scatter plot matrix (SPLOM) from multiple input dimensions.
+        ///
+        /// Each splom `dimensions` items correspond to a generated axis. Values for each of those dimensions are set in `dimensions[i].values`. Splom traces support all `scattergl` marker style attributes. Specify `layout.grid` attributes and/or layout x-axis and y-axis attributes for more control over the axis positioning and style.
+        /// </summary>
+        /// <param name="dimensions">Sets the dimensions of the scatter plot matrix, where each item corresponds to a generated axis.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker.</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker. Use `Color.fromColorScaleValues` to map marker colors to a colorscale.</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the symbol of all marker</param>
+        /// <param name="MultiMarkerSymbol">Sets the symbol of each individual marker</param>
+        /// <param name="Marker">Sets the markers (use this for more finegrained control than the other marker-associated arguments).</param>
+        /// <param name="ShowDiagonal">Wether or not to show the matrix diagional</param>
+        /// <param name="Diagonal">Sets the styles applied to the scatter plot matrix diagonal</param>
+        /// <param name="ShowLowerHalf">Determines whether or not subplots on the lower half from the diagonal are displayed.</param>
+        /// <param name="ShowUpperHalf">Determines whether or not subplots on the upper half from the diagonal are displayed.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        public static GenericChart.GenericChart Splom<TextType>(
+            IEnumerable<Dimension> dimensions, 
+            Optional<string> Name = default, 
+            Optional<bool> ShowLegend = default, 
+            Optional<double> Opacity = default, 
+            Optional<TextType> Text = default, 
+            Optional<IEnumerable<TextType>> MultiText = default, 
+            Optional<Color> MarkerColor = default, 
+            Optional<StyleParam.Colorscale> MarkerColorScale = default, 
+            Optional<Line> MarkerOutline = default, 
+            Optional<StyleParam.MarkerSymbol> MarkerSymbol = default, 
+            Optional<IEnumerable<StyleParam.MarkerSymbol>> MultiMarkerSymbol = default, 
+            Optional<Marker> Marker = default, 
+            Optional<bool> ShowDiagonal = default, 
+            Optional<SplomDiagonal> Diagonal = default, 
+            Optional<bool> ShowLowerHalf = default, 
+            Optional<bool> ShowUpperHalf = default, 
+            Optional<bool> UseDefaults = default
+        )
+            where TextType : IConvertible
+            =>
+                Plotly.NET.Chart2D.Chart.Splom<TextType>(
+                    dimensions: dimensions,
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    MarkerColor: MarkerColor.ToOption(),
+                    MarkerColorScale: MarkerColorScale.ToOption(),
+                    MarkerOutline: MarkerOutline.ToOption(),
+                    MarkerSymbol: MarkerSymbol.ToOption(),
+                    MultiMarkerSymbol: MultiMarkerSymbol.ToOption(),
+                    Marker: Marker.ToOption(),
+                    ShowDiagonal: ShowDiagonal.ToOption(),
+                    Diagonal: Diagonal.ToOption(),
+                    ShowLowerHalf: ShowLowerHalf.ToOption(),
+                    ShowUpperHalf: ShowUpperHalf.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
+
+        /// <summary>
         /// Creates a point density plot - a combination of a Scatter plot and Histogram2DContour.
         ///
         /// Additionally to plotting the (x,y) data as points on a 2D plane, a density contour plot is computed by grouping a set of points specified by their x and y coordinates into bins, and applying a count aggregation function to compute the value to be used to compute contours.
@@ -969,316 +2482,6 @@ namespace Plotly.NET.CSharp
                     ColorBar: ColorBar.ToOption(),
                     ColorScale: ColorScale.ToOption(),
                     ShowScale: ShowScale.ToOption(),
-                    UseDefaults: UseDefaults.ToOption()
-                );
-
-        /// <summary>
-        /// Creates an OHLC chart.
-        ///
-        /// The ohlc (short for Open-High-Low-Close) is a style of financial chart describing open, high, low and close for a given `x` coordinate (most likely time). The tip of the lines represent the `low` and `high` values and the horizontal segments represent the `open` and `close` values. Sample points where the close value is higher (lower) then the open value are called increasing (decreasing). By default, increasing items are drawn in green whereas decreasing are drawn in red.
-        /// </summary>
-        /// <param name="open">Sets the open values.</param>
-        /// <param name="high">Sets the high values.</param>
-        /// <param name="low">Sets the low values.</param>
-        /// <param name="close">Sets the close values.</param>
-        /// <param name="x">Sets the x coordinates. If absent, linear coordinate will be generated.</param>
-        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
-        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
-        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
-        /// <param name="Text">Sets a text associated with each datum</param>
-        /// <param name="MultiText">Sets individual text for each datum</param>
-        /// <param name="Line">Sets the line of this trace.</param>
-        /// <param name="IncreasingColor">Sets the color of increasing values</param>
-        /// <param name="Increasing">Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
-        /// <param name="DecreasingColor">Sets the color of decreasing values</param>
-        /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
-        /// <param name="TickWidth">Sets the width of the open/close tick marks relative to the "x" minimal interval.</param>
-        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart OHLC<OHLCType, XType, TextType>(
-            IEnumerable<OHLCType> open, 
-            IEnumerable<OHLCType> high, 
-            IEnumerable<OHLCType> low, 
-            IEnumerable<OHLCType> close, 
-            IEnumerable<XType> x, 
-            Optional<string> Name = default, 
-            Optional<bool> ShowLegend = default, 
-            Optional<double> Opacity = default, 
-            Optional<TextType> Text = default, 
-            Optional<IEnumerable<TextType>> MultiText = default, 
-            Optional<Line> Line = default, 
-            Optional<Color> IncreasingColor = default, 
-            Optional<FinanceMarker> Increasing = default, 
-            Optional<Color> DecreasingColor = default, 
-            Optional<FinanceMarker> Decreasing = default, 
-            Optional<double> TickWidth = default, 
-            Optional<bool> UseDefaults = default
-        )
-            where OHLCType : IConvertible
-            where XType : IConvertible
-            where TextType : IConvertible
-            =>
-                Plotly.NET.Chart2D.Chart.OHLC<OHLCType, OHLCType, OHLCType, OHLCType, XType, TextType>(
-                    open: open,
-                    high: high,
-                    low: low,
-                    close: close,
-                    x: x,
-                    Name: Name.ToOption(),
-                    ShowLegend: ShowLegend.ToOption(),
-                    Opacity: Opacity.ToOption(),
-                    Text: Text.ToOption(),
-                    MultiText: MultiText.ToOption(),
-                    Line: Line.ToOption(),
-                    IncreasingColor: IncreasingColor.ToOption(),
-                    Increasing : Increasing.ToOption(),
-                    DecreasingColor: DecreasingColor.ToOption(),
-                    Decreasing: Decreasing.ToOption(),
-                    TickWidth: TickWidth.ToOption(),
-                    UseDefaults: UseDefaults.ToOption()
-                );
-
-        /// <summary>
-        /// Creates a candlestick chart.
-        ///
-        /// The candlestick is a style of financial chart describing open, high, low and close for a given `x` coordinate (most likely time). The boxes represent the spread between the `open` and `close` values and the lines represent the spread between the `low` and `high` values Sample points where the close value is higher (lower) then the open value are called increasing (decreasing). By default, increasing candles are drawn in green whereas decreasing are drawn in red.
-        /// </summary>
-        /// <param name="open">Sets the open values.</param>
-        /// <param name="high">Sets the high values.</param>
-        /// <param name="low">Sets the low values.</param>
-        /// <param name="close">Sets the close values.</param>
-        /// <param name="x">Sets the x coordinates. If absent, linear coordinate will be generated.</param>
-        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
-        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
-        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
-        /// <param name="Text">Sets a text associated with each datum</param>
-        /// <param name="MultiText">Sets individual text for each datum</param>
-        /// <param name="Line">Sets the line of this trace.</param>
-        /// <param name="IncreasingColor">Sets the color of increasing values</param>
-        /// <param name="Increasing">Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
-        /// <param name="DecreasingColor">Sets the color of decreasing values</param>
-        /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
-        /// <param name="WhiskerWidth">Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).</param>
-        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Candlestick<OHLCType, XType, TextType>(
-            IEnumerable<OHLCType> open,
-            IEnumerable<OHLCType> high,
-            IEnumerable<OHLCType> low,
-            IEnumerable<OHLCType> close,
-            IEnumerable<XType> x,
-            Optional<string> Name = default,
-            Optional<bool> ShowLegend = default,
-            Optional<double> Opacity = default,
-            Optional<TextType> Text = default,
-            Optional<IEnumerable<TextType>> MultiText = default,
-            Optional<Line> Line = default,
-            Optional<Color> IncreasingColor = default,
-            Optional<FinanceMarker> Increasing = default,
-            Optional<Color> DecreasingColor = default,
-            Optional<FinanceMarker> Decreasing = default,
-            Optional<double> WhiskerWidth = default, 
-            Optional<bool> UseDefaults = default
-        )
-            where OHLCType : IConvertible
-            where XType : IConvertible
-            where TextType : IConvertible
-            =>
-                Plotly.NET.Chart2D.Chart.Candlestick<OHLCType, OHLCType, OHLCType, OHLCType, XType, TextType>(
-                    open: open,
-                    high: high,
-                    low: low,
-                    close: close,
-                    x: x,
-                    Name: Name.ToOption(),
-                    ShowLegend: ShowLegend.ToOption(),
-                    Opacity: Opacity.ToOption(),
-                    Text: Text.ToOption(),
-                    MultiText: MultiText.ToOption(),
-                    Line: Line.ToOption(),
-                    IncreasingColor: IncreasingColor.ToOption(),
-                    Increasing: Increasing.ToOption(),
-                    DecreasingColor: DecreasingColor.ToOption(),
-                    Decreasing: Decreasing.ToOption(),
-                    WhiskerWidth: WhiskerWidth.ToOption(),
-                    UseDefaults: UseDefaults.ToOption()
-                );
-        /// <summary>
-        /// Creates a waterfall chart.
-        ///
-        /// Waterfall charts are special bar charts that help visualizing the cumulative effect of sequentially introduced positive or negative values
-        /// </summary>
-        /// <param name="x">Sets the x coordinates of the plotted data.</param>
-        /// <param name="y">Sets the y coordinates of the plotted data.</param>
-        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
-        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
-        /// <param name="IncreasingColor">Sets the color of increasing values</param>
-        /// <param name="Increasing">Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
-        /// <param name="DecreasingColor">Sets the color of decreasing values</param>
-        /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
-        /// <param name="TotalsColor">Sets the color of total values</param>
-        /// <param name="Totals">Sets the style options of total values (use this for more finegrained control than the other increasing-associated arguments).</param>
-        /// <param name="Base">Sets where the bar base is drawn (in position axis units).</param>
-        /// <param name="Width">Sets the bar width (in position axis units).</param>
-        /// <param name="MultiWidth">Sets the individual bar width of each datum (in position axis units).</param>
-        /// <param name="Opacity">Sets the opacity of the trace.</param>
-        /// <param name="Text">Sets a text associated with each datum</param>
-        /// <param name="MultiText">Sets individual text for each datum</param>
-        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
-        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
-        /// <param name="TextFont">Sets the font used for `text`.</param>
-        /// <param name="Connector">Sets the waterfall connector of this trace</param>
-        /// <param name="Measure">An array containing types of measures. By default the values are considered as 'relative'. However; it is possible to use 'total' to compute the sums. Also 'absolute' could be applied to reset the computed total or to declare an initial value where needed.</param>
-        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
-        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
-        /// <param name="Orientation">Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used - including if `visible` is "legendonly" but not if it is `false`. Sets the stacking direction. With "v" ("h"), the y (x) values of subsequent traces are added. Also affects the default value of `fill`.</param>
-        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Waterfall<XType, YType, TextType>(
-            IEnumerable<XType> x,
-            IEnumerable<YType> y,
-            Optional<string> Name = default,
-            Optional<bool> ShowLegend = default,
-            Optional<Color> IncreasingColor = default,
-            Optional<FinanceMarker> Increasing = default,
-            Optional<Color> DecreasingColor = default,
-            Optional<FinanceMarker> Decreasing = default,
-            Optional<Color> TotalsColor = default,
-            Optional<FinanceMarker> Totals = default,
-            Optional<double> Base = default,
-            Optional<double> Width = default,
-            Optional<IEnumerable<double>> MultiWidth = default,
-            Optional<double> Opacity = default,
-            Optional<TextType> Text = default,
-            Optional<IEnumerable<TextType>> MultiText = default,
-            Optional<StyleParam.TextPosition> TextPosition = default,
-            Optional<IEnumerable<StyleParam.TextPosition>> MultiTextPosition = default,
-            Optional<Font> TextFont = default,
-            Optional<WaterfallConnector> Connector = default,
-            Optional<IEnumerable<StyleParam.WaterfallMeasure>> Measure = default,
-            Optional<string> AlignmentGroup = default,
-            Optional<string> OffsetGroup = default,
-            Optional<StyleParam.Orientation> Orientation = default,
-            Optional<bool> UseDefaults = default
-        )
-            where XType : IConvertible
-            where YType : IConvertible
-            where TextType : IConvertible
-            =>
-                Plotly.NET.Chart2D.Chart.Waterfall<XType, YType, TextType>(
-                    x: x,
-                    y: y,
-                    Name: Name.ToOption(),
-                    ShowLegend: ShowLegend.ToOption(),
-                    IncreasingColor: IncreasingColor.ToOption(),
-                    Increasing: Increasing.ToOption(),
-                    DecreasingColor: DecreasingColor.ToOption(),
-                    Decreasing: Decreasing.ToOption(),
-                    TotalsColor: TotalsColor.ToOption(),
-                    Totals: Totals.ToOption(),
-                    Base: Base.ToOption(),
-                    Width: Width.ToOption(),
-                    MultiWidth: MultiWidth.ToOption(),
-                    Opacity: Opacity.ToOption(),
-                    Text: Text.ToOption(),
-                    MultiText: MultiText.ToOption(),
-                    TextPosition: TextPosition.ToOption(),
-                    MultiTextPosition: MultiTextPosition.ToOption(),
-                    TextFont: TextFont.ToOption(),
-                    Connector: Connector.ToOption(),
-                    Measure: Measure.ToOption(),
-                    AlignmentGroup: AlignmentGroup.ToOption(),
-                    OffsetGroup: OffsetGroup.ToOption(),
-                    Orientation: Orientation.ToOption(),
-                    UseDefaults: UseDefaults.ToOption()
-                );
-
-        /// <summary>
-        /// Creates a Funnel chart.
-        ///
-        /// Funnel charts visualize stages in a process using length-encoded bars. This trace can be used to show data in either a part-to-whole representation wherein each item appears in a single stage, or in a "drop-off" representation wherein each item appears in each stage it traversed. See also the "funnelarea" trace type for a different approach to visualizing funnel data.
-        /// </summary>
-        /// <param name="x">Sets the x coordinates of the plotted data.</param>
-        /// <param name="y">Sets the y coordinates of the plotted data.</param>
-        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
-        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
-        /// <param name="Opacity">Sets the Opacity of the trace.</param>
-        /// <param name="Width">Sets the bar width (in position axis units).</param>
-        /// <param name="Offset">Shifts the position where the bar is drawn (in position axis units). In "group" barmode, traces that set "offset" will be excluded and drawn in "overlay" mode instead.</param>
-        /// <param name="Text">Sets a text associated with each datum</param>
-        /// <param name="MultiText">Sets individual text for each datum</param>
-        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
-        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
-        /// <param name="Orientation">Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used - including if `visible` is "legendonly" but not if it is `false`. Sets the stacking direction. With "v" ("h"), the y (x) values of subsequent traces are added. Also affects the default value of `fill`.</param>
-        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
-        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
-        /// <param name="MarkerColor">Sets the color of the bars.</param>
-        /// <param name="MarkerOutline">Sets the color of the bar outline.</param>
-        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
-        /// <param name="TextInfo">Determines which trace information appear on the graph. In the case of having multiple funnels, percentages and totals are computed separately (per trace).</param>
-        /// <param name="ConnectorLineColor">Sets the line color of the funnel connector</param>
-        /// <param name="ConnectorLineStyle">Sets the line style of the funnel connector</param>
-        /// <param name="ConnectorFillColor">Sets the fill color of the funnel connector</param>
-        /// <param name="ConnectorLine">Sets the line of the funnel connector (use this for more finegrained control than the other connector line associated arguments).</param>
-        /// <param name="Connector">Sets the funnel connector (use this for more finegrained control than the other connector-associated arguments).</param>
-        /// <param name="InsideTextFont">Sets the font used for `text` lying inside the bar.</param>
-        /// <param name="OutsideTextFont">Sets the font used for `text` lying outside the bar.</param>
-        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Funnel<XType, YType, TextType>(
-            IEnumerable<XType> x, 
-            IEnumerable<YType> y, 
-            Optional<string> Name = default, 
-            Optional<bool> ShowLegend = default, 
-            Optional<double> Opacity = default, 
-            Optional<double> Width = default, 
-            Optional<double> Offset = default, 
-            Optional<TextType> Text = default, 
-            Optional<IEnumerable<TextType>> MultiText = default, 
-            Optional<StyleParam.TextPosition> TextPosition = default, 
-            Optional<IEnumerable<StyleParam.TextPosition>> MultiTextPosition = default, 
-            Optional<StyleParam.Orientation> Orientation = default, 
-            Optional<string> AlignmentGroup = default, 
-            Optional<string> OffsetGroup = default, 
-            Optional<Color> MarkerColor = default, 
-            Optional<Line> MarkerOutline = default, 
-            Optional<Marker> Marker = default, 
-            Optional<StyleParam.TextInfo> TextInfo = default, 
-            Optional<Color> ConnectorLineColor = default, 
-            Optional<StyleParam.DrawingStyle> ConnectorLineStyle = default, 
-            Optional<Color> ConnectorFillColor = default, 
-            Optional<Line> ConnectorLine = default, 
-            Optional<FunnelConnector> Connector = default, 
-            Optional<Font> InsideTextFont = default, 
-            Optional<Font> OutsideTextFont = default, 
-            Optional<bool> UseDefaults = default
-        )
-            where XType : IConvertible
-            where YType : IConvertible
-            where TextType : IConvertible
-            =>
-                Plotly.NET.Chart2D.Chart.Funnel<XType, YType, TextType>(
-                    x: x,
-                    y: y,
-                    Name: Name.ToOption(),
-                    ShowLegend: ShowLegend.ToOption(),
-                    Opacity: Opacity.ToOption(),
-                    Width: Width.ToOption(),
-                    Offset: Offset.ToOption(),
-                    Text: Text.ToOption(),
-                    MultiText: MultiText.ToOption(),
-                    TextPosition: TextPosition.ToOption(),
-                    MultiTextPosition: MultiTextPosition.ToOption(),
-                    Orientation: Orientation.ToOption(),
-                    AlignmentGroup: AlignmentGroup.ToOption(),
-                    OffsetGroup: OffsetGroup.ToOption(),
-                    MarkerColor: MarkerColor.ToOption(),
-                    MarkerOutline: MarkerOutline.ToOption(),
-                    Marker: Marker.ToOption(),
-                    TextInfo: TextInfo.ToOption(),
-                    ConnectorLineColor: ConnectorLineColor.ToOption(),
-                    ConnectorLineStyle: ConnectorLineStyle.ToOption(),
-                    ConnectorFillColor: ConnectorFillColor.ToOption(),
-                    ConnectorLine: ConnectorLine.ToOption(),
-                    Connector: Connector.ToOption(),
-                    InsideTextFont: InsideTextFont.ToOption(),
-                    OutsideTextFont: OutsideTextFont.ToOption(),
                     UseDefaults: UseDefaults.ToOption()
                 );
 

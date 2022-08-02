@@ -11,62 +11,224 @@ namespace TestConsoleApp
         {
             Chart.Grid(
                 nRows: 10,
-                nCols: 6,
+                nCols: 7,
                 gCharts:
                     new GenericChart[]
                     {
                         //2D basic traces
-                        Chart.Scatter<int, int, int>(
-                            x: new int [] { 1, 2 },
-                            y: new int [] { 3, 4 },
-                            mode: Mode.Markers,
-                            MultiText: new int [] { 3, 4 }
+
+                        //simple scatter derived
+                        Chart.Combine(
+                            new GenericChart []
+                            {
+                                Chart.Scatter<int, int, int>(
+                                    x: new int [] { 1, 2, 3 },
+                                    y: new int [] { 5, 3, 4 },
+                                    mode: Mode.Markers,
+                                    Name: "scatter",
+                                    MultiText: new int [] { 3, 4 }
+                                ),
+                                Chart.Point<int,int,string>(
+                                    x: new int [] { 1, 2, 3 },
+                                    y: new int [] { 6, 4, 5 },
+                                    Name: "point",
+                                    Text: "hi"
+                                ),
+                                Chart.Line<int,int,string>(
+                                    x: new int [] { 1, 2, 3 },
+                                    y: new int [] { 7, 5, 6 },
+                                    Name: "line"
+                                ),
+                                Chart.Spline<int,int,string>(
+                                    x: new int [] { 1, 2, 3},
+                                    y: new int [] { 8, 6, 7 },
+                                    Name: "spline"
+                                ),
+                                Chart.Bubble<int,int,string>(
+                                    x: new int [] { 1, 2, 3 },
+                                    y: new int [] { 9, 7, 8 },
+                                    sizes: new int [] { 10, 20, 30 },
+                                    Name: "bubble"
+                                )
+                            }
+                        ).WithTraceInfo(
+                            LegendGroup: "simple-scatter-derived",
+                            LegendGroupTitle: Plotly.NET.Title.init("simple scatter-derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
-                        Chart.Point<int,int,string>(
-                            x: new int [] { 5, 6 },
-                            y: new int [] { 7, 8 },
-                            Text: "hi"
+
+                        //extended scatter derived
+                        Chart.Combine(
+                            new GenericChart []
+                            {
+                                Chart.Range<int, int, string>(
+                                    x: new int [] { 1, 2, 3 },
+                                    y: new int [] { 5, 3, 4 },
+                                    upper: new int [] { 6, 4, 5 },
+                                    lower: new int [] { 4, 2, 3 },
+                                    mode: Mode.Lines,
+                                    Name: "range"
+                                ),
+                                Chart.Area<int,int,string>(
+                                    x: new int [] { 1, 2},
+                                    y: new int [] { 3, 1},
+                                    Name: "area"
+                                ),
+                                Chart.SplineArea<int,int,string>(
+                                    x: new int [] { 3, 4, 5},
+                                    y: new int [] { 3, 1, 4},
+                                    Name: "splinearea"
+                                ),                                
+                                Chart.StackedArea<int,int,string>(
+                                    x: new int [] { 6, 7},
+                                    y: new int [] { 3, 1},
+                                    Name: "stacked area 1"
+                                ),                                
+                                Chart.StackedArea<int,int,string>(
+                                    x: new int [] { 6, 7},
+                                    y: new int [] { 3, 2},
+                                    Name: "stacked area 2"
+                                )
+                            }
+                        ).WithTraceInfo(
+                            LegendGroup: "extended-scatter-derived",
+                            LegendGroupTitle: Plotly.NET.Title.init("extended scatter-derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
-                        Chart.Line<int,int,string>(
-                            x: new int [] { 9, 10 },
-                            y: new int [] { 11, 12 }
+                        Chart.Combine(
+                            new GenericChart []
+                            {
+                                Chart.Bar<int,string,string>(
+                                    values: new int [] { 1,2 },
+                                    Keys: new string [] { "first", "second"},
+                                    Name: "bar"
+                                ),
+                                Chart.StackedBar<int,string,string>(
+                                    values: new int [] { 1,2 },
+                                    Keys: new string [] { "third", "4th"},
+                                    Name: "stacked bar 1"
+                                ),
+                                Chart.StackedBar<int,string,string>(
+                                    values: new int [] { 1,2 },
+                                    Keys: new string [] { "third", "4th"},
+                                    Name: "stacked bar 2"
+                                ),
+                            }
+                        ).WithTraceInfo(
+                            LegendGroup: "bar-and-derived-traces",
+                            LegendGroupTitle: Plotly.NET.Title.init("bar and derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
-                        Chart.Bar<int,string,string>(
-                            values: new int [] { 1,2 },
-                            Keys: new string [] { "first", "second"}
+                        Chart.Combine(
+                            new GenericChart []
+                            {
+                                Chart.Column<int,string,string>(
+                                    values: new int [] { 3,4 },
+                                    Keys: new string [] { "first", "second"},
+                                    Name: "column"
+                                ),
+                                Chart.StackedColumn<int,string,string>(
+                                    values: new int [] { 1,2 },
+                                    Keys: new string [] { "third", "4th"},
+                                    Name: "stacked column 1"
+                                ),
+                                Chart.StackedColumn<int,string,string>(
+                                    values: new int [] { 1,2 },
+                                    Keys: new string [] { "third", "4th"},
+                                    Name: "stacked column 2"
+                                ),
+                            }
+                        ).WithTraceInfo(
+                            LegendGroup: "bar-and-derived-traces",
+                            LegendGroupTitle: Plotly.NET.Title.init("bar and derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
-                        Chart.Column<int,string,string>(
-                            values: new int [] { 3,4 },
-                            Keys: new string [] { "first", "second"}
+                        Chart.Heatmap<int, int, int, string>(
+                            zData: new int [] []
+                            {
+                                new int [] { 1,2,3},
+                                new int [] { 2,1,2},
+                                new int [] { 3,2,1}
+                            },
+                            ShowScale: false,
+                            Name: "heatmap",
+                            ShowLegend: true
+                        ).WithTraceInfo(
+                            LegendGroup: "other-simple-2D",
+                            LegendGroupTitle: Plotly.NET.Title.init("other simple 2D traces", Font: Plotly.NET.Font.init(Size: 20))
+                        ),                        
+                        Chart.Image<string>(
+                            Source: @"data:image/gif;base64,R0lGODdhEAAQAMwAAPj7+FmhUYjNfGuxYYDJdYTIeanOpT+DOTuANXi/bGOrWj6CONzv2sPjv2CmV1unU4zPgI/Sg6DJnJ3ImTh8Mtbs00aNP1CZSGy0YqLEn47RgXW8amasW7XWsmmvX2iuXiwAAAAAEAAQAAAFVyAgjmRpnihqGCkpDQPbGkNUOFk6DZqgHCNGg2T4QAQBoIiRSAwBE4VA4FACKgkB5NGReASFZEmxsQ0whPDi9BiACYQAInXhwOUtgCUQoORFCGt/g4QAIQA7"
+                        ).WithTraceInfo(
+                            LegendGroup: "other-simple-2D",
+                            LegendGroupTitle: Plotly.NET.Title.init("other simple 2D traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.Invisible(),
 
                         //2D distributions
                         Chart.Histogram<int,int,int>(
                             X: new int [] { 1,2,2,2,3,4,5,5 },
-                            MultiText: new int [] { 1,2,3,4,5,6,7}
+                            MultiText: new int [] { 1,2,3,4,5,6,7},
+                            Name: "histogram"
+                        ).WithTraceInfo(
+                            LegendGroup: "scientific",
+                            LegendGroupTitle: Plotly.NET.Title.init("scientific/2D distributions", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.Histogram2D<int,int,int>(
                            x: new int [] { 1,2,2,2,3,4,5,5 },
                            y: new int [] { 1,2,2,2,3,4,5,5 },
-                           ShowScale: false
+                           ShowScale: false,
+                           ShowLegend: true,
+                           Name: "histogram2D"
+                        ).WithTraceInfo(
+                            LegendGroup: "scientific",
+                            LegendGroupTitle: Plotly.NET.Title.init("scientific/2D distributions", Font: Plotly.NET.Font.init(Size: 20))
                         ),
-                        Chart.BoxPlot<int,int,string>(
-                            X: new int [] { 1,2,2,2,3,4,5,5 }
+                        Chart.Combine(
+                            new GenericChart []
+                            {
+                                Chart.BoxPlot<int,int,string>(
+                                    X: new int [] { 1,2,2,2,3,4,5,5 },
+                                    Name: "Boxplot"
+                                ),
+                                Chart.Violin<int,int,string>(
+                                    X: new int [] { 1,2,2,2,3,4,5,5 },
+                                    Name: "Violin"
+                                ),
+                            }
+                        ).WithTraceInfo(
+                            LegendGroup: "scientific",
+                            LegendGroupTitle: Plotly.NET.Title.init("scientific/2D distributions", Font: Plotly.NET.Font.init(Size: 20))
                         ),
-                        Chart.Violin<int,int,string>(
-                            X: new int [] { 1,2,2,2,3,4,5,5 }
+                        Chart.Contour<int,int,int,string>(
+                            zData: new int [] []
+                            {
+                                new int [] { 1,2,3},
+                                new int [] { 2,1,2},
+                                new int [] { 3,2,1}
+                            },
+                           ShowScale: false,
+                           ShowLegend: true,
+                           Name: "contour"
+                        ).WithTraceInfo(
+                            LegendGroup: "scientific",
+                            LegendGroupTitle: Plotly.NET.Title.init("scientific/2D distributions", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.Histogram2DContour<int,int,int>(
                            x: new int [] { 1,2,2,2,3,4,5,5 },
                            y: new int [] { 1,2,2,2,3,4,5,5 },
-                           ShowScale: false
+                           ShowScale: false,
+                           ShowLegend: true,
+                           Name: "histogram2Dcontour"
+                        ).WithTraceInfo(
+                            LegendGroup: "scientific",
+                            LegendGroupTitle: Plotly.NET.Title.init("scientific/2D distributions", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.PointDensity<int,int>(
                            x: new int [] { 1,2,2,2,3,4,5,5 },
                            y: new int [] { 1,2,2,2,3,4,5,5 },
                            ShowScale: false
+                        ).WithTraceInfo(
+                            LegendGroup: "scientific",
+                            LegendGroupTitle: Plotly.NET.Title.init("scientific/2D distributions", Font: Plotly.NET.Font.init(Size: 20))
                         ),
+                        Chart.Invisible(),
 
                         //2D Finance traces
                         Chart.OHLC<double,DateTime,string>(
@@ -105,6 +267,19 @@ namespace TestConsoleApp
                             x: new double [] { 1200, 909.4, 600.6, 300, 80 },
                             y: new string[] { "A", "B", "C", "D", "E"}
                         ),
+                        Chart.Combine(
+                            new GenericChart []
+                            {
+                                Chart.StackedFunnel<double, string, string>(
+                                    x: new double [] { 1200, 909.4, 600.6, 300, 80 },
+                                    y: new string[] { "A", "B", "C", "D", "E"}
+                                ),
+                                Chart.StackedFunnel<double, string, string>(
+                                    x: new double [] { 1200, 909.4, 600.6, 300, 80 },
+                                    y: new string[] { "A", "B", "C", "D", "E"}
+                                ),
+                            }
+                        ),
                         Chart.FunnelArea<int, string, string>(
                             values: new int [] { 5, 4, 3, 2, 1 },
                             MultiText: new string[] { "A", "B", "C", "D", "E"}
@@ -127,6 +302,7 @@ namespace TestConsoleApp
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
+                        Chart.Invisible(),
 
                         //polar traces
                         Chart.ScatterPolar<int,int,string>(
@@ -139,6 +315,7 @@ namespace TestConsoleApp
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
+                        Chart.Invisible(),
 
                         //geo/mapbox traces
                         Chart.ScatterGeo<int,int,string>(
@@ -146,6 +323,7 @@ namespace TestConsoleApp
                             latitudes: new int [] { 3, 4 },
                             mode: Mode.Markers
                         ),
+                        Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
@@ -169,6 +347,7 @@ namespace TestConsoleApp
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
+                        Chart.Invisible(),
 
                         //carpet traces
                         Chart.Carpet<double,double,double,double,double,double>(
@@ -177,6 +356,7 @@ namespace TestConsoleApp
                             B: new double [] {1.0, 2.0, 3.0, 1.0, 2.0, 3.0, 1.0, 2.0, 3.0, 1.0, 2.0, 3.0},
                             Y: new double [] {2.0, 3.5, 4.0, 3.0, 4.5, 5.0, 5.5, 6.5, 7.5, 8.0, 8.5, 10.0}
                         ),
+                        Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
@@ -211,6 +391,7 @@ namespace TestConsoleApp
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
+                        Chart.Invisible(),
 
                         //smith traces
                         Chart.ScatterSmith<double,double,string>(
@@ -222,10 +403,11 @@ namespace TestConsoleApp
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
+                        Chart.Invisible(),
                         Chart.Invisible()
                     }
             )
-            .WithSize(1200, 2000)
+            .WithSize(1600, 2200)
             .Show();
         }
     }
