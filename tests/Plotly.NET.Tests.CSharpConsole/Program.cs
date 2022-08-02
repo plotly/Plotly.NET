@@ -93,33 +93,22 @@ namespace TestConsoleApp
                             LegendGroup: "extended-scatter-derived",
                             LegendGroupTitle: Plotly.NET.Title.init("extended scatter-derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
-                        Chart.Bar<int,string,string>(
-                            values: new int [] { 1,2 },
-                            Keys: new string [] { "first", "second"},
-                            Name: "bar"
-                        ).WithTraceInfo(
-                            LegendGroup: "bar-and-derived-traces",
-                            LegendGroupTitle: Plotly.NET.Title.init("bar and derived traces", Font: Plotly.NET.Font.init(Size: 20))
-                        ),
-                        Chart.Column<int,string,string>(
-                            values: new int [] { 3,4 },
-                            Keys: new string [] { "first", "second"},
-                            Name: "column"
-                        ).WithTraceInfo(
-                            LegendGroup: "bar-and-derived-traces",
-                            LegendGroupTitle: Plotly.NET.Title.init("bar and derived traces", Font: Plotly.NET.Font.init(Size: 20))
-                        ),
                         Chart.Combine(
                             new GenericChart []
                             {
-                                Chart.StackedBar<int,string,string>(
+                                Chart.Bar<int,string,string>(
                                     values: new int [] { 1,2 },
                                     Keys: new string [] { "first", "second"},
+                                    Name: "bar"
+                                ),
+                                Chart.StackedBar<int,string,string>(
+                                    values: new int [] { 1,2 },
+                                    Keys: new string [] { "third", "4th"},
                                     Name: "stacked bar 1"
                                 ),
                                 Chart.StackedBar<int,string,string>(
                                     values: new int [] { 1,2 },
-                                    Keys: new string [] { "first", "second"},
+                                    Keys: new string [] { "third", "4th"},
                                     Name: "stacked bar 2"
                                 ),
                             }
@@ -130,14 +119,19 @@ namespace TestConsoleApp
                         Chart.Combine(
                             new GenericChart []
                             {
+                                Chart.Column<int,string,string>(
+                                    values: new int [] { 3,4 },
+                                    Keys: new string [] { "first", "second"},
+                                    Name: "column"
+                                ),
                                 Chart.StackedColumn<int,string,string>(
                                     values: new int [] { 1,2 },
-                                    Keys: new string [] { "first", "second"},
+                                    Keys: new string [] { "third", "4th"},
                                     Name: "stacked column 1"
                                 ),
                                 Chart.StackedColumn<int,string,string>(
                                     values: new int [] { 1,2 },
-                                    Keys: new string [] { "first", "second"},
+                                    Keys: new string [] { "third", "4th"},
                                     Name: "stacked column 2"
                                 ),
                             }
@@ -145,11 +139,6 @@ namespace TestConsoleApp
                             LegendGroup: "bar-and-derived-traces",
                             LegendGroupTitle: Plotly.NET.Title.init("bar and derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
-                        Chart.Image<string>(
-                            Source: @"data:image/gif;base64,R0lGODdhEAAQAMwAAPj7+FmhUYjNfGuxYYDJdYTIeanOpT+DOTuANXi/bGOrWj6CONzv2sPjv2CmV1unU4zPgI/Sg6DJnJ3ImTh8Mtbs00aNP1CZSGy0YqLEn47RgXW8amasW7XWsmmvX2iuXiwAAAAAEAAQAAAFVyAgjmRpnihqGCkpDQPbGkNUOFk6DZqgHCNGg2T4QAQBoIiRSAwBE4VA4FACKgkB5NGReASFZEmxsQ0whPDi9BiACYQAInXhwOUtgCUQoORFCGt/g4QAIQA7"
-                        ),
-
-                        //2D distributions
                         Chart.Heatmap<int, int, int, string>(
                             zData: new int [] []
                             {
@@ -160,11 +149,26 @@ namespace TestConsoleApp
                             ShowScale: false,
                             Name: "heatmap",
                             ShowLegend: true
+                        ).WithTraceInfo(
+                            LegendGroup: "other-simple-2D",
+                            LegendGroupTitle: Plotly.NET.Title.init("other simple 2D traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),                        
+                        Chart.Image<string>(
+                            Source: @"data:image/gif;base64,R0lGODdhEAAQAMwAAPj7+FmhUYjNfGuxYYDJdYTIeanOpT+DOTuANXi/bGOrWj6CONzv2sPjv2CmV1unU4zPgI/Sg6DJnJ3ImTh8Mtbs00aNP1CZSGy0YqLEn47RgXW8amasW7XWsmmvX2iuXiwAAAAAEAAQAAAFVyAgjmRpnihqGCkpDQPbGkNUOFk6DZqgHCNGg2T4QAQBoIiRSAwBE4VA4FACKgkB5NGReASFZEmxsQ0whPDi9BiACYQAInXhwOUtgCUQoORFCGt/g4QAIQA7"
+                        ).WithTraceInfo(
+                            LegendGroup: "other-simple-2D",
+                            LegendGroupTitle: Plotly.NET.Title.init("other simple 2D traces", Font: Plotly.NET.Font.init(Size: 20))
+                        ),
+                        Chart.Invisible(),
+
+                        //2D distributions
                         Chart.Histogram<int,int,int>(
                             X: new int [] { 1,2,2,2,3,4,5,5 },
                             MultiText: new int [] { 1,2,3,4,5,6,7},
                             Name: "histogram"
+                        ).WithTraceInfo(
+                            LegendGroup: "scientific",
+                            LegendGroupTitle: Plotly.NET.Title.init("scientific/2D distributions", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.Histogram2D<int,int,int>(
                            x: new int [] { 1,2,2,2,3,4,5,5 },
@@ -172,23 +176,59 @@ namespace TestConsoleApp
                            ShowScale: false,
                            ShowLegend: true,
                            Name: "histogram2D"
+                        ).WithTraceInfo(
+                            LegendGroup: "scientific",
+                            LegendGroupTitle: Plotly.NET.Title.init("scientific/2D distributions", Font: Plotly.NET.Font.init(Size: 20))
                         ),
-                        Chart.BoxPlot<int,int,string>(
-                            X: new int [] { 1,2,2,2,3,4,5,5 }
+                        Chart.Combine(
+                            new GenericChart []
+                            {
+                                Chart.BoxPlot<int,int,string>(
+                                    X: new int [] { 1,2,2,2,3,4,5,5 },
+                                    Name: "Boxplot"
+                                ),
+                                Chart.Violin<int,int,string>(
+                                    X: new int [] { 1,2,2,2,3,4,5,5 },
+                                    Name: "Violin"
+                                ),
+                            }
+                        ).WithTraceInfo(
+                            LegendGroup: "scientific",
+                            LegendGroupTitle: Plotly.NET.Title.init("scientific/2D distributions", Font: Plotly.NET.Font.init(Size: 20))
                         ),
-                        Chart.Violin<int,int,string>(
-                            X: new int [] { 1,2,2,2,3,4,5,5 }
+                        Chart.Contour<int,int,int,string>(
+                            zData: new int [] []
+                            {
+                                new int [] { 1,2,3},
+                                new int [] { 2,1,2},
+                                new int [] { 3,2,1}
+                            },
+                           ShowScale: false,
+                           ShowLegend: true,
+                           Name: "contour"
+                        ).WithTraceInfo(
+                            LegendGroup: "scientific",
+                            LegendGroupTitle: Plotly.NET.Title.init("scientific/2D distributions", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.Histogram2DContour<int,int,int>(
                            x: new int [] { 1,2,2,2,3,4,5,5 },
                            y: new int [] { 1,2,2,2,3,4,5,5 },
-                           ShowScale: false
+                           ShowScale: false,
+                           ShowLegend: true,
+                           Name: "histogram2Dcontour"
+                        ).WithTraceInfo(
+                            LegendGroup: "scientific",
+                            LegendGroupTitle: Plotly.NET.Title.init("scientific/2D distributions", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.PointDensity<int,int>(
                            x: new int [] { 1,2,2,2,3,4,5,5 },
                            y: new int [] { 1,2,2,2,3,4,5,5 },
                            ShowScale: false
+                        ).WithTraceInfo(
+                            LegendGroup: "scientific",
+                            LegendGroupTitle: Plotly.NET.Title.init("scientific/2D distributions", Font: Plotly.NET.Font.init(Size: 20))
                         ),
+                        Chart.Invisible(),
 
                         //2D Finance traces
                         Chart.OHLC<double,DateTime,string>(
@@ -367,7 +407,7 @@ namespace TestConsoleApp
                         Chart.Invisible()
                     }
             )
-            .WithSize(1400, 2000)
+            .WithSize(1600, 2200)
             .Show();
         }
     }
