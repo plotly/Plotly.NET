@@ -2219,6 +2219,200 @@ namespace Plotly.NET.CSharp
                     UseDefaults: UseDefaults.ToOption()
                 );
 
+
+        /// <summary>
+        /// Creates an OHLC chart.
+        ///
+        /// The ohlc (short for Open-High-Low-Close) is a style of financial chart describing open, high, low and close for a given `x` coordinate (most likely time). The tip of the lines represent the `low` and `high` values and the horizontal segments represent the `open` and `close` values. Sample points where the close value is higher (lower) then the open value are called increasing (decreasing). By default, increasing items are drawn in green whereas decreasing are drawn in red.
+        /// </summary>
+        /// <param name="open">Sets the open values.</param>
+        /// <param name="high">Sets the high values.</param>
+        /// <param name="low">Sets the low values.</param>
+        /// <param name="close">Sets the close values.</param>
+        /// <param name="x">Sets the x coordinates. If absent, linear coordinate will be generated.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="Line">Sets the line of this trace.</param>
+        /// <param name="IncreasingColor">Sets the color of increasing values</param>
+        /// <param name="Increasing">Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="DecreasingColor">Sets the color of decreasing values</param>
+        /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="TickWidth">Sets the width of the open/close tick marks relative to the "x" minimal interval.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        public static GenericChart.GenericChart OHLC<OHLCType, XType, TextType>(
+            IEnumerable<OHLCType> open,
+            IEnumerable<OHLCType> high,
+            IEnumerable<OHLCType> low,
+            IEnumerable<OHLCType> close,
+            IEnumerable<XType> x,
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<TextType> Text = default,
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<Line> Line = default,
+            Optional<Color> IncreasingColor = default,
+            Optional<FinanceMarker> Increasing = default,
+            Optional<Color> DecreasingColor = default,
+            Optional<FinanceMarker> Decreasing = default,
+            Optional<double> TickWidth = default,
+            Optional<bool> UseDefaults = default
+        )
+            where OHLCType : IConvertible
+            where XType : IConvertible
+            where TextType : IConvertible
+            =>
+                Plotly.NET.Chart2D.Chart.OHLC<OHLCType, OHLCType, OHLCType, OHLCType, XType, TextType>(
+                    open: open,
+                    high: high,
+                    low: low,
+                    close: close,
+                    x: x,
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    Line: Line.ToOption(),
+                    IncreasingColor: IncreasingColor.ToOption(),
+                    Increasing: Increasing.ToOption(),
+                    DecreasingColor: DecreasingColor.ToOption(),
+                    Decreasing: Decreasing.ToOption(),
+                    TickWidth: TickWidth.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
+
+        /// <summary>
+        /// Creates a candlestick chart.
+        ///
+        /// The candlestick is a style of financial chart describing open, high, low and close for a given `x` coordinate (most likely time). The boxes represent the spread between the `open` and `close` values and the lines represent the spread between the `low` and `high` values Sample points where the close value is higher (lower) then the open value are called increasing (decreasing). By default, increasing candles are drawn in green whereas decreasing are drawn in red.
+        /// </summary>
+        /// <param name="open">Sets the open values.</param>
+        /// <param name="high">Sets the high values.</param>
+        /// <param name="low">Sets the low values.</param>
+        /// <param name="close">Sets the close values.</param>
+        /// <param name="x">Sets the x coordinates. If absent, linear coordinate will be generated.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="Line">Sets the line of this trace.</param>
+        /// <param name="IncreasingColor">Sets the color of increasing values</param>
+        /// <param name="Increasing">Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="DecreasingColor">Sets the color of decreasing values</param>
+        /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="WhiskerWidth">Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        public static GenericChart.GenericChart Candlestick<OHLCType, XType, TextType>(
+            IEnumerable<OHLCType> open,
+            IEnumerable<OHLCType> high,
+            IEnumerable<OHLCType> low,
+            IEnumerable<OHLCType> close,
+            IEnumerable<XType> x,
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<TextType> Text = default,
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<Line> Line = default,
+            Optional<Color> IncreasingColor = default,
+            Optional<FinanceMarker> Increasing = default,
+            Optional<Color> DecreasingColor = default,
+            Optional<FinanceMarker> Decreasing = default,
+            Optional<double> WhiskerWidth = default,
+            Optional<bool> UseDefaults = default
+        )
+            where OHLCType : IConvertible
+            where XType : IConvertible
+            where TextType : IConvertible
+            =>
+                Plotly.NET.Chart2D.Chart.Candlestick<OHLCType, OHLCType, OHLCType, OHLCType, XType, TextType>(
+                    open: open,
+                    high: high,
+                    low: low,
+                    close: close,
+                    x: x,
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    Line: Line.ToOption(),
+                    IncreasingColor: IncreasingColor.ToOption(),
+                    Increasing: Increasing.ToOption(),
+                    DecreasingColor: DecreasingColor.ToOption(),
+                    Decreasing: Decreasing.ToOption(),
+                    WhiskerWidth: WhiskerWidth.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
+
+        /// <summary>
+        /// Creates a scatter plot matrix (SPLOM) from multiple input dimensions.
+        ///
+        /// Each splom `dimensions` items correspond to a generated axis. Values for each of those dimensions are set in `dimensions[i].values`. Splom traces support all `scattergl` marker style attributes. Specify `layout.grid` attributes and/or layout x-axis and y-axis attributes for more control over the axis positioning and style.
+        /// </summary>
+        /// <param name="dimensions">Sets the dimensions of the scatter plot matrix, where each item corresponds to a generated axis.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker.</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker. Use `Color.fromColorScaleValues` to map marker colors to a colorscale.</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the symbol of all marker</param>
+        /// <param name="MultiMarkerSymbol">Sets the symbol of each individual marker</param>
+        /// <param name="Marker">Sets the markers (use this for more finegrained control than the other marker-associated arguments).</param>
+        /// <param name="ShowDiagonal">Wether or not to show the matrix diagional</param>
+        /// <param name="Diagonal">Sets the styles applied to the scatter plot matrix diagonal</param>
+        /// <param name="ShowLowerHalf">Determines whether or not subplots on the lower half from the diagonal are displayed.</param>
+        /// <param name="ShowUpperHalf">Determines whether or not subplots on the upper half from the diagonal are displayed.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        public static GenericChart.GenericChart Splom<TextType>(
+            IEnumerable<Dimension> dimensions, 
+            Optional<string> Name = default, 
+            Optional<bool> ShowLegend = default, 
+            Optional<double> Opacity = default, 
+            Optional<TextType> Text = default, 
+            Optional<IEnumerable<TextType>> MultiText = default, 
+            Optional<Color> MarkerColor = default, 
+            Optional<StyleParam.Colorscale> MarkerColorScale = default, 
+            Optional<Line> MarkerOutline = default, 
+            Optional<StyleParam.MarkerSymbol> MarkerSymbol = default, 
+            Optional<IEnumerable<StyleParam.MarkerSymbol>> MultiMarkerSymbol = default, 
+            Optional<Marker> Marker = default, 
+            Optional<bool> ShowDiagonal = default, 
+            Optional<SplomDiagonal> Diagonal = default, 
+            Optional<bool> ShowLowerHalf = default, 
+            Optional<bool> ShowUpperHalf = default, 
+            Optional<bool> UseDefaults = default
+        )
+            where TextType : IConvertible
+            =>
+                Plotly.NET.Chart2D.Chart.Splom<TextType>(
+                    dimensions: dimensions,
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    MarkerColor: MarkerColor.ToOption(),
+                    MarkerColorScale: MarkerColorScale.ToOption(),
+                    MarkerOutline: MarkerOutline.ToOption(),
+                    MarkerSymbol: MarkerSymbol.ToOption(),
+                    MultiMarkerSymbol: MultiMarkerSymbol.ToOption(),
+                    Marker: Marker.ToOption(),
+                    ShowDiagonal: ShowDiagonal.ToOption(),
+                    Diagonal: Diagonal.ToOption(),
+                    ShowLowerHalf: ShowLowerHalf.ToOption(),
+                    ShowUpperHalf: ShowUpperHalf.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
+
         /// <summary>
         /// Creates a point density plot - a combination of a Scatter plot and Histogram2DContour.
         ///
@@ -2290,137 +2484,6 @@ namespace Plotly.NET.CSharp
                     ShowScale: ShowScale.ToOption(),
                     UseDefaults: UseDefaults.ToOption()
                 );
-
-        /// <summary>
-        /// Creates an OHLC chart.
-        ///
-        /// The ohlc (short for Open-High-Low-Close) is a style of financial chart describing open, high, low and close for a given `x` coordinate (most likely time). The tip of the lines represent the `low` and `high` values and the horizontal segments represent the `open` and `close` values. Sample points where the close value is higher (lower) then the open value are called increasing (decreasing). By default, increasing items are drawn in green whereas decreasing are drawn in red.
-        /// </summary>
-        /// <param name="open">Sets the open values.</param>
-        /// <param name="high">Sets the high values.</param>
-        /// <param name="low">Sets the low values.</param>
-        /// <param name="close">Sets the close values.</param>
-        /// <param name="x">Sets the x coordinates. If absent, linear coordinate will be generated.</param>
-        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
-        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
-        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
-        /// <param name="Text">Sets a text associated with each datum</param>
-        /// <param name="MultiText">Sets individual text for each datum</param>
-        /// <param name="Line">Sets the line of this trace.</param>
-        /// <param name="IncreasingColor">Sets the color of increasing values</param>
-        /// <param name="Increasing">Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
-        /// <param name="DecreasingColor">Sets the color of decreasing values</param>
-        /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
-        /// <param name="TickWidth">Sets the width of the open/close tick marks relative to the "x" minimal interval.</param>
-        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart OHLC<OHLCType, XType, TextType>(
-            IEnumerable<OHLCType> open, 
-            IEnumerable<OHLCType> high, 
-            IEnumerable<OHLCType> low, 
-            IEnumerable<OHLCType> close, 
-            IEnumerable<XType> x, 
-            Optional<string> Name = default, 
-            Optional<bool> ShowLegend = default, 
-            Optional<double> Opacity = default, 
-            Optional<TextType> Text = default, 
-            Optional<IEnumerable<TextType>> MultiText = default, 
-            Optional<Line> Line = default, 
-            Optional<Color> IncreasingColor = default, 
-            Optional<FinanceMarker> Increasing = default, 
-            Optional<Color> DecreasingColor = default, 
-            Optional<FinanceMarker> Decreasing = default, 
-            Optional<double> TickWidth = default, 
-            Optional<bool> UseDefaults = default
-        )
-            where OHLCType : IConvertible
-            where XType : IConvertible
-            where TextType : IConvertible
-            =>
-                Plotly.NET.Chart2D.Chart.OHLC<OHLCType, OHLCType, OHLCType, OHLCType, XType, TextType>(
-                    open: open,
-                    high: high,
-                    low: low,
-                    close: close,
-                    x: x,
-                    Name: Name.ToOption(),
-                    ShowLegend: ShowLegend.ToOption(),
-                    Opacity: Opacity.ToOption(),
-                    Text: Text.ToOption(),
-                    MultiText: MultiText.ToOption(),
-                    Line: Line.ToOption(),
-                    IncreasingColor: IncreasingColor.ToOption(),
-                    Increasing : Increasing.ToOption(),
-                    DecreasingColor: DecreasingColor.ToOption(),
-                    Decreasing: Decreasing.ToOption(),
-                    TickWidth: TickWidth.ToOption(),
-                    UseDefaults: UseDefaults.ToOption()
-                );
-
-        /// <summary>
-        /// Creates a candlestick chart.
-        ///
-        /// The candlestick is a style of financial chart describing open, high, low and close for a given `x` coordinate (most likely time). The boxes represent the spread between the `open` and `close` values and the lines represent the spread between the `low` and `high` values Sample points where the close value is higher (lower) then the open value are called increasing (decreasing). By default, increasing candles are drawn in green whereas decreasing are drawn in red.
-        /// </summary>
-        /// <param name="open">Sets the open values.</param>
-        /// <param name="high">Sets the high values.</param>
-        /// <param name="low">Sets the low values.</param>
-        /// <param name="close">Sets the close values.</param>
-        /// <param name="x">Sets the x coordinates. If absent, linear coordinate will be generated.</param>
-        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
-        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
-        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
-        /// <param name="Text">Sets a text associated with each datum</param>
-        /// <param name="MultiText">Sets individual text for each datum</param>
-        /// <param name="Line">Sets the line of this trace.</param>
-        /// <param name="IncreasingColor">Sets the color of increasing values</param>
-        /// <param name="Increasing">Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
-        /// <param name="DecreasingColor">Sets the color of decreasing values</param>
-        /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
-        /// <param name="WhiskerWidth">Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).</param>
-        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Candlestick<OHLCType, XType, TextType>(
-            IEnumerable<OHLCType> open,
-            IEnumerable<OHLCType> high,
-            IEnumerable<OHLCType> low,
-            IEnumerable<OHLCType> close,
-            IEnumerable<XType> x,
-            Optional<string> Name = default,
-            Optional<bool> ShowLegend = default,
-            Optional<double> Opacity = default,
-            Optional<TextType> Text = default,
-            Optional<IEnumerable<TextType>> MultiText = default,
-            Optional<Line> Line = default,
-            Optional<Color> IncreasingColor = default,
-            Optional<FinanceMarker> Increasing = default,
-            Optional<Color> DecreasingColor = default,
-            Optional<FinanceMarker> Decreasing = default,
-            Optional<double> WhiskerWidth = default, 
-            Optional<bool> UseDefaults = default
-        )
-            where OHLCType : IConvertible
-            where XType : IConvertible
-            where TextType : IConvertible
-            =>
-                Plotly.NET.Chart2D.Chart.Candlestick<OHLCType, OHLCType, OHLCType, OHLCType, XType, TextType>(
-                    open: open,
-                    high: high,
-                    low: low,
-                    close: close,
-                    x: x,
-                    Name: Name.ToOption(),
-                    ShowLegend: ShowLegend.ToOption(),
-                    Opacity: Opacity.ToOption(),
-                    Text: Text.ToOption(),
-                    MultiText: MultiText.ToOption(),
-                    Line: Line.ToOption(),
-                    IncreasingColor: IncreasingColor.ToOption(),
-                    Increasing: Increasing.ToOption(),
-                    DecreasingColor: DecreasingColor.ToOption(),
-                    Decreasing: Decreasing.ToOption(),
-                    WhiskerWidth: WhiskerWidth.ToOption(),
-                    UseDefaults: UseDefaults.ToOption()
-                );
-
 
     };
 
