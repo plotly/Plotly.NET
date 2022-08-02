@@ -145,7 +145,9 @@ namespace TestConsoleApp
                             LegendGroup: "bar-and-derived-traces",
                             LegendGroupTitle: Plotly.NET.Title.init("bar and derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
-                        Chart.Invisible(),
+                        Chart.Image<string>(
+                            Source: @"data:image/gif;base64,R0lGODdhEAAQAMwAAPj7+FmhUYjNfGuxYYDJdYTIeanOpT+DOTuANXi/bGOrWj6CONzv2sPjv2CmV1unU4zPgI/Sg6DJnJ3ImTh8Mtbs00aNP1CZSGy0YqLEn47RgXW8amasW7XWsmmvX2iuXiwAAAAAEAAQAAAFVyAgjmRpnihqGCkpDQPbGkNUOFk6DZqgHCNGg2T4QAQBoIiRSAwBE4VA4FACKgkB5NGReASFZEmxsQ0whPDi9BiACYQAInXhwOUtgCUQoORFCGt/g4QAIQA7"
+                        ),
 
                         //2D distributions
                         Chart.Heatmap<int, int, int, string>(
