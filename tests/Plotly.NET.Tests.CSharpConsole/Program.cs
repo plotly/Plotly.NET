@@ -291,11 +291,39 @@ namespace TestConsoleApp
                         ),
 
                         //3D traces
-                        Chart.Scatter3D<int,int,int,string>(
-                            x: new int[] { 12, 13 },
-                            y: new int [] { 13, 14 },
-                            z: new int [] { 14, 15 },
-                            mode: Mode.Markers
+                        Chart.Combine(
+                            new GenericChart []
+                            {
+                                Chart.Scatter3D<int,int,int,string>(
+                                    x: new int[] { 1, 2 },
+                                    y: new int [] { 13, 14 },
+                                    z: new int [] { 14, 15 },
+                                    mode: Mode.Markers,
+                                    Name: "scatter3D"
+                                ),                                
+                                Chart.Point3D<int,int,int,string>(
+                                    x: new int[] { 3, 4 },
+                                    y: new int [] { 13, 14 },
+                                    z: new int [] { 14, 15 },
+                                    Name: "point3D"
+                                ),
+                                Chart.Line3D<int,int,int,string>(
+                                    x: new int[] { 5, 6 },
+                                    y: new int [] { 13, 14 },
+                                    z: new int [] { 14, 15 },
+                                    Name: "line3D"
+                                ),
+                                Chart.Bubble3D<int,int,int,string>(
+                                    x: new int[] { 7, 8 },
+                                    y: new int [] { 13, 14 },
+                                    z: new int [] { 14, 15 },
+                                    sizes: new int [] {30, 40},
+                                    Name: "bubble3D"
+                                ),
+                            }
+                        ).WithTraceInfo(
+                            LegendGroup: "3D-scatter-derived",
+                            LegendGroupTitle: Plotly.NET.Title.init("3D scatter-derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.Invisible(),
                         Chart.Invisible(),
