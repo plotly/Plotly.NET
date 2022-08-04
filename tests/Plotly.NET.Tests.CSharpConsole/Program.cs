@@ -325,7 +325,20 @@ namespace TestConsoleApp
                             LegendGroup: "3D-scatter-derived",
                             LegendGroupTitle: Plotly.NET.Title.init("3D scatter-derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
-                        Chart.Invisible(),
+                        Chart.Surface<int,int,int,string>(
+                            zData: new int [] []
+                            {
+                                new int [] { 1, 2, 1 },
+                                new int [] { 1, 5, 1 },
+                                new int [] { 1, 2, 1 }
+                            },
+                            ShowScale: false,
+                            Name: "surface",
+                            ShowLegend: true
+                        ).WithTraceInfo(
+                            LegendGroup: "3D-other",
+                            LegendGroupTitle: Plotly.NET.Title.init("other 3D charts", Font: Plotly.NET.Font.init(Size: 20))
+                        ),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
