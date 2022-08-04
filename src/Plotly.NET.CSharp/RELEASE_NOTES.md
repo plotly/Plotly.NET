@@ -1,3 +1,22 @@
+### 0.3.0 - August 2 2022
+
+completed C# bindings for 2D traces/charts:
+
+- [x] Spline
+- [x] Bubble
+- [x] Range
+- [x] Area
+- [x] SplineArea
+- [x] StackedArea
+- [x] StackedFunnel
+- [x] StackedBar
+- [x] StackedColumn
+- [x] Heatmap
+- [x] AnnotatedHeatmap
+- [x] Image
+- [x] Contour
+- [x] Splom
+
 ### 0.2.0 - July 28 2022
 
 added C# bindings for finance charts
