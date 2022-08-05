@@ -339,8 +339,25 @@ namespace TestConsoleApp
                             LegendGroup: "3D-other",
                             LegendGroupTitle: Plotly.NET.Title.init("other 3D charts", Font: Plotly.NET.Font.init(Size: 20))
                         ),
-                        Chart.Invisible(),
-                        Chart.Invisible(),
+                        Chart.Mesh3D<int,int,int,int,int,int,string>(
+                            x: new int [] { 0, 1, 2, 0 },
+                            y: new int [] { 0, 0, 1, 2 },
+                            z: new int [] { 0, 2, 0, 1 },
+                            ShowScale: false,
+                            Name: "mesh3D",
+                            ShowLegend: true
+                        ),
+                        Chart.Cone<int,int,int,int,int,int,string>(
+                            x: new int [] { 0, 1, 2, 0 },
+                            y: new int [] { 0, 0, 1, 2 },
+                            z: new int [] { 0, 2, 0, 1 },                            
+                            u: new int [] { 0, 1, 2, 0 },
+                            v: new int [] { 0, 0, 1, 2 },
+                            w: new int [] { 0, 2, 0, 1 },
+                            ShowScale: false,
+                            Name: "cone",
+                            ShowLegend: true
+                        ),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
