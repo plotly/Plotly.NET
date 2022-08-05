@@ -357,8 +357,18 @@ namespace TestConsoleApp
                             ShowScale: false,
                             Name: "cone",
                             ShowLegend: true
+                        ),                        
+                        Chart.StreamTube<int,int,int,int,int,int,string>(
+                            x: new int [] { 0, 0, 0 },
+                            y: new int [] { 0, 1, 2},
+                            z: new int [] { 0, 0, 0},                            
+                            u: new int [] { 0, 0, 0},
+                            v: new int [] { 1, 1, 1},
+                            w: new int [] { 0, 0, 0},
+                            ShowScale: false,
+                            Name: "streamtube",
+                            ShowLegend: true
                         ),
-                        Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
 
