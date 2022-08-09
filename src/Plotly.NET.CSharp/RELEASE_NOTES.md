@@ -1,3 +1,17 @@
+### 0.4.0 - August 9 2022
+
+completed C# bindings for the missing 3D charts:
+
+- [x] Point3D
+- [x] Line3D
+- [x] Bubble3D
+- [x] Surface
+- [x] Mesh3D
+- [x] Cone
+- [x] StreamTube
+- [x] Volume
+- [x] IsoSurface
+
 ### 0.3.0 - August 2 2022
 
 completed C# bindings for 2D traces/charts:
