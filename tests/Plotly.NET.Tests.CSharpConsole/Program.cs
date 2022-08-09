@@ -291,18 +291,102 @@ namespace TestConsoleApp
                         ),
 
                         //3D traces
-                        Chart.Scatter3D<int,int,int,string>(
-                            x: new int[] { 12, 13 },
-                            y: new int [] { 13, 14 },
-                            z: new int [] { 14, 15 },
-                            mode: Mode.Markers
+                        Chart.Combine(
+                            new GenericChart []
+                            {
+                                Chart.Scatter3D<int,int,int,string>(
+                                    x: new int[] { 1, 2 },
+                                    y: new int [] { 13, 14 },
+                                    z: new int [] { 14, 15 },
+                                    mode: Mode.Markers,
+                                    Name: "scatter3D"
+                                ),                                
+                                Chart.Point3D<int,int,int,string>(
+                                    x: new int[] { 3, 4 },
+                                    y: new int [] { 13, 14 },
+                                    z: new int [] { 14, 15 },
+                                    Name: "point3D"
+                                ),
+                                Chart.Line3D<int,int,int,string>(
+                                    x: new int[] { 5, 6 },
+                                    y: new int [] { 13, 14 },
+                                    z: new int [] { 14, 15 },
+                                    Name: "line3D"
+                                ),
+                                Chart.Bubble3D<int,int,int,string>(
+                                    x: new int[] { 7, 8 },
+                                    y: new int [] { 13, 14 },
+                                    z: new int [] { 14, 15 },
+                                    sizes: new int [] {30, 40},
+                                    Name: "bubble3D"
+                                ),
+                            }
+                        ).WithTraceInfo(
+                            LegendGroup: "3D-scatter-derived",
+                            LegendGroupTitle: Plotly.NET.Title.init("3D scatter-derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
-                        Chart.Invisible(),
-                        Chart.Invisible(),
-                        Chart.Invisible(),
-                        Chart.Invisible(),
-                        Chart.Invisible(),
-                        Chart.Invisible(),
+                        Chart.Surface<int,int,int,string>(
+                            zData: new int [] []
+                            {
+                                new int [] { 1, 2, 1 },
+                                new int [] { 1, 5, 1 },
+                                new int [] { 1, 2, 1 }
+                            },
+                            ShowScale: false,
+                            Name: "surface",
+                            ShowLegend: true
+                        ).WithTraceInfo(
+                            LegendGroup: "3D-other",
+                            LegendGroupTitle: Plotly.NET.Title.init("other 3D charts", Font: Plotly.NET.Font.init(Size: 20))
+                        ),
+                        Chart.Mesh3D<int,int,int,int,int,int,string>(
+                            x: new int [] { 0, 1, 2, 0 },
+                            y: new int [] { 0, 0, 1, 2 },
+                            z: new int [] { 0, 2, 0, 1 },
+                            ShowScale: false,
+                            Name: "mesh3D",
+                            ShowLegend: true
+                        ),
+                        Chart.Cone<int,int,int,int,int,int,string>(
+                            x: new int [] { 0, 1, 2, 0 },
+                            y: new int [] { 0, 0, 1, 2 },
+                            z: new int [] { 0, 2, 0, 1 },                            
+                            u: new int [] { 0, 1, 2, 0 },
+                            v: new int [] { 0, 0, 1, 2 },
+                            w: new int [] { 0, 2, 0, 1 },
+                            ShowScale: false,
+                            Name: "cone",
+                            ShowLegend: true
+                        ),                        
+                        Chart.StreamTube<int,int,int,int,int,int,string>(
+                            x: new int [] { 0, 0, 0 },
+                            y: new int [] { 0, 1, 2},
+                            z: new int [] { 0, 0, 0},                            
+                            u: new int [] { 0, 0, 0},
+                            v: new int [] { 1, 1, 1},
+                            w: new int [] { 0, 0, 0},
+                            ShowScale: false,
+                            Name: "streamtube",
+                            ShowLegend: true
+                        ),
+                        Chart.Volume<double,double,double,double,string,double>(
+                            x: new double [] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
+                            y: new double [] { 1, 1, 1, 1.5, 1.5, 1.5, 2, 2, 2, 1, 1, 1, 1.5, 1.5, 1.5, 2, 2, 2, 1, 1, 1, 1.5, 1.5, 1.5, 2, 2, 2 },
+                            z: new double [] { 1, 1.5, 2, 1, 1.5, 2, 1, 1.5, 2, 1, 1.5, 2, 1, 1.5, 2, 1, 1.5, 2, 1, 1.5, 2, 1, 1.5, 2, 1, 1.5, 2},
+                            value: new double [] { 0.8414709848, 0.6649966577, 0.4546487134, 0.6649966577, 0.3458103097,04704000269, 0.4546487134, 04704000269, -0.1892006238, 0.6649966577, 0.3458103097, 04704000269, 0.3458103097, -06853149997, -0.217228915,04704000269, -0.217228915, -0465692497, 0.4546487134, 04704000269,-0.1892006238, 04704000269, -0.217228915, -0465692497, -0.1892006238,-0465692497, 0.1236697808},
+                            ShowScale: false,
+                            Name: "volume",
+                            ShowLegend: true
+                        ),                        
+                        Chart.IsoSurface<double,double,double,double,string>(
+                            x: new double [] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
+                            y: new double [] { 1, 1, 1, 1.5, 1.5, 1.5, 2, 2, 2, 1, 1, 1, 1.5, 1.5, 1.5, 2, 2, 2, 1, 1, 1, 1.5, 1.5, 1.5, 2, 2, 2 },
+                            z: new double [] { 1, 1.5, 2, 1, 1.5, 2, 1, 1.5, 2, 1, 1.5, 2, 1, 1.5, 2, 1, 1.5, 2, 1, 1.5, 2, 1, 1.5, 2, 1, 1.5, 2},
+                            value: new double [] { 0.8414709848, 0.6649966577, 0.4546487134, 0.6649966577, 0.3458103097,04704000269, 0.4546487134, 04704000269, -0.1892006238, 0.6649966577, 0.3458103097, 04704000269, 0.3458103097, -06853149997, -0.217228915,04704000269, -0.217228915, -0465692497, 0.4546487134, 04704000269,-0.1892006238, 04704000269, -0.217228915, -0465692497, -0.1892006238,-0465692497, 0.1236697808},
+                            ShowScale: false,
+                            Name: "isosurface",
+                            ShowLegend: true
+                        ),
 
                         //polar traces
                         Chart.ScatterPolar<int,int,string>(
