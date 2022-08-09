@@ -400,8 +400,16 @@ namespace TestConsoleApp
                             r: new int [] { 10, 20, 15, 20 },
                             Name: "pointpolar"
                         ),
-                        Chart.Invisible(),
-                        Chart.Invisible(),
+                        Chart.LinePolar<int,int,string>(
+                            theta: new int [] { 0, 90, 180, 270 },
+                            r: new int [] { 10, 20, 15, 20 },
+                            Name: "linepolar"
+                        ),
+                        Chart.SplinePolar<int,int,string>(
+                            theta: new int [] { 0, 90, 180, 270 },
+                            r: new int [] { 10, 20, 15, 20 },
+                            Name: "splinepolar"
+                        ),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
