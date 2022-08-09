@@ -390,11 +390,16 @@ namespace TestConsoleApp
 
                         //polar traces
                         Chart.ScatterPolar<int,int,string>(
-                            theta: new int [] { 1, 2 },
-                            r: new int [] { 3, 4 },
-                            mode: Mode.Markers
+                            theta: new int [] { 0, 90, 180, 270 },
+                            r: new int [] { 10, 20, 15, 20 },
+                            mode: Mode.Markers,
+                            Name: "scatterpolar"
                         ),
-                        Chart.Invisible(),
+                        Chart.PointPolar<int,int,string>(
+                            theta: new int [] { 0, 90, 180, 270 },
+                            r: new int [] { 10, 20, 15, 20 },
+                            Name: "pointpolar"
+                        ),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
