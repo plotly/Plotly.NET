@@ -410,8 +410,17 @@ namespace TestConsoleApp
                             r: new int [] { 10, 20, 15, 20 },
                             Name: "splinepolar"
                         ),
-                        Chart.Invisible(),
-                        Chart.Invisible(),
+                        Chart.BubblePolar<int,int,string>(
+                            theta: new int [] { 0, 90, 180, 270 },
+                            r: new int [] { 10, 20, 15, 20 },
+                            sizes: new int [] { 10, 30, 15, 40 },
+                            Name: "bubblepolar"
+                        ),
+                        Chart.BarPolar<int,int,string>(
+                            theta: new int [] { 0, 90, 180, 270 },
+                            r: new int [] { 10, 20, 15, 20 },
+                            Name: "barpolar"
+                        ),
                         Chart.Invisible(),
 
                         //geo/mapbox traces
