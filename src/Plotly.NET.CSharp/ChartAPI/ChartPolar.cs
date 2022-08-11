@@ -346,5 +346,149 @@ namespace Plotly.NET.CSharp
                     UseWebGL: UseWebGL.ToOption(),
                     UseDefaults: UseDefaults.ToOption()
                 );
+
+        /// <summary>
+        /// Creates a polar bubble chart.
+        ///
+        /// BubblePolar Plots plot two-dimensional data on on a polar coordinate system comprised of angular and radial position scales, additionally using the points size as a 4th dimension.
+        /// </summary>
+        /// <param name="r">Sets the radial coordinates of the plotted data</param>
+        /// <param name="theta">Sets the angular coordinates of the plotted data</param>
+        /// <param name="sizes">Sets the bubble size of the plotted data</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        public static GenericChart.GenericChart BubblePolar<RType, ThetaType, TextType>(
+            IEnumerable<RType> r,
+            IEnumerable<ThetaType> theta,
+            IEnumerable<int> sizes,
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<IEnumerable<double>> MultiOpacity = default,
+            Optional<TextType> Text = default,
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<StyleParam.TextPosition> TextPosition = default,
+            Optional<IEnumerable<StyleParam.TextPosition>> MultiTextPosition = default,
+            Optional<Color> MarkerColor = default,
+            Optional<StyleParam.Colorscale> MarkerColorScale = default,
+            Optional<Line> MarkerOutline = default,
+            Optional<StyleParam.MarkerSymbol3D> MarkerSymbol = default,
+            Optional<IEnumerable<StyleParam.MarkerSymbol3D>> MultiMarkerSymbol = default,
+            Optional<Marker> Marker = default,
+            Optional<bool> UseWebGL = default,
+            Optional<bool> UseDefaults = default
+        )
+            where RType : IConvertible
+            where ThetaType : IConvertible
+            where TextType : IConvertible
+
+            =>
+                Plotly.NET.ChartPolar.Chart.BubblePolar<RType, ThetaType, TextType>(
+                    r: r,
+                    theta: theta,
+                    sizes: sizes,
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    MultiOpacity: MultiOpacity.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    TextPosition: TextPosition.ToOption(),
+                    MultiTextPosition: MultiTextPosition.ToOption(),
+                    MarkerColor: MarkerColor.ToOption(),
+                    MarkerColorScale: MarkerColorScale.ToOption(),
+                    MarkerOutline: MarkerOutline.ToOption(),
+                    MarkerSymbol: MarkerSymbol.ToOption(),
+                    MultiMarkerSymbol: MultiMarkerSymbol.ToOption(),
+                    Marker: Marker.ToOption(),
+                    UseWebGL: UseWebGL.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
+
+        /// <summary>
+        /// Creates a polar bar chart.
+        ///
+        /// A polar bar chart is a chart that presents categorical data on a polar coordinate system with bars with radial height proportional to the values that they represent.
+        /// </summary>
+        /// <param name="r">Sets the radial height of the bars</param>
+        /// <param name="theta">sets the angular position of the bars</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="MarkerColor">Sets the color of the bars</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the bars</param>
+        /// <param name="MarkerOutline">Sets the color of the bar outline</param>
+        /// <param name="MarkerPatternShape">Sets the pattern shape for all bars</param>
+        /// <param name="MultiMarkerPatternShape">Sets individual pattern shapes for the bars</param>
+        /// <param name="MarkerPattern">Sets the marker pattern (use this for more finegrained control than the other pattern-associated arguments).</param>
+        /// <param name="Marker">Sets the marker for the bars (use this for more finegrained control than the other marker-associated arguments).</param>
+        /// <param name="Base">Sets where the bar base is drawn (in position axis units).</param>
+        /// <param name="Width">Sets the bar width (in position axis units) of all bars.</param>
+        /// <param name="MultiWidth">Sets the individual bar width (in position axis units) for each bar.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        public static GenericChart.GenericChart BarPolar<RType, ThetaType, TextType>(
+            IEnumerable<RType> r,
+            IEnumerable<ThetaType> theta,
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<IEnumerable<double>> MultiOpacity = default,
+            Optional<TextType> Text = default,
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<Color> MarkerColor = default,
+            Optional<StyleParam.Colorscale> MarkerColorScale = default,
+            Optional<Line> MarkerOutline = default,
+            Optional<StyleParam.PatternShape> MarkerPatternShape = default,
+            Optional<IEnumerable<StyleParam.PatternShape>> MultiMarkerPatternShape = default,
+            Optional<Pattern> MarkerPattern = default,
+            Optional<Marker> Marker = default,
+            Optional<RType> Base = default,
+            Optional<ThetaType> Width = default,
+            Optional<IEnumerable<ThetaType>> MultiWidth = default,
+            Optional<bool> UseDefaults = default
+        )
+            where RType : IConvertible
+            where ThetaType : IConvertible
+            where TextType : IConvertible
+
+            =>
+                Plotly.NET.ChartPolar.Chart.BarPolar<RType, ThetaType, TextType, RType, ThetaType>(
+                    r: r,
+                    theta: theta,
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    MultiOpacity: MultiOpacity.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    MarkerColor: MarkerColor.ToOption(),
+                    MarkerColorScale: MarkerColorScale.ToOption(),
+                    MarkerOutline: MarkerOutline.ToOption(),
+                    MarkerPatternShape: MarkerPatternShape.ToOption(),
+                    MultiMarkerPatternShape: MultiMarkerPatternShape.ToOption(),
+                    MarkerPattern: MarkerPattern.ToOption(),
+                    Marker: Marker.ToOption(),
+                    Base: Base.ToOption(),
+                    Width: Width.ToOption(),
+                    MultiWidth: MultiWidth.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
     }
 }
