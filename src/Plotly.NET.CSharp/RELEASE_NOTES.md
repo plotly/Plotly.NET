@@ -1,3 +1,13 @@
+### 0.5.0 - August 11 2022
+
+completed C# bindings for the missing polar charts:
+
+- [x] PointPolar
+- [x] LinePolar
+- [x] SplinePolar
+- [x] BubblePolar
+- [x] BarPolar
+
 ### 0.4.0 - August 9 2022
 
 completed C# bindings for the missing 3D charts:
