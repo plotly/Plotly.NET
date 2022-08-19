@@ -424,12 +424,17 @@ namespace TestConsoleApp
                         Chart.Invisible(),
 
                         //geo/mapbox traces
+                        Chart.ChoroplethMap<int, string>(
+                            locations: new string [] {"USA", "Germany", "Australia"},
+                            z: new int [] {1, 2, 3},
+                            LocationMode: LocationFormat.CountryNames
+                        ),
+
                         Chart.ScatterGeo<int,int,string>(
                             longitudes: new int [] { 1, 2 },
                             latitudes: new int [] { 3, 4 },
                             mode: Mode.Markers
                         ),
-                        Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
