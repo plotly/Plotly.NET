@@ -465,17 +465,53 @@ namespace TestConsoleApp
                             LegendGroup: "other-geo",
                             LegendGroupTitle: Plotly.NET.Title.init("other geo charts", Font: Plotly.NET.Font.init(Size: 20))
                         ),
-                        Chart.Invisible(),
-                        Chart.Invisible(),
-                        Chart.Invisible(),
-                        Chart.Invisible(),
+                        Chart.Combine(
+                            new GenericChart []
+                            {
+                                Chart.ScatterMapbox<int,int,string>(
+                                    longitudes: new int [] { 1, 20 },
+                                    latitudes: new int [] { 1, 40 },
+                                    mode: Mode.Markers,
+                                    Name: "scattermapbox"
+                                )
+                                //Chart.PointMapbox<int,int,string>(
+                                //    longitudes: new int [] { 40, 50 },
+                                //    latitudes: new int [] { 60, 70 },
+                                //    Name: "pointgeo"
+                                //),
+                                //Chart.LineMapbox<int,int,string>(
+                                //    longitudes: new int [] { 10,  -100},
+                                //    latitudes: new int [] { 50, 50 },
+                                //    Name: "linemapbox"
+                                //),
+                                //Chart.BubbleMapbox<int,int,string>(
+                                //    longitudes: new int [] { 80,  -80},
+                                //    latitudes: new int [] { 20, -20 },
+                                //    sizes: new int [] { 10, 20 },
+                                //    Name: "bubblemapbox"
+                                //),
+                            }
+                        ).WithMaboxStyle(
+                            Style: MapboxStyle.OpenStreetMap,
+                            Id: 38
+                        ).WithTraceInfo(
+                            LegendGroup: "scattermapbox-derived",
+                            LegendGroupTitle: Plotly.NET.Title.init("scattermapbox derived traces", Font: Plotly.NET.Font.init(Size: 20))
+                        ),
                         Chart.DensityMapbox<int,int,int,string>(
                             longitudes: new int [] { 1,2,2,2,3,4,5,5 },
                             latitudes:  new int [] { 1,2,2,2,3,4,5,5 },
                             ShowScale: false
                         ).WithMaboxStyle(
-                            Style: MapboxStyle.OpenStreetMap
+                            Style: MapboxStyle.OpenStreetMap,
+                            Id: 39
+                        ).WithTraceInfo(
+                            LegendGroup: "other-mapbox",
+                            LegendGroupTitle: Plotly.NET.Title.init("other mapbox charts", Font: Plotly.NET.Font.init(Size: 20))
                         ),
+                        Chart.Invisible(),
+                        Chart.Invisible(),
+                        Chart.Invisible(),
 
                         //ternary traces
                         Chart.ScatterTernary<int,int,int,IConvertible,string>(
