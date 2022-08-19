@@ -36,7 +36,7 @@ Plotly.NET also provides several extension packages:
 
 | Package Name| Plotly.NET.Interactive | Plotly.NET.ImageExport | Plotly.NET.CSharp |
 |---|---|---|---|
-| Description | Interactive formatting extension for .NET interactive notebooks| programmatic static image export | idiomatic C# API. Note that you can use the core API in C#, this package just removes some friction at some places.|
+| Description | Interactive formatting extension for .NET interactive notebooks| programmatic static image export | idiomatic C# API. Note that you can use the core API in C#, this package just removes some friction at some places. [See bindings progress](https://github.com/plotly/Plotly.NET/issues/296)|
 | Nuget | [![](https://img.shields.io/nuget/vpre/Plotly.NET.Interactive)](https://www.nuget.org/packages/Plotly.NET.Interactive/) | [![](https://img.shields.io/nuget/vpre/Plotly.NET.ImageExport)](https://www.nuget.org/packages/Plotly.NET.ImageExport/) | [![](https://img.shields.io/nuget/vpre/Plotly.NET.CSharp)](https://www.nuget.org/packages/Plotly.NET.CSharp/) |
 
 ### For applications and libraries
