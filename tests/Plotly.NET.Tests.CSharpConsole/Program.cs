@@ -469,21 +469,21 @@ namespace TestConsoleApp
                             new GenericChart []
                             {
                                 Chart.ScatterMapbox<int,int,string>(
-                                    longitudes: new int [] { 1, 20 },
-                                    latitudes: new int [] { 1, 40 },
+                                    longitudes: new int [] { 1, 2 },
+                                    latitudes: new int [] { 1, 2 },
                                     mode: Mode.Markers,
                                     Name: "scattermapbox"
-                                )
-                                //Chart.PointMapbox<int,int,string>(
-                                //    longitudes: new int [] { 40, 50 },
-                                //    latitudes: new int [] { 60, 70 },
-                                //    Name: "pointgeo"
-                                //),
-                                //Chart.LineMapbox<int,int,string>(
-                                //    longitudes: new int [] { 10,  -100},
-                                //    latitudes: new int [] { 50, 50 },
-                                //    Name: "linemapbox"
-                                //),
+                                ),
+                                Chart.PointMapbox<int,int,string>(
+                                    longitudes: new int [] { 10, 11 },
+                                    latitudes: new int [] { 10, 11 },
+                                    Name: "pointmapbox"
+                                ),
+                                Chart.LineMapbox<int,int,string>(
+                                    longitudes: new int [] { -1, 11},
+                                    latitudes: new int [] { 11, 1 },
+                                    Name: "linemapbox"
+                                ),
                                 //Chart.BubbleMapbox<int,int,string>(
                                 //    longitudes: new int [] { 80,  -80},
                                 //    latitudes: new int [] { 20, -20 },
