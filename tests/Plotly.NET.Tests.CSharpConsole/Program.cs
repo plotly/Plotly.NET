@@ -437,6 +437,11 @@ namespace TestConsoleApp
                                     longitudes: new int [] { 40, 50 },
                                     latitudes: new int [] { 60, 70 },
                                     Name: "pointgeo"
+                                ),                                
+                                Chart.LineGeo<int,int,string>(
+                                    longitudes: new int [] { 10,  -100},
+                                    latitudes: new int [] { 50, 50 },
+                                    Name: "linegeo"
                                 ),
                             }
                         ).WithTraceInfo(
