@@ -442,6 +442,12 @@ namespace TestConsoleApp
                                     longitudes: new int [] { 10,  -100},
                                     latitudes: new int [] { 50, 50 },
                                     Name: "linegeo"
+                                ),                                
+                                Chart.BubbleGeo<int,int,string>(
+                                    longitudes: new int [] { 80,  -80},
+                                    latitudes: new int [] { 20, -20 },
+                                    sizes: new int [] { 10, 20 },
+                                    Name: "bubblegeo"
                                 ),
                             }
                         ).WithTraceInfo(
