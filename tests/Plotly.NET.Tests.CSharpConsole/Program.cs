@@ -484,12 +484,12 @@ namespace TestConsoleApp
                                     latitudes: new int [] { 11, 1 },
                                     Name: "linemapbox"
                                 ),
-                                //Chart.BubbleMapbox<int,int,string>(
-                                //    longitudes: new int [] { 80,  -80},
-                                //    latitudes: new int [] { 20, -20 },
-                                //    sizes: new int [] { 10, 20 },
-                                //    Name: "bubblemapbox"
-                                //),
+                                Chart.BubbleMapbox<int,int,string>(
+                                    longitudes: new int [] { 22, -11},
+                                    latitudes: new int [] { 5, 5 },
+                                    sizes: new int [] { 10, 20 },
+                                    Name: "bubblemapbox"
+                                ),
                             }
                         ).WithMaboxStyle(
                             Style: MapboxStyle.OpenStreetMap,
