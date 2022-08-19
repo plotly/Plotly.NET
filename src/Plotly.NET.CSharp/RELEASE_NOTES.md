@@ -1,3 +1,17 @@
+### 0.6.0 - August 19 2022
+
+completed C# bindings for the missing map charts:
+
+- [x] ChoroplethMap
+- [x] PointGeo
+- [x] LineGeo
+- [x] BubbleGeo
+- [x] ScatterMapbox
+- [x] LineMapbox
+- [x] BubbleMapbox
+- [x] ChoroplethMapbox
+
+
 ### 0.5.0 - August 11 2022
 
 completed C# bindings for the missing polar charts:
