@@ -424,16 +424,35 @@ namespace TestConsoleApp
                         Chart.Invisible(),
 
                         //geo/mapbox traces
+                        Chart.Combine(
+                            new GenericChart []
+                            {
+                                Chart.ScatterGeo<int,int,string>(
+                                    longitudes: new int [] { 1, 20 },
+                                    latitudes: new int [] { 1, 40 },
+                                    mode: Mode.Markers,
+                                    Name: "scattergeo"
+                                ),
+                                Chart.PointGeo<int,int,string>(
+                                    longitudes: new int [] { 40, 50 },
+                                    latitudes: new int [] { 60, 70 },
+                                    Name: "pointgeo"
+                                ),
+                            }
+                        ).WithTraceInfo(
+                            LegendGroup: "scattergeo-derived",
+                            LegendGroupTitle: Plotly.NET.Title.init("scattergeo derived traces", Font: Plotly.NET.Font.init(Size: 20))
+                        ),
                         Chart.ChoroplethMap<int, string>(
                             locations: new string [] {"USA", "Germany", "Australia"},
                             z: new int [] {1, 2, 3},
-                            LocationMode: LocationFormat.CountryNames
-                        ),
-
-                        Chart.ScatterGeo<int,int,string>(
-                            longitudes: new int [] { 1, 2 },
-                            latitudes: new int [] { 3, 4 },
-                            mode: Mode.Markers
+                            LocationMode: LocationFormat.CountryNames,
+                            ShowScale: false,
+                            ShowLegend: true,
+                            Name: "choropleth"
+                        ).WithTraceInfo(
+                            LegendGroup: "other-geo",
+                            LegendGroupTitle: Plotly.NET.Title.init("other geo charts", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.Invisible(),
                         Chart.Invisible(),
