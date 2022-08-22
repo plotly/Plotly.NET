@@ -1,3 +1,21 @@
+### 0.7.0 - August 22 2022
+
+completed C# bindings for the missing ternary and carpet charts:
+
+- [x] ChartTernary  
+    - [x] ScatterTernary
+    - [x] PointTernary
+    - [x] LineTernary
+    - [x] BubbleTernary
+ - [x] ChartCarpet 
+    - [x] Carpet
+    - [x] ScatterCarpet
+    - [x] PointCarpet
+    - [x] LineCarpet
+    - [x] SplineCarpet
+    - [x] BubbleCarpet
+    - [x] ContourCarpet
+
 ### 0.6.0 - August 19 2022
 
 completed C# bindings for the missing map charts:
