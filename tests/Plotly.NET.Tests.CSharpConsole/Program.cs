@@ -610,6 +610,9 @@ namespace TestConsoleApp
                                     Name: "scattercarpet"
                                 )
                             }
+                        ).WithTraceInfo(
+                            LegendGroup: "scattercarpet-derived",
+                            LegendGroupTitle: Plotly.NET.Title.init("scattercarpet derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.Combine(
                             new GenericChart []
@@ -627,6 +630,9 @@ namespace TestConsoleApp
                                     Name: "pointcarpet"
                                 )
                             }
+                        ).WithTraceInfo(
+                            LegendGroup: "scattercarpet-derived",
+                            LegendGroupTitle: Plotly.NET.Title.init("scattercarpet derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.Combine(
                             new GenericChart []
@@ -644,6 +650,9 @@ namespace TestConsoleApp
                                     Name: "linecarpet"
                                 )
                             }
+                        ).WithTraceInfo(
+                            LegendGroup: "scattercarpet-derived",
+                            LegendGroupTitle: Plotly.NET.Title.init("scattercarpet derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.Combine(
                             new GenericChart []
@@ -658,16 +667,39 @@ namespace TestConsoleApp
                                     a: new int [] {4,5,5,6},
                                     b: new int [] {1,1,2,3},
                                     carpetAnchorId: "carpet5",
-                                    Name: "linecarpet"
+                                    Name: "splinecarpet"
                                 )
                             }
+                        ).WithTraceInfo(
+                            LegendGroup: "scattercarpet-derived",
+                            LegendGroupTitle: Plotly.NET.Title.init("scattercarpet derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
-                        Chart.Invisible(),
                         Chart.Combine(
                             new GenericChart []
                             {
                                 Chart.Carpet<double,double,double,double,double,double>(
-                                    carpetId: "contour",
+                                    carpetId: "carpet6",
+                                    A: new double [] {4.0, 4.0, 4.0, 4.5, 4.5, 4.5, 5.0, 5.0, 5.0, 6.0, 6.0, 6.0},
+                                    B: new double [] {1.0, 2.0, 3.0, 1.0, 2.0, 3.0, 1.0, 2.0, 3.0, 1.0, 2.0, 3.0},
+                                    Y: new double [] {2.0, 3.5, 4.0, 3.0, 4.5, 5.0, 5.5, 6.5, 7.5, 8.0, 8.5, 10.0}
+                                ),
+                                Chart.BubbleCarpet<int, int, string>(
+                                    sizes: new int [] {10, 20, 30, 40},
+                                    a: new int [] {4,5,5,6},
+                                    b: new int [] {1,1,2,3},
+                                    carpetAnchorId: "carpet6",
+                                    Name: "bubblecarpet"
+                                )
+                            }
+                        ).WithTraceInfo(
+                            LegendGroup: "scattercarpet-derived",
+                            LegendGroupTitle: Plotly.NET.Title.init("scattercarpet derived traces", Font: Plotly.NET.Font.init(Size: 20))
+                        ),
+                        Chart.Combine(
+                            new GenericChart []
+                            {
+                                Chart.Carpet<double,double,double,double,double,double>(
+                                    carpetId: "carpet7",
                                     A: new double [] { 0.0, 1.0, 2.0, 3.0, 0.0, 1.0, 2.0, 3.0, 0.0, 1.0, 2.0, 3.0},
                                     B: new double[] { 4.0, 4.0, 4.0, 4.0, 5.0, 5.0, 5.0, 5.0, 6.0, 6.0, 6.0, 6.0},
                                     X: new double[] { 2.0, 3.0, 4.0, 5.0, 2.2, 3.1, 4.1, 5.1, 1.5, 2.5, 3.5, 4.5},
@@ -675,12 +707,17 @@ namespace TestConsoleApp
                                 ),
                                 Chart.ContourCarpet<double,int,int,string>(
                                     z: new double [] { 1.0, 1.96, 2.56, 3.0625, 4.0, 5.0625, 1.0, 7.5625, 9.0, 12.25, 15.21, 14.0625 },
-                                    carpetAnchorId: "contour",
+                                    carpetAnchorId: "carpet7",
                                     A: new int [] { 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3},
                                     B: new int[] { 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6},
-                                    ShowScale: false
+                                    ShowScale: false,
+                                    ShowLegend: true,
+                                    Name: "contourcarpet"
                                 )
                             }
+                        ).WithTraceInfo(
+                            LegendGroup: "carpet-other",
+                            LegendGroupTitle: Plotly.NET.Title.init("other carpet traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
 
                         //domain traces
