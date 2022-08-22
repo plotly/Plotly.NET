@@ -1,0 +1,30 @@
+#!csharp
+
+using Microsoft.DotNet.Interactive;
+using Microsoft.DotNet.Interactive.Formatting;
+
+var interactiveDoc = @"
+<div>
+    [CHART]
+    [DESCRIPTION]
+</div>    
+";
+
+
+
+Formatter.Register<Plotly.NET.GenericChart.GenericChart>(
+    (chart, writer) =>
+    {
+        var chartMarkup = Plotly.NET.GenericChart.toChartHTML(chart);
+        var displayOpts = Plotly.NET.GenericChart.getDisplayOptions(chart);
+        var html = Plotly.NET.DisplayOptions.replaceHtmlPlaceholders(
+            displayOpts,
+            interactiveDoc.Replace("[CHART]", chartMarkup)
+            );
+        writer.Write(html);
+    },
+    "text/html"
+);
+
+"Interactive module loaded, enjoy!"
+
