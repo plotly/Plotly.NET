@@ -519,8 +519,16 @@ namespace TestConsoleApp
                             B: new int [] { 3, 4 },
                             C: new int [] { 5, 6 }
                         ),
-                        Chart.Invisible(),
-                        Chart.Invisible(),
+                        Chart.PointTernary<int,int,int,int,string>(
+                            A: new int [] { 1, 2 },
+                            B: new int [] { 3, 4 },
+                            C: new int [] { 5, 6 }
+                        ),
+                        Chart.LineTernary<int,int,int,int,string>(
+                            A: new int [] { 1, 2 },
+                            B: new int [] { 3, 4 },
+                            C: new int [] { 10, 2 }
+                        ),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
