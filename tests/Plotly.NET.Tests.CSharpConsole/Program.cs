@@ -586,12 +586,31 @@ namespace TestConsoleApp
 
                         //carpet traces
                         Chart.Carpet<double,double,double,double,double,double>(
-                            carpetId: "testCarpet",
+                            carpetId: "carpet1",
                             A: new double [] {4.0, 4.0, 4.0, 4.5, 4.5, 4.5, 5.0, 5.0, 5.0, 6.0, 6.0, 6.0},
                             B: new double [] {1.0, 2.0, 3.0, 1.0, 2.0, 3.0, 1.0, 2.0, 3.0, 1.0, 2.0, 3.0},
-                            Y: new double [] {2.0, 3.5, 4.0, 3.0, 4.5, 5.0, 5.5, 6.5, 7.5, 8.0, 8.5, 10.0}
+                            Y: new double [] {2.0, 3.5, 4.0, 3.0, 4.5, 5.0, 5.5, 6.5, 7.5, 8.0, 8.5, 10.0},
+                            Name:"carpet",
+                            ShowLegend: true
                         ),
-                        Chart.Invisible(),
+                        Chart.Combine(
+                            new GenericChart []
+                            {
+                                Chart.Carpet<double,double,double,double,double,double>(
+                                    carpetId: "carpet2",
+                                    A: new double [] {4.0, 4.0, 4.0, 4.5, 4.5, 4.5, 5.0, 5.0, 5.0, 6.0, 6.0, 6.0},
+                                    B: new double [] {1.0, 2.0, 3.0, 1.0, 2.0, 3.0, 1.0, 2.0, 3.0, 1.0, 2.0, 3.0},
+                                    Y: new double [] {2.0, 3.5, 4.0, 3.0, 4.5, 5.0, 5.5, 6.5, 7.5, 8.0, 8.5, 10.0}
+                                ),
+                                Chart.ScatterCarpet<int, int, string>(
+                                    a: new int [] {4,5,5,6},
+                                    b: new int [] {1,1,2,3},
+                                    carpetAnchorId: "carpet2",
+                                    mode: Mode.Markers,
+                                    Name: "scattercarpet"
+                                )
+                            }
+                        ),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
