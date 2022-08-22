@@ -236,21 +236,29 @@ namespace TestConsoleApp
                             high: new double [] {1.8, 8.5},
                             low: new double []  {0.5, 0.1},
                             close: new double [] {1.1, 2.9},
-                            x: new DateTime [] {DateTime.Parse("07/07/2021"), DateTime.Parse("07/07/2022") }
+                            x: new DateTime [] {DateTime.Parse("07/07/2021"), DateTime.Parse("07/07/2022") },
+                            Name: "ohlc"
                         ).WithXAxisRangeSlider(
                             rangeSlider: Plotly.NET.LayoutObjects.RangeSlider.init(
-                                Visible: false
-                        )),
+                            Visible: false
+                        )).WithTraceInfo(
+                            LegendGroup: "finance",
+                            LegendGroupTitle: Plotly.NET.Title.init("finance charts", Font: Plotly.NET.Font.init(Size: 20))
+                        ),
                         Chart.Candlestick<double,DateTime,string>(
                             open: new double [] {1.2, 2.7},
                             high: new double [] {1.8, 8.5},
                             low: new double []  {0.5, 0.1},
                             close: new double [] {1.1, 2.9},
-                            x: new DateTime [] {DateTime.Parse("07/07/2021"), DateTime.Parse("07/07/2022") }
+                            x: new DateTime [] {DateTime.Parse("07/07/2021"), DateTime.Parse("07/07/2022") },
+                            Name: "candlestick"
                         ).WithXAxisRangeSlider(
                             rangeSlider: Plotly.NET.LayoutObjects.RangeSlider.init(
                                 Visible: false
-                        )),
+                        )).WithTraceInfo(
+                            LegendGroup: "finance",
+                            LegendGroupTitle: Plotly.NET.Title.init("finance charts", Font: Plotly.NET.Font.init(Size: 20))
+                        ),
                         Chart.Waterfall<string, int, string>(
                             x: new string [] {"A", "B", "Net", "Purch", "Other", "Profit"},
                             y: new int [] {60, 80, 0, -40, -20, 0},
@@ -261,33 +269,54 @@ namespace TestConsoleApp
                                 Plotly.NET.StyleParam.WaterfallMeasure.Relative,
                                 Plotly.NET.StyleParam.WaterfallMeasure.Relative,
                                 Plotly.NET.StyleParam.WaterfallMeasure.Total
-                            }
+                            },
+                            Name: "waterfall"
+                        ).WithTraceInfo(
+                            LegendGroup: "finance",
+                            LegendGroupTitle: Plotly.NET.Title.init("finance charts", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.Funnel<double, string, string>(
                             x: new double [] { 1200, 909.4, 600.6, 300, 80 },
-                            y: new string[] { "A", "B", "C", "D", "E"}
+                            y: new string[] { "A", "B", "C", "D", "E"},
+                            Name: "funnel"
+                        ).WithTraceInfo(
+                            LegendGroup: "finance",
+                            LegendGroupTitle: Plotly.NET.Title.init("finance charts", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.Combine(
                             new GenericChart []
                             {
                                 Chart.StackedFunnel<double, string, string>(
-                                    x: new double [] { 1200, 909.4, 600.6, 300, 80 },
-                                    y: new string[] { "A", "B", "C", "D", "E"}
+                                    x: new double [] { 1200, 909.4},
+                                    y: new string[] { "A", "B"},
+                                    Name: "stackedfunnel 1"
                                 ),
                                 Chart.StackedFunnel<double, string, string>(
-                                    x: new double [] { 1200, 909.4, 600.6, 300, 80 },
-                                    y: new string[] { "A", "B", "C", "D", "E"}
+                                    x: new double [] { 1200, 100.4,},
+                                    y: new string[] { "A", "B"},
+                                    Name: "stackedfunnel 2"
                                 ),
                             }
+                        ).WithTraceInfo(
+                            LegendGroup: "finance",
+                            LegendGroupTitle: Plotly.NET.Title.init("finance charts", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.FunnelArea<int, string, string>(
-                            values: new int [] { 5, 4, 3, 2, 1 },
-                            MultiText: new string[] { "A", "B", "C", "D", "E"}
+                            values: new int [] { 5, 4},
+                            MultiText: new string[] { "A", "B"},
+                            Name: "funnelarea"
+                        ).WithTraceInfo(
+                            LegendGroup: "finance",
+                            LegendGroupTitle: Plotly.NET.Title.init("finance charts", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.Indicator<double>(
                             value: 200,
                             mode: Plotly.NET.StyleParam.IndicatorMode.NumberDeltaGauge,
-                            DeltaReference: 160
+                            DeltaReference: 160,
+                            Name: "indicator"
+                        ).WithTraceInfo(
+                            LegendGroup: "finance",
+                            LegendGroupTitle: Plotly.NET.Title.init("finance charts", Font: Plotly.NET.Font.init(Size: 20))
                         ),
 
                         //3D traces
@@ -517,11 +546,40 @@ namespace TestConsoleApp
                         Chart.ScatterTernary<int,int,int,IConvertible,string>(
                             A: new int [] { 1, 2 },
                             B: new int [] { 3, 4 },
-                            C: new int [] { 5, 6 }
+                            C: new int [] { 10, 2 },
+                            Name: "scatterternary"
+                        ).WithTraceInfo(
+                            LegendGroup: "scatterternary-derived",
+                            LegendGroupTitle: Plotly.NET.Title.init("scatterternary derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
-                        Chart.Invisible(),
-                        Chart.Invisible(),
-                        Chart.Invisible(),
+                        Chart.PointTernary<int,int,int,int,string>(
+                            A: new int [] { 1, 2 },
+                            B: new int [] { 3, 4 },
+                            C: new int [] { 10, 2 },
+                            Name: "pointternary"
+                        ).WithTraceInfo(
+                            LegendGroup: "scatterternary-derived",
+                            LegendGroupTitle: Plotly.NET.Title.init("scatterternary derived traces", Font: Plotly.NET.Font.init(Size: 20))
+                        ),
+                        Chart.LineTernary<int,int,int,int,string>(
+                            A: new int [] { 1, 2 },
+                            B: new int [] { 3, 4 },
+                            C: new int [] { 10, 2 },
+                            Name: "lineternary"
+                        ).WithTraceInfo(
+                            LegendGroup: "scatterternary-derived",
+                            LegendGroupTitle: Plotly.NET.Title.init("scatterternary derived traces", Font: Plotly.NET.Font.init(Size: 20))
+                        ),
+                        Chart.BubbleTernary<int,int,int,int,string>(
+                            sizes: new int [] {30, 40},
+                            A: new int [] { 1, 2 },
+                            B: new int [] { 3, 4 },
+                            C: new int [] { 10, 2 },
+                            Name: "bubbleternary"
+                        ).WithTraceInfo(
+                            LegendGroup: "scatterternary-derived",
+                            LegendGroupTitle: Plotly.NET.Title.init("scatterternary derived traces", Font: Plotly.NET.Font.init(Size: 20))
+                        ),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
