@@ -746,11 +746,17 @@ namespace TestConsoleApp
                         Chart.ParallelCoord(
                             dimensions: new Plotly.NET.TraceObjects.Dimension [] {
                                 Plotly.NET.TraceObjects.Dimension.initParallel<string, string, int, int>(Label: "A", Values: new int [] {1, 4, 3}),
-                                Plotly.NET.TraceObjects.Dimension.initParallel<string, string, int, int>(Label: "A", Values: new int [] {3, 1, 2})
+                                Plotly.NET.TraceObjects.Dimension.initParallel<string, string, int, int>(Label: "B", Values: new int [] {3, 1, 2})
                             },
                             Name: "parcoords"
                         ),
-                        Chart.Invisible(),
+                        Chart.ParallelCategories(
+                            dimensions: new Plotly.NET.TraceObjects.Dimension [] {
+                                Plotly.NET.TraceObjects.Dimension.initParallel<string, string, int, int>(Label: "A", Values: new int [] {1, 1, 2}),
+                                Plotly.NET.TraceObjects.Dimension.initParallel<string, string, int, int>(Label: "B", Values: new int [] {3, 3, 3})
+                            },
+                            Name: "parcats"
+                        ),
                         Chart.Invisible(),
 
                         //smith traces
