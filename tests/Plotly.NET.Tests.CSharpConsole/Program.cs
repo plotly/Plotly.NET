@@ -722,10 +722,15 @@ namespace TestConsoleApp
 
                         //domain traces
                         Chart.Pie<double,string,string>(
-                            values: new double [] {1,2,3,4},
-                            Labels: new string [] {"soos", "saas", "fiif", "leel"}
+                            values: new double [] {69, 420},
+                            Labels: new string [] {"A", "B"},
+                            Name: "pie"
                         ),
-                        Chart.Invisible(),
+                        Chart.Doughnut<double,string,string>(
+                            values: new double [] {69, 420},
+                            Labels: new string [] {"A", "B"},
+                            Name: "doughnut"
+                        ),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
