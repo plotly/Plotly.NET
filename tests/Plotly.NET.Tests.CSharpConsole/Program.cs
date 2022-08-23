@@ -781,7 +781,11 @@ namespace TestConsoleApp
                             imag: new double [] {1,2,3,4},
                             Name: "pointsmith"
                         ),
-                        Chart.Invisible(),
+                        Chart.LineSmith<double,double,string>(
+                            real: new double [] {1,2,3,4},
+                            imag: new double [] {1,2,3,4},
+                            Name: "linesmith"
+                        ),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
