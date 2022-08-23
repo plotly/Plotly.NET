@@ -736,7 +736,7 @@ namespace TestConsoleApp
                             Values: new int [] {19, 26, 55},
                             labels: new string [] {"A", "B", "C"},
                             parents: new string [] {"", "", "B"},
-                            Name: "sunburst"
+                            Name: "treemap"
                         ),
                         Chart.ParallelCoord(
                             dimensions: new Plotly.NET.TraceObjects.Dimension [] {
@@ -762,7 +762,12 @@ namespace TestConsoleApp
                                 Value: new int [] {1, 2, 5}
                             )
                         ),
-                        
+                        Chart.Icicle<string, string, int, string, string>(
+                            Values: new int [] {19, 26, 55},
+                            labels: new string [] {"A", "B", "C"},
+                            parents: new string [] {"", "", "B"},
+                            Name: "icicle"
+                        ),
 
                         //smith traces
                         Chart.ScatterSmith<double,double,string>(
