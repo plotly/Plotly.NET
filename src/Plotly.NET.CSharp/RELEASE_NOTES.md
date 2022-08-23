@@ -1,3 +1,23 @@
+### 0.8.0 - August 23 2022
+
+completed C# bindings for the missing domain and smith charts:
+
+- [x] ChartTernary  
+    - [x] ScatterTernary
+    - [x] PointTernary
+    - [x] LineTernary
+    - [x] BubbleTernary
+ - [x] ChartCarpet 
+    - [x] Carpet
+    - [x] ScatterCarpet
+    - [x] PointCarpet
+    - [x] LineCarpet
+    - [x] SplineCarpet
+    - [x] BubbleCarpet
+    - [x] ContourCarpet
+
+The Chart construction API is now complete.
+
 ### 0.7.0 - August 22 2022
 
 completed C# bindings for the missing ternary and carpet charts:
