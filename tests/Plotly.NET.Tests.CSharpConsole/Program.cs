@@ -773,9 +773,14 @@ namespace TestConsoleApp
                         Chart.ScatterSmith<double,double,string>(
                             real: new double [] {1,2,3,4},
                             imag: new double [] {1,2,3,4},
-                            mode: Mode.Markers
+                            mode: Mode.Markers,
+                            Name: "scattersmith"
                         ),
-                        Chart.Invisible(),
+                        Chart.PointSmith<double,double,string>(
+                            real: new double [] {1,2,3,4},
+                            imag: new double [] {1,2,3,4},
+                            Name: "pointsmith"
+                        ),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
