@@ -743,7 +743,13 @@ namespace TestConsoleApp
                             parents: new string [] {"", "", "B"},
                             Name: "sunburst"
                         ),
-                        Chart.Invisible(),
+                        Chart.ParallelCoord(
+                            dimensions: new Plotly.NET.TraceObjects.Dimension [] {
+                                Plotly.NET.TraceObjects.Dimension.initParallel<string, string, int, int>(Label: "A", Values: new int [] {1, 4, 3}),
+                                Plotly.NET.TraceObjects.Dimension.initParallel<string, string, int, int>(Label: "A", Values: new int [] {3, 1, 2})
+                            },
+                            Name: "parcoords"
+                        ),
                         Chart.Invisible(),
                         Chart.Invisible(),
 
