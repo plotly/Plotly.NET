@@ -737,7 +737,12 @@ namespace TestConsoleApp
                             parents: new string [] {"", "", "B"},
                             Name: "sunburst"
                         ),
-                        Chart.Invisible(),
+                        Chart.Treemap<string, string, int, string, string>(
+                            Values: new int [] {19, 26, 55},
+                            labels: new string [] {"A", "B", "C"},
+                            parents: new string [] {"", "", "B"},
+                            Name: "sunburst"
+                        ),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
