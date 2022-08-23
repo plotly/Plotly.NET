@@ -757,7 +757,16 @@ namespace TestConsoleApp
                             },
                             Name: "parcats"
                         ),
-                        Chart.Invisible(),
+                        Chart.Sankey<string>(
+                            nodes: Plotly.NET.TraceObjects.SankeyNodes.init<string, int [], string, string>(
+                                Label: new string [] {"A", "B", "C", "D"}
+                            ),
+                            links: Plotly.NET.TraceObjects.SankeyLinks.init<string, int>(
+                                Source: new int [] {0, 1, 1 },
+                                Target: new int [] {2, 2, 3 },
+                                Value: new int [] {1, 2, 5}
+                            )
+                        ),
 
                         //smith traces
                         Chart.ScatterSmith<double,double,string>(
