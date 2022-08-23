@@ -726,11 +726,6 @@ namespace TestConsoleApp
                             Labels: new string [] {"A", "B"},
                             Name: "pie"
                         ),
-                        Chart.Doughnut<double,string,string>(
-                            values: new double [] {69, 420},
-                            Labels: new string [] {"A", "B"},
-                            Name: "doughnut"
-                        ),
                         Chart.Sunburst<string, string, int, string, string>(
                             Values: new int [] {19, 26, 55},
                             labels: new string [] {"A", "B", "C"},
@@ -767,6 +762,7 @@ namespace TestConsoleApp
                                 Value: new int [] {1, 2, 5}
                             )
                         ),
+                        
 
                         //smith traces
                         Chart.ScatterSmith<double,double,string>(
