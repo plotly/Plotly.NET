@@ -77,12 +77,12 @@ namespace TestConsoleApp
                                     x: new int [] { 3, 4, 5},
                                     y: new int [] { 3, 1, 4},
                                     Name: "splinearea"
-                                ),                                
+                                ),
                                 Chart.StackedArea<int,int,string>(
                                     x: new int [] { 6, 7},
                                     y: new int [] { 3, 1},
                                     Name: "stacked area 1"
-                                ),                                
+                                ),
                                 Chart.StackedArea<int,int,string>(
                                     x: new int [] { 6, 7},
                                     y: new int [] { 3, 2},
@@ -152,7 +152,7 @@ namespace TestConsoleApp
                         ).WithTraceInfo(
                             LegendGroup: "other-simple-2D",
                             LegendGroupTitle: Plotly.NET.Title.init("other simple 2D traces", Font: Plotly.NET.Font.init(Size: 20))
-                        ),                        
+                        ),
                         Chart.Image<string>(
                             Source: @"data:image/gif;base64,R0lGODdhEAAQAMwAAPj7+FmhUYjNfGuxYYDJdYTIeanOpT+DOTuANXi/bGOrWj6CONzv2sPjv2CmV1unU4zPgI/Sg6DJnJ3ImTh8Mtbs00aNP1CZSGy0YqLEn47RgXW8amasW7XWsmmvX2iuXiwAAAAAEAAQAAAFVyAgjmRpnihqGCkpDQPbGkNUOFk6DZqgHCNGg2T4QAQBoIiRSAwBE4VA4FACKgkB5NGReASFZEmxsQ0whPDi9BiACYQAInXhwOUtgCUQoORFCGt/g4QAIQA7"
                         ).WithTraceInfo(
@@ -329,7 +329,7 @@ namespace TestConsoleApp
                                     z: new int [] { 14, 15 },
                                     mode: Mode.Markers,
                                     Name: "scatter3D"
-                                ),                                
+                                ),
                                 Chart.Point3D<int,int,int,string>(
                                     x: new int[] { 3, 4 },
                                     y: new int [] { 13, 14 },
@@ -379,18 +379,18 @@ namespace TestConsoleApp
                         Chart.Cone<int,int,int,int,int,int,string>(
                             x: new int [] { 0, 1, 2, 0 },
                             y: new int [] { 0, 0, 1, 2 },
-                            z: new int [] { 0, 2, 0, 1 },                            
+                            z: new int [] { 0, 2, 0, 1 },
                             u: new int [] { 0, 1, 2, 0 },
                             v: new int [] { 0, 0, 1, 2 },
                             w: new int [] { 0, 2, 0, 1 },
                             ShowScale: false,
                             Name: "cone",
                             ShowLegend: true
-                        ),                        
+                        ),
                         Chart.StreamTube<int,int,int,int,int,int,string>(
                             x: new int [] { 0, 0, 0 },
                             y: new int [] { 0, 1, 2},
-                            z: new int [] { 0, 0, 0},                            
+                            z: new int [] { 0, 0, 0},
                             u: new int [] { 0, 0, 0},
                             v: new int [] { 1, 1, 1},
                             w: new int [] { 0, 0, 0},
@@ -406,7 +406,7 @@ namespace TestConsoleApp
                             ShowScale: false,
                             Name: "volume",
                             ShowLegend: true
-                        ),                        
+                        ),
                         Chart.IsoSurface<double,double,double,double,string>(
                             x: new double [] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
                             y: new double [] { 1, 1, 1, 1.5, 1.5, 1.5, 2, 2, 2, 1, 1, 1, 1.5, 1.5, 1.5, 2, 2, 2, 1, 1, 1, 1.5, 1.5, 1.5, 2, 2, 2 },
@@ -466,12 +466,12 @@ namespace TestConsoleApp
                                     longitudes: new int [] { 40, 50 },
                                     latitudes: new int [] { 60, 70 },
                                     Name: "pointgeo"
-                                ),                                
+                                ),
                                 Chart.LineGeo<int,int,string>(
                                     longitudes: new int [] { 10,  -100},
                                     latitudes: new int [] { 50, 50 },
                                     Name: "linegeo"
-                                ),                                
+                                ),
                                 Chart.BubbleGeo<int,int,string>(
                                     longitudes: new int [] { 80,  -80},
                                     latitudes: new int [] { 20, -20 },
@@ -731,7 +731,12 @@ namespace TestConsoleApp
                             Labels: new string [] {"A", "B"},
                             Name: "doughnut"
                         ),
-                        Chart.Invisible(),
+                        Chart.Sunburst<string, string, int, string, string>(
+                            Values: new int [] {19, 26, 55},
+                            labels: new string [] {"A", "B", "C"},
+                            parents: new string [] {"", "", "B"},
+                            Name: "sunburst"
+                        ),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible(),
