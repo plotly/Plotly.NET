@@ -775,18 +775,35 @@ namespace TestConsoleApp
                             imag: new double [] {1,2,3,4},
                             mode: Mode.Markers,
                             Name: "scattersmith"
+                        ).WithTraceInfo(
+                            LegendGroup: "scattersmith-derived",
+                            LegendGroupTitle: Plotly.NET.Title.init("scattersmith derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.PointSmith<double,double,string>(
                             real: new double [] {1,2,3,4},
                             imag: new double [] {1,2,3,4},
                             Name: "pointsmith"
+                        ).WithTraceInfo(
+                            LegendGroup: "scattersmith-derived",
+                            LegendGroupTitle: Plotly.NET.Title.init("scattersmith derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.LineSmith<double,double,string>(
                             real: new double [] {1,2,3,4},
                             imag: new double [] {1,2,3,4},
                             Name: "linesmith"
+                        ).WithTraceInfo(
+                            LegendGroup: "scattersmith-derived",
+                            LegendGroupTitle: Plotly.NET.Title.init("scattersmith derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
-                        Chart.Invisible(),
+                        Chart.BubbleSmith<double,double,string>(
+                            sizes: new int [] {10, 20, 30, 40},
+                            real: new double [] {1,2,3,4},
+                            imag: new double [] {1,2,3,4},
+                            Name: "bubblesmith"
+                        ).WithTraceInfo(
+                            LegendGroup: "scattersmith-derived",
+                            LegendGroupTitle: Plotly.NET.Title.init("scattersmith derived traces", Font: Plotly.NET.Font.init(Size: 20))
+                        ),
                         Chart.Invisible(),
                         Chart.Invisible(),
                         Chart.Invisible()
