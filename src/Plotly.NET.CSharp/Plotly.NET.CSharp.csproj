@@ -37,7 +37,7 @@
 
   <ItemGroup>
     <None Include="..\..\docs\img\logo.png" Pack="true" PackagePath="\" />
-    <PackageReference Include="Plotly.NET" Version="3.*" />
+    <PackageReference Include="Plotly.NET" Version="3.0.1" />
   </ItemGroup>
 
 </Project>
