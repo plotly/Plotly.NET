@@ -10,22 +10,21 @@ namespace Plotly.NET.CSharp;
 
 public static partial class TraceObjects
 {
-    public static Plotly.NET.TraceObjects.Box Box
+    public static Plotly.NET.TraceObjects.Box InitBox
         (
-
             Optional<bool> Visible = default,
             Optional<double> Width = default,
             Optional<Color> FillColor = default,
             Optional<Color> LineColor = default,
             Optional<double> LineWidth = default
-        ) => 
-            Plotly.NET.TraceObjects.Box.init(
-
-                Visible: Visible.ToOption(),
-                Width: Width.ToOption(),
-                FillColor: FillColor.ToOption(),
-                LineColor: LineColor.ToOption(),
-                LineWidth: LineWidth.ToOption()
-            );
+        ) 
+            => 
+                Plotly.NET.TraceObjects.Box.init(
+                    Visible: Visible.ToOption(),
+                    Width: Width.ToOption(),
+                    FillColor: FillColor.ToOption(),
+                    LineColor: LineColor.ToOption(),
+                    LineWidth: LineWidth.ToOption()
+                );
 }
 

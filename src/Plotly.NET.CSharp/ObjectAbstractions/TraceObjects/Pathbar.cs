@@ -10,22 +10,21 @@ namespace Plotly.NET.CSharp;
 
 public static partial class TraceObjects
 {
-    public static Plotly.NET.TraceObjects.Pathbar Pathbar
+    public static Plotly.NET.TraceObjects.Pathbar InitPathbar
         (
-
             Optional<bool> Visible = default,
             Optional<StyleParam.Side> Side = default,
             Optional<StyleParam.PathbarEdgeShape> EdgeShape = default,
             Optional<double> Thickness = default,
             Optional<Font> Textfont = default
-        ) => 
-            Plotly.NET.TraceObjects.Pathbar.init(
-
-                Visible: Visible.ToOption(),
-                Side: Side.ToOption(),
-                EdgeShape: EdgeShape.ToOption(),
-                Thickness: Thickness.ToOption(),
-                Textfont: Textfont.ToOption()
-            );
+        ) 
+            =>
+                Plotly.NET.TraceObjects.Pathbar.init(
+                    Visible: Visible.ToOption(),
+                    Side: Side.ToOption(),
+                    EdgeShape: EdgeShape.ToOption(),
+                    Thickness: Thickness.ToOption(),
+                    Textfont: Textfont.ToOption()
+                );
 }
 

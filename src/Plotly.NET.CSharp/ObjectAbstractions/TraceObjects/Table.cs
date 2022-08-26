@@ -10,27 +10,19 @@ namespace Plotly.NET.CSharp;
 
 public static partial class TraceObjects
 {
-    public static Plotly.NET.TraceObjects.TableFill TableFill
+    public static Plotly.NET.TraceObjects.TableFill InitTableFill
         (
-             ,
-             
-
-        ) => 
-            Plotly.NET.TraceObjects.TableFill.init(
-                : ,
-                : 
-
-            );
-}
-
-public static partial class TraceObjects
-{
-    public static Plotly.NET.TraceObjects.TableCells TableCells
+            Optional<Color> Color = default
+        ) 
+            =>
+                Plotly.NET.TraceObjects.TableFill.init(
+                    Color: Color.ToOption()
+                );
+    public static Plotly.NET.TraceObjects.TableCells InitTableCells<ValuesType>
         (
-
             Optional<StyleParam.HorizontalAlign> Align = default,
             Optional<IEnumerable<StyleParam.HorizontalAlign>> MultiAlign = default,
-            Optional<TableFill> Fill = default,
+            Optional<Plotly.NET.TraceObjects.TableFill> Fill = default,
             Optional<Font> Font = default,
             Optional<IEnumerable<string>> Format = default,
             Optional<int> Height = default,
@@ -39,35 +31,23 @@ public static partial class TraceObjects
             Optional<IEnumerable<string>> MultiPrefix = default,
             Optional<string> Suffix = default,
             Optional<IEnumerable<string>> MultiSuffix = default,
-            Optional<IEnumerable<#IEnumerable<#IConvertible>>> Values = default
-        ) => 
-            Plotly.NET.TraceObjects.TableCells.init(
-
-                Align: Align.ToOption(),
-                MultiAlign: MultiAlign.ToOption(),
-                Fill: Fill.ToOption(),
-                Font: Font.ToOption(),
-                Format: Format.ToOption(),
-                Height: Height.ToOption(),
-                Line: Line.ToOption(),
-                Prefix: Prefix.ToOption(),
-                MultiPrefix: MultiPrefix.ToOption(),
-                Suffix: Suffix.ToOption(),
-                MultiSuffix: MultiSuffix.ToOption(),
-                Values: Values.ToOption()
-            );
-}
-
-public static partial class TraceObjects
-{
-    public static Plotly.NET.TraceObjects.TableHeader TableHeader
-        (
-
-
-        ) => 
-            Plotly.NET.TraceObjects.TableHeader.init(
-
-
-            );
+            Optional<IEnumerable<IEnumerable<ValuesType>>> Values = default
+        ) 
+            where ValuesType: IConvertible
+            =>
+                Plotly.NET.TraceObjects.TableCells.init(
+                    Align: Align.ToOption(),
+                    MultiAlign: MultiAlign.ToOption(),
+                    Fill: Fill.ToOption(),
+                    Font: Font.ToOption(),
+                    Format: Format.ToOption(),
+                    Height: Height.ToOption(),
+                    Line: Line.ToOption(),
+                    Prefix: Prefix.ToOption(),
+                    MultiPrefix: MultiPrefix.ToOption(),
+                    Suffix: Suffix.ToOption(),
+                    MultiSuffix: MultiSuffix.ToOption(),
+                    Values: Values.ToOption()
+                );
 }
 

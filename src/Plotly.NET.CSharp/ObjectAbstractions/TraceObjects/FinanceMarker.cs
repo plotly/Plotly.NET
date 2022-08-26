@@ -10,20 +10,19 @@ namespace Plotly.NET.CSharp;
 
 public static partial class TraceObjects
 {
-    public static Plotly.NET.TraceObjects.FinanceMarker FinanceMarker
+    public static Plotly.NET.TraceObjects.FinanceMarker InitFinanceMarker
         (
-
             Optional<Color> MarkerColor = default,
             Optional<Color> LineColor = default,
             Optional<double> LineWidth = default,
             Optional<StyleParam.DrawingStyle> LineDash = default
-        ) => 
-            Plotly.NET.TraceObjects.FinanceMarker.init(
-
-                MarkerColor: MarkerColor.ToOption(),
-                LineColor: LineColor.ToOption(),
-                LineWidth: LineWidth.ToOption(),
-                LineDash: LineDash.ToOption()
-            );
+        ) 
+            =>
+                Plotly.NET.TraceObjects.FinanceMarker.init(
+                    MarkerColor: MarkerColor.ToOption(),
+                    LineColor: LineColor.ToOption(),
+                    LineWidth: LineWidth.ToOption(),
+                    LineDash: LineDash.ToOption()
+                );
 }
 

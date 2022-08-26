@@ -10,18 +10,17 @@ namespace Plotly.NET.CSharp;
 
 public static partial class TraceObjects
 {
-    public static Plotly.NET.TraceObjects.Bins Bins
+    public static Plotly.NET.TraceObjects.Bins InitBins
         (
-
             Optional<double> Start = default,
             Optional<double> End = default,
             Optional<double> Size = default
-        ) => 
-            Plotly.NET.TraceObjects.Bins.init(
-
-                Start: Start.ToOption(),
-                End: End.ToOption(),
-                Size: Size.ToOption()
-            );
+        ) 
+            => 
+                Plotly.NET.TraceObjects.Bins.init(
+                    Start: Start.ToOption(),
+                    End: End.ToOption(),
+                    Size: Size.ToOption()
+                );
 }
 

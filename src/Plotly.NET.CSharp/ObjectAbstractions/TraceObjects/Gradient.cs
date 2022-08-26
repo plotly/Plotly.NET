@@ -10,18 +10,17 @@ namespace Plotly.NET.CSharp;
 
 public static partial class TraceObjects
 {
-    public static Plotly.NET.TraceObjects.Gradient Gradient
+    public static Plotly.NET.TraceObjects.Gradient InitGradient
         (
-
             Optional<Color> Color = default,
             Optional<StyleParam.GradientType> Type = default,
             Optional<IEnumerable<StyleParam.GradientType>> MultiTypes = default
-        ) => 
-            Plotly.NET.TraceObjects.Gradient.init(
-
-                Color: Color.ToOption(),
-                Type: Type.ToOption(),
-                MultiTypes: MultiTypes.ToOption()
-            );
+        ) 
+            =>
+                Plotly.NET.TraceObjects.Gradient.init(
+                    Color: Color.ToOption(),
+                    Type: Type.ToOption(),
+                    MultiTypes: MultiTypes.ToOption()
+                );
 }
 

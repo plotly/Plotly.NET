@@ -10,35 +10,30 @@ namespace Plotly.NET.CSharp;
 
 public static partial class TraceObjects
 {
-    public static Plotly.NET.TraceObjects.SlicesFill SlicesFill
+    public static Plotly.NET.TraceObjects.SlicesFill InitSlicesFill<LocationsType>
         (
-
             Optional<double> Fill = default,
-            Optional<IEnumerable<#IConvertible>> Locations = default,
+            Optional<IEnumerable<LocationsType>> Locations = default,
             Optional<bool> Show = default
-        ) => 
-            Plotly.NET.TraceObjects.SlicesFill.init(
-
-                Fill: Fill.ToOption(),
-                Locations: Locations.ToOption(),
-                Show: Show.ToOption()
-            );
-}
-
-public static partial class TraceObjects
-{
-    public static Plotly.NET.TraceObjects.Slices Slices
+        ) 
+            where LocationsType: IConvertible
+            =>
+                Plotly.NET.TraceObjects.SlicesFill.init(
+                    Fill: Fill.ToOption(),
+                    Locations: Locations.ToOption(),
+                    Show: Show.ToOption()
+                );
+    public static Plotly.NET.TraceObjects.Slices InitSlices
         (
-
-            Optional<SlicesFill> X = default,
-            Optional<SlicesFill> Y = default,
-            Optional<SlicesFill> Z = default
-        ) => 
-            Plotly.NET.TraceObjects.Slices.init(
-
-                X: X.ToOption(),
-                Y: Y.ToOption(),
-                Z: Z.ToOption()
-            );
+            Optional<Plotly.NET.TraceObjects.SlicesFill> X = default,
+            Optional<Plotly.NET.TraceObjects.SlicesFill> Y = default,
+            Optional<Plotly.NET.TraceObjects.SlicesFill> Z = default
+        ) 
+            =>
+                Plotly.NET.TraceObjects.Slices.init(
+                    X: X.ToOption(),
+                    Y: Y.ToOption(),
+                    Z: Z.ToOption()
+                );
 }
 

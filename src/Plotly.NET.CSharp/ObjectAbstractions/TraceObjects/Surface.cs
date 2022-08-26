@@ -10,20 +10,19 @@ namespace Plotly.NET.CSharp;
 
 public static partial class TraceObjects
 {
-    public static Plotly.NET.TraceObjects.Surface Surface
+    public static Plotly.NET.TraceObjects.Surface InitSurface
         (
-
             Optional<int> Count = default,
             Optional<double> Fill = default,
             Optional<StyleParam.SurfacePattern> Pattern = default,
             Optional<bool> Show = default
-        ) => 
-            Plotly.NET.TraceObjects.Surface.init(
-
-                Count: Count.ToOption(),
-                Fill: Fill.ToOption(),
-                Pattern: Pattern.ToOption(),
-                Show: Show.ToOption()
-            );
+        ) 
+            =>
+                Plotly.NET.TraceObjects.Surface.init(
+                    Count: Count.ToOption(),
+                    Fill: Fill.ToOption(),
+                    Pattern: Pattern.ToOption(),
+                    Show: Show.ToOption()
+                );
 }
 
