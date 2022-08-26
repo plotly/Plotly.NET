@@ -10,35 +10,21 @@ namespace Plotly.NET.CSharp;
 
 public static partial class TraceObjects
 {
-    public static Plotly.NET.TraceObjects.SunburstRoot SunburstRoot
+    public static Plotly.NET.TraceObjects.SunburstRoot InitSunburstRoot
         (
-             ,
-             ,
-             
-
-        ) => 
-            Plotly.NET.TraceObjects.SunburstRoot.init(
-                : ,
-                : ,
-                : 
-
-            );
-}
-
-public static partial class TraceObjects
-{
-    public static Plotly.NET.TraceObjects.SunburstLeaf SunburstLeaf
+            Optional<Color> Color = default
+        ) 
+            =>
+                Plotly.NET.TraceObjects.SunburstRoot.init(
+                    Color: Color.ToOption()
+                );
+    public static Plotly.NET.TraceObjects.SunburstLeaf InitSunburstLeaf
         (
-             ,
-             ,
-             
-
-        ) => 
-            Plotly.NET.TraceObjects.SunburstLeaf.init(
-                : ,
-                : ,
-                : 
-
-            );
+            Optional<double> Opacity = default
+        ) 
+            =>
+                Plotly.NET.TraceObjects.SunburstLeaf.init(
+                    Opacity: Opacity.ToOption()
+                );
 }
 

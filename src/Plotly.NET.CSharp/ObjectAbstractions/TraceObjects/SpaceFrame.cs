@@ -10,16 +10,15 @@ namespace Plotly.NET.CSharp;
 
 public static partial class TraceObjects
 {
-    public static Plotly.NET.TraceObjects.Spaceframe Spaceframe
+    public static Plotly.NET.TraceObjects.Spaceframe InitSpaceframe
         (
-
             Optional<double> Fill = default,
             Optional<bool> Show = default
-        ) => 
-            Plotly.NET.TraceObjects.Spaceframe.init(
-
-                Fill: Fill.ToOption(),
-                Show: Show.ToOption()
-            );
+        ) 
+            =>
+                Plotly.NET.TraceObjects.Spaceframe.init(
+                    Fill: Fill.ToOption(),
+                    Show: Show.ToOption()
+                );
 }
 

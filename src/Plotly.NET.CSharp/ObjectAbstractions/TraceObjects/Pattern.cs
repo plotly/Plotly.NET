@@ -10,9 +10,8 @@ namespace Plotly.NET.CSharp;
 
 public static partial class TraceObjects
 {
-    public static Plotly.NET.TraceObjects.Pattern Pattern
+    public static Plotly.NET.TraceObjects.Pattern InitPattern
         (
-
             Optional<Color> BGColor = default,
             Optional<Color> FGColor = default,
             Optional<double> FGOpacity = default,
@@ -22,18 +21,18 @@ public static partial class TraceObjects
             Optional<int> Size = default,
             Optional<IEnumerable<int>> MultiSize = default,
             Optional<double> Solidity = default
-        ) => 
-            Plotly.NET.TraceObjects.Pattern.init(
-
-                BGColor: BGColor.ToOption(),
-                FGColor: FGColor.ToOption(),
-                FGOpacity: FGOpacity.ToOption(),
-                FillMode: FillMode.ToOption(),
-                Shape: Shape.ToOption(),
-                MultiShape: MultiShape.ToOption(),
-                Size: Size.ToOption(),
-                MultiSize: MultiSize.ToOption(),
-                Solidity: Solidity.ToOption()
-            );
+        ) 
+            =>
+                Plotly.NET.TraceObjects.Pattern.init(
+                    BGColor: BGColor.ToOption(),
+                    FGColor: FGColor.ToOption(),
+                    FGOpacity: FGOpacity.ToOption(),
+                    FillMode: FillMode.ToOption(),
+                    Shape: Shape.ToOption(),
+                    MultiShape: MultiShape.ToOption(),
+                    Size: Size.ToOption(),
+                    MultiSize: MultiSize.ToOption(),
+                    Solidity: Solidity.ToOption()
+                );
 }
 

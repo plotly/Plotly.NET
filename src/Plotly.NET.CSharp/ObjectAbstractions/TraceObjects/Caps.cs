@@ -10,33 +10,30 @@ namespace Plotly.NET.CSharp;
 
 public static partial class TraceObjects
 {
-    public static Plotly.NET.TraceObjects.CapFill CapFill
+    public static Plotly.NET.TraceObjects.CapFill InitCapFill
         (
-
             Optional<double> Fill = default,
             Optional<bool> Show = default
-        ) => 
-            Plotly.NET.TraceObjects.CapFill.init(
+        ) 
+            =>
+                Plotly.NET.TraceObjects.CapFill.init(
 
-                Fill: Fill.ToOption(),
-                Show: Show.ToOption()
-            );
-}
+                    Fill: Fill.ToOption(),
+                    Show: Show.ToOption()
+                );
 
-public static partial class TraceObjects
-{
-    public static Plotly.NET.TraceObjects.Caps Caps
+    public static Plotly.NET.TraceObjects.Caps InitCaps
         (
-
             Optional<Plotly.NET.TraceObjects.CapFill> X = default,
             Optional<Plotly.NET.TraceObjects.CapFill> Y = default,
             Optional<Plotly.NET.TraceObjects.CapFill> Z = default
-        ) => 
-            Plotly.NET.TraceObjects.Caps.init(
+        ) 
+            =>
+                Plotly.NET.TraceObjects.Caps.init(
 
-                X: X.ToOption(),
-                Y: Y.ToOption(),
-                Z: Z.ToOption()
-            );
+                    X: X.ToOption(),
+                    Y: Y.ToOption(),
+                    Z: Z.ToOption()
+                );
 }
 

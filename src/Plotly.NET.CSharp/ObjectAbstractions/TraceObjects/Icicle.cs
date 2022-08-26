@@ -10,43 +10,33 @@ namespace Plotly.NET.CSharp;
 
 public static partial class TraceObjects
 {
-    public static Plotly.NET.TraceObjects.IcicleRoot IcicleRoot
+    public static Plotly.NET.TraceObjects.IcicleRoot InitIcicleRoot
         (
-             ,
-             
+            Optional<Color> Color = default
+        ) 
+            =>
+                Plotly.NET.TraceObjects.IcicleRoot.init(
+                    Color: Color.ToOption()
+                );
 
-        ) => 
-            Plotly.NET.TraceObjects.IcicleRoot.init(
-                : ,
-                : 
-
-            );
-}
-
-public static partial class TraceObjects
-{
-    public static Plotly.NET.TraceObjects.IcicleLeaf IcicleLeaf
+    public static Plotly.NET.TraceObjects.IcicleLeaf InitIcicleLeaf
         (
-             ,
-             
+            Optional<double> Opacity = default
+        )
+            =>
+                Plotly.NET.TraceObjects.IcicleLeaf.init(
+                    Opacity: Opacity.ToOption()
+                );
 
-        ) => 
-            Plotly.NET.TraceObjects.IcicleLeaf.init(
-                : ,
-                : 
-
-            );
-}
-
-public static partial class TraceObjects
-{
-    public static Plotly.NET.TraceObjects.IcicleTiling IcicleTiling
+    public static Plotly.NET.TraceObjects.IcicleTiling InitIcicleTiling
         (
 
             Optional<StyleParam.TilingFlip> Flip = default,
             Optional<StyleParam.Orientation> Orientation = default,
             Optional<int> Pad = default
-        ) => 
+        ) 
+
+            =>
             Plotly.NET.TraceObjects.IcicleTiling.init(
 
                 Flip: Flip.ToOption(),
