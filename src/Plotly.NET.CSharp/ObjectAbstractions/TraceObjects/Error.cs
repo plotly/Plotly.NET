@@ -10,14 +10,13 @@ namespace Plotly.NET.CSharp;
 
 public static partial class TraceObjects
 {
-    public static Plotly.NET.TraceObjects.Error Error
+    public static Plotly.NET.TraceObjects.Error InitError<ArrayType, ArrayminusType>
         (
-
             Optional<bool> Visible = default,
             Optional<StyleParam.ErrorType> Type = default,
             Optional<bool> Symmetric = default,
-            Optional<IEnumerable<#IConvertible>> Array = default,
-            Optional<IEnumerable<#IConvertible>> Arrayminus = default,
+            Optional<IEnumerable<ArrayType>> Array = default,
+            Optional<IEnumerable<ArrayminusType>> Arrayminus = default,
             Optional<double> Value = default,
             Optional<double> Valueminus = default,
             Optional<int> Traceref = default,
@@ -26,22 +25,24 @@ public static partial class TraceObjects
             Optional<Color> Color = default,
             Optional<double> Thickness = default,
             Optional<double> Width = default
-        ) => 
-            Plotly.NET.TraceObjects.Error.init(
-
-                Visible: Visible.ToOption(),
-                Type: Type.ToOption(),
-                Symmetric: Symmetric.ToOption(),
-                Array: Array.ToOption(),
-                Arrayminus: Arrayminus.ToOption(),
-                Value: Value.ToOption(),
-                Valueminus: Valueminus.ToOption(),
-                Traceref: Traceref.ToOption(),
-                Tracerefminus: Tracerefminus.ToOption(),
-                Copy_ystyle: Copy_ystyle.ToOption(),
-                Color: Color.ToOption(),
-                Thickness: Thickness.ToOption(),
-                Width: Width.ToOption()
-            );
+        ) 
+            where ArrayType: IConvertible
+            where ArrayminusType: IConvertible
+            =>
+                Plotly.NET.TraceObjects.Error.init(
+                    Visible: Visible.ToOption(),
+                    Type: Type.ToOption(),
+                    Symmetric: Symmetric.ToOption(),
+                    Array: Array.ToOption(),
+                    Arrayminus: Arrayminus.ToOption(),
+                    Value: Value.ToOption(),
+                    Valueminus: Valueminus.ToOption(),
+                    Traceref: Traceref.ToOption(),
+                    Tracerefminus: Tracerefminus.ToOption(),
+                    Copy_ystyle: Copy_ystyle.ToOption(),
+                    Color: Color.ToOption(),
+                    Thickness: Thickness.ToOption(),
+                    Width: Width.ToOption()
+                );
 }
 

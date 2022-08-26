@@ -10,18 +10,17 @@ namespace Plotly.NET.CSharp;
 
 public static partial class TraceObjects
 {
-    public static Plotly.NET.TraceObjects.MeanLine MeanLine
+    public static Plotly.NET.TraceObjects.MeanLine InitMeanLine
         (
-
             Optional<bool> Visible = default,
             Optional<Color> Color = default,
             Optional<double> Width = default
-        ) => 
-            Plotly.NET.TraceObjects.MeanLine.init(
-
-                Visible: Visible.ToOption(),
-                Color: Color.ToOption(),
-                Width: Width.ToOption()
-            );
+        ) 
+            =>
+                Plotly.NET.TraceObjects.MeanLine.init(
+                    Visible: Visible.ToOption(),
+                    Color: Color.ToOption(),
+                    Width: Width.ToOption()
+                );
 }
 

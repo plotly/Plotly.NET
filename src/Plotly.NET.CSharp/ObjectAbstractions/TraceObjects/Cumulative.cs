@@ -10,18 +10,17 @@ namespace Plotly.NET.CSharp;
 
 public static partial class TraceObjects
 {
-    public static Plotly.NET.TraceObjects.Cumulative Cumulative
+    public static Plotly.NET.TraceObjects.Cumulative InitCumulative
         (
-
             Optional<bool> Enabled = default,
             Optional<StyleParam.CumulativeDirection> Direction = default,
             Optional<StyleParam.Currentbin> Currentbin = default
-        ) => 
-            Plotly.NET.TraceObjects.Cumulative.init(
-
-                Enabled: Enabled.ToOption(),
-                Direction: Direction.ToOption(),
-                Currentbin: Currentbin.ToOption()
-            );
+        ) 
+            =>
+                Plotly.NET.TraceObjects.Cumulative.init(
+                    Enabled: Enabled.ToOption(),
+                    Direction: Direction.ToOption(),
+                    Currentbin: Currentbin.ToOption()
+                );
 }
 

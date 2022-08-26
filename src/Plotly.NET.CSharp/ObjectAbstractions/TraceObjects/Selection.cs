@@ -10,52 +10,35 @@ namespace Plotly.NET.CSharp;
 
 public static partial class TraceObjects
 {
-    public static Plotly.NET.TraceObjects.MarkerSelectionStyle MarkerSelectionStyle
+    public static Plotly.NET.TraceObjects.MarkerSelectionStyle InitMarkerSelectionStyle
         (
-
             Optional<double> Opacity = default,
             Optional<Color> Color = default,
             Optional<double> Size = default
-        ) => 
-            Plotly.NET.TraceObjects.MarkerSelectionStyle.init(
-
-                Opacity: Opacity.ToOption(),
-                Color: Color.ToOption(),
-                Size: Size.ToOption()
-            );
-}
-
-public static partial class TraceObjects
-{
-    public static Plotly.NET.TraceObjects.FontSelectionStyle FontSelectionStyle
+        ) 
+            =>
+                Plotly.NET.TraceObjects.MarkerSelectionStyle.init(
+                    Opacity: Opacity.ToOption(),
+                    Color: Color.ToOption(),
+                    Size: Size.ToOption()
+                );
+    public static Plotly.NET.TraceObjects.FontSelectionStyle InitFontSelectionStyle
         (
-             ,
-             ,
-             ,
-             
-
-        ) => 
-            Plotly.NET.TraceObjects.FontSelectionStyle.init(
-                : ,
-                : ,
-                : ,
-                : 
-
-            );
-}
-
-public static partial class TraceObjects
-{
-    public static Plotly.NET.TraceObjects.Selection Selection
+            Optional<Color> Color = default
+        ) 
+            =>
+                Plotly.NET.TraceObjects.FontSelectionStyle.init(
+                    Color: Color.ToOption()
+                );
+    public static Plotly.NET.TraceObjects.Selection InitSelection
         (
-
-            Optional<MarkerSelectionStyle> MarkerSelectionStyle = default,
-            Optional<FontSelectionStyle> FontSelectionStyle = default
-        ) => 
-            Plotly.NET.TraceObjects.Selection.init(
-
-                MarkerSelectionStyle: MarkerSelectionStyle.ToOption(),
-                FontSelectionStyle: FontSelectionStyle.ToOption()
-            );
+            Optional<Plotly.NET.TraceObjects.MarkerSelectionStyle> MarkerSelectionStyle = default,
+            Optional<Plotly.NET.TraceObjects.FontSelectionStyle> FontSelectionStyle = default
+        ) 
+            =>
+                Plotly.NET.TraceObjects.Selection.init(
+                    MarkerSelectionStyle: MarkerSelectionStyle.ToOption(),
+                    FontSelectionStyle: FontSelectionStyle.ToOption()
+                );
 }
 

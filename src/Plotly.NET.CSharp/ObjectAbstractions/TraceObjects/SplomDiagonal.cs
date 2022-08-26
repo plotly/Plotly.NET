@@ -10,16 +10,13 @@ namespace Plotly.NET.CSharp;
 
 public static partial class TraceObjects
 {
-    public static Plotly.NET.TraceObjects.SplomDiagonal SplomDiagonal
+    public static Plotly.NET.TraceObjects.SplomDiagonal InitSplomDiagonal
         (
-             ,
-             
-
-        ) => 
-            Plotly.NET.TraceObjects.SplomDiagonal.init(
-                : ,
-                : 
-
-            );
+            Optional<bool> Visible = default
+        ) 
+            =>
+                Plotly.NET.TraceObjects.SplomDiagonal.init(
+                    Visible: Visible.ToOption()
+                );
 }
 

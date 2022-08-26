@@ -10,26 +10,24 @@ namespace Plotly.NET.CSharp;
 
 public static partial class TraceObjects
 {
-    public static Plotly.NET.TraceObjects.ContourProject ContourProject
+    public static Plotly.NET.TraceObjects.ContourProject InitContourProject
         (
 
             Optional<bool> X = default,
             Optional<bool> Y = default,
             Optional<bool> Z = default
-        ) => 
+        ) 
+
+            =>
             Plotly.NET.TraceObjects.ContourProject.init(
 
                 X: X.ToOption(),
                 Y: Y.ToOption(),
                 Z: Z.ToOption()
             );
-}
 
-public static partial class TraceObjects
-{
-    public static Plotly.NET.TraceObjects.Contour Contour
+    public static Plotly.NET.TraceObjects.Contour InitContour
         (
-
             Optional<Color> Color = default,
             Optional<double> End = default,
             Optional<bool> Highlight = default,
@@ -41,28 +39,24 @@ public static partial class TraceObjects
             Optional<double> Start = default,
             Optional<bool> UseColorMap = default,
             Optional<double> Width = default
-        ) => 
-            Plotly.NET.TraceObjects.Contour.init(
+        ) 
+            =>
+                Plotly.NET.TraceObjects.Contour.init(
+                    Color: Color.ToOption(),
+                    End: End.ToOption(),
+                    Highlight: Highlight.ToOption(),
+                    HighlightColor: HighlightColor.ToOption(),
+                    HighlightWidth: HighlightWidth.ToOption(),
+                    Project: Project.ToOption(),
+                    Show: Show.ToOption(),
+                    Size: Size.ToOption(),
+                    Start: Start.ToOption(),
+                    UseColorMap: UseColorMap.ToOption(),
+                    Width: Width.ToOption()
+                );
 
-                Color: Color.ToOption(),
-                End: End.ToOption(),
-                Highlight: Highlight.ToOption(),
-                HighlightColor: HighlightColor.ToOption(),
-                HighlightWidth: HighlightWidth.ToOption(),
-                Project: Project.ToOption(),
-                Show: Show.ToOption(),
-                Size: Size.ToOption(),
-                Start: Start.ToOption(),
-                UseColorMap: UseColorMap.ToOption(),
-                Width: Width.ToOption()
-            );
-}
-
-public static partial class TraceObjects
-{
-    public static Plotly.NET.TraceObjects.Contours Contours<ValueType>
+    public static Plotly.NET.TraceObjects.Contours InitContours<ValueType>
         (
-
             Optional<StyleParam.ContourColoring> Coloring = default,
             Optional<double> End = default,
             Optional<Font> LabelFont = default,
@@ -75,21 +69,20 @@ public static partial class TraceObjects
             Optional<StyleParam.ContourType> Type = default,
             Optional<ValueType> Value = default
         ) 
-            where ValueType : IConvertible
-            => 
-            Plotly.NET.TraceObjects.Contours.init(
-
-                Coloring: Coloring.ToOption(),
-                End: End.ToOption(),
-                LabelFont: LabelFont.ToOption(),
-                LabelFormat: LabelFormat.ToOption(),
-                Operation: Operation.ToOption(),
-                ShowLabels: ShowLabels.ToOption(),
-                ShowLines: ShowLines.ToOption(),
-                Size: Size.ToOption(),
-                Start: Start.ToOption(),
-                Type: Type.ToOption(),
-                Value: Value.ToOption()
-            );
+            where ValueType: IConvertible
+            =>
+                Plotly.NET.TraceObjects.Contours.init(
+                    Coloring: Coloring.ToOption(),
+                    End: End.ToOption(),
+                    LabelFont: LabelFont.ToOption(),
+                    LabelFormat: LabelFormat.ToOption(),
+                    Operation: Operation.ToOption(),
+                    ShowLabels: ShowLabels.ToOption(),
+                    ShowLines: ShowLines.ToOption(),
+                    Size: Size.ToOption(),
+                    Start: Start.ToOption(),
+                    Type: Type.ToOption(),
+                    Value: Value.ToOption()
+                );
 }
 
