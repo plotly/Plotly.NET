@@ -1,3 +1,13 @@
+### 3.0.1 - August 26 2022
+Minor fixes for Object abstractions:
+
+- Use correct Optional Parameter Attributes everywhere. This affects object abstractions for the following objects, but should be backwards compatible:
+    - Annotation
+    - LayoutImage
+    - Pattern
+    - TableCells
+- `FontSelectionStyle.init` now correctly returns a FontSelectionStyle instead of unit
+
 ### 3.0.0 - June 15 2022
 
 This release adopts strong assembly naming. 
