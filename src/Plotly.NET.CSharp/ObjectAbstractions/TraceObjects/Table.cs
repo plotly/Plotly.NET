@@ -35,7 +35,7 @@ public static partial class TraceObjects
         ) 
             where ValuesType: IConvertible
             =>
-                Plotly.NET.TraceObjects.TableCells.init(
+                Plotly.NET.TraceObjects.TableCells.init<IEnumerable<ValuesType>, ValuesType>(
                     Align: Align.ToOption(),
                     MultiAlign: MultiAlign.ToOption(),
                     Fill: Fill.ToOption(),
