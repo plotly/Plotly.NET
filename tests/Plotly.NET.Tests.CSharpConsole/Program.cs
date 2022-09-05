@@ -740,23 +740,23 @@ namespace TestConsoleApp
                         ),
                         Chart.ParallelCoord(
                             dimensions: new Plotly.NET.TraceObjects.Dimension [] {
-                                Plotly.NET.TraceObjects.Dimension.initParallel<string, string, int, int>(Label: "A", Values: new int [] {1, 4, 3}),
-                                Plotly.NET.TraceObjects.Dimension.initParallel<string, string, int, int>(Label: "B", Values: new int [] {3, 1, 2})
+                                TraceObjects.InitParallelDimension<string, string, int>(Label: "A", Values: new int [] {1, 4, 3}),
+                                TraceObjects.InitParallelDimension<string, string, int>(Label: "B", Values: new int [] {3, 1, 2})
                             },
                             Name: "parcoords"
                         ),
                         Chart.ParallelCategories(
                             dimensions: new Plotly.NET.TraceObjects.Dimension [] {
-                                Plotly.NET.TraceObjects.Dimension.initParallel<string, string, int, int>(Label: "A", Values: new int [] {1, 1, 2}),
-                                Plotly.NET.TraceObjects.Dimension.initParallel<string, string, int, int>(Label: "B", Values: new int [] {3, 3, 3})
+                                TraceObjects.InitParallelDimension<string, string, int>(Label: "A", Values: new int [] {1, 1, 2}),
+                                TraceObjects.InitParallelDimension<string, string, int>(Label: "B", Values: new int [] {3, 3, 3})
                             },
                             Name: "parcats"
                         ),
                         Chart.Sankey<string>(
-                            nodes: Plotly.NET.TraceObjects.SankeyNodes.init<string, int [], string, string>(
+                            nodes: TraceObjects.InitSankeyNodes<string, string, string>(
                                 Label: new string [] {"A", "B", "C", "D"}
                             ),
-                            links: Plotly.NET.TraceObjects.SankeyLinks.init<string, int>(
+                            links: TraceObjects.InitSankeyLinks<string, int>(
                                 Source: new int [] {0, 1, 1 },
                                 Target: new int [] {2, 2, 3 },
                                 Value: new int [] {1, 2, 5}
