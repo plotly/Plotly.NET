@@ -156,6 +156,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plotly.NET.CSharp.Tests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plotly.NET.Tests.CSharpInteroperability", "tests\Plotly.NET.Tests.CSharpInteroperability\Plotly.NET.Tests.CSharpInteroperability.csproj", "{64022D22-EB9A-4AE3-A0E6-BFA41E8B18CB}"
 EndProject
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Plotly.NET.Codegen", "src\Plotly.NET.Codegen\Plotly.NET.Codegen.fsproj", "{92601FE7-4E86-41B7-B61D-5D9EB46733C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -229,6 +231,12 @@ Global
 		{64022D22-EB9A-4AE3-A0E6-BFA41E8B18CB}.Dotnet|Any CPU.Build.0 = Debug|Any CPU
 		{64022D22-EB9A-4AE3-A0E6-BFA41E8B18CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64022D22-EB9A-4AE3-A0E6-BFA41E8B18CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92601FE7-4E86-41B7-B61D-5D9EB46733C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92601FE7-4E86-41B7-B61D-5D9EB46733C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92601FE7-4E86-41B7-B61D-5D9EB46733C7}.Dotnet|Any CPU.ActiveCfg = Debug|Any CPU
+		{92601FE7-4E86-41B7-B61D-5D9EB46733C7}.Dotnet|Any CPU.Build.0 = Debug|Any CPU
+		{92601FE7-4E86-41B7-B61D-5D9EB46733C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92601FE7-4E86-41B7-B61D-5D9EB46733C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -248,6 +256,7 @@ Global
 		{F944FE69-F4A5-4B48-8E4D-BE4B61E92B26} = {0E87E47E-9EDC-4525-AF72-F0E139D54236}
 		{4C24BA53-F41C-4110-AD7A-28143DCF671E} = {EAE25A1F-86FC-426B-803F-1006D1AD06A8}
 		{64022D22-EB9A-4AE3-A0E6-BFA41E8B18CB} = {EAE25A1F-86FC-426B-803F-1006D1AD06A8}
+		{92601FE7-4E86-41B7-B61D-5D9EB46733C7} = {0E87E47E-9EDC-4525-AF72-F0E139D54236}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7177F1E1-341C-48AB-9864-6B525FFF7633}

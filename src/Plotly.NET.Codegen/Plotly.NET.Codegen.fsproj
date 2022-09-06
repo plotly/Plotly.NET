@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Playground\important-objects-codegen.fsx" />
+    <None Include="Playground\traceobject-codegen.fsx" />
+    <Compile Include="Common.fs" />
+    <Compile Include="TemplateStrings.fs" />
+    <Compile Include="CoreObjects.fs" />
+    <Compile Include="TraceObjects.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="Plotly.NET" Version="3.0.1" />
+  </ItemGroup>
+
+</Project>

@@ -14,7 +14,7 @@ namespace Plotly.NET.CSharp
         /// Returns the layout of the given chart
         /// </summary>
         /// <param name="gChart">The chart of which to get the layout</param>
-        public static Layout GetLayout(this GenericChart.GenericChart gChart) => GenericChart.getLayout(gChart);
+        public static Plotly.NET.Layout GetLayout(this GenericChart.GenericChart gChart) => GenericChart.getLayout(gChart);
 
         /// <summary>
         /// Returns all traces of the given chart as an array
