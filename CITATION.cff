@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: Schneider
+    given-names: Kevin
+    orcid: https://orcid.org/0000-0002-2198-5262
+  - family-names: Venn
+    given-names: Benedikt
+    orcid: https://orcid.org/0000-0003-4203-1596
+  - family-names: Mühlhaus
+    given-names: Timo
+    orcid: https://orcid.org/0000-0003-3925-6778
+title: "Plotly.NET: A fully featured charting library for .NET programming languages [version 1; peer review: awaiting peer review]"
+doi: https://doi.org/10.12688/f1000research.123971.1
