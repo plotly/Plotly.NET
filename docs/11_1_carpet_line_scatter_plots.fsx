@@ -46,7 +46,7 @@ let bData = [1.; 1.; 2.; 3.]
 let sizes = [5; 10; 15; 20]
 
 (**
-A carpet plot is any of a few different specific types of plot. The more common plot referred to as a carpet plot is one that illustrates the interaction between two or more independent variables and one or more dependent variables in a two-dimensional plot. 
+A [carpet plot](https://en.wikipedia.org/wiki/Carpet_plot) is any of a few different specific types of plot. The more common plot referred to as a carpet plot is one that illustrates the interaction between two or more independent variables and one or more dependent variables in a two-dimensional plot. 
 
 Besides the ability to incorporate more variables, another feature that distinguishes a carpet plot from an equivalent contour plot or 3D surface plot is that a carpet plot can be used to more accurately interpolate data points. 
 
@@ -56,7 +56,7 @@ Carpet plots have common applications within areas such as material science for 
 
 A carpet plot with two independent variables and one dependent variable is often called a cheater plot for the use of a phantom "cheater" axis instead of the horizontal axis. 
 
-(https://en.wikipedia.org/wiki/Carpet_plot)
+
 
 ## Carpet Traces
 
